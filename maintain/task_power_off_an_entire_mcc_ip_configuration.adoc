@@ -1,0 +1,88 @@
+---
+permalink: maintain/task_power_off_an_entire_mcc_ip_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, power, off, entire, metrocluster, ip, configuration 
+summary: メンテナンスや再配置を開始する前に、 MetroCluster IP 構成全体とすべての機器の電源をオフにする必要があります。 
+---
+= MetroCluster IP 構成全体の電源をオフにします
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+メンテナンスや再配置を開始する前に、 MetroCluster IP 構成全体とすべての機器の電源をオフにする必要があります。
+
+
+NOTE: ONTAP 9.8 以降では '*storage switch *' コマンドは '*system switch*' に置き換えられています以下の手順は '*storage switch *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system switch *' コマンドを使用することをお勧めします
+
+. MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
++
+.. MetroCluster の構成と運用モードが正常な状態であることを確認します。+`* MetroCluster show*`
+.. 次のコマンドを実行します :+`*MetroCluster interconnect show*`
+.. いずれかの MetroCluster ノードで次のコマンドを入力して、ディスクへの接続を確認します。 +`*run local sysconfig -v *`
+.. 次のコマンドを実行します :+`* storage port show *`
+.. 次のコマンドを実行します :+`* storage switch show *`
+.. 次のコマンドを実行します :+`* network interface show *`
+.. 次のコマンドを実行します :+`* network port show *`
+.. 次のコマンドを実行します :+`* network device-discovery show *`
+.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
+.. 次のコマンドを実行します。 +`* MetroCluster configurion-settings interface show *`
+
+
+. 必要に応じて、 AUSO 障害ドメインをに変更して AUSO を無効にします
++
+「 * auso-disabled * 」と表示されます
+
++
+[listing]
+----
+cluster_A_site_A::*>metrocluster modify -auto-switchover-failure-domain auso-disabled
+----
++
+
+NOTE: MetroCluster IP 構成では、 ONTAP メディエーターが設定されていないかぎり、 AUSO 障害ドメインはすでに「 auso-disabled 」に設定されています。
+
+. コマンドを使用して、変更を確認します
++
+「 * MetroCluster operation show * 」と表示されます
+
++
+[listing]
+----
+
+	cluster_A_site_A::*> metrocluster operation show
+       Operation: modify
+           State: successful
+      Start Time: 4/25/2020 20:20:36
+        End Time: 4/25/2020 20:20:36
+          Errors: -
+----
+. ノードを停止します。
++
+*halt *`
+
++
+[listing]
+----
+system node halt -node node1_SiteA -inhibit-takeover true -ignore-quorum-warnings true
+----
+. サイトで次の機器の電源をオフにします。
++
+** ストレージコントローラ
+** MetroCluster IP スイッチ
+** ストレージシェルフ
+
+
+. 30 分待ってから、すべてのコントローラの電源をオンにします。
+. コントローラの電源をオンにしたら、両方のサイトで MetroCluster 構成を確認します。
++
+設定を確認するには、手順 1 を繰り返します。
+
+. 電源再投入チェックを実行します。
++
+.. すべての同期元 SVM がオンラインであることを確認します。 +`* vserver show *`
+.. オンラインでない同期元の SVM をすべて起動します。 +`* vserver start *`
+
+
+

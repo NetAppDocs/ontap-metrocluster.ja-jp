@@ -1,0 +1,50 @@
+---
+permalink: upgrade/task_enable_storage_failover_both_controller_modules_and_set_cluster_ha.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, enable, storage, failover, both, controller, module, cluster, ha 
+summary: MetroCluster 構成に新しいコントローラモジュールを追加したら、両方のコントローラモジュールでストレージフェイルオーバーを有効にし、各モジュールでクラスタ HA を有効にする必要があります。 
+---
+= 両方のコントローラモジュールでのストレージフェイルオーバーの有効化およびクラスタ HA の有効化
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成に新しいコントローラモジュールを追加したら、両方のコントローラモジュールでストレージフェイルオーバーを有効にし、各モジュールでクラスタ HA を有効にする必要があります。
+
+MetroCluster の設定は ' MetroCluster configure -refresh true コマンドを使用して事前に更新されている必要があります
+
+このタスクは MetroCluster サイトごとに実行する必要があります。
+
+. ストレージフェイルオーバーを有効にします。
++
+`* storage failover modify -enabled true -node _existing-node-name_*`
+
++
+1 つのコマンドで両方のコントローラモジュールのストレージフェイルオーバーが有効になります。
+
+. ストレージフェイルオーバーが有効になっていることを確認します。
++
+'*storage failover show*
+
++
+次のような出力が表示されます。
+
++
+[listing]
+----
+
+Node           Partner        Possible State Description
+-------------- -------------- -------- ----------------------
+old-ctlr        new-ctlr      true      Connected to new-ctlr
+new-ctlr        old-ctlr      true      Connected to old-ctlr
+2 entries were displayed.
+----
+. クラスタ HA を有効にします。
++
+*cluster ha modify -configured true *
+
++
+クラスタに含まれるノードが 2 つだけで、クラスタのハイアベイラビリティ（ HA ）がストレージフェイルオーバーによって提供される HA と異なる場合は、クラスタの HA を構成する必要があります。
+
+

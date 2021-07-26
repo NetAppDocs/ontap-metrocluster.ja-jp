@@ -1,0 +1,172 @@
+---
+permalink: install-ip/task_sw_config_assign_pool0.html 
+sidebar: sidebar 
+keywords: metrocluster, controller, assign drives, pool 0, disk assign 
+summary: 工場出荷状態のシステムでない場合は、プール 0 のドライブを手動で割り当てる必要があります。プラットフォームモデルおよび ADP を使用しているシステムかどうかに応じて、 MetroCluster IP 構成の各ノードのプール 0 にドライブを手動で割り当てる必要があります。使用する手順は、使用する ONTAP のバージョンによって異なります。 
+---
+= プール 0 へのドライブの手動割り当て
+
+
+[role="lead"]
+工場出荷状態のシステムでない場合は、プール 0 のドライブを手動で割り当てる必要があります。プラットフォームモデルおよび ADP を使用しているシステムかどうかに応じて、 MetroCluster IP 構成の各ノードのプール 0 にドライブを手動で割り当てる必要があります。使用する手順は、使用する ONTAP のバージョンによって異なります。
+
+
+
+== プール 0 ドライブの手動割り当て（ ONTAP 9.4 以降）
+
+[role="lead"]
+工場出荷時に事前設定されておらず、自動ドライブ割り当ての要件を満たしていないシステムでは、プール 0 のドライブを手動で割り当てる必要があります。
+
+この手順環境構成は ONTAP 9.4 以降を実行しています。
+
+手動でディスクを割り当てる必要があるかどうかを確認するには、を参照してください xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]。
+
+この手順はメンテナンスモードで実行します。手順は、構成内の各ノードで実行する必要があります。
+
+このセクションの例は、次の前提に基づいています。
+
+* node_A_1 と node_A_1 の所有ドライブ：
++
+** site_A-shelf_1 （ローカル）
+** site_B-shelf_2 （リモート）
+
+
+* node_B_1 と node_B_2 のドライブ：
++
+** site_B-shelf_1 （ローカル）
+** site_A-shelf_2 （リモート）
++
+... ブートメニューを表示します：「 boot_ontap menu
+... オプション 9a を選択します。
++
+次の画面はブートメニューのプロンプトを示しています。
+
++
+[listing]
+----
+
+Please choose one of the following:
+
+    (1) Normal Boot.
+    (2) Boot without /etc/rc.
+    (3) Change password.
+    (4) Clean configuration and initialize all disks.
+    (5) Maintenance mode boot.
+    (6) Update flash from backup config.
+    (7) Install new software first.
+    (8) Reboot node.
+    (9) Configure Advanced Drive Partitioning.
+    Selection (1-9)?  9a
+########## WARNING ##########
+
+    This is a disruptive operation and will result in the
+    loss of all filesystem data. Before proceeding further,
+    make sure that:
+    1) This option (9a) has been executed or will be executed
+    on the HA partner node (and DR/DR-AUX partner nodes if
+    applicable), prior to reinitializing any system in the
+    HA-pair (or MetroCluster setup).
+    2) The HA partner node (and DR/DR-AUX partner nodes if
+    applicable) is currently waiting at the boot menu.
+
+    Do you still want to continue (yes/no)? yes
+----
+... ノードが再起動したら、プロンプトが表示されたら Ctrl+C キーを押してブートメニューを表示し、 * Maintenance mode boot * オプションを選択します。
+... 保守モードで、ノードのローカルアグリゲートにドライブを手動で割り当てます。「 disk assign disk-id -p 0 -s local-node sysid
++
+各ノードのドライブ数が同じになるよう、ドライブは対称的に割り当てる必要があります。次の手順は、各サイトにストレージシェルフが 2 台ある構成のものです。
+
++
+.... node_A_1 の設定では、スロット 0~11 のドライブを site_A-shelf_1 のノード A1 のプール 0 に手動で割り当てます。
+.... node_A_1 の設定では、スロット 12~23 のドライブを site_A-shelf_1 のノード A2 のプール 0 に手動で割り当てます。
+.... node_B_1 の設定では、スロット 0~11 のドライブを site_B-shelf_1 のノード B1 のプール 0 に手動で割り当てます。
+.... node_B_2 を設定する場合は、スロット 12~23 のドライブを site_B-shelf_1 のノード B2 のプール 0 に手動で割り当てます。
+
+
+... 保守モードを終了します :halt
+... ブートメニューを表示します：「 boot_ontap menu
+... ブートメニューからオプション 4 を選択し、システムをブートします。
+... MetroCluster IP 構成の他のノードに対して上記の手順を繰り返します。
+... に進みます xref:concept_configure_the_mcc_software_in_ontap.html#setting-up-ontap[ONTAP をセットアップしています]。
+
+
+
+
+
+
+
+
+== プール 0 ドライブの手動割り当て（ ONTAP 9.3 ）
+
+[role="lead"]
+各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してローカル（プール 0 ）のディスクを自動的に割り当てます。ノードをメンテナンスモードにした状態で、最初にシェルフの 1 つのディスクをプール 0 に割り当てる必要があります。シェルフの残りのディスクは ONTAP で自動的に同じプールに割り当てられます。このタスクは、プール 0 に事前設定されたルートアグリゲートが含まれる、工場出荷状態のシステムでは必要ありません。
+
+これは、 ONTAP 9.3 を実行している手順環境構成です。
+
+この手順は、工場出荷状態の MetroCluster 構成では必要ありません。工場出荷状態のノードには、プール 0 のディスクとルートアグリゲートが設定されています。
+
+この手順は、各ノードにディスクシェルフが少なくとも 2 台あり、シェルフレベルのディスクの自動割り当てが可能な場合にのみ使用できます。シェルフレベルの自動割り当てを使用できない場合は、ローカルディスクを手動で割り当てて、各ノードにディスクのローカルプール（プール 0 ）を構成する必要があります。
+
+この手順はメンテナンスモードで実行する必要があります。
+
+このセクションの例では、次のディスクシェルフを使用します。
+
+* node_A_1 の所有ディスク：
++
+** site_A-shelf_1 （ローカル）
+** site_B-shelf_2 （リモート）
+
+
+* Node_a_2 の接続先：
++
+** site_A-shelf_3 （ローカル）
+** site_B-shelf_4 （リモート）
+
+
+* node_B_1 の接続先：
++
+** site_B-shelf_1 （ローカル）
+** site_A-shelf_2 （リモート）
+
+
+* node_B_2 の接続先：
++
+** site_B-shelf_3 （ローカル）
+** site_A-shelf_4 （リモート）
++
+... 各ノードのルートアグリゲートに 1 つのディスクを手動で割り当てます。「 disk assign disk-id -p 0 -s local-node-sysid
++
+これらのディスクを手動で割り当てると、 ONTAP の自動割り当て機能によって、各シェルフの残りのディスクが割り当てられます。
+
++
+.... node_A_1 で、ローカルの site_A-shelf_1 のいずれかのディスクをプール 0 に手動で割り当てます。
+.... node_A_1 で、ローカルの site_A-shelf_3 のいずれかのディスクをプール 0 に手動で割り当てます。
+.... node_B_1 で、ローカルの site_B-shelf_1 のいずれかのディスクをプール 0 に手動で割り当てます。
+.... node_B_2 で、ローカルの site_B-shelf_3 のいずれかのディスクをプール 0 に手動で割り当てます。
+
+
+... ブートメニューのオプション 4 を使用して、サイト A の各ノードをブートします。
++
+この手順は、次のノードに進む前に各ノードで実行する必要があります。
+
++
+.... 保守モードを終了します :halt
+.... ブートメニューを表示します：「 boot_ontap menu
+.... ブートメニューからオプション 4 を選択して次に進みます。
+
+
+... ブートメニューのオプション 4 を使用して、サイト B の各ノードをブートします。
++
+この手順は、次のノードに進む前に各ノードで実行する必要があります。
+
++
+.... 保守モードを終了します :halt
+.... ブートメニューを表示します：「 boot_ontap menu
+.... ブートメニューからオプション 4 を選択して次に進みます。
+
+
+
+
+
+
+

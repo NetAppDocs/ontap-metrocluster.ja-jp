@@ -1,0 +1,249 @@
+---
+permalink: install-ip/task_sw_config_setup_ontap.html 
+sidebar: sidebar 
+keywords: metrocluster, ontap, setup 
+summary: 各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。 
+---
+= ONTAP をセットアップしています
+
+
+[role="lead"]
+各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。
+
+* MetroCluster 構成のケーブル接続を完了しておく必要があります。
+* サービスプロセッサが設定されていないことを確認してください。
+
+
+新しいコントローラをネットブートする必要がある場合は、を参照してください link:../upgrade/task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html#netbooting-the-new-controllers["新しいコントローラモジュールのネットブート"]。
+
+このタスクは、 MetroCluster 構成の両方のクラスタで実行する必要があります。
+
+. ローカルサイトの各ノードに電源が入っていない場合は電源を投入し、すべてのノードを完全にブートします。
++
+システムが保守モード問題になっている場合は、 halt コマンドを使用して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタをセットアップする必要があります。
+
+. 各クラスタの最初のノードで、プロンプトに従ってクラスタを設定します
++
+.. システムの指示に従って AutoSupport ツールを有効にします。
++
+次のような出力が表示されます。
+
++
+[listing]
+----
+Welcome to the cluster setup wizard.
+
+    You can enter the following commands at any time:
+    "help" or "?" - if you want to have a question clarified,
+    "back" - if you want to change previously answered questions, and
+    "exit" or "quit" - if you want to quit the cluster setup wizard.
+    Any changes you made before quitting will be saved.
+
+    You can return to cluster setup at any time by typing "cluster setup".
+    To accept a default or omit a question, do not enter a value.
+
+    This system will send event messages and periodic reports to NetApp Technical
+    Support. To disable this feature, enter
+    autosupport modify -support disable
+    within 24 hours.
+
+    Enabling AutoSupport can significantly speed problem determination and
+    resolution should a problem occur on your system.
+    For further information on AutoSupport, see:
+    http://support.netapp.com/autosupport/
+
+    Type yes to confirm and continue {yes}: yes
+
+.
+.
+.
+----
+.. プロンプトに従ってノード管理インターフェイスを設定します。
++
+次のようなプロンプトが表示されます。
+
++
+[listing]
+----
+Enter the node management interface port [e0M]:
+Enter the node management interface IP address: 172.17.8.229
+Enter the node management interface netmask: 255.255.254.0
+Enter the node management interface default gateway: 172.17.8.1
+A node management interface on port e0M with IP address 172.17.8.229 has been created.
+----
+.. プロンプトに従ってクラスタを作成します。
++
+次のようなプロンプトが表示されます。
+
++
+[listing]
+----
+Do you want to create a new cluster or join an existing cluster? {create, join}:
+create
+
+
+Do you intend for this node to be used as a single node cluster? {yes, no} [no]:
+no
+
+Existing cluster interface configuration found:
+
+Port MTU IP Netmask
+e0a 1500 169.254.18.124 255.255.0.0
+e1a 1500 169.254.184.44 255.255.0.0
+
+Do you want to use this configuration? {yes, no} [yes]: no
+
+System Defaults:
+Private cluster network ports [e0a,e1a].
+Cluster port MTU values will be set to 9000.
+Cluster interface IP addresses will be automatically generated.
+
+Do you want to use these defaults? {yes, no} [yes]: no
+
+Enter the cluster administrator's (username "admin") password:
+
+Retype the password:
+
+
+Step 1 of 5: Create a Cluster
+You can type "back", "exit", or "help" at any question.
+
+List the private cluster network ports [e0a,e1a]:
+Enter the cluster ports' MTU size [9000]:
+Enter the cluster network netmask [255.255.0.0]: 255.255.254.0
+Enter the cluster interface IP address for port e0a: 172.17.10.228
+Enter the cluster interface IP address for port e1a: 172.17.10.229
+Enter the cluster name: cluster_A
+
+Creating cluster cluster_A
+
+Starting cluster support services ...
+
+Cluster cluster_A has been created.
+----
+.. ライセンスを追加し、クラスタ管理 SVM をセットアップします。プロンプトに従って DNS 情報を入力します。
++
+次のようなプロンプトが表示されます。
+
++
+[listing]
+----
+Step 2 of 5: Add Feature License Keys
+You can type "back", "exit", or "help" at any question.
+
+Enter an additional license key []:
+
+
+Step 3 of 5: Set Up a Vserver for Cluster Administration
+You can type "back", "exit", or "help" at any question.
+
+
+Enter the cluster management interface port [e3a]:
+Enter the cluster management interface IP address: 172.17.12.153
+Enter the cluster management interface netmask: 255.255.252.0
+Enter the cluster management interface default gateway: 172.17.12.1
+
+A cluster management interface on port e3a with IP address 172.17.12.153 has been created. You can use this address to connect to and manage the cluster.
+
+Enter the DNS domain names: lab.netapp.com
+Enter the name server IP addresses: 172.19.2.30
+DNS lookup for the admin Vserver will use the lab.netapp.com domain.
+
+Step 4 of 5: Configure Storage Failover (SFO)
+You can type "back", "exit", or "help" at any question.
+
+
+SFO will be enabled when the partner joins the cluster.
+
+
+Step 5 of 5: Set Up the Node
+You can type "back", "exit", or "help" at any question.
+
+Where is the controller located []: svl
+----
+.. プロンプトに従って、ストレージフェイルオーバーを有効にし、ノードをセットアップします。
++
+次のようなプロンプトが表示されます。
+
++
+[listing]
+----
+Step 4 of 5: Configure Storage Failover (SFO)
+You can type "back", "exit", or "help" at any question.
+
+
+SFO will be enabled when the partner joins the cluster.
+
+
+Step 5 of 5: Set Up the Node
+You can type "back", "exit", or "help" at any question.
+
+Where is the controller located []: site_A
+----
+.. ノードの設定を完了します。ただし、データアグリゲートは作成しません。
++
+ONTAP System Manager を使用して、 Web ブラウザでクラスタ管理 IP アドレスを指定できます (https://172.17.12.153)[]。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["System Manager を使用したクラスタの管理"]
+
+
+
+. 次のコントローラをブートし、プロンプトに従ってクラスタに追加します。
+. ノードがハイアベイラビリティモードで設定されていることを確認します。「 storage failover show -fields mode 」
++
+そうでない場合は、各ノードで HA モードを設定してからノードをリブートする必要があります：「 storage failover modify -mode ha -node localhost 」
+
++
+このコマンドを実行するとハイアベイラビリティモードが設定されますが、ストレージフェイルオーバーは有効になりません。ストレージフェイルオーバーは、あとで実行する MetroCluster 構成の設定プロセスで自動的に有効になります。
+
+. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。「 network port show 」
++
+この時点では MetroCluster IP インターフェイスは設定されておらず、コマンド出力に表示されません。
+
++
+次の例は、 node_A_1 の 2 つのクラスタポートを示しています。
+
++
+[listing]
+----
+cluster_A::*> network port show -role cluster
+
+
+
+Node: node_A_1
+
+                                                                       Ignore
+
+                                                  Speed(Mbps) Health   Health
+
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+
+e4a       Cluster      Cluster          up   9000  auto/40000 healthy  false
+
+e4e       Cluster      Cluster          up   9000  auto/40000 healthy  false
+
+
+Node: node_A_2
+
+                                                                       Ignore
+
+                                                  Speed(Mbps) Health   Health
+
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+
+e4a       Cluster      Cluster          up   9000  auto/40000 healthy  false
+
+e4e       Cluster      Cluster          up   9000  auto/40000 healthy  false
+
+
+4 entries were displayed.
+----
+. パートナークラスタで同じ手順を繰り返します。
+
+
+ONTAP のコマンドラインインターフェイスに戻り、後続のタスクを実行して MetroCluster の設定を完了します。

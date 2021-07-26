@@ -1,0 +1,25 @@
+---
+permalink: tiebreaker/concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html 
+sidebar: sidebar 
+keywords: switchover, upon, detection, site, failure, automatic, metrocluster, tiebreaker, active, mode, supplement, ontap, fas, capability, risk, limitation 
+summary: アクティブモードの MetroCluster Tiebreaker では、サイト障害検出時のスイッチオーバーは自動的に実行されます。このモードは、 ONTAP / FAS の自動スイッチオーバー機能を補完する目的で使用できます。 
+---
+= MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アクティブモードの MetroCluster Tiebreaker では、サイト障害検出時のスイッチオーバーは自動的に実行されます。このモードは、 ONTAP / FAS の自動スイッチオーバー機能を補完する目的で使用できます。
+
+MetroCluster Tiebreaker をアクティブモードで実装すると、以下の既知の問題によってデータが失われる可能性があります。
+
+* サイト間リンクで障害が発生した場合、各サイトのコントローラは引き続きクライアントにサービスを提供します。ただし、コントローラはミラーリングされません。一方のサイトのコントローラの障害はサイト障害とみなされ、 MetroCluster Tiebreaker はスイッチオーバーを開始します。リモートサイトとのサイト間リンク障害後にミラーリングされていないデータは失われます。
+* リモートサイトのアグリゲートがデグレード状態になるとスイッチオーバーが実行されます。アグリゲートの再同期前にスイッチオーバーが実行された場合、データはレプリケートされません。
+* スイッチオーバーの実行中にリモートストレージの障害が発生します。
+* ストレージコントローラの不揮発性メモリ（プラットフォームモデルに応じて NVRAM または NVMEM ）は、パートナーサイトのリモートディザスタリカバリ（ DR ）パートナーにミラーリングされません。
+* クラスタピアリングネットワークが長時間にわたって停止し、スイッチオーバー後にメタデータボリュームがオンラインにならないと、メタデータが失われます。
+
+
+
+NOTE: ここに記載されていない状況が発生することもあります。ネットアップは、 MetroCluster Tiebreaker をアクティブモードで使用中に発生したいかなる損害についても責任を負いません。リスクおよび制限を許容できない場合は、 MetroCluster Tiebreaker をアクティブモードで使用しないでください。

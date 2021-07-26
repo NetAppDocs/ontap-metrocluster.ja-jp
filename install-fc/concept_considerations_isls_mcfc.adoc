@@ -1,0 +1,88 @@
+---
+permalink: install-fc/concept_considerations_isls_mcfc.html 
+sidebar: sidebar 
+keywords: preparing, prepare, metrocluster, mcc, installation, install, differences, configurations, between, considerations, all, san, array, asa, cluster, peering, prerequisites, dedicated, ports, sharing, data, ports, native, disk, shelves, array, luns, transitions, 7-mode, isls, tdm/wdm, fabric-attached, iod, ood, encryption, devices, unmirrored, aggregates, maintenance, requiring, power, shutdown, firewall, hardware, racking, cabling, setup, checklist, all san array, asa 
+summary: MetroCluster 構成では、各 FC スイッチファブリックに必要な ISL の数を確認する必要があります。 
+---
+= ISL に関する考慮事項
+
+
+[role="lead"]
+MetroCluster 構成では、各 FC スイッチファブリックに必要な ISL の数を確認する必要があります。ONTAP 9.2 以降では、 MetroCluster 構成ごとに専用の FC スイッチと ISL を使用する代わりに、同じ 4 つのスイッチを共有できる場合があります。
+
+
+
+== ISL の共有に関する考慮事項（ ONTAP 9.2 ）
+
+ONTAP 9.2 以降では、次の場合に ISL を共有できます。
+
+* 2 ノード MetroCluster 構成 × 1 と 4 ノード 構成 × 1
+* 4 ノード MetroCluster 構成 × 2
+* 2 ノード MetroCluster 構成 × 2
+* 2 つの DR グループを 1 つの 8 ノード MetroCluster 構成に含めます
+
+
+共有スイッチ間に必要な ISL の数は、共有スイッチに接続されているプラットフォームモデルの帯域幅によって異なります。
+
+構成に必要な ISL の数を決定する際は、次の点を考慮してください。
+
+* バックエンド MetroCluster 接続を提供する FC スイッチに MetroCluster 以外のデバイスを接続しないでください。
+* ISL の共有は、 Cisco 9250i スイッチと Cisco 9148 スイッチを除くすべてのスイッチでサポートされます。
+* すべてのノードで ONTAP 9.2 以降が実行されている必要があります。
+* ISL を共有する場合の FC スイッチのケーブル接続は、 8 ノード MetroCluster の場合と同じです。
+* ISL を共有する場合に使用する RCF ファイルは、 8 ノードの MetroCluster ケーブル接続の場合と同じです。
+* すべてのハードウェアとソフトウェアのバージョンがサポートされていることを確認する必要があります。
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+* ISL の速度と数は、両方の MetroCluster システムのクライアント負荷に対応できるようにサイジングする必要があります。
+* バックエンドの ISL とコンポーネントは、 MetroCluster 構成専用にする必要があります。
+* サポートされる ISL の速度は、 4Gbps 、 8Gbps 、 16Gbps 、 32Gbps です。
+* ISL の速度と長さは、 1 つのファブリックのすべての ISL で同じである必要があります。
+* ISL のトポロジは、 1 つのファブリックのすべての ISL で同じである必要があります。たとえば、すべての ISL を直接リンクにするか、または WDM を使用する場合はすべての ISL で WDM を使用する必要があります。
+
+
+
+
+== プラットフォーム固有の ISL に関する考慮事項
+
+推奨される ISL の数は、プラットフォームモデルによって異なります。次の表に、ファブリックごとの ISL 要件をプラットフォームモデル別に示します。各 ISL の容量が 16Gbps であると想定しています。
+
+[cols="2*"]
+|===
+| プラットフォームモデル | 4 ノードの DR グループ（スイッチファブリック）あたりの推奨される ISL 数 
+
+
+ a| 
+AFF A700
+ a| 
+6
+
+
+
+ a| 
+FAS9000
+ a| 
+6
+
+
+
+ a| 
+8080 です
+ a| 
+4.
+
+
+
+ a| 
+その他すべて
+ a| 
+2 つ
+
+|===
+8 ノード構成をサポートするスイッチファブリックの場合（単一の 8 ノード MetroCluster 構成の一部である場合、または 2 つの 4 ノード構成で ISL を共有する場合）ファブリックあたりの推奨される ISL 数は、 4 ノードの各 DR グループに必要な数の合計になります。例：
+
+* DR グループ 1 に AFF A700 システムが 4 つ含まれている場合は、 ISL が 6 つ必要です。
+* DR グループ 2 に FAS8200 システムが 4 つ含まれている場合は、 ISL が 2 つ必要です。
+* スイッチファブリックあたりの推奨される ISL 数は合計 8 個です。
+

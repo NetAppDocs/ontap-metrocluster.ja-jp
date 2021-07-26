@@ -1,0 +1,160 @@
+---
+permalink: upgrade/task_configure_intercluster_lifs_to_share_data_ports.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, configure, intercluster, lif, shared, data, ports 
+summary: データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。 
+---
+= 共有データポートでのクラスタ間 LIF の設定
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。
+
+.手順
+. クラスタ内のポートの一覧を表示します。
++
+「 * network port show * 」と表示されます
+
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 cluster01 内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+----
+. システム SVM にクラスタ間 LIF を作成します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 * network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -address_port_IP_-netmask netmask _ * 」のようになります
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 * network interface create -vserver _system_svm _ -lif LIF_name -role intercluster -home-node _node _-home-port _ -address _port_IP_address -netmask * netmask * 」のようになります
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、クラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
+
++
+[listing]
+----
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0c -address 192.168.1.201
+-netmask 255.255.255.0
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.168.1.202
+-netmask 255.255.255.0
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 * network interface show -service -policy default -intercluster * 」のように表示されます
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 * network interface show -role intercluster * 」のようになります
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0c     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0c     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 * network interface show – service-policy default-intercluster-failover * 」と表示されます
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 * network interface show -role intercluster-failover * 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster –failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0c   local-only      192.168.1.201/24
+                            Failover Targets: cluster01-01:e0c,
+                                              cluster01-01:e0d
+         cluster01_icl02 cluster01-02:e0c   local-only      192.168.1.201/24
+                            Failover Targets: cluster01-02:e0c,
+                                              cluster01-02:e0d
+----
+

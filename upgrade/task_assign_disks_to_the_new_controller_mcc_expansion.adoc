@@ -1,0 +1,44 @@
+---
+permalink: upgrade/task_assign_disks_to_the_new_controller_mcc_expansion.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, assign, disks, new, controller, module 
+summary: ネットブートを使用して新しいコントローラモジュールの設定を完了する前に、モジュールにディスクを割り当てる必要があります。 
+---
+= 新しいコントローラモジュールにディスクを割り当てています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットブートを使用して新しいコントローラモジュールの設定を完了する前に、モジュールにディスクを割り当てる必要があります。
+
+既存のアグリゲートに含まれていない十分な数のスペア、未割り当てディスク、または割り当て済みディスクがあることを確認しておく必要があります。
+
+xref:task_prepare_for_the_upgrade_add_2nd_controller_to_create_ha_pair.adoc[アップグレードの準備を行います]
+
+以下の手順は、既存のコントローラモジュールで実行します。
+
+.手順
+. 新しいコントローラモジュールにルートディスクを割り当てます。
++
+'*storage disk assign -disk disk_name --sysid_new_controller_SysID__ -force true *
+
++
+プラットフォームのモデルがアドバンストドライブパーティショニング（ ADP ）機能を使用している場合は、 -root true パラメータを指定する必要があります。
+
++
+`* storage disk assign -disk disk_name __ root true -sysid_new_controller_SysID__ -force true *`
+
+. ディスクごとに次のコマンドを入力して、必要なディスクをすべて新しいコントローラモジュールに割り当てます。
++
+'*storage disk assign -disk disk_name --sysid_new_controller_SysID__ -force true *
+
+. ディスクの割り当てが正しいことを確認します。
++
+*storage disk show partitionownership *
+
++
+
+NOTE: 新しいノードに割り当てるディスクをすべて割り当てておきます。
+
+

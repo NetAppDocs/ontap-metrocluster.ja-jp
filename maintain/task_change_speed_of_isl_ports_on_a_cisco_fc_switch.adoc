@@ -1,0 +1,85 @@
+---
+permalink: maintain/task_change_speed_of_isl_ports_on_a_cisco_fc_switch.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, change, speed, isl, ports, cisco, fc, switch 
+summary: ISL の品質を向上させるために、スイッチの ISL ポートの速度を変更しなければならない場合があります。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。 
+---
+= Cisco FC スイッチでの ISL ポートの速度変更
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ISL の品質を向上させるために、スイッチの ISL ポートの速度を変更しなければならない場合があります。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。
+
+ISL 接続を確保するためには、両方のスイッチですべての手順を実行する必要があります。
+
+. ファブリック内の両方のスイッチで、速度を変更する ISL の ISL ポートを無効にします。
++
+'*FC_switch_A_1#config t*
+
++
+1 行に 1 つずつ設定コマンドを入力します。すべての設定コマンドを入力したら、 Ctrl+Z キーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# shut
+	FC_switch_A_1(config)# end
+----
+. ファブリック内の両方のスイッチで、 ISL ポートの速度を変更します。
++
+'*FC_switch_A_1#config t*
+
++
+1 行に 1 つずつ設定コマンドを入力します。すべての設定コマンドを入力したら、 Ctrl+Z キーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# switchport speed 16000
+----
++
+
+NOTE: ポートの速度は 16 = 16 、 000Gbps 、 8 = 8 、 000Gbps 、 4 = 4 、 000Gbps です。
+
++
+使用しているスイッチの ISL ポートが _Fabric-attached MetroCluster Installation and Configuration Guide _ に記載されていることを確認します。
+
+. ファブリック内の両方のスイッチで、すべての ISL ポートを有効にします（有効になっていない場合）。
++
+'*FC_switch_A_1#config t*
+
++
+1 行に 1 つずつ設定コマンドを入力します。すべての設定コマンドを入力したら、 Ctrl+Z キーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# no shut
+	FC_switch_A_1(config)# end
+----
+. 両方のスイッチ間に ISL が確立されたことを確認します。
++
+'*show topology isl*
+
++
+[listing]
+----
+--------------------------------------------------------------------------------
+	__________Local_________ _________Remote_________ VSAN Cost I/F  PC    I/F  Band
+	 PC Domain SwName   Port  Port   SwName Domain PC          Stat Stat Speed width
+	--------------------------------------------------------------------------------
+	  1   0x11 cisco9 fc1/36  fc1/36 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/40  fc1/40 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/44  fc1/44 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/48  fc1/48 cisco9 0xbc    1    1   15 up   up    16g   64g
+----
+. 2 つ目のスイッチファブリックに対して手順を繰り返します。
+

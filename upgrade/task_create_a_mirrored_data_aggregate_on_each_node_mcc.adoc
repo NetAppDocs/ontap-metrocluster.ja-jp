@@ -1,0 +1,77 @@
+---
+permalink: upgrade/task_create_a_mirrored_data_aggregate_on_each_node_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, create, mirrored, data, aggregate, node 
+summary: DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。 
+---
+= 各ノードでミラーされたデータアグリゲートを作成します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。
+
+* 新しいアグリゲートで使用するドライブを把握しておく必要があります。
+* 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
+* ドライブは特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
++
+ADP を使用するシステムではパーティションを使用してアグリゲートが作成され、各ドライブがパーティション P1 、 P2 、 P3 に分割されます。
+
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
++
+.. 使用可能なスペアのリストを表示します。
++
+「 * storage disk show -spare -owner_node_name _ * 」と入力します
+
+.. 「 storage aggregate create -mirror true 」コマンドを使用して、アグリゲートを作成します。
++
+クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。アグリゲートを特定のノード上に作成するには、「 -node 」パラメータを使用するか、そのノードが所有するドライブを指定します。
+
++
+次のオプションを指定できます。
+
++
+*** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
+*** アグリゲートに追加するドライブのリスト
+*** 追加するドライブ数
++
+
+NOTE: 使用できるドライブ数が限られている最小サポート構成では、 force-small-aggregate オプションを使用して、 3 ディスクの RAID-DP アグリゲートを作成できるように設定する必要があります。
+
+*** アグリゲートに使用するチェックサム形式
+*** 使用するドライブのタイプ
+*** 使用するドライブのサイズ
+*** 使用するドライブの速度
+*** アグリゲート上の RAID グループの RAID タイプ
+*** RAID グループに含めることができるドライブの最大数
+*** これらのオプションの詳細については 'storage aggregate create のマニュアル・ページを参照してください RPM の異なるドライブでも使用できます
+
+
+
+
++
+次のコマンドでは、 10 本のディスクを含むミラーアグリゲートが作成されます。
+
++
+[+]
+
++
+[listing]
+----
+cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_1 -mirror true
+[Job 15] Job is queued: Create aggr1_node_A_1.
+[Job 15] The job is starting.
+[Job 15] Job succeeded: DONE
+----
++
+.. 新しいアグリゲートの RAID グループとドライブを確認します。
++
+「 * storage aggregate show-status -aggregate _aggregate-name _ * 」という形式で表示されます
+
+
+
+

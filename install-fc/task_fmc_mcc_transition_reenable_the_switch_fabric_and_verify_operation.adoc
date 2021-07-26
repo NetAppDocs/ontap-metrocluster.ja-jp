@@ -1,0 +1,64 @@
+---
+permalink: install-fc/task_fmc_mcc_transition_reenable_the_switch_fabric_and_verify_operation.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, reenable, switch, fabric, verify, operation 
+summary: FC スイッチファブリックを有効にして、スイッチやデバイスが正しく動作していることを確認する必要があります。 
+---
+= スイッチファブリックを再度有効にし、動作を確認します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FC スイッチファブリックを有効にして、スイッチやデバイスが正しく動作していることを確認する必要があります。
+
+.手順
+. スイッチを有効にします。
++
+*switchCfgPersistentEnable*'
+
++
+このコマンドを使用できない場合は 'fastBoot コマンドの実行後にスイッチが enabled 状態になっている必要があります
+
++
+次に 'FC_switch_A_1 で実行するコマンドの例を示します
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchCfgPersistentEnable
+----
++
+次の例は 'FC_switch _ B_1' に対して発行されたコマンドを示しています
+
++
+[listing]
+----
+FC_switch_B_1:admin> switchCfgPersistentEnable
+----
+. スイッチがオンラインで、すべてのデバイスがログインされていることを確認します。
++
+'*switchShow*
+
++
+次に 'FC_switch_A_1 で実行するコマンドの例を示します
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchShow
+----
++
+次の例は 'FC_switch _ B_1' に対して発行されたコマンドを示しています
+
++
+[listing]
+----
+FC_switch_B_1:admin> switchShow
+----
+. 「 fmc_dc ユーティリティ」を実行して、 7-Mode ファブリックの MetroCluster が正常に機能していることを確認します。
++
+Traffic Isolation （ TI ）ゾーニングおよびトランキングに関連するエラーは無視してかまいません。
+
+. 2 つ目のスイッチファブリックに対して同じタスクを繰り返します。
+

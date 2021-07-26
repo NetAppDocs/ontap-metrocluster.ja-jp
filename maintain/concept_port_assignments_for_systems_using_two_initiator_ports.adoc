@@ -1,0 +1,217 @@
+---
+permalink: maintain/concept_port_assignments_for_systems_using_two_initiator_ports.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, port, assignments, system, two, initiator, ports 
+summary: FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 システムは、ファブリックごとに 1 つのイニシエータポートとコントローラごとに 2 つのイニシエータポートを使用して設定できます。 
+---
+= 2 つのイニシエータポートを使用するシステムのポート割り当て
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 システムは、ファブリックごとに 1 つのイニシエータポートとコントローラごとに 2 つのイニシエータポートを使用して設定できます。
+
+FibreBridge 6500N ブリッジまたは一方の FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N / 7600N ブリッジのケーブル接続方法を使用できます。4 つのイニシエータのうち 2 つだけを接続し、スイッチポートに接続されている他の 2 つのイニシエータは空にしておきます。
+
+FibreBridge 6500N ブリッジの設定に対応する正しい RCF ファイルを適用する必要があります。
+
+ゾーニングを手動で実行する場合は、 FibreBridge 6500N ブリッジまたは一方の FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング方法に従います。このシナリオでは、各ファブリックのゾーンメンバーごとに 2 つではなく 1 つのイニシエータポートが追加されます。
+
+ゾーニングの変更や FibreBridge 6500 から FibreBridge 7500 へのアップグレードの実行には、の手順ホットスワップ対応 FibreBridge 6500N ブリッジと FibreBridge 7500N / 7600N ブリッジ _ を使用します https://docs.netapp.com/us-en/ontap-metrocluster/maintain/index.html["MetroCluster メンテナンスガイド"]。
+
+次の表に、 ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当てを示します。
+
+|===
+4+| FibreBridge 6500N ブリッジ、または 1 つの FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N または 7600N を使用する構成 
+
+
+4+| MetroCluster 1 または DR グループ 1 
+
+
+.2+| コンポーネント .2+| ポート 2+| Brocade スイッチモデル 6505 、 6510 、 6520 、 7840 、 G620 、 G610 、および DCX 8510-8 
+
+
+| 接続先 FC スイッチ | 接続先スイッチポート 
+
+
+ a| 
+controller_x_1
+ a| 
+FC-VI ポート a
+ a| 
+1.
+ a| 
+0
+
+
+
+ a| 
+FC-VI ポート b
+ a| 
+2.
+ a| 
+0
+
+
+
+ a| 
+FC-VI ポート c
+ a| 
+1.
+ a| 
+1.
+
+
+
+ a| 
+FC-VI ポート d
+ a| 
+2.
+ a| 
+1.
+
+
+
+ a| 
+HBA ポート A
+ a| 
+1.
+ a| 
+2.
+
+
+
+ a| 
+HBA ポート b
+ a| 
+2.
+ a| 
+2.
+
+
+
+ a| 
+HBA ポート c
+ a| 
+-
+ a| 
+-
+
+
+
+ a| 
+HBA ポート d
+ a| 
+-
+ a| 
+-
+
+
+
+ a| 
+スタック 1
+ a| 
+bridge_x_1a
+ a| 
+1.
+ a| 
+8.
+
+
+
+ a| 
+bridge_x_1b
+ a| 
+2.
+ a| 
+8.
+
+
+
+ a| 
+スタック y
+ a| 
+bridge_x_ya
+ a| 
+1.
+ a| 
+11.
+
+
+
+ a| 
+bridge_x_YB
+ a| 
+2.
+ a| 
+11.
+
+|===
+次の表に、 ONTAP 9.0 を使用している場合の FC スイッチのポート割り当てを示します。
+
+|===
+4+| MetroCluster の 2 ノード構成 
+
+
+.2+| コンポーネント .2+| ポート 2+| Brocade 6505 、 6510 、または DCX 8510-8 
+
+
+| FC_switch_x_1 | FC_switch_x_2 
+
+
+ a| 
+controller_x_1
+ a| 
+FC-VI ポート a
+ a| 
+0
+ a| 
+-
+
+
+
+ a| 
+FC-VI ポート b
+ a| 
+-
+ a| 
+0
+
+
+
+ a| 
+HBA ポート A
+ a| 
+1.
+ a| 
+-
+
+
+
+ a| 
+HBA ポート b
+ a| 
+-
+ a| 
+1.
+
+
+
+ a| 
+HBA ポート c
+ a| 
+2.
+ a| 
+-
+
+
+
+ a| 
+HBA ポート d
+ a| 
+-
+ a| 
+2.
+
+|===

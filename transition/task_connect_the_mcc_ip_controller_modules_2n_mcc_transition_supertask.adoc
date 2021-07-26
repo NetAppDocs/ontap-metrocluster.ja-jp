@@ -1,0 +1,613 @@
+---
+permalink: transition/task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html 
+sidebar: sidebar 
+keywords: add, four, controller, module, additional, storage, shelves, shelf, configuration, two-at-a-time, connect, metrocluster, ip, boot, bring, up 
+summary: 4 つの新しいコントローラモジュールとストレージシェルフを構成に追加する必要があります。新しいコントローラモジュールは一度に 2 つずつ追加されます。 
+---
+= MetroCluster IP コントローラモジュールを接続します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+4 つの新しいコントローラモジュールとストレージシェルフを構成に追加する必要があります。新しいコントローラモジュールは一度に 2 つずつ追加されます。
+
+
+
+== 新しいコントローラをセットアップする
+
+[role="lead"]
+新しい MetroCluster IP コントローラを、以前に MetroCluster FC コントローラに接続したストレージシェルフにラックに設置してケーブル接続する必要があります。
+
+この手順は、各 MetroCluster IP ノードで実行する必要があります。
+
+* node_A_1 の IP
+* Node_a_2-IP
+* node_B_1 - IP
+* node_B_2 - IP
+
+
+次の例では、新しいコントローラモジュールに対応するストレージを提供するために、各サイトにストレージシェルフが 2 台追加されています。
+
+image::../media/transition_2n_4_new_ip_nodes_and_shelves.png[移行 2n 4 つの新しい IP ノードおよびシェルフ]
+
+. 必要に応じて、新しいコントローラモジュールとストレージシェルフの配置を計画します。
++
+ラックスペースは、コントローラモジュールのプラットフォームモデル、スイッチのタイプ、構成内のストレージシェルフ数によって異なります。
+
+. 自身の適切な接地対策を行います
+. 新しい機器をラックに設置します。コントローラ、ストレージシェルフ、 IP スイッチが設置されている必要があります。
++
+この時点では、ストレージシェルフまたは IP スイッチをケーブル接続しないでください。
+
+. 電源ケーブルと管理コンソールをコントローラに接続します。
+. すべてのストレージシェルフの電源がオフになっていることを確認する。
+. 4 つのノードすべてで次の手順を実行して、ドライブが接続されていないことを確認します。
++
+.. LOADER プロンプトで、ブートメニュー「 boot_ontap maint 」を起動します
+.. ドライブが接続されていないことを確認します。「 Disk show -v
++
+出力にドライブが表示されないことを確認します。
+
+.. ノードを停止します
+
+
+. ブートメニューの 9a オプションを使用して、 4 つのノードすべてをブートします。
++
+.. LOADER プロンプトで、ブートメニュー「 boot_ontap menu 」を起動します
+.. ブートメニューでオプション * 9a * を選択してコントローラをリブートします。
+.. コントローラモジュールのブートが完了してから次のコントローラモジュールに移動します。
+
+
++
+9a が完了すると、ノードは自動的にブートメニューに戻ります。
+
+. ストレージシェルフをケーブル接続します。
++
+ケーブル接続の情報については、使用しているモデルに対応したコントローラの設置とセットアップの手順を参照してください。
+
++
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+. MetroCluster IP インストールおよび設定ガイドの説明に従って、コントローラを IP スイッチにケーブル接続します。
++
+link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+
++
+** link:../install-ip/task_cable_ip_switches.html["IP スイッチのケーブル接続"]
+
+
+. 新しい RCF ファイルを適用するための IP スイッチを準備します。
++
+使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
+
++
+link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+
++
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+
+
+. RCF ファイルをダウンロードしてインストールします。
++
+使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"]。
+
++
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+
+
+. 最初の新しいコントローラ（ node_A_1 の IP ）の電源をオンにし、 Ctrl+C キーを押してブートプロセスを中断し、 LOADER プロンプトを表示します。
+. コントローラを保守モードでブートします。「 boot_ontap maint 」
+. コントローラのシステム ID 「 sysconfig -v 」を表示します
+. 既存の構成のシェルフが新しい MetroCluster IP ノード「 storage show shelf 」「 d`isk show -v 」から認識できることを確認します
+. ノードを停止します
+. パートナーサイト（ site_B ）のもう一方のノードで、上記の手順を繰り返します。
+
+
+
+
+== node_A_1 の IP と node_B_1 の IP を接続し、ブートします
+
+[role="lead"]
+MetroCluster IP コントローラと IP スイッチを接続したら、 node_A_1 の IP と node_B_1 の IP を移行してブートします。
+
+
+
+=== node_A_1 の IP を起動しています
+
+[role="lead"]
+正しい移行オプションを使用してノードをブートする必要があります。
+
+. node_A_1 のブートメニューから 'boot_ontap menu' をブートします
+. 問題ブートメニュープロンプトで次のコマンドを実行して移行を開始します。 'boot_after_MCC_transition'
++
+** このコマンドは、 node_A_1 の FC が所有するすべてのディスクを node_A_1 の IP に再割り当てします。
++
+*** node_A_1 - FC ディスクが node_A_1 の IP に割り当てられます
+*** node_B_1 - FC ディスクが node_B_1 の IP に割り当てられます
+
+
+** また、 MetroCluster IP ノードが ONTAP プロンプトからブートできるように、このコマンドを使用すると、必要な他のシステム ID の再割り当ても自動的に行われます。
+** boot_after_MCC_transition コマンドが何らかの理由で失敗した場合は、ブートメニューから再実行する必要があります。* 注： *
+** 次のプロンプトが表示されたら、 Ctrl+C キーを押して続行します。MCC DR の状態を確認しています ... [Ctrl + C （履歴書）、 S （ステータス）、 L （リンク） ] _ を入力します
+** ルートボリュームが暗号化されている場合、ノードは次のメッセージで停止します。ルートボリュームが暗号化されており（ NetApp Volume Encryption ）、キーのインポートに失敗したため、システムを停止します。このクラスタに外部（ KMIP ）キー管理ツールが設定されている場合は、キーサーバの健常性を確認します。
+
+
++
+[listing]
+----
+
+Please choose one of the following:
+(1) Normal Boot.
+(2) Boot without /etc/rc.
+(3) Change password.
+(4) Clean configuration and initialize all disks.
+(5) Maintenance mode boot.
+(6) Update flash from backup config.
+(7) Install new software first.
+(8) Reboot node.
+(9) Configure Advanced Drive Partitioning. Selection (1-9)? `boot_after_mcc_transition`
+This will replace all flash-based configuration with the last backup to disks. Are you sure you want to continue?: yes
+
+MetroCluster Transition: Name of the MetroCluster FC node: `node_A_1-FC`
+MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? y
+MetroCluster Transition: Disaster Recovery partner sysid of MetroCluster FC node node_A_1-FC: `systemID-of-node_B_1-FC`
+MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? y
+MetroCluster Transition: Disaster Recovery partner sysid of local MetroCluster IP node: `systemID-of-node_B_1-IP`
+MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? y
+----
+. データボリュームが暗号化されている場合は、キー管理設定に対応したコマンドを使用してキーをリストアします。
++
+|===
+| 使用するポート | 使用するコマンド 
+
+
+ a| 
+* オンボードキー管理 *
+ a| 
+セキュリティキー管理ツールのオンボード同期の詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html["オンボードキー管理の暗号化キーのリストア"]。
+
+
+
+ a| 
+* 外部キー管理 *
+ a| 
+security key-manager key query -node node-name の詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html["外部キー管理の暗号化キーのリストア"]。
+
+[+]
+
+|===
+. ルートボリュームが暗号化されている場合は、の手順を使用します link:../transition/task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html#recovering-key-management-if-the-root-volume-is-encrypted["ルートボリュームが暗号化されている場合のキー管理のリカバリ"]。
+
+
+
+
+=== ルートボリュームが暗号化されている場合のキー管理のリカバリ
+
+[role="lead"]
+ルートボリュームが暗号化されている場合は、特別なブートコマンドを使用してキー管理をリストアする必要があります。
+
+パスフレーズを事前に収集しておく必要があります。
+
+. オンボードキー管理を使用している場合は、次の手順を実行して構成をリストアします。
++
+.. LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」
+.. ブートメニューからオプション（ 10 ） Set onboard key management recovery secrets を選択します。
++
+プロンプトに従って応答します。
+
++
+[listing]
+----
+This option must be used only in disaster recovery procedures. Are you sure? (y or n): `y`
+Enter the passphrase for onboard key management: `passphrase`
+Enter the passphrase again to confirm:`passphrase`
+
+Enter the backup data:`backup-key`
+----
++
+システムがブートしてブートメニューが表示されます。
+
+.. ブート・メニューでオプション「 6 」を入力します。
++
+プロンプトに従って応答します。
+
++
+[listing]
+----
+This will replace all flash-based configuration with the last backup to
+disks. Are you sure you want to continue?: y
+
+Following this, the system will reboot a few times and the following prompt will be available continue by saying y
+
+WARNING: System ID mismatch. This usually occurs when replacing a boot device or NVRAM cards!
+Override system ID? {y|n} y
+----
++
+リブートが完了すると、システムに LOADER プロンプトが表示されます。
+
+.. LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」
+.. ブートメニューからオンボードキー管理のリカバリシークレットを設定し、オプション（ 10 ）を再度選択します。
++
+プロンプトに従って応答します。
+
++
+[listing]
+----
+This option must be used only in disaster recovery procedures. Are you sure? (y or n): `y`
+Enter the passphrase for onboard key management: `passphrase`
+Enter the passphrase again to confirm:`passphrase`
+
+Enter the backup data:`backup-key`
+----
++
+システムがブートしてブートメニューが表示されます。
+
+.. ブート・メニューでオプション「 1 」を入力します。
++
+次のプロンプトが表示されたら、 Ctrl+C キーを押してプロセスを再開できます。MCC DR の状態を確認しています ... [Ctrl + C （履歴書）、 S （ステータス）、 L （リンク） ] _ を入力します
+
++
+システムが ONTAP プロンプトでブートします。
+
+.. オンボード・キー管理をリストアします： 'securitykey-manager onboard sync
++
+前の手順で収集したパスフレーズを使用して、必要に応じてプロンプトに応答します。
+
++
+[listing]
+----
+cluster_A::> security key-manager onboard sync
+Enter the cluster-wide passphrase for onboard key management in Vserver "cluster_A":: passphrase
+----
+
+
+. 外部キー管理を使用している場合は、次の手順を実行して設定をリストアします。
++
+.. 必要な起動引数を設定します。 'etenv bootarg.kmip.init.ipaddr ip-address 'setenv bootarg.kmip.init.netmask netmask 'setenv bootarg.kmip.init.gateway gateway-address 'etenv bootarg.kmip.init.interface interface-id
+.. LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」
+.. ブートメニューからオプション（ 11 ） Configure node for external key management を選択します。
++
+システムがブートしてブートメニューが表示されます。
+
+.. ブート・メニューでオプション「 6 」を入力します。
++
+システムが何度もブートします。起動プロセスを続行するかどうかを確認するメッセージが表示されたら、肯定応答を返すことができます。
+
++
+リブートが完了すると、システムに LOADER プロンプトが表示されます。
+
+.. 必要な起動引数を設定します。 'etenv bootarg.kmip.init.ipaddr ip-address 'setenv bootarg.kmip.init.netmask netmask 'setenv bootarg.kmip.init.gateway gateway-address 'etenv bootarg.kmip.init.interface interface-id
+.. LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」
+.. ブートメニューからオプション（ 11 ） Configure node for external key management を再度選択し、必要に応じてプロンプトに応答します。
++
+システムがブートしてブートメニューが表示されます。
+
+.. 外部キー管理のリストア：「 securitykey-manager external restore
+
+
+
+
+
+
+=== ネットワーク設定を作成しています
+
+[role="lead"]
+FC ノードの設定に一致するネットワーク設定を作成する必要があります。これは、 MetroCluster の IP ノードがブート時に同じ設定を再生するためです。つまり、 node_A_1 の IP ブートと node_B_1 の IP ブート時に、 ONTAP は node_A_1 の FC と node_B_1 の FC で使用されていたポートで LIF をホストしようとします。
+
+ネットワーク設定を作成するときは、で作成したプランを使用してください xref:concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.adoc[MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング] を参照してください。
+
+注
+
+MetroCluster IP ノードの設定が完了したら、データ LIF を稼働するために追加の設定が必要になる場合があります。
+
+. すべてのクラスタポートが適切なブロードキャストドメインに属していることを確認します。
++
+クラスタ LIF を作成するには、クラスタ IPspace とクラスタブロードキャストドメインが必要です
+
++
+.. IP スペースを表示します。「 network ipspace show 」
+.. IP スペースを作成し、必要に応じてクラスタポートを割り当てます。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["IPspace の設定（クラスタ管理者のみ）"]
+
+.. ブロードキャストドメインを表示します。「 network port broadcast-domain show 」
+.. 必要に応じて、ブロードキャストドメインにクラスタポートを追加します。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html["ブロードキャストドメインのポートの追加と削除"]
+
+.. 必要に応じて、 VLAN とインターフェイスグループを再作成します。
++
+VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html["VLAN を作成する"]
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html["物理ポートを組み合わせたインターフェイスグループの作成"]
+
+
+
+. ポートおよびブロードキャストドメインの MTU 設定が正しく設定されていることを確認し、次のコマンドを使用して変更を加えます。「 network port broadcast-domain show `network port broadcast-domain modify -broadcast-domain bcastdomainname -mtu 」
+
+
+
+
+=== クラスタポートとクラスタ LIF をセットアップする
+
+[role="lead"]
+クラスタポートと LIF をセットアップする必要があります。ルートアグリゲートでブートされたサイト A のノードで、次の手順を実行する必要があります。
+
+. 目的のクラスタポートを使用して LIF のリストを特定します。「 network interface show -curr-node portname 」「 network interface show -home-node portname
+. 各クラスタポートについて、そのポートのいずれかの LIF のホームポートを別のポートに変更します。
++
+.. advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced
+.. 変更する LIF がデータ LIF である場合は、「 vserver config override-command 」 network interface modify -lif lifname -vserver vservername -home-port new-datahomeport 」を参照してください
+.. LIF がデータ LIF でない場合は、「 network interface modify -lif lifname -vserver vservername -home-port new -datahomebport 」のようになります
+.. 変更した LIF をホームポートにリバートします。「 network interface revert * -vserver vserver_name
+.. クラスタポートに LIF がないことを確認します。「 network interface show -curr-node portname 」「 network interface show -home-node portname
+.. 現在のブロードキャストドメインからポートを削除します。「 network port broadcast-domain remove-ports -ipspace ipspacname -broadcast-domain bcastdomainname -ports node_name ： port_name
+.. クラスタ IPspace とブロードキャストドメインにポートを追加します。「 network port broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports node_name ： port_name
+.. ポートのロールが変更されたことを確認します。「 network port show 」
+.. クラスタポートごとに上記の手順を繰り返します。
+.. admin モードに戻ります。 'set priv admin'
+
+
+. 新しいクラスタポートにクラスタ LIF を作成します。
++
+.. クラスタ LIF にリンクローカルアドレスを使用して自動設定を行うには、次のコマンドを使用します。 network interface create -vserver Cluster -lif cluster_lifname -service -policy default -cluster -home-node a1name -home-port clusterport -auto true
+.. クラスタ LIF に静的 IP アドレスを割り当てるには、次のコマンドを使用します。「 network interface create -vserver Cluster -lif cluster_lifname -service -policy default -cluster -home-node a1name -home-port clusterport -address IP_address -netmask netmask-status -admin up
+
+
+
+
+
+
+=== LIF の構成を確認しています
+
+[role="lead"]
+古いコントローラからのストレージの移動後も、ノード管理 LIF 、クラスタ管理 LIF 、およびクラスタ間 LIF が残ったままです。必要に応じて、 LIF を適切なポートに移動する必要があります。
+
+. 管理 LIF とクラスタ管理 LIF がすでに目的のポートにあるかどうかを確認します。「 network interface show -service -policy default -management 」 network interface show -service -policy default -intercluster 」
++
+LIF が目的のポートに接続されている場合は、このタスクの残りの手順を省略して次の手順に進むことができます。
+
+. 各ノード、クラスタ管理、またはクラスタ間 LIF が目的のポートにない場合は、そのポートのいずれかの LIF のホームポートを別のポートに変更します。
++
+.. 「 vserver config overridecommand 」 network interface modify -lif <lifname> -vserver <vservername> -home-port <new-datahomeport> を使用して、目的のポートでホストされている LIF を別のポートに移動して、目的のポートを再利用します
+.. 変更した LIF を新しいホームポートにリバートします。「 vserver config override-command 」 network interface revert -lif <lifname> -vserver <vservername> 」
+.. 目的のポートが適切な IPspace とブロードキャストドメインにない場合は、そのポートを現在の IPspace とブロードキャストドメインから削除します。「 network port broadcast-domain remove-ports -ipspace <current-ipspace> -broadcast-domain <current-broadcast-domain > -broadcast-domain> -ports <controller-name ： current-port >
+.. 目的のポートを適切な IPspace に移動し、ブロードキャストドメイン「 network port broadcast-domain add-ports -ipspace 」 <new-ipspace > -broadcast-domain <new-broadcast-domain > -ports <controller-name:new-port > ` に移動します
+.. ポートのロールが変更されたことを確認します。「 network port show 」
+.. ポートごとに上記の手順を繰り返します。
+
+
+. 次のコマンドを使用して、ノード、クラスタ管理 LIF 、およびクラスタ間 LIF を目的のポートに移動します。
++
+.. LIF のホームポートを変更します。「 network interface modify -vserver vserver -lif node_name -home-port port -home-node homenode
+.. LIF を新しいホームポートにリバートします。「 network interface revert -lif Node_mgmt -vserver vservername 」
+.. クラスタ管理 LIF のホームポートを変更します。 `network interface modify -vserver vserver -lif cluster-mgmt-LIF -name -home-port port -home-node homenode`
+.. クラスタ管理 LIF を新しいホームポートにリバートします。「 network interface revert -lif cluster-mgmt-LIF -name -vserver vservername 」
+.. インタークラスタ LIF のホームポートを変更します。「 network interface modify -vserver vserver -lif intercluster-lif lif_name -home-node nodename -home-port port 」のように変更します
+.. クラスタ間 LIF を新しいホームポートにリバートします。「 network interface revert lif-lif-name -vserver vservername
+
+
+
+
+
+
+== node_B_2 と node_B_2 の IP を起動しています
+
+[role="lead"]
+各サイトで新しい MetroCluster IP ノードを起動して設定し、各サイトに HA ペアを作成する必要があります。
+
+
+
+=== node_B_2 と node_B_2 の IP を起動しています
+
+[role="lead"]
+新しいコントローラモジュールは、ブートメニューの適切なオプションを使用して、一度に 1 つずつブートする必要があります。
+
+この手順では、 2 つの新しいノードをブートして、 2 ノード構成を 4 ノード構成に拡張します。
+
+これらの手順は、次のノードで実行します。
+
+* Node_a_2-IP
+* node_B_2 - IP
+
+
+image::../media/transition_2n_booting_a_2_and_b_2.png[2 および b 2 をブートする移行 2n]
+
+. ブート・オプション 9C を使用して ' 新しいノードをブートします
++
+[listing]
+----
+Please choose one of the following:
+(1) Normal Boot.
+(2) Boot without /etc/rc.
+(3) Change password.
+(4) Clean configuration and initialize all disks.
+(5) Maintenance mode boot.
+(6) Update flash from backup config.
+(7) Install new software first.
+(8) Reboot node.
+(9) Configure Advanced Drive Partitioning. Selection (1-9)? 9c
+----
++
+ノードの初期化とブートは、次のようなノードセットアップウィザードで実行されます。
+
++
+[listing]
+----
+Welcome to node setup
+You can enter the following commands at any time:
+"help" or "?" - if you want to have a question clarified,
+"back" - if you want to change previously answered questions, and
+"exit" or "quit" - if you want to quit the setup wizard.
+Any changes you made before quitting will be saved.
+To accept a default or omit a question, do not enter a value. .
+.
+.
+----
++
+オプション 9C が正常に実行されない場合は ' データ損失の可能性を避けるため ' 次の手順に従います
+
++
+** オプション 9a は実行しないでください。
+** 元の MetroCluster FC 構成（ shelf_A_1 、 shelf_A_2 、 shelf_B_1 、 shelf_B_2 ）のデータが格納されている既存のシェルフを物理的に取り外します。
+** 技術情報アーティクルを参照して、テクニカルサポートに連絡してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/MetroCluster_FC_to_IP_transition_-_Option_9c_Failing["MetroCluster FC から IP への移行 - オプション 9C が失敗しました"]。
++
+https://mysupport.netapp.com/site/global/dashboard["ネットアップサポート"]
+
+
+
+. ウィザードの指示に従って、 AutoSupport ツールを有効にします。
+. プロンプトに従ってノード管理インターフェイスを設定します。
++
+[listing]
+----
+Enter the node management interface port: [e0M]:
+Enter the node management interface IP address: 10.228.160.229
+Enter the node management interface netmask: 225.225.252.0
+Enter the node management interface default gateway: 10.228.160.1
+----
+. ストレージフェイルオーバーモードが「 storage failover show -fields mode 」に設定されていることを確認します
++
+モードが HA でない場合は、「 storage failover modify -mode ha -node localhost 」を設定します
+
++
+変更を有効にするには、ノードをリブートする必要があります。
+
+. クラスタ内のポートを表示します。「 network port show 」を参照してください
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 cluster01 内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+----
+. Node Setup ウィザードを終了します :exit
+. admin ユーザ名を使用して admin アカウントにログインします。
+. クラスタセットアップウィザードを使用して既存のクラスタに参加する。
++
+[listing]
+----
+:> cluster setup
+Welcome to the cluster setup wizard.
+You can enter the following commands at any time:
+"help" or "?" - if you want to have a question clarified,
+"back" - if you want to change previously answered questions, and "exit" or "quit" - if you want to quit the cluster setup wizard.
+Any changes you made before quitting will be saved.
+You can return to cluster setup at any time by typing "cluster setup". To accept a default or omit a question, do not enter a value.
+Do you want to create a new cluster or join an existing cluster?
+{create, join}:
+join
+----
+. クラスタセットアップウィザードが完了したら、次のコマンドを入力して、クラスタがアクティブで、ノードが正常に機能していることを確認します。「 cluster show
+. ディスクの自動割り当てを無効にします。「 storage disk option modify -autoassign off -node node_A_2 -ip 」
+. 暗号化を使用する場合は、キー管理設定に対応したコマンドを使用してキーをリストアします。
++
+|===
+| 使用するポート | 使用するコマンド 
+
+
+ a| 
+* オンボードキー管理 *
+ a| 
+セキュリティキー管理ツールのオンボード同期の詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html["オンボードキー管理の暗号化キーのリストア"]。
+
+
+
+ a| 
+* 外部キー管理 *
+ a| 
+security key-manager key query -node node-name の詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html["外部キー管理の暗号化キーのリストア"]。
+
+[+]
+
+|===
+. 2 つ目の新しいコントローラモジュール（ node_B_2 - IP ）について、上記の手順を繰り返します。
+
+
+
+
+=== MTU 設定を確認しています
+
+[role="lead"]
+ポートおよびブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、次のコマンドを使用して変更を加えます
+
+. クラスタブロードキャストドメインで使用されている MTU サイズを確認します。「 network port broadcast-domain show 」
+. 必要に応じて MTU サイズを更新します。「 network port broadcast-domain modify -broadcast-domain bcast-domain= name -mtu mtu-size 」
+
+
+
+
+=== クラスタ間 LIF を設定しています
+
+[role="lead"]
+クラスタピアリングに必要なクラスタ間 LIF を設定
+
+このタスクは、新しい両方のノード、 node_B_2 - IP と node_B_2 - IP の両方で実行する必要があります。
+
+. MetroCluster IP インストールおよび設定ガイドの手順に従ってクラスタ間 LIF を設定します。
++
+link:../install-ip/task_sw_config_configure_clusters.html#configuring-intercluster-lifs-for-cluster-peering["クラスタ間 LIF を設定しています"]
+
+
+
+
+
+=== クラスタピアリングを検証しています
+
+[role="lead"]
+cluster_A と cluster_B にピア関係が確立されており、各クラスタのノードが相互に通信できることを確認します。
+
+. クラスタピア関係を確認します。 cluster peer health show
++
+[listing]
+----
+cluster01::> cluster peer health show
+Node       cluster-Name                Node-Name
+             Ping-Status               RDB-Health Cluster-Health  Avail…
+---------- --------------------------- ---------  --------------- --------
+node_A_1-IP
+           cluster_B                   node_B_1-IP
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+                                       node_B_2-IP
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+node_A_2-IP
+           cluster_B                   node_B_1-IP
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+                                       node_B_2-IP
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+----
+. ping を実行して、ピアアドレスに到達できることを確認します。「 cluster peer ping-originating -node local-node-destination-cluster remote-cluster-name 」
+

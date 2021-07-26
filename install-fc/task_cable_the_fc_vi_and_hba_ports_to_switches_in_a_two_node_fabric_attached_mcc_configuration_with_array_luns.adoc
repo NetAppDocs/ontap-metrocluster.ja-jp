@@ -1,0 +1,85 @@
+---
+permalink: install-fc/task_cable_the_fc_vi_and_hba_ports_to_switches_in_a_two_node_fabric_attached_mcc_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, cable, fc, vi, hba, ports, two, node, array, luns 
+summary: アレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成をセットアップする場合は、 FC-VI ポートと HBA ポートをスイッチポートにケーブル接続する必要があります。 
+---
+= アレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成における FC-VI ポートと HBA ポートのケーブル接続
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成をセットアップする場合は、 FC-VI ポートと HBA ポートをスイッチポートにケーブル接続する必要があります。
+
+* このタスクは、 MetroCluster の両方のサイトの各コントローラで実行する必要があります。
+* MetroCluster 構成でアレイ LUN に加えてディスクも使用する場合は、ディスクを使用する構成用の指定の HBA ポートとスイッチポートを使用する必要があります。
++
+** xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+** xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+
+
+
+
+.手順
+. コントローラの FC-VI ポートを代替のスイッチポートにケーブル接続します。
+. MetroCluster の両方のサイトで、コントローラとスイッチをケーブル接続します。
++
+コントローラからスイッチへの接続では、冗長性を確保する必要があります。そのため、サイトの各コントローラについて、同じポートペアの両方の HBA ポートを代替 FC スイッチに接続する必要があります。
+
++
+次の例は、コントローラ A の HBA ポートと FC_switch_A_1 および FC_switch_A_2 のポートの間の接続を示しています。
+
++
+image::../media/two_node_mcc_hba_connections.gif[2 ノード MCC HBA 接続]
+
++
+次の表に、この図の HBA ポートと FC スイッチポートの間の接続を示します。
+
++
+|===
+
+
+| HBA ポート | スイッチポート 
+
+
+ a| 
+* ポートペア *
+
+
+
+ a| 
+ポート A
+ a| 
+FC_switch_A_1 、ポート 2
+
+
+
+ a| 
+ポート d
+ a| 
+FC_switch_A_2 、ポート 3
+
+
+
+ a| 
+* ポートペア *
+
+
+
+ a| 
+ポート b
+ a| 
+FC_switch_A_2 、ポート 2
+
+
+
+ a| 
+ポート c
+ a| 
+FC_switch_A_1 、ポート 3
+
+|===
+
+
+MetroCluster サイト間で FC スイッチの ISL をケーブル接続します。

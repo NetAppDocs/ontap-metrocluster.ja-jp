@@ -1,0 +1,32 @@
+---
+permalink: upgrade/task_mirror_the_root_aggregates_mcc_expansion_procedure.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, mirror, root, aggregate, new, controller 
+summary: MetroCluster 構成にコントローラを追加する場合は、ルートアグリゲートをミラーしてデータを保護する必要があります。 
+---
+= 新しいコントローラでルートアグリゲートをミラーリング
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成にコントローラを追加する場合は、ルートアグリゲートをミラーしてデータを保護する必要があります。
+
+このタスクは新しいコントローラモジュールで実行する必要があります。
+
+. ルートアグリゲートをミラーします。
++
+'*storage aggregate mirror_aggr_name_*
+
++
+次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。
+
++
+[listing]
+----
+controller_A_1::> storage aggregate mirror aggr0_controller_A_1
+----
++
+これによりアグリゲートがミラーされるため、ローカルのプレックスとリモートのプレックスがリモートの MetroCluster サイトに配置されたアグリゲートが作成されます。
+
+

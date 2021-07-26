@@ -1,0 +1,177 @@
+---
+permalink: install-fc/task_download_and_install_the_cisco_fc_switch_software.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, download, cisco, fc, switch, nx, software 
+summary: MetroCluster ファブリック構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。 
+---
+= Cisco FC スイッチの NX-OS ソフトウェアのダウンロードとインストール
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster ファブリック構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
+
+この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。
+
+この手順は、 MetroCluster ファブリック構成の各 FC スイッチで実行する必要があります。
+
+サポートされているバージョンのスイッチソフトウェアを使用する必要があります。
+
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+
+NOTE: 出力は Cisco IP スイッチについてのものですが、 Cisco FC スイッチについても同様です。
+
+. サポートされている NX-OS ソフトウェアファイルをダウンロードします。
++
+https://software.cisco.com/download/home["シスコのダウンロードページ"]
+
+. スイッチソフトウェアをスイッチにコピーします。
++
+`*+ copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management+*`
+
++
+この例では、「 nxos.7.0.3.i4.6.bin 」ファイルが SFTP サーバ 10.10.99.99 からローカルブートフラッシュにコピーされています。
+
++
+[listing]
+----
+IP_switch_A_1# copy sftp://root@10.10.99.99/tftpboot/nxos.7.0.3.I4.6.bin bootflash: vrf management
+root@10.10.99.99's password: password
+sftp> progress
+Progress meter enabled
+sftp> get   /tftpboot/nxos.7.0.3.I4.6.bin  /bootflash/nxos.7.0.3.I4.6.bin
+Fetching /tftpboot/nxos.7.0.3.I4.6.bin to /bootflash/nxos.7.0.3.I4.6.bin
+/tftpboot/nxos.7.0.3.I4.6.bin                 100%  666MB   7.2MB/s   01:32
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+----
+. 各スイッチの bootflash ディレクトリにスイッチの NX-OS ファイルがあることを確認します。
++
+「 * dir bootflash*` 」
+
++
+次の例は ' ファイルが ip_switch _a_1' に存在することを示しています
+
++
+[listing]
+----
+IP_switch_A_1# dir bootflash:
+                  .
+                  .
+                  .
+  698629632    Jun 13 21:37:44 2017  nxos.7.0.3.I4.6.bin
+                  .
+                  .
+                  .
+
+Usage for bootflash://sup-local
+ 1779363840 bytes used
+13238841344 bytes free
+15018205184 bytes total
+IP_switch_A_1#
+----
+. スイッチソフトウェアをインストールします。
++
+すべてのシステムブートフラッシュをインストールします。 nxos.version-number.bin キックスタート bootflash:nxos.version-bkickstart -number.bin *`
+
++
+[listing]
+----
+IP_switch_A_1#  install all system bootflash:nxos.7.0.3.I4.6.bin kickstart bootflash:nxos.7.0.3.I4.6.bin
+Installer will perform compatibility check first. Please wait.
+
+Verifying image bootflash:/nxos.7.0.3.I4.6.bin for boot variable "kickstart".
+[####################] 100% -- SUCCESS
+
+Verifying image bootflash:/nxos.7.0.3.I4.6.bin for boot variable "system".
+[####################] 100% -- SUCCESS
+
+Performing module support checks.                                                                                                            [####################] 100% -- SUCCESS
+
+Verifying image type.
+[####################] 100% -- SUCCESS
+
+Extracting "system" version from image bootflash:/nxos.7.0.3.I4.6.bin.
+[####################] 100% -- SUCCESS
+
+Extracting "kickstart" version from image bootflash:/nxos.7.0.3.I4.6.bin.
+[####################] 100% -- SUCCESS
+...
+----
++
+スイッチソフトウェアをインストールすると、スイッチが自動的にリブートします。
+
+. スイッチがリロードされるまで待ってから、スイッチにログインします。
++
+スイッチがリブートされると、ログインプロンプトが表示されます。
+
++
+[listing]
+----
+User Access Verification
+IP_switch_A_1 login: admin
+Password:
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2017, Cisco and/or its affiliates.
+All rights reserved.
+.
+.
+.
+MDP database restore in progress.
+IP_switch_A_1#
+
+The switch software is now installed.
+----
+. スイッチソフトウェアがインストールされたことを確認します。
++
+*show version *`
+
++
+次の例は、の出力を示しています。
+
++
+[listing]
+----
+IP_switch_A_1# show version
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2017, Cisco and/or its affiliates.
+All rights reserved.
+.
+.
+.
+
+Software
+  BIOS: version 04.24
+  NXOS: version 7.0(3)I4(6)   **<<< switch software version**
+  BIOS compile time:  04/21/2016
+  NXOS image file is: bootflash:///nxos.7.0.3.I4.6.bin
+  NXOS compile time:  3/9/2017 22:00:00 [03/10/2017 07:05:18]
+
+
+Hardware
+  cisco Nexus 3132QV Chassis
+  Intel(R) Core(TM) i3- CPU @ 2.50GHz with 16401416 kB of memory.
+  Processor Board ID FOC20123GPS
+
+  Device name: A1
+  bootflash:   14900224 kB
+  usb1:               0 kB (expansion flash)
+
+Kernel uptime is 0 day(s), 0 hour(s), 1 minute(s), 49 second(s)
+
+Last reset at 403451 usecs after  Mon Jun 10 21:43:52 2017
+
+  Reason: Reset due to upgrade
+  System version: 7.0(3)I4(1)
+  Service:
+
+plugin
+  Core Plugin, Ethernet Plugin
+IP_switch_A_1#
+----
+. MetroCluster ファブリック構成の残りの 3 つの FC スイッチについて、上記の手順を繰り返します。
+

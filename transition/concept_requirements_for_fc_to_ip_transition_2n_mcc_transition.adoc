@@ -1,0 +1,674 @@
+---
+permalink: transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html 
+sidebar: sidebar 
+keywords: start, transition, process, configuration, requirement, meet, preparing, prepare, disruptive, fc-to-ip, transition, general, workflow, disruptive, map, port, fc, node, ip 
+summary: 移行プロセスを開始する前に、構成が要件を満たしていることを確認する必要があります。 
+---
+= FC から IP への移行を停止させる準備をしています
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== FC から IP への移行を停止するための一般的な要件
+
+[role="lead"]
+移行プロセスを開始する前に、構成が要件を満たしていることを確認する必要があります。
+
+既存の MetroCluster FC 構成が次の要件を満たしている必要があります。
+
+* 2 ノード構成であり、すべてのノードで ONTAP 9.8 以降が実行されている必要があります。
++
+2 ノードのファブリック接続または拡張 MetroCluster です。
+
+* MetroCluster インストールおよび設定ガイド _ に記載されているすべての要件とケーブル接続を満たしている必要があります。
++
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
++
+link:../install-stretch/index.html["ストレッチ MetroCluster のインストールと設定"]
+
+* NetApp Storage Encryption （ NSE ）では設定できません。
+* MDV ボリュームは暗号化できません。
+
+
+MetroCluster サイトから 6 つのすべてのノードのリモートコンソールアクセスが必要です。または、手順で必要に応じてサイト間の移動を計画しておく必要があります。
+
+
+
+== FC から IP への移行を停止させるために、ドライブシェルフを再利用し、ドライブ要件を満たしておく必要があります
+
+[role="lead"]
+ストレージシェルフに利用可能な十分なスペアドライブとルートアグリゲートスペースがあることを確認する必要があります。
+
+
+
+=== 既存のストレージシェルフを再利用する
+
+この手順を使用する場合、既存のストレージシェルフは新しい構成で使用できるように保持されます。node_A_1 - FC と node_B_1 - FC を削除した場合、既存のドライブシェルフは cluster_B の node_A_1 - IP と node_B_2 - IP に接続され、 node_B_1 - IP と node_B_2 の node_B_2 - IP に接続されます
+
+* 既存のストレージシェルフ（ node_A_1 の FC および node_B_1 に接続されたシェルフ）が新しいプラットフォームモデルでサポートされている必要があります。
++
+既存のシェルフが新しいプラットフォームモデルでサポートされていない場合は、を参照してください xref:task_disruptively_transition_when_exist_shelves_are_not_supported_on_new_controllers.adoc[新しいコントローラで既存シェルフを使用できない場合の停止を伴う移行（ ONTAP 9.8 以降）]。
+
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+* プラットフォームについて、ドライブなどの制限を超えないようにする必要があります
++
+HWU リンク
+
+
+
+
+
+=== 追加のコントローラのストレージ要件
+
+2 つのコントローラ（ node_B_2 - IP と node_B_2 - IP ）の構成が 2 ノードから 4 ノードに変更されるため、必要に応じてストレージを追加する必要があります。
+
+* 既存のシェルフで使用可能なスペアドライブに応じて、追加のコントローラに対応するドライブを追加する必要があります。
++
+この場合、次の図に示すように、追加のストレージシェルフが必要になることがあります。
+
++
+image::../media/transition_2n_4_new_ip_nodes_on_the_shelves.png[シェルフの新しい IP ノードを 2 、 4 つ移行します]
+
++
+3 台目と 4 台目のコントローラ（ node_B_2 - IP および node_B_2 - IP ）のそれぞれに 14 ~ 18 本のドライブを追加する必要があります。
+
++
+** 3 本のプール 0 ドライブ
+** プール 1 ドライブ × 3
+** 2 本のスペアドライブ
+** システムボリューム用に 6 ～ 10 台のドライブ
+
+
+* 新しいノードを含む構成が、ドライブ数、ルートアグリゲートのサイズ容量など、構成のプラットフォーム制限を超えないようにする必要があります
++
+この情報は、各プラットフォームモデルの NetApp Hardware Universe _ で確認できます。
+
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+
+
+
+
+== 停止を伴う移行のワークフロー
+
+[role="lead"]
+移行を成功させるには、特定のワークフローに従う必要があります。
+
+移行を準備する際は、サイト間の移動を計画します。リモートノードがラックに設置されてケーブル接続されたら、ノードへのシリアルターミナルアクセスが必要です。ノードが設定されるまでサービスプロセッサへのアクセスは許可されません。
+
+image::../media/workflow_2n_transition_bsaic.png[ワークフロー 2n 遷移 bsaic]
+
+
+
+== MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング
+
+[role="lead"]
+MetroCluster FC ノードのポートと LIF の設定を、交換する MetroCluster IP ノードと互換性があるように調整する必要があります。
+
+アップグレードプロセスで最初に新しいノードがブートされると、各ノードは交換するノードの最新の設定を使用します。node_A_1 の IP をブートする際、 ONTAP は、 node_A_1 の FC で使用されていたポート上で LIF をホストしようとします。
+
+移行手順では、クラスタ LIF 、管理 LIF 、およびデータ LIF の構成が正しくなるように、古いノードと新しいノードの両方で手順を実行します。
+
+. 既存の MetroCluster FC ポートの用途と新しいノードでの MetroCluster IP インターフェイスのポートの用途が競合していないかを特定します。
++
+次の表を使用して、新しい MetroCluster IP コントローラの MetroCluster IP ポートを特定する必要があります。次に、 MetroCluster FC ノードのそれらのポートにデータ LIF またはクラスタ LIF が存在するかどうかを確認して記録します。
+
++
+これらの競合するデータ LIF または MetroCluster FC ノード上のクラスタ LIF は、移行手順の該当するステップで移動されます。
+
++
+
+NOTE: AFF A220 および FAS2750 システムでは、 MetroCluster IP 物理ポートもクラスタインターフェイスとして使用されます。新しい MetroCluster IP ノードが AFF A220 または FAS2750 システムの場合、既存のクラスタ LIF を移動する必要はありません。
+
++
+次の表に、 MetroCluster IP ポートをプラットフォームモデル別に示します。VLAN ID 列は無視してかまいません。
+
++
+[cols="4*"]
+|===
+| プラットフォームモデル | MetroCluster の IP ポート | VLAN ID |  
+
+
+.2+| AFF A800  a| 
+e0b
+.8+| 使用されません  a| 
+
+
+
+ a| 
+e1b
+ a| 
+
+
+
+.2+| AFF A700 および FAS9000  a| 
+e5
+ a| 
+
+
+
+ a| 
+e5b
+ a| 
+
+
+
+.2+| AFF A320  a| 
+e0g
+ a| 
+
+
+
+ a| 
+E0h
+ a| 
+
+
+
+.2+| AFF A300 および FAS8200  a| 
+E1A
+ a| 
+
+
+
+ a| 
+e1b
+ a| 
+
+
+
+.2+| AFF A220 および FAS2750  a| 
+e0a
+ a| 
+10.
+.2+| このようなシステムでは、これらの物理ポートがクラスタインターフェイスとしても使用されます。 
+
+
+ a| 
+e0b
+ a| 
+20
+
+
+
+.2+| AFF A250 および FAS500f  a| 
+e0c
+ a| 
+10.
+ a| 
+
+
+
+ a| 
+e0d
+ a| 
+20
+ a| 
+
+|===
++
+次の表に記入して、移行手順で後ほど参照できます。
+
++
+[cols="3*"]
+|===
+| ポート | 対応する MetroCluster IP インターフェイスポート（上の表を参照） | MetroCluster FC ノードのこれらのポートで LIF が競合しています 
+
+
+ a| 
+node_A_1 の FC 上の最初の MetroCluster IP ポート
+ a| 
+ a| 
+
+
+
+ a| 
+node_A_1 の FC 上の 2 番目の MetroCluster IP ポート
+ a| 
+ a| 
+
+
+
+ a| 
+node_B_1 の最初の MetroCluster IP ポート： FC
+ a| 
+ a| 
+
+
+
+ a| 
+node_B_1 の 2 つ目の MetroCluster IP ポート： FC
+ a| 
+ a| 
+
+|===
+. 新しいコントローラで使用できる物理ポートとポートでホストできる LIF を確認します。
++
+コントローラのポートの用途は、 MetroCluster IP 構成で使用するプラットフォームモデルと IP スイッチモデルによって異なります。新しいプラットフォームのポート使用量を NetApp Hardware Universe から収集できます。
+
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+. 必要に応じて、 node_A_1 の FC と node_A_1 の IP のポート情報を記録します。
++
+この表は、移行手順を実行するときに参照します。
+
++
+node_A_1 の列で、新しいコントローラモジュールの物理ポートを追加し、新しいノードの IPspace とブロードキャストドメインを計画します。
+
++
+[cols="7*"]
+|===
+|  3+| node_A_1 - FC 3+| node_A_1 の IP 
+
+
+| * LIF * | * ポート * ： | * IPspace * | * ブロードキャストドメイン * | * ポート * ： | * IPspace * | * ブロードキャストドメイン * 
+
+
+ a| 
+クラスタ 1
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 2
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 3
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 4
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ノード管理
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ管理
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 1
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 2.
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 3
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 4.
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+SAN
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ間ポート
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+. 必要に応じて、 node_B_1 FC のすべてのポート情報を記録します。
++
+この表は、アップグレード手順を実行するときに参照します。
+
++
+node_B_1 の IP の列で、新しいコントローラモジュールの物理ポートを追加し、新しいノードの LIF ポートの使用、 IPspace 、およびブロードキャストドメインを計画します。
+
++
+[cols="7*"]
+|===
+|  3+| node_B_1 - FC 3+| node_B_1 - IP 
+
+
+| * LIF * | * 物理ポート * | * IPspace * | * ブロードキャストドメイン * | * 物理ポート * | * IPspace * | * ブロードキャストドメイン * 
+
+
+ a| 
+クラスタ 1
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 2
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 3
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 4
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ノード管理
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ管理
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 1
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 2.
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 3
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 4.
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+SAN
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ間ポート
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+
+
+
+
+== MetroCluster IP コントローラの準備
+
+[role="lead"]
+4 つの新しい MetroCluster IP ノードを準備し、正しいバージョンの ONTAP をインストールする必要があります。
+
+このタスクは新しい各ノードで実行する必要があります。
+
+* node_A_1 の IP
+* Node_a_2-IP
+* node_B_1 - IP
+* node_B_2 - IP
+
+
+ノードは新しい * ストレージシェルフに接続する必要があります。既存のストレージシェルフにデータを格納している状態は * 接続しないでください。
+
+ここ手順で説明する手順は、コントローラとシェルフがラックに設置されたときに実行することも、あとで実行することもできます。いずれの場合も、構成をクリアし、ノードを既存のストレージシェルフに接続する前 * および MetroCluster FC ノードの構成を変更する前 * に、ノードを準備する必要があります。
+
+
+NOTE: MetroCluster FC コントローラに接続された既存のストレージシェルフに MetroCluster IP コントローラを接続した状態では、この手順を実行しないでください。
+
+この手順では、ノードの設定をクリアし、新しいドライブのメールボックスのリージョンをクリアします。
+
+. コントローラモジュールを新しいストレージシェルフに接続します。
+. 保守モードで、コントローラモジュールとシャーシの HA 状態を表示します。「 ha-config show 」
++
+すべてのコンポーネントの HA 状態が mccip である必要があります。
+
+. 表示されたコントローラまたはシャーシのシステム状態が正しくない場合は、 HA の状態を設定します。「 ha-config modify controller mccip 」「 ha-config modify chassis ip
+. 保守モードを終了します :halt
++
+コマンドの実行後、ノードが LOADER プロンプトで停止するまで待ちます。
+
+. 4 つのすべてのノードで次の手順を繰り返して、設定をクリアします。
++
+.. 環境変数をデフォルト値の「 set-defaults 」に設定します
+.. 環境を保存します : 'aveenv`bye
+
+
+. ブートメニューの 9a オプションを使用して、次の手順を繰り返して 4 つのノードをすべてブートします。
++
+.. LOADER プロンプトで、ブートメニュー「 boot_ontap menu 」を起動します
+.. ブートメニューでオプション * 9a * を選択してコントローラをリブートします。
+
+
+. ブートメニューのオプション * 5 を使用して、 4 つのノードのそれぞれをメンテナンスモードでブートします。
+. システム ID と 4 つのノードそれぞれの「 sysconfig 」を記録します
+. node_A_1 の IP と node_B_1 の IP について、次の手順を繰り返します。
++
+.. 各サイトにローカルなすべてのディスクの所有権を割り当てます。「ディスク割り当て adapter.xx.*」
+.. node_A_1 の IP と node_B_1 の IP でドライブシェルフが接続されている HBA ごとに、上記の手順を繰り返します。
+
+
+. node_A_1 の IP と node_B_1 の IP で次の手順を繰り返し、各ローカルディスクのメールボックス領域をクリアします。
++
+.. 各ディスクのメールボックス領域を破棄します : 「メールボックスを破棄する」ローカルの「メールボックスを破棄するパートナー」
+
+
+. 4 台すべてのコントローラを停止します
+. 各コントローラで、ブートメニュー「 boot_ontap menu 」を表示します
+. 4 つのコントローラのそれぞれで、設定「 wipeconfig 」をクリアします
++
+wipeconfig 処理が完了すると、ノードは自動的にブートメニューに戻ります。
+
+. ブートメニューの 9a オプションを使用して、次の手順を繰り返して 4 つのノードをすべてブートします。
++
+.. LOADER プロンプトで、ブートメニュー「 boot_ontap menu 」を起動します
+.. ブートメニューでオプション * 9a * を選択してコントローラをリブートします。
+.. コントローラモジュールのブートが完了してから次のコントローラモジュールに移動します。
+
+
++
+9a が完了すると、ノードは自動的にブートメニューに戻ります。
+
+. コントローラの電源をオフにします。
+
+
+
+
+== MetroCluster FC 構成の健全性の確認
+
+[role="lead"]
+移行を実行する前に、 MetroCluster FC 構成の健全性と接続を確認する必要があります
+
+このタスクは、 MetroCluster FC 構成上で実行します。
+
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスであるかどうかを確認します。「 node run -node node-name sysconfig -a ` 」
+.. 両方のクラスタにヘルスアラートがないかどうかを確認します。 'system health alert show'
+.. MetroCluster 構成と動作モードが正常であることを確認します。 MetroCluster show
+.. MetroCluster チェック「 MetroCluster check run 」を実行します
+.. MetroCluster チェックの結果を表示します。「 MetroCluster check show 」
+.. スイッチにヘルスアラートがないかどうかを確認します（ある場合）：「 storage switch show 」
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. ノードが非 HA モードであることを確認します。「 storage failover show 」
+
+
+
+
+== Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します
+
+[role="lead"]
+スイッチオーバーを開始できる MetroCluster Tiebreaker 構成や他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、移行の前に Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。
+
+. Tiebreaker ソフトウェアから既存の MetroCluster 設定を削除します。
++
+link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#removing-metrocluster-configurations["MetroCluster 構成を削除しています"]
+
+. スイッチオーバーを開始できるサードパーティ製アプリケーションから既存の MetroCluster 構成を削除します。
++
+アプリケーションのマニュアルを参照してください。
+
+

@@ -1,0 +1,74 @@
+= 
+
+
+.手順
+. にアクセスします https://mysupport.netapp.com/site/["ネットアップサポートサイト"] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
+. ネットアップサポートサイトのソフトウェアダウンロードセクションから該当する ONTAP ソフトウェアをダウンロードし、 Web にアクセスできるディレクトリに image.tgz ファイルを保存します。
+. Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
++
+[cols="1,2a"]
+|===
+| プラットフォームモデル | 作業 
+
+
+| FAS/AFF8000 シリーズシステム  a| 
+ターゲットディレクトリに ONTAP-version _image.tgz ファイルの内容を展開します。 tar -zxvf ONTAP-version image.tgz
+
+
+NOTE: Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。
+
+ディレクトリの一覧に、カーネルファイル netboot/ kernel を含むネットブートフォルダが表示される必要があります
+
+
+
+| その他すべてのシステム  a| 
+ディレクトリの一覧に、カーネルファイル ONTAP-version image.tgz のネットブートフォルダが含まれている必要があります
+
+image.tgz ファイルを展開する必要はありません。
+
+|===
+. LOADER プロンプトで、管理 LIF のネットブート接続を設定します。
++
+** IP アドレスが DHCP の場合は、自動接続を設定します。
++
+ifconfig e0M -auto
+
+** IP アドレスが静的な場合は、手動接続を設定します。
++
+ifconfig e0M -addr= ip_addr-mask= netmask `-gw= gateway `
+
+
+
+. ネットブートを実行します。
++
+** プラットフォームが 80xx シリーズシステムの場合は、次のコマンドを使用します。
++
+netboot\http://web_server_ip/path_to_web-accessible_directory/netboot/kernel`
+
+** プラットフォームが他のシステムの場合は、次のコマンドを使用します。
++
+netboot\http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz`
+
+
+
+. ブートメニューからオプション * （ 7 ） Install new software first * を選択し、新しいソフトウェアイメージをダウンロードしてブートデバイスにインストールします。
++
+....
+Disregard the following message: "This procedure is not supported for Non-Disruptive Upgrade on an HA pair". It applies to nondisruptive upgrades of software, not to upgrades of controllers.
+....
+. 手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたらイメージファイルの URL 「 ¥ http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz` 」を入力します
++
+....
+Enter username/password if applicable, or press Enter to continue.
+....
+. 次のようなプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしてください
++
+....
+Do you want to restore the backup configuration now? {y|n}
+....
+. 次のようなプロンプトが表示されたら 'y' と入力して再起動します
++
+....
+The node must be rebooted to start using the newly installed software. Do you want to reboot now? {y|n}
+....
+

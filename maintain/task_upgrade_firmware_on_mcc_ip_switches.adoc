@@ -1,0 +1,81 @@
+---
+permalink: maintain/task_upgrade_firmware_on_mcc_ip_switches.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, upgrade, firmware. ip, switches 
+summary: MetroCluster IP スイッチでのファームウェアのアップグレード。 
+---
+= MetroCluster IP スイッチでのファームウェアのアップグレード
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP スイッチのファームウェアのアップグレードが必要になる場合があります。
+
+各スイッチにスイッチソフトウェアをインストールする場合は、まず設定の健全性を確認する必要があります。
+
+各スイッチでこのタスクを順に実行して、すべての MetroCluster コンポーネントが正常に動作していることを確認する必要があります。
+
+.手順
+. 構成の健全性を確認します。
++
+.. MetroCluster が構成されていて、各クラスタで通常モードであることを確認します。「 * MetroCluster show * 」
++
+[listing]
+----
+cluster_A::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+----
+.. 各ノードでミラーリングが有効になっていることを確認します。「 * MetroCluster node show * 」
++
+[listing]
+----
+cluster_A::> metrocluster node show
+DR                           Configuration  DR
+Group Cluster Node           State          Mirroring Mode
+----- ------- -------------- -------------- --------- --------------------
+1     cluster_A
+              node_A_1       configured     enabled   normal
+      cluster_B
+              node_B_1       configured     enabled   normal
+2 entries were displayed.
+----
+.. MetroCluster コンポーネントが正常であることを確認します :'* MetroCluster check run*
++
+[listing]
+----
+cluster_A::> metrocluster check run
+
+Last Checked On: 10/1/2014 16:03:37
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+4 entries were displayed.
+
+Command completed. Use the "metrocluster check show -instance" command or sub-commands in "metrocluster check" directory for detailed results.
+To check if the nodes are ready to do a switchover or switchback operation, run "metrocluster switchover -simulate" or "metrocluster switchback -simulate", respectively.
+----
+.. ヘルス・アラートがないことを確認してください： * system health alert show *
+
+
+. 最初のスイッチにソフトウェアをインストールします。
++
+スイッチタイプが Cisco か Broadcom かに応じて、 _MetroCluster IP インストールおよび設定ガイドの該当するセクションに記載されているスイッチソフトウェアのインストール手順を実行します。
+
++
+link:../install-ip/task_install_and_cable_the_mcc_components.html["『 MetroCluster IP Installation and Configuration Guide 』を参照してください"]
+
+. 各スイッチについて、同じ手順を繰り返します。
+. 手順 1 を繰り返して構成の健常性を確認します。
+

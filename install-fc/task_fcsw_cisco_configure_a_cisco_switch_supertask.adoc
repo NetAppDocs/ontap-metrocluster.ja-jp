@@ -1,0 +1,2651 @@
+---
+permalink: install-fc/task_fcsw_cisco_configure_a_cisco_switch_supertask.html 
+sidebar: sidebar 
+keywords:  
+summary: MetroCluster 構成の各 Cisco スイッチを ISL 接続とストレージ接続用にそれぞれ設定する必要があります。 
+---
+= Cisco FC スイッチを手動で設定する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成の各 Cisco スイッチを ISL 接続とストレージ接続用にそれぞれ設定する必要があります。
+
+Cisco FC スイッチには次の要件が適用されます。
+
+* 同じ NX-OS バージョンおよびライセンスの同じモデルでサポートされている 4 台の Cisco スイッチを使用している必要があります。
+* MetroCluster 構成には 4 つのスイッチが必要です。
++
+それぞれ 2 つのスイッチで構成される 2 つのファブリックに接続されます。各ファブリックが両方のサイトにまたがっている必要があります。
+
+* ATTO FibreBridge モデルへの接続をサポートしている必要があります。
+* Cisco FC ストレージファブリックで暗号化または圧縮を使用していない必要があります。MetroCluster 構成ではサポートされません。
+
+
+を参照してください https://mysupport.netapp.com/matrix["ネットアップの Interoperability Matrix Tool （ IMT ）"]では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。
+
+環境スイッチ間リンク（ ISL ）接続には次の要件があります。
+
+* 1 つのファブリック内のすべての ISL の長さと速度が同じである必要があります。
++
+ISL の長さはファブリックが異なる場合は同じである必要はありませんが、速度はすべてのファブリックで同じである必要があります。
+
+
+
+環境 the storage connections には次の要件があります。
+
+* 各ストレージコントローラに、スイッチファブリックに接続可能なイニシエータポートが 4 つ必要です。
++
+各ストレージコントローラの 2 つのイニシエータポートを各ファブリックに接続する必要があります。
+
++
+[NOTE]
+====
+FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 のシステムでは、次のすべての条件に該当する場、コントローラあたりのイニシエータポートを 2 ポート（各ファブリックに 1 つのイニシエータポートを接続）にすることができます。
+
+** ディスクストレージの接続に使用できる FC イニシエータポートが 3 つ以下で、それ以外に FC イニシエータとして設定できるポートがない。
+** すべてのスロットが使用中で、 FC イニシエータカードを追加できません。
+
+
+====
+
+
+* 関連情報 *
+
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+
+
+
+== Cisco スイッチのライセンス要件
+
+[role="lead"]
+ファブリック接続 MetroCluster 構成では、 Cisco スイッチに一部の機能ベースのライセンスが必要な場合があります。これらのライセンスを使用すると、 QoS や長距離モードクレジットなどの機能をスイッチで使用できます。MetroCluster 構成内の 4 つのスイッチすべてに、必要な機能ベースのライセンスをインストールする必要があります。
+
+MetroCluster 構成では、次の機能ベースのライセンスが必要になる場合があります。
+
+* ENTERPRISE_PKG
++
+Cisco スイッチで QoS 機能を使用できるようになります。
+
+* PORT_ACTIVATION_PKG
++
+このライセンスは、 Cisco 9148 スイッチに使用できます。スイッチ上のポートをアクティブ化または非アクティブ化できます。ただし、任意の時点でアクティブにできるポートは 16 個のみです。Cisco MDS 9148 スイッチでは 16 個のポートがデフォルトで有効になっています。
+
+* FM_SERVER_PKG
++
+複数のファブリックを同時に管理でき、また、 Web ブラウザを使用してスイッチを管理できます。
+
++
+FM_SERVER_PKG ライセンスがある場合、パフォーマンスしきい値、しきい値の監視などのパフォーマンス管理機能も使用できるようになります。このライセンスの詳細については、 Cisco Fabric Manager Server Package を参照してください。
+
+
+
+show license usage コマンドを使用すると、ライセンスがインストールされているかどうかを確認できます。これらのライセンスをお持ちでない場合は、インストールを開始する前に営業担当者にお問い合わせください。
+
+
+NOTE: Cisco MDS 9250i スイッチには、固定構成の 1/10GbE IP ストレージサービスポートが 2 つあります。これらのポートには追加のライセンスは必要ありません。Cisco SAN Extension over IP アプリケーションパッケージは、これらのスイッチの標準ライセンスで、 FCIP や圧縮などの機能を有効にします。
+
+
+
+== Cisco FC スイッチを工場出荷時のデフォルトに設定
+
+[role="lead"]
+正しく設定するには、スイッチを工場出荷時のデフォルトに設定する必要があります。これにより、スイッチがクリーンな設定から開始されます。
+
+このタスクは、 MetroCluster 構成内のすべてのスイッチで実行する必要があります。
+
+.手順
+. コンソールに接続し、同じファブリック内の両方のスイッチにログインします。
+. 問題次のコマンドを使用して、スイッチをデフォルト設定に戻します。
++
+「 write erase 」を入力します
+
++
+コマンドの確認を求めるプロンプトが表示されたら 'y' と入力しますこれにより、スイッチのライセンスおよび設定情報がすべて消去されます。
+
+. 次のコマンドを問題で実行して、スイッチをリブートします。
++
+「再ロード」
+
++
+コマンドの確認を求めるプロンプトが表示されたら 'y' と入力します
+
+. もう一方のスイッチで 'write erase' コマンドと 'reload コマンドを繰り返します
++
+「 reload 」コマンドを発行すると、スイッチが再起動し、セットアップのプロンプトが表示されます。この時点で、次のセクションに進みます。
+
+
+
+次の例は、 FC_switch_A_1 と FC_switch_B_1 で構成されるファブリックでの処理を示しています。
+
+[listing]
+----
+FC_Switch_A_1# write erase
+    Warning: This command will erase the startup-configuration.
+    Do you wish to proceed anyway? (y/n)  [n] y
+    FC_Switch_A_1# reload
+    This command will reboot the system. (y/n)?  [n] y
+
+FC_Switch_B_1# write erase
+    Warning: This command will erase the startup-configuration.
+    Do you wish to proceed anyway? (y/n)  [n] y
+    FC_Switch_B_1# reload
+    This command will reboot the system. (y/n)?  [n] y
+----
+
+
+== Cisco FC スイッチの基本設定とコミュニティストリングを設定します
+
+[role="lead"]
+基本設定は、 setup コマンドを使用して、または「 reload 」コマンドを発行した後で指定する必要があります。
+
+.手順
+. セットアップのプロンプトがスイッチに表示されない場合は、スイッチの基本設定を実行します。
++
+「セットアップ」
+
+. SNMP コミュニティストリングのプロンプトが表示されるまで、セットアップの質問に対するデフォルトの応答を受け入れます。
+. コミュニティストリングを「 public 」（すべて小文字）に設定し、 ONTAP ヘルスモニタからのアクセスを許可します。
++
+コミュニティストリングを「 public 」以外の値に設定することもできますが、指定したコミュニティストリングを使用して ONTAP ヘルスモニタを設定する必要があります。
+
++
+次の例は、 FC_switch_A_1 に対するコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_A_1# setup
+    Configure read-only SNMP community string (yes/no) [n]: y
+    SNMP community string : public
+    Note:  Please set the SNMP community string to "Public" or another value of your choosing.
+    Configure default switchport interface state (shut/noshut) [shut]: noshut
+    Configure default switchport port mode F (yes/no) [n]: n
+    Configure default zone policy (permit/deny) [deny]: deny
+    Enable full zoneset distribution? (yes/no) [n]: yes
+----
++
+次の例は、 FC_switch_B_1 に対するコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_B_1# setup
+    Configure read-only SNMP community string (yes/no) [n]: y
+    SNMP community string : public
+    Note:  Please set the SNMP community string to "Public" or another value of your choosing.
+    Configure default switchport interface state (shut/noshut) [shut]: noshut
+    Configure default switchport port mode F (yes/no) [n]: n
+    Configure default zone policy (permit/deny) [deny]: deny
+    Enable full zoneset distribution? (yes/no) [n]: yes
+----
+
+
+
+
+== ポートのライセンスを取得しています
+
+[role="lead"]
+連続する範囲のポートで Cisco スイッチライセンスを使用する必要はありません。代わりに、使用する特定のポートのライセンスを取得し、未使用のポートからライセンスを削除できます。
+
+スイッチ構成内でライセンスが付与されているポートの数を確認し、必要に応じてポート間でライセンスを移動します。
+
+.手順
+. スイッチファブリックのライセンス使用状況を表示するには、次のコマンドを使用します。問題
++
+'how port-resources module 1'
+
++
+ライセンスが必要なポートを特定します。ライセンスが付与されていないポートがある場合は、ライセンスが付与されている余分なポートがないかを特定し、余分なポートからライセンスを削除することを検討します。
+
+. 次のコマンドを問題で実行して、構成モードに切り替えます。
++
+'config t`
+
+. 選択したポートからライセンスを削除します。
++
+.. 問題ライセンスを削除するポートを選択するには、次のコマンドを使用します。
++
+'interface_name_`
+
+.. 次のコマンドを使用して、ポートからライセンスを削除します。
++
+「 no port-license acquire 」を選択します
+
+.. ポート設定インターフェイスを終了します。
++
+「 exit
+
+
+
+. 選択したポートのライセンスを取得します。
++
+.. 問題ライセンスを削除するポートを選択するには、次のコマンドを使用します。
++
+'interface_name_`
+
+.. ポートがライセンスを取得できるようにします。
++
+「ポートライセンス」
+
+.. ポートのライセンスを取得します。
++
+「ポートライセンス取得」
+
+.. ポート設定インターフェイスを終了します。
++
+「 exit
+
+
+
+. 追加のポートがある場合は、この手順を繰り返します
+. 構成モードを終了します。
++
+「 exit
+
+
+
+
+
+=== ポートのライセンスを削除および取得する
+
+次の例は、ポート fc1/2 からライセンスを削除し、ポート fc1/1 をライセンス取得可能にし、ポート fc1/1 でライセンスを取得する手順を示しています。
+
+[listing]
+----
+Switch_A_1# conf t
+    Switch_A_1(config)# interface fc1/2
+    Switch_A_1(config)# shut
+    Switch_A_1(config-if)# no port-license acquire
+    Switch_A_1(config-if)# exit
+    Switch_A_1(config)# interface fc1/1
+    Switch_A_1(config-if)# port-license
+    Switch_A_1(config-if)# port-license acquire
+    Switch_A_1(config-if)# no shut
+    Switch_A_1(config-if)# end
+    Switch_A_1# copy running-config startup-config
+
+    Switch_B_1# conf t
+    Switch_B_1(config)# interface fc1/2
+    Switch_B_1(config)# shut
+    Switch_B_1(config-if)# no port-license acquire
+    Switch_B_1(config-if)# exit
+    Switch_B_1(config)# interface fc1/1
+    Switch_B_1(config-if)# port-license
+    Switch_B_1(config-if)# port-license acquire
+    Switch_B_1(config-if)# no shut
+    Switch_B_1(config-if)# end
+    Switch_B_1# copy running-config startup-config
+----
+次の例は、ポートライセンスの使用状況を検証する方法を示しています。
+
+[listing]
+----
+Switch_A_1# show port-resources module 1
+    Switch_B_1# show port-resources module 1
+----
+
+
+== Cisco MDS 9148 または 9148S スイッチでのポートの有効化
+
+[role="lead"]
+Cisco MDS 9148 または 9148S スイッチでは、 MetroCluster 構成で必要なポートを手動で有効にする必要があります。
+
+.このタスクについて
+* Cisco MDS 9148 または 9148S スイッチの 16 個のポートを手動で有効にできます。
+* Cisco スイッチを使用すると、 POD ライセンスをランダムなポートに適用することができますが、順番に適用することはできません。
+* Cisco スイッチでは、 12 個を超えるポートが必要な場合を除き、各ポートグループから 1 つのポートを使用する必要があります。
+
+
+.手順
+. Cisco スイッチで使用可能なポートグループを表示します。
++
+'how port-resources module_blade_number_`
+
+. 次のコマンドを順に入力して、ポートグループ内の必要なポートにライセンスを付与し、そのポートを取得します。
++
+'config t`
+
++
+'interface_port_number_`
+
++
+「小屋」
+
++
+「ポートライセンス取得」
+
++
+「 no shut 」のようになります
+
++
+たとえば、次のコマンドシーケンスでは、 fc 1/45 ポートがライセンス付与され、取得されます。
+
++
+[listing]
+----
+switch# config t
+switch(config)#
+switch(config)# interface fc 1/45
+switch(config-if)#
+switch(config-if)# shut
+switch(config-if)# port-license acquire
+switch(config-if)# no shut
+switch(config-if)# end
+----
+. 設定を保存します。
++
+'copy running-config startup-config
+
+
+
+
+
+== Cisco FC スイッチでの F ポートの設定
+
+[role="lead"]
+FC スイッチで F ポートを設定する必要があります。
+
+MetroCluster 構成では、 F ポートとは、スイッチを HBA イニシエータ、 FC-VI インターコネクト、および FC-to-SAS ブリッジに接続するポートです。
+
+ポートはそれぞれ個別に設定する必要があります。
+
+次のセクションを参照して、構成に応じた F ポート（スイッチからノード）を確認してください。
+
+* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+
+
+このタスクは、 MetroCluster 構成内のスイッチごとに実行する必要があります。
+
+.手順
+. 次のコマンドを問題で実行して、構成モードに切り替えます。
++
+'config t`
+
+. ポートのインターフェイス構成モードに切り替えます。
++
+'interface_port-ID_
+
+. ポートをシャットダウンします。
++
+「ダウンタイム」
+
+. 次のコマンドを実行して、ポートを F モードに設定します。
++
+「 witchport mode F 」
+
+. 次のコマンドを実行して、ポートを固定の速度に設定します。
++
+'witchport speed_speed - value_
+
++
+`_speed-value_` は '8000` または '16000` です
+
+. 次のコマンドを実行して、スイッチポートのレートモードを dedicated に設定します。
++
+'witchport rate-mode dedicated （スイッチポートレートモード専用）
+
+. ポートを再起動します。
++
+「シャットダウンなし」
+
+. 問題次のコマンドを使用して、構成モードを終了します。
++
+「 end 」と入力します
+
+
+
+次の例は、 2 つのスイッチに対するコマンドを示しています。
+
+[listing]
+----
+Switch_A_1# config  t
+FC_switch_A_1(config)# interface fc 1/1
+FC_switch_A_1(config-if)# shutdown
+FC_switch_A_1(config-if)# switchport mode F
+FC_switch_A_1(config-if)# switchport speed 8000
+FC_switch_A_1(config-if)# switchport rate-mode dedicated
+FC_switch_A_1(config-if)# no shutdown
+FC_switch_A_1(config-if)# end
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1# config  t
+FC_switch_B_1(config)# interface fc 1/1
+FC_switch_B_1(config-if)# switchport mode F
+FC_switch_B_1(config-if)# switchport speed 8000
+FC_switch_B_1(config-if)# switchport rate-mode dedicated
+FC_switch_B_1(config-if)# no shutdown
+FC_switch_B_1(config-if)# end
+FC_switch_B_1# copy running-config startup-config
+----
+
+
+== ISL と同じポートグループ内の F ポートにバッファ間クレジットを割り当てます
+
+[role="lead"]
+F ポートが ISL と同じポートグループに含まれている場合は、バッファ間クレジットを割り当てる必要があります。必要なバッファ間クレジットがポートにない場合、 ISL は動作しなくなる可能性があります。
+
+F ポートが ISL ポートと同じポートグループに含まれていない場合は、このタスクは必要ありません。
+
+F ポートが ISL を含むポートグループに含まれている場合は、 MetroCluster 構成内の FC スイッチごとにこのタスクを実行する必要があります。
+
+.手順
+. コンフィギュレーションモードを開始します。
++
+'config t`
+
+. ポートのインターフェイス構成モードを設定します。
++
+'interface_port-ID_
+
+. ポートを無効にします。
++
+「小屋」
+
+. ポートが F モードになっていない場合は、 F モードに設定します。
++
+「 witchport mode F 」
+
+. E ポート以外のバッファ間クレジットを 1 に設定します。
++
+「 witchport fcrxbbcredit 1 」を参照してください
+
+. ポートを再度有効にします。
++
+「 no shut 」のようになります
+
+. 構成モードを終了します。
++
+「 exit
+
+. 更新された設定をスタートアップ設定にコピーします。
++
+'copy running-config startup-config
+
+. ポートに割り当てられているバッファ間クレジットを確認します。
++
+'how port-resources module 1'
+
+. 構成モードを終了します。
++
+「 exit
+
+. ファブリック内のもう一方のスイッチで、上記の手順を繰り返します。
+. 設定を確認します。
++
+'how port-resource module 1'
+
+
+
+この例では、ポート fc1/40 は ISL です。ポート fc1/37 、 fc1/38 および fc1/39 は同じポートグループに含まれているため、設定が必要です。
+
+次のコマンドは、ポート範囲を fc1/37~fc1/39 に設定する場合を示しています。
+
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# interface fc1/37-39
+FC_switch_A_1(config-if)# shut
+FC_switch_A_1(config-if)# switchport mode F
+FC_switch_A_1(config-if)# switchport fcrxbbcredit 1
+FC_switch_A_1(config-if)# no shut
+FC_switch_A_1(config-if)# exit
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# interface fc1/37-39
+FC_switch_B_1(config-if)# shut
+FC_switch_B_1(config-if)# switchport mode F
+FC_switch_B_1(config-if)# switchport fcrxbbcredit 1
+FC_switch_A_1(config-if)# no shut
+FC_switch_A_1(config-if)# exit
+FC_switch_B_1# copy running-config startup-config
+----
+次のコマンドおよび出力は、設定が適切に適用されていることを示しています。
+
+[listing]
+----
+FC_switch_A_1# show port-resource module 1
+...
+Port-Group 11
+ Available dedicated buffers are 93
+
+--------------------------------------------------------------------
+Interfaces in the Port-Group       B2B Credit  Bandwidth  Rate Mode
+                                      Buffers     (Gbps)
+
+--------------------------------------------------------------------
+fc1/37                                     32        8.0  dedicated
+fc1/38                                      1        8.0  dedicated
+fc1/39                                      1        8.0  dedicated
+...
+
+FC_switch_B_1# port-resource module
+...
+Port-Group 11
+ Available dedicated buffers are 93
+
+--------------------------------------------------------------------
+Interfaces in the Port-Group       B2B Credit  Bandwidth  Rate Mode
+                                     Buffers     (Gbps)
+
+--------------------------------------------------------------------
+fc1/37                                     32        8.0  dedicated
+fc1/38                                      1        8.0  dedicated
+fc1/39                                      1        8.0 dedicated
+...
+----
+
+
+== Cisco FC スイッチでの VSAN の作成および設定
+
+[role="lead"]
+MetroCluster 構成内の各 FC スイッチに、 FC-VI ポート用の VSAN とストレージポート用の VSAN を 1 つずつ作成する必要があります。
+
+VSAN の番号と名前は一意である必要があります。フレームのインオーダー配信で 2 つの ISL を使用している場合は、追加の設定が必要です。
+
+この例では、次の命名規則を使用します。
+
+|===
+| スイッチファブリック | VSAN 名 | ID 番号 
+
+
+.2+| 1.  a| 
+FCVI_1_10
+ a| 
+10.
+
+
+
+ a| 
+STOR_1_20
+ a| 
+20
+
+
+
+.2+| 2.  a| 
+FCVI_2_30
+ a| 
+30
+
+
+
+ a| 
+STOR_2_20
+ a| 
+40
+
+|===
+このタスクは FC スイッチファブリックごとに行う必要があります。
+
+.手順
+. FC-VI VSAN を設定します。
++
+.. 構成モードを開始していない場合は、構成モードに切り替えます。
++
+'config t`
+
+.. VSAN データベースを編集します。
++
+「 VSAN データベース」
+
+.. VSAN ID を設定します。
++
+'vsan_vsan-ID_`
+
+.. VSAN 名を設定します。
++
+'vsan_vsan-ID_VSAN_NAME_NAME_`
+
+
+
+. FC-VI VSAN にポートを追加します。
++
+.. VSAN の各ポートのインターフェイスを追加します。
++
+'vsan_vsan-ID_interface_name_`
+
++
+FC-VI VSAN に関しては、ローカル FC-VI ポートを接続するポートが追加されます。
+
+.. 構成モードを終了します。
++
+「 end 」と入力します
+
+.. running-config を startup-config にコピーします。
++
+'copy running-config startup-config
+
++
+次の例では、該当するポートは fc1/1 と fc1/13 です。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config)# vsan 10 interface fc1/1
+FC_switch_A_1(config)# vsan 10 interface fc1/13
+FC_switch_A_1(config)# end
+FC_switch_A_1# copy running-config startup-config
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config)# vsan 10 interface fc1/1
+FC_switch_B_1(config)# vsan 10 interface fc1/13
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+----
+
+
+. VSAN のポートメンバーシップを確認します。
++
+'How VSAN member' （ VSAN メンバーの仕組み
+
++
+[listing]
+----
+FC_switch_A_1# show vsan member
+FC_switch_B_1# show vsan member
+----
+. フレームのインオーダー配信またはアウトオブオーダー配信を保証するように VSAN を設定します。
++
+
+NOTE: 標準の IOD 設定を推奨します。OOD を設定するのは必要な場合だけにしてください。
+
++
+xref:concept_prepare_for_the_mcc_installation.adoc[ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項]
+
++
+** フレームのインオーダー配信を設定するには、次の手順を実行する必要があります。
++
+... コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+... VSAN の交換のインオーダー保証を有効にします。
++
+inorder-guarantee vsan_vsan-ID_`
+
++
+
+IMPORTANT: FC-VI VSAN （ FCVI_1_10 および FCVI_2_30 ）については、フレームと交換のインオーダー保証を VSAN 10 でのみ有効にする必要があります。
+
+... VSAN のロードバランシングを有効にします。
++
+'vsan_vsan-ID_loadbalancing src-dst-id
+
+... 構成モードを終了します。
++
+「 end 」と入力します
+
+... running-config を startup-config にコピーします。
++
+'copy running-config startup-config
+
++
+FC_switch_A_1 でフレームのインオーダー配信を設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# config t
+FC_switch_A_1(config)# in-order-guarantee vsan 10
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1 でフレームのインオーダー配信を設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# config t
+FC_switch_B_1(config)# in-order-guarantee vsan 10
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_B_1(config-vsan-db)# end
+FC_switch_B_1# copy running-config startup-config
+----
+
+
+** フレームのアウトオブオーダー配信を設定するには、次の手順を実行する必要があります。
++
+... コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+... VSAN の交換のインオーダー保証を無効にします。
++
+'no in-order-guarantee VSAN_vsan-ID_
+
+... VSAN のロードバランシングを有効にします。
++
+'vsan_vsan-ID_loadbalancing src-dst-id
+
+... 構成モードを終了します。
++
+「 end 」と入力します
+
+... running-config を startup-config にコピーします。
++
+'copy running-config startup-config
+
++
+FC_switch_A_1 でフレームのアウトオブオーダー配信を設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# config t
+FC_switch_A_1(config)# no in-order-guarantee vsan 10
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1 でフレームのアウトオブオーダー配信を設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# config t
+FC_switch_B_1(config)# no in-order-guarantee vsan 10
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_B_1(config-vsan-db)# end
+FC_switch_B_1# copy running-config startup-config
+----
++
+
+NOTE: コントローラモジュールに ONTAP を設定する場合は、 MetroCluster 構成の各コントローラモジュールで OOD を明示的に設定する必要があります。
+
++
+link:concept_configure_the_mcc_software_in_ontap.html#configuring-in-order-delivery-or-out-of-order-delivery-of-frames-on-ontap-software["ONTAP ソフトウェアでのフレームのインオーダー配信またはアウトオブオーダー配信の設定"]
+
+
+
+
+
+. FC-VI VSAN の QoS ポリシーを設定します。
++
+--
+.. コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+.. 次のコマンドを続けて入力して、 QoS をイネーブルにし、クラスマップを作成します。
++
+「 qos enable 」と入力します
+
++
+'qos class-map_class_name_match-any'
+
+.. 前の手順で作成したクラスマップをポリシーマップに追加します。
++
+'class_class_name_`
+
+.. 優先度を設定します。
++
+「優先度高」
+
+.. この手順で作成したポリシーマップに VSAN を追加します。
++
+'qos service policy_policy_policy_name_vsan_vsan-id_`
+
+.. 更新された設定をスタートアップ設定にコピーします。
++
+'copy running-config startup-config
+
+
+
+--
++
+FC_switch_A_1 で QoS ポリシーを設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# qos enable
+FC_switch_A_1(config)# qos class-map FCVI_1_10_Class match-any
+FC_switch_A_1(config)# qos policy-map FCVI_1_10_Policy
+FC_switch_A_1(config-pmap)# class FCVI_1_10_Class
+FC_switch_A_1(config-pmap-c)# priority high
+FC_switch_A_1(config-pmap-c)# exit
+FC_switch_A_1(config)# exit
+FC_switch_A_1(config)# qos service policy FCVI_1_10_Policy vsan 10
+FC_switch_A_1(config)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1 で QoS ポリシーを設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# qos enable
+FC_switch_B_1(config)# qos class-map FCVI_1_10_Class match-any
+FC_switch_B_1(config)# qos policy-map FCVI_1_10_Policy
+FC_switch_B_1(config-pmap)# class FCVI_1_10_Class
+FC_switch_B_1(config-pmap-c)# priority high
+FC_switch_B_1(config-pmap-c)# exit
+FC_switch_B_1(config)# exit
+FC_switch_B_1(config)# qos service policy FCVI_1_10_Policy vsan 10
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+----
+. ストレージ VSAN を設定します。
++
+--
+.. VSAN ID を設定します。
++
+'vsan_vsan-ID_`
+
+.. VSAN 名を設定します。
++
+'vsan_vsan-ID_VSAN_NAME_NAME_`
+
+
+
+--
++
+FC_switch_A_1 でストレージ VSAN を設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# vsan 20
+FC_switch_A_1(config-vsan-db)# vsan 20 name STOR_1_20
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1 でストレージ VSAN を設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config-vsan-db)# vsan 20
+FC_switch_B_1(config-vsan-db)# vsan 20 name STOR_1_20
+FC_switch_B_1(config-vsan-db)# end
+FC_switch_B_1# copy running-config startup-config
+----
+. ストレージ VSAN にポートを追加します。
++
+ストレージ VSAN に関しては、 HBA または FC-to-SAS ブリッジを接続するすべてのポートを追加する必要があります。この例では、 fc1/5 、 fc1/9 、 fc1/17 、 fc1/21 、fc1/25 、 fc1/29 、 fc1/33 、および fc1/37 が追加されます。
+
++
+FC_switch_A_1 でストレージ VSAN にポートを追加するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config)# vsan 20 interface fc1/5
+FC_switch_A_1(config)# vsan 20 interface fc1/9
+FC_switch_A_1(config)# vsan 20 interface fc1/17
+FC_switch_A_1(config)# vsan 20 interface fc1/21
+FC_switch_A_1(config)# vsan 20 interface fc1/25
+FC_switch_A_1(config)# vsan 20 interface fc1/29
+FC_switch_A_1(config)# vsan 20 interface fc1/33
+FC_switch_A_1(config)# vsan 20 interface fc1/37
+FC_switch_A_1(config)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1 でストレージ VSAN にポートを追加するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config)# vsan 20 interface fc1/5
+FC_switch_B_1(config)# vsan 20 interface fc1/9
+FC_switch_B_1(config)# vsan 20 interface fc1/17
+FC_switch_B_1(config)# vsan 20 interface fc1/21
+FC_switch_B_1(config)# vsan 20 interface fc1/25
+FC_switch_B_1(config)# vsan 20 interface fc1/29
+FC_switch_B_1(config)# vsan 20 interface fc1/33
+FC_switch_B_1(config)# vsan 20 interface fc1/37
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+----
+
+
+
+
+== E ポートを設定しています
+
+[role="lead"]
+ISL を接続するスイッチポート（ E ポート）を設定する必要があります。
+
+使用する手順は、使用するスイッチによって異なります。
+
+* <<config-e-ports-cisco-fc,Cisco FC スイッチでの E ポートの設定>>
+* <<config-fcip-ports-single-isl-cisco-9250i,Cisco 9250i FC スイッチのシングル ISL に対する FCIP ポートの設定>>
+* <<config-fcip-ports-dual-isl-cisco-9250i,Cisco 9250i FC スイッチのデュアル ISL に対する FCIP ポートの設定>>
+
+
+
+
+=== Cisco FC スイッチでの E ポートの設定
+
+[role="lead"]
+スイッチ間リンク（ ISL ）を接続する FC スイッチポートを設定する必要があります。
+
+これらは E ポートであり、設定はポートごとに行う必要があります。そのためには、正しいバッファ間クレジット（ BBC ）数を計算する必要があります。
+
+ファブリック内のすべての ISL を、同じ速度と同じ距離で設定する必要があります。
+
+このタスクは ISL ポートごとに実行する必要があります。
+
+.手順
+. 次の表を使用して、可能なポート速度で調整された 1 km あたりの必要な BBC を確認します。
++
+正しい BBC 数は、必要な調整済み BBC （下記の表で特定）に、スイッチ間の距離（ km ）を掛けて算出します。FC-VI のフレーミング動作に対応するために、 1.5 の調整係数が必要です。
+
++
+|===
+| 速度（ Gbps ） | 1km あたりの必要な BBC | 必要な調整済み BBC （ 1km あたりの BBC × 1.5 ） 
+
+
+ a| 
+1.
+ a| 
+0.5
+ a| 
+0.75
+
+
+
+ a| 
+2.
+ a| 
+1.
+ a| 
+1.5
+
+
+
+ a| 
+4.
+ a| 
+2.
+ a| 
+3.
+
+
+
+ a| 
+8.
+ a| 
+4.
+ a| 
+6.
+
+
+
+ a| 
+16
+ a| 
+8.
+ a| 
+12.
+
+|===
++
+たとえば、 4Gbps のリンクで 30km の距離に必要なクレジット数を算出するには、次の計算を行います。
+
++
+** 「 Gbps での速度」は 4 です
+** 「必要な調整済み BBC 」は 3
+** 「スイッチ間の距離（ km ）」は 30km です
+** 3 x 30 = 90
+
+
+. コンフィギュレーションモードを開始します。
++
+'config t`
+
+. 設定するポートを指定します。
++
+「 interface_port-name_` 」
+
+. ポートをシャットダウンします。
++
+「ダウンタイム」
+
+. ポートのレートモードを「 dedicated 」に設定します。
++
+'witchport rate-mode dedicated （スイッチポートレートモード専用）
+
+. ポートの速度を設定します。
++
+'witchport speed_speed - value_
+
+. ポートのバッファ間クレジットを設定します。
++
+'witchport fcrxbbcredit _number_of_buffers_'
+
+. ポートを E モードに設定します。
++
+'witchport mode E`
+
+. ポートのトランクモードをイネーブルにします。
++
+'witchport trunk mode on `
+
+. ISL Virtual Storage Area Network （ VSAN ；仮想ストレージエリアネットワーク）をトランクに追加します。
++
+'witchport トランクでは VSAN 10 を許可
+
++
+'witchport trunk allowed vsan add 20`
+
+. ポートをポートチャネル 1 に追加します。
++
+「 channel-group 1 」のようになります
+
+. ファブリック内のパートナースイッチ上の対応する ISL ポートに対して、ここまでの手順を繰り返します。
++
+次の例は、ポート fc1/41 を距離 30km 、 8Gbps で設定する場合を示しています。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1# shutdown
+FC_switch_A_1# switchport rate-mode dedicated
+FC_switch_A_1# switchport speed 8000
+FC_switch_A_1# switchport fcrxbbcredit 60
+FC_switch_A_1# switchport mode E
+FC_switch_A_1# switchport trunk mode on
+FC_switch_A_1# switchport trunk allowed vsan 10
+FC_switch_A_1# switchport trunk allowed vsan add 20
+FC_switch_A_1# channel-group 1
+fc1/36 added to port-channel 1 and disabled
+
+FC_switch_B_1# conf t
+FC_switch_B_1# shutdown
+FC_switch_B_1# switchport rate-mode dedicated
+FC_switch_B_1# switchport speed 8000
+FC_switch_B_1# switchport fcrxbbcredit 60
+FC_switch_B_1# switchport mode E
+FC_switch_B_1# switchport trunk mode on
+FC_switch_B_1# switchport trunk allowed vsan 10
+FC_switch_B_1# switchport trunk allowed vsan add 20
+FC_switch_B_1# channel-group 1
+fc1/36 added to port-channel 1 and disabled
+----
+. 問題：両方のスイッチで次のコマンドを実行してポートを再起動します。
++
+「シャットダウンなし」
+
+. ファブリック内の他の ISL ポートに対して、ここまでの手順を繰り返します。
+. 同じファブリック内の両方のスイッチで、ネイティブ VSAN をポートチャネルインターフェイスに追加します。
++
+'interface port-channel_number_
+
++
+'witchport トランク許可 VSAN add_native_san_id_
+
+. ポートチャネルの設定を確認します。
++
+'how interface port-channel_number
+
++
+ポートチャネルの属性は次のとおりです。
+
++
+** ポートチャネルの状態は「 trunking 」です。
+** 管理ポートモードは E 、トランクモードはオンです。
+** 速度は、すべての ISL リンク速度の累積値です。
++
+たとえば、 2 つの ISL ポートが 4Gbps で動作している場合は 8Gbps です。
+
+** 「 Trunk vsans (admin allowed and active) 」には、許可されているすべての VSAN が表示されます。
+** 「 Trunk vsans (up) 」は、許可されているすべての VSAN を表示します。
+** メンバーリストには、 port-channel に追加されたすべての ISL ポートを表示。
+** ポート VSAN の番号は、 ISL を含む VSAN と同じ（通常はネイティブの vsan 1 ）。
+
+
++
+[listing]
+----
+FC_switch_A_1(config-if)# show int port-channel 1
+port-channel 1 is trunking
+    Hardware is Fibre Channel
+    Port WWN is 24:01:54:7f:ee:e2:8d:a0
+    Admin port mode is E, trunk mode is on
+    snmp link state traps are enabled
+    Port mode is TE
+    Port vsan is 1
+    Speed is 8 Gbps
+    Trunk vsans (admin allowed and active) (1,10,20)
+    Trunk vsans (up)                       (1,10,20)
+    Trunk vsans (isolated)                 ()
+    Trunk vsans (initializing)             ()
+    5 minutes input rate 1154832 bits/sec,144354 bytes/sec, 170 frames/sec
+    5 minutes output rate 1299152 bits/sec,162394 bytes/sec, 183 frames/sec
+      535724861 frames input,1069616011292 bytes
+        0 discards,0 errors
+        0 invalid CRC/FCS,0 unknown class
+        0 too long,0 too short
+      572290295 frames output,1144869385204 bytes
+        0 discards,0 errors
+      5 input OLS,11  LRR,2 NOS,0 loop inits
+      14 output OLS,5 LRR, 0 NOS, 0 loop inits
+    Member[1] : fc1/36
+    Member[2] : fc1/40
+    Interface last changed at Thu Oct 16 11:48:00 2014
+----
+. 両方のスイッチでインターフェイス設定を終了します。
++
+「 end 」と入力します
+
+. 両方のファブリックで、更新された設定をスタートアップ設定にコピーします。
++
+'copy running-config startup-config
+
++
+[listing]
+----
+FC_switch_A_1(config-if)# end
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1(config-if)# end
+FC_switch_B_1# copy running-config startup-config
+----
+. 2 つ目のスイッチファブリックで、ここまでの手順を繰り返します。
+
+
+* 関連情報 *
+
+ONTAP 9.1 以降を使用している場合、 FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。を参照してください link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
+
+
+
+=== Cisco 9250i FC スイッチのシングル ISL に対する FCIP ポートの設定
+
+[role="lead"]
+FCIP プロファイルとインターフェイスを作成して IPStorage1/1 GbE インターフェイスに割り当てることで、 ISL を接続する FCIP スイッチポート（ E ポート）を設定する必要があります。
+
+このタスクは、各スイッチが IPStorage1/1 インターフェイスを使用し、スイッチファブリックごとに 1 つの ISL を使用する構成にのみ該当します。
+
+このタスクは FC スイッチごとに行う必要があります。
+
+各スイッチに 2 つの FCIP プロファイルを作成します。
+
+* ファブリック 1
++
+** FC_switch_A_1 で FCIP プロファイル 11 および 111 を設定します。
+** FC_switch_B_1 で FCIP プロファイル 12 および 121 を設定します。
+
+
+* ファブリック 2
++
+** FC_switch_A_2 で FCIP プロファイル 13 および 131 を設定しています。
+** FC_switch_B_2 に FCIP プロファイル 14 および 141 を設定します。
+
+
+
+
+.手順
+. コンフィギュレーションモードを開始します。
++
+'config t`
+
+. FCIP を有効にします。
++
+「機能 FCIP`
+
+. IPStorage1/1 GbE インターフェイスを設定します。
++
+--
+.. コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+.. IPStorage1/1 インターフェイスを指定します。
++
+インターフェイス IPStorage1/1
+
+.. IP アドレスとサブネットマスクを指定します。
++
+'interface_ip-address__subnet-mask_`
+
+.. MTU サイズを 2500 に指定します。
++
+'witchport mtu 2500`
+
+.. ポートを有効にします。
++
+「シャットダウンなし」
+
+.. 構成モードを終了します。
+
+
+「 exit
+
+--
++
+次の例は、 IPStorage1/1 ポートの設定を示しています。
+
++
+[listing]
+----
+conf t
+interface IPStorage1/1
+  ip address 192.168.1.201 255.255.255.0
+  switchport mtu 2500
+  no shutdown
+exit
+----
+. FC-VI トラフィック用の FCIP プロファイルを設定します。
++
+--
+.. FCIP プロファイルを設定し、 FCIP プロファイル構成モードに切り替えます。
++
+FCIP profile_fcip -profile-name_`
+
++
+プロファイル名は、設定するスイッチによって異なります。
+
+.. IPStorage1/1 インターフェイスの IP アドレスを FCIP プロファイルに割り当てます。
++
+「 ip address_ip-address_` 」
+
+.. FCIP プロファイルを TCP ポート 3227 に割り当てます。
++
+ポート 3227`
+
+.. TCP を設定します。
++
+「 tcp keepalive-timeout 1 」を参照してください
+
++
+「 tcp max-retransmissions3 」
+
++
+「 m ax-bandwidth-mbs 5000 minavailable-bandwidth-mbs 4500 round-trip -time-ms 3 」を参照してください
+
++
+「 tcp min-retransmit-time 200 」
+
++
+「 tcp keepalive-timeout 1 」を参照してください
+
++
+tcp pmtu-enable reset-timeout 3600
+
++
+「 tcp sack -enable 」「 no tcp cwm 」を選択します
+
+
+
+--
++
+次の例は、 FCIP プロファイルの設定を示しています。
+
++
+[listing]
+----
+conf t
+fcip profile 11
+  ip address 192.168.1.333
+  port 3227
+  tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+----
+. ストレージトラフィック用の FCIP プロファイルを設定します。
++
+--
+.. 111 という名前で FCIP プロファイルを設定し、 FCIP プロファイル構成モードに切り替えます。
++
+FCIP プロファイル 111'
+
+.. IPStorage1/1 インターフェイスの IP アドレスを FCIP プロファイルに割り当てます。
++
+「 ip address_ip-address_` 」
+
+.. FCIP プロファイルを TCP ポート 3229 に割り当てます。
++
+ポート 3229`
+
+.. TCP を設定します。
++
+「 tcp keepalive-timeout 1 」を参照してください
+
++
+「 tcp max-retransmissions3 」
+
++
+「 m ax-bandwidth-mbs 5000 minavailable-bandwidth-mbs 4500 round-trip -time-ms 3 」を参照してください
+
++
+「 tcp min-retransmit-time 200 」
+
++
+「 tcp keepalive-timeout 1 」を参照してください
+
++
+tcp pmtu-enable reset-timeout 3600
+
++
+「 tcp sack -enable 」「 no tcp cwm 」を選択します
+
+
+
+--
++
+次の例は、 FCIP プロファイルの設定を示しています。
+
++
+[listing]
+----
+conf t
+fcip profile 111
+  ip address 192.168.1.334
+  port 3229
+  tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+----
+. 2 つのうちの 1 つ目の FCIP インターフェイスを作成します。
++
+インターフェイス fcip 1'
+
++
+このインターフェイスは FC-IV トラフィックに使用します。
+
++
+--
+.. 前の手順で作成したプロファイル 11 を選択します。
++
+「 USE - profile 11` 」
+
+.. パートナースイッチの IPStorage1/1 ポートの IP アドレスとポート番号を設定します。
++
+'peer-info ipaddr_partner-switch-port-ip_port 3227'
+
+.. TCP 接続 2 を選択します。
++
+「 tcp-connection 2 」
+
+.. 圧縮を無効にします。
++
+「 IP 圧縮なし」
+
+.. インターフェイスを有効にします。
++
+「シャットダウンなし」
+
+.. 制御 TCP 接続を 48 、データ接続を 26 に設定して、その Differentiated Services Code Point （ DSCP ）値のすべてのパケットをマークします。
++
+'qos control 48 data 26`
+
+.. インターフェイスコンフィギュレーションモードを終了します。
++
+「 exit
+
+
+
+--
++
+次の例は、 FCIP インターフェイスの設定を示しています。
+
++
+[listing]
+----
+interface fcip  1
+  use-profile 11
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr 192.168.32.334   port 3227
+  tcp-connection 2
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+----
+. 2 つのうちの 2 つ目の FCIP インターフェイスを作成します。
++
+「 interface fcip 2 」と入力します
+
++
+このインターフェイスはストレージトラフィックに使用されます。
+
++
+--
+.. 前の手順で作成したプロファイル 111 を選択します。
++
+'USE - profile 111'
+
+.. パートナースイッチの IPStorage1/1 ポートの IP アドレスとポート番号を設定します。
++
+'peer-info ipaddr_partner-switch-port-ip_port 3229
+
+.. TCP 接続 2 を選択します。
++
+「 tcp-connection 5 」
+
+.. 圧縮を無効にします。
++
+「 IP 圧縮なし」
+
+.. インターフェイスを有効にします。
++
+「シャットダウンなし」
+
+.. 制御 TCP 接続を 48 、データ接続を 26 に設定して、その Differentiated Services Code Point （ DSCP ）値のすべてのパケットをマークします。
++
+'qos control 48 data 26`
+
+.. インターフェイスコンフィギュレーションモードを終了します。
++
+「 exit
+
+
+
+--
++
+次の例は、 FCIP インターフェイスの設定を示しています。
+
++
+[listing]
+----
+interface fcip  2
+  use-profile 11
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr 192.168.32.33e  port 3229
+  tcp-connection 5
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+----
+. FCIP 1 インターフェイスのスイッチポートを設定します。
++
+.. コンフィギュレーションモードを開始します。
++
+'config t`
+
+.. 設定するポートを指定します。
++
+インターフェイス fcip 1'
+
+.. ポートをシャットダウンします。
++
+「ダウンタイム」
+
+.. ポートを E モードに設定します。
++
+'witchport mode E`
+
+.. ポートのトランクモードをイネーブルにします。
++
+'witchport trunk mode on `
+
+.. トランクで許可される VSAN を 10 に設定します。
++
+'witchport トランクでは VSAN 10 を許可
+
+.. ポートの速度を設定します。
++
+'witchport speed_speed - value_
+
+
+
+. FCIP 2 インターフェイスのスイッチポートを設定します。
++
+.. コンフィギュレーションモードを開始します。
++
+'config t`
+
+.. 設定するポートを指定します。
++
+「 interface fcip 2 」と入力します
+
+.. ポートをシャットダウンします。
++
+「ダウンタイム」
+
+.. ポートを E モードに設定します。
++
+'witchport mode E`
+
+.. ポートのトランクモードをイネーブルにします。
++
+'witchport trunk mode on `
+
+.. トランクで許可される VSAN を 20 に設定します。
++
+「 witchport trunk allowed vsan 20` 」
+
+.. ポートの速度を設定します。
++
+'witchport speed_speed - value_
+
+
+
+. 2 つ目のスイッチで、上記の手順を繰り返します。
++
+ただし、適切な IP アドレスと一意の FCIP プロファイル名を使用してください。
+
++
+** 1 つ目のスイッチファブリックの設定では、 FC_switch_B_1 で FCIP プロファイル 12 および 121 を設定します。
+** 1 つ目のスイッチファブリックの設定では、 FC_switch_A_2 で FCIP プロファイル 13 および 131 を設定し、 FC_switch_B_2 で FCIP プロファイル 14 および 141 を設定します。
+
+
+. 両方のスイッチでポートを再起動します。
++
+「シャットダウンなし」
+
+. 両方のスイッチでインターフェイス設定を終了します。
++
+「 end 」と入力します
+
+. 両方のスイッチで、更新された設定をスタートアップ設定にコピーします。
++
+'copy running-config startup-config
+
++
+[listing]
+----
+FC_switch_A_1(config-if)# end
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1(config-if)# end
+FC_switch_B_1# copy running-config startup-config
+----
+. 2 つ目のスイッチファブリックで、ここまでの手順を繰り返します。
+
+
+
+
+=== Cisco 9250i FC スイッチのデュアル ISL に対する FCIP ポートの設定
+
+[role="lead"]
+FCIP プロファイルとインターフェイスを作成して IPStorage1/1 および IPStorage1/2 GbE インターフェイスに割り当てることで、 ISL を接続する FCIP スイッチポート（ E ポート）を設定する必要があります。
+
+このタスクは、各スイッチで IPStorage1/1 および IPStorage1/2 GbE インターフェイスを使用し、スイッチファブリックごとに 2 つの ISL を使用する構成にのみ該当します。
+
+このタスクは FC スイッチごとに行う必要があります。
+
+image::../media/fcip_ports_dual_isl.gif[FCIP ポート、デュアル ISL]
+
+このタスクと例で使用するプロファイル設定の表は次のとおりです。
+
+* <<fabric1_table>>
+* <<fabric2_table>>
+
+
+* ファブリック 1 プロファイル設定表 *
+
+|===
+| スイッチファブリック | IPStorage インターフェイス | IP アドレス | ポートタイプ | FCIP インターフェイス | FCIP プロファイル | ポート | IP/port をピアリングします | VSAN ID 
+
+
+.4+| FC_switch_A_1 を使用します .2+| IPStorage1/1 .2+| a. a. a. a.  a| 
+FC-VI
+ a| 
+FCIP 1.
+ a| 
+15
+ a| 
+3220
+ a| 
+c. c. c. c/3230
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 2.
+ a| 
+20
+ a| 
+3221
+ a| 
+c. c. c. c/3231
+ a| 
+20
+
+
+
+.2+| IPStorage1/2 .2+| b.b.b.b.b.b.b.b.b  a| 
+FC-VI
+ a| 
+FCIP 3.
+ a| 
+25
+ a| 
+3222
+ a| 
+d. d d / 3232
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 4.
+ a| 
+30
+ a| 
+3223
+ a| 
+d. d d / 3233
+ a| 
+20
+
+
+
+.4+| FC_switch_B_1 .2+| IPStorage1/1 .2+| c.c.c  a| 
+FC-VI
+ a| 
+FCIP 1.
+ a| 
+15
+ a| 
+3230
+ a| 
+A.a.a/3220 の例
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 2.
+ a| 
+20
+ a| 
+3231
+ a| 
+a. a. a/ 3221
+ a| 
+20
+
+
+
+.2+| IPStorage1/2 .2+| d.d.d.d.d  a| 
+FC-VI
+ a| 
+FCIP 3.
+ a| 
+25
+ a| 
+3232
+ a| 
+b. b. b. b b/3222
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 4.
+ a| 
+30
+ a| 
+3233
+ a| 
+B.B.B.b/3223
+ a| 
+20
+
+|===
+* ファブリック 2 プロファイル設定表 *
+
+|===
+| スイッチファブリック | IPStorage インターフェイス | IP アドレス | ポートタイプ | FCIP インターフェイス | FCIP プロファイル | ポート | IP/port をピアリングします | VSAN ID 
+
+
+.4+| FC_switch_A_2 .2+| IPStorage1/1 .2+| e.e  a| 
+FC-VI
+ a| 
+FCIP 1.
+ a| 
+15
+ a| 
+3220
+ a| 
+G.G.g/3230
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 2.
+ a| 
+20
+ a| 
+3221
+ a| 
+G.gg/3231
+ a| 
+20
+
+
+
+.2+| IPStorage1/2 .2+| f.f.f.f.f  a| 
+FC-VI
+ a| 
+FCIP 3.
+ a| 
+25
+ a| 
+3222
+ a| 
+H.H/3232
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 4.
+ a| 
+30
+ a| 
+3223
+ a| 
+H.H/3233
+ a| 
+20
+
+
+
+.4+| FC_switch_B_2 .2+| IPStorage1/1 .2+| g.g.g.g.g  a| 
+FC-VI
+ a| 
+FCIP 1.
+ a| 
+15
+ a| 
+3230
+ a| 
+例： /3220
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 2.
+ a| 
+20
+ a| 
+3231
+ a| 
+例： 3221
+ a| 
+20
+
+
+
+.2+| IPStorage1/2 .2+| h.h.h.h  a| 
+FC-VI
+ a| 
+FCIP 3.
+ a| 
+25
+ a| 
+3232
+ a| 
+f. f. f. /3222
+ a| 
+10.
+
+
+
+ a| 
+ストレージ
+ a| 
+FCIP 4.
+ a| 
+30
+ a| 
+3233
+ a| 
+F. F.f/3223
+ a| 
+20
+
+|===
+.手順
+. コンフィギュレーションモードを開始します。
++
+'config t`
+
+. FCIP を有効にします。
++
+「機能 FCIP`
+
+. 各スイッチで、 2 つの IPStorage インターフェイス（ IPStorage1/1 および IPStorage1/2 ）を設定します。
++
+.. [[[[[[eとおり A] 、手順「 a 」 ]] 構成モードに切り替えます。
++
+「 conf t`
+
+.. 作成する IPStorage インターフェイスを指定します。
++
+'interface_ipstorage_`
+
++
+「 _IPstorage_` 」パラメータの値は「 IPStorage1/1 」または「 IPStorage1/2 」です。
+
+.. 前の手順で指定した IPStorage インターフェイスの IP アドレスとサブネットマスクを指定します。
++
+'interface_ip-address__subnet-mask_`
+
++
+
+NOTE: 各スイッチで、 IPStorage インターフェイス「 IPStorage1/1 」と「 IPStorage1/2 」に異なる IP アドレスを指定する必要があります。
+
+.. MTU サイズを 2500 に指定します。
++
+'witchport mtu 2500`
+
+.. ポートを有効にします。
++
+「シャットダウンなし」
+
+.. [[[</Z1>[</Z1>[eite_f,"f"] 構成モードを終了します： </Z2>
++
+「 exit
+
+.. 繰り返します <<substep_a>> から <<substep_f>> IPStorage1/2 GbE インターフェイスを別の IP アドレスで設定します。
+
+
+. プロファイル設定の表に記載されたプロファイル名を使用して、 FC-VI トラフィック用とストレージトラフィック用の FCIP プロファイルを設定します。
++
+.. コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+.. 次のプロファイル名で FCIP プロファイルを設定します： +`fcip profile_fcip -profile-name_`
++
+次に '_fcip -profile-name_' パラメータの値を示します
+
++
+*** IPStorage1/1 の FC-VI ： 15
+*** IPStorage1/1 のストレージ： 20
+*** IPStorage1/2 上の FC-VI は 25 です
+*** IPStorage1/2 にストレージを指定した場合は 30 個
+
+
+.. プロファイル設定の表に従って、 FCIP プロファイルのポートを割り当てます。
++
+「 port_port_number_` 」のようになります
+
+.. TCP を設定します。
++
+「 tcp keepalive-timeout 1 」を参照してください
+
++
+「 tcp max-retransmissions3 」
+
++
+「 m ax-bandwidth-mbs 5000 minavailable-bandwidth-mbs 4500 round-trip -time-ms 3 」を参照してください
+
++
+「 tcp min-retransmit-time 200 」
+
++
+「 tcp keepalive-timeout 1 」を参照してください
+
++
+tcp pmtu-enable reset-timeout 3600
+
++
+「 tcp sack-enable 」を入力します
+
++
+「 no tcp CWM 」
+
+
+
+. FCIP インターフェイスを作成します。
++
+interface fcp_fcp_interface_`
+
++
+パラメータの値は '_fcp_interface_' で ' プロファイル設定の表に示すように '1'2'3' または 4' です
+
++
+.. 前の手順で作成したプロファイルにインターフェイスをマッピングします。
++
+'use-profile_profile_
+
+.. ピア IP アドレスとピアプロファイルポート番号を設定します。
++
+'peer-info_peer_ipstorage_ipaddr_port_peer_port_port_number_`
+
+.. TCP 接続を選択します。
++
+「 tcp-connection_connection-#_ 」
+
++
+パラメータの値は 'FC-VI プロファイルの場合は 2 ' ストレージ・プロファイルの場合は 5 です
+
+.. 圧縮を無効にします。
++
+「 IP 圧縮なし」
+
+.. インターフェイスを有効にします。
++
+「シャットダウンなし」
+
+.. 制御 TCP 接続を 48 、データ接続を 26 に設定して、 Differentiated Services Code Point （ DSCP ）値を持つすべてのパケットをマークします。
++
+'qos control 48 data 26`
+
+.. 構成モードを終了します。
++
+「 exit
+
+
+
+. 各 FCIP インターフェイスのスイッチポートを設定します。
++
+.. コンフィギュレーションモードを開始します。
++
+'config t`
+
+.. 設定するポートを指定します。
++
+インターフェイス fcip 1'
+
+.. ポートをシャットダウンします。
++
+「ダウンタイム」
+
+.. ポートを E モードに設定します。
++
+'witchport mode E`
+
+.. ポートのトランクモードをイネーブルにします。
++
+'witchport trunk mode on `
+
+.. 特定の VSAN で許可されるトランクを指定します。
++
+'witchport trunk allowed vsan_vsan_id_`
+
++
+VSAN_id_parameter の値は、 FC-VI プロファイルでは「 vsan 10 」、ストレージプロファイルでは「 vsan 20 」です。
+
+.. ポートの速度を設定します。
++
+'witchport speed_speed - value_
+
+.. 構成モードを終了します。
++
+「 exit
+
+
+
+. 両方のスイッチで、更新された設定をスタートアップ設定にコピーします。
++
+'copy running-config startup-config
+
+
+
+次の例は、ファブリック 1 のスイッチ FC_switch_A_1 および FC_switch_B_1 で 2 つの ISL を使用する場合の FCIP ポートの設定を示しています。
+
+* FC_switch_A_1 では、次のコマンドを実行します。
+
+[listing]
+----
+FC_switch_A_1# config t
+FC_switch_A_1(config)# no in-order-guarantee vsan 10
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+
+# fcip settings
+
+feature  fcip
+
+conf t
+interface IPStorage1/1
+#  IP address:  a.a.a.a
+#  Mask:  y.y.y.y
+  ip address <a.a.a.a   y.y.y.y>
+  switchport mtu 2500
+  no shutdown
+exit
+conf t
+fcip profile 15
+  ip address <a.a.a.a>
+  port 3220
+  tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+conf t
+fcip profile 20
+  ip address <a.a.a.a>
+  port 3221
+  tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+conf t
+interface IPStorage1/2
+#  IP address:  b.b.b.b
+#  Mask:  y.y.y.y
+  ip address <b.b.b.b   y.y.y.y>
+  switchport mtu 2500
+  no shutdown
+exit
+
+conf t
+fcip profile 25
+  ip address <b.b.b.b>
+  port 3222
+tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+conf t
+fcip profile 30
+  ip address <b.b.b.b>
+  port 3223
+tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+interface fcip  1
+  use-profile 15
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr <c.c.c.c>  port 3230
+  tcp-connection 2
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+interface fcip  2
+  use-profile 20
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr <c.c.c.c>  port 3231
+  tcp-connection 5
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+interface fcip  3
+  use-profile 25
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr < d.d.d.d >  port 3232
+  tcp-connection 2
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+interface fcip  4
+  use-profile 30
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr < d.d.d.d >  port 3233
+  tcp-connection 5
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+conf t
+interface fcip  1
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 10
+no shutdown
+exit
+
+conf t
+interface fcip  2
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 20
+no shutdown
+exit
+
+conf t
+interface fcip  3
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 10
+no shutdown
+exit
+
+conf t
+interface fcip  4
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 20
+no shutdown
+exit
+----
+* FC_switch_B_1 の場合：
+
+[listing]
+----
+
+FC_switch_A_1# config t
+FC_switch_A_1(config)# in-order-guarantee vsan 10
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+
+# fcip settings
+
+feature  fcip
+
+conf t
+interface IPStorage1/1
+#  IP address:  c.c.c.c
+#  Mask:  y.y.y.y
+  ip address <c.c.c.c   y.y.y.y>
+  switchport mtu 2500
+  no shutdown
+exit
+
+conf t
+fcip profile 15
+  ip address <c.c.c.c>
+  port 3230
+  tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+conf t
+fcip profile 20
+  ip address <c.c.c.c>
+  port 3231
+  tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+conf t
+interface IPStorage1/2
+#  IP address:  d.d.d.d
+#  Mask:  y.y.y.y
+  ip address <b.b.b.b   y.y.y.y>
+  switchport mtu 2500
+  no shutdown
+exit
+
+conf t
+fcip profile 25
+  ip address <d.d.d.d>
+  port 3232
+tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+conf t
+fcip profile 30
+  ip address <d.d.d.d>
+  port 3233
+tcp keepalive-timeout 1
+tcp max-retransmissions 3
+max-bandwidth-mbps 5000 min-available-bandwidth-mbps 4500 round-trip-time-ms 3
+  tcp min-retransmit-time 200
+  tcp keepalive-timeout 1
+  tcp pmtu-enable reset-timeout 3600
+  tcp sack-enable
+  no tcp cwm
+
+interface fcip  1
+  use-profile 15
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr <a.a.a.a>  port 3220
+  tcp-connection 2
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+interface fcip  2
+  use-profile 20
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr <a.a.a.a>  port 3221
+  tcp-connection 5
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+interface fcip  3
+  use-profile 25
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr < b.b.b.b >  port 3222
+  tcp-connection 2
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+interface fcip  4
+  use-profile 30
+# the port # listed in this command is the port that the remote switch is listening on
+ peer-info ipaddr < b.b.b.b >  port 3223
+  tcp-connection 5
+  no ip-compression
+  no shutdown
+  qos control 48 data 26
+exit
+
+conf t
+interface fcip  1
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 10
+no shutdown
+exit
+
+conf t
+interface fcip  2
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 20
+no shutdown
+exit
+
+conf t
+interface fcip  3
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 10
+no shutdown
+exit
+
+conf t
+interface fcip  4
+shutdown
+switchport mode E
+switchport trunk mode on
+switchport trunk allowed vsan 20
+no shutdown
+exit
+----
+
+
+== Cisco FC スイッチでゾーニングを設定する
+
+[role="lead"]
+スイッチポートを別々のゾーンに割り当てて、ストレージ（ HBA ）とコントローラ（ FC-VI ）のトラフィックを分離する必要があります。
+
+この手順は、両方の FC スイッチファブリックで実行する必要があります。
+
+以下の手順では、 4 ノード MetroCluster 構成での FibreBridge 7500N のゾーニングについてのセクションで説明しているゾーニングを使用します。を参照してください link:task_fcsw_cisco_configure_a_cisco_switch_supertask.html#configuring-fcip-ports-for-a-dual-isl-on-cisco-9250i-fc-switches["FC-VI ポートのゾーニング"]。
+
+.手順
+. 既存のゾーンとゾーンセットがある場合は消去します。
++
+.. アクティブなゾーンおよびゾーンセットを特定します。
++
+「ゾーンセットのアクティブ化」
+
++
+[listing]
+----
+FC_switch_A_1# show zoneset active
+
+FC_switch_B_1# show zoneset active
+----
+.. 前の手順で特定したアクティブなゾーンセットを無効にします。
++
+'no zoneset activate name_vszone_name_vsan_vsan_id'
+
++
+次の例は、 2 つのゾーンセットを無効にする方法を示しています。
+
++
+*** VSAN 10 内の FC_switch_A_1 の ZoneSet_A
+*** VSAN 20 内の FC_switch_B_1 の ZoneSet_B
+
+
+
+
++
+[listing]
+----
+FC_switch_A_1# no zoneset activate name ZoneSet_A vsan 10
+
+FC_switch_B_1# no zoneset activate name ZoneSet_B vsan 20
+----
++
+.. すべてのゾーンセットが非アクティブになったら、ゾーンデータベースをクリアします。
++
+clear zone database-zone-name_`
+
++
+[listing]
+----
+FC_switch_A_1# clear zone database 10
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1# clear zone database 20
+FC_switch_B_1# copy running-config startup-config
+----
+
+
+. スイッチのワールドワイド名（ WWN ）を取得します。
++
+'How WWN switch`
+
+. ゾーンの基本設定を行います。
++
+--
+.. デフォルトのゾーニングポリシーを「 permit 」に設定します。
++
+no system default zone default-zone permit
+
+.. フルゾーン配信を有効にします。
++
+「システムデフォルトゾーンは完全に配布」
+
+.. VSAN ごとにデフォルトのゾーニングポリシーを設定します。
++
+no zone default-zone permit_vsanId_`
+
+.. VSAN ごとにデフォルトのフルゾーン配信を設定します。
++
+zoneset distribute full_vsanId_`
+
+
+
+--
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# no system default zone default-zone permit
+FC_switch_A_1(config)# system default zone distribute full
+FC_switch_A_1(config)# no zone default-zone permit 10
+FC_switch_A_1(config)# no zone default-zone permit 20
+FC_switch_A_1(config)# zoneset distribute full vsan 10
+FC_switch_A_1(config)# zoneset distribute full vsan 20
+FC_switch_A_1(config)# end
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# no system default zone default-zone permit
+FC_switch_B_1(config)# system default zone distribute full
+FC_switch_B_1(config)# no zone default-zone permit 10
+FC_switch_B_1(config)# no zone default-zone permit 20
+FC_switch_B_1(config)# zoneset distribute full vsan 10
+FC_switch_B_1(config)# zoneset distribute full vsan 20
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+----
+. ストレージゾーンを作成し、ストレージポートを追加します。
++
+
+NOTE: 次の手順は、ファブリックごとに 1 つのスイッチだけで実行します。
+
++
+ゾーニングは、使用している FC-to-SAS ブリッジのモデルによって異なります。詳細については、ブリッジのモデルに対応するセクションを参照してください。例では Brocade スイッチポートを使用しているため、適宜ポートを調整してください。
+
++
+--
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
+
+
+--
++
+各ストレージゾーンには、すべてのコントローラの HBA イニシエータポートと、 FC-to-SAS ブリッジを接続するポートが 1 つ含まれます。
+
++
+.. ストレージゾーンを作成します。
++
+'zone name_STOR-zone-name_vsanId_`
+
+.. ストレージポートをゾーンに追加します。
++
+「 member-portswitch WWN 」というエラーが表示されます
+
+.. ゾーンセットをアクティブにします。
++
+zoneset activate name_STOR-zone-name-setname_vsan_vsan-id_`
+
+
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# zone name STOR_Zone_1_20_25 vsan 20
+FC_switch_A_1(config-zone)# member interface fc1/5 swwn 20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# member interface fc1/9 swwn 20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# member interface fc1/17 swwn 20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# member interface fc1/21 swwn 20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# member interface fc1/5 swwn 20:00:00:05:9b:24:12:99
+FC_switch_A_1(config-zone)# member interface fc1/9 swwn 20:00:00:05:9b:24:12:99
+FC_switch_A_1(config-zone)# member interface fc1/17 swwn 20:00:00:05:9b:24:12:99
+FC_switch_A_1(config-zone)# member interface fc1/21 swwn 20:00:00:05:9b:24:12:99
+FC_switch_A_1(config-zone)# member interface fc1/25 swwn 20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# end
+FC_switch_A_1# copy running-config startup-config
+----
+. ストレージ・ゾーン・セットを作成し ' 新しいセットにストレージ・ゾーンを追加します
++
+
+NOTE: ファブリック内の 1 つのスイッチだけで、次の手順を実行します。
+
++
+.. ストレージゾーンセットを作成します。
++
+zoneset name_STOR-zone-set-name_vsan_vsan-id_`
+
+.. ストレージゾーンをゾーンセットに追加します。
++
+「 member_STOR-zone-name_` 」
+
+.. ゾーンセットをアクティブにします。
++
+zoneset activate name_STOR-zone-set-name_vsanId_`
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# zoneset name STORI_Zoneset_1_20 vsan 20
+FC_switch_A_1(config-zoneset)# member STOR_Zone_1_20_25
+...
+FC_switch_A_1(config-zoneset)# exit
+FC_switch_A_1(config)# zoneset activate name STOR_ZoneSet_1_20 vsan 20
+FC_switch_A_1(config)# exit
+FC_switch_A_1# copy running-config startup-config
+----
+
+
+. FCVI ゾーンを作成して、 FCVI ポートを追加します。
++
+各 FCVI ゾーンには、 1 つの DR グループのすべてのコントローラから FCVI ポートが含まれます。
+
++
+
+NOTE: ファブリック内の 1 つのスイッチだけで、次の手順を実行します。
+
++
+ゾーニングは、使用している FC-to-SAS ブリッジのモデルによって異なります。詳細については、ブリッジのモデルに対応するセクションを参照してください。例では Brocade スイッチポートを使用しているため、適宜ポートを調整してください。
+
++
+--
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
+
+
+--
++
+各ストレージゾーンには、すべてのコントローラの HBA イニシエータポートと、 FC-to-SAS ブリッジを接続するポートが 1 つ含まれます。
+
++
+.. FCVI ゾーンを作成します。
++
+'zone name_FCVI-zone-name_vsanId_`
+
+.. FCVI ポートをゾーンに追加します。
++
+「 member_fcvi -zone-name_` 」
+
+.. ゾーンセットをアクティブにします。
++
+zoneset activate name_FCVI-zone-name-set-name_vsanId_`
+
+
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# zone name FCVI_Zone_1_10_25 vsan 10
+FC_switch_A_1(config-zone)# member interface fc1/1 swwn20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# member interface fc1/2 swwn20:00:00:05:9b:24:cb:78
+FC_switch_A_1(config-zone)# member interface fc1/1 swwn20:00:00:05:9b:24:12:99
+FC_switch_A_1(config-zone)# member interface fc1/2 swwn20:00:00:05:9b:24:12:99
+FC_switch_A_1(config-zone)# end
+FC_switch_A_1# copy running-config startup-config
+----
+. FCVI ゾーンセットを作成して、 FCVI ゾーンを追加します。
++
+
+NOTE: ファブリック内の 1 つのスイッチだけで、次の手順を実行します。
+
++
+.. FCVI ゾーンセットを作成します。
++
+zoneset name_FCVI_zone_set_name_VSAN_vsan-id_`
+
+.. FCVI ゾーンをゾーンセットに追加します。
++
+「 member_FCVI_zonename_` 」
+
+.. ゾーンセットをアクティブにします。
++
+zoneset activate name_FCVI_zone_set_name_vsan_vsan-id_`
+
+
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# zoneset name FCVI_Zoneset_1_10 vsan 10
+FC_switch_A_1(config-zoneset)# member FCVI_Zone_1_10_25
+FC_switch_A_1(config-zoneset)# member FCVI_Zone_1_10_29
+    ...
+FC_switch_A_1(config-zoneset)# exit
+FC_switch_A_1(config)# zoneset activate name FCVI_ZoneSet_1_10 vsan 10
+FC_switch_A_1(config)# exit
+FC_switch_A_1# copy running-config startup-config
+----
+. ゾーニングを検証します。
++
+「ゾーンの方法」
+
+. 2 つ目の FC スイッチファブリックで、ここまでの手順を繰り返します。
+
+
+
+
+== FC スイッチの設定を保存しておきます
+
+[role="lead"]
+すべてのスイッチで、 FC スイッチの設定がスタートアップ設定に保存されたことを確認する必要があります。
+
+両方の FC スイッチファブリックに対して次のコマンドを問題で実行します。
+
+'copy running-config startup-config
+
+[listing]
+----
+FC_switch_A_1# copy running-config startup-config
+
+FC_switch_B_1# copy running-config startup-config
+----

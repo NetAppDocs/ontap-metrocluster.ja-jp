@@ -1,0 +1,21 @@
+---
+permalink: transition/task_send_a_custom_autosupport_message_after_maintenance_4n_nondisruptive_mcc_transition.html 
+sidebar: sidebar 
+keywords: complete, completing, transition, autosupport, message, indicating, indicate, maintenance, automatic, case, creation, resume, send 
+summary: 移行が完了したら、メンテナンスの終了を通知する AutoSupport メッセージを送信してケースの自動作成を再開します。 
+---
+= メンテナンス後にカスタム AutoSupport メッセージを送信する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移行が完了したら、メンテナンスの終了を通知する AutoSupport メッセージを送信してケースの自動作成を再開します。
+
+. サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。
++
+.. 問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT=end 」
+.. パートナークラスタに対してこのコマンドを繰り返します。
+
+
+

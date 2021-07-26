@@ -1,0 +1,113 @@
+---
+permalink: upgrade/task_implement_the_mcc_configuration_mcc_refresh_mcc_expansion.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, implement, configuration 
+summary: MetroCluster 構成に追加したノードでデータ保護を開始するには、 MetroCluster configure -refresh true コマンドを実行する必要があります。 
+---
+= MetroCluster 構成の実装
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成に追加したノードでデータ保護を開始するには 'MetroCluster configure -refresh true コマンドを実行する必要があります
+
+MetroCluster 構成を更新するには ' 新しく追加されたノードの 1 つで ' MetroCluster configure -refresh true コマンドを 1 回実行します問題各サイトまたは各ノードでコマンドを問題処理する必要はありません。
+
+MetroCluster configure -refresh true コマンドは '2 つのクラスタそれぞれのシステム ID が最も小さい 2 つのノードを 'DR （災害復旧）パートナーとして自動的にペア設定します4 ノード MetroCluster 構成の場合は、 DR パートナーのペアは 2 組になります。2 つ目の DR ペアは、システム ID が大きい 2 つのノードで作成されます。
+
+.手順
+. MetroCluster 構成を更新します。
++
+.. advanced 権限モードに切り替えます。 +`*set -privilege advanced *`
+.. 新しいノードの 1 つで MetroCluster 構成を更新します :+`* MetroCluster configure -refresh true *`
++
+次の例では、両方の DR グループで MetroCluster 構成を更新しています。
+
++
+[listing]
+----
+controller_A_2::*> metrocluster configure -refresh true
+
+[Job 726] Job succeeded: Configure is successful.
+----
++
+[listing]
+----
+controller_A_4::*> metrocluster configure -refresh true
+
+[Job 740] Job succeeded: Configure is successful.
+----
+.. admin 特権モードに戻ります :+`*set -privilege admin*`
+
+
+. サイト A のネットワークステータスを確認します。
++
+「 * network port show * 」と表示されます
+
++
+次の例は、 4 ノード MetroCluster 構成でのネットワークポートの用途を示しています。
+
++
+[listing]
+----
+cluster_A::> network port show
+                                                          Speed (Mbps)
+Node   Port      IPspace   Broadcast Domain Link   MTU    Admin/Oper
+------ --------- --------- ---------------- ----- ------- ------------
+controller_A_1
+       e0a       Cluster   Cluster          up     9000  auto/1000
+       e0b       Cluster   Cluster          up     9000  auto/1000
+       e0c       Default   Default          up     1500  auto/1000
+       e0d       Default   Default          up     1500  auto/1000
+       e0e       Default   Default          up     1500  auto/1000
+       e0f       Default   Default          up     1500  auto/1000
+       e0g       Default   Default          up     1500  auto/1000
+controller_A_2
+       e0a       Cluster   Cluster          up     9000  auto/1000
+       e0b       Cluster   Cluster          up     9000  auto/1000
+       e0c       Default   Default          up     1500  auto/1000
+       e0d       Default   Default          up     1500  auto/1000
+       e0e       Default   Default          up     1500  auto/1000
+       e0f       Default   Default          up     1500  auto/1000
+       e0g       Default   Default          up     1500  auto/1000
+14 entries were displayed.
+----
+. MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
++
+.. サイト A から構成を確認します。
++
+「 * MetroCluster show * 」と入力します
+
++
+[listing]
+----
+cluster_A::> metrocluster show
+
+Configuration: IP fabric
+
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+----
+.. サイト B から構成を確認します :+`* MetroCluster show*`
++
+[listing]
+----
+cluster_B::> metrocluster show
+
+Configuration: IP fabric
+
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                normal
+Remote: cluster_A         Configuration state configured
+                          Mode                normal
+----
+
+
+

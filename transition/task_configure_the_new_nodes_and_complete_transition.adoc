@@ -1,0 +1,226 @@
+---
+permalink: transition/task_configure_the_new_nodes_and_complete_transition.html 
+sidebar: sidebar 
+keywords: node, complete, transition, configure, metrocluster, ip, node, configuring, disabling, disable, data, set, up, lif, bring, svm, moving, move, system, volume 
+summary: 新しいノードを追加したら、移行手順を完了して、 MetroCluster IP ノードを設定する必要があります。 
+---
+= 新しいノードの設定と移行の完了
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいノードを追加したら、移行手順を完了して、 MetroCluster IP ノードを設定する必要があります。
+
+
+
+== MetroCluster IP ノードを設定し、移行を無効にします
+
+[role="lead"]
+MetroCluster IP 接続を実装し、 MetroCluster 構成を更新し、移行モードを無効にする必要があります。
+
+. コントローラ node_A_1 の IP MetroCluster 構成設定 DR-group create -partner-cluster peer-cluster -name local-node local-controller-name -remote-controller -name ````m etrocluster 構成設定 DR-group show から次のコマンドを実行して、新しいノードを DR グループに構成します
+. MetroCluster IP インターフェイスを作成します（ node_A_1 、 node_B_2 IP 、 node_B_1 IP 、 node_B_2 IP 、 node_B_2 IP ）：コントローラごとに 2 つのインターフェイスを作成する必要があります。合計 8 つのインターフェイスが作成されている必要があります。 MetroCluster 「 vlan configuration settings interface create -cluster -name cluster-name -home-node controller-name -port -id-center-name -port -id
++
+
+NOTE: ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+
++
+vlan-id パラメータを指定する必要があるのは、デフォルトの VLAN ID を使用しない場合だけです。デフォルト以外の VLAN ID は、一部のシステムでのみサポートされます。
+
+
+
+|===
+| 注： 
+
+
+ a| 
+* ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートはそれぞれ異なる VLAN を使用します。 10 と 20 です。また、「 MetroCluster configurion-settings interface create 」コマンドの -vlan-id パラメータを使用すると、 100 より大きい（デフォルト以外の） VLAN を（ 101 ～ 4095 の間）指定できます。
+* ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
+
+
+|===
+次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。
+
+|===
+
+
+| AFF プラットフォーム | FAS プラットフォーム 
+
+
+ a| 
+* AFF A220
+* AFF A250
+* AFF A400
+
+ a| 
+* FAS2750
+* FAS500f
+* FAS8300
+* FAS8700 の場合
+
+
+|===
+. コントローラ node_A_1 の IP から MetroCluster 接続処理を実行して MetroCluster サイトを接続 - この処理には数分かかることがあります。MetroCluster 構成設定接続接続
+. リモートクラスタディスクが、 iSCSI 接続を介して各コントローラから認識できることを確認します。「 Disk show
++
+構成内の他のノードに属するリモートディスクが表示されます。
+
+. node_A_1 の IP および node_B_1 の IP のルートアグリゲートをミラーします。「 aggregate mirror -aggregate root-aggr 」というコマンドを実行します
+. node_B_2 の IP と node_B_2 の IP のディスクを割り当て
++
+ブートメニューで boot_after_MCC_transtion コマンドを実行した場合に、 node_A_1 と node_B_1 に対してすでに作成されているプール 1 のディスク割り当て
+
++
+.. 問題 node-a_2-IP で次のコマンドを実行します :`+disk assign disk1disk2disk3...diskn -sysid node_B_2-ip-control-sysid -pool 1-force-+`
+.. 問題 node_B_2 の次のコマンド：ディスク・割り当て disk1disk2disk3... diskn -sysid node-a_2 -ip-controller-sysid -pool 1 -force +
+
+
+. リモートディスクの所有権が更新されたことを確認します。「 Disk show 」
+. 必要に応じて、次のコマンドを使用して所有権情報を更新します。
++
+.. advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced
+.. ディスク所有権の更新 : 「ディスクの更新所有権のコントローラ名」
+.. admin モードに戻ります。 'set priv admin'
+
+
+. node_B_2 IP および node_B_2 IP のルートアグリゲートをミラーリング：アグリゲートミラーアグリゲートルートアグリゲート
+. ルートアグリゲートとデータアグリゲートのアグリゲートの再同期が完了したことを確認します。 aggr show `aggr plex show`
++
+再同期には時間がかかることがありますが、完了してから次の手順に進んでください。
+
+. MetroCluster 構成を更新して新しいノードを組み込みます。
++
+.. advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced
+.. 構成を更新します。
++
+|===
+| 設定内容 | 問題コマンド 
+
+
+ a| 
+各クラスタにアグリゲートが 1 つあります。
+ a| 
+「 MetroCluster configure -refresh true -allow-with-one-aggregate true 」
+
+
+
+ a| 
+各クラスタに複数のアグリゲートがあります
+ a| 
+MetroCluster configure -refresh true
+
+|===
+.. admin モードに戻ります。 'set priv admin'
+
+
+. MetroCluster 移行モードを無効にします。
++
+.. advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced
+.. 移行モードを無効にします : MetroCluster transition disable
+.. admin モードに戻ります。 'set priv admin'
+
+
+
+
+
+
+== 新しいノードにデータ LIF をセットアップ
+
+[role="lead"]
+新しいノード、 node_B_2 の IP および node_B_2 の IP にデータ LIF を設定する必要があります。
+
+新しいコントローラで使用可能な新しいポートがブロードキャストドメインに割り当てられていない場合は、そのドメインに追加する必要があります。必要に応じて、新しいポートに VLAN またはインターフェイスグループを作成します。『ネットワーク管理ガイド』を参照してください。
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+
+. 次のコマンドを実行して、現在のポート使用状況およびブロードキャストドメインを確認します。「 network port show 」「 network port broadcast-domain show 」
+. 必要に応じて、ブロードキャストドメインと VLAN にポートを追加します。
++
+.. IP スペースを表示します。「 network ipspace show 」
+.. IP スペースを作成し、必要に応じてデータポートを割り当てます。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["IPspace の設定（クラスタ管理者のみ）"]
+
+.. ブロードキャストドメインを表示します。「 network port broadcast-domain show 」
+.. 必要に応じて、ブロードキャストドメインにデータポートを追加します。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html["ブロードキャストドメインのポートの追加と削除"]
+
+.. 必要に応じて、 VLAN とインターフェイスグループを再作成します。
++
+VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html["VLAN を作成する"]
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html["物理ポートを組み合わせたインターフェイスグループの作成"]
+
+
+
+. 必要に応じて、 MetroCluster IP ノード（ -mc を備えた SVM を含む）の適切なノードとポートで LIF がホストされていることを確認します。
++
+で収集した情報を参照してください xref:task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.adoc[ネットワーク設定を作成しています]。
+
++
+.. 次のコマンドを実行して、 LIF のホームポートを確認します。「 network interface show field home-port
+.. 必要に応じて、 LIF の設定を変更します。 vserver config override-command "network interface modify -vserver vserver_name -home-port active_port_after_upgrade -lif lif_name -home-node new_node_name ""
+.. LIF をそれぞれのホームポートにリバートします。「 network interface revert * -vserver vserver_name
+
+
+
+
+
+
+== SVM を起動する
+
+[role="lead"]
+LIF の設定が変更されたため、新しいノードで SVM を再起動する必要があります。
+
+. MetroCluster vserver show で SVM の状態を確認します
+. 「 vserver start -vserver svm_name -force true 」というサフィックスがない cluster_A の SVM を再起動します
+. パートナークラスタで上記の手順を繰り返します。
+. すべての SVM が「 MetroCluster vserver show 」の状態であることを確認します
+. すべてのデータ LIF がオンラインであることを確認します。「 network interface show 」
+
+
+
+
+== 新しいノードへのシステムボリュームの移動
+
+[role="lead"]
+耐障害性を高めるには、システムボリュームを controller_A_1 から IP コントローラ node_A_1 に、さらに node_B_1 から node_B_2 の IP に移動する必要があります。システムボリュームのデスティネーションノードにミラーされたアグリゲートを作成する必要があります。
+
+システムボリュームの名前の形式は MDV_CRS_*_A または MDV_CRS_*_B です_A と _B は、このセクション全体で使用される site_A と site_B の参照とは関係がありません。たとえば、 MDV_CRS_*_A は site_A と関連付けられていません
+
+. 必要に応じて、コントローラ node_A_1 の IP および node_B_2 の IP に少なくとも 3 本のプール 0 と 3 本のプール 1 ディスクを割り当てます。
+. ディスクの自動割り当てを有効にします。
+. site_A から次の手順を実行して、 _B システムボリュームを node_A_1 の IP から node_B_2 の IP に移動します
++
+.. システムボリュームを格納するためのミラーアグリゲートを controller_A_2 の IP に作成します。 aggr create -aggregate new_node_a_2 -ip_aggr -diskcount 10 -mirror true -node nodename _node_a_2 -ip `aggr show
++
+ミラーされたアグリゲートには、 5 つのプール 0 と 5 つのプール 1 スペアディスクが必要です。これらのディスクはコントローラ node_A_1 のコントローラ node_A_1 の IP で所有されます。
+
++
+ディスクが不足している場合は、 advanced オプションの「 -force-small-aggregate true 」を使用して、プール 0 とプール 1 のディスクを 3 本に制限できます。
+
+.. 管理 SVM に関連付けられているシステムボリュームの一覧を表示します。 vserver show `volume show -vserver admin -vserver-name
++
+site_A が所有するアグリゲートに含まれているボリュームを特定しますsite_B のシステムボリュームも表示されます。
+
+
+
+. site_A 用の MDV_CRS_*_B システムボリュームを、コントローラ node_A_1 で作成されたミラーアグリゲートに移動します
++
+.. デスティネーションアグリゲートが存在するかどうかを確認します。 'volume move target-aggr show -vserver admin -vserver-name -volume system_vMDV_B'
++
+node_A_1 に作成されたアグリゲートが表示されます。
+
+.. ボリュームを、新たに作成した node_A_1 のアグリゲート、「 Set advanced 」の「 volume move start -vserver admin -vserver -vserver -volume system_volMDV_B -destination -aggregate new_node_A_1 -ip_aggr-cutover-window 40 」に移動します
+.. 移動操作のステータスを確認します。 'volume move show -vserver admin -vserver-name -volume system_vMDV_B'
+.. 移動処理が完了したら、 MDV_CRS_*_B システムが、 node_A_1 の新しいアグリゲート「 Set admin 」「 volume show -vserver admin -vserver admin -vserver 」に含まれていることを確認します
+
+
+. site_B （ node_B_1 - IP と node_B_2 - IP ）で上記の手順を繰り返します。
+

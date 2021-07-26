@@ -1,0 +1,67 @@
+---
+permalink: manage/reference_commands_for_switchover_healing_and_switchback.html 
+sidebar: sidebar 
+keywords: ontap, command, perform, metrocluster, disaster, recovery, process, switchover, heal, switchback 
+summary: ONTAP には、 MetroCluster のディザスタリカバリプロセスを実行するためのコマンドが用意されています。 
+---
+= スイッチオーバー、修復、スイッチバック用のコマンドです
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP には、 MetroCluster のディザスタリカバリプロセスを実行するためのコマンドが用意されています。
+
+[cols="2*"]
+|===
+| 状況 | 使用するコマンド 
+
+
+ a| 
+スイッチオーバーでエラーや拒否が発生しないことを確認します。
+ a| 
+advanced 特権レベルでの MetroCluster switchover -simulate
+
+
+
+ a| 
+スイッチバックを実行してもエラーや拒否が発生しないことを確認します。
+ a| 
+advanced 権限レベルでの MetroCluster switchback -simulate
+
+
+
+ a| 
+パートナーノードにスイッチオーバーする（ネゴシエートスイッチオーバー）
+ a| 
+MetroCluster スイッチオーバー
+
+
+
+ a| 
+パートナーノードにスイッチオーバーする（強制スイッチオーバー）
+ a| 
+MetroCluster switchover -forced-on-disaster true
+
+
+
+ a| 
+データアグリゲートの修復を実行する
+ a| 
+「 MetroCluster heal-phase aggregates 」
+
+
+
+ a| 
+ルートアグリゲートの修復を実行する
+ a| 
+「 MetroCluster heal-phase root-aggregates 」
+
+
+
+ a| 
+ホームノードにスイッチバックする
+ a| 
+MetroCluster スイッチバック
+
+|===

@@ -1,0 +1,89 @@
+---
+permalink: disaster-recovery/task_verify_assignment_mcip.html 
+sidebar: sidebar 
+keywords: verify, adp, verify, drives, pool, automatically, assign 
+summary: ADP 用に設定されたシステムでは、プール 0 のドライブが自動的に割り当てられていることを確認する必要があります。 
+---
+= 自動割り当ての検証またはプール 0 ドライブの手動割り当て
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ADP 用に設定されたシステムでは、プール 0 のドライブが自動的に割り当てられていることを確認する必要があります。ADP 用に設定されていないシステムでは、プール 0 のドライブを手動で割り当てる必要があります。
+
+
+
+== ディザスタサイトの ADP システム（ MetroCluster IP システム）でのプール 0 ドライブの割り当て確認
+
+ディザスタサイトでドライブを交換し、システムが ADP 用に設定されている場合は、リモートドライブがノードから認識され、正しく割り当てられていることを確認する必要があります。
+
+.ステップ
+. プール 0 のドライブが自動的に割り当てられていることを確認します。
++
+「ディスクショー」
+
++
+次の例は外付けシェルフのない AFF A800 システムで、 4 分の 1 （ 8 本のドライブ）が node_A_1 に自動的に割り当てられ、 4 分の 1 が node_A_2 に自動的に割り当てられています。残りのドライブが、 node_B_1 と node_B_2 のリモート（プール 1 ）ドライブになります。
+
++
+[listing]
+----
+cluster_A::*> disk show
+                 Usable     Disk      Container           Container
+Disk             Size       Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+node_A_1:0n.12   1.75TB     0     12  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.13   1.75TB     0     13  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.14   1.75TB     0     14  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.15   1.75TB     0     15  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.16   1.75TB     0     16  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.17   1.75TB     0     17  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.18   1.75TB     0     18  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.19   1.75TB     0     19  SSD-NVM shared      -         node_A_1
+node_A_2:0n.0    1.75TB     0     0   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.1    1.75TB     0     1   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.2    1.75TB     0     2   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.3    1.75TB     0     3   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.4    1.75TB     0     4   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.5    1.75TB     0     5   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.6    1.75TB     0     6   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.7    1.75TB     0     7   SSD-NVM shared      -         node_A_2
+node_A_2:0n.24   -          0     24  SSD-NVM unassigned  -         -
+node_A_2:0n.25   -          0     25  SSD-NVM unassigned  -         -
+node_A_2:0n.26   -          0     26  SSD-NVM unassigned  -         -
+node_A_2:0n.27   -          0     27  SSD-NVM unassigned  -         -
+node_A_2:0n.28   -          0     28  SSD-NVM unassigned  -         -
+node_A_2:0n.29   -          0     29  SSD-NVM unassigned  -         -
+node_A_2:0n.30   -          0     30  SSD-NVM unassigned  -         -
+node_A_2:0n.31   -          0     31  SSD-NVM unassigned  -         -
+node_A_2:0n.36   -          0     36  SSD-NVM unassigned  -         -
+node_A_2:0n.37   -          0     37  SSD-NVM unassigned  -         -
+node_A_2:0n.38   -          0     38  SSD-NVM unassigned  -         -
+node_A_2:0n.39   -          0     39  SSD-NVM unassigned  -         -
+node_A_2:0n.40   -          0     40  SSD-NVM unassigned  -         -
+node_A_2:0n.41   -          0     41  SSD-NVM unassigned  -         -
+node_A_2:0n.42   -          0     42  SSD-NVM unassigned  -         -
+node_A_2:0n.43   -          0     43  SSD-NVM unassigned  -         -
+32 entries were displayed.
+----
+
+
+
+
+== ディザスタサイトの ADP 以外のシステムでのプール 0 ドライブの割り当て（ MetroCluster IP 構成）
+
+ドライブを交換したディザスタサイトでシステムが ADP 用に設定されていない場合は、新しいドライブをプール 0 に手動で割り当てる必要があります。
+
+ADP システムのドライブは自動的に割り当てられます。
+
+.手順
+. ディザスタサイトの一方の交換用ノードで、プール 0 のドライブを再割り当てします。
++
+'storage disk assign -n Number of -of -replacement disks -p 0
+
++
+このコマンドは、ディザスタサイトに新しく追加された所有権が未設定のドライブを割り当てます。災害発生前にノードに割り当てられていたドライブと同じ数および同じ（またはそれ以上の）サイズのドライブを割り当てる必要があります。「 storage disk assign 」のマニュアルページには、より詳細なドライブ割り当ての実行方法が記載されています。
+
+. ディザスタサイトのもう一方の交換用ノードで、手順を繰り返します。
+

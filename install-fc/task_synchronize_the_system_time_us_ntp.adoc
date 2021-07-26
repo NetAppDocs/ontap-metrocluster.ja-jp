@@ -1,0 +1,36 @@
+---
+permalink: install-fc/task_synchronize_the_system_time_us_ntp.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, synchronize, system, time, ntp 
+summary: ノードとそのクライアントの間で時刻を同期するには、クラスタごとに独自のネットワークタイムプロトコル（ NTP ）サーバが必要です。System Manager の Edit DateTime ダイアログボックスを使用して、 NTP サーバを設定できます。 
+---
+= NTP を使用してシステム時間を同期する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ノードとそのクライアントの間で時刻を同期するには、クラスタごとに独自の Network Time Protocol （ NTP ；ネットワークタイムプロトコル）サーバが必要です。System Manager の Edit DateTime ダイアログボックスを使用して、 NTP サーバを設定できます。
+
+System Manager をダウンロードしてインストールしておく必要があります。System Manager は、ネットアップサポートサイトから入手できます。
+
+* テイクオーバーの発生後に障害ノードまたはパートナーノードのタイムゾーン設定を変更することはできません。
+* MetroCluster FC 構成のクラスタごとに、その MetroCluster サイトのノード、 FC スイッチ、および FC-to-SAS ブリッジで使用する独自の NTP サーバをそれぞれ用意する必要があります。
++
+MetroCluster Tiebreaker ソフトウェアを使用する場合は、それ専用の NTP サーバも必要です。
+
+
+
+.手順
+. ホームページで、該当するストレージシステムをダブルクリックします。
+. 左側のナビゲーションペインで、「 * Cluster * 」階層を展開します。
+. ナビゲーションペインで、 * 環境設定 * > * システムツール * > * 日付 / 時刻 * をクリックします。
+. [ 編集（ Edit ） ] をクリックします。
+. タイムゾーンを選択します。
+. タイムサーバの IP アドレスを指定し、 * Add * をクリックします。
++
+NTP サーバはタイムサーバのリストに追加する必要があります。ドメインコントローラは、信頼できるサーバにすることができます。
+
+. [OK] をクリックします。
+. 日付と時刻の設定に加えた変更を、 [ 日付と時刻 ] ウィンドウで確認します。
+

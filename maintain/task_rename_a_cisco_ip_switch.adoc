@@ -1,0 +1,111 @@
+---
+permalink: maintain/task_rename_a_cisco_ip_switch.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, rename, cisco, ip, switch 
+summary: 構成内で一貫性のある名前を使用するために、 Cisco IP スイッチの名前変更が必要になる場合があります。 
+---
+= Cisco IP スイッチの名前変更
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+構成内で一貫性のある名前を使用するために、 Cisco IP スイッチの名前変更が必要になる場合があります。
+
+このタスクの例では、スイッチ名が「 m 」から「 ip_switch_a_1 」に変更されています。
+
+. グローバルコンフィギュレーションモードを開始します。
++
+「 * configure terminal * 」
+
++
+次の例は、構成モードのプロンプトを示しています。どちらのプロンプトにもスイッチ名「 m yswitch 」が表示されています。
+
++
+[listing]
+----
+myswitch# configure terminal
+myswitch(config)#
+----
+. スイッチの名前を変更します。
++
+'*switchname new-switch-name *
+
++
+ファブリック内の両方のスイッチの名前を変更する場合は、各スイッチで同じコマンドを使用します。
+
++
+CLI プロンプトの内容が新しい名前に変わります。
+
++
+[listing]
+----
+myswitch(config)# switchname IP_switch_A_1
+IP_switch_A_1(config)#
+----
+. 構成モードを終了します。
++
+「 * exit *
+
++
+最上位のスイッチプロンプトが表示されます。
+
++
+[listing]
+----
+IP_switch_A_1(config)# exit
+IP_switch_A_1#
+----
+. 現在の実行コンフィギュレーションをスタートアップコンフィギュレーションファイルにコピーします。
++
+'*copy running-config startup-config *
+
+. スイッチ名の変更が ONTAP クラスタのプロンプトに表示されることを確認します。
++
+新しいスイッチ名が表示され、古いスイッチ名（「 m 」スイッチ）は表示されないことに注意してください。
+
++
+.. advanced 権限モードに切り替え、プロンプトが表示されたら「 * y * 」を押します。 +`* set -privilege advanced * `
+.. 接続されているデバイスを表示します :+`* network device-discovery show *`
+.. admin 特権モードに戻ります :+`*set -privilege admin*`
++
+次の例では ' スイッチが新しい名前で表示されていますつまり 'ip_switch_a_1' です
+
++
+[listing]
+----
+cluster_A::storage show> set advanced
+
+Warning: These advanced commands are potentially dangerous; use them only when directed to do so by NetApp personnel.
+Do you want to continue? {y|n}: y
+
+cluster_A::storage show*> network device-discovery show
+Node/       Local  Discovered
+Protocol    Port   Device                    Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node_A_2/cdp
+            e0M    LF01-410J53.mycompany.com(SAL18516DZY)
+                                             Ethernet125/1/28  N9K-C9372PX
+            e1a    IP_switch_A_1(FOC21211RBU)
+                                             Ethernet1/2       N3K-C3232C
+            e1b    IP_switch_A_1(FOC21211RBU)
+                                             Ethernet1/10      N3K-C3232C
+.
+.
+.                                             Ethernet1/18      N9K-C9372PX
+node_A_1/cdp
+            e0M    LF01-410J53.mycompany.com(SAL18516DZY)
+                                             Ethernet125/1/26  N9K-C9372PX
+            e0a    IP_switch_A_2(FOC21211RB5)
+                                             Ethernet1/1       N3K-C3232C
+            e0b    IP_switch_A_2(FOC21211RB5)
+                                             Ethernet1/9       N3K-C3232C
+            e1a    IP_switch_A_1(FOC21211RBU)
+.
+.
+.
+16 entries were displayed.
+----
+
+
+

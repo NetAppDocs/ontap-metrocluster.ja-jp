@@ -1,0 +1,43 @@
+---
+permalink: install-fc/concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, example, eight, node, array, luns 
+summary: スイッチゾーニングは、接続されているノード間のパスを定義しますゾーニングを設定すると、特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。 
+---
+= アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチゾーニングは、接続されているノード間のパスを定義しますゾーニングを設定すると、特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。
+
+8 ノード MetroCluster 構成は、 4 ノードの 2 つの DR グループで構成されます。最初の DR グループは、次のノードで構成されます。
+
+* controller_A_1
+* controller_A_2
+* controller_B_1
+* controller_B_2
+
+
+2 つ目の DR グループは、次のノードで構成されます。
+
+* Controller_A_1
+* Controller_A_1
+* controller_B_2
+* controller_B_2
+
+
+スイッチゾーニングを設定するには、最初の DR グループの 4 ノード MetroCluster 構成のゾーニング例を使用します。
+
+xref:concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例]
+
+2 つ目の DR グループのゾーニングを設定するには、同じ例に従い、 2 つ目の DR グループのコントローラに属する FC イニシエータポートとアレイ LUN を使用して設定します。
+
+* 関連情報 *
+
+xref:reference_requirements_for_switch_zoning_in_a_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件]
+
+xref:concept_example_of_switch_zoning_in_a_two_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 2 ノード MetroCluster 構成におけるスイッチゾーニングの例]
+
+xref:concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例]

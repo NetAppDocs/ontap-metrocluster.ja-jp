@@ -1,0 +1,69 @@
+---
+permalink: maintain/task_secur_or_unsecur_a_fibrebridge_bridge.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, secure, unsecure, fibrebridge, bridge 
+summary: 安全性に問題のあるイーサネットプロトコルをブリッジで簡単に無効にできるように、 ONTAP 9.5 以降ではブリッジを保護することができます。これにより、ブリッジのイーサネットポートが無効になります。イーサネットアクセスを再度有効にすることもできます。 
+---
+= FibreBridge ブリッジをセキュリティ保護または保護解除します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+安全性に問題のあるイーサネットプロトコルをブリッジで簡単に無効にできるように、 ONTAP 9.5 以降ではブリッジを保護することができます。これにより、ブリッジのイーサネットポートが無効になります。イーサネットアクセスを再度有効にすることもできます。
+
+* ブリッジをセキュリティ保護すると、ブリッジの Telnet とその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）が無効になります。
+* この手順では、 ONTAP 9.5 以降で使用可能な ONTAP プロンプトを使用したアウトオブバンド管理を使用します。
++
+アウトオブバンド管理を使用していない場合は、ブリッジの CLI からコマンドを問題できます。
+
+* イーサネットポートを再度イネーブルにするには '*unsecurebridge *' コマンドを使用します
+* ONTAP 9.7 以前では、 ATTO FibreBridge で「 * securebridge * 」コマンドを実行すると、パートナークラスタでブリッジステータスが正しく更新されない可能性がありました。この場合は、パートナークラスタから「 * securebridge * 」コマンドを実行します。
+
+
+
+NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+
+.手順
+. ブリッジを含むクラスタの ONTAP プロンプトで、ブリッジのセキュリティ保護を設定または解除します。
++
+次のコマンドは、 bridge_A_1 をセキュリティ保護します。
+
++
+[listing]
+----
+cluster_A> storage bridge run-cli -bridge bridge_A_1 -command securebridge
+----
++
+次のコマンドは、 bridge_A_1 のセキュリティ保護を解除します。
+
++
+[listing]
+----
+cluster_A> storage bridge run-cli -bridge bridge_A_1 -command unsecurebridge
+----
+. ブリッジを含むクラスタの ONTAP プロンプトで、ブリッジの設定を保存します。
++
+'*storage bridge run-cli-bridge-name_command savecfigation*
+
++
+次のコマンドは、 bridge_A_1 をセキュリティ保護します。
+
++
+[listing]
+----
+cluster_A> storage bridge run-cli -bridge bridge_A_1 -command saveconfiguration
+----
+. ブリッジを含むクラスタの ONTAP プロンプトから、ブリッジのファームウェアを再起動します。
++
+*storage bridge run-cli-bridge_name-name_command firmwareestart *
+
++
+次のコマンドは、 bridge_A_1 をセキュリティ保護します。
+
++
+[listing]
+----
+cluster_A> storage bridge run-cli -bridge bridge_A_1 -command firmwarerestart
+----
+

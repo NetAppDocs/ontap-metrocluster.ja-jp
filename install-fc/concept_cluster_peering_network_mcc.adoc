@@ -1,0 +1,33 @@
+---
+permalink: install-fc/concept_cluster_peering_network_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, illustration, cluster, peering, network 
+summary: MetroCluster 構成の 2 つのクラスタは、お客様のクラスタピアリングネットワーク経由でピアリングされています。クラスタピアリングは、サイト間の Storage Virtual Machine （ SVM 、旧 Vserver ）の同期ミラーリングをサポートしています。 
+---
+= クラスタピアリングネットワークの図
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成の 2 つのクラスタは、お客様のクラスタピアリングネットワーク経由でピアリングされています。クラスタピアリングは、サイト間の Storage Virtual Machine （ SVM 、旧 Vserver ）の同期ミラーリングをサポートしています。
+
+MetroCluster 構成の各ノードにインタークラスタ LIF が設定され、クラスタがピアリング用に設定されている必要があります。インタークラスタ LIF が設定されたポートが、お客様のクラスタピアリングネットワークに接続されます。SVM 構成は、このネットワーク経由で、 Configuration Replication Service を使用してレプリケートされます。
+
+image::../media/mcc_hw_architecture_cluster_peering.gif[MCC ハードウェアアーキテクチャクラスタピアリング]
+
+* 関連情報 *
+
+xref:concept_illustration_of_the_local_ha_pairs_in_a_mcc_configuration.adoc[MetroCluster 構成のローカル HA ペアの図]
+
+xref:concept_illustration_of_redundant_fc_to_sas_bridges.adoc[冗長 FC-to-SAS ブリッジの図]
+
+xref:concept_redundant_fc_switch_fabrics.adoc[冗長 FC スイッチファブリック]
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
+
+xref:concept_prepare_for_the_mcc_installation.adoc[クラスタピアリングの設定に関する考慮事項]
+
+xref:task_cable_the_cluster_peering_connections.adoc[クラスタピアリングのケーブル接続]
+
+xref:concept_configure_the_mcc_software_in_ontap.adoc[クラスタをピアリング]

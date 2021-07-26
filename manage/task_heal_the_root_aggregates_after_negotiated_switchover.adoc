@@ -1,0 +1,49 @@
+---
+permalink: manage/task_heal_the_root_aggregates_after_negotiated_switchover.html 
+sidebar: sidebar 
+keywords: data, aggregate, heal, root, preparation, switchback, operation, negotiate, switchover 
+summary: データアグリゲートの修復が完了したら、スイッチバック処理に備えてルートアグリゲートを修復する必要があります。 
+---
+= ネゴシエートスイッチオーバー後のルートアグリゲートの修復
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データアグリゲートの修復が完了したら、スイッチバック処理に備えてルートアグリゲートを修復する必要があります。
+
+MetroCluster 修復プロセスのデータアグリゲートの修復が完了している必要があります。
+
+.手順
+. MetroCluster heal-phase root-aggregates コマンドを実行して、ミラーされたアグリゲートをスイッチバックします。
++
+[listing]
+----
+cluster_A::> metrocluster heal -phase root-aggregates
+[Job 137] Job succeeded: Heal Root Aggregates is successful
+----
++
+修復が拒否された場合は、 -override-vetoes パラメータを指定して MetroCluster heal コマンドを再実行できます。このオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+
+. 正常なクラスタで MetroCluster operation show コマンドを実行して、修復処理が完了したことを確認します。
++
+[listing]
+----
+
+cluster_A::> metrocluster operation show
+  Operation: heal-root-aggregates
+      State: successful
+ Start Time: 7/29/2014 20:54:41
+   End Time: 7/29/2014 20:54:42
+     Errors: -
+----
+. 正常なサイトで次のコマンドを実行して、ディザスタサイトに障害が発生したディスクがないかどうかを確認し、ある場合は取り外します。「 Disk show -broken 」
+. ディザスタサイトの各コントローラモジュールの電源をオンにするか、ブートします。
++
+システムに LOADER プロンプトが表示されたら、「 boot_ontap 」コマンドを実行します。
+
+. ノードがブートしたら、ルートアグリゲートがミラーされていることを確認します。
++
+両方のプレックスが存在する場合は、プレックスが同期されていないと自動的に再同期が実行されます。1 つのプレックスで障害が発生している場合は、そのプレックスを削除してから、 storage aggregate mirror -aggregate aggregate-name コマンドを使用してミラー関係を再確立し、ミラーを再作成する必要があります。
+
+

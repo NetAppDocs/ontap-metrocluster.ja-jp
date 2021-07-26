@@ -1,0 +1,55 @@
+---
+permalink: maintain/concept_using_fibrebridge_7500n_bridges_in_mcc_configurations.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, support, fibrebridge, configurations 
+summary: FibreBridge 7500N ブリッジは、 FibreBridge 6500N ブリッジを交換する場合、または MetroCluster 構成に新しいストレージを追加する場合にサポートされます。サポートされる構成には、ゾーニング要件、ブリッジの FC ポートの使用に関する制限事項、およびスタックとストレージシェルフの制限があります。 
+---
+= MetroCluster 構成での FibreBridge 7500N ブリッジのサポート
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FibreBridge 7500N ブリッジは、 FibreBridge 6500N ブリッジを交換する場合、または MetroCluster 構成に新しいストレージを追加する場合にサポートされます。サポートされる構成には、ゾーニング要件、ブリッジの FC ポートの使用に関する制限事項、およびスタックとストレージシェルフの制限があります。
+
+
+NOTE: ONTAP 9.8 以降を実行している構成では、 FibreBridge 6500N ブリッジはサポートされません。
+
+|===
+| ユースケース | ゾーニングの変更が必要か | 制限事項 | 手順 
+
+
+ a| 
+1 台の FibreBridge 6500N ブリッジを 1 台の FibreBridge 7500N ブリッジに交換する
+ a| 
+いいえ
+ a| 
+FibreBridge 7500N ブリッジは FibreBridge 6500N ブリッジとまったく同じように設定し、単一の FC ポートを使用して単一のスタックに接続する必要があります。FibreBridge 7500N の 2 つ目の FC ポートは使用できません。
+ a| 
+xref:task_replace_a_sle_fc_to_sas_bridge.adoc[FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジのホットスワップ]
+
+
+
+ a| 
+複数ペアの FibreBridge 6500N ブリッジを単一ペアの FibreBridge 7500N ブリッジと交換することで、複数のスタックを統合する
+ a| 
+はい。
+ a| 
+この場合、 FibreBridge 6500N ブリッジのサービスを停止して、単一ペアの FibreBridge 7500N ブリッジに交換します。 FibreBridge 7500N / 7600N ブリッジペアは、それぞれ最大 4 個のスタックをサポートできます。
+
+手順の末尾で、上部と下部の両方のスタックを、 FibreBridge 7500N ブリッジの対応するポートに接続する必要があります。
+ a| 
+xref:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.adoc[FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換する]
+
+
+
+ a| 
+新しい FibreBridge 7500N ブリッジペアを追加することで新しいストレージを追加する
+ a| 
+はい新しいブリッジの FC ポートごとにストレージゾーンを追加する必要があります。
+ a| 
+FC スイッチファブリック（ファブリック接続 MetroCluster 構成）またはストレージコントローラ（ストレッチ MetroCluster 構成）に使用可能なポートが必要です。 FibreBridge 7500N / 7600N ブリッジペアは、それぞれ最大 4 つのスタックをサポートできます。
+ a| 
+xref:task_fb_hot_add_stack_of_shelves_and_bridges.adoc[MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド]
+
+|===

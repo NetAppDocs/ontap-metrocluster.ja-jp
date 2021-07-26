@@ -1,0 +1,35 @@
+---
+permalink: install-stretch/task_rack_the_hardware_components_2_node_stretch_sas.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, rack, hardware, components 
+summary: 納入された機器がキャビネットに設置されていない場合は、コンポーネントをラックに配置する必要があります。 
+---
+= ラックにハードウェアコンポーネントを配置
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+納入された機器がキャビネットに設置されていない場合は、コンポーネントをラックに配置する必要があります。
+
+このタスクは両方の MetroCluster サイトで実行する必要があります。
+
+.手順
+. MetroCluster コンポーネントの配置を計画します。
++
+必要なラックスペースは、ストレージコントローラのプラットフォームモデル、スイッチのタイプ、構成内のディスクシェルフスタック数によって異なります。
+
+. 自身の適切な接地対策を行います
+. ストレージコントローラをラックまたはキャビネットに設置します。
++
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+. ディスクシェルフを設置し、各スタックのディスクシェルフをデイジーチェーン接続し、電源を投入して、シェルフ ID を設定します。
++
+ディスクシェルフのデイジーチェーン接続とシェルフ ID の設定については、ディスクシェルフモデルに対応するガイドを参照してください。
+
++
+
+NOTE: 各 MetroCluster DR グループ（両サイトを含む）で、各 SAS ディスクシェルフのシェルフ ID が一意である必要があります。シェルフ ID を手動で設定する場合は、ディスクシェルフの電源を再投入する必要があります。
+
+

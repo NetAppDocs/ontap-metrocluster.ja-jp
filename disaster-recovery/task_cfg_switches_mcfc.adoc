@@ -1,0 +1,390 @@
+---
+permalink: disaster-recovery/task_cfg_switches_mcfc.html 
+sidebar: sidebar 
+keywords: configure, fc, switches, metrocluster, configuration 
+summary: ディザスタサイトで FC スイッチを交換した場合は、ベンダー固有の手順を使用してスイッチを設定する必要があります。 
+---
+= FC スイッチの設定（ MetroCluster FC 構成のみ）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ディザスタサイトで FC スイッチを交換した場合は、ベンダー固有の手順を使用してスイッチを設定する必要があります。スイッチを 1 つ設定し、サバイバーサイトでのストレージアクセスに影響がないことを確認してから、 2 つ目のスイッチを設定します。
+
+link:../install-fc/concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["9.0 を使用している場合の FC スイッチのポート割り当て"]
+
+link:../install-fc/concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
+
+
+
+=== サイト災害発生後の Brocade FC スイッチの設定
+
+[role="lead"]
+この Brocade 固有の手順を使用して交換用スイッチを設定し、 ISL ポートを有効化する必要があります。
+
+この手順の例は、次の前提に基づいています。
+
+* サイト A はディザスタサイト
+* FC_switch_A_1 は交換済み
+* FC_switch_A_2 は交換済み
+* サイト B はサバイバーサイトです。
+* FC_switch_B_1 は正常
+* FC_switch_B_2 は正常
+
+
+FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。
+
+* link:../install-fc/concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"]
+* link:../install-fc/concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
+
+
+例では、 FC-to-SAS ブリッジを 2 つ使用します。ブリッジが 3 つ以上ある場合は、追加のポートを無効にしてから有効にする必要があります。
+
+.手順
+. 新しいスイッチをブートし、事前設定します。
++
+.. 新しいスイッチに電源を投入し、起動するのを待ちます。
+.. スイッチのファームウェアバージョンをチェックして、他の FC スイッチのバージョンと一致していることを確認します。
++
+「 firmwareShow
+
+.. 次のトピックの説明に従って新しいスイッチを設定します。スイッチのゾーニング設定に関する手順は省略します。
++
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
++
+link:../install-stretch/index.html["ストレッチ MetroCluster のインストールと設定"]
+
+.. スイッチを永続的に無効にします。
++
+'witchcfgpersistentdisable
+
++
+リブート後や高速ブート後もスイッチは無効なままです。このコマンドが使用できない場合は 'witchdisable コマンドを使用します
+
++
+次の例は、 BrocadeSwitchA に対するコマンドを示しています。
+
++
+[listing]
+----
+BrocadeSwitchA:admin> switchcfgpersistentdisable
+----
++
+次の例は、 BrocadeSwitchB に対するコマンドを示しています。
+
++
+[listing]
+----
+BrocadeSwitchA:admin> switchcfgpersistentdisable
+----
+
+
+. 新しいスイッチの設定を完了します。
++
+.. サバイバーサイトで ISL を有効にします。
++
+portcfgpersistentenable port-number
+
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentenable 10
+FC_switch_B_1:admin> portcfgpersistentenable 11
+----
+.. 交換用スイッチで ISL を有効にします。
++
+portcfgpersistentenable port-number
+
++
+[listing]
+----
+FC_switch_A_1:admin> portcfgpersistentenable 10
+FC_switch_A_1:admin> portcfgpersistentenable 11
+----
+.. 交換用スイッチ（この例では FC_switch_A_1 ）で、 ISL がオンラインであることを確認します。
++
+'witchshow'
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchshow
+switchName: FC_switch_A_1
+switchType: 71.2
+switchState:Online
+switchMode: Native
+switchRole: Principal
+switchDomain:       4
+switchId:   fffc03
+switchWwn:  10:00:00:05:33:8c:2e:9a
+zoning:             OFF
+switchBeacon:       OFF
+
+Index Port Address Media Speed State  Proto
+==============================================
+...
+10   10    030A00 id   16G     Online  FC E-Port 10:00:00:05:33:86:89:cb "FC_switch_A_1"
+11   11    030B00 id   16G     Online  FC E-Port 10:00:00:05:33:86:89:cb "FC_switch_A_1" (downstream)
+...
+----
+
+
+. スイッチを永続的に有効にします。
++
+'witchcfgpersistentenable
+
+. ポートがオンラインであることを確認します。
++
+'witchshow'
+
+
+
+
+
+=== サイト災害発生後の Cisco FC スイッチの設定
+
+[role="lead"]
+Cisco 固有の手順を使用して交換用スイッチを設定し、 ISL ポートを有効化する必要があります。
+
+この手順の例は、次の前提に基づいています。
+
+* サイト A はディザスタサイト
+* FC_switch_A_1 は交換済み
+* FC_switch_A_2 は交換済み
+* サイト B はサバイバーサイトです。
+* FC_switch_B_1 は正常
+* FC_switch_B_2 は正常
+
+
+.手順
+. スイッチを設定します。
++
+.. を参照してください link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+.. のスイッチの設定手順に従います link:../install-fc/generaltask_fcsw_cisco_configure_the_cisco_fc_switches_with_rcf_files.html["Cisco FC スイッチの設定"] セクション、 _except _ 「 Configuring zoning on a Cisco FC switch 」を参照してください。
++
+ゾーニングはこの手順の後半で設定します。
+
+
+
+. 正常に動作しているスイッチ（この例では FC_switch_B_1 ）で、 ISL ポートを有効にします。
++
+次の例は、ポートを有効にするコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# int fc1/14-15
+FC_switch_B_1(config)# no shut
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+FC_switch_B_1#
+----
+. show interface brief コマンドを使用して、 ISL ポートが動作していることを確認します。
+. ファブリックからゾーニング情報を取得します。
++
+次の例は、ゾーニング設定を分散するコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_B_1(config-zone)# zoneset distribute full vsan 10
+FC_switch_B_1(config-zone)# zoneset distribute full vsan 20
+FC_switch_B_1(config-zone)# end
+----
++
+FC_switch_B_1 が「 vsan 10 」と「 vsan 20 」のファブリック内の他のすべてのスイッチに分散され、ゾーニング情報が FC_switch_A_1 から取得されます。
+
+. 正常に動作しているスイッチで、ゾーニング情報がパートナースイッチから適切に取得されたことを確認します。
++
+「ゾーンの方法」
+
++
+[listing]
+----
+FC_switch_B_1# show zone
+zone name FC-VI_Zone_1_10 vsan 10
+  interface fc1/1 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/2 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/1 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/2 swwn 20:00:54:7f:ee:b8:24:c0
+
+zone name STOR_Zone_1_20_25A vsan 20
+  interface fc1/5 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/8 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/9 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/10 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/11 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/8 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/9 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/10 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/11 swwn 20:00:54:7f:ee:b8:24:c0
+
+zone name STOR_Zone_1_20_25B vsan 20
+  interface fc1/8 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/9 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/10 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/11 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/5 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/8 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/9 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/10 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/11 swwn 20:00:54:7f:ee:b8:24:c0
+FC_switch_B_1#
+----
+. スイッチファブリック内のスイッチの Worldwide Name （ WWN ；ワールドワイドネーム）を確認します。
++
+この例では、 2 つのスイッチの WWN は次のとおりです。
+
++
+** FC_switch_A_1 ： 20 ： 00 ： 54 ： 7F ： ee ： B8 ： 24 ： c0
+** FC_switch_B_1 ： 20 ： 00 ： 54 ： 7F ： ee ： C6 ： 80 ： 78
+
+
++
+[listing]
+----
+FC_switch_B_1# show wwn switch
+Switch WWN is 20:00:54:7f:ee:c6:80:78
+FC_switch_B_1#
+
+FC_switch_A_1# show wwn switch
+Switch WWN is 20:00:54:7f:ee:b8:24:c0
+FC_switch_A_1#
+----
+. ゾーンの構成モードに切り替えて、 2 つのスイッチのスイッチ WWN に属していないゾーンメンバーを削除します。
++
+--
+no member interface interface-ide swwn
+
+この例では、ファブリック内のどちらのスイッチの WWN にも関連付けられていない次のメンバーを削除する必要があります。
+
+** ゾーン名 FC-VI_Zone_1_10 VSAN 10
++
+*** インターフェイス fc1/1 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/2 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+
+
+
+
+
+NOTE: AFF A700 システムと FAS9000 システムは 4 つの FC-VI ポートをサポートします。FC-VI ゾーンから 4 つのポートをすべて削除する必要があります。
+
+** ゾーン名 STOR_Zone_1_20_25A VSAN 20
++
+*** インターフェイス fc1/5 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/8 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/9 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/10 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/11 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+
+
+** ゾーン名 STOR_Zone_1_20_25B VSAN 20
++
+*** インターフェイス fc1/8 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/9 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/10 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+*** インターフェイス fc1/11 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+
+
+
+
+次の例は、これらのインターフェイスの削除を示しています。
+
+[listing]
+----
+
+ FC_switch_B_1# conf t
+ FC_switch_B_1(config)# zone name FC-VI_Zone_1_10 vsan 10
+ FC_switch_B_1(config-zone)# no member interface fc1/1 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/2 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25A vsan 20
+ FC_switch_B_1(config-zone)# no member interface fc1/5 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/8 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/9 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/10 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/11 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25B vsan 20
+ FC_switch_B_1(config-zone)# no member interface fc1/8 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/9 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/10 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/11 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# save running-config startup-config
+ FC_switch_B_1(config-zone)# zoneset distribute full 10
+ FC_switch_B_1(config-zone)# zoneset distribute full 20
+ FC_switch_B_1(config-zone)# end
+ FC_switch_B_1# copy running-config startup-config
+----
+--
+
+
+. [[step8] 新しいスイッチのポートをゾーンに追加します。
++
+次の例では、交換用スイッチのケーブル接続が古いスイッチのケーブル接続と同じであることを前提としています。
+
++
+[listing]
+----
+
+ FC_switch_B_1# conf t
+ FC_switch_B_1(config)# zone name FC-VI_Zone_1_10 vsan 10
+ FC_switch_B_1(config-zone)# member interface fc1/1 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/2 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25A vsan 20
+ FC_switch_B_1(config-zone)# member interface fc1/5 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25B vsan 20
+ FC_switch_B_1(config-zone)# member interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# save running-config startup-config
+ FC_switch_B_1(config-zone)# zoneset distribute full 10
+ FC_switch_B_1(config-zone)# zoneset distribute full 20
+ FC_switch_B_1(config-zone)# end
+ FC_switch_B_1# copy running-config startup-config
+----
+. ゾーニングが適切に構成されていることを確認します : 'how zone
++
+次の出力例は、 3 つのゾーンを示しています。
+
++
+[listing]
+----
+
+ FC_switch_B_1# show zone
+   zone name FC-VI_Zone_1_10 vsan 10
+     interface fc1/1 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/2 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/1 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/2 swwn 20:00:54:7f:ee:b8:24:c0
+
+   zone name STOR_Zone_1_20_25A vsan 20
+     interface fc1/5 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/8 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/9 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/10 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/11 swwn 20:00:54:7f:ee:b8:24:c0
+
+   zone name STOR_Zone_1_20_25B vsan 20
+     interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/5 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/8 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/9 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/10 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/11 swwn 20:00:54:7f:ee:b8:24:c0
+ FC_switch_B_1#
+----
+

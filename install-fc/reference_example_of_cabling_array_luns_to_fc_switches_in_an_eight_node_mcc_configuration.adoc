@@ -1,0 +1,35 @@
+---
+permalink: install-fc/reference_example_of_cabling_array_luns_to_fc_switches_in_an_eight_node_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, cabling, storage, array, ports, fc, switches, eight, node 
+summary: アレイ LUN を使用する MetroCluster 構成では、冗長ポートペアを形成するストレージアレイポートを代替 FC スイッチに接続する必要があります。 
+---
+= 8 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アレイ LUN を使用する MetroCluster 構成では、冗長ポートペアを形成するストレージアレイポートを代替 FC スイッチに接続する必要があります。
+
+8 ノード MetroCluster 構成は、 4 ノードの 2 つの DR グループで構成されます。最初の DR グループは、次のノードで構成されます。
+
+* controller_A_1
+* controller_A_2
+* controller_B_1
+* controller_B_2
+
+
+2 つ目の DR グループは、次のノードで構成されます。
+
+* Controller_A_1
+* Controller_A_1
+* controller_B_2
+* controller_B_2
+
+
+最初の DR グループのアレイポートをケーブル接続するには、 4 ノード MetroCluster 構成のケーブル接続例を使用します。
+
+xref:reference_example_of_cabling_array_luns_to_fc_switches_in_a_four_node_mcc_configuration.adoc[4 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]
+
+2 つ目の DR グループのアレイポートをケーブル接続するには、同じ例に従い、 2 つ目の DR グループのコントローラに属する FC-VI ポートと FC イニシエータポートを使用して接続します。

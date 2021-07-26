@@ -1,0 +1,78 @@
+---
+permalink: transition/concept_deciding_which_procedure_to_use_mcc_upgrade_transition_and_expansion_guide.html 
+sidebar: sidebar 
+keywords: difference, metrocluster, upgrade, expansion, transition, procedure, match, goal, deciding, decide 
+summary: MetroCluster のアップグレード、拡張、または移行の違いを理解し、目的に合った手順を選択する必要があります。 
+---
+= 使用する手順の決定
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster のアップグレード、拡張、または移行の違いを理解し、目的に合った手順を選択する必要があります。
+
+* * アップグレード *
++
+アップグレード手順では、コントローラモジュールを新しいモデルのコントローラモジュールに交換します。
+
++
+** 古いコントローラモジュールは撤去したものです。
+** ストレージはアップグレードされていません。
+** ストレージスイッチのインフラテクノロジは変更されていません。
++
+MetroCluster IP 構成、ファブリック接続 MetroCluster 構成、またはストレッチ MetroCluster 構成のままです。
+
++
+link:../upgrade/concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新方法を選択します"]
+
+
+
+* * 更新 *
++
+リフレッシュ手順では、コントローラモジュールを新しいモデルのコントローラモジュールに交換し、ストレージシェルフも交換します。
+
++
+** 古いコントローラモジュールとストレージシェルフは撤去しています。
+** 新しいプラットフォームモデルに対応するために新しいスイッチが必要な場合を除き、ストレージスイッチインフラテクノロジは変更されません。
++
+構成は元のタイプのままです。
+
++
+*** MetroCluster IP の略
+*** ファブリック接続 MetroCluster の略
+*** ストレッチ MetroCluster 構成 +link:../upgrade/concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新方法を選択します"]
+
+
+
+
+* * 移行 *
++
+移行手順では、バックエンドスイッチインフラが FC スイッチまたは IP スイッチへの接続から変更され、プラットフォームモデルが置き換えられます。
+
++
+** 新しいコントローラモジュールが構成に追加されます。
+** 元のコントローラモジュールは、手順の導入後に撤去します。
+** 元の構成でクラスタインターコネクトスイッチを使用していた場合は、スイッチとプラットフォームのモデルに応じて、スイッチを再利用できます。
+** プラットフォームのモデルに応じて、ストレージを再利用または交換できます。
++
+ストレージシェルフが再利用されない場合、データは古いシェルフから新しいシェルフに移動されます。
+
++
+リンク： ./transition/index.html
+
+
+
+* * 拡張 *
++
+拡張手順では、 MetroCluster FC 構成にノードとストレージが追加されます。
+
++
+** link:../upgrade/task_expand_a_two_node_mcc_fc_configuration_to_a_four_node_fc_configuration_supertask.html["2 ノード MetroCluster FC 構成から 4 ノード構成への拡張"]
+** link:../upgrade/task_expand_a_four_node_mcc_fc_configuration_to_an_eight_node_configuration.html["4 ノード MetroCluster FC 構成から 8 ノード構成への拡張"]
++
+移行のためのリンクを削除
+
+
+
+

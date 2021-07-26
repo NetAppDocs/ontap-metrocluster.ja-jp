@@ -1,0 +1,299 @@
+---
+permalink: install-ip/concept_required_mcc_ip_components_and_naming_guidelines_mcc_ip.html 
+sidebar: sidebar 
+keywords: plan, metrocluster, ip, configuration, require, hardware, software, clarity, conventions, component, documentation, naming, name, requirement, support, redundancy, switch, ontap, cluster, controller, module, gigabit, ethernet, adapter, pool, drive, drive, location, consideration, partial, populate, shelves, shelf, aff, a800, internal, iom12, iom, module, stack, four-node, raid-dp, raid4, AFF A800 internal drives 
+summary: MetroCluster IP 構成を計画する際には、必要なサポート対象のハードウェアコンポーネントとソフトウェアコンポーネントを把握しておく必要があります。また、内容を正しく理解するためには、このドキュメントで使用しているコンポーネントの命名規則も確認しておく必要があります。 
+---
+= 必要な MetroCluster IP コンポーネントと命名規則
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP 構成を計画する際には、必要なサポート対象のハードウェアコンポーネントとソフトウェアコンポーネントを把握しておく必要があります。また、内容を正しく理解するためには、このドキュメントで使用しているコンポーネントの命名規則も確認しておく必要があります。
+
+
+
+== サポートされているソフトウェアおよびハードウェア
+
+ハードウェアとソフトウェアは、 MetroCluster IP 構成でサポートされている必要があります。
+
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+AFF システムを使用する場合は、 MetroCluster 構成内のすべてのコントローラモジュールを AFF システムとして構成する必要があります。
+
+
+
+== MetroCluster IP 構成でのハードウェアの冗長性要件
+
+MetroCluster IP 構成ではハードウェアの冗長性が確保されるため、サイトには各コンポーネントが 2 つずつあります。コンポーネントの名前には、サイトを表す A または B 、および 2 つあるコンポーネントのうちどちらかを表す番号として 1 または 2 を使用します。
+
+
+
+== MetroCluster IP 構成での ONTAP クラスタの要件
+
+MetroCluster IP 構成には、 MetroCluster サイトごとに 1 つ、計 2 つの ONTAP クラスタが必要です。
+
+名前は MetroCluster 構成内で一意である必要があります。
+
+名前の例：
+
+* サイト A ： cluster_A
+* サイト B ： cluster_B
+
+
+
+
+== MetroCluster IP 構成での IP スイッチの要件
+
+MetroCluster IP 構成には、 4 つの IP スイッチが必要です。4 つのスイッチが 2 つのスイッチストレージファブリックを形成し、 MetroCluster IP 構成の各クラスタ間の ISL を提供します。
+
+IP スイッチは、各クラスタのコントローラモジュール間のクラスタ内通信も提供します。
+
+名前は MetroCluster 構成内で一意である必要があります。
+
+名前の例：
+
+* サイト A ： cluster_A
++
+** IP_switch_A_1
+** IP_switch_a_2
+
+
+* サイト B ： cluster_B
++
+** IP_switch_B_1
+** IP_switch_B_2
+
+
+
+
+
+
+== MetroCluster IP 構成でのコントローラモジュールの要件
+
+MetroCluster IP 構成には、コントローラモジュールが 4 つまたは 8 つ必要です。
+
+各サイトのコントローラモジュールが HA ペアを形成します。各コントローラモジュールには、もう一方のサイトに DR パートナーがあります。
+
+各コントローラモジュールが同じバージョンの ONTAP を実行している必要があります。サポートされるプラットフォームモデルは ONTAP のバージョンによって異なります。
+
+* FAS システムへの MetroCluster IP の新規インストールは、 ONTAP 9.4 ではサポートされません。
++
+FAS システムの既存の MetroCluster IP 構成を ONTAP 9.4 にアップグレードすることはできます。
+
+* ONTAP 9.5 以降では、 FAS システムへの MetroCluster IP の新規インストールがサポートされます。
+* ONTAP 9.4 以降では、 ADP 用に設定されたコントローラモジュールがサポートされます。
+
+
+
+
+=== コントローラのモデルは 4 ノード構成に制限されます
+
+MetroCluster 構成では、これらのモデルが最大 4 つまでに制限されています。
+
+* AFF A220
+* AFF A250
+* FAS2750
+* FAS500f
+
+
+たとえば、次の構成はサポートされていません。
+
+* 8 ノード構成は、 8 台の AFF A250 コントローラで構成されます。
+* 4 台の AFF 220 コントローラと 4 台の FAS500f コントローラで構成される 8 ノード構成。
+* AFF A250 コントローラで構成され、同じバックエンドスイッチを共有する 4 ノード MetroCluster IP 構成が 2 つあります。
+* AFF A250 コントローラを搭載した DR グループ 1 と FAS9000 コントローラを搭載した DR グループ 2 で構成される 8 ノード構成。
+
+
+2 つ目の MetroCluster に上記のモデルがまったくない場合は、同じバックエンドスイッチを使用して 2 つの 4 ノード MetroCluster IP 構成を別々に構成できます。
+
+
+
+=== 名前の例
+
+このドキュメントでは、次のような名前を使用しています。
+
+* サイト A ： cluster_A
++
+** controller_A_1
+** controller_A_2
+
+
+* サイト B ： cluster_B
++
+** controller_B_1
+** controller_B_2
+
+
+
+
+
+
+== MetroCluster IP 構成でのギガビットイーサネットアダプタの要件
+
+MetroCluster IP 構成では、 MetroCluster IP ファブリックに使用される IP スイッチへの IP インターフェイスに 40/100Gbps または 10/25Gbps のイーサネットアダプタを使用します。
+
+|===
+| プラットフォームモデル | 必要なギガビットイーサネットアダプタ | アダプタに必要なスロット | ポート 
+
+
+ a| 
+AFF A700 および FAS9000
+ a| 
+X91146A-C
+ a| 
+スロット 5
+ a| 
+e5b 、 e5b
+
+
+
+ a| 
+AFF A800
+ a| 
+X1146A / オンボードポート
+ a| 
+スロット 1
+ a| 
+e0be1b
+
+
+
+ a| 
+AFF A400 および FAS8300
+ a| 
+X1146A
+ a| 
+スロット 1
+ a| 
+e0b 、 e1b
+
+
+
+ a| 
+AFF A300 および FAS8200
+ a| 
+X1116A
+ a| 
+スロット 1
+ a| 
+e1A 、 e1b
+
+
+
+ a| 
+AFF A220 および FAS2750
+ a| 
+オンボードポート
+ a| 
+スロット 0
+ a| 
+e0a 、 e0b
+
+
+
+ a| 
+AFF A250 および FAS500f
+ a| 
+オンボードポート
+ a| 
+スロット 0
+ a| 
+e0c 、 e0d
+
+
+
+ a| 
+AFF A320
+ a| 
+オンボードポート
+ a| 
+スロット 0
+ a| 
+e0g 、 e0h
+
+|===
+
+
+== プールとドライブの要件（最小サポート）
+
+シェルフ単位でディスク所有権を割り当てられるようにするために、 SAS ディスクシェルフを 8 台（各サイトに 4 台）配置することを推奨します。
+
+4 ノード MetroCluster IP 構成では、各サイトに次の最小構成が必要です。
+
+* 各ノードのサイトに少なくとも 1 つのローカルプールと 1 つのリモートプールがあります。
+* 各プールに少なくとも 7 本のドライブ。
++
+各ノードにミラーされたデータアグリゲートが 1 つある 4 ノード MetroCluster 構成では、最小構成として 24 本のディスクがサイトに必要です。
+
+
+
+サポートされる最小構成では、各プールのドライブレイアウトは次のようになります。
+
+* ルートドライブ × 3 本
+* 3 本のデータドライブ
+* スペアドライブ x 1 本
+
+
+サポートされる最小構成では、各サイトに少なくとも 1 台のシェルフが必要です。
+
+MetroCluster 構成では、 RAID-DP と RAID 4 がサポートされます。
+
+
+
+== 空きのあるシェルフでのドライブの配置場所に関する考慮事項
+
+収容数が半分（ 24 ドライブシェルフに 12 本のドライブ）のシェルフを使用している場合にドライブの自動割り当てを正しく行うには、スロット 0~5 および 18~23 にドライブを配置する必要があります。
+
+シェルフに空きがある構成では、シェルフの 4 つの部分にドライブを均等に配置する必要があります。
+
+
+
+== AFF A800 内蔵ドライブの場所に関する考慮事項
+
+ADP 機能を正しく実装するためには、 AFF A800 システムのディスクスロットを 4 分割し、それぞれにディスクを対称的に配置する必要があります。
+
+AFF A800 システムには 48 個のドライブベイがあります。ベイは 4 分の 1 に分割できます。
+
+* 第 1 クォータ：
++
+** ベイ 0~5
+** ベイ 24-29
+
+
+* 第 2 クォータ：
++
+** ベイ 6-11
+** ベイ 30-35
+
+
+* 第 3 クォータ：
++
+** ベイ 12~17
+** ベイ 36-41
+
+
+* 第 4 クォータ：
++
+** ベイ 18-23
+** ベイ 42-47
+
+
+
+
+このシステムに 16 本のドライブを搭載する場合、各クォータに次のように対称的にドライブを配置する必要があります。
+
+* 第 1 クォータに 4 本のドライブ： 0 、 1 、 2 、 3
+* 第 2 クォータに 4 本のドライブ： 12 、 13 、 14 、 15
+* 第 3 クォータに 4 本のドライブ： 24 、 25 、 26 、 27
+* 第 4 クォータに 4 本のドライブ： 36 、 37 、 38 、 39
+
+
+
+
+== IOM12 モジュールと IOM 6 モジュールをスタック内に混在させる
+
+使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がを参照してください https://mysupport.netapp.com/NOW/products/interoperability["ネットアップの Interoperability Matrix Tool （ IMT ）"] 使用している ONTAP のバージョンがシェルフの混在をサポートしているかどうかを確認します。
+
+シェルフ混在の詳細については、を参照してください https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-ds-mix-hotadd/home.html["IOM12 モジュールを搭載したシェルフを IOM6 モジュールを搭載したシェルフのスタックにホットアドします"]

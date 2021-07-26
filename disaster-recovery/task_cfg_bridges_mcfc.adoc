@@ -1,0 +1,157 @@
+---
+permalink: disaster-recovery/task_cfg_bridges_mcfc.html 
+sidebar: sidebar 
+keywords: fc, sas, bridge, configure, metrocluster, configuration 
+summary: FC-to-SAS ブリッジを交換した場合は、交換したブリッジを MetroCluster 構成のリストア時に設定する必要があります。 
+---
+= FC-to-SAS ブリッジの設定（ MetroCluster FC 構成のみ）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FC-to-SAS ブリッジを交換した場合は、交換したブリッジを MetroCluster 構成のリストア時に設定する必要があります。手順は、 FC-to-SAS ブリッジの初期設定と同じです。
+
+.手順
+. FC-to-SAS ブリッジの電源をオンにします。
+. 「 set IPAddress port ipaddress 」コマンドを使用して、イーサネットポートの IP アドレスを設定します。
++
+** 「 port 」には「 MP1 」または「 MP2 」を指定できます。
+** ipipaddress には 'xxx.xxx.xxx.xxx という形式の IP アドレスを指定できます
++
+次の例は、イーサネットポート 1 の IP アドレス 10.10.10.55 を示しています。
+
++
+[listing]
+----
+
+Ready.
+set IPAddress MP1 10.10.10.55
+
+Ready. *
+----
+
+
+. 「 set IPSubnetMask port mask 」コマンドを使用して、イーサネットポートに IP サブネットマスクを設定します。
++
+** 「 port 」には「 MP1 」または「 MP2 」を指定できます。
+** 「マスク」には、 xxx.xxx.xxx.xxx という形式のサブネットマスクを指定できます。
++
+次の例では、 IP サブネットマスクはイーサネットポート 1 の 255.255.255.0 です。
+
++
+[listing]
+----
+
+Ready.
+set IPSubnetMask MP1 255.255.255.0
+
+Ready. *
+----
+
+
+. 「 set EthernetSpeed port speed 」コマンドを使用して、イーサネットポートに速度を設定します。
++
+** 「 port 」には「 MP1 」または「 MP2 」を指定できます。
+** 「速度」には「 100 」、「 1000 」、または「 auto 」を指定できます。
++
+次の例では、イーサネットポート 1 のイーサネット速度が 1000 に設定されています。
+
++
+[listing]
+----
+
+Ready.
+set EthernetSpeed MP1 1000
+
+Ready. *
+----
+
+
+. 'aveConfiguration' コマンドを使用して設定を保存し ' プロンプトが表示されたらブリッジを再起動します
++
+イーサネットポートの設定後に設定を保存すると、 Telnet を使用してブリッジの設定を続行でき、 FTP を使用してブリッジにアクセスしてファームウェアの更新を実行できます。
+
++
+次の例は 'aveConfiguration' コマンドと ' ブリッジを再起動するためのプロンプトを示しています
+
++
+[listing]
+----
+
+Ready.
+SaveConfiguration
+  Restart is necessary....
+  Do you wish to restart (y/n) ?
+Confirm with 'y'. The bridge will save and restart with the new settings.
+----
+. FC-to-SAS ブリッジがリブートしたら、再度ログインします。
+. 「 set fcdatarate port speed 」コマンドを使用して、 FC ポートの速度を設定します。
++
+** 「 port 」には「 1 」または「 2 」を指定できます。
+** 「速度」には、モデルブリッジに応じて「 2 Gb 」、「 4 Gb 」、「 8 Gb 」、または「 16 Gb 」を指定できます。
++
+次の例では、ポートの FC1 速度が「 8Gb 」に設定されています。
+
++
+[listing]
+----
+
+Ready.
+set fcdatarate 1 8Gb
+
+Ready. *
+----
+
+
+. 「 set FCConnMode port mode 」コマンドを使用して、 FC ポートのトポロジを設定します。
++
+** 「 port 」には「 1 」または「 2 」を指定できます。
+** 「 m ode 」には、「 ptp 」、「 loop 」、「 ptp-loop 」、または「 auto 」を指定できます。
++
+次の例では、ポート FC1 のトポロジが「 ptp 」に設定されています。
+
++
+[listing]
+----
+
+Ready.
+set FCConnMode 1 ptp
+
+Ready. *
+----
+
+
+. 'aveConfiguration' コマンドを使用して設定を保存し ' プロンプトが表示されたらブリッジを再起動します
++
+次の例は 'aveConfiguration' コマンドと ' ブリッジを再起動するためのプロンプトを示しています
+
++
+[listing]
+----
+
+ Ready.
+ SaveConfiguration
+    Restart is necessary....
+    Do you wish to restart (y/n) ?
+ Confirm with 'y'. The bridge will save and restart with the new settings.
+----
+. FC-to-SAS ブリッジがリブートしたら、再度ログインします。
+. FC-to-SAS ブリッジがファームウェア 1.60 以降を実行している場合は、 SNMP を有効にします。
++
+[listing]
+----
+
+Ready.
+set snmp enabled
+
+Ready. *
+saveconfiguration
+
+Restart is necessary....
+Do you wish to restart (y/n) ?
+
+Verify with 'y' to restart the FibreBridge.
+----
+. FC-to-SAS ブリッジの電源を切ります。
+

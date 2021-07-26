@@ -1,0 +1,43 @@
+---
+permalink: install-stretch/concept_parts_of_a_two_node_sas_attached_stretch_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, parts, two, node, sas, attached, configuration 
+summary: 2 ノード MetroCluster SAS 接続構成には、ストレージコントローラを SAS ケーブルでストレージに直接接続した 2 つのシングルノードクラスタなど、さまざまなコンポーネントが必要です。 
+---
+= 2 ノード SAS 接続ストレッチ MetroCluster 構成のコンポーネント
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+2 ノード MetroCluster SAS 接続構成には、ストレージコントローラを SAS ケーブルでストレージに直接接続した 2 つのシングルノードクラスタなど、さまざまなコンポーネントが必要です。
+
+MetroCluster の設定には、中核をなす次のハードウェアが含まれます。
+
+* ストレージコントローラ
++
+ストレージコントローラは、 SAS ケーブルを使用してストレージに直接接続します。
+
++
+各ストレージコントローラは、パートナーサイトのストレージコントローラに対する DR パートナーとして構成されます。
+
++
+** 短い距離には SAS 銅線ケーブルを使用できます。
+** 長い距離には SAS 光ケーブルを使用できます。
++
+
+NOTE: E シリーズアレイ LUN を使用するシステムでは、ストレージコントローラを E シリーズストレージアレイに直接接続できます。その他のアレイ LUN を使用する場合は、 FC スイッチを介して接続する必要があります。
+
++
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+
++
+IMT では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。
+
+
+
+* クラスタピアリングネットワーク
++
+クラスタピアリングネットワークを経由して、 Storage Virtual Machine （ SVM ）の設定がミラーされます。一方のクラスタのすべての SVM の設定が、パートナークラスタにミラーされます。
+
+

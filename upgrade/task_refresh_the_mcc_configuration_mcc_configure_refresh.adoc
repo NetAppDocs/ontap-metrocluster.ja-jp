@@ -1,0 +1,115 @@
+---
+permalink: upgrade/task_refresh_the_mcc_configuration_mcc_configure_refresh.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, refresh, configuration, new, controller 
+summary: MetroCluster 構成を 2 ノード構成から 4 ノード構成に拡張する場合は、 構成を更新する必要があります。 
+---
+= 新しいコントローラで MetroCluster 設定を更新しています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成を 2 ノード構成から 4 ノード構成に拡張する場合は、 構成を更新する必要があります。
+
+. MetroCluster 構成を更新します。
++
+.. advanced 権限モードに切り替えます。 +`*set -privilege advanced *`
+.. MetroCluster 構成を更新します :+`* MetroCluster configure -refresh true -allow-with-one-aggregate true *`
++
+次のコマンドを実行すると、 controller_A_1 を含む DR グループのすべてのノードの MetroCluster 構成が更新されます。
+
++
+[listing]
+----
+controller_A_1::*> metrocluster configure -refresh true -allow-with-one-aggregate true
+
+[Job 726] Job succeeded: Configure is successful.
+----
+.. admin 特権モードに戻ります :+`*set -privilege admin*`
+
+
+. サイト A のネットワークステータスを確認します。
++
+「 * network port show * 」と表示されます
+
++
+次の例は、 4 ノード MetroCluster 構成でのネットワークポートの用途を示しています。
+
++
+[listing]
+----
+cluster_A::> network port show
+                                                          Speed (Mbps)
+Node   Port      IPspace   Broadcast Domain Link   MTU    Admin/Oper
+------ --------- --------- ---------------- ----- ------- ------------
+controller_A_1
+       e0a       Cluster   Cluster          up     9000  auto/1000
+       e0b       Cluster   Cluster          up     9000  auto/1000
+       e0c       Default   Default          up     1500  auto/1000
+       e0d       Default   Default          up     1500  auto/1000
+       e0e       Default   Default          up     1500  auto/1000
+       e0f       Default   Default          up     1500  auto/1000
+       e0g       Default   Default          up     1500  auto/1000
+controller_A_2
+       e0a       Cluster   Cluster          up     9000  auto/1000
+       e0b       Cluster   Cluster          up     9000  auto/1000
+       e0c       Default   Default          up     1500  auto/1000
+       e0d       Default   Default          up     1500  auto/1000
+       e0e       Default   Default          up     1500  auto/1000
+       e0f       Default   Default          up     1500  auto/1000
+       e0g       Default   Default          up     1500  auto/1000
+14 entries were displayed.
+----
+. MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
++
+.. サイト A から構成を確認します。
++
+「 * MetroCluster show * 」と入力します
+
++
+[listing]
+----
+cluster_A::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+----
+.. サイト B から構成を確認します。
++
+「 * MetroCluster show * 」と入力します
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+Remote: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+----
+.. DR 関係が正しく作成されたことを確認します。 +`* MetroCluster node show -fields DR-cluster 、 DR-auxiliary 、 node-object-limit 、 automatic-suso 、 ha-partner-、 dr-partner *`
++
+[listing]
+----
+metrocluster node show -fields dr-cluster,dr-auxiliary,node-object-limit,automatic-uso,ha-partner,dr-partner
+dr-group-id cluster     node    ha-partner dr-cluster  dr-partner   dr-auxiliary  node-object-limit automatic-uso
+----------- ---------   ----    ---------- ----------  ----------   ------------  ----------------- -------------
+2           cluster_A   node_A_1 node_A_2    cluster_B  node_B_1     node_B_2      on                true
+2           cluster_A   node_A_2 node_A_1    cluster_B  node_B_2     node_B_1      on                true
+2           cluster_B   node_B_1 node_B_2    cluster_A  node_A_1     node_A_2      on                true
+2           cluster_B   node_B_2 node_B_1    cluster_A  node_A_2     node_A_1      on                true
+4 entries were displayed.
+----
+
+
+

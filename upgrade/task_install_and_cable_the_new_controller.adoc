@@ -1,0 +1,91 @@
+---
+permalink: upgrade/task_install_and_cable_the_new_controller.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, install, cable, new, controller, module 
+summary: 新しいコントローラモジュールをシャーシに物理的に設置し、ケーブルを接続する必要があります。 
+---
+= 新しいコントローラモジュールを設置してケーブル接続
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいコントローラモジュールをシャーシに物理的に設置し、ケーブルを接続する必要があります。
+
+.手順
+. I/O 拡張モジュール（ IOXM ）が搭載されているシステムでシングルシャーシの HA ペアを作成する場合は、 IOXM をケーブルを外して取り出す必要があります。
++
+空になったベイを新しいコントローラモジュールに使用できます。ただし、新しい構成では IOXM によって追加の I/O は提供されません。
+
+. 新しいコントローラモジュールを物理的に設置し、必要に応じて追加のファンを取り付けます。
++
+|===
+| コントローラモジュールの追加先 | 実行する手順 
+
+
+ a| 
+空のベイに追加してシングルシャーシの HA ペアを作成する。システムのプラットフォームは次のいずれか：
+ a| 
+.. 新しいコントローラモジュールを取り付ける空のベイに対応するシャーシ背面のブランクプレートを取り外します。
+.. コントローラモジュールをシャーシの途中までそっと押し込みます。
++
+コントローラモジュールが自動的にブートしないようにするために、この手順の後半までシャーシに完全に挿入しないでください。
+
+
+
+
+
+ a| 
+既存の構成がコントローラ IOX モジュール構成である場合、 HA パートナーとは別のシャーシにデュアルシャーシの HA ペアを作成します。
+
+** FAS8200
+** 80XX
+
+ a| 
+新しいシステムをラックまたはシステムキャビネットに設置します。
+
+|===
+. 必要に応じて、クラスタネットワーク接続をケーブル接続します。
++
+.. コントローラモジュールでクラスタ接続用のポートを特定します。
++
+https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-a320-install-setup/home.html["AFF A320 システム：設置とセットアップ"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842666["AFF A220 / FAS2700 システムの設置とセットアップの手順"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842668["AFF A800 システムの設置とセットアップの手順"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2469722["AFF A300 システム『 Installation and Setup Instructions 』"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2316769["FAS8200 システム設置とセットアップの手順"]
+
+.. スイッチクラスタを設定する場合は、クラスタネットワークスイッチで使用するポートを特定します。
++
+使用するスイッチに応じて、『 clustered Data ONTAP スイッチセットアップガイド』、『 NetApp 10G Cluster-Mode Switch Installation Guide 』、または『 NetApp 1G Cluster-Mode Switch Installation Guide 』を参照してください。
+
+.. クラスタポートにケーブルを接続します。
+
+
++
+|===
+| クラスタの種類 | 作業 
+
+
+ a| 
+2 ノードスイッチレスクラスタ
+ a| 
+既存のコントローラモジュールのクラスタポートを、新しいコントローラモジュールの対応するクラスタポートに直接接続します。
+
+
+
+ a| 
+スイッチクラスタ
+ a| 
+各コントローラのクラスタポートを、手順 b で特定したクラスタネットワークスイッチのポートに接続します
+
+|===
+

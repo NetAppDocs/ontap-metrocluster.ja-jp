@@ -1,0 +1,144 @@
+---
+permalink: upgrade/concept_choosing_an_upgrade_method_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, choose, upgrade, refresh, method 
+summary: 使用するアップグレードまたは更新手順は、プラットフォームモデル、アップグレードの範囲、および MetroCluster 構成の種類によって異なります。 
+---
+= アップグレードまたは更新方法を選択します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用するアップグレードまたは更新手順は、プラットフォームモデル、アップグレードの範囲、および MetroCluster 構成の種類によって異なります。
+
+アップグレードと更新には、さまざまな種類の手順があります。
+
+* アップグレード手順はコントローラモジュールにのみ適用されます。コントローラが新しいコントローラモデルに置き換えられます。
++
+ストレージシェルフモデルはアップグレードされません。
+
++
+** スイッチオーバーとスイッチバックの手順では、パートナークラスタのコントローラモジュールをアップグレードしている間、 MetroCluster スイッチオーバー処理を使用してクライアントに無停止のサービスが提供されます。
+** ARL ベースコントローラのアップグレード手順では、アグリゲートの再配置処理を使用して、古い構成からアップグレード後の新しい構成へ、データを無停止で移動します。
+
+
+* 更新手順は、コントローラとストレージシェルフに適用されます。
++
+更新手順では、新しいコントローラとシェルフを MetroCluster 構成に追加して 2 つ目の DR グループを作成すると、データが新しいノードに無停止で移行されます。
+
++
+その後、元のコントローラが撤去されます。
+
+
+
+
+
+== アグリゲートの再配置を使用しない手順を選択しています
+
+|===
+| アップグレードまたは更新のタイプ | MetroCluster タイプ | 最初の ONTAP バージョンのサポート | 手順 
+
+
+ a| 
+* 範囲：プラットフォーム（コントローラモジュール）のみ
+* 方法：スイッチオーバー / スイッチバック
+
+ a| 
+FC
+ a| 
+9.8
+ a| 
+xref:task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.adoc[スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成のコントローラをアップグレードする]
+
+
+
+ a| 
+* 範囲：プラットフォーム（コントローラモジュール）のみ
+* 方法：スイッチオーバー / スイッチバック
+
+ a| 
+IP
+ a| 
+9.8
+ a| 
+xref:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.adoc[スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成でのコントローラのアップグレード（ ONTAP 9.8 以降）]
+
+
+
+ a| 
+* 範囲：プラットフォーム（コントローラモジュール）とストレージシェルフ
+* 方法： MetroCluster 設定を展開して古いノードを削除します
+
+ a| 
+FC
+ a| 
+9.6 以降
+ a| 
+xref:task_refresh_4n_mcc_fc.adoc[4 ノード MetroCluster FC 構成を更新しています]
+
+
+
+ a| 
+* 範囲：プラットフォーム（コントローラモジュール）とストレージシェルフ
+* 方法： MetroCluster 設定を展開して古いノードを削除します
+
+ a| 
+IP
+ a| 
+9.8
+ a| 
+xref:task_refresh_4n_mcc_ip.adoc[4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）]
+
+|===
+
+
+== アグリゲートの再配置を使用した手順の選択
+
+|===
+| アグリゲートの再配置手順 | MetroCluster タイプ | 最初の ONTAP バージョンのサポート | 手順 
+
+
+ a| 
+「 system controller replace 」コマンドを使用します
+ a| 
+FC
+ a| 
+9.8 以降
+ a| 
+https://docs.netapp.com/us-en/ontap-systems/upgrade-arl-auto-app/["「システムコントローラの交換」コマンドを使用して、 ONTAP 9.8 を実行しているコントローラハードウェアをアップグレードします"]
+
+
+
+ a| 
+「 system controller replace 」コマンドを使用します
+ a| 
+FC
+ a| 
+9.5 ～ 9.7
+ a| 
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2848956["「システムコントローラの交換」コマンドを使用して、 ONTAP 9.5 を実行しているコントローラハードウェアを ONTAP 9.7 にアップグレードします"]
+
+
+
+ a| 
+手動 ARL コマンドを使用
+ a| 
+FC
+ a| 
+9.8
+ a| 
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2659356["アグリゲートの再配置を使用して、 ONTAP 9.8 以降を実行しているコントローラハードウェアを手動でアップグレードします"]
+
+
+
+ a| 
+手動 ARL コマンドを使用
+ a| 
+FC
+ a| 
+9.7 以前
+ a| 
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2875250["アグリゲートの再配置を含むコントローラのアップグレード ONTAP 9.7 以前を実行しているコントローラハードウェアに手動でアップグレードします"]
+
+|===

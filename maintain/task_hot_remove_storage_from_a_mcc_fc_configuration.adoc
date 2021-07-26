@@ -1,0 +1,140 @@
+---
+permalink: maintain/task_hot_remove_storage_from_a_mcc_fc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, hot, remove, storage, fc, configuration 
+summary: ドライブシェルフのホットリムーブが可能です。ドライブからアグリゲートを削除済みのシェルフを、稼働中でデータを提供している MetroCluster FC 構成から物理的に取り外すことができます。ホットリムーブでは、シェルフのスタックから任意のシェルフを取り外したり、シェルフのスタック全体を取り外したりできます。 
+---
+= MetroCluster FC 構成からのストレージのホットリムーブ
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ドライブシェルフのホットリムーブ（ドライブからアグリゲートを削除済みのシェルフを物理的に取り外す）は、 MetroCluster FC 構成でデータを提供している状態から実行できます。ホットリムーブでは、シェルフのスタックから任意のシェルフを取り外したり、シェルフのスタック全体を取り外したりできます。
+
+* システムは、マルチパス HA 、マルチパス、クアッドパス HA 、またはクアッドパス構成である必要があります。
+* 4 ノード MetroCluster FC 構成では、ローカル HA ペアをテイクオーバー状態にすることはできません。
+* 取り外すシェルフのドライブからすべてのアグリゲートを削除しておく必要があります。
++
+
+IMPORTANT: MetroCluster FC 以外原因の構成では、取り外すシェルフにアグリゲートが含まれたこの手順を使用しようとすると、システムで障害が発生し、複数のドライブがパニック状態になることがあります。
+
++
+アグリゲートを削除するには、取り外すシェルフ上のミラーされたアグリゲートをスプリットし、別のドライブセットを使用してミラーされたアグリゲートを作成し直す必要があります。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
+* 取り外すシェルフのドライブからアグリゲートを削除したあとに、ドライブ所有権を削除しておく必要があります。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
+* スタックからシェルフを取り外す場合は、残ったシェルフ間の距離を考慮する必要があります。
++
+現在のケーブルでは長さが足りない場合は、もっと長いケーブルを用意する必要があります。
+
+
+
+このタスクでは、次の MetroCluster FC 構成を環境に追加します。
+
+* ストレージシェルフが SAS ケーブルでストレージコントローラに直接接続されている直接接続型の MetroCluster FC 構成
+* ストレージシェルフが FC-to-SAS ブリッジを使用して接続されているファブリック接続またはブリッジ接続の MetroCluster FC 構成
+
+
+.手順
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. ヘルスアラートがないかどうかを両方のクラスタで確認します。
++
+「 * system health alert show * 」というメッセージが表示されます
+
+.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
+.. MetroCluster チェックを実行します。
++
+「 * MetroCluster check run * 」のようになります
+
+.. MetroCluster チェックの結果を表示します。
++
+「 * MetroCluster check show * 」と表示されます
+
+.. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
++
+「 * storage switch show * 」と表示されます
+
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. 権限レベルを advanced に設定します。
++
+「 * set -privilege advanced * 」のように指定します
+
+. シェルフ上にメールボックス・ドライブがないことを確認します。「 * storage failover mailbox-disk show * 」
+. 該当するシナリオの手順に従ってシェルフを取り外します。
++
+|===
+| シナリオ（ Scenario ） | 手順 
+
+
+ a| 
+ミラーされていないアグリゲート、ミラーされたアグリゲート、または両方のタイプのアグリゲートが含まれているシェルフからアグリゲートを削除する
+ a| 
+.. 「 * storage aggregate delete -aggregate name_*` 」コマンドを使用して、アグリゲートを削除します。
+.. 標準の手順を使用してシェルフ内のすべてのドライブの所有権を削除してから、シェルフを物理的に取り外します。
++
+シェルフをホットリムーブするには、使用しているシェルフモデルの SAS Disk Shelves Service Guide に記載されている手順に従ってください。
+
+
+
+
+
+ a| 
+ミラーされたアグリゲートからプレックスを削除するために、アグリゲートのミラーリングを解除する必要がある
+ a| 
+.. 「 * run -node local sysconfig -r * 」コマンドを使用して、削除するプレックスを特定します。
++
+次の例では、「 Plex /dpg_mcc_8020_13_a1_aggr1/plex0 」行でプレックスを特定できます。この場合、指定するプレックスは plex0 です。
+
++
+[listing]
+----
+dpgmcc_8020_13_a1a2::storage aggregate> run -node local sysconfig -r
+*** This system has taken over dpg-mcc-8020-13-a1
+Aggregate dpg_mcc_8020_13_a1_aggr1 (online, raid_dp, mirrored) (block checksums)
+  Plex /dpg_mcc_8020_13_a1_aggr1/plex0 (online, normal, active, pool0)
+    RAID group /dpg_mcc_8020_13_a1_aggr1/plex0/rg0 (normal, block checksums)
+      RAID Disk Device                          HA  SHELF BAY CHAN Pool Type  RPM  Used (MB/blks)    Phys (MB/blks)
+      --------- ------                          ------------- ---- ---- ---- ----- --------------    --------------
+      dparity   mcc-cisco-8Gb-fab-2:1-1.126L16  0c    32  15  FC:B   0   SAS 15000 272000/557056000  274845/562884296
+      parity    mcc-cisco-8Gb-fab-2:1-1.126L18  0c    32  17  FC:B   0   SAS 15000 272000/557056000  274845/562884296
+      data      mcc-cisco-8Gb-fab-2:1-1.126L19  0c    32  18  FC:B   0   SAS 15000 272000/557056000  274845/562884296
+      data      mcc-cisco-8Gb-fab-2:1-1.126L21  0c    32  20  FC:B   0   SAS 15000 272000/557056000  274845/562884296
+      data      mcc-cisco-8Gb-fab-2:1-1.126L22  0c    32  21  FC:B   0   SAS 15000 272000/557056000  274845/562884296
+
+  Plex /dpg_mcc_8020_13_a1_aggr1/plex1 (online, normal, active, pool1)
+    RAID group /dpg_mcc_8020_13_a1_aggr1/plex1/rg0 (normal, block checksums)
+
+      RAID Disk Device                          HA  SHELF BAY CHAN Pool Type  RPM  Used (MB/blks)    Phys (MB/blks)
+      --------- ------                          ------------- ---- ---- ---- ----- --------------    --------------
+      dparity   mcc-cisco-8Gb-fab-3:1-1.126L37  0d    34  10  FC:A   1   SAS 15000 272000/557056000  280104/573653840
+      parity    mcc-cisco-8Gb-fab-3:1-1.126L14  0d    33  13  FC:A   1   SAS 15000 272000/557056000  280104/573653840
+      data      mcc-cisco-8Gb-fab-3:1-1.126L41  0d    34  14  FC:A   1   SAS 15000 272000/557056000  280104/573653840
+      data      mcc-cisco-8Gb-fab-3:1-1.126L15  0d    33  14  FC:A   1   SAS 15000 272000/557056000  280104/573653840
+      data      mcc-cisco-8Gb-fab-3:1-1.126L45  0d    34  18  FC:A   1   SAS 15000 272000/557056000  280104/573653840
+----
+.. 「 * storage aggregate plex delete -aggregate _aggr_name _ -plex_plex_name_ * 」コマンドを使用してプレックスを削除します。
++
+plex は 'plex3' や 'plex6' などのプレックス名を定義します
+
+.. 標準の手順を使用してシェルフ内のすべてのドライブの所有権を削除してから、シェルフを物理的に取り外します。
++
+シェルフをホットリムーブするには、使用しているシェルフモデルの SAS Disk Shelves Service Guide に記載されている手順に従ってください。
+
+
+
+|===
+

@@ -1,0 +1,41 @@
+---
+permalink: disaster-recovery/task_restore_connectivity_mcip.html 
+sidebar: sidebar 
+keywords: metrocluster, iscsi, connections, disaster, site, surviving, connectivity, restore 
+summary: サバイバーノードから MetroCluster iSCSI イニシエータ接続をリストアする必要があります。 
+---
+= サバイバーノードからディザスタサイトへの接続のリストア（ MetroCluster IP 構成）
+:icons: font
+:imagesdir: ../media/
+
+
+サバイバーノードから MetroCluster iSCSI イニシエータ接続をリストアする必要があります。
+
+この手順は、 MetroCluster IP 構成でのみ必要です。
+
+.手順
+. どちらかのサバイバーノードのプロンプトで、 advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
++
+advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
+
+. DR グループ内の両方のサバイバーノードに iSCSI イニシエータを接続します。
++
+「 storage iscsi-initiator connect-node Survived-node-label * 」のようになります
+
++
+次の例は、サイト B のイニシエータを接続するコマンドを示しています。
+
++
+[listing]
+----
+site_B::*> storage iscsi-initiator connect -node node_B_1 -label *
+site_B::*> storage iscsi-initiator connect -node node_B_2 -label *
+----
+. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+

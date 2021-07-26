@@ -1,0 +1,298 @@
+---
+permalink: disaster-recovery/task_delete_plexes_mcip.html 
+sidebar: sidebar 
+keywords: deleting, delete, fail, plex, own 
+summary: ディザスタサイトのディスクシェルフおよび MetroCluster IP スイッチコンポーネントの電源をオンにする必要があります。 
+---
+= サバイバーサイトが所有する障害プレックスの削除（ MetroCluster IP 構成）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ハードウェアを交換してディスクを割り当てたら、障害が発生したリモートプレックスを削除する必要があります。このリモートプレックスはサバイバーサイトのノードが所有していますが、ディザスタサイトにあります。
+
+以下の手順はサバイバークラスタで実行します。
+
+.手順
+. ローカルアグリゲートを特定します。「 storage aggregate show -is-home true 」
++
+[listing]
+----
+cluster_B::> storage aggregate show -is-home true
+
+cluster_B Aggregates:
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+node_B_1_aggr0 1.49TB  74.12GB 95% online       1 node_B_1         raid4,
+                                                                   mirror
+                                                                   degraded
+node_B_2_aggr0 1.49TB  74.12GB 95% online       1 node_B_2         raid4,
+                                                                   mirror
+                                                                   degraded
+node_B_1_aggr1 2.99TB  2.88TB   3% online      15 node_B_1         raid_dp,
+                                                                   mirror
+                                                                   degraded
+node_B_1_aggr2 2.99TB  2.91TB   3% online      14 node_B_1         raid_tec,
+                                                                   mirror
+                                                                   degraded
+node_B_2_aggr1 2.95TB  2.80TB   5% online      37 node_B_2         raid_dp,
+                                                                   mirror
+                                                                   degraded
+node_B_2_aggr2 2.99TB  2.87TB   4% online      35 node_B_2         raid_tec,
+                                                                   mirror
+                                                                   degraded
+6 entries were displayed.
+
+cluster_B::>
+----
+. 障害が発生したリモートプレックスを特定します。
++
+「 storage aggregate plex show 」と表示されます
+
++
+次の例では、リモートの（ plex0 ではない）プレックス（ステータスが「 failed 」）を呼び出します。
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex show -fields aggregate,status,is-online,Plex,pool
+aggregate    plex  status        is-online pool
+------------ ----- ------------- --------- ----
+node_B_1_aggr0 plex0 normal,active true     0
+node_B_1_aggr0 plex4 failed,inactive false  - <<<<---Plex at remote site
+node_B_2_aggr0 plex0 normal,active true     0
+node_B_2_aggr0 plex4 failed,inactive false  - <<<<---Plex at remote site
+node_B_1_aggr1 plex0 normal,active true     0
+node_B_1_aggr1 plex4 failed,inactive false  - <<<<---Plex at remote site
+node_B_1_aggr2 plex0 normal,active true     0
+node_B_1_aggr2 plex1 failed,inactive false  - <<<<---Plex at remote site
+node_B_2_aggr1 plex0 normal,active true     0
+node_B_2_aggr1 plex4 failed,inactive false  - <<<<---Plex at remote site
+node_B_2_aggr2 plex0 normal,active true     0
+node_B_2_aggr2 plex1 failed,inactive false  - <<<<---Plex at remote site
+node_A_1_aggr1 plex0 failed,inactive false  -
+node_A_1_aggr1 plex4 normal,active true     1
+node_A_1_aggr2 plex0 failed,inactive false  -
+node_A_1_aggr2 plex1 normal,active true     1
+node_A_2_aggr1 plex0 failed,inactive false  -
+node_A_2_aggr1 plex4 normal,active true     1
+node_A_2_aggr2 plex0 failed,inactive false  -
+node_A_2_aggr2 plex1 normal,active true     1
+20 entries were displayed.
+
+cluster_B::>
+----
+. 各障害プレックスをオフラインにしてから削除します。
++
+.. 障害プレックスをオフラインにします。
++
+「 storage aggregate plex offline-aggregate aggregate-name -plex plex-id
+
++
+次の例は、アグリゲート「 node_B_2 の aggr1 / plex1 」をオフラインにします。
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex offline -aggregate node_B_1_aggr0 -plex plex4
+
+Plex offline successful on plex: node_B_1_aggr0/plex4
+----
+.. 障害が発生したプレックスを削除します。
++
+「 storage aggregate plex delete -aggregate aggregate-name -plex plex-id
+
++
+プロンプトが表示されたら、プレックスを破棄できます。
+
++
+次の例は、削除するプレックス node_B_2 の aggr1 / plex1 を示しています。
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex delete -aggregate  node_B_1_aggr0 -plex plex4
+
+Warning: Aggregate "node_B_1_aggr0" is being used for the local management root
+         volume or HA partner management root volume, or has been marked as
+         the aggregate to be used for the management root volume after a
+         reboot operation. Deleting plex "plex4" for this aggregate could lead
+         to unavailability of the root volume after a disaster recovery
+         procedure. Use the "storage aggregate show -fields
+         has-mroot,has-partner-mroot,root" command to view such aggregates.
+
+Warning: Deleting plex "plex4" of mirrored aggregate "node_B_1_aggr0" on node
+         "node_B_1" in a MetroCluster configuration will disable its
+         synchronous disaster recovery protection. Are you sure you want to
+         destroy this plex? {y|n}: y
+[Job 633] Job succeeded: DONE
+
+cluster_B::>
+----
+
+
++
+障害プレックスごとに上記の手順を繰り返す必要があります。
+
+. プレックスが削除されたことを確認します。
++
+「 storage aggregate plex show -fields aggregate 、 status 、 is-online 、 plex 、 pool 」などのコマンドを実行します
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex show -fields aggregate,status,is-online,Plex,pool
+aggregate    plex  status        is-online pool
+------------ ----- ------------- --------- ----
+node_B_1_aggr0 plex0 normal,active true     0
+node_B_2_aggr0 plex0 normal,active true     0
+node_B_1_aggr1 plex0 normal,active true     0
+node_B_1_aggr2 plex0 normal,active true     0
+node_B_2_aggr1 plex0 normal,active true     0
+node_B_2_aggr2 plex0 normal,active true     0
+node_A_1_aggr1 plex0 failed,inactive false  -
+node_A_1_aggr1 plex4 normal,active true     1
+node_A_1_aggr2 plex0 failed,inactive false  -
+node_A_1_aggr2 plex1 normal,active true     1
+node_A_2_aggr1 plex0 failed,inactive false  -
+node_A_2_aggr1 plex4 normal,active true     1
+node_A_2_aggr2 plex0 failed,inactive false  -
+node_A_2_aggr2 plex1 normal,active true     1
+14 entries were displayed.
+
+cluster_B::>
+----
+. スイッチオーバーされたアグリゲートを特定します。
++
+「 storage aggregate show -is-home false
+
++
+「 storage aggregate plex show -fields aggregate 、 status 、 is-online 、 plex 、 pool 」コマンドを使用して、プレックス 0 のスイッチオーバーされたアグリゲートを識別することもできます。ステータスが「 failed 、 inactive 」になります。
+
++
+次のコマンドは、 4 つのスイッチオーバーされたアグリゲートを表示します。
+
++
+** node_A_1 の aggr1
+** node_A_1 の aggr2
+** Node_a_2_aggr1
+** Node_A_2_aggr2
+
+
++
+[listing]
+----
+cluster_B::> storage aggregate show -is-home false
+
+cluster_A Switched Over Aggregates:
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+node_A_1_aggr1 2.12TB  1.88TB   11% online      91 node_B_1        raid_dp,
+                                                                   mirror
+                                                                   degraded
+node_A_1_aggr2 2.89TB  2.64TB    9% online      90 node_B_1        raid_tec,
+                                                                   mirror
+                                                                   degraded
+node_A_2_aggr1 2.12TB  1.86TB   12% online      91 node_B_2        raid_dp,
+                                                                   mirror
+                                                                   degraded
+node_A_2_aggr2 2.89TB  2.64TB    9% online      90 node_B_2        raid_tec,
+                                                                   mirror
+                                                                   degraded
+4 entries were displayed.
+
+cluster_B::>
+----
+. スイッチオーバーされたプレックスを特定します。
++
+「 storage aggregate plex show -fields aggregate 、 status 、 is-online 、 Plex 、 pool 」などのコマンドを実行します
+
++
+ステータスが「 failed 、 inactive 」のプレックスを特定する必要があります。
+
++
+次のコマンドは、 4 つのスイッチオーバーされたアグリゲートを表示します。
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex show -fields aggregate,status,is-online,Plex,pool
+aggregate    plex  status        is-online pool
+------------ ----- ------------- --------- ----
+node_B_1_aggr0 plex0 normal,active true     0
+node_B_2_aggr0 plex0 normal,active true     0
+node_B_1_aggr1 plex0 normal,active true     0
+node_B_1_aggr2 plex0 normal,active true     0
+node_B_2_aggr1 plex0 normal,active true     0
+node_B_2_aggr2 plex0 normal,active true     0
+node_A_1_aggr1 plex0 failed,inactive false  -  <<<<-- Switched over aggr/Plex0
+node_A_1_aggr1 plex4 normal,active true     1
+node_A_1_aggr2 plex0 failed,inactive false  -  <<<<-- Switched over aggr/Plex0
+node_A_1_aggr2 plex1 normal,active true     1
+node_A_2_aggr1 plex0 failed,inactive false  -  <<<<-- Switched over aggr/Plex0
+node_A_2_aggr1 plex4 normal,active true     1
+node_A_2_aggr2 plex0 failed,inactive false  -  <<<<-- Switched over aggr/Plex0
+node_A_2_aggr2 plex1 normal,active true     1
+14 entries were displayed.
+
+cluster_B::>
+----
+. 障害が発生したプレックスを削除します。
++
+「 storage aggregate plex delete -aggregate node_A_1 _aggr1 -plex plex0
+
++
+プロンプトが表示されたら、プレックスを破棄できます。
+
++
+次の例は、プレックス node_A_1 の aggr1 / plex0 を削除しています。
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex delete -aggregate node_A_1_aggr1 -plex plex0
+
+Warning: Aggregate "node_A_1_aggr1" hosts MetroCluster metadata volume
+         "MDV_CRS_e8457659b8a711e78b3b00a0988fe74b_A". Deleting plex "plex0"
+         for this aggregate can lead to the failure of configuration
+         replication across the two DR sites. Use the "volume show -vserver
+         <admin-vserver> -volume MDV_CRS*" command to verify the location of
+         such volumes.
+
+Warning: Deleting plex "plex0" of mirrored aggregate "node_A_1_aggr1" on node
+         "node_A_1" in a MetroCluster configuration will disable its
+         synchronous disaster recovery protection. Are you sure you want to
+         destroy this plex? {y|n}: y
+[Job 639] Job succeeded: DONE
+
+cluster_B::>
+----
++
+障害アグリゲートごとに上記の手順を繰り返す必要があります。
+
+. サバイバーサイトに障害プレックスが残っていないことを確認します。
++
+次の出力は、すべてのプレックスがオンラインであり、正常、アクティブ、およびオンラインであることを示しています。
+
++
+[listing]
+----
+cluster_B::> storage aggregate plex show -fields aggregate,status,is-online,Plex,pool
+aggregate    plex  status        is-online pool
+------------ ----- ------------- --------- ----
+node_B_1_aggr0 plex0 normal,active true     0
+node_B_2_aggr0 plex0 normal,active true     0
+node_B_1_aggr1 plex0 normal,active true     0
+node_B_2_aggr2 plex0 normal,active true     0
+node_B_1_aggr1 plex0 normal,active true     0
+node_B_2_aggr2 plex0 normal,active true     0
+node_A_1_aggr1 plex4 normal,active true     1
+node_A_1_aggr2 plex1 normal,active true     1
+node_A_2_aggr1 plex4 normal,active true     1
+node_A_2_aggr2 plex1 normal,active true     1
+10 entries were displayed.
+
+cluster_B::>
+----
+

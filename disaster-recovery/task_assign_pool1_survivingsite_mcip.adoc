@@ -1,0 +1,30 @@
+---
+permalink: disaster-recovery/task_assign_pool1_survivingsite_mcip.html 
+sidebar: sidebar 
+keywords: adp, system, assign, surviving, site 
+summary: サバイバーサイトで、ディザスタサイトにあるリモートドライブをサバイバーノードのプール 1 に手動で割り当てる必要があります。 
+---
+= サバイバーサイトでのプール 1 ドライブの割り当て（ MetroCluster IP 構成）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ドライブを交換したディザスタサイトでシステムが ADP 用に設定されていない場合は、サバイバーサイトで、ディザスタサイトにあるリモートドライブをサバイバーノードのプール 1 に手動で割り当てる必要があります。割り当てるドライブの数を確認しておく必要があります。
+
+ADP システムのドライブは自動的に割り当てられます。
+
+.ステップ
+. サバイバーサイトで、最初のノードのプール 1 （リモート）ドライブを割り当てます。「 storage disk assign -n number-to-replacement disks -p 1 0m * 」
++
+このコマンドは、ディザスタサイトに新しく追加された所有権が未設定のドライブを割り当てます。
+
++
+次のコマンドでは、 22 本のドライブを割り当てます。
+
++
+[listing]
+----
+cluster_B::> storage disk assign -n 22 -p 1 0m*
+----
+

@@ -1,0 +1,41 @@
+---
+permalink: upgrade/task_mirror_the_root_aggregates_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, mirror, root, aggregate 
+summary: データ保護を提供するには、ルートアグリゲートをミラーする必要があります。 
+---
+= ルートアグリゲートをミラーリング
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
+
+デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
+
+[listing]
+----
+storage aggregate modify –aggregate aggr_name -raidtype raid4
+----
+
+NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、アグリゲートの RAID タイプをデフォルトの RAID-DP から RAID4 に変更できます。
+
+.手順
+. ルートアグリゲートをミラーします。
++
+'*storage aggregate mirror_aggr_name_*
+
++
+次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。
+
++
+[listing]
+----
+controller_A_1::> storage aggregate mirror aggr0_controller_A_1
+----
++
+これによりアグリゲートがミラーされるため、ローカルのプレックスとリモートのプレックスがリモートの MetroCluster サイトに配置されたアグリゲートが作成されます。
+
+. MetroCluster 構成の各ノードについて、同じ手順を繰り返します。
+

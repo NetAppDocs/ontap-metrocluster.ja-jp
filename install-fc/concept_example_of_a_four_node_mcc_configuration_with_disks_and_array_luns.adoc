@@ -1,0 +1,25 @@
+---
+permalink: install-fc/concept_example_of_a_four_node_mcc_configuration_with_disks_and_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, four, node, configuration, disks, array, luns 
+summary: ネイティブディスクおよびアレイ LUN を使用する 4 ノード MetroCluster 構成では、 FC-to-SAS ブリッジを使用して ONTAP システムとディスクシェルフを FC スイッチ経由で接続する必要があります。アレイ LUN は FC スイッチ経由で ONTAP システムに接続できます。 
+---
+= ディスクとアレイ LUN を使用する 4 ノード MetroCluster 構成の例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネイティブディスクおよびアレイ LUN を使用する 4 ノード MetroCluster 構成では、 FC-to-SAS ブリッジを使用して ONTAP システムとディスクシェルフを FC スイッチ経由で接続する必要があります。アレイ LUN は FC スイッチ経由で ONTAP システムに接続できます。
+
+ONTAP システムをネイティブディスクとアレイ LUN の両方に接続するには、イニシエータポートが 8 個以上必要です。
+
+次の図は、ディスクとアレイ LUN を使用する MetroCluster 構成の例です。どちらも同じ MetroCluster 構成ですが、わかりやすくするためにディスクを使用する例とアレイ LUN を使用する例を別々に示しています。
+
+次の図は ONTAP システムとディスクの接続を示しています。ここでは、 HBA ポート 1a~1d を使用して FC-to-SAS ブリッジ経由でディスクに接続されています。
+
+image::../media/mcc_configuration_with_disks_and_array_luns_1.gif[ディスクとアレイ LUN 1 を使用する MCC 構成]
+
+次の図は ONTAP システムとアレイ LUN の接続を示しています。ここでは、ポート 1a~1d がディスクとの接続に使用されているため、 HBA ポート 0a~0d をアレイ LUN との接続に使用しています。
+
+image::../media/mcc_configuration_with_disks_and_array_luns_ii.gif[次の図は、 MetroCluster 構成例を示しています。この図には説明が付随しています。]

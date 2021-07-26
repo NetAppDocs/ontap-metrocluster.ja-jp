@@ -1,0 +1,34 @@
+---
+permalink: install-fc/task_mirror_the_root_aggregates_mcc_with_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, mirror, root, aggregates 
+summary: データを確実に保護するために、 MetroCluster 構成のルートアグリゲートをミラーする必要があります。 
+---
+= ルートアグリゲートをミラーリング
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+データを確実に保護するために、 MetroCluster 構成のルートアグリゲートをミラーする必要があります。
+
+アレイ LUN を使用する MetroCluster 構成に対する SyncMirror の要件を満たしていることを確認しておく必要があります。
+
+xref:reference_requirements_for_a_mcc_configuration_with_array_luns_reference.adoc[アレイ LUN を使用する MetroCluster 構成の要件]
+
+このタスクは、 MetroCluster 構成の各コントローラで実行する必要があります。
+
+.手順
+. 「 storage aggregate mirror 」コマンドを使用して、ミラーされていないルートアグリゲートをミラーします。
++
+次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。
+
++
+[listing]
+----
+controller_A_1::> storage aggregate mirror aggr0_controller_A_1
+----
++
+ルートアグリゲートが pool1 のアレイ LUN でミラーされます。
+
+

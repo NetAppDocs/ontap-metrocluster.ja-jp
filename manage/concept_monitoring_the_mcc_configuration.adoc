@@ -1,0 +1,294 @@
+---
+permalink: manage/concept_monitoring_the_mcc_configuration.html 
+sidebar: sidebar 
+keywords: ontap, metrocluster, command, active, iq, unified, manager, oncommand, unified, monitor, health, software, state, component, operation, check, configuration, configuration, detect, failure, netapp, tiebreaker, software 
+summary: ONTAP MetroCluster コマンドと Active IQ Unified Manager （旧 OnCommand Unified Manager ）を使用して、各種ソフトウェアコンポーネントの健常性および MetroCluster 処理の状態を監視できます。 
+---
+= MetroCluster 設定を監視する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP MetroCluster コマンドと Active IQ Unified Manager （旧 OnCommand Unified Manager ）を使用して、各種ソフトウェアコンポーネントの健常性および MetroCluster 処理の状態を監視できます。
+
+
+
+== MetroCluster の設定を確認しています
+
+[role="lead"]
+MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。
+
+いずれかまたは両方のクラスタに対して短時間に MetroCluster check run コマンドを 2 回発行すると ' 競合が発生し ' コマンドがすべてのデータを収集しない場合がありますそれ以降の「 MetroCluster check show 」コマンドでは、期待される出力が表示されません。
+
+.手順
+. 構成を確認します。
++
+「 MetroCluster check run 」のようになります
+
++
+このコマンドはバックグラウンドジョブとして実行され、すぐに完了しない場合があります。
+
++
+[listing]
+----
+cluster_A::> metrocluster check run
+The operation has been started and is running in the background. Wait for
+it to complete and run "metrocluster check show" to view the results. To
+check the status of the running metrocluster check operation, use the command,
+"metrocluster operation history show -job-id 2245"
+----
+. 最新の MetroCluster check run コマンドから、より詳細な結果を表示します。
++
+MetroCluster check aggregate show
+
++
+MetroCluster check cluster show
+
++
+MetroCluster check config-replication show
+
++
+MetroCluster check lif show
+
++
+MetroCluster check node show
+
++
+「 MetroCluster check show 」コマンドは、最新の「 MetroCluster check run 」コマンドの結果を表示します。MetroCluster check show コマンドを使用する前に ' 必ず MetroCluster check run コマンドを実行して ' 表示されている情報が最新であることを確認してください
+
++
+次に、正常な 4 ノード MetroCluster 構成の MetroCluster check aggregate show コマンドの出力例を示します。
+
++
+[listing]
+----
+cluster_A::> metrocluster check aggregate show
+
+Last Checked On: 8/5/2014 00:42:58
+
+Node                  Aggregate                  Check                      Result
+---------------       --------------------       ---------------------      ---------
+controller_A_1        controller_A_1_aggr0
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_1_aggr1
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_1_aggr2
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+
+
+controller_A_2        controller_A_2_aggr0
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_2_aggr1
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_2_aggr2
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+
+18 entries were displayed.
+----
++
+次に、正常な 4 ノード MetroCluster 構成の MetroCluster check cluster show コマンドの出力例を示します。この出力は、必要に応じてネゴシエートスイッチオーバーを実行できる状態であることを示しています。
+
++
+[listing]
+----
+Last Checked On: 9/13/2017 20:47:04
+
+Cluster               Check                           Result
+--------------------- ------------------------------- ---------
+mccint-fas9000-0102
+                      negotiated-switchover-ready     not-applicable
+                      switchback-ready                not-applicable
+                      job-schedules                   ok
+                      licenses                        ok
+                      periodic-check-enabled          ok
+mccint-fas9000-0304
+                      negotiated-switchover-ready     not-applicable
+                      switchback-ready                not-applicable
+                      job-schedules                   ok
+                      licenses                        ok
+                      periodic-check-enabled          ok
+10 entries were displayed.
+----
+
+
+
+
+== MetroCluster 設定を確認および監視するためのコマンド
+
+[role="lead"]
+ONTAP には、 MetroCluster 構成を監視し、 MetroCluster 処理を確認するためのコマンドが用意されています。
+
+
+
+=== MetroCluster 処理を確認するためのコマンド
+
+|===
+| 状況 | 使用するコマンド 
+
+
+ a| 
+MetroCluster 処理のチェックを実行します。
+
+* 注：このコマンドは、 DR 処理実行前のシステムの事前検証に使用できるコマンドとしては使用しないでください。
+ a| 
+「 MetroCluster check run 」のようになります
+
+
+
+ a| 
+MetroCluster 処理に対する前回のチェック結果を表示する
+ a| 
+「 MetroCluster show 」
+
+
+
+ a| 
+サイト間の設定レプリケーションに対するチェック結果を表示する
+ a| 
+「 MetroCluster check config-replication show MetroCluster check config-replication show-aggregate-eligibility -
+
+
+
+ a| 
+ノード設定に対するチェック結果を表示する
+ a| 
+MetroCluster check node show
+
+
+
+ a| 
+アグリゲート設定に対するチェック結果を表示する
+ a| 
+MetroCluster check aggregate show
+
+
+
+ a| 
+MetroCluster 構成の LIF 配置エラーを表示する
+ a| 
+MetroCluster check lif show
+
+|===
+
+
+=== MetroCluster インターコネクトの監視用コマンドです
+
+|===
+| 状況 | 使用するコマンド 
+
+
+ a| 
+HA および DR のミラーリングステータスと、クラスタ内の MetroCluster ノードに関する情報を表示する
+ a| 
+MetroCluster interconnect mirror show
+
+|===
+
+
+=== MetroCluster SVM の監視用コマンド
+
+|===
+| 状況 | 使用するコマンド 
+
+
+ a| 
+MetroCluster 構成の両方のサイトにあるすべての SVM を表示する
+ a| 
+MetroCluster vserver show
+
+|===
+
+
+== NetApp MetroCluster Tiebreaker ソフトウェアによる障害の検出
+
+[role="lead"]
+Tiebreaker ソフトウェアは Linux ホストにインストールされます。Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。これにより、サイト間リンクが停止した場合に、クラスタ内の各パートナーで ISL 障害とサイト障害を区別することができます。
+
+Linux ホストに Tiebreaker ソフトウェアをインストールしたら、災害状況を監視するように MetroCluster 構成内のクラスタを設定できます。
+
+
+
+=== Tiebreaker ソフトウェアでサイト間接続障害を検出する方法
+
+[role="lead"]
+MetroCluster Tiebreaker ソフトウェアは、サイト間のすべての接続が失われると警告します。
+
+
+
+==== ネットワークパスのタイプ
+
+構成によっては、 MetroCluster 構成の 2 つのクラスタ間のネットワークパスに次の 3 つの種類が存在します。
+
+* * FC ネットワーク（ファブリック接続 MetroCluster 構成に存在） *
++
+この種類のネットワークは、 2 つの冗長 FC スイッチファブリックで構成されます。各スイッチファブリックには 2 つの FC スイッチがあり、各スイッチファブリックの 1 つのスイッチはクラスタと同じ場所に配置されます。各クラスタには、各スイッチファブリックから 1 つずつ、 2 つの FC スイッチがあります。すべてのノードは、同じ場所に配置されている各 IP スイッチに FC （ NV インターコネクトおよび FCP イニシエータ）接続されています。データは、クラスタからクラスタへ、 ISL 経由でレプリケートされます。
+
+* * クラスタ間ピアリングネットワーク *
++
+この種類のネットワークは、 2 つのクラスタ間の冗長 IP ネットワークパスで構成されます。クラスタピアリングネットワークは、 Storage Virtual Machine （ SVM ）構成をミラーするために必要な接続を提供します。一方のクラスタのすべての SVM の設定が、パートナークラスタにミラーされます。
+
+* * IP ネットワーク（ MetroCluster IP 構成に存在） *
++
+この種類のネットワークは、 2 つの冗長 IP スイッチネットワークで構成されます。各ネットワークには 2 つの IP スイッチがあり、各スイッチファブリックの 1 つのスイッチはクラスタと同じ場所に配置されます。各クラスタには、各スイッチファブリックから 1 つずつ、 2 つの IP スイッチがあります。すべてのノードは、同じ場所に配置されている各 FC スイッチに接続されています。データは、クラスタからクラスタへ、 ISL 経由でレプリケートされます。
+
+
+
+
+
+==== サイト間接続を監視する
+
+Tiebreaker ソフトウェアは、サイト間接続のステータスをノードから定期的に取得します。NV インターコネクト接続が失われ、クラスタ間ピアリングが ping に応答しない場合、クラスタはサイトが分離されているとみなし、 Tiebreaker ソフトウェアは「 AllLinksSevered 」としてアラートをトリガーします。クラスタが「 AllLinksSevered 」ステータスを識別し、もう一方のクラスタがネットワーク経由で到達できない場合、 Tiebreaker ソフトウェアは「 disaster 」としてアラートをトリガーします。
+
+
+
+=== Tiebreaker ソフトウェアでサイト障害を検出する方法
+
+[role="lead"]
+NetApp MetroCluster Tiebreaker ソフトウェアは、 MetroCluster 構成のノードおよびクラスタに到達できるかどうかをチェックして、サイト障害の有無を判断します。また、 Tiebreaker ソフトウェアは、特定の状況でアラートをトリガーします。
+
+
+
+==== Tiebreaker ソフトウェアで監視されるコンポーネント
+
+Tiebreaker ソフトウェアは、 IP ネットワークでホストされるノード管理 LIF およびクラスタ管理 LIF への複数のパスを経由する冗長接続を確立することによって、 MetroCluster 構成内の各コントローラを監視します。
+
+Tiebreaker ソフトウェアで監視される MetroCluster 構成のコンポーネントは次のとおりです。
+
+* ローカルノードインターフェイスを介してノードを追加します
+* クラスタ指定インターフェイスを介したクラスタ
+* サバイバークラスタ - ディザスタサイトとの接続の有無を評価（ NV インターコネクト、ストレージ、クラスタ間ピアリング）
+
+
+Tiebreaker ソフトウェアとクラスタ内のすべてのノードおよびクラスタ自体との接続が失われると、クラスタは Tiebreaker ソフトウェアによって「到達不能」と宣言されます。接続障害は 3~5 秒で検出されます。Tiebreaker ソフトウェアからクラスタに到達できない場合、障害が発生していないクラスタ（到達可能なクラスタ）は、 Tiebreaker ソフトウェアがアラートをトリガーする前に、パートナークラスタへのすべてのリンクが切断されていることを示す必要があります。
+
+
+NOTE: サバイバークラスタが FC （ NV インターコネクトとストレージ）とクラスタ間ピアリングを介してディザスタサイトのクラスタと通信できなくなると、すべてのリンクが切断されたとみなされます。
+
+
+
+==== Tiebreaker ソフトウェアがアラートをトリガーする障害シナリオ
+
+Tiebreaker ソフトウェアは、ディザスタサイトのクラスタ（すべてのノード）が停止しているか到達不能であり、サバイバーサイトのクラスタが「 AllLinksSevered 」ステータスを示している場合、アラートをトリガーします。
+
+次のシナリオでは、 Tiebreaker ソフトウェアはアラートをトリガーしません（またはアラートが拒否されます）。
+
+* 8 ノード MetroCluster 構成で、ディザスタサイトの HA ペアの 1 つが停止している場合
+* ディザスタサイトのすべてのノードを含むクラスタが停止し、サバイバーサイトの 1 つの HA ペアが停止し、サバイバーサイトのクラスタが「 AllLinksSevered 」ステータスを示している場合
++
+Tiebreaker ソフトウェアはアラートをトリガーしますが、 ONTAP はアラートを拒否します。この場合、手動によるスイッチオーバーも拒否されます
+
+* Tiebreaker ソフトウェアがディザスタサイトの少なくとも 1 つのノードまたはクラスタインターフェイスに到達できる、またはサバイバーサイトが FC （ NV インターコネクトとストレージ）またはクラスタ間ピアリングを介してディザスタサイトのいずれかのノードに到達できる場合
+

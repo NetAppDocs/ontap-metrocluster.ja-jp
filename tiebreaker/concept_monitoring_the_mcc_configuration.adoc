@@ -1,0 +1,321 @@
+---
+permalink: tiebreaker/concept_monitoring_the_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, tiebreaker, software, automate, recovery, process, enabling, enable, monitor, configuration, status, evaluate, snmp, event, trap, netapp, customer, support, operation, configuring, configure, autosupport, display, status, monitor, operation, information, creating, create, dump, file 
+summary: MetroCluster Tiebreaker ソフトウェアはリカバリプロセスを自動化します。ユーザは MetroCluster 設定のステータスを監視し、ネットアップカスタマーサポートに送信される SNMP イベントとトラップを評価し、監視処理のステータスを表示できます。 
+---
+= MetroCluster 設定を監視する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster Tiebreaker ソフトウェアはリカバリプロセスを自動化します。ユーザは MetroCluster 設定のステータスを監視し、ネットアップカスタマーサポートに送信される SNMP イベントとトラップを評価し、監視処理のステータスを表示できます。
+
+
+
+== AutoSupport を設定しています
+
+[role="lead"]
+デフォルトでは、 AutoSupport メッセージは Tiebreaker ソフトウェアをインストールしてから 1 週間後にネットアップに送信されます。AutoSupport 通知をトリガーするイベントには、 Tiebreaker ソフトウェアのパニック状態、 MetroCluster 構成での災害状況の検出、 MetroCluster 構成の不明なステータスなどがあります。
+
+AutoSupport メッセージを設定するための直接アクセスが必要です。
+
+. Tiebreaker CLI の AutoSupport コマンドで、次のオプションを指定します。
++
+[cols="2*"]
+|===
+| オプション | 説明 
+
+
+ a| 
+- 呼び出します
+ a| 
+AutoSupport メッセージをカスタマーサポートに送信します
+
+
+
+ a| 
+- ウィザードを設定します
+ a| 
+プロキシサーバのクレデンシャルを設定するウィザード
+
+
+
+ a| 
+- 設定を削除します
+ a| 
+プロキシサーバのクレデンシャルを削除します
+
+
+
+ a| 
+-- 有効にします
+ a| 
+AutoSupport 通知を有効にします（デフォルト）。
+
+
+
+ a| 
+- 無効にします
+ a| 
+AutoSupport 通知を無効にします
+
+
+
+ a| 
+- 表示
+ a| 
+AutoSupport のステータスを表示します
+
+|===
++
+次の例は、 AutoSupport が有効または無効で、 AutoSupport コンテンツの投稿先を示しています。
+
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker :> autosupport enable
+AutoSupport already enabled.
+
+NetApp MetroCluster Tiebreaker :> autosupport disable
+AutoSupport status            : disabled
+Proxy Server IP Address       : 10.234.168.79
+Proxy Server Port Number      : 8090
+Proxy Server Username         : admin
+AutoSupport destination       : https://support.netapp.com/asupprod/post/1.0/postAsup
+
+NetApp MetroCluster Tiebreaker :> autosupport enable
+AutoSupport status            : enabled
+Proxy Server IP Address       : 10.234.168.79
+Proxy Server Port Number      : 8090
+Proxy Server Username         : admin
+AutoSupport destination       : https://support.netapp.com/asupprod/post/1.0/postAsup
+
+NetApp MetroCluster Tiebreaker :> autosupport invoke
+AutoSupport transmission      : success
+Proxy Server IP Address       : 10.234.168.79
+Proxy Server Port Number      : 8090
+Proxy Server Username         : admin
+AutoSupport destination       : https://support.netapp.com/asupprod/post/1.0/postAsup
+----
++
+次の例は、 IP アドレスとポート番号を使用して、認証されたプロキシサーバを使用して AutoSupport を設定する方法を示しています。
+
++
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> autosupport configure wizard
+Enter Proxy Server IP address :  10.234.168.79
+Enter Proxy Server port number :  8090
+Enter Proxy Server Username :  admin
+Enter Proxy Server Password : 123abc
+Autosupport configuration updated successfully.
+----
++
+次に、 AutoSupport 構成を削除する例を示します。
+
++
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> autosupport delete configuration
+Autosupport configuration deleted successfully.
+----
+
+
+
+
+=== SNMP イベントとトラップ
+
+[role="lead"]
+NetApp MetroCluster Tiebreaker ソフトウェアは、 SNMP トラップを使用して重大なイベントをユーザに通知します。これらのトラップは NetApp MIB ファイルに含まれています。各トラップには、トラップ名、重大度、影響レベル、タイムスタンプ、およびメッセージに関する情報が含まれています。
+
+[cols="3*"]
+|===
+| イベント名 | イベントの詳細 | トラップ番号 
+
+
+ a| 
+MetroCluster Tie-Breaker が MetroCluster 構成に到達できません
+ a| 
+ソフトウェアが災害を検出できないことを管理者に警告します。このイベントは、両方のクラスタに到達できない場合に発生します。
+ a| 
+25000
+
+
+
+ a| 
+MetroCluster Tie-Breaker がクラスタに到達できません
+ a| 
+ソフトウェアがいずれかのクラスタに到達できないことを管理者に警告します。
+ a| 
+25001
+
+
+
+ a| 
+MetroCluster Tie-Breaker がクラスタで災害を検出しました
+ a| 
+ソフトウェアがサイト障害を検出したことを管理者に通知します。通知が配信されます。
+ a| 
+25002
+
+
+
+ a| 
+パートナークラスタ間のすべてのリンクは切断されています。
+ a| 
+両方のクラスタに到達可能であることがソフトウェアによって検出されましたが、 2 つのクラスタ間のすべてのネットワークパスが停止しており、クラスタが相互に通信できません。
+ a| 
+25005
+
+
+
+ a| 
+SNMP テストトラップ
+ a| 
+snmp config test コマンドを実行して、 SNMP 設定をテストできるようになりました。
+ a| 
+25006
+
+|===
+
+
+== 監視処理のステータスを表示する
+
+[role="lead"]
+MetroCluster 構成の監視処理の全体的なステータスを表示できます。
+
+. Tiebreaker CLI の monitor show コマンドを使用して、次のいずれかのオプションを指定して MetroCluster 処理のステータスを表示します。
++
+[cols="2*"]
+|===
+| オプション | 説明 
+
+
+ a| 
+-monitor-name を指定します
+ a| 
+指定したモニタ名のステータスを表示します
+
+
+
+ a| 
+-operation-history のコマンドを実行します
+ a| 
+クラスタで最後に実行された監視処理を 10 件まで表示します
+
+
+
+ a| 
+- 統計情報
+ a| 
+指定したクラスタに関連する統計を表示します
+
+
+
+ a| 
+ステータス
+ a| 
+指定したクラスタのステータスを表示します。 * MetroCluster Tiebreaker ソフトウェアは、アグリゲートの修復、ルートの修復、スイッチバックなどの処理の完了ステータスが反映されるまでに最大 10 分かかる場合があります。
+
+|===
++
+次の例は、クラスタ cluster_A と cluster_B が接続され、健全な状態であることを示しています。
+
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker:> monitor show -status
+MetroCluster: cluster_A
+    Disaster: false
+    Monitor State: Normal
+    Observer Mode: true
+    Silent Period: 15
+    Override Vetoes: false
+    Cluster: cluster_Ba(UUID:4d9ccf24-080f-11e4-9df2-00a098168e7c)
+        Reachable: true
+        All-Links-Severed: FALSE
+            Node: mcc5-a1(UUID:78b44707-0809-11e4-9be1-e50dab9e83e1)
+                Reachable: true
+                All-Links-Severed: FALSE
+                State: normal
+            Node: mcc5-a2(UUID:9a8b1059-0809-11e4-9f5e-8d97cdec7102)
+                Reachable: true
+                All-Links-Severed: FALSE
+                State: normal
+    Cluster: cluster_B(UUID:70dacd3b-0823-11e4-a7b9-00a0981693c4)
+        Reachable: true
+        All-Links-Severed: FALSE
+            Node: mcc5-b1(UUID:961fce7d-081d-11e4-9ebf-2f295df8fcb3)
+                Reachable: true
+                All-Links-Severed: FALSE
+                State: normal
+            Node: mcc5-b2(UUID:9393262d-081d-11e4-80d5-6b30884058dc)
+                Reachable: true
+                All-Links-Severed: FALSE
+                State: normal
+----
++
+次の例では、 cluster_B で実行された最後の 7 つの処理が表示されています。
+
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker:> monitor show -operation-history
+MetroCluster: cluster_B
+ [ 2014-09-15 04:48:32.274 ] MetroCluster Monitor is initialized
+ [ 2014-09-15 04:48:32.278 ] Started Discovery and validation of MetroCluster Setup
+ [ 2014-09-15 04:48:35.078 ] Discovery and validation of MetroCluster Setup succeeded. Started monitoring.
+ [ 2014-09-15 04:48:35.246 ] NetApp MetroCluster Tiebreaker software is able to reach cluster "mcc5a"
+ [ 2014-09-15 04:48:35.256 ] NetApp MetroCluster Tiebreaker software is able to reach cluster "mcc5b"
+ [ 2014-09-15 04:48:35.298 ] Link to remote DR cluster is up for cluster "mcc5a"
+ [ 2014-09-15 04:48:35.308 ] Link to remote DR cluster is up for cluster "mcc5b"
+----
+
+
+
+
+== MetroCluster の設定情報を表示する
+
+[role="lead"]
+Tiebreaker ソフトウェアでは、 MetroCluster 構成のすべてのインスタンスのモニタ名と IP アドレスを表示できます。
+
+. Tiebreaker CLI の configuration show コマンドを使用して、 MetroCluster の設定情報を表示します。
++
+次の例は、クラスタ cluster_A と cluster_B の情報を示しています。
+
++
+[listing]
+----
+MetroCluster: North America
+    Monitor Enabled: true
+    ClusterA name: cluster_A
+    ClusterA IpAddress: 10.222.196.130
+    ClusterB name: cluster_B
+    ClusterB IpAddress: 10.222.196.140
+----
+
+
+
+
+== ダンプ・ファイルの作成
+
+[role="lead"]
+Tiebreaker ソフトウェアの全体的なステータスを、デバッグのためにダンプファイルに保存します。
+
+. Tiebreaker CLI の monitor dump-status コマンドを使用して、すべての MetroCluster 設定の全体的なステータスのダンプファイルを作成する。
++
+次の例は、 /var/log/netapp/mcctb/metrocluster-tiebreaker-status.xml ダンプファイルが正常に作成されたことを示しています。
+
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker :> monitor dump -status
+MetroCluster Tiebreaker status successfully dumped in file /var/log/netapp/mcctb/metrocluster-tiebreaker-status.xml
+----
+

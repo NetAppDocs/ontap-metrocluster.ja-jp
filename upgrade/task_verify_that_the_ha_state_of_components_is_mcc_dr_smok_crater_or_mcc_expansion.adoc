@@ -1,0 +1,36 @@
+---
+permalink: upgrade/task_verify_that_the_ha_state_of_components_is_mcc_dr_smok_crater_or_mcc_expansion.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, verify, ha, config, component, state 
+summary: MetroCluster 構成では、コントローラモジュールとシャーシコンポーネントの ha-config 状態を mcc に設定して、適切にブートするようにする必要があります。 
+---
+= コンポーネントの ha-config 状態の確認
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成では、コントローラモジュールとシャーシコンポーネントの ha-config 状態を * mcc * に設定して、適切にブートするようにする必要があります。
+
+システムをメンテナンスモードにする必要があります。
+
+このタスクは、新しいコントローラモジュールごとに実行する必要があります。
+
+.手順
+. メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。
++
+'*ha-config show*
+
++
+すべてのコンポーネントの HA の状態が mcc である必要があります。
+
+. 表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールの HA 状態を設定します。
++
+*ha-config modify controller mcc *
+
+. 表示されたシャーシのシステム状態が正しくない場合は、シャーシの HA 状態を設定します。
++
+'*ha-config modify chassis MCC*
+
+. 交換した他のノードで同じ手順を繰り返します。
+

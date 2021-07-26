@@ -1,0 +1,26 @@
+---
+permalink: upgrade/task_set_the_partner_system_id_for_both_controller_modules.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, set, up, partner, system, id, controller, module 
+summary: 両方のコントローラモジュールにパートナーシステム ID を設定し、 HA ペアを形成できるようにする必要があります。 
+---
+= 両方のコントローラモジュールのパートナーシステム ID の設定
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+両方のコントローラモジュールにパートナーシステム ID を設定し、 HA ペアを形成できるようにする必要があります。
+
+このタスクは、両方のコントローラモジュールの LOADER プロンプトで実行します。
+
+.手順
+. 既存のコントローラモジュールで、パートナーシステム ID を新しいコントローラモジュールの ID に設定します。
++
+'*setenv partner-sysid_SysID_OF_NET_controller_*
+
+. 新しいコントローラモジュールで、パートナーシステム ID を既存のコントローラモジュールの ID に設定します。
++
+`*setenv partner-sysid_SysID_OF_EXISTENC_controller_*`
+
+

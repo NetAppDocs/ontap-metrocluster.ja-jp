@@ -1,0 +1,42 @@
+---
+permalink: transition/task_apply_rcfs.html 
+sidebar: sidebar 
+keywords: Generating and applying RCFs to the new IP switches, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+summary: MetroCluster IP 設定に新しい IP スイッチを使用する場合は、カスタム RCF ファイルでスイッチを設定する必要があります。 
+---
+= 新しい IP スイッチへの RCF の生成と適用
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP 設定に新しい IP スイッチを使用する場合は、カスタム RCF ファイルでスイッチを設定する必要があります。
+
+このタスクは、新しいスイッチを使用する場合に必要です。
+
+既存のスイッチを使用している場合は、に進みます xref:task_transition_from_mcc_fc_to_mcc_ip_configurations.adoc[ローカルクラスタ接続を移動しています]。
+
+. 新しい IP スイッチを設置してラックに設置します。
+. 新しい RCF ファイルを適用するための IP スイッチを準備します。
++
+使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["『 MetroCluster IP Installation and Configuration Guide 』を参照してください"]
+
++
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+
+
+. 必要に応じて、スイッチのファームウェアをサポートされているバージョンにアップデートします。
+. RCF ジェネレータツールを使用してスイッチベンダーとプラットフォームモデルに応じた RCF ファイルを作成し、その後ファイルでスイッチを更新します。
++
+使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
+
++
+link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+
++
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
+** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+
+
+

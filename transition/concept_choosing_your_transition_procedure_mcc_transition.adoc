@@ -1,0 +1,65 @@
+---
+permalink: transition/concept_choosing_your_transition_procedure_mcc_transition.html 
+sidebar: sidebar 
+keywords: select, transition, procedure, depend, exist, metrocluster, fc, configuration, choosing, choose 
+summary: 既存の MetroCluster FC 構成に応じて、移行手順を選択する必要があります。 
+---
+= 移行する手順を選択します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存の MetroCluster FC 構成に応じて、移行手順を選択する必要があります。
+
+移行手順は、バックエンドの FC スイッチファブリックまたは FC-VI 接続を IP スイッチネットワークに置き換えます。正確な手順は、使用する開始構成によって異なります。
+
+元のプラットフォームと FC スイッチがある場合、そのスイッチは移行手順の最後で廃止されます。
+
+|===
+| 変更前の構成 | システムを停止するか、システムを停止 | 要件 | 手順 
+
+
+ a| 
+4 ノード
+ a| 
+無停止
+ a| 
+新しいプラットフォームでは、新しいストレージシェルフがサポートされます。
+ a| 
+xref:concept_nondisruptively_transitioning_from_a_four_node_mcc_fc_to_a_mcc_ip_configuration.adoc[MetroCluster FC から MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）]
+
+
+
+ a| 
+2 ノード
+ a| 
+システムの停止を伴う
+ a| 
+新しいストレージシェルフは、元のプラットフォームと新しいプラットフォームの両方でサポートされます。
+ a| 
+xref:task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_configuration.adoc[2 ノード MetroCluster FC から 4 ノード MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）]
+
+
+
+ a| 
+2 ノード
+ a| 
+システムの停止を伴う
+ a| 
+新しいストレージシェルフは、元のプラットフォームと新しいプラットフォームの両方でサポートされます。古いストレージシェルフは撤去する必要があります。
+ a| 
+xref:task_disruptively_transition_while_move_volumes_from_old_shelves_to_new_shelves.adoc[ストレージシェルフを撤去する際の、 MetroCluster FC から MetroCluster IP への停止を伴う移行（ ONTAP 9.8 以降）]
+
+
+
+ a| 
+2 ノード
+ a| 
+システムの停止を伴う
+ a| 
+古いストレージシェルフは、新しいプラットフォームではサポートされません。古いストレージシェルフは撤去する必要があります。
+ a| 
+xref:task_disruptively_transition_when_exist_shelves_are_not_supported_on_new_controllers.adoc[新しいコントローラで既存シェルフを使用できない場合の停止を伴う移行（ ONTAP 9.8 以降）]
+
+|===

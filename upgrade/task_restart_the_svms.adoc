@@ -1,0 +1,44 @@
+---
+permalink: upgrade/task_restart_the_svms.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, restart, svm 
+summary: MetroCluster 構成を拡張したら、 SVM を再起動する必要があります。 
+---
+= SVM を再起動しています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成を拡張したら、 SVM を再起動する必要があります。
+
+.手順
+. 再起動が必要な SVM を特定します。
++
+「 * MetroCluster vserver show * 」
+
++
+このコマンドは、両方の MetroCluster クラスタの SVM を表示します。
+
+. 最初のクラスタで SVM を再起動します。
++
+.. advanced 権限モードに切り替えて、プロンプトが表示されたら「 * y * 」を押します。
++
+「 * set -privilege advanced * 」のように指定します
+
+.. SVM を再起動します。
++
+'*vserver start -vserver _svm_name __ -force true *
+
+.. admin 権限モードに戻ります。
++
+'*set -privilege admin*
+
+
+
+. パートナークラスタで同じ手順を繰り返します。
+. SVM が健全な状態であることを確認します。
++
+「 * MetroCluster vserver show * 」
+
+

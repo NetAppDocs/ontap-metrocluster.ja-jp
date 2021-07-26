@@ -1,0 +1,267 @@
+---
+permalink: transition/task_remove_mc_fc_controllers.html 
+sidebar: sidebar 
+keywords: Generating and applying RCFs to the new IP switches, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+summary: 移行に向けた構成を準備するには、既存の MetroCluster 構成に新しいノードを追加してから、新しいノードにデータを移動します。 
+---
+= MetroCluster FC コントローラの取り外し
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+クリーンアップタスクを実行し、古いコントローラモジュールを MetroCluster 構成から取り外す必要があります。
+
+. サポートケースが自動で生成されないようにするには、メンテナンスが進行中であることを示す AutoSupport メッセージを送信します。
++
+.. 問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」
++
+maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間の終了を通知する AutoSupport メッセージ「 'System node AutoSupport invoke -node * -type all -message MAINT=end` 」を起動できます
+
+.. パートナークラスタに対してこのコマンドを繰り返します。
+
+
+. 削除が必要な MetroCluster FC 構成でホストされているアグリゲートを特定します。
++
+この例では、 MetroCluster FC cluster_B によってホストされている次のデータアグリゲートを削除する必要があります。 aggr_data_A1 と aggr_data_A2 。
+
++
+
+NOTE: 両方のクラスタでデータアグリゲートを特定、オフライン、および削除するには、次の手順を実行する必要があります。この例は、 1 つのクラスタだけを対象としています。
+
++
+....
+cluster_B::> aggr show
+
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+aggr0_node_A_1-FC
+           349.0GB   16.83GB   95% online       1 node_A_1-FC      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr0_node_A_2-FC
+           349.0GB   16.83GB   95% online       1 node_A_2-FC      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr0_node_A_3-IP
+           467.6GB   22.63GB   95% online       1 node_A_3-IP      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr0_node_A_3-IP
+           467.6GB   22.62GB   95% online       1 node_A_4-IP      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr_data_a1
+            1.02TB    1.02TB    0% online       0 node_A_1-FC      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr_data_a2
+            1.02TB    1.02TB    0% online       0 node_A_2-FC      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr_data_a3
+            1.37TB    1.35TB    1% online       3 node_A_3-IP      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+aggr_data_a4
+            1.25TB    1.24TB    1% online       2 node_A_4-IP      raid_dp,
+                                                                   mirrored,
+                                                                   normal
+8 entries were displayed.
+
+cluster_B::>
+....
+. FC ノード上のデータアグリゲートに MDV_AUD ボリュームがあるかどうかを確認し、アグリゲートを削除する前にそれらを削除してください。
++
+MDV_AUD ボリュームは移動できないため、削除する必要があります。
+
+. 各アグリゲートをオフラインにしてから削除します。
++
+.. アグリゲートをオフラインにします。「 storage aggregate offline -aggregate aggregate-name 」
++
+次の例は、アグリゲート node_B_1 をオフラインにします。
+
++
+....
+cluster_B::> storage aggregate offline -aggregate node_B_1_aggr0
+
+Aggregate offline successful on aggregate: node_B_1_aggr0
+....
+.. アグリゲート「 storage aggregate delete -aggregate aggregate-name 」を削除します
++
+プロンプトが表示されたら、プレックスを破棄できます。
+
++
+次の例は、削除するアグリゲート node_B_1 の aggr0 を示しています。
+
++
+....
+cluster_B::> storage aggregate delete -aggregate node_B_1_aggr0
+Warning: Are you sure you want to destroy aggregate "node_B_1_aggr0"? {y|n}: y
+[Job 123] Job succeeded: DONE
+
+cluster_B::>
+....
+
+
+. 削除が必要な MetroCluster FC DR グループを特定します。
++
+次の例では、 MetroCluster FC ノードが DR グループ「 1 」に含まれており、これは削除する必要がある DR グループです。
+
++
+....
+cluster_B::> metrocluster node show
+
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node_A_1-FC        configured     enabled   normal
+              node_A_2-FC        configured     enabled   normal
+      cluster_B
+              node_B_1-FC        configured     enabled   normal
+              node_B_2-FC        configured     enabled   normal
+2     cluster_A
+              node_A_3-IP        configured     enabled   normal
+              node_A_4-IP        configured     enabled   normal
+      cluster_B
+              node_B_3-IP        configured     enabled   normal
+              node_B_3-IP        configured     enabled   normal
+8 entries were displayed.
+
+cluster_B::>
+....
+. クラスタ管理 LIF を MetroCluster FC ノードから MetroCluster IP ノードに移動します。「 cluster_B ：： > network interface migrate -vserver SVM_name -lif cluster_mgmt -destination -node node -in-MetroCluster-IP-DR-group-destination -port available -port
+. クラスタ管理 LIF のホームノードとホームポートを変更します。「 cluster_B ：： > network interface modify -vserver SVM_name -lif cluster_mgmt -service -policy default -management-home-node node-inMetroCluster-IP-DR-group-home-port lif-port
+. MetroCluster FC ノードから MetroCluster IP ノードにイプシロンを移動します。
++
+.. 現在イプシロンが設定されているノードを特定します。 cluster show -fields epsilon
++
+....
+cluster_B::> cluster show -fields epsilon
+node             epsilon
+---------------- -------
+node_A_1-FC      true
+node_A_2-FC      false
+node_A_1-IP      false
+node_A_2-IP      false
+4 entries were displayed.
+....
+.. MetroCluster FC ノード（ node_A_1 の FC ）でイプシロンを false に設定します。 cluster modify -node fc -node-epsilon false
+.. MetroCluster IP ノード（ node_A_1 の IP ）でイプシロンを true に設定します。 cluster modify -node IP-node-epsilon true
+.. イプシロンが正しいノードに移動したことを確認します。 cluster show -fields epsilon
++
+....
+cluster_B::> cluster show -fields epsilon
+node             epsilon
+---------------- -------
+node_A_1-FC      false
+node_A_2-FC      false
+node_A_1-IP      true
+node_A_2-IP      false
+4 entries were displayed.
+....
+
+
+. 各クラスタで、古いノードを含む DR グループを MetroCluster FC 構成から削除します。
++
+この手順は、両方のクラスタで一度に 1 つずつ実行する必要があります。
+
++
+....
+cluster_B::> metrocluster remove-dr-group -dr-group-id 1
+
+Warning: Nodes in the DR group that are removed from the MetroCluster
+         configuration will lose their disaster recovery protection.
+
+         Local nodes "node_A_1-FC, node_A_2-FC" will be removed from the
+         MetroCluster configuration. You must repeat the operation on the
+         partner cluster "cluster_B" to remove the remote nodes in the DR group.
+Do you want to continue? {y|n}: y
+
+Info: The following preparation steps must be completed on the local and partner
+      clusters before removing a DR group.
+
+      1. Move all data volumes to another DR group.
+      2. Move all MDV_CRS metadata volumes to another DR group.
+      3. Delete all MDV_aud metadata volumes that may exist in the DR group to
+      be removed.
+      4. Delete all data aggregates in the DR group to be removed. Root
+      aggregates are not deleted.
+      5. Migrate all data LIFs to home nodes in another DR group.
+      6. Migrate the cluster management LIF to a home node in another DR group.
+      Node management and inter-cluster LIFs are not migrated.
+      7. Transfer epsilon to a node in another DR group.
+
+      The command is vetoed ifthe preparation steps are not completed on the
+      local and partner clusters.
+Do you want to continue? {y|n}: y
+[Job 513] Job succeeded: Remove DR Group is successful.
+
+cluster_B::>
+....
+. ノードをクラスタから削除する準備が完了していることを確認します。
++
+この手順は両方のクラスタで実行する必要があります。
+
++
+
+NOTE: この時点で、 MetroCluster node show コマンドはローカル MetroCluster FC ノードのみを表示し、パートナークラスタの一部であるノードは表示しなくなります。
+
++
+....
+cluster_B::> metrocluster node show
+
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node_A_1-FC        ready to configure
+                                                -         -
+              node_A_2-FC        ready to configure
+                                                -         -
+2     cluster_A
+              node_A_3-IP        configured     enabled   normal
+              node_A_4-IP        configured     enabled   normal
+      cluster_B
+              node_B_3-IP        configured     enabled   normal
+              node_B_4-IP        configured     enabled   normal
+6 entries were displayed.
+
+cluster_B::>
+....
+. MetroCluster FC ノードのストレージフェイルオーバーを無効にします。
++
+この手順は各ノードで実行する必要があります。
+
++
+....
+cluster_A::> storage failover modify -node node_A_1-FC -enabled false
+cluster_A::> storage failover modify -node node_A_2-FC -enabled false
+cluster_A::>
+....
+. クラスタから MetroCluster FC ノードを分離します cluster unjoin -node node-name
++
+この手順は各ノードで実行する必要があります。
+
++
+....
+cluster_A::> cluster unjoin -node node_A_1-FC
+
+Warning: This command will remove node "node_A_1-FC"from the cluster. You must
+         remove the failover partner as well. After the node is removed, erase
+         its configuration and initialize all disks by usingthe "Clean
+         configuration and initialize all disks (4)" option from the boot menu.
+Do you want to continue? {y|n}: y
+[Job 553] Job is queued: Cluster remove-node of Node:node_A_1-FC with UUID:6c87de7e-ff54-11e9-8371
+[Job 553] Checking prerequisites
+[Job 553] Cleaning cluster database
+[Job 553] Job succeeded: Node remove succeeded
+If applicable, also remove the node's HA partner, and then clean its configuration and initialize all disks with the boot menu.
+Run "debug vreport show" to address remaining aggregate or volume issues.
+
+cluster_B::>
+....
+. MetroCluster FC コントローラモジュールとストレージシェルフの電源をオフにします。
+. MetroCluster FC コントローラモジュールとストレージシェルフを取り外します。
+

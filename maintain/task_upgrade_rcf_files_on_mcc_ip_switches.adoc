@@ -1,0 +1,93 @@
+---
+permalink: maintain/task_upgrade_rcf_files_on_mcc_ip_switches.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, upgrade, rcf, files, ip, switches 
+summary: MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。 
+---
+= MetroCluster IP スイッチでの RCF ファイルのアップグレード
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。
+
+新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
+
+この手順では、 RCF ファイルをアップグレードするスイッチ上のトラフィックが中断されます。新しい RCF ファイルが適用されると、トラフィックは再開されます。
+
+.手順
+. 構成の健全性を確認
++
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+「 * MetroCluster check run * 」のようになります
+
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+
+----
+
+
++
+この処理はバックグラウンドで実行されます。
+
++
+.. MetroCluster check run オペレーションが完了したら ' MetroCluster check show を実行して結果を表示します
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+-----------
+::*> metrocluster check show
+
+Last Checked On: 4/7/2019 21:15:05
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          warning
+clusters            ok
+connections         not-applicable
+volumes             ok
+7 entries were displayed.
+----
+.. 実行中の MetroCluster チェック処理のステータスを確認するには、次のコマンドを使用します。 +`* MetroCluster operation history show -job-id 38*`
+.. ヘルス・アラートがないことを確認します +`* system health alert show *`
+
+
+. 新しい RCF ファイルを適用するための IP スイッチを準備します。
++
+使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
+
++
+https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["MetroCluster IP のインストールと設定"]
+
++
+** Broadcom IP スイッチを工場出荷時のデフォルトにリセットする _
+** Cisco IP スイッチを工場出荷時のデフォルトにリセットする _
+
+
+. 使用しているスイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。
++
+使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
+
++
+https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["MetroCluster IP のインストールと設定"]
+
++
+** Broadcom IP RCF ファイルのダウンロードとインストール _
+** Cisco IP RCF ファイルのダウンロードとインストール _
++
+... スイッチを次の順序で更新します。 Switch_A_1 、 Switch_B_1 、 Switch_A_1 、 Switch_B_2 。
+
+
+
+
+

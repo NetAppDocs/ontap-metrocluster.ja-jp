@@ -1,0 +1,164 @@
+---
+permalink: disaster-recovery/task_heal_restore_mcfc.html 
+sidebar: sidebar 
+keywords: configure, fc, switches, metrocluster, configuration 
+summary: ハードウェアを交換してディスクを割り当てたら、 MetroCluster 修復処理を実行できます。 
+---
+= アグリゲートの修復とミラーのリストア（ MetroCluster FC 構成）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ハードウェアを交換してディスクを割り当てたら、 MetroCluster 修復処理を実行できます。その後、アグリゲートがミラーされたことを確認し、必要に応じてミラーリングを再開します。
+
+.手順
+. ディザスタサイトで 2 つの修復フェーズ（アグリゲートの修復とルートの修復）を実行します。
++
+[listing]
+----
+cluster_B::> metrocluster heal -phase aggregates
+
+cluster_B::> metrocluster heal -phase root aggregates
+----
+. 修復を監視し、アグリゲートが resyncing または mirrored のいずれかの状態であることを確認します。
++
+「 storage aggregate show -node local 」と入力します
+
++
+|===
+| アグリゲートの状態 | 作業 
+
+
+ a| 
+再同期中です
+ a| 
+対処は不要です。アグリゲートの再同期が完了するのを待ちます。
+
+
+
+ a| 
+ミラーデグレード
+ a| 
+手順に進みます xref:task_prepare_for_switchback_in_a_mcc_fc_configuration_supertask.adocSTEP_0192B6F128114A77837D1BB5AAB8A770[3.]。
+
+
+
+ a| 
+ミラー、正常
+ a| 
+対処は不要です。
+
+
+
+ a| 
+不明、オフラインです
+ a| 
+ディザスタサイトのすべてのディスクを交換した場合は、ルートアグリゲートがこの状態になります。
+
+|===
++
+[listing]
+----
+cluster_B::> storage aggregate show -node local
+
+ Aggregate     Size Available Used% State   #Vols  Nodes      RAID Status
+ --------- -------- --------- ----- ------- ------ ---------- ------------
+ node_B_1_aggr1
+            227.1GB   11.00GB   95% online       1 node_B_1   raid_dp,
+                                                              resyncing
+ NodeA_1_aggr2
+            430.3GB   28.02GB   93% online       2 node_B_1   raid_dp,
+                                                              mirror
+                                                              degraded
+ node_B_1_aggr3
+            812.8GB   85.37GB   89% online       5 node_B_1   raid_dp,
+                                                              mirrored,
+                                                              normal
+ 3 entries were displayed.
+
+cluster_B::>
+----
++
+次の例では、 3 つのアグリゲートがそれぞれ異なる状態にあります。
+
++
+|===
+| ノード | 状態 
+
+
+ a| 
+node_B_1 アグリゲート
+ a| 
+再同期中です
+
+
+
+ a| 
+node_B_1 の aggr2
+ a| 
+ミラーデグレード
+
+
+
+ a| 
+node_B_1 の aggr3 になります
+ a| 
+ミラー、正常
+
+|===
+. オフラインのままのプレックスがある場合は、追加の手順を実行してミラーを再構築する必要があります。
++
+上の表の node_B_1_aggr2 は、ミラーを再構築する必要があります。
+
++
+.. アグリゲートの詳細を表示して障害プレックスを特定します。
++
+「 storage aggregate show -r -aggregate node_B_1_aggr2 」という名前のアグリゲートがあります
+
++
+次の例では、プレックス /node_B_1_aggr2/plex0 で障害が発生しています。
+
++
+[listing]
+----
+cluster_B::> storage aggregate show -r -aggregate node_B_1_aggr2
+
+ Owner Node: node_B_1
+  Aggregate: node_B_1_aggr2 (online, raid_dp, mirror degraded) (block checksums)
+   Plex: /node_B_1_aggr2/plex0 (offline, failed, inactive, pool0)
+    RAID Group /node_B_1_aggr2/plex0/rg0 (partial)
+                                                               Usable Physical
+      Position Disk                     Pool Type     RPM     Size     Size Status
+      -------- ------------------------ ---- ----- ------ -------- -------- ----------
+
+   Plex: /node_B_1_aggr2/plex1 (online, normal, active, pool1)
+    RAID Group /node_B_1_aggr2/plex1/rg0 (normal, block checksums)
+                                                               Usable Physical
+      Position Disk                     Pool Type     RPM     Size     Size Status
+      -------- ------------------------ ---- ----- ------ -------- -------- ----------
+      dparity  1.44.8                    1   SAS    15000  265.6GB  273.5GB (normal)
+      parity   1.41.11                   1   SAS    15000  265.6GB  273.5GB (normal)
+      data     1.42.8                    1   SAS    15000  265.6GB  273.5GB (normal)
+      data     1.43.11                   1   SAS    15000  265.6GB  273.5GB (normal)
+      data     1.44.9                    1   SAS    15000  265.6GB  273.5GB (normal)
+      data     1.43.18                   1   SAS    15000  265.6GB  273.5GB (normal)
+ 6 entries were displayed.
+
+ cluster_B::>
+----
+.. 障害が発生したプレックスを削除します。
++
+「 storage aggregate plex delete -aggregate aggregate-name -plex plex 」と入力します
+
+.. ミラーを再確立します。
++
+「 storage aggregate mirror -aggregate aggregate-name 」のように指定します
+
+.. すべてのミラーが再確立され、すべてのアグリゲートが mirrored 、 normal ステータスになるまで、プレックスの再同期とミラーリングのステータスを監視します。
++
+「 storage aggregate show
+
+
+
+

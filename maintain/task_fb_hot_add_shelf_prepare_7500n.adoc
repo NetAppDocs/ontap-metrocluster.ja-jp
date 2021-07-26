@@ -1,0 +1,59 @@
+---
+permalink: maintain/task_fb_hot_add_shelf_prepare_7500n.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, prepare, hot, add, sas, disk, shelves 
+summary: SAS ディスクシェルフのホットアドの準備には、ドキュメントおよびディスクドライブとディスクシェルフのファームウェアのダウンロードが含まれます。 
+---
+= SAS ディスクシェルフのホットアドの準備
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAS ディスクシェルフのホットアドの準備には、ドキュメントおよびディスクドライブとディスクシェルフのファームウェアのダウンロードが含まれます。
+
+* サポートされている構成である必要があり、サポートされているバージョンの ONTAP が実行されている必要があります。
+* システム内のすべてのディスクドライブとディスクシェルフで最新のファームウェアバージョンが実行されている必要があります。
++
+シェルフを追加する前に、 MetroCluster 構成全体でディスクとシェルフのファームウェアを更新しなければならない場合があります。
+
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ug-rdg/home.html["アップグレード、リバート、ダウングレード"]
+
+
+
+
+NOTE: サポート対象のバージョンの ONTAP を実行しているシステムでは、同じスタックに IOM12 モジュールと IOM6 モジュールを混在させることができます。使用している ONTAP のバージョンがシェルフの混在をサポートしているかどうかを確認するには お使いのバージョンの ONTAP がサポートされておらず、既存のスタックまたはサポートされている IOM モジュールの組み合わせに追加する新しいシェルフで IOM モジュールをアップグレードまたはダウングレードできない場合は、 Interoperability Matrix Tool （ IMT ）を参照してください。 https://mysupport.netapp.com/NOW/products/interoperability[NetApp Interoperability 次のいずれかを実行する必要があります。
+
+* 新しい SAS ポートに新しいスタックを配置する（ブリッジペアでサポートされている場合）。
+* 追加のブリッジペアで新しいスタックを開始します。
+
+
+.手順
+. ネットアップサポートサイトから次のドキュメントをダウンロードまたは表示します。
++
+** https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+** 使用しているディスクシェルフモデルの Installation Guide
+
+
+. ホットアドするディスクシェルフがサポートされていることを確認します。
++
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+
+. 最新のディスクファームウェアとディスクシェルフファームウェアをダウンロードします。
++
+
+NOTE: この手順では、リンク先に記載されている手順のダウンロード部分のみを実行します。の手順に従う必要があります xref:task_fb_hot_add_a_disk_shelf_install_7500n.adoc[ディスクシェルフのホットアド] ディスクシェルフの設置については、セクションを参照してください。
+
++
+.. ディスクファームウェアをダウンロードし、あとで参照できるよう、ディスクファームウェアの説明書をコピーします。
++
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"]
+
+.. ディスクシェルフファームウェアをダウンロードし、あとで参照できるよう、ディスクシェルフファームウェアの説明書をコピーします。
++
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"]
+
+
+
+

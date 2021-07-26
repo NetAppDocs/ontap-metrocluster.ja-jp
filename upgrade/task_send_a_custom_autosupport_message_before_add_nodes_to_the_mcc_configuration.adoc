@@ -1,0 +1,30 @@
+---
+permalink: upgrade/task_send_a_custom_autosupport_message_before_add_nodes_to_the_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, autosupport, custom, message, add, node, configuration 
+summary: メンテナンスが進行中であることをネットアップテクニカルサポートに通知するには、 AutoSupport に問題メッセージを送信する必要があります。システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。 
+---
+= カスタム AutoSupport メッセージの送信 - MetroCluster 構成へのノードの追加前
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+メンテナンスが進行中であることをネットアップテクニカルサポートに通知するには、 AutoSupport に問題メッセージを送信する必要があります。システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
+
+このタスクは MetroCluster サイトごとに実行する必要があります。
+
+.手順
+. Site_A のクラスタにログインします
+. メンテナンスの開始を通知する AutoSupport メッセージを起動します。
++
+*system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance window-in-hours __ *
+
++
+maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、問題でメンテナンス期間が終了したことを示すコマンドを実行できます。
+
++
+*system node AutoSupport invoke -node * -type all -message MAINT=end *
+
+. 同じ手順をパートナーサイトでも実行します。
+

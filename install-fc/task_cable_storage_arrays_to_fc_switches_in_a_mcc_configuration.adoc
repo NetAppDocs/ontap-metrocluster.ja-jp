@@ -1,0 +1,37 @@
+---
+permalink: install-fc/task_cable_storage_arrays_to_fc_switches_in_a_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, cable, storage, arrays, fc, switches, configuration 
+summary: MetroCluster 構成では、 ONTAP システムから特定のアレイ LUN に少なくとも 2 つのパスでアクセスできるように、ストレージアレイを FC スイッチに接続する必要があります。 
+---
+= MetroCluster 構成におけるストレージアレイと FC スイッチのケーブル接続
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成では、 ONTAP システムから特定のアレイ LUN に少なくとも 2 つのパスでアクセスできるように、ストレージアレイを FC スイッチに接続する必要があります。
+
+* ストレージアレイが設定され、アレイ LUN が ONTAP に提供されている必要があります。
+* ONTAP コントローラが FC スイッチに接続されている必要があります。
+* MetroCluster サイト間で FC スイッチの ISL がケーブル接続されている必要があります。
+* このタスクは、両方の MetroCluster サイトの各ストレージアレイで実行する必要があります。
+* MetroCluster 構成のコントローラとストレージアレイは FC スイッチを介して接続する必要があります。
+
+
+.手順
+. ストレージアレイのポートを FC スイッチのポートに接続します。
++
+各サイトで、ストレージアレイの冗長ポートペアを代替ファブリックの FC スイッチに接続します。これにより、アレイ LUN にアクセスするパスの冗長性が確保されます。
+
+
+
+* 関連情報 *
+
+xref:concept_switch_zoning_in_a_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニング]
+
+xref:reference_example_of_cabling_array_luns_to_fc_switches_in_a_two_node_mcc_configuration.adoc[2 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]
+
+xref:reference_example_of_cabling_array_luns_to_fc_switches_in_a_four_node_mcc_configuration.adoc[4 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]
+
+xref:reference_example_of_cabling_array_luns_to_fc_switches_in_an_eight_node_mcc_configuration.adoc[8 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]

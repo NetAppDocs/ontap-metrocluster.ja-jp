@@ -1,0 +1,443 @@
+---
+permalink: transition/task_move_cluster_connections.html 
+sidebar: sidebar 
+keywords: Transitioning from MetroCluster FC to MetroCluster IP configurations, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+summary: すべての要件を確認して移行の準備を完了したら、移行手順を実行します。各タスクを順番に実行し、各タスクのすべての手順を完了してから次のタスクに進む必要があります。指示が出るまで、新しいコントローラまたはストレージシェルフを既存の構成に接続しないでください。 
+---
+= ローカルクラスタ接続を移動しています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster FC 構成のクラスタインターフェイスを IP スイッチに移動する必要があります。
+
+
+
+== MetroCluster FC ノードでのクラスタ接続の移動
+
+[role="lead"]
+MetroCluster FC ノードのクラスタ接続を IP スイッチに移動する必要があります。手順は、既存の IP スイッチを使用するか、新しい IP スイッチを使用するかによって異なります。
+
+このタスクは両方の MetroCluster サイトで実行する必要があります。
+
+次のタスクでは、コントローラモジュールがクラスタ接続に 2 つのポートを使用していることを前提としています。一部のコントローラモジュールモデルでは、クラスタ接続に 4 つ以上のポートを使用します。この場合、この例では、ポートは 2 つのグループに分割され、 2 つのグループ間でポートが交互に使用されます
+
+次の表に、このタスクで使用するポートの例を示します。
+
+|===
+| コントローラモジュール上のクラスタ接続の数 | ポートをグループ化します | グループ B のポート 
+
+
+ a| 
+2 つ
+ a| 
+e0a
+ a| 
+e0b
+
+
+
+ a| 
+4.
+ a| 
+e0a 、 e0c
+ a| 
+e0b 、 e0d
+
+|===
+* ポートをグループ A でローカルスイッチ switch_x_1-ip に接続します。
+* グループ B のポートはローカルスイッチ switch_x_2-IP に接続します。
+
+
+次の表に、 FC ノードの接続先のスイッチポートを示します。Broadcom BES-53248 スイッチの場合、ポートの用途は MetroCluster IP ノードのモデルによって異なります。
+
+[cols="4*"]
+|===
+| スイッチモデル | MetroCluster IP ノードモデル | スイッチポート | に接続します 
+
+
+.2+| Cisco 3132Q-V または 3232C .2+| 任意  a| 
+5.
+ a| 
+Node_x_1-FC
+
+
+
+ a| 
+6.
+ a| 
+Node_x_2-FC
+
+
+
+.4+| Broadcom BES-53248 の場合  a| 
+FAS2750 / A220
+ a| 
+1 、 2 、 3
+ a| 
+Node_x_1-FC
+
+
+
+ a| 
+FAS8200 / A300
+ a| 
+1 、 2 、 3 、 7 、 8 、 9.
+ a| 
+Node_x_1-FC
+
+
+
+ a| 
+FAS2750 / A220
+ a| 
+4 、 5 、 6
+ a| 
+Node_x_2-FC
+
+
+
+ a| 
+FAS8200 / A300
+ a| 
+4 、 5 、 6 、 10 、 11 、 12.
+ a| 
+Node_x_2-FC
+
+|===
+
+
+=== 新しい IP スイッチを使用する場合にローカルクラスタ接続を移動する
+
+[role="lead"]
+新しい IP スイッチを使用している場合は、既存の MetroCluster FC ノードのクラスタ接続を新しいスイッチに物理的に移動する必要があります。
+
+. MetroCluster FC ノードグループ A のクラスタ接続を新しい IP スイッチに移動します。
++
+で説明したポートを使用します link:../transition/task_transition_from_mcc_fc_to_mcc_ip_configurations.html#moving-the-cluster-connections-on-the-metrocluster-fc-nodes["MetroCluster FC ノードでのクラスタ接続の移動"]。
+
++
+.. スイッチからすべてのグループ A ポートを切断します。 MetroCluster FC 構成がスイッチレスクラスタの場合は、パートナーノードからポートを切断します。
+.. グループ A のポートを node_A_1 の FC と FC_switch_A_2 の FC から切断します。
+.. node_A_1 のグループ A のポートを、 switch_A_1 -IP の FC ノードのスイッチポートに接続します
+.. FC_switch_A_2 のグループ A のポートを switch_A_1 の FC ノードのスイッチポートに接続します
+
+
+. すべてのクラスタ・ポートが up であることを確認します。「 network port show -ipspace Cluster 」
++
+....
+cluster_A::*> network port show -ipspace Cluster
+
+Node: node_A_1-FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node_A_2-FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+
+cluster_A::*>
+....
+. すべてのインターフェイスが Is Home 列に true と表示されていることを確認します。「 network interface show -vserver cluster 」
++
+この処理が完了するまでに数分かかることがあります。
+
++
+....
+cluster_A::*> network interface show -vserver cluster
+
+            Logical      Status     Network          Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- -----
+Cluster
+            node_A_1_FC_clus1
+                       up/up      169.254.209.69/16  node_A_1_FC   e0a     true
+            node_A_1-FC_clus2
+                       up/up      169.254.49.125/16  node_A_1-FC   e0b     true
+            node_A_2-FC_clus1
+                       up/up      169.254.47.194/16  node_A_2-FC   e0a     true
+            node_A_2-FC_clus2
+                       up/up      169.254.19.183/16  node_A_2-FC   e0b     true
+
+4 entries were displayed.
+
+cluster_A::*>
+....
+. 両方のノード（ node_A_1 -FC および node_B_2 ）で上記の手順を実行して、クラスタインターフェイスのグループ B ポートを移動します。
+. パートナークラスタ「 cluster_B 」に対して、上記の手順を繰り返します。
+
+
+
+
+=== 既存の IP スイッチを再利用する場合にローカルクラスタ接続を移動する
+
+[role="lead"]
+既存の IP スイッチを再利用する場合は、ファームウェアを更新し、正しい Reference Configure Files （ RCF ；リファレンス構成ファイル）でスイッチを再設定し、接続を正しいポートに一度に 1 つずつ移動する必要があります。
+
+このタスクを実行する必要があるのは、 FC ノードが既存の IP スイッチに接続されており、スイッチを再利用する場合のみです。
+
+. switch_A_1 IP に接続されているローカルクラスタ接続を切断します
++
+.. グループ A のポートを既存の IP スイッチから切断します。
+.. switch_A_1 の ISL ポートを切断します。
++
+クラスタポートの使用状況を確認するには、プラットフォームのインストールとセットアップの手順を参照してください。
+
++
+https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-a320-install-setup/home.html["AFF A320 システム：設置とセットアップ"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842666["AFF A220 / FAS2700 システムの設置とセットアップの手順"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842668["AFF A800 システムの設置とセットアップの手順"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2469722["AFF A300 システム『 Installation and Setup Instructions 』"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2316769["FAS8200 システム設置とセットアップの手順"]
+
+
+
+. プラットフォームの組み合わせと移行用に生成された RCF ファイルを使用して switch_A_1 IP を再設定します。
++
+使用しているスイッチベンダーに対応する手順については、次のリンク先の『 MetroCluster IP Installation and Configuration Guide 』を参照してください。
+
++
+link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+
++
+.. 必要に応じて、新しいスイッチファームウェアをダウンロードしてインストールします。
++
+MetroCluster IP ノードでサポートされる最新のファームウェアを使用する必要があります。
+
++
+*** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-switch-efos-software["Broadcom スイッチの EFOS ソフトウェアのダウンロードとインストール"]
+*** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-switch-nx-os-software["Cisco スイッチの NX-OS ソフトウェアのダウンロードとインストール"]
+
+
+.. 新しい RCF ファイルを適用するための IP スイッチを準備します。
++
+*** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"] **
+*** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+
+
+.. 使用しているスイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。
++
+*** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
+*** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+
+
+
+
+. グループ A のポートを switch_A_1 の IP に再接続します。
++
+で説明したポートを使用します xref:task_transition_from_mcc_fc_to_mcc_ip_configurations..adoc[MetroCluster FC ノードでのクラスタ接続の移動]。
+
+. すべてのクラスタポートが up であることを確認します。「 network port show -ipspace cluster 」
++
+....
+Cluster-A::*> network port show -ipspace cluster
+
+Node: node_A_1_FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node_A_2_FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+
+Cluster-A::*>
+....
+. すべてのインターフェイスがホームポートにあることを確認します。「 network interface show -vserver Cluster
++
+....
+Cluster-A::*> network interface show -vserver Cluster
+
+            Logical      Status     Network          Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- -----
+Cluster
+            node_A_1_FC_clus1
+                       up/up      169.254.209.69/16  node_A_1_FC   e0a     true
+            node_A_1_FC_clus2
+                       up/up      169.254.49.125/16  node_A_1_FC   e0b     true
+            node_A_2_FC_clus1
+                       up/up      169.254.47.194/16  node_A_2_FC   e0a     true
+            node_A_2_FC_clus2
+                       up/up      169.254.19.183/16  node_A_2_FC   e0b     true
+
+4 entries were displayed.
+
+Cluster-A::*>
+....
+. switch_A_1 で、上記の手順をすべて繰り返します。
+. ローカルクラスタの ISL ポートを再接続します。
+. スイッチ B_1_IP およびスイッチ B_2_IP について、 site_B で上記の手順を繰り返します。
+. サイト間でリモート ISL を接続します。
+
+
+
+
+== クラスタ接続が移動され、クラスタが正常に動作していることを確認しています
+
+[role="lead"]
+適切な接続があり、構成で移行プロセスを実行する準備ができていることを確認するには、クラスタ接続が正しく移動され、クラスタスイッチが認識され、クラスタが正常であることを確認する必要があります。
+
+. すべてのクラスタ・ポートが起動し、実行中であることを確認します。「 network port show -ipspace Cluster 」
++
+....
+Cluster-A::*> network port show -ipspace Cluster
+
+Node: Node-A-1-FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: Node-A-2-FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+
+Cluster-A::*>
+....
+. すべてのインターフェイスがホームポートにあることを確認します。「 network interface show -vserver Cluster
++
+この処理が完了するまでに数分かかることがあります。
+
++
+次の例は、すべてのインターフェイスの Is Home 列に true と表示されていることを示しています。
+
++
+....
+Cluster-A::*> network interface show -vserver Cluster
+
+            Logical      Status     Network          Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- -----
+Cluster
+            Node-A-1_FC_clus1
+                       up/up      169.254.209.69/16  Node-A-1_FC   e0a     true
+            Node-A-1-FC_clus2
+                       up/up      169.254.49.125/16  Node-A-1-FC   e0b     true
+            Node-A-2-FC_clus1
+                       up/up      169.254.47.194/16  Node-A-2-FC   e0a     true
+            Node-A-2-FC_clus2
+                       up/up      169.254.19.183/16  Node-A-2-FC   e0b     true
+
+4 entries were displayed.
+
+Cluster-A::*>
+....
+. 両方のローカル IP スイッチがノードによって検出されたことを確認します。「 network device-discovery show -protocol cdp
++
+....
+Cluster-A::*> network device-discovery show -protocol cdp
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+Node-A-1-FC
+           /cdp
+            e0a    Switch-A-3-IP             1/5/1             N3K-C3232C
+            e0b    Switch-A-4-IP             0/5/1             N3K-C3232C
+Node-A-2-FC
+           /cdp
+            e0a    Switch-A-3-IP             1/6/1             N3K-C3232C
+            e0b    Switch-A-4-IP             0/6/1             N3K-C3232C
+
+4 entries were displayed.
+
+Cluster-A::*>
+....
+. IP スイッチで、 MetroCluster IP ノードが両方のローカル IP スイッチで検出されたことを確認します。「 How CDP Neighbors' 」
++
+この手順は各スイッチで実行する必要があります。
+
++
+この例は、 Switch-A-3-IP でノードが検出されていることを確認する方法を示しています。
+
++
+....
+(Switch-A-3-IP)# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+Node-A-1-FC         Eth1/5/1       133    H         FAS8200       e0a
+Node-A-2-FC         Eth1/6/1       133    H         FAS8200       e0a
+Switch-A-4-IP(FDO220329A4)
+                    Eth1/7         175    R S I s   N3K-C3232C    Eth1/7
+Switch-A-4-IP(FDO220329A4)
+                    Eth1/8         175    R S I s   N3K-C3232C    Eth1/8
+Switch-B-3-IP(FDO220329B3)
+                    Eth1/20        173    R S I s   N3K-C3232C    Eth1/20
+Switch-B-3-IP(FDO220329B3)
+                    Eth1/21        173    R S I s   N3K-C3232C    Eth1/21
+
+Total entries displayed: 4
+
+(Switch-A-3-IP)#
+....
++
+この例は、 Switch-A-4-IP でノードが検出されていることを確認する方法を示しています。
+
++
+....
+(Switch-A-4-IP)# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+Node-A-1-FC         Eth1/5/1       133    H         FAS8200       e0b
+Node-A-2-FC         Eth1/6/1       133    H         FAS8200       e0b
+Switch-A-3-IP(FDO220329A3)
+                    Eth1/7         175    R S I s   N3K-C3232C    Eth1/7
+Switch-A-3-IP(FDO220329A3)
+                    Eth1/8         175    R S I s   N3K-C3232C    Eth1/8
+Switch-B-4-IP(FDO220329B4)
+                    Eth1/20        169    R S I s   N3K-C3232C    Eth1/20
+Switch-B-4-IP(FDO220329B4)
+                    Eth1/21        169    R S I s   N3K-C3232C    Eth1/21
+
+Total entries displayed: 4
+
+(Switch-A-4-IP)#
+....
+

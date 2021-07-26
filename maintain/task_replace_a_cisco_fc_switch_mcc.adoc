@@ -1,0 +1,423 @@
+---
+permalink: maintain/task_replace_a_cisco_fc_switch_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, replace, cisco, fc, switch 
+summary: 障害が発生した Cisco FC スイッチを交換するには、 Cisco 固有の手順を使用する必要があります。 
+---
+= Cisco FC スイッチの交換
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+障害が発生した Cisco FC スイッチを交換するには、 Cisco 固有の手順を使用する必要があります。
+
+管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+
+これはシステムの停止を伴わない手順であり、完了までに約 2 時間かかります。
+
+この手順の例では、 FC_switch_A_1 が正常に動作しているスイッチ、 FC_switch_B_1 が障害が発生したスイッチです。この例でのスイッチポートの用途を次の表に示します。
+
+|===
+| ロール | ポート 
+
+
+ a| 
+FC-VI 接続
+ a| 
+1/4
+
+
+
+ a| 
+HBA 接続
+ a| 
+2 、 3 、 5 、 6
+
+
+
+ a| 
+FC-to-SAS ブリッジの接続
+ a| 
+7 、 8
+
+
+
+ a| 
+ISL 接続
+ a| 
+36 、 40
+
+|===
+例では、 FC-to-SAS ブリッジを 2 つ使用します。FC-to-SAS ブリッジが 3 つ以上ある場合は、追加のポートを無効にしてから有効にする必要があります。
+
+推奨される用途に従ってスイッチポートを割り当ててください。
+
+* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+
+
+.手順
+. 正常に動作しているスイッチの ISL ポートを無効にして、障害が発生したスイッチをフェンシングします。
++
+次の手順は、正常に動作しているスイッチで実行します。
+
++
+.. 構成モードに入ります :+`*conf t*`
+.. 「 interface 」コマンドと「 hut 」コマンドを使用して、正常に動作しているスイッチの ISL ポートを無効にします。
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# interface fc1/36
+FC_switch_A_1(config)# shut
+FC_switch_A_1(config)# interface fc1/40
+FC_switch_A_1(config)# shut
+----
+.. 構成モードを終了し、構成をスタートアップ構成にコピーします。
++
+[listing]
+----
+FC_switch_A_1(config)# end
+FC_switch_A_1# copy running-config startup-config
+FC_switch_A_1#
+----
+
+
+. 障害が発生したスイッチの FC-VI ポートと HBA ポートをフェンシングします（スイッチが稼働している場合）。
++
+次の手順は、障害が発生したスイッチで実行します。
+
++
+.. 構成モードに入ります :+`*conf t*`
+.. 障害が発生したスイッチが稼働している場合は、インターフェイスと shut コマンドを使用して、障害が発生したスイッチの FC-VI ポートと HBA ポートを無効にします。
++
+[listing]
+----
+FC_switch_B_1(config)# interface fc1/1
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/4
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/2-3
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/5-6
+FC_switch_B_1(config)# shut
+----
+.. 構成モードを終了し、構成をスタートアップ構成にコピーします。
++
+[listing]
+----
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+FC_switch_B_1#
+----
+
+
+. 障害が発生したスイッチが稼働している場合は、スイッチの WWN を確認します。
++
+*show wwn switch *
+
++
+[listing]
+----
+FC_switch_B_1# show wwn switch
+Switch WWN is 20:00:54:7f:ee:e3:86:50
+FC_switch_B_1#
+----
+. 交換用スイッチを物理的に設置する前に、スイッチをブートして事前設定します。
++
+この時点では、交換用スイッチは MetroCluster 構成にケーブル接続されていません。パートナースイッチの ISL ポートは無効（シャットモード）かつオフラインになっています。
+
++
+.. 交換用スイッチの電源をオンにして、ブートするのを待ちます。
+.. 交換用スイッチのファームウェアバージョンを調べて、他の FC スイッチのバージョンと一致していることを確認します。 +`*show version*`
+.. MetroCluster インストールおよび設定ガイドの説明に従って交換用スイッチを設定します（「 Cisco FC スイッチでのゾーニングの設定」セクションは省略します）。
++
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
++
+ゾーニングはこの手順の後半で設定します。
+
+.. 交換用スイッチの FC-VI 、 HBA 、およびストレージポートを無効にします。
++
+[listing]
+----
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# interface fc1/1
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/4
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/2-3
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/5-6
+FC_switch_B_1(config)# shut
+FC_switch_B_1(config)# interface fc1/7-8
+FC_switch_B_1(config)# shut
+FC_switch_B_1# copy running-config startup-config
+FC_switch_B_1#
+----
+
+
+. 問題のあるスイッチを物理的に交換します。
++
+.. 障害が発生したスイッチの電源を切ります。
+.. 交換用スイッチの電源をオフにします。
+.. 障害が発生したスイッチのケーブルを外してスイッチを取り外し、どのケーブルがどのポートに接続されているかをメモします。
+.. 交換用スイッチをラックに取り付けます。
+.. 交換用スイッチを、障害が発生したスイッチとまったく同じ配線でケーブル接続します。
+.. 交換用スイッチの電源をオンにします。
+
+
+. 交換用スイッチの ISL ポートを有効にします。
++
+[listing]
+----
+FC_switch_B_1# conf t
+FC_switch_B_1(config)# interface fc1/36
+FC_switch_B_1(config)# no shut
+FC_switch_B_1(config)# end
+FC_switch_B_1# copy running-config startup-config
+FC_switch_B_1(config)# interface fc1/40
+FC_switch_B_1(config)# no shut
+FC_switch_B_1(config)# end
+FC_switch_B_1#
+----
+. 交換用スイッチの ISL ポートが動作していることを確認します。
++
+*show interface brief *
+
+. 交換用スイッチのゾーニングを MetroCluster の設定に合わせて調整します。
++
+.. 正常に動作しているファブリックからゾーニング情報を配信します。
++
+この例では、 FC_switch_B_1 が交換され、ゾーニング情報が FC_switch_A_1 から取得されます。
+
++
+[listing]
+----
+FC_switch_A_1(config-zone)# zoneset distribute full vsan 10
+FC_switch_A_1(config-zone)# zoneset distribute full vsan 20
+FC_switch_A_1(config-zone)# end
+----
+.. 交換用スイッチで、正常に動作しているスイッチからゾーニング情報が正しく取得されたことを確認します。 +`*show zone *`
++
+[listing]
+----
+FC_switch_B_1# show zone
+zone name FC-VI_Zone_1_10 vsan 10
+  interface fc1/1 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/4 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/1 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/4 swwn 20:00:54:7f:ee:b8:24:c0
+
+zone name STOR_Zone_1_20_25A vsan 20
+  interface fc1/2 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/3 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/5 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/6 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/2 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/3 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/5 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/6 swwn 20:00:54:7f:ee:b8:24:c0
+
+zone name STOR_Zone_1_20_25B vsan 20
+  interface fc1/2 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/3 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/5 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/6 swwn 20:00:54:7f:ee:e3:86:50
+  interface fc1/2 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/3 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/5 swwn 20:00:54:7f:ee:b8:24:c0
+  interface fc1/6 swwn 20:00:54:7f:ee:b8:24:c0
+FC_switch_B_1#
+----
+.. スイッチの WWN を検索します。
++
+この例では、 2 つのスイッチの WWN は次のとおりです。
+
++
+*** FC_switch_A_1 ： 20 ： 00 ： 54 ： 7F ： ee ： B8 ： 24 ： c0
+*** FC_switch_B_1 ： 20 ： 00 ： 54 ： 7F ： ee ： C6 ： 80 ： 78
+
+
++
+[listing]
+----
+FC_switch_B_1# show wwn switch
+Switch WWN is 20:00:54:7f:ee:c6:80:78
+FC_switch_B_1#
+
+FC_switch_A_1# show wwn switch
+Switch WWN is 20:00:54:7f:ee:b8:24:c0
+FC_switch_A_1#
+----
+.. 2 つのスイッチのスイッチ WWN に属していないゾーンメンバーを削除します。
++
+この例では ' 出力の no member interface は ' ファブリック内のどちらのスイッチのスイッチ WWN にも関連付けられていない次のメンバーを削除する必要があることを示しています
+
++
+*** ゾーン名 FC-VI_Zone_1_10 VSAN 10
++
+**** インターフェイス fc1/1 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/2 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+
+
+*** ゾーン名 STOR_Zone_1_20_25A VSAN 20
++
+**** インターフェイス fc1/5 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/8 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/9 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/10 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/11 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+
+
+*** ゾーン名 STOR_Zone_1_20_25B VSAN 20
++
+**** インターフェイス fc1/8 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/9 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/10 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
+**** インターフェイス fc1/11 sWWN 20:00:54:7F:ee:E3-86:50 次の例は、これらのインターフェイスの削除を示しています。
+
+
+
+
+
+
++
+[listing]
+----
+
+ FC_switch_B_1# conf t
+ FC_switch_B_1(config)# zone name FC-VI_Zone_1_10 vsan 10
+ FC_switch_B_1(config-zone)# no member interface fc1/1 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/2 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25A vsan 20
+ FC_switch_B_1(config-zone)# no member interface fc1/5 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/8 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/9 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/10 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/11 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25B vsan 20
+ FC_switch_B_1(config-zone)# no member interface fc1/8 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/9 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/10 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# no member interface fc1/11 swwn 20:00:54:7f:ee:e3:86:50
+ FC_switch_B_1(config-zone)# save running-config startup-config
+ FC_switch_B_1(config-zone)# zoneset distribute full 10
+ FC_switch_B_1(config-zone)# zoneset distribute full 20
+ FC_switch_B_1(config-zone)# end
+ FC_switch_B_1# copy running-config startup-config
+----
++
+.. 交換用スイッチのポートをゾーンに追加します。
++
+交換用スイッチのケーブル接続は、障害が発生したスイッチとすべて同じにする必要があります。
+
++
+[listing]
+----
+
+ FC_switch_B_1# conf t
+ FC_switch_B_1(config)# zone name FC-VI_Zone_1_10 vsan 10
+ FC_switch_B_1(config-zone)# member interface fc1/1 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/2 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25A vsan 20
+ FC_switch_B_1(config-zone)# member interface fc1/5 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# zone name STOR_Zone_1_20_25B vsan 20
+ FC_switch_B_1(config-zone)# member interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# member interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+ FC_switch_B_1(config-zone)# save running-config startup-config
+ FC_switch_B_1(config-zone)# zoneset distribute full 10
+ FC_switch_B_1(config-zone)# zoneset distribute full 20
+ FC_switch_B_1(config-zone)# end
+ FC_switch_B_1# copy running-config startup-config
+----
+.. ゾーニングが正しく構成されていることを確認します +`*show zone *`
++
+次の出力例は、 3 つのゾーンを示しています。
+
++
+[listing]
+----
+
+ FC_switch_B_1# show zone
+   zone name FC-VI_Zone_1_10 vsan 10
+     interface fc1/1 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/2 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/1 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/2 swwn 20:00:54:7f:ee:b8:24:c0
+
+   zone name STOR_Zone_1_20_25A vsan 20
+     interface fc1/5 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/8 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/9 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/10 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/11 swwn 20:00:54:7f:ee:b8:24:c0
+
+   zone name STOR_Zone_1_20_25B vsan 20
+     interface fc1/8 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/9 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/10 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/11 swwn 20:00:54:7f:ee:c6:80:78
+     interface fc1/5 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/8 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/9 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/10 swwn 20:00:54:7f:ee:b8:24:c0
+     interface fc1/11 swwn 20:00:54:7f:ee:b8:24:c0
+ FC_switch_B_1#
+----
+.. ストレージとコントローラへの接続を有効にします。
++
+次の例は、ポートの用途を示しています。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# interface fc1/1
+FC_switch_A_1(config)# no shut
+FC_switch_A_1(config)# interface fc1/4
+FC_switch_A_1(config)# shut
+FC_switch_A_1(config)# interface fc1/2-3
+FC_switch_A_1(config)# shut
+FC_switch_A_1(config)# interface fc1/5-6
+FC_switch_A_1(config)# shut
+FC_switch_A_1(config)# interface fc1/7-8
+FC_switch_A_1(config)# shut
+FC_switch_A_1# copy running-config startup-config
+FC_switch_A_1#
+----
+
+
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
+.. MetroCluster 構成と運用モードが正常な状態であることを確認します。
++
+「 * MetroCluster show * 」と入力します
+
+.. MetroCluster チェックを実行します。
++
+「 * MetroCluster check run * 」のようになります
+
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
+.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+

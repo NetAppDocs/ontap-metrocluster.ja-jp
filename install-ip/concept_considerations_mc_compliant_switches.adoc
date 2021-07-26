@@ -1,0 +1,388 @@
+---
+permalink: install-ip/concept_considerations_mc_compliant_switches.html 
+sidebar: sidebar 
+keywords: metrocluster ip, metrocluster-compliant switches, metrocluster-compliant, requirements 
+summary: ONTAP 9.7 以降では、ネットアップの仕様に準拠していれば、ネットアップで検証されていないスイッチでも MetroCluster IP 構成でサポートされます。 
+---
+= MetroCluster 準拠スイッチの使用に関する考慮事項
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットアップが提供する MetroCluster IP スイッチは、ネットアップで検証済みです。ONTAP 9.7 以降では、ネットアップの仕様に準拠していれば、ネットアップで検証されていないスイッチでも MetroCluster IP 構成でサポートされます。
+
+
+
+== 一般的な要件
+
+これらの要件は、 Reference Configuration File （ RCF ；リファレンス構成ファイル）を使用せずに MetroCluster 準拠スイッチを設定する場合のものです。
+
+* スイッチレスクラスタインターコネクトに専用ポートを提供するプラットフォームのみがサポートされます。FAS2750 や AFF A220 などのプラットフォームは、 MetroCluster トラフィックと MetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているためサポートされません。
++
+MetroCluster 準拠スイッチへのローカルクラスタ接続はサポートされていません。
+
+* MetroCluster IP インターフェイスは、要件を満たすように設定できる任意のスイッチポートに接続できます。
+* FAS8200 および AFF A300 プラットフォームではスイッチポートの速度が 25Gbps 、その他のプラットフォームでは 40Gbps 以上（ 40Gbps または 100Gbps ）である必要があります。
+* ISL は 10Gbps 以上で、 MetroCluster 構成の負荷に応じて適切なサイズにする必要があります。
+* MetroCluster 構成は、 2 つのネットワークに接続する必要があります。両方の MetroCluster インターフェイスを同じネットワークまたはスイッチに接続することはできません。各 MetroCluster ノードは、 2 つのネットワークスイッチに接続する必要があります。
+* ネットワークは、次の要件を満たしている必要があります。
++
+** link:../install-ip/concept_considerations_isls.html#basic-metrocluster-isl-requirements["MetroCluster ISL の基本要件"]
+** link:../install-ip/concept_considerations_isls.html#isl-requirements-in-shared-layer-2-networks["共有レイヤ 2 ネットワークにおける ISL の要件"]
+** link:../install-ip/concept_considerations_layer_2.html#required-settings-on-intermediate-switches["中間スイッチに必要な設定"]
+
+
+* オープンネットワークを使用する MetroCluster IP 構成では、 ONTAP 9.6 以前へのリバートはサポートされません。
+* MetroCluster IP トラフィックに使用されるすべてのスイッチで、 MTU が 9216 に設定されている必要があります。
+
+
+
+
+== スイッチとケーブル接続の要件
+
+* スイッチで QoS / トラフィック分類がサポートされている必要があります。
+* スイッチで Explicit Congestion Notification （ ECN ；明示的輻輳通知）がサポートされている必要
+* パスで順序が維持されるように、スイッチで L4 ポート VLAN ロードバランシングポリシーがサポートされている必要があります。
+* スイッチで L2 Flow Control （ L2FC ； L2 フロー制御）がサポートされている必要があります。
+* ノードとスイッチの接続には、ネットアップから購入したケーブルを使用する必要があります。スイッチベンダーがサポートしているケーブルを使用する必要があります。
+
+
+
+
+== 制限
+
+ローカルクラスタ接続を必要とする設定または機能がスイッチに接続されていても、サポートされていません。たとえば、次の設定と手順はサポートされていません。
+
+* 8 ノード MetroCluster 構成
+* MetroCluster FC から MetroCluster IP 構成への移行
+* 4 ノード MetroCluster IP 設定の更新
+
+
+
+
+== MetroCluster 準拠スイッチのプラットフォーム固有のネットワーク速度
+
+次の表に、 MetroCluster 準拠スイッチのプラットフォーム固有のネットワーク速度を示します。
+
+
+NOTE: 値がない場合は、プラットフォームがサポートされていないことを示します。
+
+[cols="2*"]
+|===
+| プラットフォーム | ネットワーク速度（ Gbps ） 
+
+
+ a| 
+AFF A800
+ a| 
+40 または 100
+
+
+
+ a| 
+AFF A700
+ a| 
+40
+
+
+
+ a| 
+AFF A400
+ a| 
+100
+
+
+
+ a| 
+AFF A320
+ a| 
+100
+
+
+
+ a| 
+AFF A300
+ a| 
+25
+
+
+
+ a| 
+AFF A250
+ a| 
+-
+
+
+
+ a| 
+AFF A220
+ a| 
+-
+
+
+
+ a| 
+FAS9000
+ a| 
+40
+
+
+
+ a| 
+FAS8700 の場合
+ a| 
+100
+
+
+
+ a| 
+FAS8300
+ a| 
+100
+
+
+
+ a| 
+FAS8200
+ a| 
+25
+
+
+
+ a| 
+FAS2750
+ a| 
+-
+
+
+
+ a| 
+FAS500f
+ a| 
+-
+
+|===
+
+
+== 例で想定している状況です
+
+ここで紹介する例は、 Cisco NX31xx および NX32xx スイッチのものです。他のスイッチを使用する場合も参考になりますが、使用するスイッチによってコマンドが異なることがあります。例に示す機能がスイッチで使用できない場合、そのスイッチは最小要件を満たしておらず、 MetroCluster 設定の導入には使用できません。これは、 MetroCluster 構成を接続しているすべてのスイッチ、およびそれらのスイッチ間のパスにあるすべてのスイッチに当てはまります。
+
+* ISL ポートは 15 と 16 で、速度は 40Gbps です。
+* ネットワーク 1 の VLAN は 10 で、ネットワーク 2 の VLAN は 20 です。例は、 1 つのネットワークのみで表示される場合があります。
+* MetroCluster インターフェイスは各スイッチのポート 9 に接続され、速度は 100Gbps です。
+* 例の完全なコンテキストは、設定も表示もされていません。コマンドを実行するには、プロファイル、 VLAN 、インターフェイスなどの詳細な設定情報の入力が必要になる場合があります。
+
+
+
+
+== 一般的なスイッチ設定
+
+各ネットワークの VLAN を設定する必要があります。次に、ネットワーク 10 に VLAN を設定する例を示します。
+
+例
+
+[listing]
+----
+# vlan 10
+----
+順序が維持されるように、ロードバランシングポリシーを設定する必要があります。
+
+例
+
+[listing]
+----
+# port-channel load-balance src-dst ip-l4port-vlan
+----
+アクセスマップとクラスマップを設定して、 RDMA トラフィックと iSCSI トラフィックを適切なクラスにマッピングする必要があります。
+
+ポート 65200 を経由するすべての TCP トラフィックをストレージ（ iSCSI ）クラスにマッピングします。ポート 10006 を経由するすべての TCP トラフィックを RDMA クラスにマッピングします。
+
+例
+
+[listing]
+----
+
+ip access-list storage
+  10 permit tcp any eq 65200 any
+  20 permit tcp any any eq 65200
+ip access-list rdma
+  10 permit tcp any eq 10006 any
+  20 permit tcp any any eq 10006
+
+class-map type qos match-all storage
+  match access-group name storage
+class-map type qos match-all rdma
+  match access-group name rdma
+----
+入力ポリシーを設定する必要があります。入力ポリシーは、トラフィックを異なる COS グループに分類してマッピングします。この例では、 RDMA トラフィックを COS グループ 5 にマッピングし、 iSCSI トラフィックを COS グループ 4 にマッピングしています。
+
+例
+
+[listing]
+----
+
+policy-map type qos MetroClusterIP_Ingress
+class rdma
+  set dscp 40
+  set cos 5
+  set qos-group 5
+class storage
+  set dscp 32
+  set cos 4
+  set qos-group 4
+----
+スイッチに出力ポリシーを設定する必要があります。出力ポリシーは、トラフィックを出力キューにマッピングします。この例では、 RDMA トラフィックをキュー 5 にマッピングし、 iSCSI トラフィックをキュー 4 にマッピングしています。
+
+例
+
+[listing]
+----
+
+policy-map type queuing MetroClusterIP_Egress
+class type queuing c-out-8q-q7
+  priority level 1
+class type queuing c-out-8q-q6
+  priority level 2
+class type queuing c-out-8q-q5
+  priority level 3
+  random-detect threshold burst-optimized ecn
+class type queuing c-out-8q-q4
+  priority level 4
+  random-detect threshold burst-optimized ecn
+class type queuing c-out-8q-q3
+  priority level 5
+class type queuing c-out-8q-q2
+  priority level 6
+class type queuing c-out-8q-q1
+  priority level 7
+class type queuing c-out-8q-q-default
+  bandwidth remaining percent 100
+  random-detect threshold burst-optimized ecn
+----
+ISL に MetroCluster トラフィックがあるが、 MetroCluster インターフェイスに接続されていないスイッチを設定する必要があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。
+
+例
+
+[listing]
+----
+
+class-map type qos match-all rdma
+  match cos 5
+class-map type qos match-all storage
+  match cos 4
+----
+
+
+== ISL を設定します
+
+許可された VLAN を設定するときに、「トランク」モードポートを設定できます。
+
+許可する VLAN リストには、 1 ～ * set * 、 1 ～ * add * の 2 つのコマンドがあります。
+
+次の例に示すように、許可される VLAN を * 設定できます。
+
+例
+
+[listing]
+----
+switchport trunk allowed vlan 10
+----
+次の例に示すように、許可リストに VLAN を * 追加できます。
+
+例
+
+[listing]
+----
+switchport trunk allowed vlan add 10
+----
+この例では、 VLAN 10 にポートチャネル 10 を設定しています。
+
+例
+
+[listing]
+----
+
+interface port-channel10
+switchport mode trunk
+switchport trunk allowed vlan 10
+mtu 9216
+service-policy type queuing output MetroClusterIP_Egress
+----
+次の例に示すように、 ISL ポートをポートチャネルの一部として設定し、出力キューに割り当てる必要があります。
+
+例
+
+[listing]
+----
+
+interface eth1/15-16
+switchport mode trunk
+switchport trunk allowed vlan 10
+no lldp transmit
+no lldp receive
+mtu 9216
+channel-group 10 mode active
+service-policy type queuing output MetroClusterIP_Egress
+no shutdown
+----
+
+
+== ノードポートを設定します
+
+ノードポートをブレークアウトモードで設定する必要がある場合があります。この例では、ポート 25 と 26 をブレークアウトモードで 4 つの 25Gbps ポートとして設定しています。
+
+例
+
+[listing]
+----
+interface breakout module 1 port 25-26 map 25g-4x
+----
+MetroCluster インターフェイスポート速度の設定が必要になる場合があります。次の例は、速度を「 auto 」に設定する方法を示しています。
+
+例
+
+[listing]
+----
+speed auto
+----
+次の例は、速度を 40Gbps に固定します。
+
+例
+
+[listing]
+----
+speed 40000
+----
+インターフェイスの設定が必要になる場合があります。次の例では、インターフェイスの速度を「 auto 」に設定しています。
+
+VLAN 10 のポートはアクセスモードで、 MTU が 9216 に設定され、 MetroCluster 入力ポリシーが割り当てられています。
+
+例
+
+[listing]
+----
+
+interface eth1/9
+description MetroCluster-IP Node Port
+speed auto
+switchport access vlan 10
+spanning-tree port type edge
+spanning-tree bpduguard enable
+mtu 9216
+flowcontrol receive on
+flowcontrol send on
+service-policy type qos input MetroClusterIP_Ingress
+no shutdown
+----
+25Gbps ポートでは、次の例に示すように、 FEC 設定を「 off 」に設定する必要がある場合があります。
+
+例
+
+[listing]
+----
+fec off
+----
+
+NOTE: このコマンドは、インターフェイスの設定後に必ず * 実行してください。コマンドを実行するには、トランシーバモジュールの挿入が必要になる場合があります。

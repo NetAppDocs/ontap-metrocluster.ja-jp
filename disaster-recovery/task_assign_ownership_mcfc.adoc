@@ -1,0 +1,214 @@
+---
+permalink: disaster-recovery/task_assign_ownership_mcfc.html 
+sidebar: sidebar 
+keywords: assign, ownership, drives, replaced 
+summary: ディザスタサイトでハードウェアをリストアするときにドライブを交換した場合は、該当するドライブに所有権を割り当てる必要があります。 
+---
+= 交換したドライブの所有権を割り当てます
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ディザスタサイトでハードウェアをリストアするときにドライブを交換した場合、またはドライブの初期化や所有権の削除が必要になった場合は、該当するドライブに所有権を割り当てる必要があります。
+
+ディザスタサイトに、災害発生前に使用可能だったドライブと同数以上のドライブが必要です。
+
+ドライブシェルフとドライブの配置がの要件を満たしている必要があります link:../install-ip/concept_required_mcc_ip_components_and_naming_guidelines_mcc_ip.html["MetroCluster IP の必須のコンポーネントと命名規則"] のセクション 。
+
+以下の手順は、ディザスタサイトのクラスタで実行します。
+
+この手順には、ディザスタサイトでの全ドライブの再割り当ておよび新しいプレックスの作成が表示されます。新しいプレックスとは、サバイバーサイトのリモートプレックスとディザスタサイトのローカルプレックスです。
+
+ここでは、 2 ノードと 4 ノードの構成の例を示します。2 ノード構成の場合、各サイトの 2 つ目のノードに関する説明は無視してください。8 ノード構成の場合は、 2 つ目の DR グループの追加のノードを考慮する必要があります。この例で想定している状況は次のとおりです。
+
+* サイト A はディザスタサイト
++
+** node_A_1 は交換済み
+** Node_a_2 は交換済み
++
+4 ノード MetroCluster 構成にのみ存在します。
+
+
+
+* サイト B はサバイバーサイトです。
++
+** node_B_1 は健全
+** node_B_2 は正常
++
+4 ノード MetroCluster 構成にのみ存在します。
+
+
+
+
+
+各コントローラモジュールの元々のシステム ID は次のとおりです。
+
+|===
+| MetroCluster 構成のノード数 | ノード | 元のシステム ID 
+
+
+ a| 
+4.
+ a| 
+node_A_1
+ a| 
+4068741258
+
+
+
+ a| 
+Node_a_2
+ a| 
+4068741260
+ a| 
+node_B_1
+
+
+
+ a| 
+4068741254
+ a| 
+node_B_2
+ a| 
+4068741256
+
+
+
+ a| 
+2 つ
+ a| 
+node_A_1
+ a| 
+4068741258
+
+|===
+ドライブを割り当てる際には、次の点に注意してください。
+
+* old-count-of-disks には、災害前に各ノードに割り当てられていたディスク数と同じ数、またはそれ以上の数を指定する必要があります。
++
+元のディスク数より少ない数を指定するか、または少ない数のディスク数しかない場合、スペース不足により修復処理を完了できない場合があります。
+
+* 新たに作成するプレックスは、サバイバーサイト（ node_B_x の pool1 ）に属するリモートプレックスとディザスタサイト（ node_B_x の pool0 ）に属するローカルプレックスです。
+* 必要なドライブの総数にルートアグリゲートディスクを含めないでください。
++
+サバイバーサイトの pool1 に n 本のディスクを割り当てる場合、ルートアグリゲートが 3 本のディスクを使用するという想定では、ディザスタサイトに n -3 本のディスクを割り当てる必要があります。
+
+* 同じスタック上の他のすべてのディスクが割り当てられているプールとは異なるディスクをプールに割り当てることはできません。
+* サバイバーサイトに属するディスクはプール 1 に割り当てられ、ディザスタサイトに属するディスクはプール 0 に割り当てられます。
+
+
+.手順
+. MetroCluster の構成が 4 ノード構成と 2 ノード構成のどちらであるかに基づいて、所有権が未設定の新しいドライブを割り当てます。
++
+** 4 ノード MetroCluster 構成の場合は、交換用ノードで次の一連のコマンドを使用して、新しい未割り当てのディスクを適切なディスクプールに割り当てます。
++
+... 各ノードの交換したディスクをそれぞれのディスクプールに体系的に割り当てます。
++
+「ディスク割り当て -s sysid -n old-count-of-disks -p pool 」
+
++
+サバイバーサイト問題から、各ノードの disk assign コマンドを実行します。
+
++
+[listing]
+----
+cluster_B::> disk assign -s node_B_1-sysid -n old-count-of-disks -p 1 **\(remote pool of surviving site\)**
+cluster_B::> disk assign -s node_B_2-sysid -n old-count-of-disks -p 1 **\(remote pool of surviving site\)**
+cluster_B::> disk assign -s node_A_1-old-sysid -n old-count-of-disks -p 0 **\(local pool of disaster site\)**
+cluster_B::> disk assign -s node_A_2-old-sysid -n old-count-of-disks -p 0 **\(local pool of disaster site\)**
+----
++
+次の例は、システム ID を指定したコマンドを示しています。
+
++
+[listing]
+----
+cluster_B::> disk assign -s 4068741254 -n 21 -p 1
+cluster_B::> disk assign -s 4068741256 -n 21 -p 1
+cluster_B::> disk assign -s 4068741258 -n 21 -p 0
+cluster_B::> disk assign -s 4068741260 -n 21 -p 0
+----
+... ディスクの所有権を確認します。
++
+「 storage disk show -fields owner 、 pool 」という 2 つのフィールドがあります
+
++
+[listing]
+----
+storage disk show -fields owner, pool
+cluster_A::> storage disk show -fields owner, pool
+disk     owner          pool
+-------- ------------- -----
+0c.00.1  node_A_1      Pool0
+0c.00.2  node_A_1      Pool0
+.
+.
+.
+0c.00.8  node_A_1      Pool1
+0c.00.9  node_A_1      Pool1
+.
+.
+.
+0c.00.15 node_A_2      Pool0
+0c.00.16 node_A_2      Pool0
+.
+.
+.
+0c.00.22 node_A_2      Pool1
+0c.00.23 node_A_2      Pool1
+.
+.
+.
+----
+
+
+** 2 ノード MetroCluster 構成の場合は、交換用ノードで次の一連のコマンドを使用して、新しい未割り当てのディスクを適切なディスクプールに割り当てます。
++
+... ローカルシェルフ ID を表示します。
++
+run local storage show shelf
+
+... 正常なノードの交換したディスクをプール 1 に割り当てます。
++
+「 run local disk assign -shelf shelf-id -n old-count-of-disks -p 1 -s node_B_1-sysid -f 」を実行します
+
+... 交換用ノードの交換したディスクをプール 0 に割り当てます。
++
+「 run local disk assign -shelf shelf-id -n old-count-of-disks -p 0 -s node_A_1-sysid -f 」を実行します
+
+
+
+
+
+. サバイバーサイトで、ディスクの自動割り当てを再度有効にします。
++
+「 storage disk option modify -autoassign on * 」のように表示されます
+
++
+[listing]
+----
+cluster_B::> storage disk option modify -autoassign on *
+2 entries were modified.
+----
+. サバイバーサイトで、ディスクの自動割り当てが有効になっていることを確認します。
++
+「 storage disk option show 」をクリックします
+
++
+[listing]
+----
+ cluster_B::> storage disk option show
+ Node     BKg. FW. Upd.  Auto Copy   Auto Assign  Auto Assign Policy
+--------  -------------  -----------  -----------  ------------------
+node_B_1       on            on          on             default
+node_B_2       on            on          on             default
+2 entries were displayed.
+
+ cluster_B::>
+----
+
+
+xref:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html[ディスクおよびアグリゲートの管理]
+
+link:../manage/concept_understanding_mcc_data_protection_and_disaster_recovery.html#how-metrocluster-configurations-use-syncmirror-to-provide-data-redundancy["MetroCluster 構成で SyncMirror を使用してデータの冗長性を実現する方法"]

@@ -1,0 +1,154 @@
+---
+permalink: upgrade/task_boot_the_new_controllers_and_join_them_to_the_cluster.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, boot, new, controller, join, cluster 
+summary: 新しいコントローラをクラスタに追加するには、新しい各コントローラモジュールをブートし、 ONTAP クラスタセットアップウィザードを使用して、参加するクラスタを特定する必要があります。 
+---
+= 新しいコントローラのブートおよびクラスタへの追加
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいコントローラをクラスタに追加するには、新しい各コントローラモジュールをブートし、 ONTAP クラスタセットアップウィザードを使用して、参加するクラスタを特定する必要があります。
+
+MetroCluster 構成のケーブル接続を完了しておく必要があります。
+
+このタスクを実行する前に、サービスプロセッサの設定を済ませておく必要があります。
+
+このタスクは、 MetroCluster 構成の両方のクラスタにある新しい各コントローラで実行する必要があります。
+
+.手順
+. 各ノードに電源が入っていない場合は、電源を投入してブートします。
++
+システムがメンテナンス・モードの場合問題は '*halt *' コマンドを使用してメンテナンス・モードを終了し ' 次に LOADER プロンプトから次のコマンドを問題します
+
++
+「 * boot_ontap 」と入力します
+
++
+コントローラモジュールがノードセットアップウィザードを開始します。
+
++
+次のような出力が表示されます。
+
++
+[listing]
+----
+Welcome to node setup
+
+You can enter the following commands at any time:
+  "help" or "?" - if you want to have a question clarified,
+  "back" - if you want to change previously answered questions, and
+  "exit" or "quit" - if you want to quit the setup wizard.
+				Any changes you made before quitting will be saved.
+
+To accept a default or omit a question, do not enter a value.
+.
+.
+.
+----
+. システムの指示に従って AutoSupport ツールを有効にします。
+. プロンプトに従ってノード管理インターフェイスを設定します。
++
+次のようなプロンプトが表示されます。
+
++
+[listing]
+----
+Enter the node management interface port: [e0M]:
+Enter the node management interface IP address: 10.228.160.229
+Enter the node management interface netmask: 225.225.252.0
+Enter the node management interface default gateway: 10.228.160.1
+----
+. ノードがハイアベイラビリティモードで設定されていることを確認します。
++
+*storage failover show -fields mode *
+
++
+そうでない場合は、各ノードで次のコマンドを問題処理してからノードをリブートする必要があります。
+
++
+*storage failover modify -mode ha -node localhost *
+
++
+このコマンドを実行するとハイアベイラビリティモードが設定されますが、ストレージフェイルオーバーは有効になりません。ストレージ・フェイルオーバーは ' 構成プロセスの後半で MetroCluster configure コマンドを問題すると ' 自動的に有効になります
+
+. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。
++
+「 * network port show * 」と表示されます
+
++
+次の例は、 cluster_A の 2 台のコントローラについての出力です2 ノード MetroCluster 構成の場合、出力に表示されるノードは 1 つだけです。
+
++
+[listing]
+----
+cluster_A::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+node_A_1
+       **e0a       Cluster      Cluster          up       1500  auto/1000
+       e0b       Cluster      Cluster          up       1500  auto/1000**
+       e0c       Default      Default          up       1500  auto/1000
+       e0d       Default      Default          up       1500  auto/1000
+       e0e       Default      Default          up       1500  auto/1000
+       e0f       Default      Default          up       1500  auto/1000
+       e0g       Default      Default          up       1500  auto/1000
+node_A_2
+       **e0a       Cluster      Cluster          up       1500  auto/1000
+       e0b       Cluster      Cluster          up       1500  auto/1000**
+       e0c       Default      Default          up       1500  auto/1000
+       e0d       Default      Default          up       1500  auto/1000
+       e0e       Default      Default          up       1500  auto/1000
+       e0f       Default      Default          up       1500  auto/1000
+       e0g       Default      Default          up       1500  auto/1000
+14 entries were displayed.
+----
+. CLI を使用してクラスタをセットアップするため、ノードのセットアップウィザードを終了します。
++
+「 * exit *
+
+. 「 * admin * 」ユーザ名を使用して admin アカウントにログインします。
+. クラスタセットアップウィザードを起動し ' 既存のクラスタに参加します *cluster setup*
++
+[listing]
+----
+::> cluster setup
+
+Welcome to the cluster setup wizard.
+
+You can enter the following commands at any time:
+  "help" or "?" - if you want to have a question clarified,
+  "back" - if you want to change previously answered questions, and
+  "exit" or "quit" - if you want to quit the cluster setup wizard.
+     Any changes you made before quitting will be saved.
+
+You can return to cluster setup at any time by typing "cluster setup".
+To accept a default or omit a question, do not enter a value.
+
+
+Do you want to create a new cluster or join an existing cluster? {create, join}:`join`
+----
+. クラスタセットアップ * ウィザードが完了したら、次のコマンドを入力して、クラスタがアクティブで、ノードが正常であることを確認します。
++
+*cluster show *
+
++
+次の例は、第 1 ノードが含まれるクラスタ（ cluster1-01 ）が正常に機能しており、クラスタへの参加条件を満たしていることを示しています。
+
++
+[listing]
+----
+cluster_A::> cluster show
+Node               Health  Eligibility
+------------------ ------- ------------
+node_A_1           true    true
+node_A_2           true    true
+node_A_3           true    true
+----
++
+管理 SVM またはノード SVM の設定を変更する必要がある場合は、「 * cluster setup command * 」を使用して「 * Cluster Setup * 」ウィザードにアクセスできます。
+
+

@@ -1,0 +1,119 @@
+---
+permalink: tiebreaker/reference_firewall_requirements_for_mcc_tiebreaker.html 
+sidebar: sidebar 
+keywords: metrocluster, tiebreaker, port, communicate, specific, service, firewall, requirement 
+summary: MetroCluster Tiebreaker は、複数のポートを使用して特定のサービスと通信します。 
+---
+= MetroCluster Tiebreaker のファイアウォール要件
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster Tiebreaker は、複数のポートを使用して特定のサービスと通信します。
+
+次の表に、ファイアウォールで許可する必要があるポートを示します。
+
+[cols="4*"]
+|===
+| ポート / サービス | ソース | 宛先 | 目的 
+
+
+ a| 
+443 / TCP
+ a| 
+Tiebreaker
+ a| 
+インターネット
+ a| 
+ネットアップへの AutoSupport メッセージの送信
+
+
+
+ a| 
+22 / TCP
+ a| 
+管理ホスト
+ a| 
+Tiebreaker
+ a| 
+Tiebreaker の管理
+
+
+
+ a| 
+443 / TCP
+ a| 
+Tiebreaker
+ a| 
+MetroCluster 管理 LIF
+ a| 
+HTTP （ SSL ）を使用した通信の保護
+
+
+
+ a| 
+22 / TCP
+ a| 
+Tiebreaker
+ a| 
+MetroCluster 管理 LIF
+ a| 
+SSH を使用した通信の保護
+
+
+
+ a| 
+443 / TCP
+ a| 
+Tiebreaker
+ a| 
+MetroCluster 管理 LIF
+ a| 
+HTTP （ SSL ）を使用した通信の保護
+
+
+
+ a| 
+22 / TCP
+ a| 
+Tiebreaker
+ a| 
+MetroCluster 管理 LIF
+ a| 
+SSH を使用した通信の保護
+
+
+
+ a| 
+162/UDP
+ a| 
+Tiebreaker
+ a| 
+SNMP トラップホスト
+ a| 
+アラート通知 SNMP トラップの送信に使用されます
+
+
+
+ a| 
+ICMP （ ping ）
+ a| 
+Tiebreaker
+ a| 
+MetroCluster 管理 LIF
+ a| 
+クラスタ IP に到達できるかどうかを確認します
+
+
+
+ a| 
+ICMP （ ping ）
+ a| 
+Tiebreaker
+ a| 
+MetroCluster 管理 LIF
+ a| 
+ノード IP に到達できるかどうかを確認します
+
+|===

@@ -1,0 +1,48 @@
+---
+permalink: install-fc/concept_considerations_8510.html 
+sidebar: sidebar 
+keywords: preparing, prepare, metrocluster, mcc, installation, install, differences, configurations, between, considerations, all, san, array, asa, cluster, peering, prerequisites, dedicated, ports, sharing, data, ports, native, disk, shelves, array, luns, transitions, 7-mode, isls, tdm/wdm, fabric-attached, iod, ood, encryption, devices, unmirrored, aggregates, maintenance, requiring, power, shutdown, firewall, hardware, racking, cabling, setup, checklist, all san array, asa 
+summary: MetroCluster の設置を準備するにあたっては、 MetroCluster のハードウェアアーキテクチャおよび必要なコンポーネントについて理解しておく必要があります。 
+---
+= Brocade DCX 8510-8 スイッチを使用するための要件
+
+
+* MetroCluster 構成で使用する DCX 8510-8 スイッチは、ネットアップから購入する必要があります。
+* 拡張性を確保するために、 4x48 ポートモジュールのうち 2 つの MetroCluster しかケーブル接続しない場合は、 MetroCluster 構成間にポートチャンクを 1 つ残しておくことを推奨します。これにより、ケーブルを再接続することなく MetroCluster 構成でポートの使用を拡張できます。
+* MetroCluster 構成の各 Brocade DCX 8510-8 スイッチを ISL ポートとストレージ接続用に正しく設定する必要があります。使用するポートについては、次のセクションを参照してください。 xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]。
+* ISL は共有できず、 MetroCluster ごとにファブリックごとに 2 つの ISL が必要です。
+* バックエンド MetroCluster 接続に使用する DCX 8510-8 スイッチは、他の接続には使用しないでください。
++
+MetroCluster 以外のデバイスはこれらのスイッチには接続せず、 MetroCluster 以外のトラフィックが DCX 8510-8 スイッチを経由しないようにしてください。
+
+* 1 枚のラインカードを、 ONTAP MetroClusters * または ONTAP 7-Mode MetroCluster のいずれかに接続できます。
+
+
+
+NOTE: このスイッチには RCF ファイルはありません。
+
+Brocade DCX 8510-8 スイッチを 2 つ使用する場合の要件は次のとおりです。
+
+* 各サイトに DCX 8510-8 スイッチが 1 つ必要です。
+* 16Gb SFP を搭載した 48 ポートブレードをスイッチごとに少なくとも 2 つ使用する必要があります。
+
+
+MetroCluster 構成の各サイトで DCX 8510-8 スイッチを 4 つ使用する場合の要件は次のとおりです。
+
+* 各サイトに DCX 8510-8 スイッチが 2 つ必要です。
+* 48 ポートブレードを DCX 8510-8 スイッチごとに少なくとも 1 つ使用する必要があります。
+* 各ブレードは、仮想ファブリックを使用して仮想スイッチとして設定されます。
+
+
+次のネットアップ製品は、 Brocade DCX 8510-8 スイッチではサポートされません。
+
+* Config Advisor
+* Fabric Health Monitor の略
+* MyAutoSupport （システムリスクが誤検出される可能性がある）
+* Active IQ Unified Manager （旧 OnCommand Unified Manager ）
+
+
+
+NOTE: この構成に必要なすべてのコンポーネントが Interoperability Matrix Tool に含まれていることを確認してください。サポートされている構成については、 Interoperability Matrix Tool の注意事項のセクションを参照してください。
+
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]

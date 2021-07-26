@@ -1,0 +1,109 @@
+---
+permalink: maintain/task_rename_the_cluster_for_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, rename, cluster, configuration 
+summary: MetroCluster 構成のクラスタの名前を変更する場合は、名前を変更してから、ローカルクラスタとリモートクラスタの両方で変更が正しく反映されたことを確認します。 
+---
+= MetroCluster 構成のクラスタの名前変更
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成のクラスタの名前を変更する場合は、名前を変更してから、ローカルクラスタとリモートクラスタの両方で変更が正しく反映されたことを確認します。
+
+.手順
+. を使用してクラスタ名を表示する
++
+'*MetroCluster node show*
+
++
+コマンドを実行します
+
++
+[listing]
+----
+cluster_1::*> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_1
+              node_A_1           configured     enabled   normal
+              node_A_2           configured     enabled   normal
+      cluster_2
+              node_B_1           configured     enabled   normal
+              node_B_2           configured     enabled   normal
+4 entries were displayed.
+----
+. クラスタの名前を変更します。
++
+'*cluster identity modify -name_new_name_*
+
++
+次の例では 'cluster_1' クラスタの名前は 'cluster_a ' に変更されています
+
++
+[listing]
+----
+cluster_1::*> cluster identity modify -name cluster_A
+----
+. 名前を変更したクラスタが正常に稼働していることをローカルクラスタで確認します。
++
+'*MetroCluster node show*
+
++
+次の例では ' 新しく名前が変更された 'cluster_a が正常に稼働しています
+
++
+[listing]
+----
+cluster_A::*> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node_A_1           configured     enabled   normal
+              node_A_2           configured     enabled   normal
+      cluster_2
+              node_B_1           configured     enabled   normal
+              node_B_2           configured     enabled   normal
+4 entries were displayed.
+----
+. リモートクラスタの名前を変更します。
++
+'*cluster peer modify -local-name -name_cluster_2_-new-name_cluster_B_*
+
++
+次の例では 'cluster_2' は 'cluster_B' という名前に変更されています
+
++
+[listing]
+----
+cluster_2::> cluster peer modify-local-name -name cluster_2 -new-name
+cluster_B
+----
+. ローカルクラスタの名前が変更されて正常に実行されていることをリモートクラスタで確認します。
++
+「 _ MetroCluster node show_` 」
+
++
+次の例では ' 新しく名前を変更した 'cluster_B' は正常に動作しています
+
++
+[listing]
+----
+
+cluster_B::*> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_B
+              node_B_1           configured     enabled   normal
+              node_B_2           configured     enabled   normal
+      cluster_A
+              node_A_1           configured     enabled   normal
+              node_A_2           configured     enabled   normal
+4 entries were displayed.
+----
+. 名前を変更するクラスタごとに、上記の手順を繰り返します。
+

@@ -1,0 +1,64 @@
+---
+permalink: disaster-recovery/task_verify_port_mcfc.html 
+sidebar: sidebar 
+keywords: verify, port, environmental, metrocluster, configuration 
+summary: MetroCluster 構成に備えて、ノードの環境変数を設定し、電源をオフにする必要があります。 
+---
+= ポート設定の確認（ MetroCluster FC 構成のみ）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成に備えて、ノードの環境変数を設定し、電源をオフにする必要があります。
+
+この手順は、交換用コントローラモジュールを使用してメンテナンスモードで実行します。
+
+ポートの設定を確認する手順は、 FC ポートまたは CNA ポートがイニシエータモードで使用されているシステムでのみ必要です。
+
+.手順
+. メンテナンスモードで次のコマンドを入力して、 FC ポートの設定をリストアします。
++
+ucadmin modify -m fc -t initiatoradapter_name `
+
++
+イニシエータ設定でポートペアのうちどちらか 1 つだけを使用する場合は、アダプタ名には正確な値を入力してください。
+
+. 構成に応じて、次のいずれかの操作を実行します。
++
+[cols="35,65"]
+|===
+| FC ポート設定 | 作業 
+
+
+ a| 
+両方のポートで同じです
+ a| 
+ポートペアの 1 つのポートを変更すると、もう 1 つのポートも変更されるため、システムからプロンプトが表示されたら回答は「 y 」を表示します。
+
+
+
+ a| 
+違う
+ a| 
+.. システムからプロンプトが表示されたら、回答は「 n 」を表示します。
+.. 次のコマンドを入力して、 FC ポートの設定をリストアします。
+
+
+ucadmin modify -m fc -t initiator | targetadapter_name
+
+|===
+. 次のコマンドを入力して保守モードを終了します :halt
++
+コマンドを問題したら、システムが LOADER プロンプトで停止するまで待ちます。
+
+. ノードをブートしてメンテナンスモードに戻り、設定の変更が反映されるようにします。
++
+「 boot_ontap maint 」を使用してください
+
+. 次のコマンドを入力して、変数の値を確認します。
++
+ucadmin show
+
+. メンテナンス・モードを終了し ' LOADER プロンプトを表示します
+

@@ -1,0 +1,105 @@
+---
+permalink: transition/task_complete_transition.html 
+sidebar: sidebar 
+keywords: Generating and applying RCFs to the new IP switches, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+summary: 移行に向けた構成を準備するには、既存の MetroCluster 構成に新しいノードを追加してから、新しいノードにデータを移動します。 
+---
+= 移行を完了します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移行を完了するには、新しい MetroCluster IP 構成の処理を検証する必要があります。
+
+. MetroCluster の IP 設定を確認します。
++
+この手順は各クラスタで実行する必要があります。
+
++
+次の例は、 cluster_A の出力を示しています
+
++
+....
+cluster_A::> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node_A_1-IP          true    true          true
+node_A_2-IP          true    true          false
+2 entries were displayed.
+
+cluster_A::>
+....
++
+次の例は、 cluster_B についての出力を示しています
+
++
+....
+cluster_B::> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node_B_1-IP          true    true          true
+node_B_2-IP          true    true          false
+2 entries were displayed.
+
+cluster_B::>
+....
+. クラスタ HA とストレージフェイルオーバーを有効にします。
++
+この手順は各クラスタで実行する必要があります。
+
+. クラスタ HA 機能が有効になっていることを確認する。
++
+....
+cluster_A::> cluster ha show
+High Availability Configured: true
+
+cluster_A::>
+
+
+cluster_A::> storage  failover show
+                              Takeover
+Node           Partner        Possible State Description
+-------------- -------------- -------- -------------------------------------
+node_A_1-IP    node_A_2-IP    true     Connected to node_A_2-IP
+node_A_2-IP    node_A_1-IP    true     Connected to node_A_1-IP
+2 entries were displayed.
+
+cluster_A::>
+....
+. MetroCluster 移行モードを無効にします。
++
+.. advanced 権限レベルに切り替えます。「 set -privilege advanced 」
+.. 移行モードを無効にします : 「クラスタ移行を無効にする
+.. admin 権限レベルに戻ります。「 set -privilege admin 」
+
+
++
+....
+cluster_A::*> metrocluster transition disable
+
+cluster_A::*>
+....
+. 移行が無効になっていることを確認します
++
+これらの手順を両方のクラスタで実行する必要があります。
+
++
+....
+cluster_A::> metrocluster transition show-mode
+Transition Mode
+--------------------------
+not-enabled
+
+cluster_A::>
+....
++
+....
+cluster_B::> metrocluster transition show-mode
+Transition Mode
+--------------------------
+not-enabled
+
+cluster_B::>
+....
+

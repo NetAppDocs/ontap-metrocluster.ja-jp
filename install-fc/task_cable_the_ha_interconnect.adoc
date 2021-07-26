@@ -1,0 +1,30 @@
+---
+permalink: install-fc/task_cable_the_ha_interconnect.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, cable, ha, interconnect 
+summary: 8 ノード / 4 ノードの MetroCluster 構成で、 HA ペアのストレージコントローラが別々のシャーシにある場合は、コントローラ間の HA インターコネクトをケーブル接続する必要があります。 
+---
+= 必要に応じて、 HA インターコネクトをケーブル接続します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+8 ノード / 4 ノードの MetroCluster 構成で、 HA ペアのストレージコントローラが別々のシャーシにある場合は、コントローラ間の HA インターコネクトをケーブル接続する必要があります。
+
+* このタスクは、 2 ノード MetroCluster 構成には適用されません。
+* このタスクは両方の MetroCluster サイトで実行する必要があります。
+* HA インターコネクトをケーブル接続する必要があるのは、 HA ペアのストレージコントローラが別々のシャーシにある場合のみです。
++
+ストレージコントローラのモデルによっては、 1 台のシャーシに 2 台のコントローラを設置でき、その場合は内部の HA インターコネクトが使用されます。
+
+
+
+.手順
+. ストレージコントローラの HA パートナーが別のシャーシにある場合は、 HA インターコネクトをケーブル接続します。
++
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+. MetroCluster サイトに HA ペアが 2 つある場合は、 2 つ目の HA ペアについて同じ手順を繰り返します。
+. MetroCluster パートナーサイトでこのタスクを繰り返します。
+

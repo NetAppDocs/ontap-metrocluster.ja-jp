@@ -1,0 +1,221 @@
+---
+permalink: transition/task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html 
+sidebar: sidebar 
+keywords: information, exist, metrocluster, fc, node, autosupport, message, announcing, announce, maintenance, transition, node, gather, controller, module, send, custom, message, prior, shut, down, removing, remove 
+summary: 既存の MetroCluster FC ノードから情報を収集し、メンテナンスの開始を通知する AutoSupport メッセージを送信し、ノードを移行する必要があります。 
+---
+= MetroCluster FC ノードを移行します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存の MetroCluster FC ノードから情報を収集し、メンテナンスの開始を通知する AutoSupport メッセージを送信し、ノードを移行する必要があります。
+
+
+
+== 移行前に既存のコントローラモジュールから情報を収集
+
+[role="lead"]
+移行の前に、各ノードの情報を収集する必要があります。
+
+このタスクは既存のノードで実行します。
+
+* node_A_1 - FC
+* node_B_1 - FC
++
+.. 次の表に示すコマンドの出力を収集します。
+
+
+
+
+|===
+| カテゴリ | コマンド | 注： 
+
+
+| 使用許諾 | system license show コマンドを実行します |  
+
+
+| 各シェルフおよびフラッシュストレージのディスクシェルフとディスク数、およびメモリと NVRAM とネットワークカード | system node run -node node_name sysconfig |  
+
+
+| クラスタネットワーク LIF とノード管理 LIF | system node run -node node_name sysconfig network interface show -role 「 cluster 、 node-mgmt 、 data 」 |  
+
+
+| SVM 情報 | vserver show のコマンドです |  
+
+
+| プロトコル情報 | nfs show iscsi show cifs show のように表示されます |  
+
+
+| 物理ポート | network port show -node node_name -type 物理ネットワークポート show |  
+
+
+| フェイルオーバーグループ | network interface failover-groups show -vserver vserver_name | clusterwide 以外のフェイルオーバーグループの名前とポートを記録します。 
+
+
+| VLAN の設定 | network port vlan show -node node_name | 各ネットワークポートと VLAN ID のペアを記録します。 
+
+
+| インターフェイスグループの設定 | ネットワークポート ifgrp show -node node_name -instance | インターフェイスグループの名前と割り当てられているポートを記録します。 
+
+
+| ブロードキャストドメイン | network port broadcast-domain show |  
+
+
+| 表示されます | network ipspace show のコマンド |  
+
+
+| ボリューム情報 | volume show フィールドと volume show フィールドの暗号化 |  
+
+
+| アグリゲート情報 | storage aggregate show および storage aggr encryption show と storage aggregate object-store show の 2 つのコマンドを実行します |  
+
+
+| ディスク所有権情報 | storage aggregate show および storage aggr encryption show と storage aggregate object-store show の 2 つのコマンドを実行します |  
+
+
+| 暗号化 | storage failover mailbox-disk show および security key-manager backup show の 2 つのコマンドがあります | key-manager を有効にするときに使用したパスフレーズはそのままにしておきます。外部キー管理ツールの場合は、クライアントとサーバの認証情報が必要です。 
+
+
+| 暗号化 | security key-manager show のコマンド |  
+
+
+| 暗号化 | security key-manager external show のコマンド |  
+
+
+| 暗号化 | システムシェルローカルの kenv kmip.init.ipaddr ip-address |  
+
+
+| 暗号化 | システムシェルローカルの kenv kmip.init.netmask ネットマスク |  
+
+
+| 暗号化 | システムシェルローカルの kenv kmip.init.gateway ゲートウェイ |  
+
+
+| 暗号化 | システムシェルのローカル kenv kmip.init.interface インターフェイス |  
+|===
+
+
+== カスタム AutoSupport メッセージをメンテナンス前に送信する
+
+[role="lead"]
+メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行これにより、システム停止が発生したとみなしてユーザがケースをオープンすることを防止できます。
+
+このタスクは MetroCluster サイトごとに実行する必要があります。
+
+. サポートケースが自動で生成されないようにするには、メンテナンスが進行中であることを示す AutoSupport メッセージを送信します。
++
+.. 問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」
++
+maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間の終了を通知する AutoSupport メッセージ「 'System node AutoSupport invoke -node * -type all -message MAINT=end` 」を起動できます
+
+.. パートナークラスタに対してこのコマンドを繰り返します。
+
+
+
+
+
+
+== MetroCluster FC ノードの移行、シャットダウン、削除
+
+[role="lead"]
+MetroCluster FC ノードに対してコマンドを実行するだけでなく、このタスクには、各サイトでのコントローラモジュールの物理的なケーブル接続の解除と削除が含まれます。
+
+このタスクは、古いノードごとに実行する必要があります。
+
+* node_A_1 - FC
+* node_B_1 - FC
++
+.. すべてのクライアントトラフィックを停止します。
+.. いずれかの MetroCluster FC ノード（例： node_A_1 ）で、移行を有効にします。
++
+... advanced 権限レベル「 set -priv advanced 」を設定します
+... イネーブル移行 : MetroCluster transition enable-transition-mode disruptive
+... admin モードに戻ります。 'set-priv admin'
+
+
+.. ルートアグリゲートのリモートプレックスを削除して、ルートアグリゲートのミラーを解除します。
++
+... ルートアグリゲートを特定します。「 storage aggregate show -root true 」
+... プール 1 のアグリゲート「 storage aggregate plex show -pool 1 」を表示します
+... ルートアグリゲートのローカルプレックスを削除します。 aggr plex delete aggr-name -plex plex-name
+... ルートアグリゲートのリモートプレックスをオフラインにします。「 aggr plex offline root-aggregate -plex remote-plex-for -root-aggregate
++
+例：
+
++
+[listing]
+----
+ # aggr plex offline aggr0_node_A_1-FC_01 -plex plex4
+----
+
+
+.. 各コントローラで次のコマンドを使用して処理を進める前に、メールボックス数、ディスクの自動割り当て、および移行モードを確認します。
++
+... advanced 権限レベル「 set -priv advanced 」を設定します
+... 各コントローラモジュールに表示されるメールボックスドライブが「 storage failover mailbox-disk show 」の 3 つだけであることを確認します
+... admin モードに戻ります。 'set-priv admin'
+... 移行モードが停止を伴うことを確認します。 MetroCluster transition show
+
+
+.. 破損ディスクがないかどうかを確認します
+.. 破損ディスクを取り外すか交換します。
+.. node_A_1 の FC と node_B_1 の FC に対するコマンド「 storage aggregate show 」を使用して、アグリゲートが正常であることを確認します
++
+storage aggregate show コマンドは、ルートアグリゲートがミラーされていないことを示します。
+
+.. VLAN またはインターフェイスグループがないか確認します。「 network port ifgrp show `network port vlan show` 」
++
+何も表示されない場合は、次の 2 つの手順をスキップします。
+
+.. VLAN または ifgrp を使用して LIF のリストを表示します。「 network interface show -fields home-port 、 Curr -port 」 network port show -type if-group | vlan
+.. VLAN とインターフェイスグループを削除します。
++
+この手順は、サフィックスが -mc の SVM を含むすべての SVM のすべての LIF で実行する必要があります。
+
++
+... VLAN またはインターフェイスグループを使用している LIF を使用可能なポートに移動します。「 network interface modify -vserver vserver-name -lif lif_name -home-port port
+... ホームポートにない LIF を表示します。「 network interface show -is-home false 」
+... すべての LIF をそれぞれのホームポートにリバートします。「 network interface revert -vserver vserver_name -lif lif_name
+... すべての LIF がそれぞれのホームポートにあることを確認します。「 network interface show -is-home false 」
++
+出力に LIF が表示されません。
+
+... ブロードキャストドメインから VLAN ポートと ifgrp ポートを削除します。：「 network port broadcast-domain remove-ports -ipspace ipspace-broadcast-domain broadcast-domain-name-ports nodename ： portname 、 nodename ： portname 、 .
+... すべての VLAN ポートと ifgrp ポートがブロードキャストドメインに割り当てられていないことを確認します。「 network port show -type if-group | vlan
+... すべての VLAN を削除します。「 network port vlan delete -node nodename -vlan-name vlan-name 」
+... インターフェイスグループを削除します。「 network port ifgrp delete -node nodename -ifgrp ifgrp_name 」
+
+
+.. MetroCluster の IP インターフェイスポートとの競合を解決するために、必要に応じて LIF をすべて移動します。
++
+特定された LIF は、の手順 1 に移動する必要があります xref:concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.adoc[MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング]。
+
++
+... 目的のポートでホストされている LIF を別のポートに移動します。「 network interface modify -lif lifname -vserver vserver-name -home-port new -homeport ` network interface revert -lif lifname -vserver vservername 」
+... 必要に応じて、デスティネーションポートを適切な IPspace とブロードキャストドメインに移動します。network port broadcast-domain remove-ports -ipspace current-ipspace current-broadcast-domain current-broadcast-domain -ports controller-name ： current-port `network port broadcast-domain add-ports -ipspace new-ipspace-broadcast-domain new-broadcast-domain new-broadcast-domain-ports controller-name ： new-port ’
+
+
+.. MetroCluster FC コントローラ（ node_A_1 -FC および node_B_1 - FC ）を停止します。「 system node halt
+.. LOADER プロンプトで、 FC コントローラモジュールと IP コントローラモジュールのハードウェアクロックを同期します。
++
+... 古い MetroCluster FC ノード（ node_A_1 -FC ）で ' 日付を表示します 'how date
+... 新しい MetroCluster IP コントローラ（ node_A_1 の IP および node_B_1 の IP ）で、元のコントローラに表示される日付を設定します。 'et date mm/dd/yy
+... 新しい MetroCluster IP コントローラ（ node_A_1 の IP および node_B_1 の IP ）で、日付を「日付」で確認します
+
+
+.. MetroCluster FC コントローラモジュール（ node_A_1 の FC と node_B_1 の FC ）、 FC-to-SAS ブリッジ（存在する場合）、 FC スイッチ（存在する場合）、およびそれらのノードに接続されている各ストレージシェルフを停止し、電源をオフにします。
+.. MetroCluster FC コントローラからシェルフを切断し、各クラスタにローカルストレージとして使用するシェルフを文書化します。
++
+FC-to-SAS ブリッジまたは FC バックエンドスイッチを使用する構成の場合は、接続を解除して取り外します。
+
+.. MetroCluster FC ノード（ node_A_1 の FC と node_B_1 の FC ）のメンテナンスモードで、ディスクが接続されていないことを確認します。「ディスク show -v 」
+.. MetroCluster FC ノードの電源をオフにして取り外します。
+
+
+
+
+この時点で、 MetroCluster FC コントローラが取り外され、シェルフがすべてのコントローラから切断されています。
+
+image::../media/transition_2n_remove_fc_nodes.png[移行 2n は FC ノードを削除します]

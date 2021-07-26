@@ -1,0 +1,35 @@
+---
+permalink: install-ip/task_sw_config_configure_mediator.html 
+sidebar: sidebar 
+keywords: metrocluster ip, ontap, mediator, tiebreaker 
+summary: MetroCluster Tiebreaker ソフトウェアまたは ONTAP 9.7 以降の ONTAP メディエーターは、第 3 のサイトにダウンロードしてインストールできます。 
+---
+= MetroCluster Tiebreaker または ONTAP メディエーターソフトウェアの設定
+
+
+[role="lead"]
+MetroCluster Tiebreaker ソフトウェアまたは ONTAP 9.7 以降の ONTAP メディエーターは、第 3 のサイトにダウンロードしてインストールできます。
+
+MetroCluster 構成の両方のクラスタにネットワークで接続された Linux ホストが必要です。具体的な要件については、 MetroCluster Tiebreaker または ONTAP メディエーターのドキュメントを参照してください。
+
+Tiebreaker または ONTAP メディエーターの既存のインスタンスに接続する場合は、 Tiebreaker またはメディエーターサービスのユーザ名、パスワード、および IP アドレスが必要です。
+
+ONTAP メディエーターの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。
+
+xref:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html[自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定]
+
+Tiebreaker ソフトウェアの新しいインスタンスをインストールする必要がある場合は、に従います link:../tiebreaker/index.html["ソフトウェアのインストールと設定の手順"]。
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/home.html["MetroCluster Tiebreaker ソフトウェアインストールおよび設定ガイド"]
+
+MetroCluster Tiebreaker ソフトウェアと ONTAP メディエーターの両方を同じ MetroCluster 構成で使用することはできません。
+
+link:../install-ip/concept_considerations_mediator["ONTAP メディエーターまたは MetroCluster Tiebreaker を使用する場合の考慮事項"]
+
+. ONTAP メディエーターサービスまたは Tiebreaker ソフトウェアを設定します。
++
+** ONTAP メディエーターの既存のインスタンスを使用している場合は、次のコマンドを使用して ONTAP メディエーターサービスを ONTAP に追加します。 ````````m etrocluster configuration mediator-address add-mmediator-address ip-address-of mediator-host``
+** Tiebreaker ソフトウェアを使用している場合は、を参照してください link:../tiebreaker/index.html["Tiebreaker のドキュメント"]。
+
+
+

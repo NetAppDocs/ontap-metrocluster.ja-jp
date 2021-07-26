@@ -1,0 +1,20 @@
+---
+permalink: upgrade/task_enable_the_ha_mode_on_the_exist_controller_mcc_when_add_a_2nd_controller.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, set, up, ha, mode, existing, controller, module 
+summary: 既存のコントローラモジュールのモードを設定するには、 storage failover modify コマンドを使用する必要があります。モード設定はコントローラモジュールのリブート後に有効になります。 
+---
+= 既存のコントローラモジュールで HA モードを設定
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存のコントローラモジュールのモードを設定するには、 storage failover modify コマンドを使用する必要があります。モード設定はコントローラモジュールのリブート後に有効になります。
+
+.手順
+. モードを HA に設定します。
++
+` * storage failover modify -mode ha -node_existing_node_name _ *
+
+

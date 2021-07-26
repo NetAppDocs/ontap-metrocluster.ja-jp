@@ -1,0 +1,93 @@
+---
+permalink: transition/task_return_the_system_to_normal_operation_2n_mcc_transition_supertask.html 
+sidebar: sidebar 
+keywords: perform, final, configuration, return, metrocluster, normal, operation, system, verify, assign, drive, transition, install, license, module, complete, completing, node, send, custom, autosupport, message, maintenance 
+summary: 最後の設定手順を実行し、 MetroCluster の設定を通常動作に戻す必要があります。 
+---
+= システムを通常動作に戻します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+最後の設定手順を実行し、 MetroCluster の設定を通常動作に戻す必要があります。
+
+
+
+== 移行後の MetroCluster 処理の検証とドライブの割り当て
+
+[role="lead"]
+MetroCluster が正しく動作していることを確認し、新しいノードの 2 つ目のペア（ node_B_2 - IP と node_B_2 - IP ）にドライブを割り当てる必要があります。
+
+. MetroCluster の構成タイプが ip-fabric ： MetroCluster show であることを確認します
+. MetroCluster チェックを実行します。
++
+.. 問題次のコマンドを実行します MetroCluster check run
+.. MetroCluster チェックの結果を表示します。「 MetroCluster check show 」
+
+
+. MetroCluster IP ノードを持つ DR グループが構成されていることを確認します MetroCluster node show
+. 必要に応じて、各サイトでコントローラの node_B_2 IP および node_B_2 の IP 用に追加のデータアグリゲートを作成してミラーリング
+
+
+
+
+== 新しいコントローラモジュール用のライセンスをインストールしています
+
+[role="lead"]
+標準（ノードロック）ライセンスが必要な ONTAP サービスがある場合は、新しいコントローラモジュールにライセンスを追加する必要があります。標準ライセンスを使用する機能では、クラスタ内の各ノードにその機能用のキーが必要です。
+
+ライセンスの詳細については、ネットアップサポートサイトの技術情報アーティクル 3013749 ：「 Data ONTAP 8.2 Licensing Overview and References 」と「 _System Administration Reference_」 を参照してください。
+
+. 必要に応じて、ネットアップサポートサイトの「ソフトウェアライセンス」の下の「 My Support 」セクションで新しいノードのライセンスキーを取得します。
++
+必要なライセンスキーがサイトにない場合は、営業またはサポート担当者にお問い合わせください。
+
+. 問題各ライセンスキーをインストールするには、次のコマンドを実行します。 'system license add license-code license_key'
++
+license_key は 28 桁の数字です。
+
++
+必要な標準（ノードロック）ライセンスごとにこの手順を繰り返します。
+
+
+
+
+
+== ノードの設定を完了します
+
+[role="lead"]
+手順を完了する前に実行できるその他の設定手順があります。これらの手順の一部はオプションです。
+
+. サービスプロセッサを設定します。「 system service-processor network modify 」
+. 新しいノードで AutoSupport を設定します。「 system node AutoSupport modify 」
+. 必要に応じて、コントローラの名前を移行時に変更できます。コントローラの名前を変更するには、「 system node rename -node <old-name> -newname <new-name> 」コマンドを使用します
++
+名前変更処理が完了するまでに数分かかることがあります。system show -fields node コマンドを使用して他の手順を続行する前に、名前の変更が各ノードに伝播されていることを確認します。
+
+. 必要に応じて監視サービスを設定します。
++
+リンク： ./install-ip/concept_consideration_mediator.adoc
+
++
+link:../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html["自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定"]
+
++
+link:../tiebreaker/index.html["Tiebreaker ソフトウェアインストールおよび設定ガイド"]
+
+
+
+
+
+== メンテナンス後にカスタム AutoSupport メッセージを送信する
+
+[role="lead"]
+移行が完了したら、メンテナンスの終了を通知する AutoSupport メッセージを送信してケースの自動作成を再開します。
+
+. サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。
++
+.. 問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT=end 」
+.. パートナークラスタに対してこのコマンドを繰り返します。
+
+
+

@@ -1,0 +1,31 @@
+---
+permalink: maintain/task_hot_add_a_sas_disk_shelf_in_a_direct_attached_mcc_configuration_us_sas_optical_cables.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, hot, add, sas, disk, shelf, direct, attached, fc, configuration, optical, cables 
+summary: SAS 光ケーブルを使用して、直接接続型 MetroCluster FC 構成の SAS ディスクシェルフの既存のスタックに SAS ディスクシェルフをホットアドすることも、 SAS HBA またはコントローラ上のオンボード SAS ポートに新しいスタックとしてホットアドすることもできます。 
+---
+= SAS 光ケーブルを使用した直接接続型 MetroCluster FC 構成での SAS ディスクシェルフのホットアド
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAS 光ケーブルを使用して、直接接続型 MetroCluster FC 構成の SAS ディスクシェルフの既存のスタックに SAS ディスクシェルフをホットアドすることも、 SAS HBA またはコントローラ上のオンボード SAS ポートに新しいスタックとしてホットアドすることもできます。
+
+* これはシステムの停止を伴わない手順であり、完了までに約 2 時間かかります。
+* 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+* IOM6 シェルフのスタックに IOM12 シェルフを追加する場合は、を参照してください link:https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-ds-mix-hotadd/home.html["IOM12 シェルフを IOM6 シェルフのスタックにホットアドします"]。
+
+
+このタスクでは、ストレージを SAS ケーブルでストレージコントローラに直接接続する MetroCluster 環境 FC 構成を行います。FC-to-SAS ブリッジまたは FC スイッチファブリックを使用する MetroCluster FC 構成には該当しません。
+
+.手順
+. 使用しているディスクシェルフモデルの _ インストールガイド _ に記載されている SAS ディスクシェルフのホットアドの手順に従って、次のタスクを実行してディスクシェルフをホットアドします。
++
+.. ホットアド用のディスクシェルフを設置します。
+.. 電源装置の電源をオンにして、ホットアド用のシェルフ ID を設定します。
+.. ホットアドしたディスクシェルフをケーブル接続します。
+.. SAS 接続を確認します。
+
+
+

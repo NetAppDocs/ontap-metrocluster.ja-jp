@@ -1,0 +1,313 @@
+---
+permalink: install-fc/concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, switch, four, node, array, luns 
+summary: スイッチゾーニングは、接続されているノード間のパスを定義しますゾーニングを設定すると、特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。 
+---
+= アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチゾーニングは、接続されているノード間のパスを定義しますゾーニングを設定すると、特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。
+
+アレイ LUN を使用する 4 ノード MetroCluster 構成のゾーニングを決定するときは、次の例を参照してください。この例は、 MetroCluster 構成のシングルイニシエータからシングルターゲットのゾーニングを示しています。次の例では、接続ではなくゾーンを表しています。それぞれの行にはゾーン番号が表示されています。
+
+image::../media/v_series_metrocluster_zoning_example.gif[次の図は、アレイ LUN を使用する MetroCluster 構成例のスイッチゾーンを示しています。この図には説明が付随しています。]
+
+この図では、アレイ LUN が MetroCluster 構成の各ストレージアレイに割り当てられています。SyncMirror の要件に従って、両方のサイトのストレージアレイで同じサイズの LUN がプロビジョニングされます。各 ONTAP システムに、アレイ LUN へのパスが 2 つずつあります。ストレージアレイのポートは冗長な構成になっています。
+
+この図の両方のサイトの冗長なアレイポートペアは次のとおりです。
+
+* サイト A のストレージアレイ：
++
+** ポート 1A と 2A
+** ポート 1B と 2B
+** ポート 1C と 2C
+** ポート 1D と 2D
+
+
+* サイト B のストレージアレイ：
++
+** ポート 1A' と 2A'
+** ポート 1B' と 2B'
+** ポート 1C' と 2C'
+** ポート 1D' と 2D'
+
+
+
+
+各ストレージアレイの冗長ポートペアが代替パスを形成し、そのため、ポートペアの両方のポートが、対応するストレージアレイの LUN にアクセスできます。
+
+次の表は、この例のゾーンを示しています。
+
+
+
+== FC_switch_A_1 を使用します
+
+[cols="3*"]
+|===
+| ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
+
+
+ a| 
+Z1
+ a| 
+Controller_A_1 ：ポート 0a
+ a| 
+ポート 1A
+
+
+
+ a| 
+Z3
+ a| 
+Controller_A_1 ：ポート 0c
+ a| 
+ポート 1A'
+
+
+
+ a| 
+Z5
+ a| 
+Controller_A_2 ：ポート 0a
+ a| 
+ポート 1B
+
+
+
+ a| 
+Z7
+ a| 
+Controller_A_2 ：ポート 0c
+ a| 
+ポート 1B'
+
+|===
+
+
+== FC_switch_A_2
+
+[cols="3*"]
+|===
+| ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
+
+
+ a| 
+Z2
+ a| 
+Controller_A_1 ：ポート 0b
+ a| 
+ポート 2A'
+
+
+
+ a| 
+Z4
+ a| 
+Controller_A_1 ：ポート 0d
+ a| 
+ポート 2A
+
+
+
+ a| 
+Z6
+ a| 
+Controller_A_2 ：ポート 0b
+ a| 
+ポート 2B'
+
+
+
+ a| 
+Z8
+ a| 
+Controller_A_2 ：ポート 0d
+ a| 
+ポート 2B
+
+|===
+
+
+== FC_switch_B_1
+
+[cols="3*"]
+|===
+| ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
+
+
+ a| 
+Z9
+ a| 
+Controller_B_1 ：ポート 0a
+ a| 
+ポート 1C'
+
+
+
+ a| 
+] を選択する
+ a| 
+Controller_B_1 ：ポート 0c
+ a| 
+ポート 1C
+
+
+
+ a| 
+Z13
+ a| 
+Controller_B_2 ：ポート 0a
+ a| 
+ポート 1D'
+
+
+
+ a| 
+Z2
+ a| 
+Controller_B_2 ：ポート 0c
+ a| 
+ポート 1D
+
+|===
+
+
+== FC_switch_B_2
+
+[cols="3*"]
+|===
+| ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
+
+
+ a| 
+Z10
+ a| 
+Controller_B_1 ：ポート 0b
+ a| 
+ポート 2C
+
+
+
+ a| 
+Z12
+ a| 
+Controller_B_1 ：ポート 0d
+ a| 
+ポート 2C'
+
+
+
+ a| 
+] をクリックします
+ a| 
+Controller_B_2 ：ポート 0b
+ a| 
+ポート 2D
+
+
+
+ a| 
+Z16
+ a| 
+Controller_B_2 ：ポート 0d
+ a| 
+ポート 2D'
+
+|===
+
+
+== サイト A の FC-VI 接続用のゾーン
+
+|===
+| ゾーン | ONTAP コントローラと FC イニシエータポート | スイッチ 
+
+
+ a| 
+ZX （ ZX ）
+ a| 
+Controller_A_1 ：ポート FC-VI a
+ a| 
+FC_switch_A_1 を使用します
+
+
+
+ a| 
+ZY
+ a| 
+Controller_A_1 ：ポート FC-VI b
+ a| 
+FC_switch_A_2
+
+
+
+ a| 
+ZX （ ZX ）
+ a| 
+Controller_A_2 ：ポート FC-VI a
+ a| 
+FC_switch_A_1 を使用します
+
+
+
+ a| 
+ZY
+ a| 
+Controller_A_2 ：ポート FC-VI b
+ a| 
+FC_switch_A_2
+
+|===
+
+
+== サイト B の FC-VI 接続用のゾーン
+
+|===
+| ゾーン | ONTAP コントローラと FC イニシエータポート | スイッチ 
+
+
+ a| 
+ZX （ ZX ）
+ a| 
+Controller_B_1 ：ポート FC-VI a
+ a| 
+FC_switch_B_1
+
+
+
+ a| 
+ZY
+ a| 
+Controller_B_1 ：ポート FC-VI b
+ a| 
+FC_switch_B_2
+
+
+
+ a| 
+ZX （ ZX ）
+ a| 
+Controller_B_2 ：ポート FC-VI a
+ a| 
+FC_switch_B_1
+
+
+
+ a| 
+ZY
+ a| 
+Controller_B_2 ：ポート FC-VI b
+ a| 
+FC_switch_B_2
+
+|===
+* 関連情報 *
+
+xref:reference_requirements_for_switch_zoning_in_a_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件]
+
+xref:concept_example_of_switch_zoning_in_a_two_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 2 ノード MetroCluster 構成におけるスイッチゾーニングの例]
+
+xref:concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例]

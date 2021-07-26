@@ -1,0 +1,115 @@
+---
+permalink: upgrade/task_move_a_metadata_volume_in_mcc_configurations.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, move, metadata, volume, configuration 
+summary: MetroCluster 構成では、アグリゲート間でメタデータボリュームを移動できます。メタデータボリュームの移動が必要となるのは、ソースアグリゲートが運用停止になるかミラーリングを解除されたとき、または何らかの理由でアグリゲートが条件を満たさなくなったときです。 
+---
+= MetroCluster 構成でのメタデータボリュームの移動
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成では、アグリゲート間でメタデータボリュームを移動できます。メタデータボリュームの移動が必要となるのは、ソースアグリゲートが運用停止になるかミラーリングを解除されたとき、または何らかの理由でアグリゲートが条件を満たさなくなったときです。
+
+* このタスクを実行するには、クラスタ管理者の権限が必要です。
+* ターゲットアグリゲートがミラーされており、かつデグレード状態でないことが必要です。
+* ターゲットアグリゲートに、移動するメタデータボリュームよりも大きな使用可能スペースがあることが必要です。
+
+
+.手順
+. 権限レベルを advanced に設定します。
++
+「 * set -privilege advanced * 」のように指定します
+
+. 移動するメタデータボリュームを特定します。
++
+`* volume show MDV_CRS **`
+
++
+[listing]
+----
+Cluster_A::*> volume show MDV_CRS*
+Vserver   Volume       Aggregate    State      Type       Size  Available Used%
+--------- ------------ ------------ ---------- ---- ---------- ---------- -----
+Cluster_A
+          MDV_CRS_14c00d4ac9f311e7922800a0984395f1_A
+                       Node_A_1_aggr1
+                                    online     RW         10GB     9.50GB    5%
+Cluster_A
+          MDV_CRS_14c00d4ac9f311e7922800a0984395f1_B
+                       Node_A_2_aggr1
+                                    online     RW         10GB     9.50GB    5%
+Cluster_A
+          MDV_CRS_15035e66c9f311e7902700a098439625_A
+                       Node_B_1_aggr1
+                                    -          RW            -          -     -
+Cluster_A
+          MDV_CRS_15035e66c9f311e7902700a098439625_B
+                       Node_B_2_aggr1
+                                    -          RW            -          -     -
+4 entries were displayed.
+
+Cluster_A::>
+----
+. 対象となるターゲットアグリゲートを特定します。
++
+'*MetroCluster check config-replication show-aggregate-eligibility *
+
++
+次のコマンドは、メタデータボリュームをホストできる cluster_A 内のアグリゲートを特定します。
+
++
+[listing]
+----
+
+Cluster_A::*> metrocluster check config-replication show-aggregate-eligibility
+
+Aggregate Hosted Config Replication Vols Host Addl Vols Comments
+------------ ------------------------------------------ -------------- --------
+Node_A_1_aggr0 - false Root Aggregate
+Node_A_2_aggr0 - false Root Aggregate
+Node_A_1_aggr1 MDV_CRS_1bc7134a5ddf11e3b63f123478563412_A true -
+Node_A_2_aggr1 MDV_CRS_1bc7134a5ddf11e3b63f123478563412_B true -
+Node_A_1_aggr2 - true
+Node_A_2_aggr2 - true
+Node_A_1_Aggr3 - false Unable to determine available space of aggregate
+Node_A_1_aggr5 - false Unable to determine mirror configuration
+Node_A_2_aggr6 - false Mirror configuration does not match requirement
+Node_B_1_aggr4 - false NonLocal Aggregate
+----
++
+
+NOTE: この例では、 Node_A_1_aggr2 と Node_A_2_aggr2 が該当します。
+
+. ボリューム移動処理を開始します。
++
+` * volume move start -vserver_svm_name_-volume_volume_name_-destination-aggregate-destination_aggregate_name_*`
+
++
+次のコマンドは、メタデータボリューム「 M DV_CRS_14c00d4ac9f311e7922800a0984395f1 」を「 aggregate Node_A_1_aggr1 」から「 aggregate Node_A_1_aggr2 」に移動します。
+
++
+[listing]
+----
+Cluster_A::*> volume move start -vserver svm_cluster_A -volume MDV_CRS_14c00d4ac9f311e7922800a0984395f1
+-destination-aggregate aggr_cluster_A_02_01
+
+Warning: You are about to modify the system volume
+         "MDV_CRS_9da04864ca6011e7b82e0050568be9fe_A".  This may cause severe
+         performance or stability problems.  Do not proceed unless directed to
+         do so by support.  Do you want to proceed? {y|n}: y
+[Job 109] Job is queued: Move "MDV_CRS_9da04864ca6011e7b82e0050568be9fe_A" in Vserver
+"svm_cluster_A" to aggregate "aggr_cluster_A_02_01".
+Use the "volume move show -vserver svm_cluster_A -volume
+MDV_CRS_9da04864ca6011e7b82e0050568be9fe_A" command to view the status of this operation.
+----
+. ボリューム移動処理の状態を確認します。
++
+'*volume move show -volume vol_constituent_name*
+
+. admin 権限レベルに戻ります。
++
+'*set -privilege admin*
+
+

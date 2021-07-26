@@ -1,0 +1,156 @@
+---
+permalink: install-fc/task_fmc_mcc_transition_cable_the_new_mcc_controllers_to_the_exist_fc_fabrics.html 
+sidebar: sidebar 
+keywords: cabling, metrocluster, fabric, installation, fc, controllers 
+summary: clustered ONTAP MetroCluster 構成のコントローラごとに、 FC-VI アダプタと HBA を、既存の FC スイッチの特定のポートにケーブル接続する必要があります。 
+---
+= 新しい MetroCluster コントローラから既存の FC ファブリックへのケーブル接続
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+clustered ONTAP MetroCluster 構成のコントローラごとに、 FC-VI アダプタと HBA を、既存の FC スイッチの特定のポートにケーブル接続する必要があります。
+
+.手順
+. 次の表に従って、 FC-VI ポートと HBA ポートをケーブル接続します。
++
+|===
+2+| サイト A 2+| サイト B 
+
+
+| 接続するサイト A のコンポーネントとポート | FC_switch_A_1 のポート | 接続するサイト B のコンポーネントとポート | FC_switch_B_1 のポート 
+
+
+ a| 
+controller_A_1 、 FC-VI ポート 1
+ a| 
+32
+ a| 
+controller_B_1 、 FC-VI ポート 1
+ a| 
+32
+
+
+
+ a| 
+controller_A_1 、 HBA ポート 1
+ a| 
+33
+ a| 
+controller_B_1 、 HBA ポート 1
+ a| 
+33
+
+
+
+ a| 
+controller_A_1 、 HBA ポート 2
+ a| 
+34
+ a| 
+controller_B_1 、 HBA ポート 2
+ a| 
+34
+
+
+
+ a| 
+controller_A_2 、 FC-VI ポート 1
+ a| 
+35
+ a| 
+controller_B_2 、 FC-VI ポート 1
+ a| 
+35
+
+
+
+ a| 
+controller_A_2 、 HBA 1 を指定します
+ a| 
+36
+ a| 
+controller_B_2 、 HBA 1
+ a| 
+36
+
+
+
+ a| 
+controller_A_2 、 HBA 2 を追加します
+ a| 
+37
+ a| 
+controller_B_2 、 HBA ポート 2
+ a| 
+37
+
+|===
+. 最初のスイッチファブリック内の各 FC-SAS ブリッジを FC スイッチにケーブル接続します。
++
+ブリッジ数は、 SAS ストレージスタックの数によって異なります。
+
++
+|===
+2+| サイト A 2+| サイト B 
+
+
+| サイト A のブリッジ | FC_switch_A_1 のポート | サイト B のブリッジ | FC_switch_B_1 のポート 
+
+
+ a| 
+Bridge_A_1_38
+ a| 
+38
+ a| 
+Bridge_B_1_38
+ a| 
+38
+
+
+
+ a| 
+Bridge_A_1_ 39
+ a| 
+39
+ a| 
+Bridge_B_1_39
+ a| 
+39
+
+|===
+. 2 つ目のスイッチファブリック内の各ブリッジを FC スイッチにケーブル接続します。
++
+ブリッジ数は、 SAS ストレージスタックの数によって異なります。
+
++
+|===
+2+| サイト A 2+| サイト B 
+
+
+| サイト A のブリッジ | FC_switch_A_2 のポート | サイト B のブリッジ | FC_switch_B_2 のポート 
+
+
+ a| 
+Bridge_A_2_ 38
+ a| 
+38
+ a| 
+Bridge_B_2_ 38
+ a| 
+38
+
+
+
+ a| 
+Bridge_A_2_ 39
+ a| 
+39
+ a| 
+Bridge_B_2_ 39
+ a| 
+39
+
+|===
+

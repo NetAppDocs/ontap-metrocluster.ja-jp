@@ -1,0 +1,478 @@
+---
+permalink: disaster-recovery/task_recover_from_a_non_controller_failure_mcc_dr.html 
+sidebar: sidebar 
+keywords: equipment, disaster, site, undergone, require, maintenance, replacement, controller, replace, process, metrocluster, configuration, data, aggregate, switchback, operation, recover, non-controller, failure, heal, configuration, metrocluster, fc, data, aggregate, root, disaster, verify, system, switchback, verification, result, perform, successful, delete, deleting, stale, listing 
+summary: ディザスタサイトの機器に対して必要なメンテナンスまたは交換を実施し、その際にコントローラを交換しなかった場合は、続けて MetroCluster 構成を完全に冗長な状態に戻す手順を開始できます。これには、設定の修復（データアグリゲート、ルートアグリゲートの順）とスイッチバック処理が含まれます。 
+---
+= コントローラ以外の障害からのリカバリ
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ディザスタサイトの機器に対して必要なメンテナンスまたは交換を実施し、その際にコントローラを交換しなかった場合は、続けて MetroCluster 構成を完全に冗長な状態に戻す手順を開始できます。これには、設定の修復（データアグリゲート、ルートアグリゲートの順）とスイッチバック処理が含まれます。
+
+.作業を開始する前に
+* ディザスタクラスタのすべての MetroCluster ハードウェアが動作している必要があります。
+* MetroCluster 構成全体がスイッチオーバー中である必要があります。
+* ファブリック接続 MetroCluster 構成では、 MetroCluster サイト間で ISL が稼働している必要があります。
+
+
+
+
+== MetroCluster FC 構成での構成の修復
+
+[role="lead"]
+スイッチオーバーに続いて、特定の順序で修復処理を実行して MetroCluster 機能をリストアする必要があります。
+
+.作業を開始する前に
+* スイッチオーバーを実行済みで、サバイバーサイトがデータを提供している必要があります。
+* ディザスタサイトのノードが停止しているか、電源がオフのままになっている必要があります。
++
+修復プロセスでは、これらのノードを完全にブートしないでください。
+
+* ディザスタサイトのストレージにアクセスできる（シェルフは電源がオンで稼働しており、アクセス可能である）必要があります。
+* ファブリック接続 MetroCluster 構成では、スイッチ間リンク（ ISL ）が稼働している必要があります。
+* 4 ノード MetroCluster 構成では、サバイバーサイトのノードが HA フェイルオーバー状態でない（各 HA ペアのすべてのノードが稼働中である）必要があります。
+
+
+修復処理は、最初にデータアグリゲートで実行し、次にルートアグリゲートで実行する必要があります。
+
+
+
+=== データアグリゲートの修復
+
+[role="lead"]
+ディザスタサイトのハードウェアを修理および交換したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、（修復された）ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。
+
+次の例は、強制スイッチオーバーを示しており、スイッチオーバーされたアグリゲートをオンラインにします。リモートクラスタでの構成の更新はすべてローカルクラスタにレプリケートされます。この手順の一部としてディザスタサイトのストレージに電源を投入しますが、ディザスタサイトにあるコントローラモジュールの電源はオンにしないでください。
+
+.手順
+. スイッチオーバーが完了したことを確認します。
++
+「 MetroCluster operation show 」を参照してください
+
++
+[listing]
+----
+controller_A_1::> metrocluster operation show
+  Operation: switchover
+      State: successful
+ Start Time: 7/25/2014 20:01:48
+   End Time: 7/25/2014 20:02:14
+     Errors: -
+----
+. サバイバークラスタから次のコマンドを実行して、データアグリゲートを再同期します。
++
+「 MetroCluster heal-phase aggregates 」
+
++
+[listing]
+----
+controller_A_1::> metrocluster heal -phase aggregates
+[Job 130] Job succeeded: Heal Aggregates is successful.
+----
++
+修復が拒否された場合は '--overriding-siding'parameter を指定して MetroCluster heal-( 修復 ) コマンドを再実行できますこのオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+
+. 処理が完了したことを確認します。
++
+「 MetroCluster operation show 」を参照してください
+
++
+[listing]
+----
+controller_A_1::> metrocluster operation show
+    Operation: heal-aggregates
+      State: successful
+Start Time: 7/25/2014 18:45:55
+   End Time: 7/25/2014 18:45:56
+     Errors: -
+----
+. アグリゲートの状態を確認します。
++
+「 storage aggregate show 」コマンドを実行します。
+
++
+[listing]
+----
+controller_A_1::> storage aggregate show
+Aggregate Size     Available Used% State   #Vols  Nodes        RAID Status
+--------- -------- --------- ----- ------- ------ ------------ ------------
+...
+aggr_b2   227.1GB  227.1GB   0%    online  0      mcc1-a2      raid_dp, mirrored, normal...
+----
+. ディザスタサイトのストレージを交換した場合は、アグリゲートの再ミラーリングが必要になることがあります。
+
+
+
+
+=== 災害発生後のルートアグリゲートの修復
+
+[role="lead"]
+データアグリゲートの修復が完了したら、スイッチバック処理に備えてルートアグリゲートを修復する必要があります。
+
+MetroCluster 修復プロセスのデータアグリゲートの修復が完了している必要があります。
+
+.手順
+. ミラーされたアグリゲートをスイッチバックします。
++
+「 MetroCluster heal-phase root-aggregates 」
+
++
+[listing]
+----
+mcc1A::> metrocluster heal -phase root-aggregates
+[Job 137] Job succeeded: Heal Root Aggregates is successful
+----
++
+修復が拒否された場合は '--overriding-siding'parameter を指定して MetroCluster heal-( 修復 ) コマンドを再実行できますこのオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+
+. デスティネーションクラスタで次のコマンドを実行して、修復処理が完了していることを確認します。
++
+「 MetroCluster operation show 」を参照してください
+
++
+[listing]
+----
+
+mcc1A::> metrocluster operation show
+  Operation: heal-root-aggregates
+      State: successful
+ Start Time: 7/29/2014 20:54:41
+   End Time: 7/29/2014 20:54:42
+     Errors: -
+----
+. ディザスタサイトの各コントローラモジュールに電源を投入します。
+. ノードがブートしたら、ルートアグリゲートがミラーされていることを確認します。
++
+両方のプレックスが存在する場合は、再同期が自動的に開始されます。1 つのプレックスで障害が発生している場合は、そのプレックスを破棄し、次のコマンドを使用してミラーを再作成し、ミラー関係を再確立する必要があります。
+
++
+「 storage aggregate mirror -aggregate <aggregate-name> 」の形式で指定します
+
+
+
+
+
+== スイッチバックに向けたシステムの事前チェック
+
+[role="lead"]
+システムがすでにスイッチオーバー状態にある場合は、「 -simulate 」オプションを使用して、スイッチバック処理の結果をプレビューできます。
+
+.手順
+. スイッチバック処理をシミュレートします。
++
+.. どちらかのサバイバーノードのプロンプトで、 advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
++
+advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
+
+.. 「 -simulate 」パラメータを指定して、スイッチバック操作を実行します。
++
+MetroCluster switchback -simulate
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+
+
+. 返された出力を確認します。
++
+出力には、スイッチバック処理でエラーが発生するかどうかが示されます。
+
+
+
+
+
+=== 検証結果の例
+
+次の例は、スイッチバック処理を正常に実行できる場合の出力を示しています。
+
+[listing]
+----
+cluster4::*> metrocluster switchback -simulate
+  (metrocluster switchback)
+[Job 130] Setting up the nodes and cluster components for the switchback operation...DBG:backup_api.c:327:backup_nso_sb_vetocheck : MetroCluster Switch Back
+[Job 130] Job succeeded: Switchback simulation is successful.
+
+cluster4::*> metrocluster op show
+  (metrocluster operation show)
+  Operation: switchback-simulate
+      State: successful
+ Start Time: 5/15/2014 16:14:34
+   End Time: 5/15/2014 16:15:04
+     Errors: -
+
+cluster4::*> job show -name Me*
+                            Owning
+Job ID Name                 Vserver    Node           State
+------ -------------------- ---------- -------------- ----------
+130    MetroCluster Switchback
+                            cluster4
+                                       cluster4-01
+                                                      Success
+       Description: MetroCluster Switchback Job - Simulation
+----
+
+
+== スイッチバックを実行しています
+
+[role="lead"]
+MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。
+
+.作業を開始する前に
+* ディザスタクラスタからサバイバークラスタへのスイッチオーバーが正常に完了している必要があります。
+* データアグリゲートとルートアグリゲートに対して修復が実行されている必要があります。
+* サバイバークラスタノードが HA フェイルオーバー状態ではない（各 HA ペアのすべてのノードが稼働中である）必要があります。
+* ディザスタサイトのコントローラモジュールが完全にブートしていること、および HA テイクオーバーモードでないことが必要です。
+* ルートアグリゲートがミラーされている必要があります。
+* スイッチ間リンク（ ISL ）がオンラインになっている必要があります。
+* 必要なライセンスがシステムにインストールされている必要があります。
+
+
+.手順
+. すべてのノードの状態が enabled であることを確認します。
++
+MetroCluster node show
+
++
+次の例は、「 enabled 」状態のノードを表示します。
+
++
+[listing]
+----
+cluster_B::>  metrocluster node show
+
+DR                        Configuration  DR
+Group Cluster Node        State          Mirroring Mode
+----- ------- ----------- -------------- --------- --------------------
+1     cluster_A
+              node_A_1    configured     enabled   heal roots completed
+              node_A_2    configured     enabled   heal roots completed
+      cluster_B
+              node_B_1    configured     enabled   waiting for switchback recovery
+              node_B_2    configured     enabled   waiting for switchback recovery
+4 entries were displayed.
+----
+. すべての SVM で再同期が完了したことを確認します。
++
+MetroCluster vserver show
+
+. 修復処理で実行される LIF の自動移行が完了していることを確認します。
++
+MetroCluster check lif show
+
+. サバイバークラスタ内の任意のノードから次のコマンドを実行して、スイッチバックを実行します。
++
+MetroCluster スイッチバック
+
+. スイッチバック処理の進捗を確認します。
++
+「 MetroCluster show 」
+
++
+出力に「 waiting - for-switchback 」と表示されている場合は、スイッチバック処理をまだ実行中です。
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                switchover
+                          AUSO Failure Domain -
+Remote: cluster_A         Configuration state configured
+                          Mode                waiting-for-switchback
+                          AUSO Failure Domain -
+----
++
+出力に「 normal 」と表示された場合、スイッチバック処理は完了しています。
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain -
+Remote: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain -
+----
++
+スイッチバックの完了に時間がかかる場合は、次のコマンドを advanced 権限レベルで使用して、進行中のベースライン転送のステータスを確認できます。
+
++
+「 MetroCluster config-replication resync-status show 」を参照してください
+
+. SnapMirror 構成または SnapVault 構成があれば、再確立します。
++
+ONTAP 8.3 では、失われた SnapMirror 構成を MetroCluster スイッチバック処理のあとに手動で再確立する必要があります。ONTAP 9.0 以降では、関係が自動的に再確立されます。
+
+
+
+
+
+== スイッチバックが成功したことを確認する
+
+スイッチバックの実行後に、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。
+
+.手順
+. スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。
++
+「 storage aggregate show
+
++
+次の例では、ノード B2 の aggr_b2 がスイッチバックされています。
+
++
+[listing]
+----
+node_B_1::> storage aggregate show
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+...
+aggr_b2    227.1GB   227.1GB    0% online       0 node_B_2   raid_dp,
+                                                                   mirrored,
+                                                                   normal
+
+node_A_1::> aggr show
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+...
+aggr_b2          -         -     - unknown      - node_A_1
+----
++
+ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、「 storage aggregate show 」コマンドの出力に「 unknown 」と表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。
+
+. サバイバークラスタにあるすべての同期先 SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。
++
+「 vserver show -subtype sync-source 」のようになります
+
++
+[listing]
+----
+node_B_1::> vserver show -subtype sync-source
+                               Admin      Root                       Name    Name
+Vserver     Type    Subtype    State      Volume     Aggregate       Service Mapping
+----------- ------- ---------- ---------- ---------- ----------      ------- -------
+...
+vs1a        data    sync-source
+                               running    vs1a_vol   node_B_2        file    file
+                                                                     aggr_b2
+
+node_A_1::> vserver show -subtype sync-destination
+                               Admin      Root                         Name    Name
+Vserver            Type    Subtype    State      Volume     Aggregate  Service Mapping
+-----------        ------- ---------- ---------- ---------- ---------- ------- -------
+...
+cluster_A-vs1a-mc  data    sync-destination
+                                      stopped    vs1a_vol   sosb_      file    file
+                                                                       aggr_b2
+----
++
+MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいようにサフィックス「 -mc 」が自動的に付加されます。
+
+. スイッチバック処理が成功したことを確認します。
++
+「 MetroCluster operation show 」を参照してください
+
++
+|===
+| 出力内容 | 作業 
+
+
+ a| 
+スイッチバック処理の状態が「 successful 」である
+ a| 
+スイッチバックプロセスは完了しており、システムの処理を続行できます。
+
+
+
+ a| 
+スイッチバック操作または 'witchback-tile-agent' 操作が部分的に成功していること
+ a| 
+MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します
+
+|===
+
+
+上記の手順を繰り返して、逆方向へのスイッチバックを実行する必要があります。site_A が site_B のスイッチオーバーを行った場合は、 site_B で site_A のスイッチオーバーを行います
+
+
+
+== スイッチバック後の古いアグリゲートリストの削除
+
+[role="lead"]
+スイッチバック後に古いアグリゲートが残っていることがあります。古いアグリゲートとは、 ONTAP からは削除されたものの、情報がまだディスクに記録されたままのアグリゲートのことです。古いアグリゲートは「 nodeshell aggr status -r 」コマンドで表示されますが、「 storage aggregate show 」コマンドでは表示されません。これらのレコードを削除して、表示されないようにすることができます。
+
+古いアグリゲートは、 MetroCluster 構成のスイッチオーバー中にアグリゲートを再配置すると発生する可能性があります。例：
+
+. サイト A がサイト B にスイッチオーバーします
+. 負荷分散のため、アグリゲートのミラーリングを削除し、 node_B_1 から node_B_2 にアグリゲートを再配置します。
+. アグリゲートの修復を実行します。
+
+
+この時点では、アグリゲートそのものは node_B_1 から削除されているにもかかわらず、古いアグリゲートがこのノードに表示されます。このアグリゲートは、「 nodeshell aggr status -r 」コマンドの出力に表示されます。「 storage aggregate show 」コマンドの出力には表示されません。
+
+. 次のコマンドの出力を比較します。
++
+「 storage aggregate show
+
++
+'run local aggr status -r を実行します
+
++
+古いアグリゲートは「 run local aggr status -r 」の出力には表示されますが、「 storage aggregate show 」の出力には表示されません。たとえば、次のアグリゲートが「 run local aggr status -r 」の出力に表示される場合があります。
+
++
+[listing]
+----
+
+Aggregate aggr05 (failed, raid_dp, partial) (block checksums)
+Plex /aggr05/plex0 (offline, failed, inactive)
+  RAID group /myaggr/plex0/rg0 (partial, block checksums)
+
+ RAID Disk Device  HA  SHELF BAY CHAN Pool Type  RPM  Used (MB/blks)  Phys (MB/blks)
+ --------- ------  ------------- ---- ---- ----  ----- --------------  --------------
+ dparity   FAILED          N/A                        82/ -
+ parity    0b.5    0b    -   -   SA:A   0 VMDISK  N/A 82/169472      88/182040
+ data      FAILED          N/A                        82/ -
+ data      FAILED          N/A                        82/ -
+ data      FAILED          N/A                        82/ -
+ data      FAILED          N/A                        82/ -
+ data      FAILED          N/A                        82/ -
+ data      FAILED          N/A                        82/ -
+ Raid group is missing 7 disks.
+----
+. 古いアグリゲートを削除します。
++
+.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
++
+advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
+
+.. 古いアグリゲートを削除します。
++
+「 aggregate remove-stale-record -aggregate aggregate_name 」のようになります
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+
+
+. 古いアグリゲートのレコードが削除されたことを確認します。
++
+'run local aggr status -r を実行します
+
+

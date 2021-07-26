@@ -1,0 +1,37 @@
+---
+permalink: disaster-recovery/task_recover_from_a_multi_controller_and_or_storage_failure.html 
+sidebar: sidebar 
+keywords: controller, failure, extend, module, side, dr, group, metrocluster, configuration, single, controller, two-node, replace, equipment, reassign, equipment, ownership, drive, disaster, recover, multi-controller, storage 
+summary: MetroCluster 構成内の DR グループの一方のサイドにあるすべてのコントローラモジュール（ 2 ノード MetroCluster 構成の 1 台のコントローラを含む）でコントローラの障害が発生した場合、またはストレージが交換された場合は、機器を交換し、ドライブの所有権を再割り当てして、災害からリカバリする必要があります。 
+---
+= マルチコントローラまたはストレージの障害からのリカバリ
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成内の DR グループの一方の側のすべてのコントローラモジュール（ 2 ノード MetroCluster 構成の 1 台のコントローラを含む）でコントローラの障害が発生した場合、またはストレージが交換された場合は、機器を交換し、ドライブの所有権を再割り当てして、災害からリカバリする必要があります。
+
+.作業を開始する前に
+* この手順を使用するかどうかを決定する前に、使用可能なリカバリ手順を確認しておく必要があります。
++
+link:concept_choosing_the_correct_recovery_procedure_parent_concept.html["正しいリカバリ手順の選択"]
+
+* ディザスタサイトをフェンシングしておく必要があります。
++
+link:task_perform_a_forced_switchover_after_a_disaster.html#fencing-off-the-disaster-site["ディザスタサイトのフェンシング"]。
+
+* スイッチオーバーを実行しておく必要があります。
++
+link:task_perform_a_forced_switchover_after_a_disaster.html#performing-a-forced-switchover["強制スイッチオーバーの実行"]。
+
+* 交換用ドライブとコントローラモジュールには、過去に所有権が割り当てられていない新品を使用する必要があります。
+
+
+この手順の例では、 2 ノードまたは 4 ノードの構成を示しています。8 ノード構成（ 2 つの DR グループ）の場合は、追加のコントローラモジュールの障害をすべて考慮し、必要なリカバリタスクを実行する必要があります。
+
+この手順では次のワークフローを使用します。
+
+image::../media/workflow_smoking_crater_recovery.png[ワークフロー喫煙クレーター回収]
+
+この手順は、障害発生時に移行中だったシステムに対してリカバリを実行する場合に使用できます。その場合は、手順に示されているように、スイッチバックの準備の際に適切な手順を実行する必要があります。

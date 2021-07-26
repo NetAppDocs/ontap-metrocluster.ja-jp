@@ -1,0 +1,65 @@
+---
+permalink: maintain/task_enable_ip_port_access_on_the_fibrebridge_7600n_bridge_guides.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, enable, ip, port, access, fibrebridge, bridge 
+summary: 9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV \ ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。 
+---
+= 必要に応じて、 FibreBridge 7600N ブリッジの IP ポートアクセスを有効にする
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。
+
+ATTO FibreBridge 7500N および 6500N ブリッジとは異なり、 FibreBridge 7600N ブリッジは、すべての IP ポートプロトコルおよびサービスが無効になった状態で出荷されます。
+
+ONTAP 9.5 以降では、ブリッジのインバンド管理 _ がサポートされています。これは、 ONTAP CLI からブリッジへの FC 接続を介してブリッジを設定および監視できることを意味します。ブリッジのイーサネットポートを介してブリッジに物理的にアクセスする必要がなく、ブリッジのユーザインターフェイスも必要ありません。
+
+ONTAP 9.8 以降では、ブリッジの _ 帯域内管理 _ がデフォルトでサポートされ、アウトオブバンド SNMP 管理は廃止されています。
+
+このタスクは、ブリッジの管理にインバンド管理を使用していない場合に必要です。この場合は、イーサネット管理ポートを介してブリッジを設定する必要があります。
+
+.手順
+. FibreBridge 7600N ブリッジのシリアルポートにシリアルケーブルを接続して、ブリッジのコンソールインターフェイスにアクセスします。
+. コンソールを使用してアクセスサービスを有効にし、設定を保存します。
++
+*set closePort none*
+
++
+'*saveconfigation*
+
++
+'set closePort none' コマンドを使用すると、ブリッジ上のすべてのアクセスサービスがイネーブルになります。
+
+. 必要に応じて 'et closePort' を発行し ' 必要に応じてコマンドを繰り返して ' 必要なサービスをすべて無効にします
++
+'*set closePort_service_*
+
++
+'set closePort' コマンドは ' 一度に 1 つのサービスを無効にします
+
++
+「サービス」では、次のいずれかを指定できます。
+
++
+** エクプレスナヴ
+** FTP
+** ICMP
+** QuickNAV
+** SNMP
+** Telnet 特定のプロトコルが有効になっているか無効になっているかを調べるには 'get closePort' コマンドを使用します
+
+
+. SNMP を有効にする場合は、 set snmp enabled コマンドも問題で実行する必要があります。
++
+'*set snmp enabled*
+
++
+SNMP は、別個の enable コマンドを必要とする唯一のプロトコルです。
+
+. 設定を保存します。
++
+'*saveconfigation*
+
+

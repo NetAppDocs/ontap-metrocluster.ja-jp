@@ -1,0 +1,259 @@
+---
+permalink: install-fc/task_install_the_brocade_fc_switch_rcf_file.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, brocade, fc, switch, rcf, file 
+summary: Brocade FC スイッチを設定する際には、特定の構成のスイッチ設定がすべて定義されたスイッチ構成ファイルをインストールできます。 
+---
+= Brocade FC スイッチの RCF ファイルをインストールします
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Brocade FC スイッチを設定する際には、特定の構成のスイッチ設定がすべて定義されたスイッチ構成ファイルをインストールできます。
+
+この手順は、 MetroCluster ファブリック構成内の各 Brocade FC スイッチで実行する必要があります。
+
+.手順
+. ダウンロードと設定のプロセスを開始します。
++
+'*configDownload*'
+
++
+次の例に示すようにプロンプトに応答します。
+
++
+[listing]
+----
+FC_switch_A_1:admin> configDownload
+Protocol (scp, ftp, sftp, local) [ftp]:
+Server Name or IP Address [host]: <user input>
+User Name [user]:<user input>
+Path/Filename [<home dir>/config.txt]:path to configuration file
+Section (all|chassis|switch [all]): all
+.
+.
+.
+Do you want to continue [y/n]: y
+Password: <user input>
+----
++
+パスワードを入力すると、スイッチはコンフィギュレーションファイルをダウンロードして実行します。
+
+. スイッチを永続的に有効にします :'*switchcfgpersistentenable*
++
+次の例は、 FC switch_A_1 を永続的に有効にします。
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchcfgpersistentenable
+----
+. 次のコマンドを実行して、構成ファイルでスイッチドメインが設定されたことを確認します。
++
+'*switchShow*
+
++
+スイッチが使用する構成ファイルに応じて、各スイッチに異なるドメイン番号が割り当てられます。
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchShow
+switchName: FC_switch_A_1
+switchType: 109.1
+switchState: Online
+switchMode: Native
+switchRole: Subordinate
+switchDomain: 5
+----
+. 次の表に示すように、スイッチに正しいドメイン値が割り当てられていることを確認します。
++
+|===
+| ファブリック | スイッチ | スイッチドメイン 
+
+
+ a| 
+1.
+ a| 
+A_1
+ a| 
+5.
+
+
+
+ a| 
+B_1.
+ a| 
+7.
+
+
+
+ a| 
+2.
+ a| 
+A_2
+ a| 
+6.
+
+
+
+ a| 
+B_2
+ a| 
+8.
+
+|===
+. ポート速度を変更します。 *portcfgspeed *`
++
+[listing]
+----
+FC_switch_A_1:admin> portcfgspeed port number port speed
+----
++
+デフォルトでは、すべてのポートが 16Gbps で動作するように設定されています。ポート速度は次のような理由で変更される可能性があります。
+
++
+** 8 Gbps の FC-VI アダプタを使用し、スイッチポート速度を 8Gbps に設定している場合、インターコネクトスイッチポート速度を変更する必要があります。
+** ATTO FibreBridge 6500N に 8 Gbps HBA アダプタを使用している場合は、スイッチポート速度を変更する必要があります。
+** ISL が 16Gbps で実行されない場合は、 ISL ポートの速度を変更する必要があります。
+
+
+. ISL の距離を計算します。
++
+FC-VI の動作により、この距離を 10 （ LE ）以上の実際の距離の 1.5 倍に設定する必要があります。ISL の距離は次のように計算され、 km 単位に切り上げられます。 1.5 × 実際の距離 = 距離です。
+
++
+距離が 3km の場合は、 1.5 × 3 km = 4.5 となります。これは 10 より小さいため、 ISL は LE の距離レベルに設定する必要があります。
+
++
+この距離は 20km の場合は、 20km × 1.5 = 30 となり、ISL は LS 距離レベルに設定する必要があります。
+
+. 次のコマンドを使用して ISL ポートごとの距離を設定します。 *portcfglongdistance * _port levelvc_link_initdistance_
++
+vc_link_init の値が 1 の場合は、デフォルトで fillword 「 ARB 」が使用されます。値 0 は fillword 'idle' を使用します。必要な値は、使用するリンクによって異なる場合があります。この例では、デフォルトが設定され、距離は 20 km と想定されていますしたがって、設定は「 30 」で、 vc_link_init の値は 1 、 ISL ポートは 21 です。
+
++
+例： ls
+
++
+[listing]
+----
+FC_switch_A_1:admin> portcfglongdistance 21 LS 1 -distance 30
+----
++
+例： LE
+
++
+[listing]
+----
+FC_switch_A_1:admin> portcfglongdistance 21 LE 1
+----
+. IP アドレスが正しく設定されているかどうかを確認します :`*ipaddrshow*`
++
+[listing]
+----
+FC_switch_A_1:admin> ipAddrshow
+----
++
+必要に応じて次のコマンドで IP アドレスを設定できます :`*ipAddrSet*`
+
+. スイッチのプロンプトからタイムゾーンを設定します :`*timezone --interactive *`
++
+プロンプトに対してと入力します。
+
++
+[listing]
+----
+FC_switch_A_1:admin>  tstimezone --interactive
+----
+. スイッチを再起動します *reboot*
++
+次の例は、 FC switch_A_1 をリブートします。
+
++
+[listing]
+----
+FC_switch_A_1:admin> reboot
+----
+. 距離設定を確認します :`*portbuffershow *`
++
+LE の距離設定は 10 km と表示されます
+
++
+[listing]
+----
+FC_Switch_A_1:admin> portbuffershow
+User Port Lx   Max/Resv Buffer Needed  Link     Remaining
+Port Type Mode Buffers  Usage  Buffers Distance Buffers
+---- ---- ---- ------- ------ ------- --------- ----------
+...
+21    E    -      8      67     67      30 km
+22    E    -      8      67     67      30 km
+...
+23    -    8      0       -      -      466
+----
+. ISL ケーブルを、取り外したスイッチのポートに再接続します。
++
+工場出荷時の設定にリセットすると、 ISL ケーブルは切断されています。
+
++
+xref:task_reset_the_brocade_fc_switch_to_factory_defaults.adoc[Brocade FC スイッチを工場出荷時のデフォルトにリセット]
+
+. 構成を検証
++
+.. スイッチが 1 つのファブリックを形成していることを確認します :'*switchshow*
++
+次の例は、ポート 20 とポート 21 上の ISL を使用する構成の出力です。
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchshow
+switchName: FC_switch_A_1
+switchType: 109.1
+switchState:Online
+switchMode: Native
+switchRole: Subordinate
+switchDomain:       5
+switchId:   fffc01
+switchWwn:  10:00:00:05:33:86:89:cb
+zoning:             OFF
+switchBeacon:       OFF
+
+Index Port Address Media Speed State  Proto
+===========================================
+...
+20   20  010C00   id    16G  Online FC  LE E-Port  10:00:00:05:33:8c:2e:9a "FC_switch_B_1" (downstream)(trunk master)
+21   21  010D00   id    16G  Online FC  LE E-Port  (Trunk port, master is Port 20)
+...
+----
+.. ファブリックの構成を確認します：「 * fabricshow *
++
+[listing]
+----
+FC_switch_A_1:admin> fabricshow
+   Switch ID   Worldwide Name      Enet IP Addr FC IP Addr Name
+-----------------------------------------------------------------
+1: fffc01 10:00:00:05:33:86:89:cb 10.10.10.55  0.0.0.0    "FC_switch_A_1"
+3: fffc03 10:00:00:05:33:8c:2e:9a 10.10.10.65  0.0.0.0   >"FC_switch_B_1"
+----
+.. ISL が機能していることを確認します。「 * islshow * 」
++
+[listing]
+----
+FC_switch_A_1:admin> islshow
+----
+.. 次のコマンドを実行して ' ゾーニングが正しく複製されていることを確認します +`*cfgshow*`+`*zoneshow *`
++
+両方の出力に、両方のスイッチの同じ設定情報とゾーニング情報が表示されます。
+
+.. トランキングが使用されている場合は、次のコマンドでトランキングを確認できます。 *trunkShow*'
++
+[listing]
+----
+FC_switch_A_1:admin> trunkshow
+----
+
+
+

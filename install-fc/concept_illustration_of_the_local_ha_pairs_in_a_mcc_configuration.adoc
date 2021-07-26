@@ -1,0 +1,27 @@
+---
+permalink: install-fc/concept_illustration_of_the_local_ha_pairs_in_a_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, local, ha, pairs, configuration, illustration 
+summary: 8 ノード / 4 ノード MetroCluster 構成では、それぞれのサイトに、 1 つまたは 2 つの HA ペアを構成するストレージコントローラが含まれます。これによってローカルでの冗長性が実現し、一方のストレージコントローラに障害が発生した場合はローカルの HA パートナーがテイクオーバーできるようになります。このような障害には、 MetroCluster のスイッチオーバー処理は必要ありません。 
+---
+= MetroCluster 構成のローカル HA ペアの図
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+8 ノード / 4 ノード MetroCluster 構成では、それぞれのサイトに、 1 つまたは 2 つの HA ペアを構成するストレージコントローラが含まれます。これによってローカルでの冗長性が実現し、一方のストレージコントローラに障害が発生した場合はローカルの HA パートナーがテイクオーバーできるようになります。このような障害には、 MetroCluster のスイッチオーバー処理は必要ありません。
+
+ローカルの HA フェイルオーバー処理とギブバック処理は、非 MetroCluster 構成と同じように、 storage failover コマンドで実行します。
+
+image::../media/mcc_hw_architecture_local_ha.gif[MCC ハードウェアアーキテクチャローカル HA]
+
+* 関連情報 *
+
+xref:concept_illustration_of_redundant_fc_to_sas_bridges.adoc[冗長 FC-to-SAS ブリッジの図]
+
+xref:concept_redundant_fc_switch_fabrics.adoc[冗長 FC スイッチファブリック]
+
+xref:concept_cluster_peering_network_mcc.adoc[クラスタピアリングネットワークの図]
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"]

@@ -1,0 +1,335 @@
+---
+permalink: transition/task_disruptively_transition_when_exist_shelves_are_not_supported_on_new_controllers.html 
+sidebar: sidebar 
+keywords: start, ontap, disruptive, transition, two-node, metrocluster, fc, configuration, data, exist, drive, shelves, shelf, ip, node, requirement, support, workflow, preparing, prepare, controller, module, controller, migrate 
+summary: ONTAP 9.8 以降では、 2 ノードの MetroCluster FC 構成を無停止で移行し、既存のストレージシェルフが新しい MetroCluster IP ノードでサポートされていない場合でも、既存のドライブシェルフからデータを移動できます。 
+---
+= 新しいコントローラで既存シェルフを使用できない場合の停止を伴う移行（ ONTAP 9.8 以降）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.8 以降では、 2 ノードの MetroCluster FC 構成を無停止で移行し、既存のストレージシェルフが新しい MetroCluster IP ノードでサポートされていない場合でも、既存のドライブシェルフからデータを移動できます。
+
+* この手順は、既存のストレージシェルフモデルが新しい MetroCluster IP プラットフォームモデルでサポートされていない場合にのみ使用してください。
+* この手順は、 ONTAP 9.8 以降を実行しているシステムでサポートされています。
+* この手順はシステムの停止を伴います。
+* この手順は、 2 ノード MetroCluster FC 構成にのみ適用されます。
++
+4 ノード MetroCluster FC 構成の場合は、を参照してください xref:concept_choosing_your_transition_procedure_mcc_transition.adoc[移行する手順を選択します]。
+
+* すべての要件を満たし、手順のすべての手順に従う必要があります。
+
+
+
+
+== 新しいノードでシェルフがサポートされていない場合の移行の要件
+
+[role="lead"]
+移行プロセスを開始する前に、構成が要件を満たしていることを確認する必要があります。
+
+* 既存の構成は 2 ノードのファブリック接続またはストレッチ MetroCluster 構成である必要があり、すべてのノードで ONTAP 9.8 以降が実行されている必要があります。
++
+新しい MetroCluster IP コントローラモジュールは、同じバージョンの ONTAP 9.8 を実行している必要があります。
+
+* 既存のプラットフォームと新しいプラットフォームの組み合わせは、移行対象としてサポートされている必要があります。
++
+xref:concept_supported_platforms_for_transition.adoc[無停止移行でサポートされるプラットフォーム]
+
+* MetroCluster インストールおよび設定ガイド _ に記載されているすべての要件とケーブル接続を満たしている必要があります。
++
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
+* 新しいコントローラに付属する新しいストレージシェルフ（ node_A_1 の IP 、 node_B_2 の IP 、 node_B_1 の IP 、および node_B_2 の IP ）が古いコントローラ（ node_A_1 の FC と node_B_1 の FC ）でサポートされている必要があります。
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+* 古いストレージシェルフは、新しい MetroCluster IP プラットフォームモデルでは * サポートされていません。
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+* 既存のシェルフで使用可能なスペアディスクに応じて、ドライブを追加する必要があります。
++
+必要なドライブシェルフがほかにもあります。
+
++
+各コントローラに 14~18 本のドライブを追加する必要があります。
+
++
+** 3 本のプール 0 ドライブ
+** プール 1 ドライブ × 3
+** 2 本のスペアドライブ
+** システムボリューム用に 6 ～ 10 台のドライブ
+
+
+* 新しいノードを含む構成が、ドライブ数、ルートアグリゲートのサイズ容量など、構成のプラットフォーム制限を超えないようにする必要があります
++
+この情報は、各プラットフォームモデルの NetApp Hardware Universe _ で確認できます。
+
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+* MetroCluster サイトから 6 つのすべてのノードのリモートコンソールアクセスが必要です。または、手順で必要に応じてサイト間の移動を計画しておく必要があります。
+
+
+
+
+== 新しいコントローラでシェルフがサポートされない場合の停止を伴う移行のワークフロー
+
+[role="lead"]
+既存のシェルフモデルが新しいプラットフォームモデルでサポートされない場合は、新しいシェルフを古い構成に接続し、新しいシェルフにデータを移動して、新しい構成に移行する必要があります。
+
+移行を準備する際は、サイト間の移動を計画します。リモートノードがラックに設置されてケーブル接続されたら、ノードへのシリアルターミナルアクセスが必要です。ノードが設定されるまでサービスプロセッサへのアクセスは許可されません。
+
+image::../media/workflow_2n_transition_old_shelves_not_supported.png[ワークフロー 2n は古いシェルフを移行することはできません]
+
+
+
+== 新しいコントローラモジュールの準備を行います
+
+[role="lead"]
+新しいコントローラモジュールと新しいストレージシェルフの構成とディスク所有権をクリアする必要があります。
+
+. 新しい MetroCluster IP コントローラモジュールに新しいストレージシェルフを接続し、 2 番目の作業のすべての手順を実行します link:../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#preparing-the-metrocluster-ip-controllers["MetroCluster IP コントローラの準備"]。
+. 新しい MetroCluster IP コントローラモジュールから新しいストレージシェルフを切断します。
+
+
+
+
+== 新しいディスクシェルフを既存の MetroCluster FC コントローラに接続
+
+[role="lead"]
+MetroCluster IP 構成に移行する前に、新しいドライブシェルフを既存のコントローラモジュールに接続する必要があります。
+
+次の図は、 MetroCluster FC 構成に新しいシェルフが接続された状態を示しています。
+
+image::../media/transition_2n_unsupported_old_new_shelves_to_old_controllers.png[サポートされていない古い新しいシェルフは移行 2n で古いコントローラに移動します]
+
+. node_A_1 の FC および node_A_2 の FC に対するディスク自動割り当てを無効にします。ディスクオプション modify -node node-name -autoassign off
++
+このコマンドはノードごとに実行する必要があります。
+
++
+ディスクの自動割り当ては、 node_A_1 に FC および node_B_1 に追加するシェルフの割り当てを回避するために無効になります。移行の一環として、ノード node_A_1 の IP と node_B_1 の IP にディスクを使用し、自動割り当てを許可した場合は、あとでディスク所有権を削除してから、 node_A_1 の IP と node_B_2 の IP にディスクを割り当てる必要があります。
+
+. 必要に応じて FC-to-SAS ブリッジを使用し、新しいシェルフを既存の MetroCluster FC ノードに接続します。
++
+要件と手順については、『 MetroCluster メンテナンスガイド』のを参照してください。
+
++
+link:../maintain/task_hot_add_storage_to_a_mcc_fc_configuration_container_topic.html["MetroCluster FC 構成へのストレージのホットアド"]
+
+
+
+
+
+== ルートアグリゲートを移行して、新しいディスクシェルフにデータを移動します
+
+[role="lead"]
+古いドライブシェルフから、 MetroCluster IP ノードで使用する新しいドライブシェルフにルートアグリゲートを移動する必要があります。
+
+このタスクは、既存のノード（ node_A_1 の FC と node_B_1 の FC ）に移行する前に実行します。
+
+. controllernode_B_1 から FC-MetroCluster switchover' からネゴシエート・スイッチオーバーを実行します
+. node_B_1 からのリカバリのルートステップを修復するには ' アグリゲートの修復と修復を実行します MetroCluster の修復フェーズアグリゲートは '`m etrocluster heal-phase root-aggregates です
+. boot controller node_A_1 -FC: 「 boot_ontap
+. 新しいシェルフの未割り当てディスクをコントローラ node_A_1 の FC の適切なプールに割り当てます。
++
+.. シェルフ上のディスクを特定します。「 Disk show -shelf pool_0_shelf-fields container-type 、 diskpathnames 」「 Disk show -shelf pool_1_shelf-fields container-type 、 diskpathnames
+.. ローカル・モードを開始して、コマンドがローカル・ノードで実行されるようにします。「 run local 」と入力します
+.. ディスクを割り当てます : ディスク割り当て disk1disk2disk3disk... -p 0``Disk assign disk4disk5disk6disk… -p 1`
+.. ローカルモードを終了します : exit
+
+
+. 新しいミラーされたアグリゲートを作成してコントローラ node_A_1 の新しいルートアグリゲートにします。
++
+.. 権限モードを advanced に設定します。「 set priv advanced
+.. アグリゲートを作成します。「 aggregate create -aggregate new_aggr-disklist disk1 、 disk2 、 disk3 、…」 -mirror-disklist disk4disk5 、 disk6 、… -raidtypese-as -exist-root-force-small-aggregate true aggr show -aggregate new_aggr-fields percent-snapshot-space を使用できます
++
+percent-snapshot-space の値が 5% 未満の場合は、 5% よりも大きい値に増やす必要があります。「 aggr modify new_aggr-percent-snapshot-space 5
+
+.. 特権モードを admin に戻します。 'set priv admin'
+
+
+. 新しいアグリゲートが正しく作成されたことを確認しますノード run -node local sysconfig -r
+. ノードレベルとクラスタレベルの構成バックアップを作成します。
++
+
+NOTE: スイッチオーバー中にバックアップが作成されると、クラスタはスイッチオーバーされたリカバリの状態を認識します。システム構成のバックアップとアップロードは、このバックアップがなければクラスタ間で MetroCluster 構成を再確立できないために成功する必要があります。
+
++
+.. クラスタバックアップを作成します。「 system configuration backup create -node local-backup-type cluster -backup-name cluster-backup-name
+.. クラスタ・バックアップの作成を確認します job show -id job-IDStatus
+.. ノードバックアップを作成します。「 system configuration backup create -node local-backup-type node -backup-name node-backup-name
+.. クラスタとノードの両方のバックアップを確認します。 'system configuration backup show'
++
+出力に両方のバックアップが表示されるまで、コマンドを繰り返し実行できます。
+
+
+
+. バックアップのコピーを作成します。
++
+バックアップは、新しいルート・ボリュームのブート時にローカルで失われるため、別の場所に保存する必要があります。
+
++
+バックアップを FTP または HTTP サーバにアップロードするか、 scp コマンドを使用してバックアップをコピーできます。
+
++
+|===
+| メソッド |  
+
+
+ a| 
+* バックアップを FTP または HTTP サーバ * にアップロードします
+ a| 
+.. クラスタバックアップをアップロードします。「 system configuration backup upload -node local-backup cluster -backup-name -destination url
+.. ノードバックアップをアップロードします。「 system configuration backup upload -node local-backup node-backup-name -destination url
+
+
+
+
+ a| 
+* セキュアコピー * を使用して、バックアップをリモート・サーバにコピーします
+ a| 
+....
+From the remote server use the following scp commands:
+....
+.. クラスタのバックアップをコピーします。「 cp diagnode-mgmt -FC ： /mroot/etc/backups/config/cluster-backup-name.7z
+.. ノードのバックアップ「 cp diag @ node-mgmt -FC ： /mroot/etc/backups/config/node-backup-name.7z 」をコピーします
+
+
+|===
+. node_A_1 を停止：「 halt -node local-ignore-quorum -warnings true
+. boot node_A_1 -FC to Maintenance モード： boot_ontap maint
+. メンテナンスモードで、必要な変更を行ってアグリゲートを root として設定します。
++
+.. HA ポリシーを CFO: 「 aggr options new_aggr ha_policy cfo 」に設定します
++
+続行するかどうかを尋ねられたら 'yes' と入力します
+
++
+[listing]
+----
+Are you sure you want to proceed (y/n)?
+----
+.. 新しいアグリゲートを root として設定します。「 aggr options new_aggr root 」
+.. LOADER プロンプトに停止します：「 halt 」
+
+
+. コントローラをブートして、システム構成をバックアップします。
++
+新しいルートボリュームが検出されると、ノードはリカバリモードでブートします
+
++
+.. コントローラ「 boot_ontap 」をブートします
+.. ログインし、設定をバックアップします。
++
+ログインすると、次の警告が表示されます。
+
++
+[listing]
+----
+Warning: The correct cluster system configuration backup must be restored. If a backup
+from another cluster or another system state is used then the root volume will need to be
+recreated and NGS engaged for recovery assistance.
+----
+.. advanced 権限モードに切り替えます。「 set -privilege advanced 」
+.. クラスタ構成をサーバにバックアップします。「 system configuration backup download -node local-source url of server/cluster-backup-name.7z
+.. ノード構成をサーバにバックアップします。「 system configuration backup download -node local-source url of server/node-backup-name.7z
+.. admin モードに戻ります。 'et -privilege admin'
+
+
+. クラスタの健常性を確認します。
++
+.. 問題次のコマンドを実行します
+.. 権限モードを advanced に設定します。「 set -privilege advanced 」
+.. クラスタ構成の詳細を確認します「 cluster ring show
+.. admin 権限レベルに戻ります。「 set -privilege admin 」
+
+
+. MetroCluster 構成の運用モードを確認し、 MetroCluster チェックを実行
++
+.. MetroCluster 構成と動作モードが正常であることを確認します。 MetroCluster show
+.. 期待されるすべてのノードが表示されていることを確認します MetroCluster node show
+.. 問題次のコマンドを実行します MetroCluster check run
+.. MetroCluster チェックの結果を表示します。「 MetroCluster check show 」
+
+
+. controllernode_B_1 から FC: MetroCluster switchback を実行します
+. MetroCluster 構成の動作を確認します。
++
+.. MetroCluster 構成と動作モードが正常であることを確認します。 MetroCluster show
+.. MetroCluster チェック「 MetroCluster check run 」を実行します
+.. MetroCluster チェックの結果を表示します。「 MetroCluster check show 」
+
+
+. 新しいルートボリュームを Volume Location Database に追加します。
++
+.. 権限モードを advanced に設定します。「 set -privilege advanced 」
+.. ボリュームをノードに追加します。 volume add-other-volumes – node node_A_1 -FC'
+.. admin 権限レベルに戻ります。「 set -privilege admin 」
+
+
+. ボリュームが認識され、 mroot であることを確認します。
++
+.. アグリゲートを表示します。「 storage aggregate show
+.. ルートボリュームの mroot ：「 storage aggregate show -fields has -mroot 」が割り当てられていることを確認します
+.. ボリュームを表示します。 volume show
+
+
+. System Manager へのアクセスを再度有効にするには、新しいセキュリティ証明書を作成します。「 security certificate create -common-name -type server -size 2048
+. 同じ手順を繰り返して、 node_A_1 の FC が所有するシェルフのアグリゲートを移行します。
+. クリーンアップを実行します。
++
+古いルートボリュームとルートアグリゲートを削除するには、 node_A_1 の FC と node_B_1 の両方で次の手順を実行する必要があります。
+
++
+.. 古いルートボリュームを削除します。 run local `vol offline old_vol0 `vol destroy old_vol0 `exit ` volume remove-other-volume -vserver node_name -volume old_vol0
+.. 元のルートアグリゲート「 aggr offline -aggregate old_aggr0_cluster1_01 」「 aggr delete -aggregate old_aggr0_cluster1_01 」を削除します
+
+
+. 新しいコントローラ上のアグリゲートに、一度に 1 つのボリュームずつデータボリュームを移行します。
++
+コントローラアップグレードエクスプレスガイドの次のセクションを使用してください。
+
++
+http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html["アグリゲートの作成と新しいノードへのボリュームの移動"]
+
+. セクションのすべての手順を実行して、古いシェルフを撤去します xref:task_disruptively_transition_while_move_volumes_from_old_shelves_to_new_shelves.adoc[撤去するシェルフは node_A_1 から FC 、 node_A_1 から FC を移行]。
+
+
+
+
+== 構成を移行しています
+
+[role="lead"]
+詳細な移行手順に従う必要があります。
+
+以降の手順では、このガイドの他のセクションに説明します。参照されている各セクションの手順を記載された順序で実行する必要があります。
+
+. ポートマッピングを計画
++
+のすべての手順を実行します link:../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#mapping-ports-from-the-metrocluster-fc-nodes-to-the-metrocluster-ip-nodes["MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング"]。
+
+. MetroCluster IP コントローラを準備
++
+のすべての手順を実行します link:../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#preparing-the-metrocluster-ip-controllers["MetroCluster IP コントローラの準備"]。
+
+. MetroCluster 構成の健全性を確認
++
+のすべての手順を実行します link:../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#verifying-the-health-of-the-metrocluster-fc-configuration["MetroCluster FC 構成の健全性の確認"]
+
+. 既存の MetroCluster FC ノードを準備して削除
++
+のすべての手順を実行します link:../transition/task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html["MetroCluster FC ノードを移行します"]。
+
+. 新しい MetroCluster IP ノードを追加します。
++
+のすべての手順を実行します xref:task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.adoc[MetroCluster IP コントローラモジュールを接続します]。
+
+. 新しい MetroCluster IP ノードの移行と初期設定を完了します。
++
+のすべての手順を実行します xref:task_configure_the_new_nodes_and_complete_transition.doc[新しいノードの設定と移行の完了]。
+
+

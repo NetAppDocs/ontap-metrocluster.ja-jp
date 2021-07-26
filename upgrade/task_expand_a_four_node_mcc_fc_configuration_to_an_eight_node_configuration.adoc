@@ -1,0 +1,38 @@
+---
+permalink: upgrade/task_expand_a_four_node_mcc_fc_configuration_to_an_eight_node_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, expand, four, node, eight, configuration 
+summary: 4 ノード MetroCluster FC 構成を 8 ノード MetroCluster FC 構成に拡張するには、各クラスタに 2 台のコントローラを追加して各 MetroCluster サイトに 2 つ目の HA ペアを形成してから、 MetroCluster FC の構成処理を実行します。 
+---
+= 4 ノード MetroCluster FC 構成から 8 ノード構成への拡張
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+4 ノード MetroCluster FC 構成を 8 ノード MetroCluster FC 構成に拡張するには、各クラスタに 2 台のコントローラを追加して各 MetroCluster サイトに 2 つ目の HA ペアを形成してから、 MetroCluster FC の構成処理を実行します。
+
+* ノードが MetroCluster FC 構成で ONTAP 9 を実行している必要があります。
++
+この手順は、以前のバージョンの ONTAP または MetroCluster IP 構成ではサポートされていません。
+
+* 既存の MetroCluster FC 構成が健全な状態である必要があります。
+* 追加する機器がサポートされており、 _Fabric-attached MetroCluster Installation and Configuration Guide _ に記載されているすべての要件を満たしている必要があります。
++
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
+* 新しいコントローラとブリッジに対応する FC スイッチポートが必要です。
+* 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+* この手順は、 MetroCluster FC 構成にのみ適用されます。
+* この手順はシステムを停止せずに実行でき、ディスクが初期化されている場合は約 1 日で完了します（ラックとスタックは除く）。
+
+
+この手順を実行する前の MetroCluster FC 構成は 4 つのノードで構成されており、各サイトに HA ペアが 1 つあります。
+
+image::../media/mcc_dr_groups_4_node.gif[MCC DR グループ 4 ノード]
+
+この手順の完了後、 MetroCluster FC 構成の各サイトには 2 つの HA ペアが含まれます。
+
+image::../media/mcc_dr_groups_8_node.gif[MCC DR グループ 8 ノード]
+
+両方のサイトを同じように拡張する必要があります。MetroCluster FC 構成では、ノードの数を奇数にすることはできません。

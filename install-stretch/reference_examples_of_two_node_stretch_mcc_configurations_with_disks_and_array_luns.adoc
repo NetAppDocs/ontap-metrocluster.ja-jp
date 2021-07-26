@@ -1,0 +1,34 @@
+---
+permalink: install-stretch/reference_examples_of_two_node_stretch_mcc_configurations_with_disks_and_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, examples, two, node, stretch, configurations, disks, array, luns 
+summary: ネイティブディスクおよびアレイ LUN を使用するストレッチ MetroCluster 構成では、 FC-to-SAS ブリッジまたは SAS 光ケーブルのいずれかを使用して ONTAP システムをディスクシェルフに接続する必要があります。アレイ LUN は FC スイッチを使用して ONTAP システムに接続する必要があります。 
+---
+= ディスクとアレイ LUN を使用する 2 ノードストレッチ MetroCluster 構成の例
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネイティブディスクおよびアレイ LUN を使用するストレッチ MetroCluster 構成では、 FC-to-SAS ブリッジまたは SAS 光ケーブルのいずれかを使用して ONTAP システムをディスクシェルフに接続する必要があります。アレイ LUN は FC スイッチを使用して ONTAP システムに接続する必要があります。
+
+ONTAP システムをネイティブディスクとアレイ LUN の両方に接続するには、 HBA ポートが 8 個以上必要です。
+
+次に、ディスクとアレイ LUN を使用する 2 ノードストレッチ MetroCluster 構成の例を示します。これらの例では、 HBA ポート 0a~0d をアレイ LUN との接続に使用し、ポート 1a~1d をネイティブディスクとの接続に使用しています。
+
+次の図は、ネイティブディスクを SAS 光ケーブルで ONTAP システムに接続した 2 ノードストレッチ MetroCluster 構成の例です。
+
+image::../media/two_node_mcc_combined_glowworm.gif[2 ノード MCC 、 Glowworm を組み合わせた]
+
+次の図は、ネイティブディスクを FC-to-SAS ブリッジで ONTAP システムに接続した 2 ノードストレッチ MetroCluster 構成の例です。
+
+image::../media/two_node_mcc_combined_armadillo.gif[2 ノード MCC の合計は armadillo です]
+
+次の図は、アレイ LUN 接続を使用する 2 ノードストレッチ MetroCluster 構成の例です。
+
+image::../media/two_node_mcc_combined_array_luns.gif[2 ノード MCC の統合アレイ LUN]
+
+
+NOTE: 必要に応じて、同じ FC スイッチを使用してネイティブディスクとアレイ LUN の両方を MetroCluster 構成のコントローラに接続することもできます。
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]

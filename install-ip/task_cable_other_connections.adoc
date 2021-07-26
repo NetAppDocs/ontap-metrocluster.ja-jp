@@ -1,0 +1,44 @@
+---
+permalink: install-ip/task_cable_other_connections.html 
+sidebar: sidebar 
+keywords: cabling, cable, component, peering, management, network, hardware, component, switch, cluster, connection, management, data, configuring, configure 
+summary: クラスタピアリング、管理、データ接続に使用するコントローラモジュールのポートをケーブル接続する必要があります。 
+---
+= コントローラピアリングポート、データポート、および管理ポートのケーブル接続
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+クラスタピアリング、管理、データ接続に使用するコントローラモジュールのポートをケーブル接続する必要があります。
+
+このタスクは、 MetroCluster 構成の各コントローラモジュールで実行する必要があります。
+
+クラスタピアリングには、各コントローラモジュールの少なくとも 2 つのポートを使用します。
+
+ポートおよびネットワーク接続の推奨される最小帯域幅は 1GbE です。
+
+. クラスタピアリングに使用する少なくとも 2 つのポートを特定してケーブル接続し、そのポートがパートナークラスタとネットワーク接続されていることを確認します。
++
+クラスタピアリングには、専用のポートとデータポートのどちらも使用できます。専用のポートを使用すると、クラスタピアリングトラフィックのスループットが向上します。
+
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
+
+. コントローラの管理ポートとデータポートを、ローカルサイトの管理ネットワークとデータネットワークにケーブル接続します。
++
+https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-a320-install-setup/home.html["AFF A320 システム：設置とセットアップ"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842666["AFF A220 / FAS2700 システムの設置とセットアップの手順"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842668["AFF A800 システムの設置とセットアップの手順"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2469722["AFF A300 システム『 Installation and Setup Instructions 』"]
+
++
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2316769["FAS8200 システム設置とセットアップの手順"]
+
+

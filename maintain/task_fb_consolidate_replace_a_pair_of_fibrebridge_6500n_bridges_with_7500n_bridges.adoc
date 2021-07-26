@@ -1,0 +1,642 @@
+---
+permalink: maintain/task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html 
+sidebar: sidebar 
+keywords: replace, metrocluster, maintain, service, pair, fibrebridge, bridges 
+summary: FibreBridge 7600N / 7500N ブリッジの追加の FC2 ポートを利用してラック数を減らすためには、システムを停止せずに 6500N ブリッジを交換し、 1 組の FibreBridge 7600N / 7500N ブリッジペアに最大 4 つのストレージスタックを統合することができます。 
+---
+= FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FibreBridge 7600N / 7500N ブリッジの追加の FC2 ポートを利用してラック数を減らすためには、システムを停止せずに 6500N ブリッジを交換し、 1 組の FibreBridge 7600N / 7500N ブリッジペアに最大 4 つのストレージスタックを統合することができます。
+
+管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+
+この手順は、次の場合に使用します。
+
+* FibreBridge 6500N ブリッジのペアを FibreBridge 7600N / 7500N ブリッジに交換する。
++
+ペアの両方のブリッジを同じモデルに交換する必要があります。
+
+* 1 台の FibreBridge 6500N ブリッジを 7600N / 7500N ブリッジに交換済みのペアで、 2 台目のブリッジを交換する。
+* 使用している FibreBridge 7600N / 7500N ブリッジのペアに使用可能な SAS ポートがあり、現在 FibreBridge 6500N ブリッジで接続されている SAS ストレージスタックを統合する。
+
+
+これはシステムの停止を伴わない手順であり、完了までに約 2 時間かかります。
+
+* 関連情報 *
+
+xref:task_replace_a_sle_fc_to_sas_bridge.adoc[単一の FC-to-SAS ブリッジの交換]
+
+
+
+== ストレージ接続を確認しています
+
+[role="lead"]
+ブリッジを交換する前に、ブリッジとストレージの接続を確認する必要があります。設定を変更したあとに接続を確認できるよう、コマンド出力について理解しておいてください。
+
+これらのコマンドは、メンテナンス中のサイトの MetroCluster 構成にある任意のコントローラモジュールの管理プロンプトから問題できます。
+
+. いずれかの MetroCluster ノードで次のコマンドを入力して、ディスクへの接続を確認します。
++
+'*run local sysconfig -v *
+
++
+出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。
+
++
+[listing]
+----
+
+node_A_1> run local sysconfig -v
+NetApp Release 9.3.2X18: Sun Dec 13 01:23:24 PST 2017
+System ID: 4068741258 (node_A_1); partner ID: 4068741260 (node_B_1)
+System Serial Number: 940001025471 (node_A_1)
+System Rev: 70
+System Storage Configuration: Multi-Path HA**<=== Configuration should be multi-path HA**
+.
+.
+.
+slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator port**
+		Firmware rev:      7.5.0
+		Flash rev:         0.0.0
+		Host Port Id:      0x60130
+		FC Node Name:      5:00a:098201:bae312
+		FC Port Name:      5:00a:098201:bae312
+		SFP Vendor:        UTILITIES CORP.
+		SFP Part Number:   FTLF8529P3BCVAN1
+		SFP Serial Number: URQ0Q9R
+		SFP Capabilities:  4, 8 or 16 Gbit
+		Link Data Rate:    16 Gbit
+		Switch Port:       brcd6505-fcs40:1
+  **<List of disks visible to port\>**
+		 ID     Vendor   Model            FW    Size
+		brcd6505-fcs29:12.126L1527     : NETAPP   X302_HJUPI01TSSM NA04 847.5GB (1953525168 512B/sect)
+		brcd6505-fcs29:12.126L1528     : NETAPP   X302_HJUPI01TSSA NA02 847.5GB (1953525168 512B/sect)
+		.
+		.
+		.
+		**<List of FC-to-SAS bridges visible to port\>**
+		FC-to-SAS Bridge:
+		brcd6505-fcs40:12.126L0        : ATTO     FibreBridge6500N 1.61  FB6500N102980
+		brcd6505-fcs42:13.126L0        : ATTO     FibreBridge6500N 1.61  FB6500N102980
+		brcd6505-fcs42:6.126L0         : ATTO     FibreBridge6500N 1.61  FB6500N101167
+		brcd6505-fcs42:7.126L0         : ATTO     FibreBridge6500N 1.61  FB6500N102974
+		.
+		.
+		.
+  **<List of storage shelves visible to port\>**
+		brcd6505-fcs40:12.shelf6: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		brcd6505-fcs40:12.shelf8: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		.
+		.
+		.
+----
+
+
+
+
+== FibreBridge 7600N / 7500N ブリッジのペアを作成するための FibreBridge 6500N ブリッジのホットスワップ
+
+[role="lead"]
+1 つまたは 2 つの FibreBridge 6500N ブリッジをホットスワップして、 FibreBridge 7600N / 7500N ブリッジのペアを使用した構成を作成するには、ブリッジを 1 つずつ交換し、正しいケーブル接続手順に従う必要があります。新しいケーブル接続は元のケーブル接続とは異なります。
+
+この手順は、次の条件に該当する場合にも使用できます。
+
+* 同じ SAS ストレージのスタックに接続されている FibreBridge 6500N ブリッジのペアを交換する。
+* ペアの一方の FibreBridge 6500N ブリッジを以前に交換済みであり、ストレージスタックに FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジが 1 つずつ設定されている。
++
+その場合は、まず以下の手順から始めて、「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします。
+
+
+
+次の図は、 4 つの FibreBridge 6500N ブリッジで 2 つの SAS ストレージスタックを接続する初期構成の例を示しています。
+
+image::../media/consolidating_stacks_before.gif[以前にスタックを統合する]
+
+.手順
+. 次のガイドラインを確認し、の手順を使用して「最上部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします xref:task_replace_a_sle_fc_to_sas_bridge.adoc[FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジのホットスワップ]：
++
+** FibreBridge 7600N / 7500N ブリッジの FC1 ポートをスイッチまたはコントローラに接続します。
++
+これは、元の FibreBridge 6500N ブリッジの FC1 ポートへの接続と同じです。
+
+** ここでは、 FibreBridge 7600N / 7500N ブリッジの FC2 ポートを接続しないでください。次の図は、 bridge_A_1a が FibreBridge 7600N / 7500N ブリッジに交換された状態を示しています。
+
+
++
+image::../media/consolidating_stacks_1st_7500n_in_place.gif[スタック 1 台目の 7500n を統合]
+
+. ブリッジに接続されているディスクとの接続と、新しい FibreBridge 7500N が構成に表示されることを確認します。
++
+'*run local sysconfig -v *
+
++
+[listing]
+----
+
+node_A_1> run local sysconfig -v
+NetApp Release 9.3.2X18: Sun Dec 13 01:23:24 PST 2015
+System ID: 0536872165 (node_A_1); partner ID: 0536872141 (node_B_1)
+System Serial Number: 940001025465 (node_A_1)
+System Rev: 70
+System Storage Configuration: Multi-Path HA**<=== Configuration should be multi-path HA**
+.
+.
+.
+slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator port**
+		Firmware rev:      7.5.0
+		Flash rev:         0.0.0
+		Host Port Id:      0x60100
+		FC Node Name:      5:00a:098201:bae312
+		FC Port Name:      5:00a:098201:bae312
+		SFP Vendor:        FINISAR CORP.
+		SFP Part Number:   FTLF8529P3BCVAN1
+		SFP Serial Number: URQ0R1R
+		SFP Capabilities:  4, 8 or 16 Gbit
+		Link Data Rate:    16 Gbit
+		Switch Port:       brcd6505-fcs40:1
+  **<List of disks visible to port\>**
+		 ID     Vendor   Model            FW    Size
+		brcd6505-fcs40:12.126L1527     : NETAPP   X302_HJUPI01TSSM NA04 847.5GB (1953525168 512B/sect)
+		brcd6505-fcs40:12.126L1528     : NETAPP   X302_HJUPI01TSSA NA02 847.5GB (1953525168 512B/sect)
+		.
+		.
+		.
+		**<List of FC-to-SAS bridges visible to port\>**
+		FC-to-SAS Bridge:
+		brcd6505-fcs40:12.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104**<===**
+		brcd6505-fcs42:13.126L0        : ATTO     FibreBridge6500N 1.61  FB6500N102980
+		brcd6505-fcs42:6.126L0         : ATTO     FibreBridge6500N 1.61  FB6500N101167
+		brcd6505-fcs42:7.126L0         : ATTO     FibreBridge6500N 1.61  FB6500N102974
+		.
+		.
+		.
+  **<List of storage shelves visible to port\>**
+		brcd6505-fcs40:12.shelf6: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		brcd6505-fcs40:12.shelf8: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		.
+		.
+		.
+----
+. 次のガイドラインを確認し、の手順を使用して「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします xref:task_replace_a_sle_fc_to_sas_bridge.adoc[FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジのホットスワップ]：
++
+** FibreBridge 7600N / 7500N ブリッジの FC2 ポートをスイッチまたはコントローラに接続します。
++
+これは、元の FibreBridge 6500N ブリッジの FC1 ポートへの接続と同じです。
+
+** この時点では、 FibreBridge 7600N / 7500N ブリッジの FC1 ポートは接続しないでください。image:../media/consolidating_stacks_2nd_7500n_in_place.gif[""]
+
+
+. ブリッジに接続されているディスクとの接続を確認します。
++
+'*run local sysconfig -v *
+
++
+出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。
+
++
+[listing]
+----
+
+node_A_1> run local sysconfig -v
+NetApp Release 9.3.2X18: Sun Dec 13 01:23:24 PST 2015
+System ID: 0536872165 (node_A_1); partner ID: 0536872141 (node_B_1)
+System Serial Number: 940001025465 (node_A_1)
+System Rev: 70
+System Storage Configuration: Multi-Path HA**<=== Configuration should be multi-path HA**
+.
+.
+.
+slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator port**
+		Firmware rev:      7.5.0
+		Flash rev:         0.0.0
+		Host Port Id:      0x60100
+		FC Node Name:      5:00a:098201:bae312
+		FC Port Name:      5:00a:098201:bae312
+		SFP Vendor:        FINISAR CORP.
+		SFP Part Number:   FTLF8529P3BCVAN1
+		SFP Serial Number: URQ0R1R
+		SFP Capabilities:  4, 8 or 16 Gbit
+		Link Data Rate:    16 Gbit
+		Switch Port:       brcd6505-fcs40:1
+  **<List of disks visible to port\>**
+		 ID     Vendor   Model            FW    Size
+		brcd6505-fcs40:12.126L1527     : NETAPP   X302_HJUPI01TSSM NA04 847.5GB (1953525168 512B/sect)
+		brcd6505-fcs40:12.126L1528     : NETAPP   X302_HJUPI01TSSA NA02 847.5GB (1953525168 512B/sect)
+		.
+		.
+		.
+		**<List of FC-to-SAS bridges visible to port\>**
+		FC-to-SAS Bridge:
+		brcd6505-fcs40:12.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104
+		brcd6505-fcs42:13.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104
+		.
+		.
+		.
+  **<List of storage shelves visible to port\>**
+		brcd6505-fcs40:12.shelf6: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		brcd6505-fcs40:12.shelf8: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		.
+		.
+		.
+----
+
+
+
+
+== FibreBridge 7600N / 7500N ブリッジによるストレージ統合時のブリッジ SAS ポートのケーブル接続
+
+[role="lead"]
+複数の SAS ストレージスタックを、使用可能な SAS ポートがある単一ペアの FibreBridge 7600N / 7500N ブリッジで統合する場合は、上部と下部の SAS ケーブルを新しいブリッジに移動する必要があります。
+
+FibreBridge 6500N ブリッジの SAS ポートは QSFP コネクタを使用します。FibreBridge 7600N / 7500N ブリッジの SAS ポートは Mini-SAS コネクタを使用します。
+
+
+IMPORTANT: SAS ケーブルを間違ったポートに挿入した場合は、ケーブルを SAS ポートから取り外すときに、 120 秒以上待機してから別の SAS ポートに接続する必要があります。そうしないと、ケーブルが別のポートに移されたことがシステムで認識されません。
+
+
+NOTE: ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。
+
+.手順
+. 上部の FibreBridge 6500N ブリッジの SAS A ポートを上部の SAS シェルフに接続しているケーブルを外します。その際、接続先ストレージシェルフの SAS ポートをメモします。
++
+次の例では、ケーブルを青色で示しています。
+
++
+image::../media/consolidating_stacks_sas_top_before.gif[スタックの SAS トップの統合]
+
+. Mini-SAS コネクタのケーブルを使用して、ストレージシェルフの同じ SAS ポートを、上部の FibreBridge 7600N / 7500N ブリッジの SAS B ポートに接続します。
++
+次の例では、ケーブルを青色で示しています。
+
++
+image::../media/consolidating_stacks_sas_top_after.gif[スタック SAS の統合が完了しました]
+
+. 下部の FibreBridge 6500N ブリッジの SAS A ポートを上部の SAS シェルフに接続しているケーブルを外します。その際、接続先ストレージシェルフの SAS ポートをメモします。
++
+次の例では、このケーブルを緑色で示しています。
+
++
+image::../media/consolidating_stacks_sas_bottom_before.gif[以前は SAS スタックを統合していました]
+
+. Mini-SAS コネクタのケーブルを使用して、ストレージシェルフの同じ SAS ポートを、下部の FibreBridge 7600N / 7500N ブリッジの SAS B ポートに接続します。
++
+次の例では、このケーブルを緑色で示しています。
+
++
+image::../media/consolidating_stacks_sas_bottom_after.gif[スタックの統合が完了した後、 SAS は]
+
+. ブリッジに接続されているディスクとの接続を確認します。
++
+'*run local sysconfig -v *
+
++
+出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。
+
++
+[listing]
+----
+
+node_A_1> run local sysconfig -v
+NetApp Release 9.3.2X18: Sun Dec 13 01:23:24 PST 2015
+System ID: 0536872165 (node_A_1); partner ID: 0536872141 (node_B_1)
+System Serial Number: 940001025465 (node_A_1)
+System Rev: 70
+System Storage Configuration: Multi-Path HA**<=== Configuration should be multi-path HA**
+.
+.
+.
+slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator port**
+		Firmware rev:      7.5.0
+		Flash rev:         0.0.0
+		Host Port Id:      0x60100
+		FC Node Name:      5:00a:098201:bae312
+		FC Port Name:      5:00a:098201:bae312
+		SFP Vendor:        FINISAR CORP.
+		SFP Part Number:   FTLF8529P3BCVAN1
+		SFP Serial Number: URQ0R1R
+		SFP Capabilities:  4, 8 or 16 Gbit
+		Link Data Rate:    16 Gbit
+		Switch Port:       brcd6505-fcs40:1
+  **<List of disks visible to port\>**
+		 ID     Vendor   Model            FW    Size
+		brcd6505-fcs40:12.126L1527     : NETAPP   X302_HJUPI01TSSM NA04 847.5GB (1953525168 512B/sect)
+		brcd6505-fcs40:12.126L1528     : NETAPP   X302_HJUPI01TSSA NA02 847.5GB (1953525168 512B/sect)
+		.
+		.
+		.
+		**<List of FC-to-SAS bridges visible to port\>**
+		FC-to-SAS Bridge:
+		brcd6505-fcs40:12.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104
+		brcd6505-fcs42:13.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104
+		.
+		.
+		.
+  **<List of storage shelves visible to port\>**
+		brcd6505-fcs40:12.shelf6: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		brcd6505-fcs40:12.shelf8: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		.
+		.
+		.
+----
+. SAS ストレージから切断した FibreBridge 6500N ブリッジを取り外します。
+. システムが変更を認識するまで 2 分待ちます。
+. システムのケーブル接続が間違っている場合は、ケーブルを取り外し、ケーブル接続を修正してから、正しいケーブルを再接続します。
+. 必要に応じて上記の手順を繰り返し、 SAS ポート C と D を使用して、最大 2 つの SAS スタックを新しい FibreBridge 7600N / 7500N ブリッジに追加で移動します
++
+各 SAS スタックは、上部と下部のブリッジの同じ SAS ポートに接続する必要があります。たとえば、スタックの上部を上部のブリッジの SAS B ポートに接続する場合、下部は下部のブリッジの SAS B ポートに接続する必要があります。
+
++
+image::../media/consolidation_sas_bottom_connection_4_stacks.gif[統合 SAS ボトムコネクション 4 スタック]
+
+
+
+
+
+== FibreBridge 7600N / 7500N ブリッジ追加時のゾーニングの更新
+
+[role="lead"]
+FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジに交換し、 FibreBridge 7600N / 7500N ブリッジの両方の FC ポートを使用する場合は、ゾーニングを変更する必要があります。必要な変更は、実行している ONTAP のバージョンが 9.1 より前か、 9.1 以降かによって異なります。
+
+
+
+=== FibreBridge 7500N ブリッジ追加時のゾーニングの更新（ ONTAP 9.1 より前）
+
+[role="lead"]
+FibreBridge 6500N ブリッジを FibreBridge 7500N ブリッジに交換し、 FibreBridge 7500N ブリッジの両方の FC ポートを使用する場合は、ゾーニングを変更する必要があります。各ゾーンに指定できるイニシエータポートは最大 4 つです。使用するゾーニングは、実行している ONTAP のバージョンが 9.1 より前か、 9.1 以降かによって異なります
+
+このタスクで使用するゾーニングは、 9.1 より前のバージョンの ONTAP が対象です。
+
+ONTAP では、ディスクへのパスに使用できる FC イニシエータポートは最大 4 つです。そのため、問題を回避するためにゾーニングを変更する必要があります。ケーブル接続を再接続してシェルフを統合すると、各ディスクに 8 つの FC ポートからアクセスできるようにゾーニングが変更されます。ゾーニングを変更して各ゾーンのイニシエータポートを 4 つに減らす必要があります。
+
+次の図は、変更前の site_A のゾーニングを示しています。
+
+image::../media/zoning_consolidation_site_a_before.gif[導入前のゾーニング統合サイト A]
+
+.手順
+. FC スイッチのストレージゾーンを更新します。具体的には、既存の各ゾーンからイニシエータポートの半分を削除し、 FibreBridge 7500N の FC2 ポート用の新しいゾーンを作成します。
++
+新しい FC2 ポート用のゾーンには、既存のゾーンから削除したイニシエータポートが含まれます。図では、これらのゾーンが破線で示されています。
+
++
+ゾーニングコマンドの詳細については、の FC スイッチに関するセクションを参照してください https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"] または。
+
++
+次の例は、統合前と統合後のストレージゾーンと各ゾーンのポートを示しています。ポートは、 _domain と port_pairs で識別されます。
+
++
+** ドメイン 5 は FC_switch_A_1 スイッチを使用します。
+** ドメイン 6 は FC_switch_A_2 スイッチで構成されています。
+** ドメイン 7 は FC_switch_A_1 スイッチを使用します。
+** ドメイン 8 は FC_switch_B_2 で構成されています。
+
+
+
+
+|===
+| 統合前または統合後 | ゾーン | ドメインとポート | 図 * の色 
+
+
+ a| 
+統合前のゾーン。4 台の FibreBridge 6500N ブリッジの各 FC ポートに 1 つのゾーン。
+ a| 
+STOR_A_1a - FC1 の場合
+ a| 
+5 、 1 ； 5 、 2 ； 5 、 4 ； 5 、 5 ； 7 、 1 ； 7 、 2 ； 7 、 4 ； 7 、 5 ； 5 、 6
+ a| 
+紫 + 紫の破線 + 青
+
+
+
+ a| 
+STOR_A_1b-FC1 の場合
+ a| 
+6 、 1 ； 6 、 2 ； 6 、 4 ； 6 、 5 ； 8 、 1 ； 8 、 2 、 8 、 4 、 8 、 5 、 6
+ a| 
+茶 + 茶の破線 + 緑
+
+
+
+ a| 
+STOR_A_2a~FC1 のように設定します
+ a| 
+5 、 1 ； 5 、 2 ； 5 、 4 ； 5 、 5 ； 7 、 1 ； 7 、 2 ； 7 、 4 ； 7 、 5 ； 5 、 7
+ a| 
+紫 + 紫の破線 + 赤
+
+
+
+ a| 
+STOR_A_2b-FC1 の場合
+ a| 
+6 、 1 ； 6 、 2 ； 6 、 4 ； 6 、 5 ； 8 、 1 ； 8 、 2 、 8 、 4 、 8 、 5 、 6 、 7
+ a| 
+茶 + 茶の破線 + オレンジ
+
+
+
+ a| 
+統合後のゾーン。2 台の FibreBridge 7500N ブリッジの各 FC ポートに 1 つのゾーン。
+ a| 
+STOR_A_1a - FC1 の場合
+ a| 
+7 、 1 ； 7 、 4 ； 5 、 1 ； 5 、 4 ； 5 、 6
+ a| 
+紫 + 青
+
+
+
+ a| 
+STOR_A_1b-FC1 の場合
+ a| 
+7 、 2 ； 7 、 5 ； 5 、 2 ； 5 、 5 ； 5 、 7
+ a| 
+紫の破線 + 赤
+
+
+
+ a| 
+STOR_A_1a - FC2 を参照します
+ a| 
+8 、 1 、 8 、 4 、 6 、 1 、 6 、 4 、 6
+ a| 
+茶 + 緑
+
+
+
+ a| 
+STOR_A_1b-FC2 を参照します
+ a| 
+8 、 2 、 8 、 5 、 6 、 2 、 6 、 5 、 6 、 7
+ a| 
+茶の破線 + オレンジ
+
+|===
+* 図に示されているのは site_A のみです
++
+次の図は、統合後の site_A のゾーニングを示しています。
+
++
+image::../media/zoning_consolidation_site_a_after.gif[導入後のゾーニング統合サイト A]
+
+
+
+
+
+=== FibreBridge 7600N / 7500N ブリッジ追加時のゾーニングの更新（ ONTAP 9.1 以降）
+
+[role="lead"]
+FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジに交換し、 FibreBridge 7600N / 7500N ブリッジの両方の FC ポートを使用する場合は、ゾーニングを変更する必要があります。各ゾーンに指定できるイニシエータポートは最大 4 つです。
+
+* このタスクは、環境 ONTAP 9.1 以降で実行します。
+* FibreBridge 7600N ブリッジは、 ONTAP 9.6 以降でサポートされます。
+* このタスクで使用するゾーニングは、 ONTAP 9.1 以降が対象です。
+* ONTAP では、ディスクへのパスに使用できる FC イニシエータポートは最大 4 つです。そのため、問題を回避するためにゾーニングを変更する必要があります。
++
+ケーブル接続を再接続してシェルフを統合すると、各ディスクに 8 つの FC ポートからアクセスできるようにゾーニングが変更されます。ゾーニングを変更して各ゾーンのイニシエータポートを 4 つに減らす必要があります。
+
++
+.. FC スイッチのストレージゾーンを更新します。具体的には、既存の各ゾーンからイニシエータポートの半分を削除し、 FibreBridge 7600N / 7500N の FC2 ポート用の新しいゾーンを作成します。
++
+新しい FC2 ポート用のゾーンには、既存のゾーンから削除したイニシエータポートが含まれます。
+
++
+ゾーニングコマンドの詳細については、ファブリック接続 MetroCluster インストールおよび設定ガイドの FC スイッチに関するセクションを参照してください。
+
++
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
+
+
+
+
+
+
+== FibreBridge 7600N / 7500N ブリッジ追加時の 2 つ目のブリッジ FC ポートのケーブル接続
+
+[role="lead"]
+FibreBridge 7600N / 7500N ブリッジを構成に追加した場合、各 FibreBridge 7600N / 7500N ブリッジの 2 つ目の FC ポートをケーブル接続してストレージスタックへの複数のパスを提供することができます。
+
+2 つ目の FC ポートにゾーンを提供するようにゾーニングを調整しておく必要があります。
+
+.手順
+. 上段のブリッジの FC2 ポートを FC_switch_A_2 の正しいポートにケーブル接続します。
++
+image::../media/consolidating_stacks_sas_ports_recabled.gif[スタックの SAS ポートの統合が無効になっています]
+
+. 下段のブリッジの FC1 ポートを FC_switch_A_1 の正しいポートにケーブル接続します。
++
+image::../media/consolidating_stacks_final.gif[スタックの統合が終了します]
+
+. ブリッジに接続されているディスクとの接続を確認します。
++
+'*run local sysconfig -v *
+
++
+出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。
+
++
+[listing]
+----
+
+node_A_1> run local sysconfig -v
+NetApp Release 9.3.2X18: Sun Dec 13 01:23:24 PST 2015
+System ID: 0536872165 (node_A_1); partner ID: 0536872141 (node_B_1)
+System Serial Number: 940001025465 (node_A_1)
+System Rev: 70
+System Storage Configuration: Multi-Path HA**<=== Configuration should be multi-path HA**
+.
+.
+.
+slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator port**
+		Firmware rev:      7.5.0
+		Flash rev:         0.0.0
+		Host Port Id:      0x60100
+		FC Node Name:      5:00a:098201:bae312
+		FC Port Name:      5:00a:098201:bae312
+		SFP Vendor:        FINISAR CORP.
+		SFP Part Number:   FTLF8529P3BCVAN1
+		SFP Serial Number: URQ0R1R
+		SFP Capabilities:  4, 8 or 16 Gbit
+		Link Data Rate:    16 Gbit
+		Switch Port:       brcd6505-fcs40:1
+  **<List of disks visible to port\>**
+		 ID     Vendor   Model            FW    Size
+		brcd6505-fcs40:12.126L1527     : NETAPP   X302_HJUPI01TSSM NA04 847.5GB (1953525168 512B/sect)
+		brcd6505-fcs40:12.126L1528     : NETAPP   X302_HJUPI01TSSA NA02 847.5GB (1953525168 512B/sect)
+		.
+		.
+		.
+		**<List of FC-to-SAS bridges visible to port\>**
+		FC-to-SAS Bridge:
+		brcd6505-fcs40:12.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104
+		brcd6505-fcs42:13.126L0        : ATTO     FibreBridge7500N A30H  FB7500N100104
+		.
+		.
+		.
+  **<List of storage shelves visible to port\>**
+		brcd6505-fcs40:12.shelf6: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		brcd6505-fcs40:12.shelf8: DS4243  Firmware rev. IOM3 A: 0200  IOM3 B: 0200
+		.
+		.
+		.
+----
+
+
+
+
+== FC-to-SAS ブリッジで未使用の SAS ポートを無効にする
+
+[role="lead"]
+ブリッジのケーブル接続を変更したら、 FC-to-SAS ブリッジの未使用の SAS ポートを無効にして、未使用のポートに関連するヘルスモニタアラートが生成されないようにする必要があります。
+
+.手順
+. 上段の FC-to-SAS ブリッジで未使用の SAS ポートを無効にします。
++
+.. ブリッジの CLI にログインします。
+.. 未使用のポートを無効にします。
++
+[NOTE]
+====
+ATTO 7500N ブリッジを設定している場合はすべての SAS ポート（ A~D ）がデフォルトで有効になっているため、使用されていない SAS ポートを無効にする必要があります。
+
+'*SASortDisable_SAS port_*
+
+====
++
+SAS ポート A と B を使用している場合は、 SAS ポート C と D を無効にする必要があります。次の例は、未使用の SAS ポート C と D を無効にします。
+
++
+[listing]
+----
+Ready. *
+`SASPortDisable C`
+
+SAS Port C has been disabled.
+
+Ready. *
+`SASPortDisable D`
+
+SAS Port D has been disabled.
+
+Ready. *
+----
+.. ブリッジの設定を保存します :+`+SaveConfiguration+`
++
+次の例は、 SAS ポート C と D が無効になっていることを示しています。設定が保存されたことを示すアスタリスクが表示されなくなります。
+
++
+[listing]
+----
+Ready. *
+`SaveConfiguration`
+
+Ready.
+----
+
+
+. 下段の FC-to-SAS ブリッジで同じ手順を繰り返します。
+

@@ -1,0 +1,300 @@
+---
+permalink: maintain/task_replace_a_shelf_nondisruptively_in_a_mcc_fc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, replace, shelf, nondisruptively, fabric, attached, configuration 
+summary: ファブリック接続 MetroCluster 構成でシェルフを無停止で交換する方法を確認しておく必要があります。 
+---
+= ファブリック接続 MetroCluster 構成のシェルフを無停止で交換する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ファブリック接続 MetroCluster 構成でシェルフを無停止で交換する方法を確認しておく必要があります。
+
+
+NOTE: この手順は、ファブリック接続 MetroCluster 構成でのみ使用します。
+
+
+
+== シェルフへのアクセスを無効にします
+
+[role="lead"]
+シェルフモジュールを交換する前に、シェルフへのアクセスを無効にする必要があります。
+
+構成の全体的な健全性を確認します。システムが健全でない場合は、問題に対処してから次に進んでください。
+
+.手順
+. プレックスをホストしているコントローラで、影響を受けるプレックスをオフラインにします。
++
+'*aggr offline_plex_name_*'
+
++
+次の例は、 cMode を実行しているコントローラのプレックスをオフラインにするコマンドを示しています。
+
++
+[listing]
+----
+
+Cluster_A_1::> storage aggregate plex offline -aggr aggr1 -plex plex2
+Cluster_A_1::> storage aggregate plex offline -aggr aggr2 -plex plex6
+Cluster_A_1::> storage aggregate plex offline -aggr aggr3 -plex plex1
+----
+. プレックスがオフラインであることを確認します。
++
+`* aggr status --raggr_name_*`
+
++
+次の例は、 cMode を実行しているコントローラのアグリゲートがオフラインであることを確認するコマンドを示しています。
+
++
+[listing]
+----
+
+Cluster_A_1::> storage aggregate show -aggr aggr1
+Cluster_A_1::> storage aggregate show -aggr aggr2
+Cluster_A_1::> storage aggregate show -aggr aggr3
+----
+. ターゲットシェルフを接続しているブリッジが SAS スタックを 1 つ接続しているか 2 つ接続しているかに応じて、 SAS ポートまたはスイッチポートを無効にします。
++
+** ブリッジが SAS スタックを 1 つ接続している場合は、スイッチに対応したコマンドを使用してブリッジの接続先のスイッチポートを無効にします。
++
+次の例は、ターゲットシェルフを収容する SAS スタックを 1 つ接続するブリッジのペアを示しています。
+
++
+image::../media/mcc_shelf_replacement_bridges_with_a_single_stack.gif[MCC シェルフの交換用ブリッジを単一のスタックで構成します]
+
++
+各スイッチのスイッチポート 8 と 9 が、ブリッジをネットワークに接続します。
+
++
+次の例は、 Brocade スイッチのポート 8 と 9 を無効にします。
+
++
+[listing]
+----
+FC_switch_A_1:admin> portDisable 8
+FC_switch_A_1:admin> portDisable 9
+
+FC_switch_A_2:admin> portDisable 8
+FC_switch_A_2:admin> portDisable 9
+----
++
+次の例は、 Cisco スイッチのポート 8 と 9 を無効にします。
+
++
+[listing]
+----
+FC_switch_A_1# conf t
+FC_switch_A_1(config)# int fc1/8
+FC_switch_A_1(config)# shut
+FC_switch_A_1(config)# int fc1/9
+FC_switch_A_1(config)# shut
+FC_switch_A_1(config)# end
+
+FC_switch_A_2# conf t
+FC_switch_A_2(config)# int fc1/8
+FC_switch_A_2(config)# shut
+FC_switch_A_2(config)# int fc1/9
+FC_switch_A_2(config)# shut
+FC_switch_A_2(config)# end
+----
+** ブリッジが 2 つ以上の SAS スタックを接続している場合は、ブリッジをターゲットシェルフに接続している SAS ポートを無効にします。 +`*SASportDisable_port number_*`
++
+
+NOTE: これは FibreBridge 6500 ブリッジには該当しません。
+
++
+次の例は、 4 つの SAS スタックを接続するブリッジのペアを示しています。SAS スタック 2 にターゲットシェルフが収容されています。
+
++
+image::../media/mcc_shelf_replacement_bridges_with_four_stacks.gif[MCC シェルフの交換用ブリッジ。スタックは 4 つです]
+
++
+SAS ポート B が、ブリッジをターゲットシェルフに接続します。両方のシェルフの SAS ポート B のみを無効にすると、交換用手順の実行中も他の SAS スタックが引き続きデータを提供できます。
+
++
+この場合は、ブリッジをターゲットシェルフに接続している SAS ポートを無効にします。
+
++
+'*SASportDisable_port Number_*
+
++
+次の例は、ブリッジの SAS ポート B を無効にして、ポート B が無効になっていることを確認します。このコマンドは両方のブリッジで実行する必要があります。
+
++
+[listing]
+----
+Ready. *
+SASPortDisable B
+
+SAS Port B has been disabled.
+----
+
+
+. スイッチポートを無効にしていた場合は、ポートが無効になっていることを確認します。
++
+'*switchShow*
+
++
+次の例は、 Brocade スイッチのスイッチポートが無効になっていることを示しています。
+
++
+[listing]
+----
+
+FC_switch_A_1:admin> switchShow
+FC_switch_A_2:admin> switchShow
+----
++
+次の例は、 Cisco スイッチのスイッチポートが無効になっていることを示しています。
+
++
+[listing]
+----
+
+FC_switch_A_1# show interface fc1/6
+FC_switch_A_2# show interface fc1/6
+----
+. ディスクが見つからないことが ONTAP に認識されるまで待ちます。
+. 交換するシェルフの電源をオフにします。
+
+
+
+
+== シェルフの交換
+
+[role="lead"]
+新しいシェルフとシェルフモジュールを挿入してケーブル接続する前に、すべてのケーブルとシェルフを物理的に取り外す必要があります。
+
+.手順
+. すべてのディスクを取り外し、交換するシェルフからすべてのケーブルを外します。
+. シェルフモジュールを取り外します。
+. 新しいシェルフを挿入します。
+. 新しいディスクを新しいシェルフに挿入します。
+. シェルフモジュールを挿入します。
+. シェルフをケーブル接続します（ SAS または電源）。
+. シェルフの電源をオンにします。
+
+
+
+
+== アクセスの再有効化と処理の確認
+
+[role="lead"]
+シェルフを交換したら、アクセスを再度有効にして、新しいシェルフが正しく動作していることを確認する必要があります。
+
+.手順
+. シェルフの電源が供給され、 IOM モジュールのリンクが存在することを確認します。
+. 次のシナリオに従って、スイッチポートまたは SAS ポートを有効にします。
++
+|===
+| オプション | ステップ 
+
+
+ a| 
+* 以前にスイッチポートを無効にした場合 *
+ a| 
+.. スイッチ・ポートを有効にします例は 'Brocade スイッチで有効になっているスイッチ・ポートを示しています
++
+[listing]
+----
+
+Switch_A_1:admin> portEnable 6
+Switch_A_2:admin> portEnable 6
+----
++
+次の例は、 Cisco スイッチのスイッチポートを有効にしています。
+
++
+[listing]
+----
+
+Switch_A_1# conf t
+Switch_A_1(config)# int fc1/6
+Switch_A_1(config)# no shut
+Switch_A_1(config)# end
+
+Switch_A_2# conf t
+Switch_A_2(config)# int fc1/6
+Switch_A_2(config)# no shut
+Switch_A_2(config)# end
+----
+
+
+
+
+ a| 
+* SAS ポート * を無効にした場合
+ a| 
+.. スタックをシェルフの場所に接続している SAS ポートを有効にします。 +`*SARSportEnable_port number_*`
+
+
+次の例は、ブリッジから SAS ポート A を有効にし、ポートが有効になったことを確認しています。
+
+[listing]
+----
+Ready. *
+SASPortEnable A
+
+SAS Port A has been enabled.
+----
+
+NOTE: これは ATTO 6500 FibreBridge には該当しません。
+
+|===
+. スイッチポートを無効にしている場合は、ポートが有効でオンラインになっていること、およびすべてのデバイスが正しくログインしていることを確認します。
++
+'*switchShow*
+
++
+次の例は '*switchShow*' コマンドを示しています Brocade スイッチがオンラインであることを確認できます
+
++
+[listing]
+----
+
+Switch_A_1:admin> SwitchShow
+Switch_A_2:admin> SwitchShow
+----
++
+次の例は、 Cisco スイッチがオンラインであることを確認するための「 *switchShow*」 コマンドを示しています。
+
++
+[listing]
+----
+
+Switch_A_1# show interface fc1/6
+Switch_A_2# show interface fc1/6
+----
++
+
+NOTE: 数分経過すると、 ONTAP は新しいディスクが挿入されたことを検出し、新しいディスクごとにメッセージを表示します。
+
+. ONTAP によってディスクが検出されたことを確認します。
++
+*sysconfig -a *
+
+. オフラインになっていたプレックスをオンラインにします。
++
+'*aggr online _plex_name__ *
+
++
+次の例は、 cMode を実行しているコントローラ上のプレックスをオンラインに戻すコマンドを示しています。
+
++
+[listing]
+----
+
+Cluster_A_1::> storage aggregate plex online -aggr aggr1 -plex plex2
+Cluster_A_1::> storage aggregate plex online -aggr aggr2 -plex plex6
+Cluster_A_1::> storage aggregate plex online -aggr aggr3 -plex plex1
+----
++
+プレックスが再同期を開始します。
+
++
+
+NOTE: 再同期の進行状況は '*aggr status --raggr_name_*' コマンドを使用して監視できます
+
+

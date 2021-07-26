@@ -1,0 +1,62 @@
+---
+permalink: install-ip/task_sw_config_differences.html 
+sidebar: sidebar 
+keywords: metrocluster, configuration, ontap, node-level, configuration, node, site, relationship, configuring, configure, similarities, difference, 
+summary: MetroCluster 構成の各クラスタのノードの構成は、標準クラスタのノードと似ています。 
+---
+= 標準クラスタ構成と MetroCluster 構成の類似点 / 相違点
+
+
+[role="lead"]
+MetroCluster 構成の各クラスタのノードの構成は、標準クラスタのノードと似ています。
+
+MetroCluster 構成は、 2 つの標準クラスタを基盤としています。構成は物理的に対称な構成である必要があり、各ノードのハードウェア構成が同じで、すべての MetroCluster コンポーネントがケーブル接続され、設定されている必要があります。ただし、 MetroCluster 構成のノードの基本的なソフトウェア設定は、標準クラスタのノードと同じです。
+
+|===
+| 設定手順 | 標準クラスタ構成 | MetroCluster の設定 
+
+
+ a| 
+各ノードで管理 LIF 、クラスタ LIF 、データ LIF を設定。
+ a| 
+両方のクラスタタイプで同じです
+ a| 
+ルートアグリゲートを設定
+
+
+
+ a| 
+両方のクラスタタイプで同じです
+ a| 
+クラスタ内の一方のノードでクラスタを設定。
+ a| 
+両方のクラスタタイプで同じです
+
+
+
+ a| 
+もう一方のノードをクラスタに追加。
+ a| 
+両方のクラスタタイプで同じです
+ a| 
+ミラーされたルートアグリゲートを作成
+
+
+
+ a| 
+任意。
+ a| 
+必須
+ a| 
+クラスタをピアリング。
+
+
+
+ a| 
+任意。
+ a| 
+必須
+ a| 
+MetroCluster 設定を有効にします。
+
+|===

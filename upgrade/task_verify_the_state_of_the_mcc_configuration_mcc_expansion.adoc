@@ -1,0 +1,81 @@
+---
+permalink: upgrade/task_verify_the_state_of_the_mcc_configuration_mcc_expansion.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, verify, state, configuration 
+summary: 既存のコントローラを特定し、コントローラ間のディザスタリカバリ関係（ DR ）、コントローラが通常モードであること、およびアグリゲートがミラーされていることを確認する必要があります。 
+---
+= MetroCluster 構成の状態の確認
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存のコントローラを特定し、コントローラ間のディザスタリカバリ（ DR ）関係、コントローラが通常モードであること、およびアグリゲートがミラーされていることを確認する必要があります。
+
+.手順
+. 構成内の任意のノードから、 MetroCluster 構成内のノードの詳細を表示します。
++
+MetroCluster node show -fields node'dr-partner 'dr-partner systemid*
+
++
+次の出力は、この MetroCluster 構成に DR グループが 1 つ、各クラスタにノードが 1 つあることを示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster node show -fields node,dr-partner,dr-partner-systemid
+
+dr-group-id  cluster         node            dr-partner      dr-partner-systemid
+-----------  -------------   -------         ----------      -------------------
+1            cluster_A       controller_A_1  controller_B_1  536946192
+1            cluster_B       controller_B_1  controller_A_1  536946165
+2 entries were displayed.
+----
+. MetroCluster 設定の状態を表示します。
++
+「 * MetroCluster show * 」と入力します
+
++
+次の出力は、 MetroCluster 構成内の既存のノードが通常モードであることを示しています。
+
++
+[listing]
+----
+
+cluster_A::> metrocluster show
+
+Configuration: two-node-fabric
+
+Cluster                        Entry Name             State
+------------------------------ ---------------------- ---------------------
+Local: cluster_A               Configuration State    configured
+                               Mode                   normal
+                               AUSO Failure Domain    auso-on-cluster-disaster
+Remote: controller_B_1_siteB
+                               Configuration State    configured
+                               Mode                   normal
+                               AUSO Failure Domain    auso-on-cluster-disaster
+----
+. MetroCluster 構成の各ノードのアグリゲートの状態を確認します。
++
+'*storage aggregate show*
+
++
+次の出力は、 cluster_A のアグリゲートがオンラインであり、ミラーされていることを示しています。
+
++
+[listing]
+----
+cluster_A::> storage aggregate show
+
+
+Aggregate                Size     Available Used%  State   #Vols  Nodes            RAID Status
+---------                -------- --------- -----  ------- ------ ---------------- ------------
+aggr0_controller_A_1_0   1.38TB   68.63GB   95%    online    1    controller_A_1   raid_dp,mirrored
+controller_A_1_aggr1     4.15TB   4.14TB    0%     online    2    controller_A_1   raid_dp,mirrored
+controller_A_1_aggr2     4.15TB   4.14TB    0%     online    1    controller_A_1   raid_dp,mirrored
+3 entries were displayed.
+
+cluster_A::>
+----
+

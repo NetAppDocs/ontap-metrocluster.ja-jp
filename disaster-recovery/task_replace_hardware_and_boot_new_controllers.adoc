@@ -1,0 +1,713 @@
+---
+permalink: disaster-recovery/task_replace_hardware_and_boot_new_controllers.html 
+sidebar: sidebar 
+keywords: hardware, component, replace, individual, replacement, installation, guide, replacing, controller, booting, new 
+summary: ハードウェアコンポーネントの交換が必要な場合は、該当するハードウェア交換 / 設置ガイドに従って交換する必要があります。 
+---
+= ハードウェアの交換と新しいコントローラのブート
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== ディザスタサイトでのハードウェアの交換
+
+ハードウェアコンポーネントの交換が必要な場合は、該当するハードウェア交換 / 設置ガイドに従って交換する必要があります。
+
+ストレージコントローラの電源がオフになっているか、停止したままになっている必要があります（ LOADER プロンプトが表示されている）。
+
+.手順
+. 必要に応じてコンポーネントを交換します。
++
+
+NOTE: この手順では、コンポーネントを交換し、災害発生前とまったく同じようにケーブル接続します。コンポーネントの電源は入れないでください。
+
++
+|===
+| 交換対象 | 実行する手順 | 使用するガイド 
+
+
+ a| 
+MetroCluster FC 構成の FC スイッチ
+ a| 
+.. 新しいスイッチを設置します。
+.. ISL リンクをケーブル接続します。このとき、 FC スイッチの電源は入れないでください。
+
+| link:../maintain/index.html["MetroCluster コンポーネントの保守"] 
+
+
+ a| 
+MetroCluster IP 構成の IP スイッチ
+ a| 
+.. 新しいスイッチを設置します。
+.. ISL リンクをケーブル接続します。このとき、 IP スイッチの電源は入れないでください。
+
+ a| 
+link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+
+
+
+ a| 
+ディスクシェルフ
+ a| 
+.. ディスクシェルフとディスクを設置します。
++
+*** ディスクシェルフのスタックは、サバイバーサイトと同じ構成であることが必要です。
+*** ディスクは元のディスクと同じかまたはそれ以上のサイズのディスクを使用できますが、タイプ（ SAS または SATA ）は同じである必要があります。
+
+
+.. ディスクシェルフを、スタック内の隣接するシェルフおよび FC-to-SAS ブリッジにケーブル接続します。このとき、ディスクシェルフの電源は入れないでください。
+
+| link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"] 
+
+
+ a| 
+SAS ケーブル
+ a| 
+.. 新しいケーブルを取り付けます。このとき、ディスクシェルフの電源は入れないでください。
+
+ a| 
+link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+
+
+ a| 
+MetroCluster FC 構成の FC-to-SAS ブリッジ
+ a| 
+.. FC-to-SAS ブリッジを設置します。
+.. FC-to-SAS ブリッジをケーブル接続します。
++
+接続先は、 MetroCluster の構成タイプに応じて、 FC スイッチまたはコントローラモジュールとなります。
+
++
+このとき、 FC-to-SAS ブリッジの電源は入れないでください。
+
+
+ a| 
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
+link:../install-stretch/index.html["ストレッチ MetroCluster のインストールと設定"]
+
+
+
+ a| 
+コントローラモジュール
+ a| 
+.. 新しいコントローラモジュールを設置します。
++
+*** コントローラモジュールは、交換するコントローラモジュールと同じモデルである必要があります。
++
+たとえば、 8080 コントローラモジュールは 8080 コントローラモジュールと交換する必要があります。
+
+*** MetroCluster 構成または既存のクラスタ構成内のクラスタに含まれていたことのあるコントローラモジュールは使用できません。
++
+その場合は、デフォルト値を設定して「 wipeconfig 」プロセスを実行する必要があります。
+
+*** すべてのネットワークインターフェイスカード（イーサネットや FC など）を、古いコントローラモジュールと同じスロットに装着します。
+
+
+.. 新しいコントローラモジュールを元のコントローラモジュールとまったく同じようにケーブル接続します。
++
+コントローラモジュールをストレージに接続するポート（ IP スイッチまたは FC スイッチへの接続、 FC-to-SAS ブリッジへの接続、または直接接続を使用）は、災害発生前と同じでなければなりません。
+
++
+このとき、コントローラモジュールの電源は入れないでください。
+
+
+ a| 
+link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+|===
+. 構成に対応した MetroCluster インストールおよび設定ガイド _ に従って、すべてのコンポーネントが正しくケーブル接続されていることを確認します。
+
+
+
+
+== 古いコントローラモジュールのシステム ID と VLAN ID を確認します
+
+ディザスタサイトですべてのハードウェアを交換したら、交換したコントローラモジュールのシステム ID を確認する必要があります。古いシステム ID は、新しいコントローラモジュールへのディスクの再割り当てを行うときに必要になります。システムが AFF A220 、 AFF A250 、 AFF A400 、 AFF A800 、 FAS2750 、 FAS500f 、 FAS8300 、 FAS8700 の各モデルでは、 MetroCluster IP インターフェイスで使用される VLAN ID も確認する必要があります。
+
+ディザスタサイトにあるすべての機器の電源をオフにする必要があります。
+
+ここでは、 2 ノードと 4 ノードの構成の例を示します。8 ノード構成の場合は、 2 つ目の DR グループのノードでの障害を考慮する必要があります。
+
+2 ノード MetroCluster 構成の場合、各サイトの 2 つ目のコントローラモジュールに関する説明は無視してください。
+
+この手順の例は、次の前提に基づいています。
+
+* サイト A はディザスタサイト
+* node_A_1 は障害発生後に完全に交換済み
+* Node_a_2 で障害が発生し、完全に交換中です。
++
+Node_a_2 は 4 ノード MetroCluster 構成にのみ存在します。
+
+* サイト B はサバイバーサイトです。
+* node_B_1 は健全
+* node_B_2 は正常
++
+node_B_2 が存在するのは 4 ノード MetroCluster 構成のみ
+
+
+
+各コントローラモジュールの元々のシステム ID は次のとおりです。
+
+|===
+| MetroCluster 構成のノード数 | ノード | 元のシステム ID 
+
+
+ a| 
+4.
+ a| 
+node_A_1
+ a| 
+4068741258
+
+
+
+ a| 
+Node_a_2
+ a| 
+4068741260
+
+
+
+ a| 
+node_B_1
+ a| 
+4068741254
+
+
+
+ a| 
+node_B_2
+ a| 
+4068741256
+
+
+
+ a| 
+2 つ
+ a| 
+node_A_1
+ a| 
+4068741258
+
+
+
+ a| 
+node_B_1
+ a| 
+4068741254
+
+|===
+.手順
+. サバイバーサイトから、 MetroCluster 構成内のノードのシステム ID を表示します。
++
+|===
+| MetroCluster 構成のノード数 | 使用するコマンド 
+
+
+ a| 
+4 台または 8 台
+ a| 
+「 MetroCluster node show -fields node-systemid 、 ha-partner-systemid 、 dr-partner-systemid 、 dr-auxiliary-systemid 」を指定します
+
+
+
+ a| 
+2 つ
+ a| 
+MetroCluster node show -fields node-systemid 、 dr-partner-systemid'
+
+|===
++
+この 4 ノード MetroCluster 構成の例では、次の古いシステム ID が取得されます。
+
++
+** node_A_1 ： 4068741258
+** node_A_2 ： 4068741260
++
+古いコントローラモジュールによって所有されていたディスクは、引き続きこれらのシステム ID に所有されています。
+
++
+[listing]
+----
+metrocluster node show -fields node-systemid,ha-partner-systemid,dr-partner-systemid,dr-auxiliary-systemid
+
+dr-group-id cluster    node      node-systemid ha-partner-systemid dr-partner-systemid dr-auxiliary-systemid
+----------- ---------- --------  ------------- ------ ------------ ------ ------------ ------ --------------
+1           Cluster_A  Node_A_1  4068741258    4068741260          4068741254          4068741256
+1           Cluster_A  Node_A_2  4068741260    4068741258          4068741256          4068741254
+1           Cluster_B  Node_B_1  -             -                   -                   -
+1           Cluster_B  Node_B_2  -             -                   -                   -
+4 entries were displayed.
+----
+
+
++
+この 2 ノード MetroCluster 構成の例では、次の古いシステム ID が取得されます。
+
++
+** node_A_1 ： 4068741258
++
+古いコントローラモジュールによって所有されていたディスクは、引き続きこのシステム ID に所有されています。
+
++
+[listing]
+----
+metrocluster node show -fields node-systemid,dr-partner-systemid
+
+dr-group-id cluster    node      node-systemid dr-partner-systemid
+----------- ---------- --------  ------------- ------------
+1           Cluster_A  Node_A_1  4068741258    4068741254
+1           Cluster_B  Node_B_1  -             -
+2 entries were displayed.
+----
+
+
+. ONTAP メディエーターサービスを使用した MetroCluster IP 構成の場合は、 ONTAP メディエーターサービスの IP アドレスを取得します。
++
+「 storage iscsi-initiator show -node * -label mediator 」という名前のストレージがあります
+
+. システムが AFF A220 、 AFF A400 、 FAS2750 、 FAS8300 、または FAS8700 の場合、 VLAN ID を確認します。
++
+MetroCluster interconnect show
+
++
+VLAN ID は、出力の Adapter 列に表示されるアダプタ名に含まれています。
+
++
+この例では、 VLAN ID は 120 および 130 です。
+
++
+[listing]
+----
+metrocluster interconnect show
+                          Mirror   Mirror
+                  Partner Admin    Oper
+Node Partner Name Type    Status   Status  Adapter Type   Status
+---- ------------ ------- -------- ------- ------- ------ ------
+Node_A_1 Node_A_2 HA      enabled  online
+                                           e0a-120 iWARP  Up
+                                           e0b-130 iWARP  Up
+         Node_B_1 DR      enabled  online
+                                           e0a-120 iWARP  Up
+                                           e0b-130 iWARP  Up
+         Node_B_2 AUX     enabled  offline
+                                           e0a-120 iWARP  Up
+                                           e0b-130 iWARP  Up
+Node_A_2 Node_A_1 HA      enabled  online
+                                           e0a-120 iWARP  Up
+                                           e0b-130 iWARP  Up
+         Node_B_2 DR      enabled  online
+                                           e0a-120 iWARP  Up
+                                           e0b-130 iWARP  Up
+         Node_B_1 AUX     enabled  offline
+                                           e0a-120 iWARP  Up
+                                           e0b-130 iWARP  Up
+12 entries were displayed.
+----
+
+
+
+
+== サバイバーサイトからの交換用ドライブの分離（ MetroCluster IP 構成）
+
+MetroCluster iSCSI イニシエータ接続を停止して、サバイバーノードから交換用ドライブをすべて分離する必要があります。
+
+この手順は、 MetroCluster IP 構成でのみ必要です。
+
+.手順
+. どちらかのサバイバーノードのプロンプトで、 advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
++
+advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
+
+. DR グループ内の両方のサバイバーノードで、 iSCSI イニシエータを切断します。
++
+「 storage iscsi-initiator disconnect -node Survived-node-label * 」のように表示されます
+
++
+このコマンドはサバイバーノードごとに 1 回、計 2 回実行する必要があります。
+
++
+次の例は、サイト B でイニシエータを切断するコマンドを示しています。
+
++
+[listing]
+----
+site_B::*> storage iscsi-initiator disconnect -node node_B_1 -label *
+site_B::*> storage iscsi-initiator disconnect -node node_B_2 -label *
+----
+. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+
+
+
+
+== コントローラモジュールでの設定の消去
+
+[role="lead"]
+MetroCluster 構成で新しいコントローラモジュールを使用する前に、構成をクリアする必要があります。
+
+.手順
+. 必要に応じて、ノードを停止して LOADER プロンプトを表示します。
++
+「 halt 」
+
+. LOADER プロンプトで、環境変数をデフォルト値に設定します。
++
+「デフォルト設定」
+
+. 環境を保存します。
++
+'aveenv
+
+. LOADER プロンプトで、ブートメニューを起動します。
++
+「 boot_ontap menu
+
+. ブートメニューのプロンプトで、設定を消去します。
++
+wipeconfig
+
++
+確認プロンプトに「 yes 」と応答します。
+
++
+ノードがリブートし、もう一度ブートメニューが表示されます。
+
+. ブートメニューでオプション * 5 * を選択し、システムをメンテナンスモードでブートします。
++
+確認プロンプトに「 yes 」と応答します。
+
+
+
+
+
+== 新しいコントローラモジュールのネットブート
+
+[role="lead"]
+新しいコントローラモジュールの ONTAP のバージョンが、稼働しているコントローラモジュールのバージョンと異なる場合は、新しいコントローラモジュールをネットブートする必要があります。
+
+.作業を開始する前に
+* HTTP サーバにアクセスできる必要があります。
+* 使用するプラットフォームおよび実行している ONTAP のバージョンに必要なシステムファイルをダウンロードするために、ネットアップサポートサイトにアクセスできる必要があります。
++
+https://mysupport.netapp.com/site/global/dashboard["ネットアップサポート"]
+
+
+
+.手順
+. にアクセスします https://mysupport.netapp.com/site/["ネットアップサポートサイト"] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
+. ネットアップサポートサイトのソフトウェアダウンロードセクションから該当する ONTAP ソフトウェアをダウンロードし、 Web にアクセスできるディレクトリに image.tgz ファイルを保存します。
+. Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
++
+[cols="1,2a"]
+|===
+| プラットフォームモデル | 作業 
+
+
+| FAS/AFF8000 シリーズシステム  a| 
+ターゲットディレクトリに ONTAP-version _image.tgz ファイルの内容を展開します。 tar -zxvf ONTAP-version image.tgz
+
+
+NOTE: Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。
+
+ディレクトリの一覧に、カーネルファイル netboot/ kernel を含むネットブートフォルダが表示される必要があります
+
+
+
+| その他すべてのシステム  a| 
+ディレクトリの一覧に、カーネルファイル ONTAP-version image.tgz のネットブートフォルダが含まれている必要があります
+
+image.tgz ファイルを展開する必要はありません。
+
+|===
+. LOADER プロンプトで、管理 LIF のネットブート接続を設定します。
++
+** IP アドレスが DHCP の場合は、自動接続を設定します。
++
+ifconfig e0M -auto
+
+** IP アドレスが静的な場合は、手動接続を設定します。
++
+ifconfig e0M -addr= ip_addr-mask= netmask `-gw= gateway `
+
+
+
+. ネットブートを実行します。
++
+** プラットフォームが 80xx シリーズシステムの場合は、次のコマンドを使用します。
++
+netboot\http://web_server_ip/path_to_web-accessible_directory/netboot/kernel`
+
+** プラットフォームが他のシステムの場合は、次のコマンドを使用します。
++
+netboot\http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz`
+
+
+
+. ブートメニューからオプション * （ 7 ） Install new software first * を選択し、新しいソフトウェアイメージをダウンロードしてブートデバイスにインストールします。
++
+....
+Disregard the following message: "This procedure is not supported for Non-Disruptive Upgrade on an HA pair". It applies to nondisruptive upgrades of software, not to upgrades of controllers.
+....
+. 手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたらイメージファイルの URL 「 ¥ http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz` 」を入力します
++
+....
+Enter username/password if applicable, or press Enter to continue.
+....
+. 次のようなプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしてください
++
+....
+Do you want to restore the backup configuration now? {y|n}
+....
+. 次のようなプロンプトが表示されたら 'y' と入力して再起動します
++
+....
+The node must be rebooted to start using the newly installed software. Do you want to reboot now? {y|n}
+....
+. ブートメニューから * オプション 5 * を選択し、メンテナンスモードに切り替えます。
+. 4 ノード MetroCluster 構成の場合は、もう一方の新しいコントローラモジュールでこの手順を繰り返します。
+
+
+
+
+== 交換用コントローラモジュールのシステム ID の確認
+
+[role="lead"]
+ディザスタサイトですべてのハードウェアを交換したら、新たに設置したストレージコントローラモジュールのシステム ID を確認する必要があります。
+
+この手順は、交換用コントローラモジュールを使用してメンテナンスモードで実行する必要があります。
+
+ここでは、 2 ノードと 4 ノードの構成の例を示します。2 ノード構成の場合、各サイトの 2 つ目のノードに関する説明は無視してください。8 ノード構成の場合は、 2 つ目の DR グループの追加のノードを考慮する必要があります。この例で想定している状況は次のとおりです。
+
+* サイト A はディザスタサイト
+* node_A_1 は交換済み
+* Node_a_2 は交換済み
++
+4 ノード MetroCluster 構成にのみ存在します。
+
+* サイト B はサバイバーサイトです。
+* node_B_1 は健全
+* node_B_2 は正常
++
+4 ノード MetroCluster 構成にのみ存在します。
+
+
+
+この手順の例では、次のシステム ID を持つコントローラを使用します。
+
+|===
+| MetroCluster 構成のノード数 | ノード | 元のシステム ID | 新しいシステム ID | DR パートナーとしてペアにします 
+
+
+ a| 
+4.
+ a| 
+node_A_1
+ a| 
+4068741258
+ a| 
+1574774970
+ a| 
+node_B_1
+
+
+
+ a| 
+Node_a_2
+ a| 
+4068741260
+ a| 
+157477991
+ a| 
+node_B_2
+
+
+
+ a| 
+node_B_1
+ a| 
+4068741254
+ a| 
+変更なし
+ a| 
+node_A_1
+
+
+
+ a| 
+node_B_2
+ a| 
+4068741256
+ a| 
+変更なし
+ a| 
+Node_a_2
+
+
+
+ a| 
+2 つ
+ a| 
+node_A_1
+ a| 
+4068741258
+ a| 
+1574774970
+ a| 
+node_B_1
+
+
+
+ a| 
+node_B_1
+ a| 
+4068741254
+ a| 
+変更なし
+ a| 
+node_A_1
+
+|===
+* 注： 4 ノード MetroCluster 構成では、 site_A で最もシステム ID が小さいノードと site_B で最もシステム ID が小さいノードが自動的にペアになって DR パートナーシップが設定されますシステム ID は変化するため、コントローラ交換後の DR ペアが災害発生前と異なる場合があります。
+
+上記の例では、次のようになり
+
+* node_A_1 （ 1574774970 ）が node_B_1 （ 4068741254 ）とペアになります。
+* node_A_2 （ 1574774991 ）が node_B_2 （ 4068741256 ）とペアになります。
+
+
+.手順
+. ノードを保守モードにして、各ノードからのノードのローカルシステム ID を表示します
++
+次の例では、新しいローカルシステム ID は 1574774970 です。
+
++
+[listing]
+----
+*> disk show
+ Local System ID: 1574774970
+ ...
+----
+. 2 つ目のノードで、同じ手順を繰り返します。
++
+
+NOTE: 2 ノード MetroCluster 構成ではこの手順は必要ありません。
+
++
+次の例では、新しいローカルシステム ID は 1574774991 です。
+
++
+[listing]
+----
+*> disk show
+ Local System ID: 1574774991
+ ...
+----
+
+
+
+
+== コンポーネントの ha-config 状態の確認
+
+MetroCluster 構成では、コントローラモジュールおよびシャーシコンポーネントの ha-config 状態を「 mcc 」または「 mcc-2n 」に設定して、適切にブートするようにする必要があります。
+
+システムをメンテナンスモードにする必要があります。
+
+このタスクは、新しいコントローラモジュールごとに実行する必要があります。
+
+.手順
+. メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。
++
+「 ha-config show 」
+
++
+HA の正しい状態は、 MetroCluster 構成によって異なります。
+
++
+|===
+| MetroCluster 構成のコントローラの数 | すべてのコンポーネントの HA の状態 
+
+
+ a| 
+8 ノードまたは 4 ノード MetroCluster FC 構成
+ a| 
+MCC
+
+
+
+ a| 
+2 ノード MetroCluster FC 構成
+ a| 
+mcc-2n
+
+
+
+ a| 
+MetroCluster の IP 設定
+ a| 
+mccip
+
+|===
+. 表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールの HA 状態を設定します。
++
+|===
+| MetroCluster 構成のコントローラの数 | コマンドを実行します 
+
+
+ a| 
+8 ノードまたは 4 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify controller mcc 」
+
+
+
+ a| 
+2 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify controller mcc-2n 」という形式で指定します
+
+
+
+ a| 
+MetroCluster の IP 設定
+ a| 
+「 ha-config modify controller mccip 」を参照してください
+
+|===
+. 表示されたシャーシのシステム状態が正しくない場合は、シャーシの HA 状態を設定します。
++
+|===
+| MetroCluster 構成のコントローラの数 | コマンドを実行します 
+
+
+ a| 
+8 ノードまたは 4 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify chassis mcc 」
+
+
+
+ a| 
+2 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify chassis mcc-2n 」というようになりました
+
+
+
+ a| 
+MetroCluster の IP 設定
+ a| 
+「 ha-config modify chassis mccip 」を参照してください
+
+|===
+. 交換した他のノードで同じ手順を繰り返します。
+

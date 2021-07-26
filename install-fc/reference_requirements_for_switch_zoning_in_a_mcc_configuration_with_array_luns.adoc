@@ -1,0 +1,48 @@
+---
+permalink: install-fc/reference_requirements_for_switch_zoning_in_a_mcc_configuration_with_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, switch, zoning, array, luns, requirements 
+summary: アレイ LUN を使用する MetroCluster 構成でスイッチゾーニングを使用する場合は、基本的な一定の要件を満たす必要があります。 
+---
+= アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+アレイ LUN を使用する MetroCluster 構成でスイッチゾーニングを使用する場合は、基本的な一定の要件を満たす必要があります。
+
+アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件は次のとおりです。
+
+* MetroCluster 構成は、シングルイニシエータからシングルターゲットのゾーニング方式に従っている必要があります。
++
+シングルイニシエータからシングルターゲットのゾーニングでは、各ゾーンが単一の FC イニシエータポートと単一のターゲットポートに制限されます。
+
+* FC-VI ポートは、ファブリック全体でエンドツーエンドにゾーニングする必要があります。
+* 複数のイニシエータポートを単一のターゲットポートで共有すると、原因のパフォーマンスの問題が生じる可能性があります。
++
+同様に、複数のターゲットポートを単一のイニシエータポートで共有した場合も、原因のパフォーマンス上の問題が生じる可能性があり
+
+* MetroCluster 構成で使用する FC スイッチの基本的な設定を完了しておく必要があります。
++
+xref:task_fcsw_configure_the_cisco_or_brocade_fc_switches_manually.adoc[Cisco または Brocade FC スイッチを手動で設定する]
+
+
+
+
+
+== 共有イニシエータおよび共有ターゲットでのアレイ LUN を使用した MetroCluster 構成のサポート
+
+特定の FC イニシエータポートまたはターゲットポートを共有できれば、使用するイニシエータポートまたはターゲットポートの数を最小限に抑えることができます。たとえば、 FC イニシエータポートまたはターゲットポートでの I/O 使用率が低い場合は、各 FC イニシエータポートを 1 つのターゲットポートに接続する代わりに、 FC イニシエータポートまたはターゲットポートを共有できます。
+
+ただし、イニシエータポートやターゲットポートを共有すると、パフォーマンスが低下する可能性があります。
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/How_to_support_Shared_Initiator_and_Shared_Target_configuration_with_Array_LUNs_in_a_MetroCluster_environment["MetroCluster 環境でアレイ LUN を使用する共有イニシエータと共有ターゲットの構成をサポートする方法"]
+
+* 関連情報 *
+
+xref:concept_example_of_switch_zoning_in_a_two_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 2 ノード MetroCluster 構成におけるスイッチゾーニングの例]
+
+xref:concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例]
+
+xref:concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例]

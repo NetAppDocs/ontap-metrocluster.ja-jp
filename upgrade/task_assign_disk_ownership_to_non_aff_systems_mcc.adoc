@@ -1,0 +1,148 @@
+---
+permalink: upgrade/task_assign_disk_ownership_to_non_aff_systems_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, assign, disk, ownership, aff, systems 
+summary: MetroCluster ノードにディスクが正しく割り当てられていない場合、または構成で DS460C ディスクシェルフを使用している場合は、 MetroCluster 構成内の各ノードにシェルフ単位でディスクを割り当てる必要があります。構成内の各ノードのローカルディスクプールとリモートディスクプールでディスク数が同じになるように設定します。 
+---
+= AFF 以外のシステムでディスク所有権を割り当てています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster ノードにディスクが正しく割り当てられていない場合、または構成で DS460C ディスクシェルフを使用している場合は、 MetroCluster 構成内の各ノードにシェルフ単位でディスクを割り当てる必要があります。構成内の各ノードのローカルディスクプールとリモートディスクプールでディスク数が同じになるように設定します。
+
+ストレージコントローラがメンテナンスモードになっている必要があります。
+
+構成に DS460C ディスクシェルフが含まれている場合を除き、工場出荷時の状態でディスクが正しく割り当てられていればこのタスクは必要ありません。
+
+[NOTE]
+====
+プール 0 には、ディスクを所有するストレージシステムと同じサイトにあるディスクを割り当てます。
+
+プール 1 には、ディスクを所有するストレージシステムに対してリモートなディスクを割り当てます。
+
+====
+構成に DS460C ディスクシェルフが含まれている場合は、それぞれの 12 ディスクドロワーについて、次のガイドラインに従ってディスクを手動で割り当てる必要があります。
+
+|===
+| ドロワーのディスク | ノードとプール 
+
+
+ a| 
+0 ～ 2
+ a| 
+ローカルノードのプール 0
+
+
+
+ a| 
+3-5
+ a| 
+HA パートナーノードのプール 0
+
+
+
+ a| 
+6 ~ 8
+ a| 
+ローカルノードのプール 1 の DR パートナー
+
+
+
+ a| 
+9 ~ 11
+ a| 
+HA パートナーのプール 1 の DR パートナー
+
+|===
+このディスク割り当てパターンに従うことで、ドロワーがオフラインになった場合のアグリゲートへの影響を最小限に抑えることができます。
+
+.手順
+. システムをブートしていない場合は、メンテナンスモードでブートします。
+. 最初のサイト（サイト A ）にあるノードにディスクシェルフを割り当てます。
++
+ノードと同じサイトにあるディスクシェルフはプール 0 に割り当て、パートナーサイトにあるディスクシェルフはプール 1 に割り当てます。
+
++
+各プールに同じ数のシェルフを割り当てる必要があります。
+
++
+.. 最初のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_local-switch-name ： shelf-name. port _p_pool_*`
++
+ストレージコントローラ Controller_A_1 にシェルフが 4 台ある場合は、次のコマンドを問題に設定します。
+
++
+[listing]
+----
+*> disk assign -shelf FC_switch_A_1:1-4.shelf1 -p 0
+*> disk assign -shelf FC_switch_A_1:1-4.shelf2 -p 0
+
+*> disk assign -shelf FC_switch_B_1:1-4.shelf1 -p 1
+*> disk assign -shelf FC_switch_B_1:1-4.shelf2 -p 1
+----
+.. ローカルサイトの 2 番目のノードに対して処理を繰り返し、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_local-switch-name ： shelf-name .port_-p_pool_*`
++
+ストレージコントローラ Controller_A_2 にシェルフが 4 台ある場合は、次のコマンドを問題に設定します。
+
++
+[listing]
+----
+*> disk assign -shelf FC_switch_A_1:1-4.shelf3 -p 0
+*> disk assign -shelf FC_switch_B_1:1-4.shelf4 -p 1
+
+*> disk assign -shelf FC_switch_A_1:1-4.shelf3 -p 0
+*> disk assign -shelf FC_switch_B_1:1-4.shelf4 -p 1
+----
+
+
+. 2 番目のサイト（サイト B ）にあるノードにディスクシェルフを割り当てます。
++
+ノードと同じサイトにあるディスクシェルフはプール 0 に割り当て、パートナーサイトにあるディスクシェルフはプール 1 に割り当てます。
+
++
+各プールに同じ数のシェルフを割り当てる必要があります。
+
++
+.. リモートサイトの最初のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_local-switch-name shelf-name _-p _pool_*`
++
+ストレージコントローラ Controller_B_1 にシェルフが 4 台ある場合は、次のコマンドを問題します。
+
++
+[listing]
+----
+*> disk assign -shelf FC_switch_B_1:1-5.shelf1 -p 0
+*> disk assign -shelf FC_switch_B_1:1-5.shelf2 -p 0
+
+*> disk assign -shelf FC_switch_A_1:1-5.shelf1 -p 1
+*> disk assign -shelf FC_switch_A_1:1-5.shelf2 -p 1
+----
+.. リモートサイトの 2 番目のノードに対して処理を繰り返し、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_shelf-name _-p_pool_*`
++
+ストレージコントローラ Controller_B_2 にシェルフが 4 台ある場合は、次のコマンドを問題に実行します。
+
++
+[listing]
+----
+*> disk assign -shelf FC_switch_B_1:1-5.shelf3 -p 0
+*> disk assign -shelf FC_switch_B_1:1-5.shelf4 -p 0
+
+*> disk assign -shelf FC_switch_A_1:1-5.shelf3 -p 1
+*> disk assign -shelf FC_switch_A_1:1-5.shelf4 -p 1
+----
+
+
+. シェルフの割り当てを確認します。
++
+'*storage show shelf *
+
+. メンテナンスモードを終了します。
++
+*halt *`
+
+. ブートメニューを表示します。
++
+「 * boot_ontap menu * 」のようになります
+
+. 各ノードで、オプション * 4 * を選択してすべてのディスクを初期化します。
+

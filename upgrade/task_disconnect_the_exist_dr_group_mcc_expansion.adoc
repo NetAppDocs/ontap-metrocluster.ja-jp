@@ -1,0 +1,26 @@
+---
+permalink: upgrade/task_disconnect_the_exist_dr_group_mcc_expansion.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, disconnect, existing, dr, group, fabric 
+summary: ファブリック内の FC スイッチから既存のコントローラモジュールを切断する必要があります。 
+---
+= ファブリックから既存の DR グループを切断します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ファブリック内の FC スイッチから既存のコントローラモジュールを切断する必要があります。
+
+このタスクは MetroCluster サイトごとに実行する必要があります。
+
+.手順
+. 既存のコントローラモジュールをメンテナンス中のスイッチファブリックに接続している HBA ポートを無効にします。
++
+`* storage port disable -NODE-NAME_-PORT_PORT_NUMBER_*`
+
+. ローカルの FC スイッチで、既存のコントローラモジュールの HBA 、 FC-VI 、および ATTO ブリッジ用ポートからケーブルを外します。
++
+ケーブルを再接続するときに簡単に識別できるよう、ケーブルにラベルを付けておいてください。ISL ポートのケーブルだけを接続したままにしておきます。
+
+

@@ -1,0 +1,114 @@
+---
+permalink: disaster-recovery/task_perform_a_forced_switchover_after_a_disaster.html 
+sidebar: sidebar 
+keywords: disaster, occur, perform, surviving, cluster, survive, switchover, ensure, safe, data, service, force, fence, fencing, off, site, access, volume, nvfail, state, output, storage, aggregate, plex, show, command, indeterminate, metroxluster 
+summary: 災害が発生した場合にデータサービスを安全に継続できるようにするには、スイッチオーバー後にディザスタクラスタとサバイバークラスタの両方でいくつかの手順を実行する必要があります。 
+---
+= 災害後の強制スイッチオーバーの実行
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+災害が発生した場合にデータサービスを安全に継続できるようにするには、スイッチオーバー後にディザスタクラスタとサバイバークラスタの両方でいくつかの手順を実行する必要があります。
+
+災害が発生したかどうかを次の方法で確認します。
+
+* 管理者
+* MetroCluster Tiebreaker ソフトウェア（設定されている場合）
+* ONTAP メディエーターソフトウェアが設定されている場合は
+
+
+
+
+== ディザスタサイトのフェンシング
+
+災害後にディザスタサイトノードの交換が必要となった場合は、サイトがサービスを再開しないようにノードを停止する必要があります。そうしないと、交換用手順が完了する前にクライアントがノードへのアクセスを開始した場合に、データが破損するおそれがあります。
+
+.ステップ
+. ディザスタサイトでノードを停止して電源をオフのままにするか、 ONTAP をブートするように指示されるまで LOADER プロンプトで待機します。
++
+「 system node halt -node disaster -site -node-name 」のように入力します
+
++
+ディザスタサイトノードが破損したか停止できない場合は、ノードへの電源をオフにし、リカバリ用手順で指示が出るまで交換用ノードをブートしないでください。
+
+
+
+
+
+== 強制スイッチオーバーの実行
+
+スイッチオーバープロセスによって、テスト時とメンテナンス時のノンストップオペレーションが実現するだけでなく、コマンド 1 つでサイト障害からリカバリできます。
+
+.作業を開始する前に
+* スイッチオーバーを実行する前に、サバイバーサイトの少なくとも 1 つのノードが稼働している必要があります。
+* スイッチバック処理を実行する前に、設定の変更がすべて完了している必要があります。
++
+これにより、ネゴシエートスイッチオーバーまたはスイッチバックの処理との競合が回避されます。
+
+
+
+
+NOTE: SnapMirror と SnapVault の設定は自動的に削除されます。
+
+「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
+
+.手順
+. スイッチオーバーを実装します。
++
+MetroCluster switchover -forced-on-disaster true
+
++
+処理が完了するまでに数分かかることがあります。
+
+. スイッチオーバーを続行するかどうかを確認するメッセージが表示されたら、回答は y を押します。
+. MetroCluster operation show コマンドを実行して、スイッチオーバーが正常に完了したことを確認します。
++
+....
+mcc1A::> metrocluster operation show
+  Operation: switchover
+ Start time: 10/4/2012 19:04:13
+      State: in-progress
+   End time: -
+     Errors:
+
+mcc1A::> metrocluster operation show
+  Operation: switchover
+ Start time: 10/4/2012 19:04:13
+      State: successful
+   End time: 10/4/2012 19:04:22
+     Errors: -
+....
++
+スイッチオーバーが拒否された場合は '--override-override-vetoes オプションを指定して MetroCluster switchover -forced-on-disaster true コマンドを再実行できますこのオプションパラメータを使用すると、スイッチオーバーを妨げるソフトな拒否はすべて無視されます。
+
+
+
+スイッチオーバー後に、 SnapMirror 関係を再確立する必要があります。
+
+
+
+== MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない
+
+MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。
+
+
+
+== スイッチオーバー後に NVFAIL 状態のボリュームにアクセスする場合
+
+スイッチオーバー後に 'volume modify コマンドの -in-nvfailed-state パラメータをリセットし ' クライアントがデータにアクセスする制限を解除することにより 'NVFAIL 状態をクリアする必要があります
+
+データベースまたはファイルシステムが実行されていない、または影響を受けたボリュームにアクセスしようとしていないことが必要です。
+
+in-nvfailed-state パラメータを設定するには、 advanced 権限が必要です。
+
+.ステップ
+. -in-nvfailed-state パラメータを false に設定して volume modify コマンドを実行し ' ボリュームをリカバリします
+
+
+データベースファイルの有効性を調べる方法については、ご使用のデータベースソフトウェアのマニュアルを参照してください。
+
+データベースで LUN が使用されている場合は、 NVRAM 障害後にホストから LUN にアクセスできるようにする手順を確認してください。
+
+link:../manage/concept_monitoring_and_protecting_database_validity_by_using_nvfail.html["NVFAIL を使用したデータベースの有効性監視および保護"]

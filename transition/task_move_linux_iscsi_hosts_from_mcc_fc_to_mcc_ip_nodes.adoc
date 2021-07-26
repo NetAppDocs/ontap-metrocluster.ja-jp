@@ -1,0 +1,367 @@
+---
+permalink: transition/task_move_linux_iscsi_hosts_from_mcc_fc_to_mcc_ip_nodes.html 
+sidebar: sidebar 
+keywords: transition, metrocluster, node, fc, ip, iscsi, host, connection, moving, move, linux, set, up, add, report, removing, remove, rescan, path 
+summary: MetroCluster ノードを FC から IP に移行したあと、 iSCSI ホスト接続を新しいノードに移動しなければならない場合があります。 
+---
+= Linux iSCSI ホストを MetroCluster FC ノードから MetroCluster IP ノードに移動しています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster ノードを FC から IP に移行したあと、 iSCSI ホスト接続を新しいノードに移動しなければならない場合があります。
+
+この手順 IPv4 インターフェイスにはが作成されます。
+
+これらの手順に記載されているホストコマンドと例は、 Linux オペレーティングシステムに固有のものです。
+
+
+
+== 新しい iSCSI 接続をセットアップしています
+
+[role="lead"]
+iSCSI 接続を移動するには、 MetroCluster IP ノードへの新しい iSCSI 接続をセットアップする必要があります。
+
+. MetroCluster IP ノードに iSCSI インターフェイスを作成し、 iSCSI クライアントから MetroCluster IP ノード上の新しい IP インターフェイスへの ping 接続を確認します。
++
+https://docs.netapp.com/us-en/ontap/networking-app/create_a_lif.html["ネットワークインターフェイスを作成しています"]
+
++
+SVM からのすべての iSCSI インターフェイスに iSCSI クライアントから到達できる必要があります。
+
+. iSCSI ホストまたはクライアント上で ' ホストから MetroCluster FC ノードへの既存の iSCSI 接続を特定します iscsiadm -m session
++
+[listing]
+----
+[root@scspr1789621001 ~]# iscsiadm -m session
+
+tcp: [1] 10.230.68.236:3260,1156 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6 (non-flash)
+
+tcp: [2] 10.230.68.237:3260,1158 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6 (non-flash)
+----
+. MetroCluster IP ノードからの接続を確認します。「 iscsi session show -vserver vserver-name 」
++
+[listing]
+----
+node_A_1-IP::*> iscsi session show -vserver vsa_1
+
+ Tpgroup Initiator Initiator
+
+Vserver Name TSIH Name ISID Alias
+--------- ------- ---- ------------------------ --------- ---------------------
+vsa_1 iscsi_lf__n1_p1_ 4 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02:3d:00:00:01 scspr1789621001.gdl.englab.netapp.com
+vsa_1 iscsi_lf__n2_p1_ 4 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02:3d:00:00:02 scspr1789621001.gdl.englab.netapp.com
+
+2 entries were displayed.
+----
+. インターフェイスが含まれる ONTAP の iSCSI インターフェイスの一覧を表示します。「 iscsi interface show -vserver svm_name
++
+[listing]
+----
+sti8200mcchtp001htp_siteA::*> iscsi interface show -vserver vsa_1
+
+ Logical Status Curr Curr
+
+Vserver    Interface  TPGT Admin/Oper IP Address Node Port Enabled
+---------- ---------- ---- ---------- --------------- ----------- ---- -------
+
+vsa_1 iscsi_lf__n1_p1_ 1156 up/up 10.230.68.236 sti8200mcc-htp-001 e0g true
+vsa_1 iscsi_lf__n1_p2_ 1157 up/up fd20:8b1e:b255:805e::78c9 sti8200mcc-htp-001 e0h true
+vsa_1 iscsi_lf__n2_p1_ 1158 up/up 10.230.68.237 sti8200mcc-htp-002 e0g true
+vsa_1 iscsi_lf__n2_p2_ 1159 up/up fd20:8b1e:b255:805e::78ca sti8200mcc-htp-002 e0h true
+vsa_1 iscsi_lf__n3_p1_ 1183 up/up 10.226.43.134 sti8200mccip-htp-005 e0c true
+vsa_1 iscsi_lf__n4_p1_ 1188 up/up 10.226.43.142 sti8200mccip-htp-006 e0c true
+
+6 entries were displayed.
+----
+. iSCSI クライアントで、 SVM 上のいずれかの iSCSI IP アドレスに対して検出を実行し、新しいターゲットを検出します。「 iscsiadm -m discovery -t sendtargets -p iscsi-ip-address
++
+検出は、 iSCSI 以外のインターフェイスを含め、 SVM の任意の IP アドレスで実行できます。
+
++
+[listing]
+----
+[root@scspr1789621001 ~]# iscsiadm -m discovery -t sendtargets -p 10.230.68.236:3260
+
+10.230.68.236:3260,1156 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6
+10.226.43.142:3260,1188 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6
+10.226.43.134:3260,1183 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6
+10.230.68.237:3260,1158 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6
+----
+. iSCSI クライアントで ' 検出されたすべてのアドレスにログインします iscsiadm -m node -L all -T node -address -p portal -address -l
++
+[listing]
+----
+[root@scspr1789621001 ~]# iscsiadm -m node -L all -T iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6 -p 10.230.68.236:3260 -l
+
+Logging in to [iface: default, target: iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6, portal: 10.226.43.142,3260] (multiple)
+Logging in to [iface: default, target: iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6, portal: 10.226.43.134,3260] (multiple)
+Login to [iface: default, target: iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6, portal: 10.226.43.142,3260] successful.
+Login to [iface: default, target: iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6, portal: 10.226.43.134,3260] successful.
+----
+. iSCSI クライアントで ' ログインと接続を確認します iscsiadm -m session
++
+[listing]
+----
+[root@scspr1789621001 ~]# iscsiadm -m session
+
+tcp: [1] 10.230.68.236:3260,1156 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6 (non-flash)
+tcp: [2] 10.230.68.237:3260,1158 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6 (non-flash)
+tcp: [3] 10.226.43.142:3260,1188 iqn.1992-08.com.netapp:sn.58d7f6df2cc611eaa9c500a098a71638:vs.6 (non-flash)
+----
+. MetroCluster ノードから、クライアントへのログインおよび接続を確認します。「 iscsi initiator show -vserver vsA_1' 」
++
+[listing]
+----
+sti8200mcchtp001htp_siteA::*> iscsi initiator show -vserver vsa_1
+
+ Tpgroup Initiator
+
+Vserver Name             TSIH Name                  ISID              Igroup Name
+------- --------         ---- --------------------- ----------------- -----------------
+vsa_1 iscsi_lf__n1_p1_ 4 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02:3d:00:00:01 igroup_linux
+vsa_1 iscsi_lf__n2_p1_ 4 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02:3d:00:00:02 igroup_linux
+vsa_1 iscsi_lf__n3_p1_ 1 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02:3d:00:00:04 igroup_linux
+vsa_1 iscsi_lf__n4_p1_ 1 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02:3d:00:00:03 igroup_linux
+
+4 entries were displayed.
+----
+
+
+このタスクを完了すると、クライアントは（ MetroCluster FC および MetroCluster IP ノード上の）すべての iSCSI インターフェイスを表示できるようになり、それらのすべてのインターフェイスにログインしています。
+
+LUN とボリュームは引き続き FC ノードで物理的にホストされます。LUN は MetroCluster FC ノードインターフェイスでのみ報告されるため、クライアントには MetroCluster FC ノード経由のパスのみが表示されます。この情報は、 sanlun lun show -p コマンドおよび multipath -ll -d コマンドの出力に表示されます。次の手順では、 IP ノードをレポートノードとして追加します。
+
+[listing]
+----
+[root@scspr1789621001 ~]# sanlun lun show -p
+ONTAP Path: vsa_1:/vol/vsa_1_vol6/lun_linux_12
+ LUN: 4
+ LUN Size: 2g
+ Product: cDOT
+ Host Device: 3600a098038304646513f4f674e52774b
+ Multipath Policy: service-time 0
+ Multipath Provider: Native
+--------- ---------- ------- ------------ ----------------------------------------------
+host vserver
+path path /dev/ host vserver
+state     type       node     adapter     LIF
+--------- ---------- ------- ------------ ----------------------------------------------
+up        primary    sdk     host3        iscsi_lf__n2_p1_
+up        secondary  sdh     host2        iscsi_lf__n1_p1_
+
+[root@scspr1789621001 ~]# multipath -ll -d
+3600a098038304646513f4f674e52774b dm-5 NETAPP ,LUN C-Mode
+size=2.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| `- 3:0:0:4 sdk 8:160 active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+ `- 2:0:0:4 sdh 8:112 active ready running
+----
+
+
+== MetroCluster IP ノードをレポートノードとして追加する
+
+[role="lead"]
+新しい MetroCluster IP ノードへの接続をセットアップしたら、新しいレポートノードを追加する必要があります。
+
+. MetroCluster ノードで、 SVM 上の LUN に関するレポートノードを一覧表示します。「 lun mapping show -vserver vsA_1 -fields reporting-nodes -ostype linux
++
+次のレポートノードは、 FC ノード node_A_1 の FC および node_A_1 の FC に LUN が物理的に存在するため、ローカルノードです。
+
++
+[listing]
+----
+node_A_1-IP::*> lun mapping show -vserver vsa_1 -fields reporting-nodes -ostype linux
+
+vserver path igroup reporting-nodes
+------- --------------------------- ------------ -------------------------------------
+vsa_1 /vol/vsa_1_vol1/lun_linux_2 igroup_linux node_A_1-FC,node_A_2-FC
+.
+.
+.
+vsa_1 /vol/vsa_1_vol9/lun_linux_19 igroup_linux node_A_1-FC,node_A_2-FC
+12 entries were displayed.
+----
+. MetroCluster ノードで、レポートノードを追加します。 lun mapping add-reporting-nodes -vserver SVM-name -path /vol/ VSA_1_vol * /lun_linux_* -nodes node1 、 node2 -igroup igroup_linux です
++
+[listing]
+----
+node_A_1-IP::*> lun mapping add-reporting-nodes -vserver vsa_1 -path /vol/vsa_1_vol*/lun_linux_* -nodes node_A_1-IP,node_A_2-IP
+-igroup igroup_linux
+
+12 entries were acted on.
+----
+. MetroCluster ノード上に、新しく追加したノードが存在することを確認します。 lun mapping show -vserver vserver-name -fields reporting-nodes -ostype linux vserver path igroup reporting-nodes 」
++
+[listing]
+----
+
+node_A_1-IP::*> lun mapping show -vserver vsa_1 -fields reporting-nodes -ostype linux vserver path igroup reporting-nodes
+------- --------------------------- ------------ -------------------------------------------------------------------------------
+
+vsa_1 /vol/vsa_1_vol1/lun_linux_2 igroup_linux node_A_1-FC,node_A_2-FC,node_A_1-IP,node_A_2-IP
+vsa_1 /vol/vsa_1_vol1/lun_linux_3 igroup_linux node_A_1-FC,node_A_2-FC,node_A_1-IP,node_A_2-IP.
+.
+.
+.
+
+12 entries were displayed.
+----
+. ホストで問題次のコマンドを使用して ' ホスト上の SCSI バスを再スキャンし ' 新しく追加されたパスを検出します `/usr/bin/rescan-scsi-bus.sh -a ``
++
+[listing]
+----
+[root@stemgr]# /usr/bin/rescan-scsi-bus.sh -a
+Scanning SCSI subsystem for new devices
+Scanning host 0 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 1 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 2 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+ Scanning for device 2 0 0 0 ...
+.
+.
+.
+OLD: Host: scsi5 Channel: 00 Id: 00 Lun: 09
+ Vendor: NETAPP Model: LUN C-Mode Rev: 9800
+ Type: Direct-Access ANSI SCSI revision: 05
+0 new or changed device(s) found.
+0 remapped or resized device(s) found.
+0 device(s) removed.
+----
+. ホスト上で、新たに追加されたパスの一覧を表示するために、問題は次のコマンドを実行します。 'lun lun lun show -p
++
+LUN ごとに 4 つのパスが表示されます。
+
++
+[listing]
+----
+[root@stemgr]# sanlun lun show -p
+ONTAP Path: vsa_1:/vol/vsa_1_vol6/lun_linux_12
+ LUN: 4
+ LUN Size: 2g
+ Product: cDOT
+ Host Device: 3600a098038304646513f4f674e52774b
+ Multipath Policy: service-time 0
+ Multipath Provider: Native
+--------- ---------- ------- ------------ ----------------------------------------------
+host vserver
+path path /dev/ host vserver
+state type node adapter LIF
+--------- ---------- ------- ------------ ----------------------------------------------
+up primary sdk host3 iscsi_lf__n2_p1_
+up secondary sdh host2 iscsi_lf__n1_p1_
+up secondary sdag host4 iscsi_lf__n4_p1_
+up secondary sdah host5 iscsi_lf__n3_p1_
+----
+. MetroCluster で、 LUN を含むボリュームを FC ノードから IP ノードに移動します。
++
+[listing]
+----
+node_A_1-IP::*> vol move start -vserver vsa_1 -volume vsa_1_vol1 -destination-aggregate sti8200mccip_htp_005_aggr1
+[Job 1877] Job is queued: Move "vsa_1_vol1" in Vserver "vsa_1" to aggregate "sti8200mccip_htp_005_aggr1". Use the "volume move show -vserver
+vsa_1 -volume vsa_1_vol1" command to view the status of this operation.
+node_A_1-IP::*> vol move show
+Vserver    Volume     State       Move       Phase            Percent-Complete  Time-To-Complete
+---------  ---------- --------    ---------- ---------------- ----------------  ----------------
+vsa_1     vsa_1_vol1  healthy                initializing     -                 -
+----
+. ボリューム移動が完了したら、 MetroCluster で volume show コマンドを使用して、ボリュームまたは LUN がオンラインになっていることを確認します。
+. LUN が配置された MetroCluster IP ノードの iSCSI インターフェイスは、プライマリパスとして更新されます。ボリューム移動後にプライマリパスが更新されない場合は、 /usr/bin/rescan-scsi-bus.sh -a と multipath-v3 を実行するか、マルチパスの再スキャンが実行されるのを待ちます。
++
+次の例では、プライマリパスは MetroCluster IP ノード上の LIF です。
+
++
+[listing]
+----
+[root@stemgr]# sanlun lun show -p
+ONTAP Path: vsa_1:/vol/vsa_1_vol6/lun_linux_12
+ LUN: 4
+ LUN Size: 2g
+ Product: cDOT
+ Host Device: 3600a098038304646513f4f674e52774b
+ Multipath Policy: service-time 0
+ Multipath Provider: Native
+--------- ---------- ------- ------------ -----------------------
+host vserver
+path path /dev/ host vserver
+state     type       node    adapter      LIF
+--------- ---------- ------- ------------ ------------------------
+up        primary    sdag    host4        iscsi_lf__n4_p1_
+up        secondary  sdk     host3        iscsi_lf__n2_p1_
+up        secondary  sdh     host2        iscsi_lf__n1_p1_
+up        secondary  sdah    host5        iscsi_lf__n3_p1_
+----
+
+
+
+
+== レポートノードを削除してパスを再スキャンしています
+
+[role="lead"]
+レポートノードを削除し、パスを再スキャンする必要があります。
+
+. MetroCluster IP ノードから、 Linux LUN のリモートレポートノード（ MetroCluster IP ノード）を削除します。「 lun mapping remove-reporting-nodes -vserver vsA_1-path * -igroup igroup_linux-remote-nodes true
++
+この場合、リモートノードは FC ノードです。
+
++
+[listing]
+----
+node_A_1-IP::*> lun mapping remove-reporting-nodes -vserver vsa_1 -path * -igroup igroup_linux -remote-nodes true
+
+12 entries were acted on.
+----
+. MetroCluster の IP ノードから、 LUN のレポートノードを確認します。「 lun mapping show -vserver vsA_1 -fields reporting-nodes -ostype linux
++
+[listing]
+----
+node_A_1-IP::*> lun mapping show -vserver vsa_1 -fields reporting-nodes -ostype linux
+
+vserver  path                        igroup      reporting-nodes
+------- --------------------------- ------------ -----------------------------------------
+
+vsa_1 /vol/vsa_1_vol1/lun_linux_2   igroup_linux  node_A_1-IP,node_A_2-IP
+vsa_1 /vol/vsa_1_vol1/lun_linux_3   igroup_linux  node_A_1-IP,node_A_2-IP
+vsa_1 /vol/vsa_1_vol2/lun_linux_4   group_linux   node_A_1-IP,node_A_2-IP
+.
+.
+.
+
+12 entries were displayed.
+----
+. iSCSI ホストで 'SCSI バスを再スキャンします /usr/bin/rescan-scsi-bus.sh -r
++
+削除されるパスは FC ノードからのパスです。
+
++
+[listing]
+----
+[root@scspr1789621001 ~]# /usr/bin/rescan-scsi-bus.sh -r
+Syncing file systems
+Scanning SCSI subsystem for new devices and remove devices that have disappeared
+Scanning host 0 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 1 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 2 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+sg0 changed: LU not available (PQual 1)
+REM: Host: scsi2 Channel: 00 Id: 00 Lun: 00
+DEL: Vendor: NETAPP Model: LUN C-Mode Rev: 9800
+ Type: Direct-Access ANSI SCSI revision: 05
+sg2 changed: LU not available (PQual 1)
+.
+.
+.
+OLD: Host: scsi5 Channel: 00 Id: 00 Lun: 09
+ Vendor: NETAPP Model: LUN C-Mode Rev: 9800
+ Type: Direct-Access ANSI SCSI revision: 05
+0 new or changed device(s) found.
+0 remapped or resized device(s) found.
+24 device(s) removed.
+ [2:0:0:0]
+ [2:0:0:1]
+ .
+.
+.
+----
+. iSCSI ホストで、 MetroCluster IP ノードからのパスだけが表示されることを確認します。「 lun lun lun lun show -p 」「マルチパス -ll -d 」
+

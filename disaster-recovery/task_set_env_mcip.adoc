@@ -1,0 +1,542 @@
+---
+permalink: disaster-recovery/task_set_env_mcip.html 
+sidebar: sidebar 
+keywords: metrocluster, ip, configuration, setting, require, environmental, variable 
+summary: MetroCluster IP 構成では、イーサネットポートの MetroCluster インターフェイスの IP アドレスを取得し、そのアドレスを使用して交換用コントローラモジュールのインターフェイスを設定します。 
+---
+= MetroCluster IP 構成に必要な環境変数を設定します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP 構成では、イーサネットポートの MetroCluster インターフェイスの IP アドレスを取得し、そのアドレスを使用して交換用コントローラモジュールのインターフェイスを設定する必要があります。
+
+このタスクを実行する必要があるのは、 MetroCluster IP 構成の場合だけです。
+
+このタスクのコマンドは、サバイバーサイトのクラスタプロンプトおよびディザスタサイトのノードの LOADER プロンプトから実行します。
+
+これらの例のノードの MetroCluster IP 接続には、次の IP アドレスが使用されます。
+
+
+NOTE: 以下は AFF A700 システムまたは FAS9000 システムの例です。インターフェイスはプラットフォームモデルによって異なります。
+
+[cols="3*"]
+|===
+| ノード | ポート | IP アドレス 
+
+
+ a| 
+node_A_1
+ a| 
+e5
+ a| 
+172.17.26.10
+
+
+
+ a| 
+e5b
+ a| 
+172.17.27.10
+ a| 
+Node_a_2
+
+
+
+ a| 
+e5
+ a| 
+172.17.26.11
+ a| 
+e5b
+
+
+
+ a| 
+172.17.27.11
+ a| 
+node_B_1
+ a| 
+e5
+
+
+
+ a| 
+172.17.26.13
+ a| 
+e5b
+ a| 
+172.17.27.13
+
+
+
+ a| 
+node_B_2
+ a| 
+e5
+ a| 
+172.17.26.12
+
+|===
+次の表は、ノードと各ノードの MetroCluster IP アドレスの関係をまとめたものです。
+
+|===
+| ノード | HA パートナー | DR パートナー | DR 補助パートナー 
+
+
+ a| 
+node_A_1
+
+* e5a ： 172.17.26.10
+* e5b ： 172.17.27.10
+
+ a| 
+Node_a_2
+
+* e51:172.17.26.11
+* e5b ： 172.17.27.11
+
+ a| 
+node_B_1
+
+* e51:172.17.26.13
+* e5b ： 172.17.27.13
+
+ a| 
+node_B_2
+
+* e5a ： 172.17.26.12
+* e5b ： 172.17.27.12
+
+
+
+
+ a| 
+Node_a_2
+
+* e51:172.17.26.11
+* e5b ： 172.17.27.11
+
+ a| 
+node_A_1
+
+* e5a ： 172.17.26.10
+* e5b ： 172.17.27.10
+
+ a| 
+node_B_2
+
+* e5a ： 172.17.26.12
+* e5b ： 172.17.27.12
+
+ a| 
+node_B_1
+
+* e51:172.17.26.13
+* e5b ： 172.17.27.13
+
+
+
+
+ a| 
+node_B_1
+
+* e51:172.17.26.13
+* e5b ： 172.17.27.13
+
+ a| 
+node_B_2
+
+* e5a ： 172.17.26.12
+* e5b ： 172.17.27.12
+
+ a| 
+node_A_1
+
+* e5a ： 172.17.26.10
+* e5b ： 172.17.27.10
+
+ a| 
+Node_a_2
+
+* e51:172.17.26.11
+* e5b ： 172.17.27.11
+
+
+
+
+ a| 
+node_B_2
+
+* e5a ： 172.17.26.12
+* e5b ： 172.17.27.12
+
+ a| 
+node_B_1
+
+* e51:172.17.26.13
+* e5b ： 172.17.27.13
+
+ a| 
+Node_a_2
+
+* e51:172.17.26.11
+* e5b ： 172.17.27.11
+
+ a| 
+node_A_1
+
+* e5a ： 172.17.26.10
+* e5b ： 172.17.27.10
+
+
+|===
+次の表に、 MetroCluster IP インターフェイスで VLAN ID を使用するプラットフォームモデルを示します。デフォルトの VLAN ID を使用しない場合、これらのモデルでは追加の手順が必要になることがあります。
+
+|===
+2+| MetroCluster IP インターフェイスで VLAN ID を使用するプラットフォームモデル 
+
+
+ a| 
+* AFF A220
+* AFF A250
+* AFF A400
+* AFF A800
+
+ a| 
+* FAS500f
+* FAS2750
+* FAS8300
+* FAS8700 の場合
+
+
+|===
+.手順
+. サバイバーサイトから、ディザスタサイトの MetroCluster インターフェイスの IP アドレスを収集します。
++
+「 MetroCluster configurion-settings connection show 」を参照してください
+
++
+必要なアドレスは、「 * Destination Network Address * 」列に表示されている DR パートナーのアドレスです。
+
++
+次の出力は、 AFF A700 システムと FAS9000 システムを使用した構成で MetroCluster IP インターフェイスがポート e5a および e5b にある場合の IP アドレスを示しています。インターフェイスはプラットフォームのタイプによって異なります。
+
++
+[listing]
+----
+cluster_B::*> metrocluster configuration-settings connection show
+DR                    Source          Destination
+DR                    Source          Destination
+Group Cluster Node    Network Address Network Address Partner Type Config State
+----- ------- ------- --------------- --------------- ------------ ------------
+1     cluster_B
+              node_B_1
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.12    HA Partner   completed
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.10    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.11    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.12    HA Partner   completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.10    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.11    DR Auxiliary completed
+              node_B_2
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.13    HA Partner   completed
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.11    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.10    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.13    HA Partner   completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.11    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.10    DR Auxiliary completed
+12 entries were displayed.
+----
+. インターフェイスの VLAN ID またはゲートウェイアドレスを確認する必要がある場合は、サバイバーサイトから VLAN ID を確認します。
++
+「 MetroCluster configurion-settings interface show 」を参照してください
+
++
+** プラットフォームモデルで VLAN ID を使用している場合（上記のリストを参照）、およびデフォルトの VLAN ID を使用していない場合は、 VLAN ID が必要です。
+** を使用する場合は、ゲートウェイアドレスが必要です link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワーク"]。
++
+VLAN ID は、出力の * Network Address * 列に含まれています。[*Gateway*] 列には、ゲートウェイ IP アドレスが表示されます。
+
++
+次の例では、 VLAN ID が 120 の e0a と、 VLAN ID が 130 の e0b がインターフェイスです。
+
++
+[listing]
+----
+Cluster-A::*> metrocluster configuration-settings interface show
+DR                                                                     Config
+Group Cluster Node     Network Address Netmask         Gateway         State
+----- ------- ------- --------------- --------------- --------------- ---------
+1
+      cluster_A
+              node_A_1
+                  Home Port: e0a-120
+                          172.17.26.10  255.255.255.0  -            completed
+                  Home Port: e0b-130
+                          172.17.27.10  255.255.255.0  -            completed
+----
+
+
+. ディザスタサイトのノードで VLAN ID を使用している場合（上記の一覧を参照）は、各ディザスタサイトのノードの LOADER プロンプトで次の bootarg を設定します。
++
+--
+....
+setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+
+setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+....
+[NOTE]
+====
+** インターフェイスがデフォルト VLAN を使用している場合、またはプラットフォームモデルが VLAN を必要としない場合（上記のリストを参照）、 _vlan-id_ は必要ありません。
+** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 広域ネットワーク"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
+
+
+====
+** インターフェイスがデフォルト VLAN を使用している場合、またはプラットフォームモデルが VLAN を必要としない場合（上記のリストを参照）、 _vlan-id_ は必要ありません。
+** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 バックエンド接続"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
++
+次のコマンドは、最初のネットワークに VLAN 120 、 2 番目のネットワークに VLAN 130 を使用して node_A_1 の値を設定します。
+
+
+
+....
+setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12,120
+
+setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12,130
+....
+次の例は、 VLAN ID のない node_A_1 のコマンドを示しています。
+
+....
+setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
+
+setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
+....
+--
+. ディザスタサイトのノードが VLAN ID を使用するシステムでない場合は、各ディザスタノードの LOADER プロンプトで、「 local_IP/mask 、 gateway 」の形式で次の bootarg を設定します。
++
+....
+setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address
+
+
+setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address
+....
++
+[NOTE]
+====
+** インターフェイスがデフォルト VLAN を使用している場合、またはプラットフォームモデルが VLAN を必要としない場合（上記のリストを参照）、 _vlan-id_ は必要ありません。
+** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワーク"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
+
+
+====
++
+次のコマンドは、 node_A_1 の値を設定します。この例では、 _gateway-ip-address_or_vlan-id_values は使用されません。
+
++
+....
+setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
+
+setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
+....
+. サバイバーサイトから、ディザスタサイトの UUID を収集します。
++
+MetroCluster node show -fields node-cluster.uuid 、 node-uuid
+
++
+[listing]
+----
+cluster_B::> metrocluster node show -fields node-cluster-uuid, node-uuid
+
+  (metrocluster node show)
+dr-group-id cluster     node     node-uuid                            node-cluster-uuid
+----------- ----------- -------- ------------------------------------ ------------------------------
+1           cluster_A   node_A_1 f03cb63c-9a7e-11e7-b68b-00a098908039 ee7db9d5-9a82-11e7-b68b-00a098
+                                                                        908039
+1           cluster_A   node_A_2 aa9a7a7a-9a81-11e7-a4e9-00a098908c35 ee7db9d5-9a82-11e7-b68b-00a098
+                                                                        908039
+1           cluster_B   node_B_1 f37b240b-9ac1-11e7-9b42-00a098c9e55d 07958819-9ac6-11e7-9b42-00a098
+                                                                        c9e55d
+1           cluster_B   node_B_2 bf8e3f8f-9ac4-11e7-bd4e-00a098ca379f 07958819-9ac6-11e7-9b42-00a098
+                                                                        c9e55d
+4 entries were displayed.
+cluster_A::*>
+----
++
+|===
+| ノード | UUID 
+
+
+ a| 
+cluster_B
+ a| 
+07958819 - 9ac6-11e7-9b42 - 00a098c9e55d
+
+
+
+ a| 
+node_B_1
+ a| 
+f37b240b-9ac1-11e7-9b42 -00a098c9e55d
+
+
+
+ a| 
+node_B_2
+ a| 
+bf8e3f8f-9ac4-117-bd4e-00a098c379f です
+
+
+
+ a| 
+cluster_A
+ a| 
+ee7db9d5-9a82-11e7-b68b-00a098908039
+
+
+
+ a| 
+node_A_1
+ a| 
+f03cb63c-9a7e-11e7-b68b-00a098908039
+
+
+
+ a| 
+Node_a_2
+ a| 
+aa9a7a7a1-9a81-11e7-a4e9-00a098908c35
+
+|===
+. 交換用ノードの LOADER プロンプトで、 UUID を設定します。
++
+....
+setenv bootarg.mgwd.partner_cluster_uuid partner-cluster-UUID
+
+setenv bootarg.mgwd.cluster_uuid local-cluster-UUID
+
+setenv bootarg.mcc.pri_partner_uuid DR-partner-node-UUID
+
+setenv bootarg.mcc.aux_partner_uuid DR-aux-partner-node-UUID
+
+setenv bootarg.mcc_iscsi.node_uuid local-node-UUID`
+....
++
+.. node_A_1 の UUID を設定します。
++
+次の例は、 node_A_1 の UUID を設定するコマンドを示しています。
+
++
+....
+setenv bootarg.mgwd.cluster_uuid ee7db9d5-9a82-11e7-b68b-00a098908039
+
+setenv bootarg.mgwd.partner_cluster_uuid 07958819-9ac6-11e7-9b42-00a098c9e55d
+
+setenv bootarg.mcc.pri_partner_uuid f37b240b-9ac1-11e7-9b42-00a098c9e55d
+
+setenv bootarg.mcc.aux_partner_uuid bf8e3f8f-9ac4-11e7-bd4e-00a098ca379f
+
+setenv bootarg.mcc_iscsi.node_uuid f03cb63c-9a7e-11e7-b68b-00a098908039
+....
+.. node_A_2 の UUID を設定します。
++
+次の例は、 node_A_2 の UUID を設定するコマンドを示しています。
+
++
+....
+setenv bootarg.mgwd.cluster_uuid ee7db9d5-9a82-11e7-b68b-00a098908039
+
+setenv bootarg.mgwd.partner_cluster_uuid 07958819-9ac6-11e7-9b42-00a098c9e55d
+
+setenv bootarg.mcc.pri_partner_uuid bf8e3f8f-9ac4-11e7-bd4e-00a098ca379f
+
+setenv bootarg.mcc.aux_partner_uuid f37b240b-9ac1-11e7-9b42-00a098c9e55d
+
+setenv bootarg.mcc_iscsi.node_uuid aa9a7a7a-9a81-11e7-a4e9-00a098908c35
+....
+
+
+. 元のシステムが ADP 用に設定されていた場合は、交換用ノードの LOADER プロンプトで ADP を有効にします。
++
+'etenv bootarg.me.adp_enabled true
+
+. 交換用ノードの LOADER プロンプトで ONTAP 9.5 、 9.6 、または 9.7 を実行している場合は、次の変数を有効にします。
++
+'etenv bootarg.mf.lun_part true
+
++
+.. node_A_1 の変数を設定します。
++
+次の例は、 ONTAP 9.6 を実行している場合に node_A_1 の値を設定するコマンドを示しています。
+
++
+[listing]
+----
+setenv bootarg.mcc.lun_part true
+----
+.. node_A_1 の変数を設定します。
++
+次の例は、 ONTAP 9.6 を実行している場合に node_A_1 の値を設定するコマンドを示しています。
+
++
+[listing]
+----
+setenv bootarg.mcc.lun_part true
+----
+
+
+. 元のシステムが ADP 用に設定されていた場合は、交換用ノードの LOADER プロンプトで、元のシステム ID （交換用コントローラモジュールのシステム ID ではなく * ）とノードの DR パートナーのシステム ID を設定します。
++
+'setenv bootarg.me.local_config_id original-SysID
+
++
+'etenv bootarg.MCC.DR_partner DR_PARTNER -SysID
+
++
+link:task_replace_hardware_and_boot_new_controllers.html#determining-the-system-ids-of-the-replacement-controller-modules["古いコントローラモジュールのシステム ID と VLAN ID を確認します"]
+
++
+.. node_A_1 の変数を設定します。
++
+次の例は、 node_A_1 のシステム ID を設定するコマンドを示しています。
+
++
+*** node_A_1 の古いシステム ID は 4068741258 です。
+*** node_B_1 のシステム ID は 4068741254 です。
++
+[listing]
+----
+setenv bootarg.mcc.local_config_id 4068741258
+setenv bootarg.mcc.dr_partner 4068741254
+----
+
+
+.. node_A_1 の変数を設定します。
++
+次の例は、 node_A_1 のシステム ID を設定するコマンドを示しています。
+
++
+*** node_A_1 の古いシステム ID は 4068741260 です。
+*** node_B_1 のシステム ID は 4068741256 です。
++
+[listing]
+----
+setenv bootarg.mcc.local_config_id 4068741260
+setenv bootarg.mcc.dr_partner 4068741256
+----
+
+
+
+
+

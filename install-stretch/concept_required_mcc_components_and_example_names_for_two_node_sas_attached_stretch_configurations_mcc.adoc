@@ -1,0 +1,101 @@
+---
+permalink: install-stretch/concept_required_mcc_components_and_example_names_for_two_node_sas_attached_stretch_configurations_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, required, hardware, components, naming, guidelines, two, node, sas, configuration 
+summary: MetroCluster 構成にはさまざまなハードウェアコンポーネントが必要です。わかりやすいように、 MetroCluster のドキュメント全般をとおして標準的なコンポーネント名を使用します。また、一方のサイトをサイト A と呼び、もう一方のサイトをサイト B と呼びます 
+---
+= 2 ノード SAS 接続ストレッチ構成の MetroCluster に必要なハードウェアコンポーネントと命名ガイドライン
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成にはさまざまなハードウェアコンポーネントが必要です。わかりやすいように、 MetroCluster のドキュメント全般をとおして標準的なコンポーネント名を使用します。また、一方のサイトをサイト A と呼び、もう一方のサイトをサイト B と呼びます
+
+
+
+== サポートされているソフトウェアおよびハードウェア
+
+ハードウェアとソフトウェアは、 MetroCluster FC 構成でサポートされている必要があります。
+
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+AFF システムを使用する場合は、 MetroCluster 構成内のすべてのコントローラモジュールを AFF システムとして構成する必要があります。
+
+
+
+== MetroCluster 構成でのハードウェアの冗長性
+
+MetroCluster 構成ではハードウェアの冗長性が確保されるため、サイトには各コンポーネントが 2 つずつあります。コンポーネントの名前には、サイトを表す A または B 、および 2 つあるコンポーネントのうちどちらかを表す番号として 1 または 2 を使用します。
+
+
+
+== シングルノード ONTAP クラスタ × 2
+
+SAS 接続ストレッチ MetroCluster 構成には、シングルノード ONTAP クラスタが 2 つ必要です。
+
+名前は MetroCluster 構成内で一意である必要があります。
+
+名前の例：
+
+* サイト A ： cluster_A
+* サイト B ： cluster_B
+
+
+
+
+== ストレージコントローラモジュール × 2
+
+SAS 接続ストレッチ MetroCluster 構成には、ストレージコントローラモジュールが 2 つ必要です。
+
+* 名前は MetroCluster 構成内で一意である必要があります。
+* MetroCluster 構成のすべてのコントローラモジュールで同じバージョンの ONTAP が実行されている必要があります。
+* 1 つの DR グループ内のすべてのコントローラモジュールのモデルが同じであることが必要です。
+* 1 つの DR グループのすべてのコントローラモジュールで同じ FC-VI 構成を使用する必要があります。
++
+一部のコントローラモジュールは、次の 2 つのオプションに対応しています。
+
++
+** オンボードの FC-VI ポート
+** スロット 1 の FC-VI カードオンボードの FC-VI ポートを使用するコントローラモジュールとアドオンの FC-VI カードを使用するコントローラモジュールが混在している場合は、サポートされません。たとえば、あるノードでオンボードの FC-VI 構成を使用する場合は、 DR グループの他のすべてのノードでもオンボードの FC-VI 構成を使用する必要があります。
+
+
+
+
+名前の例：
+
+* サイト A ： controller_A_1
+* サイト B ： controller_B_1
+
+
+
+
+== SAS ディスクシェルフ × 4 台以上（推奨）
+
+SAS 接続ストレッチ MetroCluster 構成には、 SAS ディスクシェルフが少なくとも 2 台必要です。推奨される SAS ディスクシェルフ数は 4 台です。
+
+シェルフ単位でのディスク割り当てを可能にするために、各サイトにシェルフを 2 台配置することを推奨します。各サイトにシェルフ 1 台の最小構成もサポートされます。
+
+名前の例：
+
+* サイト A ：
++
+** shelf_A_1_1
+** shelf_A_1_2
+
+
+* サイト B ：
++
+** shelf_B_1_1
+** shelf_B_1_2
+
+
+
+
+
+
+== IOM12 モジュールと IOM 6 モジュールをスタック内に混在させる
+
+使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がお使いのバージョンの ONTAP でシェルフの混在がサポートされているかどうかを確認するには、 Interoperability Matrix Tool （ IMT ）を参照してください。 https://mysupport.netapp.com/NOW/products/interoperability["ネットアップの相互運用性"]
+
+シェルフ混在の詳細については、以下を参照してください。 https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-ds-mix-hotadd/home.html["IOM12 モジュールを搭載したシェルフを IOM6 モジュールを搭載したシェルフのスタックにホットアドします"]

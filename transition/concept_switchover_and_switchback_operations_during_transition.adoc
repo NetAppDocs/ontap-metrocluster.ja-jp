@@ -1,0 +1,80 @@
+---
+permalink: transition/concept_switchover_and_switchback_operations_during_transition.html 
+sidebar: sidebar 
+keywords: stage, transition, process, metrocluster, switchover, heal, switchback, operation, fc, ip, workflow 
+summary: 移行プロセスの各ステージに応じて、 MetroCluster のスイッチオーバー、修復、スイッチバックの各処理で MetroCluster FC または MetroCluster IP のいずれかのワークフローが使用されます。 
+---
+= 無停止移行時のスイッチオーバー、修復、スイッチバックの処理
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移行プロセスの各ステージに応じて、 MetroCluster のスイッチオーバー、修復、スイッチバックの各処理で MetroCluster FC または MetroCluster IP のいずれかのワークフローが使用されます。
+
+次の表に、移行プロセスの各段階で使用されるワークフローを示します。段階によっては、スイッチオーバーとスイッチバックがサポートされない場合があります。
+
+* MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順が MetroCluster FC 構成で使用されます。
+* MetroCluster IP ワークフローでは、スイッチオーバー、修復、スイッチバックの手順が MetroCluster IP 構成で使用されます。
+* ユニファイドワークフローでは、 FC ノードと IP ノードの両方を設定する場合、手順は NSO と USO のどちらが実行されるかによって異なります。詳細が表に表示されます。
+
+
+スイッチオーバー、修復、スイッチバックに関する MetroCluster FC および IP のワークフローについては、を参照してください link:../manage/concept_understanding_mcc_data_protection_and_disaster_recovery.html["MetroCluster のデータ保護とディザスタリカバリについて理解する"]。
+
+
+NOTE: 自動計画外スイッチオーバーは、移行プロセスでは使用できません。
+
+[cols="c*"]
+|===
+| 移行のステージ | ネゴシエートスイッチオーバーで使用するワークフロー | 計画外スイッチオーバーで使用するワークフロー 
+
+
+ a| 
+MetroCluster IP ノードがクラスタに参加する前。
+ a| 
+MetroCluster FC の略
+ a| 
+MetroCluster FC の略
+
+
+
+ a| 
+MetroCluster IP ノードがクラスタに参加した後、 MetroCluster configure コマンドを実行します。
+ a| 
+サポート対象外
+ a| 
+MetroCluster FC の略
+
+
+
+ a| 
+MetroCluster configure コマンドの実行後ボリューム移動を実行中の可能性があります。
+ a| 
+unified ：リモートサイトのすべてのノードが稼働したままであり、自動的に修復されます
+ a| 
+統合：
+
+* MetroCluster FC ノードが所有するミラーアグリゲートがミラーリングされるのは、ストレージにアクセスできる場合だけで、それ以外のアグリゲートはスイッチオーバー後にデグレード状態になります
+* すべてのリモートサイトノードがブート可能である。
+* アグリゲートの修復とルートの修復のコマンドは手動で実行する必要があります。
+
+
+
+
+ a| 
+MetroCluster FC ノードが設定解除されました。
+ a| 
+サポート対象外
+ a| 
+MetroCluster IP の略
+
+
+
+ a| 
+MetroCluster の FC ノードに対して cluster unjoin コマンドが実行されました。
+ a| 
+MetroCluster IP の略
+ a| 
+MetroCluster IP の略
+
+|===

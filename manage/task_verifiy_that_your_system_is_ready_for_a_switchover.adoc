@@ -1,0 +1,43 @@
+---
+permalink: manage/task_verifiy_that_your_system_is_ready_for_a_switchover.html 
+sidebar: sidebar 
+keywords: simulate, option, preview, result, switchover, operation, verification, check, precondition, succesful, verify, ready, example 
+summary: simulate オプションを使用して、スイッチオーバー処理の結果を前もって確認できます。これにより、処理を開始する前に、処理が成功するために必要なほとんどの前提条件が満たされていることを確認できます。 
+---
+= スイッチオーバーに向けたシステムの事前チェック
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+--simulate オプションを使用して ' スイッチオーバー操作の結果をプレビューできますこれにより、処理を開始する前に、処理が成功するために必要なほとんどの前提条件が満たされていることを確認できます。問題：稼働したままになる、サイトからの次のコマンド。
+
+. 権限レベルを advanced に設定します。「 set -privilege advanced 」
+. 稼働したままになるサイトから ' スイッチオーバー操作をシミュレートします MetroCluster switchover-simulate
+. 返された出力を確認します。
++
+出力には、スイッチオーバー処理を阻止する拒否の有無が示されます。MetroCluster 処理を実行するたびに、処理が成功するための一連の条件を確認する必要があります。「 "" まで」は、 1 つ以上の条件が満たされない場合に操作を禁止するメカニズムです。拒否には「ソフト」と「ハード」の 2 種類があります。ソフトな拒否は無視できますが、ハードな拒否は無視できません。たとえば、 4 ノード MetroCluster 構成でネゴシエートスイッチオーバーを実行する場合、条件の 1 つとしてすべてのノードが正常に稼働していることがあります。たとえば、 1 つのノードが停止し、 HA パートナーにテイクオーバーされたとします。すべてのノードが正常に稼働している必要があるという条件はハードな条件であるため、スイッチオーバー処理にはハードな拒否が適用されます。ハードな拒否は無視できません。
+
++
+
+IMPORTANT: 拒否は無視しないことを推奨します。
+
+
+
+
+
+== 例：検証結果
+
+次の例は、スイッチオーバー処理のシミュレーションで発生したエラーを示しています。
+
+[listing]
+----
+cluster4::*> metrocluster switchover -simulate
+
+[Job 126] Preparing the cluster for the switchover operation...
+[Job 126] Job failed: Failed to prepare the cluster for the switchover
+operation. Use the "metrocluster operation show" command to view detailed error
+information. Resolve the errors, then try the command again.
+----
+
+NOTE: 障害が発生したすべてのディスクを交換するまで、ネゴシエートスイッチオーバーとスイッチバックは失敗します。障害が発生したディスクを交換したあとにディザスタリカバリを実行できます。障害が発生したディスクに関する警告を無視するには、ネゴシエートスイッチオーバーとスイッチバックにソフトな拒否を追加します。

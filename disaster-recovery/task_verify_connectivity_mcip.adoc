@@ -1,0 +1,44 @@
+---
+permalink: disaster-recovery/task_verify_connectivity_mcip.html 
+sidebar: sidebar 
+keywords: metrocluster, ip, configuration, verify, storage, connectivity, remote 
+summary: 交換したノードがサバイバーサイトのディスクシェルフに接続されていることを確認する必要があります。 
+---
+= リモートサイトへのストレージ接続の確認（ MetroCluster IP 構成）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+交換したノードがサバイバーサイトのディスクシェルフに接続されていることを確認する必要があります。
+
+このタスクはディザスタサイトの交換用ノードで実行します。
+
+このタスクはメンテナンスモードで実行します。
+
+.手順
+. 元のシステム ID が所有するディスクを表示します。
++
+「ディスク・ショー -s old-system-ID 」
+
++
+リモートディスクは 0m デバイスで認識されます。0m は、 MetroCluster iSCSI 接続を使用してディスクが接続されていることを示します。リカバリ手順にこれらのディスクを再割り当てする必要があります。
+
++
+[listing]
+----
+*> disk show -s 4068741256
+Local System ID: 1574774970
+
+  DISK     OWNER                 POOL  SERIAL NUMBER   HOME                  DR HOME
+---------- --------------------- ----- -------------   --------------------- ----------------------
+0m.i0.0L11 node_A_2 (4068741256) Pool1 S396NA0HA02128  node_A_2 (4068741256) node_A_2  (4068741256)
+0m.i0.1L38 node_A_2 (4068741256) Pool1 S396NA0J148778  node_A_2 (4068741256) node_A_2  (4068741256)
+0m.i0.0L52 node_A_2 (4068741256) Pool1 S396NA0J148777  node_A_2 (4068741256) node_A_2  (4068741256)
+...
+...
+NOTE: Currently 49 disks are unowned. Use 'disk show -n' for additional information.
+*>
+----
+. 交換した他のノードについてもこの手順を繰り返します
+

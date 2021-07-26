@@ -1,0 +1,43 @@
+---
+permalink: install-ip/using_rcf_generator.html 
+sidebar: sidebar 
+keywords: cabling, cable, component, link, site, management, network, hardware, component, switch, cluster, connection, management, data, configuring, configure, rcf, file, generator, RcfFileGenerator 
+summary: RCF ファイルを正しく生成するためには、ポートテーブル内の情報の使用方法を理解しておく必要があります。 
+---
+= RcfFileGenerator ツールまたは複数の MetroCluster 設定でポートテーブルを使用する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+RCF ファイルを正しく生成するためには、ポートテーブル内の情報の使用方法を理解しておく必要があります。
+
+表を使用する前に、次の考慮事項を確認してください。
+
+* 次の表は、サイト A で使用するポートを示していますサイト B でも同じケーブル接続が使用されます
+* 速度が異なるポート（ 100Gbps ポートと 40Gbps ポートなど）をスイッチに設定することはできません。
+* MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 など）を追跡します。RcfFileGenerator ツールを使用する場合は、この設定手順で後述するように、このツールが必要になります。
+* 。 https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"] また、各スイッチのポートごとのケーブル接続の概要についても説明します。
++
+ケーブル接続の概要を使用して、ケーブル接続を検証します。
+
+
+
+
+
+== 8 ノード MetroCluster 構成のケーブル接続
+
+ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレードを移行する場合、一時的な 8 ノード構成にするには、 2 つ目の 4 ノード DR グループを構成に追加する必要があります。ONTAP 9.9.9..1 以降では、永続的な 8 ノード MetroCluster 構成がサポートされます。
+
+このような構成では、上記と同じ方法を使用します。2 つ目の MetroCluster ではなく、 4 ノードの DR グループを追加でケーブル接続します。
+
+たとえば、次のような構成になります。
+
+* Cisco 3132Q-V スイッチ
+* MetroCluster 1 ： FAS2750 プラットフォーム
+* MetroCluster 2 ： AFF A700 プラットフォーム（これらのプラットフォームは 2 つ目の 4 ノード DR グループとして追加）
+
+
+MetroCluster 1 では、 FAS2750 プラットフォームの表と MetroCluster 1 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。
+
+MetroCluster 2 （ 2 つ目の DR グループ）の場合は、 AFF A700 プラットフォームの表と MetroCluster 2 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。

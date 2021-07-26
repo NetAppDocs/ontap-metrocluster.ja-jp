@@ -1,0 +1,108 @@
+---
+permalink: install-fc/task_verify_the_ha_state_of_components_is_mcc_or_mcc_2n_in_maintenance_mode.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, verify, ha, state, components, maintenance, mode 
+summary: MetroCluster 構成でストレージシステムを構成する場合は、それらのコンポーネントが適切にブートするように、コントローラモジュールおよびシャーシコンポーネントのハイアベイラビリティ（ HA\ ）状態が mcc または mcc-2n であることを確認する必要があります。 
+---
+= メンテナンスモードでコンポーネントの HA 状態を確認および設定する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成でストレージ・システムを構成する場合は、これらのコンポーネントが適切にブートするように、コントローラ・モジュールおよびシャーシ・コンポーネントのハイ・アベイラビリティ（ HA ）状態が「 m cc 」または「 m cc-2n 」であることを確認する必要があります。
+
+システムをメンテナンスモードにする必要があります。
+
+このタスクは、工場出荷状態のシステムでは必要ありません。
+
+. メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。
++
+'*ha-config show*
+
++
+HA の正しい状態は、 MetroCluster 構成によって異なります。
+
++
+|===
+| MetroCluster 構成のコントローラの数 | すべてのコンポーネントの HA の状態 
+
+
+ a| 
+8 ノードまたは 4 ノード MetroCluster FC 構成
+ a| 
+MCC
+
+
+
+ a| 
+2 ノード MetroCluster FC 構成
+ a| 
+mcc-2n
+
+
+
+ a| 
+MetroCluster の IP 設定
+ a| 
+mccip
+
+|===
+. 表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールの HA 状態を設定します。
++
+|===
+| MetroCluster 構成のコントローラの数 | コマンドを実行します 
+
+
+ a| 
+8 ノードまたは 4 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify controller mcc 」
+
+
+
+ a| 
+2 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify controller mcc-2n 」という形式で指定します
+
+
+
+ a| 
+MetroCluster の IP 設定
+ a| 
+「 ha-config modify controller mccip 」を参照してください
+
+|===
+. 表示されたシャーシのシステム状態が正しくない場合は、シャーシの HA 状態を設定します。
++
+|===
+| MetroCluster 構成のコントローラの数 | コマンドを実行します 
+
+
+ a| 
+8 ノードまたは 4 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify chassis mcc 」
+
+
+
+ a| 
+2 ノード MetroCluster FC 構成
+ a| 
+「 ha-config modify chassis mcc-2n 」というようになりました
+
+
+
+ a| 
+MetroCluster の IP 設定
+ a| 
+「 ha-config modify chassis mccip 」を参照してください
+
+|===
+. ノードを ONTAP でブートします。
++
+「 * boot_ontap 」と入力します
+
+. MetroCluster 構成の各ノードで、上記の手順を繰り返します。
+

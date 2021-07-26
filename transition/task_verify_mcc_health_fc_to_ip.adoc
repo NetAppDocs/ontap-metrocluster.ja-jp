@@ -1,0 +1,113 @@
+---
+permalink: transition/task_verify_mcc_health_fc_to_ip.html 
+sidebar: sidebar 
+keywords: Verifying the health of the MetroCluster configuration, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+summary: 移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。 
+---
+= MetroCluster 構成の健全性の確認
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります
+
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスであるかどうかを確認します。「 node run -node node-name sysconfig -a ` 」
+.. 両方のクラスタにヘルスアラートがないかどうかを確認します。 'system health alert show'
+.. MetroCluster 構成と動作モードが正常であることを確認します。 MetroCluster show
+.. MetroCluster チェック「 MetroCluster check run 」を実行します
+.. MetroCluster チェックの結果を表示します。「 MetroCluster check show 」
+.. スイッチにヘルスアラートがないかどうかを確認します（ある場合）：「 storage switch show 」
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. クラスタが正常であることを確認します :cluster show
++
+....
+cluster_A::> cluster show
+Node           Health  Eligibility   Epsilon
+-------------- ------  -----------   -------
+node_A_1_FC    true    true          false
+node_A_2_FC    true    true          false
+
+cluster_A::>
+....
+. すべてのクラスタポートが up であることを確認します。「 network port show -ipspace cluster 」
++
+....
+cluster_A::> network port show -ipspace cluster
+
+Node: node_A_1_FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node_A_2_FC
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+
+cluster_A::>
+....
+. すべてのクラスタ LIF が up で動作していることを確認します。「 network interface show -vserver cluster 」
++
+各クラスタ LIF で、「 Is Home 」には「 true 」、「 Status Admin/Oper 」には「 up/up 」と表示される必要があります。
+
++
+....
+cluster_A::> network interface show -vserver cluster
+
+            Logical      Status     Network          Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- -----
+Cluster
+            node_A-1_FC_clus1
+                       up/up      169.254.209.69/16  node_A-1_FC   e0a     true
+            node_A_1_FC_clus2
+                       up/up      169.254.49.125/16  node_A_1_FC   e0b     true
+            node_A_2_FC_clus1
+                       up/up      169.254.47.194/16  node_A_2_FC   e0a     true
+            node_A_2_FC_clus2
+                       up/up      169.254.19.183/16  node_A_2_FC   e0b     true
+
+4 entries were displayed.
+
+cluster_A::>
+....
+. すべてのクラスタ LIF で自動リバートが有効になっていることを確認します。「 network interface show -vserver Cluster -fields auto-revert
++
+....
+cluster_A::> network interface show -vserver Cluster -fields auto-revert
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+           node_A_1_FC_clus1
+                        true
+           node_A_1_FC_clus2
+                        true
+           node_A_2_FC_clus1
+                        true
+           node_A_2_FC_clus2
+                        true
+
+    4 entries were displayed.
+
+cluster_A::>
+....
+

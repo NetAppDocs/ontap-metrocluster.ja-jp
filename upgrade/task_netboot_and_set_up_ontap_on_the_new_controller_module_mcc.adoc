@@ -1,0 +1,208 @@
+---
+permalink: upgrade/task_netboot_and_set_up_ontap_on_the_new_controller_module_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, netboot, set, up, ontap, new, controller, module 
+summary: 既存の MetroCluster 構成にコントローラモジュールを追加する場合、一連の手順を実行して、新しいコントローラモジュールで ONTAP オペレーティングシステムをネットブートしてインストールする必要があります。 
+---
+= 新しいコントローラモジュールでの ONTAP のネットブートとセットアップ
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存の MetroCluster 構成にコントローラモジュールを追加する場合、一連の手順を実行して、新しいコントローラモジュールで ONTAP オペレーティングシステムをネットブートしてインストールする必要があります。
+
+* このタスクは、新しいコントローラモジュールの LOADER プロンプトから開始します。
+* このタスクにはディスクの初期化も含まれます。
++
+ディスクの初期化に必要な時間は、ディスクのサイズによって異なります。
+
+* 新しいコントローラモジュールには、 2 本のディスクが自動的に割り当てられます。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
+
+
+.手順
+. LOADER プロンプトで、 DHCP を使用可能かどうかに基づいて新しいコントローラモジュールの IP アドレスを設定します。
++
+|===
+| DHCP の状況 | 入力するコマンド 
+
+
+ a| 
+利用可能
+ a| 
+「 * ifconfig e0M -auto * 」と入力します
+
+
+
+ a| 
+使用できません
+ a| 
+`* ifconfig e0M -addr=__ filer_addr_-mask=__ netmask __ -gw=__ gateway_--dns=__ dns_addr_-domain=_dns_domain__*`
+
+「 filer_addr 」は、ストレージ・システムの IP アドレスです。
+
+「 netmask 」は、ストレージ・システムのネットワーク・マスクです。
+
+「 gateway 」はストレージ・システムのゲートウェイです。
+
+「 dns_addr 」は、ネットワーク上のネームサーバの IP アドレスです。
+
+「 dns_domain 」は Domain Name System （ DNS ）ドメイン名です。このオプションパラメータを使用する場合は、ネットブートサーバの URL に完全修飾ドメイン名を指定する必要はなく、サーバのホスト名だけを指定します。
+
+
+NOTE: インターフェイスによっては、その他のパラメータが必要になる場合もあります。詳細については、 LOADER プロンプトで「 help ifconfig 」コマンドを使用してください。
+
+|===
+. LOADER プロンプトで、新しいノードをネットブートします。
++
+|===
+| 用途 | 作業 
+
+
+ a| 
+* FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシステム *
+ a| 
+*netboot http://__web_server_ip/path_to_web-accessible_directory__/netboot/kernel*`[]
+
+
+
+ a| 
+* その他すべてのシステム *
+ a| 
+*netboot http://__web_server_ip/path_to_web-accessible_directory__/<ontap_version>_image.tgz*`[]
+
+|===
+
+
+「 _path_to_the_web-accessible_directory _ 」は、ダウンロードした「 <ONTAP_version>_image.tgz 」ファイルの場所です。
+
+. 表示されたメニューから、「 * Install new software first * 」オプションを選択します。
++
+このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。
+
++
+** HA ペアでの無停止アップグレードではこの手順はサポートされていませんというメッセージが表示されたら '*y`* と入力します
+** このプロセスで既存の ONTAP ソフトウェアが新しいソフトウェアに置き換えられることを警告するメッセージが表示されたら '*y*' と入力します
+** image.tgz ファイルの URL を求めるプロンプトが表示されたら、次のようにパスを入力する必要があります： +`*http://__path_to_the_web-accessible_directory__/image.tgz*`
+
+
+. ソフトウェアの無停止アップグレードまたは交換に関するプロンプトが表示されたら '*y*' と入力します
+. パッケージの URL を指定するように求められたら、 image.tgz ファイルへのパスを入力します。
++
+[listing]
+----
+What is the URL for the package? `http://path_to_web-accessible_directory/image.tgz`
+----
+. バックアップ構成のリストアを要求されたら ' バックアップ・リカバリをスキップするには '*n*' を入力します
++
+[listing]
+----
+****************************************************************
+*             Restore Backup Configuration                     *
+*  This procedure only applies to storage controllers that     *
+*  are configured as an HA pair.                               *
+*                                                              *
+*  Choose Yes to restore the "varfs" backup configuration      *
+*  from the SSH server.  Refer to the Boot Device Replacement  *
+*  guide for more details.                                     *
+*  Choose No to skip the backup recovery and return to the     *
+*  boot menu.                                                  *
+****************************************************************
+
+Do you want to restore the backup configuration
+now? {y|n} `n`
+----
+. 今すぐ再起動するよう求められたら '*y*' と入力します
++
+[listing]
+----
+The node must be rebooted to start using the newly installed software. Do you want to
+reboot now? {y|n} `y`
+----
+. 必要に応じて、「 Clean configuration and initialize all disks 」オプションを選択し、ノードのブート後にすべてのディスクを初期化します。
++
+新しいコントローラモジュールを設定していて、新しいコントローラモジュールのディスクは空であるため、すべてのディスクが消去されるという警告が表示されたら「 * y * 」と入力します。
+
++
+
+NOTE: ディスクの初期化に要する時間は、ディスクのサイズと構成によって異なります。
+
+. ディスクが初期化され、クラスタセットアップウィザードが起動したら、ノードをセットアップします。
++
+.. コンソールでノード管理 LIF の情報を入力します。
+
+
+. ノードにログインし '*cluster setup*' を入力し ' クラスタへの参加を求めるプロンプトが表示されたら '*join*' を入力します
++
+[listing]
+----
+Do you want to create a new cluster or join an existing cluster? {create, join}: `join`
+----
+. サイトに応じて、残りのプロンプトに応答します。
++
+。 link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["『 Software Setup Guide 』を参照して"] 詳細については、お使いのバージョンの ONTAP のを参照してください。
+
+. システムが 2 ノードスイッチレスクラスタ構成の場合は、 network interface create コマンドを使用して既存のノードにクラスタインターフェイスを作成し、クラスタポートにクラスタ LIF を作成します。
++
+次の例は、ノードのクラスタポートの 1 つにクラスタ LIF を作成するコマンドを示しています。auto パラメータは、 LIF でリンクローカル IP アドレスを使用するように設定します。
+
++
+[listing]
+----
+cluster_A::> network interface create -vserver Cluster -lif clus1 -role cluster -home-node node_A_1 -home-port e1a -auto true
+----
+. セットアップが完了したら、ノードが正常に機能しており、クラスタへの参加条件を満たしていることを確認します。
++
+*cluster show *
+
++
+次の例は、 2 つ目のノード（ cluster1-02 ）をクラスタに追加したあとのクラスタを示しています。
+
++
+[listing]
+----
+cluster_A::> cluster show
+Node                  Health  Eligibility
+--------------------- ------- ------------
+node_A_1              true    true
+node_A_2              true    true
+----
++
+cluster setup コマンドを使用すると、クラスタセットアップウィザードにアクセスして、管理 Storage Virtual Machine （ SVM ）またはノード SVM に対して入力した値を変更できます。
+
+. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。
++
+「 * network port show * 」と表示されます
+
++
+次の例は、 cluster_A の 2 台のコントローラモジュールについての出力です。
+
++
+[listing]
+----
+cluster_A::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+node_A_1
+       **e0a       Cluster      Cluster          up       9000  auto/1000
+       e0b       Cluster      Cluster          up       9000  auto/1000**
+       e0c       Default      Default          up       1500  auto/1000
+       e0d       Default      Default          up       1500  auto/1000
+       e0e       Default      Default          up       1500  auto/1000
+       e0f       Default      Default          up       1500  auto/1000
+       e0g       Default      Default          up       1500  auto/1000
+node_A_2
+       **e0a       Cluster      Cluster          up       9000  auto/1000
+       e0b       Cluster      Cluster          up       9000  auto/1000**
+       e0c       Default      Default          up       1500  auto/1000
+       e0d       Default      Default          up       1500  auto/1000
+       e0e       Default      Default          up       1500  auto/1000
+       e0f       Default      Default          up       1500  auto/1000
+       e0g       Default      Default          up       1500  auto/1000
+14 entries were displayed.
+----
+

@@ -1,0 +1,192 @@
+---
+permalink: disaster-recovery/task_boot_ontap_mcip.html 
+sidebar: sidebar 
+keywords: metrocluster, ip, configuration, replacement, controller, module, disaster, site, boot 
+summary: ディザスタサイトの交換用ノードで ONTAP オペレーティングシステムをブートする必要があります。 
+---
+= MetroCluster IP 構成の交換用コントローラモジュールでの ONTAP のブート
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ディザスタサイトの交換用ノードで ONTAP オペレーティングシステムをブートする必要があります。
+
+このタスクは、メンテナンスモードのディザスタサイトのノードから開始します。
+
+.手順
+. 交換用ノードの 1 つで、 LOADER プロンプト「 halt 」を終了します
+. ブートメニューを表示します：「 boot_ontap menu
+. ブートメニューからオプション 6 、 * アップデートフラッシュをバックアップ構成から * 選択します。
++
+システムが 2 回ブートします。続行するかどうかを確認するメッセージが表示されたら 'yes' と入力します2 回目の起動後、システム ID の不一致に関するプロンプトが表示されたら、「 y 」と応答する必要があります。
+
++
+
+NOTE: 使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。そのあとにルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。
+
++
+** 続行の確認のプロンプト：
++
+[listing]
+----
+Selection (1-9)? 6
+
+This will replace all flash-based configuration with the last backup to
+disks. Are you sure you want to continue?: yes
+----
+** システム ID の不一致のプロンプト：
++
+[listing]
+----
+WARNING: System ID mismatch. This usually occurs when replacing a boot device or NVRAM cards!
+Override system ID? {y|n} y
+----
+
+
+. サバイバーサイトで、正しいパートナーシステム ID がノードに適用されていることを確認します。
++
+「 MetroCluster node show -fields node-systemid 、 ha-partner-systemid 、 dr-partner-systemid 、 dr-auxiliary-systemid 」を指定します
+
++
+--
+この例では、次の新しいシステム ID が出力に表示されます。
+
+** node_A_1 ： 1574774970
+** node_A_2 ： 1574774991
+
+
+「 ha-partner-systemid 」列に新しいシステム ID が表示されます。
+
+[listing]
+----
+metrocluster node show -fields node-systemid,ha-partner-systemid,dr-partner-systemid,dr-auxiliary-systemid
+
+dr-group-id cluster    node      node-systemid ha-partner-systemid dr-partner-systemid dr-auxiliary-systemid
+----------- ---------- --------  ------------- ------ ------------ ------ ------------ ------ --------------
+1           Cluster_A  Node_A_1  1574774970    1574774991          4068741254          4068741256
+1           Cluster_A  Node_A_2  1574774991    1574774970          4068741256          4068741254
+1           Cluster_B  Node_B_1  -             -                   -                   -
+1           Cluster_B  Node_B_2  -             -                   -                   -
+4 entries were displayed.
+----
+--
+. パートナーシステム ID が正しく設定されていない場合は、正しい値を手動で設定する必要があります。
++
+.. ノードを停止して、 LOADER プロンプトを表示します。
+.. パートナーの bootarg ID の現在の値を確認します。
++
+printenv
+
+.. 値を正しいパートナーシステム ID に設定します。
++
+'setenv partner-sysid partner-SysID
+
+.. ノードをブートします。
++
+「 boot_ontap 」
+
+.. 必要に応じて、もう一方のノードで上記の手順を繰り返します。
+
+
+. ディザスタサイトの交換用ノードでスイッチバックの準備が完了していることを確認します。
++
+MetroCluster node show
+
++
+交換用ノードは、スイッチバックリカバリモードを待機している必要があります。通常モードの場合は、交換用ノードをリブートします。ブート後、ノードはスイッチバックリカバリモードを待機する必要があります。
+
++
+次の例は、交換用ノードでスイッチバックの準備が完了していることを示しています。
+
++
+[listing]
+----
+cluster_B::> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_B
+              node_B_1           configured     enabled   switchover completed
+              node_B_2           configured     enabled   switchover completed
+      cluster_A
+              node_A_1           configured     enabled   waiting for switchback recovery
+              node_A_2           configured     enabled   waiting for switchback recovery
+4 entries were displayed.
+
+cluster_B::>
+----
+. MetroCluster 接続の設定を確認します。
++
+「 MetroCluster configurion-settings connection show 」を参照してください
+
++
+設定状態が「 Completed 」になっている必要があります。
+
++
+[listing]
+----
+cluster_B::*> metrocluster configuration-settings connection show
+DR                    Source          Destination
+Group Cluster Node    Network Address Network Address Partner Type Config State
+----- ------- ------- --------------- --------------- ------------ ------------
+1     cluster_B
+              node_B_2
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.12    HA Partner   completed
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.10    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.11    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.12    HA Partner   completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.10    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.11    DR Auxiliary completed
+              node_B_1
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.13    HA Partner   completed
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.11    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.10    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.13    HA Partner   completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.11    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.10    DR Auxiliary completed
+      cluster_A
+              node_A_2
+                 Home Port: e5a
+                      172.17.26.11    172.17.26.10    HA Partner   completed
+                 Home Port: e5a
+                      172.17.26.11    172.17.26.12    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.11    172.17.26.13    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.11    172.17.27.10    HA Partner   completed
+                 Home Port: e5b
+                      172.17.27.11    172.17.27.12    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.11    172.17.27.13    DR Auxiliary completed
+              node_A_1
+                 Home Port: e5a
+                      172.17.26.10    172.17.26.11    HA Partner   completed
+                 Home Port: e5a
+                      172.17.26.10    172.17.26.13    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.10    172.17.26.12    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.10    172.17.27.11    HA Partner   completed
+                 Home Port: e5b
+                      172.17.27.10    172.17.27.13    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.10    172.17.27.12    DR Auxiliary completed
+24 entries were displayed.
+
+cluster_B::*>
+----
+. ディザスタサイトのもう一方のノードで、上記の手順を繰り返します。
+

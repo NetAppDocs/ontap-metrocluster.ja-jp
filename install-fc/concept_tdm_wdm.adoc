@@ -1,0 +1,87 @@
+---
+permalink: install-fc/concept_tdm_wdm.html 
+sidebar: sidebar 
+keywords: preparing, prepare, metrocluster, mcc, installation, install, differences, configurations, between, considerations, all, san, array, asa, cluster, peering, prerequisites, dedicated, ports, sharing, data, ports, native, disk, shelves, array, luns, transitions, 7-mode, isls, tdm/wdm, fabric-attached, iod, ood, encryption, devices, unmirrored, aggregates, maintenance, requiring, power, shutdown, firewall, hardware, racking, cabling, setup, checklist, all san array, asa 
+summary: MetroCluster の設置を準備するにあたっては、 MetroCluster のハードウェアアーキテクチャおよび必要なコンポーネントについて理解しておく必要があります。 
+---
+= ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項
+
+
+[role="lead"]
+Hardware Universe ツールには、ファブリック接続 MetroCluster 構成で Time Division Multiplexing （ TDM ；時分割多重化）または Wavelength Division Multiplexing （ WDM ；波長分割多重化）機器を使用する場合の要件について、いくつかの注意事項が記載されています。これにはさまざまな構成に関する情報も含まれており、フレームの配信にインオーダー配信（ IOD ）アウトオブオーダー配信（ OOD ）のどちらを使用するかを判断するのに役立ちます。
+
+このような要件の例としては、ルーティングポリシーを使用するリンクアグリゲーション（トランキング）機能を TDM / WDM 機器でサポートする必要があります。フレームの配信順序（ IOD または OOD ）は有効になっているルーティングポリシーによって決まり、スイッチ内で維持されます。
+
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+次の表に、 Brocade スイッチと Cisco スイッチを含む構成のルーティングポリシーを示します。
+
+[cols="3*"]
+|===
+| スイッチ | MetroCluster 構成を IOD に設定する | OOD の MetroCluster 設定を行います 
+
+
+ a| 
+Brocade
+ a| 
+* AptPolicy を 1 に設定する必要があります
+* DLS を off に設定します
+* IOD を on に設定する必要があります
+
+ a| 
+* AptPolicy を 3 に設定する必要があります
+* DLS は ON に設定する必要があります
+* IOD を off に設定する必要があります
+
+
+
+
+ a| 
+シスコ
+ a| 
+FCVI 用 VSAN のポリシー：
+
+* ロードバランシングポリシー： srcid 、 dstid
+* IOD を on に設定する必要があります
+
+
+ストレージ用 VSAN のポリシー：
+
+* ロードバランシングポリシー： srcid 、 dstid 、 oxid
+* VSAN で in-order-guarantee オプションを設定しないでください
+
+ a| 
+該当なし
+
+|===
+
+
+== IOD を使用する状況
+
+IOD がリンクでサポートされている場合は、 IOD を使用することを推奨します。IOD をサポートする構成は次のとおりです。
+
+* 単一の ISL
+* 単一の ISL と単一のリンク（および TDM / WDM などのリンク機器）
+* 単一のトランク、および複数の ISL とリンク（および TDM / WDM などのリンク機器）
+
+
+
+
+== OOD を使用する状況
+
+* IOD をサポートしないすべての構成
+* トランキング機能をサポートしないすべての構成
+
+
+
+
+== 暗号化デバイスを使用する
+
+MetroCluster 構成で ISL で専用の暗号化デバイスを使用する場合、または WDM デバイスで暗号化を使用する場合は、次の要件を満たす必要があります。
+
+* 該当する FC スイッチのベンダーの認定を受けた外部暗号化デバイスまたは WDM 機器を使用する必要があります。
++
+動作モード（トランキングや暗号化など）に対応した認定が必要です。
+
+* 暗号化によるレイテンシが 10 マイクロ秒以下である必要があります。
+

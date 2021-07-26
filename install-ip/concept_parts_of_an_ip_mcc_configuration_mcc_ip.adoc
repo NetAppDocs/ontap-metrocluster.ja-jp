@@ -1,0 +1,112 @@
+---
+permalink: install-ip/concept_parts_of_an_ip_mcc_configuration_mcc_ip.html 
+sidebar: sidebar 
+keywords: metrocluster, ip, configuration, hardware, component, interconnect, part, key, element, disaster, recovery, dr, group, illustration, local, ha, pair, configuration, cluster, interconnect, network, peer 
+summary: MetroCluster IP 構成を計画するときは、ハードウェアコンポーネントとその相互接続について理解しておく必要があります。 
+---
+= MetroCluster IP 構成の一部
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP 構成を計画するときは、ハードウェアコンポーネントとその相互接続について理解しておく必要があります。
+
+
+
+== 主要なハードウェア要素
+
+MetroCluster IP の設定には、次の主要なハードウェア要素が含まれます。
+
+* ストレージコントローラ
++
+ストレージコントローラは 2 つの 2 ノードクラスタとして構成されます。
+
+* IP ネットワーク
++
+このバックエンド IP ネットワークは、次の 2 つの用途に接続を提供します。
+
++
+** クラスタ内通信用の標準クラスタ接続。
++
+これは、 MetroCluster 以外の ONTAP スイッチクラスタで使用されるクラスタスイッチ機能と同じです。
+
+** ストレージデータと不揮発性キャッシュのレプリケーション用の MetroCluster バックエンド接続。
+
+
+* クラスタピアリングネットワーク
++
+クラスタピアリングネットワークは、 Storage Virtual Machine （ SVM ）の設定を含むクラスタ構成をミラーするための接続を提供します。一方のクラスタのすべての SVM の設定が、パートナークラスタにミラーされます。
+
+
+
+image::../media/mcc_ip_hardware_architecture_mcc_ip.gif[MCC IP ハードウェアアーキテクチャ MCC IP]
+
+
+
+== ディザスタリカバリ（ DR ）グループ
+
+MetroCluster IP 構成は、 4 つのノードからなる 1 つの DR グループで構成されます。
+
+次の図は、 4 ノード MetroCluster 構成におけるノードの編成を示しています。
+
+image::../media/mcc_dr_groups_4_node.gif[MCC DR グループ 4 ノード]
+
+
+
+== MetroCluster 構成のローカル HA ペアの図
+
+[role="lead"]
+各 MetroCluster サイトは、 HA ペアとして構成されているストレージコントローラで構成されています。これによってローカルでの冗長性が実現し、一方のストレージコントローラに障害が発生した場合はローカルの HA パートナーがテイクオーバーできるようになります。このような障害には、 MetroCluster のスイッチオーバー処理は必要ありません。
+
+ローカルの HA フェイルオーバー処理とギブバック処理は、非 MetroCluster 構成と同じように、 storage failover コマンドで実行します。
+
+image::../media/mcc_ip_hardware_architecture_ha_pairs.gif[MCC IP ハードウェアアーキテクチャ HA ペア]
+
+* 関連情報 *
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"]
+
+
+
+== MetroCluster IP およびクラスタインターコネクトネットワークの図
+
+[role="lead"]
+ONTAP クラスタには、通常、クラスタ内のノード間のトラフィック用にクラスタインターコネクトネットワークが含まれています。MetroCluster IP 構成では、 MetroCluster サイト間のデータレプリケーショントラフィックにもこのネットワークが使用されます。
+
+image::../media/mcc_ip_hardware_architecture_ip_interconnect.png[MCC IP ハードウェアアーキテクチャ IP インターコネクト]
+
+MetroCluster IP 構成の各ノードには、バックエンド IP ネットワークへの接続用に専用の LIF があります。
+
+* 2 つの MetroCluster IP インターフェイス
+* 1 つのクラスタ間 LIF
+
+
+これらのインターフェイスを次の図に示します。ポートの用途は AFF A700 または FAS9000 システムの場合のものです。
+
+image::../media/mcc_ip_lif_usage.gif[MCC IP LIF の用途]
+
+* 関連情報 *
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-for-metrocluster-ip-configuration[MetroCluster IP 構成に関する考慮事項]
+
+
+
+== クラスタピアリングネットワークの図
+
+[role="lead"]
+MetroCluster 構成の 2 つのクラスタは、お客様のクラスタピアリングネットワーク経由でピアリングされています。クラスタピアリングは、サイト間の Storage Virtual Machine （ SVM 、旧 Vserver ）の同期ミラーリングをサポートしています。
+
+MetroCluster 構成の各ノードにインタークラスタ LIF が設定され、クラスタがピアリング用に設定されている必要があります。インタークラスタ LIF が設定されたポートが、お客様のクラスタピアリングネットワークに接続されます。SVM 構成は、このネットワーク経由で、 Configuration Replication Service を使用してレプリケートされます。
+
+image::../media/mcc_ip_hardware_architecture_cluster_peering_network.gif[MCC IP ハードウェアアーキテクチャでクラスタピアリングネットワークを構築]
+
+* 関連情報 *
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
+
+link:concept_prepare_for_the_mcc_installation.html#considerations-for-configuring-cluster-peering["クラスタピアリングの設定に関する考慮事項"]
+
+link:task_install_and_cable_the_mcc_components.html#cabling-the-cluster-peering-connections["クラスタピアリングのケーブル接続"]
+
+link:concept_configure_the_mcc_software_in_ontap.html#peering-the-clusters["クラスタをピアリング"]

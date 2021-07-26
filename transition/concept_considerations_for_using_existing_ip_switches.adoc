@@ -1,0 +1,35 @@
+---
+permalink: transition/concept_considerations_for_using_existing_ip_switches.html 
+sidebar: sidebar 
+keywords: ensure, ip, switch, support, exist, model, metrocluster, fc, configuration, ip, consideration, support 
+summary: IP スイッチがサポートされていることを確認する必要があります。既存のスイッチモデルが元の MetroCluster FC 構成と新しい MetroCluster IP 構成の両方でサポートされている場合は、既存のスイッチを再利用できます。 
+---
+= IP スイッチに関する考慮事項
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+IP スイッチがサポートされていることを確認する必要があります。既存のスイッチモデルが元の MetroCluster FC 構成と新しい MetroCluster IP 構成の両方でサポートされている場合は、既存のスイッチを再利用できます。
+
+
+
+== サポートされるスイッチ
+
+ネットアップ製のスイッチを使用する必要があります。
+
+* MetroCluster 準拠のスイッチ（ネットアップが提供する検証済みではないスイッチ）の使用は、移行ではサポートされていません。
+* MetroCluster FC 構成と MetroCluster IP 構成の両方で、 IP スイッチがクラスタスイッチとしてサポートされている必要があります。
+* MetroCluster FC がスイッチクラスタで、 IP クラスタスイッチが MetroCluster IP 構成でサポートされている場合は、 IP スイッチを新しい MetroCluster IP 構成で再利用できます。
+* 新しい IP スイッチは、通常次の場合に使用されます。
++
+** MetroCluster FC はスイッチレスクラスタであるため、新しいスイッチが必要です。
+** MetroCluster FC はスイッチクラスタですが、 MetroCluster IP 構成では既存の IP スイッチはサポートされません。
+** MetroCluster IP 設定に別のスイッチを使用する。
+
+
+
+
+プラットフォームモデルとスイッチのサポートについては、 NetApp Hardware Universe を参照してください。
+
+https://hwu.netapp.com["NetApp Hardware Universe の略"]

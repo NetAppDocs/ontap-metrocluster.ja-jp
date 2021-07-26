@@ -1,0 +1,43 @@
+---
+permalink: transition/task_prepare_ip_controllers_4n_transition.html 
+sidebar: sidebar 
+keywords: Transitioning from MetroCluster FC to MetroCluster IP configurations, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+summary: 4 つの新しい MetroCluster IP ノードを準備し、正しいバージョンの ONTAP をインストールする必要があります。 
+---
+= MetroCluster IP コントローラの準備
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+4 つの新しい MetroCluster IP ノードを準備し、正しいバージョンの ONTAP をインストールする必要があります。
+
+このタスクは新しい各ノードで実行する必要があります。
+
+* node_A_1 の IP
+* Node_a_2-IP
+* node_B_1 - IP
+* node_B_2 - IP
+
+
+この手順では、ノードの設定をクリアし、新しいドライブのメールボックスのリージョンをクリアします。
+
+. MetroCluster IP 構成用に新しいコントローラをラックに設置します。
++
+この時点では、 MetroCluster FC ノード（ node_A_1 と node_B_1 ）のケーブル接続が維持されます。
+
+. に示すように、 MetroCluster IP ノードを IP スイッチにケーブル接続します link:../install-ip/task_cable_ip_switches.html["IP スイッチのケーブル接続"]。
+. MetroCluster インストールおよび設定ガイドの以降のセクションを使用して、 MetroCluster IP ノードを設定します。 _
++
+.. link:../install-ip/task_sw_config_gather_info["必要な情報の収集"]
+.. link:../install-ip/task_sw_config_restore_defaults["コントローラモジュールでの設定の消去"]
+.. link:../install-ip/task_sw_config_verify_haconfig["コンポーネントの ha-config 状態の確認"]
+.. link:../install-ip/task_sw_config_assign_pool0["プール 0 ドライブの手動割り当て（ ONTAP 9.4 以降）"]
+
+
+. 保守モードから問題 the halt コマンドを実行して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタセットアップを開始します。
++
+このとき、クラスタウィザードやノードウィザードを実行しないでください。
+
+. 他の MetroCluster IP ノードに対して上記の手順を繰り返します。
+

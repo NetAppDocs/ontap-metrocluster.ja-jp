@@ -1,0 +1,47 @@
+---
+permalink: install-stretch/concept_parts_of_a_two_node_mcc_configuration_using_fc_to_sas_bridges.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, parts, two, node, bridge, stretch, configuration 
+summary: MetroCluster 構成を計画するときは、構成のコンポーネントとそれらの連携について理解しておく必要があります。 
+---
+= 2 ノードブリッジ接続ストレッチ MetroCluster 構成のコンポーネント
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成を計画するときは、構成のコンポーネントとそれらの連携について理解しておく必要があります。
+
+MetroCluster の設定には、中核をなす次のハードウェアが含まれます。
+
+* ストレージコントローラ
++
+ストレージコントローラはストレージに直接は接続されず、 FC-to-SAS ブリッジに接続されます。ストレージコントローラは、各コントローラの FC-VI アダプタどうしを FC ケーブルで接続することで相互に接続されます。
+
++
+各ストレージコントローラは、パートナーサイトのストレージコントローラに対する DR パートナーとして構成されます。
+
+* FC-to-SAS ブリッジ
++
+FC-to-SAS ブリッジは、コントローラ上の FC イニシエータポートに SAS ストレージスタックを接続して、 2 つのプロトコル間のブリッジの役割を果たします。
+
+* クラスタピアリングネットワーク
++
+クラスタピアリングネットワークを経由して、 Storage Virtual Machine （ SVM ）の設定がミラーされます。一方のクラスタのすべての SVM の設定が、パートナークラスタにミラーされます。
+
+
+
+次の図は、 MetroCluster 構成を単純化したものです。一部の接続では、コンポーネント間の複数の冗長接続を 1 本の線で表しています。データネットワーク接続と管理ネットワーク接続は表示されません。
+
+image::../media/mcc_hardware_architecture_both_clusters_2_node_atto.gif[MCC ハードウェアアーキテクチャでは、両方のクラスタが 2 ノード構成になります]
+
+* 2 つのシングルノードクラスタで構成されます。
+* 各サイトには、 SAS ストレージスタックが 1 つ以上あります。
++
+
+NOTE: MetroCluster 構成の SAS シェルフは、 ACP ケーブル配線ではサポートされていません。
+
++
+追加のストレージスタックもサポートされますが、図では各サイトに 1 つしかありません。
+
+

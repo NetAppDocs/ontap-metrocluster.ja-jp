@@ -1,0 +1,55 @@
+---
+permalink: install-ip/concept_considerations_for_using_virtual_ip_and_border_gateway_protocol_with_a_mcc_configuration.html 
+sidebar: sidebar 
+keywords: ontap, connectivity, virtual, ip, border, gateway, protocol, bgp, combination, vip, front-end, network, metrocluster, redundancy, disaster, recovery, solution, configuration 
+summary: ONTAP 9.5 以降では、 ONTAP で仮想 IP アドレス \ （ VIP \ ）とボーダーゲートウェイプロトコル \ （ BGP\ ）を使用したレイヤ 3 接続がサポートされます。VIP と BGP を組み合わせることで、フロントエンドネットワークでの冗長性とバックエンド MetroCluster の冗長性が確保され、レイヤ 3 ディザスタリカバリ解決策が実現します。 
+---
+= MetroCluster 設定で仮想 IP およびボーダーゲートウェイプロトコルを使用する場合の考慮事項
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.5 以降では、 ONTAP で仮想 IP （ VIP ）と Border Gateway Protocol （ BGP ）を使用してレイヤ 3 接続がサポートされます。VIP と BGP を組み合わせることで、フロントエンドネットワークでの冗長性とバックエンド MetroCluster の冗長性が確保され、レイヤ 3 ディザスタリカバリ解決策が実現します。
+
+レイヤ 3 解決策を計画する際は、次のガイドラインと図を確認してください。ONTAP での VIP および BGP の実装の詳細については、次の項を参照してください。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-A8EF6D34-1717-4813-BBFA-AA33E104CF6F.html["* 仮想 IP （ VIP ） LIF の設定 *"]
+
+image::../media/vip_and_bgp_in_metrocluster_2.png[MetroCluster 2 で VIP と BGP を使用する]
+
+* ONTAP の制限 *
+
+ONTAP では、 MetroCluster 構成の両方のサイトのすべてのノードに BGP ピアリングが設定されていることは自動的には検証されません。
+
+ONTAP は、ルートアグリゲーションを実行するのではなく、個々の仮想 LIF のすべての IP を一意のホストルートとして常時通知します。
+
+ONTAP は、真のエニーキャストをサポートしません。クラスタ内の 1 つのノードだけが、特定の仮想 LIF の IP を提供します（ただし、物理ポートが正しい IPspace の一部である場合は、 BGP LIF であるかどうかに関係なく、すべての物理インターフェイスで許可されます）。異なる LIF は、異なるホストノードに個別に移行できます。
+
+* このレイヤ 3 解決策を MetroCluster 構成で使用する場合の注意事項 *
+
+必要な冗長性を確保するために、 BGP および VIP を正しく設定する必要があります。
+
+よりシンプルな導入シナリオが、より複雑なアーキテクチャよりも推奨されます（たとえば、 BGP ピアリングルータは、中間の BGP 以外のルータ経由で到達可能です）。ただし、 ONTAP では、ネットワーク設計やトポロジの制限は適用されません。
+
+VIP LIF はフロントエンド / データネットワークのみをカバーします。
+
+ONTAP のバージョンに応じて、システム SVM やデータ SVM ではなく、ノード SVM に BGP ピアリング LIF を設定する必要があります。9.8 では、 BGP LIF がクラスタ（システム） SVM 内で認識され、ノード SVM が存在しなくなります。
+
+各データ SVM には、 LIF の移行や MetroCluster のフェイルオーバーが発生したときにリターンデータパスを使用できるように、考えられるすべてのファーストホップゲートウェイアドレス（通常は BGP ルータピアリングの IP アドレス）を設定する必要があります。
+
+BGP LIF はクラスタ間 LIF と同様にノード固有で、各ノードは一意の設定を持ちます。 DR サイトのノードにレプリケートする必要はありません。
+
+v0a （ v0b など）が設定されており、 LIF の移行またはフェイルオーバーが成功するように接続を継続的に検証します（停止後にのみ構成の破損が表示される L2 とは異なります）。
+
+アーキテクチャに大きな違いは、クライアントがデータ SVM の VIP と同じ IP サブネットを共有しなくなることです。適切なエンタープライズクラスの復元力と冗長性機能（たとえば、 VRRP/HSRP ）をイネーブルにした L3 ルータは、 VIP が正しく動作するために、ストレージとクライアント間のパス上に配置する必要があります。
+
+BGP の信頼性の高い更新プロセスにより、 LIF の移行がわずかに高速化され、一部のクライアントの中断が少なくなるため、円滑な移行が可能になります
+
+ネットワークまたはスイッチの一部の動作を LACP よりも高速に検出するように BGP を設定できます（設定されている場合）。
+
+外部 BGP （ EBGP ）は、 ONTAP ノードとピアリングルータ間で異なる AS 番号を使用し、ルータ上でのルート集約と再配布を容易にするための推奨配置です。内部 BGP （ IBGP ）およびルートリフレクタの使用は不可能ではありませんが、簡単な VIP 設定の範囲外です。
+
+導入後、関連する仮想 LIF が各サイトのすべてのノード間で移行されたときに（ MetroCluster スイッチオーバーを含む）データ SVM にアクセスできることを確認し、同じデータ SVM への静的ルートの正しい設定を確認する必要があります。
+
+VIP は、ほとんどの IP ベースのプロトコル（ NFS 、 SMB 、 iSCSI ）に対応しています。

@@ -1,0 +1,329 @@
+---
+permalink: maintain/task_change_isl_properties_isl_ports_or_the_iod_ood_configuration_on_a_brocade_switch.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, change, isl, properties, isl, ports, iod, configuration, brocade, switch 
+summary: 追加または高速のコントローラやスイッチなどのハードウェアを追加またはアップグレードする場合は、スイッチへの ISL の追加が必要になることがあります。 
+---
+= Brocade スイッチでの ISL プロパティ、 ISL ポート、 IOD / OOD 設定の変更
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+追加または高速のコントローラやスイッチなどのハードウェアを追加またはアップグレードする場合は、スイッチへの ISL の追加が必要になることがあります。
+
+システムが正しく設定されていること、すべてのファブリックスイッチが動作していること、およびエラーがないことを確認してください。
+
+ISL リンク上の機器が変更され、新しいリンク設定が現在の設定（トランキングと順序付き配信）をサポートしなくなった場合、ファブリックを正しいルーティングポリシー（配信順序）に再設定する必要があります。 In-Order Delivery （ IOD ；インオーダー配信）または Out-of-Order Delivery （ OOD ；アウトオブオーダー配信）のいずれかです。
+
+
+NOTE: ONTAP ソフトウェアから OOD に変更するには、次の手順を実行します。 link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/concept_configure_the_mcc_software_in_ontap.html#configuring-in-order-delivery-or-out-of-order-delivery-of-frames-on-ontap-software#configuring-in-order-delivery-or-out-of-order-delivery-of-frames-on-ontap-software["ONTAP ソフトウェアでのフレームのインオーダー配信またはアウトオブオーダー配信の設定"]
+
+.手順
+. FCVI ポートとストレージ HBA ポートを無効にします。
++
+`*portcfgpersistentdisable_port number_*`
+
++
+デフォルトでは、最初の 8 つのポート（ポート 0~7 ）が FCVI とストレージ HBA に使用されます。スイッチのリブート時にポートが無効なままになるように、ポートを永続的に無効にする必要があります。
+
++
+次の例では、両方のスイッチで ISL ポート 0~7 を無効にします。
+
++
+[listing]
+----
+
+    Switch_A_1:admin> portcfgpersistentdisable 0-7
+    Switch_B_1:admin> portcfgpersistentdisable 0-7
+----
+. 必要に応じて ISL ポートを変更します。
++
+|===
+| オプション | ステップ 
+
+
+ a| 
+ISL ポートの速度を変更する
+ a| 
+ファブリックの両方のスイッチで '*portcfgspeed-port number port speed_ *' コマンドを使用します
+
+次の例では、 ISL ポート速度を 40Gbps から 16Gbps に変更します。
+
+`*brocade_switch_a_1:admin> portcfgspeed 40 16*`
+
+「 witchshow 」コマンドを使用して、速度が変更されたことを確認できます。
+
+*brocade_switch_a_1:admin>switchshow *
+
+次の出力が表示されます。
+
+[listing]
+----
+    . . .
+    	   40  40   062800   id    16G	   No_Sync     FC  Disabled
+    	. . .
+----
+
+
+ a| 
+ISL ポートの距離を変更する
+ a| 
+ファブリック内の両方のスイッチで '*portcfglongdistance_port number port distance_*' コマンドを使用します
+
+
+
+ a| 
+ISL を削除する
+ a| 
+リンク \ （ケーブル \ ）を取り外します。
+
+
+
+ a| 
+ISL を追加する
+ a| 
+ISL ポートとして追加するポートに SFP を挿入します。これらのポートを追加するスイッチの『ファブリック接続 MetroCluster インストールおよび設定ガイド』にこれらのポートが記載されていることを確認し、このガイドに従ってケーブルを接続します。
+
+
+
+ a| 
+ISL を再配置する
+ a| 
+ISL を再配置する方法は、 ISL を削除してから追加する方法と同じです。まずリンクを切断して ISL を削除し、次に ISL ポートとして追加するポートに SFP を挿入します。
+
+|===
+. アウトオブオーダー配信（ OOD ）またはインオーダー配信（ IOD ）を再設定します。
++
+
+NOTE: ルーティングポリシーが変更されない場合は再設定は不要で、この手順は無視してかまいません。ONTAP の設定はファブリックの設定と一致する必要があります。ファブリックが OOD に設定されている場合は、 ONTAP も OOD に設定してください。IOD についても同様です。
+
++
+この手順は、次のシナリオで実行する必要があります。
+
++
+** 変更前は複数の ISL がトランクを形成していたが、変更後はトランキングがサポートされなくなった。この場合は、ファブリックを OOD に設定する必要があります。
+** 変更前は ISL が 1 つで、変更後は複数の ISL を使用する。
+** 複数の ISL がトランクを形成する場合は、ファブリックを IOD に設定します。複数の ISL** がトランクを形成できない場合は、ファブリックを OOD に設定します。
+** 次の例に示すように '*switchcfgpersistentdisable *' コマンドを使用して ' スイッチを永続的に無効にします
++
+[listing]
+----
+
+Switch_A_1:admin> switchcfgpersistentdisable
+Switch_B_1:admin> switchcfgpersistentdisable
+----
++
+... 次の表に示すように 'ISL ごとにトランキングモードを構成します *portcfgtrunkport_port number_*'
++
+|===
+| シナリオ（ Scenario ） | 手順 
+
+
+ a| 
+ISL をトランキング用に設定する（ IOD ）
+ a| 
+'*portcfgtrunkport_port number_*' を 1 に設定します
+
+....
+FC_switch_A_1:admin> portcfgtrunkport 20 1
+FC_switch_A_1:admin> portcfgtrunkport 21 1
+FC_switch_B_1:admin> portcfgtrunkport 20 1
+FC_switch_B_1:admin> portcfgtrunkport 21 1
+....
+
+
+ a| 
+ISL をトランキング用に設定する（ OOD ）
+ a| 
+*portcfgtrunkport_port number_*` を 0:`` に設定します
+
+....
+FC_switch_A_1:admin> portcfgtrunkport 20 0
+FC_switch_A_1:admin> portcfgtrunkport 21 0
+FC_switch_B_1:admin> portcfgtrunkport 20 0
+FC_switch_B_1:admin> portcfgtrunkport 21 0
+```
+....
+|===
+... 必要に応じて、ファブリックを IOD または OOD に設定します。
++
+|===
+
+
+| シナリオ（ Scenario ） | 手順 
+
+
+ a| 
+ファブリックを IOD に設定します
+ a| 
+次の例に示すように '*iodset*'`*aptpolicypolicy*`' および `*dlsreset*` コマンドを使用して 'IOD ' APT ' および DLS の 3 つの設定を設定します
+
+....
+Switch_A_1:admin> iodset
+Switch_A_1:admin> aptpolicy 1
+Policy updated successfully.
+Switch_A_1:admin> dlsreset
+FC_switch_A_1:admin>portcfgtrunkport 40 1
+FC_switch_A_1:admin>portcfgtrunkport 41 1
+....
+....
+Switch_B_1:admin> iodset
+Switch_B_1:admin> aptpolicy 1
+Policy updated successfully.
+Switch_B_1:admin> dlsreset
+FC_switch_B_1:admin>portcfgtrunkport 20 1
+FC_switch_B_1:admin>portcfgtrunkport 21 1
+....
+
+
+ a| 
+ファブリックを OOD に設定します
+ a| 
+次の例に示すように '*iodreset*'`*aptpolicy_policy__*'`*dlsset*` コマンドを使用して 'IOD ' APT ' および DLS の 3 つの設定を設定します
+
+....
+Switch_A_1:admin> iodreset
+Switch_A_1:admin> aptpolicy 3
+Policy updated successfully.
+Switch_A_1:admin> dlsset
+FC_switch_A_1:admin> portcfgtrunkport 40 0
+FC_switch_A_1:admin> portcfgtrunkport 41 0
+....
+....
+Switch_B_1:admin> iodreset
+Switch_B_1:admin> aptpolicy 3
+Policy updated successfully.
+Switch_B_1:admin> dlsset
+FC_switch_B_1:admin> portcfgtrunkport 40 0
+FC_switch_B_1:admin> portcfgtrunkport 41 0
+....
+|===
+... '*switchcfgpersistentenable*' コマンドを使用して ' スイッチを永続的に有効にします
++
+[listing]
+----
+switch_A_1:admin>switchcfgpersistentenable
+switch_B_1:admin>switchcfgpersistentenable
+----
++
+このコマンドが存在しない場合は、次の例に示すように、「 witchenable 」コマンドを使用します。
+
++
+[listing]
+----
+brocade_switch_A_1:admin>
+switchenable
+----
+... 次の例に示すように '*iodshow*`'*aptpolicy*'*dlsshow*` コマンドを使用して OOD 設定を確認します
++
+[listing]
+----
+switch_A_1:admin> iodshow
+IOD is not set
+
+switch_A_1:admin> aptpolicy
+
+                Current Policy: 3 0(ap)
+
+                3 0(ap) : Default Policy
+                1: Port Based Routing Policy
+                3: Exchange Based Routing Policy
+                     0: AP Shared Link Policy
+                     1: AP Dedicated Link Policy
+                command aptpolicy completed
+
+switch_A_1:admin> dlsshow
+DLS is set by default with current routing policy
+----
++
+
+NOTE: これらのコマンドは両方のスイッチで実行する必要があります。
+
+... 次の例に示すように '*iodshow*`'*aptpolicy*'*dlsshow*` コマンドを使用して IOD 設定を確認します
++
+[listing]
+----
+switch_A_1:admin> iodshow
+IOD is set
+
+switch_A_1:admin> aptpolicy
+                    Current Policy: 1 0(ap)
+
+                    3 0(ap) : Default Policy
+                    1: Port Based Routing Policy
+                    3: Exchange Based Routing Policy
+                         0: AP Shared Link Policy
+                         1: AP Dedicated Link Policy
+                    command aptpolicy completed
+
+switch_A_1:admin> dlsshow
+DLS is not set
+----
++
+
+NOTE: これらのコマンドは両方のスイッチで実行する必要があります。
+
+
+
+
+
+. ISL がオンラインであり ' トランキングされていることを確認します（リンク機器がトランキングをサポートしている場合） '*islshow*' および *trunkshow*' コマンドを使用します
++
+
+NOTE: FEC が有効になっている場合、ケーブルの長さがすべて同じであるにもかかわらず、トランクグループの最後のオンラインポートの deskew 値に最大 36 の差異が表示されることがあります。
+
++
+|===
+| ISL はトランキングされているか | 表示されるシステム出力 
+
+
+ a| 
+はい。
+ a| 
+ISL がトランキングされている場合 '*islshow*' コマンドの出力には 1 つの ISL のみが表示されますポート 40 または 41 は、トランクマスターに応じて表示されます。「 * trunkshow * 」の出力は、 ID 「 1 」のトランク 1 つで、ポート 40 と 41 の両方の物理 ISL を示しています。次の例では、ポート 40 および 41 が ISL として使用するように設定されています。
+
+[listing]
+----
+switch_A_1:admin> islshow 1:
+40-> 40 10:00:00:05:33:88:9c:68 2 switch_B_1 sp: 16.000G bw: 32.000G TRUNK CR_RECOV FEC
+switch_A_1:admin> trunkshow
+1: 40-> 40 10:00:00:05:33:88:9c:68 2 deskew 51 MASTER
+41-> 41 10:00:00:05:33:88:9c:68 2 deskew 15
+----
+
+
+ a| 
+いいえ
+ a| 
+ISL がトランキングされていない場合 ' 両方の ISL は '*islshow*' と *trunkshow*' の出力に個別に表示されますどちらのコマンドも、 ID が「 1 」と「 2 」の ISL を表示します。次の例では、ポート 40 および 41 が ISL として使用するように設定されています。
+
+[listing]
+----
+switch_A_1:admin> islshow
+1: 40-> 40 10:00:00:05:33:88:9c:68 2 switch_B_1 sp: 16.000G bw: 16.000G TRUNK CR_RECOV FEC
+2: 41-> 41 10:00:00:05:33:88:9c:68 2 switch_B_1 sp: 16.000G bw: 16.000G TRUNK CR_RECOV FEC
+switch_A_1:admin> trunkshow
+1: 40-> 40 10:00:00:05:33:88:9c:68 2 deskew 51 MASTER
+2: 41-> 41 10:00:00:05:33:88:9c:68 2 deskew 48 MASTER
+----
+|===
+. ISL が正常であることを確認するには ' 両方のスイッチで *spinfab* コマンドを実行します
++
+[listing]
+----
+switch_A_1:admin> spinfab -ports 0/40 - 0/41
+----
+. 手順 1 で無効にしたポートを有効にします。
++
+'*portEnable_port number_*
+
++
+次の例では、 ISL ポート 0~7 を有効にします。
+
++
+[listing]
+----
+brocade_switch_A_1:admin> portenable 0-7
+----
+

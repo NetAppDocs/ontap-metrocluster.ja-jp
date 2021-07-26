@@ -1,0 +1,61 @@
+---
+permalink: manage/task_heal_the_data_aggregates_after_negotiated_switchover.html 
+sidebar: sidebar 
+keywords: heal, data, aggregate, completing, complete, maintenance, test, process, resynchronize, prepare, disaster, operation, root, negotiate, switchover 
+summary: メンテナンスまたはテストが完了したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。 
+---
+= ネゴシエートスイッチオーバー後のデータアグリゲートの修復
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+メンテナンスまたはテストが完了したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。
+
+リモートクラスタでの構成の更新はすべてローカルクラスタにレプリケートされます。この手順の一部としてディザスタサイトのストレージに電源を投入しますが、ディザスタサイトにあるコントローラモジュールの電源はオンにしないでください。
+
+.手順
+. MetroCluster operation show コマンドを実行して、スイッチオーバーが完了していることを確認します。
++
+[listing]
+----
+controller_A_1::> metrocluster operation show
+  Operation: switchover
+      State: successful
+ Start Time: 7/25/2014 20:01:48
+   End Time: 7/25/2014 20:02:14
+     Errors: -
+----
+. サバイバークラスタから MetroCluster heal-phase aggregates コマンドを実行して、データアグリゲートを再同期します。
++
+[listing]
+----
+controller_A_1::> metrocluster heal -phase aggregates
+[Job 130] Job succeeded: Heal Aggregates is successful.
+----
++
+修復が拒否された場合は、 -override-vetoes パラメータを指定して MetroCluster heal コマンドを再実行できます。このオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+
+. MetroCluster operation show コマンドを実行して、処理が完了したことを確認します。
++
+[listing]
+----
+controller_A_1::> metrocluster operation show
+    Operation: heal-aggregates
+      State: successful
+Start Time: 7/25/2014 18:45:55
+   End Time: 7/25/2014 18:45:56
+     Errors: -
+----
+. storage aggregate show コマンドを実行して、アグリゲートの状態を確認します。
++
+[listing]
+----
+controller_A_1::> storage aggregate show
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+...
+aggr_b2    227.1GB   227.1GB    0% online       0 mcc1-a2          raid_dp, mirrored, normal...
+----
+. ディザスタサイトのストレージを交換した場合は、アグリゲートの再ミラーリングが必要になることがあります。
+

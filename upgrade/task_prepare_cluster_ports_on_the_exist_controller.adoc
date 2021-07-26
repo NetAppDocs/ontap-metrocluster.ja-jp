@@ -1,0 +1,165 @@
+---
+permalink: upgrade/task_prepare_cluster_ports_on_the_exist_controller.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, prepare, cluster, ports, existing, controller, module 
+summary: 新しいコントローラモジュールを設置する前に、既存のコントローラモジュールにクラスタポートを設定して、クラスタポートが新しいコントローラモジュールとクラスタ通信できるようにする必要があります。 
+---
+= 既存のコントローラモジュールのクラスタポートを準備しています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいコントローラモジュールを設置する前に、既存のコントローラモジュールにクラスタポートを設定して、クラスタポートが新しいコントローラモジュールとクラスタ通信できるようにする必要があります。
+
+（クラスタネットワークスイッチを使用しない） 2 ノードスイッチレスクラスタを作成する場合は、スイッチレスクラスタネットワークモードを有効にする必要があります。
+
+ONTAP のポート、 LIF 、およびネットワーク設定の詳細については、を参照してください link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワーク管理ガイド"]。
+
+.手順
+. ノードのクラスタポートとして使用するポートを決定します。
++
+プラットフォームのデフォルトのポートロールのリストについては、を参照してください https://hwu.netapp.com/["Hardware Universe"]
+
++
+クラスタネットワーク接続用のポートに関する情報については、ネットアップサポートサイトでご使用のプラットフォームの _ インストールおよびセットアップ手順 _ を参照してください。
+
+. 各クラスタ・ポートについて ' ポートの役割を特定します *network port show *
++
+次の例では、ポート e0a 、 e0b 、 e0c 、 e0d をクラスタポートに変更する必要があります。
+
++
+[listing]
+----
+cluster_A::> network port show
+
+Node: controller_A_1
+Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link  MTU    Admin/Oper  Status
+--------- ------------ ---------------- ----  ----   ----------- --------
+e0M       Default      mgmt_bd_1500     up    1500   auto/1000   healthy
+e0a       Default      Default          up    1500   auto/10000  healthy
+e0b       Default      Default          up    1500   auto/10000  healthy
+e0c       Default      Default          up    1500   auto/10000  healthy
+e0d       Default      Default          up    1500   auto/10000  healthy
+e0i       Default      Default          down  1500   auto/10     -
+e0j       Default      Default          down  1500   auto/10     -
+e0k       Default      Default          down  1500   auto/10     -
+e0l       Default      Default          down  1500   auto/10     -
+e2a       Default      Default          up    1500   auto/10000  healthy
+e2b       Default      Default          up    1500   auto/10000  healthy
+e4a       Default      Default          up    1500   auto/10000  healthy
+e4b       Default      Default          up    1500   auto/10000  healthy
+13 entries were displayed.
+----
+. ホームポートまたは現在のポートとしてクラスタポートを使用しているデータ LIF については、ホームポートとしてデータポートを使用するように LIF を変更します。「 network interface modify * 」
++
+次の例は、データ LIF のホームポートをデータポートに変更します。
+
++
+[listing]
+----
+cluster1::> network interface modify -lif datalif1 -vserver vs1 -home-port e1b
+----
+. 変更した各 LIF について、 LIF を新しいホームポートにリバートします。「 * network interface revert *
++
+次の例では、 LIF datalif1 を新しいホームポート e1b にリバートします。
+
++
+[listing]
+----
+cluster1::> network interface revert -lif datalif1 -vserver vs1
+----
+. クラスタポートをメンバーポートとして使用し、 ifgrp をメンバーポートとして使用している VLAN ポートを削除します。
++
+.. VLAN ポートを削除します。 +`* network port vlan delete -node_node-name _ -vlan-name_portid -vlandid_*`
++
+例：
+
++
+[listing]
+----
+network port vlan delete -node node1 -vlan-name e1c-80
+----
+.. インターフェイスグループから物理ポートを削除します。
++
+「 network port ifgrp remove-port -node-node_name -ifgrp_interface-group-name __ port_portid_ 」の形式で指定します
+
++
+例：
+
++
+[listing]
+----
+network port ifgrp remove-port -node node1 -ifgrp a1a -port e0d
+----
+.. ブロードキャストドメインから VLAN ポートとインターフェイスグループポートを削除します。
++
+'network port broadcast-domain remove-ports -ipspace_ipspace -broadcast-domain_domain-name_ports_nodename ： portname 、 nodename ： portname _ 、
+
+.. 必要に応じて、他の物理ポートをメンバーとして使用するようにインターフェイスグループポートを変更します。 +`ifgrp add-port -node -node_name -ifgrp _interface -group-name_port_id_`
+
+
+. ポートの役割が変更されたことを確認します。「 * network port show * 」
++
+次の例は、ポート e0a 、 e0b 、 e0c 、 e0d がクラスタポートになったことを示しています。
+
++
+[listing]
+----
+Node: controller_A_1
+Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link  MTU    Admin/Oper  Status
+--------- ------------ ---------------- ----  ----   ----------- --------
+e0M       Default      mgmt_bd_1500     up    1500   auto/1000   healthy
+e0a       Cluster      Cluster          up    9000   auto/10000  healthy
+e0b       Cluster      Cluster          up    9000   auto/10000  healthy
+e0c       Cluster      Cluster          up    9000   auto/10000  healthy
+e0d       Cluster      Cluster          up    9000   auto/10000  healthy
+e0i       Default      Default          down  1500   auto/10 -
+e0j       Default      Default          down  1500   auto/10 -
+e0k       Default      Default          down  1500   auto/10 -
+e0l       Default      Default          down  1500   auto/10 -
+e2a       Default      Default          up    1500   auto/10000  healthy
+e2b       Default      Default          up    1500   auto/10000  healthy
+e4a       Default      Default          up    1500   auto/10000  healthy
+e4b       Default      Default          up    1500   auto/10000  healthy
+13 entries were displayed.
+----
+. クラスタのブロードキャストドメインにポートを追加します。 ` * broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports_port-id_ 、 _port-id_ 、 _port-id_ 、 _port-id_...``
++
+例：
+
+
+
+[listing]
+----
+broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports cluster1-01:e0a
+----
+. システムがスイッチクラスタの一部である場合は、クラスタポートに「 * network interface create * 」というクラスタ LIF を作成します
++
+次の例は、ノードのクラスタポートの 1 つにクラスタ LIF を作成します。auto-パラメータ は、リンクローカル IP アドレスを使用するように LIF を設定します。
+
++
+[listing]
+----
+cluster1::> network interface create -vserver Cluster -lif clus1 -role cluster -home-node node0 -home-port e1a -auto true
+----
+. 2 ノードスイッチレスクラスタを作成する場合は、スイッチレスクラスタネットワークモードを有効にします。
++
+.. いずれかのノードから advanced 権限レベルに切り替えます。
++
+「 * set -privilege advanced * 」のように指定します
+
++
+アドバンス・モードを続行するかどうかを確認するメッセージが表示されたら 'y' と入力しますadvanced モードのプロンプトが表示されます（「 * > 」）。
+
+.. スイッチレスクラスタネットワークモードを有効にします。「 * network options switchless-cluster modify -enabled true * 」
+.. admin 特権レベルに戻ります :`*set -privilege admin*`
+
+
++
+
+IMPORTANT: 2 ノードスイッチレスクラスタシステム内の既存ノードのクラスタインターフェイスの作成は、新しいコントローラモジュールでネットブートを使用したクラスタのセットアップが完了したあとに実行されます。
+
+

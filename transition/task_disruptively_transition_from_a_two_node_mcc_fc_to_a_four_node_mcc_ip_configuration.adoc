@@ -1,0 +1,32 @@
+---
+permalink: transition/task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_configuration.html 
+sidebar: sidebar 
+keywords: start, ontap, transition, workload, data, exist, two-node, metrocluster, fc, configuration, four-node, ip, disk, shelves, shelf, disruptive, fc 
+summary: ONTAP 9.8 以降では、既存の 2 ノード MetroCluster FC 構成から新しい 4 ノード MetroCluster IP 構成にワークロードとデータを移行できます。MetroCluster FC ノードから IP ノードにディスクシェルフが移動されます。 
+---
+= 2 ノード MetroCluster FC から 4 ノード MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.8 以降では、既存の 2 ノード MetroCluster FC 構成から新しい 4 ノード MetroCluster IP 構成にワークロードとデータを移行できます。MetroCluster FC ノードから IP ノードにディスクシェルフが移動されます。
+
+次の図は、この移行手順の実行前と実行後の構成を簡単に示したものです。
+
+image::../media/transition_2n_begin_to_end.png[移行 2n が終了します]
+
+* この手順は、 ONTAP 9.8 以降を実行しているシステムでサポートされています。
+* この手順はシステムの停止を伴います。
+* この手順は、 2 ノード MetroCluster FC 構成にのみ適用されます。
++
+4 ノード MetroCluster FC 構成の場合は、を参照してください xref:concept_choosing_your_transition_procedure_mcc_transition.adoc[移行する手順を選択します]。
+
+* ADP は、この手順で作成された 4 ノード MetroCluster IP 構成ではサポートされません。
+* すべての要件を満たし、手順のすべての手順に従う必要があります。
+* 既存のストレージシェルフは新しい MetroCluster IP ノードに移動されます。
+* 必要に応じて、ストレージシェルフを構成に追加できます。
++
+を参照してください xref:concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.adoc[FC から IP への移行を停止させるために、ドライブシェルフを再利用し、ドライブ要件を満たしておく必要があります]。
+
+

@@ -1,0 +1,141 @@
+---
+permalink: install-fc/task_reset_the_cisco_fc_switch_to_factory_defaults.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, reset, cisco, fc, switch, factory, defaults 
+summary: 新しいバージョンのソフトウェアと RCF をインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。 
+---
+= Cisco FC スイッチを工場出荷時のデフォルトにリセット
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+新しいバージョンのソフトウェアと RCF をインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。
+
+この手順は、 MetroCluster ファブリック構成内の各 FC スイッチで実行する必要があります。
+
+
+NOTE: 出力は Cisco IP スイッチについてのものですが、 Cisco FC スイッチについても同様です。
+
+.手順
+. スイッチを工場出荷時のデフォルトにリセットします。
++
+.. 既存の設定を消去します :+`*write erase*`
+.. スイッチ・ソフトウェアをリロードします +`*reload*`
++
+システムがリブートし、設定ウィザードが表示されます。起動中に、 Abort Auto Provisioning （自動プロビジョニングの中止）というプロンプトが表示され、通常のセットアップを続行する場合（ yes/no ） [n] 、「 * yes * 」と応答して続行します。
+
+.. 設定ウィザードで、スイッチの基本設定を入力します。
++
+*** 管理パスワード
+*** スイッチ名
+*** アウトオブバンド管理設定
+*** デフォルトゲートウェイ
+*** SSH サービス（ Remote Support Agent ）設定ウィザードが完了すると、スイッチがリブートします。
+
+
+.. プロンプトが表示されたら、ユーザ名とパスワードを入力してスイッチにログインします。
++
+次の例は、スイッチにログインする際のプロンプトおよびシステム応答を示しています。山括弧（「 * <<*> 」）は、情報を入力する場所を示します。
+
++
+[listing]
+----
+---- System Admin Account Setup ----
+Do you want to enforce secure password standard (yes/no) [y]:y  **<<<**
+
+    Enter the password for "admin": password  **<<<**
+  Confirm the password for "admin": password  **<<<**
+         ---- Basic System Configuration Dialog VDC: 1 ----
+
+This setup utility will guide you through the basic configuration of
+the system. Setup configures only enough connectivity for management
+of the system.
+
+Please register Cisco Nexus3000 Family devices promptly with your
+supplier. Failure to register may affect response times for initial
+service calls. Nexus3000 devices must be registered to receive
+entitled support services.
+
+Press Enter at anytime to skip a dialog. Use ctrl-c at anytime
+to skip the remaining dialogs.
+----
+.. 次のプロンプトで、スイッチ名、管理アドレス、ゲートウェイなどの基本情報を入力し、 SSH キーに「 * rsa * 」と入力します。
++
+[listing]
+----
+Would you like to enter the basic configuration dialog (yes/no): yes
+  Create another login account (yes/no) [n]:
+  Configure read-only SNMP community string (yes/no) [n]:
+  Configure read-write SNMP community string (yes/no) [n]:
+  Enter the switch name : switch-name **<<<**
+  Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]:
+    Mgmt0 IPv4 address : management-IP-address  **<<<**
+    Mgmt0 IPv4 netmask : management-IP-netmask  **<<<**
+  Configure the default gateway? (yes/no) [y]: y **<<<**
+    IPv4 address of the default gateway : gateway-IP-address  **<<<**
+  Configure advanced IP options? (yes/no) [n]:
+  Enable the telnet service? (yes/no) [n]:
+  Enable the ssh service? (yes/no) [y]: y  **<<<**
+    Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa **<<<**
+    Number of rsa key bits <1024-2048> [1024]:
+  Configure the ntp server? (yes/no) [n]:
+  Configure default interface layer (L3/L2) [L2]:
+  Configure default switchport interface state (shut/noshut) [noshut]: shut **<<<**
+  Configure CoPP system profile (strict/moderate/lenient/dense) [strict]:
+----
++
+最後の一連のプロンプトで設定が完了します。
+
++
+[listing]
+----
+The following configuration will be applied:
+  password strength-check
+  switchname IP_switch_A_1
+vrf context management
+ip route 0.0.0.0/0 10.10.99.1
+exit
+  no feature telnet
+  ssh key rsa 1024 force
+  feature ssh
+  system default switchport
+  system default switchport shutdown
+  copp profile strict
+interface mgmt0
+ip address 10.10.99.10 255.255.255.0
+no shutdown
+
+Would you like to edit the configuration? (yes/no) [n]:
+
+Use this configuration and save it? (yes/no) [y]:
+2017 Jun 13 21:24:43 A1 %$ VDC-1 %$ %COPP-2-COPP_POLICY: Control-Plane is protected with policy copp-system-p-policy-strict.
+
+[########################################] 100%
+Copy complete.
+
+User Access Verification
+IP_switch_A_1 login: admin
+Password:
+Cisco Nexus Operating System (NX-OS) Software
+.
+.
+.
+IP_switch_A_1#
+----
+
+
+. 設定を保存します。
++
+[listing]
+----
+IP_switch_A_1# copy running-config startup-config
+----
+. スイッチをリブートし、スイッチがリロードされるまで待ちます。
++
+[listing]
+----
+IP_switch_A_1# reload
+----
+. MetroCluster ファブリック構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
+

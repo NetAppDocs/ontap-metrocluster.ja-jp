@@ -1,0 +1,381 @@
+---
+permalink: install-ip/task_install_configure_mediator.html 
+sidebar: sidebar 
+keywords: ontap, mediator, service, assist, install, configure, requirements, mediator requirements 
+summary: ONTAP メディエーターサービスをインストールするには、すべての前提条件を満たしていることを確認してから、インストールパッケージを取得してホストでインストーラを実行する必要があります。 
+---
+= ONTAP メディエーターサービスをインストールまたはアップグレードします
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP メディエーターサービスをインストールするには、すべての前提条件を満たしていることを確認してから、インストールパッケージを取得してホストでインストーラを実行する必要があります。
+
+* 開始する前に * 次の前提条件を満たしている必要があります。
+
+|===
+| メディエーターのバージョン | サポートされている Linux バージョン 
+
+
+ a| 
+1.3
+ a| 
+Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 7.9 、 8.0 、 8.1 、 8.2 、 8.3
+
+
+
+ a| 
+1/2
+ a| 
+Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 8.0 、 8.1
+
+|===
+
+NOTE: カーネルバージョンはオペレーティングシステムのバージョンと一致している必要があります。
+
+* 64 ビットの物理インストールまたは仮想マシン
+* 8GB の RAM
+* ユーザ：ルートアクセス
+
+
+Red Hat Enterprise Linux または CentOS とその関連リポジトリをシステムにインストールする際のベストプラクティスは次のとおりです。別の方法でインストールまたは設定されたシステムでは、追加の手順が必要になる
+
+* Red Hat Enterprise Linux または CentOS のインストールについては、 Red Hat のベストプラクティスに従う必要があります。
+* Red Hat Enterprise Linux または CentOS への ONTAP メディエーターサービスのインストール中にインストールプログラムが必要なすべてのソフトウェアにアクセスしてインストールできるように、システムには該当するリポジトリへのアクセスが必要です。
+* yum インストーラで Red Hat Enterprise Linux リポジトリから依存するソフトウェアを検索するには、 Red Hat Enterprise Linux のインストール中またはインストール後に有効な Red Hat サブスクリプションを使用してシステムを登録しておく必要があります。
++
+Red Hat Subscription Manager については、 Red Hat のドキュメントを参照してください。
+
+* 次のポートをメディエーター用に空けておく必要があります。
++
+** 31784 です
+** 3260
+
+
+* サードパーティ製ファイアウォールを使用している場合は、を参照してください xref:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#firewall-requirements-for-ontap-mediator[ONTAP メディエーターのファイアウォール要件]
+* Linux ホストがインターネットにアクセスできない場所にある場合は、パッケージを手動でインストールできます。必要なパッケージがローカルリポジトリにあることを確認してください。
++
+リポジトリの設定については、次のリンクを参照してください。
+
++
+Linux 環境で Link Aggregation Control Protocol （ LACP ）を使用している場合は、カーネルを正しく設定し、 sysctl net.ipv4.conf all.arp_ignore が「 2 」に設定されていることを確認する必要があります。
+
++
+ONTAP メディエーターサービスで必要なパッケージは次のとおりです。
+
++
+|===
+| すべての RHEL または CentOS バージョン | RHEL / CentOS 7.x の追加パッケージ | RHEL / CentOS 8.x の追加パッケージ 
+
+
+ a| 
+** openssl
+** openssl-devel
+** kernel-devel
+** GCC
+** libselinux-utils
+** メーカー
+** RedHat LSB コアです
+** パッチ
+** Bzip2.
+** ピトノン 36
+** python36-devel
+** Perl - データダンパー
+** PERLA-ExtUtils-MakeMaker
+** python3-pip の略
+
+ a| 
+** policycoreutils - Python
+** ピトノン 36-pip
+
+ a| 
+** elfutils-libelf-devel
+** policycoreutils -python-utils
+
+
+|===
+* シグニチャ検証が設定されている場合は、ディセーブルにする必要があります。これは、次の 2 つの方法のいずれかで実行できます。
++
+** UEFI SecureBoot メカニズムが設定されている場合は、無効にします。
+** grub.cfg ファイルを更新し、再生成して、署名検証メカニズムを無効にします。
++
+... /etc/default/grub ファイルを開きます。
+... GRUB _cmdline_linux 文の最後に文字列 module.sig_enforce =0 を追加します。
+... grub.cfg ファイルを再生成し、変更を実装します。「 update-bootloader | |update-grub | grub2 -mkconfig -o /boot/grub2/grub.cfg 」
+... ホストをリブートします。
+
+
+
+
+
+
+メディエーターのインストールパッケージは自己解凍形式の圧縮 tar ファイルで、次のものが含まれます。
+
+* サポートされているリリースのリポジトリから取得できないすべての依存関係を含む RPM ファイル。
+* インストールスクリプト。
+
+
+この手順に記載されているように、有効な SSL 証明書を使用することを推奨します。
+
+この手順は、既存の環境のインストールまたはアップグレードに使用します。
+
+xref:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#guidelines-for-upgrading-the-ontap-mediator-in-a-metrocluster-configuration[MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン]
+
+
+
+== リポジトリへのアクセスを有効にします
+
+|===
+| オペレーティングシステム | リポジトリへのアクセスを指定する必要があります ... 
+
+
+ a| 
+RHEL 7.x
+ a| 
+rhel-7-server-optional-rpms のいずれかです
+
+
+
+ a| 
+CentOS 7.x
+ a| 
+C7.6.1810 - ベースリポジトリ
+
+
+
+ a| 
+RHEL 8.x の場合
+ a| 
+* RHEL-8-For x86_64-baseos-RPMs
+* RHEL-8-For x86_64-AppStream-RPMs
+
+
+
+
+ a| 
+CentOS 8.0
+ a| 
+kernel-devel
+
+|===
+インストールプロセスでメディエーターから必要なパッケージにアクセスできるように、上記のリポジトリへのアクセスを有効にします。お使いのオペレーティングシステムに応じて、以下の手順を使用してください。
+
+オペレーティング・システムが * RHEL 7.x * の場合：
+
+. 必要なリポジトリに登録します。 'subscription-manager repos_--enable rhel-7-server-optional-rpms ’
++
+次の例は、このコマンドの実行例を示しています。
+
++
+[listing]
+----
+[root@localhost ~]# subscription-manager repos --enable rhel-7-server-optional-rpms
+Repository 'rhel-7-server-optional-rpms' is enabled for this system.
+----
+. yum repolist コマンドを実行します。
++
+次の例は、このコマンドの実行例を示しています。rhel-7-server-optional-rpms リポジトリがリストに表示されている必要があります。
+
++
+[listing]
+----
+[root@localhost ~]# yum repolist
+Loaded plugins: product-id, search-disabled-repos, subscription-manager
+rhel-7-server-optional-rpms | 3.2 kB  00:00:00
+rhel-7-server-rpms | 3.5 kB  00:00:00
+(1/3): rhel-7-server-optional-rpms/7Server/x86_64/group                                               |  26 kB  00:00:00
+(2/3): rhel-7-server-optional-rpms/7Server/x86_64/updateinfo                                          | 2.5 MB  00:00:00
+(3/3): rhel-7-server-optional-rpms/7Server/x86_64/primary_db                                          | 8.3 MB  00:00:01
+repo id                                      repo name                                             status
+rhel-7-server-optional-rpms/7Server/x86_64   Red Hat Enterprise Linux 7 Server - Optional (RPMs)   19,447
+rhel-7-server-rpms/7Server/x86_64            Red Hat Enterprise Linux 7 Server (RPMs)              26,758
+repolist: 46,205
+[root@localhost ~]#
+----
+
+
+オペレーティング・システムが * RHEL 8.x * の場合：
+
+. 必要なリポジトリをサブスクライブします。 'subscription-manager repos_--enable RHEL-8-x86-64 -baseos-RPM'subscription-manager repos_enableRHEL-8-for -x86_64-AppStream-RPM'
++
+次の例は、このコマンドの実行例を示しています。
+
++
+[listing]
+----
+[root@localhost ~]# subscription-manager repos --enable rhel-8-for-x86_64-baseos-rpms
+[root@localhost ~]# subscription-manager repos --enable rhel-8-for-x86_64-appstream-rpms
+Repository 'rhel-8-for-x86_64-baseos-rpms' is enabled for this system.
+Repository 'rhel-8-for-x86_64-appstream-rpms' is enabled for this system.
+----
+. yum repolist コマンドを実行します。
++
+新しくサブスクライブしたリポジトリがリストに表示されます。
+
+
+
+オペレーティングシステムが * CentOS 7.x * の場合：
+
+. C7.6.1810 ベースリポジトリを追加します。C7.6.1810 - ベースボールトリポジトリには、 ONTAP メディエーターに必要な kernel-devel パッケージが含まれています。
+. 次の行を /etc/yum.repos_d/Center-Vault.repo に追加します。
++
+[listing]
+----
+[C7.6.1810-base]
+name=CentOS-7.6.1810 - Base
+baseurl=http://vault.centos.org/7.6.1810/os/$
+basearch/gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+enabled=1
+----
+. yum repolist コマンドを実行します。
++
+次の例は、このコマンドの実行例を示しています。CentOS-7.6.1810 ベースリポジトリがリストに表示されます。
+
++
+[listing]
+----
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: distro.ibiblio.org
+ * extras: distro.ibiblio.org
+ * updates: ewr.edge.kernel.org
+C7.6.1810-base                                                   | 3.6 kB  00:00:00
+(1/2): C7.6.1810-base/x86_64/group_gz                            | 166 kB  00:00:00
+(2/2): C7.6.1810-base/x86_64/primary_db                          | 6.0 MB  00:00:04
+repo id                                           repo name                                                                                                    status
+C7.6.1810-base/x86_64                             CentOS-7.6.1810 - Base                                                                                       10,019
+base/7/x86_64                                     CentOS-7 - Base                                                                                              10,097
+extras/7/x86_64                                   CentOS-7 - Extras                                                                                               307
+updates/7/x86_64                                  CentOS-7 - Updates                                                                                            1,010
+repolist: 21,433
+[root@localhost ~]#
+----
+
+
+オペレーティングシステムが * CentOS 8.0.1905 以降のビルド * の場合：
+
+最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアは CentOS Vault に含まれているため、必要なカーネルモジュールをコンパイルするためには、一致する kernel-devel パッケージへのアクセスを提供する必要があります。問題 kernel-devel パッケージを直接インストールするには、次のコマンドを実行します。
+
+「 rpm -i 」 http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname[] -r ） .rpm`
+
+パッケージがすでにインストールされていることを示すエラーが表示された場合は、パッケージを削除してから再試行してください。
+
+. kernel-devel パッケージを削除します :yum remove kernel-devel`
+. 上記の rpm コマンドを繰り返します。
+
+
+
+
+== メディエーターのインストールパッケージをダウンロードします
+
+. ONTAP メディエーターのページからメディエーターのインストールパッケージをダウンロードします。
++
+https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-tab["ONTAP メディエーターのダウンロードページ"]
+
+. メディエーターのインストール・パッケージがターゲット・ディレクトリにあることを確認します
++
+[listing]
+----
+[root@mediator-host ~]#ls
+./ontap-mediator_1.3
+----
++
+インターネットにアクセスできない場所にいる場合は、インストーラが必要なパッケージにアクセスできることを確認する必要があります。
+
+. 必要に応じて、メディエーターのインストールパッケージをダウンロードディレクトリから Linux メディエーターホストのインストールディレクトリに移動します。
+
+
+
+
+== ONTAP メディエーターのインストールパッケージをインストールします
+
+. メディエーターのインストール・パッケージをインストールし ' 必要に応じてプロンプトに応答します
++
+インストールプロセスが開始され、必要なアカウントの作成と必要なパッケージのインストールが行われます。以前のバージョンのメディエーターがホストにインストールされている場合は、アップグレードを確認するプロンプトが表示されます。
+
+
+
+link:../media/console_output_mediator_installation.txt["ONTAP メディエーターのインストールの例（コンソール出力）"]
+
+
+
+== インストールを確認します。
+
+ONTAP メディエーターサービスのステータスを表示するには、次のコマンドを実行します： systemctl
+
+[listing]
+----
+ [root@scspr1915530002 ~]# systemctl status ontap_mediator mediator-scst
+
+        ∙ ontap_mediator.service - ONTAP Mediator
+            Loaded: loaded (/opt/netapp/lib/ontap_mediator/systemd/ontap_mediator.service; enabled; vendor preset: disabled)
+
+            Active: active (running) since Thu 2020-06-18 09:55:02 EDT; 3 days ago
+
+         Main PID: 3559 (uwsgi)
+
+            Status: "uWSGI is ready"
+
+            CGroup: /system.slice/ontap_mediator.service
+
+                    \u251c\u25003559 /opt/netapp/lib/ontap_mediator/pyenv/bin/uwsgi --ini /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+
+                    \u251c\u25004510 /opt/netapp/lib/ontap_mediator/pyenv/bin/uwsgi --ini /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+
+                    \u2514\u25004512 /opt/netapp/lib/ontap_mediator/pyenv/bin/uwsgi --ini /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+
+
+
+         Jun 18 09:54:43 scspr1915530002 systemd[1]: Starting ONTAP Mediator...
+
+         Jun 18 09:54:45 scspr1915530002 ontap_mediator[3559]: [uWSGI] getting INI configuration from /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+
+         Jun 18 09:55:02 scspr1915530002 systemd[1]: Started ONTAP Mediator.
+
+
+
+         ∙ mediator-scst.service
+            Loaded: loaded (/opt/netapp/lib/ontap_mediator/systemd/mediator-scst.service; enabled; vendor preset: disabled)
+
+            Active: active (running) since Thu 2020-06-18 09:54:51 EDT; 3 days ago
+
+           Process: 3564 ExecStart=/etc/init.d/scst start (code=exited, status=0/SUCCESS)
+
+         Main PID: 4202 (iscsi-scstd)
+
+            CGroup: /system.slice/mediator-scst.service
+
+                    \u2514\u25004202 /usr/local/sbin/iscsi-scstd
+
+
+
+         Jun 18 09:54:43 scspr1915530002 systemd[1]: Starting mediator-scst.service...
+
+         Jun 18 09:54:48 scspr1915530002 iscsi-scstd[4200]: max_data_seg_len 1048576, max_queued_cmds 2048
+
+         Jun 18 09:54:51 scspr1915530002 scst[3564]: Loading and configuring SCST[  OK  ]
+
+         Jun 18 09:54:51 scspr1915530002 systemd[1]: Started mediator-scst.service.
+
+         [root@scspr1915530002 ~]#
+----
+. ONTAP メディエーターサービスで使用しているポートの netstat を使用して確認します
+
+
+[listing]
+----
+         [root@scspr1905507001 ~]# netstat -anlt | grep -E '3260|31784'
+
+         tcp        0      0 0.0.0.0:31784           0.0.0.0:*               LISTEN
+
+         tcp        0      0 0.0.0.0:3260            0.0.0.0:*               LISTEN
+
+         tcp6       0      0 :::3260                 :::*                    LISTEN
+----
+
+
+== 結果
+
+これで、 ONTAP メディエーターサービスがインストールされて実行された状態になります。メディエーターの機能を使用するには、 ONTAP ストレージシステムでさらに設定を行う必要があります。

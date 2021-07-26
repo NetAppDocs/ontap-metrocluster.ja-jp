@@ -1,0 +1,455 @@
+---
+permalink: install-stretch/concept_considerations_when_using_ontap_in_a_mcc_configuration.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, ontap, considerations, configuration 
+summary: MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 MetroCluster 構成の外部にあるクラスタとのピアリング、ボリューム処理や NVFAIL 処理などの ONTAP 処理の実行について、一定の考慮事項に注意する必要があります。 
+---
+= MetroCluster 構成で ONTAP を使用する場合の考慮事項
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 MetroCluster 構成の外部にあるクラスタとのピアリング、ボリューム処理や NVFAIL 処理などの ONTAP 処理の実行について、一定の考慮事項に注意する必要があります。
+
+
+
+== ライセンスに関する考慮事項
+
+* 両方のサイトに、同じサイトライセンスが設定されている必要があります。
+* すべてのノードに同じノードロック式ライセンスが設定されている必要があります。
+
+
+
+
+== SnapMirror に関する考慮事項
+
+* SnapMirror SVM ディザスタリカバリは、 ONTAP 9.5 以降のバージョンを実行している MetroCluster 構成でのみサポートされます。
+
+
+
+
+== ONTAP System Manager での MetroCluster 処理
+
+[role="lead"]
+ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実行できる MetroCluster 固有の処理もあります。
+
+* MetroCluster IP 構成でのスイッチオーバーとスイッチバック（ ONTAP 9.7 以降）
+* MetroCluster IP 構成でのミラーされたアグリゲートのプロビジョニングと拡張（ ONTAP 9.8 以降）
++
+ミラーされていないアグリゲートは System Manager ではサポートされません。
+
+
+
+
+
+== MetroCluster 構成での FlexCache のサポート
+
+[role="lead"]
+ONTAP 9.7 以降では、 MetroCluster 構成で FlexCache ボリュームがサポートされます。スイッチオーバーまたはスイッチバック処理後の手動廃止の要件を理解しておく必要があります。
+
+
+
+=== FlexCache の元のデータとキャッシュが同じ MetroCluster サイト内にある場合のスイッチオーバー後の SVM 削除
+
+ネゴシエートスイッチオーバーまたは計画外スイッチオーバーのあと、クラスタ内の SVM FlexCache ピア関係を手動で設定する必要があります。
+
+たとえば、 SVM vs1 （キャッシュ）と vs2 （元）が site_A にあるとしますこれらの SVM はピア関係にあります。
+
+スイッチオーバー後、 SVM vs1-mc と vs2-mc がパートナーサイト（ site_B ）でアクティブになります。FlexCache が「 vserver peer repeer 」コマンドを使用して機能するには、これらの機能を手動で廃止する必要があります。
+
+
+
+=== FlexCache デスティネーションが第 3 のクラスタにあり、切断モードの場合のスイッチオーバーまたはスイッチバック後の SVM 削除
+
+MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッチオーバー中に関連するクラスタが切断モードになっている場合、スイッチオーバー後に常にピアリングを手動で再設定する必要があります。
+
+例：
+
+* MetroCluster （ vs1 の cache_1 ）の一端が FlexCache site_A にある場合は、 FlexCache の一端になっています
+* FlexCache のもう一方の端（ vs2 の origin_1 ）は、 site_A に配置されています（ MetroCluster 構成ではありません）。
+
+
+スイッチオーバーがトリガーされたときに site_A と site_B が接続されていない場合は、スイッチオーバー後に「 vserver peer repeer 」コマンドを使用して site_B の SVM （スイッチオーバークラスタ）と site_B の SVM を手動で再ピアリングする必要があります。
+
+スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります
+
+
+
+== MetroCluster 構成での FabricPool のサポート
+
+[role="lead"]
+ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。
+
+FabricPool の使用に関する一般的な情報については、を参照してください link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["『 Disks and Aggregates Power Guide 』を参照してください"]。
+
+
+
+=== FabricPool を使用する際の考慮事項
+
+* クラスタに同じ容量制限の FabricPool ライセンスが必要です。
+* 各クラスタに同じ名前の IPspace が必要です。
++
+これには、デフォルトの IPspace か管理者が作成した IP スペースを使用できます。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。
+
+* 選択した IPspace について、各クラスタで外部のオブジェクトストアにアクセスできるクラスタ間 LIF が定義されている必要があります
+
+
+
+
+=== ミラーリングされた FabricPool で使用するアグリゲートを設定する
+
+
+NOTE: アグリゲートを設定する前に、 FabricPool の「 MetroCluster 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["『 Disks and Aggregates Power Guide 』を参照してください"]。
+
+FabricPool で使用するアグリゲートを設定するには、次の手順を実行します。
+
+. アグリゲートを作成するか、既存のアグリゲートを選択します。
+. アグリゲートを MetroCluster 構成内の標準のミラーアグリゲートとしてミラーリングします。
+. の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["『 Disks and Aggregates Power Guide 』を参照してください"]：
++
+.. プライマリオブジェクトストアを接続します。
++
+このオブジェクトストアは、クラスタに物理的に近い場所にあります。
+
+.. ミラーオブジェクトストアを追加します。
++
+このオブジェクトストアは、プライマリオブジェクトストアよりもクラスタから物理的に離れています。
+
+
+
+
+
+
+
+== MetroCluster 構成での FlexGroup のサポート
+
+ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサポートされます。
+
+
+
+== MetroCluster 構成のジョブスケジュール
+
+[role="lead"]
+ONTAP 9.3 以降では、ユーザが作成したジョブスケジュールが MetroCluster 構成のクラスタ間で自動的にレプリケートされます。クラスタでジョブスケジュールを作成、変更、または削除すると、 Configuration Replication Service （ CRS ）を使用して同じスケジュールがパートナークラスタに自動的に作成されます。
+
+
+NOTE: システムによって作成されたスケジュールはレプリケートされません。両方のクラスタのジョブスケジュールが同じになるように、パートナークラスタで同じ処理を手動で実行する必要があります。
+
+
+
+== MetroCluster サイトから第 3 のクラスタへのクラスタピアリング
+
+[role="lead"]
+ピアリング設定はレプリケートされないため、 MetroCluster 構成のどちらかのクラスタを構成外の第 3 のクラスタにピアリングする場合は、パートナーの MetroCluster クラスタでもピアリングを設定する必要があります。これにより、スイッチオーバーが発生してもピアリングが維持されます。
+
+MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている必要があります。そうでない場合、両方の MetroCluster パートナーでピアリングが設定されていても、スイッチオーバーが発生するとピアリングが失われます。
+
+
+
+== MetroCluster 構成での LDAP クライアント設定のレプリケーション
+
+ローカルクラスタの Storage Virtual Machine （ SVM ）に作成された LDAP クライアント設定は、リモートクラスタのパートナーのデータ SVM にレプリケートされます。たとえば、ローカルクラスタの管理 SVM に LDAP クライアント設定が作成されると、リモートクラスタのすべての管理データ SVM にレプリケートされます。この MetroCluster 機能は、リモートクラスタのすべてのパートナー SVM で LDAP クライアント設定をアクティブにするための意図的なものです。
+
+
+
+== MetroCluster 構成用のネットワーク設定および LIF 作成ガイドライン
+
+[role="lead"]
+MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。
+
+* 関連情報 *
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"]
+
+
+
+=== IPspace オブジェクトのレプリケーションとサブネットの設定の要件
+
+[role="lead"]
+パートナークラスタに IPspace オブジェクトをレプリケートするための要件、および MetroCluster 構成でサブネットと IPv6 を設定するための要件を理解しておく必要があります。
+
+
+
+==== IPspace レプリケーション
+
+IPspace オブジェクトをパートナークラスタにレプリケートするときは、次のガイドラインを考慮する必要があります。
+
+* 2 つのサイトの IPspace 名が一致している必要があります。
+* IPspace オブジェクトは手動でパートナークラスタにレプリケートする必要があります。
++
+IPspace をレプリケートする前に作成されて IPspace に割り当てられた Storage Virtual Machine （ SVM ）は、パートナークラスタにレプリケートされません。
+
+
+
+
+
+==== サブネット構成
+
+MetroCluster 構成でサブネットを設定するときは、次のガイドラインを考慮する必要があります。
+
+* MetroCluster 構成の両方のクラスタのサブネットが同じ IPspace にあり、サブネット名、サブネット、ブロードキャストドメイン、ゲートウェイが同じである必要があります。
+* 2 つのクラスタの IP 範囲が同じである必要があります。
++
+次の例では、 IP 範囲が異なります。
+
++
+[listing]
+----
+cluster_A::> network subnet show
+
+IPspace: Default
+Subnet                     Broadcast                   Avail/
+Name      Subnet           Domain    Gateway           Total    Ranges
+--------- ---------------- --------- ------------      -------  ---------------
+subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.11-192.168.2.20
+
+cluster_B::> network subnet show
+ IPspace: Default
+Subnet                     Broadcast                   Avail/
+Name      Subnet           Domain    Gateway           Total    Ranges
+--------- ---------------- --------- ------------     --------  ---------------
+subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192.168.2.30
+----
+
+
+
+
+==== IPv6 の設定
+
+一方のサイトで IPv6 が設定されている場合は、もう一方のサイトでも IPv6 を設定する必要があります。
+
+
+
+=== MetroCluster 構成での LIF の作成に関する要件
+
+[role="lead"]
+MetroCluster 構成でネットワークを設定するときは、 LIF の作成に関する要件に注意する必要があります。
+
+LIF を作成する際は、次のガイドラインを考慮する必要があります。
+
+* Fibre Channel ：ストレッチ VSAN またはストレッチファブリックを使用する必要があります
+* IP / iSCSI ：レイヤ 2 拡張ネットワークを使用する必要があります
+* ARP ブロードキャスト： 2 つのクラスタ間で ARP ブロードキャストを有効にする必要があります
+* LIF の重複：同じ IPspace に同じ IP アドレスを持つ複数の LIF （重複する LIF ）を作成することはできません
+* NFS および SAN 構成：ミラーされていないアグリゲートとミラーされたアグリゲートの両方に、異なる Storage Virtual Machine （ SVM ）を使用する必要があります
+
+
+
+
+==== LIF の作成を確認
+
+MetroCluster 構成内で LIF が正常に作成されたことを確認するには、「 MetroCluster check lif show 」コマンドを実行します。LIF の作成中に問題が発生した場合は、「 MetroCluster check lif repair-placement 」コマンドを使用して問題を修正できます。
+
+
+
+=== LIF のレプリケーションおよび配置の要件と問題
+
+[role="lead"]
+MetroCluster 構成での LIF のレプリケーションの要件を理解しておく必要があります。また、レプリケートされた LIF がパートナークラスタにどのように配置されるかを把握し、 LIF のレプリケーションまたは LIF の配置に失敗した場合に発生する問題について確認しておく必要があります。
+
+
+
+==== パートナークラスタへの LIF のレプリケーション
+
+MetroCluster 構成内の 1 つのクラスタに LIF を作成すると、その LIF はパートナークラスタにレプリケートされます。LIF は名前に基づいて 1 対 1 で配置されるわけではありません。スイッチオーバー処理後に LIF を使用できるようにするため、 LIF の配置プロセスは、ポートが LIF をホストできるかどうかを到達可能性とポート属性チェックに基づいて検証します。
+
+LIF をレプリケートしてパートナークラスタに配置するには、システムが次の条件を満たしている必要があります。
+
+|===
+| 条件 | LIF タイプ： FC | LIF タイプ： IP / iSCSI 
+
+
+ a| 
+ノードの識別
+ a| 
+ONTAP は、 LIF を作成したノードのディザスタリカバリ（ DR ）パートナーに、レプリケートされた LIF を配置します。
+
+DR パートナーが使用できない場合は、 DR 補助パートナーが配置に使用されます。
+ a| 
+ONTAP は、 LIF を作成したノードの DR パートナーに、レプリケートされた LIF を配置します。
+
+DR パートナーが使用できない場合は、 DR 補助パートナーが配置に使用されます。
+
+
+
+ a| 
+ポートの識別
+ a| 
+ONTAP は、 DR クラスタで接続されている FC ターゲットポートを特定します。
+ a| 
+ソース LIF と同じ IPspace にある DR クラスタのポートが到達可能性チェックの対象として選択されます。
+
+DR クラスタに同じ IPspace のポートがない場合は LIF を配置できません。
+
+同じ IPspace とサブネットですでに LIF をホストしている DR クラスタのポートは自動的に到達可能とマークされ、配置先として使用できます。これらのポートは、到達可能性チェックの対象ではありません。
+
+
+
+ a| 
+到達可能性チェック
+ a| 
+到達可能性は、 DR クラスタのポートのソースファブリック WWN の接続をチェックすることによって判別されます。
+
+DR サイトに同じファブリックがない場合、 LIF は DR パートナーの任意のポートに配置されます。
+ a| 
+上記で特定された DR クラスタの各ポートから配置する LIF のソース IP アドレスに Address Resolution Protocol （ ARP ）ブロードキャストが送信され、その応答に基づいて到達可能性が判別されます。
+
+到達可能性チェックが成功するためには、 2 つのクラスタ間で ARP ブロードキャストが許可されている必要があります。
+
+ソース LIF から応答を受信した各ポートが配置可能なポートとしてマークされます。
+
+
+
+ a| 
+ポートを選択します
+ a| 
+ONTAP では、アダプタタイプや速度などの属性に基づいてポートが分類され、属性が一致するポートが選択されます。
+
+属性が一致するポートがない場合、 LIF は DR パートナーの任意の接続されたポートに配置されます。
+ a| 
+到達可能性チェックで到達可能とマークされたポートのうち、 ONTAP が優先して LIF のサブネットに関連付けられたブロードキャストドメイン内のポートを選択します。
+
+DR クラスタに LIF のサブネットに関連付けられたブロードキャストドメイン内の使用可能なネットワークポートがない場合は、ソース LIF に到達可能なポートが ONTAP によって選択されます。
+
+ソース LIF に到達可能なポートがない場合は、ソース LIF のサブネットに関連付けられたブロードキャストドメインからポートが選択され、該当するブロードキャストドメインが存在しない場合は、任意のポートが選択されます。
+
+ONTAP は、アダプタタイプ、インターフェイスタイプ、速度などの属性に基づいてポートを分類し、属性が一致するポートを選択します。
+
+
+
+ a| 
+LIF の配置
+ a| 
+到達可能なポートのうち、 ONTAP は最も負荷の少ないポートを配置先として選択します。
+ a| 
+選択したポートのうち、 ONTAP は最も負荷の少ないポートを配置対象として選択します。
+
+|===
+
+
+==== DR パートナー停止時のレプリケートされた LIF の配置
+
+あるノードに iSCSI または FC LIF が作成され、そのノードの DR パートナーがテイクオーバーされた場合、 LIF がレプリケートされて DR 補助パートナーノードに配置されます。その後ギブバック処理が発生しても、 LIF は DR パートナーに自動的には移動されません。そのため、パートナークラスタ内の 1 つのノードに LIF が集中する可能性があります。MetroCluster のスイッチオーバー処理が発生した場合、その後の Storage Virtual Machine （ SVM ）に属する LUN をマップしようとしても失敗します。
+
+テイクオーバー処理またはギブバック処理のあとに「 lif check lif show 」コマンドを実行して、 MetroCluster の配置が正しいことを確認する必要があります。エラーがある場合は、「 MetroCluster check lif repair-placement 」コマンドを実行して問題を解決します。
+
+
+
+==== LIF 配置エラー
+
+MetroCluster check lif show コマンドで表示される LIF 配置エラーは ' スイッチオーバー操作の後も保持されます配置エラーがある LIF に対して network interface modify コマンド、 network interface rename コマンド MetroCluster 、または network interface delete コマンドを実行すると、エラーは削除され、「 lif check show 」コマンドの出力には表示されません。
+
+
+
+==== LIF レプリケーションエラーです
+
+また、 MetroCluster check lif show コマンドを使用して、 LIF のレプリケーションが成功したかどうかを確認することもできます。LIF のレプリケーションが失敗すると、 EMS メッセージが表示されます。
+
+レプリケーションの障害を修正するには、正しいポートが見つからなかった LIF に対して「 MetroCluster check lif repair-placement 」コマンドを実行します。MetroCluster スイッチオーバー処理の際に確実に LIF を使用できるよう、 LIF のレプリケーションエラーはできるだけ早く解決する必要があります。
+
+
+NOTE: ソース SVM がダウンしている場合でも、デスティネーション SVM で同じ IPspace とネットワークを使用するポートに別の SVM に所属する LIF が設定されていれば、 LIF の配置は続行されます。
+
+
+
+=== ルートアグリゲートでのボリューム作成
+
+[role="lead"]
+MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシーが CFO ）に新しいボリュームを作成することはできません。
+
+この制限があるため、ルートアグリゲートを vserver add-aggregates コマンドで SVM に追加することはできません。
+
+
+
+== MetroCluster 構成の SVM ディザスタリカバリ
+
+[role="lead"]
+ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。
+
+SVM を SnapMirror ディザスタリカバリで使用する場合は、次の要件と制限事項に注意してください。
+
+* SVM ディザスタリカバリ関係のソースとして使用できるのは、 MetroCluster 構成内のアクティブな SVM だけです。
++
+スイッチオーバー前の同期元の SVM とスイッチオーバー後の同期先の SVM のどちらもソースに使用できます。
+
+* MetroCluster 構成が安定した状態のときは MetroCluster の同期先の SVM はオンラインでないため、同期先ボリュームを SVM ディザスタリカバリ関係のソースにすることはできません。
++
+次の図は、安定した状態における SVM ディザスタリカバリの動作を示しています。
+
++
+image::../media/svm_dr_normal_behavior.gif[SVM DR は正常な動作です]
+
+* SVM DR 関係のソースが同期元の SVM の場合、ソースの SVM DR 関係情報が MetroCluster パートナーにレプリケートされます。
++
+これにより、次の図に示すように、スイッチオーバー後も SVM DR の更新を続行できます。
+
++
+image::../media/svm_dr_image_2.gif[SVM DR イメージ 2.]
+
+* スイッチオーバーおよびスイッチバックの実行中に、 SVM DR のデスティネーションへのレプリケーションが失敗することがあります。
++
+ただし、スイッチオーバーまたはスイッチバックプロセスの完了後、 SVM DR の次回のスケジュールされている更新は成功します。
+
+
+
+の「 SVM の設定のレプリケート」セクションを参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/GUID-983EDECC-A085-46DC-AF11-6FF9C474ABAE.html["データ保護パワーガイド"] SVM DR 関係の設定の詳細については、を参照してください。
+
+
+
+=== ディザスタリカバリサイトでの SVM の再同期
+
+[role="lead"]
+再同期では、 MetroCluster 構成の Storage Virtual Machine （ SVM ）ディザスタリカバリ（ DR ）ソースが MetroCluster でないサイトのデスティネーション SVM からリストアされます。
+
+再同期中は、次の図に示すように、ソース SVM （ cluster_A ）が一時的にデスティネーション SVM として機能します。
+
+image::../media/svm_dr_resynchronization.gif[SVM DR 再同期化]
+
+
+
+==== 再同期中に計画外スイッチオーバーが発生した場合
+
+再同期中に計画外スイッチオーバーが発生すると、再同期の転送が停止します。計画外スイッチオーバーが発生した場合は次のようになります。
+
+* MetroCluster サイトのデスティネーション SVM （再同期前のソース SVM ）は、デスティネーション SVM のままです。パートナークラスタの SVM は、同じサブタイプで非アクティブのままです。
+* 同期先の SVM をデスティネーションとする SnapMirror 関係を手動で再作成する必要があります。
+* スイッチオーバー後、 SnapMirror 作成処理を実行しないかぎり、サバイバーサイトでの SnapMirror show の出力に SnapMirror 関係は表示されません。
+
+
+
+
+==== 再同期中に計画外スイッチオーバーが発生した場合は、スイッチバックを実行
+
+スイッチバックプロセスを正常に実行するには、再同期関係を解除して削除する必要があります。MetroCluster 構成に SnapMirror DR のデスティネーション SVM がある場合、またはクラスタにサブタイプ「 `d p-destination` 」の SVM がある場合、スイッチバックは実行できません。
+
+
+
+== 2 ノードストレッチ MetroCluster 構成での storage disk show コマンドおよび storage shelf show コマンドの出力
+
+[role="lead"]
+2 ノードストレッチ MetroCluster 構成では、「 storage disk show 」コマンドと「 storage shelf show 」コマンドの「 is-local-attach 」フィールドに、ディスクとストレージシェルフがどのノードに接続されているかに関係なく、すべてローカルとして表示されます。
+
+
+
+== MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない
+
+[role="lead"]
+MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、「 failed 」と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。
+
+
+
+== スイッチオーバー発生時に NVFAIL フラグを設定するためのボリュームの変更
+
+[role="lead"]
+MetroCluster スイッチオーバーが発生した場合に NVFAIL フラグが設定されるようにボリュームを変更することができます。NVFAIL フラグが設定されたボリュームは、一切変更されなくなります。コミットされた書き込みがスイッチオーバー後に失われたと想定してボリュームを処理する必要がある場合は、この変更が必要となります。
+
+
+NOTE: 9.0 よりも前のバージョンの ONTAP では、スイッチオーバーのたびに NVFAIL フラグが設定されます。ONTAP 9.0 以降のバージョンでは、計画外スイッチオーバー（ USO ）が使用されます。
+
+.手順
+. スイッチオーバー時に MetroCluster 構成で NVFAIL をトリガーするには、「 vol-dr-force-nvfail 」パラメータを on に設定します。
++
+`*vol modify -vserver_name_-volume -name_-dr-force-nvfail on *`
+
+

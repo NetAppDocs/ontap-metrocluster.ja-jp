@@ -1,0 +1,52 @@
+---
+permalink: install-ip/concept_considerations_mediator.html 
+sidebar: sidebar 
+keywords: differences, eight-node, four-node, fabric-attached, stretch, metrocluster ip, storage, bridges, fc-to-sas, atto, fibrebridge, SAS, local HA, auso, automatic unplanned switchover, array luns, mediator, tiebreaker 
+summary: MetroCluster 構成のタイプごとに、必要なコンポーネントが異なります。 
+---
+= ONTAP メディエーターと MetroCluster Tiebreaker の違い
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.7 以降では、 MetroCluster IP 構成で ONTAP Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を使用するか、 MetroCluster Tiebreaker ソフトウェアを使用できます。MetroCluster IP 設定で使用できるサービスは、 2 つのうちの 1 つだけです。
+
+MetroCluster 構成に応じて、異なる状況で自動スイッチオーバーが実行されます。
+
+* * AUSO 機能を使用した MetroCluster FC 構成（ MetroCluster IP 構成には含まれません） *
++
+これらの構成では、コントローラの障害が発生した場合にストレージ（および存在する場合はブリッジ）が動作していれば AUSO が開始されます。
+
+* * ONTAP メディエーターサービスを使用した MetroCluster IP 構成（ ONTAP 9.7 以降） *
++
+これらの構成では、前述の AUSO と同じ状況に加え、サイト全体（コントローラ、ストレージ、スイッチ）の障害が発生した場合に MAUSO が開始されます。
+
++
+
+NOTE: MAUSO が開始されるのは、障害が発生した時点で不揮発性キャッシュミラーリング（ _DR mirroring_） と SyncMirror プレックスミラーリングが同期されている場合だけです。
+
+* * アクティブモードで Tiebreaker ソフトウェアを使用した MetroCluster IP または FC 構成 *
++
+これらの構成では、サイト全体の障害が発生した場合に Tiebreaker で計画外スイッチオーバーが開始されます。
+
++
+Tiebreaker ソフトウェアを使用する前に、を参照してください link:../tiebreaker/index.html["MetroCluster Tiebreaker ソフトウェアインストールおよび設定ガイド"]
+
+
+
+
+
+== ONTAP メディエーターと他のアプリケーションおよびアプライアンスとの相互運用性
+
+スイッチオーバーをトリガーできるサードパーティのアプリケーションやアプライアンスを ONTAP メディエーターと組み合わせて使用することはできません。また、 ONTAP メディエーターを使用した場合、 MetroCluster Tiebreaker ソフトウェアでの MetroCluster 構成の監視はサポートされません。
+
+
+
+== ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
+
+ONTAP メディエーターは、メディエーターホストにあるメールボックスに MetroCluster ノードに関する状態情報を格納します。MetroCluster ノードでは、この情報を使用して DR パートナーの状態を監視し、災害発生時に Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を実装できます。
+
+スイッチオーバーが必要なサイト障害がノードで検出されると、スイッチオーバーに該当する状況であることを確認したうえでスイッチオーバーが実行されます。
+
+MAUSO が開始されるのは、各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングの両方が動作しており、障害が発生した時点でキャッシュとミラーが同期されている場合だけです。

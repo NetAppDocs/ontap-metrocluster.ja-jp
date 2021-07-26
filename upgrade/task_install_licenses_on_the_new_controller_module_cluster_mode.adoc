@@ -1,0 +1,32 @@
+---
+permalink: upgrade/task_install_licenses_on_the_new_controller_module_cluster_mode.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, install, license, new, controller, module 
+summary: 標準の \ （ノードロック \ ）ライセンスが必要な ONTAP サービスがある場合は、新しいコントローラモジュールにライセンスを追加する必要があります。標準ライセンスを使用する機能では、クラスタ内の各ノードにその機能用のキーが必要です。 
+---
+= 新しいコントローラモジュール用のライセンスをインストールしています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+標準（ノードロック）ライセンスが必要な ONTAP サービスがある場合は、新しいコントローラモジュールにライセンスを追加する必要があります。標準ライセンスを使用する機能では、クラスタ内の各ノードにその機能用のキーが必要です。
+
+ライセンスの詳細については、ネットアップサポートサイトの技術情報アーティクル 3013749 ：「 Data ONTAP 8.2 Licensing Overview and References 」と「 _System Administration Reference_」 を参照してください。
+
+.手順
+. 必要に応じて、ネットアップサポートサイトの「ソフトウェアライセンス」の下の「 My Support 」セクションで新しいノードのライセンスキーを取得します。
++
+必要なライセンスキーがサイトにない場合は、営業またはサポート担当者にお問い合わせください。
+
+. 問題各ライセンスキーをインストールするには、次のコマンドを使用します。
++
+*system license add -license-code_license_key_*
+
++
+`_license_key_` は 28 桁の長さである。
+
++
+必要な標準（ノードロック）ライセンスごとにこの手順を繰り返します。
+
+

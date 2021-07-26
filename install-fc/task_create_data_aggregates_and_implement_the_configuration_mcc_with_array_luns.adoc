@@ -1,0 +1,32 @@
+---
+permalink: install-fc/task_create_data_aggregates_and_implement_the_configuration_mcc_with_array_luns.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, create, data, aggregates, implementing, verify, configuration 
+summary: 各ノードにデータアグリゲートを作成し、 MetroCluster 構成を実装して検証する必要があります。 
+---
+= MetroCluster 構成のデータアグリゲートの作成、実装、検証
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+各ノードにデータアグリゲートを作成し、 MetroCluster 構成を実装して検証する必要があります。
+
+. 各ノードにデータアグリゲートを作成します。
++
+.. の手順を使用して、各ノードにミラーされたデータアグリゲートを作成します xref:task_mirror_the_root_aggregates_mcc_with_array_luns.adoc[ルートアグリゲートをミラーリング]。
+.. 必要に応じて、の手順を使用してミラーされていないデータアグリゲートを作成します xref:concept_configure_the_mcc_software_in_ontap.adoc[各ノードでミラーされたデータアグリゲートを作成します]。
+
+
+. の手順を使用して、 MetroCluster 構成を実装します xref:concept_configure_the_mcc_software_in_ontap.adoc[MetroCluster 構成の実装]。
+. の手順を使用して、健全性監視用に MetroCluster FC スイッチを設定します xref:concept_configure_the_mcc_software_in_ontap.adoc[健常性監視用の MetroCluster FC スイッチの設定]。
+. 構成を確認して検証します。
++
+.. の手順を使用して MetroCluster の設定を確認します xref:concept_configure_the_mcc_software_in_ontap.adoc[MetroCluster の設定を確認しています]。
+.. の手順を使用して、 Config Advisor 構成エラーが MetroCluster で発生していないかどうかを確認します xref:concept_configure_the_mcc_software_in_ontap.adoc[Config Advisor での MetroCluster 構成エラーの確認]。
+.. の手順を使用して、スイッチオーバー、修復、スイッチバックを検証します xref:concept_configure_the_mcc_software_in_ontap.doc[スイッチオーバー、修復、スイッチバックを検証しています]。
+
+
+. の手順を使用して、 MetroCluster Tiebreaker ソフトウェアをインストールします http://ie-docs.rtp.openeng.netapp.com/ontap-9_dugong/topic/com.netapp.doc.dot-mcc-inst-cnfg-ip/task_configure_the_mcc_tiebreaker_or_ontap_mediator_software.html["MetroCluster Tiebreaker ソフトウェアを設定します"]。
+. の手順を使用して、構成バックアップファイルの保存先を設定します xref:concept_configure_the_mcc_software_in_ontap.adoc[構成バックアップファイルを保護しています]。
+

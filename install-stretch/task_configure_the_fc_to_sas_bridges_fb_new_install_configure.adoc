@@ -1,0 +1,221 @@
+---
+permalink: install-stretch/task_configure_the_fc_to_sas_bridges_fb_new_install_configure.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, configuration, fc, sas, bridges 
+summary: モデルに応じた FC-to-SAS ブリッジのケーブル接続に進む前に、 FibreBridge ソフトウェアで設定を行う必要があります。 
+---
+= FC-to-SAS ブリッジの設定
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+モデルに応じた FC-to-SAS ブリッジのケーブル接続に進む前に、 FibreBridge ソフトウェアで設定を行う必要があります。
+
+ブリッジのインバンド管理を使用するかどうかを決めておく必要があります。
+
+
+NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+
+IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
+
+.手順
+. インバンド管理用に設定する場合は、 FibreBridge RS-232 シリアルポートから PC のシリアル（ COM ）ポートにケーブルを接続します。
++
+シリアル接続は初期設定と ONTAP によるインバンド管理に使用され、 FC ポートを使用してブリッジの監視と管理を行うことができます。
+
+. IP 管理用に設定する場合は、イーサネットケーブルを使用して、各ブリッジのイーサネット管理 1 ポートをネットワークに接続します。
++
+ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
+
++
+イーサネット管理 1 ポートを使用すると、ブリッジファームウェアを短時間でダウンロードし（ ATTO ExpressNAV または FTP 管理インターフェイスを使用）、コアファイルと抽出ログを取得できます。
+
+. IP 管理用に設定する場合は、使用しているブリッジモデルの ATTO FibreBridge Installation and Operation Manual _ のセクション 2.0 の手順に従って、各ブリッジのイーサネット管理 1 ポートを設定します。
++
+ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
+
++
+QuickNAV を実行してイーサネット管理ポートを設定すると、イーサネットケーブルで接続されているイーサネット管理ポートのみが設定されます。たとえば、イーサネット管理 2 ポートも設定する場合は、イーサネットケーブルをポート 2 に接続して QuickNAV を実行する必要があります。
+
+. ブリッジを設定します。
++
+指定するユーザ名とパスワードは必ずメモしてください。
+
++
+
+NOTE: ATTO FibreBridge 7600N または 7500N では時刻同期は設定しないでください。ATTO FibreBridge 7600N または 7500N の時刻は、 ONTAP でブリッジが検出されたあとにクラスタ時間に設定されます。また、 1 日に 1 回定期的に同期されます。使用されるタイムゾーンは GMT で、変更することはできません。
+
++
+.. IP 管理用に設定する場合は、ブリッジの IP 設定を行います。
++
+ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
+
++
+Quicknav ユーティリティなしで IP アドレスを設定するには、 FibreBridge に対するシリアル接続が必要です。
+
++
+CLI を使用する場合は、次のコマンドを実行する必要があります。
+
++
+'*set ipaddress mp1_ip-address_*
+
++
+'*set ipsubnetmask mp1_subnet-mask_*
+
++
+*set ipgateway mp1x.x.x.x*
+
++
+*set ipdhcp mp1 disabled*
+
++
+`*set ethernetspeed mp1 1000*`
+
+.. ブリッジ名を設定します。
++
+ブリッジ名は、 MetroCluster 構成内でそれぞれ一意である必要があります。
+
++
+各サイトの 1 つのスタックグループのブリッジ名の例：
+
++
+*** bridge_A_1a
+*** bridge_A_1b
+*** bridge_B_1a
+*** bridge_B_1b CLI を使用する場合は、次のコマンドを実行する必要があります。
++
+`*set bridgename _bridgename _ *`
+
+
+
+.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +`*set snmp enabled*`
++
+ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
+
+
+
+. ブリッジの FC ポートを設定します。
++
+.. ブリッジ FC ポートのデータ速度を設定します。
++
+サポートされる FC データ速度は、モデルブリッジによって異なります。
+
++
+*** FibreBridge 7600 ブリッジは、最大 32 、 16 、または 8Gbps をサポートします。
+*** FibreBridge 7500 ブリッジは、最大 16 、 8 、または 4Gbps をサポートします。
+*** FibreBridge 6500 ブリッジは、最大 8 、 4 、または 2Gbps をサポートします。
++
+
+NOTE: 選択できる FCDataRate の速度は、ブリッジポートを接続するコントローラモジュールのブリッジ / FC ポートの両方でサポートされる最大速度以下です。ケーブルでの接続距離が SFP およびその他のハードウェアの制限を超えないようにしてください。
+
++
+CLI を使用する場合は、次のコマンドを実行する必要があります。
+
++
+'*set FCDataRate_port-numberport-speed_*
+
+
+
+.. FibreBridge 7500N / 6500N ブリッジを設定する場合は、ポートが使用する接続モードを ptp に設定します。
++
+
+NOTE: FibreBridge 7600N ブリッジを設定する場合、 FCConnMode の設定は不要です。
+
++
+CLI を使用する場合は、次のコマンドを実行する必要があります。
+
++
+'*set FCConnMode_port-number_ptc*
+
+.. FibreBridge 7600N / 7500N ブリッジを設定する場合は、 FC2 ポートを設定または無効にする必要があります。
++
+*** 2 番目のポートを使用する場合は、 FC2 ポートについて同じ手順を繰り返す必要があります。
+*** 2 番目のポートを使用しない場合は、ポートを無効にする必要があります。 +`*FCPortDisable port-number*` 次の例は、 FC ポート 2 を無効にする方法を示しています。
+
+
+
+
++
+[listing]
+----
+FCPortDisable 2
+
+Fibre Channel Port 2 has been disabled.
+----
++
+.. FibreBridge 7600N / 7500N ブリッジを設定する場合は、未使用の SAS ポートを無効にします： +`*SAPortDisable_SAS-port_*`
++
+
+NOTE: SAS ポート A~D はデフォルトで有効になります。使用していない SAS ポートを無効にする必要があります。
+
++
+SAS ポート A のみを使用している場合は、 SAS ポート B 、 C 、および D を無効にする必要があります。次の例は、 SAS ポート B を無効にしていますSAS ポート C および D についても、同じように無効にする必要があります。
+
++
+[listing]
+----
+SASPortDisable b
+
+SAS Port B has been disabled.
+----
+
+
+. ブリッジへのアクセスを保護し、ブリッジの設定を保存します。システムで実行している ONTAP のバージョンに応じて、次のいずれかのオプションを選択します。
++
+|===
+| ONTAP バージョン | 手順 
+
+
+ a| 
+* ONTAP 9.5 以降 *
+ a| 
+.. ブリッジのステータスを表示します :'*storage bridge show*
++
+出力には、保護されていないブリッジが表示されます。
+
+.. ブリッジを保護します :+`*securebridge*`
+
+
+
+
+ a| 
+* ONTAP 9.4 以前 *
+ a| 
+.. ブリッジのステータスを表示します :'*storage bridge show*
++
+出力には、保護されていないブリッジが表示されます。
+
+.. セキュリティ保護されていないブリッジのポートのステータスを確認します。 info
++
+出力には、イーサネットポート MP1 と MP2 のステータスが表示されます。
+
+.. Ethernet ポート MP1 が有効になっている場合は '*set EthernetPort mp1 disabled*' を実行します
++
+イーサネットポート MP2 も有効になっている場合は、ポート MP2 について前の手順を繰り返します。
+
+.. ブリッジの設定を保存します。
++
+次のコマンドを実行する必要があります。
+
++
+'*SaveConfiguration*'
+
++
+「 * FirmwareRestart * 」と入力します
+
++
+ブリッジを再起動するように求められます。
+
+
+
+|===
+. MetroCluster の設定が完了したら、「 flashimages 」コマンドを使用して FibreBridge ファームウェアのバージョンを確認し、ブリッジが最新のサポート対象バージョンを使用していない場合は構成内のすべてのブリッジのファームウェアを更新します。
++
+link:../maintain/index.html["MetroCluster コンポーネントの保守"]
+
+
+
+* 関連情報 *
+
+xref:concept_in_band_management_of_the_fc_to_sas_bridges.adoc[FC-to-SAS ブリッジのインバンド管理]

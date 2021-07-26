@@ -1,0 +1,165 @@
+---
+permalink: maintain/task_upgrade_or_downgrad_the_firmware_on_a_brocade_fc_switch_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, upgrade, downgrade, firmware, brocade, fc, switch 
+summary: Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードするには、 Brocade 固有のコマンドを使用してスイッチを無効にし、ファームウェアの変更を実行および確認し、スイッチをリブートして再度有効にする必要があります。 
+---
+= Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードする
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードするには、 Brocade 固有のコマンドを使用してスイッチを無効にし、ファームウェアの変更を実行および確認し、スイッチをリブートして再度有効にする必要があります。
+
+* ファームウェアファイルが必要です。
+* システムが正しくケーブル接続されている必要があります。
+* ストレージシェルフへのすべてのパスが使用可能である必要があります。
+* ディスクシェルフスタックが安定した状態である必要があります。
+* FC スイッチファブリックが健全な状態である必要があります。
+* 障害が発生したコンポーネントがシステムに存在しないようにします。
+* システムが正常に動作している必要があります。
+* FTP サーバまたは SCP サーバの管理パスワードとアクセス権が必要です。
+
+
+ファームウェアのアップグレードまたはダウングレード中はスイッチファブリックが無効になり、 MetroCluster 構成は 2 つ目のファブリックを使用して運用を継続します。
+
+各スイッチファブリックでこのタスクを順に実行し、すべてのスイッチで同じファームウェアバージョンが実行されるようにする必要があります。
+
+
+NOTE: これはシステムの停止を伴わない手順であり、完了までに約 1 時間かかります。
+
+.手順
+. ファブリック内の各スイッチにログインします。
++
+次の手順の例では 'FC_switch_A_1 スイッチを使用します
+
+. ファブリック内の各スイッチを無効にします。
++
+*switchCfgPersistentDisable*'
+
++
+このコマンドが使用できない場合は、「 witchDisable 」コマンドを実行します。
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchCfgPersistentDisable
+----
+. 必要なファームウェアバージョンをダウンロードします。
++
+'*firmwaredownload*
+
++
+ファイル名の入力を求められたら、ファームウェアファイルのサブディレクトリまたは相対パスを指定する必要があります。
+
++
+ファームウェアダウンロードコマンドは両方のスイッチで同時に実行できますが ' 次の手順に進む前にファームウェアをダウンロードして適切にコミットする必要があります
+
++
+[listing]
+----
+FC_switch_A_1:admin> firmwaredownload
+Server Name or IP Address: 10.64.203.188
+User Name: test
+File Name: v7.3.1b
+Network Protocol(1-auto-select, 2-FTP, 3-SCP, 4-SFTP) [1]: 2
+Password:
+Server IP: 10.64.203.188, Protocol IPv4
+Checking system settings for firmwaredownload...
+System settings check passed.
+----
+. ファームウェアがダウンロードされ、両方のパーティションにコミットされたことを確認します。
++
+'*firmwareShow*
+
++
+次の例では、両方のイメージが更新されているため、ファームウェアのダウンロードが完了しています。
+
++
+[listing]
+----
+FC_switch_A_1:admin> firmwareShow
+Appl     Primary/Secondary Versions
+
+------------------------------------------
+
+FOS      v7.3.1b
+
+         v7.3.1b
+----
+. スイッチをリブートします。
++
+'*reboot*
+
++
+一部のファームウェアバージョンでは、ファームウェアのダウンロードが完了すると自動的に haReboot 処理が実行されます。haReboot が実行された場合でも、この手順のリブートは必要です。
+
++
+[listing]
+----
+FC_switch_A_1:admin> reboot
+----
+. 新しいファームウェアが中間ファームウェアレベルであるか、最終版のリリースであるかを確認します。
++
+ダウンロードが中間ファームウェアレベルの場合は、指定したリリースがインストールされるまで上記の 2 つの手順を実行します。
+
+. スイッチを有効にします。
++
+*switchCfgPersistentEnable*'
+
++
+このコマンドを使用できない場合、「 reboot 」コマンドの実行後にスイッチが「 enabled 」状態になっている必要があります。
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchCfgPersistentEnable
+----
+. スイッチがオンラインであり、すべてのデバイスがログインされていることを確認します。
++
+'*switchShow*
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchShow
+----
+. スイッチ内のポートグループまたはすべてのポートグループのバッファ使用状況が正しく表示されることを確認します。
++
+*portbuffershow *
+
++
+[listing]
+----
+FC_switch_A_1:admin> portbuffershow
+----
+. ポートの現在の設定が正しく表示されることを確認します。
++
+`*portcfgshow*`
+
++
+[listing]
+----
+FC_switch_A_1:admin> portcfgshow
+----
++
+ポートの設定（速度、モード、トランキング、暗号化など）を確認します。 圧縮機能を使用して、スイッチ間リンク（ ISL ）で出力されるようになりました。ポート設定がファームウェアのダウンロードの影響を受けていないことを確認します。
+
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
+.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
+.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
+.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. 15 分待ってから、 2 つ目のスイッチファブリックについてこの手順を繰り返します。
+

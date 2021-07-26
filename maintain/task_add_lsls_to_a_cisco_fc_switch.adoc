@@ -1,0 +1,70 @@
+---
+permalink: maintain/task_add_lsls_to_a_cisco_fc_switch.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, add, isl, cisco, switch 
+summary: 追加または高速のコントローラや高速のスイッチなどのハードウェアを追加またはアップグレードする場合は、スイッチへの ISL の追加が必要になることがあります。 
+---
+= Cisco スイッチへの lSL の追加
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+追加または高速のコントローラや高速のスイッチなどのハードウェアを追加またはアップグレードする場合は、スイッチへの ISL の追加が必要になることがあります。
+
+ISL 接続を確保するためには、一方のスイッチに対して実行した手順をもう一方のスイッチに対しても実行する必要があります。
+
+.手順
+. ファブリック内の両方のスイッチで、追加する ISL の ISL ポートを無効にします。
++
+'*FC_switch_A_1#config t*
+
++
+1 行に 1 つずつ設定コマンドを入力します。すべての設定コマンドを入力したら、 Ctrl+Z キーを押して終了します。
+
++
+[listing]
+----
+
+	FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# shut
+	FC_switch_A_1(config)# end
+----
+. ISL ポートとして追加するポートに SFP を挿入し、インストールおよび設定ガイドの _ に従ってポートをケーブル接続します。
++
+ポートを追加するスイッチについて、インストールおよび設定ガイドにこれらのポートが記載されていることを確認してください。
+
+. インストールおよび設定ガイドの _ に従って ISL ポートを設定します。
+. ファブリック内の両方のスイッチで、すべての ISL ポートを有効にします（有効になっていない場合）。
++
+'*FC_switch_A_1#config t*
+
++
+1 行に 1 つずつ設定コマンドを入力します。Ctrl+Z キーを押して終了します
+
++
+[listing]
+----
+
+ FC_switch_A_1# interface fc1/36
+	FC_switch_A_1(config-if)# no shut
+	FC_switch_A_1(config)# end
+----
+. 両方のスイッチ間に ISL が確立されたことを確認します。
++
+'*show topology isl*
+
+. 2 つ目のファブリックで手順を繰り返します。
++
+[listing]
+----
+--------------------------------------------------------------------------------
+	__________Local_________ _________Remote_________ VSAN Cost I/F  PC    I/F  Band
+	 PC Domain SwName   Port  Port   SwName Domain PC          Stat Stat Speed width
+	--------------------------------------------------------------------------------
+	  1   0x11 cisco9 fc1/36  fc1/36 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/40  fc1/40 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/44  fc1/44 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/48  fc1/48 cisco9 0xbc    1    1   15 up   up    16g   64g
+----
+

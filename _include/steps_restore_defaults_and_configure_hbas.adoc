@@ -1,0 +1,108 @@
+= 
+
+
+[role="lead"]
+MetroCluster を正しくインストールするには、コントローラモジュールのデフォルトをリセットしてリストアします。このタスクを実行する必要があるのは、 FC-to-SAS ブリッジを使用するストレッチ構成のみです。
+
+. LOADER プロンプトで、環境変数をデフォルト設定の「 set-defaults 」に戻します
+. ノードをメンテナンスモードでブートし、システム内の HBA の設定を行います。
++
+.. 保守モードでブート：「 boot_ontap maint 」
+.. ucadmin show と入力し、各ポートの現在の設定を確認します
+.. 必要に応じてポートの設定を更新します。
+
+
++
+|===
+
+
+| HBA のタイプと目的のモード | 使用するコマンド 
+
+
+ a| 
+CNA FC
+ a| 
+ucadmin modify -m fc -t initiator adapter_name
+
+
+
+ a| 
+CNA イーサネット
+ a| 
+ucadmin modify -mode CNA adapter_name
+
+
+
+ a| 
+FC ターゲット
+ a| 
+fcadmin config -t target adapter_name
+
+
+
+ a| 
+FC イニシエータ
+ a| 
+fcadmin config -t initiator adapter_name
+
+|===
+. 保守モードを終了します :halt
++
+コマンドの実行後、ノードが LOADER プロンプトで停止するまで待ちます。
+
+. ノードをブートして保守モードに戻り、設定の変更が反映されるようにします。「 boot_ontap maint 」
+. 変更内容を確認します。
++
+|===
+
+
+| HBA のタイプ | 使用するコマンド 
+
+
+ a| 
+CNA
+ a| 
+ucadmin show の実行
+
+
+
+ a| 
+FC
+ a| 
+fcadmin show の例です
+
+|===
+. 保守モードを終了します :halt
++
+コマンドの実行後、ノードが LOADER プロンプトで停止するまで待ちます。
+
+. ノードをブートメニュー「 boot_ontap menu 」からブートします
++
+コマンドの実行後、ブートメニューが表示されるまで待ちます。
+
+. ブートメニュープロンプトで wipeconfig と入力してノード設定をクリアし、 Enter キーを押します。
++
+次の画面はブートメニューのプロンプトを示しています。
+
++
+....
+Please choose one of the following:
+....
++
+....
+    (1) Normal Boot.
+    (2) Boot without /etc/rc.
+    (3) Change password.
+    (4) Clean configuration and initialize all disks.
+    (5) Maintenance mode boot.
+    (6) Update flash from backup config.
+    (7) Install new software first.
+    (8) Reboot node.
+    (9) Configure Advanced Drive Partitioning.
+    Selection (1-9)?  wipeconfig
+This option deletes critical system configuration, including cluster membership.
+Warning: do not run this option on a HA node that has been taken over.
+Are you sure you want to continue?: yes
+Rebooting to finish wipeconfig request.
+....
+

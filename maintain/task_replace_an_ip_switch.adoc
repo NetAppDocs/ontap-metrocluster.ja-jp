@@ -1,0 +1,121 @@
+---
+permalink: maintain/task_replace_an_ip_switch.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, replace, ip, switch 
+summary: 障害が発生したスイッチの交換、またはスイッチのアップグレードやダウングレードが必要になる場合があります。スイッチに障害が発生した場合は、新しいスイッチを古いスイッチと同じにすることも、スイッチタイプを変更することもできます（スイッチをアップグレードまたはダウングレードします）。 
+---
+= IP スイッチの交換
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+障害が発生したスイッチの交換、またはスイッチのアップグレードやダウングレードが必要になる場合があります。スイッチに障害が発生した場合は、新しいスイッチを古いスイッチと同じにしたり、スイッチのタイプを変更（スイッチをアップグレードまたはダウングレード）したりできます。
+
+障害が発生したスイッチを同じタイプのスイッチに交換する場合は、障害が発生したスイッチを交換するだけで済みます。スイッチをアップグレードまたはダウングレードする場合は、同じネットワークにある 2 つのスイッチを調整する必要があります。2 つのスイッチがスイッチ間リンク（ ISL ）で接続され、かつ同じサイトにない場合、それらのスイッチは同じネットワークにあります。たとえば、ネットワーク 1 に IP_switch_A_1 と ip_switch_B_1 があります。ネットワーク 2 には、次の図に示すように、 IP_switch_a_2 と ip_switch_b_2 が含まれます。
+
+image::../media/mcc_ip_hardware_architecture_ip_interconnect.png[MCC IP ハードウェアアーキテクチャ IP インターコネクト]
+
+この手順は Cisco または Broadcom のスイッチ用です。スイッチベンダーを変更する場合は、追加の手順が必要です。
+
+ネットワークをアップグレードまたはダウングレードする場合は、 2 つ目のネットワークに対してこの手順を繰り返す必要があります。
+
+.手順
+. 構成の健全性を確認します。
++
+.. MetroCluster が構成されていて、各クラスタで通常モードであることを確認します。「 * MetroCluster show * 」
++
+[listing]
+----
+cluster_A::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+----
+.. 各ノードでミラーリングが有効になっていることを確認します。「 * MetroCluster node show * 」
++
+[listing]
+----
+cluster_A::> metrocluster node show
+DR                           Configuration  DR
+Group Cluster Node           State          Mirroring Mode
+----- ------- -------------- -------------- --------- --------------------
+1     cluster_A
+              node_A_1       configured     enabled   normal
+      cluster_B
+              node_B_1       configured     enabled   normal
+2 entries were displayed.
+----
+.. MetroCluster コンポーネントが正常であることを確認します :'* MetroCluster check run*
++
+[listing]
+----
+cluster_A::> metrocluster check run
+
+Last Checked On: 10/1/2014 16:03:37
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+4 entries were displayed.
+
+Command completed. Use the "metrocluster check show -instance" command or sub-commands in "metrocluster check" directory for detailed results.
+To check if the nodes are ready to do a switchover or switchback operation, run "metrocluster switchover -simulate" or "metrocluster switchback -simulate", respectively.
+----
+.. ヘルス・アラートがないことを確認してください： * system health alert show *
+
+
+. 設置前に新しいスイッチを設定します。
++
+
+NOTE: スイッチをアップグレードまたはダウングレードする場合は、ネットワーク内のすべてのスイッチを設定する必要があります。
+
++
+の「 IP スイッチの設定」セクションの手順に従います link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["『 MetroCluster IP Installation and Configuration Guide 』を参照してください。"]
+
++
+スイッチ _A_1 、 _A_2 、 _B_1 、または _B_2 に、適切な RCF ファイルを適用します。新しいスイッチが古いスイッチと同じ場合は、同じ RCF ファイルを適用する必要があります。
+
++
+スイッチをアップグレードまたはダウングレードする場合は、サポートされている最新の RCF ファイルを新しいスイッチに適用してください。
+
+. port show コマンドを実行してネットワークポートに関する情報を表示します。
++
+「 * network port show * 」と表示されます
+
+. 古いスイッチに接続されているリモートスイッチから ISL 接続を切断します。
++
+IP_switch_B_1 に接続されている IP_switch_A_1 のポートから ISL 接続を切断します。
+
+. スイッチの電源をオフにしてケーブルを外し、 FC_switch_B_1 を物理的に取り外します。
+. 新しいスイッチを設置します。
++
+の IP スイッチのケーブル接続 _ セクションの手順に従って、最初に新しいスイッチをケーブル接続します（ ISL を含む） link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["『 MetroCluster IP Installation and Configuration Guide 』を参照してください"]。
+
++
+[NOTE]
+====
+スイッチタイプが異なる場合は、古いスイッチとは異なるポートが使用されることがあります。スイッチをアップグレードまたはダウングレードする場合は、ローカル ISL を * ケーブル接続しないでください。ローカル ISL をケーブル接続するのは、 2 つ目のネットワークにあるスイッチをアップグレードまたはダウングレードするときに、一方のサイトの両方のスイッチが同じタイプである場合に限られます。
+
+====
+. スイッチに電源を投入します。
++
+新しいスイッチが同じ場合は、新しいスイッチの電源をオンにします。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチに電源を投入します。2 つ目のネットワークが更新されるまで、この構成は各サイトにある 2 つの異なるスイッチで動作します。
+
+. 手順 1 を繰り返して、 MetroCluster の設定が正常であることを確認します。
++
+1 つ目のネットワークでスイッチをアップグレードまたはダウングレードする場合は、ローカルクラスタリングに関するアラートが表示されることがあります。
+
++
+
+NOTE: ネットワークをアップグレードまたはダウングレードする場合は、 2 つ目のネットワークに対してすべての手順を繰り返します。
+
+

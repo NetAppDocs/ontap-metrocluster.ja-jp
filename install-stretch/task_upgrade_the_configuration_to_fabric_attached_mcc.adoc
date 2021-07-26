@@ -1,0 +1,62 @@
+---
+permalink: install-stretch/task_upgrade_the_configuration_to_fabric_attached_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, transition, stretch, fabric, attacjed, configuration 
+summary: ファブリック接続 MetroCluster 構成では、ノードが異なる場所に配置されます。この地理的な違いにより、災害からの保護が強化されます。ストレッチからファブリック接続 MetroCluster 構成に移行するには、 FC スイッチを追加し、必要に応じて FC-to-SAS ブリッジを追加する必要があります。 
+---
+= ストレッチからファブリック接続への MetroCluster 構成の移行
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ファブリック接続 MetroCluster 構成では、ノードが異なる場所に配置されます。この地理的な違いにより、災害からの保護が強化されます。ストレッチからファブリック接続 MetroCluster 構成に移行するには、 FC スイッチを追加し、必要に応じて FC-to-SAS ブリッジを追加する必要があります。
+
+* MetroCluster modify -auto-switchover -failure-domain auto-disabled コマンドを実行して、両方のクラスタで自動スイッチオーバーをディセーブルにしておく必要があります。
+* ノードをシャットダウンしておく必要があります。
++
+この手順はシステムの停止を伴います。
+
+
+
+MetroCluster 構成の移行は両方のサイトで実行する必要があります。MetroCluster 設定をアップグレードしたあと、両方のクラスタで自動スイッチオーバーを有効にする必要があります。また 'MetroCluster check run' コマンドを実行して ' 構成を検証する必要があります
+
+この手順では、必要な手順の概要を示します。詳細な手順については、の特定のセクションを参照する必要があります link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["『 Fabric-attached MetroCluster Installation and Configuration Guide 』"]。インストールと設定のすべてを実行する必要はありません。
+
+.手順
+. の「 MetroCluster のインストールの準備」セクションをよく確認して、アップグレードの準備をします link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["『 Fabric-attached MetroCluster Installation and Configuration Guide 』"]。
+. 必要なスイッチと FC-to-SAS ブリッジの設置、ケーブル接続、設定を行います。
++
+
+NOTE: の「ファブリック接続 MetroCluster 構成のケーブル接続」セクションの手順を使用する必要があります link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["『 Fabric-attached MetroCluster Installation and Configuration Guide 』"]。
+
+. 次の手順に従って、 MetroCluster 構成を更新します。
++
+『 https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html[Fabric-attached MetroCluster インストレーションおよび構成ガイド』の「 MetroCluster での ONTAP ソフトウェアの構成」のセクションに記載されている手順は使用しないでください。
+
++
+.. advanced 権限モードに切り替えます。 +`*set -privilege advanced *`
+.. MetroCluster 構成を更新します :+`* MetroCluster configure -refresh true *`
++
+次のコマンドを実行すると、 controller_A_1 を含む DR グループのすべてのノードの MetroCluster 構成が更新されます。
+
++
+[listing]
+----
+controller_A_1::*> metrocluster configure -refresh true
+[Job 009] Job succeeded: Configure is successful.
+----
+.. admin 特権モードに戻ります :+`*set -privilege admin*`
+
+
+. MetroCluster 構成にエラーがないかどうかを確認し、動作していることを確認します。
++
+の次のセクションの手順を使用する必要があります link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["『 Fabric-attached MetroCluster Installation and Configuration Guide 』"]：
+
++
+** Config Advisor での MetroCluster 構成エラーの確認
+** ローカル HA の処理を検証しています
+** スイッチオーバー、修復、スイッチバックを検証しています
+
+
+

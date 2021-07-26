@@ -1,0 +1,25 @@
+---
+permalink: manage/task_heal_the_configuration_in_a_mcc_fc_configuration_supertask.html 
+sidebar: sidebar 
+keywords: switchover, perform, heal, operation, restore, metrocluster, functionality, fc, configuration 
+summary: スイッチオーバーに続いて、特定の順序で修復処理を実行して MetroCluster 機能をリストアする必要があります。 
+---
+= MetroCluster FC 構成での構成の修復
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチオーバーに続いて、特定の順序で修復処理を実行して MetroCluster 機能をリストアする必要があります。
+
+* スイッチオーバーを実行済みで、サバイバーサイトがデータを提供している必要があります。
+* ディザスタサイトのノードが停止しているか、電源がオフのままになっている必要があります。
++
+修復プロセスでは、これらのノードを完全にブートしないでください。
+
+* ディザスタサイトのストレージにアクセスできる（シェルフは電源がオンで稼働しており、アクセス可能である）必要があります。
+* ファブリック接続 MetroCluster 構成では、スイッチ間リンク（ ISL ）が稼働している必要があります。
+* 4 ノード MetroCluster 構成では、サバイバーサイトのノードが HA フェイルオーバー状態でない（各 HA ペアのすべてのノードが稼働中である）必要があります。
+
+
+修復処理は、最初にデータアグリゲートで実行し、次にルートアグリゲートで実行する必要があります。

@@ -1,0 +1,96 @@
+---
+permalink: maintain/task_upgrade_or_downgrad_the_firmware_on_a_cisco_fc_switch_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, upgrade, downgrade, firmware, cisco, fc, switch 
+summary: Cisco FC スイッチのファームウェアをアップグレードまたはダウングレードするには、 Cisco 固有のコマンドを使用してスイッチを無効にし、アップグレードを実行および確認し、スイッチをリブートして再度有効にする必要があります。 
+---
+= Cisco FC スイッチのファームウェアをアップグレードまたはダウングレードする
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cisco FC スイッチのファームウェアをアップグレードまたはダウングレードするには、 Cisco 固有のコマンドを使用してスイッチを無効にし、アップグレードを実行および確認し、スイッチをリブートして再度有効にする必要があります。
+
+* システムが正しくケーブル接続されている必要があります。
+* ストレージシェルフへのすべてのパスが使用可能である必要があります。
+* ディスクシェルフスタックが安定した状態である必要があります。
+* FC スイッチファブリックが健全な状態である必要があります。
+* システムのすべてのコンポーネントが正常である必要があります。
+* システムが正常に動作している必要があります。
+* 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+
+
+ファームウェアのアップグレードまたはダウングレード中はスイッチファブリックが無効になり、 MetroCluster 構成は 2 つ目のファブリックを使用して運用を継続します。
+
+各スイッチファブリックでこのタスクを順に実行し、すべてのスイッチで同じファームウェアバージョンが実行されていることを確認する必要があります。
+
+ファームウェアファイルが必要です。
+
+
+NOTE: これはシステムの停止を伴わない手順であり、完了までに約 1 時間かかります。
+
+.手順
+. ファブリック内の各スイッチにログインします。
++
+この例で使用するスイッチは FC_switch_A_1 および FC_switch_B_1 です。
+
+. 各スイッチの bootflash ディレクトリに十分なスペースがあるかどうかを確認します。
++
+「 * dir bootflash*` 」
+
++
+それ以外の場合は、「 Delete bootflash: file_name 」コマンドを使用して不要なファームウェアファイルを削除します。
+
+. Kickstart ファイルとシステムファイルをスイッチにコピーします。
++
+'*copy_source_filetarget_file_*
+
++
+次の例では、キックスタートファイル (`m 9200-s2ek9-mz.5.2.1.bin') とシステムファイル (`/firmware/`path の FTP サーバ 10.10.10.55 にあります。
+
++
+次の例は、 FC_switch_A_1 で実行するコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_A_1# copy ftp://10.10.10.55/firmware/m9200-s2ek9-kickstart-mz.5.2.1.bin bootflash:m9200-s2ek9-kickstart-mz.5.2.1.bin
+FC_switch_A_1# copy ftp://10.10.10.55/firmware/m9200-s2ek9-mz.5.2.1.bin bootflash:m9200-s2ek9-mz.5.2.1.bin
+----
+. このファブリック内の両方のスイッチで、すべての VSAN を無効にします。
+. 必要なファームウェアをスイッチにインストールします。
++
+すべてのシステムブートフラッシュをインストールします :__ systemfile_name _kickstart bootflash:_kickstartfile_name _*`
+
++
+次の例は、 FC_switch_A_1 で実行するコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_A_1# install all system bootflash:m9200-s2ek9-mz.5.2.1.bin kickstart bootflash:m9200-s2ek9-kickstart-mz.5.2.1.bin
+Enter Yes to confirm the installation.
+----
+. 各スイッチのファームウェアのバージョンをチェックして、正しいバージョンがインストールされていることを確認します。
++
+*show version *`
+
+. このファブリック内の両方のスイッチで、すべての VSAN を有効にします。
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
+.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
+.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
+.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. 2 つ目のスイッチファブリックに対してこの手順を繰り返します。
+

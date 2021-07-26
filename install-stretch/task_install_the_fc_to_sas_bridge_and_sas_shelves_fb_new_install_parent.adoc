@@ -1,0 +1,40 @@
+---
+permalink: install-stretch/task_install_the_fc_to_sas_bridge_and_sas_shelves_fb_new_install_parent.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, install, fc, sas, bridge, shelves 
+summary: システムが「設置の準備」セクションのすべての要件を満たしていることを確認したら、新しいシステムを設置できます。 
+---
+= FC-to-SAS ブリッジおよび SAS シェルフの設置
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+システムが「インストールの準備」セクションのすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。
+
+* ディスクとシェルフの構成は両方のサイトで同じである必要があります。
++
+ミラーされていないアグリゲートを使用する場合は、各サイトでディスクとシェルフの構成が異なることがあります。
+
++
+
+NOTE: ミラーされたアグリゲートとミラーされていないアグリゲートのどちらに使用されているかに関係なく、ディザスタリカバリグループ内のディスクはすべて同じタイプの接続を使用し、ディザスタリカバリグループ内のすべてのノードから認識できる必要があります。
+
+* 50 ミクロンのマルチモード光ファイバケーブルを使用するディスクシェルフ、 FC スイッチ、およびバックアップテープデバイスの最大距離に関するシステム接続要件が、 FibreBridge ブリッジにも該当します。
++
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+* 同じストレージスタックに IOM12 モジュールと IOM3 モジュールを混在させることはできません。サポート対象のバージョンの ONTAP を実行しているシステムでは、同じストレージスタックに IOM12 モジュールと IOM6 モジュールを混在させることができます。
+
+
+[NOTE]
+====
+次のシェルフと FibreBridge 7500N / 7600N ブリッジでは、追加のケーブル接続なしでインバンド ACP がサポートされます。
+
+* ONTAP 9.2 以降の 7500N または 7600N ブリッジで接続された IOM12 （ DS460C ）
+* ONTAP 9.1 以降の 7500N または 7600N ブリッジで接続された IOM12 （ DS212C および DS224C ）
+
+
+====
+
+NOTE: MetroCluster 構成の SAS シェルフでは、 ACP ケーブル接続はサポートされません。

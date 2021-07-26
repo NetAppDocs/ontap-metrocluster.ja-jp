@@ -1,0 +1,86 @@
+---
+permalink: manage/task_verify_a_successful_switchback.html 
+sidebar: sidebar 
+keywords: perform, switchback, aggregate, storage, virtual, machine, svm, switch, back, online, verify, successful 
+summary: スイッチバックを実行したあとに、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。 
+---
+= スイッチバックが成功したことを確認する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチバックの実行後に、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。
+
+. スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。「 storage aggregate show
++
+次の例では、ノード B2 の aggr_b2 がスイッチバックされています。
+
++
+[listing]
+----
+node_B_1::> storage aggregate show
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+...
+aggr_b2    227.1GB   227.1GB    0% online       0 node_B_2   raid_dp,
+                                                                   mirrored,
+                                                                   normal
+
+node_A_1::> aggr show
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+...
+aggr_b2          -         -     - unknown      - node_A_1
+----
++
+ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に原因が UNKNOWN と表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。
+
+. サバイバークラスタにあるすべての同期先 SVM が休止状態（ Admin State が stopped になっている）であることと、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。「 vserver show -subtype sync-source
++
+[listing]
+----
+node_B_1::> vserver show -subtype sync-source
+                               Admin      Root                       Name    Name
+Vserver     Type    Subtype    State      Volume     Aggregate       Service Mapping
+----------- ------- ---------- ---------- ---------- ----------      ------- -------
+...
+vs1a        data    sync-source
+                               running    vs1a_vol   node_B_2        file    file
+                                                                     aggr_b2
+
+node_A_1::> vserver show -subtype sync-destination
+                               Admin      Root                         Name    Name
+Vserver            Type    Subtype    State      Volume     Aggregate  Service Mapping
+-----------        ------- ---------- ---------- ---------- ---------- ------- -------
+...
+cluster_A-vs1a-mc  data    sync-destination
+                                      stopped    vs1a_vol   sosb_      file    file
+                                                                       aggr_b2
+----
++
+MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいようにサフィックス「 -mc 」が自動的に付加されます。
+
+. MetroCluster operation show コマンドを使用して、スイッチバック処理が成功したことを確認します。
++
+[cols="2*"]
+|===
+| 出力内容 | 作業 
+
+
+ a| 
+スイッチバック処理の状態が「 successful 」である
+ a| 
+スイッチバックプロセスは完了しており、システムの処理を続行できます。
+
+
+
+ a| 
+スイッチバック処理またはスイッチバック継続エージェントの処理が「 partially successful 」である
+ a| 
+MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します。
+
+|===
+
+
+上記の手順を繰り返して、逆方向へのスイッチバックを実行する必要があります。site_A が site_B のスイッチオーバーを行った場合は、 site_B で site_A のスイッチオーバーを行います

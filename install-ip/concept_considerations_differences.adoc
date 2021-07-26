@@ -1,0 +1,241 @@
+---
+permalink: install-ip/concept_considerations_differences.html 
+sidebar: sidebar 
+keywords: differences, eight-node, four-node, fabric-attached, stretch, metrocluster ip, storage, bridges, fc-to-sas, atto, fibrebridge, SAS, local HA, auso, automatic unplanned switchover, array luns, mediator, tiebreaker, all san array, asa 
+summary: MetroCluster 構成のタイプごとに、必要なコンポーネントが異なります。 
+---
+= ONTAP MetroCluster 構成の違い
+:icons: font
+:imagesdir: ../media/
+
+
+MetroCluster 構成のタイプごとに、必要なコンポーネントが異なります。
+
+いずれの構成においても、 2 つの MetroCluster サイトがそれぞれ ONTAP クラスタとして構成されます。2 ノード MetroCluster 構成では、各ノードがシングルノードクラスタとして構成されます。
+
+[cols="6*"]
+|===
+| フィーチャー（ Feature ） | IP 構成 2+| ファブリック接続構成 2+| ストレッチ構成 
+
+
+ a| 
+ a| 
+ a| 
+* 4 ノードまたは 8 ノード *
+ a| 
+* 2 ノード *
+ a| 
+* 2 ノードブリッジ接続 *
+ a| 
+* 2 ノード直接接続 *
+
+
+
+ a| 
+コントローラ数
+ a| 
+4 つまたは 8 つ *
+ a| 
+4 台または 8 台
+ a| 
+2 つ
+ a| 
+2 つ
+ a| 
+2 つ
+
+
+
+ a| 
+FC スイッチストレージファブリックを使用します
+ a| 
+いいえ
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+いいえ
+ a| 
+いいえ
+
+
+
+ a| 
+IP スイッチストレージファブリックを使用します
+ a| 
+はい。
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+
+
+
+ a| 
+FC-to-SAS ブリッジを使用します
+ a| 
+いいえ
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+いいえ
+
+
+
+ a| 
+直接接続型 SAS ストレージを使用します
+ a| 
+○（ローカル接続のみ）
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+はい。
+
+
+
+ a| 
+ADP をサポートします
+ a| 
+○（ ONTAP 9.4 以降）
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+
+
+
+ a| 
+ローカル HA をサポートします
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+
+
+
+ a| 
+ONTAP AUSO をサポートします
+ a| 
+いいえ
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+
+
+
+ a| 
+ミラーされていないアグリゲートを
+ a| 
+○（ ONTAP 9.8 以降）
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+
+
+
+ a| 
+アレイ LUN をサポートします
+ a| 
+いいえ
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+
+
+
+ a| 
+ONTAP メディエーターをサポートします
+ a| 
+○（ ONTAP 9.7 以降）
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+ a| 
+いいえ
+
+
+
+ a| 
+MetroCluster Tiebreaker をサポートします
+ a| 
+○（ ONTAP メディエーターとの併用は不可）
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+
+
+
+| をサポートします <<Support for All SAN Array systems in MetroCluster configurations,すべての SAN アレイ>>  a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+ a| 
+はい。
+
+|===
+8 ノード MetroCluster IP 構成については、次の考慮事項に注意してください。
+
+* ONTAP 9.9..1 以降では、 8 ノード構成がサポートされます。
+* ネットアップ検証済みの MetroCluster スイッチ（ネットアップから購入したもの）のみがサポートされます。
+* IP ルーティング（レイヤ 3 ）バックエンド接続を使用する設定はサポートされていません。
+* 共有プライベートレイヤ 2 ネットワークを使用する構成はサポートされません。
+* Cisco 9336C-FX2 共有スイッチを使用する構成はサポートされていません。
+
+
+
+
+== MetroCluster 構成でのオール SAN アレイシステムのサポート
+
+一部の SAN アレイ（ ASA ）は、 MetroCluster 構成でサポートされます。MetroCluster のドキュメントで、 AFF モデルの情報環境対応する ASA システムを確認します。たとえば、すべてのケーブル配線と AFF A400 システムのその他の情報は、 ASA AFF A400 システムも環境に接続します。
+
+サポートされるプラットフォーム構成は、に記載されています https://hwu.netapp.com["NetApp Hardware Universe の略"]。

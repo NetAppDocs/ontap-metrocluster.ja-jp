@@ -1,0 +1,248 @@
+---
+permalink: maintain/task_replace_a_brocade_fc_switch_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, replace, brocade, fc, switch 
+summary: この Brocade 固有の手順を使用して、障害が発生したスイッチを交換する必要があります。 
+---
+= Brocade FC スイッチの交換
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+この Brocade 固有の手順を使用して、障害が発生したスイッチを交換する必要があります。
+
+管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+
+次の例では、 FC_switch_A_1 が正常に動作しているスイッチ、 FC_switch_B_1 が障害が発生したスイッチです。この例でのスイッチポートの用途を次の表に示します。
+
+|===
+| ポート接続 | ポート 
+
+
+ a| 
+FC-VI 接続
+ a| 
+0.3
+
+
+
+ a| 
+HBA 接続
+ a| 
+1 、 2 、 4 、 5
+
+
+
+ a| 
+FC-to-SAS ブリッジの接続
+ a| 
+6.7
+
+
+
+ a| 
+ISL 接続
+ a| 
+10 、 11
+
+|===
+例では、 FC-to-SAS ブリッジを 2 つ使用します。FC-to-SAS ブリッジが 3 つ以上ある場合は、追加のポートを無効にしてから有効にする必要があります。
+
+
+NOTE: これはシステムの停止を伴わない手順であり、完了までに約 2 時間かかります。
+
+推奨される用途に従ってスイッチポートを割り当ててください。
+
+* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+
+
+.手順
+. 交換中のスイッチをフェンシングします。そのためには、ファブリック内の正常に動作しているスイッチの ISL ポート、および障害が発生したスイッチの FC-VI ポートと HBA ポートを無効にします（障害が発生したスイッチが稼働している場合）。
++
+.. ポートごとに正常に動作しているスイッチの ISL ポートを無効にします。 +`*portcfgpersistentdisable_port-number_*`
++
+[listing]
+----
+FC_switch_A_1:admin> portcfgpersistentdisable 10
+FC_switch_A_1:admin> portcfgpersistentdisable 11
+----
+.. 障害が発生したスイッチが稼働している場合は、ポートごとにそのスイッチの FC-VI ポートと HBA ポートを無効にします。 +`*portcfgpersistentdisable_port-number _*`
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentdisable 0
+FC_switch_B_1:admin> portcfgpersistentdisable 1
+FC_switch_B_1:admin> portcfgpersistentdisable 2
+FC_switch_B_1:admin> portcfgpersistentdisable 3
+FC_switch_B_1:admin> portcfgpersistentdisable 4
+FC_switch_B_1:admin> portcfgpersistentdisable 5
+----
+
+
+. 障害が発生したスイッチが稼働している場合は '*switchshow*' コマンドの出力を収集します
++
+[listing]
+----
+FC_switch_B_1:admin> switchshow
+    switchName: FC_switch_B_1
+    switchType: 71.2
+    switchState:Online
+    switchMode: Native
+    switchRole: Subordinate
+    switchDomain:       2
+    switchId:   fffc01
+    switchWwn:  10:00:00:05:33:86:89:cb
+    zoning:             OFF
+    switchBeacon:       OFF
+----
+. 新しいスイッチを物理的に設置する前に、スイッチをブートして事前設定します。
++
+.. 新しいスイッチに電源を投入し、起動するのを待ちます。
+.. スイッチのファームウェアバージョンを調べて、他の FC スイッチのバージョンと一致していることを確認します： +`*firmwareShow*`
+.. MetroCluster インストールおよび設定ガイドの説明に従って新しいスイッチを設定しますが 'Brocade FC スイッチでのゾーニングの設定セクションは省略します
++
+https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+
++
+ゾーニングはこの手順の後半で設定します。
+
++
+
+NOTE: この時点では、新しいスイッチは MetroCluster 構成にケーブル接続されていません。
+
+.. 新しいスイッチの FC-VI 、 HBA 、ストレージポート、および FC-SAS ブリッジに接続されているポートを無効にします。
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentdisable 0
+FC_switch_B_1:admin> portcfgpersistentdisable 1
+FC_switch_B_1:admin> portcfgpersistentdisable 2
+FC_switch_B_1:admin> portcfgpersistentdisable 3
+FC_switch_B_1:admin> portcfgpersistentdisable 4
+FC_switch_B_1:admin> portcfgpersistentdisable 5
+
+FC_switch_B_1:admin> portcfgpersistentdisable 6
+FC_switch_B_1:admin> portcfgpersistentdisable 7
+----
+
+
+. スイッチを物理的に交換します。
++
+.. 障害が発生した FC スイッチの電源をオフにします。
+.. 交換用 FC スイッチの電源をオフにします。
+.. 障害が発生したスイッチのケーブルを外してスイッチを取り外し、どのケーブルがどのポートに接続されているかをメモします。
+.. 交換用スイッチをラックに取り付けます。
+.. 交換用スイッチを、古いスイッチとまったく同じ配線でケーブル接続します。
+.. 新しい FC スイッチの電源をオンにします。
+
+
+. ISL 暗号化を有効にする場合は、で該当するタスクを実行します link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["『 Fabric-attached MetroCluster Installation and Configuration Guide 』"]。
++
+ISL 暗号化を有効にする場合は、次のタスクを実行する必要があります。
+
++
+** 仮想ファブリックを無効にします
+** ペイロードを設定しています
+** 認証ポリシーを設定します
+** Brocade スイッチでの ISL 暗号化の有効化
+
+
+. 新しいスイッチの設定を完了します。
++
+.. ISL を有効にします。 +`* portcfgpersistentenable_port-number _ *
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentenable 10
+FC_switch_B_1:admin> portcfgpersistentenable 11
+----
+.. 交換用スイッチ（この例では FC_switch_B_1 ）で、 ISL がオンラインであることを確認します。 +`*switchshow*`
++
+[listing]
+----
+FC_switch_B_1:admin> switchshow
+switchName: FC_switch_B_1
+switchType: 71.2
+switchState:Online
+switchMode: Native
+switchRole: Principal
+switchDomain:       4
+switchId:   fffc03
+switchWwn:  10:00:00:05:33:8c:2e:9a
+zoning:             OFF
+switchBeacon:       OFF
+
+Index Port Address Media Speed State  Proto
+==============================================
+...
+10   10    030A00 id   16G     Online  FC E-Port 10:00:00:05:33:86:89:cb "FC_switch_A_1"
+11   11    030B00 id   16G     Online  FC E-Port 10:00:00:05:33:86:89:cb "FC_switch_A_1" (downstream)
+...
+----
+.. FC ブリッジに接続するストレージポートを有効にします。
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentenable 6
+FC_switch_B_1:admin> portcfgpersistentenable 7
+----
+.. ストレージ、 HBA 、および FC-VI ポートを有効にします。
++
+次の例は、 HBA アダプタに接続されたポートを有効にするコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentenable 1
+FC_switch_B_1:admin> portcfgpersistentenable 2
+FC_switch_B_1:admin> portcfgpersistentenable 4
+FC_switch_B_1:admin> portcfgpersistentenable 5
+----
++
+次の例は、 FC-VI アダプタに接続されたポートを有効にするコマンドを示しています。
+
++
+[listing]
+----
+FC_switch_B_1:admin> portcfgpersistentenable 0
+FC_switch_B_1:admin> portcfgpersistentenable 3
+----
+
+
+. ポートがオンラインであることを確認します。
++
+*switchshow*`
+
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. ヘルスアラートがないかどうかを両方のクラスタで確認します。
++
+「 * system health alert show * 」というメッセージが表示されます
+
+.. MetroCluster 構成と運用モードが正常な状態であることを確認します。
++
+「 * MetroCluster show * 」と入力します
+
+.. MetroCluster チェックを実行します。
++
+「 * MetroCluster check run * 」のようになります
+
+.. MetroCluster チェックの結果を表示します。
++
+「 * MetroCluster check show * 」と表示されます
+
+.. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
++
+「 * storage switch show * 」と表示されます
+
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+

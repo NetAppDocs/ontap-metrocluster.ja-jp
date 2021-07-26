@@ -1,0 +1,134 @@
+---
+permalink: disaster-recovery/task_prepare_the_nodes_for_switchback_in_a_mixed_configuration.html 
+sidebar: sidebar 
+keywords: perform, certain, task, prepare, metrocluster, ip, fc, configuration, switchback, recovery, during, transition, mix 
+summary: スイッチバック処理用に MetroCluster IP と FC を混在させる構成を準備するには、特定のタスクを実行する必要があります。この手順のみの環境構成で、 MetroCluster から IP への移行プロセスで障害が発生しました。 
+---
+= 混在構成でのスイッチバックの準備（移行中のリカバリ）
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチバック処理用に MetroCluster IP と FC を混在させる構成を準備するには、特定のタスクを実行する必要があります。この手順のみの環境構成で、 MetroCluster から IP への移行プロセスで障害が発生しました。
+
+この手順は、障害発生時に移行中だったシステムに対してリカバリを実行する場合にのみ使用してください。
+
+このシナリオでは、 MetroCluster が混在構成です。
+
+* 1 つの DR グループは、ファブリック接続の MetroCluster FC ノードで構成されます。
++
+作成したノードで MetroCluster FC のリカバリ手順を実行する必要があります。
+
+* 1 つの DR グループは MetroCluster IP ノードで構成されます。
++
+これらのノードで MetroCluster IP リカバリ手順を実行する必要があります。
+
+
+
+次の手順を順序どおりに実行します。
+
+. 次のタスクを順序どおりに実行して、 FC ノードのスイッチバックを準備します。
++
+.. link:task_verify_port_mcfc.html["ポート設定の確認（ MetroCluster FC 構成のみ）"]
+.. link:task_cfg_bridges_mcfc.html["FC-to-SAS ブリッジの設定（ MetroCluster FC 構成のみ）"]
+.. link:task_cfg_switches_mcfc.html["FC スイッチの設定（ MetroCluster FC 構成のみ）"]
+.. link:task_verify_storage_mcfc.html["ストレージ構成の確認"] （交換した MetroCluster FC ノードのドライブでのみ以下の手順を実行します）
+.. link:task_power_on_mcfc.html["ディザスタサイトの機器の電源投入"] （交換した MetroCluster FC ノードのドライブでのみ以下の手順を実行します）
+.. link:task_assign_ownership_mcfc.html["交換したドライブの所有権を割り当てます"] （交換した MetroCluster FC ノードのドライブでのみ以下の手順を実行します）
+.. の手順を実行します link:task_reassign_roots_mcfc.html["交換用コントローラモジュールへのルートアグリゲートのディスク所有権の再割り当て（ MetroCluster FC 構成）"]メールボックスの破棄コマンドの問題へのステップまで。
+.. ルートアグリゲートのローカルプレックス（プレックス 0 ）を破棄します。
++
+「 aggr destroy plex-id 」
+
+.. ルートアグリゲートがオンラインになっていない場合は、オンラインにします。
+
+
+. MetroCluster FC ノードをブートします。
++
+これらの手順を両方の MetroCluster FC ノードで実行する必要があります。
+
++
+.. ブートメニューを表示します。
++
+「 boot_ontap menu
+
+.. ブートメニューからオプション 6 、 * アップデートフラッシュをバックアップ構成から * 選択します。
+.. 次のプロンプトに「 y 」と入力します。
++
+これは ' オール・フラッシュ・ベースの構成をディスクへの最後のバックアップに置き換えます続行してもよろしいですか ?:y`
+
++
+システムが 2 回ブートし、 2 回目に新しい設定がロードされます。
+
++
+
+NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。その後、ルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。
+
+
+
+. プレックス 0 でルートアグリゲートをミラーします。
++
+これらの手順を両方の MetroCluster FC ノードで実行する必要があります。
+
++
+.. 3 本の pool0 ディスクを新しいコントローラモジュールに割り当てます。
+.. ルートアグリゲートの pool1 プレックスをミラーします。
++
+「 aggr mirror root-aggr-name 」のようになります
+
+.. 未割り当てディスクをローカルノードのプール 0 に割り当てます
+
+
+. メンテナンスモードに戻ります。
++
+これらの手順を両方の MetroCluster FC ノードで実行する必要があります。
+
++
+.. ノードを停止します。
++
+「 halt 」
+
+.. ノードをメンテナンスでブートします。
++
+「 ode ： boot_ontap maint 」となっています
+
+
+
+. メールボックスディスクの内容を削除します。
++
+「マイボックス破壊ローカル」
+
++
+これらの手順を両方の MetroCluster FC ノードで実行する必要があります。
+
+. ノードを停止します :+`halt
+. ノードがブートしたら、ノードのステータスを確認します。
++
+MetroCluster node show
+
++
+[listing]
+----
+siteA::*> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     siteA
+              wmc66-a1           configured     enabled   waiting for switchback recovery
+              wmc66-a2           configured     enabled   waiting for switchback recovery
+      siteB
+              wmc66-b1           configured     enabled   switchover completed
+              wmc66-b2           configured     enabled   switchover completed
+2     siteA
+              wmc55-a1           -              -         -
+              wmc55-a2           unreachable    -         -
+      siteB
+              wmc55-b1           configured     enabled   switchover completed
+              wmc55-b2           configured
+----
+. のタスクを実行して、 MetroCluster IP ノードのスイッチバックを準備します link:task_prepare_for_switchback_in_a_mcc_ip_configuration_supertask.html["MetroCluster IP 構成でのスイッチバックの準備"] を含むことができます 。
+. MetroCluster FC ノードで、の手順を実行します link:task_heal_restore_mcfc.html["アグリゲートの修復とミラーのリストア（ MetroCluster FC 構成）"]。
+. MetroCluster IP ノードで、の手順を実行します link:task_heal_restore_mcip.html["アグリゲートの修復とミラーのリストア（ MetroCluster IP 構成）"]。
+. から始めて、リカバリプロセスの残りのタスクを実行します link:task_complete_recovery.html#reestablishing-object-stores-for-fabricpool-configurations["FabricPool 構成のオブジェクトストアの再確立"]。
+

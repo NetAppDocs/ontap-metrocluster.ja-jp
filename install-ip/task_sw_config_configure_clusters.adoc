@@ -1,0 +1,2211 @@
+---
+permalink: install-ip/task_sw_config_configure_clusters.html 
+sidebar: sidebar 
+keywords: metrocluster, ontap, setup, metrocluster configuration-settings interface create, pool 0, drive assignment, peer, peering, intercluster lifs, dr group, metrocluster ip interfaces, mcc-ip, mcc-ip interfaces, vlan, pool 1, pool1, pool0 
+summary: クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。 
+---
+= クラスタを MetroCluster 構成に設定
+
+
+[role="lead"]
+クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。
+
+
+
+== 自動ドライブ割り当ての無効化（ ONTAP 9.4 で手動で割り当てを行う場合）
+
+[role="lead"]
+ONTAP 9.4 では、 MetroCluster IP 構成の各サイトに外付けストレージシェルフが 3 台以下しかない場合、すべてのノードで自動ドライブ割り当てを無効にし、ドライブを手動で割り当てる必要があります。
+
+このタスクは ONTAP 9.5 以降では必要ありません。
+
+このタスクは、内蔵シェルフおよび外付けシェルフのない AFF A800 システムには該当しません。
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+
+. 自動ドライブ割り当てを無効にします。「 storage disk option modify -node node_name -autoassign off 」
++
+MetroCluster IP 構成のすべてのノードでこのコマンドを問題に設定する必要があります。
+
+
+
+
+
+== プール 0 ドライブのドライブ割り当てを確認しています
+
+[role="lead"]
+リモートドライブがノードに認識され、正しく割り当てられていることを確認する必要があります。
+
+自動割り当ては、ストレージシステムのプラットフォームモデルとドライブシェルフの配置によって異なります。
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+
+. プール 0 のドライブが自動的に割り当てられていることを確認します。「 Disk show 」
++
+次の例は、外付けシェルフがない AFF A800 システムの cluster_A についての出力を示しています。
+
++
+4 分の 1 （ 8 ドライブ）が node_A_1 に、 4 分の 1 が node_A_2 に自動的に割り当てられています。残りのドライブは、 node_B_1 と node_B_2 のリモート（プール 1 ）のドライブになります。
+
++
+[listing]
+----
+cluster_A::*> disk show
+                 Usable     Disk      Container           Container
+Disk             Size       Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+node_A_1:0n.12   1.75TB     0     12  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.13   1.75TB     0     13  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.14   1.75TB     0     14  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.15   1.75TB     0     15  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.16   1.75TB     0     16  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.17   1.75TB     0     17  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.18   1.75TB     0     18  SSD-NVM shared      aggr0     node_A_1
+node_A_1:0n.19   1.75TB     0     19  SSD-NVM shared      -         node_A_1
+node_A_2:0n.0    1.75TB     0     0   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.1    1.75TB     0     1   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.2    1.75TB     0     2   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.3    1.75TB     0     3   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.4    1.75TB     0     4   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.5    1.75TB     0     5   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.6    1.75TB     0     6   SSD-NVM shared      aggr0_node_A_2_0 node_A_2
+node_A_2:0n.7    1.75TB     0     7   SSD-NVM shared      -         node_A_2
+node_A_2:0n.24   -          0     24  SSD-NVM unassigned  -         -
+node_A_2:0n.25   -          0     25  SSD-NVM unassigned  -         -
+node_A_2:0n.26   -          0     26  SSD-NVM unassigned  -         -
+node_A_2:0n.27   -          0     27  SSD-NVM unassigned  -         -
+node_A_2:0n.28   -          0     28  SSD-NVM unassigned  -         -
+node_A_2:0n.29   -          0     29  SSD-NVM unassigned  -         -
+node_A_2:0n.30   -          0     30  SSD-NVM unassigned  -         -
+node_A_2:0n.31   -          0     31  SSD-NVM unassigned  -         -
+node_A_2:0n.36   -          0     36  SSD-NVM unassigned  -         -
+node_A_2:0n.37   -          0     37  SSD-NVM unassigned  -         -
+node_A_2:0n.38   -          0     38  SSD-NVM unassigned  -         -
+node_A_2:0n.39   -          0     39  SSD-NVM unassigned  -         -
+node_A_2:0n.40   -          0     40  SSD-NVM unassigned  -         -
+node_A_2:0n.41   -          0     41  SSD-NVM unassigned  -         -
+node_A_2:0n.42   -          0     42  SSD-NVM unassigned  -         -
+node_A_2:0n.43   -          0     43  SSD-NVM unassigned  -         -
+32 entries were displayed.
+----
++
+次の例は、 cluster_B についての出力を示しています。
+
++
+[listing]
+----
+cluster_B::> disk show
+                 Usable     Disk              Container   Container
+Disk             Size       Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+
+Info: This cluster has partitioned disks. To get a complete list of spare disk
+capacity use "storage aggregate show-spare-disks".
+node_B_1:0n.12   1.75TB     0     12  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.13   1.75TB     0     13  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.14   1.75TB     0     14  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.15   1.75TB     0     15  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.16   1.75TB     0     16  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.17   1.75TB     0     17  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.18   1.75TB     0     18  SSD-NVM shared      aggr0     node_B_1
+node_B_1:0n.19   1.75TB     0     19  SSD-NVM shared      -         node_B_1
+node_B_2:0n.0    1.75TB     0     0   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.1    1.75TB     0     1   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.2    1.75TB     0     2   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.3    1.75TB     0     3   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.4    1.75TB     0     4   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.5    1.75TB     0     5   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.6    1.75TB     0     6   SSD-NVM shared      aggr0_node_B_1_0 node_B_2
+node_B_2:0n.7    1.75TB     0     7   SSD-NVM shared      -         node_B_2
+node_B_2:0n.24   -          0     24  SSD-NVM unassigned  -         -
+node_B_2:0n.25   -          0     25  SSD-NVM unassigned  -         -
+node_B_2:0n.26   -          0     26  SSD-NVM unassigned  -         -
+node_B_2:0n.27   -          0     27  SSD-NVM unassigned  -         -
+node_B_2:0n.28   -          0     28  SSD-NVM unassigned  -         -
+node_B_2:0n.29   -          0     29  SSD-NVM unassigned  -         -
+node_B_2:0n.30   -          0     30  SSD-NVM unassigned  -         -
+node_B_2:0n.31   -          0     31  SSD-NVM unassigned  -         -
+node_B_2:0n.36   -          0     36  SSD-NVM unassigned  -         -
+node_B_2:0n.37   -          0     37  SSD-NVM unassigned  -         -
+node_B_2:0n.38   -          0     38  SSD-NVM unassigned  -         -
+node_B_2:0n.39   -          0     39  SSD-NVM unassigned  -         -
+node_B_2:0n.40   -          0     40  SSD-NVM unassigned  -         -
+node_B_2:0n.41   -          0     41  SSD-NVM unassigned  -         -
+node_B_2:0n.42   -          0     42  SSD-NVM unassigned  -         -
+node_B_2:0n.43   -          0     43  SSD-NVM unassigned  -         -
+32 entries were displayed.
+
+cluster_B::>
+----
+
+
+
+
+== クラスタをピアリング
+
+[role="lead"]
+MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
+
+* 関連情報 *
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-when-using-dedicated-ports[専用のポートを使用する場合の考慮事項]
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-when-sharing-data-ports[データポートを共有する場合の考慮事項]
+
+
+
+== クラスタピアリング用のクラスタ間 LIF を設定しています
+
+[role="lead"]
+MetroCluster パートナークラスタ間の通信に使用するポートにクラスタ間 LIF を作成する必要があります。専用のポートを使用することも、データトラフィック用を兼ねたポートを使用することもできます。
+
+
+
+=== 専用ポートでのクラスタ間 LIF の設定
+
+[role="lead"]
+専用ポートにクラスタ間 LIF を設定できます。通常は、レプリケーショントラフィックに使用できる帯域幅が増加します。
+
+. クラスタ内のポートを表示します。「 network port show 」を参照してください
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 cluster01 内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+----
+. クラスタ間通信専用に使用できるポートを決定します。「 network interface show -fields home-port 、 curr-port 」
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、ポート e0e とポート e0f に LIF が割り当てられていないことを示しています。
+
++
+[listing]
+----
+
+cluster01::> network interface show -fields home-port,curr-port
+vserver lif                  home-port curr-port
+------- -------------------- --------- ---------
+Cluster cluster01-01_clus1   e0a       e0a
+Cluster cluster01-01_clus2   e0b       e0b
+Cluster cluster01-02_clus1   e0a       e0a
+Cluster cluster01-02_clus2   e0b       e0b
+cluster01
+        cluster_mgmt         e0c       e0c
+cluster01
+        cluster01-01_mgmt1   e0c       e0c
+cluster01
+        cluster01-02_mgmt1   e0c       e0c
+----
+. 専用ポートのフェイルオーバーグループを作成します。「 network interface failover-groups create -vserver system_svm -failover-group failover_group -targets physical_or_logical_ports 」
++
+次の例は、ポート e0e とポート e0f を、システム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。
+
++
+[listing]
+----
+cluster01::> network interface failover-groups create -vserver cluster01 -failover-group
+intercluster01 -targets
+cluster01-01:e0e,cluster01-01:e0f,cluster01-02:e0e,cluster01-02:e0f
+----
+. フェイルオーバーグループが作成されたことを確認します。「 network interface failover-groups show
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface failover-groups show
+                                  Failover
+Vserver          Group            Targets
+---------------- ---------------- --------------------------------------------
+Cluster
+                 Cluster
+                                  cluster01-01:e0a, cluster01-01:e0b,
+                                  cluster01-02:e0a, cluster01-02:e0b
+cluster01
+                 Default
+                                  cluster01-01:e0c, cluster01-01:e0d,
+                                  cluster01-02:e0c, cluster01-02:e0d,
+                                  cluster01-01:e0e, cluster01-01:e0f
+                                  cluster01-02:e0e, cluster01-02:e0f
+                 intercluster01
+                                  cluster01-01:e0e, cluster01-01:e0f
+                                  cluster01-02:e0e, cluster01-02:e0f
+----
+. システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
++
+[cols="1,3"]
+|===
+
+
+| ONTAP バージョン | コマンドを実行します 
+
+
+ a| 
+9.6 以降
+ a| 
+「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask-failover-group failover_group 」という名前のポートを作成します
+
+
+
+ a| 
+9.5 以前
+ a| 
+network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask-failover-group failover_group を作成します
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、フェイルオーバーグループ intercluster01 にクラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
+
++
+[listing]
+----
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0e -address 192.168.1.201
+-netmask 255.255.255.0 -failover-group intercluster01
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.168.1.202
+-netmask 255.255.255.0 -failover-group intercluster01
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show -service -policy default -intercluster 」のように表示されます
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 network interface show -role intercluster 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0e     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0f     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show -service -policy default -intercluster-failover 」のように入力します
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 network interface show -role intercluster-failover 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 SVM0e ポートのクラスタ間 LIF cluster01_icl01 と cluster01_icl02 が e0f ポートにフェイルオーバーされることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster –failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0e   local-only      intercluster01
+                            Failover Targets:  cluster01-01:e0e,
+                                               cluster01-01:e0f
+         cluster01_icl02 cluster01-02:e0e   local-only      intercluster01
+                            Failover Targets:  cluster01-02:e0e,
+                                               cluster01-02:e0f
+----
+
+
+* 関連情報 *
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-when-using-dedicated-ports[専用のポートを使用する場合の考慮事項]
+
+
+
+=== 共有データポートでのクラスタ間 LIF の設定
+
+[role="lead"]
+データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。
+
+. クラスタ内のポートを表示します。「 network port show 」を参照してください
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 cluster01 内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+----
+. システム SVM にクラスタ間 LIF を作成します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
+
++
+[listing]
+----
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0c -address 192.168.1.201
+-netmask 255.255.255.0
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.168.1.202
+-netmask 255.255.255.0
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show -service -policy default -intercluster 」のように表示されます
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 network interface show -role intercluster 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0c     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0c     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+|===
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show – service-policy default-intercluster-failover 」と表示されます
+
+
+
+ a| 
+* ONTAP 9.5 以前： *
+
+
+
+ a| 
+「 network interface show -role intercluster-failover 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 e0c ポート上のクラスタ間 LIF cluster01_icl01 と cluster01_icl02 が e0d ポートにフェイルオーバーされることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster –failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0c   local-only      192.168.1.201/24
+                            Failover Targets: cluster01-01:e0c,
+                                              cluster01-01:e0d
+         cluster01_icl02 cluster01-02:e0c   local-only      192.168.1.201/24
+                            Failover Targets: cluster01-02:e0c,
+                                              cluster01-02:e0d
+----
+
+
+* 関連情報 *
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-when-sharing-data-ports[データポートを共有する場合の考慮事項]
+
+
+
+== クラスタピア関係を作成
+
+[role="lead"]
+cluster peer create コマンドを使用すると、ローカルクラスタとリモートクラスタ間のピア関係を作成できます。ピア関係が作成されたら、リモートクラスタで cluster peer create を実行して、ローカルクラスタに対してピア関係を認証できます。
+
+* ピア関係にあるクラスタ内の各ノードでクラスタ間 LIF を作成しておく必要があります。
+* クラスタで ONTAP 9.3 以降が実行されている必要があります。
++
+.. デスティネーションクラスタで、ソースクラスタとのピア関係を作成します。「 + cluster peer create -generate-passphrase -offer-expiration MM/DD/YYYY HH ： MM ： SS | 1 ... 7 days | 1 ... 168 hours -peer-addrs peer_lif_ips-ipspace ips+`
++
+generate-passphrase と -peer-addrs の両方を指定した場合、生成されたパスワードを使用できるのは -peer-addrs にクラスタ間 LIF が指定されたクラスタのみになります。
+
++
+カスタム IPspace を使用しない場合は、 -ipspace オプションを無視してかまいません。コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、リモートクラスタを指定せずにクラスタピア関係を作成します。
+
++
+[listing]
+----
+cluster02::> cluster peer create -generate-passphrase -offer-expiration 2days
+
+                     Passphrase: UCa+6lRVICXeL/gq1WrK7ShR
+                Expiration Time: 6/7/2017 08:16:10 EST
+  Initial Allowed Vserver Peers: -
+            Intercluster LIF IP: 192.140.112.101
+              Peer Cluster Name: Clus_7ShR (temporary generated)
+
+Warning: make a note of the passphrase - it cannot be displayed again.
+----
+.. ソースクラスタで、ソースクラスタをデスティネーションクラスタで認証します。「 cluster peer create -peer-addrs peer_lif_ips-ipspace 」
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、クラスタ間 LIF の IP アドレス 192.140.112.101 および 192.140.112.102 でローカルクラスタをリモートクラスタに対して認証します。
+
++
+[listing]
+----
+cluster01::> cluster peer create -peer-addrs 192.140.112.101,192.140.112.102
+
+Notice: Use a generated passphrase or choose a passphrase of 8 or more characters.
+        To ensure the authenticity of the peering relationship, use a phrase or sequence of characters that would be hard to guess.
+
+Enter the passphrase:
+Confirm the passphrase:
+
+Clusters cluster02 and cluster01 are peered.
+----
++
+プロンプトが表示されたら、ピア関係のパスフレーズを入力します。
+
+.. クラスタピア関係が作成されたことを確認します。「 cluster peer show -instance
++
+[listing]
+----
+cluster01::> cluster peer show -instance
+
+                               Peer Cluster Name: cluster02
+                   Remote Intercluster Addresses: 192.140.112.101, 192.140.112.102
+              Availability of the Remote Cluster: Available
+                             Remote Cluster Name: cluster2
+                             Active IP Addresses: 192.140.112.101, 192.140.112.102
+                           Cluster Serial Number: 1-80-123456
+                  Address Family of Relationship: ipv4
+            Authentication Status Administrative: no-authentication
+               Authentication Status Operational: absent
+                                Last Update Time: 02/05 21:05:41
+                    IPspace for the Relationship: Default
+----
+.. ピア関係にあるノードの接続状態とステータスを確認します : cluster peer health show
++
+[listing]
+----
+cluster01::> cluster peer health show
+Node       cluster-Name                Node-Name
+             Ping-Status               RDB-Health Cluster-Health  Avail…
+---------- --------------------------- ---------  --------------- --------
+cluster01-01
+           cluster02                   cluster02-01
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+                                       cluster02-02
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+cluster01-02
+           cluster02                   cluster02-01
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+                                       cluster02-02
+             Data: interface_reachable
+             ICMP: interface_reachable true       true            true
+----
+
+
+
+
+
+
+== DR グループを作成します
+
+[role="lead"]
+クラスタ間にディザスタリカバリ（ DR ）グループ関係を作成する必要があります。
+
+この手順は、 MetroCluster 構成の一方のクラスタで実行します。これにより、両方のクラスタのノード間に DR 関係が作成されます。
+
+
+NOTE: DR グループを作成したあとに DR 関係を変更することはできません。
+
+image::../media/mcc_dr_groups_4_node.gif[MCC DR グループ 4 ノード]
+
+. 各ノードで次のコマンドを入力して、 DR グループを作成する準備ができていることを確認します。 MetroCluster configuration-settings show-status
++
+コマンドの出力に、ノードの準備が完了していることが示されます。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings show-status
+Cluster                    Node          Configuration Settings Status
+-------------------------- ------------- --------------------------------
+cluster_A                  node_A_1      ready for DR group create
+                           node_A_2      ready for DR group create
+2 entries were displayed.
+----
++
+[listing]
+----
+cluster_B::> metrocluster configuration-settings show-status
+Cluster                    Node          Configuration Settings Status
+-------------------------- ------------- --------------------------------
+cluster_B                  node_B_1      ready for DR group create
+                           node_B_2      ready for DR group create
+2 entries were displayed.
+----
+. DR グループを作成します。「 MetroCluster configurion-settings dr-group create -partner-cluster partner-cluster-name -local-node local-node-name remote-node remote-node-name 」
++
+このコマンドは 1 回だけ実行します。パートナークラスタで繰り返す必要はありません。コマンドでは、リモートクラスタの名前、および 1 つのローカルノードとパートナークラスタの 1 つのノードの名前を指定します。
+
++
+指定した 2 つのノードが DR パートナーとして設定され、他の 2 つのノード（コマンドで指定していないノード）が DR グループの 2 つ目の DR ペアとして設定されます。このコマンドの入力後にこれらの関係を変更することはできません。
+
++
+次のコマンドでは、次の DR ペアが作成されます。
+
++
+** node_A_1 と node_B_1
+** Node_a_2 と Node_B_2
+
+
++
+[listing]
+----
+Cluster_A::> metrocluster configuration-settings dr-group create -partner-cluster cluster_B -local-node node_A_1 -remote-node node_B_1
+[Job 27] Job succeeded: DR Group Create is successful.
+----
+
+
+
+
+== MetroCluster IP インターフェイスの設定と接続
+
+[role="lead"]
+各ノードのストレージと不揮発性キャッシュのレプリケーションに使用する MetroCluster IP インターフェイスを設定する必要があります。その後、 MetroCluster IP インターフェイスを使用して接続を確立します。これにより、ストレージレプリケーション用の iSCSI 接続が作成されます。
+
+
+NOTE: MetroCluster の IP アドレスは初期設定後は変更できないため、慎重に選択する必要があります。
+
+* ノードごとに 2 つのインターフェイスを作成する必要があります。インターフェイスは、 MetroCluster RCF ファイルで定義されている VLAN に関連付ける必要があります。
+* すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートをもう一方の VLAN に作成する必要があります。を参照してください xref:concept_prepare_for_the_mcc_installation.html#Considerations-for-metrocluster-ip-configuration[MetroCluster IP 構成に関する考慮事項]。
+
+
+|===
+| 注： 
+
+
+ a| 
+* ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートはそれぞれ異なる VLAN を使用します。 10 と 20 です。また、「 MetroCluster configurion-settings interface create 」コマンドの -vlan-id パラメータを使用すると、 100 より大きい（デフォルト以外の） VLAN を（ 101 ～ 4095 の間）指定できます。
+* ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
+
+
+|===
+次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。
+
+|===
+
+
+| AFF プラットフォーム | FAS プラットフォーム 
+
+
+ a| 
+* AFF A220
+* AFF A250
+* AFF A400
+
+ a| 
+* FAS2750
+* FAS500f
+* FAS8300
+* FAS8700 の場合
+
+
+|===
+この例では、次の IP アドレスとサブネットを使用しています。
+
+|===
+| ノード | インターフェイス | IP アドレス | サブネット 
+
+
+ a| 
+node_A_1
+ a| 
+MetroCluster IP インターフェイス 1
+ a| 
+10.1.1.1
+ a| 
+10.1.1/24
+
+
+
+ a| 
+MetroCluster IP インターフェイス 2
+ a| 
+10.1.2.1
+ a| 
+10.1.2/24
+
+
+
+ a| 
+Node_a_2
+ a| 
+MetroCluster IP インターフェイス 1
+ a| 
+10.1.1.2
+ a| 
+10.1.1/24
+
+
+
+ a| 
+MetroCluster IP インターフェイス 2
+ a| 
+10.1.2.2
+ a| 
+10.1.2/24
+
+
+
+ a| 
+node_B_1
+ a| 
+MetroCluster IP インターフェイス 1
+ a| 
+10.1.1.3 の場合
+ a| 
+10.1.1/24
+
+
+
+ a| 
+MetroCluster IP インターフェイス 2
+ a| 
+10.1.2.3
+ a| 
+10.1.2/24
+
+
+
+ a| 
+node_B_2
+ a| 
+MetroCluster IP インターフェイス 1
+ a| 
+10.1.1.4
+ a| 
+10.1.1/24
+
+
+
+ a| 
+MetroCluster IP インターフェイス 2
+ a| 
+10.1.2.4
+ a| 
+10.1.2/24
+
+|===
+次の表に示すように、 MetroCluster IP インターフェイスで使用される物理ポートはプラットフォームモデルによって異なります。
+
+|===
+| プラットフォームモデル | MetroCluster の IP ポート | VLAN ID |  
+
+
+ a| 
+AFF A800
+ a| 
+e0b
+ a| 
+使用されません
+ a| 
+
+
+
+ a| 
+e1b
+ a| 
+
+
+
+ a| 
+AFF A700 および FAS9000
+ a| 
+e5
+ a| 
+
+
+
+ a| 
+e5b
+ a| 
+
+
+
+ a| 
+AFF A400
+ a| 
+e3a の場合
+ a| 
+
+
+
+ a| 
+e3b
+ a| 
+
+
+
+ a| 
+AFF A320
+ a| 
+e0g
+ a| 
+
+
+
+ a| 
+E0h
+ a| 
+
+
+
+ a| 
+AFF A300 および FAS8200
+ a| 
+E1A
+ a| 
+
+
+
+ a| 
+e1b
+ a| 
+
+
+
+ a| 
+AFF A220 および FAS2750
+ a| 
+e0a
+ a| 
+10.
+ a| 
+このようなシステムでは、これらの物理ポートがクラスタインターフェイスとしても使用されます。
+
+
+
+ a| 
+e0b
+ a| 
+20
+
+
+
+ a| 
+AFF A250 および FAS500f
+ a| 
+e0c
+ a| 
+10.
+ a| 
+
+
+
+ a| 
+e0d
+ a| 
+20
+ a| 
+
+
+
+ a| 
+FAS8300 と FAS8700
+ a| 
+e0c
+ a| 
+ a| 
+e0d
+
+|===
+この例で使用するポートは、 AFF A700 または FAS9000 システムの場合のものです。
+
+. 各ノードでディスクの自動割り当てが有効になっていることを確認します。「 storage disk option show
++
+ディスクの自動割り当てでは、シェルフ単位でプール 0 とプール 1 のディスクが割り当てられます。
+
++
+Auto Assign 列は、ディスクの自動割り当てが有効になっているかどうかを示します。
+
++
+[listing]
+----
+
+Node        BKg. FW. Upd.  Auto Copy   Auto Assign  Auto Assign Policy
+----------  -------------  ----------  -----------  ------------------
+node_A_1             on           on           on           default
+node_A_2             on           on           on           default
+2 entries were displayed.
+----
+. ノード上に MetroCluster IP インターフェイスを作成できることを確認します。「 MetroCluster configurion-settings show-status 」
++
+すべてのノードの準備が完了していることを確認
+
++
+[listing]
+----
+
+Cluster       Node         Configuration Settings Status
+----------    -----------  ---------------------------------
+cluster_A
+              node_A_1     ready for interface create
+              node_A_2     ready for interface create
+cluster_B
+              node_B_1     ready for interface create
+              node_B_2     ready for interface create
+4 entries were displayed.
+----
+. node_A_1 にインターフェイスを作成します。
++
+|===
+
+
+| * 注： * 
+
+
+ a| 
+** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
+
+
+|===
++
+.. node_A_1 のポート e5a でインターフェイスを設定します。 MetroCluster configurion-settings interface create -cluster -name cluster -name -home-node node -name -home-port e5a -address ip-address -netmask netmask になります
++
+次の例は、 node_A_1 のポート e5a に IP アドレスが 10.1.1.1 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_1 -home-port e5a -address 10.1.1.1 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
+.. node_A_1 のポート e5b にインターフェイスを設定します。「 MetroCluster configuration] -settings interface create -cluster -name cluster-name -home-node node_name -home-port e5b -address ip-address -netmask netmask 」
++
+次の例は、 node_A_1 のポート e5b に IP アドレスが 10.1.2.1 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_1 -home-port e5b -address 10.1.2.1 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
+
+
++
+
+NOTE: これらのインターフェイスが存在することを確認するには、「 MetroCluster configurion-settings interface show 」コマンドを使用します。
+
+. node_A_1 にインターフェイスを作成します。
++
+|===
+
+
+| * 注： * 
+
+
+ a| 
+** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
+
+
+|===
++
+.. node_A_2 のポート e5a でインターフェイスを設定します。 MetroCluster configurion-settings interface create -cluster -name cluster -name -home-node node -name -home-port e5a -address ip-address -netmask netmask になります
++
+次の例は、 node_A_2 のポート e5a に IP アドレスが 10.1.1.2 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_2 -home-port e5a -address 10.1.1.2 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
++
+MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。次の例は、 VLAN ID が 120 の AFF A220 システムに対するコマンドを示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_2 -home-port e0a -address 10.1.1.2 -netmask 255.255.255.0 -vlan-id 120
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
+.. node_A_2 のポート e5b にインターフェイスを設定します：「 MetroCluster configuration] - settings interface create -cluster -name cluster-name -home-node node-name -home-port e5b -address ip-address -netmask netmask
++
+次の例は、 node_A_2 のポート e5b に IP アドレスが 10.1.2.2 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_2 -home-port e5b -address 10.1.2.2 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
++
+MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。次の例は、 VLAN ID が 220 の AFF A220 システムに対するコマンドを示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_2 -home-port e0b -address 10.1.2.2 -netmask 255.255.255.0 -vlan-id 220
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
+
+
+. node_B_1 にインターフェイスを作成します。
++
+|===
+
+
+| * 注： * 
+
+
+ a| 
+** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
+
+
+|===
++
+.. node_B_1 のポート e5a にインターフェイスを設定します。 ``m etrocluster 設定 -settings interface create -cluster -nameccluster-name -home-port e5a-addressip-address -netmask netmask``
++
+次の例は、 node_B_1 のポート e5a に IP アドレスが 10.1.1.3 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_B_1 -home-port e5a -address 10.1.1.3 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.cluster_A::>
+----
+.. node_B_1 のポート e5b にインターフェイスを設定します。 MetroCluster configuration] -settings interface create -cluster -name cluster-name -home-node node_name -home-port e5a ip-address -netmask netmask
++
+次の例は、 node_B_1 のポート e5b に IP アドレスが 10.1.2.3 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_B_1 -home-port e5b -address 10.1.2.3 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.cluster_A::>
+----
+
+
+. node_B_2 にインターフェイスを作成
++
+|===
+
+
+| * 注： * 
+
+
+ a| 
+** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
+
+
+|===
++
+.. node_B_2 のポート e5a にインターフェイスを設定します。 ``m etrocluster 設定 -settings interface create -cluster -name cluster-name-home-port e5a-addressip -addressip -addressss ip-address -netmask netmask`
++
+次の例は、 node_B_2 のポート e5a に IP アドレスが 10.1.1.4 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_B::>metrocluster configuration-settings interface create -cluster-name cluster_B -home-node node_B_2 -home-port e5a -address 10.1.1.4 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.cluster_A::>
+----
+.. node_B_2 のポート e5b にインターフェイスを設定します：「 m 」 etrocluster configuration settings interface create -cluster -name cluster-name -home-node node_name -home-port e5b -address ip-address -netmask netmask 」
++
+次の例は、 node_B_2 のポート e5b に IP アドレスが 10.1.2.4 のインターフェイスを作成する例を示しています。
+
++
+[listing]
+----
+cluster_B::> metrocluster configuration-settings interface create -cluster-name cluster_B -home-node node_B_2 -home-port e5b -address 10.1.2.4 -netmask 255.255.255.0
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
+
+
+. インターフェイスが設定されていることを確認します。「 MetroCluster configurion-settings interface show 」
++
+次に、各インターフェイスの設定状態が completed になっている例を示します。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface show
+DR                                                              Config
+Group Cluster Node    Network Address Netmask         Gateway   State
+----- ------- ------- --------------- --------------- --------- ----------
+1     cluster_A  node_A_1
+                 Home Port: e5a
+                      10.1.1.1     255.255.255.0   -         completed
+                 Home Port: e5b
+                      10.1.2.1     255.255.255.0   -         completed
+                 node_A_2
+                 Home Port: e5a
+                      10.1.1.2     255.255.255.0   -         completed
+                 Home Port: e5b
+                      10.1.2.2     255.255.255.0   -         completed
+      cluster_B  node_B_1
+                 Home Port: e5a
+                      10.1.1.3     255.255.255.0   -         completed
+                 Home Port: e5b
+                      10.1.2.3     255.255.255.0   -         completed
+                 node_B_2
+                 Home Port: e5a
+                      10.1.1.4     255.255.255.0   -         completed
+                 Home Port: e5b
+                      10.1.2.4     255.255.255.0   -         completed
+8 entries were displayed.
+cluster_A::>
+----
+. ノードが MetroCluster インターフェイスに接続する準備ができていることを確認します。「 MetroCluster configurion-settings show-status 」
++
+次の例は、「 ready for connection 」状態のすべてのノードを示しています。
+
++
+[listing]
+----
+
+Cluster       Node         Configuration Settings Status
+----------    -----------  ---------------------------------
+cluster_A
+              node_A_1     ready for connection connect
+              node_A_2     ready for connection connect
+cluster_B
+              node_B_1     ready for connection connect
+              node_B_2     ready for connection connect
+4 entries were displayed.
+----
+. 接続を確立します MetroCluster 設定 - 接続接続接続
++
+このコマンドの問題実行後に IP アドレスを変更することはできません。
+
++
+次の例は、 cluster_A が正常に接続されたことを示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings connection connect
+[Job 53] Job succeeded: Connect is successful.
+cluster_A::>
+----
+. 接続が確立されたことを確認します MetroCluster configurion-settings show-status
++
+すべてのノードの構成設定ステータスが completed になっていることを確認します。
+
++
+[listing]
+----
+
+Cluster       Node         Configuration Settings Status
+----------    -----------  ---------------------------------
+cluster_A
+              node_A_1     completed
+              node_A_2     completed
+cluster_B
+              node_B_1     completed
+              node_B_2     completed
+4 entries were displayed.
+----
+. iSCSI 接続が確立されたことを確認します。
++
+.. advanced 権限レベルに切り替えます。「 set -privilege advanced 」
++
+アドバンス・モードに進むかどうかを確認するプロンプトが表示されたら 'y' で応答する必要があります advanced モードのプロンプト（ *>` ）が表示されます
+
+.. 「 storage iscsi-initiator show 」という接続状況を表示します
++
+ONTAP 9.5 を実行しているシステムでは、クラスタごとに 8 つの MetroCluster IP イニシエータが出力に表示されます。
+
++
+ONTAP 9.4 以前を実行しているシステムでは、各クラスタに MetroCluster IP イニシエータが 4 つあり、出力に表示されます。
+
++
+次の例は、 ONTAP 9.5 を実行しているクラスタの 8 つの MetroCluster IP イニシエータを示しています。
+
++
+[listing]
+----
+cluster_A::*> storage iscsi-initiator show
+Node Type Label    Target Portal           Target Name                      Admin/Op
+---- ---- -------- ------------------      -------------------------------- --------
+
+cluster_A-01
+     dr_auxiliary
+              mccip-aux-a-initiator
+                   10.227.16.113:65200     prod506.com.company:abab44       up/up
+              mccip-aux-a-initiator2
+                   10.227.16.113:65200     prod507.com.company:abab44       up/up
+              mccip-aux-b-initiator
+                   10.227.95.166:65200     prod506.com.company:abab44       up/up
+              mccip-aux-b-initiator2
+                   10.227.95.166:65200     prod507.com.company:abab44       up/up
+     dr_partner
+              mccip-pri-a-initiator
+                   10.227.16.112:65200     prod506.com.company:cdcd88       up/up
+              mccip-pri-a-initiator2
+                   10.227.16.112:65200     prod507.com.company:cdcd88       up/up
+              mccip-pri-b-initiator
+                   10.227.95.165:65200     prod506.com.company:cdcd88       up/up
+              mccip-pri-b-initiator2
+                   10.227.95.165:65200     prod507.com.company:cdcd88       up/up
+cluster_A-02
+     dr_auxiliary
+              mccip-aux-a-initiator
+                   10.227.16.112:65200     prod506.com.company:cdcd88       up/up
+              mccip-aux-a-initiator2
+                   10.227.16.112:65200     prod507.com.company:cdcd88       up/up
+              mccip-aux-b-initiator
+                   10.227.95.165:65200     prod506.com.company:cdcd88       up/up
+              mccip-aux-b-initiator2
+                   10.227.95.165:65200     prod507.com.company:cdcd88       up/up
+     dr_partner
+              mccip-pri-a-initiator
+                   10.227.16.113:65200     prod506.com.company:abab44       up/up
+              mccip-pri-a-initiator2
+                   10.227.16.113:65200     prod507.com.company:abab44       up/up
+              mccip-pri-b-initiator
+                   10.227.95.166:65200     prod506.com.company:abab44       up/up
+              mccip-pri-b-initiator2
+                   10.227.95.166:65200     prod507.com.company:abab44       up/up
+16 entries were displayed.
+----
+.. admin 権限レベルに戻ります。「 set -privilege admin 」
+
+
+. ノードが MetroCluster 構成の最終的な実装の準備ができていることを確認します MetroCluster node show
++
+[listing]
+----
+cluster_A::> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- ----
+-     cluster_A
+              node_A_1           ready to configure -     -
+              node_A_2           ready to configure -     -
+2 entries were displayed.
+cluster_A::>
+----
++
+[listing]
+----
+cluster_B::> metrocluster node show
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- ----
+-     cluster_B
+              node_B_1           ready to configure -     -
+              node_B_2           ready to configure -     -
+2 entries were displayed.
+cluster_B::>
+----
+
+
+
+
+== プール 1 ドライブの割り当てを検証または手動で実行する
+
+[role="lead"]
+ストレージ構成に応じて、 MetroCluster IP 構成の各ノードのプール 1 のドライブ割り当てを確認するか、ドライブを手動で割り当てる必要があります。使用する手順は、使用する ONTAP のバージョンによって異なります。
+
+|===
+| 構成タイプ | 手順 
+
+
+ a| 
+自動ドライブ割り当ての要件を満たしているシステム、または ONTAP 9.3 を実行している工場出荷時の状態のシステム
+ a| 
+<<Verifying disk assignment for pool 1 disks>>
+
+
+
+ a| 
+3 台のシェルフ、またはそれ以上の 4 の倍数でない奇数個（ 7 台など）のシェルフを含む、 ONTAP 9.5 を実行している構成。
+ a| 
+<<Manually assigning drives for pool 1 (ONTAP 9.4 or later)>>
+
+
+
+ a| 
+各サイトにストレージシェルフが 4 台ない構成で ONTAP 9.4 を実行している
+ a| 
+<<Manually assigning drives for pool 1 (ONTAP 9.4 or later)>>
+
+
+
+ a| 
+工場出荷時の状態ではないシステムで、工場出荷時に割り当てられたドライブが搭載された ONTAP 9.3 システムを実行しています。
+ a| 
+<<Manually assigning disks for pool 1 (ONTAP 9.3)>>
+
+|===
+
+
+=== プール 1 ディスクのディスク割り当てを確認しています
+
+[role="lead"]
+リモートディスクがノードに認識され、正しく割り当てられていることを確認する必要があります。
+
+MetroCluster IP インタフェースと接続を MetroCluster configurion-settings connection connect コマンドで作成した後 ' ディスクの自動割り当てが完了するまで 10 分以上待つ必要があります
+
+コマンドの出力には、ディスク名が： node-name ： 0m.i1.0L1 の形式で表示されます
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+
+. プール 1 のディスクが自動的に割り当てられていることを確認します。「 Disk show 」
++
+次の出力は、外付けシェルフがない AFF A800 システムについての出力を示しています。
+
++
+ドライブの自動割り当てにより、 4 分の 1 （ 8 ドライブ）が node_A_1 に、 4 分の 1 が node_A_2 に割り当てられています。残りのドライブは、 node_B_1 と node_B_2 のリモート（プール 1 ）のディスクになります。
+
++
+[listing]
+----
+cluster_B::> disk show -host-adapter 0m -owner node_B_2
+                    Usable     Disk              Container   Container
+Disk                Size       Shelf Bay Type    Type        Name      Owner
+----------------    ---------- ----- --- ------- ----------- --------- --------
+node_B_2:0m.i0.2L4  894.0GB    0     29  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.2L10 894.0GB    0     25  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.3L3  894.0GB    0     28  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.3L9  894.0GB    0     24  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.3L11 894.0GB    0     26  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.3L12 894.0GB    0     27  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.3L15 894.0GB    0     30  SSD-NVM shared      -         node_B_2
+node_B_2:0m.i0.3L16 894.0GB    0     31  SSD-NVM shared      -         node_B_2
+8 entries were displayed.
+
+cluster_B::> disk show -host-adapter 0m -owner node_B_1
+                    Usable     Disk              Container   Container
+Disk                Size       Shelf Bay Type    Type        Name      Owner
+----------------    ---------- ----- --- ------- ----------- --------- --------
+node_B_1:0m.i2.3L19 1.75TB     0     42  SSD-NVM shared      -         node_B_1
+node_B_1:0m.i2.3L20 1.75TB     0     43  SSD-NVM spare       Pool1     node_B_1
+node_B_1:0m.i2.3L23 1.75TB     0     40  SSD-NVM shared       -        node_B_1
+node_B_1:0m.i2.3L24 1.75TB     0     41  SSD-NVM spare       Pool1     node_B_1
+node_B_1:0m.i2.3L29 1.75TB     0     36  SSD-NVM shared       -        node_B_1
+node_B_1:0m.i2.3L30 1.75TB     0     37  SSD-NVM shared       -        node_B_1
+node_B_1:0m.i2.3L31 1.75TB     0     38  SSD-NVM shared       -        node_B_1
+node_B_1:0m.i2.3L32 1.75TB     0     39  SSD-NVM shared       -        node_B_1
+8 entries were displayed.
+
+cluster_B::> disk show
+                    Usable     Disk              Container   Container
+Disk                Size       Shelf Bay Type    Type        Name      Owner
+----------------    ---------- ----- --- ------- ----------- --------- --------
+node_B_1:0m.i1.0L6  1.75TB     0     1   SSD-NVM shared      -         node_A_2
+node_B_1:0m.i1.0L8  1.75TB     0     3   SSD-NVM shared      -         node_A_2
+node_B_1:0m.i1.0L17 1.75TB     0     18  SSD-NVM shared      -         node_A_1
+node_B_1:0m.i1.0L22 1.75TB     0     17 SSD-NVM shared - node_A_1
+node_B_1:0m.i1.0L25 1.75TB     0     12 SSD-NVM shared - node_A_1
+node_B_1:0m.i1.2L2  1.75TB     0     5 SSD-NVM shared - node_A_2
+node_B_1:0m.i1.2L7  1.75TB     0     2 SSD-NVM shared - node_A_2
+node_B_1:0m.i1.2L14 1.75TB     0     7 SSD-NVM shared - node_A_2
+node_B_1:0m.i1.2L21 1.75TB     0     16 SSD-NVM shared - node_A_1
+node_B_1:0m.i1.2L27 1.75TB     0     14 SSD-NVM shared - node_A_1
+node_B_1:0m.i1.2L28 1.75TB     0     15 SSD-NVM shared - node_A_1
+node_B_1:0m.i2.1L1  1.75TB     0     4 SSD-NVM shared - node_A_2
+node_B_1:0m.i2.1L5  1.75TB     0     0 SSD-NVM shared - node_A_2
+node_B_1:0m.i2.1L13 1.75TB     0     6 SSD-NVM shared - node_A_2
+node_B_1:0m.i2.1L18 1.75TB     0     19 SSD-NVM shared - node_A_1
+node_B_1:0m.i2.1L26 1.75TB     0     13 SSD-NVM shared - node_A_1
+node_B_1:0m.i2.3L19 1.75TB     0 42 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L20 1.75TB     0 43 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L23 1.75TB     0 40 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L24 1.75TB     0 41 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L29 1.75TB     0 36 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L30 1.75TB     0 37 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L31 1.75TB     0 38 SSD-NVM shared - node_B_1
+node_B_1:0m.i2.3L32 1.75TB     0 39 SSD-NVM shared - node_B_1
+node_B_1:0n.12      1.75TB     0 12 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.13      1.75TB     0 13 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.14      1.75TB     0 14 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.15      1.75TB 0 15 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.16      1.75TB 0 16 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.17      1.75TB 0 17 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.18      1.75TB 0 18 SSD-NVM shared aggr0 node_B_1
+node_B_1:0n.19      1.75TB 0 19 SSD-NVM shared - node_B_1
+node_B_1:0n.24      894.0GB 0 24 SSD-NVM shared - node_A_2
+node_B_1:0n.25      894.0GB 0 25 SSD-NVM shared - node_A_2
+node_B_1:0n.26      894.0GB 0 26 SSD-NVM shared - node_A_2
+node_B_1:0n.27      894.0GB 0 27 SSD-NVM shared - node_A_2
+node_B_1:0n.28      894.0GB 0 28 SSD-NVM shared - node_A_2
+node_B_1:0n.29      894.0GB 0 29 SSD-NVM shared - node_A_2
+node_B_1:0n.30      894.0GB 0 30 SSD-NVM shared - node_A_2
+node_B_1:0n.31      894.0GB 0 31 SSD-NVM shared - node_A_2
+node_B_1:0n.36      1.75TB 0 36 SSD-NVM shared - node_A_1
+node_B_1:0n.37      1.75TB 0 37 SSD-NVM shared - node_A_1
+node_B_1:0n.38      1.75TB 0 38 SSD-NVM shared - node_A_1
+node_B_1:0n.39      1.75TB 0 39 SSD-NVM shared - node_A_1
+node_B_1:0n.40      1.75TB 0 40 SSD-NVM shared - node_A_1
+node_B_1:0n.41      1.75TB 0 41 SSD-NVM shared - node_A_1
+node_B_1:0n.42      1.75TB 0 42 SSD-NVM shared - node_A_1
+node_B_1:0n.43      1.75TB 0 43 SSD-NVM shared - node_A_1
+node_B_2:0m.i0.2L4  894.0GB 0 29 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.2L10 894.0GB 0 25 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.3L3  894.0GB 0 28 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.3L9  894.0GB 0 24 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.3L11 894.0GB 0 26 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.3L12 894.0GB 0 27 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.3L15 894.0GB 0 30 SSD-NVM shared - node_B_2
+node_B_2:0m.i0.3L16 894.0GB 0 31 SSD-NVM shared - node_B_2
+node_B_2:0n.0       1.75TB 0 0 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.1 1.75TB 0 1 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.2 1.75TB 0 2 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.3 1.75TB 0 3 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.4 1.75TB 0 4 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.5 1.75TB 0 5 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.6 1.75TB 0 6 SSD-NVM shared aggr0_rha12_b1_cm_02_0 node_B_2
+node_B_2:0n.7 1.75TB 0 7 SSD-NVM shared - node_B_2
+64 entries were displayed.
+
+cluster_B::>
+
+
+cluster_A::> disk show
+Usable Disk Container Container
+Disk Size Shelf Bay Type Type Name Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+node_A_1:0m.i1.0L2 1.75TB 0 5 SSD-NVM shared - node_B_2
+node_A_1:0m.i1.0L8 1.75TB 0 3 SSD-NVM shared - node_B_2
+node_A_1:0m.i1.0L18 1.75TB 0 19 SSD-NVM shared - node_B_1
+node_A_1:0m.i1.0L25 1.75TB 0 12 SSD-NVM shared - node_B_1
+node_A_1:0m.i1.0L27 1.75TB 0 14 SSD-NVM shared - node_B_1
+node_A_1:0m.i1.2L1 1.75TB 0 4 SSD-NVM shared - node_B_2
+node_A_1:0m.i1.2L6 1.75TB 0 1 SSD-NVM shared - node_B_2
+node_A_1:0m.i1.2L7 1.75TB 0 2 SSD-NVM shared - node_B_2
+node_A_1:0m.i1.2L14 1.75TB 0 7 SSD-NVM shared - node_B_2
+node_A_1:0m.i1.2L17 1.75TB 0 18 SSD-NVM shared - node_B_1
+node_A_1:0m.i1.2L22 1.75TB 0 17 SSD-NVM shared - node_B_1
+node_A_1:0m.i2.1L5 1.75TB 0 0 SSD-NVM shared - node_B_2
+node_A_1:0m.i2.1L13 1.75TB 0 6 SSD-NVM shared - node_B_2
+node_A_1:0m.i2.1L21 1.75TB 0 16 SSD-NVM shared - node_B_1
+node_A_1:0m.i2.1L26 1.75TB 0 13 SSD-NVM shared - node_B_1
+node_A_1:0m.i2.1L28 1.75TB 0 15 SSD-NVM shared - node_B_1
+node_A_1:0m.i2.3L19 1.75TB 0 42 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L20 1.75TB 0 43 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L23 1.75TB 0 40 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L24 1.75TB 0 41 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L29 1.75TB 0 36 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L30 1.75TB 0 37 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L31 1.75TB 0 38 SSD-NVM shared - node_A_1
+node_A_1:0m.i2.3L32 1.75TB 0 39 SSD-NVM shared - node_A_1
+node_A_1:0n.12 1.75TB 0 12 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.13 1.75TB 0 13 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.14 1.75TB 0 14 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.15 1.75TB 0 15 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.16 1.75TB 0 16 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.17 1.75TB 0 17 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.18 1.75TB 0 18 SSD-NVM shared aggr0 node_A_1
+node_A_1:0n.19 1.75TB 0 19 SSD-NVM shared - node_A_1
+node_A_1:0n.24 894.0GB 0 24 SSD-NVM shared - node_B_2
+node_A_1:0n.25 894.0GB 0 25 SSD-NVM shared - node_B_2
+node_A_1:0n.26 894.0GB 0 26 SSD-NVM shared - node_B_2
+node_A_1:0n.27 894.0GB 0 27 SSD-NVM shared - node_B_2
+node_A_1:0n.28 894.0GB 0 28 SSD-NVM shared - node_B_2
+node_A_1:0n.29 894.0GB 0 29 SSD-NVM shared - node_B_2
+node_A_1:0n.30 894.0GB 0 30 SSD-NVM shared - node_B_2
+node_A_1:0n.31 894.0GB 0 31 SSD-NVM shared - node_B_2
+node_A_1:0n.36 1.75TB 0 36 SSD-NVM shared - node_B_1
+node_A_1:0n.37 1.75TB 0 37 SSD-NVM shared - node_B_1
+node_A_1:0n.38 1.75TB 0 38 SSD-NVM shared - node_B_1
+node_A_1:0n.39 1.75TB 0 39 SSD-NVM shared - node_B_1
+node_A_1:0n.40 1.75TB 0 40 SSD-NVM shared - node_B_1
+node_A_1:0n.41 1.75TB 0 41 SSD-NVM shared - node_B_1
+node_A_1:0n.42 1.75TB 0 42 SSD-NVM shared - node_B_1
+node_A_1:0n.43 1.75TB 0 43 SSD-NVM shared - node_B_1
+node_A_2:0m.i2.3L3 894.0GB 0 28 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L4 894.0GB 0 29 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L9 894.0GB 0 24 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L10 894.0GB 0 25 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L11 894.0GB 0 26 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L12 894.0GB 0 27 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L15 894.0GB 0 30 SSD-NVM shared - node_A_2
+node_A_2:0m.i2.3L16 894.0GB 0 31 SSD-NVM shared - node_A_2
+node_A_2:0n.0 1.75TB 0 0 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.1 1.75TB 0 1 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.2 1.75TB 0 2 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.3 1.75TB 0 3 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.4 1.75TB 0 4 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.5 1.75TB 0 5 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.6 1.75TB 0 6 SSD-NVM shared aggr0_node_A_2_0 node_A_2
+node_A_2:0n.7 1.75TB 0 7 SSD-NVM shared - node_A_2
+64 entries were displayed.
+
+cluster_A::>
+----
+
+
+
+
+=== プール 1 のドライブの手動割り当て（ ONTAP 9.4 以降）
+
+[role="lead"]
+工場出荷時に事前設定されておらず、自動ドライブ割り当ての要件を満たしていないシステムでは、リモートのプール 1 ドライブを手動で割り当てる必要があります。
+
+この手順環境構成は ONTAP 9.4 以降を実行しています。
+
+手動でディスクを割り当てる必要があるかどうかの詳細については、を参照してください xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]。
+
+外付けシェルフがサイトごとに 2 台しかない場合は、次の例に示すように、各サイトのプール 1 で同じシェルフのドライブを共有する必要があります。
+
+* node_A_1 に site_B-shelf_2 （リモート）のベイ 0~11 のドライブを割り当て
+* node_A_2 に site_B-shelf_2 （リモート）のベイ 12~23 のドライブを割り当て
++
+.. MetroCluster IP 構成の各ノードで、リモートドライブをプール 1 に割り当てます。
++
+... 未割り当てのドライブのリストを表示します：「 Disk show -host-adapter 0m -container-type unassigned 」
++
+[listing]
+----
+cluster_A::> disk show -host-adapter 0m -container-type unassigned
+                     Usable           Disk    Container   Container
+Disk                   Size Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+6.23.0                    -    23   0 SSD     unassigned  -         -
+6.23.1                    -    23   1 SSD     unassigned  -         -
+.
+.
+.
+node_A_2:0m.i1.2L51       -    21  14 SSD     unassigned  -         -
+node_A_2:0m.i1.2L64       -    21  10 SSD     unassigned  -         -
+.
+.
+.
+48 entries were displayed.
+
+cluster_A::>
+----
+... リモートドライブ（ 0m ）の所有権を最初のノード（例： node_A_1 ）のプール 1 に割り当てます。「 disk assign -disk disk-id -pool 1 -owner owner-node-name 」
++
+disk-id は owner-node-name のリモートシェルフのドライブを指定する必要があります。
+
+... ドライブがプール 1 に割り当てられていることを確認します : 「ディスク show -host-adapter 0m -container-type unassigned 」
++
+* 注：リモートドライブへのアクセスに使用される iSCSI 接続は、デバイス「 0m 」と表示されます。
+
++
+次の出力では、シェルフ 23 のドライブが割り当てられ、未割り当てドライブのリストに表示されていません。
+
++
+[listing]
+----
+cluster_A::> disk show -host-adapter 0m -container-type unassigned
+                     Usable           Disk    Container   Container
+Disk                   Size Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+node_A_2:0m.i1.2L51       -    21  14 SSD     unassigned  -         -
+node_A_2:0m.i1.2L64       -    21  10 SSD     unassigned  -         -
+.
+.
+.
+node_A_2:0m.i2.1L90       -    21  19 SSD     unassigned  -         -
+24 entries were displayed.
+
+cluster_A::>
+----
+... 同じ手順を繰り返して、サイト A の 2 つ目のノード（例： node_A_1 ）にプール 1 ドライブを割り当てます。
+... サイト B で同じ手順を繰り返します
+
+
+
+
+
+
+
+
+=== プール 1 のディスクの手動割り当て（ ONTAP 9.3 ）
+
+[role="lead"]
+各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してリモート（プール 1 ）のディスクを自動的に割り当てます。最初に、シェルフのディスクを 1 つプール 1 に割り当てる必要があります。シェルフの残りのディスクは ONTAP によって同じプールに自動的に割り当てられます。
+
+これは、 ONTAP 9.3 を実行している手順環境構成です。
+
+この手順は、各ノードにディスクシェルフが少なくとも 2 台あり、シェルフレベルのディスクの自動割り当てが可能な場合にのみ使用できます。
+
+シェルフレベルの自動割り当てを使用できない場合は、リモートディスクを手動で割り当てて、各ノードでディスクのリモートプール（プール 1 ）を構成する必要があります。
+
+ONTAP の自動ディスク割り当て機能は、シェルフ単位でディスクを割り当てます。例：
+
+* site_B-shelf_2 のすべてのディスクが node_A_1 のプール 1 に自動的に割り当てられます
+* site_B-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます
+* site_A-shelf_2 のすべてのディスクが node_B_1 のプール 1 に自動的に割り当てられます
+* site_A-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます
+
+
+各シェルフでディスクを 1 つ指定して、自動割り当てを「開始」する必要があります。
+
+. MetroCluster IP 構成の各ノードで、リモートディスクを 1 つプール 1 に割り当てます。
++
+.. 未割り当てディスクのリストを表示します：「 Disk show -host-adapter 0m -container-type unassigned 」
++
+[listing]
+----
+cluster_A::> disk show -host-adapter 0m -container-type unassigned
+                     Usable           Disk    Container   Container
+Disk                   Size Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+6.23.0                    -    23   0 SSD     unassigned  -         -
+6.23.1                    -    23   1 SSD     unassigned  -         -
+.
+.
+.
+node_A_2:0m.i1.2L51       -    21  14 SSD     unassigned  -         -
+node_A_2:0m.i1.2L64       -    21  10 SSD     unassigned  -         -
+.
+.
+.
+48 entries were displayed.
+
+cluster_A::>
+----
+.. リモートディスク（ 0m ）を選択し、ディスクの所有権を最初のノード（例： node_A_1 ）のプール 1 に割り当てます。「 disk assign -disk disk-id -pool 1 -owner owner-node-name 」
++
+disk-id は、 owner-node-name のリモートシェルフのディスクを識別する必要があります。
+
++
+ONTAP のディスクの自動割り当て機能により、指定したディスクを含むリモートシェルフのすべてのディスクが割り当てられます。
+
+.. ディスクの自動割り当てが完了するまで少なくとも 60 秒待ってから、シェルフ上のリモートディスクがプール 1 に自動的に割り当てられたことを確認します。「ディスクの show -host-adapter 0m -container-type unassigned 」
++
+* 注：リモートディスクへのアクセスに使用される iSCSI 接続は、デバイス「 0m 」と表示されます。
+
++
+次の出力は、シェルフ 23 のディスクが割り当てられ、表示されていないことを示しています。
+
++
+[listing]
+----
+cluster_A::> disk show -host-adapter 0m -container-type unassigned
+                     Usable           Disk    Container   Container
+Disk                   Size Shelf Bay Type    Type        Name      Owner
+---------------- ---------- ----- --- ------- ----------- --------- --------
+node_A_2:0m.i1.2L51       -    21  14 SSD     unassigned  -         -
+node_A_2:0m.i1.2L64       -    21  10 SSD     unassigned  -         -
+node_A_2:0m.i1.2L72       -    21  23 SSD     unassigned  -         -
+node_A_2:0m.i1.2L74       -    21   1 SSD     unassigned  -         -
+node_A_2:0m.i1.2L83       -    21  22 SSD     unassigned  -         -
+node_A_2:0m.i1.2L90       -    21   7 SSD     unassigned  -         -
+node_A_2:0m.i1.3L52       -    21   6 SSD     unassigned  -         -
+node_A_2:0m.i1.3L59       -    21  13 SSD     unassigned  -         -
+node_A_2:0m.i1.3L66       -    21  17 SSD     unassigned  -         -
+node_A_2:0m.i1.3L73       -    21  12 SSD     unassigned  -         -
+node_A_2:0m.i1.3L80       -    21   5 SSD     unassigned  -         -
+node_A_2:0m.i1.3L81       -    21   2 SSD     unassigned  -         -
+node_A_2:0m.i1.3L82       -    21  16 SSD     unassigned  -         -
+node_A_2:0m.i1.3L91       -    21   3 SSD     unassigned  -         -
+node_A_2:0m.i2.0L49       -    21  15 SSD     unassigned  -         -
+node_A_2:0m.i2.0L50       -    21   4 SSD     unassigned  -         -
+node_A_2:0m.i2.1L57       -    21  18 SSD     unassigned  -         -
+node_A_2:0m.i2.1L58       -    21  11 SSD     unassigned  -         -
+node_A_2:0m.i2.1L59       -    21  21 SSD     unassigned  -         -
+node_A_2:0m.i2.1L65       -    21  20 SSD     unassigned  -         -
+node_A_2:0m.i2.1L72       -    21   9 SSD     unassigned  -         -
+node_A_2:0m.i2.1L80       -    21   0 SSD     unassigned  -         -
+node_A_2:0m.i2.1L88       -    21   8 SSD     unassigned  -         -
+node_A_2:0m.i2.1L90       -    21  19 SSD     unassigned  -         -
+24 entries were displayed.
+
+cluster_A::>
+----
+.. 同じ手順を繰り返して、サイト A の 2 つ目のノード（例： node_A_1 ）にプール 1 のディスクを割り当てます。
+.. サイト B で同じ手順を繰り返します
+
+
+
+
+
+
+== ONTAP 9.4 での自動ドライブ割り当ての有効化
+
+[role="lead"]
+ONTAP 9.4 で手順は、自動ドライブ割り当てを前述の手順に従って無効にした場合、すべてのノードで再度有効にする必要があります。
+
+xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+
+. 自動ドライブ割り当てを有効にします。「 storage disk option modify -node node_name -autoassign on 」
++
+このコマンドは、 MetroCluster IP 構成のすべてのノードで問題設定する必要があります。
+
+
+
+
+
+== ルートアグリゲートをミラーリング
+
+[role="lead"]
+データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
+
+デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
+
+[listing]
+----
+storage aggregate modify –aggregate aggr_name -raidtype raid4
+----
+
+NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、アグリゲートの RAID タイプをデフォルトの RAID-DP から RAID4 に変更できます。
+
+. ルートアグリゲートをミラーします。「 storage aggregate mirror aggr_name 」
++
+次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。
+
++
+[listing]
+----
+controller_A_1::> storage aggregate mirror aggr0_controller_A_1
+----
++
+これによりアグリゲートがミラーされるため、ローカルのプレックスとリモートのプレックスがリモートの MetroCluster サイトに配置されたアグリゲートが作成されます。
+
+. MetroCluster 構成の各ノードについて、同じ手順を繰り返します。
+
+
+* 関連情報 *
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"]
+
+
+
+== 各ノードでミラーされたデータアグリゲートを作成します
+
+[role="lead"]
+DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。
+
+* 新しいアグリゲートで使用するドライブを把握しておく必要があります。
+* 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
+* ドライブは特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
++
+ADP を使用するシステムではパーティションを使用してアグリゲートが作成され、各ドライブがパーティション P1 、 P2 、 P3 に分割されます。
+
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。
++
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
++
+.. 使用可能なスペアのリストを表示します。「 storage disk show -spare -owner node_name 」
+.. storage aggregate create -mirror true コマンドを使用して、アグリゲートを作成します。
++
+クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートを作成するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。
+
++
+次のオプションを指定できます。
+
++
+*** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
+*** アグリゲートに追加するドライブのリスト
+*** 追加するドライブ数
++
+
+NOTE: 使用できるドライブ数が限られている最小サポート構成では、 force-small-aggregate オプションを使用して、 3 ディスクの RAID-DP アグリゲートを作成できるように設定する必要があります。
+
+*** アグリゲートに使用するチェックサム形式
+*** 使用するドライブのタイプ
+*** 使用するドライブのサイズ
+*** 使用するドライブの速度
+*** アグリゲート上の RAID グループの RAID タイプ
+*** RAID グループに含めることができるドライブの最大数
+*** これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
+
+
+
+
++
+次のコマンドでは、 10 本のディスクを含むミラーアグリゲートが作成されます。
+
++
+[+]
+
++
+[listing]
+----
+cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_1 -mirror true
+[Job 15] Job is queued: Create aggr1_node_A_1.
+[Job 15] The job is starting.
+[Job 15] Job succeeded: DONE
+----
++
+.. 新しいアグリゲートの RAID グループとドライブを確認します。「 storage aggregate show-status -aggregate aggregate-name 」
+
+
+
+
+
+
+== MetroCluster 構成の実装
+
+[role="lead"]
+MetroCluster 構成でデータ保護を開始するには、 MetroCluster configure コマンドを実行する必要があります。
+
+* ルート以外のミラーされたデータアグリゲートが各クラスタに少なくとも 2 つ必要です。
++
+これは、 storage aggregate show コマンドを使用して確認できます。
+
++
+
+NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください xref:concept_configure_the_mcc_software_in_ontap.adocSTEP_429E7F7532ED4B468B67B9B22968D686[手順 1.] 手順については、を参照し
+
+* コントローラおよびシャーシの ha-config の状態が mccip である必要があります。
+
+
+MetroCluster 設定を有効にするには、いずれかのノードで MetroCluster configure コマンドを 1 回実行します。問題サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
+
+MetroCluster configure コマンドを実行すると、 2 つのクラスタそれぞれでシステム ID が最も小さい 2 つのノードがディザスタリカバリ（ DR ）パートナーとして自動的にペアリングされます。4 ノード MetroCluster 構成の場合は、 DR パートナーのペアは 2 組になります。2 つ目の DR ペアは、システム ID が大きい 2 つのノードで作成されます。
+
+. 次の形式で MetroCluster を設定します。
++
+|===
+| MetroCluster 構成の内容 | 操作 
+
+
+ a| 
+複数のデータアグリゲート
+ a| 
+任意のノードのプロンプトから、 MetroCluster を構成します。 MetroCluster configure node-name
+
+
+
+ a| 
+ミラーされた 1 つのデータアグリゲート
+ a| 
+.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。「 set -privilege advanced 」
++
+advanced モードで続行するかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（ * > ）が表示されます。
+
+.. allow-with-one-aggregate true パラメータを使用して MetroCluster を構成します。 MetroCluster configure -allow-with-one-aggregate true node-name
+.. admin 権限レベルに戻ります。「 set -privilege admin 」
+
+
+|===
++
+* 注： * 複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください link:../maintain/task_move_a_metadata_volume_in_mcc_configurations.html["MetroCluster 構成でのメタデータボリュームの移動"]。
+
++
+次のコマンドは、 controller_A_1 を含む DR グループ内のすべてのノードの MetroCluster 構成を有効にします。
+
++
+[listing]
+----
+cluster_A::*> metrocluster configure -node-name controller_A_1
+
+[Job 121] Job succeeded: Configure is successful.
+----
+. サイト A のネットワークステータスを確認します。「 network port show 」を参照してください
++
+次の例は、 4 ノード MetroCluster 構成でのネットワークポートの用途を示しています。
+
++
+[listing]
+----
+cluster_A::> network port show
+                                                          Speed (Mbps)
+Node   Port      IPspace   Broadcast Domain Link   MTU    Admin/Oper
+------ --------- --------- ---------------- ----- ------- ------------
+controller_A_1
+       e0a       Cluster   Cluster          up     9000  auto/1000
+       e0b       Cluster   Cluster          up     9000  auto/1000
+       e0c       Default   Default          up     1500  auto/1000
+       e0d       Default   Default          up     1500  auto/1000
+       e0e       Default   Default          up     1500  auto/1000
+       e0f       Default   Default          up     1500  auto/1000
+       e0g       Default   Default          up     1500  auto/1000
+controller_A_2
+       e0a       Cluster   Cluster          up     9000  auto/1000
+       e0b       Cluster   Cluster          up     9000  auto/1000
+       e0c       Default   Default          up     1500  auto/1000
+       e0d       Default   Default          up     1500  auto/1000
+       e0e       Default   Default          up     1500  auto/1000
+       e0f       Default   Default          up     1500  auto/1000
+       e0g       Default   Default          up     1500  auto/1000
+14 entries were displayed.
+----
+. MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
++
+.. サイト A から構成を確認します MetroCluster show
++
+[listing]
+----
+cluster_A::> metrocluster show
+
+Configuration: IP fabric
+
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+----
+.. サイト B から構成を確認します MetroCluster show
++
+[listing]
+----
+cluster_B::> metrocluster show
+
+Configuration: IP fabric
+
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                normal
+Remote: cluster_A         Configuration state configured
+                          Mode                normal
+----
+
+
+. 不揮発性メモリのミラーリングで発生する可能性のある問題を回避するには、 4 つのノードのそれぞれを再起動します。「 node reboot -node _node_name -inhibit-takeover true 」
+. 構成を再度確認するには ' 両方のクラスタ上で MetroCluster show コマンドを実行します問題= 8 ノード構成での 2 つ目の DR グループの設定
+
+
+同じ手順を繰り返して、 2 つ目の DR グループのノードを設定します。
+
+
+
+== ミラーされていないデータアグリゲートの作成
+
+[role="lead"]
+MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。
+
+* 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
+* 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されていることを確認する方法を理解しておく必要があります。
+
+
+重要
+
+MetroCluster IP 構成では、スイッチオーバー後にミラーされていないリモートアグリゲートにアクセスできません
+
+
+NOTE: ミラーされていないアグリゲートは、そのアグリゲートを所有するノードに対してローカルでなければなりません。
+
+* ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。
+* アグリゲートのミラーリングの詳細については、ディスクとアグリゲートパワーガイドを参照してください。
++
+.. ミラーされていないアグリゲート配置を有効にします : MetroCluster modify -enable -meServer -aggr-deployment true
+.. ディスクの自動割り当てが無効になっていることを確認します。「 disk option show 」
+.. ミラーされていないアグリゲートを格納するディスクシェルフを設置してケーブル接続します。
++
+使用するプラットフォームとディスクシェルフに対応した設置とセットアップのドキュメントに記載されている手順を使用できます。
+
++
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+.. 新しいシェルフのすべてのディスクを適切なノードに手動で割り当てます。「 disk assign -disk disk-id -owner owner-node-name
+.. 「 storage aggregate create 」というアグリゲートを作成します
++
+クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートが作成されたことを確認するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。
+
++
+また、ミラーされていないシェルフのドライブだけをアグリゲートに追加する必要があります。
+
++
+次のオプションを指定できます。
+
++
+*** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
+*** アグリゲートに追加するドライブまたはアレイ LUN のリスト
+*** 追加するドライブ数
+*** アグリゲートに使用するチェックサム形式
+*** 使用するドライブのタイプ
+*** 使用するドライブのサイズ
+*** 使用するドライブの速度
+*** アグリゲート上の RAID グループの RAID タイプ
+*** RAID グループに含めることができるドライブまたはアレイ LUN の最大数
+*** これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
+
+
+
+
++
+次のコマンドでは、 10 本のディスクを含むミラーされていないアグリゲートが作成さ
+
++
+[+]
+
++
+[listing]
+----
+controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -node controller_A_1
+[Job 15] Job is queued: Create aggr1_controller_A_1.
+[Job 15] The job is starting.
+[Job 15] Job succeeded: DONE
+----
++
+.. 新しいアグリゲートの RAID グループとドライブを確認します。「 storage aggregate show-status -aggregate aggregate-name 」
+.. ミラーされていないアグリゲート配置を無効にします : MetroCluster modify -enable -meServer -aggr-deployment false
+.. ディスクの自動割り当てが有効になっていることを確認します。「 disk option show 」
+
+
+
+
+* 関連情報 *
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
+
+
+== MetroCluster の設定を確認しています
+
+[role="lead"]
+MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。
+
+一方または両方のクラスタに対して MetroCluster check run コマンドを短時間に 2 回実行すると、競合が発生してすべてのデータが収集されない場合があります。それ以降の MetroCluster check show コマンドでは、想定した出力が表示されません。
+
+. 構成を確認します MetroCluster check run
++
+このコマンドはバックグラウンドジョブとして実行され、すぐに完了しない場合があります。
+
++
+[listing]
+----
+cluster_A::> metrocluster check run
+The operation has been started and is running in the background. Wait for
+it to complete and run "metrocluster check show" to view the results. To
+check the status of the running metrocluster check operation, use the command,
+"metrocluster operation history show -job-id 2245"
+----
++
+[listing]
+----
+cluster_A::> metrocluster check show
+Last Checked On: 9/13/2018 20:41:37
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+clusters            ok
+connections         ok
+6 entries were displayed.
+----
+. 最新の MetroCluster check run コマンドから、より詳細な結果を表示します。「 MetroCluster check aggregate show 」「 m etrocluster check cluster show 」「 m etrocluster check config-replication show 「 m etrocluster check lif show 」「 m etrocluster check node show 」
++
+MetroCluster check show コマンドは、最新の MetroCluster check run コマンドの結果を表示します。最新の情報を表示するために、 MetroCluster check show コマンドを使用する前に必ず、 MetroCluster check run コマンドを実行してください。
+
++
+次の例は MetroCluster 、正常な 4 ノード MetroCluster 構成の lun check aggregate show コマンドの出力を示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster check aggregate show
+
+Last Checked On: 8/5/2014 00:42:58
+
+Node                  Aggregate                  Check                      Result
+---------------       --------------------       ---------------------      ---------
+controller_A_1        controller_A_1_aggr0
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_1_aggr1
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_1_aggr2
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+
+
+controller_A_2        controller_A_2_aggr0
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_2_aggr1
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+                      controller_A_2_aggr2
+                                                 mirroring-status           ok
+                                                 disk-pool-allocation       ok
+                                                 ownership-state            ok
+
+18 entries were displayed.
+----
++
+次の例は、正常な 4 ノード MetroCluster 構成の MetroCluster check cluster show コマンドの出力を示しています。この出力は、必要に応じてネゴシエートスイッチオーバーを実行できる状態であることを示しています。
+
++
+[listing]
+----
+Last Checked On: 9/13/2017 20:47:04
+
+Cluster               Check                           Result
+--------------------- ------------------------------- ---------
+mccint-fas9000-0102
+                      negotiated-switchover-ready     not-applicable
+                      switchback-ready                not-applicable
+                      job-schedules                   ok
+                      licenses                        ok
+                      periodic-check-enabled          ok
+mccint-fas9000-0304
+                      negotiated-switchover-ready     not-applicable
+                      switchback-ready                not-applicable
+                      job-schedules                   ok
+                      licenses                        ok
+                      periodic-check-enabled          ok
+10 entries were displayed.
+----
+
+
+* 関連情報 *
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+
+
+
+== ONTAP 設定を完了しています
+
+[role="lead"]
+MetroCluster 構成の設定、有効化、確認が完了したら、必要に応じて SVM 、ネットワークインターフェイス、およびその他の ONTAP 機能を追加してクラスタの設定を完了します。

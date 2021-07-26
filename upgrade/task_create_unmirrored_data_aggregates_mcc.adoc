@@ -1,0 +1,110 @@
+---
+permalink: upgrade/task_create_unmirrored_data_aggregates_mcc.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, create, unmirrored, data, aggregates 
+summary: MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。 
+---
+= ミラーされていないデータアグリゲートの作成
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。
+
+* 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
+* 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されていることを確認する方法を理解しておく必要があります。
+
+
+重要
+
+MetroCluster IP 構成では、スイッチオーバー後にミラーされていないリモートアグリゲートにアクセスできません
+
+
+NOTE: ミラーされていないアグリゲートは、そのアグリゲートを所有するノードに対してローカルでなければなりません。
+
+* ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。
+* アグリゲートのミラーリングの詳細については、ディスクとアグリゲートパワーガイドを参照してください。
++
+.. ミラーされていないアグリゲートの導入を
++
+`*MetroCluster modify.enable -NONEXed-aggr-deployment true *`
+
+.. ディスクの自動割り当てが無効になったことを確認します。
++
+「 * disk option show * 」と入力します
+
+.. ミラーされていないアグリゲートを格納するディスクシェルフを設置してケーブル接続します。
++
+使用するプラットフォームとディスクシェルフに対応した設置とセットアップのドキュメントに記載されている手順を使用できます。
+
++
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+
+.. 新しいシェルフのすべてのディスクを適切なノードに手動で割り当てます。
++
+'*disk assign -disk disk_disk-id -owner_owner -node-name_*
+
+.. アグリゲートを作成します。
++
+'*storage aggregate create *
+
++
+クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートが作成されたことを確認するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。
+
++
+また、ミラーされていないシェルフのドライブだけをアグリゲートに追加する必要があります。
+
++
+次のオプションを指定できます。
+
++
+*** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
+*** アグリゲートに追加するドライブまたはアレイ LUN のリスト
+*** 追加するドライブ数
+*** アグリゲートに使用するチェックサム形式
+*** 使用するドライブのタイプ
+*** 使用するドライブのサイズ
+*** 使用するドライブの速度
+*** アグリゲート上の RAID グループの RAID タイプ
+*** RAID グループに含めることができるドライブまたはアレイ LUN の最大数
+*** これらのオプションの詳細については 'storage aggregate create のマニュアル・ページを参照してください RPM の異なるドライブでも使用できます
+
+
+
+
++
+次のコマンドでは、 10 本のディスクを含むミラーされていないアグリゲートが作成さ
+
++
+[+]
+
++
+[listing]
+----
+controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -node controller_A_1
+[Job 15] Job is queued: Create aggr1_controller_A_1.
+[Job 15] The job is starting.
+[Job 15] Job succeeded: DONE
+----
++
+.. 新しいアグリゲートの RAID グループとドライブを確認します。
++
+「 * storage aggregate show-status -aggregate _aggregate-name _ * 」という形式で表示されます
+
+.. ミラーされていないアグリゲートの導入を
++
+`*MetroCluster modify.enable -NONEXed-aggr-deployment false *`
+
+.. ディスク自動割り当てが有効になっていることを確認します。
++
+「 * disk option show * 」と入力します
+
+
+
+
+
+* 関連情報 *
+
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]

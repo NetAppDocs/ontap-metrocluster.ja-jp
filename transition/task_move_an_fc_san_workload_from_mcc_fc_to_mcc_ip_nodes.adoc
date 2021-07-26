@@ -1,0 +1,274 @@
+---
+permalink: transition/task_move_an_fc_san_workload_from_mcc_fc_to_mcc_ip_nodes.html 
+sidebar: sidebar 
+keywords: non-disruptively, transition, metrocluster, fc, ip, node, san, host, moving, move 
+summary: MetroCluster FC ノードから IP ノードへの無停止移行時は、 FC SAN ホストオブジェクトを MetroCluster FC ノードから IP ノードに無停止で移動する必要があります。 
+---
+= FC SAN ワークロードを MetroCluster FC ノードから MetroCluster IP ノードに移動する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster FC ノードから IP ノードへの無停止移行時は、 FC SAN ホストオブジェクトを MetroCluster FC ノードから IP ノードに無停止で移動する必要があります。
+
+. MetroCluster IP ノードで新しい FC インターフェイス（ LIF ）をセットアップします。
++
+.. 必要に応じて、 MetroCluster IP ノードで、 FC ターゲットパーソナリティへのクライアント接続に使用する FC ポートを変更します。
++
+ノードのリブートが必要になる場合があります。
+
+.. すべての SAN SVM の IP ノードに FC LIF / インターフェイスを作成します。必要に応じて、新しく作成した FC LIF の WWPN が FC SAN スイッチにログインすることを確認します
+
+
+. MetroCluster IP ノードに新しく追加した FC LIF の SAN ゾーニング設定を更新します。
++
+FC SAN クライアントにデータをアクティブに提供している LUN を含むボリュームを移動しやすいように、既存の FC スイッチゾーンを更新して、 FC SAN クライアントが MetroCluster IP ノード上の LUN にアクセスできるようにします。
+
++
+.. FC SAN スイッチ（ Cisco または Brocade ）で、新しく追加した FC SAN LIF の WWPN をゾーンに追加します。
+.. ゾーニングの変更を更新、保存、コミットします。
+.. クライアントから、 MetroCluster IP ノード上の新しい SAN LIF への FC イニシエータログインを確認します。「 svmluns lun show -p
++
+この時点で、クライアントは MetroCluster FC ノードと MetroCluster IP ノードの両方の FC インターフェイスを認識し、ログインしている必要があります。LUN とボリュームは引き続き MetroCluster FC ノードで物理的にホストされます。
+
++
+MetroCluster は FC ノードインターフェイスでのみ報告されるため、クライアントには FC ノード経由のパスのみが表示されます。この値は、 sanlun lun show -p コマンドおよび multipath -ll -d コマンドの出力に表示されます。
+
++
+[listing]
+----
+[root@stemgr]# sanlun lun show -p
+ONTAP Path: vsa_1:/vol/vsa_1_vol6/lun_linux_12
+ LUN: 4
+ LUN Size: 2g
+ Product: cDOT
+ Host Device: 3600a098038304646513f4f674e52774b
+ Multipath Policy: service-time 0
+ Multipath Provider: Native
+--------- ---------- ------- ------------ ----------------------------------------------
+host vserver
+path path /dev/ host vserver
+state type node adapter LIF
+--------- ---------- ------- ------------ ----------------------------------------------
+up primary sdk host3 iscsi_lf__n2_p1_
+up secondary sdh host2 iscsi_lf__n1_p1_
+
+[root@stemgr]# multipath -ll -d
+3600a098038304646513f4f674e52774b dm-5 NETAPP ,LUN C-Mode
+size=2.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| `- 3:0:0:4 sdk 8:160 active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+ `- 2:0:0:4 sdh 8:112 active ready running
+----
+
+
+. レポートノードを変更して MetroCluster IP ノードを追加します
++
+.. SVM 上の LUN のレポートノードを一覧表示します。 lun mapping show -vserver vserver-name -fields reporting-nodes -ostype linux
++
+表示されるレポートノードはローカルノードで、 LUN は FC ノード A_1 および a_2 に物理的に配置されています。
+
++
+[listing]
+----
+cluster_A::> lun mapping show -vserver vsa_1 -fields reporting-nodes -ostype linux
+
+vserver  path                        igroup         reporting-nodes
+-------  --------------------------- ------------   -------------------------------------
+vsa_1    /vol/vsa_1_vol1/lun_linux_2 igroup_linux   A_1,A_2
+vsa_1    /vol/vsa_1_vol1/lun_linux_3 igroup_linux   A_1,A_2
+vsa_1    /vol/vsa_1_vol2/lun_linux_4 igroup_linux   A_1,A_2
+vsa_1    /vol/vsa_1_vol3/lun_linux_7 igroup_linux   A_1,A_2
+vsa_1    /vol/vsa_1_vol4/lun_linux_8 igroup_linux   A_1,A_2
+vsa_1    /vol/vsa_1_vol4/lun_linux_9 igroup_linux   A_1,A_2
+vsa_1    /vol/vsa_1_vol6/lun_linux_12 igroup_linux  A_1,A_2
+vsa_1    /vol/vsa_1_vol6/lun_linux_13 igroup_linux  A_1,A_2
+vsa_1    /vol/vsa_1_vol7/lun_linux_14 igroup_linux  A_1,A_2
+vsa_1    /vol/vsa_1_vol8/lun_linux_17 igroup_linux  A_1,A_2
+vsa_1    /vol/vsa_1_vol9/lun_linux_18 igroup_linux  A_1,A_2
+vsa_1    /vol/vsa_1_vol9/lun_linux_19 igroup_linux  A_1,A_2
+12 entries were displayed.
+----
+.. MetroCluster IP ノードを追加してレポートノードを追加します。
++
+[listing]
+----
+cluster_A::> lun mapping add-reporting-nodes -vserver vsa_1 -path /vol/vsa_1_vol*/lun_linux_* -nodes B_1,B_2 -igroup igroup_linux
+
+12 entries were acted on.
+----
+.. レポートノードをリストし、新しいノードが存在することを確認します。
++
+[listing]
+----
+cluster_A::> lun mapping show -vserver vsa_1 -fields reporting-nodes -ostype linux
+
+vserver path                          igroup          reporting-nodes
+------- ---------------------------   ------------    -------------------------------------------------------------------------------
+
+vsa_1   /vol/vsa_1_vol1/lun_linux_2   igroup_linux    A_1,A_2,B_1,B_2
+vsa_1   /vol/vsa_1_vol1/lun_linux_3   igroup_linux    A_1,A_2,B_1,B_2
+vsa_1   /vol/vsa_1_vol2/lun_linux_4   igroup_linux    A_1,A_2,B_1,B_2
+vsa_1   /vol/vsa_1_vol3/lun_linux_7   igroup_linux    A_1,A_2,B_1,B_2
+...
+
+12 entries were displayed.
+----
+.. ホスト上の SCSI バスを再スキャンして ' 新しく追加されたパスを検出します :/usr/bin/rescan-scsi-bus.sh -a
++
+[listing]
+----
+[root@stemgr]# /usr/bin/rescan-scsi-bus.sh -a
+Scanning SCSI subsystem for new devices
+Scanning host 0 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 1 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 2 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+ Scanning for device 2 0 0 0 ...
+.
+.
+.
+OLD: Host: scsi5 Channel: 00 Id: 00 Lun: 09
+ Vendor: NETAPP Model: LUN C-Mode Rev: 9800
+ Type: Direct-Access ANSI SCSI revision: 05
+0 new or changed device(s) found.
+0 remapped or resized device(s) found.
+0 device(s) removed.
+----
+.. 新しく追加されたパス「 'lun lun lun lun show -p 」を表示します
++
+各 LUN には 4 つのパスがあります。
+
++
+[listing]
+----
+[root@stemgr]# sanlun lun show -p
+ONTAP Path: vsa_1:/vol/vsa_1_vol6/lun_linux_12
+ LUN: 4
+ LUN Size: 2g
+ Product: cDOT
+ Host Device: 3600a098038304646513f4f674e52774b
+ Multipath Policy: service-time 0
+ Multipath Provider: Native
+--------- ---------- ------- ------------ ----------------------------------------------
+host vserver
+path path /dev/ host vserver
+state type node adapter LIF
+--------- ---------- ------- ------------ ----------------------------------------------
+up primary sdk host3 iscsi_lf__n2_p1_
+up secondary sdh host2 iscsi_lf__n1_p1_
+up secondary sdag host4 iscsi_lf__n4_p1_
+up secondary sdah host5 iscsi_lf__n3_p1_
+----
+.. コントローラで、 LUN が含まれているボリュームを MetroCluster FC から MetroCluster IP ノードに移動します。
++
+[listing]
+----
+cluster_A::> vol move start -vserver vsa_1 -volume vsa_1_vol1 -destination-aggregate A_1_htp_005_aggr1
+[Job 1877] Job is queued: Move "vsa_1_vol1" in Vserver "vsa_1" to aggregate "A_1_htp_005_aggr1". Use the "volume move show -vserver vsa_1 -volume vsa_1_vol1"
+command to view the status of this operation.
+cluster_A::> volume move show
+Vserver    Volume    State    Move Phase   Percent-Complete Time-To-Complete
+--------- ---------- -------- ----------   ---------------- ----------------
+vsa_1     vsa_1_vol1 healthy  initializing
+ - -
+----
+.. FC SAN クライアントで、 LUN 情報「 lun lun show -p 」を表示します
++
+LUN が配置された MetroCluster IP ノードの FC インターフェイスは、プライマリパスとして更新されます。ボリューム移動後にプライマリパスが更新されない場合は、 /usr/bin/rescan-scsi-bus.sh -a を実行するか、マルチパスの再スキャンが実行されるのを待ちます。
+
++
+次の例のプライマリパスは、 MetroCluster IP ノード上の LIF です。
+
++
+[listing]
+----
+[root@localhost ~]# sanlun lun show -p
+
+                    ONTAP Path: vsa_1:/vol/vsa_1_vol1/lun_linux_2
+                           LUN: 22
+                      LUN Size: 2g
+                       Product: cDOT
+                   Host Device: 3600a098038302d324e5d50305063546e
+              Multipath Policy: service-time 0
+            Multipath Provider: Native
+--------- ---------- ------- ------------ ----------------------------------------------
+host      vserver
+path      path       /dev/   host         vserver
+state     type       node    adapter      LIF
+--------- ---------- ------- ------------ ----------------------------------------------
+up        primary    sddv    host6        fc_5
+up        primary    sdjx    host7        fc_6
+up        secondary  sdgv    host6        fc_8
+up        secondary  sdkr    host7        fc_8
+----
+.. FC SAN ホストに属するすべてのボリューム、 LUN 、および FC インターフェイスについて、上記の手順を繰り返します。
++
+完了したら、特定の SVM および FC SAN ホストのすべての LUN を MetroCluster IP ノードに配置する必要があります。
+
+
+
+. レポートノードを削除し、クライアントからパスを再スキャンします。
++
+.. Linux LUN のリモートレポートノード（ MetroCluster FC ノード）を削除します。「 lun mapping remove-reporting-nodes -vserver vsA_1-path * -igroup igroup_linux-remote-nodes true
++
+[listing]
+----
+cluster_A::> lun mapping remove-reporting-nodes -vserver vsa_1 -path * -igroup igroup_linux -remote-nodes true
+12 entries were acted on.
+----
+.. LUN のレポートノードを確認します。「 lun mapping show -vserver vsA_1 -fields reporting-nodes - ostype linux
++
+[listing]
+----
+cluster_A::> lun mapping show -vserver vsa_1 -fields reporting-nodes -ostype linux
+
+vserver path igroup reporting-nodes
+------- --------------------------- ------------ -----------------------------------------
+vsa_1 /vol/vsa_1_vol1/lun_linux_2 igroup_linux B_1,B_2
+vsa_1 /vol/vsa_1_vol1/lun_linux_3 igroup_linux B_1,B_2
+vsa_1 /vol/vsa_1_vol2/lun_linux_4 igroup_linux B_1,B_2
+...
+
+12 entries were displayed.
+----
+.. クライアントの SCSI バスを再スキャンします :/usr/bin/rescan-scsi-bus.sh -r
++
+MetroCluster FC ノードからパスが削除されます。
+
++
+[listing]
+----
+[root@stemgr]# /usr/bin/rescan-scsi-bus.sh -r
+Syncing file systems
+Scanning SCSI subsystem for new devices and remove devices that have disappeared
+Scanning host 0 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 1 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+Scanning host 2 for SCSI target IDs 0 1 2 3 4 5 6 7, all LUNs
+sg0 changed: LU not available (PQual 1)
+REM: Host: scsi2 Channel: 00 Id: 00 Lun: 00
+DEL: Vendor: NETAPP Model: LUN C-Mode Rev: 9800
+ Type: Direct-Access ANSI SCSI revision: 05
+sg2 changed: LU not available (PQual 1)
+.
+.
+.
+OLD: Host: scsi5 Channel: 00 Id: 00 Lun: 09
+ Vendor: NETAPP Model: LUN C-Mode Rev: 9800
+ Type: Direct-Access ANSI SCSI revision: 05
+0 new or changed device(s) found.
+0 remapped or resized device(s) found.
+24 device(s) removed.
+ [2:0:0:0]
+ [2:0:0:1]
+...
+----
+.. MetroCluster IP ノードからのパスだけがホストから認識されていることを確認します。 'lun lun lun show -p
+.. 必要に応じて、 MetroCluster FC ノードから iSCSI LIF を削除します。
++
+他のクライアントにマッピングされたノード上に他の LUN がない場合に実施する必要があります。
+
+
+
+

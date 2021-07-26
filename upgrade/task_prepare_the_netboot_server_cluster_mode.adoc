@@ -1,0 +1,70 @@
+---
+permalink: upgrade/task_prepare_the_netboot_server_cluster_mode.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, prepare, netboot, server, download, image 
+summary: ネットブートサーバの準備ができたら、適切な ONTAP のネットブートイメージをネットアップサポートサイトからネットブートサーバにダウンロードして、 IP アドレスをメモする必要があります。 
+---
+= イメージをダウンロードするためのネットブートサーバの準備
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットブートサーバの準備ができたら、適切な ONTAP のネットブートイメージをネットアップサポートサイトからネットブートサーバにダウンロードして、 IP アドレスをメモする必要があります。
+
+* 新しいコントローラモジュールを追加する前とあとに、システムから HTTP サーバにアクセスできる必要があります。
+* 使用しているプラットフォームと ONTAP のバージョンに必要なシステムファイルをダウンロードするために、ネットアップサポートサイトへのアクセス権が必要です。
++
+https://mysupport.netapp.com/site/global/dashboard["ネットアップサポートサイト"]
+
+* HA ペアの両方のコントローラモジュールで同じバージョンの ONTAP を実行する必要があります。
+
+
+.手順
+. ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 <ONTAP_version>_image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。
++
+「 <ONTAP_version>_image.tgz 」ファイルは、システムのネットブートを実行するために使用します。
+
+. Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
++
+|===
+| 用途 | 作業 
+
+
+ a| 
+* FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシステム *
+ a| 
+ターゲットディレクトリに <ONTAP_version>_image.tgz ファイルの内容を展開します。
+
+`*tar-zxvf <ONTAP_version>_image.tgz *`
+
+
+NOTE: Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。
+
+ディレクトリの一覧に、カーネルファイルを含むネットブートフォルダが含まれるようにします。
+
+[listing]
+----
+netboot/kernel
+----
+
+
+ a| 
+* その他すべてのシステム *
+ a| 
+ディレクトリの一覧に次のファイルが表示されます。
+
+[listing]
+----
+<ontap_version>_image.tgz
+----
+
+NOTE: ファイルの内容を抽出する必要はありません。
+
+|===
+. 既存のコントローラモジュールの IP アドレスを確認します。
++
+このアドレスは、この手順の後半では「既存のコントローラの IP アドレス」と呼ばれます。
+
+. IP アドレスが到達可能であることを確認するために 'ping `_ip-address-of -existing controller_` を実行します
+

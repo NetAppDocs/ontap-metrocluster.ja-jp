@@ -1,0 +1,483 @@
+---
+permalink: install-ip/task_switch_config_broadcom.html 
+sidebar: sidebar 
+keywords: ip, switch, connection, configuring, configure, broadcom, factory defaults 
+summary: クラスタインターコネクトおよびバックエンド MetroCluster IP 接続用に Broadcom IP スイッチを設定する必要があります。 
+---
+= Broadcom IP スイッチの設定
+
+
+[role="lead"]
+クラスタインターコネクトおよびバックエンド MetroCluster IP 接続用に Broadcom IP スイッチを設定する必要があります。
+
+
+
+= Broadcom IP スイッチを工場出荷時のデフォルトにリセット
+
+[role="lead"]
+新しいバージョンのスイッチソフトウェアと RCF をインストールする前に、 Broadcom スイッチの設定を消去し、基本的な設定を完了する必要があります。
+
+* この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
+* シリアルコンソールを使用してスイッチに接続する必要があります。
+* このタスクでは、管理ネットワークの設定をリセットします。
++
+.. 昇格されたコマンドプロンプト (`#`):'enable' に変更します
++
+[listing]
+----
+(Routing)> enable
+(Routing) #
+----
+.. スタートアップコンフィギュレーションを消去します :'erase startup-config
++
+[listing]
+----
+(Routing) #erase startup-config
+Are you sure you want to clear the configuration? (y/n) y
+
+
+(Routing) #
+----
++
+このコマンドでは、バナーは消去されません。
+
+.. スイッチを再起動します
++
+[listing]
+----
+(IP_switch_A_1) #reload
+
+Are you sure you would like to reset the system? (y/n) y
+----
++
+
+NOTE: スイッチをリロードする前に、未保存または変更された設定を保存するかどうかを確認するメッセージが表示された場合は、 *No* を選択します。
+
+.. スイッチがリロードされるまで待ってから、スイッチにログインします。
++
+デフォルトのユーザは「 admin 」で、パスワードは設定されていません。次のようなプロンプトが表示されます。
+
++
+[listing]
+----
+(Routing)>
+----
+.. 昇格されたコマンドプロンプトに切り替えます :'enable
++
+[listing]
+----
+Routing)> enable
+(Routing) #
+----
+.. serviceport プロトコルを 'none:'erviceport protocol none' に設定します
++
+[listing]
+----
+(Routing) #serviceport protocol none
+Changing protocol mode will reset ip configuration.
+Are you sure you want to continue? (y/n) y
+
+(Routing) #
+----
+.. サービスポートに IP アドレスを割り当てます。「サービスポート IP アドレスネットマスクゲートウェイ」
++
+次の例では、サービスポートに IP アドレス 10.10.10.10 を割り当てています。サブネットは 255.255.255.0 、ゲートウェイは 10.10.10.1 です。
+
++
+[listing]
+----
+(Routing) #serviceport ip 10.10.10.10 255.255.255.0 10.10.10.1
+----
+.. サービスポートが正しく設定されていることを確認します :'how serviceport
++
+次の例は、ポートが稼働しており、正しいアドレスが割り当てられていることを示しています。
+
++
+[listing]
+----
+(Routing) #show serviceport
+
+Interface Status............................... Up
+IP Address..................................... 10.10.10.10
+Subnet Mask.................................... 255.255.255.0
+Default Gateway................................ 10.10.10.1
+IPv6 Administrative Mode....................... Enabled
+IPv6 Prefix is ................................ fe80::dac4:97ff:fe56:87d7/64
+IPv6 Default Router............................ fe80::222:bdff:fef8:19ff
+Configured IPv4 Protocol....................... None
+Configured IPv6 Protocol....................... None
+IPv6 AutoConfig Mode........................... Disabled
+Burned In MAC Address.......................... D8:C4:97:56:87:D7
+
+(Routing) #
+----
+.. 必要に応じて、 SSH サーバを設定します。
++
+
+NOTE: RCF ファイルで Telnet プロトコルが無効になります。SSH サーバを設定しない場合は、シリアルポート接続を使用してブリッジにアクセスする必要があります。
+
++
+... RSA キーを生成します。
++
+[listing]
+----
+(Routing) #configure
+(Routing) (Config)#crypto key generate rsa
+----
+... DSA キーを生成します。
++
+[listing]
+----
+(Routing) #configure
+(Routing) (Config)#crypto key generate dsa
+----
+... SSH サーバを有効にします。
++
+必要に応じて、設定コンテキストを終了します。
+
++
+[listing]
+----
+(Routing) (Config)#end
+(Routing) #ip ssh server enable
+----
++
+
+NOTE: キーがすでに存在する場合は、それらを上書きするように求められることがあります。
+
+
+
+.. 必要に応じて ' ドメインとネーム・サーバを構成します
++
+次に、 ip domain コマンドと ip name server コマンドの例を示します。
+
++
+[listing]
+----
+(Routing) # configure
+(Routing) (Config)#ip domain name lab.netapp.com
+(Routing) (Config)#ip name server 10.99.99.1 10.99.99.2
+(Routing) (Config)#exit
+(Routing) (Config)#
+----
+.. 必要に応じて、タイムゾーンと時刻の同期（ SNTP ）を設定します。
++
+以下の例は、 SNTP サーバの IP アドレスと相対タイムゾーンを指定した SNTP コマンドを示しています。
+
++
+[listing]
+----
+(Routing) #
+(Routing) (Config)#sntp client mode unicast
+(Routing) (Config)#sntp server 10.99.99.5
+(Routing) (Config)#clock timezone -7
+(Routing) (Config)#exit
+(Routing) (Config)#
+----
+.. スイッチ名を設定します： 'hostname IP_switch_a_1'
++
+スイッチのプロンプトに新しい名前が表示されます。
+
++
+[listing]
+----
+(Routing) # hostname IP_switch_A_1
+
+(IP_switch_A_1) #
+----
+.. 設定を保存します。「 write memory 」
++
+次の例のようなプロンプトと出力が表示されます。
+
++
+[listing]
+----
+(IP_switch_A_1) #write memory
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully .
+
+
+Configuration Saved!
+
+(IP_switch_A_1) #
+----
+.. MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
+
+
+
+
+
+
+== Broadcom スイッチの EFOS ソフトウェアのダウンロードとインストール
+
+[role="lead"]
+MetroCluster IP 構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
+
+このタスクは、 MetroCluster IP 構成内のスイッチごとに実行する必要があります。
+
+. スイッチソフトウェアをスイッチにコピーします :+copy sftp://user@50.50.50.50 /switchsoftware/efos-3.4.3.1.stk backup+`
++
+この例では、 efos-3.3.1.stk オペレーティングシステムファイルを SFTP サーバ（ 50.50.50 ）からバックアップパーティションにコピーしています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。
+
++
+[listing]
+----
+(IP_switch_A_1) #copy sftp://user@50.50.50.50/switchsoftware/efos-3.4.3.1.stk backup
+Remote Password:*************
+
+Mode........................................... SFTP
+Set Server IP.................................. 50.50.50.50
+Path........................................... /switchsoftware/
+Filename....................................... efos-3.4.3.1.stk
+Data Type...................................... Code
+Destination Filename........................... backup
+
+Management access will be blocked for the duration of the transfer
+Are you sure you want to start? (y/n) y
+
+File transfer in progress. Management access will be blocked for the duration of the transfer. Please wait...
+SFTP Code transfer starting...
+
+
+File transfer operation completed successfully.
+
+(IP_switch_A_1) #
+----
+. 次回のスイッチ再起動時にバックアップパーティションから起動するようにスイッチを設定します。「 boot system backup 」
++
+[listing]
+----
+(IP_switch_A_1) #boot system backup
+Activating image backup ..
+
+(IP_switch_A_1) #
+----
+. 次のブート時に新しいブートイメージがアクティブになることを確認します。 'how bootvar
++
+[listing]
+----
+(IP_switch_A_1) #show bootvar
+
+Image Descriptions
+
+ active :
+ backup :
+
+
+ Images currently available on Flash
+
+ ----  -----------  --------  ---------------  ------------
+ unit       active    backup   current-active   next-active
+ ----  -----------  --------  ---------------  ------------
+
+	1       3.4.3.0      3.4.3.1      3.4.3.0          3.4.3.1
+
+(IP_switch_A_1) #
+----
+. 設定を保存します。「 write memory 」
++
+[listing]
+----
+(IP_switch_A_1) #write memory
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+
+Configuration Saved!
+
+(IP_switch_A_1) #
+----
+. スイッチを再起動します
++
+[listing]
+----
+(IP_switch_A_1) #reload
+
+Are you sure you would like to reset the system? (y/n) y
+----
+. スイッチがリブートするまで待ちます。
+. MetroCluster IP 構成の残りの 3 つの IP スイッチについて、上記の手順を繰り返します。
+
+
+
+
+== Broadcom の RCF ファイルのダウンロードとインストール
+
+[role="lead"]
+MetroCluster IP 構成の各スイッチにスイッチの RCF ファイルをダウンロードしてインストールする必要があります。
+
+この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。
+
+この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
+
+RCF ファイルは 4 つあり、それぞれが MetroCluster IP 構成の 4 つの各スイッチに対応しています。使用するスイッチのモデルに対応した正しい RCF ファイルを使用する必要があります。
+
+|===
+| スイッチ | RCF ファイル 
+
+
+ a| 
+IP_switch_A_1
+ a| 
+BES-53248_v1.32_Switch-A1.txt
+
+
+
+ a| 
+IP_switch_a_2
+ a| 
+BES-53248_v1.32_Switch-A2.txt
+
+
+
+ a| 
+IP_switch_B_1
+ a| 
+BES-53248_v1.32_Switch-B1.txt
+
+
+
+ a| 
+IP_switch_B_2
+ a| 
+BES-53248_v1.32_Switch-B2.txt
+
+|===
+. MetroCluster IP の Broadcom スイッチの RCF ファイルをダウンロードします。
++
+https://mysupport.netapp.com/NOW/download/software/metrocluster_ip/rcfs/download.shtml["Broadcom Cluster and Management Network Switch Reference Configuration File Download for MetroCluster IP 』を参照してください"]
+
+. RCF ファイルをスイッチにコピーします。
++
+.. RCF ファイルを最初のスイッチにコピーします。 `+ copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -rcfnvram ： script BES-53248_v1.32_Switch-A1.txt nvram ： script BES-53248 v1.32_Switch-A1.SCR +`
++
+この例では、 BES-53248_v1.32_Switch-A1.txt RCF ファイルを SFTP サーバ（ 50.50.50.50 ）からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。
+
++
+[listing]
+----
+(IP_switch_A_1) #copy sftp://user@50.50.50.50/RcfFiles/BES-53248_v1.32_Switch-A1.txt nvram:script BES-53248_v1.32_Switch-A1.scr
+
+Remote Password:*************
+
+Mode........................................... SFTP
+Set Server IP.................................. 50.50.50.50
+Path........................................... /RcfFiles/
+Filename....................................... BES-53248_v1.32_Switch-A1.txt
+Data Type...................................... Config Script
+Destination Filename........................... BES-53248_v1.32_Switch-A1.scr
+
+Management access will be blocked for the duration of the transfer
+Are you sure you want to start? (y/n) y
+
+File transfer in progress. Management access will be blocked for the duration of the transfer. Please wait...
+File transfer operation completed successfully.
+
+
+Validating configuration script...
+
+config
+
+set clibanner "********************************************************************************
+
+* NetApp Reference Configuration File (RCF)
+
+*
+
+* Switch    : BES-53248
+
+
+...
+The downloaded RCF is validated. Some output is being logged here.
+...
+
+
+Configuration script validated.
+File transfer operation completed successfully.
+
+(IP_switch_A_1) #
+----
+.. RCF ファイルがスクリプト「 script list 」として保存されていることを確認します
++
+[listing]
+----
+(IP_switch_A_1) #script list
+
+Configuration Script Name        Size(Bytes)  Date of Modification
+-------------------------------  -----------  --------------------
+BES-53248_v1.32_Switch-A1.scr             852   2019 01 29 18:41:25
+
+1 configuration script(s) found.
+2046 Kbytes free.
+(IP_switch_A_1) #
+----
+.. RCF スクリプトを適用します。 'script apply BES-53248 v1.32_Switch-A1.scr
++
+[listing]
+----
+(IP_switch_A_1) #script apply BES-53248_v1.32_Switch-A1.scr
+
+Are you sure you want to apply the configuration script? (y/n) y
+
+
+config
+
+set clibanner "********************************************************************************
+
+* NetApp Reference Configuration File (RCF)
+
+*
+
+* Switch    : BES-53248
+
+...
+The downloaded RCF is validated. Some output is being logged here.
+...
+
+Configuration script 'BES-53248_v1.32_Switch-A1.scr' applied.
+
+(IP_switch_A_1) #
+----
+.. 設定を保存します。「 write memory 」
++
+[listing]
+----
+(IP_switch_A_1) #write memory
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+
+Configuration Saved!
+
+(IP_switch_A_1) #
+----
+.. スイッチを再起動します
++
+[listing]
+----
+(IP_switch_A_1) #reload
+
+Are you sure you would like to reset the system? (y/n) y
+----
+.. 残りの 3 つのスイッチのそれぞれについて、同じ手順を繰り返します。それぞれのスイッチに対応する RCF ファイルをコピーするように注意してください。
+
+
+. スイッチをリロードします
++
+[listing]
+----
+IP_switch_A_1# reload
+----
+. MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
+

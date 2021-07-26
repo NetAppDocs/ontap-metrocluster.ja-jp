@@ -1,0 +1,88 @@
+---
+permalink: manage/task_perform_a_switchback.html 
+sidebar: sidebar 
+keywords: metrocluster, configuration, switchback, operation, return, operating, operate, state, sync-source, storage, virtual, machine, svm, disaster, site, active, serving, local, disk, pool, perform 
+summary: MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。 
+---
+= スイッチバックを実行しています
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。
+
+* ディザスタクラスタからサバイバークラスタへのスイッチオーバーが正常に完了している必要があります。
+* データアグリゲートとルートアグリゲートに対して修復が実行されている必要があります。
+* サバイバークラスタノードが HA フェイルオーバー状態ではない（各 HA ペアのすべてのノードが稼働中である）必要があります。
+* ディザスタサイトのコントローラモジュールが完全にブートしていること、および HA テイクオーバーモードでないことが必要です。
+* ルートアグリゲートがミラーされている必要があります。
+* スイッチ間リンク（ ISL ）がオンラインになっている必要があります。
+* 必要なライセンスがシステムにインストールされている必要があります。
++
+.. すべてのノードが enabled 状態であることを確認します MetroCluster node show
++
+次の例は、ノードが有効な状態であることを表示します。
+
++
+[listing]
+----
+cluster_B::>  metrocluster node show
+
+DR                        Configuration  DR
+Group Cluster Node        State          Mirroring Mode
+----- ------- ----------- -------------- --------- --------------------
+1     cluster_A
+              node_A_1    configured     enabled   heal roots completed
+              node_A_2    configured     enabled   heal roots completed
+      cluster_B
+              node_B_1    configured     enabled   waiting for switchback recovery
+              node_B_2    configured     enabled   waiting for switchback recovery
+4 entries were displayed.
+----
+.. すべての SVM で再同期が完了したことを確認します。「 MetroCluster vserver show 」
+.. 修復処理によって実行される LIF の自動移行が完了したことを確認し MetroCluster ます。 lun check lif show
+.. サバイバークラスタ内の任意のノードから MetroCluster スイッチバックコマンドを実行して、スイッチバックを実行します。
+.. スイッチバック操作の進行状況を確認します MetroCluster show
++
+出力に waiting-for-switchback と表示された場合は、スイッチバック処理がまだ進行中です。
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                switchover
+                          AUSO Failure Domain -
+Remote: cluster_A         Configuration state configured
+                          Mode                waiting-for-switchback
+                          AUSO Failure Domain -
+----
++
+出力に normal と表示された場合、スイッチバック処理は完了しています。
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain -
+Remote: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain -
+----
++
+スイッチバックが完了するまでに時間がかかる場合は、「 MetroCluster config-replication resync-status show 」コマンドを使用することで、進行中のベースラインのステータスを確認できます。このコマンドは、 advanced 権限レベルで実行します。
+
+.. SnapMirror 構成または SnapVault 構成があれば、再確立します。
++
+ONTAP 8.3 では、失われた SnapMirror 構成を MetroCluster スイッチバック処理のあとに手動で再確立する必要があります。ONTAP 9.0 以降では、関係が自動的に再確立されます。
+
+
+
+

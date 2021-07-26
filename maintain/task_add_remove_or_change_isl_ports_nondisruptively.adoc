@@ -1,0 +1,121 @@
+---
+permalink: maintain/task_add_remove_or_change_isl_ports_nondisruptively.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, add, remove, change, isl, ports, nondisruptively 
+summary: ISL ポートの追加、削除、または変更が必要になる場合があります。専用の ISL ポートを共有 ISL ポートに変換したり、スイッチの ISL ポートの速度を変更したりできます。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。また、ハードウェアを追加またはアップグレードする場合は、システムのアップグレードに合わせて ISL ポートの速度を上げ、 Cisco IP スイッチに ISL を追加することがあります。 
+---
+= ISL ポートを無停止で追加、削除、または変更する
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ISL ポートの追加、削除、または変更が必要になる場合があります。専用の ISL ポートを共有 ISL ポートに変換したり、スイッチの ISL ポートの速度を変更したりできます。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。また、ハードウェアを追加またはアップグレードする場合は、システムのアップグレードに合わせて ISL ポートの速度を上げ、 Cisco IP スイッチに ISL を追加することがあります。
+
+専用の ISL ポートを共有 ISL ポートに変換する場合は、新しいポートがに対応していることを確認してください link:../install-ip/concept_considerations_layer_2.html["共有 ISL ポートの要件"]。
+
+ISL 接続を確保するためには、両方のスイッチですべての手順を実行する必要があります。
+
+次の手順では、スイッチポート Eth1/24/1 に接続されている 10Gb ISL を、スイッチポート 17 と 18 に接続されている 2 つの 100Gb ISL に交換します。
+
+.手順
+. 変更するファブリック内の両方のスイッチで、 ISL の ISL ポートを無効にします。
++
+
+NOTE: 現在の ISL ポートを無効にするのは、ポートを別のポートに移動している場合や ISL の速度が変更されている場合だけです。既存の ISL と同じ速度の ISL ポートを追加する場合は、手順 3 に進みます。
+
++
+次の例に示すように、設定コマンドを 1 行に 1 つ入力し、すべてのコマンドを入力したら Ctrl+Z キーを押す必要があります。
+
++
+[listing]
+----
+
+switch_A_1# conf t
+switch_A_1(config)# int eth1/24/1
+switch_A_1(config-if)# shut
+switch_A_1(config-if)#
+switch_A_1#
+
+switch_B_1# conf t
+switch_B_1(config)# int eth1/24/1
+switch_B_1(config-if)# shut
+switch_B_1(config-if)#
+switch_B_1#
+----
+. 既存のケーブルとトランシーバを取り外します。
+. 必要に応じて ISL ポートを変更します。
++
+|===
+| オプション | ステップ 
+
+
+ a| 
+ISL ポートの速度を変更する
+ a| 
+速度に応じて、新しい ISL を指定のポートにケーブル接続します。使用しているスイッチの ISL ポートが MetroCluster IP インストールおよび設定ガイド _ に記載されていることを確認する必要があります。
+
+
+
+ a| 
+ISL を追加する
+ a| 
+ISL ポートとして追加するポートに QFSP を挿入します。MetroCluster IP インストールおよび設定ガイド _ に記載されていることを確認し、このガイドに従ってケーブルを接続します。
+
+|===
+. ファブリック内の両方のスイッチですべての ISL ポートを有効にします（有効になっていない場合）。最初に次のコマンドを入力します。
++
+`*switch_A_1 # conf t*`
+
++
+設定コマンドを 1 行に 1 つ入力し、すべてのコマンドを入力したら Ctrl+Z キーを押す必要があります。
+
++
+[listing]
+----
+switch_A_1# conf t
+switch_A_1(config)# int eth1/17
+switch_A_1(config-if)# no shut
+switch_A_1(config-if)# int eth1/18
+switch_A_1(config-if)# no shut
+switch_A_1(config-if)#
+switch_A_1#
+switch_A_1# copy running-config startup-config
+
+switch_B_1# conf t
+switch_B_1(config)# int eth1/17
+switch_B_1(config-if)# no shut
+switch_B_1(config-if)# int eth1/18
+switch_B_1(config-if)# no shut
+switch_B_1(config-if)#
+switch_B_1#
+switch_B_1# copy running-config startup-config
+----
+. 両方のスイッチ間に ISL が確立されたことを確認します。
++
+`*switch_a_1# は int Eth1/17'eth1/18 brief *' を示します
+
++
+次の例に示すように、 ISL インターフェイスがコマンド出力に表示されます。
+
++
+[listing]
+----
+switch_A_1# show int eth1/17,eth1/18 brief
+--------------------------------------------------------------------------------
+Ethernet      VLAN    Type Mode   Status  Reason                   Speed     Port
+Interface                                                                                                        Ch #
+--------------------------------------------------------------------------------
+Eth1/17       10         eth     access    up      none                       100G(D) 10
+Eth1/18       10         eth     access    up      none                       100G(D) 10
+
+switch_B_1# show int eth1/17,eth1/18 brief
+--------------------------------------------------------------------------------
+Ethernet      VLAN    Type Mode   Status  Reason                   Speed     Port
+Interface                                                                                                        Ch #
+--------------------------------------------------------------------------------
+Eth1/17       10         eth     access    up      none                       100G(D) 10
+Eth1/18       10         eth     access    up      none                       100G(D) 10
+----
+. ファブリック 2 についても手順を繰り返します。
+

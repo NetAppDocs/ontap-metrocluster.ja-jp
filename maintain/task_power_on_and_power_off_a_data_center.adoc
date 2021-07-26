@@ -1,0 +1,686 @@
+---
+permalink: maintain/task_power_on_and_power_off_a_data_center.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, power, off, on, data, center, relocate 
+summary: サイトのメンテナンスやサイトを別の場所に再配置するために、データセンターの電源をオフにしてオンにする方法を確認しておく必要があります。 
+---
+= データセンターの電源のオン / オフを切り替えます
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+サイトのメンテナンスやサイトを別の場所に再配置するために、データセンターの電源をオフにしてオンにする方法を確認しておく必要があります。
+
+サイトを再配置して再構成する必要がある場合（たとえば、 4 ノードクラスタを 8 ノードクラスタに拡張する必要がある場合）、これらのタスクを同時に実行することはできません。この手順では、サイトのメンテナンスを実行するため、またはサイトの構成を変更せずにサイトを再配置するために必要な手順のみを説明します。
+
+
+NOTE: この手順は、 MetroCluster IP 構成と FC 構成の両方で使用されます。
+
+
+
+== MetroCluster サイトの電源切断
+
+[role="lead"]
+サイトのメンテナンスや再配置を開始する前に、サイトとすべての機器の電源をオフにする必要があります。
+
+.手順
+. 開始する前に、ミラーされていないアグリゲートがサイトですべてオフラインになっていることを確認します。
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
+.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
+.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
+.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. 次のコマンドを入力して、スイッチオーバーを実行します。
++
+'*MetroCluster スイッチオーバー *
+
++
+この処理が完了するまでに数分かかることがあります。
+
++
+====
+MetroCluster FC 構成では、ミラーされていないアグリゲートがスイッチオーバー後にオンラインになるのは、アグリゲート内のリモートディスクにアクセスできる場合のみです。ISL で障害が発生すると、ミラーされていないリモートディスク内のデータにローカルノードがアクセスできなくなる可能性があります。アグリゲートに障害が発生すると、ローカルノードがリブートされる場合があります。
+
+====
+. スイッチオーバーの完了を監視して確認します。
++
+「 * MetroCluster operation show * 」と表示されます
+
++
+[listing]
+----
+cluster_A::*> metrocluster operation show
+  Operation: Switchover
+ Start time: 10/4/2012 19:04:13
+State: in-progress
+   End time: -
+     Errors:
+
+cluster_A::*> metrocluster operation show
+  Operation: Switchover
+ Start time: 10/4/2012 19:04:13
+      State: successful
+   End time: 10/4/2012 19:04:22
+     Errors: -
+----
+. ONTAP 9.6 以降を実行している MetroCluster IP 構成の場合は、ディザスタサイトのプレックスがオンラインになり、修復処理が自動的に完了するまで待ちます。
++
+以前のバージョンの ONTAP を実行している MetroCluster IP 構成では、ディザスタサイトのノードは ONTAP から自動的にブートせず、プレックスはオフラインのままです。
+
+. 構成および ONTAP のバージョンに応じて、ディザスタサイトにあるオフラインの影響を受けるプレックスを特定して移動します。
++
+[NOTE]
+====
+この手順は、次の構成で必要です。
+
+** すべての MetroCluster FC 構成。
+** ONTAP バージョン 9.6 以降を実行している MetroCluster IP 構成。
+
+
+====
++
+次のプレックスをオフラインにする必要があります。
+
++
+** ディザスタサイトにあるディスクにあるミラーリングされていないプレックス
++
+ディザスタサイトのミラーリングされていないプレックスをオフラインにしないと、あとでディザスタサイトの電源をオフにしたときにシステムが停止する可能性があります。
+
+** ディザスタサイトのディスクにあるミラーされたプレックスを使用してアグリゲートをミラーリングする。オフラインにすると、プレックスにアクセスできなくなります。
++
+... 影響を受けるプレックスを特定します。
++
+サバイバーサイトのノードが所有するプレックスは、プール 1 のディスクで構成されます。ディザスタサイトのノードが所有するプレックスは、プール 0 のディスクで構成されます。
+
++
+
+NOTE: 「ホーム」は「ホーム」所有者ではなく「ホーム」所有者を指します。
+
++
+[listing]
+----
+Cluster_A::> storage aggregate plex show -fields aggregate,status,is-online,Plex,pool
+aggregate    plex  status        is-online pool
+------------ ----- ------------- --------- ----
+Node_B_1_aggr0 plex0 normal,active true     0
+Node_B_1_aggr0 plex1 normal,active true     1
+
+Node_B_2_aggr0 plex0 normal,active true     0
+Node_B_2_aggr0 plex5 normal,active true     1
+
+Node_B_1_aggr1 plex0 normal,active true     0
+Node_B_1_aggr1 plex3 normal,active true     1
+
+Node_B_2_aggr1 plex0 normal,active true     0
+Node_B_2_aggr1 plex1 normal,active true     1
+
+Node_A_1_aggr0 plex0 normal,active true     0
+Node_A_1_aggr0 plex4 normal,active true     1
+
+Node_A_1_aggr1 plex0 normal,active true     0
+Node_A_1_aggr1 plex1 normal,active true     1
+
+Node_A_2_aggr0 plex0 normal,active true     0
+Node_A_2_aggr0 plex4 normal,active true     1
+
+Node_A_2_aggr1 plex0 normal,active true     0
+Node_A_2_aggr1 plex1 normal,active true     1
+14 entries were displayed.
+
+Cluster_A::>
+----
++
+影響を受けるプレックスは、クラスタ A のリモートにあるプレックスです次の表に、ディスクがクラスタ A に対してローカルかリモートかを示します。
+
++
+|===
+| ノード | プール内のディスク | ディスクをオフラインにする必要があるか | オフラインにするプレックスの例を指定します 
+
+
+ a| 
+Node_a_1 および Node_a_2
+ a| 
+プール 0 内のディスク
+ a| 
+いいえディスクはクラスタ A に対してローカルです
+ a| 
+-
+
+
+
+ a| 
+プール 1 内のディスク
+ a| 
+はい。ディスクはクラスタ A に対してリモートです
+ a| 
+node_A_1 の aggr0 / プレックス 4 を使用します
+
+node_A_1 の aggr1 / plex1
+
+node_a_2_aggr0/plex4
+
+Node_a_2_aggr1 / plex1 です
+
+
+
+ a| 
+Node_B_1 および Node_B_2
+ a| 
+プール 0 内のディスク
+ a| 
+はい。ディスクはクラスタ A に対してリモートです
+ a| 
+node_B_1 の aggr1 / plex0
+
+node_B_1 の aggr0/plex0
+
+node_B_2 の aggr0 / plex0
+
+node_B_2 の aggr1 / plex0
+
+
+
+ a| 
+プール 1 内のディスク
+ a| 
+いいえディスクはクラスタ A に対してローカルです
+ a| 
+-
+
+|===
+... 影響を受けるプレックスをオフラインにします :+`* storage aggregate plex offline*`
++
+[listing]
+----
+storage aggregate plex offline -aggregate Node_B_1_aggr0 -plex plex0
+----
++
+
+NOTE: Cluster_A に対してリモートなディスクを含むすべてのプレックスに対してこの手順を実行してください
+
+
+
+
+
+. スイッチタイプに応じて、スイッチポートを永続的にオフラインにします。
++
+
+NOTE: この手順は、 MetroCluster FC 構成でのみ必要です。MetroCluster IP 構成または FC バックエンドスイッチを使用するストレッチ MetroCluster 構成の場合は、この手順を省略します。
+
++
+|===
+| スイッチのタイプ | アクション 
+
+
+ a| 
+Brocade スイッチ
+ a| 
+.. 次の例に示すように '`*portcfgpersistentdisable_port_*` コマンドを使用してポートを永続的に無効にしますサバイバーサイトにある両方のスイッチで実行する必要があります。
++
+[listing]
+----
+
+ Switch_A_1:admin> portcfgpersistentdisable 14
+ Switch_A_1:admin> portcfgpersistentdisable 15
+ Switch_A_1:admin>
+----
+.. 次の例に示すように '*switchshow*' コマンドを使用して ' ポートが無効になっていることを確認します
++
+[listing]
+----
+
+ Switch_A_1:admin> switchshow
+ switchName:	Switch_A_1
+ switchType:	109.1
+ switchState:	Online
+ switchMode:	Native
+ switchRole:	Principal
+ switchDomain:	2
+ switchId:	fffc02
+ switchWwn:	10:00:00:05:33:88:9c:68
+ zoning:		ON (T5_T6)
+ switchBeacon:	OFF
+ FC Router:	OFF
+ FC Router BB Fabric ID:	128
+ Address Mode:	0
+
+  Index Port Address Media Speed State     Proto
+  ==============================================
+   ...
+   14  14   020e00   id    16G   No_Light    FC  Disabled (Persistent)
+   15  15   020f00   id    16G   No_Light    FC  Disabled (Persistent)
+   ...
+ Switch_A_1:admin>
+----
+
+
+
+
+ a| 
+Cisco スイッチ
+ a| 
+.. 「 * interface * 」コマンドを使用して、ポートを永続的に無効にします。次の例は、ポート 14 および 15 を無効にします。
++
+[listing]
+----
+
+ Switch_A_1# conf t
+ Switch_A_1(config)# interface fc1/14-15
+ Switch_A_1(config)# shut
+
+ Switch_A_1(config-if)# end
+ Switch_A_1# copy running-config startup-config
+----
+.. 次の例に示すように '*show interface brief *' コマンドを使用して ' スイッチ・ポートが無効になっていることを確認します
++
+[listing]
+----
+
+ Switch_A_1# show interface brief
+ Switch_A_1
+----
+
+
+|===
+. サイトの電源をオフにします。
++
+次の機器の電源は、特定の順序でオフにする必要があります。
+
++
+|===
+
+
+| 構成タイプ | 電源をオフにする機器 
+
+
+ a| 
+MetroCluster IP 構成
+ a| 
+** MetroCluster IP スイッチ
+** ストレージコントローラ
+** ストレージシェルフ
+
+
+
+
+ a| 
+MetroCluster FC 構成
+ a| 
+** MetroCluster FC スイッチ
+** ストレージコントローラ
+** ストレージシェルフ
+** Atto FibreBridge （存在する場合）
+
+
+|===
+
+
+
+
+== 電源がオフになっている MetroCluster サイトの再配置
+
+[role="lead"]
+サイトの電源をオフにすると、メンテナンス作業を開始できます。手順は、 MetroCluster コンポーネントを同じデータセンター内で再配置する場合も、別のデータセンターに再配置する場合も同じです。
+
+* ハードウェアは、前のサイトと同じ方法でケーブル接続する必要があります。
+* スイッチ間リンク（ ISL ）の速度、長さ、または数が変わった場合は、すべて再設定する必要があります。
+
+
+.手順
+. 新しい場所で正しく再接続できるように、すべてのコンポーネントのケーブル接続を慎重に記録してください。
+. すべてのハードウェア、ストレージコントローラ、 FC スイッチ / IP スイッチ、 FibreBridge 、およびストレージシェルフを物理的に再配置します。
+. ISL ポートを設定し、サイト間接続を確認します。
++
+.. FC スイッチおよび IP スイッチの電源をオンにします。
++
+
+NOTE: 他の機器の電源はオンにしないでください。
+
+
+
+. ポートを有効にします。
++
+
+NOTE: この手順は、 MetroCluster FC 構成でのみ必要です。MetroCluster IP 構成の場合は、この手順を省略できます。
+
++
+次の表に示す適切なスイッチタイプに従って、ポートを有効にします。
+
++
+|===
+| スイッチのタイプ | コマンドを実行します 
+
+
+ a| 
+Brocade スイッチ
+ a| 
+.. *portcfgpersistentenable_port number_*` コマンドを使用して ' ポートを継続的に有効にしますサバイバーサイトにある両方のスイッチで実行する必要があります。
++
+次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。
+
++
+[listing]
+----
+switch_A_1:admin> portcfgpersistentenable 14
+switch_A_1:admin> portcfgpersistentenable 15
+switch_A_1:admin>
+----
+.. スイッチポートが有効になっていることを確認します :`*switchshow*`
++
+次の例は、ポート 14 および 15 を有効にします。
+
++
+[listing]
+----
+switch_A_1:admin> switchshow
+switchName:	Switch_A_1
+switchType:	109.1
+
+switchState:	Online
+switchMode:	Native
+switchRole:	Principal
+switchDomain:	2
+switchId:	fffc02
+switchWwn:	10:00:00:05:33:88:9c:68
+zoning:		ON (T5_T6)
+switchBeacon:	OFF
+FC Router:	OFF
+FC Router BB Fabric ID:	128
+Address Mode:	0
+
+Index Port Address Media Speed State     Proto
+==============================================
+ ...
+ 14  14   020e00   id    16G   Online      FC  E-Port  10:00:00:05:33:86:89:cb "Switch_A_1"
+ 15  15   020f00   id    16G   Online      FC  E-Port  10:00:00:05:33:86:89:cb "Switch_A_1" (downstream)
+ ...
+switch_A_1:admin>
+----
+
+
+
+
+ a| 
+Cisco スイッチ
+ a| 
+.. 「 * interface * 」コマンドを入力して、ポートをイネーブルにします。
++
+次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。
+
++
+[listing]
+----
+
+ switch_A_1# conf t
+ switch_A_1(config)# interface fc1/14-15
+ switch_A_1(config)# no shut
+ switch_A_1(config-if)# end
+ switch_A_1# copy running-config startup-config
+----
+.. スイッチポートがイネーブルになっていることを確認します。「 * show interface brief * 」
++
+[listing]
+----
+
+ switch_A_1# show interface brief
+ switch_A_1#
+----
+
+
+|===
+. スイッチのツールを使用して（使用可能な場合）、サイト間接続を確認します。
++
+
+NOTE: リンクが正しく設定され、安定している場合にのみ、処理を続行してください。
+
+. リンクが安定していることがわかった場合は、リンクを再度無効にします。
++
+次の表に示すように、 Brocade スイッチと Cisco スイッチのどちらを使用しているかに基づいてポートを無効にします。
+
++
+|===
+| スイッチのタイプ | コマンドを実行します 
+
+
+ a| 
+Brocade スイッチ
+ a| 
+.. ポートを永続的に無効にするには '*portcfgpersistentdisable_port number_*` コマンドを入力します
++
+サバイバーサイトにある両方のスイッチで実行する必要があります。次の例は、 Switch_A_1 のポート 14 と 15 を無効にします。
+
++
+[listing]
+----
+
+ switch_A_1:admin> portpersistentdisable 14
+ switch_A_1:admin> portpersistentdisable 15
+ switch_A_1:admin>
+----
+.. スイッチポートが無効になっていることを確認します :`*switchshow*`
++
+次の例は、ポート 14 および 15 が無効になっていることを示しています。
+
++
+[listing]
+----
+switch_A_1:admin> switchshow
+switchName:	Switch_A_1
+switchType:	109.1
+switchState:	Online
+switchMode:	Native
+switchRole:	Principal
+switchDomain:	2
+switchId:	fffc02
+switchWwn:	10:00:00:05:33:88:9c:68
+zoning:		ON (T5_T6)
+switchBeacon:	OFF
+FC Router:	OFF
+FC Router BB Fabric ID:	128
+Address Mode:	0
+
+ Index Port Address Media Speed State     Proto
+ ==============================================
+  ...
+  14  14   020e00   id    16G   No_Light    FC  Disabled (Persistent)
+  15  15   020f00   id    16G   No_Light    FC  Disabled (Persistent)
+  ...
+switch_A_1:admin>
+----
+
+
+
+
+ a| 
+Cisco スイッチ
+ a| 
+.. 「 * interface * 」コマンドを使用して、ポートを無効にします。
++
+次の例は、 Switch_A_1 のポート fc1/14 と fc1/15 を無効にします。
+
++
+[listing]
+----
+switch_A_1# conf t
+
+switch_A_1(config)# interface fc1/14-15
+switch_A_1(config)# shut
+switch_A_1(config-if)# end
+switch_A_1# copy running-config startup-config
+----
+.. スイッチ・ポートが無効になっていることを確認するには '*show interface brief *' コマンドを使用します
++
+[listing]
+----
+
+  switch_A_1# show interface brief
+  switch_A_1#
+----
+
+
+|===
+
+
+
+
+== MetroCluster 構成の電源をオンにして通常動作に戻します
+
+[role="lead"]
+メンテナンスを完了、またはサイトを移動したら、サイトの電源をオンにして MetroCluster 構成を再確立する必要があります。
+
+.手順
+. スイッチの電源をオンにします。
++
+スイッチの電源は最初にオンにする必要があります。サイトを再配置した場合は、前の手順で電源がオンになっている可能性があります。
+
++
+.. 必要に応じて、または再配置中に実行されていない場合は、スイッチ間リンク（ ISL ）を再設定します。
+.. フェンシングが完了した場合、 ISL を有効にします。
+.. ISL を確認します。
+
+
+. シェルフの電源をオンにし、完全に電源が投入されるまでにはしばらくかかります。
+. FibreBridge ブリッジの電源をオンにします。
++
+
+NOTE: MetroCluster IP 構成の場合は、この手順を省略できます。
+
++
+.. FC スイッチで、ブリッジを接続しているポートがオンラインになっていることを確認します。
++
+Brocade スイッチには「 *switchshow* 」、 Cisco スイッチには「 *show interface brief * 」などのコマンドを使用できます。
+
+.. ブリッジ上のシェルフとディスクが接続されていることを確認します。
++
+ATTO コマンドラインインターフェイス（ CLI ）では、「 * sastargets * 」などのコマンドを使用できます。
+
+
+
+. FC スイッチで ISL を有効にします。
++
+
+NOTE: MetroCluster IP 構成の場合は、この手順を省略してください。
+
++
+次の表に示すように、 Brocade スイッチと Cisco スイッチのどちらを使用しているかに基づいてポートを有効にします。
+
++
+|===
+| スイッチのタイプ | コマンドを実行します 
+
+
+ a| 
+Brocade スイッチ
+ a| 
+.. ポートを永続的にイネーブルにするには '*portcfgpersistentenable_port_*` コマンドを入力しますサバイバーサイトにある両方のスイッチで実行する必要があります。
++
+次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。
+
++
+[listing]
+----
+
+
+ Switch_A_1:admin> portcfgpersistentenable 14
+ Switch_A_1:admin> portcfgpersistentenable 15
+ Switch_A_1:admin>
+----
+.. +`*switchshow*` コマンドを使用して、スイッチポートが有効になっていることを確認します。
++
+[listing]
+----
+switch_A_1:admin> switchshow
+ switchName:	Switch_A_1
+ switchType:	109.1
+ switchState:	Online
+ switchMode:	Native
+ switchRole:	Principal
+ switchDomain:	2
+ switchId:	fffc02
+ switchWwn:	10:00:00:05:33:88:9c:68
+ zoning:		ON (T5_T6)
+ switchBeacon:	OFF
+ FC Router:	OFF
+ FC Router BB Fabric ID:	128
+ Address Mode:	0
+
+  Index Port Address Media Speed State     Proto
+  ==============================================
+   ...
+   14  14   020e00   id    16G   Online      FC  E-Port  10:00:00:05:33:86:89:cb "Switch_A_1"
+   15  15   020f00   id    16G   Online      FC  E-Port  10:00:00:05:33:86:89:cb "Switch_A_1" (downstream)
+   ...
+ switch_A_1:admin>
+----
+
+
+
+
+ a| 
+Cisco スイッチ
+ a| 
+.. 「 * interface * 」コマンドを使用して、ポートをイネーブルにします。
++
+次の例は、 Switch_A_1 のポート fc1/14 と fc1/15 を有効にします。
+
++
+[listing]
+----
+
+ switch_A_1# conf t
+ switch_A_1(config)# interface fc1/14-15
+ switch_A_1(config)# no shut
+ switch_A_1(config-if)# end
+ switch_A_1# copy running-config startup-config
+----
+.. スイッチポートが無効になっていることを確認します。
++
+[listing]
+----
+switch_A_1# show interface brief
+switch_A_1#
+----
+
+
+|===
+. ストレージが認識されていることを確認します。
++
+MetroCluster が IP 構成か FC 構成かに基づいて、ストレージが認識されているかどうかを判断する方法を選択します。
+
++
+|===
+| 設定 | ステップ 
+
+
+ a| 
+MetroCluster IP 構成
+ a| 
+ノードのメンテナンスモードからローカルストレージが認識されていることを確認します。
+
+
+
+ a| 
+MetroCluster FC 構成
+ a| 
+サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻します。再同期処理が再開され、 SyncMirror が再確立されます。
+
+|===
+. MetroCluster 構成を再確立します。
++
+MetroCluster のディザスタリカバリガイドの手順に従って、 MetroCluster の構成に応じて修復処理とスイッチバック処理を実行します。
+
++
+link:https://docs.netapp.com/us-en/ontap-metrocluster/disaster-recovery/index.html["MetroCluster の管理とディザスタリカバリ"]
+
+

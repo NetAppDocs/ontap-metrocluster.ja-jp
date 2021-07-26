@@ -1,0 +1,43 @@
+---
+permalink: install-stretch/task_cable_the_controllers_to_each_other_and_the_storage_shelves.html 
+sidebar: sidebar 
+keywords: metrocluster, stretch, installation, cable, controllers, storage, shelves 
+summary: コントローラの FC-VI アダプタどうしを直接ケーブル接続する必要があります。コントローラの SAS ポートは、リモートとローカルの両方のストレージスタックにケーブル接続する必要があります。 
+---
+= コントローラ間およびコントローラとストレージシェルフのケーブル接続
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コントローラの FC-VI アダプタどうしを直接ケーブル接続する必要があります。コントローラの SAS ポートは、リモートとローカルの両方のストレージスタックにケーブル接続する必要があります。
+
+このタスクは両方の MetroCluster サイトで実行する必要があります。
+
+.手順
+. FC-VI ポートをケーブル接続します。
++
+image::../media/mcc_cabling_fc_vi_controller_to_partner.gif[MCC ケーブル接続、 fc vi コントローラからパートナーへ]
+
++
+上の図は代表的なものです。FC-VI ポートはコントローラモジュールによって異なります。
+
++
+** FAS8200 および AFF A300 コントローラモジュールでは、発注時に FC-VI 接続のオプションとして次のいずれかを選択できます。
++
+*** FC-VI モードで設定されたオンボードポート 0e および 0f 。
+*** スロット 1 の FC-VI カードのポート 1a および 1b 。
+
+
+** AFF A700 および FAS9000 ストレージシステムのコントローラモジュールは、それぞれ FC-VI ポートを 4 つ使用します。
+** AFF A400 および FAS8300 ストレージシステムコントローラモジュールは、 FC-VI ポート 2a および 2b を使用します。
+
+
+. SAS ポートをケーブル接続します。
++
+次の図は接続を示しています。使用するポートは、コントローラモジュールの利用可能な SAS ポートと FC-VI ポートによって異なることがあります。
+
++
+image::../media/mcc_two_node_optical_sas_space_configuration.png[MCC 2 ノードの光ファイバ SAS スペース構成]
+
+

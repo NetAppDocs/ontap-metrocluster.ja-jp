@@ -1,0 +1,40 @@
+---
+permalink: transition/concept_how_transition_impacts_the_mcc_hardware_components.html 
+sidebar: sidebar 
+keywords: complete, completing, transition, procedure, key, component, exist, metrocluster, configuration, replace, reconfigure, impact, hardware, component 
+summary: 移行手順が完了したあと、既存の MetroCluster 構成の主要コンポーネントが交換または再設定されている。 
+---
+= 移行が MetroCluster のハードウェアコンポーネントに及ぼす影響
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+移行手順が完了したあと、既存の MetroCluster 構成の主要コンポーネントが交換または再設定されている。
+
+* * コントローラモジュール *
++
+既存のコントローラモジュールが新しいコントローラモジュールに交換されます。既存のコントローラモジュールは、移行手順の終了時に運用停止されます。
+
+* * ストレージシェルフ *
++
+データは古いシェルフから新しいシェルフに移動されます。古いシェルフは、移行手順の終了時に運用停止されます。
+
+* * MetroCluster （バックエンド）およびクラスタスイッチ *
++
+バックエンドスイッチ機能は、 IP スイッチファブリックに置き換えられます。MetroCluster FC 構成に FC スイッチおよび FC-to-SAS ブリッジが含まれていた場合、それらのブリッジはこの手順の最後で運用停止されます。
+
++
+MetroCluster FC 構成でクラスタインターコネクトにクラスタスイッチを使用していた場合は、場合によってはそのスイッチを再利用してバックエンド IP スイッチファブリックを提供できます。再利用するクラスタスイッチには、プラットフォームおよびスイッチ固有の RCF を再設定する必要があります。の手順。
+
++
+MetroCluster FC 構成でクラスタスイッチを使用していなかった場合は、バックエンドスイッチファブリックを提供する新しい IP スイッチが追加されます。
+
++
+xref:concept_considerations_for_using_existing_ip_switches.adoc[IP スイッチに関する考慮事項]
+
+* * クラスタピアリングネットワーク *
++
+お客様提供の既存のクラスタピアリングネットワークを、新しい MetroCluster IP 構成に使用できます。クラスタピアリングは、移行手順の一部として MetroCluster IP ノードで設定します。
+
+

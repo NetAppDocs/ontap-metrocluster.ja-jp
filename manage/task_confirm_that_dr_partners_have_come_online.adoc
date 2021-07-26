@@ -1,0 +1,72 @@
+---
+permalink: manage/task_confirm_that_dr_partners_have_come_online.html 
+sidebar: sidebar 
+keywords: switchover, dr, partner, ownership, disk, svm, online, confirm 
+summary: スイッチオーバーが完了したら、 DR パートナーがディスクの所有権を取得し、パートナー SVM がオンラインになったことを確認する必要があります。 
+---
+= DR パートナーのオンライン確認
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチオーバーが完了したら、 DR パートナーがディスクの所有権を取得し、パートナー SVM がオンラインになったことを確認する必要があります。
+
+.手順
+. アグリゲートディスクが「 storage disk show -fields owner 、 dr-home 」という災害サイトにスイッチオーバーされていることを確認します
++
+次の出力例では、スイッチオーバーされたディスクの dr-home フィールドに値が設定されています。
+
++
+[listing]
+----
+cluster_A::> storage disk show -fields owner,dr-home
+disk                 owner           dr-home
+-------------------- --------------- -------
+1.11.0               node_A_1        node_B_1
+1.11.1               node_A_1        node_B_1
+1.11.2               node_A_1        node_B_1
+1.11.3               node_A_1        node_B_1
+1.11.4               node_A_1        node_B_1
+1.11.5               node_A_1        node_B_1
+1.11.6               node_A_1        node_B_1
+1.11.7               node_A_1        node_B_1
+1.11.8               node_A_1        node_B_1
+----
+. storage aggregate show コマンドを使用して、アグリゲートがスイッチオーバーされたことを確認します。
++
+この例では、アグリゲートがスイッチオーバーされています。ルートアグリゲート（ aggr0_b2 ）はデグレード状態、データアグリゲート（ b2_aggr2 ）はミラーされた正常な状態になっています。
+
++
+[listing]
+----
+cluster_A::*> storage aggregate show
+
+.
+.
+.
+mcc1-b Switched Over Aggregates:
+Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
+--------- -------- --------- ----- ------- ------ ---------------- ------------
+aggr0_b2    227.1GB   45.1GB    80% online       0 node_A_1        raid_dp,
+                                                                   mirror
+                                                                   degraded
+b2_aggr1    227.1GB   200.3GB    20% online       0 node_A_1       raid_dp,
+                                                                   mirrored
+                                                                   normal
+----
+. vserver show コマンドを使用して、セカンダリ SVM がオンラインになったことを確認します。
++
+この例では、これまで休止状態だったセカンダリサイトの同期先 SVM がアクティブで、 Admin State は running になっています。
+
++
+[listing]
+----
+cluster_A::*> vserver show
+                                          Admin      Operational  Root                 Name    Name
+Vserver           Type  Subtype           State      State        Volume    Aggregate  Service Mapping
+-----------       ----- ----------        ---------- -----------  --------- ---------- ------- -------
+...
+cluster_B-vs1b-mc data   sync-destination  running   running      vs1b_vol   aggr_b1   file    file
+----
+

@@ -1,0 +1,240 @@
+---
+permalink: maintain/task_disable_encryption_on_brocade_fc_switches.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, disable, encryption, brocade, fc, switch 
+summary: Brocade FC スイッチで暗号化の無効化が必要になる場合があります。 
+---
+= Brocade FC スイッチでの暗号化の無効化
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Brocade FC スイッチで暗号化の無効化が必要になる場合があります。
+
+.手順
+. メンテナンスの開始を通知する AutoSupport メッセージを両方のサイトから送信します。
++
+[listing]
+----
+cluster_A::> autosupport invoke -node * -type all -message MAINT=4h
+----
++
+[listing]
+----
+cluster_B::> autosupport invoke -node * -type all -message MAINT=4h
+----
+. クラスタ A から MetroCluster 構成の動作を確認します
++
+.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
++
+[listing]
+----
+cluster_A::> metrocluster show
+----
+.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
++
+[source, nolinebreak]
+----
+cluster_A::> metrocluster check run
+----
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
++
+[source, nolinebreak]
+----
+cluster_A::> metrocluster check show
+----
+
+
+. 両方のスイッチのステータスを確認します。
++
+「 * fabric show * 」のように表示されます
+
++
+[listing]
+----
+switch_A_1:admin> fabric show
+----
++
+[listing]
+----
+switch_B_1:admin> fabric show
+----
+. 両方のスイッチを無効にします。
++
+*switchdisable *
+
++
+[listing]
+----
+switch_A_1:admin> switchdisable
+----
++
+[listing]
+----
+switch_B_1:admin> switchdisable
+----
+. 各クラスタで使用可能なノードのパスを確認します。
++
+*sysconfig *
+
++
+[listing]
+----
+cluster_A::> system node run -node node-name -command sysconfig -a
+----
++
+[listing]
+----
+cluster_B::> system node run -node node-name -command sysconfig -a
+----
++
+スイッチファブリックが無効になると、システムストレージ構成はシングルパス HA になります。
+
+. 両方のクラスタのアグリゲートのステータスを確認してください。
++
+[listing]
+----
+cluster_A::> aggr status
+----
++
+[listing]
+----
+cluster_B::> aggr status
+----
++
+両方のクラスタについて、アグリゲートがミラーされて正常であることが出力に表示されます。
+
++
+[listing]
+----
+mirrored,normal
+----
+. 両方のスイッチで、管理プロンプトから次の手順を繰り返します。
++
+.. 暗号化されているポートを表示します :+`*portenccompshow*`
++
+[listing]
+----
+switch_A_1:admin> portenccompshow
+----
+.. 暗号化ポートで暗号化を無効にします。 +`*portcfgencrypt – disable_port-number_*`
++
+[listing]
+----
+switch_A_1:admin> portcfgencrypt --disable 40
+switch_A_1:admin> portcfgencrypt --disable 41
+switch_A_1:admin> portcfgencrypt --disable 42
+switch_A_1:admin> portcfgencrypt --disable 43
+----
+.. 認証タイプを all に設定します。
++
+`*authUtil -- set - 全ての *`
+
++
+[listing]
+----
+switch_A_1:admin> authUtil --set -a all
+----
+.. スイッチに認証ポリシーを設定します。オフにするには、 +`*authutil --policy-swoff *` を指定します
++
+[listing]
+----
+switch_A_1:admin> authutil --policy -sw off
+----
+.. 認証 Diffie-Hellman グループを +*+:+`*authutil --set-g **` に設定します
++
+[listing]
+----
+switch_A_1:admin> authUtil --set -g *
+----
+.. 秘密鍵データベース +`*secAuthSecret -- remove-all *` を削除します
++
+[listing]
+----
+switch_A_1:admin> secAuthSecret --remove -all
+----
+.. ポートで暗号化が無効になっていることを確認します :+`*portenccompshow*`
++
+[listing]
+----
+switch_A_1:admin> portenccompshow
+----
+.. スイッチ +`*switchenable*` を有効にします
++
+[listing]
+----
+switch_A_1:admin> switchenable
+----
+.. ISL のステータスを確認します。 +`* islshow*`
++
+[listing]
+----
+switch_A_1:admin> islshow
+----
+
+
+. 各クラスタで使用可能なノードのパスを確認します。
++
+*sysconfig *
+
++
+[listing]
+----
+cluster_A::> system node run -node * -command sysconfig -a
+----
++
+[listing]
+----
+cluster_B::> system node run -node * -command sysconfig -a
+----
++
+システムの出力は、システムストレージ構成がクアッドパス HA に戻ったことを示しているはずです。
+
+. 両方のクラスタのアグリゲートのステータスを確認してください。
++
+[listing]
+----
+cluster_A::> aggr status
+----
++
+[listing]
+----
+cluster_B::> aggr status
+----
++
+次のシステム出力に示すように、両方のクラスタでアグリゲートがミラーリングされ、正常であることが示されます。
+
++
+[listing]
+----
+mirrored,normal
+----
+. クラスタ A から MetroCluster 構成の動作を確認します
++
+.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
++
+[listing]
+----
+cluster_A::> metrocluster check run
+----
+.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
++
+[listing]
+----
+cluster_A::> metrocluster check show
+----
+
+
+. メンテナンスが終了したことを示す AutoSupport メッセージを両方のサイトから送信します。
++
+[listing]
+----
+cluster_A::> autosupport invoke -node node-name -type all -message MAINT=END
+----
++
+[listing]
+----
+cluster_B::> autosupport invoke -node node-name -type all -message MAINT=END
+----
+
