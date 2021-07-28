@@ -15,33 +15,32 @@ FC スイッチファブリックを有効にして、スイッチやデバイ�
 .手順
 . スイッチを有効にします。
 +
-*switchCfgPersistentEnable*'
+'witchcfgpersistentenable
 
 +
 このコマンドを使用できない場合は 'fastBoot コマンドの実行後にスイッチが enabled 状態になっている必要があります
 
 +
-次に 'FC_switch_A_1 で実行するコマンドの例を示します
-
+** 次の例は、 FC_switch_A_1 で実行するコマンドを示しています。
 +
 [listing]
 ----
 FC_switch_A_1:admin> switchCfgPersistentEnable
 ----
-+
-次の例は 'FC_switch _ B_1' に対して発行されたコマンドを示しています
-
+** 次の例は、 FC_switch_B_1 で実行するコマンドを示しています。
 +
 [listing]
 ----
 FC_switch_B_1:admin> switchCfgPersistentEnable
 ----
+
+
 . スイッチがオンラインで、すべてのデバイスがログインされていることを確認します。
 +
-'*switchShow*
+'witchshow'
 
 +
-次に 'FC_switch_A_1 で実行するコマンドの例を示します
+次の例は、 FC_switch_A_1 で実行するコマンドを示しています。
 
 +
 [listing]
@@ -49,14 +48,14 @@ FC_switch_B_1:admin> switchCfgPersistentEnable
 FC_switch_A_1:admin> switchShow
 ----
 +
-次の例は 'FC_switch _ B_1' に対して発行されたコマンドを示しています
+次の例は、 FC_switch_B_1 で実行するコマンドを示しています。
 
 +
 [listing]
 ----
 FC_switch_B_1:admin> switchShow
 ----
-. 「 fmc_dc ユーティリティ」を実行して、 7-Mode ファブリックの MetroCluster が正常に機能していることを確認します。
+. fmc_dc ユーティリティを実行して、 7-Mode ファブリック MetroCluster が正常に機能していることを確認します。
 +
 Traffic Isolation （ TI ）ゾーニングおよびトランキングに関連するエラーは無視してかまいません。
 

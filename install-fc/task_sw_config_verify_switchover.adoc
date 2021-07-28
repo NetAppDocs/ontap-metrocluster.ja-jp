@@ -674,82 +674,83 @@ MetroCluster 設定を有効にします。
 
 == システムのデフォルト設定をリストアし、コントローラモジュールで HBA タイプを設定しています
 
-[role="lead"]
 MetroCluster を正しくインストールするには、コントローラモジュールのデフォルトをリセットしてリストアします。このタスクを実行する必要があるのは、 FC-to-SAS ブリッジを使用するストレッチ構成のみです。
 
-. LOADER プロンプトで、環境変数をデフォルト設定の「 set-defaults 」に戻します
+.手順
+. LOADER プロンプトで環境変数をデフォルト設定に戻します。
++
+「デフォルト設定」
+
 . ノードをメンテナンスモードでブートし、システム内の HBA の設定を行います。
 +
-.. 保守モードでブート：「 boot_ontap maint 」
-.. ucadmin show と入力し、各ポートの現在の設定を確認します
+.. メンテナンスモードでブートします。
++
+「 boot_ontap maint 」を使用してください
+
+.. ポートの現在の設定を確認します。
++
+ucadmin show
+
 .. 必要に応じてポートの設定を更新します。
 
 
 +
 |===
-
-
 | HBA のタイプと目的のモード | 使用するコマンド 
 
 
- a| 
-CNA FC
- a| 
-ucadmin modify -m fc -t initiator adapter_name
+| CNA FC | ucadmin modify -m fc -t initiator_adapter_name _ ` 
 
 
-
- a| 
-CNA イーサネット
- a| 
-ucadmin modify -mode CNA adapter_name
+| CNA イーサネット | ucadmin modify -mode cna_adapter_name _ ` 
 
 
-
- a| 
-FC ターゲット
- a| 
-fcadmin config -t target adapter_name
+| FC ターゲット | fcadmin config -t target_adapter_name _` 
 
 
-
- a| 
-FC イニシエータ
- a| 
-fcadmin config -t initiator adapter_name
-
+| FC イニシエータ | fcadmin config -t initiator_adapter_name_` 
 |===
-. 保守モードを終了します :halt
+. メンテナンスモードを終了します。
++
+「 halt 」
+
 +
 コマンドの実行後、ノードが LOADER プロンプトで停止するまで待ちます。
 
-. ノードをブートして保守モードに戻り、設定の変更が反映されるようにします。「 boot_ontap maint 」
+. ノードをブートしてメンテナンスモードに戻り、設定の変更が反映されるようにします。
++
+「 boot_ontap maint 」を使用してください
+
 . 変更内容を確認します。
 +
 |===
-
-
 | HBA のタイプ | 使用するコマンド 
 
 
  a| 
 CNA
  a| 
-ucadmin show の実行
+ucadmin show
 
 
 
  a| 
 FC
  a| 
-fcadmin show の例です
+fcadmin show`
 
 |===
-. 保守モードを終了します :halt
+. メンテナンスモードを終了します。
++
+「 halt 」
+
 +
 コマンドの実行後、ノードが LOADER プロンプトで停止するまで待ちます。
 
-. ノードをブートメニュー「 boot_ontap menu 」からブートします
+. ノードをブートメニューでブートします。
++
+「 boot_ontap menu
+
 +
 コマンドの実行後、ブートメニューが表示されるまで待ちます。
 
@@ -758,11 +759,10 @@ fcadmin show の例です
 次の画面はブートメニューのプロンプトを示しています。
 
 +
-....
+[listing]
+----
 Please choose one of the following:
-....
-+
-....
+
      (1) Normal Boot.
      (2) Boot without /etc/rc.
      (3) Change password.
@@ -777,9 +777,10 @@ Please choose one of the following:
  Warning: do not run this option on a HA node that has been taken over.
  Are you sure you want to continue?: yes
  Rebooting to finish wipeconfig request.
-// end include reference
-== Configuring FC-VI ports on a X1132A-R6 quad-port card on FAS8020 systems
-....
+----
++
+= FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
+
 
 
 [role="lead"]

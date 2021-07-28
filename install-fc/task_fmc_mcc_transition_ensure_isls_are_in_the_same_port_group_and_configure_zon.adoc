@@ -17,25 +17,13 @@ MetroCluster 構成でスイッチファブリックを共有するために、�
 +
 新しい MetroCluster 構成で使用される 32~45 以外の使用可能なポートを使用できます。推奨される ISL ポートは 46 と 47 です。
 
-. 「 Brocade FC スイッチでのゾーニングの設定」セクションの手順に従って、トランキングと QoS ゾーンを有効にします。
+. の手順に従います link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["Brocade FC スイッチでゾーニングを設定します"] トランキングと QoS ゾーンをイネーブルにするには、を参照してください。
 +
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[Brocade FC スイッチでゾーニングを設定します]
+ファブリックを共有する場合のポート番号は、のセクションに記載されている番号とは異なります。共有する場合は、ポート 46 と 47 を ISL ポートに使用します。ISL ポートを移動した場合は、の手順を使用する必要があります link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["Brocade FC スイッチでの E ポートの設定"] セクションでポートを設定します。
 
-+
-ファブリックを共有する場合のポート番号は、のセクションに記載されている番号とは異なります。共有する場合は、ポート 46 と 47 を ISL ポートに使用します。ISL ポートを移動した場合は、「 Brocade FC スイッチでの E ポートの設定」セクションの手順を使用してポートを設定する必要があります。
-
-+
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[Brocade FC スイッチでの E ポートの設定]
-
-. 「 Brocade スイッチでの非 E ポートの設定」セクションの手順に従って非 E ポートを設定します。
-+
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[Brocade スイッチでの非 E ポートの設定]
-
-. バックエンドスイッチにすでに存在するゾーンまたはゾーンセットは削除しないでください（ 7-Mode ファブリック MetroCluster の場合）。ただし、手順 3 の Traffic Isolation （ TI ）ゾーンは除きます。
-. 「 Brocade FC スイッチでの E ポートの設定」セクションの手順に従って、新しい MetroCluster で必要なゾーンを既存のゾーンセットに追加します。
-+
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[Brocade FC スイッチでの E ポートの設定]
-
+. [[step3_zones ]] の手順に従います link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["Brocade スイッチでの非 E ポートの設定"] セクションで非 E ポートを設定します。
+. の Traffic Isolation （ TI ）ゾーンを除き、バックエンドスイッチにすでに存在するゾーンまたはゾーンセット（ 7-Mode ファブリック MetroCluster の場合）は削除しないでください <<step3_zones,手順 3>>。
+. の手順に従います link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["Brocade FC スイッチでの E ポートの設定"] セクションで、新しい MetroCluster で必要なゾーンを既存のゾーンセットに追加します。
 +
 次の例は、ゾーンを作成するコマンドと出力を示しています。
 

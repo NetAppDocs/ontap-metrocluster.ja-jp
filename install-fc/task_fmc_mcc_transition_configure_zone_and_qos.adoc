@@ -12,9 +12,10 @@ summary: スイッチファブリックで既存の TI ゾーニングを削除�
 [role="lead"]
 スイッチファブリックで既存の TI ゾーニングを削除し、 in-order-delivery （ IOD ；インオーダー配信）を再設定する必要があります。
 
+.手順
 . ファブリックに設定されている TI ゾーンを特定します。
 +
-'*zone – -show*
+'zone -- 表示
 
 +
 次の例は、ゾーン FCVI_TI_FAB_2 を示しています。
@@ -31,7 +32,7 @@ Brocade-6510:admin> zone --show
 ----
 . TI ゾーンを削除します。
 +
-`*zone -- zone-name*` を削除します
+'zone -- delete_zone-name_`
 
 +
 次の例は、ゾーン FCVI_TI_FAB_2 を削除します。
@@ -43,7 +44,7 @@ Brocade-6510:admin> zone --delete FCVI_TI_FAB_2
 ----
 . ゾーンが削除されたことを確認します。
 +
-'*zone – -show*
+'zone -- 表示
 
 +
 次のような出力が表示されます。
@@ -58,29 +59,29 @@ Brocade-6510:admin> zone -–show
 ----
 . 設定を保存します。
 +
-「 * cfgsave * 」と入力します
+cfgsave
 
 . インオーダー配信を有効にします。
 +
-「 * iodset * 」
+「 iodset 」
 
 . ポートベースのルーティングポリシー、 Advanced Performance Tuning （ APT ）ポリシー 1 を選択します。
 +
-「 * aptpolicy 1 * 」と入力します
+「 aptpolicy 1 」
 
 . 動的負荷共有（ DLS ）を無効にします。
 +
-「 *dlsreset *` 」
+「 lsreset 」と表示されます
 
 . 次のコマンドを使用して IOD 設定を確認します。
 +
-「 * iodshow * 」
+「 iodshow 」
 
 +
-`*aptpolicy*`
+「 aptpolicy 」と入力します
 
 +
-*dlsshow*`
+「 llsshow 」
 
 +
 次のような出力が表示されます。
