@@ -14,6 +14,9 @@ script:
 - if [[ ! -z "$FEATURE_FLAG" ]]; then bundle exec rake buildAll; fi
 - mkdir -p /tmp/output && bundle exec jekyll build --trace --destination /tmp/output --config _config.yml,project.yml
 - touch /tmp/output/.nojekyll
+- rm -rf /tmp/output/pdfs/fullsite-sidebar/*
+- ls -al /tmp/output/pdfs/fullsite-sidebar/
+- ruby pdf-download.rb
 - ls -al /tmp/output/pdfs/fullsite-sidebar/
 deploy:	
   provider: pages	
