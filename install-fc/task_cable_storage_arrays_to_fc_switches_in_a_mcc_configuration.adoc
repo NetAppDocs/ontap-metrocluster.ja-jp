@@ -12,6 +12,7 @@ summary: MetroCluster 構成では、 ONTAP システムから特定のアレイ
 [role="lead"]
 MetroCluster 構成では、 ONTAP システムから特定のアレイ LUN に少なくとも 2 つのパスでアクセスできるように、ストレージアレイを FC スイッチに接続する必要があります。
 
+.作業を開始する前に
 * ストレージアレイが設定され、アレイ LUN が ONTAP に提供されている必要があります。
 * ONTAP コントローラが FC スイッチに接続されている必要があります。
 * MetroCluster サイト間で FC スイッチの ISL がケーブル接続されている必要があります。
@@ -26,12 +27,19 @@ MetroCluster 構成では、 ONTAP システムから特定のアレイ LUN に�
 
 
 
-* 関連情報 *
+.関連情報
+* スイッチゾーニングを設定すると、 MetroCluster 構成の特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。
++
+link:concept_switch_zoning_in_a_mcc_configuration_with_array_luns.html["アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニング"]
 
-xref:concept_switch_zoning_in_a_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニング]
+* アレイ LUN を使用する MetroCluster 構成では、冗長ポートペアを形成するストレージアレイポートを代替 FC スイッチに接続する必要があります。
++
+link:reference_example_of_cabling_array_luns_to_fc_switches_in_a_two_node_mcc_configuration.html["2 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例"]
 
-xref:reference_example_of_cabling_array_luns_to_fc_switches_in_a_two_node_mcc_configuration.adoc[2 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]
++
+link:reference_example_of_cabling_array_luns_to_fc_switches_in_a_four_node_mcc_configuration.html["4 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例"]
 
-xref:reference_example_of_cabling_array_luns_to_fc_switches_in_a_four_node_mcc_configuration.adoc[4 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]
++
+link:reference_example_of_cabling_array_luns_to_fc_switches_in_an_eight_node_mcc_configuration.html["8 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例"]
 
-xref:reference_example_of_cabling_array_luns_to_fc_switches_in_an_eight_node_mcc_configuration.adoc[8 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例]
+

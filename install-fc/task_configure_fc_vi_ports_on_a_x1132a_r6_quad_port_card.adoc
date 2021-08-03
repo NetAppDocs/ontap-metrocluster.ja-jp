@@ -20,10 +20,10 @@ NOTE: 「 ucadmin 」コマンドを使用した FC-VI ポートへの FC ポー
 .手順
 . ポートを無効にします。
 +
-'*storage disable adapter 1a*
+「ストレージ無効化アダプタ 1a 」
 
 +
-'*storage disable adapter 1b*
+「ストレージ無効化アダプタ 1b'
 
 +
 [listing]
@@ -40,7 +40,7 @@ Jun 03 02:18:43 [controller_B_1:fci.adapter.offline:info]: Fibre Channel adapter
 ----
 . ポートが無効になっていることを確認します。
 +
-*ucadmin show *`
+ucadmin show
 
 +
 [listing]
@@ -57,7 +57,7 @@ Adapter  Mode     Type       Mode     Type       Status
 ----
 . ポート a とポート b を FC-VI モードに設定します。
 +
-`*ucadmin modify -adapter 1a -type FCVI*`
+ucadmin modify -adapter 1a -type FCVI`
 
 +
 このコマンドでは、 1a だけを指定した場合でも、ポートペアの両方のポート 1a と 1b のモードが設定されます。
@@ -72,7 +72,7 @@ Jun 03 02:19:13 [controller_B_1:ucm.type.changed:info]: FC-4 type has changed to
 ----
 . 変更が保留中であることを確認します。
 +
-*ucadmin show *`
+ucadmin show
 
 +
 [listing]
@@ -90,7 +90,7 @@ Adapter  Mode     Type       Mode     Type       Status
 . コントローラをシャットダウンし、メンテナンスモードでリブートします。
 . 設定の変更を確認します。
 +
-*ucadmin show local *`
+ucadmin show local
 
 +
 [listing]

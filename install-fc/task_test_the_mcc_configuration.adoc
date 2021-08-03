@@ -27,7 +27,7 @@ summary:
 
 * MetroCluster switchover コマンドは ' 警告プロンプトを表示します
 +
-プロンプトに「 * yes * 」と応答すると、コマンドの発行元サイトがパートナーサイトを切り替えます。
+プロンプトに「 yes 」と応答すると、コマンドが発行されたサイトがパートナーサイトを切り替えます。
 
 
 
@@ -47,10 +47,14 @@ MetroCluster IP 構成の場合：
 * ONTAP 9.8 以降の場合：
 +
 ** リモートストレージへのアクセスが失われると、ディザスタサイトにあるミラーされていないアグリゲートは使用できなくなります。これにより、コントローラが停止する可能性があります。
+
+
+
+
+.手順
+. すべてのノードが設定済みの状態で通常モードになっていることを確認します。
 +
-... すべてのノードが設定済みの状態で通常モードになっていることを確認します。
-+
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -62,9 +66,9 @@ Cluster                        Configuration State    Mode
  Local: cluster_A               configured             normal
 Remote: cluster_B               configured             normal
 ----
-... スイッチオーバー処理を開始します。
+. スイッチオーバー処理を開始します。
 +
-'*MetroCluster スイッチオーバー *
+MetroCluster スイッチオーバー
 
 +
 [listing]
@@ -73,9 +77,9 @@ cluster_A::> metrocluster switchover
 Warning: negotiated switchover is about to start. It will stop all the data Vservers on cluster "cluster_B" and
 automatically re-start them on cluster "cluster_A". It will finally gracefully shutdown cluster "cluster_B".
 ----
-... ローカルクラスタが設定済みの状態でスイッチオーバーモードになっていることを確認します。
+. ローカルクラスタが設定済みの状態でスイッチオーバーモードになっていることを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -88,9 +92,9 @@ Local: cluster_A                configured             switchover
 Remote: cluster_B               not-reachable          -
               configured             normal
 ----
-... スイッチオーバー処理が成功したことを確認します。
+. スイッチオーバー処理が成功したことを確認します。
 +
-「 * MetroCluster operation show * 」と表示されます
+「 MetroCluster operation show 」を参照してください
 
 +
 [listing]
@@ -104,11 +108,7 @@ cluster_A::> metrocluster operation show
    End Time: 2/6/2016 13:29:41
      Errors: -
 ----
-... 「 vserver show 」コマンドと「 network interface show 」コマンドを使用して、 DR SVM と LIF がオンラインになったことを確認します。
-
-
-
-
+. 「 vserver show 」コマンドと「 network interface show 」コマンドを使用して、 DR SVM と LIF がオンラインになったことを確認します。
 
 
 
@@ -122,7 +122,11 @@ cluster_A::> metrocluster operation show
 
 この手順では、想定される結果として、サービスがホームノードにスイッチバックされることを確認します。
 
-. 修復が完了したことを確認します MetroCluster node show
+.手順
+. 修復が完了したことを確認します。
++
+MetroCluster node show
+
 +
 次の例は、コマンドが正常に完了したことを示しています。
 
@@ -139,7 +143,10 @@ Group Cluster Node               State          Mirroring Mode
               node_B_2         unreachable    -         switched over
 42 entries were displayed.metrocluster operation show
 ----
-. すべてのアグリゲートがミラーされていることを確認します。「 storage aggregate show
+. すべてのアグリゲートがミラーされたことを確認します。
++
+「 storage aggregate show
+
 +
 次の例では、すべてのアグリゲートの RAID ステータスが mirrored になっています。
 
@@ -168,7 +175,10 @@ data_cluster_B
 root_cluster_B    -         -     - unknown      - node_A_1   -
 ----
 . ディザスタサイトからノードをブートします。
-. スイッチバック・リカバリのステータスを確認します MetroCluster node show
+. スイッチバックリカバリのステータスを確認します。
++
+MetroCluster node show
+
 +
 [listing]
 ----
@@ -183,14 +193,20 @@ Group Cluster Node               State          Mirroring Mode
                                                           recovery
 2 entries were displayed.
 ----
-. MetroCluster スイッチバックを実行します
+. スイッチバックを実行します。
++
+MetroCluster スイッチバック
+
 +
 [listing]
 ----
 cluster_A::> metrocluster switchback
 [Job 938] Job succeeded: Switchback is successful.Verify switchback
 ----
-. ノードのステータスを確認します MetroCluster node show
+. ノードのステータスを確認します。
++
+MetroCluster node show
+
 +
 [listing]
 ----
@@ -205,7 +221,10 @@ Group Cluster Node               State          Mirroring Mode
 
 2 entries were displayed.
 ----
-. MetroCluster オペレーションのステータスを確認します MetroCluster operation show
+. MetroCluster オペレーションのステータスを確認します
++
+「 MetroCluster operation show 」を参照してください
+
 +
 正常に完了したことを示す出力が表示されます。
 
@@ -240,8 +259,12 @@ cluster_A::> metrocluster operation show
 
 NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
+.手順
 . ブリッジの電源装置をオフにします。
-. ブリッジの監視が「 storage bridge show 」のエラーを示していることを確認します
+. ブリッジの監視がエラーを示していることを確認します。
++
+「 storage bridge show 」
+
 +
 [listing]
 ----
@@ -254,7 +277,10 @@ ATTO_10.65.57.145
 	     bridge_A_1    Atto    FibreBridge 6500N
                                            200000108662d46c true      error
 ----
-. 「 storage disk error show 」という 1 つのパスで、ブリッジの背後にあるドライブを使用できることを確認します
+. ブリッジに接続されたドライブに 1 つのパスでアクセス可能なことを確認します。
++
+「 storage disk error show 」と表示されます
+
 +
 [listing]
 ----
@@ -286,9 +312,17 @@ MetroCluster 構成で PDU の障害が発生した場合の対応をテスト�
 
 * PDU の接続が切断されるため、エラーが生成されます。
 * フェイルオーバーやサービスの中断は発生しません。
+
+
+.手順
+. MetroCluster コンポーネントが格納されたラックの左側の PDU の電源をオフにします。
+. 次のコマンドを使用して、コンソールで結果を監視します。
 +
-.. MetroCluster コンポーネントが格納されたラックの左側の PDU の電源をオフにします。
-.. system environment sensors show -state fault コマンドと storage shelf show-errors コマンドを使用して、コンソールで結果を監視します。
+「 system environment sensors show -state fault 」というエラーが表示されます
+
++
+「 storage shelf show -errors 」を参照してください
+
 +
 [listing]
 ----
@@ -317,11 +351,9 @@ Error Type          Description
 ------------------  ---------------------------
 Power               Critical condition is detected in storage shelf power supply unit "1". The unit might fail.Reconnect PSU1
 ----
-.. 左側の PDU の電源を再度オンにします。
-.. ONTAP がエラー状態をクリアすることを確認します。
-.. 右側の PDU で上記の手順を繰り返します。
-
-
+. 左側の PDU の電源を再度オンにします。
+. ONTAP がエラー状態をクリアすることを確認します。
+. 右側の PDU で上記の手順を繰り返します。
 
 
 
@@ -339,16 +371,24 @@ Power               Critical condition is detected in storage shelf power supply
 
 * cluster_A の FC_switch_A_1
 * cluster_B の FC_switch_B_1
+
+
+.手順
+. MetroCluster 構成の 2 つのスイッチファブリックの一方への接続を無効にします。
 +
-.. MetroCluster 構成の 2 つのスイッチファブリックの一方への接続を無効にします。
+.. ファブリックの 1 つ目のスイッチを無効にします。
 +
-... ファブリック内の最初のスイッチ 'witchdisable' を無効にします
+'witchdisable
+
 +
 [listing]
 ----
 FC_switch_A_1::> switchdisable
 ----
-... ファブリック内の 2 番目のスイッチ 'witchdisable' を無効にします
+.. ファブリックの 2 つ目のスイッチを無効にします。
++
+'witchdisable
+
 +
 [listing]
 ----
@@ -356,27 +396,33 @@ FC_switch_B_1::> switchdisable
 ----
 
 
-.. コントローラモジュールのコンソールで結果を監視します。
+. コントローラモジュールのコンソールで結果を監視します。
 +
 次のコマンドを使用してクラスタノードをチェックし、すべてのデータが引き続き提供されていることを確認できます。コマンドの出力に、ディスクへのパスがないことが示されます。これは想定される状態です。
 
 +
-*** vserver show のコマンドです
-*** network interface show の略
-*** aggr show のコマンドを入力し
-*** system node run nodename command storage show disk -p のようになりました
-*** storage disk error show のコマンドを入力します
+** vserver show のコマンドです
+** network interface show の略
+** aggr show のコマンドを入力し
+** system node run nodename command storage show disk -p のようになりました
+** storage disk error show のコマンドを入力します
 
 
-.. MetroCluster 構成の 2 つのスイッチファブリックの一方への接続を再度有効にします。
+. MetroCluster 構成の 2 つのスイッチファブリックの一方への接続を再度有効にします。
 +
-... ファブリックの最初のスイッチ 'witchenable' を再度有効にします
+.. ファブリックの 1 つ目のスイッチを再度有効にします。
++
+「 witchenable 」
+
 +
 [listing]
 ----
 FC_switch_A_1::> switchenable
 ----
-... ファブリックの 2 番目のスイッチ 'witchenable' を再度有効にします
+.. ファブリックの 2 つ目のスイッチを再度有効にします。
++
+「 witchenable 」
+
 +
 [listing]
 ----
@@ -384,9 +430,7 @@ FC_switch_B_1::> switchenable
 ----
 
 
-.. 10 分以上待ってから、もう一方のスイッチファブリックで上記の手順を繰り返します。
-
-
+. 10 分以上待ってから、もう一方のスイッチファブリックで上記の手順を繰り返します。
 
 
 
@@ -401,8 +445,13 @@ FC_switch_B_1::> switchenable
 * 監視ソフトウェアからエラーメッセージが報告されます。
 * フェイルオーバーやサービスの中断は発生しません。
 * ハードウェア障害がリストアされたあと、ミラーの再同期が自動的に開始されます。
+
+
+.手順
+. ストレージフェイルオーバーのステータスを確認します。
 +
-.. ストレージフェイルオーバーのステータス「 storage failover show 」を確認します
+「 storage failover show 」をクリックします
+
 +
 [listing]
 ----
@@ -414,7 +463,10 @@ node_A_1       node_A_2       true     Connected to node_A_2
 node_A_2       node_A_1       true     Connected to node_A_1
 2 entries were displayed.
 ----
-.. アグリゲートのステータスを確認します：「 storage aggregate show 」
+. アグリゲートのステータスを確認します。
++
+「 storage aggregate show
+
 +
 [listing]
 ----
@@ -443,7 +495,16 @@ node_A_2_root
                                                                    mirrored,
                                                                    normal
 ----
-.. すべてのデータ SVM とデータボリュームがオンラインで、データを提供していることを確認します。 vserver show -type data `network interface show -fields is-home false `volume show ！ vol0 、！ MDV *`
+. すべてのデータ SVM とデータボリュームがオンラインで、データを提供していることを確認します。
++
+vserver show -type data
+
++
+network interface show -fields is-home false
+
++
+volume show ！ vol0 、！ MDV *
+
 +
 [listing]
 ----
@@ -479,7 +540,10 @@ SVM2
                        node_A_2_data02_unmirrored
                                     online     RW          1GB    972.6MB    5%
 ----
-.. ハードウェア障害をシミュレートするために電源をオフにするノード Node_a_2 のプール 1 のシェルフを特定します。「 storage aggregate show -r -node node_name ！ * root 」
+. ハードウェア障害をシミュレートするために電源をオフにするノード node_A_1 のプール 1 内のシェルフを特定します。
++
+「 storage aggregate show -r -node node_name !!* root
+
 +
 ミラーされたデータアグリゲートを構成するドライブが格納されたシェルフを選択する必要があります。
 
@@ -527,10 +591,16 @@ Owner Node: node_A_2
      data     2.30.14                      0   BSAS    7200  827.7GB  828.0GB (normal)
 15 entries were displayed.
 ----
-.. 選択したシェルフの電源を物理的にオフにします。
-.. アグリゲートのステータスをもう一度確認します。「 storage aggregate show `storage aggregate show -r -node node_name _2 ！ * root 」
+. 選択したシェルフの電源を物理的にオフにします。
+. アグリゲートのステータスを再度確認します。
 +
-電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスは「グレー表示」になり、影響を受けるプレックスにあるドライブのステータスは「 failed 」になります。次の例を参照してください。
+「 storage aggregate show
+
++
+「 storage aggregate show -r -node node_name ！ * root 」
+
++
+次の例に示すように、電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスが「 degraded 」になり、影響を受けたプレックスのドライブのステータスが「 failed 」になります。
 
 +
 [listing]
@@ -595,7 +665,16 @@ Owner Node: node_A_2
      data     2.30.14                      0   BSAS    7200  827.7GB  828.0GB (normal)
 15 entries were displayed.
 ----
-.. データが提供されていること、およびすべてのボリュームがオンラインであることを確認します。 vserver show -type data `network interface show -fields is-home false `volume show ！ vol0 、！ MDI*`
+. データが提供されていること、およびすべてのボリュームがオンラインのままであることを確認します。
++
+vserver show -type data
+
++
+network interface show -fields is-home false
+
++
+volume show ！ vol0 、！ MDV *
+
 +
 [listing]
 ----
@@ -631,13 +710,16 @@ SVM2
                        node_A_2_data02_unmirrored
                                     online     RW          1GB    972.6MB    5%
 ----
-.. シェルフの電源を物理的にオンにします。
+. シェルフの電源を物理的にオンにします。
 +
 再同期が自動的に開始されます
 
-.. 再同期が開始されたことを確認します。「 storage aggregate show
+. 再同期が開始されたことを確認します。
 +
-次の例に示すように、影響を受けるアグリゲートの RAID ステータスが「再同期」になっている必要があります。
+「 storage aggregate show
+
++
+次の例に示すように、影響を受けたアグリゲートの RAID ステータスが「 resyncing 」になります。
 
 +
 [listing]
@@ -664,9 +746,12 @@ node_A_2_root
            707.7GB   34.27GB   95% online       1 node_A_2       raid_dp,
                                                                    resyncing
 ----
-.. アグリゲートを監視して、再同期が完了したことを確認します。「 storage aggregate show
+. アグリゲートを監視して、再同期が完了したことを確認します。
 +
-次の例に示すように、影響を受けるアグリゲートの RAID ステータスは「 normal 」になります。
+「 storage aggregate show
+
++
+次の例に示すように、影響を受けるアグリゲートの RAID ステータスが「 normal 」になります。
 
 +
 [listing]
@@ -693,6 +778,4 @@ node_A_2_root
            707.7GB   34.27GB   95% online       1 node_A_2       raid_dp,
                                                                    resyncing
 ----
-
-
 

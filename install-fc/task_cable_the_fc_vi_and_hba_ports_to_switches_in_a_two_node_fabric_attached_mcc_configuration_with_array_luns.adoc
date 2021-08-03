@@ -12,11 +12,12 @@ summary: アレイ LUN を使用する 2 ノードファブリック接続 Metro
 [role="lead"]
 アレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成をセットアップする場合は、 FC-VI ポートと HBA ポートをスイッチポートにケーブル接続する必要があります。
 
+.このタスクについて
 * このタスクは、 MetroCluster の両方のサイトの各コントローラで実行する必要があります。
 * MetroCluster 構成でアレイ LUN に加えてディスクも使用する場合は、ディスクを使用する構成用の指定の HBA ポートとスイッチポートを使用する必要があります。
 +
-** xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
-** xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+** link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
+** link:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"]
 
 
 
@@ -38,14 +39,10 @@ image::../media/two_node_mcc_hba_connections.gif[2 ノード MCC HBA 接続]
 
 +
 |===
-
-
 | HBA ポート | スイッチポート 
 
 
- a| 
-* ポートペア *
-
+2+| * ポートペア * 
 
 
  a| 
@@ -62,9 +59,7 @@ FC_switch_A_2 、ポート 3
 
 
 
- a| 
-* ポートペア *
-
+2+| * ポートペア * 
 
 
  a| 

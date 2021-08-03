@@ -699,16 +699,32 @@ ucadmin show
 | HBA のタイプと目的のモード | 使用するコマンド 
 
 
-| CNA FC | ucadmin modify -m fc -t initiator_adapter_name _ ` 
+ a| 
+CNA FC
+ a| 
+ucadmin modify -m fc -t initiator_adapter_name _ `
 
 
-| CNA イーサネット | ucadmin modify -mode cna_adapter_name _ ` 
+
+ a| 
+CNA イーサネット
+ a| 
+ucadmin modify -mode cna_adapter_name _ `
 
 
-| FC ターゲット | fcadmin config -t target_adapter_name _` 
+
+ a| 
+FC ターゲット
+ a| 
+fcadmin config -t target_adapter_name _`
 
 
-| FC イニシエータ | fcadmin config -t initiator_adapter_name_` 
+
+ a| 
+FC イニシエータ
+ a| 
+fcadmin config -t initiator_adapter_name_`
+
 |===
 . メンテナンスモードを終了します。
 +
@@ -759,8 +775,8 @@ fcadmin show`
 次の画面はブートメニューのプロンプトを示しています。
 
 +
-[listing]
-----
+--
+....
 Please choose one of the following:
 
      (1) Normal Boot.
@@ -777,7 +793,8 @@ Please choose one of the following:
  Warning: do not run this option on a HA node that has been taken over.
  Are you sure you want to continue?: yes
  Rebooting to finish wipeconfig request.
-----
+....
+--
 +
 = FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
 

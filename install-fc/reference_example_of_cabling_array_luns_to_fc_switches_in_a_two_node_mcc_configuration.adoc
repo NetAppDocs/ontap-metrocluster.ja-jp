@@ -18,11 +18,13 @@ image::../media/two_node_fabric_attached_mcc_configuration.gif[2 ノードファ
 
 アレイ LUN を使用する 2 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチポートの接続は、ストレッチとファブリック接続のどちらの構成でも同様です。
 
+[NOTE]
+====
+MetroCluster 構成でアレイ LUN に加えてディスクも使用する場合は、ディスクを使用する構成用の指定のスイッチポートを使用する必要があります。
 
-NOTE: MetroCluster 構成でアレイ LUN に加えてディスクも使用する場合は、ディスクを使用する構成用の指定のスイッチポートを使用する必要があります。
+link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
-xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
-
+====
 この図の両方のサイトの冗長なアレイポートペアは次のとおりです。
 
 * サイト A のストレージアレイ：
@@ -47,9 +49,7 @@ xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.ado
 | アレイ LUN のポート | FC スイッチのポート | スイッチファブリック 
 
 
- a| 
-* サイト A *
-
+3+| * サイト A * 
 
 
  a| 
@@ -88,9 +88,7 @@ fabric_2
 
 
 
- a| 
-* サイト B *
-
+3+| * サイト B * 
 
 
  a| 

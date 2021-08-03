@@ -14,6 +14,7 @@ summary: ディスクとアレイ LUN を使用する MetroCluster 構成を計�
 
 構成を計画するときは、次の表に示す情報を考慮してください。
 
+[cols="35,65"]
 |===
 | 考慮事項 | ガイドライン 
 
@@ -49,17 +50,29 @@ summary: ディスクとアレイ LUN を使用する MetroCluster 構成を計�
  a| 
 FC イニシエータポートを使用する
  a| 
-FC-to-SAS ブリッジへの接続に使用されるイニシエータポートは、ストレージアレイに接続するスイッチへの接続に使用されるポートとは別でなければなりません。ONTAP システムをディスクとアレイ LUN の両方に接続するには、最低でも 8 つのイニシエータポートが必要です。
+FC-to-SAS ブリッジへの接続に使用されるイニシエータポートは、ストレージアレイに接続するスイッチへの接続に使用されるポートとは別でなければなりません。
+
+ONTAP システムをディスクとアレイ LUN の両方に接続するには、最低でも 8 つのイニシエータポートが必要です。
 
 |===
-* 関連情報 *
+.関連情報
+* スイッチの設定手順とコマンドは、スイッチベンダーによって異なります。
++
+link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["Brocade FC スイッチを手動で設定"]
 
-link:task_fcsw_configure_the_cisco_or_brocade_fc_switches_manually.html["Cisco または Brocade FC スイッチを手動で設定する"]
++
+link:task_fcsw_cisco_configure_a_cisco_switch_supertask.html["Cisco FC スイッチを手動で設定する"]
 
-link:concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.html["アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例"]
-
-link:concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.html["アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例"]
-
+* 新しいストレージを構成に追加する際には、 ATTO FibreBridge ブリッジおよび SAS ディスクシェルフを設置してケーブル接続します。
++
 link:task_fb_new_install.html["FC-to-SAS ブリッジおよび SAS ディスクシェルフの設置"]
 
-https://hwu.netapp.com["NetApp Hardware Universe の略"]
+* スイッチゾーニングは、接続されているノード間のパスを定義しますゾーニングを設定すると、特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。
++
+link:concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.html["アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例"]
+
++
+link:concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.html["アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例"]
+
+* https://hwu.netapp.com["NetApp Hardware Universe の略"]
+

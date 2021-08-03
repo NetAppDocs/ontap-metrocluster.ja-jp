@@ -12,21 +12,36 @@ summary: 各ノードにデータアグリゲートを作成し、 MetroCluster 
 [role="lead"]
 各ノードにデータアグリゲートを作成し、 MetroCluster 構成を実装して検証する必要があります。
 
+.手順
 . 各ノードにデータアグリゲートを作成します。
 +
-.. の手順を使用して、各ノードにミラーされたデータアグリゲートを作成します xref:task_mirror_the_root_aggregates_mcc_with_array_luns.adoc[ルートアグリゲートをミラーリング]。
-.. 必要に応じて、の手順を使用してミラーされていないデータアグリゲートを作成します xref:concept_configure_the_mcc_software_in_ontap.adoc[各ノードでミラーされたデータアグリゲートを作成します]。
+.. 各ノードでミラーされたデータアグリゲートを作成します。
++
+link:task_mirror_the_root_aggregates_mcc_with_array_luns.html["ルートアグリゲートをミラーします。"]。
+
+.. 必要に応じて、ミラーされていないデータアグリゲートを作成し
++
+link:concept_configure_the_mcc_software_in_ontap.html#creating-a-mirrored-data-aggregate-on-each-node["各ノードでミラーされたデータアグリゲートを作成します"]。
 
 
-. の手順を使用して、 MetroCluster 構成を実装します xref:concept_configure_the_mcc_software_in_ontap.adoc[MetroCluster 構成の実装]。
-. の手順を使用して、健全性監視用に MetroCluster FC スイッチを設定します xref:concept_configure_the_mcc_software_in_ontap.adoc[健常性監視用の MetroCluster FC スイッチの設定]。
+
+. link:concept_configure_the_mcc_software_in_ontap.html#implementing-the-metrocluster-configuration["MetroCluster 構成を実装"]。
+. link:concept_configure_the_mcc_software_in_ontap.html#configuring-metrocluster-components-for-health-monitoring["健常性監視用に MetroCluster FC スイッチを設定"]。
 . 構成を確認して検証します。
 +
-.. の手順を使用して MetroCluster の設定を確認します xref:concept_configure_the_mcc_software_in_ontap.adoc[MetroCluster の設定を確認しています]。
-.. の手順を使用して、 Config Advisor 構成エラーが MetroCluster で発生していないかどうかを確認します xref:concept_configure_the_mcc_software_in_ontap.adoc[Config Advisor での MetroCluster 構成エラーの確認]。
-.. の手順を使用して、スイッチオーバー、修復、スイッチバックを検証します xref:concept_configure_the_mcc_software_in_ontap.doc[スイッチオーバー、修復、スイッチバックを検証しています]。
+.. link:concept_configure_the_mcc_software_in_ontap.html#checking-the-metrocluster-configuration["MetroCluster の設定を確認します"]。
+.. link:concept_configure_the_mcc_software_in_ontap.html#checking-for-metrocluster-configuration-errors-with-config-advisor["Config Advisor で MetroCluster 構成エラーを確認します"]。
+.. link:concept_configure_the_mcc_software_in_ontap.html#verifying-switchover-healing-and-switchback["スイッチオーバー、修復、スイッチバックを検証"]。
 
 
-. の手順を使用して、 MetroCluster Tiebreaker ソフトウェアをインストールします http://ie-docs.rtp.openeng.netapp.com/ontap-9_dugong/topic/com.netapp.doc.dot-mcc-inst-cnfg-ip/task_configure_the_mcc_tiebreaker_or_ontap_mediator_software.html["MetroCluster Tiebreaker ソフトウェアを設定します"]。
-. の手順を使用して、構成バックアップファイルの保存先を設定します xref:concept_configure_the_mcc_software_in_ontap.adoc[構成バックアップファイルを保護しています]。
+. MetroCluster Tiebreaker ソフトウェアをインストールして設定します。
++
+.. link:../tiebreaker/task_install_the_tiebreaker_software.html["Tiebreaker ソフトウェアをインストールします"]
+.. link:../tiebreaker/concept_configuring_the_tiebreaker_software.html["Tiebreaker ソフトウェアを設定します"]
+
+
+. 構成バックアップファイルのデスティネーションを設定します。
++
+link:concept_configure_the_mcc_software_in_ontap.html#protecting-coonfiguration-backup-files["構成バックアップファイルを保護"]。
+
 

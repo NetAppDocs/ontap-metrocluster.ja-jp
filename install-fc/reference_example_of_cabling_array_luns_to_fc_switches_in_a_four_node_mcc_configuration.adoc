@@ -16,11 +16,13 @@ summary: アレイ LUN を使用する MetroCluster 構成では、冗長ポー�
 
 image::../media/four_node_mcc_configuration_with_array_luns.gif[この図は、アレイ LUN を使用する MetroCluster 構成例を示しています。この図には説明が付随しています。]
 
+[NOTE]
+====
+MetroCluster 構成でアレイ LUN に加えてディスクも使用する場合は、ディスクを使用する構成用の指定のスイッチポートを使用する必要があります。
 
-NOTE: MetroCluster 構成でアレイ LUN に加えてディスクも使用する場合は、ディスクを使用する構成用の指定のスイッチポートを使用する必要があります。
+link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
-xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
-
+====
 この図の両方のサイトの冗長なアレイポートペアは次のとおりです。
 
 * サイト A のストレージアレイ：
@@ -49,10 +51,7 @@ xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.ado
 | アレイ LUN のポート | FC スイッチのポート | スイッチファブリック 
 
 
- a| 
-* サイト A *
- a| 
-
+3+| * サイト A * 
 
 
  a| 
@@ -127,10 +126,7 @@ fabric_2
 
 
 
- a| 
-* サイト B *
- a| 
-
+3+| * サイト B * 
 
 
  a| 

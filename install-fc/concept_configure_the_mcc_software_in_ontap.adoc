@@ -34,7 +34,6 @@ image::../media/workflow_high_level_node_and_cluster_configuration_software.gif[
 
 システムをケーブル接続するときは、各クラスタスイッチのホスト名と管理 IP アドレスが必要です。この情報は、 2 ノードスイッチレスクラスタ構成または 2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は必要ありません。
 
-[cols="5*"]
 |===
 | クラスタスイッチ | ホスト名 | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
@@ -228,7 +227,6 @@ NTP サーバ 2
 
  a| 
 送信元 E メールアドレス
- a| 
  a| 
 
 
@@ -513,10 +511,7 @@ NTP サーバ 2
 2+| 情報のタイプ | 値を入力します 
 
 
- a| 
-送信元 E メールアドレス
- a| 
- a| 
+2+| 送信元 E メールアドレス  a| 
 
 
 
@@ -601,39 +596,19 @@ MetroCluster 構成は、 2 つの標準クラスタを基盤としています�
 | 設定手順 | 標準クラスタ構成 | MetroCluster の設定 
 
 
- a| 
-各ノードで管理 LIF 、クラスタ LIF 、データ LIF を設定。
- a| 
-両方のクラスタタイプで同じです
+| 各ノードで管理 LIF 、クラスタ LIF 、データ LIF を設定。 2+| 両方のクラスタタイプで同じです 
 
 
-
- a| 
-ルートアグリゲートを設定
- a| 
-両方のクラスタタイプで同じです
+| ルートアグリゲートを設定 2+| 両方のクラスタタイプで同じです 
 
 
-
- a| 
-クラスタ内のノードを HA ペアとして設定
- a| 
-両方のクラスタタイプで同じです
+| クラスタ内のノードを HA ペアとして設定 2+| 両方のクラスタタイプで同じです 
 
 
-
- a| 
-クラスタ内の一方のノードでクラスタを設定。
- a| 
-両方のクラスタタイプで同じです
+| クラスタ内の一方のノードでクラスタを設定。 2+| 両方のクラスタタイプで同じです 
 
 
-
- a| 
-もう一方のノードをクラスタに追加。
- a| 
-両方のクラスタタイプで同じです
-
+| もう一方のノードをクラスタに追加。 2+| 両方のクラスタタイプで同じです 
 
 
  a| 
@@ -691,16 +666,32 @@ ucadmin show
 | HBA のタイプと目的のモード | 使用するコマンド 
 
 
-| CNA FC | ucadmin modify -m fc -t initiator_adapter_name _ ` 
+ a| 
+CNA FC
+ a| 
+ucadmin modify -m fc -t initiator_adapter_name _ `
 
 
-| CNA イーサネット | ucadmin modify -mode cna_adapter_name _ ` 
+
+ a| 
+CNA イーサネット
+ a| 
+ucadmin modify -mode cna_adapter_name _ `
 
 
-| FC ターゲット | fcadmin config -t target_adapter_name _` 
+
+ a| 
+FC ターゲット
+ a| 
+fcadmin config -t target_adapter_name _`
 
 
-| FC イニシエータ | fcadmin config -t initiator_adapter_name_` 
+
+ a| 
+FC イニシエータ
+ a| 
+fcadmin config -t initiator_adapter_name_`
+
 |===
 . メンテナンスモードを終了します。
 +
@@ -751,8 +742,8 @@ fcadmin show`
 次の画面はブートメニューのプロンプトを示しています。
 
 +
-[listing]
-----
+--
+....
 Please choose one of the following:
 
      (1) Normal Boot.
@@ -769,7 +760,8 @@ Please choose one of the following:
  Warning: do not run this option on a HA node that has been taken over.
  Are you sure you want to continue?: yes
  Rebooting to finish wipeconfig request.
-----
+....
+--
 
 
 
@@ -1063,7 +1055,10 @@ controller_B_1
 +
 「 Disk show – v 」のように表示されます
 
-. 必要に応じて、「 disk assign 」コマンドを使用して、接続されているディスクシェルフ上のディスクを適切なプールに明示的に割り当てます。
+. 必要に応じて、接続されているディスクシェルフ上のディスクを適切なプールに明示的に割り当てます。
++
+「ディスク割り当て」
+
 +
 ワイルドカードを使用すると、 1 回のコマンドで 1 つのディスクシェルフのすべてのディスクを割り当てることができます。「 storage show disk --x 」コマンドを使用すると、各ディスクのディスクシェルフ ID とベイを識別できます。
 

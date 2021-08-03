@@ -12,6 +12,7 @@ summary: アレイ LUN で使用する ONTAP を設定する場合は、ルー�
 [role="lead"]
 アレイ LUN で使用する ONTAP を設定する場合は、ルートアグリゲートとルートボリュームを設定し、診断およびリカバリ処理用のスペースをリザーブし、クラスタをセットアップする必要があります。
 
+.作業を開始する前に
 * ONTAP システムをストレージアレイに接続する必要があります。
 * ストレージアレイ管理者によって LUN が作成され、 ONTAP に提供されている必要があります。
 * ストレージアレイ管理者によって LUN セキュリティが設定されている必要があります。
@@ -20,8 +21,11 @@ summary: アレイ LUN で使用する ONTAP を設定する場合は、ルー�
 アレイ LUN で使用する各ノードを設定する必要があります。HA ペアのノードの場合は、 1 つのノードで設定のプロセスを完了してからパートナーノードの設定に進んでください。
 
 .手順
-. プライマリノードの電源をオンにして、コンソールに次のメッセージが表示されたら、 Ctrl+C キーを押してブートプロセスを中断します。 Press CTRL-C for special boot menu
-. ブートメニューのオプション 4 （ Clean configuration and initialize all disks ）を選択します。
+. プライマリノードの電源をオンにして、コンソールに次のメッセージが表示されたら、 Ctrl+C キーを押してブートプロセスを中断します。
++
+特別なブートメニューを表示するには 'CTRL-C を押します
+
+. ブートメニューのオプション * 4 （ Clean configuration and initialize all disks ） * を選択します。
 +
 ONTAP で使用可能なアレイ LUN のリストが表示されます。また、ルートボリュームの作成に必要なアレイ LUN のサイズも表示されます。ルートボリュームの作成に必要なサイズは、使用する ONTAP システムによって異なります。
 
@@ -109,7 +113,7 @@ Index  Array LUN Name           Model   Vendor    Size    Owner   Checksum  Seri
 ルートボリュームを作成するために十分なサイズのアレイ LUN を選択してください。
 
 +
-ルートボリュームの作成用に選択したアレイ LUN は local （ root ）とマークされます。
+ルートボリュームの作成用に選択したアレイ LUN は「 local （ root ）」とマークされます。
 
 +
 次の例では、インデックス番号 3 のアレイ LUN がルートボリュームの作成用にマークされています。
@@ -192,10 +196,6 @@ This node has its management address assigned and is ready for cluster setup.
 ----
 
 
-アレイ LUN で使用するすべてのノードで ONTAP を設定したら、クラスタのセットアッププロセスを完了します。
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["ソフトウェアのセットアップ"]
-
-* 関連情報 *
+アレイ LUN で使用するすべてのノードで ONTAP を設定したら、の作業を完了しますhttps://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["クラスタのセットアッププロセス"]
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.vs-irrg/home.html["FlexArray 仮想化のインストール要件およびリファレンス"]

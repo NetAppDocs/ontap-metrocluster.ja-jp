@@ -12,6 +12,7 @@ summary: アレイ LUN をアグリゲートに追加してストレージとし
 [role="lead"]
 アレイ LUN をアグリゲートに追加してストレージとして使用するには、ノードに所有されていなければなりません。
 
+.作業を開始する前に
 * バックエンド構成のテスト（ ONTAP システムの背後にあるデバイスの接続と構成のテスト）が完了している必要があります。
 * 割り当てるアレイ LUN が ONTAP システムに提供されている必要があります。
 
@@ -34,19 +35,17 @@ summary: アレイ LUN をアグリゲートに追加してストレージとし
 ONTAP では、アレイ LUN へのパスがすべて同じコントローラに接続されていたり、パスが 1 つしかないなど、割り当てようとしているアレイ LUN に冗長性の問題がある場合に警告が表示されます。冗長性の問題は、 LUN の所有権を割り当てる前に修正しても、割り当てたあとに修正してもかまいません。
 
 .手順
-. 次のコマンドを入力して、ノードにまだ割り当てられていないアレイ LUN のリストを表示します。
+. ノードにまだ割り当てられていないアレイ LUN を表示します。
 +
-*storage disk show -container-type unassigned *
+'storage disk show -container-type unassigned （ storage disk show -container-type unassigned
 
-. 次のコマンドを入力して、このノードにアレイ LUN を割り当てます。
+. このノードにアレイ LUN を割り当てます。
 +
-*storage disk assign -disk array_LUNname --owner_nodename_*`
+「 storage disk assign -disk array_LUN_name __ owner_nodename_` 」という名前になります
 
 +
-冗長性の問題をディスクの割り当て前でなく割り当て後に修正する場合は、 storage disk assign コマンドで -force パラメータを使用する必要があります。
+冗長性の問題をディスクの割り当て前ではなく割り当て後に修正する場合は 'storage disk assign コマンドで -force パラメータを使用する必要があります
 
 
-
-* 関連情報 *
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.vs-irrg/home.html["FlexArray 仮想化のインストール要件およびリファレンス"]

@@ -44,9 +44,8 @@ image::../media/v_series_metrocluster_zoning_example.gif[次の図は、アレ�
 
 
 
-== FC_switch_A_1 を使用します
+=== FC_switch_A_1 のゾーン
 
-[cols="3*"]
 |===
 | ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
 
@@ -88,9 +87,8 @@ Controller_A_2 ：ポート 0c
 |===
 
 
-== FC_switch_A_2
+=== FC_switch_A_2 のゾーン
 
-[cols="3*"]
 |===
 | ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
 
@@ -132,9 +130,8 @@ Controller_A_2 ：ポート 0d
 |===
 
 
-== FC_switch_B_1
+=== FC_switch_B_1 のゾーン
 
-[cols="3*"]
 |===
 | ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
 
@@ -176,9 +173,8 @@ Controller_B_2 ：ポート 0c
 |===
 
 
-== FC_switch_B_2
+=== FC_switch_B_2 のゾーン
 
-[cols="3*"]
 |===
 | ゾーン | ONTAP のコントローラとイニシエータポート | ストレージアレイポート 
 
@@ -220,7 +216,7 @@ Controller_B_2 ：ポート 0d
 |===
 
 
-== サイト A の FC-VI 接続用のゾーン
+=== サイト A の FC-VI 接続用のゾーン
 
 |===
 | ゾーン | ONTAP コントローラと FC イニシエータポート | スイッチ 
@@ -263,7 +259,7 @@ FC_switch_A_2
 |===
 
 
-== サイト B の FC-VI 接続用のゾーン
+=== サイト B の FC-VI 接続用のゾーン
 
 |===
 | ゾーン | ONTAP コントローラと FC イニシエータポート | スイッチ 
@@ -304,10 +300,16 @@ Controller_B_2 ：ポート FC-VI b
 FC_switch_B_2
 
 |===
-* 関連情報 *
+.関連情報
+* スイッチゾーニングは、接続されているノード間のパスを定義しますゾーニングを設定すると、特定の ONTAP システムでどのアレイ LUN を認識できるかを定義できます。
++
+link:concept_example_of_switch_zoning_in_a_two_node_mcc_configuration_with_array_luns.html["アレイ LUN を使用する 2 ノード MetroCluster 構成におけるスイッチゾーニングの例"]
 
-xref:reference_requirements_for_switch_zoning_in_a_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件]
++
+link:concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.html["アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例"]
 
-xref:concept_example_of_switch_zoning_in_a_two_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 2 ノード MetroCluster 構成におけるスイッチゾーニングの例]
+* アレイ LUN を使用する MetroCluster 構成でスイッチゾーニングを使用する場合は、基本的な一定の要件を満たす必要があります。
++
+link:reference_requirements_for_switch_zoning_in_a_mcc_configuration_with_array_luns.html["アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件"]
 
-xref:concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.adoc[アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例]
+
