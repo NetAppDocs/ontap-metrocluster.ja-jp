@@ -1429,14 +1429,12 @@
   <block id="d82c8d1619ad8176d665453cfb2e55f0" category="paragraph">53</block>
   <block id="a684eceee76fc522773286a895bc8436" category="paragraph">54</block>
   <block id="b53b3a3d6ab90ce0268229151c9bde11" category="paragraph">55</block>
-  <block id="f605804e1be9b5b41cdf7098645aeceb" category="paragraph">スタック y.2a</block>
   <block id="f5ab0ecfb91169073465c75b07499fce" category="cell">Brocade スイッチモデル 6505 、 6510 、 6520 、 7810 、 7840 、 G610 、 G620 、 G620 -1 、 G630 、 G630-1 、 および DCX 8510-8</block>
   <block id="d67bdc8865becf65979a7e07c7541fe7" category="cell">Brocade スイッチ G720</block>
   <block id="b662e152b43011e1e0296b8084a2d147" category="paragraph">12 *</block>
   <block id="4fcb10feecff8bf153e2155f987003d3" category="paragraph">13 *</block>
   <block id="6d8c2a2025c082966f6b8171ae6d840e" category="paragraph">14 *</block>
   <block id="f5edf414716a52037ee3226c67a63760" category="paragraph">15 *</block>
-  <block id="25a28275fe447051a4f6c2ed3b0e8ea1" category="list-text">- Brocade 7840 スイッチの 2 つ目の MetroCluster または DR グループ用に、ポート 12~15 が予約されています。</block>
   <block id="58a6d226fae48ef8f89925466eabd9b3" category="admonition">G620 、 G630 、 G620 -1 、および G630-1 スイッチでは、追加のブリッジをポート 16 、 17 、 20 、および 21 にケーブル接続できます。</block>
   <block id="b7cb27e7b76aef35eeb752371e5bd6b8" category="admonition">G620 、 G630 、 G620 -1 、および G630-1 スイッチでは、追加のブリッジをポート 36~39 にケーブル接続できます。</block>
   <block id="f140d3cb033a0d8cb337abc8ffd37e35" category="section-title">ONTAP 9.1 以降を実行している MetroCluster 構成で ISL に使用する Brocade のポート</block>
@@ -1465,7 +1463,6 @@
   <block id="f78b26114789afe03f4c6c9ed2c4ad38" category="paragraph">ge6 （ 10Gbps ）</block>
   <block id="46c7a2d5e4e53c2d36981c49348c1637" category="paragraph">ge7 （ 10Gbps ）</block>
   <block id="eeccf7f36c3dfb3972605d539dced738" category="paragraph">Brocade 7840</block>
-  <block id="3b9bf284801f036d8f62be6659a3740e" category="admonition">Brocade 7840 スイッチでは、 FCIP ISL を作成するために、スイッチあたり 2 つの 40Gbps VE ポートまたは最大 4 つの 10Gbps VE ポートがサポートされます。</block>
   <block id="974b84080d7a27f07b7022b14041d6fc" category="paragraph">ge0 （ 40Gbps ）または ge2 （ 10Gbps ）</block>
   <block id="bd489b1b0ced1fd7ea33e249a59f65f8" category="paragraph">GE1 （ 40Gbps ）または ge3 （ 10Gbps ）</block>
   <block id="6d7e8e0a21c6f160db390b67a024d441" category="paragraph">ge10 （ 10Gbps ）</block>
@@ -1481,7 +1478,6 @@
   <block id="4ae081212f8a0475febe92be5c491cbc" category="paragraph">MDS モジュール 2</block>
   <block id="14f265c9ad9a81b21c667b4042fc7575" category="admonition">次の表に、 FC-VI ポートが 2 つあるシステムを示します。AFF A700 システムと FAS9000 システムには、 FC-VI ポートが 4 つ（ a 、 b 、 c 、 d ）あります。AFF A700 または FAS9000 システムを使用している場合、ポートの割り当ては 1 つ上の位置に沿って移動します。たとえば、 FC-VI ポート c と d をスイッチポート 2 に、 HBA ポート a と b をスイッチポート 3 にそれぞれ移動します。</block>
   <block id="3db30a6fa1c05224aef86dc9b48a9085" category="cell">Cisco 9250i *</block>
-  <block id="113a029910989f1a9a190d4d7480e3be" category="list-text">- Cisco 9250i スイッチは、 8 ノード MetroCluster 構成ではサポートされません。</block>
   <block id="7454ecd5190b690ccf9ee77f2e438c0c" category="section-title">ONTAP 9.1 以降を実行する MetroCluster 構成で FC-to-SAS ブリッジに使用する Cisco のポート</block>
   <block id="68d960c549d05fc84233ef70c7a67687" category="cell">2 つの FC ポートを使用する FibreBridge 7500</block>
   <block id="89eaf3610015ecc12505a2408ff9fda6" category="paragraph">ポート 17~40 および 57~88 を使用して、同じパターンで追加のブリッジを接続できます。</block>
@@ -6516,7 +6512,6 @@
   <block id="44bfd90bf25fc1afc744f3b97ad23cac" category="paragraph">アグリゲートをミラーするには、アレイ LUN が同じサイズである必要があります。</block>
   <block id="84607472aeb104b5de394a50678b1615" category="list-text">MetroCluster 構成ではミラーされていないアグリゲートもサポートされます。</block>
   <block id="7ba040de83fb2facf86a7f32503e4830" category="paragraph">サイトで障害が発生しても保護されるわけではありません。</block>
-  <block id="60092c8f3fca4d1042da60e5c1a751a4" category="paragraph">ゾーニングの変更や FibreBridge 6500 から FibreBridge 7500 へのアップグレードの実行には、 _ MetroCluster メンテナンスガイド _ から手順 _ ホットスワップ a FibreBridge 6500N ブリッジと FibreBridge 7500N / 7600N ブリッジ _ を使用できます。</block>
   <block id="478ccac00464b99572734ae91318d07a" category="summary">アレイ LUN を使用する MetroCluster 構成をセットアップするには、ストレージコントローラを FC スイッチにケーブル接続し、 ISL をケーブル接続してサイトどうしをリンクする必要があります。さらに、ストレージアレイを FC スイッチにケーブル接続する必要があります。</block>
   <block id="3ca39819e2e07c2104732811215f1a97" category="doc">アレイ LUN を使用する構成での MetroCluster コンポーネントの設置とケーブル接続</block>
   <block id="93ba9bcaf75f3b305567eed2f5797513" category="summary">新しいストレージを構成に追加する際には、 ATTO FibreBridge ブリッジおよび SAS ディスクシェルフを設置してケーブル接続します。</block>
@@ -7905,7 +7900,6 @@
   <block id="a09f847ca8cd8f9d697c68ca18b8ead9" category="list-text">Fabric Health Monitor の略</block>
   <block id="acd95c371f9a123c4bb4a54343e4fd2b" category="list-text">MyAutoSupport （システムリスクが誤検出される可能性がある）</block>
   <block id="2283aeba9a8b2a086fb5b2ef95e65235" category="list-text">Active IQ Unified Manager （旧 OnCommand Unified Manager ）</block>
-  <block id="abc524f1e0c7914b100e3ec197f4652c" category="admonition">この構成に必要なすべてのコンポーネントが Interoperability Matrix Tool に含まれていることを確認してください。サポートされている構成については、 Interoperability Matrix Tool の注意事項のセクションを参照してください。</block>
   <block id="5d1afe326f483a14ce8cd69456db1384" category="summary">ファブリック構成で MetroCluster のハードウェアコンポーネントとソフトウェアコンポーネントをインストールおよび設定する方法について説明します。</block>
   <block id="d6ae2eb20e723f09de7c7af7bd02541e" category="summary">新しいバージョンのソフトウェアと RCF をインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。</block>
   <block id="7bff7ee71aa08abe16552f96511c6124" category="doc">Cisco FC スイッチを工場出荷時のデフォルトにリセット</block>
@@ -11193,11 +11187,7 @@
   <block id="da94a7db0f9882c4b3c67c4b02d65a87" category="paragraph"><block ref="da94a7db0f9882c4b3c67c4b02d65a87" category="inline-link-macro-rx"></block></block>
   <block id="6e2b6e2786426e2aeed4db0ecc5b8890" category="paragraph"><block ref="6e2b6e2786426e2aeed4db0ecc5b8890" category="inline-link-macro-rx"></block></block>
   <block id="5d80f4634e8ee066c641d17f726ec994" category="paragraph"><block ref="5d80f4634e8ee066c641d17f726ec994" category="inline-link-macro-rx"></block></block>
-  <block id="46a269d62cd3204ce0aa89cea343e7c4" category="list-text">の手順に従います <block ref="a5ca6a12c3ed982c2f78ca4fe7177a1e" category="inline-link-macro-rx"></block> トランキングと QoS ゾーンをイネーブルにするには、を参照してください。</block>
-  <block id="d93163b5014ff5ad6739d350a8c7903c" category="paragraph">ファブリックを共有する場合のポート番号は、のセクションに記載されている番号とは異なります。共有する場合は、ポート 46 と 47 を ISL ポートに使用します。ISL ポートを移動した場合は、の手順を使用する必要があります <block ref="0e899b1f6fdfcd9c6cafeb8bc3b27ec9" category="inline-link-macro-rx"></block> セクションでポートを設定します。</block>
-  <block id="705ae676b0dee65294c4f39e97d680c9" category="list-text">[[step3_zones ]] の手順に従います <block ref="847f9e3d892249337cc6faffac8f9d66" category="inline-link-macro-rx"></block> セクションで非 E ポートを設定します。</block>
   <block id="853e75cf2478dbfaa7c7c69dda1f99f1" category="list-text">の Traffic Isolation （ TI ）ゾーンを除き、バックエンドスイッチにすでに存在するゾーンまたはゾーンセット（ 7-Mode ファブリック MetroCluster の場合）は削除しないでください <block ref="bcf6119e8b5b0fd52fe08bbf1a5147d1" category="inline-xref-macro-rx"></block>。</block>
-  <block id="efd445097a0a023354fd3f07f73e8435" category="list-text">の手順に従います <block ref="0e899b1f6fdfcd9c6cafeb8bc3b27ec9" category="inline-link-macro-rx"></block> セクションで、新しい MetroCluster で必要なゾーンを既存のゾーンセットに追加します。</block>
   <block id="4ccd90dc79f14c8bccfaf7a7d8f3cfb6" category="paragraph"><block ref="4ccd90dc79f14c8bccfaf7a7d8f3cfb6" category="inline-link-macro-rx"></block></block>
   <block id="e824a21e3028938aa47fe624ef80f849" category="paragraph">ブリッジの CLI コマンドは、 ONTAP インターフェイスで実行する ONTAP インターフェイスの「 storage bridge run -cli-name_bridge_name_-command_command_name_ 」コマンドから実行できます。</block>
   <block id="4f8b49fd2c78185a429537ccca6bc9b8" category="paragraph">'et closePort none`</block>
@@ -11560,4 +11550,15 @@
   <block id="dd6ee1233d0e34b47648ba9732a67411" category="list-text">MetroCluster IP 構成のベストプラクティス</block>
   <block id="8aec6a2bcfb78af1fffa4f2c52dfe49d" category="paragraph">Active IQ デジタルアドバイザのドキュメント</block>
   <block id="5f0a2974824704c9d9579f3da0343266" category="doc">ストレッチ MetroCluster インストールおよび設定ガイド</block>
+  <block id="b71713ca01ebff14cbc13bd7cfcb2b05" category="list-text">G720 スイッチでは、追加のブリッジをポート 36-39 にケーブル接続できます。</block>
+  <block id="e4099d7825368082bd4b43f083cb9213" category="paragraph">&amp;ast; ポート 12 ～ 15 は 'Brocade 7840 スイッチの 2 番目の MetroCluster または DR グループ用に予約されています</block>
+  <block id="cab785737f7e01bc6cf334a3297e22c3" category="cell">Cisco 9250i 注： Cisco 9250i スイッチは、 8 ノード MetroCluster 構成ではサポートされません。</block>
+  <block id="affc2dad5d0c570ef33673937b9be675" category="list-text">の手順に従います <block ref="3165f1b1a2826f5bf149f919c95e9838" category="inline-link-macro-rx"></block> トランキングと QoS ゾーンをイネーブルにするには、を参照してください。</block>
+  <block id="a33a00ea9f83279f39be404461d06dc1" category="paragraph">ファブリックを共有する場合のポート番号は、のセクションに記載されている番号とは異なります。共有する場合は、ポート 46 と 47 を ISL ポートに使用します。ISL ポートを移動した場合は、の手順を使用する必要があります <block ref="57ce78b7c8c4db3fb44a8dbd447a3f1f" category="inline-link-macro-rx"></block> セクションでポートを設定します。</block>
+  <block id="978310327d2cf95049892dccc0c3977b" category="list-text">[[step3_zones ]] の手順に従います <block ref="b87ab593768bb285307eccf2a018cf92" category="inline-link-macro-rx"></block> セクションで非 E ポートを設定します。</block>
+  <block id="e330f533c615c9f14ec2e4e50d325424" category="list-text">の手順に従います <block ref="57ce78b7c8c4db3fb44a8dbd447a3f1f" category="inline-link-macro-rx"></block> セクションで、新しい MetroCluster で必要なゾーンを既存のゾーンセットに追加します。</block>
+  <block id="25e406bace0d04355538052e51cb9463" category="admonition">この設定に必要なすべてのコンポーネントがにあることを確認します<block ref="ae0acc7a1cf35a69eb7b42685c902841" category="inline-link-rx"></block>。サポートされている構成については、 Interoperability Matrix Tool の注意事項のセクションを参照してください。</block>
+  <block id="b4d7baf41cc0c5cafe8cdf28d3c7d4a9" category="paragraph">このガイドで使用している例： controller_A_1</block>
+  <block id="30cb34cdda07b18f5f18a14a97f5b6c6" category="paragraph">2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は不要</block>
+  <block id="289895aab699c5956a58644cc2118b0c" category="section-title">サイト B の IP ネットワーク情報ワークシート</block>
 </blocks>
