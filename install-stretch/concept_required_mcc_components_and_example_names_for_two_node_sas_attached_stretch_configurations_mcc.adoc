@@ -2,7 +2,7 @@
 permalink: install-stretch/concept_required_mcc_components_and_example_names_for_two_node_sas_attached_stretch_configurations_mcc.html 
 sidebar: sidebar 
 keywords: metrocluster, stretch, installation, required, hardware, components, naming, guidelines, two, node, sas, configuration 
-summary: MetroCluster 構成にはさまざまなハードウェアコンポーネントが必要です。わかりやすいように、 MetroCluster のドキュメント全般をとおして標準的なコンポーネント名を使用します。また、一方のサイトをサイト A と呼び、もう一方のサイトをサイト B と呼びます 
+summary: MetroCluster 構成にはさまざまなハードウェアコンポーネントが必要です。わかりやすいように、 MetroCluster のドキュメント全般をとおして標準的なコンポーネント名を使用します。一方のサイトをサイト A と呼び、もう一方のサイトをサイト B と呼びます 
 ---
 = 2 ノード SAS 接続ストレッチ構成の MetroCluster に必要なハードウェアコンポーネントと命名ガイドライン
 :icons: font
@@ -10,7 +10,7 @@ summary: MetroCluster 構成にはさまざまなハードウェアコンポー�
 
 
 [role="lead"]
-MetroCluster 構成にはさまざまなハードウェアコンポーネントが必要です。わかりやすいように、 MetroCluster のドキュメント全般をとおして標準的なコンポーネント名を使用します。また、一方のサイトをサイト A と呼び、もう一方のサイトをサイト B と呼びます
+MetroCluster 構成にはさまざまなハードウェアコンポーネントが必要です。わかりやすいように、 MetroCluster のドキュメント全般をとおして標準的なコンポーネント名を使用します。一方のサイトをサイト A と呼び、もう一方のサイトをサイト B と呼びます
 
 
 
@@ -57,7 +57,10 @@ SAS 接続ストレッチ MetroCluster 構成には、ストレージコント�
 
 +
 ** オンボードの FC-VI ポート
-** スロット 1 の FC-VI カードオンボードの FC-VI ポートを使用するコントローラモジュールとアドオンの FC-VI カードを使用するコントローラモジュールが混在している場合は、サポートされません。たとえば、あるノードでオンボードの FC-VI 構成を使用する場合は、 DR グループの他のすべてのノードでもオンボードの FC-VI 構成を使用する必要があります。
+** スロット 1 の FC-VI カード
++
+オンボードの FC-VI ポートを使用するコントローラモジュールとアドオンの FC-VI カードを使用するコントローラモジュールは混在できません。たとえば、あるノードでオンボードの FC-VI 構成を使用する場合は、 DR グループの他のすべてのノードでもオンボードの FC-VI 構成を使用する必要があります。
+
 
 
 

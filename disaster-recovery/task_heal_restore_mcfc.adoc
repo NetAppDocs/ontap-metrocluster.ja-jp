@@ -27,6 +27,8 @@ cluster_B::> metrocluster heal -phase root aggregates
 
 +
 |===
+
+
 | アグリゲートの状態 | 作業 
 
 
@@ -40,7 +42,7 @@ cluster_B::> metrocluster heal -phase root aggregates
  a| 
 ミラーデグレード
  a| 
-手順に進みます xref:task_prepare_for_switchback_in_a_mcc_fc_configuration_supertask.adocSTEP_0192B6F128114A77837D1BB5AAB8A770[3.]。
+に進みます <<step3_fc_aggr_healing,手順 3>>
 
 
 
@@ -84,6 +86,8 @@ cluster_B::>
 
 +
 |===
+
+
 | ノード | 状態 
 
 
@@ -107,7 +111,7 @@ node_B_1 の aggr3 になります
 ミラー、正常
 
 |===
-. オフラインのままのプレックスがある場合は、追加の手順を実行してミラーを再構築する必要があります。
+. [[step3_fc_aggr_healing]] 1 つ以上のプレックスがオフラインのままの場合は、ミラーを再構築するための追加の手順が必要です。
 +
 上の表の node_B_1_aggr2 は、ミラーを再構築する必要があります。
 

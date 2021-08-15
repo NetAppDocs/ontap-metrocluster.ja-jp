@@ -23,13 +23,14 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 
 NOTE: 出力は Cisco IP スイッチについてのものですが、 Cisco FC スイッチについても同様です。
 
+.手順
 . サポートされている NX-OS ソフトウェアファイルをダウンロードします。
 +
 https://software.cisco.com/download/home["シスコのダウンロードページ"]
 
 . スイッチソフトウェアをスイッチにコピーします。
 +
-`*+ copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management+*`
+'copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management`
 
 +
 この例では、「 nxos.7.0.3.i4.6.bin 」ファイルが SFTP サーバ 10.10.99.99 からローカルブートフラッシュにコピーされています。
@@ -49,7 +50,7 @@ Copy complete, now saving to disk (please wait)...
 ----
 . 各スイッチの bootflash ディレクトリにスイッチの NX-OS ファイルがあることを確認します。
 +
-「 * dir bootflash*` 」
+「 IR ブートフラッシュ」
 
 +
 次の例は ' ファイルが ip_switch _a_1' に存在することを示しています
@@ -74,7 +75,7 @@ IP_switch_A_1#
 ----
 . スイッチソフトウェアをインストールします。
 +
-すべてのシステムブートフラッシュをインストールします。 nxos.version-number.bin キックスタート bootflash:nxos.version-bkickstart -number.bin *`
+すべてのシステムブートフラッシュをインストールします。 nxos.version-number.bin キックスタート bootflash:nxos.version-kickstart -number.bin
 
 +
 [listing]
@@ -127,7 +128,7 @@ The switch software is now installed.
 ----
 . スイッチソフトウェアがインストールされたことを確認します。
 +
-*show version *`
+'how version （バージョンの表示） '
 
 +
 次の例は、の出力を示しています。

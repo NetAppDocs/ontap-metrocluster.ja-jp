@@ -17,7 +17,7 @@ Brocade FC スイッチを設定する際には、特定の構成のスイッチ
 .手順
 . ダウンロードと設定のプロセスを開始します。
 +
-'*configDownload*'
+「 configDownload 」
 
 +
 次の例に示すようにプロンプトに応答します。
@@ -40,7 +40,10 @@ Password: <user input>
 +
 パスワードを入力すると、スイッチはコンフィギュレーションファイルをダウンロードして実行します。
 
-. スイッチを永続的に有効にします :'*switchcfgpersistentenable*
+. スイッチを永続的に有効にします。
++
+'witchcfgpersistentenable
+
 +
 次の例は、 FC switch_A_1 を永続的に有効にします。
 
@@ -51,7 +54,7 @@ FC_switch_A_1:admin> switchcfgpersistentenable
 ----
 . 次のコマンドを実行して、構成ファイルでスイッチドメインが設定されたことを確認します。
 +
-'*switchShow*
+'witchshow'
 
 +
 スイッチが使用する構成ファイルに応じて、各スイッチに異なるドメイン番号が割り当てられます。
@@ -70,6 +73,8 @@ switchDomain: 5
 . 次の表に示すように、スイッチに正しいドメイン値が割り当てられていることを確認します。
 +
 |===
+
+
 | ファブリック | スイッチ | スイッチドメイン 
 
 
@@ -104,7 +109,10 @@ B_2
 8.
 
 |===
-. ポート速度を変更します。 *portcfgspeed *`
+. ポート速度を変更します。
++
+「 portcfgspeed 」
+
 +
 [listing]
 ----
@@ -129,9 +137,12 @@ FC-VI の動作により、この距離を 10 （ LE ）以上の実際の距離
 +
 この距離は 20km の場合は、 20km × 1.5 = 30 となり、ISL は LS 距離レベルに設定する必要があります。
 
-. 次のコマンドを使用して ISL ポートごとの距離を設定します。 *portcfglongdistance * _port levelvc_link_initdistance_
+. ISL ポートごとに距離を設定します。
 +
-vc_link_init の値が 1 の場合は、デフォルトで fillword 「 ARB 」が使用されます。値 0 は fillword 'idle' を使用します。必要な値は、使用するリンクによって異なる場合があります。この例では、デフォルトが設定され、距離は 20 km と想定されていますしたがって、設定は「 30 」で、 vc_link_init の値は 1 、 ISL ポートは 21 です。
+`longdistance_port level vc_link_init__ distance_ddistance _value_`
+
++
+vc_link_init の値が 1 の場合は、デフォルトで fillword 「 ARB 」が使用されます。0 の値は、 fillword "idle" を使用します。必要な値は、使用するリンクによって異なる場合があります。この例では、デフォルトが設定され、距離は 20 km と想定されていますしたがって、設定は「 30 」で、 VC_link_init の値は「 1 」、 ISL ポートは「 21 」です。
 
 +
 例： ls
@@ -149,16 +160,25 @@ FC_switch_A_1:admin> portcfglongdistance 21 LS 1 -distance 30
 ----
 FC_switch_A_1:admin> portcfglongdistance 21 LE 1
 ----
-. IP アドレスが正しく設定されているかどうかを確認します :`*ipaddrshow*`
+. IP アドレスが正しく設定されていることを確認します。
++
+ipaddrshow
+
 +
 [listing]
 ----
 FC_switch_A_1:admin> ipAddrshow
 ----
 +
-必要に応じて次のコマンドで IP アドレスを設定できます :`*ipAddrSet*`
+必要に応じて、次のコマンドで IP アドレスを設定できます。
 
-. スイッチのプロンプトからタイムゾーンを設定します :`*timezone --interactive *`
++
+ipAddrSet
+
+. スイッチのプロンプトでタイムゾーンを設定します。
++
+tstimezone -- 対話型
+
 +
 プロンプトに対してと入力します。
 
@@ -167,7 +187,10 @@ FC_switch_A_1:admin> ipAddrshow
 ----
 FC_switch_A_1:admin>  tstimezone --interactive
 ----
-. スイッチを再起動します *reboot*
+. スイッチをリブートします。
++
+「再起動」
+
 +
 次の例は、 FC switch_A_1 をリブートします。
 
@@ -176,7 +199,10 @@ FC_switch_A_1:admin>  tstimezone --interactive
 ----
 FC_switch_A_1:admin> reboot
 ----
-. 距離設定を確認します :`*portbuffershow *`
+. 距離設定を確認します。
++
+portbuffershow
+
 +
 LE の距離設定は 10 km と表示されます
 
@@ -198,11 +224,14 @@ Port Type Mode Buffers  Usage  Buffers Distance Buffers
 工場出荷時の設定にリセットすると、 ISL ケーブルは切断されています。
 
 +
-xref:task_reset_the_brocade_fc_switch_to_factory_defaults.adoc[Brocade FC スイッチを工場出荷時のデフォルトにリセット]
+link:task_reset_the_brocade_fc_switch_to_factory_defaults.html["Brocade FC スイッチを工場出荷時のデフォルトにリセット"]
 
 . 構成を検証
 +
-.. スイッチが 1 つのファブリックを形成していることを確認します :'*switchshow*
+.. スイッチが 1 つのファブリックを形成することを確認します。
++
+'witchshow'
+
 +
 次の例は、ポート 20 とポート 21 上の ISL を使用する構成の出力です。
 
@@ -228,7 +257,10 @@ Index Port Address Media Speed State  Proto
 21   21  010D00   id    16G  Online FC  LE E-Port  (Trunk port, master is Port 20)
 ...
 ----
-.. ファブリックの構成を確認します：「 * fabricshow *
+.. ファブリックの設定を確認します。
++
+「 fabricshow` 」
+
 +
 [listing]
 ----
@@ -238,13 +270,19 @@ FC_switch_A_1:admin> fabricshow
 1: fffc01 10:00:00:05:33:86:89:cb 10.10.10.55  0.0.0.0    "FC_switch_A_1"
 3: fffc03 10:00:00:05:33:8c:2e:9a 10.10.10.65  0.0.0.0   >"FC_switch_B_1"
 ----
-.. ISL が機能していることを確認します。「 * islshow * 」
+.. ISL が機能していることを確認します。
++
+「 islshow` 」
+
 +
 [listing]
 ----
 FC_switch_A_1:admin> islshow
 ----
-.. 次のコマンドを実行して ' ゾーニングが正しく複製されていることを確認します +`*cfgshow*`+`*zoneshow *`
+.. ゾーニングが正しくレプリケートされたことを確認します。
++
+「 cfgshow 」＋「 zoneshow 」と入力します
+
 +
 両方の出力に、両方のスイッチの同じ設定情報とゾーニング情報が表示されます。
 

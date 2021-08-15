@@ -732,26 +732,16 @@ https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセン
 . ネットアップサポートサイトのソフトウェアダウンロードセクションから該当する ONTAP ソフトウェアをダウンロードし、 Web にアクセスできるディレクトリに image.tgz ファイルを保存します。
 . Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
 +
-[cols="1,2a"]
 |===
+
+
 | プラットフォームモデル | 作業 
 
 
-| FAS/AFF8000 シリーズシステム  a| 
-ターゲットディレクトリに ONTAP-version _image.tgz ファイルの内容を展開します。 tar -zxvf ONTAP-version image.tgz
+| FAS/AFF8000 シリーズシステム | ターゲットディレクトリに version_image.tgzfile の内容を展開します。 tar -zxvf ONTAP-version _image.tgz 注： Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。ディレクトリの一覧に、カーネルファイル netboot/ kernel を含むネットブートフォルダが表示される必要があります 
 
 
-NOTE: Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。
-
-ディレクトリの一覧に、カーネルファイル netboot/ kernel を含むネットブートフォルダが表示される必要があります
-
-
-
-| その他すべてのシステム  a| 
-ディレクトリの一覧に、カーネルファイル ONTAP-version image.tgz のネットブートフォルダが含まれている必要があります
-
-image.tgz ファイルを展開する必要はありません。
-
+| その他すべてのシステム | ディレクトリの一覧に、カーネルファイルがあるネットブートフォルダを含める必要があります。 ONTAP-version _image.tgz ファイルを展開する必要はありません。 
 |===
 . LOADER プロンプトで、管理 LIF のネットブート接続を設定します。
 +

@@ -14,8 +14,12 @@ summary: 新しいソフトウェアバージョンと RCF ファイルをイン
 
 この手順は、 MetroCluster ファブリック構成内の各 FC スイッチで実行する必要があります。
 
+.手順
 . 管理者としてスイッチにログインします。
-. Brocade Virtual Fabric (VF) 機能を無効にします :`*fosconfig options *`
+. Brocade Virtual Fabric （ VF ）機能を無効にします。
++
+「 fosconfig options 」を参照してください
+
 +
 [listing]
 ----
@@ -24,13 +28,19 @@ WARNING:  This is a disruptive operation that requires a reboot to take effect.
 Would you like to continue  [Y/N]: y
 ----
 . スイッチのポートから ISL ケーブルを外します。
-. スイッチを無効にします :'*switchcfgpersistentdisable*
+. スイッチを無効にします。
++
+'witchcfgpersistentdisable
+
 +
 [listing]
 ----
 FC_switch_A_1:admin> switchcfgpersistentdisable
 ----
-. 設定を無効にします :`*cfgDisable*`
+. 設定を無効にします。
++
+「 cfgDisable 」
+
 +
 [listing]
 ----
@@ -40,7 +50,10 @@ Do you want to disable zoning configuration? (yes, y, no, n): [no] y
 Updating flash ...
 Effective configuration is empty. "No  Access" default zone mode is ON.
 ----
-. 設定をクリアします :`*cfgClear*`
+. 設定をクリアします。
++
+「 cfgClear 」
+
 +
 [listing]
 ----
@@ -51,7 +64,10 @@ Run cfgSave to commit the transaction or cfgTransAbort to
 cancel the transaction.
 Do you really want to clear all configurations?  (yes, y, no, n): [no] y
 ----
-. 設定を保存します :'*cfgSave*
+. 設定を保存します。
++
+cfgsave
+
 +
 [listing]
 ----
@@ -61,7 +77,10 @@ action will only save the changes on Defined configuration.
 Do you want to save the Defined zoning configuration only?  (yes, y, no, n): [no] y
 Updating flash ...
 ----
-. デフォルトの構成を設定します： '*configDefault*
+. デフォルトの設定を行います。
++
+「 configDefault 」
+
 +
 [listing]
 ----
@@ -81,7 +100,7 @@ The switch has to be rebooted to allow the changes to take effect.
 ----
 . すべてのポートについて、ポートの設定を default に設定します。
 +
-`*portcfgdefault_port-number_*`
+`portcfgdefault_port-number_`
 
 +
 [listing]
@@ -97,7 +116,10 @@ FC_switch_A_1:admin> portcfgdefault <port number>
 NOTE: バージョン 8.0 より前の Brocade Fabric OS では、次のコマンドを admin として実行し、バージョン 8.0 以降では root として実行します。
 
 +
-.. コマンド *licenseport --show*' を実行します
+.. ライセンスコマンドを実行します。
++
+「 licensePort -- show 」を入力します
+
 +
 [listing]
 ----
@@ -113,7 +135,10 @@ Dynamic POD method is in use
 FC_switch_A_1:admin> userconfig --change root -e yes
 FC_switch_A_1:admin> rootaccess --set consoleonly
 ----
-.. license コマンドを実行します :`*licenseport --show*`
+.. ライセンスコマンドを実行します。
++
+「 licensePort -- show 」を入力します
+
 +
 [listing]
 ----
@@ -122,7 +147,10 @@ FC_switch_A_1:root> licenseport -show
 Full POD license is installed
 Dynamic POD method is in use
 ----
-.. ライセンス方式を dynamic に変更します :`*licenseport -- メソッド dynamic *`
+.. ライセンス方式を動的な方式に変更します。
++
+licenseport -- メソッドの動的
+
 +
 
 NOTE: 動的な POD メソッドが使用されていない場合（ POD メソッドが静的の場合）は、ライセンスの割り当て方法を dynamic に変更する必要があります。動的な POD メソッドを使用している場合は、この手順を省略します。
@@ -136,7 +164,10 @@ Please reboot the switch now for this change to take effect
 ----
 
 
-. スイッチを再起動します :`*Fastboot*`
+. スイッチをリブートします。
++
+「 Fastboot 」を参照してください
+
 +
 [listing]
 ----
@@ -145,9 +176,18 @@ Warning: This command would cause the switch to reboot
 and result in traffic disruption.
 Are you sure you want to reboot the switch [y/n]?y
 ----
-. デフォルト設定が実装されていることを確認します :'*switchShow*
-. IP アドレスが正しく設定されていることを確認します。「 * ipAddrShow * 」
+. デフォルト設定が実装されたことを確認します。
 +
-必要に応じて、次のコマンドで IP アドレスを設定できます。「 * ipAddrSet * 」
+'witchshow'
+
+. IP アドレスが正しく設定されていることを確認します。
++
+ipAddrShow
+
++
+必要に応じて、次のコマンドで IP アドレスを設定できます。
+
++
+ipAddrSet
 
 

@@ -51,8 +51,6 @@ FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 のシステムでは、�
 ====
 
 
-* 関連情報 *
-
 https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
 
 
@@ -209,7 +207,7 @@ FC_switch_B_1# setup
 +
 'interface_name_`
 
-.. 次のコマンドを使用して、ポートからライセンスを削除します。
+.. ポートからライセンスを削除します。
 +
 「 no port-license acquire 」を選択します
 
@@ -353,8 +351,8 @@ MetroCluster 構成では、 F ポートとは、スイッチを HBA イニシ�
 
 次のセクションを参照して、構成に応じた F ポート（スイッチからノード）を確認してください。
 
-* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
-* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+* link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
+* link:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"]
 
 
 このタスクは、 MetroCluster 構成内のスイッチごとに実行する必要があります。
@@ -546,9 +544,11 @@ MetroCluster 構成内の各 FC スイッチに、 FC-VI ポート用の VSAN �
 
 VSAN の番号と名前は一意である必要があります。フレームのインオーダー配信で 2 つの ISL を使用している場合は、追加の設定が必要です。
 
-この例では、次の命名規則を使用します。
+このタスクの例では、次の命名規則を使用します。
 
 |===
+
+
 | スイッチファブリック | VSAN 名 | ID 番号 
 
 
@@ -959,6 +959,8 @@ ISL を接続するスイッチポート（ E ポート）を設定する必要�
 
 +
 |===
+
+
 | 速度（ Gbps ） | 1km あたりの必要な BBC | 必要な調整済み BBC （ 1km あたりの BBC × 1.5 ） 
 
 
@@ -1006,60 +1008,59 @@ ISL を接続するスイッチポート（ E ポート）を設定する必要�
 12.
 
 |===
-+
+
+
 たとえば、 4Gbps のリンクで 30km の距離に必要なクレジット数を算出するには、次の計算を行います。
 
+* 「 Gbps での速度」は 4 です
+* 「必要な調整済み BBC 」は 3
+* 「スイッチ間の距離（ km ）」は 30km です
+* 3 x 30 = 90
 +
-** 「 Gbps での速度」は 4 です
-** 「必要な調整済み BBC 」は 3
-** 「スイッチ間の距離（ km ）」は 30km です
-** 3 x 30 = 90
-
-
-. コンフィギュレーションモードを開始します。
+.. コンフィギュレーションモードを開始します。
 +
 'config t`
 
-. 設定するポートを指定します。
+.. 設定するポートを指定します。
 +
 「 interface_port-name_` 」
 
-. ポートをシャットダウンします。
+.. ポートをシャットダウンします。
 +
 「ダウンタイム」
 
-. ポートのレートモードを「 dedicated 」に設定します。
+.. ポートのレートモードを「 dedicated 」に設定します。
 +
 'witchport rate-mode dedicated （スイッチポートレートモード専用）
 
-. ポートの速度を設定します。
+.. ポートの速度を設定します。
 +
 'witchport speed_speed - value_
 
-. ポートのバッファ間クレジットを設定します。
+.. ポートのバッファ間クレジットを設定します。
 +
 'witchport fcrxbbcredit _number_of_buffers_'
 
-. ポートを E モードに設定します。
+.. ポートを E モードに設定します。
 +
 'witchport mode E`
 
-. ポートのトランクモードをイネーブルにします。
+.. ポートのトランクモードをイネーブルにします。
 +
 'witchport trunk mode on `
 
-. ISL Virtual Storage Area Network （ VSAN ；仮想ストレージエリアネットワーク）をトランクに追加します。
+.. ISL Virtual Storage Area Network （ VSAN ；仮想ストレージエリアネットワーク）をトランクに追加します。
 +
 'witchport トランクでは VSAN 10 を許可
 
 +
 'witchport trunk allowed vsan add 20`
 
-. ポートをポートチャネル 1 に追加します。
+.. ポートをポートチャネル 1 に追加します。
 +
 「 channel-group 1 」のようになります
 
-. ファブリック内のパートナースイッチ上の対応する ISL ポートに対して、ここまでの手順を繰り返します。
+.. ファブリック内のパートナースイッチ上の対応する ISL ポートに対して、ここまでの手順を繰り返します。
 +
 次の例は、ポート fc1/41 を距離 30km 、 8Gbps で設定する場合を示しています。
 
@@ -1090,38 +1091,37 @@ FC_switch_B_1# switchport trunk allowed vsan add 20
 FC_switch_B_1# channel-group 1
 fc1/36 added to port-channel 1 and disabled
 ----
-. 問題：両方のスイッチで次のコマンドを実行してポートを再起動します。
+.. 問題：両方のスイッチで次のコマンドを実行してポートを再起動します。
 +
 「シャットダウンなし」
 
-. ファブリック内の他の ISL ポートに対して、ここまでの手順を繰り返します。
-. 同じファブリック内の両方のスイッチで、ネイティブ VSAN をポートチャネルインターフェイスに追加します。
+.. ファブリック内の他の ISL ポートに対して、ここまでの手順を繰り返します。
+.. 同じファブリック内の両方のスイッチで、ネイティブ VSAN をポートチャネルインターフェイスに追加します。
 +
 'interface port-channel_number_
 
 +
 'witchport トランク許可 VSAN add_native_san_id_
 
-. ポートチャネルの設定を確認します。
+.. ポートチャネルの設定を確認します。
 +
 'how interface port-channel_number
 
 +
 ポートチャネルの属性は次のとおりです。
 
-+
-** ポートチャネルの状態は「 trunking 」です。
-** 管理ポートモードは E 、トランクモードはオンです。
-** 速度は、すべての ISL リンク速度の累積値です。
+
+
+* ポートチャネルの状態は「 trunking 」です。
+* 管理ポートモードは E 、トランクモードはオンです。
+* 速度は、すべての ISL リンク速度の累積値です。
 +
 たとえば、 2 つの ISL ポートが 4Gbps で動作している場合は 8Gbps です。
 
-** 「 Trunk vsans (admin allowed and active) 」には、許可されているすべての VSAN が表示されます。
-** 「 Trunk vsans (up) 」は、許可されているすべての VSAN を表示します。
-** メンバーリストには、 port-channel に追加されたすべての ISL ポートを表示。
-** ポート VSAN の番号は、 ISL を含む VSAN と同じ（通常はネイティブの vsan 1 ）。
-
-
+* 「 Trunk vsans (admin allowed and active) 」には、許可されているすべての VSAN が表示されます。
+* 「 Trunk vsans (up) 」は、許可されているすべての VSAN を表示します。
+* メンバーリストには、 port-channel に追加されたすべての ISL ポートを表示。
+* ポート VSAN の番号は、 ISL を含む VSAN と同じ（通常はネイティブの vsan 1 ）。
 +
 [listing]
 ----
@@ -1152,11 +1152,12 @@ port-channel 1 is trunking
     Member[2] : fc1/40
     Interface last changed at Thu Oct 16 11:48:00 2014
 ----
-. 両方のスイッチでインターフェイス設定を終了します。
++
+.. 両方のスイッチでインターフェイス設定を終了します。
 +
 「 end 」と入力します
 
-. 両方のファブリックで、更新された設定をスタートアップ設定にコピーします。
+.. 両方のファブリックで、更新された設定をスタートアップ設定にコピーします。
 +
 'copy running-config startup-config
 
@@ -1169,18 +1170,17 @@ FC_switch_A_1# copy running-config startup-config
 FC_switch_B_1(config-if)# end
 FC_switch_B_1# copy running-config startup-config
 ----
-. 2 つ目のスイッチファブリックで、ここまでの手順を繰り返します。
+.. 2 つ目のスイッチファブリックで、ここまでの手順を繰り返します。
 
 
-* 関連情報 *
 
-ONTAP 9.1 以降を使用している場合、 FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。を参照してください link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
+
+ONTAP 9.1 以降を使用している場合、 FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。を参照してください link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 
 
 === Cisco 9250i FC スイッチのシングル ISL に対する FCIP ポートの設定
 
-[role="lead"]
 FCIP プロファイルとインターフェイスを作成して IPStorage1/1 GbE インターフェイスに割り当てることで、 ISL を接続する FCIP スイッチポート（ E ポート）を設定する必要があります。
 
 このタスクは、各スイッチが IPStorage1/1 インターフェイスを使用し、スイッチファブリックごとに 1 つの ISL を使用する構成にのみ該当します。
@@ -1606,6 +1606,8 @@ image::../media/fcip_ports_dual_isl.gif[FCIP ポート、デュアル ISL]
 * ファブリック 1 プロファイル設定表 *
 
 |===
+
+
 | スイッチファブリック | IPStorage インターフェイス | IP アドレス | ポートタイプ | FCIP インターフェイス | FCIP プロファイル | ポート | IP/port をピアリングします | VSAN ID 
 
 
@@ -1731,6 +1733,8 @@ B.B.B.b/3223
 * ファブリック 2 プロファイル設定表 *
 
 |===
+
+
 | スイッチファブリック | IPStorage インターフェイス | IP アドレス | ポートタイプ | FCIP インターフェイス | FCIP プロファイル | ポート | IP/port をピアリングします | VSAN ID 
 
 
@@ -2472,8 +2476,8 @@ NOTE: 次の手順は、ファブリックごとに 1 つのスイッチだけ�
 
 +
 --
-** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
-** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
 
 
 --
@@ -2557,8 +2561,8 @@ NOTE: ファブリック内の 1 つのスイッチだけで、次の手順を�
 
 +
 --
-** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
-** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
+** link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
 
 
 --

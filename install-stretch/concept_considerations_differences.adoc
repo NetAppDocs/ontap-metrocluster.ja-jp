@@ -9,12 +9,17 @@ summary: MetroCluster 構成のタイプごとに、必要なコンポーネン�
 :imagesdir: ../media/
 
 
-[role="lead"]
+
+
+= ONTAP MetroCluster 構成の違い
+
 MetroCluster 構成のタイプごとに、必要なコンポーネントが異なります。
 
 いずれの構成においても、 2 つの MetroCluster サイトがそれぞれ ONTAP クラスタとして構成されます。2 ノード MetroCluster 構成では、各ノードがシングルノードクラスタとして構成されます。
 
 |===
+
+
 | フィーチャー（ Feature ） | IP 構成 2+| ファブリック接続構成 2+| ストレッチ構成 
 
 
@@ -213,6 +218,8 @@ MetroCluster Tiebreaker をサポートします
 はい。
 
 |===
+* 重要 * ：
+
 8 ノード MetroCluster IP 構成については、次の考慮事項に注意してください。
 
 * ONTAP 9.9..1 以降では、 8 ノード構成がサポートされます。
@@ -226,6 +233,6 @@ MetroCluster Tiebreaker をサポートします
 
 == MetroCluster 構成でのオール SAN アレイシステムのサポート
 
-一部の SAN アレイ（ ASA ）は、 MetroCluster 構成でサポートされます。MetroCluster のドキュメントで、 AFF モデルの情報環境対応する ASA システムを確認します。たとえば、すべてのケーブル配線と AFF A400 システムのその他の情報は、 ASA AFF A400 システムも環境に接続します。
+All SAN Array （ ASA ）の一部は、 MetroCluster 構成でサポートされています。MetroCluster のドキュメントで、 AFF モデルの情報環境対応する ASA システムを確認します。たとえば、すべてのケーブル配線と AFF A400 システムのその他の情報は、 ASA AFF A400 システムも環境に接続します。
 
 サポートされるプラットフォーム構成は、に記載されています https://hwu.netapp.com["NetApp Hardware Universe の略"]。

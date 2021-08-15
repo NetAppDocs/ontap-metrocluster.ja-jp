@@ -37,7 +37,7 @@ NOTE: FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 のシステムで�
 .このタスクについて
 * スイッチ間リンク（ ISL ）トランキングがリンクでサポートされている場合、これを有効にする必要があります。
 +
-xref:concept_tdm_wdm.adoc[ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項]
+link:concept_tdm_wdm.html["ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項"]
 
 * 1 つのファブリック内のすべての ISL の長さと速度が同じである必要があります。
 +
@@ -63,7 +63,6 @@ IMT では、 Storage 解決策フィールドを使用して MetroCluster 解�
 
 == Brocade ライセンス要件の確認
 
-[role="lead"]
 MetroCluster 構成内のスイッチには所定のライセンスが必要です。これらのライセンスは 4 つのスイッチすべてにインストールする必要があります。
 
 MetroCluster 構成での Brocade ライセンス要件は次のとおりです。
@@ -76,22 +75,32 @@ Enterprise ライセンスには、 Brocade Network Advisor と、追加のポ�
 
 
 
-ライセンスがインストールされているかどうかは 'licenseshow' コマンドを使用して確認できますこれらのライセンスをお持ちでない場合は、作業を進める前に営業担当者までお問い合わせください。
+.ステップ
+. ライセンスがインストールされていることを確認します。
++
+「 licenseshow` 」
+
++
+これらのライセンスをお持ちでない場合は、作業を進める前に営業担当者までお問い合わせください。
+
+
 
 
 
 == Brocade FC スイッチの値を工場出荷時のデフォルトに設定
 
-[role="lead"]
 設定を適切に行うには、スイッチを工場出荷時のデフォルトに設定する必要があります。また、各スイッチに一意な名前を割り当てる必要があります。
 
 この手順の例では、ファブリックは BrocadeSwitchA と BrocadeSwitchB で構成されています。
 
 .手順
 . コンソールに接続し、 1 つのファブリック内の両方のスイッチにログインします。
-. スイッチを永続的に無効にします。「 witchcfgpersistentdisable
+. スイッチを永続的に無効にします。
 +
-これにより、リブート後や高速ブート後もスイッチが無効なままになります。このコマンドが使用できない場合は、 switchdisable コマンドを使用します。
+'witchcfgpersistentdisable
+
++
+これにより、リブート後や高速ブート後もスイッチが無効なままになります。このコマンドが使用できない場合は、「 witchDisable 」コマンドを使用します。
 
 +
 次の例は、 BrocadeSwitchA に対するコマンドを示しています。
@@ -109,7 +118,10 @@ BrocadeSwitchA:admin> switchcfgpersistentdisable
 ----
 BrocadeSwitchA:admin> switchcfgpersistentdisable
 ----
-. 「 witchname switch_name 」と入力して、スイッチ名を設定します。
+. スイッチ名を設定します。
++
+'witchname switch_name
+
 +
 スイッチの名前はそれぞれ一意である必要があります。名前を設定すると、プロンプトがそれに応じて変わります。
 
@@ -131,7 +143,10 @@ FC_switch_A_1:admin>
 BrocadeSwitchB:admin> switchname "FC_Switch_B_1"
 FC_switch_B_1:admin>
 ----
-. ポートごとに次のコマンドを実行して、すべてのポートをデフォルト値に設定します。 `portcfgdefault`
+. すべてのポートをデフォルト値に設定します。
++
+portcfgdefault
+
 +
 スイッチ上のすべてのポートに対して実行する必要があります。
 
@@ -157,7 +172,16 @@ FC_switch_B_1:admin> portcfgdefault 1
 ...
 FC_switch_B_1:admin> portcfgdefault 39
 ----
-. 次のコマンドを実行して ' ゾーニング情報を消去します cfgdisable cfgclear cfgsave
+. ゾーニング情報を消去します。
++
+cfgdisable
+
++
+cfgclear
+
++
+cfgsave
+
 +
 次の例は、 FC_switch_A_1 に対するコマンドを示しています。
 
@@ -178,7 +202,10 @@ FC_switch_B_1:admin> cfgdisable
 FC_switch_B_1:admin> cfgclear
 FC_switch_B_1:admin> cfgsave
 ----
-. スイッチの一般的な設定をデフォルトの「 configdefault 」に設定します
+. スイッチの一般的な設定をデフォルトに設定します。
++
+「 configdefault 」
+
 +
 次の例は、 FC_switch_A_1 に対するコマンドを示しています。
 
@@ -195,7 +222,10 @@ FC_switch_A_1:admin> configdefault
 ----
 FC_switch_B_1:admin> configdefault
 ----
-. すべてのポートを非トランキングモードに設定します : 'witchcfgtrunk 0
+. すべてのポートを非トランキングモードに設定します。
++
+'witchcfgtrunk 0`
+
 +
 次の例は、 FC_switch_A_1 に対するコマンドを示しています。
 
@@ -212,7 +242,10 @@ FC_switch_A_1:admin> switchcfgtrunk 0
 ----
 FC_switch_B_1:admin> switchcfgtrunk 0
 ----
-. Brocade 6510 スイッチで、 Brocade Virtual Fabric （ VF ）機能を無効にします。「 fosconfig options
+. Brocade 6510 スイッチで、 Brocade Virtual Fabric （ VF ）機能を無効にします。
++
+「 fosconfig options 」を参照してください
+
 +
 次の例は、 FC_switch_A_1 に対するコマンドを示しています。
 
@@ -229,7 +262,10 @@ FC_switch_A_1:admin> fosconfig --disable vf
 ----
 FC_switch_B_1:admin> fosconfig --disable vf
 ----
-. Administrative Domain (AD) 設定をクリアします
+. Administrative Domain （ AD ）設定をクリアします。
++
+「広告オプション」
+
 +
 次の例は、 FC_switch_A_1 に対するコマンドを示しています。
 
@@ -260,7 +296,10 @@ FC_switch_B_1:admin> ad --apply
 FC_switch_B_1:admin> ad --save
 FC_switch_B_1:admin> exit
 ----
-. 次のコマンドを発行して、スイッチを再起動します。「再起動」
+. スイッチをリブートします。
++
+「再起動」
+
 +
 次の例は、 FC_switch_A_1 に対するコマンドを示しています。
 
@@ -283,7 +322,6 @@ FC_switch_B_1:admin> reboot
 
 == スイッチの基本設定を行います
 
-[role="lead"]
 Brocade スイッチに対して、ドメイン ID を含む基本的なグローバル設定を行う必要があります。
 
 このタスクには、両方の MetroCluster サイトの各スイッチで実行する必要のある手順が含まれています。
@@ -334,7 +372,7 @@ RDP Polling Cycle(hours)[0 = Disable Polling]: (0..24) [1] 0
 NOTE: 標準の IOD 設定を推奨します。OOD を設定するのは必要な場合だけにしてください。
 
 +
-xref:concept_prepare_for_the_mcc_installation.adoc[ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項]
+link:concept_prepare_for_the_mcc_installation.html["ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項"]
 
 +
 .. フレームの IOD を設定するには、各スイッチファブリックで次の手順を実行する必要があります。
@@ -391,7 +429,16 @@ FC_switch_A_1:admin> iodshow
 +
 「 lsreset 」と表示されます
 
-... iodshow 、 aptpolicy 、および `d lsshow の各コマンドを使用して OOD 設定を検証します。
+... OOD 設定を確認します。
++
+「 iodshow 」
+
++
+「 aptpolicy 」と入力します
+
++
+「 llsshow 」
+
 +
 たとえば、 FC_switch_A_1 で次のコマンドを問題に実行します。
 
@@ -428,8 +475,11 @@ https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/concept_configure_th
 
 . スイッチが動的ポートライセンス方式を使用していることを確認します。
 +
-.. 「 licensePort -- show 」コマンドを実行します。
+.. ライセンスコマンドを実行します。
 +
+--
+「 licensePort -- show 」を入力します
+
 [listing]
 ----
 FC_switch_A_1:admin> licenseport -show
@@ -437,10 +487,10 @@ FC_switch_A_1:admin> licenseport -show
 Full POD license is installed
 Dynamic POD method is in use
 ----
-+
 
 NOTE: バージョン 8.0 より前の Brocade FabricOS では、次のコマンドを admin として実行し、バージョン 8.0 以降では root として実行します。
 
+--
 .. root ユーザを有効にします。
 +
 Brocade によって root ユーザがすでに無効にされている場合は、次の例に示すように root ユーザを有効にします。
@@ -493,7 +543,7 @@ Please reboot the switch now for this change to take effect
 .. 2 つ目のスイッチファブリックで、ここまでの手順を繰り返します。
 
 
-. * オプション *: コミュニティストリングを「 public 」以外の値に設定した場合は、指定したコミュニティストリングを使用して ONTAP ヘルスモニタを設定する必要があります。
+. * オプション * ：コミュニティストリングを「 public 」以外の値に設定した場合は、指定したコミュニティストリングを使用して ONTAP ヘルスモニタを設定する必要があります。
 +
 .. 既存のコミュニティストリングを変更します。
 +
@@ -515,9 +565,8 @@ Community (rw): [OrigEquipMfr]
 Trap Recipient's IP address : [0.0.0.0]
 Community (rw): [private]
 Trap Recipient's IP address : [0.0.0.0]
-Community (ro): [public] mcchm                        <<<<<<<<<<<<< change the community string to the
-desired value, in this example it is set to 'mcchm'
-Trap Recipient's IP address : [0.0.0.0]
+Community (ro): [public] mcchm     <<<<<< change the community string to the desired value,
+Trap Recipient's IP address : [0.0.0.0]    in this example it is set to "mcchm"
 Community (ro): [common]
 Trap Recipient's IP address : [0.0.0.0]
 Community (ro): [FibreChannel]
@@ -539,9 +588,8 @@ Community (rw): [OrigEquipMfr]
 Trap Recipient's IP address : [0.0.0.0]
 Community (rw): [private]
 Trap Recipient's IP address : [0.0.0.0]
-Community (ro): [public] mcchm                        <<<<<<<<<<<<< change the community string to the
-desired value, in this example it is set to 'mcchm'
-Trap Recipient's IP address : [0.0.0.0]
+Community (ro): [public] mcchm      <<<<<< change the community string to the desired value,
+Trap Recipient's IP address : [0.0.0.0]     in this example it is set to "mcchm"
 Community (ro): [common]
 Trap Recipient's IP address : [0.0.0.0]
 Community (ro): [FibreChannel]
@@ -597,7 +645,6 @@ FC_switch_B_1:admin> switchcfgpersistentenable
 
 == Brocade DCX 8510-8 スイッチの基本設定
 
-[role="lead"]
 Brocade スイッチに対して、ドメイン ID を含む基本的なグローバル設定を行う必要があります。
 
 この手順は、両方の MetroCluster サイトの各スイッチで実行する必要があります。この手順では、次の例に示すように、各スイッチのドメイン ID を設定します。
@@ -690,15 +737,12 @@ switchenable
 ----
 
 
-* 関連情報 *
-
-xref:concept_prepare_for_the_mcc_installation.adoc[Brocade DCX 8510-8 スイッチを使用するための要件]
+link:concept_prepare_for_the_mcc_installation.html["Brocade DCX 8510-8 スイッチを使用するための要件"]
 
 
 
 == FC ポートを使用した Brocade FC スイッチでの E ポートの設定
 
-[role="lead"]
 FC ポートを使用してスイッチ間リンク（ ISL ）が設定された Brocade スイッチの場合、 ISL を接続する各スイッチファブリックのスイッチポートを設定する必要があります。これらの ISL ポートは E ポートとも呼ばれます。
 
 .作業を開始する前に
@@ -727,6 +771,8 @@ ONTAP 9.0 以前を実行している構成の場合は、を参照してくだ�
 構成に応じて必要な数の ISL を使用する必要があります。
 
 |===
+
+
 | スイッチモデル | ISL ポート | スイッチポート 
 
 
@@ -925,7 +971,7 @@ ISL 、ポート 7
 
 |===
 .手順
-. [step1-brocad-config 、 Step 1] ポート速度を設定します。
+. [[step1_brocade_config]] ポート速度を設定します。
 +
 portcfgspeed port-number speed
 
@@ -1162,7 +1208,7 @@ FC_switch_B_1:admin> fabricshow
 
 3: fffc03 10:00:00:05:33:8c:2e:9a 10.10.10.65  0.0.0.0    >"FC_switch_B_1
 ----
-. [[step10-brocade-config, Step 10] ISL のトランキングを確認します。
+. [step10_brocade_config]] ISL のトランキングを確認します。
 +
 「 trunkshow 」
 
@@ -1191,18 +1237,15 @@ FC_switch_B_1:admin> trunkshow
 ----
 
 
-. 繰り返します <<step1-brocade-config>> から <<step10-brocade-config>> 2 つ目の FC スイッチファブリック。
+. 繰り返します <<step1_brocade_config,手順 1.>> から <<step10_brocade_config,手順 10>> 2 つ目の FC スイッチファブリック。
 
 
-* 関連情報 *
-
-xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 
 
 == Brocade FC 7840 スイッチでの 10Gbps VE ポートの設定
 
-[role="lead"]
 ISL に 10Gbps VE ポート（ FCIP を使用）を使用する場合は、各ポートに IP インターフェイスを作成し、 FCIP トンネルと各トンネルの回線を設定する必要があります。
 
 この手順は、 MetroCluster 構成の各スイッチファブリックで実行する必要があります。
@@ -1358,7 +1401,6 @@ FC_switch_A_1:root> portshow fcipcircuit all
 
 == Brocade 7810 および 7840 FC スイッチでの 40Gbps VE ポートの設定
 
-[role="lead"]
 ISL に 2 つの 40GbE VE ポート（ FCIP を使用）を使用する場合は、各ポートに IP インターフェイスを作成し、 FCIP トンネルと各トンネルの回線を設定する必要があります。
 
 この手順は、 MetroCluster 構成の各スイッチファブリックで実行する必要があります。
@@ -1511,15 +1553,18 @@ FC_switch_A_1:root> portshow fcipcircuit all
 
 == Brocade スイッチでの非 E ポートの設定
 
-[role="lead"]
 FC スイッチ上の非 E ポートを設定する必要があります。MetroCluster 構成では、これらのポートによって、スイッチと HBA イニシエータ、 FC-VI インターコネクト、および FC-to-SAS ブリッジが接続されます。この手順はポートごとに実行する必要があります。
 
 次の例では、ポートを FC-to-SAS ブリッジに接続します。
 
+--
 * Site_A の FC_FC_switch_A_1 のポート 6
 * Site_B の FC_FC_switch_B_1 のポート 6
-+
-.. 非 E ポートの速度を設定します。
+
+
+--
+.手順
+. 非 E ポートの速度を設定します。
 +
 portcfgspeed portSpeed
 
@@ -1530,9 +1575,9 @@ portcfgspeed portSpeed
 たとえば、各コンポーネントで次の速度がサポートされているとします。
 
 +
-*** SFP は 4GB 、 8GB 、 16GB に対応
-*** スイッチポートは 4GB 、 8GB 、 16GB に対応
-*** 接続されている HBA の最高速度は 16GBこの場合の共通最高速度は 16GB であるため、ポート速度は 16GB に設定する必要があります。
+** SFP は 4GB 、 8GB 、 16GB に対応
+** スイッチポートは 4GB 、 8GB 、 16GB に対応
+** 接続されている HBA の最高速度は 16GBこの場合の共通最高速度は 16GB であるため、ポート速度は 16GB に設定する必要があります。
 +
 [listing]
 ----
@@ -1542,7 +1587,7 @@ FC_switch_B_1:admin> portcfgspeed 6 16
 ----
 
 
-.. 設定を確認します。
+. 設定を確認します。
 +
 portcfgshow
 
@@ -1595,11 +1640,8 @@ Non-DFE                             ..  ..  ..  ..  ..  ..  ..  ..  ..
 
 
 
-
-
 == Brocade G620 スイッチの ISL ポートで圧縮を設定します
 
-[role="lead"]
 Brocade G620 スイッチを使用している場合に ISL で圧縮を有効にするには、スイッチの各 E ポートで圧縮を設定する必要があります。
 
 このタスクは、 ISL を使用する両方のスイッチの ISL ポートで実行する必要があります。
@@ -1661,14 +1703,12 @@ Port   Configured    Active   Configured   Active  Speed
 
 == Brocade FC スイッチでゾーニングを設定します
 
-[role="lead"]
 スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。手順は、 FibreBridge 7500N ブリッジと FibreBridge 6500N ブリッジのどちらを使用しているかによって異なります。
 
 
 
 === FC-VI ポートのゾーニング
 
-[role="lead"]
 MetroCluster の DR グループごとに、コントローラ間のトラフィックに使用する FC-VI 接続のゾーンを 2 つ設定する必要があります。これらのゾーンには、コントローラモジュールの FC-VI ポートに接続する FC スイッチポートが含まれます。これらのゾーンは、 Quality of Service （ QoS ；サービス品質）ゾーンです。
 
 QoS ゾーンには、通常のゾーンと区別するために、プレフィックス QOSHid_ から始まる名前を使用します。これらの QoS ゾーンは、使用する FibreBridge ブリッジのモデルに関係なく同じです。
@@ -1707,6 +1747,8 @@ QoS ゾーンには、通常のゾーンと区別するために、プレフィ�
 | FC_switch_B_1 | B | 7. | 5. | 5. | 5. | controller_B_2 、ポート FC-VI c 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -1742,6 +1784,8 @@ QoS ゾーンには、通常のゾーンと区別するために、プレフィ�
 |  |  |  | 5. | 5. | 5. | controller_B_2 、ポート FC-VI d 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -1780,6 +1824,8 @@ QoS ゾーンには、通常のゾーンと区別するために、プレフィ�
 |  |  |  | 29 | 53 | 23 | controller_B_2 、ポート FC-VI c 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -1818,6 +1864,8 @@ QoS ゾーンには、通常のゾーンと区別するために、プレフィ�
 | FC_switch_B_2 | B | 8. | 29 | 53 | 23 | controller_B_2 、ポート FC-VI d 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -1829,6 +1877,8 @@ QoS ゾーンには、通常のゾーンと区別するために、プレフィ�
 次の表に、 FC-VI ゾーンをまとめます。
 
 |===
+
+
 | ファブリック | ゾーン名 | メンバーポート 
 
 
@@ -1877,7 +1927,6 @@ QOSH2_MC1_FAB_2_FCVI （ 6520 ）
 
 === FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング
 
-[role="lead"]
 FibreBridge 6500N ブリッジまたは一方の FC ポートのみを使用する FibreBridge 7500N / 7600N ブリッジを使用する場合は、ブリッジポート用のストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。
 
 ここでは、 DR グループ 1 のゾーニング例のみを示しています。2 つ目の DR グループがある構成の場合は、コントローラとブリッジの対応するポートを使用して、同じ方法で 2 つ目の DR グループのゾーニングを設定します。
@@ -1905,6 +1954,8 @@ FC-to-SAS ブリッジの FC ポートごとにゾーンを 1 つ設定し、各
 ブリッジでは、次の名前の例を使用します。 bridge_site_B 、スタックグループペア内での指定
 
 |===
+
+
 | 名前の各部分 | 特定のインターフェイス | 有効な値 
 
 
@@ -1986,6 +2037,8 @@ a または b
 | FC_switch_B_1 | B | 7. | 7. | controller_B_2 、ポート 0c 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -2024,6 +2077,8 @@ a または b
 | FC_switch_B_1 | B | 8. | 7. | controller_B_2 、ポート 0d 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2066,6 +2121,8 @@ a または b
 | FC_switch_B_1 | B | 7. | 7. | controller_B_2 、ポート 0c 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -2104,6 +2161,8 @@ a または b
 | FC_switch_B_1 | B | 8. | 7. | controller_B_2 、ポート 0d 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2146,6 +2205,8 @@ a または b
 | FC_switch_B_1 | B | 7. | 8. | bridge_B_1a の FC1 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -2184,6 +2245,8 @@ a または b
 | FC_switch_B_1 | B | 8. | 8. | bridge_B_1b の FC1 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2226,6 +2289,8 @@ a または b
 | FC_switch_B_1 | B | 7. | 9. | bridge_B_2a の FC1 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -2264,6 +2329,8 @@ a または b
 | FC_switch_B_1 | B | 8. | 9. | bridge_B_1b の FC1 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2274,6 +2341,8 @@ a または b
 ==== ストレージゾーンのサマリ
 
 |===
+
+
 | ファブリック | ゾーン名 | メンバーポート 
 
 
@@ -2304,7 +2373,6 @@ a または b
 
 === 両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング
 
-[role="lead"]
 両方の FC ポートを使用する FibreBridge 7500N ブリッジを使用する場合は、ブリッジポートのストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。
 
 
@@ -2330,6 +2398,8 @@ FC-to-SAS ブリッジの FC ポートごとにゾーンを 1 つ設定し、各
 ブリッジでは、次の名前の例を使用します。 bridge_site_B 、スタックグループペア内での指定
 
 |===
+
+
 | 名前の各部分 | 特定のインターフェイス | 有効な値 
 
 
@@ -2381,6 +2451,8 @@ a または b
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_A_STK_GRP_1_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 / G620 ポート | 6520 ポート | 接続先 
 
 
@@ -2459,6 +2531,8 @@ controller_B_2 、ポート 0a
 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -2471,6 +2545,8 @@ MC1_INIT_GRP_1_SITE_A_STK_GRP_1_TOP_FC1
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_A_STK_GRP_1_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -2559,6 +2635,8 @@ controller_B_2 、ポート 0c
 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2571,6 +2649,8 @@ MC1_INIT_GRP_2_SITE_A_STK_GRP_1_BOT_FC1
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_A_STK_GRP_1_BOT_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 | 6520 | G620 | 接続先 
 
 
@@ -2659,6 +2739,8 @@ controller_B_2 、ポート 0b
 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -2671,6 +2753,8 @@ MC1_INIT_GRP_1_SITE_A_STK_GRP_1_TOP_FC2
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_A_STK_GRP_1_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 | 6520 | G620 | 接続先 
 
 
@@ -2759,6 +2843,8 @@ controller_B_2 、ポート 0b
 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2775,6 +2861,8 @@ MC1_INIT_GRP_2_SITE_A_STK_GRP_1_BOT_FC2
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_A_STK_GRP_2_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -2863,7 +2951,9 @@ controller_B_2 、ポート 0a
 
 |===
 |===
-| Fabric_1 のゾーン | メンバーポート 
+
+
+| Fabric_1 hh のゾーン | メンバーポート 
 
 
  a| 
@@ -2875,6 +2965,8 @@ MC1_INIT_GRP_1_SITE_A_STK_GRP_2_TOP_FC1
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_A_STK_GRP_2_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -2959,6 +3051,8 @@ controller_B_2 、ポート 0c
 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -2971,6 +3065,8 @@ MC1_INIT_GRP_2_SITE_A_STK_GRP_2_BOT_FC1
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_A_STK_GRP_2_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3059,6 +3155,8 @@ controller_B_2 、ポート 0b
 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -3071,6 +3169,8 @@ MC1_INIT_GRP_1_SITE_A_STK_GRP_2_TOP_FC2
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_A_STK_GRP_2_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3177,6 +3277,8 @@ MC1_INIT_GRP_2_SITE_A_STK_GRP_2_BOT_FC2
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_B_STK_GRP_1_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3265,6 +3367,8 @@ bridge_B_1a の FC1
 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -3277,6 +3381,8 @@ MC1_INIT_GRP_1_SITE_B_STK_GRP_1_TOP_FC1
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_B_STK_GRP_1_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3365,6 +3471,8 @@ bridge_B_1b の FC1
 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -3377,6 +3485,8 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_1_BOT_FC1
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_B_STK_GRP_1_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3477,6 +3587,8 @@ MC1_INIT_GRP_1_SITE_B_STK_GRP_1_TOP_FC2
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_B_STK_GRP_1_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3565,6 +3677,8 @@ bridge_A_1b の FC2
 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -3581,6 +3695,8 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_1_BOT_FC2
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_B_STK_GRP_2_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3669,6 +3785,8 @@ bridge_B_2a の FC1
 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -3681,6 +3799,8 @@ MC1_INIT_GRP_1_SITE_B_STK_GRP_2_TOP_FC1
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_B_STK_GRP_2_TOP_FC1 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3769,7 +3889,9 @@ bridge_B_2b の FC1
 
 |===
 |===
-| Fabric_2 のゾーン | メンバーポート 
+
+
+| Fabric_2 hh のゾーン | メンバーポート 
 
 
  a| 
@@ -3781,6 +3903,8 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC1
 * drgroup 1 ： MC1_INIT_GRP_1_SITE_B_STK_GRP_2_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3869,6 +3993,8 @@ bridge_B_2a の FC2
 
 |===
 |===
+
+
 | Fabric_1 のゾーン | メンバーポート 
 
 
@@ -3881,6 +4007,8 @@ MC1_INIT_GRP_1_SITE_B_STK_GRP_2_TOP_FC2
 * drgroup 1 ： MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC2 ： *
 
 |===
+
+
 | FC スイッチ | サイト | スイッチドメイン | 6505 / 6510 / G610 ポート | 6520 ポート | G620 ポート | 接続先 
 
 
@@ -3969,6 +4097,8 @@ Bridge_B_2b FC2
 
 |===
 |===
+
+
 | Fabric_2 のゾーン | メンバーポート 
 
 
@@ -3983,6 +4113,8 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC2
 ==== ストレージゾーンのサマリ
 
 |===
+
+
 | ファブリック | ゾーン名 | メンバーポート 
 
 
@@ -4133,21 +4265,20 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC2
 
 === Brocade FC スイッチでゾーニングを設定します
 
-[role="lead"]
 スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。また、 FC-VI ポートのゾーンとストレージポートのゾーンも含める必要があります。
 
 次の手順では、 MetroCluster 構成の標準的なゾーニングを使用します。
 
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[FC-VI ポートのゾーニング]
+link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FC-VI ポートのゾーニング"]
 
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング]
+link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
 
-xref:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.adoc[両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング]
+link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
 
 .手順
 . 各スイッチに FC-VI ゾーンを作成します。
 +
-`+ zonecreate "QOSH1_FCVI_1" 、 member ； member …… +`
+zonecreate "QOSH1_FCVI_1" 、 member ； member … ..
 
 +
 この例では、ポート 5 、 0 ； 5 、 1 ； 5 、 4 ； 5 、 5 ； 7 、 0 ； 7 、 1 ； 7 、 4 ； 7 、 5 を含む QOS FCVI ゾーンを作成しています。
@@ -4188,7 +4319,7 @@ Switch_A_1:admin> cfgcreate "CFG_1", "QOSH1_MC1_FAB_1_FCVI; MC1_INIT_GRP_1_SITE_
 ----
 .. 必要に応じて、設定にゾーンを追加します。
 +
-「 +cfgadd config_name zone ； zone...+` 」のように設定します
+cfgadd config_name zone ； zone... を使用します
 
 .. 設定を有効にします。
 +
@@ -4252,7 +4383,6 @@ zone: MC1_INIT_GRP_1_SITE_A_STK_GRP_1_TOP_FC1
 
 == Brocade 6510 または G620 スイッチでの ISL 暗号化の設定
 
-[role="lead"]
 Brocade 6510 または G620 スイッチでは、 ISL 接続に対してオプションで Brocade 暗号化機能を使用できます。暗号化機能を使用する場合は、 MetroCluster 構成の各スイッチで追加の設定手順を実行する必要があります。
 
 .作業を開始する前に
@@ -4271,13 +4401,12 @@ NOTE: Brocade G620 スイッチでの ISL 暗号化の使用は、 ONTAP 9.4 以
 
 === 仮想ファブリックを無効にします
 
-[role="lead"]
 ISL 暗号化を設定するには、 MetroCluster 構成で使用されている 4 つのスイッチすべてで仮想ファブリックを無効にする必要があります。
 
 .手順
 . スイッチコンソールで次のコマンドを入力して、仮想ファブリックを無効にします。
 +
-fosconfig -- VF`` を無効にする
+fosconfig -- VF' を無効にします
 
 . スイッチをリブートします。
 
@@ -4313,7 +4442,6 @@ fosconfig -- VF`` を無効にする
 
 === 認証ポリシーを設定します
 
-[role="lead"]
 認証ポリシーおよび関連するパラメータを設定する必要があります。
 
 コマンドはスイッチコンソールで実行する必要があります。
@@ -4406,7 +4534,6 @@ Auth Policy is set to ON
 
 === Brocade スイッチでの ISL 暗号化の有効化
 
-[role="lead"]
 認証ポリシーと認証シークレットを設定したら、ポートで ISL 暗号化を有効にする必要があります。
 
 .このタスクについて
@@ -4423,7 +4550,10 @@ portCfgEncrypt -- ポート番号を有効にします
 次の例は、ポート 8 とポート 12 で暗号化を有効にします。
 
 +
-portCfgEncrypt -- enable 8`portCfgEncrypt -- enable 12`
+portCfgEncrypt -- 8 を有効にします
+
++
+portCfgEncrypt -- 12 を有効にします
 
 . スイッチを有効にします。
 +

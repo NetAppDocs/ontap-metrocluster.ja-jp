@@ -23,6 +23,8 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 RCF ファイルは 4 つあり、それぞれが MetroCluster ファブリック構成の 4 つの各スイッチに対応しています。使用するスイッチのモデルに対応した正しい RCF ファイルを使用する必要があります。
 
 |===
+
+
 | スイッチ | RCF ファイル 
 
 
@@ -60,7 +62,10 @@ NOTE: 出力は Cisco IP スイッチについてのものですが、 Cisco FC 
 . Cisco FC の RCF ファイルをからダウンロードします https://mysupport.netapp.com/site/products/all/details/metrocluster-rcf/downloads-tab["MetroCluster の RCF ダウンロードページ"]。
 . RCF ファイルをスイッチにコピーします。
 +
-.. RCF ファイルを最初のスイッチにコピーします。 +`* copy sftp://_root@ftp-server-ip-address /tftpboot/switch-specific -RCF _bootflash:vrf management*`
+.. RCF ファイルを最初のスイッチにコピーします。
++
+'copy sftp://_root@ftp-server-ip-address /tftpboot/switch-specific - rcf_bootflash:vrf management`
+
 +
 この例では 'NX32323_v1.80_Switch-A1.txt 'RCF ファイルが '10.10.99.99' の SFTP サーバからローカルブートフラッシュにコピーされます使用する TFTP / SFTP サーバの IP アドレスと、インストールする必要がある RCF ファイルのファイル名を使用する必要があります。
 
@@ -83,7 +88,7 @@ IP_switch_A_1#
 
 . 各スイッチの「 bootflash' 」ディレクトリに RCF ファイルがあることを確認します。
 +
-`*dir bootflash:*`
+「 IR bootflash: 」のように表示されます
 
 +
 次の例は、 FC_switch_A_1 にファイルが存在することを示しています。
@@ -108,11 +113,11 @@ IP_switch_A_1#
 ----
 . 各スイッチで、対応する RCF ファイルをローカルブートフラッシュから実行中の設定にコピーします。
 +
-*copy bootflash: __switch-specific-RCF__.txt running-config *`
+copy bootflash: __switch-specific-RCF__.txt running-config
 
 . 各スイッチで、実行中の設定からスタートアップ設定に RCF ファイルをコピーします。
 +
-'*copy running-config startup-config *
+'copy running-config startup-config
 
 +
 次のような出力が表示されます。
@@ -123,7 +128,10 @@ IP_switch_A_1#
 IP_switch_A_1# copy bootflash:NX3232_v1.80_Switch-A1.txt running-config
 IP_switch_A_1# copy running-config startup-config
 ----
-. スイッチをリロードします :`*reload*`
+. スイッチをリロードします。
++
+「再ロード」
+
 +
 [listing]
 ----
