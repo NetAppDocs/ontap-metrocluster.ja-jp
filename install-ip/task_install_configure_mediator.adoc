@@ -12,9 +12,11 @@ summary: ONTAP メディエーターサービスをインストールするに�
 [role="lead"]
 ONTAP メディエーターサービスをインストールするには、すべての前提条件を満たしていることを確認してから、インストールパッケージを取得してホストでインストーラを実行する必要があります。
 
-* 開始する前に * 次の前提条件を満たしている必要があります。
+次の前提条件を満たしている必要があります。
 
 |===
+
+
 | メディエーターのバージョン | サポートされている Linux バージョン 
 
 
@@ -32,7 +34,7 @@ Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 8.0 、 8.1
 
 |===
 
-NOTE: カーネルバージョンはオペレーティングシステムのバージョンと一致している必要があります。
+NOTE: カーネルのバージョンがオペレーティングシステムのバージョンと一致している必要があります。
 
 * 64 ビットの物理インストールまたは仮想マシン
 * 8GB の RAM
@@ -53,7 +55,7 @@ Red Hat Subscription Manager については、 Red Hat のドキュメントを
 ** 3260
 
 
-* サードパーティ製ファイアウォールを使用している場合は、を参照してください xref:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#firewall-requirements-for-ontap-mediator[ONTAP メディエーターのファイアウォール要件]
+* サードパーティ製ファイアウォールを使用している場合は、を参照してください link:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#firewall-requirements-for-ontap-mediator["ONTAP メディエーターのファイアウォール要件"]
 * Linux ホストがインターネットにアクセスできない場所にある場合は、パッケージを手動でインストールできます。必要なパッケージがローカルリポジトリにあることを確認してください。
 +
 リポジトリの設定については、次のリンクを参照してください。
@@ -66,6 +68,8 @@ ONTAP メディエーターサービスで必要なパッケージは次のと�
 
 +
 |===
+
+
 | すべての RHEL または CentOS バージョン | RHEL / CentOS 7.x の追加パッケージ | RHEL / CentOS 8.x の追加パッケージ 
 
 
@@ -120,13 +124,15 @@ ONTAP メディエーターサービスで必要なパッケージは次のと�
 
 この手順は、既存の環境のインストールまたはアップグレードに使用します。
 
-xref:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#guidelines-for-upgrading-the-ontap-mediator-in-a-metrocluster-configuration[MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン]
+link:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#guidelines-for-upgrading-the-ontap-mediator-in-a-metrocluster-configuration["MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン"]
 
 
 
 == リポジトリへのアクセスを有効にします
 
 |===
+
+
 | オペレーティングシステム | リポジトリへのアクセスを指定する必要があります ... 
 
 
@@ -161,9 +167,19 @@ kernel-devel
 |===
 インストールプロセスでメディエーターから必要なパッケージにアクセスできるように、上記のリポジトリへのアクセスを有効にします。お使いのオペレーティングシステムに応じて、以下の手順を使用してください。
 
+* の手順 <<rhel7x,RHEL 7.x>>
+* の手順 <<rhel8x,RHEL 8.x の場合>>
+* の手順 <<centos7x,CentOS 7.x>>
+* の手順 <<centos8x,CentOS 8.0.1095 以降>>
+
+
 オペレーティング・システムが * RHEL 7.x * の場合：
 
-. 必要なリポジトリに登録します。 'subscription-manager repos_--enable rhel-7-server-optional-rpms ’
+.手順
+. 必要なリポジトリに登録します。
++
+'subscription-manager repos_--enable rhel-7-server-optional-rpms
+
 +
 次の例は、このコマンドの実行例を示しています。
 
@@ -173,7 +189,7 @@ kernel-devel
 [root@localhost ~]# subscription-manager repos --enable rhel-7-server-optional-rpms
 Repository 'rhel-7-server-optional-rpms' is enabled for this system.
 ----
-. yum repolist コマンドを実行します。
+. yum repolist' コマンドを実行します
 +
 次の例は、このコマンドの実行例を示しています。rhel-7-server-optional-rpms リポジトリがリストに表示されている必要があります。
 
@@ -197,7 +213,14 @@ repolist: 46,205
 
 オペレーティング・システムが * RHEL 8.x * の場合：
 
-. 必要なリポジトリをサブスクライブします。 'subscription-manager repos_--enable RHEL-8-x86-64 -baseos-RPM'subscription-manager repos_enableRHEL-8-for -x86_64-AppStream-RPM'
+.手順
+. 必要なリポジトリに登録します。
++
+'subscription-manager repos_--enable RHEL-8-For -x86_64-baseos-rpms
+
++
+'subscription-manager repos_--enable RHEL-8-For -x86_64-AppStream-RPM'
+
 +
 次の例は、このコマンドの実行例を示しています。
 
@@ -209,7 +232,7 @@ repolist: 46,205
 Repository 'rhel-8-for-x86_64-baseos-rpms' is enabled for this system.
 Repository 'rhel-8-for-x86_64-appstream-rpms' is enabled for this system.
 ----
-. yum repolist コマンドを実行します。
+. yum repolist' コマンドを実行します
 +
 新しくサブスクライブしたリポジトリがリストに表示されます。
 
@@ -217,6 +240,7 @@ Repository 'rhel-8-for-x86_64-appstream-rpms' is enabled for this system.
 
 オペレーティングシステムが * CentOS 7.x * の場合：
 
+.手順
 . C7.6.1810 ベースリポジトリを追加します。C7.6.1810 - ベースボールトリポジトリには、 ONTAP メディエーターに必要な kernel-devel パッケージが含まれています。
 . 次の行を /etc/yum.repos_d/Center-Vault.repo に追加します。
 +
@@ -229,7 +253,7 @@ basearch/gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 enabled=1
 ----
-. yum repolist コマンドを実行します。
+. yum repolist' コマンドを実行します
 +
 次の例は、このコマンドの実行例を示しています。CentOS-7.6.1810 ベースリポジトリがリストに表示されます。
 
@@ -256,25 +280,36 @@ repolist: 21,433
 
 オペレーティングシステムが * CentOS 8.0.1905 以降のビルド * の場合：
 
-最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアは CentOS Vault に含まれているため、必要なカーネルモジュールをコンパイルするためには、一致する kernel-devel パッケージへのアクセスを提供する必要があります。問題 kernel-devel パッケージを直接インストールするには、次のコマンドを実行します。
+最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアは CentOS Vault に含まれているため、必要なカーネルモジュールをコンパイルするためには、一致する kernel-devel パッケージへのアクセスを提供する必要があります。
+
+.手順
+. [stp1 -rpm] 問題 kernel-devel パッケージを直接インストールするには、次のコマンドを使用します。
+
 
 「 rpm -i 」 http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname[] -r ） .rpm`
 
 パッケージがすでにインストールされていることを示すエラーが表示された場合は、パッケージを削除してから再試行してください。
 
-. kernel-devel パッケージを削除します :yum remove kernel-devel`
-. 上記の rpm コマンドを繰り返します。
+. kernel-devel パッケージを削除します。
++
+yum 'remove kernel-devel'
+
+. に示すように 'rpm' コマンドを繰り返します <<step1-rpm,手順 1.>>。
 
 
 
 
 == メディエーターのインストールパッケージをダウンロードします
 
+.手順
 . ONTAP メディエーターのページからメディエーターのインストールパッケージをダウンロードします。
 +
 https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-tab["ONTAP メディエーターのダウンロードページ"]
 
-. メディエーターのインストール・パッケージがターゲット・ディレクトリにあることを確認します
+. メディエーターのインストールパッケージがターゲットディレクトリにあることを確認します。
++
+「 ls 」と入力します
+
 +
 [listing]
 ----
@@ -291,7 +326,11 @@ https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-
 
 == ONTAP メディエーターのインストールパッケージをインストールします
 
-. メディエーターのインストール・パッケージをインストールし ' 必要に応じてプロンプトに応答します
+.ステップ
+. メディエーターのインストールパッケージをインストールし、必要に応じてプロンプトに応答します。
++
+`./ONTAP-Mmediator_1.3`
+
 +
 インストールプロセスが開始され、必要なアカウントの作成と必要なパッケージのインストールが行われます。以前のバージョンのメディエーターがホストにインストールされている場合は、アップグレードを確認するプロンプトが表示されます。
 
@@ -303,8 +342,12 @@ link:../media/console_output_mediator_installation.txt["ONTAP メディエータ
 
 == インストールを確認します。
 
-ONTAP メディエーターサービスのステータスを表示するには、次のコマンドを実行します： systemctl
+.手順
+. 次のコマンドを実行して、 ONTAP メディエーターサービスのステータスを表示します。
++
+'systemctl `
 
++
 [listing]
 ----
  [root@scspr1915530002 ~]# systemctl status ontap_mediator mediator-scst
@@ -362,8 +405,7 @@ ONTAP メディエーターサービスのステータスを表示するには�
          [root@scspr1915530002 ~]#
 ----
 . ONTAP メディエーターサービスで使用しているポートの netstat を使用して確認します
-
-
++
 [listing]
 ----
          [root@scspr1905507001 ~]# netstat -anlt | grep -E '3260|31784'
@@ -374,6 +416,8 @@ ONTAP メディエーターサービスのステータスを表示するには�
 
          tcp6       0      0 :::3260                 :::*                    LISTEN
 ----
+
+
 
 
 == 結果

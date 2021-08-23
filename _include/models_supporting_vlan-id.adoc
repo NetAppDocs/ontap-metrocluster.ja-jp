@@ -1,16 +1,15 @@
 = 
 
 
-|===
-| 注： 
+--
+[NOTE]
+====
+* ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートはそれぞれ異なる VLAN を使用します。 10 と 20 です。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
+* ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 
 
- a| 
-* ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートはそれぞれ異なる VLAN を使用します。 10 と 20 です。また、「 MetroCluster configurion-settings interface create 」コマンドの -vlan-id パラメータを使用すると、 100 より大きい（デフォルト以外の） VLAN を（ 101 ～ 4095 の間）指定できます。
-* ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
-
-
-|===
+====
+--
 次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。
 
 |===

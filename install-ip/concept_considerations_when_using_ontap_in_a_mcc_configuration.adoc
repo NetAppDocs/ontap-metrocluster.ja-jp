@@ -76,8 +76,6 @@ MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッ�
 
 スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります
 
-* 関連情報 *
-
 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["FlexCache ボリューム管理"]
 
 
@@ -143,7 +141,6 @@ ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサ
 
 == MetroCluster 構成のジョブスケジュール
 
-[role="lead"]
 ONTAP 9.3 以降では、ユーザが作成したジョブスケジュールが MetroCluster 構成のクラスタ間で自動的にレプリケートされます。クラスタでジョブスケジュールを作成、変更、または削除すると、 Configuration Replication Service （ CRS ）を使用して同じスケジュールがパートナークラスタに自動的に作成されます。
 
 
@@ -153,7 +150,6 @@ NOTE: システムによって作成されたスケジュールはレプリケ�
 
 == MetroCluster サイトから第 3 のクラスタへのクラスタピアリング
 
-[role="lead"]
 ピアリング設定はレプリケートされないため、 MetroCluster 構成のどちらかのクラスタを構成外の第 3 のクラスタにピアリングする場合は、パートナーの MetroCluster クラスタでもピアリングを設定する必要があります。これにより、スイッチオーバーが発生してもピアリングが維持されます。
 
 MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている必要があります。そうでない場合、両方の MetroCluster パートナーでピアリングが設定されていても、スイッチオーバーが発生するとピアリングが失われます。
@@ -168,24 +164,20 @@ MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている�
 
 == MetroCluster 構成用のネットワーク設定および LIF 作成ガイドライン
 
-[role="lead"]
 MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。
-
-* 関連情報 *
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
 
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements[IPspace オブジェクトのレプリケーションとサブネットの設定の要件]
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
 
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration[MetroCluster 構成での LIF の作成に関する要件]
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration["MetroCluster 構成での LIF の作成に関する要件"]
 
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues[LIF のレプリケーションおよび配置の要件と問題]
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues["LIF のレプリケーションおよび配置の要件と問題"]
 
 
 
 === IPspace オブジェクトのレプリケーションとサブネットの設定の要件
 
-[role="lead"]
 パートナークラスタに IPspace オブジェクトをレプリケートするための要件、および MetroCluster 構成でサブネットと IPv6 を設定するための要件を理解しておく必要があります。
 
 
@@ -238,17 +230,14 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 
 一方のサイトで IPv6 が設定されている場合は、もう一方のサイトでも IPv6 を設定する必要があります。
 
-* 関連情報 *
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration["MetroCluster 構成での LIF の作成に関する要件"]
 
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration[MetroCluster 構成での LIF の作成に関する要件]
-
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues[LIF のレプリケーションおよび配置の要件と問題]
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues["LIF のレプリケーションおよび配置の要件と問題"]
 
 
 
 === MetroCluster 構成での LIF の作成に関する要件
 
-[role="lead"]
 MetroCluster 構成でネットワークを設定するときは、 LIF の作成に関する要件に注意する必要があります。
 
 LIF を作成する際は、次のガイドラインを考慮する必要があります。
@@ -266,17 +255,14 @@ LIF を作成する際は、次のガイドラインを考慮する必要があ�
 
 MetroCluster 構成内に LIF が正常に作成されたことを確認するには、 MetroCluster check lif show コマンドを実行します。LIF の作成中に問題が発生した場合は、 MetroCluster の check lif repair-placement コマンドを使用して問題を修正できます。
 
-* 関連情報 *
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
 
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements[IPspace オブジェクトのレプリケーションとサブネットの設定の要件]
-
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues[LIF のレプリケーションおよび配置の要件と問題]
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues["LIF のレプリケーションおよび配置の要件と問題"]
 
 
 
 === LIF のレプリケーションおよび配置の要件と問題
 
-[role="lead"]
 MetroCluster 構成での LIF のレプリケーションの要件を理解しておく必要があります。また、レプリケートされた LIF がパートナークラスタにどのように配置されるかを把握し、 LIF のレプリケーションまたは LIF の配置に失敗した場合に発生する問題について確認しておく必要があります。
 
 
@@ -288,6 +274,8 @@ MetroCluster 構成内の 1 つのクラスタに LIF を作成すると、そ�
 LIF をレプリケートしてパートナークラスタに配置するには、システムが次の条件を満たしている必要があります。
 
 |===
+
+
 | 条件 | LIF タイプ： FC | LIF タイプ： IP / iSCSI 
 
 
@@ -349,36 +337,33 @@ LIF の配置
 
 あるノードに iSCSI または FC LIF が作成され、そのノードの DR パートナーがテイクオーバーされた場合、 LIF がレプリケートされて DR 補助パートナーノードに配置されます。その後ギブバック処理が発生しても、 LIF は DR パートナーに自動的には移動されません。そのため、パートナークラスタ内の 1 つのノードに LIF が集中する可能性があります。MetroCluster のスイッチオーバー処理が発生した場合、その後の Storage Virtual Machine （ SVM ）に属する LUN をマップしようとしても失敗します。
 
-テイクオーバー処理またはギブバック処理のあとに lun check lif show コマンドを実行 MetroCluster して、 LIF の配置が正しいことを確認する必要があります。エラーがある場合は、 MetroCluster check lif repair-placement コマンドを実行して問題を解決します。
+テイクオーバー処理またはギブバック処理のあとに「 lif check lif show 」コマンドを実行して、 MetroCluster の配置が正しいことを確認する必要があります。エラーがある場合は、「 MetroCluster check lif repair-placement 」コマンドを実行して問題を解決します。
 
 
 
 ==== LIF 配置エラー
 
-MetroCluster check lif show コマンドで表示される LIF 配置エラーは、スイッチオーバー処理のあとも保持されます。配置エラーがある LIF に対して network interface modify 、 network interface rename 、または network interface delete のいずれかのコマンドを実行すると、エラーが削除され、 MetroCluster check lif show コマンドの出力に表示されなくなります。
+MetroCluster check lif show コマンドで表示される LIF 配置エラーは ' スイッチオーバー操作の後も保持されます配置エラーがある LIF に対して network interface modify コマンド、 network interface rename コマンド MetroCluster 、または network interface delete コマンドを実行すると、エラーは削除され、「 lif check show 」コマンドの出力には表示されません。
 
 
 
 ==== LIF レプリケーションエラーです
 
-MetroCluster check lif show コマンドを使用して、 LIF のレプリケーションが成功したかどうかを確認することもできます。LIF のレプリケーションが失敗すると、 EMS メッセージが表示されます。
+また、 MetroCluster check lif show コマンドを使用して、 LIF のレプリケーションが成功したかどうかを確認することもできます。LIF のレプリケーションが失敗すると、 EMS メッセージが表示されます。
 
-レプリケーションの障害を修正するには、正しいポートが見つからなかった LIF に対して MetroCluster check lif repair-placement コマンドを実行します。MetroCluster スイッチオーバー処理の際に確実に LIF を使用できるよう、 LIF のレプリケーションエラーはできるだけ早く解決する必要があります。
+レプリケーションの障害を修正するには、正しいポートが見つからなかった LIF に対して「 MetroCluster check lif repair-placement 」コマンドを実行します。MetroCluster スイッチオーバー処理の際に確実に LIF を使用できるよう、 LIF のレプリケーションエラーはできるだけ早く解決する必要があります。
 
 
 NOTE: ソース SVM がダウンしている場合でも、デスティネーション SVM で同じ IPspace とネットワークを使用するポートに別の SVM に所属する LIF が設定されていれば、 LIF の配置は続行されます。
 
-* 関連情報 *
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
 
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements[IPspace オブジェクトのレプリケーションとサブネットの設定の要件]
-
-xref:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration[MetroCluster 構成での LIF の作成に関する要件]
+link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration["MetroCluster 構成での LIF の作成に関する要件"]
 
 
 
 === ルートアグリゲートでのボリューム作成
 
-[role="lead"]
 MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシーが CFO ）に新しいボリュームを作成することはできません。
 
 この制限があるため、ルートアグリゲートを vserver add-aggregates コマンドで SVM に追加することはできません。
@@ -387,7 +372,6 @@ MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシ
 
 == MetroCluster 構成の SVM ディザスタリカバリ
 
-[role="lead"]
 ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。
 
 SVM を SnapMirror ディザスタリカバリで使用する場合は、次の要件と制限事項に注意してください。
@@ -416,9 +400,7 @@ image::../media/svm_dr_image_2.gif[SVM DR イメージ 2.]
 
 
 
-SVM DR 関係の設定の詳細については、 _ データ保護パワーガイド _ の「 SVM の設定のレプリケート」セクションを参照してください。
-
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["データ保護"]
+の「 SVM 設定のレプリケート」を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["データ保護"] SVM DR 関係の設定の詳細については、を参照してください。
 
 
 
@@ -465,5 +447,8 @@ MetroCluster スイッチオーバーが発生した場合に NVFAIL フラグ�
 
 NOTE: 9.0 よりも前のバージョンの ONTAP では、スイッチオーバーのたびに NVFAIL フラグが設定されます。ONTAP 9.0 以降のバージョンでは、計画外スイッチオーバー（ USO ）が使用されます。
 
-. スイッチオーバー発生時に MetroCluster 構成で NVFAIL を設定するには、 vol -dr-force-nvfail パラメータを on に設定します。 vol modify -vserver vserver-name -volume volume-name -dr-force-nvfail on `
+. スイッチオーバー時に MetroCluster 構成で NVFAIL をトリガーするには、「 vol-dr-force-nvfail 」パラメータを on に設定します。
++
+vol modify -vserver vserver-name -volume volume-name -dr-force-nvfail on `
+
 

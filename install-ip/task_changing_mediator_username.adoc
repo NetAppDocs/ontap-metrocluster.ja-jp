@@ -12,32 +12,33 @@ summary: ONTAP メディエーターサービスをインストールしたあ�
 [role="lead"]
 ONTAP メディエーターサービスをインストールしたあと、必要に応じてユーザ名を変更できます。パスワードは 2 つの方法で変更できます。
 
-* このタスクについて *
-
 このタスクは、 ONTAP メディエーターサービスがインストールされた Linux ホストで実行します。
 
-このコマンドにアクセスできない場合は、次の例のように完全パスを使用してコマンドを実行する必要があります。 /usr/local/bin/mediator_username
+このコマンドを実行できない場合は、次の例のように完全パスを使用してコマンドを実行する必要があります。
 
-* 手順 *
+/usr/local/bin/mediator_username
 
 次のいずれかを実行してユーザ名を変更します。
 
 * 次の例に示すように、コマンド mediator_change_user を実行してプロンプトに応答します。
 +
 ....
-[root@mediator-host ~]# mediator_change_user
-Modify the Mediator API username by entering the following values:
-    Mediator API User Name: mediatoradmin
-                  Password:
-New Mediator API User Name: mediator
-The account username has been modified successfully.
-[root@mediator-host ~]#
+ [root@mediator-host ~]# mediator_change_user
+ Modify the Mediator API username by entering the following values:
+     Mediator API User Name: mediatoradmin
+                   Password:
+ New Mediator API User Name: mediator
+ The account username has been modified successfully.
+ [root@mediator-host ~]#
 ....
-* 次のコマンドを実行します。 mediator_username=mediator2 mediator2 mediator_new_username=mediatoradmin mediator_change_user 。次の例を参照してください。
+* 次のコマンドを実行します。
++
+`m EDIATOR_USERNAME=mediator2 mediator_new_username=mediatoradmin mediatoradmin mediator_change_user'
+
 +
 ....
-[root@mediator-host ~]# MEDIATOR_USERNAME= mediator MEDIATOR_PASSWORD='mediator2' MEDIATOR_NEW_USERNAME= mediatoradmin mediator_change_user
-The account username has been modified successfully.
-[root@mediator-host ~]#
+ [root@mediator-host ~]# MEDIATOR_USERNAME= mediator MEDIATOR_PASSWORD='mediator2' MEDIATOR_NEW_USERNAME= mediatoradmin mediator_change_user
+ The account username has been modified successfully.
+ [root@mediator-host ~]#
 ....
 

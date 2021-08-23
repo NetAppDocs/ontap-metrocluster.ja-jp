@@ -51,11 +51,26 @@ ONTAP 9.4.1 より前のバージョンでは、 LUN をミラーされていな
 
 NOTE: MetroCluster IP 構成でミラーされていないアグリゲートに使用するシェルフを追加する場合は、次の手順を実行する必要があります。
 
-. 問題を起動してシェルフを追加する前に、次のコマンドを手順で実行してください。「 MetroCluster modify -enabled -meing-aggr-deployment true 」
-. ディスクの自動割り当てがオフになっていることを確認します。「 disk option show 」
+. 手順を開始してシェルフを追加する前に、次のコマンドを問題に設定します。
++
+MetroCluster modify -enable -ミラー されていない -aggr-deployment true
+
+. ディスクの自動割り当てが無効になっていることを確認します。
++
+「ディスクオプション表示」
+
 . 手順の手順に従ってシェルフを追加します。
 . 新しいシェルフのすべてのディスクを、ミラーされていないアグリゲートまたはアグリゲートを所有するノードに手動で割り当てます。
-. storage aggregate create コマンドを使用して、アグリゲートを作成します。。
-. 手順が完了したら、次のコマンドを問題に入力します。 MetroCluster modify -enable-moing-aggr-deployment false
-. 自動ディスク割り当てが有効になっていることを確認します。「 disk option show 」
+. アグリゲートを作成します。
++
+「 storage aggregate create 」
+
+. 手順が完了したら、次のコマンドを問題に設定します。
++
+MetroCluster modify -enable -ミラー されていない -aggr-deployment false
+
+. ディスクの自動割り当てが有効になっていることを確認します。
++
+「ディスクオプション表示」
+
 
