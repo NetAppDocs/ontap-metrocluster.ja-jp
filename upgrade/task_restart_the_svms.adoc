@@ -15,7 +15,7 @@ MetroCluster 構成を拡張したら、 SVM を再起動する必要があり�
 .手順
 . 再起動が必要な SVM を特定します。
 +
-「 * MetroCluster vserver show * 」
+MetroCluster vserver show
 
 +
 このコマンドは、両方の MetroCluster クラスタの SVM を表示します。
@@ -24,21 +24,21 @@ MetroCluster 構成を拡張したら、 SVM を再起動する必要があり�
 +
 .. advanced 権限モードに切り替えて、プロンプトが表示されたら「 * y * 」を押します。
 +
-「 * set -privilege advanced * 」のように指定します
+「 advanced 」の権限が必要です
 
 .. SVM を再起動します。
 +
-'*vserver start -vserver _svm_name __ -force true *
+「 vserver start -vserver _svm_name_-force true 」を指定します
 
 .. admin 権限モードに戻ります。
 +
-'*set -privilege admin*
+「特権管理者」
 
 
 
 . パートナークラスタで同じ手順を繰り返します。
 . SVM が健全な状態であることを確認します。
 +
-「 * MetroCluster vserver show * 」
+MetroCluster vserver show
 
 

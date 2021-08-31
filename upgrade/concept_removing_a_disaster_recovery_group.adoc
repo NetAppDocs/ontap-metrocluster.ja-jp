@@ -35,7 +35,7 @@ image::../media/mcc_dr_groups_4_node.gif[MCC DR グループ 4 ノード]
 +
 ... すべてのデータボリュームを別の DR グループに移動します。
 ... MDV_CRS メタデータボリュームはすべて別の DR グループに移動してください。次の手順の手順に従います。 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/task_move_a_metadata_volume_in_mcc_configurations.html["MetroCluster 構成でのメタデータボリュームの移動"]
-... 削除する DR グループにある MDV_AUD メタデータボリュームをすべて削除します。
+... 削除する DR グループにある MDV_AUD メタデータボリュームをすべて削除してください。
 ... 次の例に示すように、 DR グループ内のすべてのデータアグリゲートを削除します。
 +
 [listing]
@@ -49,13 +49,16 @@ ClusterB::> aggr delete -aggregate aggregate_name
 
 NOTE: ルートアグリゲートは削除されません。
 
-... すべてのデータ LIF を別の DR グループのホームノードに移行する。+`* network interface show -home-node _old_node_name
+... すべてのデータ LIF を別の DR グループのホームノードに移行する。+`network interface show -home-node _old_node_name
 +
-「 * network interface modify -vserver _SVM-name _ -lif data_-lif _ -home-port_port_id_ * 」という形式を使用します
+「 network interface modify -vserver _svm -name _ -lif data -lif lif _ -home-port_port -id_ 」と入力します
 
-... クラスタ管理 LIF を別の DR グループのホームノードに移行する。+`* network interface show -role cluster-mgmt*`
+... クラスタ管理 LIF を別の DR グループのホームノードに移行する。
 +
-「 * network interface modify -vserver _SVM-name _ -lif data_-lif _ -home-port_port_id_ * 」という形式を使用します
+network interface show -role cluster-mgmt-`
+
++
+「 network interface modify -vserver _svm -name _ -lif data -lif lif _ -home-port_port -id_ 」と入力します
 
 +
 ノード管理 LIF とクラスタ間 LIF は移行されません。
@@ -80,8 +83,11 @@ ClusterB::*> set admin
 
 .. DR グループを特定して削除します。
 +
-... 削除する適切な DR グループを特定します +`* MetroCluster node show*`
-... DR グループノードを削除します :+`* MetroCluster remove-dr-group-ddr-group-id 1*`
+... 削除する適切な DR グループを特定します。
++
+MetroCluster node show
+
+... DR グループノードを削除します。 +dr-dr MetroCluster -group-dr -group-id 1'
 +
 次の例は、 cluster_A の DR グループ構成を削除します
 
@@ -127,9 +133,15 @@ cluster_A::*>
 これらのコマンドはいずれかのクラスタから実行し、両方のクラスタにまたがる DR グループ全体に適用できます。
 
 +
-... 接続を切断します :+`* MetroCluster 設定接続 disconnect_dr -group-id_*`
-... 古い DR グループのノード上の MetroCluster インターフェイスを削除します。 +`* MetroCluster configurion-settings interface delete *`
-... 古い DR グループの構成を削除します。+`* MetroCluster 構成設定 DR-group delete *`
+... 接続を切断します。
++
+MetroCluster 構成設定接続 disconnect_dr -group-id_`
+
+... 古い DR グループのノード上の MetroCluster インターフェイスを削除します。
++
+MetroCluster 構成設定インタフェースは削除されます
+
+... 古い DR グループの構成を削除します。+ MetroCluster 構成設定 DR-group delete
 
 
 .. 古い DR グループからノードを分離
@@ -137,17 +149,20 @@ cluster_A::*>
 この手順は各クラスタで実行する必要があります。
 
 +
-... advanced 権限レベルを設定します。 +`*set -privilege advanced *`
-... ノードを分離します。 +`* cluster unjoin -node_name _*`
+... advanced 権限レベルを設定します。
++
+「 advanced 」の権限が必要です
+
+... ノードを削除します :+`cluster unjoin -node -node_name _`
 +
 古い DR グループ内のもう一方のローカルノードに対して、この手順を繰り返します。
 
-... admin 特権レベルを設定します :+`*set -privilege admin*`
+... admin 特権レベルを設定します。 +'set -privilege admin'
 
 
 .. 新しい DR グループでクラスタ HA を再度有効にします。
 +
-*cluster ha modify -configured true *
+cluster ha modify -configured true
 
 +
 この手順は各クラスタで実行する必要があります。

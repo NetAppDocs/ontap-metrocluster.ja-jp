@@ -10,6 +10,7 @@ summary: 各ノードをブートすると、ノードおよびクラスタの�
 [role="lead"]
 各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。
 
+.作業を開始する前に
 * MetroCluster 構成のケーブル接続を完了しておく必要があります。
 * サービスプロセッサが設定されていないことを確認してください。
 
@@ -18,9 +19,10 @@ summary: 各ノードをブートすると、ノードおよびクラスタの�
 
 このタスクは、 MetroCluster 構成の両方のクラスタで実行する必要があります。
 
+.手順
 . ローカルサイトの各ノードに電源が入っていない場合は電源を投入し、すべてのノードを完全にブートします。
 +
-システムが保守モード問題になっている場合は、 halt コマンドを使用して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタをセットアップする必要があります。
+システムが保守モードになっている場合は、 halt コマンドを問題して保守モードを終了し、次に「 boot_ontap 」コマンドを問題してシステムをブートし、クラスタセットアップを開始する必要があります。
 
 . 各クラスタの最初のノードで、プロンプトに従ってクラスタを設定します
 +
@@ -53,7 +55,6 @@ Welcome to the cluster setup wizard.
     http://support.netapp.com/autosupport/
 
     Type yes to confirm and continue {yes}: yes
-
 .
 .
 .
@@ -185,19 +186,31 @@ Where is the controller located []: site_A
 ONTAP System Manager を使用して、 Web ブラウザでクラスタ管理 IP アドレスを指定できます (https://172.17.12.153)[]。
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["System Manager を使用したクラスタの管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["System Manager を使用したクラスタの管理（バージョン 9.0 から 9.6 ）"]
+
++
+https://docs.netapp.com/us-en/ontap/index.html#about-ontap-system-manager["ONTAP システムマネージャ（バージョン 9.7 以降）"]
 
 
 
 . 次のコントローラをブートし、プロンプトに従ってクラスタに追加します。
-. ノードがハイアベイラビリティモードで設定されていることを確認します。「 storage failover show -fields mode 」
+. ノードがハイアベイラビリティモードで設定されていることを確認します。
 +
-そうでない場合は、各ノードで HA モードを設定してからノードをリブートする必要があります：「 storage failover modify -mode ha -node localhost 」
+「 storage failover show -fields mode 」を選択します
+
++
+そうでない場合は、各ノードで HA モードを設定し、ノードをリブートする必要があります。
+
++
+「 storage failover modify -mode ha -node localhost 」を参照してください
 
 +
 このコマンドを実行するとハイアベイラビリティモードが設定されますが、ストレージフェイルオーバーは有効になりません。ストレージフェイルオーバーは、あとで実行する MetroCluster 構成の設定プロセスで自動的に有効になります。
 
-. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。「 network port show 」
+. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。
++
+「 network port show 」のように表示されます
+
 +
 この時点では MetroCluster IP インターフェイスは設定されておらず、コマンド出力に表示されません。
 

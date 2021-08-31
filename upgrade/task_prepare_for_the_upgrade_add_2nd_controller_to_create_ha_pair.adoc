@@ -14,15 +14,17 @@ HA ペアにアップグレードする前に、システムがすべての要�
 
 .手順
 . 新しいコントローラモジュールに割り当てることができる未割り当てのディスクまたはスペアディスクを特定する必要があります。
-
-
++
 https://library.netapp.com/ecm/ecm_download_file/ECMLP2427462["物理ストレージ管理ガイド』を参照してください"]
 
++
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
 
 . 前の手順の結果に基づいて、次のいずれかを実行します。
 +
 |===
+
+
 | 結果 | 作業 
 
 
@@ -34,12 +36,22 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 
 
  a| 
+その他の結果
  a| 
 次の手順を実行します。
 
-.. 既存のノードのアグリゲートが配置されている場所を確認します。 +`* storage aggregate show *`
-.. ディスク所有権の自動割り当てを有効にしている場合は無効にします。 +`* storage disk option modify -node _node_name -autoassign off *`
-.. アグリゲートがないディスクの所有権を削除します。 +`* storage disk removeowner _disk_name _*`
+.. 既存のノードのアグリゲートが配置されている場所を特定します。
++
+「 storage aggregate show
+
+.. ディスク所有権の自動割り当てを有効にしている場合は無効にします。
++
+「 storage disk option modify -node node_name -autoassign off
+
+.. アグリゲートのないディスクの所有権を削除します。
++
+「 storage disk removeowner _disk_name _ 」を選択します
+
 .. 新しいノードに必要な数のディスクについて、前の手順を繰り返します。
 
 

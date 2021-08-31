@@ -12,6 +12,7 @@ summary: ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコン�
 [role="lead"]
 ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。これを行うには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。
 
+.このタスクについて
 * この手順は、 ONTAP 9.8 以降を実行しているシステムでサポートされています。
 * IP スイッチをアップグレードする場合は、このリフレッシュ手順を実行する前にスイッチをアップグレードする必要があります。
 * 「古いノード」とは、置き換えるノードを意味します。
@@ -28,15 +29,15 @@ image::../media/mcc_dr_group_a.png[MCC DR グループ A]
 
 . サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。
 +
-.. 問題次のコマンドを使用します。 +`* system node AutoSupport invoke -node * -type all -message " MAINT=10h Upgrading _old-model_To _new-model"_*`
+.. 次のコマンドを問題で実行します。 + 「 system node AutoSupport invoke -node * -type all -message 」 MAINT=10h Upgrading _old-model_To _new-model 」 _`
 +
-この例では、 10 時間のメンテナンス時間を指定しています。計画によっては、さらに時間をかけておくことをお勧めします。
+次の例は、 10 時間のメンテナンス時間を指定します。プランによっては、さらに時間をかけたい場合もあります。
 
 +
 この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
 
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=end *
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
 .. パートナークラスタに対してこのコマンドを繰り返します。
 
@@ -45,27 +46,29 @@ image::../media/mcc_dr_group_a.png[MCC DR グループ A]
 +
 [cols="2*"]
 |===
+
+
 | 使用するポート | 使用する手順 
 
 
  a| 
-* Tiebreaker *
+Tiebreaker
  a| 
 link:..tiebreaker/concept_configuring_the_tiebreaker_software.html#commands-for-modifying-metrocluster-tiebreaker-configurations["MetroCluster 設定の削除"] MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください
 
 
 
  a| 
-* メディエーター *
+メディエーター
  a| 
 ONTAP プロンプトで次のコマンドを問題に設定します。
 
-「 * MetroCluster 構成 - 設定のメディエーター削除 *' 」
+MetroCluster 構成設定のメディエーターが削除されました
 
 
 
  a| 
-* サードパーティアプリケーション *
+サードパーティ製アプリケーション
  a| 
 製品マニュアルを参照してください。
 
@@ -96,7 +99,7 @@ NOTE: アグリゲートのミラーリングは、作成時または作成後�
 
 . 手順の手順に従って、古い DR グループを削除します。
 +
-xref:concept_removing_a_disaster_recovery_group.adoc[ディザスタリカバリグループを削除しています]
+link:concept_removing_a_disaster_recovery_group.html["ディザスタリカバリグループを削除しています"]
 
 +
 古い DR グループ（ DR グループ 1 ）を削除すると、次の図のような構成が表示されます。
@@ -108,19 +111,19 @@ image::../media/mcc_dr_group_d.png[MCC DR グループ d]
 +
 .. MetroCluster 構成と運用モードが正常な状態であることを確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 .. 想定されるすべてのノードが表示されることを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 .. 次のコマンドを問題に設定します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 .. MetroCluster チェックの結果を表示します。
 +
-「 * MetroCluster check show * 」と表示されます
+MetroCluster チェックショー
 
 
 
@@ -128,25 +131,27 @@ image::../media/mcc_dr_group_d.png[MCC DR グループ d]
 +
 [cols="2*"]
 |===
+
+
 | 使用するポート | この手順を使用します 
 
 
  a| 
-* Tiebreaker *
+Tiebreaker
  a| 
 link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metrocluster-configurations["MetroCluster 構成を追加しています"] MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください
 
 
 
  a| 
-* メディエーター *
+メディエーター
  a| 
 link:../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html["MetroCluster IP 構成での ONTAP メディエーターサービスの設定"] MetroCluster IP インストールおよび設定ガイドのを参照してください
 
 
 
  a| 
-* サードパーティアプリケーション *
+サードパーティ製アプリケーション
  a| 
 製品マニュアルを参照してください。
 
@@ -155,7 +160,7 @@ link:../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_
 +
 .. 次のコマンドを問題に設定します。
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=end *
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
 .. パートナークラスタに対してこのコマンドを繰り返します。
 

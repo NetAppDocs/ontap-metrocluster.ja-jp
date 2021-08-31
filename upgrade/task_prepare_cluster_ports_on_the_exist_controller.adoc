@@ -24,9 +24,12 @@ ONTAP のポート、 LIF 、およびネットワーク設定の詳細につい
 +
 クラスタネットワーク接続用のポートに関する情報については、ネットアップサポートサイトでご使用のプラットフォームの _ インストールおよびセットアップ手順 _ を参照してください。
 
-. 各クラスタ・ポートについて ' ポートの役割を特定します *network port show *
+. 各クラスタポートのロールを特定します。
 +
-次の例では、ポート e0a 、 e0b 、 e0c 、 e0d をクラスタポートに変更する必要があります。
+「 network port show 」のように表示されます
+
++
+次の例では、ポート「 e0a 」、「 e0b 」、「 e0c 」、および「 e0d 」をクラスタポートに変更する必要があります。
 
 +
 [listing]
@@ -52,7 +55,10 @@ e4a       Default      Default          up    1500   auto/10000  healthy
 e4b       Default      Default          up    1500   auto/10000  healthy
 13 entries were displayed.
 ----
-. ホームポートまたは現在のポートとしてクラスタポートを使用しているデータ LIF については、ホームポートとしてデータポートを使用するように LIF を変更します。「 network interface modify * 」
+. ホームポートまたは現在のポートとしてクラスタポートを使用しているデータ LIF について、データポートをホームポートとして使用するように LIF を変更します。
++
+「 network interface modify 」を参照してください
+
 +
 次の例は、データ LIF のホームポートをデータポートに変更します。
 
@@ -61,9 +67,12 @@ e4b       Default      Default          up    1500   auto/10000  healthy
 ----
 cluster1::> network interface modify -lif datalif1 -vserver vs1 -home-port e1b
 ----
-. 変更した各 LIF について、 LIF を新しいホームポートにリバートします。「 * network interface revert *
+. 変更した各 LIF について、 LIF を新しいホームポートにリバートします。
 +
-次の例では、 LIF datalif1 を新しいホームポート e1b にリバートします。
+「 network interface revert 」の略
+
++
+次の例では、 LIF 「 datalif1 」を新しいホームポート「 e1b 」にリバートします。
 
 +
 [listing]
@@ -72,7 +81,7 @@ cluster1::> network interface revert -lif datalif1 -vserver vs1
 ----
 . クラスタポートをメンバーポートとして使用し、 ifgrp をメンバーポートとして使用している VLAN ポートを削除します。
 +
-.. VLAN ポートを削除します。 +`* network port vlan delete -node_node-name _ -vlan-name_portid -vlandid_*`
+.. VLAN ポートを削除します。 +`network port vlan delete -node_node-name __ vlan-name_portid -vlandid_`
 +
 例：
 
@@ -100,9 +109,12 @@ network port ifgrp remove-port -node node1 -ifgrp a1a -port e0d
 .. 必要に応じて、他の物理ポートをメンバーとして使用するようにインターフェイスグループポートを変更します。 +`ifgrp add-port -node -node_name -ifgrp _interface -group-name_port_id_`
 
 
-. ポートの役割が変更されたことを確認します。「 * network port show * 」
+. ポートロールが変更されたことを確認します。
 +
-次の例は、ポート e0a 、 e0b 、 e0c 、 e0d がクラスタポートになったことを示しています。
+「 network port show 」のように表示されます
+
++
+次の例は、ポート「 e0a 」、「 e0b 」、「 e0c 」、および「 e0d 」がクラスタポートになったことを示しています。
 
 +
 [listing]
@@ -126,17 +138,19 @@ e4a       Default      Default          up    1500   auto/10000  healthy
 e4b       Default      Default          up    1500   auto/10000  healthy
 13 entries were displayed.
 ----
-. クラスタのブロードキャストドメインにポートを追加します。 ` * broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports_port-id_ 、 _port-id_ 、 _port-id_ 、 _port-id_...``
+. クラスタのブロードキャストドメインにポートを追加します。
++
+'broadcast-domain add-ports -ipspace Cluster-broadcast-domain Cluster-ports_port-id'_port-id'_port-id'_port-id_'_port-id_'...
+
 +
 例：
 
-
-
++
 [listing]
 ----
 broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports cluster1-01:e0a
 ----
-. システムがスイッチクラスタの一部である場合は、クラスタポートに「 * network interface create * 」というクラスタ LIF を作成します
+. システムがスイッチクラスタの一部である場合は、クラスタポートにクラスタ LIF を作成します。「 network interface create 」
 +
 次の例は、ノードのクラスタポートの 1 つにクラスタ LIF を作成します。auto-パラメータ は、リンクローカル IP アドレスを使用するように LIF を設定します。
 
@@ -149,17 +163,22 @@ cluster1::> network interface create -vserver Cluster -lif clus1 -role cluster -
 +
 .. いずれかのノードから advanced 権限レベルに切り替えます。
 +
-「 * set -privilege advanced * 」のように指定します
+「 advanced 」の権限が必要です
 
 +
 アドバンス・モードを続行するかどうかを確認するメッセージが表示されたら 'y' と入力しますadvanced モードのプロンプトが表示されます（「 * > 」）。
 
-.. スイッチレスクラスタネットワークモードを有効にします。「 * network options switchless-cluster modify -enabled true * 」
-.. admin 特権レベルに戻ります :`*set -privilege admin*`
-
-
+.. スイッチレスクラスタネットワークモードを有効にします。
 +
+network options switchless-cluster modify -enabled true
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+
+
+
+
 
 IMPORTANT: 2 ノードスイッチレスクラスタシステム内の既存ノードのクラスタインターフェイスの作成は、新しいコントローラモジュールでネットブートを使用したクラスタのセットアップが完了したあとに実行されます。
-
-

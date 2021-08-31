@@ -18,7 +18,7 @@ summary: 工場出荷状態のシステムでない場合は、プール 0 の�
 
 この手順環境構成は ONTAP 9.4 以降を実行しています。
 
-手動でディスクを割り当てる必要があるかどうかを確認するには、を参照してください link:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]。
+手動でディスクを割り当てる必要があるかどうかを確認するには、を参照してください link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]。
 
 この手順はメンテナンスモードで実行します。手順は、構成内の各ノードで実行する必要があります。
 
@@ -80,7 +80,7 @@ Please choose one of the following:
 . ノードが再起動したら、プロンプトが表示されたら Ctrl+C キーを押してブートメニューを表示し、 * Maintenance mode boot * オプションを選択します。
 . メンテナンスモードで、ノードのローカルアグリゲートのドライブを手動で割り当てます。
 +
-「 disk assign disk-id -p 0 -s local-node-sysid 」のように指定します
+「ディスク assign_disk-id_-p 0 -s _local-node-sysid_ 」
 
 +
 各ノードのドライブ数が同じになるよう、ドライブは対称的に割り当てる必要があります。次の手順は、各サイトにストレージシェルフが 2 台ある構成のものです。
@@ -102,7 +102,7 @@ Please choose one of the following:
 
 . ブートメニューからオプション 4 を選択し、システムをブートします。
 . MetroCluster IP 構成の他のノードに対して上記の手順を繰り返します。
-. に進みます link:concept_configure_the_mcc_software_in_ontap.html#setting-up-ontap["ONTAP をセットアップしています"]。
+. に進みます link:task_sw_config_setup_ontap.html["ONTAP をセットアップしています"]。
 
 
 
@@ -152,7 +152,7 @@ Please choose one of the following:
 .手順
 . 各ノードでルートアグリゲートに 1 つのディスクを手動で割り当てます。
 +
-「 disk assign disk-id -p 0 -s local-node-sysid 」のように指定します
+「ディスク assign_disk-id_-p 0 -s _local-node-sysid_ 」
 
 +
 これらのディスクを手動で割り当てると、 ONTAP の自動割り当て機能によって、各シェルフの残りのディスクが割り当てられます。
@@ -169,7 +169,10 @@ Please choose one of the following:
 この手順は、次のノードに進む前に各ノードで実行する必要があります。
 
 +
-.. 保守モードを終了します :+`halt`
+.. メンテナンスモードを終了します。
++
+「 halt 」
+
 .. ブートメニューを表示します。
 +
 「 boot_ontap menu

@@ -9,38 +9,44 @@ summary: FibreBridge ブリッジでは、サードパーティ製の SNMP 監�
 :imagesdir: ../media/
 
 
+.このタスクについて
 * FibreBridge ブリッジでは、サードパーティ製の SNMP 監視ツールはサポートされません。
 * ONTAP 9.8 以降では、デフォルトで FC-to-SAS ブリッジがインバンド接続で監視されるため、追加の設定は必要ありません。
 
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
-.手順
+.ステップ
 . ONTAP クラスタのプロンプトで、ブリッジをヘルスモニタの対象に追加します。
 +
 .. 使用している ONTAP のバージョンに対応したコマンドを使用して、ブリッジを追加します。
 +
 |===
+
+
 | ONTAP バージョン | コマンドを実行します 
 
 
  a| 
 9.5 以降
  a| 
-'*storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_*
+「 storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_`
 
 
 
  a| 
 9.4 以前
  a| 
-`* storage bridge add-address_bridge-ip-address_-name_bridge-name_*`
+「 storage bridge add -address_bridge-ip-address_-name_bridge-name_` 」
 
 |===
-.. ブリッジが追加され、正しく設定されていることを確認します。 +`* storage bridge show *`
+.. ブリッジが追加され、正しく設定されていることを確認します。
 +
-ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 * Status * 」列の値が「 * OK * 」で、その他の情報（ WWN （ World Wide Name ）など）が表示されている場合に、ブリッジに接続して監視できます。
+「 storage bridge show 」
+
++
+ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。「 Status 」列の値が「 ok 」で、 World Wide Name （ WWN ；ワールドワイド名）などのその他の情報が表示されていれば、 ONTAP ヘルスモニタでブリッジに接続して監視できます。
 
 +
 次の例は、 FC-to-SAS ブリッジが設定されていることを示しています。

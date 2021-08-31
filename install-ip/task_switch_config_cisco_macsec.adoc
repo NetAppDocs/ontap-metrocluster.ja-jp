@@ -1,0 +1,106 @@
+---
+permalink: install-ip/task_switch_config_cisco_macsec.html 
+sidebar: sidebar 
+keywords: cisco, MACsec encryption 
+summary: サイト間で実行される WAN ISL ポートにのみ MACsec 暗号化を設定する必要があります。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。 
+---
+= Cisco 9336C スイッチでの MACsec 暗号化の設定
+
+
+[role="lead"]
+必要に応じて、サイト間で実行される WAN ISL ポートに MACsec 暗号化を設定できます。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。
+
+
+NOTE: MACsec 暗号化は、 WAN ISL ポートにのみ適用できます。
+
+
+
+== MACsec のライセンス要件
+
+MACsec にはセキュリティライセンスが必要です。Cisco NX-OS ライセンス方式の詳細およびライセンスの取得方法と適用方法については、を参照してください https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/licensing/guide/b_Cisco_NX-OS_Licensing_Guide/b_Cisco_NX-OS_Licensing_Guide_chapter_01.html["『 Cisco NX-OS Licensing Guide 』"]
+
+
+
+== MetroCluster IP 構成での Cisco MACsec 暗号化 WAN ISL のイネーブル化
+
+[role="lead"]
+MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化をイネーブルにできます。
+
+. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
++
+[listing]
+----
+IP_switch_A_1# configure terminal
+IP_switch_A_1(config)#
+----
+. デバイスで MACsec と MKA を有効にします。「 feature MACsec」
++
+[listing]
+----
+IP_switch_A_1(config)# feature macsec
+----
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
++
+[listing]
+----
+IP_switch_A_1(config)# copy running-config startup-config
+----
+
+
+
+
+== Cisco MACsec Encryption をディセーブルにします
+
+[role="lead"]
+MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化を無効にする必要がある場合があります。
+
+
+NOTE: 暗号化を無効にする場合は、 XXX の説明に従って、キーも削除する必要があります。
+
+. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
++
+[listing]
+----
+IP_switch_A_1# configure terminal
+IP_switch_A_1(config)#
+----
+. デバイスの MACsec 設定を無効にします : 「 ACSEC SHUTDOWN 」
++
+[listing]
+----
+IP_switch_A_1(config)# macsec shutdown
+----
++
+
+NOTE: no オプションを選択すると、 MACsec 機能が復元されます。
+
+. MACsec で設定済みのインターフェイスを選択します。
++
+インターフェイスのタイプと ID を指定できます。イーサネットポートの場合は、イーサネットスロット / ポートを使用します。
+
++
+[listing]
+----
+IP_switch_A_1(config)# interface ethernet 1/15
+switch(config-if)#
+----
+. インターフェイスに設定されているキーチェーン、ポリシー、およびフォールバックキーチェーンを削除して、 MACsec 設定を削除します。「 no MACsec keychain -name policy -name fallback-keychain keychain -name 」
++
+[listing]
+----
+IP_switch_A_1(config-if)# no macsec keychain kc2 policy abc fallback-keychain fb_kc2
+----
+. MACsec が設定されているすべてのインターフェイスで、ステップ 3 と 4 を繰り返します。
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
++
+[listing]
+----
+IP_switch_A_1(config)# copy running-config startup-config
+----
+
+
+
+
+== MACsec キーチェーンおよびキーの設定
+
+MACsec キーチェーンの設定の詳細については、ご使用のスイッチのシスコのマニュアルを参照してください。

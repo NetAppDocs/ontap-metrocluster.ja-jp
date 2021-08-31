@@ -113,12 +113,14 @@ image::../media/switch_traffic_with_broadcom_switches.png[Broadcom スイッチ�
 MetroCluster IP Broadcom スイッチを使用する構成では、追加の設定が必要です。
 
 * エクステリアスイッチの場合、アクセスマップとクラスマップを設定して、カスタマーネットワークへの入力トラフィックを分類する必要があります。
-
-
++
 
 NOTE: MetroCluster IP スイッチを使用する構成では必要ありません。
 
++
 次の例は、 MetroCluster IP Broadcom スイッチ間で ISL を接続する 1 番目と最後のお客様のスイッチでアクセスマップとクラスマップを設定する方法を示しています。
+
+
 
 [listing]
 ----
@@ -135,13 +137,14 @@ class-map type qos match-all rdma
   match access-group name rdma
 ----
 * 最初のカスタマースイッチの ISL スイッチポートに入力ポリシーを割り当てる必要があります。
-
-
++
 次に、クラスマップ定義の例を示します。
 
++
 
 NOTE: この例は、 Cisco MetroCluster IP スイッチを使用する構成のものです。この例は、 MetroCluster IP スイッチに接続していない MetroCluster トラフィックを伝送するスイッチのスイッチタイプに関係なく使用できます。
 
++
 [listing]
 ----
 class-map type qos match-all rdma
@@ -149,8 +152,10 @@ class-map type qos match-all rdma
 class-map type qos match-all storage
    match cos 4
 ----
++
 次に、ポリシーマップ定義の例を示します。
 
++
 [listing]
 ----
 policy-map type qos MetroClusterIP_Ingress
@@ -183,6 +188,8 @@ policy-map type queuing MetroClusterIP_Egress
       bandwidth remaining percent 100
       random-detect threshold burst-optimized ecn
 ----
+
+
 
 
 === お客様の中間スイッチ

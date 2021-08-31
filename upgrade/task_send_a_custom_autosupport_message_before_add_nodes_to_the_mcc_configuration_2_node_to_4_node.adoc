@@ -18,16 +18,13 @@ summary: メンテナンスが進行中であることをネットアップテ�
 . Site_A のクラスタにログインします
 . メンテナンスの開始を通知する AutoSupport メッセージを起動します。
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance window-in-hours __ *
+「 system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance-window-in-hours __ 」というメッセージが表示されます
 
 +
-maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、問題を実行します
+「 maintenance-window-in-hours 」パラメータは、メンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了問題した場合は、次のコマンドを使用して、メンテナンス期間が終了したことを通知できます。
 
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=end *
-
-+
-保守期間が終了したことを示すコマンド。
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
 . 同じ手順をパートナーサイトでも実行します。
 

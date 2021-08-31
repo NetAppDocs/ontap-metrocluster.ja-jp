@@ -15,12 +15,22 @@ summary: 工場出荷時に事前設定されていない MetroCluster IP 構成
 
 システムをメンテナンスモードにする必要があります。
 
-. コントローラモジュールとシャーシの HA 状態を表示します。「 ha-config show 」
+.手順
+. コントローラモジュールとシャーシの HA 状態を表示します。
 +
-コントローラモジュールとシャーシには、「 mccip 」という値が表示されます。
+「 ha-config show 」
 
-. 表示されたコントローラのシステム状態が mccip でない場合は、コントローラの HA 状態を「 ha-config modify controller mccip 」に設定します
-. 表示されたシャーシのシステム状態が mccip でない場合は、シャーシの HA 状態を「 ha-config modify chassis mccip 」に設定します
++
+コントローラモジュールとシャーシでは、値が「 mccip 」と表示される必要があります。
+
+. 表示されたコントローラのシステム状態が「 mccip 」でない場合は、コントローラの HA 状態を設定します。
++
+「 ha-config modify controller mccip 」を参照してください
+
+. 表示されたシャーシのシステム状態が「 mccip 」でない場合は、シャーシの HA 状態を設定します。
++
+「 ha-config modify chassis mccip 」を参照してください
+
 . MetroCluster 構成の各ノードで、上記の手順を繰り返します。
 
 
@@ -31,13 +41,14 @@ summary: 工場出荷時に事前設定されていない MetroCluster IP 構成
 [role="lead"]
 コントローラモジュールのデフォルトをリセットおよびリストアする。
 
-. LOADER プロンプトで、環境変数をデフォルト設定の「 set-defaults 」に戻します
+. LOADER プロンプトで、環境変数をデフォルト設定「 set-defaults 」に戻します
 . ノードをブートメニュー「 boot_ontap menu 」からブートします
 +
-コマンドの実行後、ブートメニューが表示されるまで待ちます。
+このコマンドを実行したあと、ブートメニューが表示されるまで待ちます。
 
 . ノードの設定をクリアします。
 +
+--
 ** ADP 用に設定されたシステムを使用している場合は ' 起動メニューからオプション 9a' を選択し ' プロンプトが表示されたら 'yes' と入力します
 +
 
@@ -76,7 +87,11 @@ Please choose one of the following:
 
     Do you still want to continue (yes/no)? yes
 ----
-** ADP 用に設定されたシステムでない場合は、ブートメニューのプロンプトで wipeconfig と入力し、 Enter キーを押します。
+
+
+--
++
+** システムが ADP 用に設定されていない場合は、ブートメニュープロンプトで「 wipeconfig 」と入力し、 Enter キーを押します。
 +
 次の画面はブートメニューのプロンプトを示しています。
 
@@ -109,19 +124,21 @@ Rebooting to finish wipeconfig request.
 
 == プール 0 へのドライブの手動割り当て
 
-[role="lead"]
 工場出荷状態のシステムでない場合は、プール 0 のドライブを手動で割り当てる必要があります。プラットフォームモデルおよび ADP を使用しているシステムかどうかに応じて、 MetroCluster IP 構成の各ノードのプール 0 にドライブを手動で割り当てる必要があります。使用する手順は、使用する ONTAP のバージョンによって異なります。
+
+* <<man_assign_pool_0_9_4,プール 0 ドライブの手動割り当て（ ONTAP 9.4 以降）>>
+* <<man_assign_pool_0_9_3,プール 0 ドライブの手動割り当て（ ONTAP 9.3 ）>>
+
 
 
 
 === プール 0 ドライブの手動割り当て（ ONTAP 9.4 以降）
 
-[role="lead"]
 工場出荷時に事前設定されておらず、自動ドライブ割り当ての要件を満たしていないシステムでは、プール 0 のドライブを手動で割り当てる必要があります。
 
 この手順環境構成は ONTAP 9.4 以降を実行しています。
 
-手動でディスクを割り当てる必要があるかどうかを確認するには、を参照してください xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]。
+手動でディスクを割り当てる必要があるかどうかを確認するには、を参照してください link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]。
 
 この手順はメンテナンスモードで実行します。手順は、構成内の各ノードで実行する必要があります。
 
@@ -137,9 +154,16 @@ Rebooting to finish wipeconfig request.
 +
 ** site_B-shelf_1 （ローカル）
 ** site_A-shelf_2 （リモート）
+
+
+
+
+.手順
+. ブートメニューを表示します。
 +
-... ブートメニューを表示します：「 boot_ontap menu
-... オプション 9a を選択します。
+「 boot_ontap menu
+
+. オプション「 9a 」を選択します。
 +
 次の画面はブートメニューのプロンプトを示しています。
 
@@ -173,35 +197,41 @@ Please choose one of the following:
 
     Do you still want to continue (yes/no)? yes
 ----
-... ノードが再起動したら、プロンプトが表示されたら Ctrl+C キーを押してブートメニューを表示し、 * Maintenance mode boot * オプションを選択します。
-... 保守モードで、ノードのローカルアグリゲートにドライブを手動で割り当てます。「 disk assign disk-id -p 0 -s local-node sysid
+. ノードが再起動したら、プロンプトが表示されたら Ctrl+C キーを押してブートメニューを表示し、 * Maintenance mode boot * オプションを選択します。
+. メンテナンスモードで、ノードのローカルアグリゲートのドライブを手動で割り当てます。
++
+「ディスク assign_disk-id_-p 0 -s _local-node-sysid_ 」
+
 +
 各ノードのドライブ数が同じになるよう、ドライブは対称的に割り当てる必要があります。次の手順は、各サイトにストレージシェルフが 2 台ある構成のものです。
 
 +
-.... node_A_1 の設定では、スロット 0~11 のドライブを site_A-shelf_1 のノード A1 のプール 0 に手動で割り当てます。
-.... node_A_1 の設定では、スロット 12~23 のドライブを site_A-shelf_1 のノード A2 のプール 0 に手動で割り当てます。
-.... node_B_1 の設定では、スロット 0~11 のドライブを site_B-shelf_1 のノード B1 のプール 0 に手動で割り当てます。
-.... node_B_2 を設定する場合は、スロット 12~23 のドライブを site_B-shelf_1 のノード B2 のプール 0 に手動で割り当てます。
+.. node_A_1 の設定では、スロット 0~11 のドライブを site_A-shelf_1 のノード A1 のプール 0 に手動で割り当てます。
+.. node_A_1 の設定では、スロット 12~23 のドライブを site_A-shelf_1 のノード A2 のプール 0 に手動で割り当てます。
+.. node_B_1 の設定では、スロット 0~11 のドライブを site_B-shelf_1 のノード B1 のプール 0 に手動で割り当てます。
+.. node_B_2 を設定する場合は、スロット 12~23 のドライブを site_B-shelf_1 のノード B2 のプール 0 に手動で割り当てます。
 
 
-... 保守モードを終了します :halt
-... ブートメニューを表示します：「 boot_ontap menu
-... ブートメニューからオプション 4 を選択し、システムをブートします。
-... MetroCluster IP 構成の他のノードに対して上記の手順を繰り返します。
-... に進みます xref:concept_configure_the_mcc_software_in_ontap.html#setting-up-ontap[ONTAP をセットアップしています]。
+. メンテナンスモードを終了します。
++
+「 halt 」
 
+. ブートメニューを表示します。
++
+「 boot_ontap menu
 
-
-
+. ブートメニューからオプション 4 を選択し、システムをブートします。
+. MetroCluster IP 構成の他のノードに対して上記の手順を繰り返します。
+. に進みます link:concept_configure_the_mcc_software_in_ontap.html#setting-up-ontap["ONTAP をセットアップしています"]。
 
 
 
 
 === プール 0 ドライブの手動割り当て（ ONTAP 9.3 ）
 
-[role="lead"]
-各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してローカル（プール 0 ）のディスクを自動的に割り当てます。ノードをメンテナンスモードにした状態で、最初にシェルフの 1 つのディスクをプール 0 に割り当てる必要があります。シェルフの残りのディスクは ONTAP で自動的に同じプールに割り当てられます。このタスクは、プール 0 に事前設定されたルートアグリゲートが含まれる、工場出荷状態のシステムでは必要ありません。
+各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してローカル（プール 0 ）のディスクを自動的に割り当てます。
+
+ノードをメンテナンスモードにした状態で、最初にシェルフの 1 つのディスクをプール 0 に割り当てる必要があります。シェルフの残りのディスクは ONTAP で自動的に同じプールに割り当てられます。このタスクは、プール 0 に事前設定されたルートアグリゲートが含まれる、工場出荷状態のシステムでは必要ありません。
 
 これは、 ONTAP 9.3 を実行している手順環境構成です。
 
@@ -235,40 +265,55 @@ Please choose one of the following:
 +
 ** site_B-shelf_3 （ローカル）
 ** site_A-shelf_4 （リモート）
+
+
+
+
+.手順
+. 各ノードでルートアグリゲートに 1 つのディスクを手動で割り当てます。
 +
-... 各ノードのルートアグリゲートに 1 つのディスクを手動で割り当てます。「 disk assign disk-id -p 0 -s local-node-sysid
+「ディスク assign_disk-id_-p 0 -s _local-node-sysid_ 」
+
 +
 これらのディスクを手動で割り当てると、 ONTAP の自動割り当て機能によって、各シェルフの残りのディスクが割り当てられます。
 
 +
-.... node_A_1 で、ローカルの site_A-shelf_1 のいずれかのディスクをプール 0 に手動で割り当てます。
-.... node_A_1 で、ローカルの site_A-shelf_3 のいずれかのディスクをプール 0 に手動で割り当てます。
-.... node_B_1 で、ローカルの site_B-shelf_1 のいずれかのディスクをプール 0 に手動で割り当てます。
-.... node_B_2 で、ローカルの site_B-shelf_3 のいずれかのディスクをプール 0 に手動で割り当てます。
+.. node_A_1 で、ローカルの site_A-shelf_1 のいずれかのディスクをプール 0 に手動で割り当てます。
+.. node_A_1 で、ローカルの site_A-shelf_3 のいずれかのディスクをプール 0 に手動で割り当てます。
+.. node_B_1 で、ローカルの site_B-shelf_1 のいずれかのディスクをプール 0 に手動で割り当てます。
+.. node_B_2 で、ローカルの site_B-shelf_3 のいずれかのディスクをプール 0 に手動で割り当てます。
 
 
-... ブートメニューのオプション 4 を使用して、サイト A の各ノードをブートします。
+. ブートメニューのオプション 4 を使用して、サイト A の各ノードをブートします。
 +
 この手順は、次のノードに進む前に各ノードで実行する必要があります。
 
 +
-.... 保守モードを終了します :halt
-.... ブートメニューを表示します：「 boot_ontap menu
-.... ブートメニューからオプション 4 を選択して次に進みます。
+.. メンテナンスモードを終了します。
++
+「 halt 」
+
+.. ブートメニューを表示します。
++
+「 boot_ontap menu
+
+.. ブートメニューからオプション 4 を選択して次に進みます。
 
 
-... ブートメニューのオプション 4 を使用して、サイト B の各ノードをブートします。
+. ブートメニューのオプション 4 を使用して、サイト B の各ノードをブートします。
 +
 この手順は、次のノードに進む前に各ノードで実行する必要があります。
 
 +
-.... 保守モードを終了します :halt
-.... ブートメニューを表示します：「 boot_ontap menu
-.... ブートメニューからオプション 4 を選択して次に進みます。
+.. メンテナンスモードを終了します。
++
+「 halt 」
 
+.. ブートメニューを表示します。
++
+「 boot_ontap menu
 
-
-
+.. ブートメニューからオプション 4 を選択して次に進みます。
 
 
 
@@ -277,9 +322,9 @@ Please choose one of the following:
 
 == ONTAP をセットアップしています
 
-[role="lead"]
 各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。
 
+.作業を開始する前に
 * MetroCluster 構成のケーブル接続を完了しておく必要があります。
 * サービスプロセッサが設定されていないことを確認してください。
 
@@ -288,9 +333,10 @@ Please choose one of the following:
 
 このタスクは、 MetroCluster 構成の両方のクラスタで実行する必要があります。
 
+.手順
 . ローカルサイトの各ノードに電源が入っていない場合は電源を投入し、すべてのノードを完全にブートします。
 +
-システムが保守モード問題になっている場合は、 halt コマンドを使用して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタをセットアップする必要があります。
+システムが保守モードになっている場合は、 halt コマンドを問題して保守モードを終了し、次に「 boot_ontap 」コマンドを問題してシステムをブートし、クラスタセットアップを開始する必要があります。
 
 . 各クラスタの最初のノードで、プロンプトに従ってクラスタを設定します
 +
@@ -455,19 +501,31 @@ Where is the controller located []: site_A
 ONTAP System Manager を使用して、 Web ブラウザでクラスタ管理 IP アドレスを指定できます (https://172.17.12.153)[]。
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["System Manager を使用したクラスタの管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help/GUID-DF04A607-30B0-4B98-99C8-CB065C64E670.html["System Manager を使用したクラスタの管理（バージョン 9.0 から 9.6 ）"]
+
++
+https://docs.netapp.com/us-en/ontap/index.html["ONTAP System Manager （バージョン 9.7 以降）"]
 
 
 
 . 次のコントローラをブートし、プロンプトに従ってクラスタに追加します。
-. ノードがハイアベイラビリティモードで設定されていることを確認します。「 storage failover show -fields mode 」
+. ノードがハイアベイラビリティモードで設定されていることを確認します。
 +
-そうでない場合は、各ノードで HA モードを設定してからノードをリブートする必要があります：「 storage failover modify -mode ha -node localhost 」
+「 storage failover show -fields mode 」を選択します
+
++
+そうでない場合は、各ノードで HA モードを設定し、ノードをリブートする必要があります。
+
++
+「 storage failover modify -mode ha -node _localhost_` 」です
 
 +
 このコマンドを実行するとハイアベイラビリティモードが設定されますが、ストレージフェイルオーバーは有効になりません。ストレージフェイルオーバーは、あとで実行する MetroCluster 構成の設定プロセスで自動的に有効になります。
 
-. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。「 network port show 」
+. クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。
++
+「 network port show 」のように表示されます
+
 +
 この時点では MetroCluster IP インターフェイスは設定されておらず、コマンド出力に表示されません。
 
@@ -522,23 +580,25 @@ ONTAP のコマンドラインインターフェイスに戻り、後続のタ�
 
 == クラスタを MetroCluster 構成に設定
 
-[role="lead"]
 クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。
 
 
 
 === 自動ドライブ割り当ての無効化（ ONTAP 9.4 で手動で割り当てを行う場合）
 
-[role="lead"]
 ONTAP 9.4 では、 MetroCluster IP 構成の各サイトに外付けストレージシェルフが 3 台以下しかない場合、すべてのノードで自動ドライブ割り当てを無効にし、ドライブを手動で割り当てる必要があります。
 
 このタスクは ONTAP 9.5 以降では必要ありません。
 
 このタスクは、内蔵シェルフおよび外付けシェルフのない AFF A800 システムには該当しません。
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]
 
-. 自動ドライブ割り当てを無効にします。「 storage disk option modify -node node_name -autoassign off 」
+.手順
+. 自動ドライブ割り当てを無効にします。
++
+「 storage disk option modify -node node_name -autoassign off
+
 +
 MetroCluster IP 構成のすべてのノードでこのコマンドを問題に設定する必要があります。
 
@@ -548,19 +608,22 @@ MetroCluster IP 構成のすべてのノードでこのコマンドを問題に�
 
 === プール 0 ドライブのドライブ割り当てを確認しています
 
-[role="lead"]
 リモートドライブがノードに認識され、正しく割り当てられていることを確認する必要があります。
 
 自動割り当ては、ストレージシステムのプラットフォームモデルとドライブシェルフの配置によって異なります。
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]
 
-. プール 0 のドライブが自動的に割り当てられていることを確認します。「 Disk show 」
+.手順
+. プール 0 のドライブが自動的に割り当てられていることを確認します。
++
+「ディスクショー」
+
 +
 次の例は、外付けシェルフがない AFF A800 システムの cluster_A についての出力を示しています。
 
 +
-4 分の 1 （ 8 ドライブ）が node_A_1 に、 4 分の 1 が node_A_2 に自動的に割り当てられています。残りのドライブは、 node_B_1 と node_B_2 のリモート（プール 1 ）のドライブになります。
+4 分の 1 （ 8 ドライブ）が「 node_A_1 」に自動的に割り当てられ、 4 分の 1 が「 node_A_2 」に自動的に割り当てられています。残りのドライブは、「 node_B_1 」と「 node_B_2 」のリモート（プール 1 ）のドライブになります。
 
 +
 [listing]
@@ -658,32 +721,31 @@ cluster_B::>
 
 === クラスタをピアリング
 
-[role="lead"]
 MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
-
-* 関連情報 *
 
 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-when-using-dedicated-ports[専用のポートを使用する場合の考慮事項]
+link:concept_considerations_peering.html#considerations-when-using-dedicated-ports["専用のポートを使用する場合の考慮事項"]
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-when-sharing-data-ports[データポートを共有する場合の考慮事項]
+link:concept_considerations_peering.html#considerations-when-sharing-data-ports["データポートを共有する場合の考慮事項"]
 
 
 
 === クラスタピアリング用のクラスタ間 LIF を設定しています
 
-[role="lead"]
 MetroCluster パートナークラスタ間の通信に使用するポートにクラスタ間 LIF を作成する必要があります。専用のポートを使用することも、データトラフィック用を兼ねたポートを使用することもできます。
 
 
 
 ==== 専用ポートでのクラスタ間 LIF の設定
 
-[role="lead"]
 専用ポートにクラスタ間 LIF を設定できます。通常は、レプリケーショントラフィックに使用できる帯域幅が増加します。
 
-. クラスタ内のポートを表示します。「 network port show 」を参照してください
+.手順
+. クラスタ内のポートの一覧を表示します。
++
+「 network port show 」のように表示されます
+
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -713,7 +775,10 @@ cluster01-02
        e0e       Default      Default          up     1500   auto/1000
        e0f       Default      Default          up     1500   auto/1000
 ----
-. クラスタ間通信専用に使用できるポートを決定します。「 network interface show -fields home-port 、 curr-port 」
+. クラスタ間通信専用に使用可能なポートを特定します。
++
+network interface show -fields home-port 、 curr -port
+
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -738,9 +803,12 @@ cluster01
 cluster01
         cluster01-02_mgmt1   e0c       e0c
 ----
-. 専用ポートのフェイルオーバーグループを作成します。「 network interface failover-groups create -vserver system_svm -failover-group failover_group -targets physical_or_logical_ports 」
+. 専用ポートのフェイルオーバーグループを作成します。
 +
-次の例は、ポート e0e とポート e0f を、システム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。
+「 network interface failover-groups create -vserver_system_svm 」 -failover-group_failover_group_ -targets_physical_or_logical_ports_`
+
++
+次の例は、ポート「 e0e 」と「 e0f 」を、システム「 SVMcluster01 」上のフェイルオーバーグループ intercluster01 に割り当てます。
 
 +
 [listing]
@@ -749,7 +817,10 @@ cluster01::> network interface failover-groups create -vserver cluster01 -failov
 intercluster01 -targets
 cluster01-01:e0e,cluster01-01:e0f,cluster01-02:e0e,cluster01-02:e0f
 ----
-. フェイルオーバーグループが作成されたことを確認します。「 network interface failover-groups show
+. フェイルオーバーグループが作成されたことを確認します。
++
+「 network interface failover-groups show 」と表示されます
+
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -776,7 +847,6 @@ cluster01
 ----
 . システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
 +
-[cols="1,3"]
 |===
 
 
@@ -786,21 +856,21 @@ cluster01
  a| 
 9.6 以降
  a| 
-「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask-failover-group failover_group 」という名前のポートを作成します
+「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -port_IP_address _port_ip_-netmask netmask _ -failover-group _` 」のようになります
 
 
 
  a| 
 9.5 以前
  a| 
-network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask-failover-group failover_group を作成します
+「 network interface create -vserver_system_SVM_lif_lif_name -- ロール intercluster -home-node _node_name のクラスタ間ホームポートポート _port_-address _port_ip_-netmask netmask_--failover-group_failover_group_name 」
 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、フェイルオーバーグループ intercluster01 にクラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
+次の例は、フェイルオーバーグループ「 intercluster01 」にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
 
 +
 [listing]
@@ -816,6 +886,8 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 . クラスタ間 LIF が作成されたことを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
@@ -824,9 +896,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -852,6 +922,8 @@ cluster01
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
@@ -860,9 +932,7 @@ cluster01
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -873,7 +943,7 @@ cluster01
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、 SVM0e ポートのクラスタ間 LIF cluster01_icl01 と cluster01_icl02 が e0f ポートにフェイルオーバーされることを示しています。
+次の例は、「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。
 
 +
 [listing]
@@ -892,18 +962,18 @@ cluster01
 ----
 
 
-* 関連情報 *
-
-xref:concept_prepare_for_the_mcc_installation.html#considerations-when-using-dedicated-ports[専用のポートを使用する場合の考慮事項]
+link:concept_considerations_peering.html#considerations-when-using-dedicated-ports["専用のポートを使用する場合の考慮事項"]
 
 
 
 ==== 共有データポートでのクラスタ間 LIF の設定
 
-[role="lead"]
 データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。
 
-. クラスタ内のポートを表示します。「 network port show 」を参照してください
+. クラスタ内のポートの一覧を表示します。
++
+「 network port show 」のように表示されます
+
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -932,28 +1002,28 @@ cluster01-02
 . システム SVM にクラスタ間 LIF を作成します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
  a| 
-「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です
+「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -address_port_ip_-netmask_`
 
+
+
+| * ONTAP 9.5 以前： * 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
- a| 
-「 network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です
+「 network interface create -vserver _system_svm _ -lif LIF_name -role intercluster -home-node _node _-home-port _ -address_port_ip_-netmask netmask _ 」のようになります
 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
+次の例は、クラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
 
 +
 [listing]
@@ -970,6 +1040,8 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 . クラスタ間 LIF が作成されたことを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
@@ -978,9 +1050,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -1006,6 +1076,8 @@ cluster01
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
@@ -1014,9 +1086,7 @@ cluster01
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -1027,7 +1097,7 @@ cluster01
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、 e0c ポート上のクラスタ間 LIF cluster01_icl01 と cluster01_icl02 が e0d ポートにフェイルオーバーされることを示しています。
+次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。
 
 +
 [listing]
@@ -1046,23 +1116,26 @@ cluster01
 ----
 
 
-* 関連情報 *
-
-xref:concept_prepare_for_the_mcc_installation.html#considerations-when-sharing-data-ports[データポートを共有する場合の考慮事項]
+link:concept_considerations_peering.html#considerations-when-sharing-data-ports["データポートを共有する場合の考慮事項"]
 
 
 
 === クラスタピア関係を作成
 
-[role="lead"]
 cluster peer create コマンドを使用すると、ローカルクラスタとリモートクラスタ間のピア関係を作成できます。ピア関係が作成されたら、リモートクラスタで cluster peer create を実行して、ローカルクラスタに対してピア関係を認証できます。
 
+.作業を開始する前に
 * ピア関係にあるクラスタ内の各ノードでクラスタ間 LIF を作成しておく必要があります。
 * クラスタで ONTAP 9.3 以降が実行されている必要があります。
+
+
+.手順
+. デスティネーションクラスタで、ソースクラスタとのピア関係を作成します。
 +
-.. デスティネーションクラスタで、ソースクラスタとのピア関係を作成します。「 + cluster peer create -generate-passphrase -offer-expiration MM/DD/YYYY HH ： MM ： SS | 1 ... 7 days | 1 ... 168 hours -peer-addrs peer_lif_ips-ipspace ips+`
+cluster peer create -generate-passphrase -offer-expiration_mm/dd/YYYY HH ： MM ： SS|1...7days | 1...168hours_-peer-addrs_peer_lif_ips_-ipspace_ips_`
+
 +
-generate-passphrase と -peer-addrs の両方を指定した場合、生成されたパスワードを使用できるのは -peer-addrs にクラスタ間 LIF が指定されたクラスタのみになります。
+「 -generate-passphrase 」と「 -peer-addrs 」の両方を指定した場合、生成されたパスワードを使用できるのは、「 -peer-addrs 」にクラスタ間 LIF が指定されているクラスタだけです。
 
 +
 カスタム IPspace を使用しない場合は、 -ipspace オプションを無視してかまいません。コマンド構文全体については、マニュアルページを参照してください。
@@ -1083,12 +1156,15 @@ cluster02::> cluster peer create -generate-passphrase -offer-expiration 2days
 
 Warning: make a note of the passphrase - it cannot be displayed again.
 ----
-.. ソースクラスタで、ソースクラスタをデスティネーションクラスタで認証します。「 cluster peer create -peer-addrs peer_lif_ips-ipspace 」
+. ソースクラスタで、ソースクラスタをデスティネーションクラスタに対して認証します。
++
+'cluster peer create -peer-addrs_peer_lif_ips_-ipspace_`
+
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、クラスタ間 LIF の IP アドレス 192.140.112.101 および 192.140.112.102 でローカルクラスタをリモートクラスタに対して認証します。
+次の例は、クラスタ間 LIF の IP アドレス「 192.140.112.101 」および「 192.140.112.102 」でローカルクラスタをリモートクラスタに対して認証します。
 
 +
 [listing]
@@ -1106,7 +1182,10 @@ Clusters cluster02 and cluster01 are peered.
 +
 プロンプトが表示されたら、ピア関係のパスフレーズを入力します。
 
-.. クラスタピア関係が作成されたことを確認します。「 cluster peer show -instance
+. クラスタピア関係が作成されたことを確認します。
++
+「 cluster peer show -instance 」のように表示されます
+
 +
 [listing]
 ----
@@ -1124,7 +1203,10 @@ cluster01::> cluster peer show -instance
                                 Last Update Time: 02/05 21:05:41
                     IPspace for the Relationship: Default
 ----
-.. ピア関係にあるノードの接続状態とステータスを確認します : cluster peer health show
+. ピア関係にあるノードの接続状態とステータスを確認します。
++
+cluster peer health show
+
 +
 [listing]
 ----
@@ -1151,11 +1233,8 @@ cluster01-02
 
 
 
-
-
 === DR グループを作成します
 
-[role="lead"]
 クラスタ間にディザスタリカバリ（ DR ）グループ関係を作成する必要があります。
 
 この手順は、 MetroCluster 構成の一方のクラスタで実行します。これにより、両方のクラスタのノード間に DR 関係が作成されます。
@@ -1165,7 +1244,11 @@ NOTE: DR グループを作成したあとに DR 関係を変更することは�
 
 image::../media/mcc_dr_groups_4_node.gif[MCC DR グループ 4 ノード]
 
-. 各ノードで次のコマンドを入力して、 DR グループを作成する準備ができていることを確認します。 MetroCluster configuration-settings show-status
+.手順
+. 各ノードで次のコマンドを入力して、 DR グループを作成する準備ができていることを確認します。
++
+MetroCluster の構成設定はステータスを表示します
+
 +
 コマンドの出力に、ノードの準備が完了していることが示されます。
 
@@ -1189,7 +1272,7 @@ cluster_B                  node_B_1      ready for DR group create
                            node_B_2      ready for DR group create
 2 entries were displayed.
 ----
-. DR グループを作成します。「 MetroCluster configurion-settings dr-group create -partner-cluster partner-cluster-name -local-node local-node-name remote-node remote-node-name 」
+. DR グループを作成します。 MetroCluster configuration settings DR-group create -partner-cluster_partner-cluster-name_local-node-local-node-name __ remote-node-remote_node-name_
 +
 このコマンドは 1 回だけ実行します。パートナークラスタで繰り返す必要はありません。コマンドでは、リモートクラスタの名前、および 1 つのローカルノードとパートナークラスタの 1 つのノードの名前を指定します。
 
@@ -1216,26 +1299,32 @@ Cluster_A::> metrocluster configuration-settings dr-group create -partner-cluste
 
 === MetroCluster IP インターフェイスの設定と接続
 
-[role="lead"]
 各ノードのストレージと不揮発性キャッシュのレプリケーションに使用する MetroCluster IP インターフェイスを設定する必要があります。その後、 MetroCluster IP インターフェイスを使用して接続を確立します。これにより、ストレージレプリケーション用の iSCSI 接続が作成されます。
 
+.このタスクについて
+--
 
 NOTE: MetroCluster の IP アドレスは初期設定後は変更できないため、慎重に選択する必要があります。
 
+--
 * ノードごとに 2 つのインターフェイスを作成する必要があります。インターフェイスは、 MetroCluster RCF ファイルで定義されている VLAN に関連付ける必要があります。
-* すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートをもう一方の VLAN に作成する必要があります。を参照してください xref:concept_prepare_for_the_mcc_installation.html#Considerations-for-metrocluster-ip-configuration[MetroCluster IP 構成に関する考慮事項]。
+* すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートをもう一方の VLAN に作成する必要があります。を参照してください link:concept_considerations_mcip.html["MetroCluster IP 構成に関する考慮事項"]。
 
+
+[+]
 
 --
 [NOTE]
 ====
-* ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートはそれぞれ異なる VLAN を使用します。 10 と 20 です。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
+* ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
 * ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 
 
 ====
 --
-次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。
++ 次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。
+
+[+]
 
 |===
 
@@ -1259,6 +1348,8 @@ NOTE: MetroCluster の IP アドレスは初期設定後は変更できないた
 この例では、次の IP アドレスとサブネットを使用しています。
 
 |===
+
+
 | ノード | インターフェイス | IP アドレス | サブネット 
 
 
@@ -1344,6 +1435,8 @@ MetroCluster IP インターフェイス 2
 次の表に示すように、 MetroCluster IP インターフェイスで使用される物理ポートはプラットフォームモデルによって異なります。
 
 |===
+
+
 | プラットフォームモデル | MetroCluster の IP ポート | VLAN ID |  
 
 
@@ -1466,7 +1559,10 @@ e0d
 |===
 この例で使用するポートは、 AFF A700 または FAS9000 システムの場合のものです。
 
-. 各ノードでディスクの自動割り当てが有効になっていることを確認します。「 storage disk option show
+. 各ノードでディスクの自動割り当てが有効になっていることを確認します。
++
+「 storage disk option show 」をクリックします
+
 +
 ディスクの自動割り当てでは、シェルフ単位でプール 0 とプール 1 のディスクが割り当てられます。
 
@@ -1483,7 +1579,10 @@ node_A_1             on           on           on           default
 node_A_2             on           on           on           default
 2 entries were displayed.
 ----
-. ノード上に MetroCluster IP インターフェイスを作成できることを確認します。「 MetroCluster configurion-settings show-status 」
+. ノードに MetroCluster IP インターフェイスを作成できることを確認します。
++
+MetroCluster の構成設定はステータスを表示します
+
 +
 すべてのノードの準備が完了していることを確認
 
@@ -1501,25 +1600,25 @@ cluster_B
               node_B_2     ready for interface create
 4 entries were displayed.
 ----
-. node_A_1 にインターフェイスを作成します。
+. 「 node_A_1 」にインターフェイスを作成します。
 +
-|===
-
-
-| * 注： * 
-
-
- a| 
+--
+[NOTE]
+====
 ** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 ** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
 
 
-|===
+====
+--
 +
-.. node_A_1 のポート e5a でインターフェイスを設定します。 MetroCluster configurion-settings interface create -cluster -name cluster -name -home-node node -name -home-port e5a -address ip-address -netmask netmask になります
+.. node_A_1 のポート「 e5a 」にインターフェイスを設定します。
 +
-次の例は、 node_A_1 のポート e5a に IP アドレスが 10.1.1.1 のインターフェイスを作成する例を示しています。
+MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+
++
+次の例は、「 node_A_1 」のポート「 e5a 」に IP アドレスが「 10.1.1.1 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1528,9 +1627,12 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 [Job 28] Job succeeded: Interface Create is successful.
 cluster_A::>
 ----
-.. node_A_1 のポート e5b にインターフェイスを設定します。「 MetroCluster configuration] -settings interface create -cluster -name cluster-name -home-node node_name -home-port e5b -address ip-address -netmask netmask 」
+.. 「 node_A_1 」のポート「 e5b 」にインターフェイスを設定します。
 +
-次の例は、 node_A_1 のポート e5b に IP アドレスが 10.1.2.1 のインターフェイスを作成する例を示しています。
+MetroCluster の構成設定インターフェイス create -cluster -cluster_name _ -home-node_name _ -home-port e5b -address _IP_address -netmask netmask_ `
+
++
+次の例は、「 node_A_1 」のポート「 e5b 」に IP アドレスが「 10.1.2.1 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1545,25 +1647,25 @@ cluster_A::>
 
 NOTE: これらのインターフェイスが存在することを確認するには、「 MetroCluster configurion-settings interface show 」コマンドを使用します。
 
-. node_A_1 にインターフェイスを作成します。
+. 「 Node_a_2 」にインターフェイスを作成します。
 +
-|===
-
-
-| * 注： * 
-
-
- a| 
+--
+[NOTE]
+====
 ** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 ** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
 
 
-|===
+====
+--
 +
-.. node_A_2 のポート e5a でインターフェイスを設定します。 MetroCluster configurion-settings interface create -cluster -name cluster -name -home-node node -name -home-port e5a -address ip-address -netmask netmask になります
+.. 「 node_A_2 」のポート「 e5a 」にインターフェイスを設定します。
 +
-次の例は、 node_A_2 のポート e5a に IP アドレスが 10.1.1.2 のインターフェイスを作成する例を示しています。
+MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+
++
+次の例は、「 node_A_2 」のポート「 e5a 」に IP アドレスが「 10.1.1.2 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1573,7 +1675,7 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 cluster_A::>
 ----
 +
-MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。次の例は、 VLAN ID が 120 の AFF A220 システムに対するコマンドを示しています。
+MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に「 -vlan-id 」パラメータを指定できます。次の例は、 VLAN ID が「 120 」の AFF A220 システムに対するコマンドを示しています。
 
 +
 [listing]
@@ -1582,9 +1684,12 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 [Job 28] Job succeeded: Interface Create is successful.
 cluster_A::>
 ----
-.. node_A_2 のポート e5b にインターフェイスを設定します：「 MetroCluster configuration] - settings interface create -cluster -name cluster-name -home-node node-name -home-port e5b -address ip-address -netmask netmask
+.. 「 node_A_2 」のポート「 e5b 」にインターフェイスを設定します。
 +
-次の例は、 node_A_2 のポート e5b に IP アドレスが 10.1.2.2 のインターフェイスを作成する例を示しています。
+MetroCluster の構成設定インターフェイス create -cluster -cluster_name _ -home-node_name _ -home-port e5b -address _IP_address -netmask netmask_ `
+
++
+次の例は、「 node_A_2 」のポート「 e5b 」に IP アドレスが「 10.1.2.2 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1594,7 +1699,7 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 cluster_A::>
 ----
 +
-MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。次の例は、 VLAN ID が 220 の AFF A220 システムに対するコマンドを示しています。
+MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に「 -vlan-id 」パラメータを指定できます。次の例は、 VLAN ID が「 220 」の AFF A220 システムに対するコマンドを示しています。
 
 +
 [listing]
@@ -1605,25 +1710,25 @@ cluster_A::>
 ----
 
 
-. node_B_1 にインターフェイスを作成します。
+. 「 node_B_1 」にインターフェイスを作成します。
 +
-|===
-
-
-| * 注： * 
-
-
- a| 
+--
+[NOTE]
+====
 ** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 ** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
 
 
-|===
+====
+--
 +
-.. node_B_1 のポート e5a にインターフェイスを設定します。 ``m etrocluster 設定 -settings interface create -cluster -nameccluster-name -home-port e5a-addressip-address -netmask netmask``
+.. 「 node_B_1 」のポート「 e5a 」にインターフェイスを設定します。
 +
-次の例は、 node_B_1 のポート e5a に IP アドレスが 10.1.1.3 のインターフェイスを作成する例を示しています。
+MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+
++
+次の例は、「 node_B_1 」のポート「 e5a 」に IP アドレスが「 10.1.1.3 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1631,9 +1736,12 @@ cluster_A::>
 cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_B_1 -home-port e5a -address 10.1.1.3 -netmask 255.255.255.0
 [Job 28] Job succeeded: Interface Create is successful.cluster_A::>
 ----
-.. node_B_1 のポート e5b にインターフェイスを設定します。 MetroCluster configuration] -settings interface create -cluster -name cluster-name -home-node node_name -home-port e5a ip-address -netmask netmask
+.. 「 node_B_1 」のポート「 e5b 」にインターフェイスを設定します。
 +
-次の例は、 node_B_1 のポート e5b に IP アドレスが 10.1.2.3 のインターフェイスを作成する例を示しています。
+MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+
++
+次の例は、「 node_B_1 」のポート「 e5b 」に IP アドレスが「 10.1.2.3 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1643,25 +1751,25 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 ----
 
 
-. node_B_2 にインターフェイスを作成
+. 「 node_B_2 」にインターフェイスを作成
 +
-|===
-
-
-| * 注： * 
-
-
- a| 
+--
+[NOTE]
+====
 ** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_prepare_for_the_mcc_installation.html#Considerations-for-layer-3-wide-area-networks["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 ** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
 
 
-|===
+====
+--
 +
-.. node_B_2 のポート e5a にインターフェイスを設定します。 ``m etrocluster 設定 -settings interface create -cluster -name cluster-name-home-port e5a-addressip -addressip -addressss ip-address -netmask netmask`
+.. 「 node_B_2 」のポート「 e5a 」にインターフェイスを設定します。
 +
-次の例は、 node_B_2 のポート e5a に IP アドレスが 10.1.1.4 のインターフェイスを作成する例を示しています。
+MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+
++
+次の例は、「 node_B_2 」のポート「 e5a 」に IP アドレスが「 10.1.1.4 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1669,9 +1777,12 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 cluster_B::>metrocluster configuration-settings interface create -cluster-name cluster_B -home-node node_B_2 -home-port e5a -address 10.1.1.4 -netmask 255.255.255.0
 [Job 28] Job succeeded: Interface Create is successful.cluster_A::>
 ----
-.. node_B_2 のポート e5b にインターフェイスを設定します：「 m 」 etrocluster configuration settings interface create -cluster -name cluster-name -home-node node_name -home-port e5b -address ip-address -netmask netmask 」
+.. 「 node_B_2 」のポート「 e5b 」にインターフェイスを設定します。
 +
-次の例は、 node_B_2 のポート e5b に IP アドレスが 10.1.2.4 のインターフェイスを作成する例を示しています。
+MetroCluster の構成設定インターフェイス create -cluster -cluster_name _ -home-node_name _ -home-port e5b -address _IP_address -netmask netmask_ `
+
++
+次の例は、「 node_B_2 」のポート「 e5b 」に IP アドレスが「 10.1.2.4 」のインターフェイスを作成する例を示しています。
 
 +
 [listing]
@@ -1682,7 +1793,10 @@ cluster_A::>
 ----
 
 
-. インターフェイスが設定されていることを確認します。「 MetroCluster configurion-settings interface show 」
+. インターフェイスが設定されたことを確認します。
++
+「 MetroCluster configurion-settings interface show 」を参照してください
+
 +
 次に、各インターフェイスの設定状態が completed になっている例を示します。
 
@@ -1716,7 +1830,10 @@ Group Cluster Node    Network Address Netmask         Gateway   State
 8 entries were displayed.
 cluster_A::>
 ----
-. ノードが MetroCluster インターフェイスに接続する準備ができていることを確認します。「 MetroCluster configurion-settings show-status 」
+. ノードで MetroCluster インターフェイスの接続準備が完了していることを確認します。
++
+MetroCluster の構成設定はステータスを表示します
+
 +
 次の例は、「 ready for connection 」状態のすべてのノードを示しています。
 
@@ -1734,7 +1851,10 @@ cluster_B
               node_B_2     ready for connection connect
 4 entries were displayed.
 ----
-. 接続を確立します MetroCluster 設定 - 接続接続接続
+. 接続を確立します。
++
+MetroCluster 構成設定接続接続
+
 +
 このコマンドの問題実行後に IP アドレスを変更することはできません。
 
@@ -1748,7 +1868,10 @@ cluster_A::> metrocluster configuration-settings connection connect
 [Job 53] Job succeeded: Connect is successful.
 cluster_A::>
 ----
-. 接続が確立されたことを確認します MetroCluster configurion-settings show-status
+. 接続が確立されたことを確認します。
++
+MetroCluster の構成設定はステータスを表示します
+
 +
 すべてのノードの構成設定ステータスが completed になっていることを確認します。
 
@@ -1768,11 +1891,17 @@ cluster_B
 ----
 . iSCSI 接続が確立されたことを確認します。
 +
-.. advanced 権限レベルに切り替えます。「 set -privilege advanced 」
+.. advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
 +
 アドバンス・モードに進むかどうかを確認するプロンプトが表示されたら 'y' で応答する必要があります advanced モードのプロンプト（ *>` ）が表示されます
 
-.. 「 storage iscsi-initiator show 」という接続状況を表示します
+.. 接続を表示します。
++
+「 storage iscsi-initiator show 」のように表示されます
+
 +
 ONTAP 9.5 を実行しているシステムでは、クラスタごとに 8 つの MetroCluster IP イニシエータが出力に表示されます。
 
@@ -1829,10 +1958,16 @@ cluster_A-02
                    10.227.95.166:65200     prod507.com.company:abab44       up/up
 16 entries were displayed.
 ----
-.. admin 権限レベルに戻ります。「 set -privilege admin 」
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
 
 
-. ノードが MetroCluster 構成の最終的な実装の準備ができていることを確認します MetroCluster node show
+
+. ノードで MetroCluster 構成の最終的な実装準備が完了していることを確認します。
++
+MetroCluster node show
+
 +
 [listing]
 ----
@@ -1865,10 +2000,13 @@ cluster_B::>
 
 === プール 1 ドライブの割り当てを検証または手動で実行する
 
-[role="lead"]
-ストレージ構成に応じて、 MetroCluster IP 構成の各ノードのプール 1 のドライブ割り当てを確認するか、ドライブを手動で割り当てる必要があります。使用する手順は、使用する ONTAP のバージョンによって異なります。
+ストレージ構成に応じて、 MetroCluster IP 構成の各ノードのプール 1 のドライブ割り当てを確認するか、ドライブを手動で割り当てる必要があります。
+
+使用する手順は、使用する ONTAP のバージョンによって異なります。
 
 |===
+
+
 | 構成タイプ | 手順 
 
 
@@ -1903,21 +2041,26 @@ cluster_B::>
 
 ==== プール 1 ディスクのディスク割り当てを確認しています
 
-[role="lead"]
 リモートディスクがノードに認識され、正しく割り当てられていることを確認する必要があります。
 
 MetroCluster IP インタフェースと接続を MetroCluster configurion-settings connection connect コマンドで作成した後 ' ディスクの自動割り当てが完了するまで 10 分以上待つ必要があります
 
-コマンドの出力には、ディスク名が： node-name ： 0m.i1.0L1 の形式で表示されます
+コマンドの出力には、次の形式でディスク名が表示されます。
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+「 node-name:0m.i1.0L1` 」
 
-. プール 1 のディスクが自動的に割り当てられていることを確認します。「 Disk show 」
+link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]
+
+.ステップ
+. プール 1 のディスクが自動で割り当てられていることを確認します。
++
+「ディスクショー」
+
 +
 次の出力は、外付けシェルフがない AFF A800 システムについての出力を示しています。
 
 +
-ドライブの自動割り当てにより、 4 分の 1 （ 8 ドライブ）が node_A_1 に、 4 分の 1 が node_A_2 に割り当てられています。残りのドライブは、 node_B_1 と node_B_2 のリモート（プール 1 ）のディスクになります。
+ドライブの自動割り当てにより、 4 分の 1 （ 8 ドライブ）が「 node_A_1 」に、 4 分の 1 が「 node_A_2 」に割り当てられています。残りのドライブは、「 node_B_1 」と「 node_B_2 」のリモート（プール 1 ）のディスクになります。
 
 +
 [listing]
@@ -2101,21 +2244,25 @@ cluster_A::>
 
 ==== プール 1 のドライブの手動割り当て（ ONTAP 9.4 以降）
 
-[role="lead"]
 工場出荷時に事前設定されておらず、自動ドライブ割り当ての要件を満たしていないシステムでは、リモートのプール 1 ドライブを手動で割り当てる必要があります。
 
 この手順環境構成は ONTAP 9.4 以降を実行しています。
 
-手動でディスクを割り当てる必要があるかどうかの詳細については、を参照してください xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]。
+手動でディスクを割り当てる必要があるかどうかの詳細については、を参照してください link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]。
 
 外付けシェルフがサイトごとに 2 台しかない場合は、次の例に示すように、各サイトのプール 1 で同じシェルフのドライブを共有する必要があります。
 
 * node_A_1 に site_B-shelf_2 （リモート）のベイ 0~11 のドライブを割り当て
 * node_A_2 に site_B-shelf_2 （リモート）のベイ 12~23 のドライブを割り当て
+
+
+.手順
+. MetroCluster IP 構成の各ノードで、リモートドライブをプール 1 に割り当てます。
 +
-.. MetroCluster IP 構成の各ノードで、リモートドライブをプール 1 に割り当てます。
+.. 未割り当てドライブのリストを表示します。
 +
-... 未割り当てのドライブのリストを表示します：「 Disk show -host-adapter 0m -container-type unassigned 」
+「 Disk show -host-adapter 0m -container-type unassigned 」
+
 +
 [listing]
 ----
@@ -2137,14 +2284,23 @@ node_A_2:0m.i1.2L64       -    21  10 SSD     unassigned  -         -
 
 cluster_A::>
 ----
-... リモートドライブ（ 0m ）の所有権を最初のノード（例： node_A_1 ）のプール 1 に割り当てます。「 disk assign -disk disk-id -pool 1 -owner owner-node-name 」
+.. リモートドライブ（ 0m ）の所有権を最初のノード（「 node_A_1 」など）のプール 1 に割り当てます。
 +
-disk-id は owner-node-name のリモートシェルフのドライブを指定する必要があります。
+「 disk assign -disk disk_disk-id 」 -pool 1 -owner_owner-node-name_ 」のようになります
 
-... ドライブがプール 1 に割り当てられていることを確認します : 「ディスク show -host-adapter 0m -container-type unassigned 」
 +
-* 注：リモートドライブへのアクセスに使用される iSCSI 接続は、デバイス「 0m 」と表示されます。
+「 disk-id 」は、「 owner-node-name 」のリモートシェルフ上のドライブを識別する必要があります。
 
+.. ドライブがプール 1 に割り当てられたことを確認します。
++
+「 Disk show -host-adapter 0m -container-type unassigned 」
+
++
+--
+
+NOTE: リモートドライブへのアクセスに使用される iSCSI 接続は、デバイス「 0m 」と表示されます。
+
+--
 +
 次の出力では、シェルフ 23 のドライブが割り当てられ、未割り当てドライブのリストに表示されていません。
 
@@ -2165,10 +2321,8 @@ node_A_2:0m.i2.1L90       -    21  19 SSD     unassigned  -         -
 
 cluster_A::>
 ----
-... 同じ手順を繰り返して、サイト A の 2 つ目のノード（例： node_A_1 ）にプール 1 ドライブを割り当てます。
-... サイト B で同じ手順を繰り返します
-
-
+.. 同じ手順を繰り返して、サイト A の 2 つ目のノードにプール 1 のドライブを割り当てます（例：「 n "ode_A_2" ）。
+.. サイト B で同じ手順を繰り返します
 
 
 
@@ -2177,14 +2331,15 @@ cluster_A::>
 
 ==== プール 1 のディスクの手動割り当て（ ONTAP 9.3 ）
 
-[role="lead"]
-各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してリモート（プール 1 ）のディスクを自動的に割り当てます。最初に、シェルフのディスクを 1 つプール 1 に割り当てる必要があります。シェルフの残りのディスクは ONTAP によって同じプールに自動的に割り当てられます。
+各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してリモート（プール 1 ）のディスクを自動的に割り当てます。
+
+最初に、シェルフのディスクを 1 つプール 1 に割り当てる必要があります。シェルフの残りのディスクは ONTAP によって同じプールに自動的に割り当てられます。
 
 これは、 ONTAP 9.3 を実行している手順環境構成です。
 
-この手順は、各ノードにディスクシェルフが少なくとも 2 台あり、シェルフレベルのディスクの自動割り当てが可能な場合にのみ使用できます。
+この手順は、各ノードにディスクシェルフが少なくとも 2 台あり、それによってシェルフレベルでディスクの自動割り当てが可能な場合にのみ使用できます。
 
-シェルフレベルの自動割り当てを使用できない場合は、リモートディスクを手動で割り当てて、各ノードでディスクのリモートプール（プール 1 ）を構成する必要があります。
+シェルフレベルの自動割り当てを使用できない場合は、リモートディスクを手動で割り当てて、各ノードにディスクのリモートプール（プール 1 ）を構成する必要があります。
 
 ONTAP の自動ディスク割り当て機能は、シェルフ単位でディスクを割り当てます。例：
 
@@ -2196,9 +2351,13 @@ ONTAP の自動ディスク割り当て機能は、シェルフ単位でディ�
 
 各シェルフでディスクを 1 つ指定して、自動割り当てを「開始」する必要があります。
 
+.手順
 . MetroCluster IP 構成の各ノードで、リモートディスクを 1 つプール 1 に割り当てます。
 +
-.. 未割り当てディスクのリストを表示します：「 Disk show -host-adapter 0m -container-type unassigned 」
+.. 未割り当てディスクのリストを表示します。
++
+「 Disk show -host-adapter 0m -container-type unassigned 」
+
 +
 [listing]
 ----
@@ -2220,17 +2379,26 @@ node_A_2:0m.i1.2L64       -    21  10 SSD     unassigned  -         -
 
 cluster_A::>
 ----
-.. リモートディスク（ 0m ）を選択し、ディスクの所有権を最初のノード（例： node_A_1 ）のプール 1 に割り当てます。「 disk assign -disk disk-id -pool 1 -owner owner-node-name 」
+.. リモートディスク（ 0m ）を選択し、ディスクの所有権を最初のノード（「 node_A_1 」など）のプール 1 に割り当てます。
 +
-disk-id は、 owner-node-name のリモートシェルフのディスクを識別する必要があります。
+「 disk assign -disk disk-id -pool 1 -owner owner-node-name 」です
 
 +
-ONTAP のディスクの自動割り当て機能により、指定したディスクを含むリモートシェルフのすべてのディスクが割り当てられます。
+「 disk-id 」は、「 owner-node-name 」のリモートシェルフ上のディスクを識別する必要があります。
 
-.. ディスクの自動割り当てが完了するまで少なくとも 60 秒待ってから、シェルフ上のリモートディスクがプール 1 に自動的に割り当てられたことを確認します。「ディスクの show -host-adapter 0m -container-type unassigned 」
 +
-* 注：リモートディスクへのアクセスに使用される iSCSI 接続は、デバイス「 0m 」と表示されます。
+ONTAP ディスクの自動割り当て機能により、指定したディスクを含むリモートシェルフのすべてのディスクが割り当てられます。
 
+.. ディスクの自動割り当てが開始されるまで少なくとも 60 秒待ってから、シェルフのリモートディスクがプール 1 に自動的に割り当てられたことを確認します。
++
+「 Disk show -host-adapter 0m -container-type unassigned 」
+
++
+--
+
+NOTE: リモートディスクへのアクセスに使用される iSCSI 接続は、デバイス「 0m 」と表示されます。
+
+--
 +
 次の出力は、シェルフ 23 のディスクが割り当てられ、表示されていないことを示しています。
 
@@ -2269,7 +2437,7 @@ node_A_2:0m.i2.1L90       -    21  19 SSD     unassigned  -         -
 
 cluster_A::>
 ----
-.. 同じ手順を繰り返して、サイト A の 2 つ目のノード（例： node_A_1 ）にプール 1 のディスクを割り当てます。
+.. 同じ手順を繰り返して、サイト A の 2 つ目のノード（「 Node_a_2 」など）にプール 1 のディスクを割り当てます。
 .. サイト B で同じ手順を繰り返します
 
 
@@ -2279,12 +2447,15 @@ cluster_A::>
 
 === ONTAP 9.4 での自動ドライブ割り当ての有効化
 
-[role="lead"]
 ONTAP 9.4 で手順は、自動ドライブ割り当てを前述の手順に従って無効にした場合、すべてのノードで再度有効にする必要があります。
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-drive-assignment-and-adp-systems-in-ontap-9-4-and-later[ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項]
+link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]
 
-. 自動ドライブ割り当てを有効にします。「 storage disk option modify -node node_name -autoassign on 」
+.ステップ
+. 自動ドライブ割り当てを有効にします。
++
+「 storage disk option modify -node node_name -autoassign on
+
 +
 このコマンドは、 MetroCluster IP 構成のすべてのノードで問題設定する必要があります。
 
@@ -2294,19 +2465,20 @@ xref:concept_prepare_for_the_mcc_installation.html#considerations-for-automatic-
 
 === ルートアグリゲートをミラーリング
 
-[role="lead"]
 データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
 
 デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
 
-[listing]
-----
-storage aggregate modify –aggregate aggr_name -raidtype raid4
-----
+「 storage aggregate modify – aggregate_name _raidtype raid4 」と表示されます
+
 
 NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、アグリゲートの RAID タイプをデフォルトの RAID-DP から RAID4 に変更できます。
 
-. ルートアグリゲートをミラーします。「 storage aggregate mirror aggr_name 」
+.手順
+. ルートアグリゲートをミラーします。
++
+「 storage aggregate mirror _aggr_name _ 」のようになります
+
 +
 次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。
 
@@ -2321,17 +2493,15 @@ controller_A_1::> storage aggregate mirror aggr0_controller_A_1
 . MetroCluster 構成の各ノードについて、同じ手順を繰り返します。
 
 
-* 関連情報 *
-
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"]
 
 
 
 === 各ノードでミラーされたデータアグリゲートを作成します
 
-[role="lead"]
 DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。
 
+.このタスクについて
 * 新しいアグリゲートで使用するドライブを把握しておく必要があります。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
 * ドライブは特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
@@ -2342,39 +2512,43 @@ ADP を使用するシステムではパーティションを使用してアグ�
 +
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
 
+
+
+.手順
+. 使用可能なスペアのリストを表示します。
 +
-.. 使用可能なスペアのリストを表示します。「 storage disk show -spare -owner node_name 」
-.. storage aggregate create -mirror true コマンドを使用して、アグリゲートを作成します。
+「 storage disk show -spare -owner_node_name _ 」というように入力します
+
+. アグリゲートを作成します。
 +
-クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートを作成するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。
+「 storage aggregate create -mirror true 」のようになります
+
++
+クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。アグリゲートを特定のノード上に作成するには、「 -node 」パラメータを使用するか、そのノードが所有するドライブを指定します。
 
 +
 次のオプションを指定できます。
 
 +
-*** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
-*** アグリゲートに追加するドライブのリスト
-*** 追加するドライブ数
+** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
+** アグリゲートに追加するドライブのリスト
+** 追加するドライブ数
 +
 
 NOTE: 使用できるドライブ数が限られている最小サポート構成では、 force-small-aggregate オプションを使用して、 3 ディスクの RAID-DP アグリゲートを作成できるように設定する必要があります。
 
-*** アグリゲートに使用するチェックサム形式
-*** 使用するドライブのタイプ
-*** 使用するドライブのサイズ
-*** 使用するドライブの速度
-*** アグリゲート上の RAID グループの RAID タイプ
-*** RAID グループに含めることができるドライブの最大数
-*** これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
-
-
-
+** アグリゲートに使用するチェックサム形式
+** 使用するドライブのタイプ
+** 使用するドライブのサイズ
+** 使用するドライブの速度
+** アグリゲート上の RAID グループの RAID タイプ
+** RAID グループに含めることができるドライブの最大数
+** RPM の異なるドライブが許可されるかどうか
++
+これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
 
 +
 次のコマンドでは、 10 本のディスクを含むミラーアグリゲートが作成されます。
-
-+
-[+]
 
 +
 [listing]
@@ -2384,9 +2558,11 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 [Job 15] The job is starting.
 [Job 15] Job succeeded: DONE
 ----
-+
-.. 新しいアグリゲートの RAID グループとドライブを確認します。「 storage aggregate show-status -aggregate aggregate-name 」
 
+
+. 新しいアグリゲートの RAID グループとドライブを確認します。
++
+「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
 
 
 
@@ -2394,27 +2570,30 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 
 === MetroCluster 構成の実装
 
-[role="lead"]
-MetroCluster 構成でデータ保護を開始するには、 MetroCluster configure コマンドを実行する必要があります。
+MetroCluster 構成でデータ保護を開始するに MetroCluster は 'data configure コマンドを実行する必要があります
 
+.このタスクについて
 * ルート以外のミラーされたデータアグリゲートが各クラスタに少なくとも 2 つ必要です。
 +
 これは、 storage aggregate show コマンドを使用して確認できます。
 
 +
 
-NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください xref:concept_configure_the_mcc_software_in_ontap.adocSTEP_429E7F7532ED4B468B67B9B22968D686[手順 1.] 手順については、を参照し
+NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください <<step1_single_mirrored,手順 1.>> 手順については、を参照し
 
 * コントローラおよびシャーシの ha-config の状態が mccip である必要があります。
 
 
-MetroCluster 設定を有効にするには、いずれかのノードで MetroCluster configure コマンドを 1 回実行します。問題サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
+MetroCluster 構成を有効にするには ' 任意のノードで MetroCluster configure コマンドを 1 回実行します問題サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
 
-MetroCluster configure コマンドを実行すると、 2 つのクラスタそれぞれでシステム ID が最も小さい 2 つのノードがディザスタリカバリ（ DR ）パートナーとして自動的にペアリングされます。4 ノード MetroCluster 構成の場合は、 DR パートナーのペアは 2 組になります。2 つ目の DR ペアは、システム ID が大きい 2 つのノードで作成されます。
+MetroCluster configure コマンドを実行すると '2 つのクラスタそれぞれのシステム ID が最も小さい 2 つのノードが 'DR （災害復旧）パートナーとして自動的にペア設定されます4 ノード MetroCluster 構成の場合は、 DR パートナーのペアは 2 組になります。2 つ目の DR ペアは、システム ID が大きい 2 つのノードで作成されます。
 
-. 次の形式で MetroCluster を設定します。
+.手順
+. [[step1_single_mirrored ]] 次の形式で MetroCluster を設定します。
 +
 |===
+
+
 | MetroCluster 構成の内容 | 操作 
 
 
@@ -2428,20 +2607,34 @@ MetroCluster configure コマンドを実行すると、 2 つのクラスタそ
  a| 
 ミラーされた 1 つのデータアグリゲート
  a| 
-.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。「 set -privilege advanced 」
+.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。
 +
-advanced モードで続行するかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（ * > ）が表示されます。
+「 advanced 」の権限が必要です
 
-.. allow-with-one-aggregate true パラメータを使用して MetroCluster を構成します。 MetroCluster configure -allow-with-one-aggregate true node-name
-.. admin 権限レベルに戻ります。「 set -privilege admin 」
++
+アドバンス・モードに進むかどうかを確認するプロンプトが表示されたら 'y' で応答する必要があります advanced モードのプロンプト（ *>` ）が表示されます
+
+.. MetroCluster に '-allow-with-one-aggregate true パラメータを設定します
++
+MetroCluster configure -allow-with-one-aggregate true node-name ●
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
 
 
 |===
 +
-* 注： * 複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください link:../maintain/task_move_a_metadata_volume_in_mcc_configurations.html["MetroCluster 構成でのメタデータボリュームの移動"]。
+--
+[NOTE]
+====
+複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください link:../maintain/task_move_a_metadata_volume_in_mcc_configurations.html["MetroCluster 構成でのメタデータボリュームの移動"]。
 
+====
+--
 +
-次のコマンドは、 controller_A_1 を含む DR グループ内のすべてのノードの MetroCluster 構成を有効にします。
+次のコマンドは、「 controller_A_1 」を含む DR グループのすべてのノードで MetroCluster 構成を有効にします。
 
 +
 [listing]
@@ -2481,7 +2674,10 @@ controller_A_2
 ----
 . MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
 +
-.. サイト A から構成を確認します MetroCluster show
+.. サイト A から構成を確認します。
++
+「 MetroCluster show 」
+
 +
 [listing]
 ----
@@ -2496,7 +2692,10 @@ Cluster                   Entry Name          State
 Remote: cluster_B         Configuration state configured
                           Mode                normal
 ----
-.. サイト B から構成を確認します MetroCluster show
+.. サイト B から構成を確認します。
++
+「 MetroCluster show 」
+
 +
 [listing]
 ----
@@ -2513,9 +2712,16 @@ Remote: cluster_A         Configuration state configured
 ----
 
 
-. 不揮発性メモリのミラーリングで発生する可能性のある問題を回避するには、 4 つのノードのそれぞれを再起動します。「 node reboot -node _node_name -inhibit-takeover true 」
-. 構成を再度確認するには ' 両方のクラスタ上で MetroCluster show コマンドを実行します問題=== 8 ノード構成での 2 つ目の DR グループの構成
+. 不揮発性メモリミラーリングの問題を回避するには、 4 つのノードのそれぞれをリブートします。
++
+node reboot -node node_name -inhibit-takeover true を指定します
 
+. 構成を再度確認するには ' 両方のクラスタ上で MetroCluster show コマンドを実行します問題
+
+
+
+
+=== 8 ノード構成での 2 つ目の DR グループの設定
 
 同じ手順を繰り返して、 2 つ目の DR グループのノードを設定します。
 
@@ -2523,16 +2729,15 @@ Remote: cluster_A         Configuration state configured
 
 === ミラーされていないデータアグリゲートの作成
 
-[role="lead"]
 MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。
 
+.このタスクについて
 * 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されていることを確認する方法を理解しておく必要があります。
 
 
-重要
 
-MetroCluster IP 構成では、スイッチオーバー後にミラーされていないリモートアグリゲートにアクセスできません
+IMPORTANT: MetroCluster IP 構成では、スイッチオーバー後にミラーされていないリモートアグリゲートにアクセスできません
 
 
 NOTE: ミラーされていないアグリゲートは、そのアグリゲートを所有するノードに対してローカルでなければなりません。
@@ -2540,18 +2745,32 @@ NOTE: ミラーされていないアグリゲートは、そのアグリゲー�
 * ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
 * アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。
 * アグリゲートのミラーリングの詳細については、ディスクとアグリゲートパワーガイドを参照してください。
+
+
+.手順
+. ミラーされていないアグリゲートの導入を
 +
-.. ミラーされていないアグリゲート配置を有効にします : MetroCluster modify -enable -meServer -aggr-deployment true
-.. ディスクの自動割り当てが無効になっていることを確認します。「 disk option show 」
-.. ミラーされていないアグリゲートを格納するディスクシェルフを設置してケーブル接続します。
+MetroCluster modify -enable -ミラー されていない -aggr-deployment true
+
+. ディスクの自動割り当てが無効になっていることを確認します。
 +
-使用するプラットフォームとディスクシェルフに対応した設置とセットアップのドキュメントに記載されている手順を使用できます。
+「ディスクオプション表示」
+
+. ミラーされていないアグリゲートを格納するディスクシェルフを設置してケーブル接続します。
++
+使用するプラットフォームとディスクシェルフに対応した _Installation と Setup_documentation の手順を使用してください。
 
 +
 https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
 
-.. 新しいシェルフのすべてのディスクを適切なノードに手動で割り当てます。「 disk assign -disk disk-id -owner owner-node-name
-.. 「 storage aggregate create 」というアグリゲートを作成します
+. 新しいシェルフのすべてのディスクを適切なノードに手動で割り当てます。
++
+「 disk assign -disk disk_disk-id 」 -owner_owner-node-name_`
+
+. アグリゲートを作成します。
++
+「 storage aggregate create 」
+
 +
 クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートが作成されたことを確認するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。
 
@@ -2562,25 +2781,21 @@ https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセン
 次のオプションを指定できます。
 
 +
-*** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
-*** アグリゲートに追加するドライブまたはアレイ LUN のリスト
-*** 追加するドライブ数
-*** アグリゲートに使用するチェックサム形式
-*** 使用するドライブのタイプ
-*** 使用するドライブのサイズ
-*** 使用するドライブの速度
-*** アグリゲート上の RAID グループの RAID タイプ
-*** RAID グループに含めることができるドライブまたはアレイ LUN の最大数
-*** これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
-
-
-
+** アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）
+** アグリゲートに追加するドライブまたはアレイ LUN のリスト
+** 追加するドライブ数
+** アグリゲートに使用するチェックサム形式
+** 使用するドライブのタイプ
+** 使用するドライブのサイズ
+** 使用するドライブの速度
+** アグリゲート上の RAID グループの RAID タイプ
+** RAID グループに含めることができるドライブまたはアレイ LUN の最大数
+** RPM の異なるドライブが許可されるかどうか
++
+これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
 
 +
 次のコマンドでは、 10 本のディスクを含むミラーされていないアグリゲートが作成さ
-
-+
-[+]
 
 +
 [listing]
@@ -2590,15 +2805,21 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 [Job 15] The job is starting.
 [Job 15] Job succeeded: DONE
 ----
+
+
+. 新しいアグリゲートの RAID グループとドライブを確認します。
 +
-.. 新しいアグリゲートの RAID グループとドライブを確認します。「 storage aggregate show-status -aggregate aggregate-name 」
-.. ミラーされていないアグリゲート配置を無効にします : MetroCluster modify -enable -meServer -aggr-deployment false
-.. ディスクの自動割り当てが有効になっていることを確認します。「 disk option show 」
+「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
+
+. ミラーされていないアグリゲートの導入を
++
+MetroCluster modify -enable -ミラー されていない -aggr-deployment false
+
+. ディスク自動割り当てが有効になっていることを確認します。
++
+「ディスクオプション表示」
 
 
-
-
-* 関連情報 *
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
 
@@ -2606,12 +2827,15 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 
 === MetroCluster の設定を確認しています
 
-[role="lead"]
 MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。
 
-一方または両方のクラスタに対して MetroCluster check run コマンドを短時間に 2 回実行すると、競合が発生してすべてのデータが収集されない場合があります。それ以降の MetroCluster check show コマンドでは、想定した出力が表示されません。
+いずれかまたは両方のクラスタに対して短時間に MetroCluster check run コマンドを 2 回発行すると ' 競合が発生し ' コマンドがすべてのデータを収集しない場合がありますそれ以降の「 MetroCluster check show 」コマンドでは、期待される出力が表示されません。
 
-. 構成を確認します MetroCluster check run
+.手順
+. 構成を確認します。
++
+「 MetroCluster check run 」のようになります
+
 +
 このコマンドはバックグラウンドジョブとして実行され、すぐに完了しない場合があります。
 
@@ -2640,12 +2864,27 @@ clusters            ok
 connections         ok
 6 entries were displayed.
 ----
-. 最新の MetroCluster check run コマンドから、より詳細な結果を表示します。「 MetroCluster check aggregate show 」「 m etrocluster check cluster show 」「 m etrocluster check config-replication show 「 m etrocluster check lif show 」「 m etrocluster check node show 」
+. 最新の MetroCluster check run コマンドから ' より詳細な結果を表示します
 +
-MetroCluster check show コマンドは、最新の MetroCluster check run コマンドの結果を表示します。最新の情報を表示するために、 MetroCluster check show コマンドを使用する前に必ず、 MetroCluster check run コマンドを実行してください。
+MetroCluster check aggregate show
 
 +
-次の例は MetroCluster 、正常な 4 ノード MetroCluster 構成の lun check aggregate show コマンドの出力を示しています。
+MetroCluster check cluster show
+
++
+MetroCluster check config-replication show
+
++
+MetroCluster check lif show
+
++
+MetroCluster check node show
+
++
+「 MetroCluster check show 」コマンドは、最新の「 MetroCluster check run 」コマンドの結果を表示します。MetroCluster check show コマンドを使用する前に ' 必ず MetroCluster check run コマンドを実行して ' 表示されている情報が最新であることを確認してください
+
++
+次に、正常な 4 ノード MetroCluster 構成の MetroCluster check aggregate show コマンドの出力例を示します。
 
 +
 [listing]
@@ -2686,7 +2925,7 @@ controller_A_2        controller_A_2_aggr0
 18 entries were displayed.
 ----
 +
-次の例は、正常な 4 ノード MetroCluster 構成の MetroCluster check cluster show コマンドの出力を示しています。この出力は、必要に応じてネゴシエートスイッチオーバーを実行できる状態であることを示しています。
+次に、正常な 4 ノード MetroCluster 構成の MetroCluster check cluster show コマンドの出力例を示します。この出力は、必要に応じてネゴシエートスイッチオーバーを実行できる状態であることを示しています。
 
 +
 [listing]
@@ -2711,8 +2950,6 @@ mccint-fas9000-0304
 ----
 
 
-* 関連情報 *
-
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
@@ -2721,14 +2958,12 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネ�
 
 === ONTAP 設定を完了しています
 
-[role="lead"]
 MetroCluster 構成の設定、有効化、確認が完了したら、必要に応じて SVM 、ネットワークインターフェイス、およびその他の ONTAP 機能を追加してクラスタの設定を完了します。
 
 
 
 == スイッチオーバー、修復、スイッチバックを検証しています
 
-[role="lead"]
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
 
 . MetroCluster 管理およびディザスタリカバリガイドの手順に従って、ネゴシエートスイッチオーバー、修復、スイッチバックを実行します。
@@ -2741,7 +2976,6 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-mgmt-dr/home.html["
 
 == MetroCluster Tiebreaker または ONTAP メディエーターソフトウェアの設定
 
-[role="lead"]
 MetroCluster Tiebreaker ソフトウェアまたは ONTAP 9.7 以降の ONTAP メディエーターは、第 3 のサイトにダウンロードしてインストールできます。
 
 MetroCluster 構成の両方のクラスタにネットワークで接続された Linux ホストが必要です。具体的な要件については、 MetroCluster Tiebreaker または ONTAP メディエーターのドキュメントを参照してください。
@@ -2750,7 +2984,7 @@ Tiebreaker または ONTAP メディエーターの既存のインスタンス�
 
 ONTAP メディエーターの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。
 
-xref:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html[自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定]
+link:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html["自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定"]
 
 Tiebreaker ソフトウェアの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。
 
@@ -2758,11 +2992,15 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/
 
 MetroCluster Tiebreaker ソフトウェアと ONTAP メディエーターの両方を同じ MetroCluster 構成で使用することはできません。
 
-xref:concept_prepare_for_the_mcc_installation.html#considerations-for-using-ontap-mediator-or-metrocluster-tiebreaker[ONTAP メディエーターまたは MetroCluster Tiebreaker を使用する場合の考慮事項]
+link:concept_prepare_for_the_mcc_installation.html#considerations-for-using-ontap-mediator-or-metrocluster-tiebreaker["ONTAP メディエーターまたは MetroCluster Tiebreaker を使用する場合の考慮事項"]
 
+.手順
 . ONTAP メディエーターサービスまたは Tiebreaker ソフトウェアを設定します。
 +
-** ONTAP メディエーターの既存のインスタンスを使用している場合は、次のコマンドを使用して ONTAP メディエーターサービスを ONTAP に追加します。 ````````m etrocluster configuration mediator-address add-mmediator-address ip-address-of mediator-host``
+** ONTAP メディエーターの既存のインスタンスを使用している場合は、 ONTAP メディエーターサービスを ONTAP に追加します。
++
+MetroCluster の構成設定メディエーターの追加 mediator-address_ip-address-bmediator-host_`
+
 ** Tiebreaker ソフトウェアを使用している場合は、 Tiebreaker のドキュメントを参照してください。
 +
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/home.html["MetroCluster Tiebreaker ソフトウェアインストールおよび設定ガイド"]
@@ -2775,15 +3013,16 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/
 
 == 構成バックアップファイルを保護しています
 
-[role="lead"]
 ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。
 
-. 構成バックアップファイルのリモート保存先の URL を設定します : 「システム構成バックアップ設定」「宛先 URL の変更」
+.手順
+. 構成バックアップファイルのリモートデスティネーションの URL を設定します。
++
+「システム構成のバックアップ設定 MODIT_URL-of-destination_ 」
+
 +
 システムアドミニストレーションガイドの構成バックアップの管理 _ セクションに追加情報が記載されています。
 
 
-
-* 関連情報 *
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"]

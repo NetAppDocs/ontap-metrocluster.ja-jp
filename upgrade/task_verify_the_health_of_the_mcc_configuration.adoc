@@ -15,7 +15,7 @@ MetroCluster 構成の健全性をチェックして、正常に動作するこ�
 .手順
 . 各クラスタで MetroCluster が設定されており、通常モードであることを確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 +
 [listing]
@@ -32,7 +32,7 @@ Remote: cluster_B         Configuration state configured
 ----
 . 各ノードでミラーリングが有効であることを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -49,7 +49,7 @@ Group Cluster Node           State          Mirroring Mode
 ----
 . MetroCluster コンポーネントが正常であることを確認します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 +
 [listing]
@@ -71,16 +71,16 @@ To check if the nodes are ready to do a switchover or switchback operation, run 
 ----
 . ヘルスアラートがないことを確認します。
 +
-「 * system health alert show * 」というメッセージが表示されます
+「 system health alert show 」というメッセージが表示されます
 
 . スイッチオーバー処理をシミュレートします。
 +
-.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 +`* set -privilege advanced *`
+.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 + 「 set -privilege advanced 」
 +
 advanced モードで続けるかどうかを尋ねられたら、「 * y * 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
 
-.. simulate パラメータを指定して、スイッチオーバー操作を実行します。 +`* MetroCluster switchover -simulate *`
-.. admin 特権レベルに戻ります :+`*set -privilege admin*`
+.. simulate パラメータを指定して、スイッチオーバー処理を実行します。 + MetroCluster switchover -simulate `
+.. admin 権限レベルに戻ります。 +`set -privilege admin`
 
 
 

@@ -12,6 +12,7 @@ summary: 既存の MetroCluster 構成にコントローラモジュールを追
 [role="lead"]
 既存の MetroCluster 構成にコントローラモジュールを追加する場合、一連の手順を実行して、新しいコントローラモジュールで ONTAP オペレーティングシステムをネットブートしてインストールする必要があります。
 
+.このタスクについて
 * このタスクは、新しいコントローラモジュールの LOADER プロンプトから開始します。
 * このタスクにはディスクの初期化も含まれます。
 +
@@ -27,6 +28,8 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 . LOADER プロンプトで、 DHCP を使用可能かどうかに基づいて新しいコントローラモジュールの IP アドレスを設定します。
 +
 |===
+
+
 | DHCP の状況 | 入力するコマンド 
 
 
@@ -40,7 +43,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
  a| 
 使用できません
  a| 
-`* ifconfig e0M -addr=__ filer_addr_-mask=__ netmask __ -gw=__ gateway_--dns=__ dns_addr_-domain=_dns_domain__*`
+ifconfig e0M -addr=__ filer_addr__ -mask=__ netmask __ -gw=__ gateway_-dns=__ dns_addr_-domain=_dns_domain__ds_`
 
 「 filer_addr 」は、ストレージ・システムの IP アドレスです。
 
@@ -59,24 +62,25 @@ NOTE: インターフェイスによっては、その他のパラメータが�
 . LOADER プロンプトで、新しいノードをネットブートします。
 +
 |===
-| 用途 | 作業 
+
+
+| 用途 | 問題コマンド 
 
 
  a| 
-* FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシステム *
+FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシステム
  a| 
-*netboot http://__web_server_ip/path_to_web-accessible_directory__/netboot/kernel*`[]
+ネットブート http://__web_server_ip/path_to_web-accessible_directory__/netboot/kernel`[]
 
 
 
  a| 
-* その他すべてのシステム *
+その他すべてのシステム
  a| 
-*netboot http://__web_server_ip/path_to_web-accessible_directory__/<ontap_version>_image.tgz*`[]
+ネットブート http://__web_server_ip/path_to_web-accessible_directory__/<ontap_version>_image.tgz`[]
 
 |===
-
-
++
 「 _path_to_the_web-accessible_directory _ 」は、ダウンロードした「 <ONTAP_version>_image.tgz 」ファイルの場所です。
 
 . 表示されたメニューから、「 * Install new software first * 」オプションを選択します。
@@ -86,7 +90,10 @@ NOTE: インターフェイスによっては、その他のパラメータが�
 +
 ** HA ペアでの無停止アップグレードではこの手順はサポートされていませんというメッセージが表示されたら '*y`* と入力します
 ** このプロセスで既存の ONTAP ソフトウェアが新しいソフトウェアに置き換えられることを警告するメッセージが表示されたら '*y*' と入力します
-** image.tgz ファイルの URL を求めるプロンプトが表示されたら、次のようにパスを入力する必要があります： +`*http://__path_to_the_web-accessible_directory__/image.tgz*`
+** image.tgz ファイルの URL を求めるプロンプトが表示されたら、次のパスを入力する必要があります。
++
+http://__path_to_the_web-accessible_directory__/image.tgz`
+
 
 
 . ソフトウェアの無停止アップグレードまたは交換に関するプロンプトが表示されたら '*y*' と入力します
@@ -132,10 +139,9 @@ NOTE: ディスクの初期化に要する時間は、ディスクのサイズ�
 
 . ディスクが初期化され、クラスタセットアップウィザードが起動したら、ノードをセットアップします。
 +
-.. コンソールでノード管理 LIF の情報を入力します。
+コンソールでノード管理 LIF の情報を入力します。
 
-
-. ノードにログインし '*cluster setup*' を入力し ' クラスタへの参加を求めるプロンプトが表示されたら '*join*' を入力します
+. ノードにログインし 'cluster setup を入力し ' クラスタへの参加を求めるプロンプトが表示されたら 'join を入力します
 +
 [listing]
 ----
@@ -156,7 +162,7 @@ cluster_A::> network interface create -vserver Cluster -lif clus1 -role cluster 
 ----
 . セットアップが完了したら、ノードが正常に機能しており、クラスタへの参加条件を満たしていることを確認します。
 +
-*cluster show *
+「 cluster show 」を参照してください
 
 +
 次の例は、 2 つ目のノード（ cluster1-02 ）をクラスタに追加したあとのクラスタを示しています。
@@ -175,7 +181,7 @@ cluster setup コマンドを使用すると、クラスタセットアップウ
 
 . クラスタインターコネクトとして 4 つのポートが構成されていることを確認します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 次の例は、 cluster_A の 2 台のコントローラモジュールについての出力です。

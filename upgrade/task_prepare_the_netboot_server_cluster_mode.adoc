@@ -12,6 +12,7 @@ summary: ネットブートサーバの準備ができたら、適切な ONTAP �
 [role="lead"]
 ネットブートサーバの準備ができたら、適切な ONTAP のネットブートイメージをネットアップサポートサイトからネットブートサーバにダウンロードして、 IP アドレスをメモする必要があります。
 
+.このタスクについて
 * 新しいコントローラモジュールを追加する前とあとに、システムから HTTP サーバにアクセスできる必要があります。
 * 使用しているプラットフォームと ONTAP のバージョンに必要なシステムファイルをダウンロードするために、ネットアップサポートサイトへのアクセス権が必要です。
 +
@@ -28,36 +29,34 @@ https://mysupport.netapp.com/site/global/dashboard["ネットアップサポー�
 . Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
 +
 |===
+
+
 | 用途 | 作業 
 
 
  a| 
-* FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシステム *
+FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシステム
  a| 
 ターゲットディレクトリに <ONTAP_version>_image.tgz ファイルの内容を展開します。
 
-`*tar-zxvf <ONTAP_version>_image.tgz *`
+tar -zxvf <ONTAP_version>_image.tgz
 
 
 NOTE: Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。
 
 ディレクトリの一覧に、カーネルファイルを含むネットブートフォルダが含まれるようにします。
 
-[listing]
-----
-netboot/kernel
-----
+netboot/ カーネル
+
 
 
  a| 
-* その他すべてのシステム *
+その他すべてのシステム
  a| 
 ディレクトリの一覧に次のファイルが表示されます。
 
-[listing]
-----
-<ontap_version>_image.tgz
-----
+「 <ONTAP_version>_image.tgz 」
+
 
 NOTE: ファイルの内容を抽出する必要はありません。
 

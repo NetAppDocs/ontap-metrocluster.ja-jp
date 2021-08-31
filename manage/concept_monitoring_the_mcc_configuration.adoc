@@ -212,7 +212,19 @@ MetroCluster vserver show
 |===
 
 
-== NetApp MetroCluster Tiebreaker ソフトウェアによる障害の検出
+== MetroCluster Tiebreaker または ONTAP メディエーターを使用して設定を監視する
+
+を参照してください link:../install-ip/concept_considerations_mediator.html["ONTAP メディエーターと MetroCluster Tiebreaker の違い"] MetroCluster 構成を監視する方法と自動スイッチオーバーを開始する方法の違いを理解するために、
+
+Tiebreaker またはメディエーターをインストールおよび設定するには、次のリンクを使用します。
+
+* link:../tiebreaker/index.html["MetroCluster Tiebreaker ソフトウェアをインストールして設定します。"]
+* link:../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html["自動計画外スイッチオーバーのための ONTAP メディエーターサービスを設定します"]
+
+
+
+
+== NetApp MetroCluster Tiebreaker ソフトウェアで障害を検出する方法
 
 [role="lead"]
 Tiebreaker ソフトウェアは Linux ホストにインストールされます。Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。これにより、サイト間リンクが停止した場合に、クラスタ内の各パートナーで ISL 障害とサイト障害を区別することができます。
@@ -292,3 +304,14 @@ Tiebreaker ソフトウェアはアラートをトリガーしますが、 ONTAP
 
 * Tiebreaker ソフトウェアがディザスタサイトの少なくとも 1 つのノードまたはクラスタインターフェイスに到達できる、またはサバイバーサイトが FC （ NV インターコネクトとストレージ）またはクラスタ間ピアリングを介してディザスタサイトのいずれかのノードに到達できる場合
 
+
+
+
+=== ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
+
+[role="lead"]
+ONTAP メディエーターは、メディエーターホストにあるメールボックスに MetroCluster ノードに関する状態情報を格納します。MetroCluster ノードでは、この情報を使用して DR パートナーの状態を監視し、災害発生時に Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を実装できます。
+
+スイッチオーバーが必要なサイト障害がノードで検出されると、スイッチオーバーに該当する状況であることを確認したうえでスイッチオーバーが実行されます。
+
+MAUSO が開始されるのは、各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングの両方が動作しており、障害発生時にキャッシュとミラーが同期されている場合だけです。

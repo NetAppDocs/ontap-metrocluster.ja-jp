@@ -14,6 +14,7 @@ ONTAP メディエーターサービスをインストールするには、す�
 
 次の前提条件を満たしている必要があります。
 
+[cols="30,70"]
 |===
 
 
@@ -55,18 +56,19 @@ Red Hat Subscription Manager については、 Red Hat のドキュメントを
 ** 3260
 
 
-* サードパーティ製ファイアウォールを使用している場合は、を参照してください link:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#firewall-requirements-for-ontap-mediator["ONTAP メディエーターのファイアウォール要件"]
+* サードパーティ製ファイアウォールを使用している場合は、を参照してください link:concept_mediator_requirements.html#firewall-requirements-for-ontap-mediator["ONTAP メディエーターのファイアウォール要件"]
 * Linux ホストがインターネットにアクセスできない場所にある場合は、パッケージを手動でインストールできます。必要なパッケージがローカルリポジトリにあることを確認してください。
 +
 リポジトリの設定については、次のリンクを参照してください。
 
 +
-Linux 環境で Link Aggregation Control Protocol （ LACP ）を使用している場合は、カーネルを正しく設定し、 sysctl net.ipv4.conf all.arp_ignore が「 2 」に設定されていることを確認する必要があります。
+Linux 環境で Link Aggregation Control Protocol （ LACP ）を使用している場合は、カーネルを正しく設定し、「 ysctl net.ipv4.conf all.arp_ignore 」が「 2 」に設定されていることを確認する必要があります。
 
 +
 ONTAP メディエーターサービスで必要なパッケージは次のとおりです。
 
 +
+[cols="25,35,40"]
 |===
 
 
@@ -106,7 +108,10 @@ ONTAP メディエーターサービスで必要なパッケージは次のと�
 +
 ... /etc/default/grub ファイルを開きます。
 ... GRUB _cmdline_linux 文の最後に文字列 module.sig_enforce =0 を追加します。
-... grub.cfg ファイルを再生成し、変更を実装します。「 update-bootloader | |update-grub | grub2 -mkconfig -o /boot/grub2/grub.cfg 」
+... grub.cfg ファイルを再生成し、変更を実装します。
++
+「 update-bootloader 」 | 「 update-grub 」 | 「 grub2 -mkconfig -o /boot/grub2/grub.cfg 」を参照してください
+
 ... ホストをリブートします。
 
 
@@ -124,7 +129,7 @@ ONTAP メディエーターサービスで必要なパッケージは次のと�
 
 この手順は、既存の環境のインストールまたはアップグレードに使用します。
 
-link:concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html#guidelines-for-upgrading-the-ontap-mediator-in-a-metrocluster-configuration["MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン"]
+link:concept_mediator_requirements.html#guidelines-for-upgrading-the-ontap-mediator-in-a-metrocluster-configuration["MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン"]
 
 
 
@@ -167,11 +172,15 @@ kernel-devel
 |===
 インストールプロセスでメディエーターから必要なパッケージにアクセスできるように、上記のリポジトリへのアクセスを有効にします。お使いのオペレーティングシステムに応じて、以下の手順を使用してください。
 
-* の手順 <<rhel7x,RHEL 7.x>>
-* の手順 <<rhel8x,RHEL 8.x の場合>>
-* の手順 <<centos7x,CentOS 7.x>>
-* の手順 <<centos8x,CentOS 8.0.1095 以降>>
+* の手順 <<rhel7x,RHEL 7.x>> オペレーティングシステム：
+* の手順 <<rhel8x,RHEL 8.x の場合>> オペレーティングシステム：
+* の手順 <<centos7x,CentOS 7.x>> オペレーティングシステム：
+* の手順 <<centos8x,CentOS 8.0.1095 以降>> オペレーティングシステム：
 
+
+
+
+=== RHEL 7.x オペレーティングシステム用の手順
 
 オペレーティング・システムが * RHEL 7.x * の場合：
 
@@ -211,6 +220,10 @@ repolist: 46,205
 ----
 
 
+
+
+=== RHEL 8.x オペレーティングシステム用の手順
+
 オペレーティング・システムが * RHEL 8.x * の場合：
 
 .手順
@@ -237,6 +250,10 @@ Repository 'rhel-8-for-x86_64-appstream-rpms' is enabled for this system.
 新しくサブスクライブしたリポジトリがリストに表示されます。
 
 
+
+
+
+=== CentOS 7.x オペレーティングシステムの手順
 
 オペレーティングシステムが * CentOS 7.x * の場合：
 
@@ -278,23 +295,34 @@ repolist: 21,433
 ----
 
 
+
+
+=== 手順 for CentOS 8.0.1905 以降のオペレーティングシステム
+
 オペレーティングシステムが * CentOS 8.0.1905 以降のビルド * の場合：
 
-最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアは CentOS Vault に含まれているため、必要なカーネルモジュールをコンパイルするためには、一致する kernel-devel パッケージへのアクセスを提供する必要があります。
+最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアはに搭載されているためです https://vault.centos.org["CentOS Vault の場合"]必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。
 
 .手順
 . [stp1 -rpm] 問題 kernel-devel パッケージを直接インストールするには、次のコマンドを使用します。
++
+「 rpm -i \ http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname -r 」。 rpm
 
++
+--
 
-「 rpm -i 」 http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname[] -r ） .rpm`
+NOTE: 上記のコマンドの例は、 CentOS 8.0.1905 固有のものです。他の CentoOS 8.x ビルドの場合は、必要に応じてパスを変更します。
 
-パッケージがすでにインストールされていることを示すエラーが表示された場合は、パッケージを削除してから再試行してください。
-
-. kernel-devel パッケージを削除します。
+--
+. パッケージがすでにインストールされていることを示すエラーが表示された場合は、パッケージを削除してから再試行してください。
++
+.. kernel-devel パッケージを削除します。
 +
 yum 'remove kernel-devel'
 
-. に示すように 'rpm' コマンドを繰り返します <<step1-rpm,手順 1.>>。
+.. に示すように 'rpm' コマンドを繰り返します <<step1-rpm,手順 1.>>。
+
+
 
 
 

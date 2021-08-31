@@ -16,11 +16,8 @@ RCF ファイルを正しく生成するためには、ポートテーブル内�
 
 * 次の表は、サイト A で使用するポートを示していますサイト B でも同じケーブル接続が使用されます
 * 速度が異なるポート（ 100Gbps ポートと 40Gbps ポートなど）をスイッチに設定することはできません。
-* MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 など）を追跡します。RcfFileGenerator ツールを使用する場合は、この設定手順で後述するように、このツールが必要になります。
-* 。 https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"] また、各スイッチのポートごとのケーブル接続の概要についても説明します。
-+
-ケーブル接続の概要を使用して、ケーブル接続を検証します。
-
+* MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 など）を追跡します。この情報は、この構成手順で後述するように、 RcfFileGenerator ツールを使用する場合に必要になります。
+* 。 https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"] また、各スイッチのポートごとのケーブル接続の概要についても説明します。ケーブル接続の概要を使用して、ケーブル接続を検証します。
 
 
 
@@ -38,6 +35,7 @@ ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレー�
 * MetroCluster 2 ： AFF A700 プラットフォーム（これらのプラットフォームは 2 つ目の 4 ノード DR グループとして追加）
 
 
-MetroCluster 1 では、 FAS2750 プラットフォームの表と MetroCluster 1 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。
+.手順
+. MetroCluster 1 では、 FAS2750 プラットフォームの表と MetroCluster 1 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。
+. MetroCluster 2 （ 2 つ目の DR グループ）の場合は、 AFF A700 プラットフォームの表と MetroCluster 2 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。
 
-MetroCluster 2 （ 2 つ目の DR グループ）の場合は、 AFF A700 プラットフォームの表と MetroCluster 2 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。

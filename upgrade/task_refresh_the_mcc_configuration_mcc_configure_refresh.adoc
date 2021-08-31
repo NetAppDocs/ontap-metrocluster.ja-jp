@@ -12,10 +12,11 @@ summary: MetroCluster 構成を 2 ノード構成から 4 ノード構成に拡�
 [role="lead"]
 MetroCluster 構成を 2 ノード構成から 4 ノード構成に拡張する場合は、 構成を更新する必要があります。
 
+.手順
 . MetroCluster 構成を更新します。
 +
-.. advanced 権限モードに切り替えます。 +`*set -privilege advanced *`
-.. MetroCluster 構成を更新します :+`* MetroCluster configure -refresh true -allow-with-one-aggregate true *`
+.. advanced 権限モードに切り替えます。 + 「 set -privilege advanced 」
+.. MetroCluster 構成を更新します。 + MetroCluster configure -refresh true -allow-with-one-aggregate true
 +
 次のコマンドを実行すると、 controller_A_1 を含む DR グループのすべてのノードの MetroCluster 構成が更新されます。
 
@@ -26,12 +27,15 @@ controller_A_1::*> metrocluster configure -refresh true -allow-with-one-aggregat
 
 [Job 726] Job succeeded: Configure is successful.
 ----
-.. admin 特権モードに戻ります :+`*set -privilege admin*`
+.. admin 権限モードに戻ります。
++
+「特権管理者」
+
 
 
 . サイト A のネットワークステータスを確認します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 次の例は、 4 ノード MetroCluster 構成でのネットワークポートの用途を示しています。
@@ -65,7 +69,7 @@ controller_A_2
 +
 .. サイト A から構成を確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 +
 [listing]
@@ -82,7 +86,7 @@ Remote: cluster_B         Configuration state configured
 ----
 .. サイト B から構成を確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 +
 [listing]
@@ -97,7 +101,10 @@ Remote: cluster_A         Configuration state configured
                           Mode                normal
                           AUSO Failure Domain auso-on-cluster-disaster
 ----
-.. DR 関係が正しく作成されたことを確認します。 +`* MetroCluster node show -fields DR-cluster 、 DR-auxiliary 、 node-object-limit 、 automatic-suso 、 ha-partner-、 dr-partner *`
+.. DR 関係が正しく作成されたことを確認します。
++
+MetroCluster node show -fields dr-cluster 、 dr-auxiliary 、 node-object-limit 、 automatic-suso 、 ha-partner 、 dr-partner
+
 +
 [listing]
 ----

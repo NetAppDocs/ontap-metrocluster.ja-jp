@@ -12,6 +12,7 @@ summary: 2 ノード MetroCluster FC 構成を 4 ノード MetroCluster FC 構�
 [role="lead"]
 2 ノード MetroCluster FC 構成を 4 ノード MetroCluster FC 構成に拡張するには、各クラスタにコントローラを追加して各 MetroCluster サイトに HA ペアを形成してから、 MetroCluster FC 構成をリフレッシュします。
 
+.作業を開始する前に
 * ノードが MetroCluster FC 構成で ONTAP 9 以降を実行している必要があります。
 +
 この手順は、以前のバージョンの ONTAP または MetroCluster IP 構成ではサポートされていません。
@@ -27,6 +28,9 @@ link:../install-stretch/index.html["ストレッチ MetroCluster のインスト
 
 * 新しいコントローラとブリッジに対応する FC スイッチポートが必要です。
 * 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
+
+
+.このタスクについて
 * この手順は、 MetroCluster FC 構成にのみ適用されます。
 * この手順はシステムの停止を伴うため、完了までに約 4 時間かかります。
 * この手順を実行する前は、 2 つのシングルノードクラスタで MetroCluster FC 構成が構成されています。

@@ -15,7 +15,7 @@ summary: 既存のコントローラを特定し、コントローラ間のデ�
 .手順
 . 構成内の任意のノードから、 MetroCluster 構成内のノードの詳細を表示します。
 +
-MetroCluster node show -fields node'dr-partner 'dr-partner systemid*
+MetroCluster node show -fields node 、 dr-partner 、 dr-partner-systemid`
 
 +
 次の出力は、この MetroCluster 構成に DR グループが 1 つ、各クラスタにノードが 1 つあることを示しています。
@@ -33,7 +33,7 @@ dr-group-id  cluster         node            dr-partner      dr-partner-systemid
 ----
 . MetroCluster 設定の状態を表示します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 +
 次の出力は、 MetroCluster 構成内の既存のノードが通常モードであることを示しています。
@@ -58,7 +58,7 @@ Remote: controller_B_1_siteB
 ----
 . MetroCluster 構成の各ノードのアグリゲートの状態を確認します。
 +
-'*storage aggregate show*
+「 storage aggregate show
 
 +
 次の出力は、 cluster_A のアグリゲートがオンラインであり、ミラーされていることを示しています。

@@ -15,7 +15,7 @@ summary: 専用ポートにクラスタ間 LIF を設定できます。通常は
 .手順
 . クラスタ内のポートの一覧を表示します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -48,7 +48,7 @@ cluster01-02
 ----
 . クラスタ間通信専用に使用可能なポートを特定します。
 +
-*network interface show -fields home-port 、 curr -port *'
+network interface show -fields home-port 、 curr -port
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -76,10 +76,10 @@ cluster01
 ----
 . 専用ポートのフェイルオーバーグループを作成します。
 +
-「 * network interface failover-groups create -vserver_system_SVM__ failover-group_failover_group_ -targets_physical_or_logical_ports_* 」のように指定します
+「 network interface failover-groups create -vserver_system_svm 」 -failover-group_failover_group_ -targets_physical_or_logical_ports_`
 
 +
-次の例は、ポート e0e とポート e0f を、システム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。
+次の例は、ポート「 e0e 」と「 e0f 」を、システム SVM 「 cluster01 」上のフェイルオーバーグループ「 intercluster01 」に割り当てます。
 
 +
 [listing]
@@ -90,7 +90,7 @@ cluster01-01:e0e,cluster01-01:e0f,cluster01-02:e0e,cluster01-02:e0f
 ----
 . フェイルオーバーグループが作成されたことを確認します。
 +
-「 * network interface failover-groups show * 」と表示されます
+「 network interface failover-groups show 」と表示されます
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -142,7 +142,7 @@ network interface create -vserver system_svm -lif lif_name -role intercluster -h
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、フェイルオーバーグループ intercluster01 にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
+次の例は、フェイルオーバーグループ「 intercluster01 」にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
 
 +
 [listing]
@@ -158,21 +158,21 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 . クラスタ間 LIF が作成されたことを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
  a| 
-「 * network interface show -service -policy default -intercluster * 」のように表示されます
+「 network interface show -service -policy default -intercluster 」のように表示されます
 
+
+
+| * ONTAP 9.5 以前： * 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
- a| 
-「 * network interface show -role intercluster * 」のようになります
+「 network interface show -role intercluster 」の略
 
 |===
 +
@@ -196,30 +196,26 @@ cluster01
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
-
-
- a| 
-「 * network interface show -service -policy default -intercluster-failover * 」のように入力します
-
+| * ONTAP 9.6 以降： * 
 
 
  a| 
-* ONTAP 9.5 以前： *
+「 network interface show -service -policy default -intercluster-failover 」のように入力します
 
+
+
+| * ONTAP 9.5 以前： * 
 
 
  a| 
-「 * network interface show -role intercluster-failover * 」の略
+「 network interface show -role intercluster-failover 」の略
 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、 SVM0e ポートのクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が e0f ポートにフェイルオーバーされることを示しています。
+次の例は、 SVM 「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。
 
 +
 [listing]

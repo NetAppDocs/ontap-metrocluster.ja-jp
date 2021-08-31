@@ -26,6 +26,8 @@ MetroCluster ノードにディスクが正しく割り当てられていない�
 構成に DS460C ディスクシェルフが含まれている場合は、それぞれの 12 ディスクドロワーについて、次のガイドラインに従ってディスクを手動で割り当てる必要があります。
 
 |===
+
+
 | ドロワーのディスク | ノードとプール 
 
 
@@ -68,7 +70,10 @@ HA パートナーのプール 1 の DR パートナー
 各プールに同じ数のシェルフを割り当てる必要があります。
 
 +
-.. 最初のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_local-switch-name ： shelf-name. port _p_pool_*`
+.. 最初のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。
++
+「 Disk assign-shelf_local-switch-name ： shelf-name .port_-p_pool_`
+
 +
 ストレージコントローラ Controller_A_1 にシェルフが 4 台ある場合は、次のコマンドを問題に設定します。
 
@@ -81,7 +86,10 @@ HA パートナーのプール 1 の DR パートナー
 *> disk assign -shelf FC_switch_B_1:1-4.shelf1 -p 1
 *> disk assign -shelf FC_switch_B_1:1-4.shelf2 -p 1
 ----
-.. ローカルサイトの 2 番目のノードに対して処理を繰り返し、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_local-switch-name ： shelf-name .port_-p_pool_*`
+.. ローカルサイトの 2 番目のノードに対して処理を繰り返し、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。
++
+「 Disk assign-shelf_local-switch-name ： shelf-name .port_-p_pool_`
+
 +
 ストレージコントローラ Controller_A_2 にシェルフが 4 台ある場合は、次のコマンドを問題に設定します。
 
@@ -104,7 +112,10 @@ HA パートナーのプール 1 の DR パートナー
 各プールに同じ数のシェルフを割り当てる必要があります。
 
 +
-.. リモートサイトの最初のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_local-switch-name shelf-name _-p _pool_*`
+.. リモートサイトの最初のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。
++
+「ディスク assign -shelf_local-switch-namesshelf-name _-p_pool_` 」
+
 +
 ストレージコントローラ Controller_B_1 にシェルフが 4 台ある場合は、次のコマンドを問題します。
 
@@ -117,7 +128,10 @@ HA パートナーのプール 1 の DR パートナー
 *> disk assign -shelf FC_switch_A_1:1-5.shelf1 -p 1
 *> disk assign -shelf FC_switch_A_1:1-5.shelf2 -p 1
 ----
-.. リモートサイトの 2 番目のノードに対して処理を繰り返し、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_shelf-name _-p_pool_*`
+.. リモートサイトの 2 番目のノードに対して処理を繰り返し、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。
++
+「ディスク assign -shelf_shelf-name-p_pool_` 」
+
 +
 ストレージコントローラ Controller_B_2 にシェルフが 4 台ある場合は、次のコマンドを問題に実行します。
 
@@ -134,15 +148,15 @@ HA パートナーのプール 1 の DR パートナー
 
 . シェルフの割り当てを確認します。
 +
-'*storage show shelf *
+「 storage show shelf
 
 . メンテナンスモードを終了します。
 +
-*halt *`
+「 halt 」
 
 . ブートメニューを表示します。
 +
-「 * boot_ontap menu * 」のようになります
+「 boot_ontap menu
 
 . 各ノードで、オプション * 4 * を選択してすべてのディスクを初期化します。
 

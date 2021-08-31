@@ -15,7 +15,7 @@ summary: データネットワークと共有するポートにクラスタ間 L
 .手順
 . クラスタ内のポートの一覧を表示します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -45,21 +45,21 @@ cluster01-02
 . システム SVM にクラスタ間 LIF を作成します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
  a| 
-「 * network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -address_port_IP_-netmask netmask _ * 」のようになります
+「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -address_port_ip_-netmask_`
 
+
+
+| * ONTAP 9.5 以前： * 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
- a| 
-「 * network interface create -vserver _system_svm _ -lif LIF_name -role intercluster -home-node _node _-home-port _ -address _port_IP_address -netmask * netmask * 」のようになります
+「 network interface create -vserver _system_svm _ -lif LIF_name -role intercluster -home-node _node _-home-port _ -address_port_ip_-netmask netmask _ 」のようになります
 
 |===
 +
@@ -83,21 +83,21 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 . クラスタ間 LIF が作成されたことを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
  a| 
-「 * network interface show -service -policy default -intercluster * 」のように表示されます
+「 network interface show -service -policy default -intercluster 」のように表示されます
 
+
+
+| * ONTAP 9.5 以前： * 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
- a| 
-「 * network interface show -role intercluster * 」のようになります
+「 network interface show -role intercluster 」の略
 
 |===
 +
@@ -119,21 +119,21 @@ cluster01
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
 |===
+
+
 | * ONTAP 9.6 以降： * 
 
 
  a| 
-「 * network interface show – service-policy default-intercluster-failover * 」と表示されます
+「 network interface show – service-policy default-intercluster-failover 」と表示されます
 
+
+
+| * ONTAP 9.5 以前： * 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
- a| 
-「 * network interface show -role intercluster-failover * 」の略
+「 network interface show -role intercluster-failover 」の略
 
 |===
 +

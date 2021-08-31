@@ -14,17 +14,23 @@ summary: クラスタインターコネクトおよびバックエンド MetroCl
 
 == Cisco IP スイッチを工場出荷時のデフォルトにリセットする
 
-[role="lead"]
 新しいバージョンのソフトウェアと RCF をインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。
 
 この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
 
+.手順
 . スイッチを工場出荷時のデフォルトにリセットします。
 +
-.. 既存の設定を消去します。「 write erase 」
-.. スイッチソフトウェアをリロードします
+.. 既存の設定を消去します。
 +
-システムがリブートし、設定ウィザードが表示されます。起動中に、 Abort Auto Provisioning （自動プロビジョニングの中止）というプロンプトが表示され、通常のセットアップを続行する場合（ yes/no ） [n] 、「 yes 」と入力して続行します。
+「 write erase 」を入力します
+
+.. スイッチソフトウェアをリロードします。
++
+「再ロード」
+
++
+システムがリブートし、設定ウィザードが表示されます。起動時に 'Abort Auto Provisioning と表示され ' 通常のセットアップを続行する場合は '(yes/no)[n]` と入力して続行します
 
 .. 設定ウィザードで、スイッチの基本設定を入力します。
 +
@@ -32,7 +38,10 @@ summary: クラスタインターコネクトおよびバックエンド MetroCl
 *** スイッチ名
 *** アウトオブバンド管理設定
 *** デフォルトゲートウェイ
-*** SSH サービス（ RSA ）設定ウィザードが完了すると、スイッチがリブートします。
+*** SSH サービス（ RSA ）
++
+設定ウィザードが完了すると、スイッチがリブートします。
+
 
 
 .. プロンプトが表示されたら、ユーザ名とパスワードを入力してスイッチにログインします。
@@ -130,16 +139,12 @@ IP_switch_A_1#
 
 . 設定を保存します。
 +
-[listing]
-----
- IP_switch-A-1# copy running-config startup-config
-----
+ip_switch -a-1 # copy running-config startup-config
+
 . スイッチをリブートし、スイッチがリロードされるまで待ちます。
 +
-[listing]
-----
- IP_switch-A-1# reload
-----
+ip_switch -a-1 # reload`
+
 . MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
 
 
@@ -147,7 +152,6 @@ IP_switch_A_1#
 
 == Cisco スイッチの NX-OS ソフトウェアのダウンロードとインストール
 
-[role="lead"]
 MetroCluster IP 構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
 
 この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。
@@ -158,13 +162,17 @@ MetroCluster IP 構成の各スイッチにスイッチのオペレーティン�
 
 https://hwu.netapp.com["NetApp Hardware Universe の略"]
 
+.手順
 . サポートされている NX-OS ソフトウェアファイルをダウンロードします。
 +
 https://software.cisco.com/download/home["シスコソフトウェアのダウンロード"]
 
-. スイッチソフトウェアをスイッチにコピーします。「 + copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management+
+. スイッチソフトウェアをスイッチにコピーします。
 +
-この例では、 nxos.7.0.3.I4.6.bin ファイルを SFTP サーバ 10.10.99.99 からローカルブートフラッシュにコピーしています。
+'copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management`
+
++
+この例では、 "nxos.7.0.3.I4.6.bin" ファイルが SFTP サーバ "10.10.99.99" からローカルブートフラッシュにコピーされています。
 
 +
 [listing]
@@ -179,7 +187,10 @@ Fetching /tftpboot/nxos.7.0.3.I4.6.bin to /bootflash/nxos.7.0.3.I4.6.bin
 sftp> exit
 Copy complete, now saving to disk (please wait)...
 ----
-. 各スイッチの bootflash: `d IR bootflash: ` に、スイッチの NX-OS ファイルが存在することを各スイッチで確認します
+. 各スイッチの bootflash ディレクトリにスイッチの NX-OS ファイルがあることを確認します。
++
+「 IR bootflash: 」のように表示されます
+
 +
 次の例は、 FC_switch_A_1 にファイルが存在することを示しています。
 
@@ -201,12 +212,15 @@ Usage for bootflash://sup-local
 15018205184 bytes total
 IP_switch_A_1#
 ----
-. スイッチソフトウェアをインストールします。“ install all nxos bootflash:nxos.version-number.bin “
+. スイッチソフトウェアをインストールします。
++
+すべての nxos bootflash:nxos.version-number.bin をインストールします
+
 +
 スイッチソフトウェアがインストールされると、スイッチは自動的にリロード（リブート）します。
 
 +
-次の例は、 FC_switch_A_1 へのソフトウェアのインストールを示しています。
+次の例は、「 FC_switch_A_1 」へのソフトウェアのインストールを示しています。
 
 +
 [listing]
@@ -291,7 +305,10 @@ IP_switch_A_1#
 
 The switch software is now installed.
 ----
-. スイッチソフトウェアがインストールされていることを確認します : 'how version
+. スイッチソフトウェアがインストールされたことを確認します。
++
+'how version （バージョンの表示） '
+
 +
 次の例は、の出力を示しています。
 
@@ -343,7 +360,6 @@ IP_switch_A_1#
 
 == Cisco IP RCF ファイルのダウンロードとインストール
 
-[role="lead"]
 MetroCluster IP 構成の各スイッチに RCF ファイルをダウンロードする必要があります。
 
 この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。
@@ -357,6 +373,8 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 RCF ファイルは 4 つあり、それぞれが MetroCluster IP 構成の 4 つの各スイッチに対応しています。使用するスイッチのモデルに対応した正しい RCF ファイルを使用する必要があります。
 
 |===
+
+
 | スイッチ | RCF ファイル 
 
 
@@ -387,12 +405,16 @@ IP_switch_B_2
 NX3232_v1.80_Switch-B2.txt
 
 |===
+.手順
 . MetroCluster IP RCF ファイルをからダウンロードします https://mysupport.netapp.com/site/products/all/details/metrocluster-rcf/downloads-tab["MetroCluster の RCF ダウンロードページ"]。
 . RCF ファイルをスイッチにコピーします。
 +
-.. RCF ファイルを最初のスイッチにコピーします。「 + copy sftp://root@ftp-server-ip-address/tftpboot/switch-specific -RCF bootflash: vrf management+ 」
+.. RCF ファイルを最初のスイッチにコピーします。
 +
-この例では、 NX3232_v1.80_Switch-A1.txt RCF ファイルを SFTP サーバの 10.10.99.99 からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスと、インストールする必要がある RCF ファイルのファイル名を使用する必要があります。
+'copy sftp://root@ftp-server-ip-address /tftpboot/switch-specific -RCF bootflash:vrf management`
+
++
+この例では、「 NX3232_v1.80_Switch-A1.txt 」 RCF ファイルを SFTP サーバの「 10.10.99.99 」からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスと、インストールする必要がある RCF ファイルのファイル名を使用する必要があります。
 
 +
 [listing]
@@ -411,7 +433,10 @@ IP_switch_A_1#
 .. 残りの 3 つのスイッチのそれぞれについて、同じ手順を繰り返します。それぞれのスイッチに対応する RCF ファイルをコピーするように注意してください。
 
 
-. 各スイッチの bootflash ディレクトリ「 d IR bootflash: 」に RCF ファイルがあることを確認します
+. 各スイッチの bootflash ディレクトリに RCF ファイルがあることを確認します。
++
+「 IR bootflash: 」のように表示されます
+
 +
 次の例は、 FC_switch_A_1 にファイルが存在することを示しています。
 
@@ -433,8 +458,14 @@ Usage for bootflash://sup-local
 15018205184 bytes total
 IP_switch_A_1#
 ----
-. 各スイッチで、対応する RCF ファイルをローカルブートフラッシュから実行中の設定にコピーします。「 copy bootflash: switch-specific-RCF.txt running-config
-. 各スイッチで、実行中の設定からスタートアップ設定に RCF ファイルをコピーします。「 copy running-config startup-config
+. 各スイッチで、対応する RCF ファイルをローカルブートフラッシュから実行中の設定にコピーします。
++
+copy bootflash: switch-specific-RCF.txt running-config
+
+. 各スイッチで、実行中の設定からスタートアップ設定に RCF ファイルをコピーします。
++
+'copy running-config startup-config
+
 +
 次のような出力が表示されます。
 
@@ -444,20 +475,18 @@ IP_switch_A_1#
 IP_switch_A_1# copy bootflash:NX3232_v1.80_Switch-A1.txt running-config
 IP_switch-A-1# copy running-config startup-config
 ----
-. スイッチをリロードします
+. スイッチをリロードします。
++
+「再ロード」
+
 +
 [listing]
 ----
 IP_switch_A_1# reload
 ----
-. MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
+. MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。== Cisco 9336C スイッチでの MACsec 暗号化の設定
 
 
-
-
-== Cisco 9336C スイッチでの MACsec 暗号化の設定
-
-[role="lead"]
 サイト間で実行される WAN ISL ポートにのみ MACsec 暗号化を設定する必要があります。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。
 
 
@@ -470,23 +499,32 @@ MACsec にはセキュリティライセンスが必要です。Cisco NX-OS ラ�
 
 === MetroCluster IP 構成での Cisco MACsec 暗号化 WAN ISL のイネーブル化
 
-[role="lead"]
 MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化をイネーブルにできます。
 
-. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
+.手順
+. グローバルコンフィギュレーションモードを開始します。
++
+「 configure terminal 」をクリックします
+
 +
 [listing]
 ----
 IP_switch_A_1# configure terminal
 IP_switch_A_1(config)#
 ----
-. デバイスで MACsec と MKA を有効にします。「 feature MACsec」
+. デバイスで MACsec と MKA を有効にします。
++
+「 feature MACsec
+
 +
 [listing]
 ----
 IP_switch_A_1(config)# feature macsec
 ----
-. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
++
+'copy running-config startup-config
+
 +
 [listing]
 ----
@@ -498,17 +536,23 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 === MetroCluster IP 構成での Cisco MACsec 暗号化 WAN ISL のディセーブル化
 
-[role="lead"]
 MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化を無効にする必要がある場合があります。
 
-. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
+.手順
+. グローバルコンフィギュレーションモードを開始します。
++
+「 configure terminal 」をクリックします
+
 +
 [listing]
 ----
 IP_switch_A_1# configure terminal
 IP_switch_A_1(config)#
 ----
-. デバイスの MACsec 設定を無効にします : 「 ACSEC SHUTDOWN 」
+. デバイスの MACsec 設定を無効にします。
++
+「 ACSEC SHUTDOWN 」のようになります
+
 +
 [listing]
 ----
@@ -528,14 +572,20 @@ NOTE: no オプションを選択すると、 MACsec 機能が復元されます
 IP_switch_A_1(config)# interface ethernet 1/15
 switch(config-if)#
 ----
-. インターフェイスに設定されているキーチェーン、ポリシー、およびフォールバックキーチェーンを削除して、 MACsec 設定を削除します。「 no MACsec keychain -name policy -name fallback-keychain keychain -name 」
+. インターフェイスに設定されているキーチェーン、ポリシー、およびフォールバックキーチェーンを削除して、 MACsec 設定を削除します。
++
+「 no MACsec keychain_keychain -name_policy_policy-name_fallback-keychain_fallback-keychain-name_` 」を指定します
+
 +
 [listing]
 ----
 IP_switch_A_1(config-if)# no macsec keychain kc2 policy abc fallback-keychain fb_kc2
 ----
 . MACsec が設定されているすべてのインターフェイスで、ステップ 3 と 4 を繰り返します。
-. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
++
+'copy running-config startup-config
+
 +
 [listing]
 ----
@@ -547,7 +597,6 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 === MACsec キーチェーンおよびキーの設定
 
-[role="lead"]
 MACsec キーチェーンまたはキーをコンフィギュレーションに作成できます。
 
 * キーライフタイムと Hitless Key Rollover *
@@ -558,36 +607,44 @@ MACsec キーチェーンには、複数の Pre-Shared Key （ PSK; 事前共有
 
 MACsec セッションは、キー / キー名（ CKN ）の不一致、またはスイッチとピアの間の有限のキー持続時間により失敗する可能性があります。MACsec セッションに障害が発生した場合、フォールバックキーが設定されていれば、フォールバックセッションを引き継ぐことができます。フォールバックセッションを使用すると、プライマリセッションの障害によるダウンタイムを回避できます。また、ユーザは障害の原因となっているキー問題を修復する時間を確保できます。フォールバックキーは、プライマリセッションの開始に失敗した場合にもバックアップセッションを提供します。この機能はオプションです。
 
-. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
+.手順
+. グローバルコンフィギュレーションモードを開始します。
++
+「 configure terminal 」をクリックします
+
 +
 [listing]
 ----
 IP_switch_A_1# configure terminal
 IP_switch_A_1(config)#
 ----
-. 暗号化されたキーオクテットストリングを非表示にするには、 show running-config コマンドおよび show startup-config コマンドの出力で、ストリングをワイルドカード文字で置き換えます。
+. 暗号化されたキーオクテット文字列を非表示にするには、「 show running-config 」コマンドと「 show startup-config 」コマンドの出力で、文字列をワイルドカード文字に置き換えます。
 +
 [listing]
 ----
 IP_switch_A_1(config)# key-chain macsec-psk no-show
 ----
 +
-注
 
-+
-オクテット文字列は、コンフィギュレーションをファイルに保存するときにも非表示になります。
+NOTE: オクテット文字列は、コンフィギュレーションをファイルに保存するときにも非表示になります。
 
 +
 デフォルトでは、 PSK キーは暗号化形式で表示され、簡単に復号化できます。このコマンドは、 MACsec キーチェーンにのみ適用されます。
 
-. MACsec キーチェーンを作成して、一連の MACsec キーを保持し、「キーチェーン名 MACsec 」という MACsec キーチェーンコンフィギュレーションモードを開始します
+. MACsec キーチェーンを作成して一連の MACsec キーを保持し、 MACsec キーチェーンコンフィギュレーションモードを開始します。
++
+キーチェーン名 MACsec
+
 +
 [listing]
 ----
 IP_switch_A_1(config)# key chain 1 macsec
 IP_switch_A_1(config-macseckeychain)#
 ----
-. MACsec キーを作成し、 MACsec キーコンフィギュレーションモードを開始します。「 key key-id 」
+. MACsec キーを作成し、 MACsec キーコンフィギュレーションモードを開始します。
++
+「 key key-id 」
+
 +
 指定できる 16 進数のキー文字列の範囲は 1 ～ 32 で、最大サイズは 64 文字です。
 
@@ -597,7 +654,10 @@ IP_switch_A_1(config-macseckeychain)#
 IP_switch_A_1 switch(config-macseckeychain)# key 1000
 IP_switch_A_1 (config-macseckeychain-macseckey)#
 ----
-. キーのオクテットストリングとして、「 key-octet-string octet-string encryption-algorithm ae_128_CMAC | ae_256_CMAC 」を設定します
+. キーのオクテット文字列を設定します。
++
+「 key-octet-string octet-string octet-string cryptographic-algorithm ae_128_CMAC | aes-256_CMAC 」という形式で指定します
+
 +
 [listing]
 ----
@@ -606,24 +666,33 @@ cryptographic-algorithm AES_256_CMAC
 ----
 +
 
-NOTE: octet-string 引数には、最大 64 個の 16 進文字を含めることができます。OCTET KEY は内部でエンコードされているため、 show running-config macsec コマンドの出力にクリアテキストのキーは表示されません。
+NOTE: 「 octet-string 」引数には、最大 64 文字の 16 進文字を含めることができます。オクテットキーは内部でエンコードされるため、クリアテキストのキーは、「 show running-config macsec 」コマンドの出力には表示されません。
 
-. キーの送信ライフタイム（秒単位）を設定します。「終了ライフタイムの開始時間の長さ」
+. キーの終了ライフタイムを設定します（秒単位）。
++
+'end-lifetime start-time duration_`
+
 +
 [listing]
 ----
 IP_switch_A_1(config-macseckeychain-macseckey)# send-lifetime 00:00:00 Oct 04 2020 duration 100000
 ----
 +
-デフォルトでは、デバイスは開始時間を UTC として処理します。start-time 引数には、キーがアクティブになる時刻と日付を指定します。duration 引数は、ライフタイムの秒単位の長さです。最大値は 2147483646 秒（約 68 年）です。
+デフォルトでは、デバイスは開始時間を UTC として処理します。「 tart -time 」引数は、キーがアクティブになる時刻と日付です。「引き数」は、ライフタイムの秒数です。最大値は 2147483646 秒（約 68 年）です。
 
 . 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
++
+running-config startup-config をコピーします
+
 +
 [listing]
 ----
 IP_switch_A_1(config)# copy running-config startup-config
 ----
-. キーチェーン設定「キーチェーン名」を表示します
+. キーチェーン設定を表示します。
++
+「鍵チェーン名」
+
 +
 [listing]
 ----
@@ -635,33 +704,56 @@ IP_switch_A_1(config-macseckeychain-macseckey)# show key chain 1
 
 === MACsec ポリシーを設定します
 
-. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
+.手順
+. グローバルコンフィギュレーションモードを開始します。
++
+「 configure terminal 」をクリックします
+
 +
 [listing]
 ----
 IP_switch_A_1# configure terminal
 IP_switch_A_1(config)#
 ----
-. MACsec ポリシー「 mACSEC policy name 」を作成します
+. MACsec ポリシーを作成します。
++
+「 ACSEC ポリシー名」
+
 +
 [listing]
 ----
 IP_switch_A_1(config)# macsec policy abc
 IP_switch_A_1(config-macsec-policy)#
 ----
-. 次のいずれかの暗号、 gcm-aes-128 、 gcm-aes-256 、 gcm-aes-XPN-128 、または gcm-aes-XPN-256 のいずれかを設定します。「 cipher-site name 」
+. 次のいずれかの暗号を設定します。
++
+** gcm - AES-128
+** gcm - AES-256
+** gcm - AES-XPN-128
+** gcm - AES-XPN -256
++
+「 cipher-site name 」
+
 +
 [listing]
 ----
 IP_switch_A_1(config-macsec-policy)# cipher-suite GCM-AES-256
 ----
-. キー交換時にピア間の接続を解除するために、キーサーバのプライオリティを設定します。「キーサーバプライオリティ番号」
+
+
+. キー交換時にピア間の接続を解除するために、キーサーバの優先度を設定します。
++
+「 key-server-priority_number 」のように設定します
+
 +
 [listing]
 ----
 switch(config-macsec-policy)# key-server-priority 0
 ----
-. セキュリティポリシーを設定して、データの処理と制御パケット（「セキュリティポリシー」）を定義します
+. データおよび制御パケットの処理を定義するセキュリティポリシーを設定します。
++
+「 security-policy_security-policy_」 を指定します
+
 +
 次のオプションからセキュリティポリシーを選択します。
 
@@ -675,7 +767,10 @@ switch(config-macsec-policy)# key-server-priority 0
 ----
 IP_switch_A_1(config-macsec-policy)# security-policy should-secure
 ----
-. リプレイ保護ウィンドウを設定して、セキュアインターフェイスが設定されたウィンドウサイズより小さいパケットを受け入れないようにします。「 window-size number 」
+. 設定されたウィンドウサイズより小さいパケットがセキュアインターフェイスで受け入れられないように、リプレイ保護ウィンドウを設定します。
++
+window-size_number_`
+
 +
 
 NOTE: リプレイ保護ウィンドウのサイズは、 MACsec が受信して破棄されない最大アウトオブシーケンスフレーム数を表します。指定できる範囲は 0 ～ 596000000 です。
@@ -685,16 +780,22 @@ NOTE: リプレイ保護ウィンドウのサイズは、 MACsec が受信して
 ----
 IP_switch_A_1(config-macsec-policy)# window-size 512
 ----
-. SAK キーの再生成を強制する時間を秒単位で設定します : 'AK-expiry-date
+. SAK キーの再生成を強制する時間を秒単位で設定します。
 +
-このコマンドを使用して、予測可能な時間間隔にセッションキーを変更できます。デフォルトは 0 です。
+'sak-expiry-time_`
+
++
+このコマンドを使用して、予測可能な時間間隔にセッションキーを変更できます。デフォルトは「 0 」です。
 
 +
 [listing]
 ----
 IP_switch_A_1(config-macsec-policy)# sak-expiry-time 100
 ----
-. 暗号化が開始されるレイヤ 2 フレームで、「 conf-offsetconfidentiality offset 」のいずれかの機密性オフセットを設定します
+. 暗号化を開始するレイヤ 2 フレームで、次の機密性オフセットのいずれかを設定します。
++
+「 conf-offsetconfidentiality offset 」を参照してください
+
 +
 次のいずれかのオプションを選択します。
 
@@ -702,23 +803,30 @@ IP_switch_A_1(config-macsec-policy)# sak-expiry-time 100
 ** conf-offset-0 。
 ** conf-offset-30 。
 ** conf -offset-50 。
-
-
 +
 [listing]
 ----
 IP_switch_A_1(config-macsec-policy)# conf-offset CONF-OFFSET-0
 ----
-+
-+ 注：このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。
 
-. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
+
++
+
+NOTE: このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。
+
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
++
+'copy running-config startup-config
+
 +
 [listing]
 ----
 IP_switch_A_1(config)# copy running-config startup-config
 ----
-. MACsec ポリシー設定を表示します。「 How MACsec policy 」を参照してください
+. MACsec ポリシー設定を表示します。
++
+「 MACsec ポリシー」
+
 +
 [listing]
 ----
@@ -730,22 +838,25 @@ IP_switch_A_1(config-macsec-policy)# show macsec policy
 
 === MACsec 構成の確認
 
+.手順
 . コンフィギュレーション内の 2 番目のスイッチで上記の手順 * すべて * を繰り返して、 MACsec セッションを確立します。
 . 次のコマンドを実行して、両方のスイッチが正常に暗号化されたことを確認します。
 +
-.. 「 How MACsec mka summary 」を実行します
-.. 実行 :'How MACsec mka session`
-.. 実行： 'How MACsec mka statistics （ MACsec mka 統計情報）
+「 MACsec mka の概要」を参照してください
 
++
+「 MACsec mka セッション」を参照してください
+
++
+「 MACsec mka の統計情報」を参照してください
 
 +
 MACsec 設定を確認するには、次のコマンドを使用します。
 
 +
-[+]
-
-+
 |===
+
+
 | コマンドを実行します | 表示される情報 
 
 
@@ -782,10 +893,13 @@ MACsec MKA 設定
 
 === WAN ISL ポートでの MACsec フォールバックキーの設定
 
-[role="lead"]
 スイッチとピアの間のキー / キー名（ CKN ）の不一致または有限のキー持続時間の結果としてプライマリセッションに障害が発生した場合に、バックアップセッションを開始するようにフォールバックキーを設定できます。
 
-. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
+.手順
+. グローバルコンフィギュレーションモードを開始します。
++
+「 configure terminal 」をクリックします
+
 +
 [listing]
 ----
@@ -802,10 +916,13 @@ IP_switch_A_1(config)#
 IP_switch_A_1(config)# interface ethernet 1/15
 switch(config-if)#
 ----
-. キー / キー ID の不一致またはキーの有効期限が原因で MACsec セッションに失敗した場合に使用するフォールバックキーチェーンを指定します。「 m ACSEC keychain -name policy -name fallback-keychain keychain -name
+. キー / キー ID の不一致またはキーの有効期限が原因で MACsec セッションに失敗した場合に使用するフォールバックキーチェーンを指定します。
++
+「 m ACSEC keychain_keychain -name_policy_policy-name_fallback-keychain_fallback-keychain-name_` 」です
+
 +
 
-NOTE: この手順に進む前に、 _MACsec キーチェーンと Keys_ の設定を行って、 fallback-keychain を設定する必要があります。
+NOTE: 次の手順を使用して、 fallback-keychain を設定する必要があります。 <<Configuring a MACsec key chain and keys>> この手順に進む前に、
 
 +
 [listing]
@@ -813,7 +930,10 @@ NOTE: この手順に進む前に、 _MACsec キーチェーンと Keys_ の設�
 IP_switch_A_1(config-if)# macsec keychain kc2 policy abc fallback-keychain fb_kc2
 ----
 . MACsec を使用して追加の WAN ISL ポートを設定するには、上記の手順を繰り返します。
-. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
++
+'copy running-config startup-config
+
 +
 [listing]
 ----
@@ -825,7 +945,6 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 == 25Gbps 接続を使用するおよびシステムの前方誤り訂正の設定
 
-[role="lead"]
 25Gbps 接続を使用してシステムが設定されている場合は、 RCF ファイルの適用後に前方誤り訂正（ fec ）パラメータを手動で off に設定する必要があります。この設定は RCF ファイルでは適用されません。
 
 この手順を実行する前に、 25Gbps ポートがケーブル接続されている必要があります。
@@ -836,20 +955,28 @@ link:port_usage_3232c_9336c.html["Cisco 3232C スイッチまたは Cisco 9336C 
 
 このタスクは、 MetroCluster IP 構成の 4 つのスイッチすべてで実行する必要があります。
 
-. コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。
+.手順
+. コントローラモジュールに接続されている各 25Gbps ポートで「 fec 」パラメータを「 off 」に設定し、実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
 +
-.. 構成モードを開始します :config t
-.. 設定する 25Gbps インターフェイスを「 interface interface-Id 」と指定します
-.. fec を off に設定します
-.. スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。
-.. 構成モードを終了します : exit
+.. コンフィギュレーションモードを開始します。
++
+'config t`
 
+.. 設定する 25Gbps インターフェイスを指定します。
++
+'interface_ID_`
+
+.. 「 fec 」を「 off 」に設定します。
++
+「 fec off 」と入力します
+
+.. スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。
+.. 構成モードを終了します。
++
+「 exit
 
 +
 次の例は、スイッチ IP_switch_A_1 のインターフェイス Ethernet1/25/1 に対するコマンドを示しています。
-
-+
-[+]
 
 +
 [listing]
@@ -861,5 +988,7 @@ IP_switch_A_1(config-if)# exit
 IP_switch_A_1(config-if)# end
 IP_switch_A_1# copy running-config startup-config
 ----
+
+
 . MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
 

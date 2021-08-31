@@ -17,47 +17,56 @@ MetroCluster 構成を拡張する場合は、既存のコントローラモジ�
 .手順
 . 既存のコントローラモジュールの ha-config 設定を変更します。
 +
-.. 既存のコントローラモジュールとシャーシの ha-config 設定を表示します。 +`* ha-config show *`
+.. 既存のコントローラモジュールとシャーシの ha-config 設定を表示します。
++
+「 ha-config show 」
+
 +
 コントローラモジュールが 2 ノード MetroCluster 構成であったため、すべてのコンポーネントの ha-config 設定は「 m cc-2n 」です。
 
-.. 既存のコントローラモジュールの ha-config 設定を mcc に変更します。 +`*ha-config modify controller mcc*`
-.. 既存のシャーシの ha-config 設定を mcc に変更します。
+.. 既存のコントローラモジュールの ha-config 設定を「 `m cc`:+`ha-config modify controller mcc` 」に変更します
+.. 既存のシャーシの ha-config 設定を「 mcc 」に変更します。
 +
-'*ha-config modify chassis MCC*
+「 ha-config modify chassis mcc 」
 
 .. 既存のコントローラモジュールのシステム ID を取得します。
 +
-*sysconfig *
+「 sysconfig 」を使用できます
 
 +
 システム ID をメモします。新しいコントローラモジュールでパートナー ID を設定するときに必要になります。
 
 .. メンテナンスモードを終了して LOADER プロンプトに戻ります。
 +
-*halt *`
+「 halt 」
 
 
 
 . ha-config 設定を変更し、新しいコントローラモジュールのシステム ID を取得します。
 +
-.. 新しいコントローラモジュールがまだメンテナンスモードになっていない場合は、メンテナンスモードでブートします。 +`*boot_ontap maint *`
-.. 新しいコントローラモジュールの ha-config 設定を mcc に変更します。
+.. 新しいコントローラモジュールがまだメンテナンスモードになっていない場合は、メンテナンスモードでブートします。
 +
-*ha-config modify controller mcc *
+「 boot_ontap maint 」を使用してください
+
+.. 新しいコントローラモジュールの ha-config 設定を「 `m cc` 」に変更します。
++
+「 ha-config modify controller mcc 」
 
 .. 新しいシャーシの ha-config 設定を mcc に変更します。
 +
-'*ha-config modify chassis MCC*
+「 ha-config modify chassis mcc 」
 
 .. 新しいコントローラモジュールのシステム ID を取得します。
 +
-*sysconfig *
+「 sysconfig 」を使用できます
 
 +
 システム ID をメモします。パートナー ID を設定し、新しいコントローラモジュールにディスクを割り当てる際に必要になります。
 
-.. 保守モードを終了して ' LOADER プロンプトに戻ります +`*halt *`
+.. メンテナンスモードを終了して LOADER プロンプトに戻ります。
++
+「 halt 」
+
 
 
 

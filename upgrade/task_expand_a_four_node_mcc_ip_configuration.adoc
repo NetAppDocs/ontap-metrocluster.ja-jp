@@ -12,6 +12,7 @@ summary: MetroCluster IP 構成に 4 つの新しいノードを 2 つ目の DR 
 [role="lead"]
 ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。
 
+.作業を開始する前に
 * 古いノードと新しいノードで同じバージョンの ONTAP を実行する必要があります。
 * プラットフォームの混在をサポートするプラットフォームモデルについては、新旧がサポートされることを確認する必要があります。
 +
@@ -28,11 +29,11 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 
 == この手順での命名例
 
-[role="lead"]
 この手順では、全体的な名前の例を使用して、 DR グループ、ノード、および関連するスイッチを特定します。
 
-[cols="3*"]
 |===
+
+
 | DR グループ | site_A で cluster_A | site_B （ site_B 
 
 
@@ -65,7 +66,6 @@ dr_group_2 - 新規
 
 == カスタム AutoSupport メッセージをメンテナンス前に送信する
 
-[role="lead"]
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
 
 このタスクは MetroCluster サイトごとに実行する必要があります。
@@ -75,16 +75,16 @@ dr_group_2 - 新規
 +
 .. 次のコマンドを問題に設定します。
 +
-「 * system node AutoSupport invoke -node * -type all -message 」 MAINT=10h Upgrading _old-model_to _new-model 」 _*
+「 system node AutoSupport invoke -node * -type all -message 」 MAINT=10h Upgrading _old-model_to _new-model 」に変更します
 
 +
-この例では、 10 時間のメンテナンス時間を指定しています。計画によっては、さらに時間をかけておくことをお勧めします。
+この例では、 10 時間のメンテナンス時間を指定しています。プランによっては、さらに時間をかけたい場合もあります。
 
 +
 この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
 
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=end *
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
 .. パートナークラスタに対してこのコマンドを繰り返します。
 
@@ -95,24 +95,30 @@ dr_group_2 - 新規
 
 == MetroCluster 構成の健全性の確認
 
-[role="lead"]
 移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります
 
+.手順
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
 .. システムがマルチパスかどうかを確認します。
 +
-'*node run -node node_name sysconfig -a *
+'node run -node _node-name_sysconfig -a
 
-.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
-.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
+.. ヘルスアラートがないかどうかを両方のクラスタで確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
+.. MetroCluster 構成と運用モードが正常な状態であることを確認します。
++
+「 MetroCluster show 」
+
 .. MetroCluster チェックを実行します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 .. MetroCluster チェックの結果を表示します。
 +
-「 * MetroCluster check show * 」と表示されます
+MetroCluster チェックショー
 
 .. Config Advisor を実行します。
 +
@@ -123,7 +129,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 . クラスタが正常であることを確認します。
 +
-*cluster show -vserver Cluster *
+cluster show -vserver Cluster
 
 +
 [listing]
@@ -138,7 +144,7 @@ cluster_A::>
 ----
 . すべてのクラスタポートが動作していることを確認します。
 +
-「 * network port show -ipspace cluster * 」のように表示されます
+「 network port show -ipspace cluster 」のように表示されます
 
 +
 [listing]
@@ -167,7 +173,7 @@ cluster_A::>
 ----
 . すべてのクラスタ LIF が動作していることを確認します。
 +
-「 * network interface show -vserver Cluster * 」のように表示されます
+「 network interface show -vserver Cluster 」のように表示されます
 
 +
 各クラスタ LIF で、 Is Home には true 、 Status Admin/Oper には up/up と表示されるはずです
@@ -196,7 +202,7 @@ cluster_A::>
 ----
 . すべてのクラスタ LIF で自動リバートが有効になっていることを確認します。
 +
-「 * network interface show -vserver Cluster -fields auto-revert * 」を参照してください
+network interface show -vserver Cluster -fields auto-revert を実行します
 
 +
 [listing]
@@ -226,34 +232,36 @@ cluster_A::>
 
 == 監視アプリケーションから構成を削除します
 
-[role="lead"]
 ONTAP Tiebreaker ソフトウェア、 MetroCluster メディエーター、またはスイッチオーバーを開始できるその他の他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、アップグレードの前に、監視ソフトウェアから MetroCluster 構成を削除する必要があります。
 
+.手順
 . Tiebreaker 、メディエーター、またはスイッチオーバーを開始できるその他のソフトウェアから既存の MetroCluster 構成を削除します。
 +
 [cols="2*"]
 |===
+
+
 | 使用するポート | 使用する手順 
 
 
  a| 
-* Tiebreaker *
+Tiebreaker
  a| 
 link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#commands-for-modifying-metrocluster-tiebreaker-configurations["MetroCluster 設定の削除"] MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください
 
 
 
  a| 
-* メディエーター *
+メディエーター
  a| 
 ONTAP プロンプトで次のコマンドを問題に設定します。
 
-「 * MetroCluster 構成 - 設定のメディエーター削除 *' 」
+MetroCluster 構成設定のメディエーターが削除されました
 
 
 
  a| 
-* サードパーティアプリケーション *
+サードパーティ製アプリケーション
  a| 
 製品マニュアルを参照してください。
 
@@ -305,7 +313,6 @@ link:../install-ip/task_cable_ip_switches.html["IP スイッチのケーブル�
 
 == 新しいノードのクラスタへの追加
 
-[role="lead"]
 4 つの新しい MetroCluster IP ノードを既存の MetroCluster 構成に追加する必要があります。
 
 このタスクは両方のクラスタで実行する必要があります。
@@ -388,11 +395,11 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 
 == クラスタ間 LIF の設定、 MetroCluster インターフェイスの作成、およびルートアグリゲートのミラーリングを行います
 
-[role="lead"]
 クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。
 
 例で使用しているホームポートはプラットフォーム固有です。MetroCluster IP ノードプラットフォームに固有の適切なホームポートを使用する必要があります。
 
+.手順
 . 新しい MetroCluster IP ノードで、 MetroCluster IP インストールおよび設定ガイドの手順に従ってクラスタ間 LIF を設定します。
 +
 link:../install-ip/task_sw_config_configure_clusters.html#peering-the-clusters["専用ポートでのクラスタ間 LIF の設定"]
@@ -402,7 +409,7 @@ link:../install-ip/task_sw_config_configure_clusters.html#peering-the-clusters["
 
 . 各サイトで、クラスタピアリングが設定されていることを確認します。
 +
-*cluster peer show *
+cluster peer show
 
 +
 次の例は、 cluster_A のクラスタピアリング設定を示しています。
@@ -429,13 +436,13 @@ cluster_B::>
 ----
 . MetroCluster IP ノードの DR グループを作成します。
 +
-MetroCluster 構成設定 DR-group create -partner-cluster *
+MetroCluster 構成設定 dr-group create -partner-cluster
 
 +
 MetroCluster の設定と接続の詳細については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
 
 +
-リンク： ./install-ip/concept_consideration_MCip.adoc
+link:../install-ip/concept_considerations_mcip.html["MetroCluster IP 構成に関する考慮事項"]
 
 +
 link:../install-ip/task_sw_config_configure_clusters.html#creating-the-dr-group["DR グループを作成します"]
@@ -450,7 +457,7 @@ cluster_A::>
 ----
 . DR グループが作成されたことを確認します。
 +
-MetroCluster 構成設定 DR-group show *
+「 MetroCluster configurion-settings dr-group show 」を参照してください
 
 +
 [listing]
@@ -477,22 +484,22 @@ cluster_A::>
 ----
 . 新しく参加した MetroCluster IP ノードの MetroCluster IP インターフェイスを設定します。
 +
-'*MetroCluster 構成設定インタフェース create-cluster-name*'
+MetroCluster 構成設定インターフェイス create-cluster-name
 
 +
 --
 [NOTE]
 ====
-** ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートはそれぞれ異なる VLAN を使用します。 10 と 20 です。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
+** ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
 ** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 
 
 ====
 --
-
-
++
 次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。
 
++
 |===
 
 
@@ -500,21 +507,25 @@ cluster_A::>
 
 
  a| 
-* AFF A220
-* AFF A250
-* AFF A400
+** AFF A220
+** AFF A250
+** AFF A400
 
  a| 
-* FAS2750
-* FAS500f
-* FAS8300
-* FAS8700 の場合
+** FAS2750
+** FAS500f
+** FAS8300
+** FAS8700 の場合
 
 
 |===
++
+--
 
-NOTE: どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.1.1 以降では、レイヤ 3 構成を使用している場合、 MetroCluster IP インターフェイスを作成するには、 -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/["レイヤ 3 ワイドエリアネットワークに関する考慮事項"].html からのアクセスが可能です
+NOTE: どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.1.1 以降では、レイヤ 3 構成を使用している場合、 MetroCluster IP インターフェイスを作成するには、 -gateway パラメータも指定する必要があります。を参照してください link:..install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 
+--
++
 [listing]
 ----
 cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_1-new -home-port e1a -address 172.17.26.10 -netmask 255.255.255.0
@@ -541,9 +552,11 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_B -home-node node_B_2-new -home-port e1b -address 172.17.27.13 -netmask 255.255.255.0
 [Job 267] Job succeeded: Interface Create is successful.
 ----
+
+
 . MetroCluster IP インターフェイスが作成されたことを確認します。
 +
-「 * MetroCluster configurion-settings interface show * 」
+「 MetroCluster configurion-settings interface show 」を参照してください
 
 +
 [listing]
@@ -603,7 +616,7 @@ cluster_A>
 ----
 . MetroCluster IP インターフェイスを接続します。
 +
-「 * MetroCluster 設定 - 接続 * 」
+MetroCluster 構成設定接続接続
 
 +
 
@@ -751,7 +764,7 @@ cluster_A::>
 ----
 . ディスクの自動割り当てとパーティショニングを確認します。
 +
-「 * disk show -pool Pool1 * 」を参照してください
+「 Disk show -pool Pool1 」
 
 +
 [listing]
@@ -780,7 +793,7 @@ cluster_A::>
 ----
 . ルートアグリゲートをミラーします。
 +
-「 * storage aggregate mirror -aggregate aggr0_cluster1_01 -new * 」のように指定します
+「 storage aggregate mirror -aggregate aggr0_cluster1_01 -new 」という名前のアグリゲートが作成されます
 
 +
 
@@ -812,7 +825,7 @@ cluster_A::>
 ----
 . ルートアグリゲートがミラーされたことを確認します。
 +
-'*storage aggregate show*
+「 storage aggregate show
 
 +
 [listing]
@@ -851,12 +864,12 @@ aggr_data_a2
 
 == 新しいノードの追加を完了しています
 
-[role="lead"]
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。
 
+.手順
 . 新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。
 +
-` * storage aggregate create -aggregate _aggregate-name _ -node_name_diskcount -diskcount _no-of disks _ -mirror true * 」の形式で指定します
+「 storage aggregate create -aggregate _aggregate-name _ -node_name_diskcount 」 - disks_no-of disks _ -mirror true 」という名前のアグリゲートが作成されます
 
 +
 
@@ -905,8 +918,14 @@ cluster_A::>
 ----
 . MetroCluster 構成を更新します。
 +
-.. advanced 権限モードに切り替えます。 +`*set -privilege advanced *`
-.. 新しいノードの 1 つで MetroCluster 構成を更新します :+`* MetroCluster configure*`
+.. advanced 権限モードに切り替えます。
++
+「 advanced 」の権限が必要です
+
+.. 新しいノードの 1 つで MetroCluster 構成を更新します。
++
+MetroCluster 構成
+
 +
 次の例では、両方の DR グループで MetroCluster 構成を更新しています。
 
@@ -917,7 +936,10 @@ cluster_A::*> metrocluster configure -refresh true
 
 [Job 726] Job succeeded: Configure is successful.
 ----
-.. admin 特権モードに戻ります :+`*set -privilege admin*`
+.. admin 権限モードに戻ります。
++
+「特権管理者」
+
 
 
 . ノードが DR グループに追加されたことを確認します。
@@ -976,14 +998,14 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 ----
 .. advanced 権限レベルを設定します。
 +
-「 * set -privilege advanced * 」のように指定します
+「 advanced 」の権限が必要です
 
 .. MDV ボリュームを 1 つずつ移動します。
 +
-` * volume move start -volume_MDV_-destination-aggregate-aggregate-new_node-vserver_vserver-name_*`
+'volume move start -volume_MDV_-destination-aggregate_aggr-on_new-node-vserver_vserver-name_`
 
 +
-次の例は、 MDV_CRS_d6b0b313ff5611e9837100a098544e51_a を node_A_1 のアグリゲートに移動するコマンドと出力を示しています。
+次の例は、「 MDV_CRS_d6b0b313ff5611e9837100a098544e51_a 」を「 node_A_1 」のアグリゲート「 node_A_1 」に移動するコマンドと出力を示しています。
 
 +
 [listing]
@@ -998,7 +1020,7 @@ Warning: You are about to modify the system volume
 ----
 .. volume show コマンドを使用して、 MDV ボリュームが正常に移動されたことを確認します。
 +
-`* volume show_dMDV_name_*`
+'volume show_MDV_NAME_`
 
 +
 次の出力は、 MDV ボリュームが移動されたことを示しています。
@@ -1014,13 +1036,16 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 ----
 .. admin モードに戻ります。
 +
-'*set -privilege admin*
+「特権管理者」
 
 
 
 . 古いノードから新しいノードにイプシロンを移動します。
 +
-.. 現在イプシロンが設定されているノードを特定します。 +`*cluster show -fields epsilon *`
+.. 現在イプシロンが設定されているノードを特定します。
++
+cluster show -fields epsilon
+
 +
 [listing]
 ----
@@ -1035,15 +1060,15 @@ node_A_4-new      false
 ----
 .. 古いノード（ node_A_1 古い）でイプシロンを false に設定します。
 +
-'*cluster modify -node-old-node--epsilon false *
+cluster modify -node _old-node--epsilon false *
 
 .. 新しいノード（ node_A_1 ）でイプシロンを true に設定します。
 +
-'*cluster modify -node-new-node--epsilon true *
+cluster modify -node-new-node--epsilon true
 
 .. イプシロンが正しいノードに移動されたことを確認します。
 +
-'*cluster show -fields epsilon *' と入力します
+cluster show -fields epsilon
 
 +
 [listing]
