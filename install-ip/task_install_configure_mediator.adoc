@@ -24,14 +24,18 @@ ONTAP メディエーターサービスをインストールするには、す�
  a| 
 1.3
  a| 
-Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 7.9 、 8.0 、 8.1 、 8.2 、 8.3
+* Red Hat Enterprise Linux ： 7.6 、 7.7 、 7.8 、 7.9 、 8.0 、 8.1 、 8.2 、 8.3
+* CentOS ： 7.6 、 7.7 、 7.8 、 7.9
+
 
 
 
  a| 
 1/2
  a| 
-Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 8.0 、 8.1
+* Red Hat Enterprise Linux ： 7.6 、 7.7 、 7.8 、 8.0 、 8.1
+* CentOS ： 7.6 、 7.7 、 7.8
+
 
 |===
 
@@ -44,7 +48,7 @@ NOTE: カーネルのバージョンがオペレーティングシステムの�
 
 Red Hat Enterprise Linux または CentOS とその関連リポジトリをシステムにインストールする際のベストプラクティスは次のとおりです。別の方法でインストールまたは設定されたシステムでは、追加の手順が必要になる
 
-* Red Hat Enterprise Linux または CentOS のインストールについては、 Red Hat のベストプラクティスに従う必要があります。
+* Red Hat Enterprise Linux または CentOS のインストールについては、 Red Hat のベストプラクティスに従う必要があります。CentOS 8.x のバージョンは寿命を通じてサポートされるようになったため、 RHEL または互換性のあるバージョンの CentOS 7.x を使用することは推奨されません
 * Red Hat Enterprise Linux または CentOS への ONTAP メディエーターサービスのインストール中にインストールプログラムが必要なすべてのソフトウェアにアクセスしてインストールできるように、システムには該当するリポジトリへのアクセスが必要です。
 * yum インストーラで Red Hat Enterprise Linux リポジトリから依存するソフトウェアを検索するには、 Red Hat Enterprise Linux のインストール中またはインストール後に有効な Red Hat サブスクリプションを使用してシステムを登録しておく必要があります。
 +
@@ -299,9 +303,12 @@ repolist: 21,433
 
 === 手順 for CentOS 8.0.1905 以降のオペレーティングシステム
 
+
+CAUTION: CentOS 8.x のサポートは、 2021 年 12 月 31 日に終了します。CentOS と ONTAP を使用する場合は、にリバートすることを推奨します <<centos7x,CentOS 7.x>> オペレーティングシステムまたは RHEL を使用
+
 オペレーティングシステムが * CentOS 8.0.1905 以降のビルド * の場合：
 
-最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアはに搭載されているためです https://vault.centos.org["CentOS Vault の場合"]必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。
+を参照してください http://vault.centos.org["CentOS Vault の場合"]で、お使いのオペレーティングシステムに対応する kernel-devel パッケージを探します。最新バージョンの 8.0 （ CentOS 8.0.1905 以降）コアはにあります必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。
 
 .手順
 . [stp1 -rpm] 問題 kernel-devel パッケージを直接インストールするには、次のコマンドを使用します。

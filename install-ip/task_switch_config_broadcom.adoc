@@ -24,41 +24,48 @@ summary: クラスタインターコネクトおよびバックエンド MetroCl
 
 
 .手順
-. 昇格されたコマンドプロンプト (`#') に変更します。
+. 昇格されたコマンドプロンプト (`#`):'enable' に変更します
 +
-「 enable 」を選択します
+[listing]
+----
+(IP_switch_A_1)> enable
+(IP_switch_A_1) #
+----
+. スタートアップコンフィギュレーションを消去し、バナーを削除します
++
+.. スタートアップ設定を消去します。
++
+*`erase startup-config *
 
 +
 [listing]
 ----
-(Routing)> enable
-(Routing) #
-----
-. スタートアップ設定を消去します。
-+
-「 erase startup-config 」を入力します
+(IP_switch_A_1) #erase startup-config
 
-+
-[listing]
-----
-(Routing) #erase startup-config
 Are you sure you want to clear the configuration? (y/n) y
 
-
-(Routing) #
+(IP_switch_A_1) #
 ----
 +
 このコマンドでは、バナーは消去されません。
 
-. スイッチをリブートします。
+.. バナーを削除します。
 +
-「再ロード」
+*`no set clibanner`*
 
 +
 [listing]
 ----
-(IP_switch_A_1) #reload
 
+(IP_switch_A_1) # no set clibanner
+(IP_switch_A_1) #
+----
+
+
+. スイッチを再起動します *`(IP_switch_A_1 )#reload *`
++
+[listing]
+----
 Are you sure you would like to reset the system? (y/n) y
 ----
 +
@@ -148,12 +155,19 @@ NOTE: RCF ファイルで Telnet プロトコルが無効になります。SSH �
 (Routing) #configure
 (Routing) (Config)#crypto key generate rsa
 ----
-.. DSA キーを生成します。
+.. DSA キーの生成（オプション）
 +
 [listing]
 ----
 (Routing) #configure
 (Routing) (Config)#crypto key generate dsa
+----
+.. FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ 256 のキーを作成します。有効な値は、 256 、 384 、または 521 です。
++
+[listing]
+----
+(Routing) #configure
+(Routing) (Config)#crypto key generate ecdsa 256
 ----
 .. SSH サーバを有効にします。
 +
@@ -250,24 +264,67 @@ MetroCluster IP 構成の各スイッチにスイッチのオペレーティン�
 
 このタスクは、 MetroCluster IP 構成内のスイッチごとに実行する必要があります。
 
-.手順
-. スイッチソフトウェアをスイッチにコピーします。
-+
-'copy sftp://user@50.50.50.50 /switchsoftware/efos-3.4.3.1.stk backup
+====
+* 次の点に注意してください。 *
 
+* EFOS 3.x.x から EFOS 3.x.x にアップグレードするときは、スイッチが EFOS 3.4.4.6 （またはそれ以降の 3.4.x.x リリース）を実行している必要があります。それよりも前のリリースを実行している場合は、まずスイッチを EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）にアップグレードしてから、スイッチを EFOS 3.x.x にアップグレードします
+* EFOS 3.x.x と 3.7.x.x の設定は異なります。EFOS のバージョンを 3.4.x.x から 3.7.x.x に変更する場合、スイッチを工場出荷時のデフォルトにリセットする必要があり、対応する EFOS バージョンの RCF ファイルが適用される必要があります。この手順には、シリアルコンソールポート経由でアクセスする必要があります。
+* EFOS バージョン 3.7.x 以降では、 FIPS 非準拠および FIPS 準拠のバージョンが提供されます。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。
+
+
+====
+|===
+| * 手順 * | * 現在の EFOS バージョン * | * 新しい EFOS バージョン * | * 高レベルステップ * 
+
+
+.5+| FIPS に準拠している 2 つのバージョン間で EFOS をアップグレードする手順 | 3.4.x.x | 3.4.x.x | 方法 1 ）設定とライセンスの情報は保持されています 
+
+
+| 3.4.4.6 （または 3.4.x.x 以降） | 3.7.x.x 非 FIPS 準拠 | 方法 1 を使用して EFOS をアップグレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x の RCF ファイルを適用します 
+
+
+.2+| 3.7.x.x 非 FIPS 準拠 | 3.4.4.6 （または 3.4.x.x 以降） | 方法 1 を使用して EFOS をダウングレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x の RCF ファイルを適用します 
+
+
+| 3.7.x.x 非 FIPS 準拠 | 方法 1 を使用して新しい EFOS イメージをインストールします。構成とライセンスの情報は保持されます 
+
+
+| 3.7.x.x FIPS 準拠 | 3.7.x.x FIPS 準拠 | 方法 1 を使用して新しい EFOS イメージをインストールします。構成とライセンスの情報は保持されます 
+
+
+.2+| FIPS 準拠の EFOS バージョンへのアップグレード手順 | FIPS に準拠していません | FIPS に準拠している .2+| 方法 2 を使用した EFOS イメージのインストールスイッチの設定とライセンス情報が失われます。 
+
+
+| FIPS に準拠している | FIPS に準拠していません 
+|===
+* 方法 1 ： <<Steps to upgrade EFOS with downloading the software image to the backup boot partition>>
+* 方法 2 ： <<Steps to upgrade EFOS using the ONIE OS installation>>
+
+
+
+
+=== ソフトウェアイメージをバックアップブートパーティションにダウンロードして EFOS をアップグレードする手順
+
+次の手順を実行できるのは、両方の EFOS バージョンが FIPS 非準拠であるか、両方の EFOS バージョンが FIPS 準拠である場合のみです。
+
+
+NOTE: FIPS に準拠したバージョンで、もう一方のバージョンが FIPS に準拠していない場合は、次の手順を使用しないでください。
+
+.手順
+. スイッチソフトウェアをスイッチにコピーします :+copy sftp://user@50.50.50.50 /switchsoftware/efos-3.4.6.stk backup+`
 +
-この例では、「 efos-3.1.stk 」オペレーティングシステムファイルを SFTP サーバから「 50.50.50.50 」にコピーしています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。
+この例では、 efos-3.4.6.stk オペレーティングシステムファイルが SFTP サーバ（ 50.50.50 ）からバックアップパーティションにコピーされています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。
 
 +
 [listing]
 ----
-(IP_switch_A_1) #copy sftp://user@50.50.50.50/switchsoftware/efos-3.4.3.1.stk backup
+(IP_switch_A_1) #copy sftp://user@50.50.50.50/switchsoftware/efos-3.4.4.6.stk backup
 Remote Password:*************
 
 Mode........................................... SFTP
 Set Server IP.................................. 50.50.50.50
 Path........................................... /switchsoftware/
-Filename....................................... efos-3.4.3.1.stk
+Filename....................................... efos-3.4.4.6.stk
 Data Type...................................... Code
 Destination Filename........................... backup
 
@@ -315,7 +372,7 @@ Image Descriptions
  unit       active    backup   current-active   next-active
  ----  -----------  --------  ---------------  ------------
 
-	1       3.4.3.0      3.4.3.1      3.4.3.0          3.4.3.1
+	1       3.4.4.2    3.4.4.6      3.4.4.2        3.4.4.6
 
 (IP_switch_A_1) #
 ----
@@ -350,7 +407,165 @@ Configuration Saved!
 Are you sure you would like to reset the system? (y/n) y
 ----
 . スイッチがリブートするまで待ちます。
++
+
+NOTE: まれに、スイッチが起動しないことがあります。に従ってください <<Steps to upgrade EFOS using the ONIE OS installation>> 新しいイメージをインストールします。
+
+. スイッチを EFOS 3.x.x から EFOS 3.x.x に変更した場合、またはその逆の場合は、次の 2 つの手順に従って正しい設定（ RCF ）を適用します。
++
+.. <<Resetting the Broadcom IP switch to factory defaults>>
+.. <<Downloading and installing the Broadcom RCF files>>
+
+
 . MetroCluster IP 構成の残りの 3 つの IP スイッチについて、上記の手順を繰り返します。
+
+
+
+
+=== ONIE OS インストールを使用して EFOS をアップグレードする手順
+
+一方の EFOS バージョンが FIPS に準拠していて、もう一方の EFOS バージョンが FIPS に準拠していない場合は、次の手順を実行できます。次の手順は、スイッチがブートに失敗した場合に、 ONIE から FIPS 非準拠または FIPS 準拠の EFOS 3.x.x イメージをインストールするために使用できます。
+
+.手順
+. スイッチを ONIE インストールモードで起動します。
++
+起動中に、次の画面が表示されたら ONIE を選択します。
+
++
+[listing]
+----
+ +--------------------------------------------------------------------+
+ |EFOS                                                                |
+ |*ONIE                                                               |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ +--------------------------------------------------------------------+
+
+----
++
+「 ONIE 」を選択すると、スイッチがロードされ、次の選択肢が表示されます。
+
++
+[listing]
+----
+ +--------------------------------------------------------------------+
+ |*ONIE: Install OS                                                   |
+ | ONIE: Rescue                                                       |
+ | ONIE: Uninstall OS                                                 |
+ | ONIE: Update ONIE                                                  |
+ | ONIE: Embed ONIE                                                   |
+ | DIAG: Diagnostic Mode                                              |
+ | DIAG: Burn-In Mode                                                 |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ |                                                                    |
+ +--------------------------------------------------------------------+
+
+----
++
+スイッチが ONIE インストールモードで起動します。
+
+. ONIE の検出を停止し、イーサネットインターフェイスを設定します
++
+次のメッセージが表示されたら、 <ENTER> を押して ONIE コンソールを起動します。
+
++
+[listing]
+----
+ Please press Enter to activate this console. Info: eth0:  Checking link... up.
+ ONIE:/ #
+----
++
+
+NOTE: ONIE の検出は続行され、メッセージがコンソールに出力されます。
+
++
+[listing]
+----
+Stop the ONIE discovery
+ONIE:/ # onie-discovery-stop
+discover: installer mode detected.
+Stopping: discover... done.
+ONIE:/ #
+----
+. イーサネットインターフェイスを設定し、「 ifconfig eth0 <ipAddress> netmask <netmask> up 」および「 route add default gw <gatewayAddress> 」を使用してルートを追加します
++
+[listing]
+----
+ONIE:/ # ifconfig eth0 10.10.10.10 netmask 255.255.255.0 up
+ONIE:/ # route add default gw 10.10.10.1
+----
+. ONIE インストールファイルをホストしているサーバにアクセスできることを確認します。
++
+[listing]
+----
+ONIE:/ # ping 50.50.50.50
+PING 50.50.50.50 (50.50.50.50): 56 data bytes
+64 bytes from 50.50.50.50: seq=0 ttl=255 time=0.429 ms
+64 bytes from 50.50.50.50: seq=1 ttl=255 time=0.595 ms
+64 bytes from 50.50.50.50: seq=2 ttl=255 time=0.369 ms
+^C
+--- 50.50.50.50 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.369/0.464/0.595 ms
+ONIE:/ #
+----
+. 新しいスイッチソフトウェアをインストールします
++
+[listing]
+----
+
+ONIE:/ # onie-nos-install http:// 50.50.50.50/Software/onie-installer-x86_64
+discover: installer mode detected.
+Stopping: discover... done.
+Info: Fetching http:// 50.50.50.50/Software/onie-installer-3.7.0.4 ...
+Connecting to 50.50.50.50 (50.50.50.50:80)
+installer            100% |*******************************| 48841k  0:00:00 ETA
+ONIE: Executing installer: http:// 50.50.50.50/Software/onie-installer-3.7.0.4
+Verifying image checksum ... OK.
+Preparing image archive ... OK.
+----
++
+ソフトウェアがスイッチをインストールし、リブートします。スイッチを通常どおりにリブートして新しい EFOS バージョンにします。
+
+. 新しいスイッチソフトウェアがインストールされていることを確認します
++
+*'How bootvar'*
+
++
+[listing]
+----
+
+(Routing) #show bootvar
+Image Descriptions
+active :
+backup :
+Images currently available on Flash
+---- 	----------- -------- --------------- ------------
+unit 	active 	   backup   current-active  next-active
+---- 	----------- -------- --------------- ------------
+1 	3.7.0.4     3.7.0.4  3.7.0.4         3.7.0.4
+(Routing) #
+----
+. インストールを完了します
++
+設定を適用せずにスイッチがリブートし、工場出荷時のデフォルトにリセットされます。2 つの手順に従ってスイッチの基本設定を行い、次の 2 つのドキュメントに記載されているように RCF ファイルを適用します。
+
++
+.. スイッチの基本設定を行います。手順 4 以降を実行します。 <<Resetting the Broadcom IP switch to factory defaults>>
+.. の説明に従って、 RCF ファイルを作成して適用します <<Downloading and installing the Broadcom RCF files>>
+
+
 
 
 
@@ -374,34 +589,48 @@ RCF ファイルは 4 つあり、それぞれが MetroCluster IP 構成の 4 �
  a| 
 IP_switch_A_1
  a| 
-BES-53248_v1.32_Switch-A1.txt
+v1.32_Switch-A1.txt
 
 
 
  a| 
 IP_switch_a_2
  a| 
-BES-53248_v1.32_Switch-A2.txt
+v1.32_Switch-A2.txt
 
 
 
  a| 
 IP_switch_B_1
  a| 
-BES-53248_v1.32_Switch-B1.txt
+v1.32_Switch-B1.txt
 
 
 
  a| 
 IP_switch_B_2
  a| 
-BES-53248_v1.32_Switch-B2.txt
+v1.32_Switch-B2.txt
 
 |===
+
+NOTE: EFOS バージョン 3.4.4.6 以降の 3.4.x.x の RCF ファイルリリースと EFOS バージョン 3.7.0.4 は異なります。スイッチが実行されている EFOS バージョンの正しい RCF ファイルを作成したことを確認する必要があります。
+
+|===
+| EFOS バージョン | RCF ファイルのバージョン 
+
+
+| 3.4.x.x | V1.3 倍、 V1.4 倍 
+
+
+| 3.7.x.x | v2.x 
+|===
 .手順
-. MetroCluster IP の Broadcom スイッチの RCF ファイルをダウンロードします。
+. MetroCluster IP 用の Broadcom RCF ファイルを生成します。
 +
-https://mysupport.netapp.com/NOW/download/software/metrocluster_ip/rcfs/download.shtml["Broadcom Cluster and Management Network Switch Reference Configuration File Download for MetroCluster IP 』を参照してください"]
+.. をダウンロードします https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"]
+.. RcfFileGenerator for MetroCluster IP を使用して、設定用の RCF ファイルを生成します
+
 
 . RCF ファイルをスイッチにコピーします。
 +
@@ -434,7 +663,7 @@ Validating configuration script...
 
 config
 
-set clibanner "********************************************************************************
+set clibanner "***************************************************************************
 
 * NetApp Reference Configuration File (RCF)
 

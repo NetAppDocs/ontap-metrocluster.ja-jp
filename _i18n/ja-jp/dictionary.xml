@@ -2096,9 +2096,7 @@
   <block id="b91e5154a426753ab0a5ef0ad93dc50f" category="paragraph">'*ha-config show*</block>
   <block id="9c1c5be053b28ba5edd13b92cac80497" category="paragraph">すべてのコンポーネントの HA の状態が mcc である必要があります。</block>
   <block id="4d351c058255d9e92bee9f8e2a84a787" category="list-text">表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールの HA 状態を設定します。</block>
-  <block id="01e7a344e3da2c997fcf3fd84955ed3c" category="paragraph">*ha-config modify controller mcc *</block>
   <block id="cb35018d5cef7c3ad9e89b5330f139ef" category="list-text">表示されたシャーシのシステム状態が正しくない場合は、シャーシの HA 状態を設定します。</block>
-  <block id="ca7827bc97d99e0ad5a5a8f54f72a594" category="paragraph">'*ha-config modify chassis MCC*</block>
   <block id="91815ef3813bb758babf1c11a5114e45" category="list-text">交換した他のノードで同じ手順を繰り返します。</block>
   <block id="31c65a2058e5394cf4f67afa9634685a" category="summary">新しいコントローラをクラスタに追加するには、新しい各コントローラモジュールをブートし、 ONTAP クラスタセットアップウィザードを使用して、参加するクラスタを特定する必要があります。</block>
   <block id="c97ffd8c62ff7f9d8c843c6e65672330" category="doc">新しいコントローラのブートおよびクラスタへの追加</block>
@@ -2106,7 +2104,6 @@
   <block id="2e296e5ecea65075de45f381533dc47d" category="paragraph">このタスクを実行する前に、サービスプロセッサの設定を済ませておく必要があります。</block>
   <block id="2238a54f1b4ff094935ad3dd0c8e3822" category="paragraph">このタスクは、 MetroCluster 構成の両方のクラスタにある新しい各コントローラで実行する必要があります。</block>
   <block id="e34ba975c040f0be96016a884d817053" category="list-text">各ノードに電源が入っていない場合は、電源を投入してブートします。</block>
-  <block id="68a5be9f5a40e2300214ec2b33d1c463" category="paragraph">「 * boot_ontap 」と入力します</block>
   <block id="ba77af2183290b60946161f6b50ee7c2" category="paragraph">コントローラモジュールがノードセットアップウィザードを開始します。</block>
   <block id="a68c3c53417789e724bdb983d1b29d52" category="paragraph">次のような出力が表示されます。</block>
   <block id="8f198ce518110cefc8dfed42a2c4ddaa" category="list-text">システムの指示に従って AutoSupport ツールを有効にします。</block>
@@ -2309,20 +2306,11 @@
   <block id="a6a2bfa5b0368feae00b3711d6fe107d" category="section-title">アップグレードの準備を行います</block>
   <block id="39636ee3d838e1ad79f4b6b17f397cb2" category="paragraph">既存の MetroCluster 構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行する必要があります。</block>
   <block id="e53a7c24d7a4423f5e6dc1e0489f4650" category="paragraph">アップグレードを実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。</block>
-  <block id="4cafa36de3ea00508e4060ea6d8c8b83" category="list-text">ノードがマルチパスであるかどうかを確認します。 +`* node run -node node_name sysconfig -a *`</block>
   <block id="542da501ed6fd2c5eec24de28539644a" category="paragraph">このコマンドは、 MetroCluster 構成のノードごとに問題で実行する必要があります。</block>
-  <block id="a860b562e4096e7ec096f8bffe52aad1" category="list-text">構成内に破損ディスクがないことを確認します :+`*storage disk show-bbroken*`</block>
   <block id="05773fb8201f74749fc7fddd4cdad50f" category="paragraph">このコマンドは、 MetroCluster 構成の各ノードで問題を実行する必要があります。</block>
-  <block id="d3b0527e02c3c6284089f4ad8e588145" category="list-text">ヘルス・アラートがないかどうかを確認します。 +`* system health alert show *`</block>
   <block id="872b35f8fd9135eedd74d22d1a0c40db" category="paragraph">このコマンドは、各クラスタで問題を実行する必要があります。</block>
-  <block id="8777d08fe4cc4cafe8bc5c02f98c06fa" category="list-text">クラスタのライセンスを確認します。 +`* system license show *`</block>
   <block id="550ab8bb7280dae626ad9e9e27497ca8" category="list-text">ノードに接続されているデバイスを確認します。</block>
-  <block id="cc43d6aee07be3ba37a79278536728c0" category="paragraph">「 * network device-discovery show * 」のように表示されます</block>
-  <block id="35094998af1b0c5000d5467cddb5400a" category="list-text">両方のサイトでタイムゾーンと時刻が正しく設定されていることを確認します :+`* cluster date show *`</block>
-  <block id="644ffaafab2320ae2052c604034cd07b" category="paragraph">このコマンドは、各クラスタで問題を実行する必要があります。時刻とタイムゾーンを設定するには 'cluster date コマンドを使用します</block>
   <block id="90b0a3ccc3e8c57b53e0e6746a09336a" category="list-text">MetroCluster 構成の運用モードを確認し、 MetroCluster チェックを実行</block>
-  <block id="260d1d265a0f8d6348948962f7dcdeb2" category="list-text">想定されるすべてのノードが表示されることを確認します。 +`* MetroCluster node show*`</block>
-  <block id="e036d4c1eb94d5d92e6c2aa43ad06d64" category="list-text">問題次のコマンドを実行します :+`* MetroCluster check run*`</block>
   <block id="aac5384a5dcc4e59accf30153a8b7d7e" category="list-text">Config Advisor ツールを使用して MetroCluster のケーブル接続を確認します。</block>
   <block id="933923ae8bf973656d61d56922e3ef32" category="list-text">Config Advisor をダウンロードして実行します。</block>
   <block id="2a372adca69c8c9dbcba25f7ba412726" category="section-title">古いノードから新しいノードへのポートのマッピング</block>
@@ -2364,7 +2352,6 @@
   <block id="bd644239cebf0eee7e6c7d4b4e3a0c40" category="paragraph">このタスクは、既存の MetroCluster FC 構成で実行します。</block>
   <block id="45eedb3b70627315a33ac77a1f76c1b9" category="list-text">新しいコントローラをセットアップするときにケーブルを簡単に識別できるように、既存のコントローラのケーブルにラベルを付けます。</block>
   <block id="3894726aa348d9a18ddd016a54497034" category="list-text">MetroCluster 構成内のノードのシステム ID を収集します。</block>
-  <block id="77950f8cbf4380677db9e3d96d5bf298" category="paragraph">「 * MetroCluster node show -fields node-systemid 、 dr-partner-systemid * 」のように指定します</block>
   <block id="3cd530184990375ba5ce23dfb543233c" category="paragraph">交換用手順では、これらのシステム ID を新しいコントローラモジュールのシステム ID に置き換えます。</block>
   <block id="783c0ee630587e0a74bf53bfb650c2e7" category="paragraph">この 4 ノード MetroCluster FC 構成の例では、次の古いシステム ID が取得されます。</block>
   <block id="1cd4744ff6d97a425af9a0e34512335b" category="list-text">node_A_1 - 古い： 4068741258</block>
@@ -2393,14 +2380,10 @@
   <block id="2fdab4f50b91e9173d8fd09c9243b0c3" category="list-text">「 iscsi interface show 」と表示されます</block>
   <block id="5344ecb990fb0b0e60a7b979eeca26cd" category="list-text">ucadmin show</block>
   <block id="8b1a6434b118fdab6cffd5eef984796d" category="list-text">ルートボリュームが暗号化されている場合は、 key-manager に使用するパスフレーズを収集して保存します。</block>
-  <block id="dba3a3236057e093ad59f087fcd00287" category="paragraph">「 * security key-manager backup show * 」と表示されます</block>
   <block id="0c41288b073bc8667b15931457adf7c0" category="list-text">MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。</block>
   <block id="db8057baa0e3040863709dc299c0a2b6" category="inline-link">オンボードキー管理情報の手動でのバックアップ</block>
   <block id="353024e475a7604e40871e8aa07253b1" category="paragraph">追加情報の場合は、を参照してください<block ref="17c328b6561af0ba38f0debcfa14ec48" category="inline-link-rx"></block>。</block>
-  <block id="f5390578c3625d55b65a6effe830fee7" category="list-text">Onboard Key Manager が設定されている場合： +`* security key-manager onboard show-backup *`</block>
   <block id="b9284138ad08224a8431291e2a54805d" category="paragraph">パスフレーズは、あとでアップグレード手順で必要になります。</block>
-  <block id="43527543655406abd7a9789e7818472e" category="list-text">エンタープライズキー管理（ KMIP ）が設定されている場合、問題は次のコマンドを実行します。 +`* security key-manager external show-instance *`</block>
-  <block id="c089e0b20954f58c799ce5d284a5a604" category="paragraph">'*security key-manager key query *</block>
   <block id="0680bb5259d11fc9085b95eff42515e4" category="section-title">Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します</block>
   <block id="996ae2958095991e77250398220eb3d5" category="paragraph">スイッチオーバーを開始できる MetroCluster Tiebreaker 構成や他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、移行の前に Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。</block>
   <block id="8db7c34118d5425403025b6210cacb71" category="list-text">Tiebreaker ソフトウェアから既存の MetroCluster 設定を削除します。</block>
@@ -2411,7 +2394,6 @@
   <block id="33b42dde3af7fa60ce4cdf4e33ceebb3" category="section-title">カスタム AutoSupport メッセージをメンテナンス前に送信する</block>
   <block id="cff1f1e3d1bd4979f788b1439a65b093" category="paragraph">メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。</block>
   <block id="4f2a0c0685e8129ff9ccf99a0212fda8" category="list-text">サポートケースが自動で生成されないようにするには、メンテナンスが進行中であることを示す AutoSupport メッセージを送信します。</block>
-  <block id="908f8927e08f0953e611ad717b7e62fe" category="list-text">問題次のコマンドを使用します。 +`* system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance-window-in-hours_*`</block>
   <block id="22a619e2119eac132eeee61c7997aae7" category="paragraph">「メンテナンス時間」では、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。</block>
   <block id="84e33342856c02e8a00ad96f47bd4d9f" category="list-text">パートナークラスタに対してこのコマンドを繰り返します。</block>
   <block id="89e7124fca5c192493e832d03a3de9d2" category="section-title">MetroCluster 設定をスイッチオーバーしています</block>
@@ -2420,38 +2402,23 @@
   <block id="11f455c88de297768de186a1110cfdf6" category="paragraph">このタスクを完了すると、 cluster_A はアクティブになり、両方のサイトでデータを提供します。cluster_B は非アクティブで、次の図に示すようにアップグレードプロセスを開始できます。</block>
   <block id="803c81253d05dfea0833a4f1be138dea" category="image-alt">MCC アップグレードで、クラスタ A をスイッチオーバーします</block>
   <block id="19e5fa2e94382f90d18bf6ea6ee57e9a" category="list-text">site_B のノードをアップグレードできるように、 MetroCluster 構成を site_A にスイッチオーバーします。</block>
-  <block id="cc4efd59a89f7d212c84ad824f034e92" category="list-text">問題 cluster_a で次のコマンドを実行します :+`* MetroCluster switche-controller-replacement true*`</block>
-  <block id="0a0cb78ac4e32f4d2fc1c58e984c803b" category="list-text">スイッチオーバー操作を監視します :+`* MetroCluster operation show *`</block>
-  <block id="dd9df98413892bcfcb4d4ae308246c4d" category="list-text">処理が完了したら、ノードがスイッチオーバー状態であることを確認します。 +`* MetroCluster show*`</block>
-  <block id="7653e2511bf3631040106efba85c9c17" category="list-text">MetroCluster ノードのステータスを確認します :+`* MetroCluster node show*`</block>
   <block id="a169e8347f5fcb162ab3b35a2bfe8bb2" category="list-text">データアグリゲートを修復します。</block>
-  <block id="05545db10743b5a463d1fe77a8542844" category="list-text">データアグリゲートを修復します :+`* MetroCluster heal data-caggregates *`</block>
   <block id="fd56eef3a229dc89f4583f9f02a2f52e" category="list-text">正常なクラスタで MetroCluster operation show コマンドを実行して、修復操作が完了したことを確認します。</block>
   <block id="33e64bb1016dec9153a09112c1918728" category="list-text">ルートアグリゲートを修復します。</block>
-  <block id="8801df7a11b897b3b1849b2524ac7a90" category="list-text">データアグリゲートを修復します :+`* MetroCluster heal root-aggregates *`</block>
   <block id="5e744c4240b735a2a086be5884b09ed3" category="section-title">古いコントローラのネットワーク構成を準備しています</block>
   <block id="f02f75fbbe89500c3766deab4ccf2d4d" category="paragraph">新しいコントローラでネットワークが正常に再開されるようにするには、 LIF を共通ポートに移動して、古いコントローラのネットワーク設定を削除する必要があります。</block>
   <block id="dd3d39a72e683fc82c6e4dd4c8f79169" category="list-text">このタスクは、古いノードごとに実行する必要があります。</block>
-  <block id="1d3c93a436750613370f7a5d11810cfe" category="list-text">で収集した情報を使用します <block ref="e8e561b545bb2dcc587cb381a3e75353" category="inline-xref-macro-rx"></block>。</block>
   <block id="222865f12c5217fc8874b26cdd58fd1e" category="list-text">古いノードをブートし、ノードにログインします。</block>
   <block id="ba77a2c608c7c3d0b48158b1141a5d60" category="list-text">古いコントローラのすべてのデータ LIF のホームポートを、新旧両方のコントローラモジュールで同じ共通ポートに割り当てます。</block>
-  <block id="fe0525f8f26560f8507eeab69304e8c0" category="list-text">LIF を表示します。 +`* network interface show *`</block>
   <block id="a435dd2235e07057dcaedb205b5512bc" category="paragraph">SAN と NAS を含むすべてのデータ LIF は、スイッチオーバーサイト（ cluster_A ）で稼働しているため、管理上および運用上のダウン状態になります。</block>
   <block id="de300d23f1d76028b547f5e2d80ae21c" category="list-text">の出力を確認して、クラスタポートとして使用されていない新旧両方のコントローラで同じ共通の物理ネットワークポートを特定します。</block>
   <block id="ed83b408ff26c6639c42df9053bd18df" category="paragraph">たとえば、 e0d は古いコントローラの物理ポートで、新しいコントローラにも存在します。e0d は、クラスタポート、または新しいコントローラ上で使用されません。</block>
   <block id="caa0bb28d7e90a537d89a447ec00dffc" category="paragraph">プラットフォームモデルのポートの用途については、を参照してください<block ref="bf137fbaca3418d969a7cbbc6acb278c" category="inline-link-rx"></block></block>
   <block id="028b25f6521e5676c4e9361429c13f69" category="list-text">すべてのデータ LIF で共通ポートをホームポートとして使用するように変更します。</block>
-  <block id="4c0ea8d88c35e853c024aa5882284d6f" category="paragraph">「 * network interface modify -vserver _SVM-name _ -lif data_-lif _ -home-port_port_id_ * 」という形式を使用します</block>
   <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">例：</block>
   <block id="5db2619ab3a7ccb178b98644ee1d4e05" category="list-text">ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。</block>
-  <block id="5d70449e8a41c7f3bfb924ae7e309262" category="paragraph">`* broadcast-domain remove-ports -broadcast-domain _broadcast-domain-name-name_ports_node-name ： port-id_*`</block>
   <block id="846a67f7610ea48d1f27cb5f81030c71" category="paragraph">すべての VLAN ポートと物理ポートについて、この手順を繰り返します。</block>
   <block id="accd214a61f142828c1572a8d975d7b3" category="list-text">クラスタポートをメンバーポートとして使用し、 ifgrp をメンバーポートとして使用している VLAN ポートを削除します。</block>
-  <block id="c71d74ff6ce4a489f45836cd28162a5a" category="list-text">VLAN ポートを削除します。 +`* network port vlan delete -node_node-name _ -vlan-name_portid -vlandid_*`</block>
-  <block id="531366c7da5d6919f6a039e63cbfa6c5" category="list-text">インターフェイスグループから物理ポートを削除します。 +`* network port ifgrp remove-port-node node_name -ifgrp_interface-group-name _-port_portid_*`</block>
-  <block id="a8db68dfd5befbe408b52f6b71b58190" category="list-text">ブロードキャストドメインから VLAN ポートとインターフェイスグループポートを削除します。： +`* network port broadcast-domain remove-ports -ipspace_ipspace -broadcast-domain _ broadcast-domain-ports_nodename ： portname 、 nodename ： portname _ 、 .*`</block>
-  <block id="2437cf2b0733707e1d7908919d8e457a" category="list-text">必要に応じて、他の物理ポートをメンバーとして使用するようにインターフェイスグループポートを変更します。 +`*ifgrp add-port -node -node_name -ifgrp _interface -group-name_port_id*`</block>
-  <block id="389db99ca5818d6a761f2a86b22cfd95" category="paragraph">`* halt -inhibit-takeover true -node node_name _*`</block>
   <block id="30ee2c11e0c555918a60d26e605302e8" category="paragraph">この手順は両方のノードで実行する必要があります。</block>
   <block id="9c72ecff6f02b2c92e12130effa540d4" category="section-title">古いプラットフォームを削除しています</block>
   <block id="fb7af1863497df9dda3e65ea0159d317" category="paragraph">古いコントローラを構成から削除しておく必要があります。</block>
@@ -2496,7 +2463,6 @@
   <block id="8154d55f73ab64571f60299356015117" category="section-title">HBA 構成をリストアしています</block>
   <block id="a8635badf0c3725452ad27dcb306f849" category="paragraph">コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。</block>
   <block id="8afdaf07ff0e43cdf1c5459d3d9ff0e6" category="list-text">メンテナンスモードで、システム内の HBA の設定を行います。</block>
-  <block id="7a3169bf2c76c200ce63b1da5de720e3" category="list-text">ポートの現在の設定を確認します。「 * ucadmin show * 」と入力します</block>
   <block id="3d18b9cf776b5c427daf082dba906596" category="list-text">必要に応じてポートの設定を更新します。</block>
   <block id="903261617945a1d21234eaec2864ef96" category="cell">HBA のタイプと目的のモード</block>
   <block id="394247ac369fff4729d586172906244e" category="cell">使用するコマンド</block>
@@ -2508,9 +2474,7 @@
   <block id="229409cd38416b2524ab94f2178cfd1a" category="paragraph">fcadmin config -t target_adapter-name_`</block>
   <block id="77771fb5b4c9e84f66cbf17c35e783a4" category="paragraph">FC イニシエータ</block>
   <block id="dab2c0f4d4e624133deb1fb1f48d6dfa" category="paragraph">fcadmin config -t initiator_adapter-name_`</block>
-  <block id="4deaf4c77cb6e87bfa4bbde1cce250e2" category="list-text">保守モードを終了します :`*halt *`</block>
   <block id="b44ed2bc8a7bdf8a760e4cae02235f11" category="paragraph">コマンドの実行後、ノードが LOADER プロンプトで停止するまで待ちます。</block>
-  <block id="0a107640d5e6e8d38c79b86e5bf27b50" category="list-text">ノードをブートして保守モードに戻り、設定の変更が反映されるようにします。「 * boot_ontap maint * 」</block>
   <block id="c42d23f9a11ad642e5cc74575eea80c6" category="list-text">変更内容を確認します。</block>
   <block id="059f24f8c2a01e5ecc7ae13169039c24" category="cell">HBA のタイプ</block>
   <block id="68b3177cae966fde225c197ecb4fd253" category="paragraph">CNA</block>
@@ -2532,7 +2496,6 @@
   <block id="e97c2d73dc1c54dfe8c4452dcb629eb7" category="section-title">ルートアグリゲートディスクの再割り当て中です</block>
   <block id="57564146ad523d55130a77527db0c457" category="paragraph">前の手順で確認したシステム ID を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします</block>
   <block id="656b3430f6aeb54a5747ced587d5f2ef" category="paragraph">このタスクはメンテナンスモードで実行します。</block>
-  <block id="a12288d03dca5847769993cef345548e" category="paragraph">古いシステム ID は、で識別されています <block ref="e763731c02ff388d518a447d5f9fe4b0" category="inline-xref-macro-rx"></block>。</block>
   <block id="ad3d8189e8e55c3028771da773eed75a" category="paragraph">この手順の例では、次のシステム ID を持つコントローラを使用します。</block>
   <block id="e791539ee9176ad79d314a9cd36bba19" category="cell">古いシステム ID</block>
   <block id="959f559d380ae4cad20f5e8bb59190c9" category="cell">新しいシステム ID</block>
@@ -2541,29 +2504,19 @@
   <block id="5044817e631ea533d8d80b535c92072c" category="paragraph">1574774970</block>
   <block id="a6a4f4053eaa04563d9fd9c8607480e5" category="list-text">他のすべての接続を新しいコントローラモジュール（ FC-VI 、ストレージ、クラスタインターコネクトなど）にケーブル接続します。</block>
   <block id="f512860c2fb2587692f9d8aaa69ad4c4" category="list-text">システムを停止し、 LOADER プロンプトからメンテナンスモードでブートします。</block>
-  <block id="85fe417581ad7ca454ec87185f2c67b2" category="paragraph">「 * boot_ontap maint * 」と入力します</block>
   <block id="5220669e72568a29d959d212e2ddfa10" category="list-text">node_B_1 古いが所有するディスクを表示します。</block>
-  <block id="67b3caa2b18724c595238a998c373548" category="paragraph">「 * disk show -a * 」と入力します</block>
   <block id="13d299a335ec1c1e871a639aa098008a" category="paragraph">コマンド出力に、新しいコントローラモジュール（ 1574774970 ）のシステム ID が表示されます。ただし、ルートアグリゲートディスクは古いシステム ID （ 4068741254 ）で所有されます。この例で表示されているのは、 MetroCluster 構成の他のノードが所有するドライブではありません。</block>
   <block id="63ad2e5ed6b9f2d89a593a084eda6f7e" category="list-text">ドライブシェルフのルートアグリゲートディスクを新しいコントローラに再割り当てします。</block>
-  <block id="340cce1ecd87a88f27ed4af13feb30bd" category="paragraph">`*disk reassign -s _old-sysid_-d_new-sysid_*`</block>
   <block id="7c28fb51a05155ee2c83b25a8b1837ba" category="paragraph">次の例は、ドライブの再割り当てを示しています。</block>
   <block id="591e50b47782b75bd730ace525401a46" category="list-text">すべてのディスクが想定どおりに再割り当てされていることを確認します。</block>
-  <block id="bf4dee6b57a68bd691f916ec8fc55799" category="paragraph">「 * disk show * 」と入力します</block>
   <block id="400779b1fb33958b56a5d711fd6576f5" category="list-text">アグリゲートのステータスを表示します。</block>
-  <block id="003d9ea14cbb19cec4a2b2160eaae8d7" category="paragraph">「 * aggr status * 」を入力します</block>
   <block id="a45adb2cc03a7b6b2f8aad0f0a988893" category="list-text">パートナーノードで上記の手順を繰り返します（ node_B_2 - 新規）。</block>
   <block id="7a6002540ecd362954aac55e62be8b2d" category="section-title">新しいコントローラのブート</block>
   <block id="f2e258fab466f759085e8337708390d7" category="paragraph">コントローラのフラッシュイメージを更新するには、ブートメニューからコントローラをリブートする必要があります。暗号化が設定されている場合は、追加の手順が必要です。</block>
   <block id="558c0a7f72f16f49bd860bfff6928871" category="paragraph">このタスクはすべての新しいコントローラで実行する必要があります。</block>
   <block id="d74abfb55f46e179952b0f9d29ab5c58" category="list-text">ノードを停止します。</block>
   <block id="f08f2a629e02fddb1ce77481e388117c" category="list-text">外部キー管理ツールが設定されている場合は、関連する bootargs を設定します。</block>
-  <block id="5db8314a5bbb1e18306d03139458a714" category="paragraph">'*setenv bootarg.kmip.init.ipaddr _ip-address_*'</block>
-  <block id="cd4b33f60592f2447d9e845ff83438aa" category="paragraph">'*setenv bootarg.kmip.init.netmask _netmask_*</block>
-  <block id="d2bd8dc41f1fd24a8e34b430e5ed436b" category="paragraph">'*setenv bootarg.kmip.init.gateway _gateway-address_*</block>
-  <block id="06a15940bc70698ec96900f0ee71334b" category="paragraph">`*setenv bootarg.kmip.init.interface _interface-id_*`</block>
   <block id="825dcccec9fe8d386a6e1fe932104cdc" category="list-text">ブートメニューを表示します。</block>
-  <block id="64fa5c268b3e86c2a8bd6042f3628e69" category="paragraph">「 * boot_ontap menu * 」のようになります</block>
   <block id="a0a7d863d75d1083974d54de25a20b2b" category="list-text">ルート暗号化を使用問題する場合は、キー管理設定の boot menu コマンドを使用します。</block>
   <block id="7fc17decf9554a362d80ff8052528439" category="cell">使用するポート</block>
   <block id="8cb7388f916ea57692be4e2442a4bb6e" category="cell">問題ブートメニュープロンプトでのコマンド</block>
@@ -2573,19 +2526,13 @@
   <block id="e606299b52f4f296d9e1024342b77a75" category="paragraph">「 RE_EXTERNAL_KEYmanager 」と入力します</block>
   <block id="05dabbb60a366bf9343eccdf7f33e3d8" category="list-text">自動ブートが有効になっている場合は、 control-C を押して自動ブートを中断します</block>
   <block id="9caedf166198ce0f30b4afaef9a9b698" category="list-text">ブートメニューからオプション（ 6 ）を実行します。</block>
-  <block id="ac39825fa61f58fed3b2c63d885be080" category="admonition">オプション 6 を指定すると、完了前にノードが 2 回リブートされます</block>
-  <block id="cc8ce1f138883e784523187cc361fcf6" category="paragraph">システム ID の変更プロンプトに「 y 」と入力します。2 回目のリブートメッセージが表示されるまで待ちます。</block>
   <block id="1971b81ef4689f1794a2e3edb64225db" category="list-text">partner-sysid が正しいことを確認します。</block>
-  <block id="a7f7298a148cbacda94e1085870bcba8" category="paragraph">*printenv partner-sysid *`</block>
   <block id="9d4b30ae7318acd33ae33208c5ab8460" category="paragraph">partner-sysid が正しくない場合は、次のように設定します。</block>
-  <block id="80f38e7c48faec193c4e3fff10222b91" category="paragraph">`*setenv partner-sysid_partner-SysID_*`</block>
   <block id="cb62cebec2ec9936b30ed5baac0d78c7" category="list-text">ルート暗号化を使用する場合は、キー管理設定の boot menu コマンドを再度問題に実行します。</block>
-  <block id="5b11c323244dec08fdad26addb2c17eb" category="paragraph">ノードが完全にブートするまで、ブートメニューのプロンプトで recover_xxxxxxxx_keymanager コマンドとオプション 6 を何度も問題で実行しなければならない場合があります。</block>
   <block id="ff5d57d1c306e7fe421eefff36f821cd" category="list-text">ノードをブートします。</block>
   <block id="0076499bf0665482ee0c069821eab630" category="list-text">交換したノードがブートするまで待ちます。</block>
   <block id="91795395e1cb68a9afce1f21b96272fa" category="paragraph">いずれかのノードがテイクオーバーモードの場合は、「 storage failover giveback 」コマンドを使用してギブバックを実行します。</block>
   <block id="ba9306a784ea50cffb5495b1554f7cb4" category="list-text">すべてのポートがブロードキャストドメインに属していることを確認します。</block>
-  <block id="0100fe44619a92f7a72b265b071a81e8" category="list-text">ブロードキャストドメインを表示します。 +`* network port broadcast-domain show *`</block>
   <block id="7891ca9ce66a6010c0a0c81f73c751a7" category="list-text">必要に応じて、ブロードキャストドメインにポートを追加します。</block>
   <block id="af2cff7842d78b021641e08a464843b0" category="inline-link">ブロードキャストドメインのポートの追加と削除</block>
   <block id="c65b5a40a33c87dbddaf6f6ae7b632bb" category="paragraph"><block ref="c65b5a40a33c87dbddaf6f6ae7b632bb" category="inline-link-rx"></block></block>
@@ -2605,17 +2552,13 @@
   <block id="0a83ed732b07426c840d56d0ee6e648b" category="paragraph">「セキュリティキーマネージャオンボード同期」</block>
   <block id="5bf2f359266fb5938e485eea48778d7e" category="inline-link">オンボードキー管理の暗号化キーのリストア</block>
   <block id="69687d9e117e78e71f70786c5e0c9c43" category="paragraph">詳細については、を参照してください<block ref="86f91be7985367f70a4a919a829a9f9e" category="inline-link-rx"></block>。</block>
-  <block id="e73a746f9fcbf0a847c4d69567aabd65" category="paragraph">「 * security key-manager external restore -vserver _svm _ -node-node_ -key -server_host_name | ip_address ： port_-key-id key_id -key tag key_tag * _node-name_ 」</block>
   <block id="58c1a66269a7ccc7b04879a387e7c3ae" category="inline-link">外部キー管理の暗号化キーのリストア</block>
   <block id="9fb51d4d13437ec63f1213f3923021a6" category="paragraph">詳細については、を参照してください<block ref="776d197cbf08d1a48ca3c854fbecd090" category="inline-link-rx"></block>。</block>
   <block id="80d9624a4e183629cc80dcaae44aedaa" category="section-title">LIF の構成を確認しています</block>
   <block id="34e041fe9ecda3607a3bb424cba8d99b" category="paragraph">スイッチバックの前に、 LIF が適切なノード / ポートにホストされていることを確認します。次の手順を実行する必要があります</block>
   <block id="87706eccebcd85e1210a84c72b5e2c9b" category="paragraph">このタスクは site_B で実行します。ノードはルートアグリゲートでブートされています。</block>
   <block id="24f91f070271318621e83fbab3117da8" category="list-text">スイッチバックの前に、 LIF が適切なノードとポートにホストされていることを確認します。</block>
-  <block id="1c5ec4e4e59db26529c2f8ff0f8e2be6" category="list-text">ポート設定を無視して適切な LIF が配置されるようにします。 +`* vserver config overridecommand "network interface modify -vserver _vserver_name __ home_port_after_upgrade_-lif_name_-home-node _new_node_name _"*`</block>
-  <block id="428ee66dafd445173489775996c06151" category="paragraph">vserver config override コマンドで network interface modify コマンドを入力した場合は、 tab autoccomplete 機能を使用することはできません。autoccomplete を使用して「 network interface modify 」を作成し、「 vserver config override 」コマンドで囲むことができます。</block>
   <block id="c0ba3201f16158e00581af8a4e633953" category="list-text">インターフェイスをホームノードにリバートします。</block>
-  <block id="a754d4144e3c4883440e55a6461663c4" category="paragraph">「 * network interface revert * -vserver _ vserver_name _ * 」を参照してください</block>
   <block id="79db05c6325341be1f197094f1f39dfe" category="paragraph">必要に応じて、すべての SVM でこの手順を実行します。</block>
   <block id="101eb63fc89b71f07d6fd64ec364e567" category="section-title">MetroCluster 設定を元に戻します</block>
   <block id="dca37c43ff68fc6fc781f9dccaf1eb93" category="paragraph">新しいコントローラを設定したら、 MetroCluster 構成をスイッチバックして構成を通常動作に戻します。</block>
@@ -2624,7 +2567,6 @@
   <block id="6020286e609621d7a51cfb1ca1931a66" category="list-text">site_B の MetroCluster node show コマンドを問題し ' 出力を確認します</block>
   <block id="ca9c56ab0bb83d382fd25049223670de" category="list-text">新しいノードが正しく表示されることを確認します。</block>
   <block id="432c93ecd647e7ed568dae42c320bb9a" category="list-text">新しいノードの状態が「 Waiting for switchback 」であることを確認します。</block>
-  <block id="7791309c0348368421c8efb950b2e77f" category="list-text">クラスタをスイッチバックします MetroCluster スイッチバック</block>
   <block id="0abe5f2dd8b580fd08af082649f79e71" category="list-text">スイッチバック処理の進捗を確認します。</block>
   <block id="867c64f0b04ea0a720229d699e306466" category="paragraph">出力に「 waiting-for-switchback 」と表示されたら、スイッチバック処理はまだ進行中です。</block>
   <block id="4e13d70ad15aa48ae9a770aa54dd268d" category="paragraph">出力に「 normal 」と表示された場合、スイッチバック処理は完了しています。</block>
@@ -2635,12 +2577,10 @@
   <block id="bb8721e2ff2df30ad696bfea212b7dad" category="list-text">MetroCluster 構成の動作を確認します。</block>
   <block id="f181d34cde32a783c686d54cd89b5f4f" category="section-title">cluster_A のノードをアップグレードします</block>
   <block id="0c3130a0855ad337dbe1f4a605eaacf9" category="paragraph">cluster_A についてもアップグレード手順を繰り返す必要があります</block>
-  <block id="d26e184d7d9c0404bfa5c22e30fb61a4" category="list-text">同じ手順を繰り返して、 cluster_A のノードをアップグレードします <block ref="2ed2205735b9667161eca223b1f59941" category="inline-xref-macro-rx"></block>。</block>
   <block id="491f4a55b5ac3a5330d799d5311315e8" category="paragraph">タスクを実行すると、これらの例ではクラスタとノードをすべて逆に参照しています。たとえば、この例で cluster_A からスイッチオーバーすると、 cluster_B からスイッチオーバーされます</block>
   <block id="d60c50580eca8ffa48386ace1436021b" category="section-title">メンテナンス後にカスタム AutoSupport メッセージを送信する</block>
   <block id="a00b322f5fbb0ab63d64eb15f5fd23e9" category="paragraph">アップグレードの完了後、ケースの自動作成を再開できるように、メンテナンスの終了を通知する AutoSupport メッセージを送信する必要があります。</block>
   <block id="9553eead12b025935c7e52654c9fb212" category="list-text">サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。</block>
-  <block id="a65505403a8abbcd1def2d96eb5f63b6" category="list-text">問題次のコマンドを使用します。 +`* system node AutoSupport invoke -node * -type all -message MAINT=end *</block>
   <block id="b7e5b55538476224f8195437bdd6b155" category="section-title">Tiebreaker 監視をリストアしています</block>
   <block id="cf01be10c4ad6c0e087f2447c096712d" category="paragraph">MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。</block>
   <block id="0c3de4f48f152830cf54a3c7110e5b3e" category="inline-link">MetroCluster 構成を追加しています</block>
@@ -4556,10 +4496,6 @@
   <block id="10b2b202b4f1c5644f1599057a061bcf" category="list-text">MetroCluster IP 構成用に新しいコントローラをラックに設置します。</block>
   <block id="012f755687424dd2475cf31eee8a99ff" category="paragraph">この時点では、 MetroCluster FC ノード（ node_A_1 と node_B_1 ）のケーブル接続が維持されます。</block>
   <block id="80fb7c4e88412c0982a4f4059276c495" category="list-text">に示すように、 MetroCluster IP ノードを IP スイッチにケーブル接続します <block ref="a7e57dc2daac4f7cbe505174567577f3" category="inline-link-macro-rx"></block>。</block>
-  <block id="6720b5c057fe1d1c1d63c77e5da7df04" category="list-text"><block ref="6720b5c057fe1d1c1d63c77e5da7df04" category="inline-link-macro-rx"></block></block>
-  <block id="21951a806d543d93a8a39490e66d6801" category="list-text"><block ref="21951a806d543d93a8a39490e66d6801" category="inline-link-macro-rx"></block></block>
-  <block id="13b45985c7d4f73a159b1be3433457f1" category="list-text"><block ref="13b45985c7d4f73a159b1be3433457f1" category="inline-link-macro-rx"></block></block>
-  <block id="f9ae9b1da7153f8853bc9632935b45b9" category="list-text"><block ref="f9ae9b1da7153f8853bc9632935b45b9" category="inline-link-macro-rx"></block></block>
   <block id="fbb3c6ac39d170b58b6e9006735f762f" category="list-text">他の MetroCluster IP ノードに対して上記の手順を繰り返します。</block>
   <block id="a1dc95b2dccfd24df8e5f465b41ca7bb" category="summary">移行時に、 MetroCluster FC 構成のドライブシェルフから新しい MetroCluster IP 構成へデータを移動します。</block>
   <block id="6b2201b255bf7619b40525eabcf640ce" category="doc">新しいドライブシェルフへのデータの移動</block>
@@ -8262,7 +8198,6 @@
   <block id="c2a6f21d9468636e0845f2fa91c6865a" category="paragraph">NX3232_v1.80_Switch-B1.txt</block>
   <block id="6e4e89c7b914560c1a65ea32734c6bfc" category="paragraph">IP_switch_B_2</block>
   <block id="fed227599b689943135c765d47b6045a" category="paragraph">NX3232_v1.80_Switch-B2.txt</block>
-  <block id="313409fa2cdb57ceaac7a401d3a7ec13" category="list-text">MetroCluster IP RCF ファイルをからダウンロードします<block ref="47f7dd3b2352c1e61640eee11f081c5a" category="inline-link-rx"></block>。</block>
   <block id="516e7c19b1a750a903f4fd9e3624c57a" category="list-text">RCF ファイルをスイッチにコピーします。</block>
   <block id="1f80196ab142297bfad1ce7658281aa4" category="section-title">Cisco 9336C スイッチでの MACsec 暗号化の設定</block>
   <block id="c2cd808fc4b0d9e71ea89cc518cef164" category="paragraph">サイト間で実行される WAN ISL ポートにのみ MACsec 暗号化を設定する必要があります。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。</block>
@@ -8315,12 +8250,10 @@
   <block id="cc9f85a6f649e0f320a34bda0a52ee70" category="list-text">設定するインターフェイスを指定します。</block>
   <block id="e2c6e6641c86366c32776348c1d19335" category="paragraph">インターフェイスのタイプと ID を指定できます。Ethernet ポートの場合は 'Ethernet slot/port' を使用します</block>
   <block id="dcf432534686dfbd4a5057ebd44a4d2a" category="list-text">MACsec を使用して追加の WAN ISL ポートを設定するには、上記の手順を繰り返します。</block>
-  <block id="c3f183d6d5c99219fe1e9b69c1afc9ec" category="section-title">25Gbps 接続を使用するおよびシステムの前方誤り訂正の設定</block>
   <block id="85b091192b5f7d8d84eccf6181fd6ae8" category="paragraph">25Gbps 接続を使用してシステムが設定されている場合は、 RCF ファイルの適用後に前方誤り訂正（ fec ）パラメータを手動で off に設定する必要があります。この設定は RCF ファイルでは適用されません。</block>
   <block id="21b34813f1e8c3819fcd4c2d1a97dc87" category="paragraph">この手順を実行する前に、 25Gbps ポートがケーブル接続されている必要があります。</block>
   <block id="de42a51018ae76cdec0d5104c4b44724" category="inline-link-macro">Cisco 3232C スイッチまたは Cisco 9336C スイッチのプラットフォームポートの割り当て</block>
   <block id="0ef715bbddac71aad2d1af3b2ccf8056" category="paragraph"><block ref="0ef715bbddac71aad2d1af3b2ccf8056" category="inline-link-macro-rx"></block></block>
-  <block id="c0ed856ba627a4789c1f7874241a234d" category="paragraph">このタスクでは、 25Gbps 接続を使用する環境 AFF A300 および FAS8200 プラットフォームのみを対象としています。</block>
   <block id="ec97d870f267a6b1f7a705a6c44b8e6b" category="paragraph">このタスクは、 MetroCluster IP 構成の 4 つのスイッチすべてで実行する必要があります。</block>
   <block id="80541a6761449841eef5dece61e66f64" category="list-text">スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。</block>
   <block id="36459777ccad4388b153a5c6dd47cecf" category="paragraph">次の例は、スイッチ IP_switch_A_1 のインターフェイス Ethernet1/25/1 に対するコマンドを示しています。</block>
@@ -8338,7 +8271,6 @@
   <block id="f279cda33d8658b285d1ba4a42773651" category="list-text">必要に応じて、 SSH サーバを設定します。</block>
   <block id="f0630dda98a33b3b99be916ac28603b0" category="admonition">RCF ファイルで Telnet プロトコルが無効になります。SSH サーバを設定しない場合は、シリアルポート接続を使用してブリッジにアクセスする必要があります。</block>
   <block id="4cbd2061568d423e0fdf461dfa55b473" category="list-text">RSA キーを生成します。</block>
-  <block id="fe87f6bbbe2ba1deef28e443d948319d" category="list-text">DSA キーを生成します。</block>
   <block id="2adc88e53d20b1a61cccff951117e58f" category="list-text">SSH サーバを有効にします。</block>
   <block id="a3fec8a700961f2756fa87e70ed3f889" category="paragraph">必要に応じて、設定コンテキストを終了します。</block>
   <block id="b5a5b3a0219f19569613cb2962fe0ab6" category="admonition">キーがすでに存在する場合は、それらを上書きするように求められることがあります。</block>
@@ -8348,13 +8280,6 @@
   <block id="2820fb4a624285c62742b62da6679fb8" category="paragraph">このタスクは、 MetroCluster IP 構成内のスイッチごとに実行する必要があります。</block>
   <block id="1ff36fa740a0902025854b326dfe57e6" category="list-text">スイッチがリブートするまで待ちます。</block>
   <block id="5d975c1dd11d51c95b55f14295457c6d" category="paragraph">MetroCluster IP 構成の各スイッチにスイッチの RCF ファイルをダウンロードしてインストールする必要があります。</block>
-  <block id="8a9ce1e3217b7fa80d1aeb5ef1bbd2ad" category="paragraph">BES-53248_v1.32_Switch-A1.txt</block>
-  <block id="c3e4b7619e95d4024e440983ff7c285c" category="paragraph">BES-53248_v1.32_Switch-A2.txt</block>
-  <block id="395668868fa80dabcce058176006196e" category="paragraph">BES-53248_v1.32_Switch-B1.txt</block>
-  <block id="b10d7825d4307d9546b94a0633833c2d" category="paragraph">BES-53248_v1.32_Switch-B2.txt</block>
-  <block id="3c93b2795775d303ec2cf758f997e05b" category="list-text">MetroCluster IP の Broadcom スイッチの RCF ファイルをダウンロードします。</block>
-  <block id="47e34e39a6e39d638a81f772626beb76" category="inline-link">Broadcom Cluster and Management Network Switch Reference Configuration File Download for MetroCluster IP 』を参照してください</block>
-  <block id="adc4a8df4165d2df1d347cc6705c6cb4" category="paragraph"><block ref="adc4a8df4165d2df1d347cc6705c6cb4" category="inline-link-rx"></block></block>
   <block id="8dbef93c578a2dd1a148ce7a8e7ed428" category="list-text">残りの 3 つのスイッチのそれぞれについて、同じ手順を繰り返します。それぞれのスイッチに対応する RCF ファイルをコピーするように注意してください。</block>
   <block id="2ac5b29f2d20bbfbdc32651d31618463" category="summary">8 ノード構成は、 2 つの DR グループで構成されます。このセクションのタスクを使用して、最初の DR グループを設定します。</block>
   <block id="146d142d8ea797f93d593a6fe9556787" category="doc">8 ノード構成の処理</block>
@@ -8460,13 +8385,10 @@
   <block id="4dbae59f3cbe15012d73996ea5e7efd7" category="cell">メディエーターのバージョン</block>
   <block id="7086defea73bc85dfa4588f2db92a805" category="cell">サポートされている Linux バージョン</block>
   <block id="0b0ec9f1cc28b3c19dc6c36dcd5af7cc" category="paragraph">1.3</block>
-  <block id="10dd3d995ff982bab7e234061e07f38a" category="paragraph">Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 7.9 、 8.0 、 8.1 、 8.2 、 8.3</block>
   <block id="56765472680401499c79732468ba4340" category="paragraph">1/2</block>
-  <block id="fa2c13af91b78242d6ba511e5b050fd5" category="paragraph">Red Hat Enterprise Linux または CentOS 7.6 、 7.7 、 7.8 、 8.0 、 8.1</block>
   <block id="d55d8aaf12099eb46ec871f4ea80b39d" category="list-text">64 ビットの物理インストールまたは仮想マシン</block>
   <block id="83626eda7582435cdf0eb139d5cc8972" category="list-text">8GB の RAM</block>
   <block id="2774e53c6d33bb76442da628f467bbda" category="paragraph">Red Hat Enterprise Linux または CentOS とその関連リポジトリをシステムにインストールする際のベストプラクティスは次のとおりです。別の方法でインストールまたは設定されたシステムでは、追加の手順が必要になる</block>
-  <block id="1360477285b396de86390013198f1324" category="list-text">Red Hat Enterprise Linux または CentOS のインストールについては、 Red Hat のベストプラクティスに従う必要があります。</block>
   <block id="d78f805366335574fe9a7a8a768188ec" category="list-text">Red Hat Enterprise Linux または CentOS への ONTAP メディエーターサービスのインストール中にインストールプログラムが必要なすべてのソフトウェアにアクセスしてインストールできるように、システムには該当するリポジトリへのアクセスが必要です。</block>
   <block id="177124ed5a050ade35cf0ca9bbfbea42" category="list-text">yum インストーラで Red Hat Enterprise Linux リポジトリから依存するソフトウェアを検索するには、 Red Hat Enterprise Linux のインストール中またはインストール後に有効な Red Hat サブスクリプションを使用してシステムを登録しておく必要があります。</block>
   <block id="3fd0a1c0edf135c3937e76bd17a097d3" category="paragraph">Red Hat Subscription Manager については、 Red Hat のドキュメントを参照してください。</block>
@@ -11534,84 +11456,8 @@
   <block id="e39c1c9f6137c6dbe9a36e7da08ce525" category="paragraph"><block ref="e39c1c9f6137c6dbe9a36e7da08ce525" category="inline-link-macro-rx"></block></block>
   <block id="d6c1b26afb87081a7358d272268afbf0" category="paragraph"><block ref="d6c1b26afb87081a7358d272268afbf0" category="inline-link-macro-rx"></block></block>
   <block id="a72d2a4ca552186cbf62f182a7dfbe82" category="paragraph"><block ref="a72d2a4ca552186cbf62f182a7dfbe82" category="inline-link-macro-rx"></block></block>
-  <block id="8d34b4267d2886cdba19cbddeba8d3ad" category="list-text">既存の設定を消去します。</block>
-  <block id="cfd72c932abb8432b8e6b711659ed1d7" category="list-text">スイッチソフトウェアをリロードします。</block>
-  <block id="375e567de438a1579363c1113e698778" category="paragraph">システムがリブートし、設定ウィザードが表示されます。起動時に 'Abort Auto Provisioning と表示され ' 通常のセットアップを続行する場合は '(yes/no)[n]` と入力して続行します</block>
-  <block id="bee24b783e44923012afab506584e701" category="list-text">SSH サービス（ RSA ）</block>
-  <block id="4c20f2b5dfebba1daad521c7b3ab4c3b" category="paragraph">設定ウィザードが完了すると、スイッチがリブートします。</block>
-  <block id="409fac5d109b0d42d6ed8afc0c600cfc" category="paragraph">ip_switch -a-1 # copy running-config startup-config</block>
-  <block id="3ff80a946baa0d415de97e7c2a95793c" category="paragraph">ip_switch -a-1 # reload`</block>
-  <block id="5c4c8c1895f38dc1fdb21afaba86791a" category="paragraph">この例では、 "nxos.7.0.3.I4.6.bin" ファイルが SFTP サーバ "10.10.99.99" からローカルブートフラッシュにコピーされています。</block>
-  <block id="53ba93fa19131cf981212cb45141b793" category="paragraph">すべての nxos bootflash:nxos.version-number.bin をインストールします</block>
-  <block id="8ae0cf2d345fd4c294935ff37267c786" category="paragraph">次の例は、「 FC_switch_A_1 」へのソフトウェアのインストールを示しています。</block>
-  <block id="d40094c20302b8d483bb43b07d043c82" category="paragraph">'copy sftp://root@ftp-server-ip-address /tftpboot/switch-specific -RCF bootflash:vrf management`</block>
-  <block id="6a3f120af5c1d85a0507a40cd533ba2a" category="paragraph">この例では、「 NX3232_v1.80_Switch-A1.txt 」 RCF ファイルを SFTP サーバの「 10.10.99.99 」からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスと、インストールする必要がある RCF ファイルのファイル名を使用する必要があります。</block>
-  <block id="424828326c99a0f69f26ea55cae96665" category="list-text">各スイッチの bootflash ディレクトリに RCF ファイルがあることを確認します。</block>
-  <block id="9907713d23e4a8ccaed056f63f830b76" category="paragraph">copy bootflash: switch-specific-RCF.txt running-config</block>
-  <block id="3b321938f361b3ec64e24c0f958cdcfe" category="list-text">MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。== Cisco 9336C スイッチでの MACsec 暗号化の設定</block>
-  <block id="fc64fd2d443f2692e38496e1702188bb" category="list-text">グローバルコンフィギュレーションモードを開始します。</block>
-  <block id="bab249fe542bdf368ff67708f1ae39d2" category="paragraph">「 configure terminal 」をクリックします</block>
-  <block id="0a911607fcdb2a0895663c58e11b5e20" category="list-text">デバイスで MACsec と MKA を有効にします。</block>
-  <block id="0af698a47e630dbe25ea48f66be32472" category="paragraph">「 feature MACsec</block>
-  <block id="94d3b8e178343e5848889ce109b92d67" category="list-text">実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。</block>
-  <block id="8593f4ba6cc280cf6c5bf594528f3eb4" category="list-text">デバイスの MACsec 設定を無効にします。</block>
-  <block id="cdb4bb93b3a531a567e11665f5148cc9" category="paragraph">「 ACSEC SHUTDOWN 」のようになります</block>
-  <block id="898bf60bbd95cf3f64c28667c3e8a485" category="list-text">インターフェイスに設定されているキーチェーン、ポリシー、およびフォールバックキーチェーンを削除して、 MACsec 設定を削除します。</block>
-  <block id="0e24ecf998582fa5d382f0964ae2c5ac" category="paragraph">「 no MACsec keychain_keychain -name_policy_policy-name_fallback-keychain_fallback-keychain-name_` 」を指定します</block>
-  <block id="09d2459b8ba15bdb94703e39490766cf" category="list-text">暗号化されたキーオクテット文字列を非表示にするには、「 show running-config 」コマンドと「 show startup-config 」コマンドの出力で、文字列をワイルドカード文字に置き換えます。</block>
-  <block id="74e0480b8ca480716d1a5cd50a1ceb85" category="list-text">MACsec キーチェーンを作成して一連の MACsec キーを保持し、 MACsec キーチェーンコンフィギュレーションモードを開始します。</block>
-  <block id="1b5dce8a5e1076414ab0a1f651e86626" category="paragraph">キーチェーン名 MACsec</block>
-  <block id="9a771e89df39dc68718b01f345679ce5" category="list-text">MACsec キーを作成し、 MACsec キーコンフィギュレーションモードを開始します。</block>
-  <block id="2d511bdd9854a103c38901022287d59c" category="paragraph">「 key key-id 」</block>
-  <block id="6567e1b453ff61d555a46da46fe529c1" category="list-text">キーのオクテット文字列を設定します。</block>
-  <block id="463b6468e4cb988d617139c73a1c60d1" category="paragraph">「 key-octet-string octet-string octet-string cryptographic-algorithm ae_128_CMAC | aes-256_CMAC 」という形式で指定します</block>
-  <block id="a45d06d420691a658540c392805b5464" category="admonition">「 octet-string 」引数には、最大 64 文字の 16 進文字を含めることができます。オクテットキーは内部でエンコードされるため、クリアテキストのキーは、「 show running-config macsec 」コマンドの出力には表示されません。</block>
-  <block id="33c68d550ed8b40ce4dff6fec3e12299" category="list-text">キーの終了ライフタイムを設定します（秒単位）。</block>
-  <block id="8a9b310c495b3588575c00947aa2ca98" category="paragraph">'end-lifetime start-time duration_`</block>
-  <block id="f8c468a51ba3a591f7435f5a9536be6c" category="paragraph">デフォルトでは、デバイスは開始時間を UTC として処理します。「 tart -time 」引数は、キーがアクティブになる時刻と日付です。「引き数」は、ライフタイムの秒数です。最大値は 2147483646 秒（約 68 年）です。</block>
-  <block id="9b371153b822dd35e01e4e8dc2c04cb3" category="list-text">実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします</block>
-  <block id="10b1c3cc1af07c7992049ba1819d36e1" category="paragraph">running-config startup-config をコピーします</block>
-  <block id="fb3e989a4bad213c9adbd3e7bcd9b00b" category="list-text">キーチェーン設定を表示します。</block>
-  <block id="49a66a48bbc301445b1c144ea99c4dbf" category="paragraph">「鍵チェーン名」</block>
-  <block id="dde20920c9bc2285cedc0171616ad91e" category="list-text">MACsec ポリシーを作成します。</block>
-  <block id="3ec088691927601a692a22de57f7b714" category="paragraph">「 ACSEC ポリシー名」</block>
-  <block id="edbb49331be136350bda417cf5ba839b" category="list-text">次のいずれかの暗号を設定します。</block>
-  <block id="5200e1f851b574e5208b4f68b18772c2" category="list-text">gcm - AES-128</block>
-  <block id="645cf4421cc879e6a5c22e9a16087526" category="list-text">gcm - AES-256</block>
-  <block id="6a406bf53b8b298ea85321874a731035" category="list-text">gcm - AES-XPN-128</block>
-  <block id="1f7b8fb74d7aa4c3ede5728afd5b65a9" category="list-text">gcm - AES-XPN -256</block>
-  <block id="b82e01eb60b60c5e942d1d8575a7f37b" category="paragraph">「 cipher-site name 」</block>
-  <block id="2ae857e42c8cd18b28af888037935783" category="list-text">キー交換時にピア間の接続を解除するために、キーサーバの優先度を設定します。</block>
-  <block id="ca7b955b9b346d60ed4f0dc1e64cfc64" category="paragraph">「 key-server-priority_number 」のように設定します</block>
-  <block id="7a44b8ff86b7a95660b772757f2bc282" category="list-text">データおよび制御パケットの処理を定義するセキュリティポリシーを設定します。</block>
-  <block id="eaa440a91bcc4e3ed54414d4ff0fe828" category="paragraph">「 security-policy_security-policy_」 を指定します</block>
-  <block id="cc937ddb780d152554ff3383c19de7be" category="list-text">設定されたウィンドウサイズより小さいパケットがセキュアインターフェイスで受け入れられないように、リプレイ保護ウィンドウを設定します。</block>
-  <block id="f8b96974276de6fe5c8382764281e2fd" category="paragraph">window-size_number_`</block>
-  <block id="b77da47450f6ae2b04de653478f79b10" category="list-text">SAK キーの再生成を強制する時間を秒単位で設定します。</block>
-  <block id="d2bc3601262ff6548f8d78a57c0f911e" category="paragraph">'sak-expiry-time_`</block>
-  <block id="878cd2d60f70843a5aefc73f923ae706" category="paragraph">このコマンドを使用して、予測可能な時間間隔にセッションキーを変更できます。デフォルトは「 0 」です。</block>
-  <block id="06db921aa0f25025beb44d21cecefecd" category="list-text">暗号化を開始するレイヤ 2 フレームで、次の機密性オフセットのいずれかを設定します。</block>
-  <block id="e11afee8dde4674d7948e54940ebcd3e" category="paragraph">「 conf-offsetconfidentiality offset 」を参照してください</block>
-  <block id="525c239c40e177bc999f4c865c626a7f" category="list-text">conf-offset-0 。</block>
-  <block id="ab26673470b0caab104eac4decc2e17c" category="list-text">conf-offset-30 。</block>
-  <block id="05db52bfb6d2943365f1b71093eaa6ec" category="list-text">conf -offset-50 。</block>
-  <block id="5382d2282494796171738f35b9361ab8" category="admonition">このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
-  <block id="dbedb7cefba22d6d33123561705f89d7" category="list-text">MACsec ポリシー設定を表示します。</block>
-  <block id="388f63f7d6fad1c81c4ee48ef9a6717c" category="paragraph">「 MACsec ポリシー」</block>
-  <block id="28ba3b68e72bb285464a03a6f72b3130" category="paragraph">「 MACsec mka セッション」を参照してください</block>
-  <block id="5c6b1b259ec3aba881887ad2bcf464d9" category="paragraph">「 MACsec mka の統計情報」を参照してください</block>
-  <block id="963f5eadacb40d1c09a8a4b55061def7" category="list-text">キー / キー ID の不一致またはキーの有効期限が原因で MACsec セッションに失敗した場合に使用するフォールバックキーチェーンを指定します。</block>
-  <block id="81c48e6ea46a92849eb960d98501aa40" category="paragraph">「 m ACSEC keychain_keychain -name_policy_policy-name_fallback-keychain_fallback-keychain-name_` 」です</block>
-  <block id="0c2b1f7fa7ee12cd2f5a1f5ec06f4758" category="admonition">次の手順を使用して、 fallback-keychain を設定する必要があります。 <block ref="f83d7d21f0fb632f54556f98d0714ad7" category="inline-xref-macro-rx"></block> この手順に進む前に、</block>
-  <block id="06110669353ab55366cb47ba607b386f" category="list-text">コントローラモジュールに接続されている各 25Gbps ポートで「 fec 」パラメータを「 off 」に設定し、実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。</block>
-  <block id="c9255debd80b3435af53b4d7c8b851a6" category="list-text">設定する 25Gbps インターフェイスを指定します。</block>
-  <block id="47368044094e980e212e51e53f653cf2" category="paragraph">'interface_ID_`</block>
-  <block id="600097752216c9cf1a91d5c60102bcf8" category="list-text">「 fec 」を「 off 」に設定します。</block>
-  <block id="aaa283892de0705f6292714e2ecb4234" category="paragraph">「 fec off 」と入力します</block>
-  <block id="61210a89394e7cdd681d2a54c94960bf" category="list-text">昇格されたコマンドプロンプト (`#') に変更します。</block>
   <block id="237ceede529524160f9215c07a41b01a" category="paragraph">「 enable 」を選択します</block>
   <block id="56c0e77173118d9438d0428e9dc7a715" category="list-text">スタートアップ設定を消去します。</block>
-  <block id="91f81f9cd1a23a248e317b6b22a84ce3" category="paragraph">「 erase startup-config 」を入力します</block>
   <block id="ec5c3bc0d9af5e6eaa0a026335b11755" category="list-text">管理者特権のコマンドプロンプトに切り替えます。</block>
   <block id="4fee2f5aadc66b5f313f985dffa0efdf" category="list-text">サービスポートプロトコルを「 none 」に設定します。</block>
   <block id="e080aeaf0a61fd1dc4cdb4d64b02bc7d" category="paragraph">「サービスポートプロトコルなし」</block>
@@ -11626,8 +11472,6 @@
   <block id="8093e28dbe8feb9bac45f540897d8548" category="list-text">スイッチ名を設定します。</block>
   <block id="7cdf3ef23b7a4de21ce5416002e31840" category="paragraph">'hostname ip_switch_a_1'</block>
   <block id="05811097becdf827e7905c7085aac958" category="paragraph">「メモリの書き込み」</block>
-  <block id="bc3112ce4af28e5fc2407cd354855514" category="paragraph">'copy sftp://user@50.50.50.50 /switchsoftware/efos-3.4.3.1.stk backup</block>
-  <block id="d0c876b8f4ab728e9ccdcdd287e60f0a" category="paragraph">この例では、「 efos-3.1.stk 」オペレーティングシステムファイルを SFTP サーバから「 50.50.50.50 」にコピーしています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。</block>
   <block id="f7967e1b793d9c2b1f509f5a8239b08e" category="list-text">次回リブート時にスイッチをバックアップパーティションからブートするように設定します。</block>
   <block id="ae791522c9f7834f0edc56277ffe2340" category="paragraph">「ブート・システム・バックアップ」を参照してください</block>
   <block id="59ddc72eeb53790ebf968ba8067ff5bc" category="list-text">次回ブート時に新しいブートイメージがアクティブになることを確認します。</block>
@@ -11662,9 +11506,7 @@
   <block id="aa3f631fc5c50fd8386f95cdb6d4a080" category="section-title">CentOS 7.x オペレーティングシステムの手順</block>
   <block id="e77417f9b3a025db5c9b897480397f05" category="section-title">手順 for CentOS 8.0.1905 以降のオペレーティングシステム</block>
   <block id="776b863d23f8f3c1ad323efc746ad581" category="inline-link">CentOS Vault の場合</block>
-  <block id="5a4aa16205942bd9340779622f5def36" category="paragraph">最新バージョンの 8.0 （ CentOS 8.0.1905 ）コアはに搭載されているためです<block ref="0ea159b669197108632fac010ad6fa88" category="inline-link-rx"></block>必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。</block>
   <block id="9a57fec066e0a61fb842162f033faf88" category="paragraph">「 rpm -i \ http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname -r 」。 rpm</block>
-  <block id="7a745c5ac74bae295d044a75f9948f75" category="admonition">上記のコマンドの例は、 CentOS 8.0.1905 固有のものです。他の CentoOS 8.x ビルドの場合は、必要に応じてパスを変更します。</block>
   <block id="9c0f95d6de9186b24cce94c1c19ad0bb" category="section-title">インストールを確認します。</block>
   <block id="bc123056e228f601bd0d262cb4470668" category="list-text">ONTAP 9.4 以前を実行しているシステムの場合は、データアグリゲートを修復します。</block>
   <block id="f7435cd78551a0fd45d3c8d37a295df3" category="paragraph">MetroCluster はアグリゲートを修復します</block>
@@ -11775,4 +11617,165 @@
   <block id="e0dd1e85604316427a557d67b3079843" category="summary">FlexArray LUN を使用しているかどうか、およびストレージコントローラとストレージシェルフの接続方法に基づいて、正しいインストール手順を選択する必要があります。</block>
   <block id="84a335bc70808c0497de1c62a99aaf43" category="sidebar">基本設定を行います</block>
   <block id="175313fe612a432e5a51082817a697f1" category="sidebar">Cisco 9336C スイッチに MACsec 暗号化を設定します</block>
+  <block id="d0a21ff59a32489a592aeb50ea891e1c" category="list-text">構成に破損ディスクがないことを確認します。</block>
+  <block id="9c2ea476b2663febaae7e92749da7877" category="paragraph">「 storage disk show -broken 」</block>
+  <block id="23a6830e0b1f38beb4090d86d31d8532" category="list-text">両方のサイトでタイムゾーンと時間が正しく設定されていることを確認します。</block>
+  <block id="696b64bc323bdd13e4a324fd384d294c" category="list-text">オンボードキーマネージャが設定されている場合：</block>
+  <block id="c497a6b930105164567b744840c21e94" category="paragraph">「 securitykey manager onboard show-backup 」を参照してください</block>
+  <block id="1b8b021695a2698fadae5c009b0b6295" category="paragraph">「 securitykey-manager external show -instance 」</block>
+  <block id="2a4a9d693caa859153f77cf2204d30cc" category="paragraph">「セキュリティキーマネージャのキークエリ」</block>
+  <block id="996bebf7afd4ff3c1c2c76a361bb12a0" category="list-text">データアグリゲートを修復します。</block>
+  <block id="b784ced918e2a1928ccd95f5122fb01c" category="paragraph">MetroCluster は ' データ・アグリゲートを修復します</block>
+  <block id="64a2c948ff5f5a4a19945315df55d3f1" category="list-text">で収集した情報を使用します <block ref="1ed1cd4ef8bd2fcdaf4ac61e442842fa" category="inline-link-macro-rx"></block>。</block>
+  <block id="87166f8e0dd70fc53689b3264b8c5818" category="paragraph">「 broadcast-domain remove-ports -broadcast-domain_domain-name-name_ports_node-name ： port-id_` 」</block>
+  <block id="9480d1ded0239cd558c2bc055e038641" category="list-text">VLAN ポートを削除します。</block>
+  <block id="632030e35d20edc0183144e7ba2d0207" category="paragraph">「 network port vlan delete -node-node-name-vlan-name_portid -vlandid_ 」のように指定します</block>
+  <block id="19450cbfa926e998bbf8df4c2acf2202" category="paragraph">halt -inhibit-takeover true -node node_name `</block>
+  <block id="f3fced65783d96fe674e1249b62fdd67" category="list-text">ucadmin show と入力し、各ポートの現在の設定を確認します</block>
+  <block id="b7f8567690eb07abe3c00b52e12c1a3d" category="paragraph">古いシステム ID は、で識別されています <block ref="93760c38050596c2d594606b232570b5" category="inline-link-macro-rx"></block>。</block>
+  <block id="662d33ac7104caf3274f5065dd2768ba" category="list-text">partner-sysid が正しいことを確認します。</block>
+  <block id="ecb784a0d718480cf2373a1c93d92d6b" category="list-text">ルート暗号化を使用問題する場合は、キー管理設定に対して boot menu コマンドを再度実行します。</block>
+  <block id="a60ee6def67cd983574ca038af2a7f12" category="paragraph">ノードが完全にブートするまで、ブートメニューのプロンプトで RECOVER_xxxxxxxx_keymanager コマンドとオプション 6 の問題が必要になる場合があります。</block>
+  <block id="9deac6774fee62e9b27bd1c0ab01281e" category="paragraph">「 vserver config override command 」 network interface modify -vserver vserver_name __ -home-node _active_port_after_upgrade _ -lif LIF_name -home-node _new_node_name _</block>
+  <block id="ad9ebc2907a38b9af9ba1c13b826403a" category="paragraph">「 vserver config override 」コマンド内で「 network interface modify 」コマンドを入力する場合、 Tab autoccomplete 機能は使用できません。autoccomplete を使用して「 network interface modify 」を作成し、「 vserver config override 」コマンドで囲むことができます。</block>
+  <block id="ac95cad470acdacec0fa69881c030cfb" category="list-text">同じ手順を繰り返して、 cluster_A のノードをアップグレードします <block ref="355740dbae62093c04ee9cfd151fed4a" category="inline-link-macro-rx"></block>。</block>
+  <block id="4852598a3e684943b3bfcba06307b21d" category="list-text">次のセクションを使用して、 MetroCluster IP ノードを設定します。</block>
+  <block id="87389a8ef852aa6f8fecae947cf8fd86" category="list-text"><block ref="87389a8ef852aa6f8fecae947cf8fd86" category="inline-link-macro-rx"></block></block>
+  <block id="42aa3219583515464abe8c61ef6c61d3" category="list-text"><block ref="42aa3219583515464abe8c61ef6c61d3" category="inline-link-macro-rx"></block></block>
+  <block id="1356b65b4f6b8c9d44f63f1a27688ae1" category="list-text">既存の設定を消去します。「 write erase 」</block>
+  <block id="367b53240482fbcdbee9063ed854bf15" category="list-text">スイッチソフトウェアをリロードします</block>
+  <block id="e0bfe71bd782e6d91af553d237abef6d" category="paragraph">システムがリブートし、設定ウィザードが表示されます。起動中に、 Abort Auto Provisioning （自動プロビジョニングの中止）というプロンプトが表示され、通常のセットアップを続行する場合（ yes/no ） [n] 、「 yes 」と入力して続行します。</block>
+  <block id="6c318ffbc180197704306f081944e62d" category="list-text">SSH サービス（ RSA ）設定ウィザードが完了すると、スイッチがリブートします。</block>
+  <block id="ecb8253128cc37a7b8d7407356a9c79e" category="list-text">スイッチソフトウェアをスイッチにコピーします。「 + copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management+</block>
+  <block id="170843e6f61a9a5c90fed2eb71e3c3b1" category="paragraph">この例では、 nxos.7.0.3.I4.6.bin ファイルを SFTP サーバ 10.10.99.99 からローカルブートフラッシュにコピーしています。</block>
+  <block id="9aa699d44bac6ea6e8d882e1cb6cdd6b" category="list-text">各スイッチの bootflash: `d IR bootflash: ` に、スイッチの NX-OS ファイルが存在することを各スイッチで確認します</block>
+  <block id="f8749c965ed2c1726c2137bc6a8da847" category="list-text">スイッチソフトウェアをインストールします。“ install all nxos bootflash:nxos.version-number.bin “</block>
+  <block id="4f9c0725d0d15a8e91511fc6c394410b" category="paragraph">次の例は、 FC_switch_A_1 へのソフトウェアのインストールを示しています。</block>
+  <block id="2abfbcb3b6483942c4afa57d53f93914" category="list-text">スイッチソフトウェアがインストールされていることを確認します : 'how version</block>
+  <block id="837bb09325ae9b33d183f31d5f605c2f" category="list-text">MetroCluster IP の RCF ファイルをダウンロードします。</block>
+  <block id="30aedc47c67cc53b73d2b851aeb4ee3b" category="list-text">RCF ファイルを最初のスイッチにコピーします。「 + copy sftp://root@ftp-server-ip-address/tftpboot/switch-specific -RCF bootflash: vrf management+ 」</block>
+  <block id="6f1e191c9822753ed22d3be112079696" category="paragraph">この例では、 NX3232_v1.80_Switch-A1.txt RCF ファイルを SFTP サーバの 10.10.99.99 からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスと、インストールする必要がある RCF ファイルのファイル名を使用する必要があります。</block>
+  <block id="0da5316cb4b80fbf39811ca0d685075c" category="list-text">各スイッチの bootflash ディレクトリ「 d IR bootflash: 」に RCF ファイルがあることを確認します</block>
+  <block id="aa2b4a7618116e3e8d57f32b079650e7" category="list-text">Cisco 3132Q-V および Cisco 3232C スイッチの TCAM リージョンを設定します。</block>
+  <block id="11f4fcfb5097e0ea2628fb4a1004ccde" category="admonition">Cisco 3132Q-V または Cisco 3232C スイッチを使用していない場合は、この手順を省略します。</block>
+  <block id="8be72409348b473e65897fad7fc10ecb" category="list-text">Cisco 3132Q-V スイッチで、次の TCAM リージョンを設定します。</block>
+  <block id="efb8c1fbbf863af4171bcf90c577ed9e" category="list-text">Cisco 3232C スイッチで、次の TCAM リージョンを設定します。</block>
+  <block id="778cd8c0308c5b50a6c5c457a4fba024" category="list-text">TCAM リージョンを設定したら、設定を保存してスイッチをリロードします。</block>
+  <block id="a704f35ceae3f24027e6fab1247539e6" category="list-text">各スイッチで、対応する RCF ファイルをローカルブートフラッシュから実行中の設定にコピーします。「 copy bootflash: switch-specific-RCF.txt running-config</block>
+  <block id="913b36bab9792039b74e6c334b1502a4" category="list-text">各スイッチで、実行中の設定からスタートアップ設定に RCF ファイルをコピーします。「 copy running-config startup-config</block>
+  <block id="404736ec3387f1d401f0b3bf7a1971ba" category="list-text">スイッチをリロードします</block>
+  <block id="d417e41e5c667f563421f48cdd5a7d1b" category="list-text">暗号化されたキーオクテットストリングを非表示にするには、 show running-config コマンドおよび show startup-config コマンドの出力で、ストリングをワイルドカード文字で置き換えます。</block>
+  <block id="f6f14a474d7b7a8fa9fd9a02f8a06383" category="list-text">MACsec キーチェーンを作成して、一連の MACsec キーを保持し、「キーチェーン名 MACsec 」という MACsec キーチェーンコンフィギュレーションモードを開始します</block>
+  <block id="6cf615f0c902c8e8b02876d2f83c44f2" category="list-text">MACsec キーを作成し、 MACsec キーコンフィギュレーションモードを開始します。「 key key-id 」</block>
+  <block id="40bcb53b55bbb1631cf10fee21041f9e" category="list-text">キーのオクテットストリングとして、「 key-octet-string octet-string encryption-algorithm ae_128_CMAC | ae_256_CMAC 」を設定します</block>
+  <block id="aeaceee5eaeaf6e1e6283009aa0c5c82" category="admonition">octet-string 引数には、最大 64 個の 16 進文字を含めることができます。OCTET KEY は内部でエンコードされているため、 show running-config macsec コマンドの出力にクリアテキストのキーは表示されません。</block>
+  <block id="c3e05689119735e416dc843608b76c4e" category="list-text">キーの送信ライフタイム（秒単位）を設定します。「終了ライフタイムの開始時間の長さ」</block>
+  <block id="d2294acb2c54a8144dcb00a8f1554fab" category="paragraph">デフォルトでは、デバイスは開始時間を UTC として処理します。start-time 引数には、キーがアクティブになる時刻と日付を指定します。duration 引数は、ライフタイムの秒単位の長さです。最大値は 2147483646 秒（約 68 年）です。</block>
+  <block id="49fe1389ce523869db2a9c7281bdc944" category="list-text">キーチェーン設定「キーチェーン名」を表示します</block>
+  <block id="c81eaea618dc53aae33980b9b6607fcb" category="list-text">MACsec ポリシー「 mACSEC policy name 」を作成します</block>
+  <block id="f40333d0be95b55d3e72ad6c00bf7527" category="list-text">次のいずれかの暗号、 gcm-aes-128 、 gcm-aes-256 、 gcm-aes-XPN-128 、または gcm-aes-XPN-256 のいずれかを設定します。「 cipher-site name 」</block>
+  <block id="77e598cb536f72c1171ba71e93786958" category="list-text">キー交換時にピア間の接続を解除するために、キーサーバのプライオリティを設定します。「キーサーバプライオリティ番号」</block>
+  <block id="60687e7f208cdbe0de5b9f174e28ffdc" category="list-text">セキュリティポリシーを設定して、データの処理と制御パケット（「セキュリティポリシー」）を定義します</block>
+  <block id="b9bc02d3db58af61799a45782173b6d1" category="list-text">リプレイ保護ウィンドウを設定して、セキュアインターフェイスが設定されたウィンドウサイズより小さいパケットを受け入れないようにします。「 window-size number 」</block>
+  <block id="5942ba255ee228f02524f01cb54b7cc6" category="list-text">SAK キーの再生成を強制する時間を秒単位で設定します : 'AK-expiry-date</block>
+  <block id="e29ea881400d81af18089cbdab8aa15e" category="paragraph">このコマンドを使用して、予測可能な時間間隔にセッションキーを変更できます。デフォルトは 0 です。</block>
+  <block id="9ec782d4fb1aa846fff599297b99292d" category="list-text">暗号化が開始されるレイヤ 2 フレームで、「 conf-offsetconfidentiality offset 」のいずれかの機密性オフセットを設定します</block>
+  <block id="0a79b7a1b6f48bed182b2301018842e0" category="list-text">conf-offset-0 。</block>
+  <block id="0c1a2236f90ef9dcec0e268b250bbbac" category="list-text">conf-offset-30 。</block>
+  <block id="3fe34808cffc91d098fc57e4456c8c78" category="list-text">conf -offset-50 。</block>
+  <block id="c0ef1887283836aa960334f4225a094c" category="paragraph">+ 注：このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
+  <block id="c2f579b676b733824968b7ac12bc3e2e" category="list-text">MACsec ポリシー設定を表示します。「 How MACsec policy 」を参照してください</block>
+  <block id="9284c86c82929cc854bc1886a966ff6f" category="list-text">「 How MACsec mka summary 」を実行します</block>
+  <block id="3db9b1ed217c4d51bc9eb8d1b2a88879" category="list-text">実行 :'How MACsec mka session`</block>
+  <block id="56cfbbd408a7b951d0c7de29a7686f39" category="list-text">実行： 'How MACsec mka statistics （ MACsec mka 統計情報）</block>
+  <block id="ac6af7efb666b42eda2885b4e7f44986" category="list-text">キー / キー ID の不一致またはキーの有効期限が原因で MACsec セッションに失敗した場合に使用するフォールバックキーチェーンを指定します。「 m ACSEC keychain -name policy -name fallback-keychain keychain -name</block>
+  <block id="4bde0aa2d051642ac37cec5ee626a8c5" category="admonition">この手順に進む前に、 _MACsec キーチェーンと Keys_ の設定を行って、 fallback-keychain を設定する必要があります。</block>
+  <block id="ffe1f559bee6f65df8232945e7f1517d" category="section-title">25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
+  <block id="b22352ed85b6b2a829683807066af496" category="paragraph">このタスクを実行できるのは、 25Gbps 接続を使用する環境プラットフォームのみです。• AFF A300 • FAS 8200 • FAS 500f • AFF A250</block>
+  <block id="55847fe0c50cc0b24f2766a0f17dcb5e" category="list-text">コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。</block>
+  <block id="4e435c962be317de1557265dfbacc427" category="list-text">構成モードを開始します :config t</block>
+  <block id="03afbf28e660c550f09da5f3436dd99d" category="list-text">設定する 25Gbps インターフェイスを「 interface interface-Id 」と指定します</block>
+  <block id="df181c6434803cd5a18218c45eca6655" category="list-text">fec を off に設定します</block>
+  <block id="344fc0c43530ccad90a38944b632b1e4" category="list-text">構成モードを終了します : exit</block>
+  <block id="7903ea9f597270ba2cf2405fbc17ebd8" category="list-text">昇格されたコマンドプロンプト (`#`):'enable' に変更します</block>
+  <block id="4be4d4968b5e919059610e2ee4b965ce" category="list-text">スタートアップコンフィギュレーションを消去し、バナーを削除します</block>
+  <block id="4995c150e07b7ecfa34c3c0fbef2e928" category="paragraph">*`erase startup-config *</block>
+  <block id="2f7236901427b3d791b59473a9846d56" category="list-text">バナーを削除します。</block>
+  <block id="45fcd6873eadf29e5cd4cc3b0c7d3340" category="paragraph">*`no set clibanner`*</block>
+  <block id="ff0270664e36de08ce3d4ea34091e33b" category="list-text">スイッチを再起動します *`(IP_switch_A_1 )#reload *`</block>
+  <block id="bb618b144b7c6895aa5a8818fa66c1b2" category="list-text">DSA キーの生成（オプション）</block>
+  <block id="d034cc5a3446b99507240baca90266a0" category="list-text">FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ 256 のキーを作成します。有効な値は、 256 、 384 、または 521 です。</block>
+  <block id="640245482ba700e57c1029dc983e60c0" category="paragraph">* 次の点に注意してください。 *</block>
+  <block id="9928b888bac1559e9f0e9346dbea1add" category="list-text">EFOS 3.x.x から EFOS 3.x.x にアップグレードするときは、スイッチが EFOS 3.4.4.6 （またはそれ以降の 3.4.x.x リリース）を実行している必要があります。それよりも前のリリースを実行している場合は、まずスイッチを EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）にアップグレードしてから、スイッチを EFOS 3.x.x にアップグレードします</block>
+  <block id="950d2c12c917ccd4448e8129f6486720" category="list-text">EFOS 3.x.x と 3.7.x.x の設定は異なります。EFOS のバージョンを 3.4.x.x から 3.7.x.x に変更する場合、スイッチを工場出荷時のデフォルトにリセットする必要があり、対応する EFOS バージョンの RCF ファイルが適用される必要があります。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
+  <block id="a2488c6615db2943025c77bde1fb97db" category="list-text">EFOS バージョン 3.7.x 以降では、 FIPS 非準拠および FIPS 準拠のバージョンが提供されます。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
+  <block id="6a02b7e242bcf6c784d6c8daac02baa6" category="cell">* 手順 *</block>
+  <block id="b0bed1183d501e8f5e8cef18312355bd" category="cell">* 現在の EFOS バージョン *</block>
+  <block id="9fd2304d8bb7f51dca46074189d5f8ae" category="cell">* 新しい EFOS バージョン *</block>
+  <block id="b3ff3b45f32605868a96adebb4c90952" category="cell">* 高レベルステップ *</block>
+  <block id="f006b7ce8707168edc6de44d5892d3b3" category="cell">FIPS に準拠している 2 つのバージョン間で EFOS をアップグレードする手順</block>
+  <block id="dec3c0c9392c8aad6548083f4fbd795e" category="cell">3.4.x.x</block>
+  <block id="ee5585b24e7eb8cfaf4b6f31be5bbf61" category="cell">方法 1 ）設定とライセンスの情報は保持されています</block>
+  <block id="86068e8f997360c7719398195b4d7266" category="cell">3.4.4.6 （または 3.4.x.x 以降）</block>
+  <block id="fd7621afc846acb974f51fd7cc7f37b3" category="cell">3.7.x.x 非 FIPS 準拠</block>
+  <block id="28d075b38fc6680137c178cbdee9da28" category="cell">方法 1 を使用して EFOS をアップグレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x の RCF ファイルを適用します</block>
+  <block id="b7ba7b194e9311fde1586ba024bb2947" category="cell">方法 1 を使用して EFOS をダウングレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x の RCF ファイルを適用します</block>
+  <block id="9982a812721a559f942a3f06d478b606" category="cell">方法 1 を使用して新しい EFOS イメージをインストールします。構成とライセンスの情報は保持されます</block>
+  <block id="f53a18737f48f5ce8e1f4d01778cfc0d" category="cell">3.7.x.x FIPS 準拠</block>
+  <block id="b38cac38b832f137e90ae855c9dd276a" category="cell">方法 1 を使用して新しい EFOS イメージをインストールします。構成とライセンスの情報は保持されます</block>
+  <block id="30a8444e655e4e0bf64147ad36bf643d" category="cell">FIPS 準拠の EFOS バージョンへのアップグレード手順</block>
+  <block id="80b55ca217bc15869588b0a1c2c982e5" category="cell">FIPS に準拠していません</block>
+  <block id="f3f7e5eecbbda44d56a585304c3a8d15" category="cell">FIPS に準拠している</block>
+  <block id="060692aeab7f7695796a574ac52f650d" category="cell">方法 2 を使用した EFOS イメージのインストールスイッチの設定とライセンス情報が失われます。</block>
+  <block id="91428f6fff17493b50c9f07745550fd6" category="list-text">方法 1 ： <block ref="2fc0ede30626cc39cccf4cd8f9cc8ec0" category="inline-xref-macro-rx"></block></block>
+  <block id="6c4a76f96f424665ce4ba9abebba6560" category="list-text">方法 2 ： <block ref="2ad7d3090168c487b5ef2594d96632d3" category="inline-xref-macro-rx"></block></block>
+  <block id="fc5f9831d8502e7112e42fcf4ffde230" category="section-title">ソフトウェアイメージをバックアップブートパーティションにダウンロードして EFOS をアップグレードする手順</block>
+  <block id="a423ff7ce52391dfc904949db9dcd42d" category="paragraph">次の手順を実行できるのは、両方の EFOS バージョンが FIPS 非準拠であるか、両方の EFOS バージョンが FIPS 準拠である場合のみです。</block>
+  <block id="1ffec0276e8109d8bb5723502a74cc82" category="admonition">FIPS に準拠したバージョンで、もう一方のバージョンが FIPS に準拠していない場合は、次の手順を使用しないでください。</block>
+  <block id="47c5c37991cea3e2b8fcd2aaac084432" category="list-text">スイッチソフトウェアをスイッチにコピーします :+copy sftp://user@50.50.50.50 /switchsoftware/efos-3.4.6.stk backup+`</block>
+  <block id="cdf7504e2a9fbdd3fac02ec87078cd2e" category="paragraph">この例では、 efos-3.4.6.stk オペレーティングシステムファイルが SFTP サーバ（ 50.50.50 ）からバックアップパーティションにコピーされています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。</block>
+  <block id="a90fbd9c614e05faef33928727c3285e" category="admonition">まれに、スイッチが起動しないことがあります。に従ってください <block ref="2ad7d3090168c487b5ef2594d96632d3" category="inline-xref-macro-rx"></block> 新しいイメージをインストールします。</block>
+  <block id="52c363aaa62cde3b51f4563a47ea47db" category="list-text">スイッチを EFOS 3.x.x から EFOS 3.x.x に変更した場合、またはその逆の場合は、次の 2 つの手順に従って正しい設定（ RCF ）を適用します。</block>
+  <block id="cf0e39c341423faf4b847b9ee0db33c2" category="list-text"><block ref="81dd2e7703b01026953a118a21c6d543" category="inline-xref-macro-rx"></block></block>
+  <block id="716edc6043fd94aaea96c7a8a643e70a" category="list-text"><block ref="15d7dec1f8455303bd6b922890dd2535" category="inline-xref-macro-rx"></block></block>
+  <block id="a08d4c3e16b285220a3f2bad28e6df8c" category="section-title">ONIE OS インストールを使用して EFOS をアップグレードする手順</block>
+  <block id="ab294700c76cf4ac38435e5559388b24" category="paragraph">一方の EFOS バージョンが FIPS に準拠していて、もう一方の EFOS バージョンが FIPS に準拠していない場合は、次の手順を実行できます。次の手順は、スイッチがブートに失敗した場合に、 ONIE から FIPS 非準拠または FIPS 準拠の EFOS 3.x.x イメージをインストールするために使用できます。</block>
+  <block id="f2f7238803d92fa15143c2e71a85f284" category="list-text">スイッチを ONIE インストールモードで起動します。</block>
+  <block id="7e35ff99cb4dd1650a8a3173677ca240" category="paragraph">起動中に、次の画面が表示されたら ONIE を選択します。</block>
+  <block id="5f4e38b8b984f3405510d5f1e9ccac3c" category="paragraph">「 ONIE 」を選択すると、スイッチがロードされ、次の選択肢が表示されます。</block>
+  <block id="7d2ab5ba69a94356a73ec7835742de08" category="paragraph">スイッチが ONIE インストールモードで起動します。</block>
+  <block id="0617e62c462754a882315e49408a1c87" category="list-text">ONIE の検出を停止し、イーサネットインターフェイスを設定します</block>
+  <block id="bd98a32e3b0ad244a0a4d7b76ad024f9" category="paragraph">次のメッセージが表示されたら、 &lt;ENTER&gt; を押して ONIE コンソールを起動します。</block>
+  <block id="6fe451b7fd6d2b055b9bce7e26e2d63c" category="admonition">ONIE の検出は続行され、メッセージがコンソールに出力されます。</block>
+  <block id="433ed97155d2e40b3a82ad6d176cc1e7" category="list-text">イーサネットインターフェイスを設定し、「 ifconfig eth0 &lt;ipAddress&gt; netmask &lt;netmask&gt; up 」および「 route add default gw &lt;gatewayAddress&gt; 」を使用してルートを追加します</block>
+  <block id="8f9711a7318f4700b907c76b986e81c0" category="list-text">ONIE インストールファイルをホストしているサーバにアクセスできることを確認します。</block>
+  <block id="22f11099e51d7c76098c5ab8cde04323" category="list-text">新しいスイッチソフトウェアをインストールします</block>
+  <block id="71b9c26449ab4ad810a47a6840dd69e1" category="paragraph">ソフトウェアがスイッチをインストールし、リブートします。スイッチを通常どおりにリブートして新しい EFOS バージョンにします。</block>
+  <block id="33c2ae32e0d65432693ff576a235043c" category="list-text">新しいスイッチソフトウェアがインストールされていることを確認します</block>
+  <block id="f98f1819551b5d5aa9360adf8d17b911" category="paragraph">*'How bootvar'*</block>
+  <block id="bf33fd7d9aa50d16f9f68ac0bd179b19" category="list-text">インストールを完了します</block>
+  <block id="29ffc83995ade13850f29b957a9174c8" category="paragraph">設定を適用せずにスイッチがリブートし、工場出荷時のデフォルトにリセットされます。2 つの手順に従ってスイッチの基本設定を行い、次の 2 つのドキュメントに記載されているように RCF ファイルを適用します。</block>
+  <block id="21503dd058c083f2c8288ad1b831c098" category="list-text">スイッチの基本設定を行います。手順 4 以降を実行します。 <block ref="81dd2e7703b01026953a118a21c6d543" category="inline-xref-macro-rx"></block></block>
+  <block id="6203ae92559f362819dad2bdb9d3f689" category="list-text">の説明に従って、 RCF ファイルを作成して適用します <block ref="15d7dec1f8455303bd6b922890dd2535" category="inline-xref-macro-rx"></block></block>
+  <block id="96bc7e386002b4dc974033398a2a3df2" category="paragraph">v1.32_Switch-A1.txt</block>
+  <block id="6596521956b6496dffb9f5e9a7463b91" category="paragraph">v1.32_Switch-A2.txt</block>
+  <block id="eb451e7e039cd76a8d46e5e9948b30c5" category="paragraph">v1.32_Switch-B1.txt</block>
+  <block id="f367e5b17d625ad5b8aa1b212728b32b" category="paragraph">v1.32_Switch-B2.txt</block>
+  <block id="f7d95a4bb657d25d70b13952d3655067" category="admonition">EFOS バージョン 3.4.4.6 以降の 3.4.x.x の RCF ファイルリリースと EFOS バージョン 3.7.0.4 は異なります。スイッチが実行されている EFOS バージョンの正しい RCF ファイルを作成したことを確認する必要があります。</block>
+  <block id="c98b57720d007eea3bac1ec42393b6b2" category="cell">EFOS バージョン</block>
+  <block id="288d914a22bb182e0acdd542f5b93566" category="cell">RCF ファイルのバージョン</block>
+  <block id="60f22de62563dd09612c167bc0c3a3a7" category="cell">V1.3 倍、 V1.4 倍</block>
+  <block id="30fb21972afba53cd103c9063e54815b" category="cell">3.7.x.x</block>
+  <block id="ca06807503101d86e21d40fd5c8ff94b" category="cell">v2.x</block>
+  <block id="ab4a2de3931dbed092e0d44be3c87116" category="list-text">MetroCluster IP 用の Broadcom RCF ファイルを生成します。</block>
+  <block id="fd550a9c3a7b7c6106ae07bc6bb69106" category="list-text">をダウンロードします<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block></block>
+  <block id="7d5c4b7a8cb7bc598a3b2eb9fb74fe60" category="list-text">RcfFileGenerator for MetroCluster IP を使用して、設定用の RCF ファイルを生成します</block>
+  <block id="fcc29e51109ca100014a87a9b9694411" category="list-text">Red Hat Enterprise Linux ： 7.6 、 7.7 、 7.8 、 7.9 、 8.0 、 8.1 、 8.2 、 8.3</block>
+  <block id="7756ed262f2157ad61f237289d31648e" category="list-text">CentOS ： 7.6 、 7.7 、 7.8 、 7.9</block>
+  <block id="070add3768287c5f5f5f77d13c4a72af" category="list-text">Red Hat Enterprise Linux ： 7.6 、 7.7 、 7.8 、 8.0 、 8.1</block>
+  <block id="a565f362dbb8e1b9f57a08e86e8f79c8" category="list-text">CentOS ： 7.6 、 7.7 、 7.8</block>
+  <block id="8e6d01361c0a0174b1932a821de7a679" category="list-text">Red Hat Enterprise Linux または CentOS のインストールについては、 Red Hat のベストプラクティスに従う必要があります。CentOS 8.x のバージョンは寿命を通じてサポートされるようになったため、 RHEL または互換性のあるバージョンの CentOS 7.x を使用することは推奨されません</block>
+  <block id="81c7a3cb2e63f472014dfe2b68d0038b" category="admonition">CentOS 8.x のサポートは、 2021 年 12 月 31 日に終了します。CentOS と ONTAP を使用する場合は、にリバートすることを推奨します <block ref="d65b2d64eb8a246b44f850f01d3b24a4" category="inline-xref-macro-rx"></block> オペレーティングシステムまたは RHEL を使用</block>
+  <block id="6ba27586854ba0abe529cf9dfcdd935e" category="paragraph">を参照してください<block ref="ca696ba3aa939e934b2df752c3821404" category="inline-link-rx"></block>で、お使いのオペレーティングシステムに対応する kernel-devel パッケージを探します。最新バージョンの 8.0 （ CentOS 8.0.1905 以降）コアはにあります<block ref="0ea159b669197108632fac010ad6fa88" category="inline-link-rx"></block>必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。</block>
+  <block id="2699fab59dd92a1ee8ec7edfb1c53cc2" category="admonition">上記のコマンドの例は、 CentOS 8.0.1905 固有のものです。他の CentoOS 8.x ビルドの場合は、必要に応じてパスを変更します。</block>
 </blocks>
