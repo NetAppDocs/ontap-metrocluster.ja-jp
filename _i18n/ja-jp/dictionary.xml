@@ -3424,21 +3424,14 @@
   <block id="1e03abc52b8015d8bfda380a49a74d3d" category="doc">Tiebreaker ソフトウェアをインストールします</block>
   <block id="9e44d314de95eaf08eaa23e210f083b9" category="paragraph">MetroCluster ソフトウェアをインストールして設定する必要があります。</block>
   <block id="dfecead04927b98b4718817e8ee72b45" category="section-title">Tiebreaker ソフトウェアをインストールまたはアップグレードするためのシステム要件</block>
-  <block id="d38a63167157c1dba7a52915db4e1336" category="paragraph">Tiebreaker ソフトウェアは 3 つ目のサイトにインストールします。これにより、スイッチ間リンク（ ISL ）障害（サイト間リンクが停止している）障害とサイト障害をソフトウェアが区別できるようになります。ローカルコンピュータに Tiebreaker ソフトウェアをインストールまたはアップグレードして MetroCluster 構成を監視するには、ホストシステムが特定の要件を満たしている必要があります。</block>
   <block id="41cf1c389a424db4cc6188d92f8873e1" category="paragraph">MetroCluster Tiebreaker ソフトウェアには、次の監視機能と要件があります。</block>
   <block id="4b8277d24c612d1d23663a72977ad328" category="list-text">MetroCluster 構成ごとに特別な設定は必要ありません。</block>
   <block id="fa16f1eaa9378fa31cb55f8791abfbc4" category="list-text">最大 15 の MetroCluster 構成を同時に監視できます。</block>
   <block id="68a68579e29d4f4e1a1a17f8dc790b3c" category="admonition">複数の Tiebreaker モニタとの競合を回避するために、 MetroCluster 構成ごとに MetroCluster Tiebreaker モニタを 1 つだけインストールする必要があります。</block>
   <block id="74c24f77157a44b3d1b75c7a631b2f1a" category="list-text">MetroCluster IP 構成、 MetroCluster FC 構成、ストレッチ MetroCluster 構成の組み合わせがサポートされます。</block>
   <block id="0051a43c14e5ca151dedc81a1b8f3b8e" category="list-text">ハードウェアとソフトウェア：</block>
-  <block id="57bbe69d2caed87912bad72127e1dd60" category="list-text">ONTAP 8.3.x 、 9.0 、 9.1 、 9.2 、 9.3 、 9.4 、 9.5 、 9.6 、 9.7 、 9.8</block>
-  <block id="d594b42587961cb18ef5112bc0502778" category="list-text">Red Hat Enterprise Linux 7~7.6 または CentOS 7~7.6 64 ビット（物理インストールまたは仮想マシン）</block>
-  <block id="587c3976602087943cbe02cd592eb4ea" category="list-text">MariaDB 5.5.52.x</block>
   <block id="f211a801e18d8052b211fd5a87a83253" category="list-text">4GB の RAM</block>
   <block id="fcf5a54aabe95484b6469eae85dc2a6a" category="list-text">Java Runtime Environment 8 を開きます</block>
-  <block id="8e3f0b759b88cd371e302f76b51d71ce" category="list-text">Red Hat Enterprise Linux 6.4 ～ 6.10 または CentOS 6.4 ～ 6.10 64 ビット（物理インストールまたは仮想マシン）</block>
-  <block id="767dc00e37f7237940516ebac3118072" category="list-text">MySQL Server 5.6.x</block>
-  <block id="468cb9a23169bbae3475b424e5ac2c2f" category="list-text">2GB の RAM</block>
   <block id="6d6a8e3be3c8694034944ec6e631c4be" category="list-text">ディスク容量： 8GB</block>
   <block id="2f889d7364543ea941a8c61cfb8175f4" category="list-text">ユーザ：ルートアクセス</block>
   <block id="4c009b85d61ad347b56add00274e7453" category="list-text">ファイアウォール：</block>
@@ -3449,65 +3442,34 @@
   <block id="c484a86c621669bc61d7e0ad166de57f" category="paragraph">Tiebreaker ソフトウェアをインストールまたはアップグレードする前に、ホストである Linux オペレーティングシステムに応じて、 MySQL サーバまたは MariaDB サーバをインストールする必要があります。</block>
   <block id="daef0ac00e1ce03149d77a238f313f40" category="list-text">Java Runtime Environment をインストールします。</block>
   <block id="322a14b32bb5c1132087f429aa08aa6e" category="inline-link-macro">Java Runtime Environment 1.8 をインストールします</block>
-  <block id="e8ed04c7e0e8916d5bdc4e3f9f343cae" category="paragraph"><block ref="e8ed04c7e0e8916d5bdc4e3f9f343cae" category="inline-link-macro-rx"></block></block>
   <block id="b56e6f0af6a9b1b27daa95d4a36afdc4" category="list-text">MySQL サーバまたは MariaDB サーバをインストールします。</block>
   <block id="6d3e1ad458b8305490e7f3f555ee8c93" category="cell">Linux ホストの種類は、です</block>
-  <block id="9448d53cb16dcddb86c4228c66cdad64" category="paragraph">Red Hat Enterprise Linux 6 / CentOS 6</block>
   <block id="2f4f94cc5a0950a910a46c35cf923e05" category="list-text">MySQL をインストール</block>
-  <block id="30c1f2c3085891617e4fe96284b41329" category="inline-link-macro">Red Hat Enterprise Linux 6 または CentOS 6 への MySQL Server 5.5.30 以降および 5.6.x バージョンのインストール</block>
-  <block id="1e89ae496bd0cc742730c8324200636b" category="paragraph"><block ref="1e89ae496bd0cc742730c8324200636b" category="inline-link-macro-rx"></block></block>
   <block id="bbc93c3b548f7e6b61051cdcdda436b9" category="paragraph">Red Hat Enterprise Linux 7 / CentOS 7.</block>
   <block id="4edc6e3711a7b2b1f3ee14f852711a72" category="list-text">MariaDB をインストールします</block>
-  <block id="e4ebb65daca55d627003f9ad7a82a346" category="inline-link-macro">Red Hat Enterprise Linux 7 または CentOS 7 への MariaDB サーバのインストール</block>
-  <block id="89132bcefcbf27aa0b8d2ef179cd6852" category="paragraph"><block ref="89132bcefcbf27aa0b8d2ef179cd6852" category="inline-link-macro-rx"></block></block>
   <block id="cd349969158b43e12b83d29b04e0043d" category="paragraph">Tiebreaker ソフトウェアをインストールまたはアップグレードする前に、ホストシステムに Java Runtime Environment 1.8 をインストールする必要があります。</block>
   <block id="72b0aab8b96a9d3fa805ed484ede7f76" category="list-text">ホスト・システムに root としてログインします</block>
-  <block id="083f6067a3bbe533aa12a6b3551b482b" category="list-text">Java Runtime Environment 1.8 をインストールします :`[root@mcctb~]#yum install java.1.8-0-openjdk.x86_64</block>
   <block id="4a857d4819f55ec889deb5379b9ce9c7" category="paragraph">Tiebreaker ソフトウェアをインストールまたはアップグレードする前に、ホストシステムに MySQL Server 5.5.30 以降および 5.6.x バージョンをインストールする必要があります。</block>
-  <block id="e18ad107bb60633787937057a3876d0a" category="list-text">ホストシステムに MySQL リポジトリを追加します。「 + [root@mcctb~]#yum localinstall 」<block ref="a937c9a1f13446a1e72a6e1782c878a5" category="inline-link-rx"></block></block>
-  <block id="9ea9dc0f5d690b01790e5873836ed884" category="list-text">mysql 57 リポジトリを無効にします :`[root@mcctb~]#yum-config -manager-disable mysql57-community`</block>
-  <block id="727a00b5bda726afbfd3db67f13d98eb" category="list-text">mysql 56 リポジトリを有効にします :`[root@mcctb~]#yum-config -manager-enable mysql56-community`</block>
-  <block id="818310ad41def06a63fafd95e6dc58d1" category="list-text">リポジトリを有効にします :`[root@mcctb~]#yum repolist enabled|grep "mysql.*-community.*"``</block>
-  <block id="68b304387bc64baf0346de6f58b6ad97" category="list-text">MySQL Community Server をインストールします :`[root@mcctb~]#yum install mysql-community-server`</block>
-  <block id="da9f99ca95e17faa3ce37bcb66df1289" category="list-text">MySQL サーバを起動します :[root@mcctb~]# service mysqld start`</block>
-  <block id="96ea9428184fb23ecae306d1a39bda5d" category="list-text">MySQL サーバが実行されていることを確認します :`[root@mcctb~]# service mysqld status`</block>
-  <block id="dc7e3aa019732ea3ae5734bc2460054d" category="list-text">セキュリティとパスワードの設定を構成します :[root@mcctb~]#mysql_secure_install`</block>
-  <block id="860c570ae089941216163478e72682c7" category="list-text">MySQL ログインが機能していることを確認します。「 [root@mcctb~]#mysql-u root – p`</block>
   <block id="b1cef06f6d0dbb6b0907ba2828c01658" category="paragraph">MySQL ログインが動作している場合、出力は「 MySQL&gt;` 」プロンプトで終了します。</block>
   <block id="ee2d0facfca7cf9da7afc98606d041bb" category="section-title">MySQL の自動起動設定の有効化</block>
   <block id="2aebe553116141c80b33b03a6066e162" category="paragraph">MySQL デーモンに対して自動起動機能が有効になっていることを確認する必要があります。MySQL デーモンを有効にすると、 MetroCluster Tiebreaker ソフトウェアがインストールされているシステムがリブートした場合に MySQL が自動的に再起動されます。MySQL デーモンが実行されていない場合、 Tiebreaker ソフトウェアは引き続き実行されますが、再起動したり設定を変更したりすることはできません。</block>
-  <block id="eb00e2c925c817af5ec73c5a9d49af56" category="paragraph">自動起動を有効にする方法は、 MySQL のドキュメントを参照してください。</block>
   <block id="42effa8417ecaca249eb75ef3af93551" category="paragraph">Tiebreaker ソフトウェアをインストールまたはアップグレードする前に、ホストシステムに MariaDB サーバをインストールする必要があります。</block>
-  <block id="26613ea5cd092dfe6adccdbb1bf30ee2" category="paragraph">ホストシステムが Red Hat Enterprise Linux （ RHEL ） 7 または CentOS 7 で実行されている必要があります。</block>
-  <block id="4b975cf88ec9f62aec2a636a6d8df66b" category="list-text">MariaDB サーバをインストールします :`[root@mcctb~]#yum install MariaDB -server.x86_64 をインストールします</block>
-  <block id="fbddb8dc1d805037381439151a18e367" category="list-text">MariaDB サーバを起動します :[root@mcctb~]# systemctl start MariaDB</block>
-  <block id="c1e1edba7c10a5fe4310a9347064ee33" category="list-text">MariaDB サーバが起動したことを確認します :[root@mcctb~]# systemctl status MariaDB</block>
-  <block id="747a0481970bfeec2829bbd8623e936f" category="admonition">MariaDB に対して自動起動を有効にする設定がオンになっていることを確認します</block>
-  <block id="650e46fc48c10a03dccc3d304b1802f3" category="list-text">セキュリティとパスワードの設定を構成します： [root@mcctb~]#mysql_secure_install`</block>
   <block id="998939e20c88d175779417ce100fafed" category="section-title">ソフトウェアパッケージをインストールまたはアップグレードする</block>
   <block id="aa0bf4d75253e028ce83fbc2fe035e54" category="paragraph">MetroCluster 構成を監視するには、ローカルコンピュータで MetroCluster Tiebreaker ソフトウェアをインストールまたはアップグレードする必要があります。</block>
   <block id="3f18eec2af554a1393e91a90bacbc4e0" category="list-text">ストレージシステムで ONTAP 8.3.x 以降が実行されている必要があります。</block>
-  <block id="b98ba38f0b1ec3b8ba86e4bfbe4dd9d7" category="list-text">yum install java -1.8.0-openjdk コマンドを使用して OpenJDK をインストールしておく必要があります。</block>
-  <block id="34a10df43d10b4b4e2d0c9a3a644c528" category="list-text">NetApp-MetroCluster-Tiebreaker-Software-1.21P3-1.x86_64.rpm ファイルをダウンロードします。</block>
   <block id="7cc99909d4740191f04c1e16267410f6" category="paragraph"><block ref="7cc99909d4740191f04c1e16267410f6" category="inline-link-rx"></block></block>
   <block id="0181a996142ce88d36927257090dd51b" category="list-text">root ユーザとしてホストにログインします。</block>
   <block id="e5c134f52f1e0a03dbbcea2a450afc6f" category="list-text">Tiebreaker ソフトウェアをインストールまたはアップグレードします。</block>
   <block id="f869ea7ce9a752fc1c1184b74b7c48b7" category="cell">実行する作業</block>
   <block id="5c0951f5a767642dcb5de6e5878a5032" category="cell">問題コマンド</block>
   <block id="e0dc43e0acdb1e44f8a2ca5c8e9d32a7" category="paragraph">新規インストールを実行する</block>
-  <block id="43c71b3320ecb7ff7d944f4582d694e2" category="paragraph">rpm -ivh NetApp-MetroCluster-Tiebreaker-Software-1.21P3-1.x86_64.rpm</block>
   <block id="5a1ca385deb8381ffff2ed6a33fd752d" category="paragraph">インストールが完了すると、次の出力が表示されます。</block>
   <block id="3d47e198e02ccec25cafef6cbda2ebcc" category="paragraph">既存のインストールをアップグレードする</block>
-  <block id="1a6a143fdd76a07826a2f014376bc8ee" category="paragraph">rpm - Uvh NetApp-MetroCluster-Tiebreaker-Software-1.21P3-1.x86_64.rpm</block>
   <block id="dbe9b345ce63b9fd500e311eff185188" category="paragraph">アップグレードが完了すると、次の出力が表示されます。</block>
-  <block id="61705c82a0fbfed2db33e2910a6fba66" category="paragraph">誤った MySQL ルートパスワードを入力すると、 Tiebreaker ソフトウェアのインストールが完了したことが通知されますが、 Access denied メッセージが表示されます。問題を解決するには、 rpm -e コマンドを使用して Tiebreaker ソフトウェアをアンインストールし、正しい MySQL ルートパスワードを使用してソフトウェアを再インストールする必要があります。</block>
   <block id="8ea7e8ff291af2b5e94aaafdfe8d1824" category="list-text">Tiebreaker ホストから各ノード管理 LIF およびクラスタ管理 LIF への SSH 接続を開き、 Tiebreaker が MetroCluster ソフトウェアに接続していることを確認します。</block>
   <block id="35a8ad649b3194dfec4cd801fff9f656" category="section-title">Tiebreaker モニタが実行されているホストをアップグレードしています</block>
-  <block id="4cee47283dddc34cf88f03d59ac4f75a" category="paragraph">アップグレード前にモニタをオブザーバーモードに切り替えても、 Tiebreaker モニタが実行されているホストを最小限の中断でアップグレードできます。</block>
-  <block id="c2091df55ad5bbb0d279e04642012e83" category="list-text">モニタがオブザーバモードであることを確認します。「モニタ show – status 」</block>
   <block id="dd369bd80b51fade2a8040849d0cdfb3" category="list-text">すべてのモニタをオブザーバーモードに変更します。</block>
   <block id="364ba5b8b3d13bcb103f29814c8bdc8b" category="list-text">Tiebreaker ホストをアップグレードするには、次の手順のすべての手順を実行します。</block>
-  <block id="ed108db0407bcde3e5b466f15808e9d3" category="paragraph"><block ref="ed108db0407bcde3e5b466f15808e9d3" category="inline-link-macro-rx"></block></block>
   <block id="3886cfe1b45d16bb968452e88c1ba14d" category="list-text">オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。</block>
   <block id="3da068989b58a6354f99f0db984b6df2" category="section-title">Tiebreaker ソフトウェアの NTP ソースを選択しています</block>
   <block id="ce5425c2550b256ea43d516197da426d" category="paragraph">Tiebreaker ソフトウェアには、ローカルのネットワークタイムプロトコル（ NTP ）ソースを使用する必要があります。Tiebreaker ソフトウェアが監視する MetroCluster サイトと同じソースは使用しないでください。</block>
@@ -3567,7 +3529,6 @@
   <block id="e80a09d3556dbe0da16e8959c406854a" category="list-text">Tiebreaker CLI の SNMP 設定ウィザードのコマンドを使用して、 MetroCluster 設定を追加します。</block>
   <block id="aa25456b4a8036cc77b127add821a979" category="paragraph">次の例は、 IP アドレスが 10.222.210.234 、トラップメッセージ用のポート番号が 162 、コミュニティストリングが public に設定された SNMP V1 をサポートする SNMP レシーバの構成を示しています。</block>
   <block id="ca3a15f1b35361e790cff5d49cca0bdf" category="paragraph">これで、 Tiebreaker ソフトウェアは、指定した SNMP レシーバにトラップを送信することができます。</block>
-  <block id="7aaac6f465ef4175897379b8cb25349a" category="list-text">SNMP 設定が構成されていることを確認します。「 snmp config test 」</block>
   <block id="c4aa541ec1b33e5e76d09363d75995f8" category="paragraph">次の例は、 Tiebreaker ソフトウェアがイベント test_snmp_config の SNMP トラップを送信できることを示しています。</block>
   <block id="d393ee782d6c25a771c54a3d3d9c6c04" category="summary">MetroCluster Tiebreaker ソフトウェアのダウンロード、インストール、および使用手順について説明します。</block>
   <block id="a386c9fa441b3fe3c6e80b9d41240b0a" category="summary">MetroCluster Tiebreaker ソフトウェアはリカバリプロセスを自動化します。ユーザは MetroCluster 設定のステータスを監視し、ネットアップカスタマーサポートに送信される SNMP イベントとトラップを評価し、監視処理のステータスを表示できます。</block>
@@ -7470,18 +7431,6 @@
   <block id="099521a7112509edbce04bcd0ca911e7" category="paragraph">ラックスペースは、ストレージコントローラのプラットフォームモデル、スイッチのタイプ、構成内のディスクシェルフスタック数によって異なります。</block>
   <block id="e300e2842dc7659854d8d05584277804" category="list-text">ストレージコントローラをラックまたはキャビネットに設置します。</block>
   <block id="173460488dce7240a263945ff8eca309" category="admonition">AFF システムはアレイ LUN ではサポートされません。</block>
-  <block id="e2663fe10dabcafcaa837ce7ea2158fa" category="inline-link">AFF A700 および FAS9000 のインストールとセットアップ</block>
-  <block id="ab738cdd39c31335aad04e887fc3e9f2" category="paragraph"><block ref="ab738cdd39c31335aad04e887fc3e9f2" category="inline-link-rx"></block></block>
-  <block id="7b152e80e4aa930bf0885c08ff014369" category="inline-link">FAS8040 / FAS8060 システムの設置とセットアップ手順</block>
-  <block id="2b84511bf2bff0fd38dd39323c5cc92e" category="paragraph"><block ref="2b84511bf2bff0fd38dd39323c5cc92e" category="inline-link-rx"></block></block>
-  <block id="1430d2abe37241181c82a6612ac32593" category="inline-link">I/O 拡張モジュールを搭載した FAS80xx システムの設置とセットアップの手順</block>
-  <block id="5654f1781dbcb58c5ec081e3515d0d32" category="paragraph"><block ref="5654f1781dbcb58c5ec081e3515d0d32" category="inline-link-rx"></block></block>
-  <block id="72db9eea85d039fdbcf3314a559ffec5" category="inline-link">FAS8020 システムの設置とセットアップ手順</block>
-  <block id="8bf3eeb0a98abee8fe3d8079e2b878f9" category="paragraph"><block ref="8bf3eeb0a98abee8fe3d8079e2b878f9" category="inline-link-rx"></block></block>
-  <block id="81f3021997d436ea644b548182205ff7" category="inline-link">『 Installation and Setup Instructions 62xx Systems 』</block>
-  <block id="12da5f1ce436b8761077e51da6ad89f9" category="paragraph"><block ref="12da5f1ce436b8761077e51da6ad89f9" category="inline-link-rx"></block></block>
-  <block id="ce4e6ad5a0163d0fd1053f856fd80e4e" category="inline-link">『 Installation and Setup Instructions 32xx Systems 』</block>
-  <block id="3878f4a9f9503e65aab9579b2c674a3e" category="paragraph"><block ref="3878f4a9f9503e65aab9579b2c674a3e" category="inline-link-rx"></block></block>
   <block id="c8c3719034d9b9b752000ca4d3b5b2c2" category="list-text">FC スイッチをラックまたはキャビネットに設置します。</block>
   <block id="46921e96d32ca8da20b383833d3a4a04" category="list-text">MetroCluster 構成で使用する DCX 8510-8 スイッチは、ネットアップから購入する必要があります。</block>
   <block id="0ea858176a453f0d6d0d985f851b3c41" category="list-text">拡張性を確保するために、 4x48 ポートモジュールのうち 2 つの MetroCluster しかケーブル接続しない場合は、 MetroCluster 構成間にポートチャンクを 1 つ残しておくことを推奨します。これにより、ケーブルを再接続することなく MetroCluster 構成でポートの使用を拡張できます。</block>
@@ -11230,7 +11179,6 @@
   <block id="01fd5a7c3bb1009fa8251ff0e9f26de3" category="paragraph"><block ref="01fd5a7c3bb1009fa8251ff0e9f26de3" category="inline-link-macro-rx"></block></block>
   <block id="ad668484e20b76c4db276efb95b361b4" category="paragraph">「 MetroCluster configurion-settings dr-group show 」を参照してください</block>
   <block id="b1e0fc9a28d1fbc5566a3e38e1ba8e33" category="paragraph">MetroCluster 構成設定インターフェイス create-cluster-name</block>
-  <block id="084982eb4b24f8cfd464757dc543483e" category="list-text">ONTAP 9.8 以降では、特定のプラットフォームで MetroCluster IP インターフェイスに VLAN が使用されます。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。</block>
   <block id="c7ca4a90be8607ab80cff8f2d7a8c713" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.1.1 以降では、レイヤ 3 構成を使用している場合、 MetroCluster IP インターフェイスを作成するには、 -gateway パラメータも指定する必要があります。を参照してください <block ref="39d6ebbaa38ab1d3a91c83593d55d602" category="inline-link-macro-rx"></block>。</block>
   <block id="e84d9abe5e1fc391ac4a450f001b2f71" category="paragraph">MetroCluster 構成設定接続接続</block>
   <block id="2dccf53d6ed326f889d8e764529b9794" category="list-text">ディスクの自動割り当てとパーティショニングを確認します。</block>
@@ -11778,4 +11726,178 @@
   <block id="81c7a3cb2e63f472014dfe2b68d0038b" category="admonition">CentOS 8.x のサポートは、 2021 年 12 月 31 日に終了します。CentOS と ONTAP を使用する場合は、にリバートすることを推奨します <block ref="d65b2d64eb8a246b44f850f01d3b24a4" category="inline-xref-macro-rx"></block> オペレーティングシステムまたは RHEL を使用</block>
   <block id="6ba27586854ba0abe529cf9dfcdd935e" category="paragraph">を参照してください<block ref="ca696ba3aa939e934b2df752c3821404" category="inline-link-rx"></block>で、お使いのオペレーティングシステムに対応する kernel-devel パッケージを探します。最新バージョンの 8.0 （ CentOS 8.0.1905 以降）コアはにあります<block ref="0ea159b669197108632fac010ad6fa88" category="inline-link-rx"></block>必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。</block>
   <block id="2699fab59dd92a1ee8ec7edfb1c53cc2" category="admonition">上記のコマンドの例は、 CentOS 8.0.1905 固有のものです。他の CentoOS 8.x ビルドの場合は、必要に応じてパスを変更します。</block>
+  <block id="83be746defb3baacbca8a27913d5e887" category="summary">共有ストレージ MetroCluster スイッチを使用して、 NS224 シェルフを MetroCluster に追加する必要がある場合があります。</block>
+  <block id="81614ec1c85e193dd436e86dd56ed40d" category="doc">共有ストレージ MetroCluster スイッチを使用した MetroCluster IP へのシェルフの追加</block>
+  <block id="0aefe0e277b60b987afe007a43a31ca0" category="paragraph">ONTAP 9.10.1 以降では、共有のストレージ / MetroCluster スイッチを使用して、 MetroCluster から NS224 シェルフを追加できます。シェルフは一度に複数追加できます。</block>
+  <block id="865f6ece7cc5fde66a472b2f2b016574" category="list-text">ノードで ONTAP 9.9.1 以降が実行されている必要があります。</block>
+  <block id="68720816b988103320511a93604e908c" category="list-text">現在接続されているすべての NS224 シェルフは、 MetroCluster と同じスイッチに接続する必要があります（共有ストレージ / MetroCluster スイッチ構成）。</block>
+  <block id="eba15b0e4b3249483eee2df4366d89ce" category="list-text">この手順を使用して、専用のイーサネットスイッチに接続された NS224 シェルフまたは NS224 シェルフを使用する構成を、共有ストレージ / MetroCluster スイッチを使用して構成に変換することはできません。</block>
+  <block id="2dfa7f13f4af0ddb25078806741f8cd8" category="paragraph">「 system node AutoSupport invoke -node * -type all -message 」 MAINT=10h NS224 シェルフの追加または削除中」に進みます</block>
+  <block id="eb92b55efcda4337f49fbb4f31430b86" category="section-title">新しい RCF ファイルをスイッチに適用しています</block>
+  <block id="53a921e4bbc54ce2d6afa96efdec5e0d" category="admonition">スイッチがすでに正しく設定されている場合は、以降のセクションを省略して、に直接進むことができます <block ref="de11d0e85c7bd9958e0baabb6935c39e" category="inline-xref-macro-rx"></block>（該当する場合）またはに移動します <block ref="38f1f1f937d8a6271f7a9d545fc64b92" category="inline-xref-macro-rx"></block>。</block>
+  <block id="c254233c893b2067bcf1c2ed715e44ed" category="list-text">シェルフを追加するには、スイッチの構成を変更する必要があります。</block>
+  <block id="0d5080dfa06a3af14f97815b8709eabf" category="inline-link-macro">プラットフォームポートの割り当て</block>
+  <block id="992e77f25f7a13cc4a3f4c478343dc53" category="list-text">ケーブル接続の詳細については、を参照してください <block ref="43a709b6efbdfaf13af2493f4ad49bb0" category="inline-link-macro-rx"></block>。</block>
+  <block id="0322de073946db807daed13f93e7bba6" category="inline-link-macro">RcfFileGenerator の順にクリックします</block>
+  <block id="0de69822e19543d652683accc3d43e70" category="list-text">構成に合わせて RCF ファイルを作成するには、 **RcfFileGenerator** ツールを使用する必要があります。。 <block ref="46a459674905c476821f71bc8486a4ba" category="inline-link-macro-rx"></block> また、各スイッチのポートごとのケーブル接続の概要についても説明します。正しいシェルフ数を選択していることを確認してください。RCF ファイルと一緒に追加ファイルが作成され、特定のオプションに一致する詳細なケーブルレイアウトが提供されます。新しいシェルフをケーブル接続する際には、このケーブル接続の概要を使用してケーブル接続を検証します。</block>
+  <block id="02af00cdd18ae240b1f2c26157ef29ca" category="admonition">暗号化を無効にする場合は、キーも削除する必要があります。</block>
+  <block id="9a16f5bc399c0a2c0d13a36e359b0085" category="section-title">新しい NS224 シェルフを接続します</block>
+  <block id="68a5bc2904a301826d28812323e617f3" category="list-text">キットに付属のパンフレットに従って、シェルフに付属のレールマウントキットを取り付けます。</block>
+  <block id="70dc4293ceb1c0525c9a51737c5667b8" category="list-text">パンフレットに従って、サポートブラケットとラックまたはキャビネットにシェルフを設置して固定します。</block>
+  <block id="032241d3ad139656f292a55835e7d7b8" category="list-text">電源コードをシェルフに接続し、電源コード固定クリップで固定してから、耐障害性を確保するために別々の電源に接続します。</block>
+  <block id="378b62d2964ec0a6c4ac6ec95662dee4" category="paragraph">電源に接続するとシェルフの電源がオンになり、電源スイッチはありません。電源装置が正常に動作している場合は、 LED が緑色に点灯します。</block>
+  <block id="cab870e43f835a551eb4f36060ca0246" category="list-text">シェルフ ID は、 HA ペア内および構成全体で一意の番号に設定します。</block>
+  <block id="7aa8e9d48939a7a4623f92f50468a0c8" category="list-text">シェルフポートは次の順序で接続します。</block>
+  <block id="6065b2d02bf252b5b0413b690bf426c3" category="list-text">SMA-A 、 e0a をスイッチ（ Switch-A1 または Switch-B1 ）に接続します。</block>
+  <block id="1b7c19e4fa5e067d3149a082de5c0a4c" category="list-text">NSM-B 、 e0a をスイッチ（ Switch-A2 または Switch-B2 ）に接続します。</block>
+  <block id="df8d325e6c49d4407d0bc8ebe764baec" category="list-text">NSM-A'e0b をスイッチ（ Switch-A1 または Switch-B1 ）に接続します</block>
+  <block id="0b451ef20b97f230d00ccd951ed449c1" category="list-text">NSM-B 、 e0b をスイッチ（ Switch-A2 または Switch-B2 ）に接続します。</block>
+  <block id="6479a6c19128ccb1ed55ac097ef1e1e7" category="list-text">** RcfFileGenerator** ツールで生成されたケーブルレイアウトを使用して、シェルフを適切なポートにケーブル接続します。</block>
+  <block id="3dc0d5b9eac0c50a790964bb3a643fa3" category="paragraph">新しいシェルフが正しくケーブル接続されると、 ONTAP はそのシェルフをネットワーク上で自動的に検出します。</block>
+  <block id="f18720a1eb7d7bace925c2a97a20075f" category="list-text">にアクセスします<block ref="3725c06f412bedb14ffd610de312875d" category="inline-link-rx"></block> システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。</block>
+  <block id="e4194351c70f628f28ee542a65494961" category="list-text">一部のプラットフォームでは、 MetroCluster IP インターフェイスに VLAN が使用されています。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。</block>
+  <block id="344a350961d4b3279a1bf51e3f2def2a" category="list-text">方法：自動スイッチオーバー / スイッチバック</block>
+  <block id="ea2aca94e5b174a1b84f2c3891379526" category="paragraph">9.10.1</block>
+  <block id="f49f60b6304797900db897e855566402" category="inline-link-macro">4 ノード MetroCluster FC 構成でのコントローラのアップグレード。スイッチオーバーとスイッチバックに「 system controller replace 」コマンドを使用（ ONTAP 9.10.1 以降）</block>
+  <block id="966e34443f418eb2dc544779908833ab" category="paragraph"><block ref="966e34443f418eb2dc544779908833ab" category="inline-link-macro-rx"></block></block>
+  <block id="c305ce21377f146200c5e9ef13536599" category="summary">このガイドに記載された自動 MetroCluster スイッチオーバー処理を使用して、 4 ノード MetroCluster FC 構成のコントローラを無停止でアップグレードできます。</block>
+  <block id="66c25daffc009801ab74d25814bedafb" category="paragraph">このガイドに記載された自動 MetroCluster スイッチオーバー処理を使用して、 4 ノード MetroCluster FC 構成のコントローラを無停止でアップグレードできます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
+  <block id="6cd89c0a24f678f7acedd8c76ccac487" category="list-text">この手順環境コントローラモジュールは、 4 ノード MetroCluster FC 構成です。</block>
+  <block id="09a0c3b49fdf8f3d3d97fd599ba851dc" category="list-text">プラットフォームで ONTAP 9.10.1 以降が実行されている必要があります。</block>
+  <block id="2b378caa5145e2c7adf8d8e9a477ac03" category="paragraph">次の表に、コントローラのアップグレードでサポートされるモデルマトリックスを示します。</block>
+  <block id="97567631bf69a0efb4d4607d674cfab1" category="cell">交換用プラットフォームモデル</block>
+  <block id="3987c2b3042faa1f0f41d1ec08f2ed7e" category="paragraph">AFF A400 、 AFF A700</block>
+  <block id="7c5ee56a01b06b00d2d910cc295d8c56" category="paragraph"><block ref="7c5ee56a01b06b00d2d910cc295d8c56" category="inline-link-rx"></block></block>
+  <block id="0e490704226a6f678e043e59eee46210" category="inline-link">ONTAP 9.8 以降を実行しているコントローラハードウェアをアップグレードするには、「 system controller replace 」コマンドを使用します</block>
+  <block id="433c23ac1d50e2f792a96846827071e3" category="list-text">この手順を使用して、 NSO ベースの自動スイッチオーバーとスイッチバックを使用して、 4 ノード MetroCluster FC 構成のコントローラをアップグレードできます。アグリゲートの再配置（ ARL ）を使用してコントローラをアップグレードする場合は、を参照してください<block ref="ce0fc11b0e13b00ed4b15a0d6c2e1624" category="inline-link-rx"></block>。NSO ベースの自動化された手順を使用することを推奨します。</block>
+  <block id="8c6987e319eda195c069e8158e10721f" category="list-text">MetroCluster サイトが物理的に 2 つの異なる場所にある場合は、 NSO コントローラの自動アップグレード手順を使用して、両方のサイトのコントローラを順番にアップグレードする必要があります。</block>
+  <block id="7ad155deddf063088b2af594f769192c" category="list-text">この NSO ベースのコントローラの自動アップグレード手順を使用すると、 MetroCluster ディザスタリカバリ（ DR ）サイトでコントローラの交換を開始できます。コントローラの交換は一度に 1 つのサイトでしか開始できません。</block>
+  <block id="7399fd0657c56a93aa88aad61e36136e" category="list-text">サイト A でコントローラの交換を開始するには、サイト B からコントローラの交換開始コマンドを実行する必要があります交換処理ガイドは、サイト A の両方のノードのコントローラのみを交換する場合に使用します。サイト B のコントローラを交換するには、サイト A からコントローラ交換の開始コマンドを実行する必要がありますコントローラを交換するサイトを示すメッセージが表示されます。</block>
+  <block id="60b2b0f6400af78e603c06413100168c" category="paragraph">コントローラのアップグレードを準備するには、システムの事前確認を実行し、構成情報を収集する必要があります。</block>
+  <block id="73ad115378efdb25c08af588822361c8" category="paragraph">アップグレードのどの段階でも、サイト A から「 system controller replace show 」または「 system controller replace show -details 」コマンドを実行してステータスを確認できます。コマンドから何も出力されない場合は、数分待ってからコマンドを再実行してください。</block>
+  <block id="0b31bcfeca87d4774cd67b62b4046694" category="list-text">サイト A からコントローラの自動交換用手順を開始して、サイト B のコントローラを交換します。</block>
+  <block id="9ba5ebf2ab22ccd4b9b8065d168c7b7b" category="paragraph">'System controller replace start' （システムコントローラの交換開始</block>
+  <block id="74bf6e65171bf6ee65dc9487114a8bfa" category="paragraph">自動処理によって事前確認が実行されます。問題が見つからなかった場合は処理が一時停止するため、構成に関連する情報を手動で収集できます。</block>
+  <block id="bc966781e77c2e4acdbeca5c5d81d3a6" category="admonition">現在のソースシステムと互換性のあるすべてのターゲットシステムが表示されます。ソースコントローラを、異なるバージョンの ONTAP または互換性のないプラットフォームのコントローラと交換した場合、自動処理が停止し、新しいノードがブートされたあとにエラーが報告されます。クラスタを正常な状態に戻すには、手動のリカバリ手順に従う必要があります。</block>
+  <block id="ea7b87ede287b27be45723feb0a2e4d0" category="paragraph">「 system controller replace start 」コマンドで、次の事前確認エラーが報告されることがあります。</block>
+  <block id="9319c19c2a50b74bb162c257218ac3e9" category="paragraph">アグリゲートのミラーされていないか、別のアグリゲート問題が原因で、このエラーが発生していないかどうかを確認してくださいすべてのミラーアグリゲートが正常で、デグレードまたはミラーデグレードでないことを確認します。このエラーの原因がミラーされていないアグリゲートのみである場合は、「 system controller replace start 」コマンドで「 -skip-metrocluster-check true 」オプションを選択することで、このエラーを無視できます。リモートストレージにアクセスできる場合、ミラーされていないアグリゲートはスイッチオーバー後にオンラインになります。リモートストレージリンクに障害が発生すると、ミラーされていないアグリゲートがオンラインになりません。</block>
+  <block id="f5095e87ada35bc113e0f036c8e69f97" category="list-text">サイト B にログインし、「 system controller replace show 」または「 system controller replace show -details 」コマンドのコンソールメッセージに表示されるコマンドに従って、設定情報を手動で収集します。</block>
+  <block id="64df9322cc51d83e2da32d3c96ab900d" category="paragraph">アップグレードの実行前にルートボリュームが暗号化されている場合は、暗号化された古いルートボリュームを含む新しいコントローラをブートするために、バックアップキーとその他の情報を収集する必要があります。</block>
+  <block id="b631796ed66bdea4e25e6801e1c8f60b" category="list-text">既存のコントローラのケーブルにラベルを付けておくと、新しいコントローラをセットアップするときに識別しやすくなります。</block>
+  <block id="01fcad9722b76bf721bf3e62d6025311" category="list-text">バックアップキーやその他の情報を取得するコマンドを表示します。</block>
+  <block id="8005ab9a73c38cc367636a0ec9e8fa35" category="paragraph">「 system controller replace show 」と表示されます</block>
+  <block id="a0e8bd8a19cc4080f31b71bf720b5cea" category="paragraph">パートナークラスタから 'how コマンドの下に一覧表示されているコマンドを実行します</block>
+  <block id="f6ab51154cdfc097564bafa164ac20be" category="paragraph">追加情報の場合は、を参照してください<block ref="9c5418b86e38fd117e0f48c25b2c7372" category="inline-link-rx"></block>。</block>
+  <block id="e62705f78105356bbf7fa312e78e684a" category="list-text">設定情報の収集が完了したら、処理を再開します。</block>
+  <block id="d6fd449bc639f92f27b747fd5b40361d" category="paragraph">「システムコントローラの交換が再開」</block>
+  <block id="7080e7642990f343422154f3680f5f54" category="paragraph">スイッチオーバーを開始できる MetroCluster Tiebreaker 構成またはその他のサードパーティアプリケーション（たとえば、 ClusterLion ）で既存の構成を監視している場合は、古いコントローラを交換する前に、 Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。</block>
+  <block id="6e6a4f9be592bfb6d5337b4e903227ee" category="paragraph"><block ref="6e6a4f9be592bfb6d5337b4e903227ee" category="inline-link-rx"></block></block>
+  <block id="2cd5138ffea77134b2eaf87275680e03" category="section-title">古いコントローラの交換と新しいコントローラのブート</block>
+  <block id="f7a00e5a4faa1093e067a4074671fd4f" category="paragraph">情報を収集して処理を再開すると、スイッチオーバー処理が自動化されます。</block>
+  <block id="6605a90d61aaaaebf433918eb8eb5f61" category="paragraph">自動化操作は ' スイッチオーバー ' 修復アグリゲート ' および修復ルート・アグリゲートのオペレーションを開始しますこれらの処理が完了すると、ユーザの操作のために * 一時停止されます * 。コントローラをラックに設置してパートナーコントローラをブートし、先ほど収集した「 sysconfig 」を使用して、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます。</block>
+  <block id="a2a4c1d8f85152a91f79327087b50122" category="paragraph">スイッチオーバーを開始する前に自動化処理が一時停止するため、すべての LIF がサイト B で「稼働」していることを手動で確認できます必要に応じて、「 system controller replace resume 」コマンドを使用して、「 up 」の LIF をすべて削除し、自動化処理を再開します。</block>
+  <block id="134c86cd6759685fca4e3083cca3c8dd" category="list-text">で収集した情報を使用します <block ref="d24bc3082c34acd97b0b951a86de3913" category="inline-xref-macro-rx"></block>。</block>
+  <block id="f7e82eaccae559353c7856b8fbfa95f4" category="paragraph">SAN および NAS を含むすべてのデータ LIF は、スイッチオーバーサイト（ cluster_A ）で稼働しているため、管理上の「 up 」状態および運用上の「 own 」状態になります。</block>
+  <block id="e178dd43974f425e2b5dde554b62a1d1" category="paragraph">たとえば、 e0d は古いコントローラの物理ポートで、新しいコントローラにも存在します。e0d は、クラスタポート、または新しいコントローラ上で使用されません。</block>
+  <block id="790ffccea2ff9cd7b795660c9047f0af" category="paragraph">プラットフォームモデルのポートの用途については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
+  <block id="28c7702130266714c425efb099b41082" category="list-text">ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。</block>
+  <block id="4446a830a9fbc0b2d0c78c432aa57d3e" category="list-text">クラスタポートをメンバーポートとして使用し、インターフェイスグループをメンバーポートとして使用している VLAN ポートをすべて削除します。</block>
+  <block id="4ab1e5de67e4fdb090409b744f44bb19" category="paragraph"><block ref="4ab1e5de67e4fdb090409b744f44bb19" category="inline-link-rx"></block></block>
+  <block id="76947da623011473e258bcef85f2724d" category="paragraph">を参照してください <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="664faa773b897771d732ec0de99d505a" category="paragraph">前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします</block>
+  <block id="34c4e01a7077e9106112da52b0cc894e" category="paragraph">古いシステム ID は、で識別されています <block ref="c251a9631962af6f05d9aa0aeb7678df" category="inline-link-macro-rx"></block>。</block>
+  <block id="bfb74093c695212150621f6bdf9a4d2e" category="paragraph">VLAN とインターフェイスグループを再設定できます。必要に応じて、「 system controller replace resume 」コマンドを使用して処理を再開する前に、クラスタ LIF とブロードキャストドメインのポートを手動で変更します。</block>
+  <block id="045153dd32979a83552dc18f97eb10d7" category="list-text">ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを選択します。</block>
+  <block id="15f46bcb6931f7562d903b4ad6dd6724" category="cell">選択するブートメニューオプション</block>
+  <block id="178098baf7cc420884cc556dea26c7ca" category="paragraph">オプション 10</block>
+  <block id="6f5ca753326737c7593f401e5c5d7859" category="paragraph">オプションは 11 です</block>
+  <block id="dce733ba3a2c850a336acf7ae1e2f122" category="list-text">ブート・メニューからオプション「 6 」を実行します。</block>
+  <block id="3c1b094cec046fe3e1a4a730dcec2063" category="admonition">オプション '6' は ' 完了する前にノードを 2 回再起動します</block>
+  <block id="628ec0782add3a1eca1d1b88c88303f8" category="list-text">ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを再度選択します。</block>
+  <block id="0e1549b0570270f56245759766ddf7cb" category="paragraph">リカバリ手順を実行するには ' キー・マネージャの設定に応じてオプション 10 またはオプション 11 を選択し ' ブート・メニュー・プロンプトでオプション 6 を選択しますノードを完全にブートするには ' リカバリ手順をオプション 1' （通常のブート）の続きで実行する必要がある場合があります</block>
+  <block id="1a483f94c29c1132f258efc379367329" category="paragraph"><block ref="1a483f94c29c1132f258efc379367329" category="inline-link-rx"></block></block>
+  <block id="4bffe29d6d1104677dcfeb9e99ac549e" category="paragraph"><block ref="4bffe29d6d1104677dcfeb9e99ac549e" category="inline-link-rx"></block></block>
+  <block id="7b79bd2b52b89f70edfedac8da540bb3" category="paragraph"><block ref="7b79bd2b52b89f70edfedac8da540bb3" category="inline-link-rx"></block></block>
+  <block id="e702f20ce17b63dcf599797f8a5ab500" category="paragraph">詳細については、を参照してください<block ref="3b9b19971dde2aae15e577f665c13b3c" category="inline-link-rx"></block>。</block>
+  <block id="b2fbbb37e4812fbedc4b441b34476a16" category="paragraph">詳細については、を参照してください<block ref="138ed8681446ad4f209cce6021ead7cf" category="inline-link-rx"></block>。</block>
+  <block id="f15497fde7585731affbb2484431a8a8" category="list-text">処理を再開する前に、 MetroCluster が正しく設定されていることを確認してください。ノードのステータスを確認します。</block>
+  <block id="36d267620c98de3e96d9041f890de56f" category="paragraph">新しいノード（サイト B ）がサイト A から * Waiting for switchback 状態 * になっていることを確認します</block>
+  <block id="3b70100fce1839004dba40191f90a2c9" category="list-text">処理を再開します。</block>
+  <block id="4475fe40cbdeb04db8c9562cf8b91ab1" category="section-title">アップグレードを完了します</block>
+  <block id="cddd37c26961b651e776113f46191ca7" category="paragraph">自動処理では、検証システムのチェックが実行されたあと一時停止するため、ネットワークの到達可能性を確認できます。検証が完了すると、リソースの再取得フェーズが開始され、自動化処理によってサイト A でスイッチバックが実行され、アップグレード後のチェックで一時停止されます。自動処理を再開すると、アップグレード後のチェックが実行され、エラーが検出されない場合はアップグレードが完了としてマークされます。</block>
+  <block id="ade29ab679ccb0c0ffae494ab79cb975" category="list-text">コンソールメッセージに従って、ネットワークの到達可能性を確認します。</block>
+  <block id="325cfe0fbca444947dffe8b494e6621b" category="list-text">検証が完了したら、処理を再開します。</block>
+  <block id="9d89b7a98669d50977777454ad15ee6c" category="list-text">自動化処理では、サイト A でスイッチバックが実行され、アップグレード後のチェックが実行されます。処理が一時停止した場合は、コンソールメッセージに従って SAN LIF のステータスを手動で確認し、ネットワーク設定を確認します。</block>
+  <block id="9ce3a90e3d49883df1e4a6b1ae489300" category="list-text">アップグレード後チェックのステータスを確認します。</block>
+  <block id="4b8d3036a6a3b35e4c0a516d96f6388c" category="paragraph">アップグレード後のチェックでエラーが報告されなかった場合、アップグレードは完了です。</block>
+  <block id="f6b539ea59b73f9b259ffed026e616d0" category="list-text">コントローラのアップグレードが完了したら、サイト B でログインし、交換したコントローラが正しく設定されていることを確認します。</block>
+  <block id="995e564ca3c05e931e1da79c841f6b29" category="paragraph">Tiebreaker ソフトウェアは 3 つ目のサイトにインストールします。これにより、スイッチ間リンク（ ISL ）障害（サイト間リンクが停止している）障害とサイト障害をソフトウェアが区別できるようになります。ローカルコンピュータに Tiebreaker ソフトウェアをインストールまたはアップグレードして MetroCluster 構成を監視するには、ホストシステムが特定の要件を満たしている必要があります。</block>
+  <block id="acbfeda7edea7eba0418c4de0c90e09c" category="list-text">ONTAP 8.3.x 、 9.0 、 9.1 、 9.2 、 9.3 、 9.4 、 9.5 、 9.6 、 9.7 、 9.8 、 9.1.1 または 9.10.1</block>
+  <block id="df889c76e4219d94a86d75d41919ad14" category="list-text">Red Hat Enterprise Linux 72~7.9 または 8~8.4 、または CentOS 71~7.9 64 ビット（物理インストールまたは仮想マシン）</block>
+  <block id="1622cddcc8d92c2f521cf45ebeeb83b0" category="list-text">MariaDB 5.5.52.x / MySQL サーバ 5.6x</block>
+  <block id="5b704ee7b2ad5423137a896d4c4ab92a" category="paragraph"><block ref="706367e7c49952df4e02581bb09ed841" category="inline-xref-macro-rx"></block></block>
+  <block id="1635ad66e06d76cdccc25bb248323398" category="inline-xref">Red Hat Enterprise Linux 6 または CentOS 7 への MySQL Server 5.5.30 以降および 5.7x バージョンのインストール</block>
+  <block id="9955d510e571b5772146c4294aa083ad" category="paragraph"><block ref="dcceacb3de1856e2fea539e535a7cebb" category="inline-xref-macro-rx"></block></block>
+  <block id="5508505cbdbe4c572010783025a1150d" category="paragraph">Red Hat Enterprise Linux 8</block>
+  <block id="6b415ecff4f67f832fb78f9c6ed7945a" category="inline-xref">Red Hat Enterprise Linux 8 への MariaDB サーバのインストール</block>
+  <block id="8ced9fc9cddb4453095058632c12c49f" category="paragraph"><block ref="fcc472ae70179ceec6c9e23c4db15f10" category="inline-xref-macro-rx"></block></block>
+  <block id="1b4e516e0d0ab981d6240b91082cdfe8" category="list-text">Java Runtime Environment 1.8 をインストールします。</block>
+  <block id="b0039379b0936cf4501521fb4420f585" category="paragraph">`[root@mcctb~]# yum install java -1.8.0-openjdk.x86_64</block>
+  <block id="982777ff7445d76450443abffc937386" category="list-text">ホストシステムに MySQL リポジトリを追加します。</block>
+  <block id="76597904d13ed6703126a060cc752f6b" category="paragraph">`[root@mcctb~]#yum localinstall\https://dev.mysql.com/get/mysql57-community-release-el6-11.noarch.rpm`</block>
+  <block id="081d28d21e98dffaebd19fca15fe5217" category="list-text">mysql 57 リポジトリを無効にします。</block>
+  <block id="b668a67d489eec4f62521bbd12885266" category="paragraph">`[root@mcctb~]#yum-config -manager-disable mysql57-community`</block>
+  <block id="487abcba8707ef46aacc2b585b6a289b" category="list-text">mysql 56 リポジトリを有効にします。</block>
+  <block id="b2a2bcf1d273c0fb32775eaa18c41696" category="paragraph">`[root@mcctb~]#yum-config -manager-enable mysql56-community`</block>
+  <block id="072e1bfd6f4abef0faf3012692bf5ea1" category="list-text">リポジトリを有効にします。</block>
+  <block id="e7f832e3ddb40e5c83f7a6a1009ac585" category="paragraph">`[root@mcctb~]# yum repolist enabled | grep "mysql.*-community.*"`</block>
+  <block id="977a05ae671c4bb5c04ace46ee6785cc" category="list-text">MySQL サーバを起動します。</block>
+  <block id="b65a70c79ff28f5a2ef8d02ba8108e88" category="paragraph">`[root@mcctb~]# サービス mysqld 開始日</block>
+  <block id="526a187755bbc791e345d3d3d6b61e33" category="list-text">MySQL サーバが実行されていることを確認します。</block>
+  <block id="6fde27ddd86a687446cb65d1adf0bf52" category="paragraph">`[root@mcctb~]# サービス mysqld ステータス</block>
+  <block id="2fcc62b3e15b708ae647ff2b5bc758ef" category="list-text">セキュリティとパスワードを設定します。</block>
+  <block id="beec52d27562d4db4df376e74d51f643" category="paragraph">`[root@mcctb~]#mysql_secure_install`</block>
+  <block id="436d3553136413496f4c1ab193b0224a" category="list-text">MySQL ログインが機能していることを確認します。</block>
+  <block id="a4fddf98cdbecd6a73cbff1c16747db4" category="paragraph">「 [root@mcctb~]#mysql-u root – p`</block>
+  <block id="69d3c12df5df9781a325e132f3e90699" category="paragraph">自動起動機能を有効にする方法は、 MySQL のドキュメントを参照してください。</block>
+  <block id="f514e222790761ef9b22f805623d3f36" category="paragraph">ホストシステムが Red Hat Enterprise Linux （ RHEL ） 8 で実行されている必要があります。</block>
+  <block id="6dba822f853f76701715a4f97696a53a" category="list-text">MariaDB サーバをインストールします。</block>
+  <block id="cef7dfc261d8a8420d1938a361c69aa9" category="paragraph">`[root@mcctb~]#yum は MariaDB -server.x86_64 をインストールします</block>
+  <block id="60d8aee94c480f814db37523f4bf4e7c" category="list-text">MariaDB サーバを起動します。</block>
+  <block id="5dfdc749670b1b02e69d44bfaebcca7a" category="paragraph">「 [root@mcctb~]# systemctl start MariaDB 」</block>
+  <block id="41e90b98524e41b5e2a730bbc11c4d68" category="list-text">MariaDB サーバが起動したことを確認します。</block>
+  <block id="3d17e319e9e36197217af282fa99978d" category="paragraph">「 [root@mcctb~]# systemctl status MariaDB 」</block>
+  <block id="498c3cafc3459a0298f70837c51e567f" category="admonition">MariaDB に対して自動起動を有効にする設定がオンになっていることを確認します</block>
+  <block id="937a7baab3806f1c4b9f6865102b0452" category="list-text">セキュリティとパスワードを設定します。</block>
+  <block id="efbeea6d7850727664a7da563473bf28" category="list-text">yum install java -1.8.0-openjdk` コマンドを使用して OpenJDK をインストールしておく必要があります。</block>
+  <block id="e2a589b3c624686d70bc707abecd8732" category="list-text">「 NetApp-MetroCluster-Tiebreaker -Software-1.3-1.x86_64 」ファイルをダウンロードします。</block>
+  <block id="0eb07c6fd8c257049a7fb81250f55471" category="paragraph">「 rpm -ivh NetApp-MetroCluster-Tiebreaker -Software-1.3-1x86_64.rpm 」</block>
+  <block id="889b2b623e15a3451589622aab17f053" category="paragraph">「 rpm -Uvh NetApp-MetroCluster-Tiebreaker -Software-1.3-1.x86_64 」</block>
+  <block id="669f62b51efaf771cdc56bbd948e67a7" category="admonition">誤った MySQL ルートパスワードを入力すると、 Tiebreaker ソフトウェアのインストールが完了したことが通知されますが、 Access denied メッセージが表示されます。問題を解決するには 'rpm -e コマンドを使用して Tiebreaker ソフトウェアをアンインストールし ' 正しい MySQL ルート・パスワードを使用してソフトウェアを再インストールする必要があります</block>
+  <block id="10683b10de9cc52b8dc23b96e9f544b4" category="paragraph">アップグレード前にモニタをオブザーバーモードに切り替えても、 Tiebreaker モニタが実行されているホスト o を最小限の中断でアップグレードできます。</block>
+  <block id="604dcb5207f51939c53d9ad04dc73d45" category="list-text">モニタがオブザーバーモードになっていることを確認します。</block>
+  <block id="01e2bc057f0d0c9226b9b72fe02073dc" category="paragraph">「モニタの表示 - ステータス」</block>
+  <block id="62d21575da14f82a5429be44997ffec0" category="paragraph"><block ref="2d12f9e136c597ced9bd3fed196a9a6b" category="inline-xref-macro-rx"></block></block>
+  <block id="9510bca6c5bc7b53636ffed9d2186ded" category="admonition">SNMP トラップホストは 1 つだけ設定してください。</block>
+  <block id="69b040d4f8adaa4c34e437207036c73c" category="list-text">SNMP が設定されたことを確認します。</block>
+  <block id="da82ec774885b0fd4ea7e17756ffc01b" category="paragraph">「 snmp config test 」</block>
+  <block id="a1fecf534698cc371187a3c3028827a7" category="paragraph">#https://docs.netapp.com/us-en/ontap/[Installation お使いの AFF または FAS システムの手順 ]]&gt;</block>
+  <block id="3b0649c72650c313a357338dcdfb64ec" category="cell">注</block>
+  <block id="4d2df55d2343b32800bfea20e735c55a" category="paragraph">AFF A700 および FAS900</block>
+  <block id="09cb6984bdf1b82c9749906ba1a69331" category="summary">MetroCluster IP インターフェイス、 IP アドレスとマスク、およびゲートウェイの次のプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
+  <block id="bacf5875940eb96c091917a5d1b9e1ad" category="doc">MetroCluster IP のアドレス、ネットマスク、およびゲートウェイを変更する</block>
+  <block id="40505aafe5fd41af1999393ab341c808" category="paragraph">ONTAP 9.10.1 以降では、 MetroCluster IP インターフェイスの IP アドレス、マスク、およびゲートウェイのプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
+  <block id="d7fffb0ac95f2fd216c5e3fd04365cca" category="paragraph">これらのプロパティを更新する必要がある場合があります。たとえば、 IP アドレスが重複して検出された場合や、ルータの設定変更によってレイヤ 3 ネットワークでゲートウェイを変更する必要がある場合などです。</block>
+  <block id="383d9b07e1ef0cfcfa9ec36fecccfe02" category="paragraph">一度に変更できるインターフェイスは 1 つだけです。他のインターフェイスが更新されて接続が再確立されるまで、そのインターフェイス上のトラフィックは中断されます。</block>
+  <block id="8450a359c3efc774857fe0f3189456e0" category="paragraph">MetroCluster IP インターフェイス・プロパティを変更するには 'CLI MetroCluster configurion-settings interface modify' コマンドを使用します</block>
+  <block id="6a644f6158922e284b18d4232a152b9f" category="admonition">これらのコマンドは、特定のポートの特定のノードの設定を変更します。ネットワーク接続全体をリストアするには、他のポートでも同様のコマンドを実行する必要があります。同様に、ネットワークスイッチも構成を更新する必要があります。たとえば、ゲートウェイが更新されている場合は、 HA ペアの両方のノードが同じであるため変更することを推奨します。さらに、それらのノードに接続されたスイッチでも、ゲートウェイを更新する必要があります。</block>
+  <block id="7c7233877526ac5d7617b812df525ea4" category="paragraph">「 MetroCluster configurion-settings interface show 」、「 MetroCluster connection 」 check および「 MetroCluster connection show 」コマンドを使用して、すべてのインターフェイスですべての接続が機能していることを確認します。</block>
+  <block id="700215bf58e5cc6edce60155aeb7c44a" category="section-title">IP アドレス、ネットマスク、およびゲートウェイを変更します</block>
+  <block id="2747f7ff86cce509295bfb4ba2b1c4fa" category="list-text">単一のノードとインターフェイスの IP アドレス ' ネットマスク ' およびゲートウェイを更新します MetroCluster の設定 - インターフェイスの変更</block>
+  <block id="2f545dcb650b5848061814c5ce3b4cf4" category="paragraph">次のコマンドは、 IP アドレス、ネットマスク、およびゲートウェイを更新する方法を示しています。</block>
+  <block id="c8a08760312508ec804450cb7fad4702" category="list-text">[step2] すべてのインターフェイスですべての接続が機能していることを確認します。 MetroCluster configurion-settings interface show</block>
+  <block id="3fc201ecdcbc7e37cc8a9b91bd0c01b3" category="paragraph">次のコマンドは、すべてのインターフェイスのすべての接続が機能していることを確認する方法を示しています。</block>
+  <block id="464f766a72b725b51056bd23b507d8fb" category="list-text">[[step3]] すべての接続が動作していることを確認します : MetroCluster configurion-settings connection show`</block>
+  <block id="1a8c6f33d0bdd54f26272fc3c497ec01" category="paragraph">次のコマンドは、すべての接続が機能していることを確認する方法を示しています。</block>
+  <block id="7cc6eeceaab2a08f3c6575197a562093" category="sidebar">共有ストレージ / MetroCluster スイッチを使用した MetroCluster へのシェルフの追加</block>
 </blocks>

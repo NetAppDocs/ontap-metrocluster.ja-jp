@@ -1,0 +1,702 @@
+---
+permalink: maintain/task_add_shelves_using_shared_storage.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, shelf, shelves, add, ns224, 
+summary: 共有ストレージ MetroCluster スイッチを使用して、 NS224 シェルフを MetroCluster に追加する必要がある場合があります。 
+---
+= 共有ストレージ MetroCluster スイッチを使用した MetroCluster IP へのシェルフの追加
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+共有ストレージ MetroCluster スイッチを使用して、 NS224 シェルフを MetroCluster に追加する必要がある場合があります。
+
+ONTAP 9.10.1 以降では、共有のストレージ / MetroCluster スイッチを使用して、 MetroCluster から NS224 シェルフを追加できます。シェルフは一度に複数追加できます。
+
+.作業を開始する前に
+* ノードで ONTAP 9.9.1 以降が実行されている必要があります。
+* 現在接続されているすべての NS224 シェルフは、 MetroCluster と同じスイッチに接続する必要があります（共有ストレージ / MetroCluster スイッチ構成）。
+* この手順を使用して、専用のイーサネットスイッチに接続された NS224 シェルフまたは NS224 シェルフを使用する構成を、共有ストレージ / MetroCluster スイッチを使用して構成に変換することはできません。
+
+
+
+
+== カスタム AutoSupport メッセージをメンテナンス前に送信する
+
+メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
+
+このタスクは MetroCluster サイトごとに実行する必要があります。
+
+.手順
+. サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。
++
+.. 次のコマンドを問題に設定します。
++
+「 system node AutoSupport invoke -node * -type all -message 」 MAINT=10h NS224 シェルフの追加または削除中」に進みます
+
++
+この例では、 10 時間のメンテナンス時間を指定しています。プランによっては、さらに時間をかけたい場合もあります。
+
++
+この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
+
++
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
+
+.. パートナークラスタに対してこのコマンドを繰り返します。
+
+
+
+
+
+
+== MetroCluster 構成の健全性の確認
+
+移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。
+
+.手順
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. システムがマルチパスかどうかを確認します。
++
+'node run -node _node-name_sysconfig -a
+
+.. ヘルスアラートがないかどうかを両方のクラスタで確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
+.. MetroCluster 構成と運用モードが正常な状態であることを確認します。
++
+「 MetroCluster show 」
+
+.. MetroCluster チェックを実行します。
++
+「 MetroCluster check run 」のようになります
+
+.. MetroCluster チェックの結果を表示します。
++
+MetroCluster チェックショー
+
+.. Config Advisor を実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+. クラスタが正常であることを確認します。
++
+cluster show -vserver Cluster
+
++
+[listing]
+----
+cluster_A::> cluster show -vserver Cluster
+Node           Health  Eligibility   Epsilon
+-------------- ------  -----------   -------
+node_A_1    true    true          false
+node_A_2    true    true          false
+
+cluster_A::>
+----
+. すべてのクラスタポートが動作していることを確認します。
++
+「 network port show -ipspace cluster 」のように表示されます
+
++
+[listing]
+----
+cluster_A::> network port show -ipspace cluster
+
+Node: node_A_1-old
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node_A_2-old
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+
+cluster_A::>
+----
+. すべてのクラスタ LIF が動作していることを確認します。
++
+「 network interface show -vserver Cluster 」のように表示されます
+
++
+各クラスタ LIF で、 Is Home には true 、 Status Admin/Oper には up/up と表示されるはずです
+
++
+[listing]
+----
+cluster_A::> network interface show -vserver cluster
+
+            Logical      Status     Network          Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- -----
+Cluster
+            node_A_1-old_clus1
+                       up/up      169.254.209.69/16  node_A_1   e0a     true
+            node_A_1-old_clus2
+                       up/up      169.254.49.125/16  node_A_1   e0b     true
+            node_A_2-old_clus1
+                       up/up      169.254.47.194/16  node_A_2   e0a     true
+            node_A_2-old_clus2
+                       up/up      169.254.19.183/16  node_A_2   e0b     true
+
+4 entries were displayed.
+
+cluster_A::>
+----
+. すべてのクラスタ LIF で自動リバートが有効になっていることを確認します。
++
+network interface show -vserver Cluster -fields auto-revert を実行します
+
++
+[listing]
+----
+cluster_A::> network interface show -vserver Cluster -fields auto-revert
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+           node_A_1-old_clus1
+                        true
+           node_A_1-old_clus2
+                        true
+           node_A_2-old_clus1
+                        true
+           node_A_2-old_clus2
+                        true
+
+    4 entries were displayed.
+
+cluster_A::>
+----
+
+
+
+
+== 新しい RCF ファイルをスイッチに適用しています
+
+
+NOTE: スイッチがすでに正しく設定されている場合は、以降のセクションを省略して、に直接進むことができます <<Configuring MACsec encryption on Cisco 9336C switches>>（該当する場合）またはに移動します <<Connecting the new NS224 shelf>>。
+
+* シェルフを追加するには、スイッチの構成を変更する必要があります。
+* ケーブル接続の詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/port_usage_3232c_9336c.html#cabling-a-aff-a800-to-a-cisco-3232c-or-cisco-9336c-switch["プラットフォームポートの割り当て"^]。
+* 構成に合わせて RCF ファイルを作成するには、 **RcfFileGenerator** ツールを使用する必要があります。。 link:https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["RcfFileGenerator の順にクリックします"^] また、各スイッチのポートごとのケーブル接続の概要についても説明します。正しいシェルフ数を選択していることを確認してください。RCF ファイルと一緒に追加ファイルが作成され、特定のオプションに一致する詳細なケーブルレイアウトが提供されます。新しいシェルフをケーブル接続する際には、このケーブル接続の概要を使用してケーブル接続を検証します。
+
+
+
+
+=== MetroCluster IP スイッチでの RCF ファイルのアップグレード
+
+新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
+
+この手順では、 RCF ファイルをアップグレードするスイッチ上のトラフィックが中断されます。新しい RCF ファイルが適用されると、トラフィックは再開されます。
+
+.手順
+. 構成の健全性を確認
++
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+「 * MetroCluster check run * 」のようになります
+
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+
+----
+
+
++
+この処理はバックグラウンドで実行されます。
+
++
+.. MetroCluster check run オペレーションが完了したら ' MetroCluster check show を実行して結果を表示します
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+-----------
+::*> metrocluster check show
+
+Last Checked On: 4/7/2019 21:15:05
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          warning
+clusters            ok
+connections         not-applicable
+volumes             ok
+7 entries were displayed.
+----
+.. 実行中の MetroCluster チェック処理のステータスを確認するには、次のコマンドを使用します。 +`* MetroCluster operation history show -job-id 38*`
+.. ヘルス・アラートがないことを確認します +`* system health alert show *`
+
+
+. 新しい RCF ファイルを適用するための IP スイッチを準備します。
+
+
+
+
+=== Cisco IP スイッチを工場出荷時のデフォルトにリセットする
+
+新しいバージョンのソフトウェアと RCF をインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。
+
+この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
+
+. スイッチを工場出荷時のデフォルトにリセットします。
++
+.. 既存の設定を消去します。「 write erase 」
+.. スイッチソフトウェアをリロードします
++
+システムがリブートし、設定ウィザードが表示されます。起動中に、 Abort Auto Provisioning （自動プロビジョニングの中止）というプロンプトが表示され、通常のセットアップを続行する場合（ yes/no ） [n] 、「 yes 」と入力して続行します。
+
+.. 設定ウィザードで、スイッチの基本設定を入力します。
++
+*** 管理パスワード
+*** スイッチ名
+*** アウトオブバンド管理設定
+*** デフォルトゲートウェイ
+*** SSH サービス（ RSA ）設定ウィザードが完了すると、スイッチがリブートします。
+
+
+.. プロンプトが表示されたら、ユーザ名とパスワードを入力してスイッチにログインします。
++
+次の例は、スイッチを設定する際のプロンプトとシステム応答を示しています。山括弧（「 <<<`) 」）は、情報を入力する場所を示します。
+
++
+[listing]
+----
+---- System Admin Account Setup ----
+Do you want to enforce secure password standard (yes/no) [y]:y  **<<<**
+
+Enter the password for "admin": password
+Confirm the password for "admin": password
+---- Basic System Configuration Dialog VDC: 1 ----
+
+This setup utility will guide you through the basic configuration of the system. Setup configures only enough connectivity for management of the system.
+
+Please register Cisco Nexus3000 Family devices promptly with your supplier. Failure to register may affect response times for initial service calls. Nexus3000 devices must be registered to receive entitled support services.
+
+Press Enter at anytime to skip a dialog. Use ctrl-c at anytime to skip the remaining dialogs.
+----
++
+次の一連のプロンプトで、スイッチ名、管理アドレス、ゲートウェイなどの基本情報を入力し、 SSH with RSA を選択します。
+
++
+[listing]
+----
+Would you like to enter the basic configuration dialog (yes/no): yes
+  Create another login account (yes/no) [n]:
+  Configure read-only SNMP community string (yes/no) [n]:
+  Configure read-write SNMP community string (yes/no) [n]:
+  Enter the switch name : switch-name **<<<**
+  Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]:
+    Mgmt0 IPv4 address : management-IP-address  **<<<**
+   Mgmt0 IPv4 netmask : management-IP-netmask  **<<<**
+  Configure the default gateway? (yes/no) [y]: y **<<<**
+    IPv4 address of the default gateway : gateway-IP-address  **<<<**
+  Configure advanced IP options? (yes/no) [n]:
+  Enable the telnet service? (yes/no) [n]:
+  Enable the ssh service? (yes/no) [y]: y  **<<<**
+    Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa **<<<**
+   Number of rsa key bits <1024-2048> [1024]:
+ Configure the ntp server? (yes/no) [n]:
+  Configure default interface layer (L3/L2) [L2]:
+ Configure default switchport interface state (shut/noshut) [noshut]: shut **<<<**
+  Configure CoPP system profile (strict/moderate/lenient/dense) [strict]:
+----
++
+最後の一連のプロンプトで設定が完了します。
+
++
+[listing]
+----
+The following configuration will be applied:
+ password strength-check
+  switchname IP_switch_A_1
+vrf context management
+ip route 0.0.0.0/0 10.10.99.1
+exit
+ no feature telnet
+  ssh key rsa 1024 force
+  feature ssh
+  system default switchport
+  system default switchport shutdown
+  copp profile strict
+interface mgmt0
+ip address 10.10.99.10 255.255.255.0
+no shutdown
+
+Would you like to edit the configuration? (yes/no) [n]:
+
+Use this configuration and save it? (yes/no) [y]:
+2017 Jun 13 21:24:43 A1 %$ VDC-1 %$ %COPP-2-COPP_POLICY: Control-Plane is protected with policy copp-system-p-policy-strict.
+
+[########################################] 100%
+Copy complete.
+
+User Access Verification
+IP_switch_A_1 login: admin
+Password:
+Cisco Nexus Operating System (NX-OS) Software
+.
+.
+.
+IP_switch_A_1#
+----
+
+
+. 設定を保存します。
++
+[listing]
+----
+IP_switch-A-1# copy running-config startup-config
+----
+. スイッチをリブートし、スイッチがリロードされるまで待ちます。
++
+[listing]
+----
+IP_switch-A-1# reload
+----
+. MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
+
+
+
+
+=== Cisco スイッチの NX-OS ソフトウェアのダウンロードとインストール
+
+MetroCluster IP 構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
+
+この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。
+
+この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
+
+サポートされているバージョンのスイッチソフトウェアを使用する必要があります。
+
+https://hwu.netapp.com["NetApp Hardware Universe の略"]
+
+. サポートされている NX-OS ソフトウェアファイルをダウンロードします。
++
+https://software.cisco.com/download/home["シスコソフトウェアのダウンロード"]
+
+. スイッチソフトウェアをスイッチにコピーします。「 + copy sftp://root@server-IP-address/tftpboot/NX-OS -file-name bootflash:vrf management+
++
+この例では、 nxos.7.0.3.I4.6.bin ファイルを SFTP サーバ 10.10.99.99 からローカルブートフラッシュにコピーしています。
+
++
+[listing]
+----
+IP_switch_A_1# copy sftp://root@10.10.99.99/tftpboot/nxos.7.0.3.I4.6.bin bootflash: vrf management
+root@10.10.99.99's password: password
+sftp> progress
+Progress meter enabled
+sftp> get   /tftpboot/nxos.7.0.3.I4.6.bin  /bootflash/nxos.7.0.3.I4.6.bin
+Fetching /tftpboot/nxos.7.0.3.I4.6.bin to /bootflash/nxos.7.0.3.I4.6.bin
+/tftpboot/nxos.7.0.3.I4.6.bin                 100%  666MB   7.2MB/s   01:32
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+----
+. 各スイッチの bootflash: `d IR bootflash: ` に、スイッチの NX-OS ファイルが存在することを各スイッチで確認します
++
+次の例は、 FC_switch_A_1 にファイルが存在することを示しています。
+
++
+[listing]
+----
+IP_switch_A_1# dir bootflash:
+                  .
+                  .
+                  .
+  698629632    Jun 13 21:37:44 2017  nxos.7.0.3.I4.6.bin
+                  .
+                  .
+                  .
+
+Usage for bootflash://sup-local
+ 1779363840 bytes used
+13238841344 bytes free
+15018205184 bytes total
+IP_switch_A_1#
+----
+. スイッチソフトウェアをインストールします。“ install all nxos bootflash:nxos.version-number.bin “
++
+スイッチソフトウェアがインストールされると、スイッチは自動的にリロード（リブート）します。
+
++
+次の例は、 FC_switch_A_1 へのソフトウェアのインストールを示しています。
+
++
+[listing]
+----
+IP_switch_A_1# install all nxos bootflash:nxos.7.0.3.I4.6.bin
+Installer will perform compatibility check first. Please wait.
+Installer is forced disruptive
+
+Verifying image bootflash:/nxos.7.0.3.I4.6.bin for boot variable "nxos".
+[####################] 100% -- SUCCESS
+
+Verifying image type.
+[####################] 100% -- SUCCESS
+
+Preparing "nxos" version info using image bootflash:/nxos.7.0.3.I4.6.bin.
+[####################] 100% -- SUCCESS
+
+Preparing "bios" version info using image bootflash:/nxos.7.0.3.I4.6.bin.
+[####################] 100% -- SUCCESS       [####################] 100%            -- SUCCESS
+
+Performing module support checks.            [####################] 100%            -- SUCCESS
+
+Notifying services about system upgrade.     [####################] 100%            -- SUCCESS
+
+
+
+Compatibility check is done:
+Module  bootable          Impact  Install-type  Reason
+------  --------  --------------  ------------  ------
+     1       yes      disruptive         reset  default upgrade is not hitless
+
+
+
+Images will be upgraded according to following table:
+Module       Image   Running-Version(pri:alt)         New-Version   Upg-Required
+------  ----------   ------------------------  ------------------   ------------
+     1        nxos                7.0(3)I4(1)         7.0(3)I4(6)   yes
+     1        bios         v04.24(04/21/2016)  v04.24(04/21/2016)   no
+
+
+Switch will be reloaded for disruptive upgrade.
+Do you want to continue with the installation (y/n)?  [n] y
+
+
+Install is in progress, please wait.
+
+Performing runtime checks.         [####################] 100%    -- SUCCESS
+
+Setting boot variables.
+[####################] 100% -- SUCCESS
+
+Performing configuration copy.
+[####################] 100% -- SUCCESS
+
+Module 1: Refreshing compact flash and upgrading bios/loader/bootrom.
+Warning: please do not remove or power off the module at this time.
+[####################] 100% -- SUCCESS
+
+
+Finishing the upgrade, switch will reboot in 10 seconds.
+IP_switch_A_1#
+----
+. スイッチがリロードされるまで待ってから、スイッチにログインします。
++
+スイッチがリブートされると、ログインプロンプトが表示されます。
+
++
+[listing]
+----
+User Access Verification
+IP_switch_A_1 login: admin
+Password:
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2017, Cisco and/or its affiliates.
+All rights reserved.
+.
+.
+.
+MDP database restore in progress.
+IP_switch_A_1#
+
+The switch software is now installed.
+----
+. スイッチソフトウェアがインストールされていることを確認します : 'how version
++
+次の例は、の出力を示しています。
+
++
+[listing]
+----
+IP_switch_A_1# show version
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2017, Cisco and/or its affiliates.
+All rights reserved.
+.
+.
+.
+
+Software
+  BIOS: version 04.24
+  NXOS: version 7.0(3)I4(6)   **<<< switch software version**
+  BIOS compile time:  04/21/2016
+  NXOS image file is: bootflash:///nxos.7.0.3.I4.6.bin
+  NXOS compile time:  3/9/2017 22:00:00 [03/10/2017 07:05:18]
+
+
+Hardware
+  cisco Nexus 3132QV Chassis
+  Intel(R) Core(TM) i3- CPU @ 2.50GHz with 16401416 kB of memory.
+  Processor Board ID FOC20123GPS
+
+  Device name: A1
+  bootflash:   14900224 kB
+  usb1:               0 kB (expansion flash)
+
+Kernel uptime is 0 day(s), 0 hour(s), 1 minute(s), 49 second(s)
+
+Last reset at 403451 usecs after  Mon Jun 10 21:43:52 2017
+
+  Reason: Reset due to upgrade
+  System version: 7.0(3)I4(1)
+  Service:
+
+plugin
+  Core Plugin, Ethernet Plugin
+IP_switch_A_1#
+----
+. MetroCluster IP 構成の残りの 3 つの IP スイッチについて、上記の手順を繰り返します。
+
+
+
+
+== Cisco 9336C スイッチでの MACsec 暗号化の設定
+
+必要に応じて、サイト間で実行される WAN ISL ポートに MACsec 暗号化を設定できます。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。
+
+
+NOTE: MACsec 暗号化は、 WAN ISL ポートにのみ適用できます。
+
+
+
+==== MACsec のライセンス要件
+
+MACsec にはセキュリティライセンスが必要です。Cisco NX-OS ライセンス方式の詳細およびライセンスの取得方法と適用方法については、を参照してください https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/licensing/guide/b_Cisco_NX-OS_Licensing_Guide/b_Cisco_NX-OS_Licensing_Guide_chapter_01.html["『 Cisco NX-OS Licensing Guide 』"]
+
+
+
+==== MetroCluster IP 構成での Cisco MACsec 暗号化 WAN ISL のイネーブル化
+
+MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化をイネーブルにできます。
+
+. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
++
+[listing]
+----
+IP_switch_A_1# configure terminal
+IP_switch_A_1(config)#
+----
+. デバイスで MACsec と MKA を有効にします。「 feature MACsec」
++
+[listing]
+----
+IP_switch_A_1(config)# feature macsec
+----
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
++
+[listing]
+----
+IP_switch_A_1(config)# copy running-config startup-config
+----
+
+
+
+
+==== Cisco MACsec Encryption をディセーブルにします
+
+MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化を無効にする必要がある場合があります。
+
+
+NOTE: 暗号化を無効にする場合は、キーも削除する必要があります。
+
+. グローバルコンフィギュレーションモード「 configure terminal 」を入力します
++
+[listing]
+----
+IP_switch_A_1# configure terminal
+IP_switch_A_1(config)#
+----
+. デバイスの MACsec 設定を無効にします : 「 ACSEC SHUTDOWN 」
++
+[listing]
+----
+IP_switch_A_1(config)# macsec shutdown
+----
++
+
+NOTE: no オプションを選択すると、 MACsec 機能が復元されます。
+
+. MACsec で設定済みのインターフェイスを選択します。
++
+インターフェイスのタイプと ID を指定できます。イーサネットポートの場合は、イーサネットスロット / ポートを使用します。
+
++
+[listing]
+----
+IP_switch_A_1(config)# interface ethernet 1/15
+switch(config-if)#
+----
+. インターフェイスに設定されているキーチェーン、ポリシー、およびフォールバックキーチェーンを削除して、 MACsec 設定を削除します。「 no MACsec keychain -name policy -name fallback-keychain keychain -name 」
++
+[listing]
+----
+IP_switch_A_1(config-if)# no macsec keychain kc2 policy abc fallback-keychain fb_kc2
+----
+. MACsec が設定されているすべてのインターフェイスで、ステップ 3 と 4 を繰り返します。
+. 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします
++
+[listing]
+----
+IP_switch_A_1(config)# copy running-config startup-config
+----
+
+
+
+
+==== MACsec キーチェーンおよびキーの設定
+
+MACsec キーチェーンの設定の詳細については、ご使用のスイッチのシスコのマニュアルを参照してください。
+
+
+
+== 新しい NS224 シェルフを接続します
+
+.手順
+. キットに付属のパンフレットに従って、シェルフに付属のレールマウントキットを取り付けます。
+. パンフレットに従って、サポートブラケットとラックまたはキャビネットにシェルフを設置して固定します。
+. 電源コードをシェルフに接続し、電源コード固定クリップで固定してから、耐障害性を確保するために別々の電源に接続します。
++
+電源に接続するとシェルフの電源がオンになり、電源スイッチはありません。電源装置が正常に動作している場合は、 LED が緑色に点灯します。
+
+. シェルフ ID は、 HA ペア内および構成全体で一意の番号に設定します。
+. シェルフポートは次の順序で接続します。
++
+.. SMA-A 、 e0a をスイッチ（ Switch-A1 または Switch-B1 ）に接続します。
+.. NSM-B 、 e0a をスイッチ（ Switch-A2 または Switch-B2 ）に接続します。
+.. NSM-A'e0b をスイッチ（ Switch-A1 または Switch-B1 ）に接続します
+.. NSM-B 、 e0b をスイッチ（ Switch-A2 または Switch-B2 ）に接続します。
+
+
+. ** RcfFileGenerator** ツールで生成されたケーブルレイアウトを使用して、シェルフを適切なポートにケーブル接続します。
++
+新しいシェルフが正しくケーブル接続されると、 ONTAP はそのシェルフをネットワーク上で自動的に検出します。
+
+

@@ -14,11 +14,14 @@ Tiebreaker ソフトウェアで SNMP を使用するには、 SNMP を設定す
 
 . Tiebreaker CLI の SNMP 設定ウィザードのコマンドを使用して、 MetroCluster 設定を追加します。
 +
+
+NOTE: SNMP トラップホストは 1 つだけ設定してください。
+
++
 次の例は、 IP アドレスが 10.222.210.234 、トラップメッセージ用のポート番号が 162 、コミュニティストリングが public に設定された SNMP V1 をサポートする SNMP レシーバの構成を示しています。
 
 +
-[listing]
-----
+....
 
 NetApp MetroCluster Tiebreaker :> snmp config wizard
 Enter SNMP Version [V1/V3]: V1
@@ -27,21 +30,23 @@ Enter SNMP Port: 162
 Enter SNMP V1 Community: public
 Successfully added SNMP properties to NetApp MetroCluster Tiebreaker software.
 NetApp MetroCluster Tiebreaker :>
-----
+....
 +
 これで、 Tiebreaker ソフトウェアは、指定した SNMP レシーバにトラップを送信することができます。
 
-. SNMP 設定が構成されていることを確認します。「 snmp config test 」
+. SNMP が設定されたことを確認します。
++
+「 snmp config test 」
+
 +
 次の例は、 Tiebreaker ソフトウェアがイベント test_snmp_config の SNMP トラップを送信できることを示しています。
 
 +
-[listing]
-----
+....
 
 NetApp MetroCluster Tiebreaker :> snmp config test
 Sending SNMP trap to localhost. Version : V1.
 Successfully sent SNMP trap for event TEST_SNMP_CONFIG
 NetApp MetroCluster Tiebreaker :>
-----
+....
 
