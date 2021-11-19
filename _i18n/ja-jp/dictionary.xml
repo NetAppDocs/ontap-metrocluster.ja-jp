@@ -3470,7 +3470,6 @@
   <block id="35a8ad649b3194dfec4cd801fff9f656" category="section-title">Tiebreaker モニタが実行されているホストをアップグレードしています</block>
   <block id="dd369bd80b51fade2a8040849d0cdfb3" category="list-text">すべてのモニタをオブザーバーモードに変更します。</block>
   <block id="364ba5b8b3d13bcb103f29814c8bdc8b" category="list-text">Tiebreaker ホストをアップグレードするには、次の手順のすべての手順を実行します。</block>
-  <block id="3886cfe1b45d16bb968452e88c1ba14d" category="list-text">オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。</block>
   <block id="3da068989b58a6354f99f0db984b6df2" category="section-title">Tiebreaker ソフトウェアの NTP ソースを選択しています</block>
   <block id="ce5425c2550b256ea43d516197da426d" category="paragraph">Tiebreaker ソフトウェアには、ローカルのネットワークタイムプロトコル（ NTP ）ソースを使用する必要があります。Tiebreaker ソフトウェアが監視する MetroCluster サイトと同じソースは使用しないでください。</block>
   <block id="0f96cd982e393bde238790eeffc45a91" category="summary">NetApp MetroCluster Tiebreaker ソフトウェアの概要、およびどのように障害のタイプが特定されるかを理解しておくと、 MetroCluster 構成を効率的に監視できます。設定の管理、および MetroCluster 構成のステータスと処理の監視には、 Tiebreaker の CLI を使用します。</block>
@@ -11821,7 +11820,6 @@
   <block id="e702f20ce17b63dcf599797f8a5ab500" category="paragraph">詳細については、を参照してください<block ref="3b9b19971dde2aae15e577f665c13b3c" category="inline-link-rx"></block>。</block>
   <block id="b2fbbb37e4812fbedc4b441b34476a16" category="paragraph">詳細については、を参照してください<block ref="138ed8681446ad4f209cce6021ead7cf" category="inline-link-rx"></block>。</block>
   <block id="f15497fde7585731affbb2484431a8a8" category="list-text">処理を再開する前に、 MetroCluster が正しく設定されていることを確認してください。ノードのステータスを確認します。</block>
-  <block id="36d267620c98de3e96d9041f890de56f" category="paragraph">新しいノード（サイト B ）がサイト A から * Waiting for switchback 状態 * になっていることを確認します</block>
   <block id="3b70100fce1839004dba40191f90a2c9" category="list-text">処理を再開します。</block>
   <block id="4475fe40cbdeb04db8c9562cf8b91ab1" category="section-title">アップグレードを完了します</block>
   <block id="cddd37c26961b651e776113f46191ca7" category="paragraph">自動処理では、検証システムのチェックが実行されたあと一時停止するため、ネットワークの到達可能性を確認できます。検証が完了すると、リソースの再取得フェーズが開始され、自動化処理によってサイト A でスイッチバックが実行され、アップグレード後のチェックで一時停止されます。自動処理を再開すると、アップグレード後のチェックが実行され、エラーが検出されない場合はアップグレードが完了としてマークされます。</block>
@@ -11859,7 +11857,6 @@
   <block id="beec52d27562d4db4df376e74d51f643" category="paragraph">`[root@mcctb~]#mysql_secure_install`</block>
   <block id="436d3553136413496f4c1ab193b0224a" category="list-text">MySQL ログインが機能していることを確認します。</block>
   <block id="a4fddf98cdbecd6a73cbff1c16747db4" category="paragraph">「 [root@mcctb~]#mysql-u root – p`</block>
-  <block id="69d3c12df5df9781a325e132f3e90699" category="paragraph">自動起動機能を有効にする方法は、 MySQL のドキュメントを参照してください。</block>
   <block id="f514e222790761ef9b22f805623d3f36" category="paragraph">ホストシステムが Red Hat Enterprise Linux （ RHEL ） 8 で実行されている必要があります。</block>
   <block id="6dba822f853f76701715a4f97696a53a" category="list-text">MariaDB サーバをインストールします。</block>
   <block id="cef7dfc261d8a8420d1938a361c69aa9" category="paragraph">`[root@mcctb~]#yum は MariaDB -server.x86_64 をインストールします</block>
@@ -11867,15 +11864,12 @@
   <block id="5dfdc749670b1b02e69d44bfaebcca7a" category="paragraph">「 [root@mcctb~]# systemctl start MariaDB 」</block>
   <block id="41e90b98524e41b5e2a730bbc11c4d68" category="list-text">MariaDB サーバが起動したことを確認します。</block>
   <block id="3d17e319e9e36197217af282fa99978d" category="paragraph">「 [root@mcctb~]# systemctl status MariaDB 」</block>
-  <block id="498c3cafc3459a0298f70837c51e567f" category="admonition">MariaDB に対して自動起動を有効にする設定がオンになっていることを確認します</block>
   <block id="937a7baab3806f1c4b9f6865102b0452" category="list-text">セキュリティとパスワードを設定します。</block>
   <block id="efbeea6d7850727664a7da563473bf28" category="list-text">yum install java -1.8.0-openjdk` コマンドを使用して OpenJDK をインストールしておく必要があります。</block>
   <block id="e2a589b3c624686d70bc707abecd8732" category="list-text">「 NetApp-MetroCluster-Tiebreaker -Software-1.3-1.x86_64 」ファイルをダウンロードします。</block>
   <block id="0eb07c6fd8c257049a7fb81250f55471" category="paragraph">「 rpm -ivh NetApp-MetroCluster-Tiebreaker -Software-1.3-1x86_64.rpm 」</block>
   <block id="889b2b623e15a3451589622aab17f053" category="paragraph">「 rpm -Uvh NetApp-MetroCluster-Tiebreaker -Software-1.3-1.x86_64 」</block>
   <block id="669f62b51efaf771cdc56bbd948e67a7" category="admonition">誤った MySQL ルートパスワードを入力すると、 Tiebreaker ソフトウェアのインストールが完了したことが通知されますが、 Access denied メッセージが表示されます。問題を解決するには 'rpm -e コマンドを使用して Tiebreaker ソフトウェアをアンインストールし ' 正しい MySQL ルート・パスワードを使用してソフトウェアを再インストールする必要があります</block>
-  <block id="10683b10de9cc52b8dc23b96e9f544b4" category="paragraph">アップグレード前にモニタをオブザーバーモードに切り替えても、 Tiebreaker モニタが実行されているホスト o を最小限の中断でアップグレードできます。</block>
-  <block id="604dcb5207f51939c53d9ad04dc73d45" category="list-text">モニタがオブザーバーモードになっていることを確認します。</block>
   <block id="01e2bc057f0d0c9226b9b72fe02073dc" category="paragraph">「モニタの表示 - ステータス」</block>
   <block id="62d21575da14f82a5429be44997ffec0" category="paragraph"><block ref="2d12f9e136c597ced9bd3fed196a9a6b" category="inline-xref-macro-rx"></block></block>
   <block id="9510bca6c5bc7b53636ffed9d2186ded" category="admonition">SNMP トラップホストは 1 つだけ設定してください。</block>
@@ -11900,4 +11894,20 @@
   <block id="464f766a72b725b51056bd23b507d8fb" category="list-text">[[step3]] すべての接続が動作していることを確認します : MetroCluster configurion-settings connection show`</block>
   <block id="1a8c6f33d0bdd54f26272fc3c497ec01" category="paragraph">次のコマンドは、すべての接続が機能していることを確認する方法を示しています。</block>
   <block id="7cc6eeceaab2a08f3c6575197a562093" category="sidebar">共有ストレージ / MetroCluster スイッチを使用した MetroCluster へのシェルフの追加</block>
+  <block id="c988965fbbe340c601c83f0611367b30" category="list-text">MySQL Community Server をインストールします。</block>
+  <block id="19814756461082c5d291432219d95924" category="paragraph">`[root@mcctb~]# yum は mysql-community-server をインストールします</block>
+  <block id="907482e03a773bacd1197e79ad353d1a" category="list-text">MySQL がブート時に自動で起動することが有効になっていることを確認します</block>
+  <block id="9828a53574d333fd2cfd570e38922b4f" category="paragraph">「 [root@mcctb~]# systemctl list-buny-files mysqld.service` 」と入力します</block>
+  <block id="6b78bf98fe8a405df5e22ad1b5b3a1ba" category="paragraph">ブート時に MySQL を自動で起動することが有効になっていない場合は、 MySQL のドキュメントを参照して、自動起動機能を有効にしてください。</block>
+  <block id="66c3a52e296340b1f53b99213e63311b" category="admonition">MariaDB に対して自動起動を有効にする設定がオンになっていることを確認しますを参照してください <block ref="357a9b2b77cd4c5da8d2b51300246283" category="inline-xref-macro-rx"></block>。</block>
+  <block id="a6a94dd70978b2b80d52534ad2ff0763" category="section-title">MariaDB の自動起動設定を有効にします</block>
+  <block id="69b59a19df8a4681ca9120df41f595ea" category="paragraph">MariaDB に対して自動起動機能が有効になっていることを確認する必要があります自動起動機能を有効にしておらず、 MetroCluster Tiebreaker ソフトウェアがインストールされているシステムをリブートする必要がある場合、 Tiebreaker ソフトウェアは引き続き実行されますが、 MariaDB サービスを再起動できず、設定を変更できません。</block>
+  <block id="3a792898663e436585860dc61b16ebbe" category="list-text">自動起動サービスを有効にします。</block>
+  <block id="702b74d571398b97d529b92567ce42a7" category="paragraph">「 [root@mcctb~]# systemctl enable mariadb.service` 」を参照してください</block>
+  <block id="5c77e1603fd1c29c92901cf08deda7ef" category="list-text">ブート時に MariaDB が自動で起動できることを確認します。</block>
+  <block id="20859c72927d81163c0ef8c70e5f5855" category="paragraph">「 [root@mcctb~]# systemctl list-buny-files mariadb.service` 」と入力します</block>
+  <block id="742dc42b1fe2cbc56c22d6c1ccda0d88" category="paragraph">アップグレード前にモニタをオブザーバーモードに切り替えても、 Tiebreaker モニタが実行されているホストを最小限の中断でアップグレードできます。</block>
+  <block id="c1b20466030a9b3540d83155ad9678ce" category="list-text">モニタがオブザーバーモードになっていることを確認します。</block>
+  <block id="3e3282862342655e70b0b4d411fbb78b" category="list-text">オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。</block>
+  <block id="088c19240da89dbb9f8682a7168eea93" category="paragraph">新しいノード（ site_B ）の状態が「 Waiting for switchback state * from site_A 」であることを確認します</block>
 </blocks>
