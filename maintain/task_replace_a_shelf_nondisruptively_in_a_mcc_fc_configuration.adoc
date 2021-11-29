@@ -25,20 +25,21 @@ NOTE: この手順は、ファブリック接続 MetroCluster 構成でのみ使
 構成の全体的な健全性を確認します。システムが健全でない場合は、問題に対処してから次に進んでください。
 
 .手順
-. プレックスをホストしているコントローラで、影響を受けるプレックスをオフラインにします。
+. 両方のクラスタで、関係するシェルフスタック上のディスクを含むすべてのプレックスをオフラインにします。
 +
 '*aggr offline_plex_name_*'
 
 +
-次の例は、 cMode を実行しているコントローラのプレックスをオフラインにするコマンドを示しています。
+次の例は、 clustered OTNAP を実行するコントローラのプレックスをオフラインにするコマンドを示しています。
 
 +
 [listing]
 ----
 
-Cluster_A_1::> storage aggregate plex offline -aggr aggr1 -plex plex2
-Cluster_A_1::> storage aggregate plex offline -aggr aggr2 -plex plex6
-Cluster_A_1::> storage aggregate plex offline -aggr aggr3 -plex plex1
+cluster_A_1::> storage aggregate plex offline -aggr aggrA_1_0 -plex plex0
+cluster_A_1::> storage aggregate plex offline -aggr dataA_1_data -plex plex0
+cluster_A_2::> storage aggregate plex offline -aggr aggrA_2_0 -plex plex0
+cluster_A_2::> storage aggregate plex offline -aggr dataA_2_data -plex plex0
 ----
 . プレックスがオフラインであることを確認します。
 +
@@ -51,9 +52,10 @@ Cluster_A_1::> storage aggregate plex offline -aggr aggr3 -plex plex1
 [listing]
 ----
 
-Cluster_A_1::> storage aggregate show -aggr aggr1
-Cluster_A_1::> storage aggregate show -aggr aggr2
-Cluster_A_1::> storage aggregate show -aggr aggr3
+Cluster_A_1::> storage aggregate show -aggr aggrA_1_0
+Cluster_A_1::> storage aggregate show -aggr dataA_1_data
+Cluster_A_2::> storage aggregate show -aggr aggrA_2_0
+Cluster_A_2::> storage aggregate show -aggr dataA_2_data
 ----
 . ターゲットシェルフを接続しているブリッジが SAS スタックを 1 つ接続しているか 2 つ接続しているかに応じて、 SAS ポートまたはスイッチポートを無効にします。
 +

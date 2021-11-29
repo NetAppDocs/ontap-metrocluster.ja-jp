@@ -1952,8 +1952,6 @@
   <block id="f37c808aea503c571ed704b83484d241" category="list-text">ディスクシェルフの各スタックで、最初のシェルフの IOM A を FibreBridge A の SAS ポート A にケーブル接続し、最後のシェルフの IOM B を FibreBridge B の SAS ポート A にケーブル接続します</block>
   <block id="d56b0f3416bfc789f2c7f1f935facdc5" category="admonition">出力の先頭に「 respondse truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、「 astargets 」コマンドを使用してすべての出力を表示できます。</block>
   <block id="6e35146589ca0537e450bf56f1139282" category="list-text">SAS ケーブルに緩みがないか確認するか、手順を繰り返してディスクシェルフをブリッジに接続し、 SAS ケーブル接続を修正します。</block>
-  <block id="33d278dbdb8ee54d1d4ac0cbee294810" category="list-text">使用している構成、スイッチモデル、および FC-to-SAS ブリッジモデルに対応した表に記載されているケーブルを使用して、各ブリッジをローカルの FC スイッチにケーブル接続します。</block>
-  <block id="7c300dfa3a23e51a9063e548840a5295" category="paragraph">次の表に示すように、 Brocade スイッチと Cisco スイッチでは使用するポート番号が異なります</block>
   <block id="6d9bd4cb37e68444afa71d06faf2439f" category="paragraph">このコマンドは両方のコントローラで実行する必要があります。</block>
   <block id="1085da58e90873ee49d4724127d66db4" category="admonition">ディスクシェルフの 1 つのスタックの所有権を複数のコントローラに分割する場合は、ディスク所有権を割り当てる前にディスクの自動割り当てを無効にする必要があります（クラスタ内の両方のノードから「 storage disk option modify -autoassign off * 」）。 そうしないと、いずれかのディスクドライブを割り当てたときに、残りのディスクドライブが同じコントローラおよびプールに自動的に割り当てられる可能性があります。</block>
   <block id="f4e2ba9b259f06c1661bed9f349c22f3" category="summary">ONTAP 9.5 以降では、 FibreBridge 7500N / 7600N ブリッジについて、 IP 管理に代わる方法としてインバンド管理がサポートされます。ONTAP 9.8 以降では、アウトオブバンド管理は廃止されています。</block>
@@ -1987,9 +1985,7 @@
   <block id="e5f0a16ea418ee7bf710c2e6b2b5ef12" category="section-title">シェルフへのアクセスを無効にします</block>
   <block id="2c9d09f90696abf9245e1ac1d6ee91d7" category="paragraph">シェルフモジュールを交換する前に、シェルフへのアクセスを無効にする必要があります。</block>
   <block id="1d3341e7be6e06b23e20e2501177f02e" category="paragraph">構成の全体的な健全性を確認します。システムが健全でない場合は、問題に対処してから次に進んでください。</block>
-  <block id="d34d212b3a4a33e4c3642f7433df6b71" category="list-text">プレックスをホストしているコントローラで、影響を受けるプレックスをオフラインにします。</block>
   <block id="91f6091245d4b1beb9fcb78b68cf308a" category="paragraph">'*aggr offline_plex_name_*'</block>
-  <block id="6d83782aba42afd63943cc1f5beec8bc" category="paragraph">次の例は、 cMode を実行しているコントローラのプレックスをオフラインにするコマンドを示しています。</block>
   <block id="52f3a6ffabb544f36777314e040747e2" category="paragraph">`* aggr status --raggr_name_*`</block>
   <block id="8a6a5908684ff060e64e57e3561d66f0" category="paragraph">次の例は、 cMode を実行しているコントローラのアグリゲートがオフラインであることを確認するコマンドを示しています。</block>
   <block id="a571ed81b9ac1cd9c96405061a23d824" category="list-text">ターゲットシェルフを接続しているブリッジが SAS スタックを 1 つ接続しているか 2 つ接続しているかに応じて、 SAS ポートまたはスイッチポートを無効にします。</block>
@@ -3800,7 +3796,6 @@
   <block id="e9f061fb2bc125b997083e48a3442510" category="list-text">緑色のセルは、その組み合わせがサポートされていることを示します。</block>
   <block id="7bf7e1a6cec96a843176b66291c50547" category="list-text">白い ( 空白の ) セルは、その組み合わせがサポートされていないことを示します。</block>
   <block id="1799408ec992ed3e5561f7b04ccef0fe" category="paragraph">たとえば、 AFF8060 コントローラモジュールで構成される MetroCluster FC 構成から、 AFF A400 コントローラモジュールで構成される IP 構成への移行がサポートされます。</block>
-  <block id="e4ababf2c65e65642a1cb3cedfba25f7" category="admonition">Cisco 9336C-FX2 共有スイッチ構成への移行はサポートされていません。</block>
   <block id="06dbf695b0eb6bb2278b17719899aba9" category="image-alt">移行がサポートされるプラットフォームの組み合わせ</block>
   <block id="5f6801242587199c39843af93c0c6fbc" category="summary">ONTAP 9.8 以降では、既存の 4 ノード MetroCluster FC 構成から新しい MetroCluster IP 構成へのワークロードおよびデータの無停止移行がサポートされます。</block>
   <block id="2380f44f4dcec1f84b76f71d467c0c65" category="doc">MetroCluster FC から MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）</block>
@@ -5186,7 +5181,6 @@
   <block id="bea9fa7282326491dc4ce42c2d7edda7" category="list-text">すべてのノードが enabled 状態であることを確認します MetroCluster node show</block>
   <block id="ca433a1a8cdfe2e0d09b21bb5cf1db25" category="paragraph">次の例は、ノードが有効な状態であることを表示します。</block>
   <block id="3f678d56ef7bbe278de1a52dfe4f932f" category="list-text">すべての SVM で再同期が完了したことを確認します。「 MetroCluster vserver show 」</block>
-  <block id="92d412a5b4156cc9c91788d064161ecc" category="list-text">修復処理によって実行される LIF の自動移行が完了したことを確認し MetroCluster ます。 lun check lif show</block>
   <block id="aad8b7c11b4aa6bcae4874f577338fdb" category="list-text">スイッチバック操作の進行状況を確認します MetroCluster show</block>
   <block id="cf7da6064d11b7240c8a90c881c2b0a8" category="paragraph">出力に waiting-for-switchback と表示された場合は、スイッチバック処理がまだ進行中です。</block>
   <block id="bebab338ce208a8365444e4ebe4efe11" category="list-text">SnapMirror 構成または SnapVault 構成があれば、再確立します。</block>
@@ -8736,11 +8730,9 @@
   <block id="58f4e450e6637270a6ebb47e42477be1" category="paragraph">ONTAP および MetroCluster の構成に関する一般的な情報も記載されています。</block>
   <block id="54744df94a6fdb7104348dee41697c48" category="summary">MetroCluster IP 構成で使用するポートは、スイッチのモデルとプラットフォームのタイプによって異なります。</block>
   <block id="3e7d7088000e9b3208b36b1397763f5e" category="doc">Broadcom 対応 BES-53248 IP スイッチのプラットフォームポート割り当て</block>
-  <block id="6e496c058aaedfd0b0449bfd6ce2f35f" category="paragraph">速度が異なるポート（ 25Gbps ポートと 10Gbps ポートなど）をスイッチに設定することはできません。</block>
   <block id="1ea1224e95806d38188ac2833eef5d68" category="paragraph">以下の表に関する注意事項：</block>
   <block id="84d5df4bc00912b5bf41517f871849dc" category="list-text">一部のプラットフォームでは、 MetroCluster ISL または MetroCluster インターフェイス接続にポート 49-54 を使用できます。</block>
   <block id="141c241c09745923a907fa0b44d6fdc2" category="paragraph">これらのポートには追加のライセンスが必要です。</block>
-  <block id="3f4f355f77514d7addc1e8c48ca452d0" category="list-text">スイッチに接続できる AFF A320 システムは 1 台だけで、他のプラットフォームを同時に接続することはできません。</block>
   <block id="c7ecc9ce844e9f4491596826d0847864" category="paragraph">スイッチクラスタを必要とする機能は、 MetroCluster から IP への移行や機器更改の手順など、この構成ではサポートされていません。</block>
   <block id="101ffe4f466417c1ce75564d3cc0a3b6" category="list-text">AFF A320 システムが Broadcom BES-53248 スイッチで構成されている場合、一部の機能がサポートされないことがあります。</block>
   <block id="cc1b37b4c1dcf92c7509c109eb4c4d7d" category="paragraph">ローカルクラスタ接続を必要とする設定または機能がスイッチに接続されていても、サポートされていません。たとえば、次の設定と手順はサポートされていません。</block>
@@ -11373,7 +11365,6 @@
   <block id="70a6af377eaf4da39eb5c40bd123522b" category="list-text">強制スイッチオーバー</block>
   <block id="0ece35432200ec94e379aeb1ce68db94" category="list-text">複数のコントローラまたはストレージの障害からのリカバリ</block>
   <block id="8dbe92f75ba070e91abdf749e6b035a2" category="list-text">サバイバークラスタ内の任意のノードから MetroCluster switchback コマンドを実行して、スイッチバックを実行します。 MetroCluster switchback</block>
-  <block id="6fdaae180fb7295ff71dbfe7a61beabe" category="section-title">スイッチオーバー、修復、スイッチバックを実行中です</block>
   <block id="c9aa0ac9943f839d56e1bdd62941dd61" category="section-title">MetroCluster Tiebreaker または ONTAP メディエーターを使用して設定を監視する</block>
   <block id="9e34b94d21bb51333906ea137daeaca8" category="paragraph">を参照してください <block ref="1b129d9b24cc52917a4f49025dd7cea7" category="inline-link-macro-rx"></block> MetroCluster 構成を監視する方法と自動スイッチオーバーを開始する方法の違いを理解するために、</block>
   <block id="64977ab6a02737ff27944bb4e643f9a9" category="paragraph">Tiebreaker またはメディエーターをインストールおよび設定するには、次のリンクを使用します。</block>
@@ -11554,8 +11545,6 @@
   <block id="531b740381cddffce7b8440283ae7533" category="paragraph">MACsec キーチェーンの設定の詳細については、ご使用のスイッチのシスコのマニュアルを参照してください。</block>
   <block id="3390d4f6bfc1502eb6b943d94b2ccf81" category="paragraph"><block ref="3390d4f6bfc1502eb6b943d94b2ccf81" category="inline-link-macro-rx"></block></block>
   <block id="9e83c69a0d82e02a123c94b676cdaa28" category="list-text">ONTAP メディエーターの既存のインスタンスを使用している場合は、次のコマンドを使用して ONTAP メディエーターサービスを ONTAP に追加します。</block>
-  <block id="ba1e118c83648b254f27cdd860d0d4ae" category="inline-link">AFF および FAS システムドキュメントセンター</block>
-  <block id="811577f4c2318aa7af00accb9e213cc1" category="paragraph">使用しているプラットフォームに対応したインストール手順をで使用します<block ref="f8855b308c3b55e8c350efcfe17e01ac" category="inline-link-rx"></block>。</block>
   <block id="472d27b022b8174e4ae4cbdabe2bc8a7" category="list-text">site_B-shelf_2 のすべてのディスクが node_A_1 のプール 1 に自動的に割り当てられます</block>
   <block id="c1583a2a104bf12c781b545bd0852240" category="list-text">site_B-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます</block>
   <block id="b81ee4c855b35f971c50421790bc7928" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_1 のプール 1 に自動的に割り当てられます</block>
@@ -11910,4 +11899,18 @@
   <block id="c1b20466030a9b3540d83155ad9678ce" category="list-text">モニタがオブザーバーモードになっていることを確認します。</block>
   <block id="3e3282862342655e70b0b4d411fbb78b" category="list-text">オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。</block>
   <block id="088c19240da89dbb9f8682a7168eea93" category="paragraph">新しいノード（ site_B ）の状態が「 Waiting for switchback state * from site_A 」であることを確認します</block>
+  <block id="70797c25b23e4d3313107866a946ef86" category="paragraph">速度が異なるリモート ISL ポート（ 10Gbps ISL ポートに接続されている 25Gbps ポートなど）では、スイッチを使用できません。</block>
+  <block id="ee1c57ea8aa164533e9450c35bd1eacb" category="list-text">A320 システムを使用する 4 ノード MetroCluster をスイッチに接続できます。</block>
+  <block id="16319414c65274d365d86327a61ef5dc" category="inline-link">AFF および FAS システムのマニュアル</block>
+  <block id="63799698c3b4bb55f091a324342f6ef6" category="paragraph">使用しているプラットフォームに対応したインストール手順をで使用します<block ref="0b3a876cb84d37c698b419ae2be696d8" category="inline-link-rx"></block>。</block>
+  <block id="145dacb3237a86979e113708eea5ccbb" category="list-text">スイッチファブリックごとに 2 つ、計 4 つの IP スイッチが必要です。</block>
+  <block id="678c0cc3a8e347e1b6670261a41c4c3e" category="list-text">修復処理によって実行される LIF の自動移行が正常に完了したことを確認します。 MetroCluster check lif show</block>
+  <block id="3e0af8ae696d5e7c0a0c4cf08d2caa05" category="list-text">シミュレートされたスイッチバックを実行して、システムが「 MetroCluster switchback -simulate 」状態であることを確認します</block>
+  <block id="776259e77c1e67fef13df14be8a5ad8e" category="list-text">両方のクラスタで、関係するシェルフスタック上のディスクを含むすべてのプレックスをオフラインにします。</block>
+  <block id="e7b29b3d771c4dde26a00503e0f4bccf" category="paragraph">次の例は、 clustered OTNAP を実行するコントローラのプレックスをオフラインにするコマンドを示しています。</block>
+  <block id="2abcc8e487f56251cd49b5a74738c4c4" category="section-title">Cisco 9336C-FX2 共有スイッチ構成に移行します</block>
+  <block id="f8e0758b3af85da8f282b95e41204586" category="paragraph">Cisco 9336C-FX2 共有スイッチ構成への移行はサポートされていません。a_shared スイッチの設定 _ は、 MetroCluster 接続とストレージシェルフ接続の両方を提供します。</block>
+  <block id="1a0ece25400c2d4c0b3a063a4d9d1aad" category="paragraph">Cisco 9336C-FX2 スイッチが MetroCluster 接続のみを提供する構成がサポートされています。</block>
+  <block id="b88127542a36dbd88f1d9b0eb0e66dc0" category="paragraph">ONTAP は現在、 AES-128 暗号化をサポートしています。</block>
+  <block id="c822bb67407542108aec4655c3b63b2b" category="paragraph">controller_A_1 のポート d</block>
 </blocks>

@@ -41,7 +41,40 @@ Group Cluster Node        State          Mirroring Mode
 4 entries were displayed.
 ----
 .. すべての SVM で再同期が完了したことを確認します。「 MetroCluster vserver show 」
-.. 修復処理によって実行される LIF の自動移行が完了したことを確認し MetroCluster ます。 lun check lif show
+.. 修復処理によって実行される LIF の自動移行が正常に完了したことを確認します。 MetroCluster check lif show
+.. シミュレートされたスイッチバックを実行して、システムが「 MetroCluster switchback -simulate 」状態であることを確認します
+.. 構成を確認します。
++
+「 MetroCluster check run 」のようになります
+
++
+このコマンドはバックグラウンドジョブとして実行され、すぐに完了しない場合があります。
+
++
+[listing]
+----
+cluster_A::> metrocluster check run
+The operation has been started and is running in the background. Wait for
+it to complete and run "metrocluster check show" to view the results. To
+check the status of the running metrocluster check operation, use the command,
+"metrocluster operation history show -job-id 2245"
+----
++
+[listing]
+----
+cluster_A::> metrocluster check show
+Last Checked On: 9/13/2018 20:41:37
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+clusters            ok
+connections         ok
+6 entries were displayed.
+----
 .. サバイバークラスタ内の任意のノードから MetroCluster switchback コマンドを実行して、スイッチバックを実行します。 MetroCluster switchback
 .. スイッチバック操作の進行状況を確認します MetroCluster show
 +
