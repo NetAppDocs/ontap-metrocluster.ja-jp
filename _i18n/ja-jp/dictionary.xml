@@ -1097,7 +1097,6 @@
   <block id="d728f92d15186acd3ab7bfe69c91c74a" category="paragraph">次のプレックスをオフラインにする必要があります。</block>
   <block id="bb1dbaa590d8d023b92b11955221364e" category="list-text">ディザスタサイトにあるディスクにあるミラーリングされていないプレックス</block>
   <block id="0780a4c1fe0c3501c0d025f1b600dbdc" category="paragraph">ディザスタサイトのミラーリングされていないプレックスをオフラインにしないと、あとでディザスタサイトの電源をオフにしたときにシステムが停止する可能性があります。</block>
-  <block id="ce9a9dc642608d1a6a924afc0f431731" category="list-text">ディザスタサイトのディスクにあるミラーされたプレックスを使用してアグリゲートをミラーリングする。オフラインにすると、プレックスにアクセスできなくなります。</block>
   <block id="db3cf611b9905283227764c513bd7a82" category="list-text">影響を受けるプレックスを特定します。</block>
   <block id="82e30d8124ea7d730cf5faa5719112de" category="paragraph">サバイバーサイトのノードが所有するプレックスは、プール 1 のディスクで構成されます。ディザスタサイトのノードが所有するプレックスは、プール 0 のディスクで構成されます。</block>
   <block id="91ed5dc97cbd6b24299ac295f0ad8d5b" category="admonition">「ホーム」は「ホーム」所有者ではなく「ホーム」所有者を指します。</block>
@@ -1120,18 +1119,13 @@
   <block id="1ab71b25242090a89ae72e4a014667b6" category="paragraph">node_B_1 の aggr0/plex0</block>
   <block id="32a38833efcbe07da179dca140dd848a" category="paragraph">node_B_2 の aggr0 / plex0</block>
   <block id="edce01688e98b58b19121c93fc7ff2e1" category="paragraph">node_B_2 の aggr1 / plex0</block>
-  <block id="5ac2f7c7dbf57c0d5599c0a79e5964e7" category="list-text">影響を受けるプレックスをオフラインにします :+`* storage aggregate plex offline*`</block>
   <block id="1f6dc3b671503c8d63a1afa2819b223b" category="admonition">Cluster_A に対してリモートなディスクを含むすべてのプレックスに対してこの手順を実行してください</block>
   <block id="f380dd26f2cf185b17accd909e743fe1" category="list-text">スイッチタイプに応じて、スイッチポートを永続的にオフラインにします。</block>
   <block id="a919607ef6e9e47aee6ab7e80893d8c1" category="admonition">この手順は、 MetroCluster FC 構成でのみ必要です。MetroCluster IP 構成または FC バックエンドスイッチを使用するストレッチ MetroCluster 構成の場合は、この手順を省略します。</block>
   <block id="ec101ec8f4300c01b3e83ccb567aa413" category="cell">スイッチのタイプ</block>
   <block id="004bf6c9a40003140292e97330236c53" category="cell">アクション</block>
   <block id="a4856b5d624fb703341d2b6cb1fd8be3" category="paragraph">Brocade スイッチ</block>
-  <block id="92550b59bd740601ac151d90e48049b8" category="list-text">次の例に示すように '`*portcfgpersistentdisable_port_*` コマンドを使用してポートを永続的に無効にしますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
-  <block id="aa4e5bcf8f105bbb5f8f6b42fc0ae930" category="list-text">次の例に示すように '*switchshow*' コマンドを使用して ' ポートが無効になっていることを確認します</block>
   <block id="7ed2005e63164c86338f8fb503fec38d" category="paragraph">Cisco スイッチ</block>
-  <block id="5ab3757f241d18267be3b732934ccc96" category="list-text">「 * interface * 」コマンドを使用して、ポートを永続的に無効にします。次の例は、ポート 14 および 15 を無効にします。</block>
-  <block id="eb8e236d78848664bafea13929a2cf1d" category="list-text">次の例に示すように '*show interface brief *' コマンドを使用して ' スイッチ・ポートが無効になっていることを確認します</block>
   <block id="763cdd1475f50ea62662f8b936e2c440" category="list-text">サイトの電源をオフにします。</block>
   <block id="ad36ac8a7c949cb0a7d855a39368e1af" category="paragraph">次の機器の電源は、特定の順序でオフにする必要があります。</block>
   <block id="efb6ec8736b8f7b340b21adf8615fbd9" category="cell">構成タイプ</block>
@@ -1140,7 +1134,6 @@
   <block id="b3894761dbeb99a32f1c40b05d75c5d6" category="paragraph">MetroCluster FC 構成</block>
   <block id="83815a5585829ebe6e18a93710f2ed57" category="list-text">Atto FibreBridge （存在する場合）</block>
   <block id="e9107e97cd9f561e993f9a9105d0f969" category="section-title">電源がオフになっている MetroCluster サイトの再配置</block>
-  <block id="9e0e48b7b7ac5f369582e8d417a53dea" category="paragraph">サイトの電源をオフにすると、メンテナンス作業を開始できます。手順は、 MetroCluster コンポーネントを同じデータセンター内で再配置する場合も、別のデータセンターに再配置する場合も同じです。</block>
   <block id="feac0f4e1a7a3880345a6d85bc067870" category="list-text">ハードウェアは、前のサイトと同じ方法でケーブル接続する必要があります。</block>
   <block id="646b1ab7b785db95e65836b91eb5f200" category="list-text">スイッチ間リンク（ ISL ）の速度、長さ、または数が変わった場合は、すべて再設定する必要があります。</block>
   <block id="3f76e37706c9faa6700da35111115ea4" category="list-text">新しい場所で正しく再接続できるように、すべてのコンポーネントのケーブル接続を慎重に記録してください。</block>
@@ -1153,24 +1146,16 @@
   <block id="9f09d6db3803f5975352ce67ba7f717e" category="paragraph">次の表に示す適切なスイッチタイプに従って、ポートを有効にします。</block>
   <block id="ee97be03cb04119af45014d815621ce1" category="cell">コマンドを実行します</block>
   <block id="70402b2dd117113d5709d3c7ba2f6c45" category="paragraph">Brocade スイッチ</block>
-  <block id="fcbf0cde463cc050a66d902648359a49" category="list-text">*portcfgpersistentenable_port number_*` コマンドを使用して ' ポートを継続的に有効にしますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
   <block id="28e464b91ab6edf27cbd69513c84c803" category="paragraph">次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。</block>
-  <block id="c5237e99f1ace1a91c745ae81c388f66" category="list-text">スイッチポートが有効になっていることを確認します :`*switchshow*`</block>
   <block id="2af4b9b090a7e55fa22cb9e55d504e27" category="paragraph">次の例は、ポート 14 および 15 を有効にします。</block>
   <block id="8c946acc8fe7903c37ee5e36f1329425" category="paragraph">Cisco スイッチ</block>
-  <block id="ef5723a2f2afc0458296312e941b866f" category="list-text">「 * interface * 」コマンドを入力して、ポートをイネーブルにします。</block>
-  <block id="ece36ea7e1c8d6e01fc17bd16a747924" category="list-text">スイッチポートがイネーブルになっていることを確認します。「 * show interface brief * 」</block>
   <block id="7d116444c6dbfce20212f1c247ff48fd" category="list-text">スイッチのツールを使用して（使用可能な場合）、サイト間接続を確認します。</block>
   <block id="867a2618d71bca42427a1b9c72bdbf63" category="admonition">リンクが正しく設定され、安定している場合にのみ、処理を続行してください。</block>
   <block id="12ad932abeaa569fcf61513a7bd887dc" category="list-text">リンクが安定していることがわかった場合は、リンクを再度無効にします。</block>
   <block id="10d03245f20596d5862d16e715e4143e" category="paragraph">次の表に示すように、 Brocade スイッチと Cisco スイッチのどちらを使用しているかに基づいてポートを無効にします。</block>
-  <block id="2fa95045f103f276833b6577e6167ad3" category="list-text">ポートを永続的に無効にするには '*portcfgpersistentdisable_port number_*` コマンドを入力します</block>
   <block id="d369d42d622a7a0ff4e0309e0f9210ab" category="paragraph">サバイバーサイトにある両方のスイッチで実行する必要があります。次の例は、 Switch_A_1 のポート 14 と 15 を無効にします。</block>
-  <block id="6e71b2dbc2bcb026cfb80fd9146eed49" category="list-text">スイッチポートが無効になっていることを確認します :`*switchshow*`</block>
   <block id="7cbd9438118ade59eac485cd3956718b" category="paragraph">次の例は、ポート 14 および 15 が無効になっていることを示しています。</block>
-  <block id="3918b9bf669c3d863ac522a207f13dc2" category="list-text">「 * interface * 」コマンドを使用して、ポートを無効にします。</block>
   <block id="f8f4c0275237d25969cd2bd5cb969643" category="paragraph">次の例は、 Switch_A_1 のポート fc1/14 と fc1/15 を無効にします。</block>
-  <block id="68dfe450b36fb784377994dfa3f552bb" category="list-text">スイッチ・ポートが無効になっていることを確認するには '*show interface brief *' コマンドを使用します</block>
   <block id="25e9ffa59cf0bb083482670fce098fb0" category="section-title">MetroCluster 構成の電源をオンにして通常動作に戻します</block>
   <block id="e86d011a6ecc19bb8059b2fa5b959f36" category="paragraph">メンテナンスを完了、またはサイトを移動したら、サイトの電源をオンにして MetroCluster 構成を再確立する必要があります。</block>
   <block id="5b8fc7540adba4e66fd1dc8235e29807" category="list-text">スイッチの電源をオンにします。</block>
@@ -1182,29 +1167,19 @@
   <block id="01bd20df5dc47e7a524bea9169bdedf5" category="list-text">FibreBridge ブリッジの電源をオンにします。</block>
   <block id="fa84d23aa5f79b2c2b1873ef1111b2a9" category="admonition">MetroCluster IP 構成の場合は、この手順を省略できます。</block>
   <block id="46d125b114551af83f9b4300716884e4" category="list-text">FC スイッチで、ブリッジを接続しているポートがオンラインになっていることを確認します。</block>
-  <block id="39bca97e836b54aaae1f52a7e9145c0c" category="paragraph">Brocade スイッチには「 *switchshow* 」、 Cisco スイッチには「 *show interface brief * 」などのコマンドを使用できます。</block>
   <block id="4b14478bc266e73c21d8c8e1baefedf8" category="list-text">ブリッジ上のシェルフとディスクが接続されていることを確認します。</block>
-  <block id="218f9d3f1d9bf116e5bd7f1ad245832f" category="paragraph">ATTO コマンドラインインターフェイス（ CLI ）では、「 * sastargets * 」などのコマンドを使用できます。</block>
   <block id="d55f68c0f2018d8510fbe5ad7686fa13" category="list-text">FC スイッチで ISL を有効にします。</block>
   <block id="8dbba1f3a045398fb8c2068f3d859597" category="admonition">MetroCluster IP 構成の場合は、この手順を省略してください。</block>
   <block id="874b4480e5736cfb3bb267ac5127e12a" category="paragraph">次の表に示すように、 Brocade スイッチと Cisco スイッチのどちらを使用しているかに基づいてポートを有効にします。</block>
-  <block id="5d61c651e941cd6cfa0a97ff298d5eb7" category="list-text">ポートを永続的にイネーブルにするには '*portcfgpersistentenable_port_*` コマンドを入力しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
   <block id="4091cccb2a9363be900b49a8123fd953" category="paragraph">次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。</block>
-  <block id="e830c34b534e2518cd8dfb0009d3653f" category="list-text">+`*switchshow*` コマンドを使用して、スイッチポートが有効になっていることを確認します。</block>
-  <block id="67eea5a3ff669a52da35da0da1822e00" category="list-text">「 * interface * 」コマンドを使用して、ポートをイネーブルにします。</block>
   <block id="3d3f8220d38456693795f57399e3dd66" category="paragraph">次の例は、 Switch_A_1 のポート fc1/14 と fc1/15 を有効にします。</block>
   <block id="d448f82c3dc45aeef9b75bf272bc8ed4" category="list-text">スイッチポートが無効になっていることを確認します。</block>
   <block id="2164a8908dcd0889f81dd9e8f32fb414" category="list-text">ストレージが認識されていることを確認します。</block>
   <block id="83a0bb2026f512c960273d4bdc10525f" category="paragraph">MetroCluster が IP 構成か FC 構成かに基づいて、ストレージが認識されているかどうかを判断する方法を選択します。</block>
-  <block id="254f642527b45bc260048e30704edb39" category="cell">設定</block>
-  <block id="470046da6a781b8797eacee91ac4ad5e" category="paragraph">MetroCluster IP 構成</block>
   <block id="1f826b7fd7651c127e286e0bbc129b77" category="paragraph">ノードのメンテナンスモードからローカルストレージが認識されていることを確認します。</block>
-  <block id="0806d801f38f87dfb888ea1ec104d968" category="paragraph">MetroCluster FC 構成</block>
   <block id="81927ec637b63156a40899d4c547908f" category="paragraph">サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻します。再同期処理が再開され、 SyncMirror が再確立されます。</block>
   <block id="0483b2aca795ea6933a0ab7502b4e963" category="list-text">MetroCluster 構成を再確立します。</block>
-  <block id="921688f28eb2b61b2e9711acb429e79c" category="paragraph">MetroCluster のディザスタリカバリガイドの手順に従って、 MetroCluster の構成に応じて修復処理とスイッチバック処理を実行します。</block>
   <block id="cee14a47b638f8dc20d2b5241487a64a" category="inline-link-macro">MetroCluster の管理とディザスタリカバリ</block>
-  <block id="fd64fad0fd85c76ef3ac6d154403d818" category="paragraph"><block ref="fd64fad0fd85c76ef3ac6d154403d818" category="inline-link-macro-rx"></block></block>
   <block id="6ff0f4ae0937d94fe2645f3e68c399e7" category="summary">FibreBridge 7600N / 7500N ブリッジの追加の FC2 ポートを利用してラック数を減らすためには、システムを停止せずに 6500N ブリッジを交換し、 1 組の FibreBridge 7600N / 7500N ブリッジペアに最大 4 つのストレージスタックを統合することができます。</block>
   <block id="9f29e397c930614cb2516e6449821651" category="paragraph">この手順は、次の場合に使用します。</block>
   <block id="1c3d78c92c47ebf0bf1107800e0acfe6" category="list-text">FibreBridge 6500N ブリッジのペアを FibreBridge 7600N / 7500N ブリッジに交換する。</block>
@@ -11642,9 +11617,6 @@
   <block id="bb618b144b7c6895aa5a8818fa66c1b2" category="list-text">DSA キーの生成（オプション）</block>
   <block id="d034cc5a3446b99507240baca90266a0" category="list-text">FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ 256 のキーを作成します。有効な値は、 256 、 384 、または 521 です。</block>
   <block id="640245482ba700e57c1029dc983e60c0" category="paragraph">* 次の点に注意してください。 *</block>
-  <block id="9928b888bac1559e9f0e9346dbea1add" category="list-text">EFOS 3.x.x から EFOS 3.x.x にアップグレードするときは、スイッチが EFOS 3.4.4.6 （またはそれ以降の 3.4.x.x リリース）を実行している必要があります。それよりも前のリリースを実行している場合は、まずスイッチを EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）にアップグレードしてから、スイッチを EFOS 3.x.x にアップグレードします</block>
-  <block id="950d2c12c917ccd4448e8129f6486720" category="list-text">EFOS 3.x.x と 3.7.x.x の設定は異なります。EFOS のバージョンを 3.4.x.x から 3.7.x.x に変更する場合、スイッチを工場出荷時のデフォルトにリセットする必要があり、対応する EFOS バージョンの RCF ファイルが適用される必要があります。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
-  <block id="a2488c6615db2943025c77bde1fb97db" category="list-text">EFOS バージョン 3.7.x 以降では、 FIPS 非準拠および FIPS 準拠のバージョンが提供されます。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
   <block id="6a02b7e242bcf6c784d6c8daac02baa6" category="cell">* 手順 *</block>
   <block id="b0bed1183d501e8f5e8cef18312355bd" category="cell">* 現在の EFOS バージョン *</block>
   <block id="9fd2304d8bb7f51dca46074189d5f8ae" category="cell">* 新しい EFOS バージョン *</block>
@@ -11653,11 +11625,8 @@
   <block id="dec3c0c9392c8aad6548083f4fbd795e" category="cell">3.4.x.x</block>
   <block id="ee5585b24e7eb8cfaf4b6f31be5bbf61" category="cell">方法 1 ）設定とライセンスの情報は保持されています</block>
   <block id="86068e8f997360c7719398195b4d7266" category="cell">3.4.4.6 （または 3.4.x.x 以降）</block>
-  <block id="fd7621afc846acb974f51fd7cc7f37b3" category="cell">3.7.x.x 非 FIPS 準拠</block>
-  <block id="28d075b38fc6680137c178cbdee9da28" category="cell">方法 1 を使用して EFOS をアップグレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x の RCF ファイルを適用します</block>
   <block id="b7ba7b194e9311fde1586ba024bb2947" category="cell">方法 1 を使用して EFOS をダウングレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x の RCF ファイルを適用します</block>
   <block id="9982a812721a559f942a3f06d478b606" category="cell">方法 1 を使用して新しい EFOS イメージをインストールします。構成とライセンスの情報は保持されます</block>
-  <block id="f53a18737f48f5ce8e1f4d01778cfc0d" category="cell">3.7.x.x FIPS 準拠</block>
   <block id="b38cac38b832f137e90ae855c9dd276a" category="cell">方法 1 を使用して新しい EFOS イメージをインストールします。構成とライセンスの情報は保持されます</block>
   <block id="30a8444e655e4e0bf64147ad36bf643d" category="cell">FIPS 準拠の EFOS バージョンへのアップグレード手順</block>
   <block id="80b55ca217bc15869588b0a1c2c982e5" category="cell">FIPS に準拠していません</block>
@@ -11916,4 +11885,38 @@
   <block id="ffdcbc12bcb9d9c0dfcda96a2a729863" category="list-text">ブロードキャストドメインから VLAN ポートとインターフェイスグループポートを削除します。</block>
   <block id="ed2e5c7ebbd6b2c749bdb92415d9787c" category="list-text">ストレージフェイルオーバーを無効にします。</block>
   <block id="e55c19252352253899907fe9a7a48ff5" category="paragraph">「 storage failover modify -node node_name enable false 」 &lt;---- 追加手順</block>
+  <block id="8c0de6fd10d37074888575e8bb234409" category="list-text">EFOS 3.x.x から EFOS 3.x.x 以降にアップグレードするときは、スイッチが EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）を実行している必要があります。それよりも前のリリースを実行している場合は、まずスイッチを EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）にアップグレードしてから、スイッチを EFOS 3.x.x 以降にアップグレードします。</block>
+  <block id="3e500c172d59004ad7f8a56f2af9021e" category="list-text">EFOS 3.x.x と 3.7.x.x 以降の設定は異なります。EFOS バージョンを 3.4.x.x から 3.7.x.x 以降、またはその逆に変更する場合は、スイッチを工場出荷時のデフォルトにリセットする必要があり、対応する EFOS バージョンの RCF ファイルが適用される（再適用される）必要があります。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
+  <block id="234323ce16c81efa209ded2e4457a841" category="list-text">EFOS バージョン 3.7.x.x 以降では、 FIPS に準拠していないバージョンと FIPS に準拠したバージョンが提供されています。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
+  <block id="40613ace69e06cacd37d3181d20fb498" category="cell">3.7.x.x 以降の非 FIPS 準拠</block>
+  <block id="887c6ed9e13340447fb1a67de5440f79" category="cell">方法 1 を使用して EFOS をアップグレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x 以降の RCF ファイルを適用します</block>
+  <block id="71ed00a3a2145967178b8429c44dd605" category="cell">3.7.x.x 以降の FIPS に準拠しています</block>
+  <block id="8dae46f3452d05c7a36200c9a9200768" category="paragraph">次の図は、 MetroCluster 構成を示しています。メンテナンスのために cluster_A の電源がオフになります。</block>
+  <block id="13453110a818269a21fc3929d2514208" category="image-alt">データセンターの電源をオフにします</block>
+  <block id="d8a69cf9d5438bcb021a7abc71ab4571" category="paragraph">次の手順のすべてのコマンドを、電源をオフにするサイトから実行します。</block>
+  <block id="a05a5ee5c3ac194989ef258bddaa30d0" category="list-text">ディザスタサイトのディスクにあるミラーされたプレックスを使用してアグリゲートをミラーリングする。オフラインにすると、プレックスにアクセスできなくなります。</block>
+  <block id="d4f18ae628e27ab34b26b8a43c48ace9" category="list-text">影響を受けるプレックスをオフラインにします。</block>
+  <block id="2a8e88f52bc016e030fb4bcd3be6617a" category="paragraph">「ストレージアグリゲートのプレックスはオフライン」です</block>
+  <block id="9239ccea70d6b0bd2c5d7ed953067b9f" category="list-text">次の例に示すように ' ポートを永続的に無効にするには 'portcfgpersistentdisable_port_` コマンドを使用しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
+  <block id="0a2ddd49f9e299b81cf7c5e078debcc7" category="list-text">次の例に示す 'witchshow' コマンドを使用して ' ポートが無効になっていることを確認します</block>
+  <block id="a71c1aa8359408f9d2d2ca6505749f51" category="list-text">「 interface 」コマンドを使用して、ポートを永続的に無効にします。次の例は、ポート 14 および 15 を無効にします。</block>
+  <block id="b344f211c6ef4a7b6fabe45ee6e74946" category="list-text">次の例に示すように、「 show interface brief 」コマンドを使用して、スイッチポートが無効になっていることを確認します。</block>
+  <block id="056b0a2f5b039231afdc0b079e5c0490" category="paragraph">サイトの電源をオフにしたら、メンテナンス作業を開始できます。手順は、 MetroCluster コンポーネントを同じデータセンター内で再配置する場合も、別のデータセンターに再配置する場合も同じです。</block>
+  <block id="bc41076628d5d0bb91f9fb460e04ccbc" category="list-text">ポートを永続的にイネーブルにするには 'portcfgpersistentenable_port number_` コマンドを使用しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
+  <block id="1d2dc9ff26f81ff899df7afec43c1cff" category="list-text">スイッチポートが有効になっていることを確認します。「 witchshow 」</block>
+  <block id="dd0b0e83e384f79fb372176f7061dccf" category="list-text">「 interface 」コマンドを入力して、ポートをイネーブルにします。</block>
+  <block id="c11fb9d9afe8d36ff83e6aefd247c782" category="list-text">ポートを永続的に無効にするには 'portcfgpersistentdisable_port number_` コマンドを入力します</block>
+  <block id="6936ed4cbbd3fdd5e8b27a40bf2f0486" category="list-text">スイッチポートが無効になっていることを確認します。「 witchshow 」</block>
+  <block id="be63a45d8d88d62821d9d0c3af1a2336" category="list-text">「 interface 」コマンドを使用して、ポートをディセーブルにします。</block>
+  <block id="8b9c414e111d5afbff34d567620625da" category="list-text">スイッチポートが無効になっていることを確認するには、「 show interface brief 」コマンドを使用します。</block>
+  <block id="ee0b87400ee6781862e8ee67136924ab" category="paragraph">次の手順のすべてのコマンドは、電源をオンにしたサイトから実行します。</block>
+  <block id="950372b89704e14720897b9cc9143854" category="paragraph">Brocade スイッチの場合は「 witchshow 」、 Cisco スイッチの場合は「 How interface brief 」などのコマンドを使用できます。</block>
+  <block id="a0c802a3250ae2fb7360a23c34260ad0" category="paragraph">ATTO コマンドラインインターフェイス（ CLI ）では、「 astargets 」などのコマンドを使用できます。</block>
+  <block id="cb4bda83e4b475d4527a306a175f8dc5" category="list-text">ポートを永続的にイネーブルにするには 'portcfgpersistentenable_port_ コマンドを入力しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
+  <block id="2202782420c4dafcddf766370d515d92" category="list-text">+ 'witchshow' コマンドを使用して ' スイッチポートが有効になっていることを確認します</block>
+  <block id="90249cecea11f452dc769a28231fca6b" category="list-text">ポートをイネーブルにするには 'interface コマンドを使用します</block>
+  <block id="b6929e4968ce2ed48274a887d3709bf9" category="cell">構成</block>
+  <block id="3badf494f1e5507594701f730003f4b3" category="cell">実行する手順</block>
+  <block id="7ed92f84948f4fe94d9e740b0e479a4e" category="paragraph">MetroCluster FC 構成</block>
+  <block id="7dd614724556a3966b03ba1f571c938d" category="paragraph">の手順に従います <block ref="fd64fad0fd85c76ef3ac6d154403d818" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
 </blocks>

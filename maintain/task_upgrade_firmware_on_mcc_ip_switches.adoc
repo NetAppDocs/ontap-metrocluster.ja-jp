@@ -19,7 +19,10 @@ MetroCluster IP スイッチのファームウェアのアップグレードが�
 .手順
 . 構成の健全性を確認します。
 +
-.. MetroCluster が構成されていて、各クラスタで通常モードであることを確認します。「 * MetroCluster show * 」
+.. 各クラスタで MetroCluster が設定されており、通常モードであることを確認します。
++
+「 MetroCluster show 」
+
 +
 [listing]
 ----
@@ -33,7 +36,10 @@ Remote: cluster_B         Configuration state configured
                           Mode                normal
                           AUSO Failure Domain auso-on-cluster-disaster
 ----
-.. 各ノードでミラーリングが有効になっていることを確認します。「 * MetroCluster node show * 」
+.. 各ノードでミラーリングが有効であることを確認します。
++
+MetroCluster node show
+
 +
 [listing]
 ----
@@ -47,7 +53,10 @@ Group Cluster Node           State          Mirroring Mode
               node_B_1       configured     enabled   normal
 2 entries were displayed.
 ----
-.. MetroCluster コンポーネントが正常であることを確認します :'* MetroCluster check run*
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+「 MetroCluster check run 」のようになります
+
 +
 [listing]
 ----
@@ -66,7 +75,10 @@ aggregates          ok
 Command completed. Use the "metrocluster check show -instance" command or sub-commands in "metrocluster check" directory for detailed results.
 To check if the nodes are ready to do a switchover or switchback operation, run "metrocluster switchover -simulate" or "metrocluster switchback -simulate", respectively.
 ----
-.. ヘルス・アラートがないことを確認してください： * system health alert show *
+.. ヘルスアラートがないことを確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
 
 
 . 最初のスイッチにソフトウェアをインストールします。
