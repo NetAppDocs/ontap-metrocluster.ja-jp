@@ -1,68 +1,68 @@
 ---
 section: disaster-recovery
 title: 災害からリカバリします
-url: "/disaster-recovery/index.html"
 entries:
 - title: ディザスタリカバリのワークフロー
   url: "/disaster-recovery/concept_dr_workflow.html"
-- title: 災害後の強制スイッチオーバーの実行
+- title: 災害後に強制スイッチオーバーを実行
   url: "/disaster-recovery/task_perform_a_forced_switchover_after_a_disaster.html"
 - title: 正しいリカバリ手順の選択
   url: "/disaster-recovery/concept_choosing_the_correct_recovery_procedure_parent_concept.html"
-- title: マルチコントローラまたはストレージの障害からのリカバリ
-  url: "/disaster-recovery/task_recover_from_a_multi_controller_and_or_storage_failure.html"
+- title: マルチコントローラまたはストレージの障害からリカバリする
   entries:
-  - title: ハードウェアの交換と新しいコントローラのブート
+  - title: 作業を開始する前に
+    url: "/disaster-recovery/task_recover_from_a_multi_controller_and_or_storage_failure.html"
+  - title: ハードウェアを交換し、新しいコントローラをブート
     url: "/disaster-recovery/task_replace_hardware_and_boot_new_controllers.html"
-  - title: MetroCluster IP 構成でのスイッチバックの準備
-    url: "/disaster-recovery/task_prepare_for_switchback_in_a_mcc_ip_configuration_supertask.html"
+  - title: MetroCluster IP 構成でスイッチバックを準備
     entries:
+    - title: 概要
+      url: "/disaster-recovery/task_prepare_for_switchback_in_a_mcc_ip_configuration_supertask.html"
     - title: MetroCluster IP 構成に必要な環境変数を設定します
       url: "/disaster-recovery/task_set_env_mcip.html"
-    - title: ディザスタサイトの機器の電源投入（ MetroCluster IP 構成）
+    - title: ディザスタサイトの機器の電源をオンにする（ MetroCluster IP 構成）
       url: "/disaster-recovery/task_power_on_mcip.html"
     - title: IP スイッチの設定（ MetroCluster IP 構成）
       url: "/disaster-recovery/task_config_switches_mcip.html"
     - title: リモートサイトへのストレージ接続の確認（ MetroCluster IP 構成）
       url: "/disaster-recovery/task_verify_connectivity_mcip.html"
-    - title: ディザスタサイトのプール 1 ディスクのディスク所有権の再割り当て（ MetroCluster IP 構成）
+    - title: ディザスタサイトでプール 1 のディスクのディスク所有権を再割り当てする（ MetroCluster IP 構成）
       url: "/disaster-recovery/task_reassign_pool1_disastersite_mcip.html"
-    - title: MetroCluster IP 構成の交換用コントローラモジュールでの ONTAP のブート
+    - title: MetroCluster IP 構成の交換用コントローラモジュールで ONTAP をブートします
       url: "/disaster-recovery/task_boot_ontap_mcip.html"
-    - title: サバイバーノードからディザスタサイトへの接続のリストア（ MetroCluster IP 構成）
+    - title: サバイバーノードからディザスタサイトへの接続をリストアする（ MetroCluster IP 構成）
       url: "/disaster-recovery/task_restore_connectivity_mcip.html"
-    - title: 自動割り当ての検証またはプール 0 ドライブの手動割り当て
+    - title: 自動割り当てを確認するか、プール 0 のドライブを手動で割り当てます
       url: "/disaster-recovery/task_verify_assignment_mcip.html"
-    - title: サバイバーサイトでのプール 1 ドライブの割り当て（ MetroCluster IP 構成）
+    - title: サバイバーサイトでプール 1 のドライブを割り当てます（ MetroCluster IP 構成）。
       url: "/disaster-recovery/task_assign_pool1_survivingsite_mcip.html"
-    - title: サバイバーサイトが所有する障害プレックスの削除（ MetroCluster IP 構成）
+    - title: サバイバーサイトが所有する障害プレックスを削除する（ MetroCluster IP 構成）
       url: "/disaster-recovery/task_delete_plexes_mcip.html"
-    - title: アグリゲートの修復とミラーのリストア（ MetroCluster IP 構成）
+    - title: アグリゲートの修復とミラーのリストア（ MetroCluster IP 構成）の実行
       url: "/disaster-recovery/task_heal_restore_mcip.html"
-  - title: MetroCluster FC 構成でのスイッチバックの準備
-    url: "/disaster-recovery/task_prepare_for_switchback_in_a_mcc_fc_configuration_supertask.html"
+  - title: MetroCluster FC 構成でスイッチバックを準備
     entries:
     - title: ポート設定の確認（ MetroCluster FC 構成のみ）
       url: "/disaster-recovery/task_verify_port_mcfc.html"
-    - title: FC-to-SAS ブリッジの設定（ MetroCluster FC 構成のみ）
+    - title: FC-to-SAS ブリッジを設定（ MetroCluster FC 構成のみ）
       url: "/disaster-recovery/task_cfg_bridges_mcfc.html"
-    - title: FC スイッチの設定（ MetroCluster FC 構成のみ）
+    - title: FC スイッチを設定（ MetroCluster FC 構成のみ）
       url: "/disaster-recovery/task_cfg_switches_mcfc.html"
-    - title: ストレージ構成の確認
+    - title: ストレージ構成を確認
       url: "/disaster-recovery/task_verify_storage_mcfc.html"
-    - title: ディザスタサイトの機器の電源投入
+    - title: ディザスタサイトの機器の電源をオンにします
       url: "/disaster-recovery/task_power_on_mcfc.html"
     - title: 交換したドライブの所有権を割り当てます
       url: "/disaster-recovery/task_assign_ownership_mcfc.html"
     - title: アグリゲートの修復とミラーのリストア（ MetroCluster FC 構成）
       url: "/disaster-recovery/task_heal_restore_mcfc.html"
-    - title: 交換用コントローラモジュールへのルートアグリゲートのディスク所有権の再割り当て（ MetroCluster FC 構成）
+    - title: ルートアグリゲートのディスク所有権を交換用コントローラモジュールに再割り当て（ MetroCluster FC 構成）
       url: "/disaster-recovery/task_reassign_roots_mcfc.html"
     - title: 新しいコントローラモジュールのブート（ MetroCluster FC 構成）
       url: "/disaster-recovery/task_boot_new_mcfc.html"
-  - title: 混在構成でのノードのスイッチバックの準備（移行中のリカバリ）
+  - title: 混在構成でスイッチバックに向けてノードを準備（移行中のリカバリ）
     url: "/disaster-recovery/task_prepare_the_nodes_for_switchback_in_a_mixed_configuration.html"
-  - title: リカバリを完了しています
+  - title: 完全リカバリ
     url: "/disaster-recovery/task_complete_recovery.html"
-- title: コントローラ以外の障害からのリカバリ
+- title: コントローラ以外の障害からリカバリします
   url: "/disaster-recovery/task_recover_from_a_non_controller_failure_mcc_dr.html"

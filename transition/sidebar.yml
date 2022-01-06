@@ -1,15 +1,16 @@
 ---
 section: transition
 title: MetroCluster FC から MetroCluster IP に移行します
-url: "/transition/index.html"
 entries:
+- title: 移行する手順を選択
+  url: "/transition/concept_choosing_your_transition_procedure_mcc_transition.html"
 - title: 無停止移行でサポートされるプラットフォーム
   url: "/transition/concept_supported_platforms_for_transition.html"
 - title: MetroCluster FC から MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）
-  url: "/transition/concept_nondisruptively_transitioning_from_a_four_node_mcc_fc_to_a_mcc_ip_configuration.html"
   entries:
-  - title: MetroCluster FC 構成から MetroCluster IP 構成への移行準備
-    url: "/transition/concept_preparing_for_transitioning_from_mcc_fc_to_an_mcc_ip_configuration.html"
+  - title: 概要
+    url: "/transition/concept_nondisruptively_transitioning_from_a_four_node_mcc_fc_to_a_mcc_ip_configuration.html"
+  - title: MetroCluster FC 構成から MetroCluster IP 構成への移行を準備
     entries:
     - title: FC から IP への無停止での移行に関する要件
       url: "/transition/concept_requirements_for_fc_to_ip_transition_mcc.html"
@@ -26,53 +27,53 @@ entries:
     - title: この手順での命名例
       url: "/transition/concept_example_naming_in_this_procedure_mcc_ip_transition.html"
   - title: MetroCluster FC から MetroCluster IP 構成への移行
-    url: "/transition/task_transition_from_mcc_fc_to_mcc_ip_configurations.html"
     entries:
-    - title: MetroCluster 構成の健全性の確認
+    - title: MetroCluster 構成の健全性を確認
       url: "/transition/task_verify_mcc_health_fc_to_ip.html"
     - title: Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します
       url: "/transition/task_remove_tiebreaker_4n_transition.html"
     - title: 新しい IP スイッチへの RCF の生成と適用
       url: "/transition/task_apply_rcfs.html"
-    - title: ローカルクラスタ接続を移動しています
+    - title: ローカルクラスタ接続を移動します
       url: "/transition/task_move_cluster_connections.html"
-    - title: MetroCluster IP コントローラの準備
+    - title: MetroCluster IP コントローラを準備
       url: "/transition/task_prepare_ip_controllers_4n_transition.html"
     - title: MetroCluster を移行対象として設定する
       url: "/transition/task_configure_transition.html"
-    - title: 新しいドライブシェルフへのデータの移動
+    - title: 新しいドライブシェルフにデータを移動します
       url: "/transition/task_move_data_to_new_drive_shelves.html"
-    - title: MetroCluster FC コントローラの取り外し
+    - title: MetroCluster FC コントローラを取り外します
       url: "/transition/task_remove_mc_fc_controllers.html"
-    - title: 移行を完了します
+    - title: 移行を完了
       url: "/transition/task_complete_transition.html"
-  - title: メンテナンス後にカスタム AutoSupport メッセージを送信する
+  - title: カスタム AutoSupport メッセージをメンテナンス後に送信します
     url: "/transition/task_send_a_custom_autosupport_message_after_maintenance_4n_nondisruptive_mcc_transition.html"
-  - title: Tiebreaker またはメディエーターの監視をリストアしています
+  - title: Tiebreaker またはメディエーターの監視をリストアします
     url: "/transition/task_restore_tiebreaker_monitor_4n_nondisruptive_mcc_transition.html"
 - title: 2 ノード MetroCluster FC から 4 ノード MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）
-  url: "/transition/task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_configuration.html"
   entries:
+  - title: 概要
+    url: "/transition/task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_configuration.html"
   - title: この手順での命名例
     url: "/transition/concept_example_naming_in_this_procedure_2n_mcc_transition_disruptive.html"
-  - title: FC から IP への移行を停止させる準備をしています
+  - title: FC から IP への移行を停止させる準備をします
     url: "/transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html"
-  - title: MetroCluster FC ノードを移行します
+  - title: MetroCluster FC ノードを移行
     url: "/transition/task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html"
   - title: MetroCluster IP コントローラモジュールを接続します
     url: "/transition/task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html"
-  - title: 新しいノードの設定と移行の完了
+  - title: 新しいノードを設定して移行を完了
     url: "/transition/task_configure_the_new_nodes_and_complete_transition.html"
   - title: システムを通常動作に戻します
     url: "/transition/task_return_the_system_to_normal_operation_2n_mcc_transition_supertask.html"
-- title: ストレージシェルフを撤去する際の、 MetroCluster FC から MetroCluster IP への停止を伴う移行（ ONTAP 9.8
+- title: ストレージシェルフを撤去する場合に、 MetroCluster FC から MetroCluster IP への停止を伴う移行（ ONTAP 9.8
     以降）
   url: "/transition/task_disruptively_transition_while_move_volumes_from_old_shelves_to_new_shelves.html"
-- title: 新しいコントローラで既存シェルフを使用できない場合の停止を伴う移行（ ONTAP 9.8 以降）
+- title: 既存のシェルフを新しいコントローラでサポートしない場合に停止を伴う移行（ ONTAP 9.8 以降）
   url: "/transition/task_disruptively_transition_when_exist_shelves_are_not_supported_on_new_controllers.html"
 - title: FC SAN ワークロードを MetroCluster FC ノードから MetroCluster IP ノードに移動する
   url: "/transition/task_move_an_fc_san_workload_from_mcc_fc_to_mcc_ip_nodes.html"
-- title: Linux iSCSI ホストを MetroCluster FC ノードから MetroCluster IP ノードに移動しています
+- title: Linux iSCSI ホストを MetroCluster FC ノードから MetroCluster IP ノードに移動
   url: "/transition/task_move_linux_iscsi_hosts_from_mcc_fc_to_mcc_ip_nodes.html"
 - title: 追加情報の参照先
   url: "/transition/reference_where_to_find_additional_information_mcc_ug.html"

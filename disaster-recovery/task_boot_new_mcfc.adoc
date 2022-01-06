@@ -41,6 +41,7 @@ NOTE: 使用した交換用コントローラの NVRAM の内容を消去しな�
 .. 未割り当てディスクをローカルノードのプール 0 に割り当てます
 
 
+. 4 ノード構成の場合は、ディザスタサイトのもう一方のノードで上記の手順を繰り返します。
 . MetroCluster 構成を更新します。
 +
 .. advanced 権限モードに切り替えます。
@@ -57,7 +58,33 @@ MetroCluster configure -refresh true
 
 
 
-. 4 ノード構成の場合は、ディザスタサイトのもう一方のノードで上記の手順を繰り返します。
+. ディザスタサイトの交換用ノードでスイッチバックの準備が完了していることを確認します。
++
+MetroCluster node show
+
++
+交換用ノードは「 waiting for switchback recovery 」モードになっている必要があります。これらのノードが「通常」モードの場合は、交換用ノードを再起動できます。ブート後、ノードは「 waiting for switchback recovery 」モードになります。
+
++
+次の例は、交換用ノードでスイッチバックの準備が完了していることを示しています。
+
++
+....
+
+cluster_B::> metrocluster node show
+DR                    Configuration  DR
+Grp Cluster Node      State          Mirroring Mode
+--- ------- --------- -------------- --------- --------------------
+1   cluster_B
+            node_B_1  configured     enabled   switchover completed
+            node_B_2  configured     enabled   switchover completed
+    cluster_A
+            node_A_1  configured     enabled   waiting for switchback recovery
+            node_A_2  configured     enabled   waiting for switchback recovery
+4 entries were displayed.
+
+cluster_B::>
+....
 
 
 に進みます link:../disaster-recovery/task_complete_recovery.html["ディザスタリカバリプロセスを完了する"]。

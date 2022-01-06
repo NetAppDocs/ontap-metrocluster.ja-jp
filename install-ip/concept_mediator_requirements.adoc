@@ -12,6 +12,14 @@ summary: ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使
 [role="lead"]
 環境が次の要件を満たしている必要があります。Linux のバージョンの更新が必要になる場合があります。
 
+[NOTE]
+====
+* ONTAP メディエーターサービスと MetroCluster Tiebreaker ソフトウェアの両方を同じ MetroCluster 構成で使用することはできません。
+* ONTAP メディエーターサービスでは、最大 5 つの MetroCluster 構成を同時にサポートできます。
+* ONTAP 9.7 以降では、自動計画外スイッチオーバーがサポートされます。
+
+
+====
 
 
 == MetroCluster 構成でメディエーターを使用するためのネットワーク要件
@@ -152,7 +160,7 @@ link:task_uninstall_mediator.html["ONTAP メディエーターサービスをイ
 
 . メディエーターサービスを ONTAP 設定に追加します。
 +
-MetroCluster 設定 - アドアドレスメディエーター -1.1- IP アドレス
+「 MetroCluster configurion-settings add-mmediator-address-1.1-ip-address 」と入力します
 
 
 

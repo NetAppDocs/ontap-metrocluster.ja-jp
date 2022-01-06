@@ -182,20 +182,20 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 .手順
 . 新しい RCF ファイルを適用するための IP スイッチを準備します。
 +
-使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["『 MetroCluster IP Installation and Configuration Guide 』を参照してください"]。
+使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
 +
-の手順に従います link:../install-ip/index.html["『 MetroCluster IP Installation and Configuration Guide 』を参照してください"]。
+の手順に従います link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom の RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCF ファイルのダウンロードとインストール"]
 
 
 
@@ -992,20 +992,20 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
 
 +
-link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
 +
-使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"]。
+使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom の RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCF ファイルのダウンロードとインストール"]
 
 
 
@@ -1034,10 +1034,10 @@ https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセン
 
 . MetroCluster IP インストールおよび設定ガイドの説明に従って、コントローラを IP スイッチにケーブル接続します。
 +
-link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
+link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]
 
 +
-** link:..["IP スイッチのケーブル接続"]
+** link:["IP スイッチのケーブル接続"]
 
 
 . 新しいノードの電源をオンにして、メンテナンスモードでブートします。
@@ -1477,25 +1477,29 @@ partner-sysid が正しくない場合は、次のように設定します。
 +
 「 boot_ontap menu
 
-. ルート暗号化を使用問題する場合は、キー管理設定の boot menu コマンドを使用します。
+. ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを選択します。
 +
 |===
 
 
-| 使用するポート | 問題ブートメニュープロンプトでのコマンド 
+| 使用するポート | 選択するブートメニューオプション 
 
 
  a| 
 オンボードキー管理
  a| 
-「 recover _onboard keymanager 」を参照してください
+オプション 10
+
+プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
 
 
  a| 
 外部キー管理
  a| 
-「 RE_EXTERNAL_KEYmanager 」と入力します
+オプションは 11 です
+
+プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
 |===
 . 起動メニューから「 (6) Update flash from backup config 」を選択します。
@@ -1527,29 +1531,33 @@ partner-sysid が正しくない場合は、次のように設定します。
 +
 'setenv partner-sysid_partner-SysID_`
 
-. ルート暗号化を使用する場合は、キー管理設定の boot menu コマンドを再度問題に実行します。
+. ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを再度選択します。
 +
 |===
 
 
-| 使用するポート | 問題ブートメニュープロンプトでのコマンド 
+| 使用するポート | 選択するブートメニューオプション 
 
 
  a| 
 オンボードキー管理
  a| 
-「 recover _onboard keymanager 」を参照してください
+オプション 10
+
+プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
 
 
  a| 
 外部キー管理
  a| 
-「 RE_EXTERNAL_KEYmanager 」と入力します
+オプションは 11 です
+
+プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
 |===
 +
-ノードが完全に起動するまで、ブートメニュープロンプトで「 re cover _xxxxxxxx_keymanager 」コマンドとオプション 6 を何度か問題する必要がある場合があります。
+キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' リカバリ手順をオプション 1' （通常のブート）で続行する必要がある場合があります
 
 . 交換したノードがブートするまで待ちます。
 +

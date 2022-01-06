@@ -4,13 +4,62 @@ sidebar: sidebar
 keywords: metrocluster, maintain, service, upgrade, rcf, files, ip, switches 
 summary: MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。 
 ---
-= MetroCluster IP スイッチでの RCF ファイルのアップグレード
+= MetroCluster IP スイッチの RCF ファイルをアップグレードします
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
 MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。
+
+
+
+== RCF ファイルがサポートされていることを確認します
+
+スイッチで実行している ONTAP のバージョンを変更する場合は、そのバージョンでサポートされている RCF ファイルがあることを確認する必要があります。RCF ジェネレータを使用すると、正しい RCF ファイルが生成されます。
+
+.手順
+. RCF ファイルのバージョンを確認するには、スイッチから次のコマンドを使用します。
++
+[cols="30,70"]
+|===
+
+
+| スイッチ | 問題コマンド 
+
+
+ a| 
+Brocade スイッチ
+ a| 
+`(IP_switch_A_1) # show clibanner`
+
+
+
+ a| 
+Cisco スイッチ
+ a| 
+ip_switch _A_1# には、 banner motd が表示されます
+
+|===
++
+いずれかのスイッチについて、 RCF ファイルのバージョンを示す行を出力から探します。たとえば、次の出力は Cisco スイッチを使用したもので、 RCF ファイルのバージョンが「 v1.80 」であることを示しています。
+
++
+....
+Filename : NX3232_v1.80_Switch-A2.txt
+....
+. 特定の ONTAP バージョン、スイッチ、およびプラットフォームでサポートされているファイルを確認するには、 RcfFileGenerator を使用します。現在使用している設定またはにアップグレードする設定用の RCF ファイルを生成できる場合は、そのファイルがサポートされます。
+. スイッチファームウェアがサポートされていることを確認するには、次のマニュアルを参照してください。
++
+** https://hwu.netapp.com/NetApp["Hardware Universe"]
+** https://mysupport.netapp.com/NOW/products/interoperability["ネットアップの相互運用性"]
+
+
+
+
+
+
+== RCF ファイルをアップグレードします
 
 新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
 
@@ -21,7 +70,7 @@ MetroCluster IP スイッチ上の RCF ファイルのアップグレードが�
 +
 .. MetroCluster コンポーネントが正常であることを確認します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 +
 [listing]
@@ -58,36 +107,39 @@ connections         not-applicable
 volumes             ok
 7 entries were displayed.
 ----
-.. 実行中の MetroCluster チェック処理のステータスを確認するには、次のコマンドを使用します。 +`* MetroCluster operation history show -job-id 38*`
-.. ヘルス・アラートがないことを確認します +`* system health alert show *`
+.. 実行中の MetroCluster チェック処理のステータスを確認します。
++
+MetroCluster オペレーション履歴 show -job-id 38`
+
+.. ヘルスアラートがないことを確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
 
 
 . 新しい RCF ファイルを適用するための IP スイッチを準備します。
 +
-使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
+スイッチベンダーの手順に従います。
 
 +
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["MetroCluster IP のインストールと設定"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+
+
+. スイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。
++
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
+** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+
 
 +
-** Broadcom IP スイッチを工場出荷時のデフォルトにリセットする _
-** Cisco IP スイッチを工場出荷時のデフォルトにリセットする _
-
-
-. 使用しているスイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。
-+
-使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。
+スイッチは次の順序で更新します。
 
 +
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["MetroCluster IP のインストールと設定"]
-
-+
-** Broadcom IP RCF ファイルのダウンロードとインストール _
-** Cisco IP RCF ファイルのダウンロードとインストール _
-+
-... スイッチを次の順序で更新します。 Switch_A_1 、 Switch_B_1 、 Switch_A_1 、 Switch_B_2 。
-
-
+.. switch_A_1
+.. switch_B_1
+.. switch_a_2
+.. switch_B_2
 
 
 

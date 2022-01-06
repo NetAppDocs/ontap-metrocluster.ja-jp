@@ -1,151 +1,149 @@
 ---
 section: upgrade
 title: MetroCluster 構成をアップグレードまたは拡張する
-url: "/upgrade/index.html"
 entries:
 - title: アップグレードまたは更新方法を選択します
   url: "/upgrade/concept_choosing_an_upgrade_method_mcc.html"
-- title: スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成のコントローラをアップグレードする
+- title: スイッチオーバーとスイッチバックを使用して、 MetroCluster FC 構成のコントローラをアップグレードします
   url: "/upgrade/task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html"
-- title: 4 ノード MetroCluster FC 構成でのコントローラのアップグレード。スイッチオーバーとスイッチバックに「 system controller
-    replace 」コマンドを使用（ ONTAP 9.10.1 以降）
+- title: 4 ノード MetroCluster FC 構成のコントローラを、「 system controller replace 」コマンドを使用してスイッチオーバーとスイッチバックを使用してアップグレードします（
+    ONTAP 9.10.1 以降）。
   url: "/upgrade/task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html"
-- title: スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成でのコントローラのアップグレード（ ONTAP 9.8 以降）
+- title: スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成のコントローラのアップグレード（ ONTAP 9.8 以降）
   url: "/upgrade/task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html"
-- title: 4 ノード MetroCluster FC 構成を更新しています
+- title: 4 ノード MetroCluster FC 構成を更新
   url: "/upgrade/task_refresh_4n_mcc_fc.html"
 - title: 4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）
   url: "/upgrade/task_refresh_4n_mcc_ip.html"
-- title: 2 ノード MetroCluster FC 構成から 4 ノード構成への拡張
-  url: "/upgrade/task_expand_a_two_node_mcc_fc_configuration_to_a_four_node_fc_configuration_supertask.html"
+- title: 2 ノード MetroCluster FC 構成を 4 ノード構成に拡張
   entries:
-  - title: MetroCluster 構成の状態の確認
+  - title: 概要
+    url: "/upgrade/task_expand_a_two_node_mcc_fc_configuration_to_a_four_node_fc_configuration_supertask.html"
+  - title: MetroCluster 構成の状態を確認します
     url: "/upgrade/task_verify_the_state_of_the_mcc_configuration_mcc_expansion.html"
-  - title: AutoSupport 構成にノードを追加する前にカスタム MetroCluster メッセージを送信する
+  - title: noxdes を MetroCluster 設定に追加する前にカスタム AutoSupport メッセージを送信します
     url: "/upgrade/task_send_a_custom_autosupport_message_before_add_nodes_to_the_mcc_configuration_2_node_to_4_node.html"
-  - title: ファブリック接続 MetroCluster 構成でコントローラモジュールを追加する際の新しいコントローラポートのゾーニング
+  - title: ファブリック接続 MetroCluster 構成でコントローラモジュールを追加する際に、新しいコントローラポート用にゾーニングします
     url: "/upgrade/task_zone_for_the_new_controller_ports_in_a_fabric_attached_mcc_configuration_four_node_expansion.html"
-  - title: 各クラスタに新しいコントローラモジュールを追加しています
-    url: "/upgrade/task_add_a_new_controller_to_each_cluster_mcc_expansion.html"
+  - title: 各クラスタに新しいコントローラモジュールを追加します
     entries:
-    - title: アップグレードの準備を行います
+    - title: 概要
+      url: "/upgrade/task_add_a_new_controller_to_each_cluster_mcc_expansion.html"
+    - title: アップグレードを準備
       url: "/upgrade/task_prepare_for_the_upgrade_add_2nd_controller_to_create_ha_pair.html"
-    - title: コントローラモジュールでの設定の消去
+    - title: コントローラモジュールの設定をクリアします
       url: "/upgrade/task_clear_the_configuration_on_a_controller_module_mcc.html"
-    - title: 既存のコントローラモジュールのクラスタポートを準備しています
+    - title: 既存のコントローラモジュールのクラスタポートを準備
       url: "/upgrade/task_prepare_cluster_ports_on_the_exist_controller.html"
-    - title: イメージをダウンロードするためのネットブートサーバの準備
+    - title: イメージをダウンロードするためのネットブートサーバを準備
       url: "/upgrade/task_prepare_the_netboot_server_cluster_mode.html"
     - title: 既存のコントローラモジュールで HA モードを設定
       url: "/upgrade/task_enable_the_ha_mode_on_the_exist_controller_mcc_when_add_a_2nd_controller.html"
-    - title: 既存のコントローラモジュールをシャットダウンしています
+    - title: 既存のコントローラモジュールをシャットダウンします
       url: "/upgrade/task_shut_down_the_exist_controller_when_add_a_2nd_controller_in_c_mode.html"
-    - title: 新しいコントローラモジュールを設置してケーブル接続
-      url: "/upgrade/task_install_and_cable_the_new_controller.html"
+    - title: 新しいコントローラモジュールを設置してケーブル接続します
       entries:
+      - title: 前提条件とインストール
+        url: "/upgrade/task_install_and_cable_the_new_controller.html"
       - title: 新しいコントローラモジュールの FC-VI ポートと HBA ポートを FC スイッチにケーブル接続します
         url: "/upgrade/task_cable_the_controller_module_s_fc_vi_hba_ports_to_the_fc_switches_controller_to_fc_sw.html"
       - title: 新しいコントローラモジュールのクラスタピアリング接続のケーブル接続
         url: "/upgrade/task_cable_the_cluster_peering_connections.html"
-    - title: 両方のコントローラモジュールの電源投入と LOADER プロンプトの表示
+    - title: 両方のコントローラモジュールに電源を投入して LOADER プロンプトを表示します
       url: "/upgrade/task_power_up_both_controller_modules_and_display_the_loader_prompt_2_node_mcc_expansion.html"
     - title: 既存および新規のコントローラモジュールの ha-config 設定を変更します
       url: "/upgrade/task_change_the_ha_config_setts_mcc_add_a_2nd_controller.html"
-    - title: 両方のコントローラモジュールのパートナーシステム ID の設定
+    - title: 両方のコントローラモジュールのパートナーシステム ID を設定します
       url: "/upgrade/task_set_the_partner_system_id_for_both_controller_modules.html"
-    - title: 既存のコントローラモジュールのブート
+    - title: 既存のコントローラモジュールをブートします
       url: "/upgrade/task_boot_the_exist_controller_module.html"
-    - title: 新しいコントローラモジュールにディスクを割り当てています
+    - title: 新しいコントローラモジュールにディスクを割り当てます
       url: "/upgrade/task_assign_disks_to_the_new_controller_mcc_expansion.html"
-    - title: 新しいコントローラモジュールでの ONTAP のネットブートとセットアップ
+    - title: 新しいコントローラモジュールで ONTAP をネットブートしてセットアップ
       url: "/upgrade/task_netboot_and_set_up_ontap_on_the_new_controller_module_mcc.html"
     - title: 新しいコントローラでルートアグリゲートをミラーリング
       url: "/upgrade/task_mirror_the_root_aggregates_mcc_expansion_procedure.html"
-    - title: クラスタ間 LIF を設定しています
-      url: "/upgrade/task_configure_intercluster_lifs.html"
+    - title: クラスタ間 LIF を設定する
       entries:
-      - title: 専用ポートでのクラスタ間 LIF の設定
+      - title: 専用ポートにクラスタ間 LIF を設定します
         url: "/upgrade/task_configure_intercluster_lifs_to_use_dedicated_intercluster_ports.html"
-      - title: 共有データポートでのクラスタ間 LIF の設定
+      - title: 共有データポートにクラスタ間 LIF を設定します
         url: "/upgrade/task_configure_intercluster_lifs_to_share_data_ports.html"
     - title: 各ノードでミラーされたデータアグリゲートを作成します
       url: "/upgrade/task_create_a_mirrored_data_aggregate_on_each_node_mcc.html"
-    - title: 新しいコントローラモジュール用のライセンスをインストールしています
+    - title: 新しいコントローラモジュールのライセンスをインストールします
       url: "/upgrade/task_install_licenses_on_the_new_controller_module_cluster_mode.html"
-    - title: ミラーされていないデータアグリゲートの作成
+    - title: ミラーされていないデータアグリゲートを作成
       url: "/upgrade/task_create_unmirrored_data_aggregates_mcc.html"
-    - title: コントローラモジュール追加後のファームウェアのインストール
+    - title: コントローラモジュールの追加後にファームウェアをインストールします
       url: "/upgrade/task_install_firmware_after_add_a_controller_module.html"
-  - title: 新しいコントローラで MetroCluster 設定を更新しています
+  - title: 新しいコントローラで MetroCluster 構成を更新します
     url: "/upgrade/task_refresh_the_mcc_configuration_mcc_configure_refresh.html"
-  - title: 両方のコントローラモジュールでのストレージフェイルオーバーの有効化およびクラスタ HA の有効化
+  - title: 両方のコントローラモジュールでストレージフェイルオーバーを有効にし、クラスタ HA を有効にします
     url: "/upgrade/task_enable_storage_failover_both_controller_modules_and_set_cluster_ha.html"
-  - title: SVM を再起動しています
+  - title: SVM を再起動します
     url: "/upgrade/task_restart_the_svms.html"
-- title: 4 ノード MetroCluster FC 構成から 8 ノード構成への拡張
-  url: "/upgrade/task_expand_a_four_node_mcc_fc_configuration_to_an_eight_node_configuration.html"
+- title: 4 ノード MetroCluster FC 構成を 8 ノード構成に拡張
   entries:
+  - title: 概要
+    url: "/upgrade/task_expand_a_four_node_mcc_fc_configuration_to_an_eight_node_configuration.html"
   - title: 新しいケーブルレイアウトの決定
     url: "/upgrade/task_determin_the_new_cable_layout_mcc_expansion.html"
-  - title: 新しい機器をラックに設置
+  - title: 新しい機器をラックに設置します
     url: "/upgrade/task_rack_the_new_equipment_mcc_expansion.html"
-  - title: MetroCluster 構成の健全性の確認
+  - title: MetroCluster 構成の健全性を確認
     url: "/upgrade/task_verify_the_health_of_the_mcc_configuration.html"
-  - title: Config Advisor での MetroCluster 構成エラーの確認
+  - title: Config Advisor で MetroCluster 構成エラーを確認します
     url: "/upgrade/task_check_for_mcc_configuration_errors_with_config_advisor.html"
-  - title: カスタム AutoSupport メッセージの送信 - MetroCluster 構成へのノードの追加前
+  - title: カスタム AutoSupport メッセージは、 MetroCluster 構成にノードを追加する前に送信します
     url: "/upgrade/task_send_a_custom_autosupport_message_before_add_nodes_to_the_mcc_configuration.html"
-  - title: 新しいノードのスイッチファブリックの再接続とゾーニング
-    url: "/upgrade/task_recable_and_zone_a_switch_fabric_mcc_expansion.html"
+  - title: 新しいノードのスイッチファブリックにケーブルを再接続してゾーニングします
     entries:
-    - title: ファブリックから既存の DR グループを切断します
+    - title: 既存の DR グループをファブリックから切断します
       url: "/upgrade/task_disconnect_the_exist_dr_group_mcc_expansion.html"
-    - title: RCF ファイルの適用およびスイッチの再接続
+    - title: RCF ファイルを適用し、スイッチにケーブルを再接続します
       url: "/upgrade/task_apply_the_rcf_files_and_recable_the_switches.html"
-  - title: 新しいコントローラで ONTAP を設定しています
-    url: "/upgrade/task_configure_ontap_on_the_new_controllers_mcc_expansion.html"
+  - title: 新しいコントローラで ONTAP を設定します
     entries:
-    - title: コントローラモジュールでの設定の消去
+    - title: コントローラモジュールの設定をクリアします
       url: "/upgrade/task_clear_the_configuration_on_a_controller_module_mcc.html"
     - title: AFF システムでディスク所有権を割り当てます
       url: "/upgrade/task_assign_disk_ownership_in_aff_systems_mcc.html"
-    - title: AFF 以外のシステムでディスク所有権を割り当てています
+    - title: AFF 以外のシステムでディスク所有権を割り当てます
       url: "/upgrade/task_assign_disk_ownership_to_non_aff_systems_mcc.html"
-    - title: コンポーネントの ha-config 状態の確認
+    - title: コンポーネントの ha-config 状態を確認
       url: "/upgrade/task_verify_that_the_ha_state_of_components_is_mcc_dr_smok_crater_or_mcc_expansion.html"
-    - title: 新しいコントローラのブートおよびクラスタへの追加
+    - title: 新しいコントローラをブートしてクラスタに追加します
       url: "/upgrade/task_boot_the_new_controllers_and_join_them_to_the_cluster.html"
     - title: クラスタを MetroCluster 構成に設定
-      url: "/upgrade/task_configure_the_clusters_into_a_mcc_configuration.html"
       entries:
-      - title: クラスタ間 LIF を設定しています
-        url: "/upgrade/task_configure_intercluster_lifs.html"
+      - title: クラスタ間 LIF を設定する
         entries:
-        - title: 専用ポートでのクラスタ間 LIF の設定
+        - title: 専用ポートにクラスタ間 LIF を設定します
           url: "/upgrade/task_configure_intercluster_lifs_to_use_dedicated_intercluster_ports.html"
-        - title: 共有データポートでのクラスタ間 LIF の設定
+        - title: 共有データポートにクラスタ間 LIF を設定します
           url: "/upgrade/task_configure_intercluster_lifs_to_share_data_ports.html"
-      - title: ルートアグリゲートをミラーリング
+      - title: ルートアグリゲートをミラーします。
         url: "/upgrade/task_mirror_the_root_aggregates_mcc.html"
-      - title: MetroCluster 構成の実装
+      - title: MetroCluster 構成を実装
         url: "/upgrade/task_implement_the_mcc_configuration_mcc_refresh_mcc_expansion.html"
       - title: 各ノードでミラーされたデータアグリゲートを作成します
         url: "/upgrade/task_create_a_mirrored_data_aggregate_on_each_node_mcc.html"
-      - title: 健常性監視用の FC-to-SAS ブリッジの設定
+      - title: 健常性監視用に FC-to-SAS ブリッジを設定
         url: "/upgrade/task_configure_the_fc_to_sas_bridges_for_health_monitor.html"
-      - title: MetroCluster 構成でのメタデータボリュームの移動
+      - title: MetroCluster 構成でメタデータボリュームを移動する
         url: "/upgrade/task_move_a_metadata_volume_in_mcc_configurations.html"
-      - title: MetroCluster の設定を確認しています
+      - title: MetroCluster の設定を確認します
         url: "/upgrade/task_check_the_mcc_configuration.html"
-  - title: Config Advisor での MetroCluster 構成エラーの確認
+  - title: Config Advisor で MetroCluster 構成エラーを確認します
     url: "/upgrade/task_check_for_mcc_configuration_errors_with_config_advisor.html"
-  - title: カスタム AutoSupport メッセージは、 MetroCluster 構成へのノードの追加後に送信します
+  - title: カスタム AutoSupport メッセージを送信する前に、 MetroCluster 構成にノードを追加します
     url: "/upgrade/task_send_a_custom_autosupport_message_after_add_nodes_to_the_mcc_configuration.html"
-  - title: スイッチオーバー、修復、スイッチバックを検証しています
+  - title: スイッチオーバー、修復、スイッチバックを検証
     url: "/upgrade/task_verify_switchover_heal_and_switchback.html"
-- title: 4 ノード MetroCluster IP 構成から 8 ノード構成への拡張
+- title: 4 ノード MetroCluster IP 構成を 8 ノード構成に拡張
   url: "/upgrade/task_expand_a_four_node_mcc_ip_configuration.html"
-- title: ディザスタリカバリグループを削除しています
+- title: ディザスタリカバリグループを削除
   url: "/upgrade/concept_removing_a_disaster_recovery_group.html"
 - title: 追加情報の参照先
   url: "/upgrade/reference_where_to_find_additional_information_mcc_ug.html"
