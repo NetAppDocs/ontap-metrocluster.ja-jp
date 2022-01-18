@@ -1,7 +1,7 @@
 ---
 permalink: install-fc/reference_requirements_for_a_mcc_configuration_with_array_luns_reference.html 
 sidebar: sidebar 
-keywords: metrocluster, fabric, installation, requirements, array, luns 
+keywords: metrocluster, fabric, installation, requirements, array, luns, mcc 
 summary: MetroCluster 構成で使用する ONTAP システム、ストレージアレイ、および FC スイッチには、それらの構成の種類に固有の要件があります。また、アレイ LUN を使用する MetroCluster 構成に対する SyncMirror の要件も考慮する必要があります。 
 ---
 = アレイ LUN を使用する MetroCluster 構成の要件
@@ -64,7 +64,7 @@ https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確�
 
 * ファブリックごとに 2 つの FC スイッチが必要です。
 * デバイスやパスに障害が発生した場合でも冗長性を確保できるように、各 ONTAP システムを冗長コンポーネントを使用してストレージに接続する必要があります。
-* FAS9000 ストレージシステムでは、ファブリックあたり最大 8 つの ISL がサポートされます。それ以外のストレージシステムモデルでは、ファブリックごとに最大 4 つの ISL がサポートされます。
+* AFF A900 および FAS9000 ストレージシステムでは、ファブリックあたり最大 8 つの ISL がサポートされます。それ以外のストレージシステムモデルでは、ファブリックごとに最大 4 つの ISL がサポートされます。
 
 
 各スイッチで、 MetroCluster の基本的なスイッチ設定、 ISL 設定、および FC-VI 構成を使用する必要があります。
