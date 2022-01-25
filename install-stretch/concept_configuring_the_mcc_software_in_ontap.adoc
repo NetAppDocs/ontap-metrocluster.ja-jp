@@ -15,8 +15,8 @@ MetroCluster 構成の各ノードは、ノードレベルの設定や 2 つの�
 image::../media/workflow_high_level_node_and_cluster_configuration_software.gif[ワークフロー：ノードおよびクラスタ構成ソフトウェアの概要]
 
 .手順
-. 設定プロセスを開始する前に、コントローラモジュールに必要な IP アドレスを収集する必要があります。
-. サイト A の IP ネットワーク情報ワークシート
+. 設定プロセスを開始する前に、コントローラモジュールに必要な IP アドレスを収集します。
+. サイト A の IP ネットワーク情報ワークシートに記入
 
 
 
@@ -32,11 +32,13 @@ image::../media/workflow_high_level_node_and_cluster_configuration_software.gif[
 クラスタを初めて作成するときは、次の情報が必要です。
 
 |===
+
+
 | 情報のタイプ | 値を入力します 
 
 
  a| 
-このガイドで使用しているクラスタ名の例： site_A
+クラスタ名。このガイドで使用している例： site_A
  a| 
 
 
@@ -71,11 +73,13 @@ DNS ネームサーバ
 クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。
 
 |===
+
+
 | ノード | ポート | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
  a| 
-このガイドで使用しているノード 1 の例： controller_A_1
+ノード 1 ：このガイドで使用している例： controller_A_1
  a| 
  a| 
  a| 
@@ -84,7 +88,7 @@ DNS ネームサーバ
 
 
  a| 
-2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合、ノード 2 は必要ありません。
+ノード 2 ：2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は不要
 
 このガイドで使用している例： controller_A_2
  a| 
@@ -100,6 +104,8 @@ DNS ネームサーバ
 クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。
 
 |===
+
+
 | ノード | ポート | クラスタ間 LIF の IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
@@ -127,6 +133,8 @@ DNS ネームサーバ
 時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。
 
 |===
+
+
 | ノード | ホスト名 | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
@@ -154,12 +162,13 @@ NTP サーバ 2
 各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。
 
 |===
+
+
 2+| 情報のタイプ | 値を入力します 
 
 
  a| 
 送信元 E メールアドレス
- a| 
  a| 
 
 
@@ -212,6 +221,8 @@ HTTP 、 HTTPS 、または SMTP
 トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。そのためには、各ノードについて次のネットワーク情報が必要です。
 
 |===
+
+
 | ノード | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
@@ -226,7 +237,6 @@ HTTP 、 HTTPS 、または SMTP
 
 === サイト B の IP ネットワーク情報ワークシート
 
-[role="lead"]
 システムを設定する前に、 2 つ目の MetroCluster サイト（サイト B ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。
 
 
@@ -236,11 +246,13 @@ HTTP 、 HTTPS 、または SMTP
 クラスタを初めて作成するときは、次の情報が必要です。
 
 |===
+
+
 | 情報のタイプ | 値を入力します 
 
 
  a| 
-このガイドで使用しているクラスタ名の例： site_B
+クラスタ名。このガイドで使用している例： site_B
  a| 
 
 
@@ -275,11 +287,13 @@ DNS ネームサーバ
 クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。
 
 |===
+
+
 | ノード | ポート | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
  a| 
-このガイドで使用しているノード 1 の例： controller_B_1
+ノード 1 ：このガイドで使用している例： controller_B_1
  a| 
  a| 
  a| 
@@ -288,7 +302,7 @@ DNS ネームサーバ
 
 
  a| 
-2 ノード MetroCluster 構成（サイトごとに 1 つのノード）にはノード 2 が必要です。
+ノード 2 ：2 ノード MetroCluster 構成（サイトごとに 1 つのノード）の場合は不要
 
 このガイドで使用している例： controller_B_2
  a| 
@@ -304,6 +318,8 @@ DNS ネームサーバ
 クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。
 
 |===
+
+
 | ノード | ポート | クラスタ間 LIF の IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
@@ -331,6 +347,8 @@ DNS ネームサーバ
 時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。
 
 |===
+
+
 | ノード | ホスト名 | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
@@ -358,12 +376,13 @@ NTP サーバ 2
 各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。
 
 |===
+
+
 2+| 情報のタイプ | 値を入力します 
 
 
  a| 
 送信元 E メールアドレス
- a| 
  a| 
 
 
@@ -416,6 +435,8 @@ HTTP 、 HTTPS 、または SMTP
 トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。これには、ノードごとに次のネットワーク情報が必要です。
 
 |===
+
+
 | ノード | IP アドレス | ネットワークマスク | デフォルトゲートウェイ 
 
 
@@ -430,12 +451,13 @@ HTTP 、 HTTPS 、または SMTP
 
 == 標準クラスタ構成と MetroCluster 構成の類似点 / 相違点
 
-[role="lead"]
 MetroCluster 構成の各クラスタのノードの構成は、標準クラスタのノードと似ています。
 
 MetroCluster 構成は、 2 つの標準クラスタを基盤としています。構成は物理的に対称な構成である必要があり、各ノードのハードウェア構成が同じで、すべての MetroCluster コンポーネントがケーブル接続され、設定されている必要があります。ただし、 MetroCluster 構成のノードの基本的なソフトウェア設定は、標準クラスタのノードと同じです。
 
 |===
+
+
 | 設定手順 | 標準クラスタ構成 | MetroCluster の設定 
 
 
@@ -498,8 +520,6 @@ MetroCluster 設定を有効にします。
 == システムのデフォルト設定をリストアし、コントローラモジュールで HBA タイプを設定しています
 
 MetroCluster を正しくインストールするには、コントローラモジュールのデフォルトをリセットしてリストアします。
-
-* 重要 * ：
 
 このタスクを実行する必要があるのは、 FC-to-SAS ブリッジを使用するストレッチ構成のみです。
 
@@ -601,7 +621,7 @@ fcadmin show`
 +
 コマンドの実行後、ブートメニューが表示されるまで待ちます。
 
-. ブートメニュープロンプトで wipeconfig と入力してノード設定をクリアし、 Enter キーを押します。
+. ブートメニュープロンプトで「 wipeconfig 」と入力してノード設定をクリアし、 Enter キーを押します。
 +
 次の画面はブートメニューのプロンプトを示しています。
 
@@ -632,10 +652,7 @@ Please choose one of the following:
 
 == FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
 
-[role="lead"]
 FAS8020 システムで X1132A-R6 クアッドポートカードを使用している場合は、メンテナンスモードに切り替えて、ポート 1a / 1b を FC-VI およびイニシエータ用に使用するように設定できます。工場出荷状態の MetroCluster システムでは、構成に応じて適切にポートが設定されているため、この設定は必要ありません。
-
-* このタスクについて *
 
 このタスクはメンテナンスモードで実行する必要があります。
 
@@ -645,10 +662,10 @@ NOTE: ucadmin コマンドを使用した FC ポートの FC-VI ポートへの�
 .手順
 . ポートを無効にします。
 +
-'*storage disable adapter 1a*
+「ストレージ無効化アダプタ 1a 」
 
 +
-'*storage disable adapter 1b*
+「ストレージ無効化アダプタ 1b'
 
 +
 [listing]
@@ -665,7 +682,7 @@ Jun 03 02:18:43 [controller_B_1:fci.adapter.offline:info]: Fibre Channel adapter
 ----
 . ポートが無効になっていることを確認します。
 +
-*ucadmin show *`
+ucadmin show
 
 +
 [listing]
@@ -682,7 +699,7 @@ Adapter  Mode     Type       Mode     Type       Status
 ----
 . ポート a とポート b を FC-VI モードに設定します。
 +
-`*ucadmin modify -adapter 1a -type FCVI*`
+ucadmin modify -adapter 1a -type FCVI`
 
 +
 このコマンドでは、 1a だけを指定した場合でも、ポートペアの両方のポート 1a と 1b のモードが設定されます。
@@ -697,7 +714,7 @@ Jun 03 02:19:13 [controller_B_1:ucm.type.changed:info]: FC-4 type has changed to
 ----
 . 変更が保留中であることを確認します。
 +
-*ucadmin show *`
+ucadmin show
 
 +
 [listing]
@@ -715,7 +732,7 @@ Adapter  Mode     Type       Mode     Type       Status
 . コントローラをシャットダウンし、メンテナンスモードでリブートします。
 . 設定の変更を確認します。
 +
-*ucadmin show local *`
+ucadmin show local
 
 +
 [listing]
@@ -740,21 +757,18 @@ controller_B_1
 
 == 保守モードでの 2 ノード構成のディスク割り当ての検証
 
-[role="lead"]
 システムを ONTAP で完全にブートする前に、システムをメンテナンスモードでブートして、ノードのディスク割り当てを確認することもできます。ディスクは、両方のサイトが独自のディスクシェルフを所有してデータを提供し、各ノードおよび各プールのミラーディスク数が等しい、完全に対称な構成を形成するように割り当てられている必要があります。
 
-* 始める前に *
-
 システムをメンテナンスモードにする必要があります。
-
-* このタスクについて *
 
 新しい MetroCluster システムの場合、出荷前にディスク割り当てが完了しています。
 
 次の表に、 MetroCluster 構成のプール割り当ての例を示します。ディスクはシェルフ単位でプールに割り当てられます。
 
 |===
-| ディスク・シェルフ（例名） ... | サイト | 所属ノード | 割り当てプール 
+
+
+| ディスクシェルフ（ _ 例名 _ ） ... | サイト | 所属ノード | 割り当てプール 
 
 
  a| 
@@ -819,6 +833,8 @@ controller_B_1
 構成に DS460C ディスクシェルフが含まれている場合は、それぞれの 12 ディスクドロワーについて、次のガイドラインに従ってディスクを手動で割り当てる必要があります。
 
 |===
+
+
 | ドロワーのディスク | ノードとプール 
 
 
@@ -840,15 +856,18 @@ DR パートナーのプール 1
 .手順
 . 工場出荷状態のシステムの場合は、シェルフの割り当てを確認します。
 +
-「 * disk show – v * 」と入力します
+「 Disk show – v 」のように表示されます
 
-. 必要に応じて、「 Disk assign 」コマンドを使用して、接続されているディスクシェルフ上のディスクを適切なプールに明示的に割り当てることができます。
+. 必要に応じて、接続されているディスクシェルフ上のディスクを適切なプールに明示的に割り当てることができます
++
+「ディスク割り当て」
+
 +
 ノードと同じサイトにあるディスクシェルフはプール 0 に割り当て、パートナーサイトにあるディスクシェルフはプール 1 に割り当てます。各プールに同じ数のシェルフを割り当てる必要があります。
 
 +
 .. システムをブートしていない場合は、メンテナンスモードでブートします。
-.. サイト A のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_disk_shelf_name_-p_pool_*`
+.. サイト A のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`disk assign -shelf_disk_shelf_name_-p_pool_`
 +
 ストレージコントローラ node_A_1 にシェルフが 4 台ある場合は、次のコマンドを問題できます。
 
@@ -863,7 +882,7 @@ DR パートナーのプール 1
 *> disk assign -shelf shelf_A_1_2 -p 1
 *> disk assign -shelf shelf_A_1_4 -p 1
 ----
-.. リモートサイト（サイト B ）のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`* disk assign -shelf_disk_shelf_name_-p_pool_*`
+.. リモートサイト（サイト B ）のノードで、ローカルディスクシェルフをプール 0 に、リモートディスクシェルフをプール 1 に割り当てます。 +`disk assign -shelf_disk_shelf_name_-p_pool_`
 +
 ストレージコントローラ node_B_1 にシェルフが 4 台ある場合は、次のコマンドを問題に設定します。
 
@@ -878,7 +897,7 @@ DR パートナーのプール 1
 *> disk assign -shelf shelf_B_1_1 -p 1
  *> disk assign -shelf shelf_B_1_3 -p 1
 ----
-.. 各ディスクのディスク・シェルフ ID とベイを表示します +`* disk show – v*`
+.. 各ディスクのディスク・シェルフ ID とベイを表示します +`disk show – v`
 
 
 
@@ -887,28 +906,25 @@ DR パートナーのプール 1
 
 == コンポーネントの HA 状態の確認
 
-[role="lead"]
-工場出荷時に事前設定されていないストレッチ MetroCluster 構成では、コントローラおよびシャーシコンポーネントの HA の状態が「 mcc-2n 」に設定されていて、適切にブートすることを確認する必要があります。工場出荷状態のシステムでは事前に設定されているため、検証は不要です。
-
-* 始める前に *
+工場出荷時に事前設定されていないストレッチ MetroCluster 構成では、コントローラおよびシャーシのコンポーネントの HA の状態が「 mcc-2n 」に設定されていることを確認し、適切にブートする必要があります。工場出荷状態のシステムでは事前に設定されているため、検証は不要です。
 
 システムをメンテナンスモードにする必要があります。
 
 .手順
 . メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。
 +
-'*ha-config show*
+「 ha-config show 」
 
 +
-コントローラモジュールとシャーシには、「 mcc-2n 」という値が表示されます。
+コントローラモジュールとシャーシには「 mcc-2n 」という値が表示されます。
 
-. 表示されたコントローラのシステム状態が「 mcc-2n 」でない場合は、コントローラの HA の状態を設定します。
+. 表示されたコントローラのシステム状態が「 mcc-2n 」でない場合は、コントローラの HA 状態を設定します。
 +
-*ha-config modify controller mcc-2n *
+「 ha-config modify controller mcc-2n 」という形式で指定します
 
-. 表示されたシャーシのシステム状態が mcc-2n でない場合は、シャーシの HA 状態を設定します。
+. 表示されたシャーシのシステム状態が「 mcc-2n 」でない場合は、シャーシの HA 状態を設定します。
 +
-'*ha-config modify chassis mcc-2n *
+「 ha-config modify chassis mcc-2n 」というようになりました
 
 +
 ノードを停止します。
@@ -923,14 +939,9 @@ DR パートナーのプール 1
 
 == 2 ノード MetroCluster 構成での ONTAP のセットアップ
 
-[role="lead"]
 2 ノード MetroCluster 構成では、各クラスタでノードをブートし、クラスタセットアップウィザードを終了し、「 cluster setup 」コマンドを使用してノードをシングルノードクラスタに構成する必要があります。
 
-* 始める前に *
-
 サービスプロセッサが設定されていないことを確認してください。
-
-* このタスクについて *
 
 このタスクは、ネットアップの標準のストレージを使用した 2 ノード MetroCluster 構成が対象です。
 
@@ -985,21 +996,24 @@ Enter the node management interface default gateway [10.101.01.0]:
 
 Do you want to create a new cluster or join an existing cluster? {create, join}:
 ----
-. 新しいクラスタ「 * create * 」を作成します
+. 新しいクラスタを作成します。
++
+「 create 」
+
 . ノードをシングルノードクラスタとして使用するかどうかを選択します。
 +
 [listing]
 ----
 Do you intend for this node to be used as a single node cluster? {yes, no} [yes]:
 ----
-. Enter キーを押してシステムのデフォルトの「 * yes * 」をそのまま使用するか、「 * no * 」と入力して Enter キーを押して独自の値を入力します。
+. Enter キーを押してシステムのデフォルトの "yes" をそのまま使用するか ' または "no`" と入力してから Enter キーを押して独自の値を入力します
 . プロンプトに従って * Cluster Setup * ウィザードを完了し、 Enter キーを押してデフォルト値をそのまま使用するか、独自の値を入力して Enter キーを押します。
 +
 デフォルト値は、プラットフォームとネットワークの構成に基づいて自動的に決定されます。
 
 . クラスタセットアップ * ウィザードが完了したら、次のコマンドを入力して、クラスタがアクティブで、第 1 ノードが正常に機能していることを確認します。
 +
-*cluster show *
+「 cluster show 」を参照してください
 
 +
 次の例は、第 1 ノードが含まれるクラスタ（ cluster1-01 ）が正常に機能しており、クラスタへの参加条件を満たしていることを示しています。
@@ -1021,42 +1035,36 @@ cluster1-01           true    true
 
 == クラスタを MetroCluster 構成に設定
 
-[role="lead"]
 クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。
 
 
 
 === クラスタをピアリング
 
-[role="lead"]
 MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
 
-* 関連情報 *
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"^]
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
+link:concept_preparing_for_the_mcc_installation.html["専用のポートを使用する場合の考慮事項"]
 
-xref:concept_preparing_for_the_mcc_installation.adoc[専用のポートを使用する場合の考慮事項]
-
-xref:concept_preparing_for_the_mcc_installation.adoc[データポートを共有する場合の考慮事項]
+link:concept_preparing_for_the_mcc_installation.html["データポートを共有する場合の考慮事項"]
 
 
 
 ==== クラスタ間 LIF を設定しています
 
-[role="lead"]
 MetroCluster パートナークラスタ間の通信に使用するポートにクラスタ間 LIF を作成する必要があります。専用のポートを使用することも、データトラフィック用を兼ねたポートを使用することもできます。
 
 
 
 ===== 専用ポートでのクラスタ間 LIF の設定
 
-[role="lead"]
 専用ポートにクラスタ間 LIF を設定できます。通常は、レプリケーショントラフィックに使用できる帯域幅が増加します。
 
 .手順
 . クラスタ内のポートの一覧を表示します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1089,13 +1097,13 @@ cluster01-02
 ----
 . クラスタ間通信専用に使用可能なポートを特定します。
 +
-*network interface show -fields home-port 、 curr -port *'
+network interface show -fields home-port 、 curr -port
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、ポート「 e0e 」と「 e0f 」に LIF が割り当てられていないことを示しています。
+次の例は、ポート「 e0e 」および「 e0f 」に LIF が割り当てられていないことを示しています。
 
 +
 [listing]
@@ -1117,10 +1125,10 @@ cluster01
 ----
 . 専用ポートのフェイルオーバーグループを作成します。
 +
-「 * network interface failover-groups create -vserver_system_SVM__ failover-group_failover_group_ -targets_physical_or_logical_ports_* 」のように指定します
+「 network interface failover-groups create -vserver_system_svm 」 -failover-group_failover_group_ -targets_physical_or_logical_ports_`
 
 +
-次の例は、ポート e0e とポート e0f を、システム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。
+次の例では、ポート「 e0e 」および「 e0f 」を、システム SVM 「 cluster01 」上のフェイルオーバーグループ「 intercluster01 」に割り当てます。
 
 +
 [listing]
@@ -1131,7 +1139,7 @@ cluster01-01:e0e,cluster01-01:e0f,cluster01-02:e0e,cluster01-02:e0f
 ----
 . フェイルオーバーグループが作成されたことを確認します。
 +
-「 * network interface failover-groups show * 」と表示されます
+「 network interface failover-groups show 」と表示されます
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1159,7 +1167,7 @@ cluster01
 ----
 . システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
 +
-[cols="1,3"]
+[cols="30,70"]
 |===
 
 
@@ -1167,26 +1175,25 @@ cluster01
 
 
  a| 
-9.6 以降
+ONTAP 9.6 以降
  a| 
 「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask-failover-group failover_group 」という名前のポートを作成します
 
 
 
  a| 
-9.5 以前
+ONTAP 9.5 以前
  a| 
 network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask-failover-group failover_group を作成します
 
 |===
-
-
++
 コマンド構文全体については、マニュアルページを参照してください。
 
-+ 次の例は、フェイルオーバーグループ intercluster01 にクラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
++
+次の例は、フェイルオーバーグループ「 intercluster0` 」内にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
 
-[+]
-
++
 [listing]
 ----
 cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
@@ -1199,22 +1206,24 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 ----
 . クラスタ間 LIF が作成されたことを確認します。
 +
+[cols="30,70"]
 |===
-| * ONTAP 9.6 以降： * 
+
+
+| ONTAP バージョン | コマンドを実行します 
 
 
  a| 
-「 * network interface show -service -policy default -intercluster * 」のように表示されます
+ONTAP 9.6 以降
+ a| 
+「 network interface show -service -policy default -intercluster 」のように表示されます
 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
+ONTAP 9.5 以前
  a| 
-「 * network interface show -role intercluster * 」のようになります
+「 network interface show -role intercluster 」の略
 
 |===
 +
@@ -1235,29 +1244,31 @@ cluster01
 ----
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
+[cols="30,70"]
 |===
-| * ONTAP 9.6 以降： * 
+
+
+| ONTAP バージョン | コマンドを実行します 
 
 
  a| 
-「 * network interface show -service -policy default -intercluster-failover * 」のように入力します
+ONTAP 9.6 以降
+ a| 
+「 network interface show -service -policy default -intercluster-failover 」のように入力します
 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
+ONTAP 9.5 以前
  a| 
-「 * network interface show -role intercluster-failover * 」の略
+「 network interface show -role intercluster-failover 」の略
 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、 SVMe0e ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。
+次の例は、 SVM ポート「 e0e 」上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」がポート「 e0f 」にフェイルオーバーされることを示しています。
 
 +
 [listing]
@@ -1276,21 +1287,18 @@ cluster01
 ----
 
 
-* 関連情報 *
-
-xref:concept_preparing_for_the_mcc_installation.adoc[専用のポートを使用する場合の考慮事項]
+link:concept_preparing_for_the_mcc_installation.html["専用のポートを使用する場合の考慮事項"]
 
 
 
 ===== 共有データポートでのクラスタ間 LIF の設定
 
-[role="lead"]
 データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。
 
 .手順
 . クラスタ内のポートの一覧を表示します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1319,29 +1327,31 @@ cluster01-02
 ----
 . システム SVM にクラスタ間 LIF を作成します。
 +
+[cols="30,70"]
 |===
-| * ONTAP 9.6 以降： * 
+
+
+| ONTAP バージョン | コマンドを実行します 
 
 
  a| 
-「 * network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node node -home-port port_-address _port_ip_-netmask netmask _ * 」のようになります
+ONTAP 9.6 以降
+ a| 
+「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node node -home-port port _-address _port_ip_-netmask netmask _ 」のようになります
 
 
 
  a| 
-* ONTAP 9.5 以前： *
-
-
-
+ONTAP 9.5 以前
  a| 
-「 * network interface create -vserver _system_svm _ -lif_lif_name_-role intercluster -home-node _-home-port _ -address_port_IP_-netmask netmask _ * 」のようになります
+「 network interface create -vserver _system_svm _ -lif LIF_name -role intercluster -home-node _node _-home-port _ -address_port_ip_-netmask netmask _ 」のようになります
 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
+次の例は、クラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
 
 +
 [listing]
@@ -1357,26 +1367,24 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 ----
 . クラスタ間 LIF が作成されたことを確認します。
 +
+[cols="30,70"]
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
-
-
- a| 
-「 * network interface show -service -policy default -intercluster * 」のように表示されます
-
+| ONTAP バージョン | コマンドを実行します 
 
 
  a| 
-* ONTAP 9.5 以前： *
+ONTAP 9.6 以降
+ a| 
+「 network interface show -service -policy default -intercluster 」のように表示されます
 
 
 
  a| 
-「 * network interface show -role intercluster * 」のようになります
+ONTAP 9.5 以前
+ a| 
+「 network interface show -role intercluster 」の略
 
 |===
 +
@@ -1397,33 +1405,31 @@ cluster01
 ----
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
+[cols="30,70"]
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
-
-
- a| 
-「 * network interface show – service-policy default-intercluster-failover * 」と表示されます
-
+| ONTAP バージョン | コマンドを実行します 
 
 
  a| 
-* ONTAP 9.5 以前： *
+ONTAP 9.6 以降
+ a| 
+「 network interface show – service-policy default-intercluster-failover 」と表示されます
 
 
 
  a| 
-「 * network interface show -role intercluster-failover * 」の略
+ONTAP 9.5 以前
+ a| 
+「 network interface show -role intercluster-failover 」の略
 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。
+次の例は、ポート「 e0c 」上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」がポート「 e0d 」にフェイルオーバーされることを示しています。
 
 +
 [listing]
@@ -1442,26 +1448,21 @@ cluster01
 ----
 
 
-* 関連情報 *
-
-xref:concept_preparing_for_the_mcc_installation.adoc[データポートを共有する場合の考慮事項]
+link:concept_preparing_for_the_mcc_installation.html["データポートを共有する場合の考慮事項"]
 
 
 
 ==== クラスタピア関係を作成
 
-[role="lead"]
 MetroCluster クラスタ間にクラスタピア関係を作成する必要があります。
 
 
 
 ===== クラスタピア関係を作成
 
-[role="lead"]
 cluster peer create コマンドを使用すると、ローカルクラスタとリモートクラスタ間にピア関係を作成できます。ピア関係が作成されたら ' リモート・クラスタ上で cluster peer create を実行して ' ローカル・クラスタに対してピア関係を認証できます
 
-* 始める前に *
-
+.作業を開始する前に
 * ピア関係にあるクラスタ内の各ノードでクラスタ間 LIF を作成しておく必要があります。
 * クラスタで ONTAP 9.3 以降が実行されている必要があります。
 
@@ -1469,7 +1470,7 @@ cluster peer create コマンドを使用すると、ローカルクラスタと
 .手順
 . デスティネーションクラスタで、ソースクラスタとのピア関係を作成します。
 +
-`* cluster peer create -generate-passphrase -offer-expiration_mm/dd/YYYY HH ： MM ： SS_|1...7days|1...168 時間 -peer-addrs_peer_lif_ips_-ipspace_ipspace_*`
+cluster peer create -generate-passphrase -offer-expiration_mm/dd/YYYY HH ： MM ： SS_|1...7days | 1...168 時間 -peer-addrs_peer_lif_ips_-ipspace_ips_`
 
 +
 「 -generate-passphrase 」と「 -peer-addrs 」の両方を指定した場合、生成されたパスワードを使用できるのは、「 -peer-addrs 」にクラスタ間 LIF が指定されているクラスタだけです。
@@ -1495,7 +1496,7 @@ Warning: make a note of the passphrase - it cannot be displayed again.
 ----
 . ソースクラスタで、ソースクラスタをデスティネーションクラスタに対して認証します。
 +
-'*cluster peer create -peer-addrs_peer_lif_ips_-ipspace_*
+'cluster peer create -peer-addrs_peer_lif_ips_-ipspace_`
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1521,7 +1522,7 @@ Clusters cluster02 and cluster01 are peered.
 
 . クラスタピア関係が作成されたことを確認します。
 +
-'*cluster peer show-instance *
+「 cluster peer show -instance 」のように表示されます
 
 +
 [listing]
@@ -1542,7 +1543,7 @@ cluster01::> cluster peer show -instance
 ----
 . ピア関係にあるノードの接続状態とステータスを確認します。
 +
-'*cluster peer health show*
+cluster peer health show
 
 +
 [listing]
@@ -1572,17 +1573,17 @@ cluster01-02
 
 ===== クラスタピア関係の作成（ ONTAP 9.2 以前）
 
-[role="lead"]
 「 cluster peer create 」コマンドを使用して、ローカルクラスタとリモートクラスタ間のピア関係の要求を開始できます。ピア関係がローカルクラスタによって要求された後 ' リモートクラスタ上で cluster peer create を実行して ' 関係を受け入れることができます
 
-* 始める前に *
-
+.作業を開始する前に
 * ピア関係にあるクラスタ内の各ノードでクラスタ間 LIF を作成しておく必要があります。
 * クラスタ管理者は、各クラスタが他のクラスタに対して自身を認証する際に使用するパスフレーズに同意しておく必要があります。
+
+
+.手順
+. データ保護のデスティネーションクラスタで、データ保護のソースクラスタとのピア関係を作成します。
 +
-.. データ保護のデスティネーションクラスタで、データ保護のソースクラスタとのピア関係を作成します。
-+
-'*cluster peer create -peer-addrs_peer_lif_ips_-ipspace_*
+'cluster peer create -peer-addrs_peer_lif_ips_-ipspace_`
 
 +
 カスタム IPspace を使用しない場合は、 -ipspace オプションを無視してかまいません。コマンド構文全体については、マニュアルページを参照してください。
@@ -1600,9 +1601,9 @@ Please enter the passphrase again:
 +
 プロンプトが表示されたら、ピア関係のパスフレーズを入力します。
 
-.. データ保護のソースクラスタで、ソースクラスタをデスティネーションクラスタに対して認証します。
+. データ保護のソースクラスタで、ソースクラスタをデスティネーションクラスタに対して認証します。
 +
-'*cluster peer create -peer-addrs_peer_lif_ips_-ipspace_*
+'cluster peer create -peer-addrs_peer_lif_ips_-ipspace_`
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1620,9 +1621,9 @@ Please confirm the passphrase again:
 +
 プロンプトが表示されたら、ピア関係のパスフレーズを入力します。
 
-.. クラスタピア関係が作成されたことを確認します。
+. クラスタピア関係が作成されたことを確認します。
 +
-'*cluster peer show – instance*
+cluster peer show – instance
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1638,9 +1639,9 @@ Remote Cluster Name: cluster02
 Active IP Addresses: 192.168.2.201,192.168.2.202
 Cluster Serial Number: 1-80-000013
 ----
-.. ピア関係にあるノードの接続状態とステータスを確認します。
+. ピア関係にあるノードの接続状態とステータスを確認します。
 +
-'*cluster peer health show*
+cluster peer health show
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -1671,14 +1672,9 @@ cluster01-02
 
 
 
-
-
 === ルートアグリゲートをミラーリング
 
-[role="lead"]
 データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
-
-* このタスクについて *
 
 デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
 
@@ -1690,10 +1686,10 @@ NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、�
 .手順
 . ルートアグリゲートをミラーします。
 +
-'*storage aggregate mirror_aggr_name_*
+「 storage aggregate mirror _aggr_name _ 」のようになります
 
 +
-次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。
+次のコマンドでは 'controller_A_1 のルートアグリゲートがミラーされます
 
 +
 [listing]
@@ -1706,40 +1702,38 @@ controller_A_1::> storage aggregate mirror aggr0_controller_A_1
 . MetroCluster 構成の各ノードについて、同じ手順を繰り返します。
 
 
-* 関連情報 *
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"^]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"]
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"^]
 
 
 
 === 各ノードでミラーされたデータアグリゲートを作成します
 
-[role="lead"]
 DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。
 
-* 始める前に *
-
+.作業を開始する前に
 * 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
 
 
-* このタスクについて *
-
+.このタスクについて
 * ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
 * アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
 
 
 .手順
 . 使用可能なスペアのリストを表示します。
 +
-「 * storage disk show -spare -owner_node_name _ * 」と入力します
+「 storage disk show -spare -owner_node_name _ 」というように入力します
 
-. 「 storage aggregate create -mirror true 」コマンドを使用して、アグリゲートを作成します。
+. アグリゲートを作成します。
++
+「 storage aggregate create -mirror true 」のようになります
+
 +
 クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。アグリゲートを特定のノード上に作成するには、「 -node 」パラメータを使用するか、そのノードが所有するドライブを指定します。
 
@@ -1776,7 +1770,7 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 
 . 新しいアグリゲートの RAID グループとドライブを確認します。
 +
-「 * storage aggregate show-status -aggregate _aggregate-name _ * 」という形式で表示されます
+「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
 
 
 
@@ -1784,19 +1778,16 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 
 === ミラーされていないデータアグリゲートの作成
 
-[role="lead"]
 MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。
 
-* 始める前に *
-
+.作業を開始する前に
 * 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されていることを確認する方法を理解しておく必要があります。
 
 
-* このタスクについて *
-
+.このタスクについて
 ====
-MetroCluster FC 構成では、ミラーされていないアグリゲートがスイッチオーバー後にオンラインになるのは、アグリゲート内のリモートディスクにアクセスできる場合のみです。ISL で障害が発生すると、ミラーされていないリモートディスク内のデータにローカルノードがアクセスできなくなる可能性があります。アグリゲートに障害が発生すると、ローカルノードがリブートされる場合があります。
+* 注意 * ： MetroCluster FC 構成では、ミラーされていないアグリゲートがスイッチオーバー後にオンラインになるのは、アグリゲート内のリモートディスクにアクセスできる場合のみです。ISL で障害が発生すると、ミラーされていないリモートディスク内のデータにローカルノードがアクセスできなくなる可能性があります。アグリゲートに障害が発生すると、ローカルノードがリブートされる場合があります。
 
 ====
 
@@ -1810,11 +1801,11 @@ NOTE: ミラーされていないアグリゲートは、そのアグリゲー�
 .手順
 . 使用可能なスペアのリストを表示します。
 +
-「 * storage disk show -spare -owner_node_name _ * 」と入力します
+「 storage disk show -spare -owner_node_name _ 」というように入力します
 
 . アグリゲートを作成します。
 +
-'*storage aggregate create *
+「 storage aggregate create 」
 
 +
 クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。アグリゲートが特定のノード上に作成されていることを確認するには、「 -node 」パラメータを使用するか、そのノードが所有するドライブを指定します。
@@ -1848,7 +1839,7 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 . 新しいアグリゲートの RAID グループとドライブを確認します。
 +
-「 * storage aggregate show-status -aggregate _aggregate-name _ * 」という形式で表示されます
+「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
 
 
 
@@ -1856,33 +1847,35 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 === MetroCluster 構成の実装
 
-[role="lead"]
 MetroCluster 構成でデータ保護を開始するに MetroCluster は 'data configure コマンドを実行する必要があります
 
-* 始める前に *
-
+.作業を開始する前に
 * ルート以外のミラーされたデータアグリゲートが各クラスタに少なくとも 2 つ必要です。
 +
 その他のデータアグリゲートはミラーされていてもいなくてもかまいません。
 
 +
-これは「 storage aggregate show 」コマンドで確認できます。
+アグリゲートのタイプを確認します。
+
++
+「 storage aggregate show
 
 +
 
-NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください xref:concept_configuring_the_mcc_software_in_ontap.adocSTEP_429E7F7532ED4B468B67B9B22968D686[手順 1.] 手順については、を参照し
+NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください link:concept_configuring_the_mcc_software_in_ontap.html["ONTAP で MCC ソフトウェアを設定"] 手順については、を参照し
 
-* コントローラおよびシャーシの ha-config の状態は「 m cc-2n 」でなければなりません。
+* コントローラおよびシャーシの ha-config の状態が「 mcc-2n 」である必要があります。
 
-
-* このタスクについて *
 
 MetroCluster 構成をイネーブルにするには、任意のノード上で、 MetroCluster configure コマンドを 1 回実行し問題ます。サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
 
 .手順
 . 次の形式で MetroCluster を設定します。
 +
+[cols="30,70"]
 |===
+
+
 | MetroCluster 構成の内容 | 操作 
 
 
@@ -1891,7 +1884,7 @@ MetroCluster 構成をイネーブルにするには、任意のノード上で�
  a| 
 いずれかのノードのプロンプトで、 MetroCluster を設定します。
 
-'*MetroCluster configure_node-name_*
+MetroCluster configure_node-name_` です
 
 
 
@@ -1900,25 +1893,25 @@ MetroCluster 構成をイネーブルにするには、任意のノード上で�
  a| 
 .. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。
 +
-「 * set -privilege advanced * 」のように指定します
+「 advanced 」の権限が必要です
 
 +
-advanced モードで続行するかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（ * > ）が表示されます。
+advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（ * > ）が表示されます。
 
 .. MetroCluster に -allow-with-one-aggregate true パラメータを設定します。
 +
-`* MetroCluster configure -allow-with-one-aggregate true_node-name_*`
+「 MetroCluster configure -allow-with-one-aggregate true_node-name_` 」
 
-.. admin 特権レベルに戻ります :+`*set -privilege admin*`
+.. admin 権限レベルに戻ります。 +`set -privilege admin`
 
 
 |===
 +
 
-NOTE: 複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/GUID-114DAE6E-F105-4908-ABB1-CE1D7B5C7048.html["MetroCluster 構成でのメタデータボリュームの移動"]。
+NOTE: 複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/GUID-114DAE6E-F105-4908-ABB1-CE1D7B5C7048.html["MetroCluster 構成でのメタデータボリュームの移動"^]。
 
 +
-次のコマンドは、 controller_A_1 を含む DR グループ内のすべてのノードの MetroCluster 構成を有効にします。
+次のコマンドは 'controller_A_1 を含む DR グループ内のすべてのノードで MetroCluster 構成を有効にします
 
 +
 [listing]
@@ -1929,7 +1922,7 @@ cluster_A::*> metrocluster configure -node-name controller_A_1
 ----
 . サイト A のネットワークステータスを確認します。
 +
-「 * network port show * 」と表示されます
+「 network port show 」のように表示されます
 
 +
 次の例は、ネットワークポートの用途を示しています。
@@ -1954,7 +1947,7 @@ controller_A_1
 ----
 . MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
 +
-.. サイト A から構成を確認します :+`* MetroCluster show*`
+.. サイト A から構成を確認します :+`MetroCluster show`
 +
 [listing]
 ----
@@ -1969,7 +1962,7 @@ Remote: cluster_B         Configuration state configured
                           Mode                normal
                           AUSO Failure Domain auso-on-cluster-disaster
 ----
-.. サイト B から構成を確認します :+`* MetroCluster show*`
+.. サイト B から構成を確認します + MetroCluster show
 +
 [listing]
 ----
@@ -1991,7 +1984,6 @@ Remote: cluster_A         Configuration state configured
 
 === MetroCluster 構成での SNMPv3 の設定
 
-[role="lead"]
 認証プロトコルとプライバシープロトコルは、スイッチと ONTAP システムで同じである必要があります。
 
 ONTAP では現在、 AES-128 と AES-256 の暗号化がサポートされています。
@@ -1999,7 +1991,7 @@ ONTAP では現在、 AES-128 と AES-256 の暗号化がサポートされて�
 .手順
 . コントローラのプロンプトで各スイッチの SNMP ユーザを作成します。
 +
-「 * security login create * 」のように入力します
+'securitylogin create （セキュリティログインの作成
 
 +
 [listing]
@@ -2041,7 +2033,7 @@ Controller_A_1::> security login create -user-or-group-name snmpv3user -applicat
 ----
 . ログインエントリがスイッチごとに 1 つずつあることを確認します。
 +
-「 * security login show * 」と表示されます
+「 securitylogin show 」を参照してください
 
 +
 [listing]
@@ -2064,10 +2056,10 @@ node_A_1 SVM 4 snmpv3user     snmp        usm                   10.10.10.13
 ----
 . スイッチのプロンプトで SNMPv3 を設定します。
 +
-`*snmpconfig -- set snmpv3*`
+「 mpconfig -- set snmpv3 」
 
 +
-RO アクセスが必要な場合、「 User (ro): 」の後に、「 mpv3user 」を次の例のように指定します。
+RO アクセスを必要とする場合、「 User (ro):: 」の後に、「 snmpv3user 」を次の例のように指定します。
 
 +
 [listing]
@@ -2093,7 +2085,6 @@ Priv Protocol [DES(1)/noPriv(2)/AES128(3)/AES256(4)]): (2..2) [3]
 
 === 健常性監視用の FC-to-SAS ブリッジの設定
 
-[role="lead"]
 9.8 より前のバージョンの ONTAP を実行しているシステムで FC-to-SAS ブリッジを使用している場合は、 MetroCluster 構成の FC-to-SAS ブリッジを監視するための特別な設定手順を実行する必要があります。
 
 * FibreBridge ブリッジでは、サードパーティ製の SNMP 監視ツールはサポートされません。
@@ -2101,36 +2092,39 @@ Priv Protocol [DES(1)/noPriv(2)/AES128(3)/AES256(4)]): (2..2) [3]
 
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . ONTAP クラスタのプロンプトで、ブリッジをヘルスモニタの対象に追加します。
 +
 .. 使用している ONTAP のバージョンに対応したコマンドを使用して、ブリッジを追加します。
 +
+[cols="30,70"]
 |===
+
+
 | ONTAP バージョン | コマンドを実行します 
 
 
  a| 
-9.5 以降
+ONTAP 9.5 以降
  a| 
-'*storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_*
+「 storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_`
 
 
 
  a| 
-9.4 以前
+ONTAP 9.4 以前
  a| 
-`* storage bridge add-address_bridge-ip-address_-name_bridge-name_*`
+「 storage bridge add -address_bridge-ip-address_-name_bridge-name_` 」
 
 |===
 .. ブリッジが追加され、正しく設定されていることを確認します。
 +
-「 * storage bridge show * 」
+「 storage bridge show 」
 
 +
-ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「ステータス」列の値が「 OK 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されている場合、ブリッジに接続して監視できます。
+ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。
 
 +
 次の例は、 FC-to-SAS ブリッジが設定されていることを示しています。
@@ -2159,14 +2153,13 @@ ATTO_10.10.20.13  atto04        true          ok              Atto   FibreBridge
 
 === MetroCluster の設定を確認しています
 
-[role="lead"]
 MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。
 
 いずれかまたは両方のクラスタに対して短時間に MetroCluster check run コマンドを 2 回発行すると ' 競合が発生し ' コマンドがすべてのデータを収集しない場合がありますそれ以降の「 MetroCluster check show 」コマンドでは、期待される出力が表示されません。
 
 . 構成を確認します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 +
 このコマンドはバックグラウンドジョブとして実行され、すぐに完了しない場合があります。
@@ -2195,21 +2188,24 @@ aggregates          ok
 clusters            ok
 5 entries were displayed.
 ----
-. 最新の MetroCluster check run コマンドから ' より詳細な結果を表示します
+. より詳細な結果を表示します。
 +
-'*MetroCluster check aggregate show*'
+「 MetroCluster check run 」のようになります
 
 +
-'*MetroCluster check cluster show*
+MetroCluster check aggregate show
 
 +
-「 * MetroCluster check config-replication show * 」のように表示されます
+MetroCluster check cluster show
 
 +
-「 MetroCluster check lif show * 」のように表示されます
+MetroCluster check config-replication show
 
 +
-'*MetroCluster check node show*
+MetroCluster check lif show
+
++
+MetroCluster check node show
 
 +
 「 MetroCluster check show 」コマンドは、最新の「 MetroCluster check run 」コマンドの結果を表示します。MetroCluster check show コマンドを使用する前に ' 必ず MetroCluster check run コマンドを実行して ' 表示されている情報が最新であることを確認してください
@@ -2281,17 +2277,14 @@ mccint-fas9000-0304
 ----
 
 
-* 関連情報 *
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
 
 
 
 == Config Advisor での MetroCluster 構成エラーの確認
 
-[role="lead"]
 一般的な構成エラーの有無を確認する Config Advisor ツールをネットアップサポートサイトからダウンロードできます。
 
 Config Advisor は、構成の検証や健常性のチェックに使用できるツールです。データ収集とシステム分析のために、セキュアなサイトにもセキュアでないサイトにも導入できます。
@@ -2301,7 +2294,7 @@ NOTE: Config Advisor のサポートには制限があり、オンラインで�
 
 . Config Advisor のダウンロードページにアクセスし、ツールをダウンロードします。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 . Config Advisor を実行し、ツールの出力を確認して、問題が検出された場合は出力に表示される推奨事項に従って対処します。
 
@@ -2310,22 +2303,20 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 == スイッチオーバー、修復、スイッチバックを検証しています
 
-[role="lead"]
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
 
-. に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します link:https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["災害からリカバリします"]。
+. に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します link:https:../manage/index.html["災害からリカバリします"]。
 
 
 
 
 == 構成バックアップファイルを保護しています
 
-[role="lead"]
 ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。
 
 . 構成バックアップファイルのリモートデスティネーションの URL を設定します。
 +
-*system configuration backup settings modify URL-of-destination *
+「システム構成のバックアップ設定は URL-of-destination 」を変更します
 
 +
 。 link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["CLI を使用したクラスタ管理"] 追加情報が含まれています。

@@ -18,7 +18,6 @@ MetroCluster は、ミラーリングを使用してクラスタ内のデータ�
 
 == 8 ノード / 4 ノード MetroCluster 構成でのローカルフェイルオーバーとスイッチオーバー
 
-[role="lead"]
 8 ノード / 4 ノードの MetroCluster 構成では、ローカルレベルとクラスタレベルの両方でデータが保護されます。MetroCluster 構成をセットアップする場合は、 MetroCluster 構成がどのようにデータを保護するかを理解しておく必要があります。
 
 MetroCluster 構成は、物理的に分離され、ミラーされた 2 つのクラスタを使用することでデータを保護各クラスタで、もう一方のクラスタのデータおよび Storage Virtual Machine （ SVM ）の設定が同期的にミラーされます。一方のサイトで災害が発生すると、管理者は、ミラーされた SVM をアクティブ化し、サバイバーサイトからミラーされたデータの提供を開始します。さらに、各クラスタ内のノードは HA ペアとして構成されているため、ローカルフェイルオーバーも可能になります。
@@ -27,7 +26,6 @@ MetroCluster 構成は、物理的に分離され、ミラーされた 2 つの�
 
 === MetroCluster 構成でのローカルの HA データ保護の仕組み
 
-[role="lead"]
 MetroCluster 構成での HA ペアの仕組みを理解する必要があります。
 
 ピアネットワークにある 2 つのクラスタは、それぞれがもう一方のクラスタのソースクラスタおよびバックアップクラスタになることで、双方向のディザスタリカバリを実現します。各クラスタは、 HA ペアとして構成された 2 つのノードで構成されます。1 つのノード構成内で障害が発生した場合やメンテナンスが必要な場合、ストレージフェイルオーバーによって、そのノードの処理をローカルの HA パートナーに転送することができます。
@@ -36,22 +34,18 @@ MetroCluster 構成での HA ペアの仕組みを理解する必要がありま
 
 image::../media/mcc_hw_architecture_local_ha.gif[MCC ハードウェアアーキテクチャローカル HA]
 
-* 関連情報 *
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"^]
 
 
 
 == MetroCluster 構成でのデータと設定のレプリケーション
 
-[role="lead"]
 MetroCluster 構成では、各種の ONTAP 機能を使用して、 2 つの MetroCluster サイト間でデータと設定の同期レプリケーションが行われます。
 
 
 
 === 設定レプリケーションサービスによる設定の保護
 
-[role="lead"]
 ONTAP の Configuration Replication Service （ CRS ；設定レプリケーションサービス）は、 DR パートナーに情報を自動的にレプリケートして MetroCluster の設定を保護します。
 
 CRS は、ローカルノードの設定をパートナークラスタの DR パートナーに同期的にレプリケートします。このレプリケーションは、クラスタピアリングネットワーク経由で行われます。
@@ -62,13 +56,12 @@ CRS は、ローカルノードの設定をパートナークラスタの DR パ
 
 === MetroCluster 処理中の SVM のレプリケーション
 
-[role="lead"]
 ONTAP の Configuration Replication Service （ CRS ；設定レプリケーションサービス）は、冗長なデータサーバ構成と SVM に属するデータボリュームのミラーリングを提供します。スイッチオーバーでは、ソース SVM が停止され、サバイバークラスタ上にあるデスティネーション SVM がアクティブになります。
 
 
 NOTE: MetroCluster 構成のデスティネーション SVM の名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。MetroCluster 構成では、デスティネーション SVM の名前に「 -mc 」というサフィックスが付加されます。 SVM 名にピリオドが含まれている場合は、最初のピリオドの前にサフィックス「 -mc 」が適用されます。たとえば、 SVM 名が SVM.DNS.NAME の場合、サフィックス「 -mc 」は SVM-MC.DNS.NAME のように付加されます。
 
-次の例は、 MetroCluster 構成の SVM を示しています。 SVM_cluster_A はソースサイトの SVM 、 SVM_cluster_A-mc はディザスタリカバリサイトの同期先のアグリゲートです。
+次の例は、 MetroCluster 構成の SVM を示しています。「 SVM_cluster_A 」はソースサイトの SVM 、「 SVM_cluster_A-mc 」はディザスタリカバリサイトの同期先のアグリゲートです。
 
 * SVM_cluster_A はクラスタ A のデータを提供します
 +
@@ -111,20 +104,19 @@ ISL で障害が発生し、ディザスタサイトのストレージを使用�
 
 
 
-* 関連情報 *
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"^]
 
 
 
 === MetroCluster 構成で SyncMirror を使用してデータの冗長性を実現する方法
 
-[role="lead"]
 SyncMirror 機能を使用するミラーされたアグリゲートにはソースとデスティネーションの Storage Virtual Machine （ SVM ）が所有するボリュームが格納され、データの冗長性が確保されます。データはパートナークラスタのディスクプールにレプリケートされます。ミラーされていないアグリゲートもサポートされます
 
 次の表に、スイッチオーバー後のミラーされていないアグリゲートの状態（オンラインまたはオフライン）を示します。
 
 |===
+
+
 | スイッチオーバーのタイプ | 状態 
 
 
@@ -150,7 +142,8 @@ SyncMirror 機能を使用するミラーされたアグリゲートにはソー
 
 
 |===
-注：スイッチオーバー後に、ミラーされていないアグリゲートが DR パートナーノードにある場合にスイッチ間リンク（ ISL ）に障害が発生すると、そのローカルノードで障害が発生することがあります。
+
+NOTE: スイッチオーバー後に、ミラーされていないアグリゲートが DR パートナーノードにある状態でスイッチ間リンク（ ISL ）に障害が発生すると、そのローカルノードで障害が発生することがあります。
 
 次の図は、ディスクプールがパートナークラスタ間でミラーされる仕組みを示しています。ローカルプレックス（プール 0 内）のデータは、リモートプレックス（プール 1 内）にレプリケートされます。
 
@@ -163,7 +156,6 @@ image::../media/mcc_mirroring_of_pools.gif[プールの MCC ミラーリング]
 
 === MetroCluster 構成での NVRAM / NVMEM キャッシュミラーリングと動的ミラーリング
 
-[role="lead"]
 ストレージコントローラの不揮発性メモリ（プラットフォームモデルに応じて NVRAM または NVMEM ）は、ローカル HA パートナーにローカルでミラーされ、同時にパートナーサイトのリモートディザスタリカバリ（ DR ）パートナーにリモートでミラーされます。この構成により、ローカルでフェイルオーバーまたはスイッチオーバーが発生しても、不揮発性キャッシュ内のデータを保護することができます。
 
 MetroCluster 構成に含まれない HA ペアでは、各ストレージコントローラに、不揮発性キャッシュパーティションが 2 つ保持されます。 1 つは不揮発性キャッシュパーティションで、もう 1 つは HA パートナー用です。
@@ -171,20 +163,16 @@ MetroCluster 構成に含まれない HA ペアでは、各ストレージコン
 4 ノード MetroCluster 構成では、各ストレージコントローラの不揮発性キャッシュが 4 つのパーティションに分かれています。2 ノード MetroCluster 構成では、ストレージコントローラが HA ペアとして構成されないため、 HA パートナーパーティションと DR 補助パーティションが使用されません。
 
 |===
-| ストレージコントローラの不揮発性キャッシュ 
 
 
-| MetroCluster 構成の場合 
+2+| ストレージコントローラの不揮発性キャッシュ 
 
 
-| MetroCluster に属さない HA ペア 
+| MetroCluster 構成の場合 | MetroCluster に属さない HA ペア 
 
 
  a| 
 image:../media/mcc_nvram_quartering.gif[""]
-
-
-
  a| 
 image:../media/mcc_nvram_split_in_non_mcc_ha_pair.gif[""]
 
@@ -227,7 +215,6 @@ image::../media/mcc_nvram_mirroring_example_dynamic_dr_aux.gif[MCC NVRAM ミラ�
 
 == 災害の種類とリカバリ方法
 
-[role="lead"]
 MetroCluster 構成を使用して適切に対応できるように、さまざまな種類の障害や災害について熟知しておく必要があります。
 
 * 単一ノード障害です
@@ -263,22 +250,24 @@ MetroCluster 構成を使用して適切に対応できるように、さまざ�
 NOTE: MetroCluster IP 構成では、自動計画外スイッチオーバー（ AUSO ）はサポートされません。
 
 |===
-| 障害のタイプ 2+| DR メカニズム 2+| リカバリ方法の概要 
 
 
-|  | * 4 ノード構成 * | * 2 ノード構成 * | * 4 ノード構成 * | * 2 ノード構成 * 
+.2+| 障害のタイプ 2+| DR メカニズム 2+| リカバリ方法の概要 
 
 
-| 単一ノード障害です | ローカル HA フェイルオーバー | AUSO | 自動フェイルオーバーとギブバックが有効になっている場合は必要なし。 | ノードがリストアされたら、 MetroCluster の修復フェーズアグリゲート、 MetroCluster の修復フェーズのルートアグリゲート、および MetroCluster のスイッチバックコマンドを使用して、手動による修復とスイッチバックを行う必要があります。メモ： ONTAP 9.5 以降を実行している MetroCluster IP 構成では、 MetroCluster の修復コマンドは必要ありません。 
+| 4 ノード構成 | 2 ノード構成 | 4 ノード構成 | 2 ノード構成 
 
 
-| サイト障害 2+| MetroCluster スイッチオーバー 2.3+| ノードがリストアされたら、 MetroCluster healing コマンドと MetroCluster switchback コマンドを使用した手動での修復とスイッチバックが必要。ONTAP 9.5 を実行している MetroCluster IP 構成では、 MetroCluster の修復コマンドは必要ありません。 
+| 単一ノード障害です | ローカル HA フェイルオーバー | AUSO | 自動フェイルオーバーとギブバックが有効になっている場合は必要なし。 | ノードがリストアされた後は ' MetroCluster heal-phase aggregates コマンド 'MetroCluster heal-phase root-aggregates コマンド 'MetroCluster switchback コマンドを使用して ' 手動で修復およびスイッチバックを行う必要があります注 MetroCluster : ONTAP 9.5 以降を実行する MetroCluster IP 構成では 'CLI heal-' コマンドは必要ありません 
+
+
+| サイト障害 2+| MetroCluster スイッチオーバー 2.3+| ノードがリストアされた後には ' MetroCluster healing' および MetroCluster switchback コマンドを使用した手動での修復とスイッチバックが必要ですONTAP 9.5 を実行する MetroCluster IP 構成では 'CLI MetroCluster heal-' コマンドは必要ありません 
 
 
 | サイト全体のコントローラ障害 | AUSO が行われるのは、ディザスタサイトのストレージにアクセスできる場合のみです。 | AUSO （単一ノード障害と同じ） 
 
 
-| 複数の連続的な障害 | ローカル HA フェイルオーバーのあとに、 MetroCluster switchover -forced-on-disaster コマンドを使用して MetroCluster 強制スイッチオーバーを実行。注：障害が発生したコンポーネントによっては、強制スイッチオーバーは不要な場合があります。 | MetroCluster switchover -forced-on-disaster コマンドを使用した MetroCluster 強制スイッチオーバー。 
+| 複数の連続的な障害 | ローカル HA フェイルオーバーのあとに、 MetroCluster switchover -forced-on-disaster コマンドを使用して MetroCluster 強制スイッチオーバーを実行。注：障害が発生したコンポーネントによっては、強制スイッチオーバーは不要な場合があります。 | MetroCluster は 'MetroCluster switche-forced-on-disaster コマンドを使用して強制的にスイッチオーバーします 
 
 
 | ISL 障害です 2+| MetroCluster のスイッチオーバーなし。 2 つのクラスタがそれぞれのデータを独立して提供します 2+| このタイプの障害では必要ありません。接続が回復すると、ストレージは自動的に再同期されます。 
@@ -287,14 +276,13 @@ NOTE: MetroCluster IP 構成では、自動計画外スイッチオーバー（ 
 
 == 8 ノード / 4 ノード MetroCluster 構成でのノンストップオペレーションの実現
 
-[role="lead"]
 問題が 1 つのノードに限定されている場合、ローカル HA ペア内でのフェイルオーバーとギブバックにより、中断のないノンストップオペレーションが実現します。この場合、 MetroCluster 構成ではリモートサイトへのスイッチオーバーは必要ありません。
 
 8 ノード / 4 ノードの MetroCluster 構成は各サイトに 1 つ以上の HA ペアで構成されるため、それぞれのサイトでのローカルな障害には、パートナーサイトにスイッチオーバーしなくても対応でき、サービスが中断することはありません。HA ペアの動作は、 MetroCluster 以外の構成の HA ペアと同じです。
 
 4 ノードおよび 8 ノードの MetroCluster 構成では、パニックまたは停電によるノード障害が原因の自動スイッチオーバーによって発生する可能性があります。
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"^]
 
 ローカルのフェイルオーバー後に 2 回目の障害が発生した場合、 MetroCluster のスイッチオーバーイベントによって、中断のないノンストップオペレーションが実現します。同様に、スイッチオーバー処理後にサバイバーノードの 1 つで次の障害が発生すると、ローカルのフェイルオーバーイベントによってノンストップオペレーションが継続されます。この場合、 1 つのサバイバーノードが、 DR グループ内の他の 3 つのノードにデータを提供します。
 
@@ -304,13 +292,12 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハ�
 
 MetroCluster FC-to IP の移行では、 MetroCluster IP ノードと IP スイッチを既存の MetroCluster FC 構成に追加し、 MetroCluster FC ノードを撤去します。移行プロセスの各ステージでは、 MetroCluster のスイッチオーバー、修復、スイッチバックの各処理のワークフローが異なります。
 
-を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-upgrade/GUID-1870FDC4-1774-4604-86A7-5C979C297ADA.html["移行時のスイッチオーバー、修復、スイッチバックの処理"]。
+を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-upgrade/GUID-1870FDC4-1774-4604-86A7-5C979C297ADA.html["移行時のスイッチオーバー、修復、スイッチバックの処理"^]。
 
 
 
 === スイッチオーバー後のローカルフェイルオーバーの影響
 
-[role="lead"]
 MetroCluster のスイッチオーバー後にサバイバーサイトで問題が発生した場合は、ローカルフェイルオーバーによって中断のないノンストップオペレーションが実現します。ただし、冗長構成ではなくなるため、システムはリスクにさらされます。
 
 スイッチオーバー後にローカルフェイルオーバーが発生すると、 1 台のコントローラが MetroCluster 構成内のすべてのストレージシステムにデータを提供します。そのため、リソースの問題が発生する可能性があり、さらに障害が発生した場合にはシステムが中断します。
@@ -319,22 +306,18 @@ MetroCluster のスイッチオーバー後にサバイバーサイトで問題�
 
 == 2 ノード MetroCluster 構成でのノンストップオペレーションの実現
 
-[role="lead"]
-パニックが原因で 2 つのサイトのどちらかに問題がある場合は、 MetroCluster スイッチオーバーによって中断のないノンストップオペレーションが実現します。停電によってノードとストレージの両方が影響を受けた場合は、スイッチオーバーは自動的には行われず、 MetroCluster switchover コマンドを実行するまで停止します。
+パニックが原因で 2 つのサイトのどちらかに問題がある場合は、 MetroCluster スイッチオーバーによって中断のないノンストップオペレーションが実現します。停電がノードとストレージの両方に影響を与える場合 ' スイッチオーバーは自動的には行われず 'MetroCluster switchover' コマンドが発行されるまで停止します
 
 すべてのストレージがミラーリングされるため、ノード障害時の HA ペアでのストレージフェイルオーバーの場合と同様に、サイト障害が発生した場合にスイッチオーバー処理を使用して無停止の耐障害性を実現できます。
 
 2 ノード構成では、 HA ペアで自動ストレージフェイルオーバーをトリガーするイベントと同じイベントによって、自動計画外スイッチオーバー（ AUSO ）がトリガーされます。つまり、 2 ノード MetroCluster 構成では HA ペアと同じ保護レベルが確保されます。
 
-* 関連情報 *
-
-xref:concept_understanding_mcc_data_protection_and_disaster_recovery.adoc[MetroCluster FC 構成での自動計画外スイッチオーバー]
+link:concept_understanding_mcc_data_protection_and_disaster_recovery.html["MetroCluster FC 構成での自動計画外スイッチオーバー"]
 
 
 
 == スイッチオーバープロセスの概要
 
-[role="lead"]
 MetroCluster スイッチオーバー処理を実行すると、ストレージおよびクライアントのアクセスがソースクラスタからリモートサイトに移されるため、災害発生後にサービスの迅速な復旧が可能となります。スイッチオーバーが発生した場合に想定される変化と、実行する必要がある操作を把握しておく必要があります。
 
 スイッチオーバー処理では、システムによって次の処理が実行されます。
@@ -354,7 +337,7 @@ NOTE: この処理は、ネゴシエートスイッチオーバーにのみ該�
 
 DR パートナーのルートアグリゲートは、スイッチオーバー中にオンラインになりません。
 
-MetroCluster switchover コマンドは、 MetroCluster 構成のすべての DR グループで、ノードをスイッチオーバーします。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
+「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
 
 サービスのみをリモートサイトにスイッチオーバーする場合は、サイトをフェンシングせずにネゴシエートスイッチオーバーを実行します。ストレージまたは機器を信頼できない場合は、ディザスタサイトをフェンシングしてから、計画外スイッチオーバーを実行する必要があります。フェンシングにより、ディスクに電源が順次投入されたときの RAID の再構築が回避されます。
 
@@ -368,6 +351,8 @@ NOTE: この手順は、もう一方のサイトが安定していてオフラ�
 次の表に、スイッチオーバー時に使用できるコマンドを示します。
 
 |===
+
+
 | コマンドを実行します | 可用性 
 
 
@@ -496,7 +481,6 @@ NOTE: ミラーされていないアグリゲートが MetroCluster IP 構成で
 
 === 4 ノード MetroCluster 構成での HA テイクオーバーおよび MetroCluster スイッチオーバー中のディスク所有権の変更
 
-[role="lead"]
 ハイアベイラビリティ処理および MetroCluster 処理中、ディスク所有権が一時的に変更されます。どのノードがどのディスクを所有するかをシステムが追跡する仕組みを把握しておくと役立ちます。
 
 ONTAP では、コントローラモジュールの一意のシステム ID （ノードの NVRAM カードまたは NVMEM ボードから取得）を使用して、どのノードがどの特定のディスクを所有するかを識別します。システムの HA または DR の状態によっては、ディスク所有権が一時的に変わる場合があります。HA テイクオーバーまたは DR スイッチオーバーによって所有権が変わった場合、どのノードがディスクの元の（「ホーム」）所有者であるかが記録されるため、 HA ギブバックまたは DR スイッチバック後に所有権を戻すことができます。ディスク所有権の追跡には次のフィールドが使用されます。
@@ -511,27 +495,20 @@ MetroCluster 構成でスイッチオーバーが発生した場合、ノード�
 システムの状態が変わると、各フィールドの値も次のように変わります。
 
 |===
-|  | 次の状況における値 
 
 
-| フィールド | 通常運用時 
+.2+| フィールド 4+| 次の状況における値 
 
 
-| ローカルの HA テイクオーバー | MetroCluster スイッチオーバー 
+| 通常運用時 | ローカルの HA テイクオーバー | MetroCluster スイッチオーバー | スイッチオーバー中のテイクオーバー 
 
 
-| スイッチオーバー中のテイクオーバー  a| 
+ a| 
 オーナー
-
-
-
  a| 
 ディスクにアクセスできるノードの ID
  a| 
 一時的にディスクにアクセスできる HA パートナーの ID
-
-
-
  a| 
 一時的にディスクにアクセスできる DR パートナーの ID
  a| 
@@ -543,30 +520,21 @@ MetroCluster 構成でスイッチオーバーが発生した場合、ノード�
 ホーム所有者
  a| 
 HA ペア内の元のディスク所有者の ID
-
-
-
  a| 
 HA ペア内の元のディスク所有者の ID
  a| 
 スイッチオーバー中に HA ペアのホーム所有者となる DR パートナーの ID
-
-
-
  a| 
 スイッチオーバー中に HA ペアのホーム所有者となる DR パートナーの ID
+
+
+
  a| 
 DR ホーム所有者
-
-
-
  a| 
 空です
  a| 
 空です
-
-
-
  a| 
 MetroCluster 構成内の元のディスク所有者の ID
  a| 
@@ -578,6 +546,8 @@ MetroCluster 構成内の元のディスク所有者の ID
 image::../media/mcc_disk_ownership.gif[MCC ディスクの所有権]
 
 |===
+
+
 | MetroCluster の状態 | オーナー | ホーム所有者 | DR ホーム所有者 | 注： 
 
 
@@ -646,7 +616,6 @@ node_A_1
 
 === ミラーされていないアグリゲートを使用する場合の
 
-[role="lead"]
 ミラーされていないアグリゲートが構成に含まれている場合、スイッチオーバー処理後にアクセスに関する問題が発生する可能性があります。
 
 
@@ -667,7 +636,7 @@ node_A_1
 
 ==== ミラーされていないアグリゲート、 CRS メタデータボリューム、およびデータ SVM ルートボリュームに関する考慮事項
 
-設定レプリケーションサービス（ CRS ）メタデータボリュームとデータ SVM ルートボリュームは、ミラーされたアグリゲートに配置する必要があります。これらのボリュームをミラーされていないアグリゲートに移動することはできませミラーされていないアグリゲートにある場合、ネゴシエートスイッチオーバー処理とスイッチバック処理が拒否されます。MetroCluster チェックコマンドを使用すると、この場合に警告が表示されます。
+設定レプリケーションサービス（ CRS ）メタデータボリュームとデータ SVM ルートボリュームは、ミラーされたアグリゲートに配置する必要があります。これらのボリュームをミラーされていないアグリゲートに移動することはできませミラーされていないアグリゲートにある場合、ネゴシエートスイッチオーバー処理とスイッチバック処理が拒否されます。MetroCluster check コマンドは ' その場合に警告を表示します
 
 
 
@@ -685,7 +654,6 @@ LUN がミラーされていないアグリゲート上にないようにして�
 
 === MetroCluster FC 構成での自動計画外スイッチオーバー
 
-[role="lead"]
 MetroCluster FC 構成では、サイト全体のコントローラ障害が発生した場合に、特定の状況で自動計画外スイッチオーバー（ AUSO ）がトリガーされ、ノンストップオペレーションが実現します。必要に応じて、 AUSO を無効にすることができます。
 
 
@@ -725,16 +693,16 @@ SP は、 DR パートナーとの間で SNMP トラフィックを送受信し�
 
 ==== MetroCluster FC 構成での AUSO の設定の変更
 
-デフォルトでは、 AUSO は auso-on-cluster-disaster に設定されています。MetroCluster のステータスは、 lun show コマンドで確認できます。
+デフォルトでは、 AUSO は「 auso-on-cluster-disaster 」に設定されています。MetroCluster のステータスは、 lun show コマンドで確認できます。
 
 
 NOTE: AUSO の設定は MetroCluster IP 構成には適用されません。
 
 AUSO を無効にするには、「 MetroCluster modify -auto-switchover-failure-domain auto-disabled 」コマンドを使用します。このコマンドは、 DR サイト全体のコントローラ障害時に AUSO がトリガーされないようにします。両方のサイトで AUSO を無効にする場合は、両方のサイトでコマンドを実行する必要があります。
 
-AUSO を再度有効にするには、 MetroCluster modify -auto-switchover-failure-domain auso-on-cluster-disaster コマンドを使用します。
+AUSO を再度有効にするには、「 MetroCluster modify -auto-switchover-failure-domain auso-on-cluster-disaster 」コマンドを使用します。
 
-AUSO は auso-on-dr-group-disaster に設定することもできます。この advanced レベルのコマンドは、 1 つのサイトで HA フェイルオーバーが実行されたときに AUSO をトリガーします。このコマンドは、 MetroCluster modify -auto-switchover-failure-domain auso-on-dr-group-disaster コマンドを使用して、両方のサイトで実行する必要があります。
+AUSO は「 auso-on-dr-group-disaster 」に設定することもできます。この advanced レベルのコマンドは、 1 つのサイトで HA フェイルオーバーが実行されたときに AUSO をトリガーします。このコマンドは 'dr-group-disaster コマンドを使用して ' 両方のサイトで実行する必要があります MetroCluster modify-auto-switchover-failure-domain auso-on-dr-group-da`command を使用します
 
 
 
@@ -748,19 +716,18 @@ AUSO は auso-on-dr-group-disaster に設定することもできます。この
 
 AUSO からリカバリするには、計画されたスイッチオーバーの場合と同じ手順を実行します。
 
-xref:task_perform_switchover_for_tests_or_maintenance.adoc[テストまたはメンテナンスのためのスイッチオーバーの実行]
+link:task_perform_switchover_for_tests_or_maintenance.html["テストまたはメンテナンスのためのスイッチオーバーの実行"]
 
 
 
 === MetroCluster IP 構成でのメディエーターアシスト自動計画外スイッチオーバー
 
-[role="lead"]
 MetroCluster IP 構成では、 ONTAP メディエーターを使用して障害を検出し、 Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を実行できます。
 
 
 NOTE: MetroCluster FC 構成では、 MAUSO はサポートされません。
 
-ONTAP メディエーターは、 MetroCluster IP ノード用のメールボックス LUN を提供します。これらの LUN は、 ONTAP メディエーターとともに、 MetroCluster サイトとは物理的に分離された Linux ホストに配置されます。
+ONTAP メディエーターは、 MetroCluster IP ノード用のメールボックス LUN を提供します。これらの LUN は ONTAP メディエーターと一緒に配置され、 MetroCluster サイトとは物理的に分離された Linux ホストで実行されます。
 
 MetroCluster ノードでは、このメールボックスの情報を使用して MAUSO が必要かどうかを判断します。ストレージコントローラの不揮発性メモリ（プラットフォームモデルに応じて NVRAM または NVMEM ）がパートナーサイトのリモートディザスタリカバリ（ DR ）パートナーにミラーリングされていない場合、 MAUSO は開始されません
 
@@ -768,7 +735,6 @@ MetroCluster ノードでは、このメールボックスの情報を使用し�
 
 == 修復時の動作（ MetroCluster FC 構成）
 
-[role="lead"]
 MetroCluster FC 構成での修復では、ミラーされたアグリゲートの再同期が実施され、修復されたディザスタサイトのノードがスイッチバックに向けて準備されます。計画的なイベントであるため、各手順を細かく制御してダウンタイムを最小限にすることができます。修復は、ストレージとコントローラのコンポーネントで発生する、 2 段階のプロセスです。
 
 
@@ -801,7 +767,6 @@ link:../manage/task_verifiy_that_your_system_is_ready_for_a_switchover.html["構
 
 == 修復時の動作（ MetroCluster IP 構成）
 
-[role="lead"]
 MetroCluster IP 構成での修復では、ミラーされたアグリゲートの再同期が実施され、修復されたディザスタサイトのノードがスイッチバックに向けて準備されます。計画的なイベントであるため、各手順を細かく制御してダウンタイムを最小限にすることができます。修復は、ストレージとコントローラのコンポーネントで発生する、 2 段階のプロセスです。
 
 
@@ -844,8 +809,7 @@ link:../manage/task_verifiy_that_your_system_is_ready_for_a_switchover.html["構
 
 == スイッチオーバー後の MetroCluster IP 構成でのアグリゲートの自動修復
 
-[role="lead"]
-ONTAP 9.5 以降の MetroCluster IP 構成では、ネゴシエートスイッチオーバー処理の実行中に自動的に修復が実行されます。ONTAP 9.6 以降では、計画外スイッチオーバー後の自動修復がサポートされます。これにより、 MetroCluster the 問題 heal コマンドの要件が削除されます。
+ONTAP 9.5 以降の MetroCluster IP 構成では、ネゴシエートスイッチオーバー処理の実行中に自動的に修復が実行されます。ONTAP 9.6 以降では、計画外スイッチオーバー後の自動修復がサポートされます。これにより 'MetroCluster heal-' コマンドを問題する必要がなくなります
 
 
 
@@ -857,7 +821,7 @@ ONTAP 9.5 以降の MetroCluster IP 構成では、ネゴシエートスイッ�
 +
 これらのノードはスイッチオーバーされているため、ローカルのミラーされたプレックスからはデータを提供していません。
 
-* 災害サイトのノードが Waiting for switchback 状態に移行します
+* 災害サイトのノードは「 Waiting for switchback 」状態に移行します。
 +
 ディザスタサイトのノードのステータスは、 MetroCluster operation show コマンドを使用して確認できます。
 
@@ -874,7 +838,7 @@ image::../media/mcc_so_sb_with_autoheal.gif[自動修復機能を備えた MCC s
 
 === 計画外スイッチオーバー後の自動修復（ ONTAP 9.6 以降）
 
-ONTAP 9.6 以降を実行する MetroCluster IP 構成では、計画外スイッチオーバー後の自動修復がサポートされます。計画外スイッチオーバーでは、 -forced-on-disaster true オプションを指定してスイッチオーバーコマンドを問題します。
+ONTAP 9.6 以降を実行する MetroCluster IP 構成では、計画外スイッチオーバー後の自動修復がサポートされます。計画外のスイッチオーバーでは '-forced-on-disaster true オプションを指定して 'switchover コマンドを問題します
 
 MetroCluster FC 構成では、計画外スイッチオーバー後の自動修復がサポートされません。また、 ONTAP 9.5 以前を実行する MetroCluster IP 構成では、計画外スイッチオーバー後に引き続き手動で修復コマンドを実行する必要があります。
 
@@ -884,13 +848,13 @@ ONTAP 9.6 以降を実行するシステムでは、計画外スイッチオー�
 +
 これらのノードはスイッチオーバーされているため、電源が入っていてもローカルのミラーされたプレックスからはデータを提供していません。
 
-* 災害サイトがダウンした場合は ' 起動時に災害サイト・ノードは Waiting for switchback 状態に移行します
+* 災害サイトが停止した場合は、ブート時に災害サイトのノードが「 Waiting for switchback 」状態に移行します。
 +
 災害サイトが稼働していた場合は ' ただちに Waiting for switchback 状態に移行します
 
 * 修復処理が自動的に実行されます。
 +
-ディザスタサイトのノードのステータスおよび修復処理が成功したかどうかは、 MetroCluster operation show コマンドを使用して確認できます。
+MetroCluster operation show コマンドを使用すると ' 災害サイト・ノードのステータスと ' 修復処理が成功したことを確認できます
 
 
 
@@ -900,28 +864,27 @@ image::../media/mcc_uso_with_autoheal.gif[自動修復機能を備えた MCC ソ
 
 === 自動修復が失敗した場合
 
-何らかの理由で自動修復処理が失敗した場合は、 ONTAP 9.6 より前のバージョンの ONTAP と同様に、 MetroCluster の修復コマンドを手動で問題する必要があります。修復のステータスを監視し、障害の原因を特定するには、 lun operation show コマンドおよび MetroCluster operation history show -instance コマンドを使用 MetroCluster します。
+何らかの理由で自動修復操作が失敗した場合は、 ONTAP 9.6 より前の ONTAP バージョンで行われているように、「 MetroCluster heal-」 コマンドを手動で問題する必要があります。修復のステータスを監視し、障害の原因を判別するには、 MetroCluster operation show および MetroCluster operation history show -instance コマンドを使用します。
 
 
 
 == MetroCluster 構成用の SVM の作成
 
-[role="lead"]
 MetroCluster 構成用の SVM を作成して、 MetroCluster 構成用に設定されたクラスタのデータに対して同期ディザスタリカバリおよび高可用性を提供できます。
 
 * 2 つのクラスタが MetroCluster 構成になっている必要があります。
 * 両方のクラスタ内でアグリゲートが利用可能でオンラインになっている必要があります。
 * 必要に応じて、両方のクラスタに同じ名前の IPspace を作成しておく必要があります。
-* MetroCluster 構成を形成する一方のクラスタをスイッチオーバーを使用せずにリブートすると、同期元 SVM が「 tar 」ではなく「 SVM 」としてオンラインになることがあります。
+* MetroCluster 構成を形成する一方のクラスタをスイッチオーバーを使用せずにリブートすると、同期元 SVM が「 started 」ではなく「 stopped 」とオンラインになることがあります。
 
 
 MetroCluster 構成のどちらかのクラスタに SVM を作成すると、その SVM はソース SVM として作成されます。パートナー SVM は同じ名前で自動的に作成されますが、パートナークラスタには「 -mc 」というサフィックスが付きます。SVM 名にピリオドが含まれている場合、「 -mc 」サフィックスは最初のピリオドの前に適用されます。たとえば、 SVM-MC.DNS.NAME のようになります。
 
 MetroCluster 構成では、 1 つのクラスタに 64 個の SVM を作成できます。MetroCluster 構成は最大 128 個の SVM をサポートします。
 
-. vserver create コマンドを使用します。
+. vserver create コマンドを使用します
 +
-次の例は、ローカルサイトに sync-source サブタイプの SVM と、パートナーサイトに sync-destination サブタイプの SVM を示しています。
+次の例は、ローカルサイトに「 sync-source 」のサブタイプの SVM と、パートナーサイトに「 sync-destination 」サブタイプの SVM を示しています。
 
 +
 [listing]
@@ -932,11 +895,14 @@ cluster_A::>vserver create -vserver vs4 -rootvolume vs4_root -aggregate aggr1
 Vserver creation completed
 ----
 +
-ローカルサイトに SVM vs4 が作成され、パートナーサイトに SVM vs4-mc が作成されます。
+ローカルサイトに SVM 「 vs4` 」が作成され、パートナーサイトに SVM 「 vs4-mc 」が作成されます。
 
 . 作成した SVM を表示します。
 +
-** ローカルクラスタで、 MetroCluster の設定状態を確認します
+** ローカルクラスタで、 SVM の設定状態を確認します。
++
+MetroCluster vserver show
+
 +
 次の例は、パートナー SVM とその設定状態を示しています。
 
@@ -951,7 +917,10 @@ Cluster     Vserver   Vserver    State
 cluster_A   vs4       vs4-mc     healthy
 cluster_B   vs1       vs1-mc     healthy
 ----
-** ローカルクラスタとパートナークラスタから、新しく設定した SVM の状態を確認します。「 vserver show command 」
+** ローカルクラスタとパートナークラスタから、新しく設定した SVM の状態を確認します。
++
+vserver show コマンド
+
 +
 次の例は、 SVM の管理状態と運用状態を表示します。
 
@@ -979,16 +948,15 @@ SVM の作成がルートボリュームの作成などの中間処理が原因�
 
 
 
-MetroCluster 構成用の SVM が、 1GB のルートボリュームで作成されます。同期元 SVM の状態は「 running 」、同期先 SVM の状態は「 stateまま 」です。
+MetroCluster 構成用の SVM が、 1GB のルートボリュームで作成されます。同期元 SVM の状態は「 running 」、同期先 SVM の状態は「 stopped 」です。
 
 
 
 == スイッチバック時の動作
 
-[role="lead"]
 ディザスタサイトがリカバリし、アグリゲートが修復されると、 MetroCluster のスイッチバックプロセスによって、ストレージアクセスとクライアントアクセスがディザスタリカバリサイトからホームクラスタに戻ります。
 
-MetroCluster のスイッチバックコマンドを実行すると、プライマリサイトが通常の完全な MetroCluster 動作状態に戻ります。設定に対する変更があった場合、元の SVM に反映されます。次に、データサーバ処理がディザスタサイトの同期元 SVM に返され、サバイバーサイトで動作していた同期先 SVM は非アクティブになります。
+MetroCluster switchback コマンドは ' プライマリ・サイトを通常の完全な MetroCluster 動作に戻します設定に対する変更があった場合、元の SVM に反映されます。次に、データサーバ処理がディザスタサイトの同期元 SVM に返され、サバイバーサイトで動作していた同期先 SVM は非アクティブになります。
 
 MetroCluster 構成がスイッチオーバー状態のときにサバイバーサイトで SVM が削除された場合、スイッチバックプロセスで次の処理が実行されます。
 

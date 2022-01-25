@@ -16,7 +16,6 @@ ONTAP MetroCluster コマンドと Active IQ Unified Manager （旧 OnCommand Un
 
 == MetroCluster の設定を確認しています
 
-[role="lead"]
 MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。
 
 いずれかまたは両方のクラスタに対して短時間に MetroCluster check run コマンドを 2 回発行すると ' 競合が発生し ' コマンドがすべてのデータを収集しない場合がありますそれ以降の「 MetroCluster check show 」コマンドでは、期待される出力が表示されません。
@@ -38,7 +37,7 @@ it to complete and run "metrocluster check show" to view the results. To
 check the status of the running metrocluster check operation, use the command,
 "metrocluster operation history show -job-id 2245"
 ----
-. 最新の MetroCluster check run コマンドから、より詳細な結果を表示します。
+. 最新の MetroCluster check run コマンドから ' より詳細な結果を表示します
 +
 MetroCluster check aggregate show
 
@@ -128,7 +127,6 @@ mccint-fas9000-0304
 
 == MetroCluster 設定を確認および監視するためのコマンド
 
-[role="lead"]
 ONTAP には、 MetroCluster 構成を監視し、 MetroCluster 処理を確認するためのコマンドが用意されています。
 
 
@@ -136,6 +134,8 @@ ONTAP には、 MetroCluster 構成を監視し、 MetroCluster 処理を確認�
 === MetroCluster 処理を確認するためのコマンド
 
 |===
+
+
 | 状況 | 使用するコマンド 
 
 
@@ -187,6 +187,8 @@ MetroCluster check lif show
 === MetroCluster インターコネクトの監視用コマンドです
 
 |===
+
+
 | 状況 | 使用するコマンド 
 
 
@@ -201,14 +203,16 @@ MetroCluster interconnect mirror show
 === MetroCluster SVM の監視用コマンド
 
 |===
-| 状況 | 使用するコマンド 
+
+
+| h 条件  a| 
+使用するコマンド
+
 
 
  a| 
 MetroCluster 構成の両方のサイトにあるすべての SVM を表示する
- a| 
-MetroCluster vserver show
-
+| MetroCluster vserver show 
 |===
 
 
@@ -226,7 +230,6 @@ Tiebreaker またはメディエーターをインストールおよび設定す
 
 == NetApp MetroCluster Tiebreaker ソフトウェアで障害を検出する方法
 
-[role="lead"]
 Tiebreaker ソフトウェアは Linux ホストにインストールされます。Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。これにより、サイト間リンクが停止した場合に、クラスタ内の各パートナーで ISL 障害とサイト障害を区別することができます。
 
 Linux ホストに Tiebreaker ソフトウェアをインストールしたら、災害状況を監視するように MetroCluster 構成内のクラスタを設定できます。
@@ -235,7 +238,6 @@ Linux ホストに Tiebreaker ソフトウェアをインストールしたら�
 
 === Tiebreaker ソフトウェアでサイト間接続障害を検出する方法
 
-[role="lead"]
 MetroCluster Tiebreaker ソフトウェアは、サイト間のすべての接続が失われると警告します。
 
 
@@ -268,7 +270,6 @@ Tiebreaker ソフトウェアは、サイト間接続のステータスをノー
 
 === Tiebreaker ソフトウェアでサイト障害を検出する方法
 
-[role="lead"]
 NetApp MetroCluster Tiebreaker ソフトウェアは、 MetroCluster 構成のノードおよびクラスタに到達できるかどうかをチェックして、サイト障害の有無を判断します。また、 Tiebreaker ソフトウェアは、特定の状況でアラートをトリガーします。
 
 
@@ -309,7 +310,6 @@ Tiebreaker ソフトウェアはアラートをトリガーしますが、 ONTAP
 
 === ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
 
-[role="lead"]
 ONTAP メディエーターは、メディエーターホストにあるメールボックスに MetroCluster ノードに関する状態情報を格納します。MetroCluster ノードでは、この情報を使用して DR パートナーの状態を監視し、災害発生時に Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を実装できます。
 
 スイッチオーバーが必要なサイト障害がノードで検出されると、スイッチオーバーに該当する状況であることを確認したうえでスイッチオーバーが実行されます。

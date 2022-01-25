@@ -28,7 +28,6 @@ image::../media/workflow_bridge_installation_and_configuration.gif[ワークフ�
 
 == FC-to-SAS ブリッジのインバンド管理
 
-[role="lead"]
 ONTAP 9.5 以降では、 FibreBridge 7500N / 7600N ブリッジについて、 IP 管理に代わる方法としてインバンド管理がサポートされます。ONTAP 9.8 以降では、アウトオブバンド管理は廃止されています。
 
 .このタスクについて
@@ -46,7 +45,7 @@ NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system b
 * ONTAP 9.5 よりも前のバージョンでは、アウトオブバンドの SNMP 管理のみがサポートされます。
 
 
-ブリッジ CLI コマンドは、 ONTAP インターフェイス storage bridge run-cli-namebridge-name-commandbridge-command-name コマンドから ONTAP インターフェイスで実行できます。
+ブリッジ CLI コマンド（ storage bridge run -cli-namebridge-name-commandbridge-command-name コマンドなど）は、 ONTAP インターフェイスから実行できます。
 
 
 NOTE: ブリッジの物理接続を制限することでセキュリティを向上させるために、 IP アクセスを無効にしたインバンド管理の使用を推奨します。
@@ -55,7 +54,6 @@ NOTE: ブリッジの物理接続を制限することでセキュリティを�
 
 == 設置の準備
 
-[role="lead"]
 新しい MetroCluster システムで使用するブリッジの設置を準備する際には、システムが一定の要件を満たしていることを確認する必要があります。これには、ブリッジのセットアップや構成の要件と、必要なドキュメント、 ATTO QuickNAV ユーティリティ、ブリッジファームウェアのダウンロードなどがあります。
 
 .このタスクについて
@@ -108,8 +106,7 @@ ATTO Fiberbridge の概要ページにあるリンクを使用して、このペ
 
 == FC-to-SAS ブリッジおよび SAS シェルフの設置
 
-[role="lead"]
-システムが「インストールの準備」セクションのすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。
+システムが「インストールの準備」のすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。
 
 .このタスクについて
 * ディスクとシェルフの構成は両方のサイトで同じである必要があります。
@@ -154,16 +151,22 @@ ONTAP 9.8 以降では、ブリッジの _ 帯域内管理 _ がデフォルト�
 
 .手順
 . FibreBridge 7600N ブリッジのシリアルポートにシリアルケーブルを接続して、ブリッジのコンソールインターフェイスにアクセスします。
-. コンソールを使用して、アクセスサービスを有効にし、設定を保存します。「 show closePort none 」「 aveconfiguration.
+. コンソールを使用してアクセスサービスを有効にし、設定を保存します。
 +
-set closePort none コマンドを使用すると、ブリッジ上のすべてのアクセスサービスがイネーブルになります。
-
-. 必要に応じて set closePort を発行し、必要に応じてコマンドを繰り返して、サービスを無効にします。これは、「 set closePort service 」という目的のサービスがすべて無効になるまで繰り返します
-+
-set closePort コマンドは、一度に 1 つのサービスを無効にします。
+'et closePort none`
 
 +
-service には、次のいずれかを指定できます。
+'aveConfiguration'
+
++
+'set closePort none' コマンドを使用すると、ブリッジ上のすべてのアクセスサービスがイネーブルになります。
+
+. 必要に応じてサービスを無効にするには 'set closePort_service_' を発行し ' 必要に応じてコマンドを繰り返して ' 必要なすべてのサービスを無効にします
++
+'et closePort_service_`
+
++
+'set closePort' コマンドは ' 一度に 1 つのサービスを無効にしますサービスは、次のいずれかの方法で指定できます。
 
 +
 ** エクプレスナヴ
@@ -171,14 +174,23 @@ service には、次のいずれかを指定できます。
 ** ICMP
 ** QuickNAV
 ** SNMP
-** Telnet (Telnet) - Get closePort コマンドを使用して ' 特定のプロトコルが有効になっているか無効になっているかを確認できます
+** Telnet
 
 
-. SNMP をイネーブルにする場合は、 set snmp enabled コマンドの「 set snmp enabled 」も問題する必要があります
++
+特定のプロトコルがイネーブルになっているかディセーブルになっているかを確認するには、 get closePort コマンドを使用します。
+
+. SNMP を有効にする場合は、 set snmp enabled コマンドも問題で実行する必要があります。
++
+'Set SNMP enabled
+
 +
 SNMP は、別個の enable コマンドを必要とする唯一のプロトコルです。
 
-. 設定「構成」を保存します
+. 設定を保存します。
++
+'aveConfiguration'
+
 
 
 
@@ -255,13 +267,24 @@ CLI を使用する場合は、次のコマンドを実行する必要があり�
 各サイトの 1 つのスタックグループのブリッジ名の例：
 
 +
+--
 *** bridge_A_1a
 *** bridge_A_1b
 *** bridge_B_1a
-*** bridge_B_1b CLI を使用する場合は、「 set bridgename bridgename 」コマンドを実行する必要があります
+*** bridge_B_1b
 
 
-.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 'set snmp enabled'
+--
++
+CLI を使用する場合は、次のコマンドを実行する必要があります。
+
++
+「 set bridgename bridgename 」を参照してください
+
+.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。
++
+'Set SNMP enabled
+
 +
 ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
 
@@ -332,10 +355,9 @@ SAS ポート A のみを使用している場合は、 SAS ポート B 、 C �
 [listing]
 ----
 SASPortDisable b
-----
-+
-SAS ポート B は無効になっています。
 
+SAS Port B has been disabled.
+----
 
 
 . ブリッジへのアクセスを保護し、ブリッジの設定を保存します。システムで実行している ONTAP のバージョンに応じて、次のいずれかのオプションを選択します。
@@ -640,7 +662,6 @@ link:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9
 
 == FibreBridge ブリッジをセキュリティ保護または保護解除します
 
-[role="lead"]
 安全性に問題のあるイーサネットプロトコルをブリッジで簡単に無効にできるように、 ONTAP 9.5 以降ではブリッジを保護することができます。これにより、ブリッジのイーサネットポートが無効になります。イーサネットアクセスを再度有効にすることもできます。
 
 .このタスクについて

@@ -16,7 +16,6 @@ NetApp MetroCluster Tiebreaker ソフトウェアの概要、およびどのよ�
 
 == NetApp MetroCluster Tiebreaker ソフトウェアによる障害の検出
 
-[role="lead"]
 Tiebreaker ソフトウェアは Linux ホストにインストールされます。Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。これにより、サイト間リンクが停止した場合に、クラスタ内の各パートナーで ISL 障害とサイト障害を区別することができます。
 
 Linux ホストに Tiebreaker ソフトウェアをインストールしたら、災害状況を監視するように MetroCluster 構成内のクラスタを設定できます。
@@ -25,7 +24,6 @@ Linux ホストに Tiebreaker ソフトウェアをインストールしたら�
 
 == Tiebreaker ソフトウェアでサイト障害を検出する方法
 
-[role="lead"]
 NetApp MetroCluster Tiebreaker ソフトウェアは、 MetroCluster 構成のノードおよびクラスタに到達できるかどうかをチェックして、サイト障害の有無を判断します。また、 Tiebreaker ソフトウェアは、特定の状況でアラートをトリガーします。
 
 
@@ -62,15 +60,12 @@ Tiebreaker ソフトウェアはアラートをトリガーしますが、 ONTAP
 * Tiebreaker ソフトウェアがディザスタサイトの少なくとも 1 つのノードまたはクラスタインターフェイスに到達できる、またはサバイバーサイトが FC （ NV インターコネクトとストレージ）またはクラスタ間ピアリングを介してディザスタサイトのいずれかのノードに到達できる場合
 
 
-* 関連情報 *
-
-xref:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.adoc[MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項]
+link:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html["MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項"]
 
 
 
 == Tiebreaker ソフトウェアでサイト間接続障害を検出する方法
 
-[role="lead"]
 MetroCluster Tiebreaker ソフトウェアは、サイト間のすべての接続が失われると警告します。
 
 
@@ -103,7 +98,6 @@ Tiebreaker ソフトウェアは、サイト間接続のステータスをノー
 
 == 災害のタイプが Tiebreaker ソフトウェアの検出時間に与える影響
 
-[role="lead"]
 ディザスタリカバリへの対応を適切に計画するために、 MetroCluster Tiebreaker ソフトウェアは災害を検出するまでに一定の時間を要します。この時間は「ディザスター検出時間」です。MetroCluster Tiebreaker ソフトウェアは、災害発生から 30 秒以内にサイト障害を検出し、ディザスタリカバリ処理をトリガーして災害に関する通知を送信します。
 
 検出時間は災害の種類によっても異なり、「ローリング災害」と呼ばれるシナリオによっては 30 秒を超えることもあります。ローリングディザスタの主なタイプは次のとおりです。
@@ -144,7 +138,6 @@ Tiebreaker ソフトウェアは、ノードが停止するとアラートをト
 
 == Tiebreaker の CLI とマニュアルページについて
 
-[role="lead"]
 Tiebreaker の CLI では、 Tiebreaker ソフトウェアをリモートで設定したり、 MetroCluster 構成を監視したりするためのコマンドを実行できます。
 
 CLI のコマンドプロンプトは、 NetApp MetroCluster Tiebreaker ：： > で表されます。

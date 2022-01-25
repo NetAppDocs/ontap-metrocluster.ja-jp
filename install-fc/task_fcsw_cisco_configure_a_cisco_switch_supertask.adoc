@@ -57,7 +57,6 @@ https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確�
 
 == Cisco スイッチのライセンス要件
 
-[role="lead"]
 ファブリック接続 MetroCluster 構成では、 Cisco スイッチに一部の機能ベースのライセンスが必要な場合があります。これらのライセンスを使用すると、 QoS や長距離モードクレジットなどの機能をスイッチで使用できます。MetroCluster 構成内の 4 つのスイッチすべてに、必要な機能ベースのライセンスをインストールする必要があります。
 
 MetroCluster 構成では、次の機能ベースのライセンスが必要になる場合があります。
@@ -88,7 +87,6 @@ NOTE: Cisco MDS 9250i スイッチには、固定構成の 1/10GbE IP ストレ�
 
 == Cisco FC スイッチを工場出荷時のデフォルトに設定
 
-[role="lead"]
 正しく設定するには、スイッチを工場出荷時のデフォルトに設定する必要があります。これにより、スイッチがクリーンな設定から開始されます。
 
 このタスクは、 MetroCluster 構成内のすべてのスイッチで実行する必要があります。
@@ -135,7 +133,6 @@ FC_Switch_B_1# write erase
 
 == Cisco FC スイッチの基本設定とコミュニティストリングを設定します
 
-[role="lead"]
 基本設定は 'setup' コマンドを使用して、または 'reload ' コマンドを発行した後で指定する必要があります。
 
 .手順
@@ -184,7 +181,6 @@ FC_switch_B_1# setup
 
 == ポートのライセンスを取得しています
 
-[role="lead"]
 連続する範囲のポートで Cisco スイッチライセンスを使用する必要はありません。代わりに、使用する特定のポートのライセンスを取得し、未使用のポートからライセンスを削除できます。
 
 スイッチ構成内でライセンスが付与されているポートの数を確認し、必要に応じてポート間でライセンスを移動します。
@@ -287,7 +283,6 @@ Switch_A_1# show port-resources module 1
 
 == Cisco MDS 9148 または 9148S スイッチでのポートの有効化
 
-[role="lead"]
 Cisco MDS 9148 または 9148S スイッチでは、 MetroCluster 構成で必要なポートを手動で有効にする必要があります。
 
 .このタスクについて
@@ -342,7 +337,6 @@ switch(config-if)# end
 
 == Cisco FC スイッチでの F ポートの設定
 
-[role="lead"]
 FC スイッチで F ポートを設定する必要があります。
 
 MetroCluster 構成では、 F ポートとは、スイッチを HBA イニシエータ、 FC-VI インターコネクト、および FC-to-SAS ブリッジに接続するポートです。
@@ -422,7 +416,6 @@ FC_switch_B_1# copy running-config startup-config
 
 == ISL と同じポートグループ内の F ポートにバッファ間クレジットを割り当てます
 
-[role="lead"]
 F ポートが ISL と同じポートグループに含まれている場合は、バッファ間クレジットを割り当てる必要があります。必要なバッファ間クレジットがポートにない場合、 ISL は動作しなくなる可能性があります。
 
 F ポートが ISL ポートと同じポートグループに含まれていない場合は、このタスクは必要ありません。
@@ -539,7 +532,6 @@ fc1/39                                      1        8.0 dedicated
 
 == Cisco FC スイッチでの VSAN の作成および設定
 
-[role="lead"]
 MetroCluster 構成内の各 FC スイッチに、 FC-VI ポート用の VSAN とストレージポート用の VSAN を 1 つずつ作成する必要があります。
 
 VSAN の番号と名前は一意である必要があります。フレームのインオーダー配信で 2 つの ISL を使用している場合は、追加の設定が必要です。
@@ -552,7 +544,9 @@ VSAN の番号と名前は一意である必要があります。フレームの
 | スイッチファブリック | VSAN 名 | ID 番号 
 
 
-.2+| 1.  a| 
+ a| 
+1.
+ a| 
 FCVI_1_10
  a| 
 10.
@@ -566,7 +560,9 @@ STOR_1_20
 
 
 
-.2+| 2.  a| 
+ a| 
+2.
+ a| 
 FCVI_2_30
  a| 
 30
@@ -929,7 +925,6 @@ FC_switch_B_1# copy running-config startup-config
 
 == E ポートを設定しています
 
-[role="lead"]
 ISL を接続するスイッチポート（ E ポート）を設定する必要があります。
 
 使用する手順は、使用するスイッチによって異なります。
@@ -943,7 +938,6 @@ ISL を接続するスイッチポート（ E ポート）を設定する必要�
 
 === Cisco FC スイッチでの E ポートの設定
 
-[role="lead"]
 スイッチ間リンク（ ISL ）を接続する FC スイッチポートを設定する必要があります。
 
 これらは E ポートであり、設定はポートごとに行う必要があります。そのためには、正しいバッファ間クレジット（ BBC ）数を計算する必要があります。
@@ -1588,7 +1582,6 @@ FC_switch_B_1# copy running-config startup-config
 
 === Cisco 9250i FC スイッチのデュアル ISL に対する FCIP ポートの設定
 
-[role="lead"]
 FCIP プロファイルとインターフェイスを作成して IPStorage1/1 および IPStorage1/2 GbE インターフェイスに割り当てることで、 ISL を接続する FCIP スイッチポート（ E ポート）を設定する必要があります。
 
 このタスクは、各スイッチで IPStorage1/1 および IPStorage1/2 GbE インターフェイスを使用し、スイッチファブリックごとに 2 つの ISL を使用する構成にのみ該当します。
@@ -1611,7 +1604,13 @@ image::../media/fcip_ports_dual_isl.gif[FCIP ポート、デュアル ISL]
 | スイッチファブリック | IPStorage インターフェイス | IP アドレス | ポートタイプ | FCIP インターフェイス | FCIP プロファイル | ポート | IP/port をピアリングします | VSAN ID 
 
 
-.4+| FC_switch_A_1 を使用します .2+| IPStorage1/1 .2+| a. a. a. a.  a| 
+ a| 
+FC_switch_A_1 を使用します
+ a| 
+IPStorage1/1
+ a| 
+a. a. a. a.
+ a| 
 FC-VI
  a| 
 FCIP 1.
@@ -1641,7 +1640,11 @@ c. c. c. c/3231
 
 
 
-.2+| IPStorage1/2 .2+| b.b.b.b.b.b.b.b.b  a| 
+ a| 
+IPStorage1/2
+ a| 
+b.b.b.b.b.b.b.b.b
+ a| 
 FC-VI
  a| 
 FCIP 3.
@@ -1671,7 +1674,13 @@ d. d d / 3233
 
 
 
-.4+| FC_switch_B_1 .2+| IPStorage1/1 .2+| c.c.c  a| 
+ a| 
+FC_switch_B_1
+ a| 
+IPStorage1/1
+ a| 
+c.c.c
+ a| 
 FC-VI
  a| 
 FCIP 1.
@@ -1701,7 +1710,11 @@ a. a. a/ 3221
 
 
 
-.2+| IPStorage1/2 .2+| d.d.d.d.d  a| 
+ a| 
+IPStorage1/2
+ a| 
+d.d.d.d.d
+ a| 
 FC-VI
  a| 
 FCIP 3.
@@ -1738,7 +1751,13 @@ B.B.B.b/3223
 | スイッチファブリック | IPStorage インターフェイス | IP アドレス | ポートタイプ | FCIP インターフェイス | FCIP プロファイル | ポート | IP/port をピアリングします | VSAN ID 
 
 
-.4+| FC_switch_A_2 .2+| IPStorage1/1 .2+| e.e  a| 
+ a| 
+FC_switch_A_2
+ a| 
+IPStorage1/1
+ a| 
+e.e
+ a| 
 FC-VI
  a| 
 FCIP 1.
@@ -1768,7 +1787,11 @@ G.gg/3231
 
 
 
-.2+| IPStorage1/2 .2+| f.f.f.f.f  a| 
+ a| 
+IPStorage1/2
+ a| 
+f.f.f.f.f
+ a| 
 FC-VI
  a| 
 FCIP 3.
@@ -1798,7 +1821,13 @@ H.H/3233
 
 
 
-.4+| FC_switch_B_2 .2+| IPStorage1/1 .2+| g.g.g.g.g  a| 
+ a| 
+FC_switch_B_2
+ a| 
+IPStorage1/1
+ a| 
+g.g.g.g.g
+ a| 
 FC-VI
  a| 
 FCIP 1.
@@ -1828,7 +1857,11 @@ FCIP 2.
 
 
 
-.2+| IPStorage1/2 .2+| h.h.h.h  a| 
+ a| 
+IPStorage1/2
+ a| 
+h.h.h.h
+ a| 
 FC-VI
  a| 
 FCIP 3.
@@ -1866,9 +1899,9 @@ F. F.f/3223
 +
 「機能 FCIP`
 
-. 各スイッチで、 2 つの IPStorage インターフェイス（ IPStorage1/1 および IPStorage1/2 ）を設定します。
+. 各スイッチで、 2 つの IPStorage インターフェイス（「 IPStorage1/1 」および「 IPStorage1/2 」）を設定します。
 +
-.. [[[[[[eとおり A] 、手順「 a 」 ]] 構成モードに切り替えます。
+.. [[[[[['['a ']] 構成モードに切り替えます :
 +
 「 conf t`
 
@@ -1877,7 +1910,7 @@ F. F.f/3223
 'interface_ipstorage_`
 
 +
-「 _IPstorage_` 」パラメータの値は「 IPStorage1/1 」または「 IPStorage1/2 」です。
+`_IPstorage_` パラメータ値は "`IPStorage1/1 `" または "IPStorage1/2 `" です
 
 .. 前の手順で指定した IPStorage インターフェイスの IP アドレスとサブネットマスクを指定します。
 +
@@ -1885,7 +1918,7 @@ F. F.f/3223
 
 +
 
-NOTE: 各スイッチで、 IPStorage インターフェイス「 IPStorage1/1 」と「 IPStorage1/2 」に異なる IP アドレスを指定する必要があります。
+NOTE: 各スイッチで、 IPStorage インターフェイス「 IPStorage1/1 」と「 IPStorage1/2 」には異なる IP アドレスを指定する必要があります。
 
 .. MTU サイズを 2500 に指定します。
 +
@@ -1895,7 +1928,7 @@ NOTE: 各スイッチで、 IPStorage インターフェイス「 IPStorage1/1 �
 +
 「シャットダウンなし」
 
-.. [[[</Z1>[</Z1>[eite_f,"f"] 構成モードを終了します： </Z2>
+.. [[suf, 手順 "f`"] 構成モードを終了します。
 +
 「 exit
 
@@ -1955,7 +1988,7 @@ tcp pmtu-enable reset-timeout 3600
 interface fcp_fcp_interface_`
 
 +
-パラメータの値は '_fcp_interface_' で ' プロファイル設定の表に示すように '1'2'3' または 4' です
+パラメータの値は '_fcp_interface_' で ' プロファイル設定テーブルに表示されているように '1''2`'3`' または 4` です
 
 +
 .. 前の手順で作成したプロファイルにインターフェイスをマッピングします。
@@ -1971,7 +2004,7 @@ interface fcp_fcp_interface_`
 「 tcp-connection_connection-#_ 」
 
 +
-パラメータの値は 'FC-VI プロファイルの場合は 2 ' ストレージ・プロファイルの場合は 5 です
+パラメータの値は 'FC-VI プロファイルの場合は 2'' ストレージ・プロファイルの場合は 5' です
 
 .. 圧縮を無効にします。
 +
@@ -1981,7 +2014,7 @@ interface fcp_fcp_interface_`
 +
 「シャットダウンなし」
 
-.. 制御 TCP 接続を 48 、データ接続を 26 に設定して、 Differentiated Services Code Point （ DSCP ）値を持つすべてのパケットをマークします。
+.. 制御 TCP 接続を「 48 」に設定し、データ接続を「 26 」に設定して、 DSCP 値が異なるすべてのパケットをマークします。
 +
 'qos control 48 data 26`
 
@@ -2018,7 +2051,7 @@ interface fcp_fcp_interface_`
 'witchport trunk allowed vsan_vsan_id_`
 
 +
-VSAN_id_parameter の値は、 FC-VI プロファイルでは「 vsan 10 」、ストレージプロファイルでは「 vsan 20 」です。
+_vsan_id_parameter 値は 'FC-VI プロファイルの場合は「 VSAN 10 」 ' ストレージ・プロファイルの場合は「 VSAN 20 」です
 
 .. ポートの速度を設定します。
 +
@@ -2359,7 +2392,6 @@ exit
 
 == Cisco FC スイッチでゾーニングを設定する
 
-[role="lead"]
 スイッチポートを別々のゾーンに割り当てて、ストレージ（ HBA ）とコントローラ（ FC-VI ）のトラフィックを分離する必要があります。
 
 この手順は、両方の FC スイッチファブリックで実行する必要があります。
@@ -2424,7 +2456,7 @@ FC_switch_B_1# copy running-config startup-config
 . ゾーンの基本設定を行います。
 +
 --
-.. デフォルトのゾーニングポリシーを「 permit 」に設定します。
+.. デフォルトのゾーニング・ポリシーを "permit" に設定します
 +
 no system default zone default-zone permit
 
@@ -2640,7 +2672,6 @@ FC_switch_A_1# copy running-config startup-config
 
 == FC スイッチの設定を保存しておきます
 
-[role="lead"]
 すべてのスイッチで、 FC スイッチの設定がスタートアップ設定に保存されたことを確認する必要があります。
 
 両方の FC スイッチファブリックに対して次のコマンドを問題で実行します。

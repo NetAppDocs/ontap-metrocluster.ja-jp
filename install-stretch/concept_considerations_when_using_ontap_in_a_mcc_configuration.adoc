@@ -31,7 +31,6 @@ MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 Metro
 
 == ONTAP System Manager での MetroCluster 処理
 
-[role="lead"]
 ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実行できる MetroCluster 固有の処理もあります。
 
 * MetroCluster IP 構成でのスイッチオーバーとスイッチバック（ ONTAP 9.7 以降）
@@ -45,7 +44,6 @@ ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実�
 
 == MetroCluster 構成での FlexCache のサポート
 
-[role="lead"]
 ONTAP 9.7 以降では、 MetroCluster 構成で FlexCache ボリュームがサポートされます。スイッチオーバーまたはスイッチバック処理後の手動廃止の要件を理解しておく必要があります。
 
 
@@ -78,10 +76,9 @@ MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッ�
 
 == MetroCluster 構成での FabricPool のサポート
 
-[role="lead"]
 ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。
 
-FabricPool の使用に関する一般的な情報については、を参照してください link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"]。
+FabricPool の使用に関する一般的な情報については、を参照してください link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"^]。
 
 
 
@@ -100,13 +97,13 @@ FabricPool の使用に関する一般的な情報については、を参照し
 === ミラーリングされた FabricPool で使用するアグリゲートを設定する
 
 
-NOTE: アグリゲートを設定する前に、 FabricPool の「 MetroCluster 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"]。
+NOTE: アグリゲートを設定する前に、 FabricPool の「 MetroCluster 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"^]。
 
 FabricPool で使用するアグリゲートを設定するには、次の手順を実行します。
 
 . アグリゲートを作成するか、既存のアグリゲートを選択します。
 . アグリゲートを MetroCluster 構成内の標準のミラーアグリゲートとしてミラーリングします。
-. の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"]：
+. の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"^]：
 +
 .. プライマリオブジェクトストアを接続します。
 +
@@ -130,7 +127,6 @@ ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサ
 
 == MetroCluster 構成のジョブスケジュール
 
-[role="lead"]
 ONTAP 9.3 以降では、ユーザが作成したジョブスケジュールが MetroCluster 構成のクラスタ間で自動的にレプリケートされます。クラスタでジョブスケジュールを作成、変更、または削除すると、 Configuration Replication Service （ CRS ）を使用して同じスケジュールがパートナークラスタに自動的に作成されます。
 
 
@@ -140,7 +136,6 @@ NOTE: システムによって作成されたスケジュールはレプリケ�
 
 == MetroCluster サイトから第 3 のクラスタへのクラスタピアリング
 
-[role="lead"]
 ピアリング設定はレプリケートされないため、 MetroCluster 構成のどちらかのクラスタを構成外の第 3 のクラスタにピアリングする場合は、パートナーの MetroCluster クラスタでもピアリングを設定する必要があります。これにより、スイッチオーバーが発生してもピアリングが維持されます。
 
 MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている必要があります。そうでない場合、両方の MetroCluster パートナーでピアリングが設定されていても、スイッチオーバーが発生するとピアリングが失われます。
@@ -155,18 +150,14 @@ MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている�
 
 == MetroCluster 構成用のネットワーク設定および LIF 作成ガイドライン
 
-[role="lead"]
 MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。
 
-* 関連情報 *
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"^]
 
 
 
 === IPspace オブジェクトのレプリケーションとサブネットの設定の要件
 
-[role="lead"]
 パートナークラスタに IPspace オブジェクトをレプリケートするための要件、および MetroCluster 構成でサブネットと IPv6 を設定するための要件を理解しておく必要があります。
 
 
@@ -223,7 +214,6 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 
 === MetroCluster 構成での LIF の作成に関する要件
 
-[role="lead"]
 MetroCluster 構成でネットワークを設定するときは、 LIF の作成に関する要件に注意する必要があります。
 
 LIF を作成する際は、次のガイドラインを考慮する必要があります。
@@ -245,7 +235,6 @@ MetroCluster 構成内で LIF が正常に作成されたことを確認する�
 
 === LIF のレプリケーションおよび配置の要件と問題
 
-[role="lead"]
 MetroCluster 構成での LIF のレプリケーションの要件を理解しておく必要があります。また、レプリケートされた LIF がパートナークラスタにどのように配置されるかを把握し、 LIF のレプリケーションまたは LIF の配置に失敗した場合に発生する問題について確認しておく必要があります。
 
 
@@ -257,6 +246,8 @@ MetroCluster 構成内の 1 つのクラスタに LIF を作成すると、そ�
 LIF をレプリケートしてパートナークラスタに配置するには、システムが次の条件を満たしている必要があります。
 
 |===
+
+
 | 条件 | LIF タイプ： FC | LIF タイプ： IP / iSCSI 
 
 
@@ -355,7 +346,6 @@ NOTE: ソース SVM がダウンしている場合でも、デスティネーシ
 
 === ルートアグリゲートでのボリューム作成
 
-[role="lead"]
 MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシーが CFO ）に新しいボリュームを作成することはできません。
 
 この制限があるため、ルートアグリゲートを vserver add-aggregates コマンドで SVM に追加することはできません。
@@ -364,7 +354,6 @@ MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシ
 
 == MetroCluster 構成の SVM ディザスタリカバリ
 
-[role="lead"]
 ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。
 
 SVM を SnapMirror ディザスタリカバリで使用する場合は、次の要件と制限事項に注意してください。
@@ -393,13 +382,12 @@ image::../media/svm_dr_image_2.gif[SVM DR イメージ 2.]
 
 
 
-の「 SVM の設定のレプリケート」セクションを参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/GUID-983EDECC-A085-46DC-AF11-6FF9C474ABAE.html["CLI によるデータ保護"] SVM DR 関係の設定の詳細については、を参照してください。
+の「 SVM の設定のレプリケート」セクションを参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/GUID-983EDECC-A085-46DC-AF11-6FF9C474ABAE.html["CLI によるデータ保護"^] SVM DR 関係の設定の詳細については、を参照してください。
 
 
 
 === ディザスタリカバリサイトでの SVM の再同期
 
-[role="lead"]
 再同期では、 MetroCluster 構成の Storage Virtual Machine （ SVM ）ディザスタリカバリ（ DR ）ソースが MetroCluster でないサイトのデスティネーション SVM からリストアされます。
 
 再同期中は、次の図に示すように、ソース SVM （ cluster_A ）が一時的にデスティネーション SVM として機能します。
@@ -427,29 +415,26 @@ image::../media/svm_dr_resynchronization.gif[SVM DR 再同期化]
 
 == 2 ノードストレッチ MetroCluster 構成での storage disk show コマンドおよび storage shelf show コマンドの出力
 
-[role="lead"]
 2 ノードストレッチ MetroCluster 構成では、「 storage disk show 」コマンドと「 storage shelf show 」コマンドの「 is-local-attach 」フィールドに、ディスクとストレージシェルフがどのノードに接続されているかに関係なく、すべてローカルとして表示されます。
 
 
 
 == MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない
 
-[role="lead"]
 MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、「 failed 」と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。
 
 
 
 == スイッチオーバー発生時に NVFAIL フラグを設定するためのボリュームの変更
 
-[role="lead"]
 MetroCluster スイッチオーバーが発生した場合に NVFAIL フラグが設定されるようにボリュームを変更することができます。NVFAIL フラグが設定されたボリュームは、一切変更されなくなります。コミットされた書き込みがスイッチオーバー後に失われたと想定してボリュームを処理する必要がある場合は、この変更が必要となります。
 
 
 NOTE: 9.0 よりも前のバージョンの ONTAP では、スイッチオーバーのたびに NVFAIL フラグが設定されます。ONTAP 9.0 以降のバージョンでは、計画外スイッチオーバー（ USO ）が使用されます。
 
 .手順
-. スイッチオーバー時に MetroCluster 構成で NVFAIL をトリガーするには、「 vol-dr-force-nvfail 」パラメータを on に設定します。
+. スイッチオーバー時に MetroCluster 構成が NVFAIL をトリガーできるようにするには、「 vol-dr-force-nvfail 」パラメータを「 on 」に設定します。
 +
-`*vol modify -vserver_name_-volume -name_-dr-force-nvfail on *`
+vol modify -vserver_name_-volume_name_-dr-force-nvfail on `
 
 

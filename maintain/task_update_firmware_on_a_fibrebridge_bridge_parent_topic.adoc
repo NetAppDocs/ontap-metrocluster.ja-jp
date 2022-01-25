@@ -16,7 +16,6 @@ summary: ブリッジファームウェアを更新するための手順は、�
 
 == ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新
 
-[role="lead"]
 FibreBridge ブリッジのファームウェアを更新して、最新の機能を実装したり、潜在的な問題を解決したりすることが必要になる場合があります。この手順は、 ONTAP 9.4 以降を実行している構成の FibreBridge 7600N / 7500N ブリッジに使用します。
 
 * MetroCluster 構成が正常に動作している必要があります。
@@ -25,7 +24,7 @@ FibreBridge ブリッジのファームウェアを更新して、最新の機�
 * 管理パスワードと HTTP サーバへのアクセスが必要です。
 * サポートされているファームウェアバージョンを使用している必要があります。
 +
-https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 +
 IMT では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。
@@ -38,22 +37,22 @@ IMT では、 Storage 解決策フィールドを使用して MetroCluster 解�
 NOTE: これはシステムの停止を伴わない手順であり、完了までに約 30 分かかります。
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . メンテナンスの開始を通知する AutoSupport メッセージを起動します。
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance window-in-hours __ *
+'system node AutoSupport invoke -node * -type all -message MAINT=_maintenance-window-in-hours_`
 
 +
-maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
+「 maintenance-window-in-hours 」には、メンテナンス・ウィンドウの長さを 72 時間まで指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
 
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=end *
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
 . ATTO FibreBridge のページに移動し、ブリッジに適したファームウェアを選択します。
 +
-https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/downloads-tab["ATTO FibreBridge ファームウェアのダウンロードページ"]
+https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/downloads-tab["ATTO FibreBridge ファームウェアのダウンロードページ"^]
 
 . 「注意 / 必ずお読みください」と「エンドユーザ契約」を確認し、チェックボックスをクリックして同意してください。
 . コントローラモジュールからアクセス可能なネットワーク上の場所にファームウェアファイルを配置します。
@@ -62,14 +61,14 @@ https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/download
 
 . advanced 権限レベルに切り替えます。
 +
-「 * set -privilege advanced * 」のように指定します
+「 advanced 」の権限が必要です
 
 +
-advanced モードで続行するかどうかを尋ねられたら、「 * y * 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
+advanced モードで続行するかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
 
 . 次のコマンドを使用して、ブリッジファームウェアを更新します。
 +
-'*storage bridge firmware update -bridge name -uri_url-of-firmware-pACKUE_*
+storage bridge firmware update -bridge name -uri_url-of-firmware-pACKUE_`
 
 +
 [listing]
@@ -78,14 +77,14 @@ cluster_A> storage bridge firmware update -bridge bridge_A_1a -uri http://192.16
 ----
 . admin 権限レベルに戻ります。
 +
-'*set -privilege admin*
+「特権管理者」
 
 . ファームウェアのアップグレードが完了したことを確認します。
 +
-「 * job show -name 」 _job-name_"*` 」を参照してください
+「 job show -name 」 _job-name_"" 」を参照してください
 
 +
-次の例は、ジョブ * storage bridge firmware update * が実行中であることを示しています。
+次の例は ' ジョブ storage bridge firmware update ` がまだ実行中であることを示しています
 
 +
 [listing]
@@ -122,7 +121,7 @@ Description: Storage bridge firmware update job
 +
 ** ONTAP 9.4 を実行している場合はインバンド管理がサポートされないため、ブリッジコンソールからコマンドを実行する必要があります。
 +
-... ブリッジのコンソールで「 * flashimages * 」コマンドを実行し、正しいファームウェアバージョンが表示されることを確認します。
+... ブリッジのコンソールで「 flashimages 」コマンドを実行し、正しいファームウェアバージョンが表示されることを確認します。
 +
 
 NOTE: 次の例では、プライマリフラッシュイメージに新しいファームウェアイメージが表示され、セカンダリフラッシュイメージに古いイメージが表示されています。
@@ -143,12 +142,12 @@ Secondary 3.15 002S
 Ready.
 ----
 +
-.. ブリッジから「 * firmwareerestart * 」コマンドを実行して、ブリッジを再起動します。
+.. ブリッジから「 firmwareerestart 」コマンドを実行して、ブリッジを再起動します。
 +
 *** ONTAP 9.5 以降を実行している場合はインバンド管理がサポートされるため、クラスタプロンプトからコマンドを実行できます。
 
 
-.. 「 * storage bridge run -cli-name_bridge-name_command FlashImages * 」コマンドを実行します。
+.. storage bridge run-cli-name_bridge-name_command FlashImages' コマンドを実行します
 +
 
 NOTE: 次の例では、プライマリフラッシュイメージに新しいファームウェアイメージが表示され、セカンダリフラッシュイメージに古いイメージが表示されています。
@@ -169,7 +168,10 @@ Ready.
 
 [Job 2257] Job succeeded.
 ----
-.. 必要に応じて、ブリッジを再起動します。「 * storage bridge run -cli -name ATTO_7500N _IB_1 - Command FirmwareRestart * 」
+.. 必要に応じて、ブリッジを再起動します。
++
+「 storage bridge run -cli -name ATTO_7500N _IB_1 - Command FirmwareRestart 」を参照してください
+
 +
 
 NOTE: ATTO ファームウェアバージョン 2.95 以降ではブリッジが自動的に再起動するため、この手順は不要です。
@@ -178,7 +180,7 @@ NOTE: ATTO ファームウェアバージョン 2.95 以降ではブリッジが
 
 . ブリッジが正常に再起動したことを確認します。
 +
-*sysconfig *
+「 sysconfig 」を使用できます
 
 +
 システムは、マルチパスハイアベイラビリティ（両方のコントローラがブリッジ経由で各スタックのディスクシェルフにアクセス可能）用にケーブル接続されている必要があります。
@@ -195,7 +197,7 @@ System Storage Configuration: Quad-Path HA
 ----
 . FibreBridge ファームウェアが更新されたことを確認します。
 +
-「 * storage bridge show -fields fw-version 、 symbolic -name * 」を指定します
+storage bridge show -fields fw-version 、 symbolic -name
 
 +
 [listing]
@@ -211,7 +213,7 @@ ATTO_20000010affeaffa 3.10 A06X bridge_A_2b
 ----
 . ブリッジのプロンプトからパーティションが更新されたことを確認します。
 +
-「 * flashimages * 」を参照してください
+「 flashimages 」と入力します
 
 +
 プライマリフラッシュイメージに新しいファームウェアイメージが表示され、セカンダリフラッシュイメージに古いイメージが表示されます。
@@ -232,7 +234,7 @@ flashimages
 . 手順 5 ～ 10 を繰り返して、両方のフラッシュイメージが同じバージョンに更新されることを確認します。
 . 両方のフラッシュイメージが同じバージョンに更新されていることを確認します。
 +
-「 * flashimages * 」を参照してください
+「 flashimages 」と入力します
 
 +
 出力には、両方のパーティションで同じバージョンが表示されます。
@@ -257,16 +259,16 @@ flashimages
 
 == ONTAP 9.3.x 以前を実行している構成での FibreBridge 7500N / 6500N ブリッジのファームウェアの更新
 
-[role="lead"]
 FibreBridge ブリッジのファームウェアを更新して、最新の機能を実装したり、潜在的な問題を解決したりすることが必要になる場合があります。この手順は、 ONTAP 9.3.x を実行している構成の FibreBridge 7500N 、またはサポート対象のすべてのバージョンの ONTAP の FibreBridge 6500N ブリッジに使用します。
 
+.作業を開始する前に
 * MetroCluster 構成が正常に動作している必要があります。
 * MetroCluster 構成内のすべての FibreBridge ブリッジが稼働している必要があります。
 * すべてのストレージパスが使用可能である必要があります。
 * 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
 * サポートされているファームウェアバージョンを使用している必要があります。
 +
-https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 +
 IMT では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。
@@ -275,7 +277,7 @@ IMT では、 Storage 解決策フィールドを使用して MetroCluster 解�
 
 このタスクは、 FibreBridge 7500N または 6500N ブリッジで使用できます。ONTAP 9.3 以降では、 ONTAP storage bridge firmware update コマンドを使用して、 FibreBridge 7500N ブリッジのブリッジファームウェアを更新できます。
 
-xref:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.adoc[ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新]
+link:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html["ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新"]
 
 このタスクは、 MetroCluster 構成内の各 FibreBridge ブリッジで実行し、すべてのブリッジで同じファームウェアバージョンが実行されるようにする必要があります。
 
@@ -285,17 +287,17 @@ NOTE: これはシステムの停止を伴わない手順であり、完了ま�
 .手順
 . メンテナンスの開始を通知する AutoSupport メッセージを起動します。
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance window-in-hours __ *
+'system node AutoSupport invoke -node * -type all -message MAINT=_maintenance-window-in-hours_`
 
 +
-`_maintenance-window-in-hours_ は、メンテナンス・ウィンドウの長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
+"`_maintenance-window-in-hours_`" には、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
 
 +
-*system node AutoSupport invoke -node * -type all -message MAINT=end *
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
 . ATTO FibreBridge のページに移動し、ブリッジに適したファームウェアを選択します。
 +
-https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/downloads-tab["ATTO FibreBridge ファームウェアのダウンロードページ"]
+https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/downloads-tab["ATTO FibreBridge ファームウェアのダウンロードページ"^]
 
 . 「注意 / 必ずお読みください」と「エンドユーザ契約」を確認し、チェックボックスをクリックして同意してください。
 . ATTO FibreBridge Firmware Download ページで、手順の手順 1~3 を実行してブリッジファームウェアファイルをダウンロードします。
@@ -305,13 +307,19 @@ https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/download
 .. FibreBridge ブリッジにファームウェアをインストールします。
 +
 *** ATTO FibreBridge 7500N ブリッジを使用している場合は、 _ATTO FibreBridge 7500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。
-*** ATTO FibreBridge 6500N ブリッジを使用している場合は、 _ATTO FibreBridge 6500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。+ * 注意： * ここで、個々のブリッジの電源を再投入してください。スタックの両方のブリッジの電源を同時に投入すると、コントローラがドライブにアクセスできなくなり、プレックスや複数のディスクで障害が発生する可能性があります。
+*** ATTO FibreBridge 6500N ブリッジを使用している場合は、 _ATTO FibreBridge 6500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。
++
+* 注意： * ここで個々のブリッジの電源を再投入してください。スタックの両方のブリッジの電源を同時に投入すると、コントローラがドライブにアクセスできなくなり、プレックスや複数のディスクで障害が発生する可能性があります。
+
 +
 ブリッジが再起動します。
 
 
 
-.. いずれかのコントローラのコンソールで、ブリッジが正常に再起動したことを確認します。 +`*sysconfig *`
+.. いずれかのコントローラのコンソールで、ブリッジが正常に再起動したことを確認します。
++
+「 sysconfig 」を使用できます
+
 +
 システムは、マルチパスハイアベイラビリティ（両方のコントローラがブリッジ経由で各スタックのディスクシェルフにアクセス可能）用にケーブル接続されている必要があります。
 
@@ -325,7 +333,10 @@ System Serial Number: 200012345678 (cluster_A-01)
 System Rev: A4
 System Storage Configuration: Quad-Path HA
 ----
-.. いずれかのコントローラのコンソールで、 FibreBridge ファームウェアが更新されていることを確認します。 +`* storage bridge show -fields fw-version 、 symbolic-name*`
+.. いずれかのコントローラのコンソールで、 FibreBridge ファームウェアが更新されていることを確認します。
++
+storage bridge show -fields fw-version 、 symbolic -name
+
 +
 [listing]
 ----
@@ -339,7 +350,10 @@ cluster_A::> storage bridge show -fields fw-version,symbolic-name
  4 entries were displayed.
 ----
 .. 同じブリッジで上記の手順を繰り返して、 2 つ目のパーティションを更新します。
-.. 両方のパーティションが更新されていることを確認します :+`*flashimagions*`
+.. 両方のパーティションが更新されたことを確認します。
++
+「 flashimages 」と入力します
+
 +
 出力には、両方のパーティションで同じバージョンが表示されます。
 

@@ -12,12 +12,15 @@ summary: FibreBridge 7600N ブリッジは、 ONTAP 9.5 以降で、 FibreBridge
 [role="lead"]
 FibreBridge 7600N ブリッジは、 ONTAP 9.5 以降で、 FibreBridge 7500N / 6500N ブリッジを交換する場合、または MetroCluster 構成に新しいストレージを追加する場合にサポートされます。ゾーニング要件とブリッジの FC ポートの使用に関する制限事項は、 FibreBridge 7500N ブリッジと同じです。
 
-https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 
 NOTE: ONTAP 9.8 以降を実行している構成では、 FibreBridge 6500N ブリッジはサポートされません。
 
+[cols="27,19,27,27"]
 |===
+
+
 | ユースケース | ゾーニングの変更が必要か | 制限事項 | 手順 
 
 
@@ -46,10 +49,12 @@ link:task_replace_a_sle_fc_to_sas_bridge.html#hot-swapping-a-fibrebridge-6500n-b
  a| 
 新しい FibreBridge 7600N ブリッジペアを追加して、新しいストレージを追加します
  a| 
-はい新しいブリッジの FC ポートごとにストレージゾーンを追加する必要があります。
+はい。
+
+新しいブリッジの各 FC ポート用のストレージゾーンを追加する必要があります。
  a| 
 FC スイッチファブリック（ファブリック接続 MetroCluster 構成）またはストレージコントローラ（ストレッチ MetroCluster 構成）に使用可能なポートが必要です。 FibreBridge 7500N / 7600N ブリッジペアは、それぞれ最大 4 つのスタックをサポートできます。
  a| 
-xref:task_fb_hot_add_stack_of_shelves_and_bridges.adoc[MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド]
+link:task_fb_hot_add_stack_of_shelves_and_bridges.html["MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド"]
 
 |===

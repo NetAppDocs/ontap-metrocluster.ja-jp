@@ -16,7 +16,6 @@ summary:
 
 == ネゴシエートスイッチオーバーを検証中
 
-[role="lead"]
 ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。
 
 このテストでは、クラスタを 2 つ目のデータセンターに切り替えてデータの可用性に影響がないことを検証します。ただし、 Microsoft Server Message Block （ SMB ；サーバメッセージブロック）プロトコルおよび Solaris Fibre Channel プロトコルは除きます。
@@ -75,7 +74,7 @@ MetroCluster スイッチオーバー
 ----
 cluster_A::> metrocluster switchover
 Warning: negotiated switchover is about to start. It will stop all the data Vservers on cluster "cluster_B" and
-automatically re-start them on cluster "cluster_A". It will finally gracefully shutdown cluster "cluster_B".
+automatically re-start them on cluster "`cluster_A`". It will finally gracefully shutdown cluster "cluster_B".
 ----
 . ローカルクラスタが設定済みの状態でスイッチオーバーモードになっていることを確認します。
 +
@@ -115,7 +114,6 @@ cluster_A::> metrocluster operation show
 
 == 修復と手動スイッチバックの検証
 
-[role="lead"]
 修復処理と手動スイッチバック処理をテストするには、ネゴシエートスイッチオーバー後にクラスタを元のデータセンターにスイッチバックして、データの可用性に影響がないことを検証します（ SMB および Solaris FC 構成を除く）。
 
 このテストには約 30 分かかります。
@@ -221,7 +219,7 @@ Group Cluster Node               State          Mirroring Mode
 
 2 entries were displayed.
 ----
-. MetroCluster オペレーションのステータスを確認します
+. ステータスを確認します。
 +
 「 MetroCluster operation show 」を参照してください
 
@@ -244,7 +242,6 @@ cluster_A::> metrocluster operation show
 
 == 単一の FC-to-SAS ブリッジの停止
 
-[role="lead"]
 単一の FC-to-SAS ブリッジの障害をテストして、単一点障害がないことを確認できます。
 
 このテストには約 15 分かかります。
@@ -299,7 +296,6 @@ Disk             Error Type        Error Text
 
 == 電源回線切断後の動作確認
 
-[role="lead"]
 MetroCluster 構成で PDU の障害が発生した場合の対応をテストできます。
 
 ベストプラクティスとして、コンポーネントの各電源装置（ PSU ）を別々の電源装置に接続することを推奨します。両方の PSU を同じ配電ユニット（ PDU ）に接続している場合、停電が発生したときに、サイトが停止したりシェルフ全体が使用できなくなったりする可能性があります。1 本原因の電源回線に障害が発生した場合に、サービスが中断する可能性があるケーブル接続の不一致がないかどうかをテストします。
@@ -360,7 +356,6 @@ Power               Critical condition is detected in storage shelf power supply
 
 == スイッチファブリック障害後の動作確認
 
-[role="lead"]
 スイッチファブリックを無効にして、データの可用性に影響がないことを確認できます。
 
 このテストには約 15 分かかります。
@@ -437,7 +432,6 @@ FC_switch_B_1::> switchenable
 
 == 単一のストレージシェルフが停止したあとの動作確認
 
-[role="lead"]
 単一のストレージシェルフの障害をテストして、単一点障害がないことを確認できます。
 
 この手順の想定される結果は次のとおりです。
@@ -600,7 +594,7 @@ Owner Node: node_A_2
 「 storage aggregate show -r -node node_name ！ * root 」
 
 +
-次の例に示すように、電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスが「 degraded 」になり、影響を受けたプレックスのドライブのステータスが「 failed 」になります。
+電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスは「 degraded 」になり、影響を受けたプレックスのドライブのステータスは「 failed 」になります。次に例を示します。
 
 +
 [listing]
@@ -719,7 +713,7 @@ SVM2
 「 storage aggregate show
 
 +
-次の例に示すように、影響を受けたアグリゲートの RAID ステータスが「 resyncing 」になります。
+次の例に示すように、影響を受けたアグリゲートの RAID ステータスは「 resyncing 」になります。
 
 +
 [listing]
@@ -751,7 +745,7 @@ node_A_2_root
 「 storage aggregate show
 
 +
-次の例に示すように、影響を受けるアグリゲートの RAID ステータスが「 normal 」になります。
+次の例に示すように、影響を受けるアグリゲートの RAID ステータスは「 normal 」になります。
 
 +
 [listing]

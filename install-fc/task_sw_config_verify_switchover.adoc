@@ -129,7 +129,9 @@ DNS ネームサーバ
 
 
  a| 
-このガイドで使用しているノード 1 の例： controller_A_1
+ノード 1
+
+このガイドで使用している例： controller_A_1
  a| 
  a| 
  a| 
@@ -138,7 +140,9 @@ DNS ネームサーバ
 
 
  a| 
-2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合、ノード 2 は必要ありません。
+ノード 2
+
+2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は不要
 
 このガイドで使用している例： controller_A_2
  a| 
@@ -178,7 +182,9 @@ DNS ネームサーバ
 
 
  a| 
-2 ノード MetroCluster 構成（サイトごとに 1 つのノード）の場合、ノード 2 IC LIF 1 は不要です。
+ノード 2 IC LIF 1
+
+2 ノード MetroCluster 構成（サイトごとに 1 つのノード）の場合は不要
  a| 
  a| 
  a| 
@@ -379,7 +385,7 @@ HTTP 、 HTTPS 、または SMTP
  a| 
 クラスタ名
 
-このガイドで使用している例： site_B
+使用例： site_B
  a| 
 
 
@@ -422,7 +428,7 @@ DNS ネームサーバ
  a| 
 ノード 1
 
-このガイドで使用している例： controller_B_1
+使用例： controller_B_1
  a| 
  a| 
  a| 
@@ -435,7 +441,7 @@ DNS ネームサーバ
 
 2 ノード MetroCluster 構成（サイトごとに 1 つのノード）の場合は不要
 
-このガイドで使用している例： controller_B_2
+使用例： controller_B_2
  a| 
  a| 
  a| 
@@ -614,7 +620,6 @@ HTTP 、 HTTPS 、または SMTP
 
 == 標準クラスタ構成と MetroCluster 構成の類似点 / 相違点
 
-[role="lead"]
 MetroCluster 構成の各クラスタのノードの構成は、標準クラスタのノードと似ています。
 
 MetroCluster 構成は、 2 つの標準クラスタを基盤としています。構成は物理的に対称な構成である必要があり、各ノードのハードウェア構成が同じで、すべての MetroCluster コンポーネントがケーブル接続され、設定されている必要があります。ただし、 MetroCluster 構成のノードの基本的なソフトウェア設定は、標準クラスタのノードと同じです。
@@ -691,8 +696,6 @@ MetroCluster 設定を有効にします。
 == システムのデフォルト設定をリストアし、コントローラモジュールで HBA タイプを設定しています
 
 MetroCluster を正しくインストールするには、コントローラモジュールのデフォルトをリセットしてリストアします。
-
-* 重要 * ：
 
 このタスクを実行する必要があるのは、 FC-to-SAS ブリッジを使用するストレッチ構成のみです。
 
@@ -794,7 +797,7 @@ fcadmin show`
 +
 コマンドの実行後、ブートメニューが表示されるまで待ちます。
 
-. ブートメニュープロンプトで wipeconfig と入力してノード設定をクリアし、 Enter キーを押します。
+. ブートメニュープロンプトで「 wipeconfig 」と入力してノード設定をクリアし、 Enter キーを押します。
 +
 次の画面はブートメニューのプロンプトを示しています。
 
@@ -825,7 +828,6 @@ Please choose one of the following:
 
 == FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
 
-[role="lead"]
 FAS8020 システムで X1132A-R6 クアッドポートカードを使用している場合は、メンテナンスモードに切り替えて、ポート 1a / 1b を FC-VI およびイニシエータ用に使用するように設定できます。工場出荷状態の MetroCluster システムでは、構成に応じて適切にポートが設定されているため、この設定は必要ありません。
 
 このタスクはメンテナンスモードで実行する必要があります。
@@ -931,7 +933,6 @@ controller_B_1
 
 == メンテナンスモードでの 8 ノードまたは 4 ノード構成のディスク割り当ての検証
 
-[role="lead"]
 システムを ONTAP で完全にブートする前に、オプションで、メンテナンスモードでブートしてノードのディスク割り当てを確認することができます。ディスクは、各プールのディスク数が等しい、完全に対称なアクティブ / アクティブ構成を形成するように割り当てられている必要があります。
 
 新しい MetroCluster システムの場合、出荷前にディスク割り当てが完了しています。
@@ -1581,7 +1582,6 @@ DR パートナーのプール 1
 
 == メンテナンスモードでコンポーネントの HA 状態を確認および設定する
 
-[role="lead"]
 MetroCluster 構成でストレージシステムを構成する場合は、それらのコンポーネントが適切にブートするように、コントローラモジュールおよびシャーシコンポーネントのハイアベイラビリティ（ HA ）状態が mcc または mcc-2n であることを確認する必要があります。
 
 システムをメンテナンスモードにする必要があります。
@@ -1693,7 +1693,6 @@ ha-config modify chassis mccip
 
 == ONTAP をセットアップしています
 
-[role="lead"]
 各コントローラモジュールに ONTAP をセットアップする必要があります。
 
 新しいコントローラをネットブートする必要がある場合は、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-upgrade/GUID-3370EC34-310E-4F09-829F-F632EC8CDD9B.html["新しいコントローラモジュールのネットブート"] MetroCluster アップグレード、移行、および拡張ガイドの各ガイドを参照してください。
@@ -1702,7 +1701,6 @@ ha-config modify chassis mccip
 
 === 2 ノード MetroCluster 構成での ONTAP のセットアップ
 
-[role="lead"]
 2 ノード MetroCluster 構成では、各クラスタでノードをブートし、クラスタセットアップウィザードを終了し、 cluster setup コマンドを使用してシングルノードクラスタとしてノードを構成する必要があります。
 
 サービスプロセッサが設定されていないことを確認してください。
@@ -1801,7 +1799,6 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["ソ�
 
 === 8 ノード / 4 ノード MetroCluster 構成での ONTAP のセットアップ
 
-[role="lead"]
 各ノードをブートすると、 System Setup ツールを使用してノードおよびクラスタの基本的な設定を実行するよう求めるメッセージが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。
 
 MetroCluster 構成のケーブル接続を完了しておく必要があります。
@@ -1926,7 +1923,6 @@ ONTAP のコマンドラインインターフェイスに戻り、後続のタ�
 
 == クラスタを MetroCluster 構成に設定
 
-[role="lead"]
 クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。
 
 
@@ -1995,7 +1991,7 @@ network interface show -fields home-port 、 curr -port
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、ポート e0e とポート e0f に LIF が割り当てられていないことを示しています。
+次の例は、ポート「 e0e 」および「 e0f 」に LIF が割り当てられていないことを示しています。
 
 +
 [listing]
@@ -2020,7 +2016,7 @@ cluster01
 「 network interface failover-groups create -vserver system_svm -failover-group failover_group -targets physical_or_logical_ports 」というように指定します
 
 +
-次の例は、ポート e0e とポート e0f を、システム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。
+次の例では、ポート「 e0e 」および「 e0f 」をシステム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。
 
 +
 [listing]
@@ -2059,6 +2055,7 @@ cluster01
 ----
 . システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
 +
+[cols="1,3"]
 |===
 
 
@@ -2100,9 +2097,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
+| * ONTAP 9.6 以降： * 
 
 
  a| 
@@ -2110,9 +2105,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -2140,9 +2133,7 @@ cluster01
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
+| * ONTAP 9.6 以降： * 
 
 
  a| 
@@ -2150,22 +2141,21 @@ cluster01
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
 「 network interface show -role intercluster-failover 」の略
 
 |===
-+
+
+
 コマンド構文全体については、マニュアルページを参照してください。
 
-+
-次の例は、 SVM0e ポートのクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が e0f ポートにフェイルオーバーされることを示しています。
++ 次の例は、 SVM 「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。
 
-+
+[+]
+
 [listing]
 ----
 cluster01::> network interface show -service-policy default-intercluster –failover
@@ -2180,8 +2170,6 @@ cluster01
                             Failover Targets:  cluster01-02:e0e,
                                                cluster01-02:e0f
 ----
-
-
 link:concept_prepare_for_the_mcc_installation.html["専用のポートを使用する場合の考慮事項"]
 
 
@@ -2225,9 +2213,7 @@ cluster01-02
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
+| * ONTAP 9.6 以降： * 
 
 
  a| 
@@ -2235,9 +2221,7 @@ cluster01-02
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -2248,7 +2232,7 @@ cluster01-02
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。
+次の例は、クラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
 
 +
 [listing]
@@ -2267,9 +2251,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
+| * ONTAP 9.6 以降： * 
 
 
  a| 
@@ -2282,9 +2264,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 
 
 
- a| 
-「 network interface show -role intercluster 」の略
-
+| 「 network interface show -role intercluster 」の略 
 |===
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -2307,9 +2287,7 @@ cluster01
 |===
 
 
- a| 
-* ONTAP 9.6 以降： *
-
+| * ONTAP 9.6 以降： * 
 
 
  a| 
@@ -2317,9 +2295,7 @@ cluster01
 
 
 
- a| 
-* ONTAP 9.5 以前： *
-
+| * ONTAP 9.5 以前： * 
 
 
  a| 
@@ -2330,7 +2306,7 @@ cluster01
 コマンド構文全体については、マニュアルページを参照してください。
 
 +
-次の例は、 e0c ポート上のクラスタ間 LIF cluster01_icl01 と cluster01_icl02 が e0d ポートにフェイルオーバーされることを示しています。
+次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。
 
 +
 [listing]
@@ -2576,10 +2552,8 @@ cluster01-02
 
 デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
 
-[listing]
-----
-storage aggregate modify –aggregate aggr_name -raidtype raid4
-----
+storage aggregate modify – aggregate aggr_name -raidtype raid4
+
 
 NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、アグリゲートの RAID タイプをデフォルトの RAID-DP から RAID4 に変更できます。
 
@@ -2602,7 +2576,7 @@ controller_A_1::> storage aggregate mirror aggr0_controller_A_1
 . MetroCluster 構成の各ノードについて、同じ手順を繰り返します。
 
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"^]
 
 
 
@@ -2614,7 +2588,7 @@ DR グループの各ノードに、ミラーされたデータアグリゲー�
 * 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
 * ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
-* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]。
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]。
 
 
 .手順
@@ -2738,7 +2712,7 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
 
 
@@ -2753,9 +2727,9 @@ MetroCluster 構成でデータ保護を開始するに MetroCluster は 'data c
 これは、 storage aggregate show コマンドを使用して確認できます。
 
 
-NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください link:concept_configure_the_mcc_software_in_ontap.adocSTEP_429E7F7532ED4B468B67B9B22968D686["「 ONTAP での MetroCluster ソフトウェアの設定」の手順 1"] 手順については、を参照し
+NOTE: ミラーされた単一のデータアグリゲートを使用する場合は、の手順 1 を参照してください link:concept_configure_the_mcc_software_in_ontap.html["ONTAP で MetroCluster ソフトウェアを設定します"] 手順については、を参照し
 
-コントローラおよびシャーシの ha-config の状態が mcc である必要があります。
+コントローラとシャーシの ha-config の状態が「 mcc 」である必要があります。
 
 MetroCluster 構成を有効にするには ' 任意のノードで MetroCluster configure コマンドを 1 回実行します問題サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
 
@@ -2764,6 +2738,7 @@ MetroCluster configure コマンドを実行すると '2 つのクラスタそ�
 .手順
 . 次の形式で MetroCluster を設定します。
 +
+[cols="1,3"]
 |===
 
 
@@ -2804,7 +2779,7 @@ MetroCluster configure -allow-with-one-aggregate true node-name ●
 --
 [NOTE]
 ====
-複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/GUID-114DAE6E-F105-4908-ABB1-CE1D7B5C7048.html["MetroCluster 構成でのメタデータボリュームの移動"]。
+複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/GUID-114DAE6E-F105-4908-ABB1-CE1D7B5C7048.html["MetroCluster 構成でのメタデータボリュームの移動"^]。
 
 ====
 --
@@ -3072,7 +3047,7 @@ node_A_1 SVM 4 snmpv3user     snmp        usm                   10.10.10.13
 「 mpconfig -- set snmpv3 」
 
 +
-RO アクセスが必要な場合、「 User （ ro ）：」のあとに「 snmpv3user 」を指定します（例を参照）。
+RO アクセスを必要とする場合は、 "`User(ro):"" の後に、 "`snmpv3user`" を次の例のように指定します。
 
 +
 [listing]
@@ -3167,7 +3142,7 @@ controller_A_1::>
 
 
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"^]
 
 
 
@@ -3188,6 +3163,7 @@ NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system b
 +
 .. 使用している ONTAP のバージョンに対応したコマンドを使用して、ブリッジを追加します。
 +
+[cols="1,3"]
 |===
 
 
@@ -3362,15 +3338,14 @@ mccint-fas9000-0304
 ----
 
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
 
 
 
 == Config Advisor での MetroCluster 構成エラーの確認
 
-[role="lead"]
 一般的な構成エラーの有無を確認する Config Advisor ツールをネットアップサポートサイトからダウンロードできます。
 
 Config Advisor は、構成の検証や健常性のチェックに使用できるツールです。データ収集とシステム分析のために、セキュアなサイトにもセキュアでないサイトにも導入できます。
@@ -3381,7 +3356,7 @@ NOTE: Config Advisor のサポートには制限があり、オンラインで�
 .手順
 . Config Advisor のダウンロードページにアクセスし、ツールをダウンロードします。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 . Config Advisor を実行し、ツールの出力を確認して、問題が検出された場合は出力に表示される推奨事項に従って対処します。
 
@@ -3390,7 +3365,6 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 == ローカル HA の処理を検証しています
 
-[role="lead"]
 4 ノード MetroCluster 構成の場合、 MetroCluster 構成のローカル HA ペアの処理を検証する必要があります。2 ノード構成の場合は不要です。
 
 2 ノード MetroCluster 構成ではローカル HA ペアは構成されないため、このタスクは適用されません。
@@ -3491,19 +3465,18 @@ controller_A_2 controller_A_1 true     Connected to controller_A_1
 . cluster_B に関して、上記の手順を繰り返します
 
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"^]
 
 
 
 == スイッチオーバー、修復、スイッチバックを検証しています
 
-[role="lead"]
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
 
 .ステップ
 . MetroCluster 管理およびディザスタリカバリガイドの手順に従って、ネゴシエートスイッチオーバー、修復、スイッチバックを実行します。
 +
-https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster の管理とディザスタリカバリ"]
+https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster の管理とディザスタリカバリ"^]
 
 
 
@@ -3511,7 +3484,6 @@ https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster
 
 == 構成バックアップファイルを保護しています
 
-[role="lead"]
 ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。
 
 .ステップ
@@ -3520,8 +3492,8 @@ https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster
 「システム構成のバックアップ設定は URL-of-destination 」を変更します
 
 +
-CLI を使用したクラスタ管理では、「構成バックアップの管理」セクションの追加情報が使用されます。
+https://docs.netapp.com/us-en/ontap/system-admin/index.html["CLI を使用したクラスタ管理"^] セクションの下に追加情報が含まれます。
 
 
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"]
+https://docs.netapp.com/us-en/ontap/cluster-admin/index.html["クラスタ管理"^]

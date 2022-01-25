@@ -12,7 +12,7 @@ summary: MetroCluster 構成で ONTAP を使用する場合は、ライセンス
 [role="lead"]
 MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 MetroCluster 構成の外部にあるクラスタとのピアリング、ボリューム処理や NVFAIL 処理などの ONTAP 処理の実行について、一定の考慮事項に注意する必要があります。
 
-2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーが発生したときに、クラスタがパートナー用にシームレスにデータを提供できるかどうかに依存します。
+2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーの発生時にクラスタがパートナーにデータをシームレスに提供できるかどうかに依存します。
 
 
 
@@ -33,7 +33,6 @@ MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 Metro
 
 == ONTAP System Manager での MetroCluster 処理
 
-[role="lead"]
 ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実行できる MetroCluster 固有の処理もあります。
 
 * MetroCluster IP 構成でのスイッチオーバーとスイッチバック（ ONTAP 9.7 以降）
@@ -47,7 +46,6 @@ ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実�
 
 == MetroCluster 構成での FlexCache のサポート
 
-[role="lead"]
 ONTAP 9.7 以降では、 MetroCluster 構成で FlexCache ボリュームがサポートされます。スイッチオーバーまたはスイッチバック処理後の手動廃止の要件を理解しておく必要があります。
 
 
@@ -76,18 +74,15 @@ MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッ�
 
 スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["FlexCache ボリューム管理"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["FlexCache ボリューム管理"^]
 
 
 
 == MetroCluster 構成での FabricPool のサポート
 
-[role="lead"]
 ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。
 
-FabricPool の使用に関する一般的な情報については、 _Disks and aggregates management_ を参照してください。
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+FabricPool の使用に関する一般的な情報については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]。
 
 
 
@@ -96,7 +91,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 * クラスタに同じ容量制限の FabricPool ライセンスが必要です。
 * 各クラスタに同じ名前の IPspace が必要です。
 +
-これには、デフォルトの IPspace か管理者が作成した IP スペースを使用できます。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。
+これは、デフォルト IPspace または管理者が作成した IP スペースです。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。
 
 * 選択した IPspace について、各クラスタで外部のオブジェクトストアにアクセスできるクラスタ間 LIF が定義されている必要があります
 
@@ -106,18 +101,13 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 === ミラーリングされた FabricPool で使用するアグリゲートを設定する
 
 
-NOTE: アグリゲートを設定する前に、ディスクとアグリゲートの管理 _ の「 MetroCluster 構成での FabricPool のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります。
-
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+NOTE: アグリゲートを設定する前に、の「 MetroCluster 構成での FabricPool 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]。
 
 FabricPool で使用するアグリゲートを設定するには、次の手順を実行します。
 
 . アグリゲートを作成するか、既存のアグリゲートを選択します。
 . アグリゲートを MetroCluster 構成内の標準のミラーアグリゲートとしてミラーリングします。
-. ディスクとアグリゲートの管理 _ の説明に従って、アグリゲートを含む FabricPool ミラーを作成します。
-+
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
-
+. の説明に従って、アグリゲートを含む FabricPool ミラーを作成します https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 +
 .. プライマリオブジェクトストアを接続します。
 +
@@ -166,7 +156,7 @@ MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている�
 
 MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
 
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
 
@@ -273,6 +263,7 @@ MetroCluster 構成内の 1 つのクラスタに LIF を作成すると、そ�
 
 LIF をレプリケートしてパートナークラスタに配置するには、システムが次の条件を満たしている必要があります。
 
+[cols="2,5,8"]
 |===
 
 
@@ -400,13 +391,12 @@ image::../media/svm_dr_image_2.gif[SVM DR イメージ 2.]
 
 
 
-の「 SVM 設定のレプリケート」を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["データ保護"] SVM DR 関係の設定の詳細については、を参照してください。
+の「 SVM 設定のレプリケート」を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["データ保護"^] SVM DR 関係の設定の詳細については、を参照してください。
 
 
 
 === ディザスタリカバリサイトでの SVM の再同期
 
-[role="lead"]
 再同期では、 MetroCluster 構成の Storage Virtual Machine （ SVM ）ディザスタリカバリ（ DR ）ソースが MetroCluster でないサイトのデスティネーション SVM からリストアされます。
 
 再同期中は、次の図に示すように、ソース SVM （ cluster_A ）が一時的にデスティネーション SVM として機能します。
@@ -434,19 +424,18 @@ image::../media/svm_dr_resynchronization.gif[SVM DR 再同期化]
 
 == MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない
 
-[role="lead"]
 MetroCluster のスイッチオーバー後に storage aggregate plex show コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。
 
 
 
 == スイッチオーバー発生時に NVFAIL フラグを設定するためのボリュームの変更
 
-[role="lead"]
 MetroCluster スイッチオーバーが発生した場合に NVFAIL フラグが設定されるようにボリュームを変更することができます。NVFAIL フラグが設定されたボリュームは、一切変更されなくなります。コミットされた書き込みがスイッチオーバー後に失われたと想定してボリュームを処理する必要がある場合は、この変更が必要となります。
 
 
 NOTE: 9.0 よりも前のバージョンの ONTAP では、スイッチオーバーのたびに NVFAIL フラグが設定されます。ONTAP 9.0 以降のバージョンでは、計画外スイッチオーバー（ USO ）が使用されます。
 
+.ステップ
 . スイッチオーバー時に MetroCluster 構成で NVFAIL をトリガーするには、「 vol-dr-force-nvfail 」パラメータを on に設定します。
 +
 vol modify -vserver vserver-name -volume volume-name -dr-force-nvfail on `

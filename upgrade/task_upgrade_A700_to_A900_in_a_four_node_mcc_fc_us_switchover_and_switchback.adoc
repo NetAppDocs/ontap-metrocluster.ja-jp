@@ -459,16 +459,16 @@ link:/tiebreaker/concept_configuring_the_tiebreaker_software.html["MetroCluster 
 
 site_B のプラットフォームをアップグレードできるように、設定を site_A にスイッチオーバーする必要があります。
 
-このタスクは Site_A 上で実行する必要があります
+このタスクは site_A で実行する必要があります
 
-このタスクを完了すると、 Site_A がアクティブになり、両方のサイトでデータを提供します。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。
+このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。
 
-image::../media/mcc_upgrade_cluster_a_in_switchover.png[MCC アップグレードで、クラスタ A をスイッチオーバーします]
+image::../media/mcc_upgrade_cluster_a_in_switchover_A900.png[MCC アップグレードクラスタ A をスイッチオーバー A900 でアップグレードします]
 
 .手順
-. Site_B のノードをアップグレードできるように、 MetroCluster 構成を Site_A にスイッチオーバーします。
+. site_B のノードをアップグレードできるように、 MetroCluster 構成を site_A にスイッチオーバーします。
 +
-.. Site_A で次のコマンドを問題します。
+.. site_A で次のコマンドを問題に設定します。
 +
 MetroCluster switche-controller-replacement true
 
@@ -533,23 +533,23 @@ cluster_A::> metrocluster operation show
 
 
 
-== サイト B で AFF A700 コントローラモジュールと NVS を取り外します
+== site_B の AFF A700 コントローラモジュールと NVS を取り外します
 
 構成から古いコントローラを削除する必要があります。
 
-このタスクはサイト B で実行します
+このタスクは site_B で実行します
 
 接地対策がまだの場合は、自身で適切に実施します。
 
 .手順
-. サイト B の古いコントローラ（ node_B_1 700 および node_B_2 700 ）のシリアルコンソールに接続し、「 LOADER」 プロンプトが表示されていることを確認します。
-. サイト B の両方のノードから bootarg の値を取得します printenv
-. サイト B でシャーシの電源をオフにします
+. site_B の古いコントローラのシリアルコンソール（ node_B_1 700 および node_B_2 700 ）に接続し、「 LOADER」 プロンプトが表示されていることを確認します。
+. site_B の両方のノードから bootarg の値を収集します printenv
+. site_B のシャーシの電源をオフにします
 
 
 
 
-== サイト B の両方のノードからコントローラモジュールと NVS を取り外します
+== site_B の両方のノードからコントローラモジュールと NVS を取り外します
 
 
 
@@ -624,7 +624,7 @@ Site_B の両方のノードに、アップグレードキットから AFF A900 
 
 === AFF A900 NVS を取り付けます
 
-次の手順を使用して、サイト B の両方のノードのスロット 6 に AFF A900 NVS を取り付けます
+次の手順を使用して、 site_B の両方のノードのスロット 6 に AFF A900 NVS を取り付けます
 
 .手順
 . NVS をスロット 6 のシャーシ開口部の端に合わせます。
@@ -683,7 +683,7 @@ image:../media/drw_9500_remove_PCM.png["コントローラ"]
 
 
 
-=== サイト B のノードをネットブート
+=== site_B のノードをネットブートします
 
 AFF A900 コントローラモジュールと NVS をスワップしたら、 AFF A900 ノードをネットブートし、クラスタ上で実行されているものと同じ ONTAP バージョンおよびパッチレベルをインストールする必要があります。「 netboot 」という用語は、リモート・サーバに保存されている ONTAP イメージからブートすることを意味します。ネットブートを準備するときは ' システムがアクセスできる Web サーバに ONTAP 9 ブート・イメージのコピーを追加する必要があります
 
@@ -1199,7 +1199,7 @@ link:https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_cr
 
 スイッチバックの前に、 LIF が適切なノード / ポートにホストされていることを確認します。次の手順を実行する必要があります
 
-このタスクはサイト B で実行します。サイト B では、ルートアグリゲートでノードがブートされています。
+このタスクは site_B で実行します。ノードはルートアグリゲートでブートされています。
 
 .手順
 . スイッチバックの前に、 LIF が適切なノードとポートにホストされていることを確認します。
@@ -1235,7 +1235,7 @@ link:https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_cr
 
 このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。site_A のノードはまだアップグレード待ちです。
 
-image::../media/mcc_upgrade_cluster_a_switchback.png[4 ノード MetroCluster]
+image::../media/mcc_upgrade_cluster_a_switchback_A900.png[4 ノード MetroCluster]
 
 .手順
 . site_B の MetroCluster node show コマンドを問題し ' 出力を確認します
@@ -1318,12 +1318,12 @@ MetroCluster チェックショー
 
 
 
-== サイト A のノードをアップグレード
+== site_A でノードをアップグレードします
 
-Site_A でアップグレード作業を繰り返す必要があります
+site_A でアップグレードタスクを繰り返します
 
 .ステップ
-. 同じ手順を繰り返して、 Site_A のノードをからアップグレードします link:task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html["アップグレードを準備"]。
+. 同じ手順を繰り返して、 site_A のノードをアップグレードします link:task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html["アップグレードを準備"]。
 +
 タスクを実行すると、サイトおよびノードへのすべてのサンプル参照が反転されます。たとえば、この例で site_A からスイッチオーバーする場合は、 site_B からスイッチオーバーします
 

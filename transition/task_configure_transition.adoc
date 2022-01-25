@@ -16,33 +16,40 @@ summary: 移行に向けた構成を準備するには、既存の MetroCluster 
 
 == カスタム AutoSupport メッセージをメンテナンス前に送信する
 
-[role="lead"]
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
 
 このタスクは MetroCluster サイトごとに実行する必要があります。
 
+.手順
 . サポートケースが自動で生成されないようにするには、メンテナンスが進行中であることを示す AutoSupport メッセージを送信します。
 +
-.. 問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」
+「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」というメッセージが表示されます
+
 +
-maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間の終了を通知する AutoSupport メッセージ「 'System node AutoSupport invoke -node * -type all -message MAINT=end` 」を起動できます
+「 maintenance-window-in-hours 」には、メンテナンス・ウィンドウの長さを 72 時間まで指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
 
-.. パートナークラスタに対してこのコマンドを繰り返します。
++
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
 
-
+. パートナークラスタに対してこのコマンドを繰り返します。
 
 
 
 
 == 移行モードを有効にしてクラスタ HA を無効にします
 
-[role="lead"]
 古いノードと新しいノードを MetroCluster 構成で一緒に動作できるようにし、クラスタ HA を無効にするには、 MetroCluster 移行モードを有効にする必要があります。
 
 . 移行を有効にします。
 +
-.. advanced 権限レベルに切り替えます。「 set -privilege advanced 」
-.. 移行モードを有効にする : MetroCluster transition enable-transition-mode non-disruptive
+.. advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
+.. 移行モードを有効にします。
++
+MetroCluster transition enable-transition-mode non-disruptive
+
 +
 
 NOTE: このコマンドは 1 つのクラスタでのみ実行してください。
@@ -63,7 +70,10 @@ Do you want to continue? {y|n}: y
 cluster_A::*>
 
 ....
-.. admin 権限レベルに戻ります。「 set -privilege admin 」
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
 
 
 . 両方のクラスタで移行が有効になっていることを確認します。
@@ -147,11 +157,11 @@ cluster_B::>
 
 == MetroCluster IP ノードのクラスタへの追加
 
-[role="lead"]
 4 つの新しい MetroCluster IP ノードを既存の MetroCluster 構成に追加する必要があります。
 
 このタスクは両方のクラスタで実行する必要があります。
 
+.手順
 . 既存の MetroCluster 構成に MetroCluster IP ノードを追加
 +
 .. 最初の MetroCluster IP ノード（ node_A_1 の IP ）を既存の MetroCluster FC 構成に追加します。
@@ -216,13 +226,16 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 
 == クラスタ間 LIF の設定、 MetroCluster インターフェイスの作成、およびルートアグリゲートのミラーリングを行います
 
-[role="lead"]
 クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。
 
 例で使用しているホームポートはプラットフォーム固有です。MetroCluster IP ノードプラットフォームに固有の適切なホームポートを使用する必要があります。
 
+.手順
 . 新しい MetroCluster IP ノードで、 link:../install-ip/task_sw_config_configure_clusters.html#configuring-intercluster-lifs-for-cluster-peering["クラスタ間 LIF を設定"]。
-. 各サイトで、クラスタピアリングが構成されていることを確認します。「 cluster peer show
+. 各サイトで、クラスタピアリングが設定されていることを確認します。
++
+cluster peer show
+
 +
 次の例は、 cluster_A のクラスタピアリング設定を示しています。
 
@@ -243,7 +256,10 @@ Peer Cluster Name         Cluster Serial Number Availability   Authentication
 ------------------------- --------------------- -------------- --------------
 cluster_A 1-80-000011 Available ok
 ....
-. MetroCluster IP ノードの DR グループを構成します MetroCluster 構成設定 DR-group create -partner-cluster
+. MetroCluster IP ノードの DR グループを設定します。
++
+MetroCluster 構成設定 dr-group create -partner-cluster
+
 +
 ....
 cluster_A::> metrocluster configuration-settings dr-group create -partner-cluster
@@ -251,7 +267,10 @@ cluster_B -local-node node_A_3-IP -remote-node node_B_3-IP
 [Job 259] Job succeeded: DR Group Create is successful.
 cluster_A::>
 ....
-. DR グループが作成されたことを確認します。「 MetroCluster configurion-settings dr-group show 」を参照してください
+. DR グループが作成されたことを確認します。
++
+「 MetroCluster configurion-settings dr-group show 」を参照してください
+
 +
 ....
 cluster_A::> metrocluster configuration-settings dr-group show
@@ -311,9 +330,16 @@ Group Cluster Node               State          Mirroring Mode
               node_B_2-IP      ready to configure
                                                 -         -
 ....
-. 新しく加入した MetroCluster IP ノードの MetroCluster IP インターフェイスを構成します。「 MetroCluster configurion-settings interface create -cluster-name 」
+. 新しく参加した MetroCluster IP ノードの MetroCluster IP インターフェイスを設定します。
 +
-を参照してください link:../install-ip/task_sw_config_configure_clusters.html#configuring-and-connecting-the-metrocluster-ip-interfaces["MetroCluster IP インターフェイスの設定と接続"] IP インターフェイスを設定する際の考慮事項については、を参照して注： MetroCluster IP インターフェイスは、どちらのクラスタからも設定できます。また、 ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに「 -gateway 」パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
+MetroCluster 構成設定インターフェイス create-cluster-name
+
++
+を参照してください link:../install-ip/task_sw_config_configure_clusters.html#configuring-and-connecting-the-metrocluster-ip-interfaces["MetroCluster IP インターフェイスの設定と接続"] IP インターフェイスを設定する際の考慮事項については、を参照して
+
++
+
+NOTE: どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに「 -gateway 」パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
 
 +
 ....
@@ -341,7 +367,10 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_B -home-node node_B_4-IP -home-port e1b -address 172.17.27.13 -netmask 255.255.255.0
 [Job 267] Job succeeded: Interface Create is successful.
 ....
-. MetroCluster IP インターフェイスが作成されたことを確認します。「 MetroCluster configurion-settings interface show 」
+. MetroCluster IP インターフェイスが作成されたことを確認します。
++
+「 MetroCluster configurion-settings interface show 」を参照してください
+
 +
 ....
 cluster_A::>metrocluster configuration-settings interface show
@@ -375,7 +404,10 @@ Group Cluster Node    Network Address Netmask         Gateway         State
 
 cluster_A>
 ....
-. MetroCluster IP インターフェイスを接続します。「 MetroCluster configuration - settings connection connect 」
+. MetroCluster IP インターフェイスを接続します。
++
+MetroCluster 構成設定接続接続
+
 +
 
 NOTE: このコマンドの実行には数分かかることがあります。
@@ -386,7 +418,10 @@ cluster_A::> metrocluster configuration-settings connection connect
 
 cluster_A::>
 ....
-. 接続が正しく確立されていることを確認します MetroCluster configurion-settings connection show
+. 接続が正しく確立されたことを確認します。
++
+「 MetroCluster configurion-settings connection show 」を参照してください
+
 +
 ....
 cluster_A::> metrocluster configuration-settings connection show
@@ -456,7 +491,10 @@ Group Cluster Node    Network Address Network Address Partner Type Config State
 
 cluster_A::>
 ....
-. ディスクの自動割り当てとパーティショニングを確認します : 「 disk show -pool Pool1 」
+. ディスクの自動割り当てとパーティショニングを確認します。
++
+「 Disk show -pool Pool1 」
+
 +
 ....
 cluster_A::> disk show -pool Pool1
@@ -481,7 +519,10 @@ Disk                   Size Shelf Bay Type    Type        Name      Owner
 
 cluster_A::>
 ....
-. ルートアグリゲートをミラーします。「 storage aggregate mirror -aggregate aggr0_cluster1_01 _3-IP 」
+. ルートアグリゲートをミラーします。
++
+「 storage aggregate mirror -aggregate aggr0_cluster1_01 _a_3-IP 」のように指定します
+
 +
 
 NOTE: この手順は MetroCluster IP ノードごとに実行する必要があります。
@@ -509,7 +550,10 @@ Do you want to continue? {y|n}: y
 
 cluster_A::>
 ....
-. ルートアグリゲートがミラーされていることを確認します。「 storage aggregate show
+. ルートアグリゲートがミラーされたことを確認します。
++
+「 storage aggregate show
+
 +
 ....
 cluster_A::> aggr show
@@ -546,10 +590,13 @@ aggr_data_a2
 
 == MetroCluster IP ノードの追加を完了しています
 
-[role="lead"]
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。
 
-. 新しい各 MetroCluster ノードにミラーされたデータアグリゲートを作成します。「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-of disks - mirror true 」
+.手順
+. 新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。
++
+「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-disks-mirror true 」のように指定します
+
 +
 
 NOTE: 各サイトに少なくとも 1 つのミラーされたデータアグリゲートを作成する必要があります。MetroCluster IP ノード上のサイトごとに 2 つのミラーされたデータアグリゲートを配置して MDV ボリュームをホストすることを推奨しますが、サイトごとに 1 つのアグリゲートをサポートできます（ただし推奨しません）。MetroCluster の一方のサイトにはミラーされたデータアグリゲートが 1 つあり、もう一方のサイトにはミラーされたデータアグリゲートが複数あることがサポートされます。
@@ -594,7 +641,10 @@ Do you want to continue? {y|n}: y
 
 cluster_A::>
 ....
-. 変更を実装するように MetroCluster を構成します MetroCluster configure
+. 変更を実装するように MetroCluster を設定します。
++
+MetroCluster 構成
+
 +
 ....
 cluster_A::*> metrocluster configure
@@ -603,7 +653,10 @@ cluster_A::*> metrocluster configure
 
 cluster_A::*>
 ....
-. ノードが DR グループに追加されていることを確認します MetroCluster node show
+. ノードが対応する DR グループに追加されたことを確認します。
++
+MetroCluster node show
+
 +
 ....
 cluster_A::*> metrocluster node show
@@ -655,8 +708,14 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 ...
 11 entries were displayed.mple
 ....
-.. advanced 権限レベルを設定します。「 set -privilege advanced 」
-.. MDV ボリュームを 1 つずつ移動します。 'volume move start -volume MDV_volume-destination-aggregate aggr-on -new-node-vserver -name'
+.. advanced 権限レベルを設定します。
++
+「 advanced 」の権限が必要です
+
+.. MDV ボリュームを 1 つずつ移動します。
++
+'volume move start -volume MDV_volume-destination-aggregate aggr-on -new-node-vserver -name
+
 +
 次の例は、 MDV_CRS_d6b0b313ff5611e9837100a098544e51_a を node_A_1 のアグリゲートに移動するコマンドと出力を示しています。
 
@@ -670,7 +729,10 @@ Warning: You are about to modify the system volume
          do so by support. Do you want to proceed? {y|n}: y
 [Job 494] Job is queued: Move "MDV_CRS_d6b0b313ff5611e9837100a098544e51_A" in Vserver "cluster_A" to aggregate "data_a3". Use the "volume move show -vserver cluster_A -volume MDV_CRS_d6b0b313ff5611e9837100a098544e51_A" command to view the status of this operation.
 ....
-.. volume show コマンドを使用して、 MDV ボリュームが正常に移動されたことを確認します。「 volume show MDV_name 」
+.. volume show コマンドを使用して、 MDV ボリュームが正常に移動されたことを確認します。
++
+volume show MDV_name
+
 +
 次の出力は、 MDV ボリュームが移動されたことを示しています。
 
@@ -682,7 +744,10 @@ Vserver     Volume       Aggregate    State      Type       Size  Available Used
 cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
                        aggr_a2      online     RW         10GB     9.50GB    0%
 ....
-.. admin モードに戻ります。 'et -privilege admin'
+.. admin モードに戻ります。
++
+「特権管理者」
+
 
 
 

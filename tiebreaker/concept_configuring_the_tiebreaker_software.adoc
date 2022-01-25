@@ -16,17 +16,18 @@ Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構�
 
 == Tiebreaker ソフトウェアの CLI を起動します
 
-[role="lead"]
 Tiebreaker ソフトウェアをインストールしたら、 CLI を起動して設定する必要があります。
 
-. ソフトウェアをインストールしたホストのプロンプトから CLI を起動します。「 NetApp-MetroCluster-Tiebreaker software-cli
+. ソフトウェアをインストールしたホストのプロンプトから CLI を起動します。
++
+NetApp-metrocluster-Tiebreaker software-cli
+
 
 
 
 
 == MetroCluster 構成を追加しています
 
-[role="lead"]
 NetApp MetroCluster Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を 1 つずつ追加できます。
 
 ONTAP 環境に MetroCluster 構成をインストールし、ソフトウェアで設定を有効にしておく必要があります。
@@ -52,14 +53,17 @@ Enter Peer Cluster Username: admin
 Enter Peer Cluster Password:
 Successfully added monitor to NetApp MetroCluster Tiebreaker software.
 ----
-. Tiebreaker CLI モニタの show-status コマンドを使用して、 MetroCluster 構成が追加されたことを確認します。
+. Tiebreaker CLI の monitor show-status コマンドを使用して、 MetroCluster 構成が正しく追加されたことを確認します。
 +
 [listing]
 ----
 
 NetApp MetroCluster Tiebreaker :> monitor show -status
 ----
-. Tiebreaker ソフトウェアのオブザーバーモードを無効にして、サイト障害を検出したあとにスイッチオーバーを自動的に開始するようにします。「モニタ変更名前 monitor_name monitor-observer -mode false 」
+. Tiebreaker ソフトウェアのオブザーバーモードを無効にして、サイト障害を検出したあとにスイッチオーバーを自動的に開始するようにします。
++
+monitor modify monitor-name monitor_name -observer -mode false
+
 +
 [listing]
 ----
@@ -70,21 +74,20 @@ Are you sure you want to enable automatic switchover capability for monitor "8pa
 ----
 
 
-* 関連情報 *
-
-xref:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.adoc[MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項]
+link:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html["MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項"]
 
 
 
 == MetroCluster Tiebreaker 構成を変更するためのコマンド
 
-[role="lead"]
 MetroCluster 設定は、必要に応じていつでも変更できます。
 
 Tiebreaker CLI の monitor modify コマンドは、次のいずれかのオプションで使用できます。変更を確認するには、 monitor show-status コマンドを使用します。
 
-[cols="2*"]
+[cols="30,70"]
 |===
+
+
 | オプション | 説明 
 
 
@@ -114,8 +117,8 @@ MetroCluster Tiebreaker ソフトウェアが検出後にサイト障害の確�
  a| 
 オブザーバーモード（ true ）は監視するだけで、サイト障害が発生してもスイッチオーバーをトリガーしません。オンラインモード（ false ）は、サイト障害が発生した場合にスイッチオーバーをトリガーします。
 
-* xref:concept_overview_of_the_tiebreaker_software.adoc[Tiebreaker ソフトウェアでサイト障害を検出する方法]
-* xref:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.adoc[MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項]
+* link:concept_overview_of_the_tiebreaker_software.html["Tiebreaker ソフトウェアでサイト障害を検出する方法"]
+* link:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html["MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項"]
 
 
 |===
@@ -130,8 +133,10 @@ software.
 ----
 Tiebreaker CLI の debug コマンドを使用して、ロギングモードを変更できます。
 
-[cols="2*"]
+[cols="30,70"]
 |===
+
+
 | コマンドを実行します | 説明 
 
 
@@ -155,9 +160,12 @@ Tiebreaker CLI の debug コマンドを使用して、ロギングモードを�
 ロギングのデバッグモードをディセーブルにします
 
 |===
-Tiebreaker CLI 更新 - mcctb-password コマンドを使用してユーザパスワードを更新できます。
+Tiebreaker CLI の「 update-mcctb-password 」コマンドを使用して、ユーザパスワードを更新できます。
 
+[cols="30,70"]
 |===
+
+
 | コマンドを実行します | 説明 
 
 
@@ -171,12 +179,11 @@ update-mccb-password
 
 == MetroCluster 構成を削除しています
 
-[role="lead"]
 MetroCluster 構成を監視する必要がなくなった場合は、 Tiebreaker ソフトウェアで監視している MetroCluster 設定を削除できます。
 
-. Tiebreaker CLI モニタの remove コマンドを使用して、 MetroCluster 設定を削除します。
+. MetroCluster 構成を削除するには 'Tiebreaker CLI の monitor remove コマンドを使用します
 +
-次の例では、 cluster_A をソフトウェアから削除します。
+次の例では ' "cluster_a" がソフトウェアから削除されています
 
 +
 [listing]
@@ -186,7 +193,7 @@ NetApp MetroCluster Tiebreaker :> monitor remove -monitor-name cluster_A
 Successfully removed monitor from NetApp MetroCluster Tiebreaker
 software.
 ----
-. Tiebreaker CLI モニタの show-status コマンドを使用して、 MetroCluster 構成が削除されたことを確認します。
+. Tiebreaker CLI の「 monitor show-status 」コマンドを使用して、 MetroCluster 設定が正しく削除されたことを確認します。
 +
 [listing]
 ----

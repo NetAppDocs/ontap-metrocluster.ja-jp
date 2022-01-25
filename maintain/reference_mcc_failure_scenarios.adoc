@@ -13,9 +13,11 @@ summary: さまざまな障害の発生時に MetroCluster 構成でどのよう
 さまざまな障害の発生時に MetroCluster 構成でどのように対応できるかを把握しておく必要があります。
 
 
-NOTE: ノード障害からの追加情報のリカバリについては、の「正しいリカバリ手順の選択」を参照してください link:https://docs.netapp.com/us-en/ontap-metrocluster/disaster-recovery/index.html["災害からリカバリします"]。
+NOTE: ノード障害からの追加情報のリカバリについては、の「正しいリカバリ手順の選択」を参照してください link:../disaster-recovery/index.html["災害からリカバリします"]。
 
 |===
+
+
 | イベント | 影響 | リカバリ 
 
 
@@ -26,7 +28,7 @@ NOTE: ノード障害からの追加情報のリカバリについては、の�
  a| 
 ローカルのテイクオーバーによって構成がリカバリされます。RAID には影響はありません。システムメッセージを確認し、障害が発生した FRU を必要に応じて交換します。
 
-https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^]
 
 
 
@@ -37,7 +39,7 @@ MetroCluster Tiebreaker ソフトウェアで自動スイッチオーバーが�
  a| 
 MetroCluster Tiebreaker ソフトウェアで自動スイッチオーバーが有効になっていない場合は、 USO を手動で実行します。
 
-https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^]
 
 
 
@@ -48,7 +50,7 @@ MetroCluster IP interface -- 1 つのポートの障害
  a| 
 2 番目のポートが使用されます。ポートへの物理リンクが切断されると、ヘルスモニタによってアラートが生成されます。システムメッセージを確認し、障害が発生した FRU を必要に応じて交換します。
 
-https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^]
 
 
 
@@ -59,7 +61,7 @@ HA 機能に影響します。ノードの RAID SyncMirror の同期が停止し
  a| 
 HA テイクオーバーは行われないため、すぐに手動でリカバリする必要があります。システムメッセージを確認し、障害が発生した FRU を必要に応じて交換します。
 
-https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^]
 
 
 
@@ -70,7 +72,7 @@ https://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセン
  a| 
 障害が発生したスイッチを必要に応じて交換します。
 
-xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
+link:task_replace_an_ip_switch.html["IP スイッチの交換"]
 
 
 
@@ -81,7 +83,7 @@ xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
  a| 
 障害が発生したスイッチを必要に応じて交換します。
 
-xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
+link:task_replace_an_ip_switch.html["IP スイッチの交換"]
 
 
 
@@ -92,7 +94,7 @@ xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
  a| 
 障害が発生したスイッチを必要に応じて交換します。
 
-xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
+link:task_replace_an_ip_switch.html["IP スイッチの交換"]
 
 
 
@@ -103,6 +105,6 @@ xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
  a| 
 ノードの RAID SyncMirror の同期が停止します。クラスタおよび HA 機能には影響はありません。障害が発生したスイッチを必要に応じて交換します。
 
-xref:task_replace_an_ip_switch.adoc[IP スイッチの交換]
+link:task_replace_an_ip_switch.html["IP スイッチの交換"]
 
 |===

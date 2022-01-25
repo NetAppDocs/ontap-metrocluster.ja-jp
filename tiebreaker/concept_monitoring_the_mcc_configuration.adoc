@@ -16,15 +16,17 @@ MetroCluster Tiebreaker ソフトウェアはリカバリプロセスを自動�
 
 == AutoSupport を設定しています
 
-[role="lead"]
 デフォルトでは、 AutoSupport メッセージは Tiebreaker ソフトウェアをインストールしてから 1 週間後にネットアップに送信されます。AutoSupport 通知をトリガーするイベントには、 Tiebreaker ソフトウェアのパニック状態、 MetroCluster 構成での災害状況の検出、 MetroCluster 構成の不明なステータスなどがあります。
 
 AutoSupport メッセージを設定するための直接アクセスが必要です。
 
+.手順
 . Tiebreaker CLI の AutoSupport コマンドで、次のオプションを指定します。
 +
-[cols="2*"]
+[cols="1,2"]
 |===
+
+
 | オプション | 説明 
 
 
@@ -128,11 +130,12 @@ Autosupport configuration deleted successfully.
 
 === SNMP イベントとトラップ
 
-[role="lead"]
 NetApp MetroCluster Tiebreaker ソフトウェアは、 SNMP トラップを使用して重大なイベントをユーザに通知します。これらのトラップは NetApp MIB ファイルに含まれています。各トラップには、トラップ名、重大度、影響レベル、タイムスタンプ、およびメッセージに関する情報が含まれています。
 
-[cols="3*"]
+[cols="2,3,1"]
 |===
+
+
 | イベント名 | イベントの詳細 | トラップ番号 
 
 
@@ -184,13 +187,15 @@ snmp config test コマンドを実行して、 SNMP 設定をテストできる
 
 == 監視処理のステータスを表示する
 
-[role="lead"]
 MetroCluster 構成の監視処理の全体的なステータスを表示できます。
 
+.ステップ
 . Tiebreaker CLI の monitor show コマンドを使用して、次のいずれかのオプションを指定して MetroCluster 処理のステータスを表示します。
 +
-[cols="2*"]
+[cols="1,2"]
 |===
+
+
 | オプション | 説明 
 
 
@@ -281,9 +286,9 @@ MetroCluster: cluster_B
 
 == MetroCluster の設定情報を表示する
 
-[role="lead"]
 Tiebreaker ソフトウェアでは、 MetroCluster 構成のすべてのインスタンスのモニタ名と IP アドレスを表示できます。
 
+.ステップ
 . Tiebreaker CLI の configuration show コマンドを使用して、 MetroCluster の設定情報を表示します。
 +
 次の例は、クラスタ cluster_A と cluster_B の情報を示しています。
@@ -304,9 +309,9 @@ MetroCluster: North America
 
 == ダンプ・ファイルの作成
 
-[role="lead"]
 Tiebreaker ソフトウェアの全体的なステータスを、デバッグのためにダンプファイルに保存します。
 
+.ステップ
 . Tiebreaker CLI の monitor dump-status コマンドを使用して、すべての MetroCluster 設定の全体的なステータスのダンプファイルを作成する。
 +
 次の例は、 /var/log/netapp/mcctb/metrocluster-tiebreaker-status.xml ダンプファイルが正常に作成されたことを示しています。

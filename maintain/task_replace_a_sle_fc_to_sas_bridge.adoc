@@ -18,17 +18,14 @@ summary: ブリッジを同じモデルのブリッジまたは新しいモデ�
 
 この手順では、ブリッジ CLI を使用してブリッジを設定および管理し、ブリッジファームウェアと ATTO QuickNAV ユーティリティを更新してブリッジイーサネット管理 1 ポートを設定します。要件を満たしていれば、他のインターフェイスも使用できます。
 
-xref:reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.adoc[他のインターフェイスを使用して FibreBridge ブリッジを設定および管理するための要件]
+link:reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.html["他のインターフェイスを使用して FibreBridge ブリッジを設定および管理するための要件"]
 
-* 関連情報 *
-
-xref:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.adoc[FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換する]
+link:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html["FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換する"]
 
 
 
 == ストレージ接続を確認しています
 
-[role="lead"]
 ブリッジを交換する前に、ブリッジとストレージの接続を確認する必要があります。設定を変更したあとに接続を確認できるよう、コマンド出力について理解しておいてください。
 
 これらのコマンドは、メンテナンス中のサイトの MetroCluster 構成にある任意のコントローラモジュールの管理プロンプトから問題できます。
@@ -36,7 +33,7 @@ xref:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_
 .手順
 . いずれかの MetroCluster ノードで次のコマンドを入力して、ディスクへの接続を確認します。
 +
-'*run local sysconfig -v *
+'run local sysconfig -v
 
 +
 出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。
@@ -95,18 +92,20 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 
 == 同じモデルの交換用ブリッジとのホットスワップ
 
-[role="lead"]
 障害が発生したブリッジを同じモデルの別のブリッジとホットスワップすることができます。
 
 IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . 古いブリッジにアクセスできる場合は、設定情報を取得できます。
 +
+[cols="35,65"]
 |===
+
+
 | 状況 | 作業 
 
 
@@ -122,16 +121,15 @@ Telnet 接続を使用して古いブリッジに接続し、ブリッジ設定�
  a| 
 次のコマンドを使用して、 ONTAP CLI を使用して設定情報を取得します。
 
-「 * storage bridge run -cli-name_bridge-name_command "info" * 」
+storage bridge run -cli-name_bridge-name_command "info"`
 
-「 * storage bridge run -cli-name_bridge-name_command "sasportlist" * 」」
+「 storage bridge run -cli-name_bridge-name_command "sasportlist"` 」」
 
 |===
 +
-入力するコマンド
-
+.. 入力するコマンド
 +
-`* storage bridge run -cli-name bridge_A1 - コマンド "info"*`
+storage bridge run-cli-name bridge_A1 コマンド「 info
 
 +
 [listing]
@@ -183,11 +181,9 @@ Active Configuration  = NetApp
 
 Ready.
 ----
+.. 入力するコマンド
 +
-入力するコマンド
-
-+
-「 * storage bridge run -cli-name bridge_A1 - コマンド「 sasportlist 」 *
+「 storage bridge run -cli-name bridge_A1 - コマンド「 sasportlist 」
 
 +
 [listing]
@@ -215,17 +211,22 @@ Device  D       2       Disabled        12Gb    5001086000a1c70c
 Device  D       3       Disabled        12Gb    5001086000a1c70c
 Device  D       4       Disabled        12Gb    5001086000a1c70c
 ----
+
+
 . ブリッジがファブリック接続 MetroCluster 構成に含まれている場合は、ブリッジの FC ポートに接続しているすべてのスイッチポートを無効にします。
 . ONTAP クラスタのプロンプトで、メンテナンス中のブリッジをヘルスモニタの対象から削除します。
 +
-.. ブリッジ +`* storage bridge remove-name_bridge-name_*` を削除します
-.. 監視中のブリッジのリストを表示し、削除したブリッジが含まれていないことを確認します。 +`* storage bridge show *`
+.. ブリッジ +`storage bridge remove-name_bridge-name_` を削除します
+.. 監視対象のブリッジのリストを表示し、削除したブリッジが含まれていないことを確認します。 +`storage bridge show`
 
 
 . 自身の適切な接地対策を行います
 . ATTO ブリッジの電源をオフにします。
 +
+[cols="35,65"]
 |===
+
+
 | 使用する方法 | 作業 
 
 
@@ -291,19 +292,19 @@ Quicknav ユーティリティなしで IP アドレスを設定するには、 
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set ipaddress mp1_ip-address*'
+'set ipaddress mp1_ip-address'
 
 +
-'*set ipsubnetmask mp1_subnet-mask_*
+'set ipsubnetmask mp1_subnet-mask_
 
 +
-*set ipgateway mp1x.x.x.x*
+'set ipgateway mp1x.x'
 
 +
-*set ipdhcp mp1 disabled*
+'set ipdhcp mp1 disabled
 
 +
-`*set ethernetspeed mp1 1000*`
+「 setethernetspeed mp1 1000」
 
 .. ブリッジ名を設定します。
 +
@@ -321,11 +322,14 @@ CLI を使用する場合は、次のコマンドを実行する必要があり�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-*set bridgename _bridgename _ *`
+「 set bridgename _bridgename _ 」を入力します
 
 
 
-.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +`*set snmp enabled*`
+.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。
++
+'Set SNMP enabled
+
 +
 ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
 
@@ -349,7 +353,7 @@ NOTE: 選択できる FCDataRate の速度は、ブリッジポートを接続�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set FCDataRate_port-number port-speed_*
+'set FCDataRate_port-number port-speed_
 
 
 
@@ -362,15 +366,21 @@ NOTE: FibreBridge 7600N ブリッジを設定する場合、 FCConnMode の設�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set FCConnMode_port-number_ptc*
+'et FCConnMode_port-number_ptc'
 
 .. FibreBridge 7600N / 7500N ブリッジを設定する場合は、 FC2 ポートを設定または無効にする必要があります。
 +
 *** 2 番目のポートを使用する場合は、 FC2 ポートについて同じ手順を繰り返す必要があります。
-*** 2 番目のポートを使用しない場合は、ポート +`*FCPortDisable_port-number_*` を無効にする必要があります
+*** 2 番目のポートを使用しない場合は、ポートを無効にする必要があります。
++
+FCPGortDisable_port-number_`
 
 
-.. FibreBridge 7600N / 7500N ブリッジを設定する場合は、未使用の SAS ポートを無効にします： +`*SAPortDisable_SAS-port_*`
+
+.. FibreBridge 7600N / 7500N ブリッジを設定する場合は、未使用の SAS ポートを無効にします。
++
+'ASPortDisable_SAS-PORT_'
+
 +
 
 NOTE: SAS ポート A~D はデフォルトで有効になります。使用していない SAS ポートを無効にする必要があります。SAS ポート A のみを使用している場合は、 SAS ポート B 、 C 、および D を無効にする必要があります。
@@ -379,15 +389,21 @@ NOTE: SAS ポート A~D はデフォルトで有効になります。使用し�
 
 . ブリッジへのアクセスを保護し、ブリッジの設定を保存します。
 +
-.. コントローラのプロンプトで ' ブリッジのステータスを確認します *storage bridge show *
+.. コントローラのプロンプトで、ブリッジのステータスを確認します。「 storage bridge show 」
 +
 出力には、保護されていないブリッジが表示されます。
 
-.. セキュリティ保護されていないブリッジのポートのステータスを確認します :`*info*`
+.. セキュリティ保護されていないブリッジのポートのステータスを確認します。
++
+「 info 」のようになります
+
 +
 出力には、イーサネットポート MP1 と MP2 のステータスが表示されます。
 
-.. イーサネットポート MP1 がイネーブルの場合は、 +`*set EthernetPort mp1 disabled*` コマンドを実行します
+.. イーサネットポート MP1 がイネーブルの場合は、次のコマンドを実行します。
++
+「 Set EthernetPort mp1 disabled 」です
+
 +
 
 NOTE: イーサネットポート MP2 も有効になっている場合は、ポート MP2 について前の手順を繰り返します。
@@ -397,10 +413,10 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 次のコマンドを実行する必要があります。
 
 +
-'*SaveConfiguration*'
+'aveConfiguration'
 
 +
-「 * FirmwareRestart * 」と入力します
+「 FirmwareRestart 」と入力します
 
 +
 ブリッジを再起動するように求められます。
@@ -411,7 +427,7 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 +
 新しいブリッジのタイプがパートナーブリッジと同じ場合は、パートナーブリッジと同じファームウェアにアップグレードします。新しいブリッジのタイプがパートナーブリッジと異なる場合は、ブリッジと ONTAP のバージョンでサポートされている最新のファームウェアにアップグレードします。MetroCluster メンテナンスガイドの「 FibreBridge ブリッジのファームウェアの更新」のセクションを参照してください。
 
-. SAS ケーブルと FC ケーブルを新しいブリッジの同じポートに再接続します。
+. [[step17-reconnect-newbridge]] 新しいブリッジの同じポートに SAS ケーブルと FC ケーブルを再接続します。
 +
 新しいブリッジが FibreBridge 7600N / 7500N の場合は、ブリッジをシェルフスタックの上部または下部に接続するケーブルを交換する必要があります。FibreBridge 6500N ブリッジでは SAS ケーブルを使用していましたが、 FibreBridge 7600N / 7500N ブリッジの接続には Mini-SAS ケーブルが必要です。
 
@@ -419,9 +435,12 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 
 NOTE: ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。コントローラの場合は、プラットフォームのモデルによって SAS ポートの向きが異なるため、 SAS ケーブルのコネクタの正しい向きもそれに応じて異なります。
 
-. 各ブリッジが、ブリッジの接続先のすべてのディスクドライブとディスクシェルフを認識できることを確認します。
+. [[step18-verify-backup -each -bridge]] ブリッジが接続されているすべてのディスクドライブとディスクシェルフを各ブリッジで認識できることを確認します。
 +
+[cols="35,65"]
 |===
+
+
 | 使用する手段 | 作業 
 
 
@@ -437,7 +456,10 @@ ATTO FibreBridge のホームページに移動し、リンクが表示されま
 ATTO FibreBridge のステータスページが開き、左側にメニューが表示されます。
 
 .. メニューの「 * 詳細設定 * 」をクリックします。
-.. 接続されているデバイスを表示します :+`*sastargets*`
+.. 接続されているデバイスを表示します。
++
+「 astargets 」
+
 .. [Submit （送信） ] をクリックします。
 
 
@@ -448,7 +470,7 @@ ATTO FibreBridge のステータスページが開き、左側にメニューが
  a| 
 接続されているデバイスを表示します。
 
-'*sastargets*'
+「 astargets 」
 
 |===
 +
@@ -456,7 +478,7 @@ ATTO FibreBridge のステータスページが開き、左側にメニューが
 
 +
 
-NOTE: 出力の先頭に response truncated というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、 sastargets コマンドを使用して、すべての出力を確認できます。
+NOTE: 出力の先頭に response truncated というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、 'sastargets' コマンドを使用してすべての出力を確認できます。
 
 +
 次の出力は、 10 本のディスクが接続されていることを示します。
@@ -464,20 +486,21 @@ NOTE: 出力の先頭に response truncated というテキストが表示され
 +
 [listing]
 ----
-Tgt VendorID ProductID        Type        SerialNumber
-  0 NETAPP   X410_S15K6288A15 DISK        3QP1CLE300009940UHJV
-  1 NETAPP   X410_S15K6288A15 DISK        3QP1ELF600009940V1BV
-  2 NETAPP   X410_S15K6288A15 DISK        3QP1G3EW00009940U2M0
-  3 NETAPP   X410_S15K6288A15 DISK        3QP1EWMP00009940U1X5
-  4 NETAPP   X410_S15K6288A15 DISK        3QP1FZLE00009940G8YU
-  5 NETAPP   X410_S15K6288A15 DISK        3QP1FZLF00009940TZKZ
-  6 NETAPP   X410_S15K6288A15 DISK        3QP1CEB400009939MGXL
-  7 NETAPP   X410_S15K6288A15 DISK        3QP1G7A900009939FNTT
-  8 NETAPP   X410_S15K6288A15 DISK        3QP1FY0T00009940G8PA
-  9 NETAPP   X410_S15K6288A15 DISK        3QP1FXW600009940VERQ
+Tgt VendorID ProductID        Type SerialNumber
+  0 NETAPP   X410_S15K6288A15 DISK 3QP1CLE300009940UHJV
+  1 NETAPP   X410_S15K6288A15 DISK 3QP1ELF600009940V1BV
+  2 NETAPP   X410_S15K6288A15 DISK 3QP1G3EW00009940U2M0
+  3 NETAPP   X410_S15K6288A15 DISK 3QP1EWMP00009940U1X5
+  4 NETAPP   X410_S15K6288A15 DISK 3QP1FZLE00009940G8YU
+  5 NETAPP   X410_S15K6288A15 DISK 3QP1FZLF00009940TZKZ
+  6 NETAPP   X410_S15K6288A15 DISK 3QP1CEB400009939MGXL
+  7 NETAPP   X410_S15K6288A15 DISK 3QP1G7A900009939FNTT
+  8 NETAPP   X410_S15K6288A15 DISK 3QP1FY0T00009940G8PA
+  9 NETAPP   X410_S15K6288A15 DISK 3QP1FXW600009940VERQ
 ----
 . コマンド出力で、スタック内の該当するすべてのディスクおよびディスクシェルフにブリッジが接続されていることを確認します。
 +
+[cols="35,65"]
 |===
 
 
@@ -487,15 +510,15 @@ Tgt VendorID ProductID        Type        SerialNumber
  a| 
 正解です
  a| 
-手順を繰り返します xref:task_replace_a_sle_fc_to_sas_bridge.html[SLE FC を SAS ブリッジに置き換えます] 残りの各ブリッジ。
+繰り返します <<step18-verify-each-bridge,手順 18>> 残りの各ブリッジ。
 
 
 
  a| 
 不正解です
  a| 
-.. SAS ケーブルに緩みがないか確認するか、手順を繰り返して SAS ケーブル接続を修正します xref:task_replace_a_sle_fc_to_sas_bridge.html[SLE FC を SAS ブリッジに置き換えます]。
-.. 手順を繰り返します xref:task_replace_a_sle_fc_to_sas_bridge.html[SLE FC を SAS ブリッジに置き換えます]。
+.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <<step17-reconnect-newbridge,手順 17>>。
+.. 繰り返します <<step18-verify-each-bridge,手順 18>>。
 
 
 |===
@@ -505,7 +528,7 @@ Tgt VendorID ProductID        Type        SerialNumber
 
 . 両方のコントローラモジュールのシステムコンソールで、すべてのコントローラモジュールが新しいブリッジを介してディスクシェルフにアクセスできる（つまりシステムがマルチパス HA 用に接続されている）ことを確認します。
 +
-'*run local sysconfig *
+「 run local sysconfig 」を実行します
 
 +
 
@@ -544,26 +567,32 @@ get snmp
 +
 .. 使用している ONTAP のバージョンに対応したコマンドを使用して、ブリッジを追加します。
 +
+[cols="25,75"]
 |===
+
+
 | ONTAP バージョン | コマンドを実行します 
 
 
  a| 
 9.5 以降
  a| 
-'*storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_*
+「 storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_`
 
 
 
  a| 
 9.4 以前
  a| 
-`* storage bridge add-address_bridge-ip-address_-name_bridge-name_*`
+「 storage bridge add -address_bridge-ip-address_-name_bridge-name_` 」
 
 |===
-.. ブリッジが追加され、正しく設定されていることを確認します。 +`* storage bridge show *`
+.. ブリッジが追加され、正しく設定されていることを確認します。
 +
-ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「ステータス」列の値が「 OK 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されている場合、ブリッジに接続して監視できます。
+「 storage bridge show 」
+
++
+ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。
 
 +
 次の例は、 FC-to-SAS ブリッジが設定されていることを示しています。
@@ -588,43 +617,40 @@ ATTO_10.10.20.13  atto04        true          ok              Atto   FibreBridge
 
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
-.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
-.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
-.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
-.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
-.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
-.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. システムがマルチパスであるかどうかを確認します :+`node run -node -node_name sysconfig -a`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`system health alert show`
+.. MetroCluster 構成と動作モードが正常であることを確認します。 + MetroCluster show `
+.. MetroCluster チェックを実行します + MetroCluster チェックを実行します
+.. MetroCluster チェックの結果を表示します :+`MetroCluster check show`
+.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`storage switch show`
 .. Config Advisor を実行します。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
 
 
 
-* 関連情報 *
-
-xref:concept_in_band_management_of_the_fc_to_sas_bridges.adoc[FC-to-SAS ブリッジのインバンド管理]
+link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリッジのインバンド管理"]
 
 
 
 == FibreBridge 7500N と 7600N ブリッジのホットスワップ
 
-[role="lead"]
 FibreBridge 7500N ブリッジと 7600N ブリッジをホットスワップできます。
 
 IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . ブリッジがファブリック接続 MetroCluster 構成に含まれている場合は、ブリッジの FC ポートに接続しているすべてのスイッチポートを無効にします。
 . ONTAP クラスタのプロンプトで、メンテナンス中のブリッジをヘルスモニタの対象から削除します。
 +
-.. ブリッジ +`* storage bridge remove-name_bridge-name_*` を削除します
-.. 監視中のブリッジのリストを表示し、削除したブリッジが含まれていないことを確認します。 +`* storage bridge show *`
+.. ブリッジ +`storage bridge remove-name_bridge-name_` を削除します
+.. 監視対象のブリッジのリストを表示し、削除したブリッジが含まれていないことを確認します。 +`storage bridge show`
 
 
 . 自身の適切な接地対策を行います
@@ -679,19 +705,19 @@ Quicknav ユーティリティなしで IP アドレスを設定するには、 
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set ipaddress mp1_ip-address_*
+'set ipaddress mp1_ip-address_'
 
 +
-'*set ipsubnetmask mp1_subnet-mask_*
+'set ipsubnetmask mp1_subnet-mask_
 
 +
-*set ipgateway mp1x.x.x.x*
+'set ipgateway mp1x.x'
 
 +
-*set ipdhcp mp1 disabled*
+'set ipdhcp mp1 disabled
 
 +
-`*set ethernetspeed mp1 1000*`
+「 setethernetspeed mp1 1000」
 
 .. ブリッジ名を設定します。
 +
@@ -709,11 +735,11 @@ CLI を使用する場合は、次のコマンドを実行する必要があり�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-`*set bridgename "_bridgename _*`
+「 set bridgename _bridgename _ 」を入力します
 
 
 
-.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +`*set snmp enabled*`
+.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +'set snmp enabled'
 +
 ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
 
@@ -733,28 +759,37 @@ ONTAP 9.5 以降を実行しているシステムでは、インバンド管理�
 
 NOTE: 選択できる FCDataRate の速度は、ブリッジポートを接続するコントローラモジュールまたはスイッチのブリッジ / FC ポートの両方でサポートされる最大速度以下です。ケーブルでの接続距離が SFP およびその他のハードウェアの制限を超えないようにしてください。
 
-
-
-
++
+CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-CLI を使用する場合は、次のコマンドを実行する必要があります。「 * set FCDataRate_port_number port-speed_*
+'set FCDataRate_port-number port-speed_
 
-+
+
+
 .. FC2 ポートを設定または無効にする必要があります。
 +
 *** 2 番目のポートを使用する場合は、 FC2 ポートについて同じ手順を繰り返す必要があります。
-*** 2 番目のポートを使用しない場合は、未使用のポートを無効にする必要があります。 +`*FCPortDisable port-number*` 次の例は、 FC ポート 2 を無効にする方法を示しています。
+*** 2 番目のポートを使用しない場合は、未使用のポートを無効にする必要があります。
++
+FCPGPortDisable ポート番号
+
++
+次に、 FC ポート 2 を無効にする例を示します。
+
 +
 [listing]
 ----
-`FCPortDisable 2`
+FCPortDisable 2
 
 Fibre Channel Port 2 has been disabled.
 ----
 
 
-.. 未使用の SAS ポートを無効にします :+`*SASortDisable_SAS-port_*`
+.. 未使用の SAS ポートを無効にします。
++
+'ASPortDisable_SAS-PORT_'
+
 +
 
 NOTE: SAS ポート A~D はデフォルトで有効になります。使用していない SAS ポートを無効にする必要があります。
@@ -765,7 +800,7 @@ SAS ポート A のみを使用している場合は、 SAS ポート B 、 C �
 +
 [listing]
 ----
-`SASPortDisable b`
+SASPortDisable b
 
 SAS Port B has been disabled.
 ----
@@ -773,15 +808,24 @@ SAS Port B has been disabled.
 
 . ブリッジへのアクセスを保護し、ブリッジの設定を保存します。
 +
-.. コントローラのプロンプトで ' ブリッジのステータスを確認します *storage bridge show *
+.. コントローラのプロンプトで、ブリッジのステータスを確認します。
++
+「 storage bridge show 」
+
 +
 出力には、保護されていないブリッジが表示されます。
 
-.. セキュリティ保護されていないブリッジのポートのステータスを確認します :`*info*`
+.. セキュリティ保護されていないブリッジのポートのステータスを確認します。
++
+「 info 」のようになります
+
 +
 出力には、イーサネットポート MP1 と MP2 のステータスが表示されます。
 
-.. イーサネットポート MP1 がイネーブルの場合は、 +`*set EthernetPort mp1 disabled*` コマンドを実行します
+.. イーサネットポート MP1 がイネーブルの場合は、次のコマンドを実行します。
++
+「 Set EthernetPort mp1 disabled 」です
+
 +
 
 NOTE: イーサネットポート MP2 も有効になっている場合は、ポート MP2 について前の手順を繰り返します。
@@ -791,10 +835,10 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 次のコマンドを実行する必要があります： +
 
 +
-'*SaveConfiguration*'
+'aveConfiguration'
 
 +
-「 * FirmwareRestart * 」と入力します
+「 FirmwareRestart 」と入力します
 
 +
 ブリッジを再起動するように求められます。
@@ -803,16 +847,16 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 
 . 各ブリッジの FibreBridge ファームウェアを更新します。
 +
-xref:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.adoc[ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新]
+link:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html["ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新"]
 
-. SAS ケーブルと FC ケーブルを新しいブリッジの同じポートに再接続します。
+. [[step17-reconnect-cables ]] 新しいブリッジの同じポートに SAS ケーブルと FC ケーブルを再接続します。
 +
 
 NOTE: ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。コントローラの場合は、プラットフォームのモデルによって SAS ポートの向きが異なるため、 SAS ケーブルのコネクタの正しい向きもそれに応じて異なります。
 
 . 各ブリッジが、ブリッジの接続先のすべてのディスクドライブとディスクシェルフを認識できることを確認します。
 +
-'*sastargets*'
+「 astargets 」
 
 +
 出力には、ブリッジが接続されているデバイス（ディスクおよびディスクシェルフ）が表示されます。出力行には行番号が振られているため、デバイスの台数を簡単に把握できます。
@@ -837,7 +881,10 @@ Tgt VendorID ProductID        Type        SerialNumber
 ----
 . コマンド出力で、スタック内の該当するすべてのディスクおよびディスクシェルフにブリッジが接続されていることを確認します。
 +
+[cols="25,75"]
 |===
+
+
 | 出力結果 | 作業 
 
 
@@ -851,7 +898,7 @@ Tgt VendorID ProductID        Type        SerialNumber
  a| 
 不正解です
  a| 
-.. SAS ケーブルに緩みがないか確認するか、手順を繰り返して SAS ケーブル接続を修正します xref:task_replace_a_sle_fc_to_sas_bridge.adocSTEP_CD84065D8F3B43F192919B0CD6FDC1A6[task_replace_a_sle_data_bridge_md#step_CD84065D8F3B43F192919B0CD6FDC1A6]。
+.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <<step17-reconnect-cables,手順 17>>。
 .. 前の手順を繰り返します。
 
 
@@ -862,7 +909,7 @@ Tgt VendorID ProductID        Type        SerialNumber
 
 . 両方のコントローラモジュールのシステムコンソールで、すべてのコントローラモジュールが新しいブリッジを介してディスクシェルフにアクセスできる（つまりシステムがマルチパス HA 用に接続されている）ことを確認します。
 +
-'*run local sysconfig *
+「 run local sysconfig 」を実行します
 
 +
 
@@ -893,34 +940,38 @@ IMPORTANT: システムがマルチパス HA 構成で接続されていない�
 ブリッジの CLI を使用している場合は、次のコマンドを実行します。
 
 +
-[listing]
-----
-get snmp
-----
+'SNMP の取得
+
 . ONTAP クラスタのプロンプトで、ブリッジをヘルスモニタの対象に追加します。
 +
 .. 使用している ONTAP のバージョンに対応したコマンドを使用して、ブリッジを追加します。
 +
+[cols="25,75"]
 |===
+
+
 | ONTAP バージョン | コマンドを実行します 
 
 
  a| 
 9.5 以降
  a| 
-'*storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_*
+「 storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_`
 
 
 
  a| 
 9.4 以前
  a| 
-`* storage bridge add-address_bridge-ip-address_-name_bridge-name_*`
+「 storage bridge add -address_bridge-ip-address_-name_bridge-name_` 」
 
 |===
-.. ブリッジが追加され、正しく設定されていることを確認します。 +`* storage bridge show *`
+.. ブリッジが追加され、正しく設定されていることを確認します。
 +
-ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「ステータス」列の値が「 OK 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されている場合、ブリッジに接続して監視できます。
+「 storage bridge show 」
+
++
+ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。
 
 +
 次の例は、 FC-to-SAS ブリッジが設定されていることを示しています。
@@ -945,45 +996,43 @@ ATTO_10.10.20.13  atto04        true          ok              Atto   FibreBridge
 
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
-.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
-.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
-.. MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`
-.. MetroCluster チェック :+`* MetroCluster check run*` を実行します
+.. システムがマルチパスであるかどうかを確認します :+`node run -node -node_name sysconfig -a`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`system health alert show`
+.. MetroCluster 構成と動作モードが正常であることを確認します。 + MetroCluster show `
+.. MetroCluster チェックを実行します + MetroCluster チェックを実行します
 .. MetroCluster チェックの結果を表示します： +
 +
-「 * MetroCluster check show * 」と表示されます
+MetroCluster チェックショー
 
-.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`storage switch show`
 .. Config Advisor を実行します。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
 
 
 
-* 関連情報 *
-
-xref:concept_in_band_management_of_the_fc_to_sas_bridges.adoc[FC-to-SAS ブリッジのインバンド管理]
+link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリッジのインバンド管理"]
 
 
 
 == FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジのホットスワップ
 
-[role="lead"]
 FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジをホットスワップして、障害が発生したブリッジを交換したり、ファブリック接続またはブリッジ接続 MetroCluster 構成のブリッジをアップグレードしたりできます。
 
+.このタスクについて
 * この手順は、 1 つの FibreBridge 6500N ブリッジを 1 つの FibreBridge 7600N / 7500N ブリッジとホットスワップするためのものです。
 * FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジをホットスワップする場合は、 FibreBridge 7600N / 7500N ブリッジの FC ポートと SAS ポートをそれぞれ 1 つだけ使用する必要があります。
 * IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
 
 
 
-IMPORTANT: FibreBridge 6500N ブリッジペアの両方をホットスワップする場合は、を使用する必要があります xref:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.adoc[複数のストレージスタックを統合] ゾーニング手順については手順を参照してください。両方の FibreBridge 6500N ブリッジを交換することで、 FibreBridge 7600N / 7500N ブリッジの追加ポートを活用できます。
+IMPORTANT: FibreBridge 6500N ブリッジペアの両方をホットスワップする場合は、を使用する必要があります link:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html["複数のストレージスタックを統合"] ゾーニング手順については手順を参照してください。両方の FibreBridge 6500N ブリッジを交換することで、 FibreBridge 7600N / 7500N ブリッジの追加ポートを活用できます。
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . 次のいずれかを実行します。
@@ -994,8 +1043,14 @@ NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge
 
 . ONTAP クラスタのプロンプトで、メンテナンス中のブリッジをヘルスモニタの対象から削除します。
 +
-.. ブリッジ +`* storage bridge remove-name_bridge-name_*` を削除します
-.. 監視中のブリッジのリストを表示し、削除したブリッジが含まれていないことを確認します。 +`* storage bridge show *`
+.. ブリッジを削除します。
++
+storage bridge remove-name_bridge-name_`
+
+.. 監視中のブリッジのリストを表示し、削除したブリッジが含まれていないことを確認します。
++
+「 storage bridge show 」
+
 
 
 . 自身の適切な接地対策を行います
@@ -1052,19 +1107,19 @@ Quicknav ユーティリティなしで IP アドレスを設定するには、 
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set ipaddress mp1_ip-address_*
+'set ipaddress mp1_ip-address_'
 
 +
-'*set ipsubnetmask mp1_subnet-mask_*
+'set ipsubnetmask mp1_subnet-mask_
 
 +
-*set ipgateway mp1x.x.x.x*
+'set ipgateway mp1x.x'
 
 +
-*set ipdhcp mp1 disabled*
+'set ipdhcp mp1 disabled
 
 +
-`*set ethernetspeed mp1 1000*`
+「 setethernetspeed mp1 1000」
 
 .. ブリッジ名を設定します。
 +
@@ -1082,11 +1137,11 @@ CLI を使用する場合は、次のコマンドを実行する必要があり�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-`*set bridgename _bridgename _ *`
+「 set bridgename _bridgename _ 」を入力します
 
 
 
-.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +`*set snmp enabled*`
+.. ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +'set snmp enabled'
 +
 ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。
 
@@ -1110,7 +1165,7 @@ NOTE: 選択できる FCDataRate の速度は、ブリッジポートを接続�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set FCDataRate_port-number port-speed_*
+'set FCDataRate_port-number port-speed_
 
 
 
@@ -1123,15 +1178,21 @@ NOTE: FibreBridge 7600N ブリッジを設定する場合、 FCConnMode の設�
 CLI を使用する場合は、次のコマンドを実行する必要があります。
 
 +
-'*set FCConnMode_port-number_ptc*
+'et FCConnMode_port-number_ptc'
 
 .. FibreBridge 7600N / 7500N ブリッジを設定する場合は、 FC2 ポートを設定または無効にする必要があります。
 +
 *** 2 番目のポートを使用する場合は、 FC2 ポートについて同じ手順を繰り返す必要があります。
-*** 2 番目のポートを使用しない場合は、ポート +`*FCPortDisable_port-number_*` を無効にする必要があります
+*** 2 番目のポートを使用しない場合は、ポートを無効にする必要があります。
++
+FCPGortDisable_port-number_`
 
 
-.. FibreBridge 7600N / 7500N ブリッジを設定する場合は、未使用の SAS ポートを無効にします： +`*SAPortDisable_SAS-port_*`
+
+.. FibreBridge 7600N / 7500N ブリッジを設定する場合は、未使用の SAS ポートを無効にします。
++
+'ASPortDisable_SAS-PORT_'
+
 +
 
 NOTE: SAS ポート A~D はデフォルトで有効になります。使用していない SAS ポートを無効にする必要があります。SAS ポート A のみを使用している場合は、 SAS ポート B 、 C 、および D を無効にする必要があります。
@@ -1140,15 +1201,24 @@ NOTE: SAS ポート A~D はデフォルトで有効になります。使用し�
 
 . ブリッジへのアクセスを保護し、ブリッジの設定を保存します。
 +
-.. コントローラのプロンプトで、ブリッジのステータスを確認します。 +`*storage bridge show*`
+.. コントローラのプロンプトで、ブリッジのステータスを確認します。
++
+「 storage bridge show 」
+
 +
 出力には、保護されていないブリッジが表示されます。
 
-.. セキュリティ保護されていないブリッジのポートのステータスを確認します :`*info*`
+.. セキュリティ保護されていないブリッジのポートのステータスを確認します。
++
+「 info 」のようになります
+
 +
 出力には、イーサネットポート MP1 と MP2 のステータスが表示されます。
 
-.. イーサネットポート MP1 がイネーブルの場合は、 +`*set EthernetPort mp1 disabled*` コマンドを実行します
+.. イーサネットポート MP1 がイネーブルの場合は、次のコマンドを実行します。
++
+「 Set EthernetPort mp1 disabled 」です
+
 +
 
 NOTE: イーサネットポート MP2 も有効になっている場合は、ポート MP2 について前の手順を繰り返します。
@@ -1158,10 +1228,10 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 次のコマンドを実行する必要があります。
 
 +
-'*SaveConfiguration*'
+'aveConfiguration'
 
 +
-「 * FirmwareRestart * 」と入力します
+「 FirmwareRestart 」と入力します
 
 +
 ブリッジを再起動するように求められます。
@@ -1173,7 +1243,7 @@ NOTE: イーサネットポート MP2 も有効になっている場合は、ポ
 +
 新しいブリッジのタイプがパートナーブリッジと同じ場合は、パートナーブリッジと同じファームウェアにアップグレードします。新しいブリッジのタイプがパートナーブリッジと異なる場合は、ブリッジと ONTAP のバージョンでサポートされている最新のファームウェアにアップグレードします。MetroCluster メンテナンスガイドの「 FibreBridge ブリッジのファームウェアの更新」のセクションを参照してください。
 
-. SAS ケーブルと FC ケーブルを新しいブリッジの SAS A ポートと Fibre Channel 1 ポートに再接続します。
+. [[step17-reconnect]] 新しいブリッジの SAS A ポートと Fibre Channel 1 ポートに SAS ケーブルと FC ケーブルを再接続します。
 +
 SAS ポートは、 FibreBridge 6500N ブリッジが接続されていたシェルフポートにケーブル接続する必要があります。
 
@@ -1184,9 +1254,12 @@ FC ポートは、 FibreBridge 6500N ブリッジが接続されていたスイ�
 
 NOTE: コネクタをポートに無理に押し込まないでください。Mini-SAS ケーブルは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。コントローラの場合、 SAS ポートの向きはプラットフォームのモデルによって異なるため、 SAS ケーブルのコネクタの正しい向きは異なります。
 
-. ブリッジが接続先のすべてのディスクドライブとディスクシェルフを認識できることを確認します。
+. ブリッジが接続先のすべてのディスクドライブとディスクシェルフを検出できることを確認します。
 +
+[cols="25,75"]
 |===
+
+
 | 使用する手段 | 作業 
 
 
@@ -1202,7 +1275,10 @@ ATTO FibreBridge のホームページに移動し、リンクが表示されま
 ATTO FibreBridge のステータスページが開き、左側にメニューが表示されます。
 
 .. メニューの「 * 詳細設定 * 」をクリックします。
-.. 次のコマンドを入力し、 *Submit* をクリックして、ブリッジで認識されるディスクのリストを表示します。 +`*sastargets*`
+.. 次のコマンドを入力し、 * Submit * をクリックして、ブリッジで認識されるディスクのリストを表示します。
++
+「 astargets 」
+
 
 
 
@@ -1212,7 +1288,7 @@ ATTO FibreBridge のステータスページが開き、左側にメニューが
  a| 
 ブリッジから認識されているディスクのリストを表示します。
 
-'*sastargets*'
+「 astargets 」
 
 |===
 +
@@ -1236,31 +1312,37 @@ Tgt VendorID ProductID        Type        SerialNumber
 ----
 +
 
-NOTE: 出力の先頭に「 respondse truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジにアクセスし、同じコマンドを入力すると、すべての出力を確認できます。
+NOTE: 出力の先頭に「 response truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジにアクセスし、同じコマンドを入力すると、すべての出力を確認できます。
 
 . コマンド出力で、スタック内の必要なすべてのディスクおよびディスクシェルフにブリッジが接続されていることを確認します。
 +
+[cols="25,75"]
 |===
+
+
 | 出力結果 | 作業 
 
 
  a| 
 正解です
  a| 
-手順を繰り返します xref:task_replace_a_sle_fc_to_sas_bridge.html[SLE FC を SAS ブリッジに置き換えます] 残りの各ブリッジで使用します。 ]
+残りの各ブリッジについて、同じ手順を繰り返します。
 
 
 
  a| 
 不正解です
  a| 
-.. SAS ケーブルに緩みがないか確認するか、手順を繰り返して SAS ケーブル接続を修正します xref:task_replace_a_sle_fc_to_sas_bridge.adocSTEP_CD84065D8F3B43F192919B0CD6FDC1A6[task_replace_a_sle_data_bridge_md#step_CD84065D8F3B43F192919B0CD6FDC1A6]。
-.. 手順を繰り返します xref:task_replace_a_sle_fc_to_sas_bridge.html[SLE FC を SAS ブリッジに置き換えます] 残りの各ブリッジ。 ]
+.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <<step17-recable,手順 17>>。
+.. 残りの各ブリッジについて、同じ手順を繰り返します。
 
 
 |===
 . ブリッジに接続する FC スイッチポートを再度有効にします。
-. 両方のコントローラのシステムコンソールで、すべてのコントローラが新しいブリッジ経由でディスクシェルフにアクセスできること（システムがマルチパス HA 用にケーブル接続されていること）を確認します。「 run local sysconfig 」
+. 両方のコントローラのシステムコンソールで、すべてのコントローラが新しいブリッジ経由でディスクシェルフにアクセスできること（システムがマルチパス HA 用に適切に接続されていること）を確認します。
++
+「 run local sysconfig 」を実行します
+
 +
 
 NOTE: システムで検出が完了するまで、 1 分程度かかる場合があります。
@@ -1289,6 +1371,7 @@ IMPORTANT: システムがマルチパス HA 構成で接続されていない�
 +
 .. 使用している ONTAP のバージョンに対応したコマンドを使用して、ブリッジを追加します。
 +
+[cols="25,75"]
 |===
 
 
@@ -1298,19 +1381,19 @@ IMPORTANT: システムがマルチパス HA 構成で接続されていない�
  a| 
 9.5 以降
  a| 
-'*storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_*
+「 storage bridge add -address 0.0.0.0 -managed-by in-band-name_bridge-name_`
 
 
 
  a| 
 9.4 以前
  a| 
-`* storage bridge add-address_bridge-ip-address_-name_bridge-name_*`
+「 storage bridge add -address_bridge-ip-address_-name_bridge-name_` 」
 
 |===
-.. ブリッジが追加され、正しく設定されていることを確認します。 +`* storage bridge show *`
+.. ブリッジが追加され、正しく設定されていることを確認します。 +`storage bridge show`
 +
-ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「ステータス」列の値が「 OK 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されている場合、ブリッジに接続して監視できます。
+ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。
 
 +
 次の例は、 FC-to-SAS ブリッジが設定されていることを示しています。
@@ -1337,38 +1420,36 @@ ATTO_10.10.20.13  atto04        true          ok              Atto   FibreBridge
 +
 .. システムがマルチパスかどうかを確認します。
 +
-'*node run -node node_name sysconfig -a *
+'node run -node _node-name_sysconfig -a
 
-.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
+.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`system health alert show`
 .. MetroCluster 構成と運用モードが正常な状態であることを確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 .. MetroCluster チェックを実行します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 .. MetroCluster チェックの結果を表示します。
 +
-「 * MetroCluster check show * 」と表示されます
+MetroCluster チェックショー
 
 .. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
 +
-「 * storage switch show * 」と表示されます
+「 storage switch show 」と表示されます
 
 .. Config Advisor を実行します。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
 
 . 障害のある部品は、キットに付属する RMA 指示書に従ってネットアップに返却してください。
 +
-テクニカルサポートにお問い合わせください https://mysupport.netapp.com/site/global/dashboard["ネットアップサポート"]RMA 番号を確認する場合や、交換用手順にサポートが必要な場合は、日本国内サポート用電話番号：国内フリーダイヤル 0066-33-123-265 または 0066-33-821-274 （国際フリーフォン 800-800-80-800 も使用可能）までご連絡ください。
+テクニカルサポートにお問い合わせください https://mysupport.netapp.com/site/global/dashboard["ネットアップサポート"^]RMA 番号を確認する場合や、交換用手順にサポートが必要な場合は、日本国内サポート用電話番号：国内フリーダイヤル 0066-33-123-265 または 0066-33-821-274 （国際フリーフォン 800-800-80-800 も使用可能）までご連絡ください。
 
 
 
-* 関連情報 *
-
-xref:concept_in_band_management_of_the_fc_to_sas_bridges.adoc[FC-to-SAS ブリッジのインバンド管理]
+link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリッジのインバンド管理"]

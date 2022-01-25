@@ -12,13 +12,14 @@ summary: 使用可能なポートがある既存の FibreBridge 7500N ブリッ�
 [role="lead"]
 使用可能なポートがある既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドできます。
 
+.作業を開始する前に
 * 最新のディスクファームウェアとディスクシェルフファームウェアをダウンロードしておく必要があります。
 * MetroCluster 構成内のすべてのディスクシェルフ（新しいシェルフと既存のシェルフの両方）で同じファームウェアバージョンを実行している必要があります。
 +
-https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"]
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"^]
 
 +
-https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"]
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
 
 * FibreBridge 7500N ブリッジが接続されており、使用可能な SAS ポートがある必要があります。
 
@@ -27,7 +28,7 @@ https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネッ
 
 ATTO ExpressNAV GUI は、ブリッジの設定および管理、ブリッジファームウェアの更新に使用できます。ATTO QuickNAV ユーティリティは、ブリッジのイーサネット管理 1 ポートの設定に使用できます。
 
-必要に応じて、他の管理インターフェイスを使用できます。オプションには、シリアルポートまたは Telnet を使用したブリッジの設定と管理、イーサネット管理 1 ポートの設定、および FTP を使用したブリッジファームウェアの更新があります。これらの管理インターフェイスのいずれかを選択した場合は、に記載された該当する要件を満たす必要があります xref:reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.adoc[その他のブリッジ管理インターフェイス]。
+必要に応じて、他の管理インターフェイスを使用できます。オプションには、シリアルポートまたは Telnet を使用したブリッジの設定と管理、イーサネット管理 1 ポートの設定、および FTP を使用したブリッジファームウェアの更新があります。これらの管理インターフェイスのいずれかを選択した場合は、に記載された該当する要件を満たす必要があります link:reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.html["その他のブリッジ管理インターフェイス"]。
 
 
 IMPORTANT: SAS ケーブルを間違ったポートに挿入した場合は、ケーブルを SAS ポートから取り外すときに、 120 秒以上待機してから別の SAS ポートに接続する必要があります。そうしないと、ケーブルが別のポートに移されたことがシステムで認識されません。
@@ -36,7 +37,7 @@ IMPORTANT: SAS ケーブルを間違ったポートに挿入した場合は、�
 . 自身の適切な接地対策を行います
 . いずれかのコントローラのコンソールで、システムでディスクの自動割り当てが有効になっていることを確認します。
 +
-「 * storage disk option show * 」を入力します
+「 storage disk option show 」をクリックします
 
 +
 Auto Assign 列には、ディスクの自動割り当てが有効になっているかどうかが示されます。
@@ -58,14 +59,14 @@ node_A_2             on           on           on           default
 
 . ペアの各ブリッジで、新しいスタックに接続する SAS ポートを有効にします。
 +
-'*SAPortEnable_portlet_letter_*
+'SASortEnable_portlet-letter_
 
 +
 両方のブリッジで同じ SAS ポート（ B 、 C 、または D ）を使用する必要があります。
 
 . 設定を保存し、各ブリッジをリブートします。
 +
-「 * SaveConfiguration Restart * 」と入力します
+SaveConfiguration Restart を実行します
 
 . ディスクシェルフをブリッジにケーブル接続します。
 +
@@ -75,10 +76,10 @@ node_A_2             on           on           on           default
 
 .. ディスクシェルフの各スタックで、最初のシェルフの IOM A を FibreBridge A の SAS ポート A にケーブル接続し、最後のシェルフの IOM B を FibreBridge B の SAS ポート A にケーブル接続します
 +
-https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
 
 +
-https://docs.netapp.com/us-en/ontap-metrocluster/install-stretch/concept_considerations_differences.html["ストレッチ MetroCluster のインストールと設定"]
+link:../install-stretch/concept_considerations_differences.html["ストレッチ MetroCluster のインストールと設定"]
 
 +
 各ブリッジには、ディスクシェルフのスタックへのパスが 1 つあります。ブリッジ A は最初のシェルフ経由でスタックの A 側に接続し、ブリッジ B は最後のシェルフ経由でスタックの B 側に接続します。
@@ -91,7 +92,10 @@ NOTE: ブリッジの SAS ポート B は無効になっています。
 
 . 各ブリッジが、ブリッジの接続先のすべてのディスクドライブとディスクシェルフを検出できることを確認します。
 +
+[cols="30,70"]
 |===
+
+
 | 使用する手段 | 作業 
 
 
@@ -109,7 +113,7 @@ ATTO FibreBridge のステータスページが開き、左側にメニューが
 .. メニューの「 * 詳細設定 * 」をクリックします。
 .. 接続されているデバイスを表示します。
 +
-'*sastargets*'
+「 astargets 」
 
 .. [Submit （送信） ] をクリックします。
 
@@ -121,7 +125,7 @@ ATTO FibreBridge のステータスページが開き、左側にメニューが
  a| 
 接続されているデバイスを表示します。
 
-'*sastargets*'
+「 astargets 」
 
 |===
 +
@@ -129,7 +133,7 @@ ATTO FibreBridge のステータスページが開き、左側にメニューが
 
 +
 
-NOTE: 出力の先頭に「 respondse truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、「 astargets 」コマンドを使用してすべての出力を表示できます。
+NOTE: 出力の先頭に「 response truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、「 sastargets 」コマンドを使用してすべての出力を表示できます。
 
 +
 次の出力は、 10 本のディスクが接続されていることを示します。
@@ -151,7 +155,10 @@ Tgt VendorID ProductID        Type        SerialNumber
 ----
 . コマンド出力で、スタック内の該当するすべてのディスクおよびディスクシェルフにブリッジが接続されていることを確認します。
 +
+[cols="30,70"]
 |===
+
+
 | 出力結果 | 作業 
 
 
@@ -172,24 +179,24 @@ Tgt VendorID ProductID        Type        SerialNumber
 |===
 . システムコンソールからディスクドライブファームウェアを最新バージョンに更新します。
 +
-'*disk_fw_updat*
+「 disk_fw_update 」
 
 +
 このコマンドは両方のコントローラで実行する必要があります。
 
 +
-https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"]
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"^]
 
 . ダウンロードしたファームウェアの手順に従って、ディスクシェルフファームウェアを最新バージョンに更新します。
 +
 手順のコマンドは、どちらのコントローラのシステムコンソールでも実行できます。
 
 +
-https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"]
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
 
 . システムでディスクの自動割り当てが有効になっていない場合は、ディスクドライブの所有権を割り当てます。
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
 +
 
@@ -204,31 +211,31 @@ NOTE: ディスクドライブファームウェアとディスクシェルフ�
 +
 .. システムがマルチパスかどうかを確認します。
 +
-'*node run -node node_name sysconfig -a *
+'node run -node _node-name_sysconfig -a
 
 .. ヘルスアラートがないかどうかを両方のクラスタで確認します。
 +
-「 * system health alert show * 」というメッセージが表示されます
+「 system health alert show 」というメッセージが表示されます
 
 .. MetroCluster 構成と運用モードが正常な状態であることを確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 .. MetroCluster チェックを実行します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 .. MetroCluster チェックの結果を表示します。
 +
-「 * MetroCluster check show * 」と表示されます
+MetroCluster チェックショー
 
 .. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
 +
-「 * storage switch show * 」と表示されます
+「 storage switch show 」と表示されます
 
 .. Config Advisor を実行します。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 

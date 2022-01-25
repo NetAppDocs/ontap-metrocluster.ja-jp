@@ -61,7 +61,7 @@ link:../install-ip/concept_considerations_differences.html["MetroCluster IP の�
 
 .. ディスクシェルフを、スタック内の隣接するシェルフおよび FC-to-SAS ブリッジにケーブル接続します。このとき、ディスクシェルフの電源は入れないでください。
 
-| link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"] 
+| link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^] 
 
 
  a| 
@@ -70,7 +70,7 @@ SAS ケーブル
 .. 新しいケーブルを取り付けます。このとき、ディスクシェルフの電源は入れないでください。
 
  a| 
-link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^]
 
 
 
@@ -118,10 +118,15 @@ link:../install-stretch/concept_considerations_differences.html["ストレッチ
 
 
  a| 
-link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"]
+link:http://docs.netapp.com/platstor/index.jsp["AFF と FAS ドキュメントセンター"^]
 
 |===
-. 構成に対応した MetroCluster インストールおよび設定ガイド _ に従って、すべてのコンポーネントが正しくケーブル接続されていることを確認します。
+. 構成に応じてすべてのコンポーネントが正しくケーブル接続されていることを確認します。
++
+** link:../install-ip/using_rcf_generator.html["MetroCluster の IP 設定"]
+** link:../install-fc/task_fmc_mcc_transition_cable_the_new_mcc_controllers_to_the_exist_fc_fabrics.html["MetroCluster ファブリック接続構成"]
+
+
 
 
 
@@ -398,14 +403,13 @@ wipeconfig
 
 == 新しいコントローラモジュールのネットブート
 
-[role="lead"]
 新しいコントローラモジュールの ONTAP のバージョンが、稼働しているコントローラモジュールのバージョンと異なる場合は、新しいコントローラモジュールをネットブートする必要があります。
 
 .作業を開始する前に
 * HTTP サーバにアクセスできる必要があります。
 * 使用するプラットフォームおよび実行している ONTAP のバージョンに必要なシステムファイルをダウンロードするために、ネットアップサポートサイトにアクセスできる必要があります。
 +
-https://mysupport.netapp.com/site/global/dashboard["ネットアップサポート"]
+https://mysupport.netapp.com/site/global/dashboard["ネットアップサポート"^]
 
 
 
@@ -475,7 +479,6 @@ The node must be rebooted to start using the newly installed software. Do you wa
 
 == 交換用コントローラモジュールのシステム ID の確認
 
-[role="lead"]
 ディザスタサイトですべてのハードウェアを交換したら、新たに設置したストレージコントローラモジュールのシステム ID を確認する必要があります。
 
 この手順は、交換用コントローラモジュールを使用してメンテナンスモードで実行する必要があります。

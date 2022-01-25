@@ -16,7 +16,6 @@ summary: 障害シナリオをテストして、 MetroCluster 構成が正しく
 
 == ネゴシエートスイッチオーバーを検証中
 
-[role="lead"]
 ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。
 
 このテストでは、クラスタを 2 つ目のデータセンターに切り替えてデータの可用性に影響がないことを検証します。ただし、 Microsoft Server Message Block （ SMB ；サーバメッセージブロック）プロトコルおよび Solaris Fibre Channel プロトコルは除きます。
@@ -54,7 +53,7 @@ MetroCluster IP 構成の場合：
 .手順
 . すべてのノードが設定済みの状態で通常モードになっていることを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -68,7 +67,7 @@ Remote: cluster_B               configured             normal
 ----
 . スイッチオーバー処理を開始します。
 +
-'*MetroCluster スイッチオーバー *
+MetroCluster スイッチオーバー
 
 +
 [listing]
@@ -79,7 +78,7 @@ automatically re-start them on cluster "cluster_A". It will finally gracefully s
 ----
 . ローカルクラスタが設定済みの状態でスイッチオーバーモードになっていることを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -94,7 +93,7 @@ Remote: cluster_B               not-reachable          -
 ----
 . スイッチオーバー処理が成功したことを確認します。
 +
-「 * MetroCluster operation show * 」と表示されます
+「 MetroCluster operation show 」を参照してください
 
 +
 [listing]
@@ -115,7 +114,6 @@ cluster_A::> metrocluster operation show
 
 == 修復と手動スイッチバックの検証
 
-[role="lead"]
 修復処理と手動スイッチバック処理をテストするには、ネゴシエートスイッチオーバー後にクラスタを元のデータセンターにスイッチバックして、データの可用性に影響がないことを検証します（ SMB および Solaris FC 構成を除く）。
 
 このテストには約 30 分かかります。
@@ -125,7 +123,7 @@ cluster_A::> metrocluster operation show
 .手順
 . 修復が完了したことを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 次の例は、コマンドが正常に完了したことを示しています。
@@ -145,7 +143,7 @@ Group Cluster Node               State          Mirroring Mode
 ----
 . すべてのアグリゲートがミラーされていることを確認します。
 +
-'*storage aggregate show*
+「 storage aggregate show
 
 +
 次の例では、すべてのアグリゲートの RAID ステータスが mirrored になっています。
@@ -177,7 +175,7 @@ root_cluster_B    -         -     - unknown      - node_A_1   -
 . ディザスタサイトからノードをブートします。
 . スイッチバックリカバリのステータスを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -195,7 +193,7 @@ Group Cluster Node               State          Mirroring Mode
 ----
 . スイッチバックを実行します。
 +
-*MetroCluster スイッチバック *
+MetroCluster スイッチバック
 
 +
 [listing]
@@ -205,7 +203,7 @@ cluster_A::> metrocluster switchback
 ----
 . ノードのステータスを確認します。
 +
-'*MetroCluster node show*
+MetroCluster node show
 
 +
 [listing]
@@ -221,9 +219,9 @@ Group Cluster Node               State          Mirroring Mode
 
 2 entries were displayed.
 ----
-. MetroCluster 処理のステータスを確認します。
+. ステータスを確認します。
 +
-「 * MetroCluster operation show * 」と表示されます
+「 MetroCluster operation show 」を参照してください
 
 +
 正常に完了したことを示す出力が表示されます。
@@ -244,7 +242,6 @@ cluster_A::> metrocluster operation show
 
 == 単一の FC-to-SAS ブリッジの停止
 
-[role="lead"]
 単一の FC-to-SAS ブリッジの障害をテストして、単一点障害がないことを確認できます。
 
 このテストには約 15 分かかります。
@@ -257,13 +254,13 @@ cluster_A::> metrocluster operation show
 
 
 
-NOTE: ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします
+NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . ブリッジの電源装置をオフにします。
 . ブリッジの監視がエラーを示していることを確認します。
 +
-「 * storage bridge show * 」
+「 storage bridge show 」
 
 +
 [listing]
@@ -279,7 +276,7 @@ ATTO_10.65.57.145
 ----
 . ブリッジに接続されたドライブに 1 つのパスでアクセス可能なことを確認します。
 +
-「 * storage disk error show * 」と表示されます
+「 storage disk error show 」と表示されます
 
 +
 [listing]
@@ -299,7 +296,6 @@ Disk             Error Type        Error Text
 
 == 電源回線切断後の動作確認
 
-[role="lead"]
 MetroCluster 構成で PDU の障害が発生した場合の対応をテストできます。
 
 ベストプラクティスとして、コンポーネントの各電源装置（ PSU ）を別々の電源装置に接続することを推奨します。両方の PSU を同じ配電ユニット（ PDU ）に接続している場合、停電が発生すると、サイトが停止してシェルフ全体が使用できなくなる可能性があります。1 本原因の電源回線に障害が発生した場合に、サービスが中断する可能性があるケーブル接続の不一致がないかどうかをテストします。
@@ -354,7 +350,6 @@ Power               Critical condition is detected in storage shelf power supply
 
 == 単一のストレージシェルフが停止したあとの動作確認
 
-[role="lead"]
 単一のストレージシェルフの障害をテストして、単一点障害がないことを確認できます。
 
 この手順の想定される結果は次のとおりです。
@@ -367,7 +362,7 @@ Power               Critical condition is detected in storage shelf power supply
 .手順
 . ストレージフェイルオーバーのステータスを確認します。
 +
-'*storage failover show*
+「 storage failover show 」をクリックします
 
 +
 [listing]
@@ -382,7 +377,7 @@ node_A_2       node_A_1       true     Connected to node_A_1
 ----
 . アグリゲートのステータスを確認します。
 +
-'*storage aggregate show*
+「 storage aggregate show
 
 +
 [listing]
@@ -414,13 +409,13 @@ node_A_2_root
 ----
 . すべてのデータ SVM とデータボリュームがオンラインで、データを提供していることを確認します。
 +
-「 * vserver show -type data * 」を参照してください
+vserver show -type data
 
 +
-*network interface show -fields is-home false *
+network interface show -fields is-home false
 
 +
-'*volume show !vol0 、 !MDV_
+volume show ！ vol0 、！ MDV *
 
 +
 [listing]
@@ -459,7 +454,7 @@ SVM2
 ----
 . ハードウェア障害をシミュレートするために電源をオフにするノード node_A_1 のプール 1 内のシェルフを特定します。
 +
-`* storage aggregate show -r -node-node-name-!*root*`
+「 storage aggregate show -r -node node_name !!* root
 
 +
 ミラーされたデータアグリゲートを構成するドライブが格納されたシェルフを選択する必要があります。
@@ -511,13 +506,13 @@ Owner Node: node_A_2
 . 選択したシェルフの電源を物理的にオフにします。
 . アグリゲートのステータスを再度確認します。
 +
-'*storage aggregate *
+「ストレージ・アグリゲート」
 
 +
-`* storage aggregate show -r -node node_name ！ * root *
+「 storage aggregate show -r -node node_name ！ * root 」
 
 +
-電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスは「グレー表示」になり、影響を受けるプレックスにあるドライブのステータスは「 failed 」になります。次の例を参照してください。
+電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスは「 degraded 」になり、影響を受けたプレックスのドライブのステータスは「 failed 」になります。次に例を示します。
 
 +
 [listing]
@@ -584,13 +579,13 @@ Owner Node: node_A_2
 ----
 . データが提供されていること、およびすべてのボリュームがオンラインのままであることを確認します。
 +
-「 * vserver show -type data * 」を参照してください
+vserver show -type data
 
 +
-*network interface show -fields is-home false *
+network interface show -fields is-home false
 
 +
-'*volume show !vol0 、 !MDV_
+volume show ！ vol0 、！ MDV *
 
 +
 [listing]
@@ -633,10 +628,10 @@ SVM2
 
 . 再同期が開始されたことを確認します。
 +
-'*storage aggregate show*
+「 storage aggregate show
 
 +
-次の例に示すように、影響を受けるアグリゲートの RAID ステータスが「再同期」になっている必要があります。
+次の例に示すように、影響を受けたアグリゲートの RAID ステータスは「 resyncing 」になります。
 
 +
 [listing]
@@ -665,7 +660,7 @@ node_A_2_root
 ----
 . アグリゲートを監視して、再同期が完了したことを確認します。
 +
-'*storage aggregate show*
+「 storage aggregate show
 
 +
 次の例に示すように、影響を受けるアグリゲートの RAID ステータスは「 normal 」になります。
