@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3745,7 +3745,7 @@
 <div class="sect1">
 <h2 id="metrocluster-fc-構成での構成の修復">MetroCluster FC 構成での構成の修復</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>スイッチオーバーに続いて、特定の順序で修復処理を実行して MetroCluster 機能をリストアする必要があります。</p>
 </div>
 <div class="ulist">
@@ -3776,7 +3776,7 @@
 </div>
 <div class="sect2">
 <h3 id="データアグリゲートの修復">データアグリゲートの修復</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ディザスタサイトのハードウェアを修理および交換したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、（修復された）ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。</p>
 </div>
 <div class="paragraph">
@@ -3855,7 +3855,7 @@ aggr_b2   227.1GB  227.1GB   0%    online  0      mcc1-a2      raid_dp, mirrored
 </div>
 <div class="sect2">
 <h3 id="災害発生後のルートアグリゲートの修復">災害発生後のルートアグリゲートの修復</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>データアグリゲートの修復が完了したら、スイッチバック処理に備えてルートアグリゲートを修復する必要があります。</p>
 </div>
 <div class="paragraph">
@@ -3915,7 +3915,7 @@ aggr_b2   227.1GB  227.1GB   0%    online  0      mcc1-a2      raid_dp, mirrored
 <div class="sect1">
 <h2 id="スイッチバックに向けたシステムの事前チェック">スイッチバックに向けたシステムの事前チェック</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>システムがすでにスイッチオーバー状態にある場合は、「 -simulate 」オプションを使用して、スイッチバック処理の結果をプレビューできます。</p>
 </div>
 <div class="olist arabic">
@@ -3998,7 +3998,7 @@ Job ID Name                 Vserver    Node           State
 <div class="sect1">
 <h2 id="スイッチバックを実行しています">スイッチバックを実行しています</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。</p>
 </div>
 <div class="ulist">
@@ -4239,7 +4239,7 @@ cluster_A-vs1a-mc  data    sync-destination
 <div class="sect1">
 <h2 id="スイッチバック後の古いアグリゲートリストの削除">スイッチバック後の古いアグリゲートリストの削除</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>スイッチバック後に古いアグリゲートが残っていることがあります。古いアグリゲートとは、 ONTAP からは削除されたものの、情報がまだディスクに記録されたままのアグリゲートのことです。古いアグリゲートは「 nodeshell aggr status -r 」コマンドで表示されますが、「 storage aggregate show 」コマンドでは表示されません。これらのレコードを削除して、表示されないようにすることができます。</p>
 </div>
 <div class="paragraph">

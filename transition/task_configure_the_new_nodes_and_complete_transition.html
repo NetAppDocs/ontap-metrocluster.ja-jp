@@ -3694,24 +3694,24 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
 <span>寄稿者
-  <a target="_blank" href="https://github.com/netapp-martyh">
-    <img  class="avatar avatar-small"
-          alt="netapp-martyh"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/66496079?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
   <a target="_blank" href="https://github.com/netapp-thomi">
     <img  class="avatar avatar-small"
           alt="netapp-thomi"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-martyh">
+    <img  class="avatar avatar-small"
+          alt="netapp-martyh"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/66496079?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3747,16 +3747,25 @@
 <div class="sect1">
 <h2 id="metrocluster-ip-ノードを設定し移行を無効にします">MetroCluster IP ノードを設定し、移行を無効にします</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster IP 接続を実装し、 MetroCluster 構成を更新し、移行モードを無効にする必要があります。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>コントローラ node_A_1 の IP MetroCluster 構成設定 DR-group create -partner-cluster peer-cluster -name local-node local-controller-name -remote-controller -name ````m etrocluster 構成設定 DR-group show から次のコマンドを実行して、新しいノードを DR グループに構成します</p>
+<p>コントローラ node_A_1 の IP から次のコマンドを実行して、新しいノードを DR グループに形成します。</p>
+<div class="paragraph">
+<p>MetroCluster の構成設定 dr-group create -partner-cluster peer-cluster peer-name -local-node local-controller-name -remote-node remote-controller-name</p>
+</div>
+<div class="paragraph">
+<p>「 MetroCluster configurion-settings dr-group show 」を参照してください</p>
+</div>
 </li>
 <li>
-<p>MetroCluster IP インターフェイスを作成します（ node_A_1 、 node_B_2 IP 、 node_B_1 IP 、 node_B_2 IP 、 node_B_2 IP ）：コントローラごとに 2 つのインターフェイスを作成する必要があります。合計 8 つのインターフェイスが作成されている必要があります。 MetroCluster 「 vlan configuration settings interface create -cluster -name cluster-name -home-node controller-name -port -id-center-name -port -id</p>
+<p>MetroCluster IP インターフェイスを作成します（ node_A_1 の IP 、 node_B_2 の IP 、 node_B_1 の IP 、 node_B_2 の IP 、 node_B_2 の IP ） - コントローラごとに 2 つのインターフェイスを作成します。合計 8 つのインターフェイスが必要です。</p>
+<div class="paragraph">
+<p>「 MetroCluster configurion-settings interface create -cluster-name cluster -name -home-node controller-name -home-port port ip-address -netmask netmask-vlan-id vlan-id 」「 metrocluster configurion-settings interface show</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3845,16 +3854,25 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 </table>
 </li>
 <li>
-<p>コントローラ node_A_1 の IP から MetroCluster 接続処理を実行して MetroCluster サイトを接続 - この処理には数分かかることがあります。MetroCluster 構成設定接続接続</p>
+<p>コントローラ node_A_1 の IP から MetroCluster 接続処理を実行して MetroCluster サイトを接続 - この処理には数分かかることがあります。</p>
+<div class="paragraph">
+<p>MetroCluster 構成設定接続接続</p>
+</div>
 </li>
 <li>
-<p>リモートクラスタディスクが、 iSCSI 接続を介して各コントローラから認識できることを確認します。「 Disk show</p>
+<p>リモートクラスタのディスクが、 iSCSI 接続を介して各コントローラから認識されていることを確認します。</p>
+<div class="paragraph">
+<p>「ディスクショー」</p>
+</div>
 <div class="paragraph">
 <p>構成内の他のノードに属するリモートディスクが表示されます。</p>
 </div>
 </li>
 <li>
-<p>node_A_1 の IP および node_B_1 の IP のルートアグリゲートをミラーします。「 aggregate mirror -aggregate root-aggr 」というコマンドを実行します</p>
+<p>node_A_1 の IP と node_B_1 の IP のルートアグリゲートをミラーします。</p>
+<div class="paragraph">
+<p>「 aggregate mirror -aggregate root-aggr 」のように指定します</p>
+</div>
 </li>
 <li>
 <p>node_B_2 の IP と node_B_2 の IP のディスクを割り当て</p>
@@ -3864,38 +3882,62 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>問題 node-a_2-IP で次のコマンドを実行します :`disk assign disk1disk2disk3...diskn -sysid node_B_2-ip-control-sysid -pool 1-force-`</p>
+<p>問題： node_A_1 の IP に対して次のコマンドを実行します。</p>
+<div class="paragraph">
+<p>disk assign disk1disk2disk3&#8230;&#8203; diskn-sysid node_B_2-ip-control-sysid-pool 1-force</p>
+</div>
 </li>
 <li>
-<p>問題 node_B_2 の次のコマンド：ディスク・割り当て disk1disk2disk3&#8230;&#8203; diskn -sysid node-a_2 -ip-controller-sysid -pool 1 -force<br></p>
+<p>問題 node_B_2 IP で次のコマンドを実行します。</p>
+<div class="paragraph">
+<p>disk assign disk1disk2disk3&#8230;&#8203; diskn -sysid node-a _2 -ip-controller-sysid -pool 1 -force</p>
+</div>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>リモートディスクの所有権が更新されたことを確認します。「 Disk show 」</p>
+<p>リモートディスクの所有権が更新されたことを確認します。</p>
+<div class="paragraph">
+<p>「ディスクショー」</p>
+</div>
 </li>
 <li>
 <p>必要に応じて、次のコマンドを使用して所有権情報を更新します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced</p>
+<p>advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。</p>
+<div class="paragraph">
+<p>'set priv advanced'</p>
+</div>
 </li>
 <li>
-<p>ディスク所有権の更新 : 「ディスクの更新所有権のコントローラ名」</p>
+<p>ディスク所有権を更新します。</p>
+<div class="paragraph">
+<p>「 disk refresh-ownership controller-name 」と入力します</p>
+</div>
 </li>
 <li>
-<p>admin モードに戻ります。 'set priv admin'</p>
+<p>admin モードに戻ります。</p>
+<div class="paragraph">
+<p>'set priv admin' のように設定します</p>
+</div>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>node_B_2 IP および node_B_2 IP のルートアグリゲートをミラーリング：アグリゲートミラーアグリゲートルートアグリゲート</p>
+<p>node_B_2 の IP と node_B_2 の IP のルートアグリゲートをミラーリングします。</p>
+<div class="paragraph">
+<p>「 aggregate mirror -aggregate root-aggr 」のように指定します</p>
+</div>
 </li>
 <li>
-<p>ルートアグリゲートとデータアグリゲートのアグリゲートの再同期が完了したことを確認します。 aggr show <code>aggr plex show</code></p>
+<p>ルートアグリゲートとデータアグリゲートの再同期が完了したことを確認します。</p>
+<div class="paragraph">
+<p>aggr show <code>aggr plex show</code></p>
+</div>
 <div class="paragraph">
 <p>再同期には時間がかかることがありますが、完了してから次の手順に進んでください。</p>
 </div>
@@ -3905,7 +3947,10 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced</p>
+<p>advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。</p>
+<div class="paragraph">
+<p>'set priv advanced'</p>
+</div>
 </li>
 <li>
 <p>構成を更新します。</p>
@@ -3914,13 +3959,11 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">設定内容</th>
-<th class="tableblock halign-left valign-top">問題コマンド</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">設定内容</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">問題コマンド</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>各クラスタにアグリゲートが 1 つあります。</p>
@@ -3941,7 +3984,10 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 </table>
 </li>
 <li>
-<p>admin モードに戻ります。 'set priv admin'</p>
+<p>admin モードに戻ります。</p>
+<div class="paragraph">
+<p>'set priv admin' のように設定します</p>
+</div>
 </li>
 </ol>
 </div>
@@ -3951,13 +3997,22 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced</p>
+<p>advanced 権限モードに切り替え、続行するかどうかを尋ねられたら「 y 」と入力します。</p>
+<div class="paragraph">
+<p>'set priv advanced'</p>
+</div>
 </li>
 <li>
-<p>移行モードを無効にします : MetroCluster transition disable</p>
+<p>移行モードを無効にします。</p>
+<div class="paragraph">
+<p>MetroCluster transition disable`</p>
+</div>
 </li>
 <li>
-<p>admin モードに戻ります。 'set priv admin'</p>
+<p>admin モードに戻ります。</p>
+<div class="paragraph">
+<p>'set priv admin' のように設定します</p>
+</div>
 </li>
 </ol>
 </div>
@@ -3969,40 +4024,49 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="sect1">
 <h2 id="新しいノードにデータ-lif-をセットアップ">新しいノードにデータ LIF をセットアップ</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>新しいノード、 node_B_2 の IP および node_B_2 の IP にデータ LIF を設定する必要があります。</p>
 </div>
 <div class="paragraph">
 <p>新しいコントローラで使用可能な新しいポートがブロードキャストドメインに割り当てられていない場合は、そのドメインに追加する必要があります。必要に応じて、新しいポートに VLAN またはインターフェイスグループを作成します。『ネットワーク管理ガイド』を参照してください。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html">"ネットワークと LIF の管理"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html" target="_blank" rel="noopener">"ネットワークと LIF の管理"</a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>次のコマンドを実行して、現在のポート使用状況およびブロードキャストドメインを確認します。「 network port show 」「 network port broadcast-domain show 」</p>
+<p>次のコマンドを実行して、現在のポート使用状況とブロードキャストドメインを確認します。</p>
+<div class="paragraph">
+<p>network port show ` network port broadcast-domain show 」</p>
+</div>
 </li>
 <li>
 <p>必要に応じて、ブロードキャストドメインと VLAN にポートを追加します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>IP スペースを表示します。「 network ipspace show 」</p>
+<p>IP スペースを表示します。</p>
+<div class="paragraph">
+<p>network ipspace show</p>
+</div>
 </li>
 <li>
 <p>IP スペースを作成し、必要に応じてデータポートを割り当てます。</p>
 <div class="paragraph">
-<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html">"IPspace の設定（クラスタ管理者のみ）"</a></p>
+<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html" target="_blank" rel="noopener">"IPspace の設定（クラスタ管理者のみ）"</a></p>
 </div>
 </li>
 <li>
-<p>ブロードキャストドメインを表示します。「 network port broadcast-domain show 」</p>
+<p>ブロードキャストドメインを表示します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain show 」</p>
+</div>
 </li>
 <li>
 <p>必要に応じて、ブロードキャストドメインにデータポートを追加します。</p>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html">"ブロードキャストドメインのポートの追加と削除"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html" target="_blank" rel="noopener">"ブロードキャストドメインのポートの追加と削除"</a></p>
 </div>
 </li>
 <li>
@@ -4011,30 +4075,39 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <p>VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html">"VLAN を作成する"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html" target="_blank" rel="noopener">"VLAN を作成する"</a></p>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html">"物理ポートを組み合わせたインターフェイスグループの作成"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html" target="_blank" rel="noopener">"物理ポートを組み合わせたインターフェイスグループの作成"</a></p>
 </div>
 </li>
 <li>
 <p>必要に応じて、 MetroCluster IP ノード（ -mc を備えた SVM を含む）の適切なノードとポートで LIF がホストされていることを確認します。</p>
 <div class="paragraph">
-<p>で収集した情報を参照してください <a href="task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html">ネットワーク設定を作成しています</a>。</p>
+<p>で収集した情報を参照してください <a href="task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html">"ネットワーク設定を作成しています"</a>。</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>次のコマンドを実行して、 LIF のホームポートを確認します。「 network interface show field home-port</p>
+<p>次のコマンドを実行して、 LIF のホームポートを確認します。</p>
+<div class="paragraph">
+<p>「 network interface show - field home-port 」のように表示されます</p>
+</div>
 </li>
 <li>
-<p>必要に応じて、 LIF の設定を変更します。 vserver config override-command "network interface modify -vserver vserver_name -home-port active_port_after_upgrade -lif lif_name -home-node new_node_name ""</p>
+<p>必要に応じて、 LIF の設定を変更します。</p>
+<div class="paragraph">
+<p>「 vserver config override command 」 network interface modify -vserver vserver_name -home-port active_port_after_upgrade -lif lif_name -home-node new_node_name 」という形式で指定します</p>
+</div>
 </li>
 <li>
-<p>LIF をそれぞれのホームポートにリバートします。「 network interface revert * -vserver vserver_name</p>
+<p>LIF をそれぞれのホームポートにリバートします。</p>
+<div class="paragraph">
+<p>「 network interface revert * -vserver_vserver_name _ 」のように指定します</p>
+</div>
 </li>
 </ol>
 </div>
@@ -4046,25 +4119,38 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="sect1">
 <h2 id="svm-を起動する">SVM を起動する</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>LIF の設定が変更されたため、新しいノードで SVM を再起動する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>MetroCluster vserver show で SVM の状態を確認します</p>
+<p>SVM の状態を確認します。</p>
+<div class="paragraph">
+<p>MetroCluster vserver show</p>
+</div>
 </li>
 <li>
-<p>「 vserver start -vserver svm_name -force true 」というサフィックスがない cluster_A の SVM を再起動します</p>
+<p>サフィックスが「 -mc 」のない cluster_A 上の SVM を再起動します。</p>
+<div class="paragraph">
+<p>「 vserver start -vserver svm_name -force true 」を指定します</p>
+</div>
 </li>
 <li>
 <p>パートナークラスタで上記の手順を繰り返します。</p>
 </li>
 <li>
-<p>すべての SVM が「 MetroCluster vserver show 」の状態であることを確認します</p>
+<p>すべての SVM が健全な状態であることを確認します。</p>
+<div class="paragraph">
+<p>MetroCluster vserver show</p>
+</div>
 </li>
 <li>
-<p>すべてのデータ LIF がオンラインであることを確認します。「 network interface show 」</p>
+<p>すべてのデータ LIF がオンラインであることを確認します。</p>
+<div class="paragraph">
+<p>「 network interface show 」を参照してください</p>
+</div>
 </li>
 </ol>
 </div>
@@ -4073,13 +4159,14 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="sect1">
 <h2 id="新しいノードへのシステムボリュームの移動">新しいノードへのシステムボリュームの移動</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>耐障害性を高めるには、システムボリュームを controller_A_1 から IP コントローラ node_A_1 に、さらに node_B_1 から node_B_2 の IP に移動する必要があります。システムボリュームのデスティネーションノードにミラーされたアグリゲートを作成する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>システムボリュームの名前の形式は MDV_CRS_*<em>A または MDV_CRS</em>*<em>B です_A と _B は、このセクション全体で使用される site_A と site_B の参照とは関係がありません。たとえば、 MDV_CRS</em>*_A は site_A と関連付けられていません</p>
+<p>システムボリュームの名前の形式は「 MDV \_crs_*\_a' 」または「 MDV_CRS_*\_b` 」です。 このセクションで使用されている site_A および site_B の参照とは関係がありません。たとえば、 MDV_CRS_*_A は site_A と関連付けられていません</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>必要に応じて、コントローラ node_A_1 の IP および node_B_2 の IP に少なくとも 3 本のプール 0 と 3 本のプール 1 ディスクを割り当てます。</p>
@@ -4092,25 +4179,33 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>システムボリュームを格納するためのミラーアグリゲートを controller_A_2 の IP に作成します。 aggr create -aggregate new_node_a_2 -ip_aggr -diskcount 10 -mirror true -node nodename _node_a_2 -ip `aggr show</p>
+<p>システムボリュームを格納するために、コントローラ node_A_1 にミラーアグリゲートを作成します。</p>
+<div class="paragraph">
+<p>aggr create -aggregate new_node_a_2 -ip_aggr -diskcount 10 -mirror true -node nodename _node_a_2 -ip`</p>
+</div>
+<div class="paragraph">
+<p>「 aggr show 」と入力します</p>
+</div>
 <div class="paragraph">
 <p>ミラーされたアグリゲートには、 5 つのプール 0 と 5 つのプール 1 スペアディスクが必要です。これらのディスクはコントローラ node_A_1 のコントローラ node_A_1 の IP で所有されます。</p>
 </div>
+<div class="paragraph">
+<p>ディスクが不足している場合は ' アドバンス・オプションの -force-small-aggregate true を使用すると ' ディスクの使用を 3 プール 0 および 3 プール 1 のディスクに制限できます</p>
+</div>
+</li>
+<li>
+<p>管理 SVM に関連付けられているシステムボリュームの一覧を表示します。</p>
+<div class="paragraph">
+<p>「 vserver show 」</p>
+</div>
+<div class="paragraph">
+<p>volume show -vserver_admin -vserver-name に指定します</p>
+</div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>ディスクが不足している場合は、 advanced オプションの「 -force-small-aggregate true 」を使用して、プール 0 とプール 1 のディスクを 3 本に制限できます。</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>管理 SVM に関連付けられているシステムボリュームの一覧を表示します。 vserver show `volume show -vserver admin -vserver-name</p>
 <div class="paragraph">
 <p>site_A が所有するアグリゲートに含まれているボリュームを特定しますsite_B のシステムボリュームも表示されます。</p>
-</div>
-</li>
-</ol>
 </div>
 </li>
 <li>
@@ -4118,21 +4213,39 @@ ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 Met
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>デスティネーションアグリゲートが存在するかどうかを確認します。 'volume move target-aggr show -vserver admin -vserver-name -volume system_vMDV_B'</p>
+<p>可能なデスティネーションアグリゲートがないかどうかを確認します</p>
+<div class="paragraph">
+<p>'volume move target-aggr show -vserver_admin-vserver-name_-volume system_vol_dV_MDV_B'</p>
+</div>
 <div class="paragraph">
 <p>node_A_1 に作成されたアグリゲートが表示されます。</p>
 </div>
 </li>
 <li>
-<p>ボリュームを、新たに作成した node_A_1 のアグリゲート、「 Set advanced 」の「 volume move start -vserver admin -vserver -vserver -volume system_volMDV_B -destination -aggregate new_node_A_1 -ip_aggr-cutover-window 40 」に移動します</p>
+<p>node_A_1 に作成した新しいアグリゲートにボリュームを移動します。</p>
+<div class="paragraph">
+<p>「高度」</p>
+</div>
+<div class="paragraph">
+<p>'volume move start -vserver_admin-vserver_-volume system_vol_MDV_B -destination -aggregate new_node_a_2 -ip_aggr-cutover-window 40`</p>
+</div>
 </li>
 <li>
-<p>移動操作のステータスを確認します。 'volume move show -vserver admin -vserver-name -volume system_vMDV_B'</p>
+<p>移動処理のステータスを確認します。</p>
+<div class="paragraph">
+<p>'volume move show -vserver_admin-vserver-name_-volume system_vol MDV_B'</p>
+</div>
 </li>
 <li>
-<p>移動処理が完了したら、 MDV_CRS_*_B システムが、 node_A_1 の新しいアグリゲート「 Set admin 」「 volume show -vserver admin -vserver admin -vserver 」に含まれていることを確認します</p>
+<p>移動処理が完了したら、 MDV_CRS_*_B システムが node_A_1 の新しいアグリゲートに含まれていることを確認します。</p>
+<div class="paragraph">
+<p>「管理者」</p>
+</div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>volume show -vserver_admin -vserver_`</p>
 </div>
 </li>
 <li>

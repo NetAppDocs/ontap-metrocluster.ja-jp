@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3731,7 +3731,7 @@
 <div class="sect1">
 <h2 id="ネゴシエートスイッチオーバーを検証中">ネゴシエートスイッチオーバーを検証中</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。</p>
 </div>
 <div class="paragraph">
@@ -3821,7 +3821,7 @@ Remote: cluster_B               configured             normal</pre>
 <div class="content">
 <pre>cluster_A::&gt; metrocluster switchover
 Warning: negotiated switchover is about to start. It will stop all the data Vservers on cluster "cluster_B" and
-automatically re-start them on cluster "cluster_A". It will finally gracefully shutdown cluster "cluster_B".</pre>
+automatically re-start them on cluster "`cluster_A`". It will finally gracefully shutdown cluster "cluster_B".</pre>
 </div>
 </div>
 </li>
@@ -3870,7 +3870,7 @@ cluster_A::&gt; metrocluster operation show
 <div class="sect1">
 <h2 id="修復と手動スイッチバックの検証">修復と手動スイッチバックの検証</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>修復処理と手動スイッチバック処理をテストするには、ネゴシエートスイッチオーバー後にクラスタを元のデータセンターにスイッチバックして、データの可用性に影響がないことを検証します（ SMB および Solaris FC 構成を除く）。</p>
 </div>
 <div class="paragraph">
@@ -3993,7 +3993,7 @@ Group Cluster Node               State          Mirroring Mode
 </div>
 </li>
 <li>
-<p>MetroCluster オペレーションのステータスを確認します</p>
+<p>ステータスを確認します。</p>
 <div class="paragraph">
 <p>「 MetroCluster operation show 」を参照してください</p>
 </div>
@@ -4018,7 +4018,7 @@ Group Cluster Node               State          Mirroring Mode
 <div class="sect1">
 <h2 id="単一の-fc-to-sas-ブリッジの停止">単一の FC-to-SAS ブリッジの停止</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>単一の FC-to-SAS ブリッジの障害をテストして、単一点障害がないことを確認できます。</p>
 </div>
 <div class="paragraph">
@@ -4101,7 +4101,7 @@ Disk             Error Type        Error Text
 <div class="sect1">
 <h2 id="電源回線切断後の動作確認">電源回線切断後の動作確認</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster 構成で PDU の障害が発生した場合の対応をテストできます。</p>
 </div>
 <div class="paragraph">
@@ -4185,7 +4185,7 @@ Power               Critical condition is detected in storage shelf power supply
 <div class="sect1">
 <h2 id="スイッチファブリック障害後の動作確認">スイッチファブリック障害後の動作確認</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>スイッチファブリックを無効にして、データの可用性に影響がないことを確認できます。</p>
 </div>
 <div class="paragraph">
@@ -4303,7 +4303,7 @@ Power               Critical condition is detected in storage shelf power supply
 <div class="sect1">
 <h2 id="単一のストレージシェルフが停止したあとの動作確認">単一のストレージシェルフが停止したあとの動作確認</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>単一のストレージシェルフの障害をテストして、単一点障害がないことを確認できます。</p>
 </div>
 <div class="paragraph">
@@ -4488,7 +4488,7 @@ Owner Node: node_A_2
 <p>「 storage aggregate show -r -node node_name ！ * root 」</p>
 </div>
 <div class="paragraph">
-<p>次の例に示すように、電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスが「 degraded 」になり、影響を受けたプレックスのドライブのステータスが「 failed 」になります。</p>
+<p>電源をオフにしたシェルフにドライブがあるアグリゲートの RAID ステータスは「 degraded 」になり、影響を受けたプレックスのドライブのステータスは「 failed 」になります。次に例を示します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4613,7 +4613,7 @@ SVM2
 <p>「 storage aggregate show</p>
 </div>
 <div class="paragraph">
-<p>次の例に示すように、影響を受けたアグリゲートの RAID ステータスが「 resyncing 」になります。</p>
+<p>次の例に示すように、影響を受けたアグリゲートの RAID ステータスは「 resyncing 」になります。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4647,7 +4647,7 @@ node_A_2_root
 <p>「 storage aggregate show</p>
 </div>
 <div class="paragraph">
-<p>次の例に示すように、影響を受けるアグリゲートの RAID ステータスが「 normal 」になります。</p>
+<p>次の例に示すように、影響を受けるアグリゲートの RAID ステータスは「 normal 」になります。</p>
 </div>
 <div class="listingblock">
 <div class="content">

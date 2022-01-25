@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3735,7 +3735,7 @@
 <p>MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 MetroCluster 構成の外部にあるクラスタとのピアリング、ボリューム処理や NVFAIL 処理などの ONTAP 処理の実行について、一定の考慮事項に注意する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーが発生したときに、クラスタがパートナー用にシームレスにデータを提供できるかどうかに依存します。</p>
+<p>2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーの発生時にクラスタがパートナーにデータをシームレスに提供できるかどうかに依存します。</p>
 </div>
 </div>
 </div>
@@ -3769,7 +3769,7 @@
 <div class="sect1">
 <h2 id="ontap-system-manager-での-metrocluster-処理">ONTAP System Manager での MetroCluster 処理</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実行できる MetroCluster 固有の処理もあります。</p>
 </div>
 <div class="ulist">
@@ -3790,7 +3790,7 @@
 <div class="sect1">
 <h2 id="metrocluster-構成での-flexcache-のサポート">MetroCluster 構成での FlexCache のサポート</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ONTAP 9.7 以降では、 MetroCluster 構成で FlexCache ボリュームがサポートされます。スイッチオーバーまたはスイッチバック処理後の手動廃止の要件を理解しておく必要があります。</p>
 </div>
 <div class="sect2">
@@ -3830,7 +3830,7 @@
 <p>スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります</p>
 </div>
 <div class="paragraph">
-<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html">"FlexCache ボリューム管理"</a></p>
+<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html" target="_blank" rel="noopener">"FlexCache ボリューム管理"</a></p>
 </div>
 </div>
 </div>
@@ -3838,14 +3838,11 @@
 <div class="sect1">
 <h2 id="metrocluster-構成での-fabricpool-のサポート">MetroCluster 構成での FabricPool のサポート</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。</p>
 </div>
 <div class="paragraph">
-<p>FabricPool の使用に関する一般的な情報については、 <em>Disks and aggregates management</em> を参照してください。</p>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html">"ディスクおよびアグリゲートの管理"</a></p>
+<p>FabricPool の使用に関する一般的な情報については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html" target="_blank" rel="noopener">"ディスクおよびアグリゲートの管理"</a>。</p>
 </div>
 <div class="sect2">
 <h3 id="fabricpool-を使用する際の考慮事項">FabricPool を使用する際の考慮事項</h3>
@@ -3857,7 +3854,7 @@
 <li>
 <p>各クラスタに同じ名前の IPspace が必要です。</p>
 <div class="paragraph">
-<p>これには、デフォルトの IPspace か管理者が作成した IP スペースを使用できます。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。</p>
+<p>これは、デフォルト IPspace または管理者が作成した IP スペースです。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。</p>
 </div>
 </li>
 <li>
@@ -3875,13 +3872,10 @@
 <img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
 </td>
 <td class="content">
-アグリゲートを設定する前に、ディスクとアグリゲートの管理 _ の「 MetroCluster 構成での FabricPool のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります。
+アグリゲートを設定する前に、の「 MetroCluster 構成での FabricPool 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html" target="_blank" rel="noopener">"ディスクおよびアグリゲートの管理"</a>。
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html">"ディスクおよびアグリゲートの管理"</a></p>
 </div>
 <div class="paragraph">
 <p>FabricPool で使用するアグリゲートを設定するには、次の手順を実行します。</p>
@@ -3895,10 +3889,7 @@
 <p>アグリゲートを MetroCluster 構成内の標準のミラーアグリゲートとしてミラーリングします。</p>
 </li>
 <li>
-<p>ディスクとアグリゲートの管理 _ の説明に従って、アグリゲートを含む FabricPool ミラーを作成します。</p>
-<div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html">"ディスクおよびアグリゲートの管理"</a></p>
-</div>
+<p>の説明に従って、アグリゲートを含む FabricPool ミラーを作成します <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html" target="_blank" rel="noopener">"ディスクおよびアグリゲートの管理"</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3975,7 +3966,7 @@
 <p>MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html">"ネットワークと LIF の管理"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html" target="_blank" rel="noopener">"ネットワークと LIF の管理"</a></p>
 </div>
 <div class="paragraph">
 <p><a href="concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements">"IPspace オブジェクトのレプリケーションとサブネットの設定の要件"</a></p>
@@ -4115,9 +4106,9 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
+<col style="width: 13.3333%;">
 <col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 53.3334%;">
 </colgroup>
 <tbody>
 <tr>
@@ -4297,11 +4288,11 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 </ul>
 </div>
 <div class="paragraph">
-<p>の「 SVM 設定のレプリケート」を参照してください <a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html">"データ保護"</a> SVM DR 関係の設定の詳細については、を参照してください。</p>
+<p>の「 SVM 設定のレプリケート」を参照してください <a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html" target="_blank" rel="noopener">"データ保護"</a> SVM DR 関係の設定の詳細については、を参照してください。</p>
 </div>
 <div class="sect2">
 <h3 id="ディザスタリカバリサイトでの-svm-の再同期">ディザスタリカバリサイトでの SVM の再同期</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>再同期では、 MetroCluster 構成の Storage Virtual Machine （ SVM ）ディザスタリカバリ（ DR ）ソースが MetroCluster でないサイトのデスティネーション SVM からリストアされます。</p>
 </div>
 <div class="paragraph">
@@ -4343,7 +4334,7 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 <div class="sect1">
 <h2 id="metrocluster-スイッチオーバー後に-storage-aggregate-plex-show-コマンドの出力が確定しない">MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster のスイッチオーバー後に storage aggregate plex show コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。</p>
 </div>
 </div>
@@ -4351,7 +4342,7 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 <div class="sect1">
 <h2 id="スイッチオーバー発生時に-nvfail-フラグを設定するためのボリュームの変更">スイッチオーバー発生時に NVFAIL フラグを設定するためのボリュームの変更</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster スイッチオーバーが発生した場合に NVFAIL フラグが設定されるようにボリュームを変更することができます。NVFAIL フラグが設定されたボリュームは、一切変更されなくなります。コミットされた書き込みがスイッチオーバー後に失われたと想定してボリュームを処理する必要がある場合は、この変更が必要となります。</p>
 </div>
 <div class="admonitionblock note">
@@ -4367,6 +4358,7 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 </table>
 </div>
 <div class="olist arabic">
+<div class="title">ステップ</div>
 <ol class="arabic">
 <li>
 <p>スイッチオーバー時に MetroCluster 構成で NVFAIL をトリガーするには、「 vol-dr-force-nvfail 」パラメータを on に設定します。</p>

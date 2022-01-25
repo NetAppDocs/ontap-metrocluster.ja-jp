@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3704,6 +3704,14 @@
           alt="netapp-martyh"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/66496079?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3731,14 +3739,6 @@
           style="border-radius: 50%;"/>
   </a>
   
-  <a target="_blank" href="https://github.com/netapp-thomi">
-    <img  class="avatar avatar-small"
-          alt="netapp-thomi"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/54111336?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
 </span>
 
 
@@ -3755,7 +3755,7 @@
 <div class="sect1">
 <h2 id="新しいコントローラをセットアップする">新しいコントローラをセットアップする</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>新しい MetroCluster IP コントローラを、以前に MetroCluster FC コントローラに接続したストレージシェルフにラックに設置してケーブル接続する必要があります。</p>
 </div>
 <div class="paragraph">
@@ -3786,6 +3786,7 @@
 </div>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>必要に応じて、新しいコントローラモジュールとストレージシェルフの配置を計画します。</p>
@@ -3813,16 +3814,29 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>LOADER プロンプトで、ブートメニュー「 boot_ontap maint 」を起動します</p>
-</li>
-<li>
-<p>ドライブが接続されていないことを確認します。「 Disk show -v</p>
+<p>LOADER プロンプトで、ブートメニューを起動します。</p>
 <div class="paragraph">
-<p>出力にドライブが表示されないことを確認します。</p>
+<p>「 boot_ontap maint 」を使用してください</p>
 </div>
 </li>
 <li>
-<p>ノードを停止します</p>
+<p>ドライブが接続されていないことを確認します。</p>
+<div class="paragraph">
+<p>「ディスクショー V 」</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>出力にドライブが表示されないことを確認します。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>ノードを停止します。</p>
+<div class="paragraph">
+<p>「 halt 」</p>
+</div>
 </li>
 </ol>
 </div>
@@ -3832,10 +3846,13 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>LOADER プロンプトで、ブートメニュー「 boot_ontap menu 」を起動します</p>
+<p>LOADER プロンプトで、ブートメニューを起動します。</p>
+<div class="paragraph">
+<p>「 boot_ontap menu</p>
+</div>
 </li>
 <li>
-<p>ブートメニューでオプション * 9a * を選択してコントローラをリブートします。</p>
+<p>起動メニューでオプション [9a`] を選択して、コントローラを再起動します。</p>
 </li>
 <li>
 <p>コントローラモジュールのブートが完了してから次のコントローラモジュールに移動します。</p>
@@ -3843,7 +3860,7 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>9a が完了すると、ノードは自動的にブートメニューに戻ります。</p>
+<p>"9a`" が完了すると、ノードは自動的にブートメニューに戻ります。</p>
 </div>
 </li>
 <li>
@@ -3852,35 +3869,32 @@
 <p>ケーブル接続の情報については、使用しているモデルに対応したコントローラの設置とセットアップの手順を参照してください。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/platstor/index.jsp">"AFF と FAS ドキュメントセンター"</a></p>
+<p><a href="https://docs.netapp.com/platstor/index.jsp" target="_blank" rel="noopener">"AFF と FAS ドキュメントセンター"</a></p>
 </div>
 </li>
 <li>
-<p>MetroCluster IP インストールおよび設定ガイドの説明に従って、コントローラを IP スイッチにケーブル接続します。</p>
+<p>の説明に従って、コントローラを IP スイッチにケーブル接続します <a href="../install-ip/using_rcf_generator.html">"IP スイッチのケーブル接続"</a>。</p>
+</li>
+<li>
+<p>新しい RCF ファイルを適用するための IP スイッチを準備します。</p>
 <div class="paragraph">
-<p><a href="../install-ip/concept_considerations_differences.html">"MetroCluster IP のインストールと設定"</a></p>
+<p>スイッチベンダーの手順に従います。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../install-ip/using_rcf_generator.html">"IP スイッチのケーブル接続"</a></p>
+<p><a href="../install-ip/task_switch_config_broadcom.html">"Broadcom IP スイッチを工場出荷時のデフォルトにリセット"</a></p>
+</li>
+<li>
+<p><a href="../install-ip/task_switch_config_cisco.html">"Cisco IP スイッチを工場出荷時のデフォルトにリセットする"</a></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>新しい RCF ファイルを適用するための IP スイッチを準備します。</p>
-<div class="paragraph">
-<p>使用しているスイッチベンダーに対応する手順については、 MetroCluster IP インストールおよび設定ガイドを参照してください。</p>
-</div>
-<div class="paragraph">
-<p>link:../install-ip/concept_considerations_differences.html<strong class=""MetroCluster IP のインストールと設定""> </strong></p>
-</div>
-</li>
-<li>
 <p>RCF ファイルをダウンロードしてインストールします。</p>
 <div class="paragraph">
-<p>使用しているスイッチベンダーに対応する手順については、を参照してください <a href="../install-ip/concept_considerations_differences.html">"MetroCluster IP のインストールと設定"</a>。</p>
+<p>スイッチベンダーの手順に従います。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3897,16 +3911,28 @@
 <p>最初の新しいコントローラ（ node_A_1 の IP ）の電源をオンにし、 Ctrl+C キーを押してブートプロセスを中断し、 LOADER プロンプトを表示します。</p>
 </li>
 <li>
-<p>コントローラを保守モードでブートします。「 boot_ontap maint 」</p>
+<p>コントローラをメンテナンスモードでブートします。</p>
+<div class="paragraph">
+<p>「 boot_ontap maint 」を使用します</p>
+</div>
 </li>
 <li>
-<p>コントローラのシステム ID 「 sysconfig -v 」を表示します</p>
+<p>コントローラのシステム ID を表示します。</p>
+<div class="paragraph">
+<p>「 sysconfig -v 」を使用します</p>
+</div>
 </li>
 <li>
-<p>既存の構成のシェルフが新しい MetroCluster IP ノード「 storage show shelf 」「 d`isk show -v 」から認識できることを確認します</p>
+<p>既存の構成のシェルフが新しい MetroCluster IP ノードから認識されていることを確認します。</p>
+<div class="paragraph">
+<p>storage show shelf 'disk show -v' のように表示されます</p>
+</div>
 </li>
 <li>
-<p>ノードを停止します</p>
+<p>ノードを停止します。</p>
+<div class="paragraph">
+<p>「 halt 」</p>
+</div>
 </li>
 <li>
 <p>パートナーサイト（ site_B ）のもう一方のノードで、上記の手順を繰り返します。</p>
@@ -3918,21 +3944,28 @@
 <div class="sect1">
 <h2 id="node_a_1-の-ip-と-node_b_1-の-ip-を接続しブートします">node_A_1 の IP と node_B_1 の IP を接続し、ブートします</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster IP コントローラと IP スイッチを接続したら、 node_A_1 の IP と node_B_1 の IP を移行してブートします。</p>
 </div>
 <div class="sect2">
 <h3 id="node_a_1-の-ip-を起動しています">node_A_1 の IP を起動しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>正しい移行オプションを使用してノードをブートする必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>node_A_1 のブートメニューから 'boot_ontap menu' をブートします</p>
+<p>node_A_1 の IP をブートメニューでブートします。</p>
+<div class="paragraph">
+<p>「 boot_ontap menu</p>
+</div>
 </li>
 <li>
-<p>問題ブートメニュープロンプトで次のコマンドを実行して移行を開始します。 'boot_after_MCC_transition'</p>
+<p>問題ブートメニュープロンプトで次のコマンドを実行して移行を開始します。</p>
+<div class="paragraph">
+<p>「 boot_after_MCC_transition 」を参照してください</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -3952,8 +3985,16 @@
 <p>また、 MetroCluster IP ノードが ONTAP プロンプトからブートできるように、このコマンドを使用すると、必要な他のシステム ID の再割り当ても自動的に行われます。</p>
 </li>
 <li>
-<p>boot_after_MCC_transition コマンドが何らかの理由で失敗した場合は、ブートメニューから再実行する必要があります。* 注： *</p>
-</li>
+<p>boot_after_MCC_transition コマンドが何らかの理由で失敗した場合は、ブートメニューから再実行する必要があります。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
 <li>
 <p>次のプロンプトが表示されたら、 Ctrl+C キーを押して続行します。MCC DR の状態を確認しています &#8230;&#8203; [Ctrl + C （履歴書）、 S （ステータス）、 L （リンク） ] _ を入力します</p>
 </li>
@@ -3961,6 +4002,10 @@
 <p>ルートボリュームが暗号化されている場合、ノードは次のメッセージで停止します。ルートボリュームが暗号化されており（ NetApp Volume Encryption ）、キーのインポートに失敗したため、システムを停止します。このクラスタに外部（ KMIP ）キー管理ツールが設定されている場合は、キーサーバの健常性を確認します。</p>
 </li>
 </ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3985,20 +4030,21 @@ MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? 
 </div>
 </div>
 </li>
+</ul>
+</div>
+</li>
 <li>
 <p>データボリュームが暗号化されている場合は、キー管理設定に対応したコマンドを使用してキーをリストアします。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">使用するポート</th>
-<th class="tableblock halign-left valign-top">使用するコマンド</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用するポート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用するコマンド</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
@@ -4008,7 +4054,10 @@ MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? 
 </ul>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>セキュリティキー管理ツールのオンボード同期の詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html">"オンボードキー管理の暗号化キーのリストア"</a>。</p>
+<p>「セキュリティキーマネージャオンボード同期」</p>
+</div>
+<div class="paragraph">
+<p>詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html" target="_blank" rel="noopener">"オンボードキー管理の暗号化キーのリストア"</a>。</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4020,10 +4069,10 @@ MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? 
 </ul>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>security key-manager key query -node node-name の詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html">"外部キー管理の暗号化キーのリストア"</a>。</p>
+<p>'security key-manager key query -node node-name</p>
 </div>
 <div class="paragraph">
-<p>[+]</p>
+<p>詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html" target="_blank" rel="noopener">"外部キー管理の暗号化キーのリストア"</a>。</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4037,33 +4086,37 @@ MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? 
 </div>
 <div class="sect2">
 <h3 id="ルートボリュームが暗号化されている場合のキー管理のリカバリ">ルートボリュームが暗号化されている場合のキー管理のリカバリ</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ルートボリュームが暗号化されている場合は、特別なブートコマンドを使用してキー管理をリストアする必要があります。</p>
 </div>
 <div class="paragraph">
 <p>パスフレーズを事前に収集しておく必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>オンボードキー管理を使用している場合は、次の手順を実行して構成をリストアします。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」</p>
+<p>LOADER プロンプトで、ブートメニューを表示します。</p>
+<div class="paragraph">
+<p>「 boot_ontap menu</p>
+</div>
 </li>
 <li>
-<p>ブートメニューからオプション（ 10 ） Set onboard key management recovery secrets を選択します。</p>
+<p>ブート・メニューからオプション（ 10 ） Set onboard key management recovery secrets （オンボード・キー管理リカバリシークレットの設定）を選択します</p>
 <div class="paragraph">
 <p>プロンプトに従って応答します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>This option must be used only in disaster recovery procedures. Are you sure? (y or n): `y`
-Enter the passphrase for onboard key management: `passphrase`
-Enter the passphrase again to confirm:`passphrase`
+<pre>This option must be used only in disaster recovery procedures. Are you sure? (y or n): y
+Enter the passphrase for onboard key management: passphrase
+Enter the passphrase again to confirm: passphrase
 
-Enter the backup data:`backup-key`</pre>
+Enter the backup data: backup-key</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4071,7 +4124,7 @@ Enter the backup data:`backup-key`</pre>
 </div>
 </li>
 <li>
-<p>ブート・メニューでオプション「 6 」を入力します。</p>
+<p>ブート・メニューでオプション「 6` 」を入力します。</p>
 <div class="paragraph">
 <p>プロンプトに従って応答します。</p>
 </div>
@@ -4091,10 +4144,13 @@ Override system ID? {y|n} y</pre>
 </div>
 </li>
 <li>
-<p>LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」</p>
+<p>LOADER プロンプトで、ブートメニューを表示します。</p>
+<div class="paragraph">
+<p>「 boot_ontap menu</p>
+</div>
 </li>
 <li>
-<p>ブートメニューからオンボードキー管理のリカバリシークレットを設定し、オプション（ 10 ）を再度選択します。</p>
+<p>もう一度 ' ブート・メニューからオプション（ 10 ） Set onboard key management recovery secrets （オンボード・キー管理リカバリシークレットの設定）を選択します</p>
 <div class="paragraph">
 <p>プロンプトに従って応答します。</p>
 </div>
@@ -4114,14 +4170,22 @@ Enter the backup data:`backup-key`</pre>
 <li>
 <p>ブート・メニューでオプション「 1 」を入力します。</p>
 <div class="paragraph">
-<p>次のプロンプトが表示されたら、 Ctrl+C キーを押してプロセスを再開できます。MCC DR の状態を確認しています &#8230;&#8203; [Ctrl + C （履歴書）、 S （ステータス）、 L （リンク） ] _ を入力します</p>
+<p>次のプロンプトが表示された場合は、 Ctrl+C キーを押してプロセスを再開できます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> Checking MCC DR state... [enter Ctrl-C(resume), S(status), L(link)]</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>システムが ONTAP プロンプトでブートします。</p>
 </div>
 </li>
 <li>
-<p>オンボード・キー管理をリストアします： 'securitykey-manager onboard sync</p>
+<p>オンボードキー管理をリストアします。</p>
+<div class="paragraph">
+<p>「セキュリティキーマネージャオンボード同期」</p>
+</div>
 <div class="paragraph">
 <p>前の手順で収集したパスフレーズを使用して、必要に応じてプロンプトに応答します。</p>
 </div>
@@ -4140,44 +4204,77 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>必要な起動引数を設定します。 'etenv bootarg.kmip.init.ipaddr ip-address 'setenv bootarg.kmip.init.netmask netmask 'setenv bootarg.kmip.init.gateway gateway-address 'etenv bootarg.kmip.init.interface interface-id</p>
+<p>必要な bootargs を設定します。</p>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.ipaddr ip-address</p>
+</div>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.netmask netmask</p>
+</div>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.gateway gateway-address</p>
+</div>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.interface interface-id`</p>
+</div>
 </li>
 <li>
-<p>LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」</p>
+<p>LOADER プロンプトで、ブートメニューを表示します。</p>
+<div class="paragraph">
+<p>「 boot_ontap menu</p>
+</div>
 </li>
 <li>
-<p>ブートメニューからオプション（ 11 ） Configure node for external key management を選択します。</p>
+<p>ブート・メニューからオプション（ 11 ） Configure node for external key management （外部キー管理用のノードの設定）を選択します</p>
 <div class="paragraph">
 <p>システムがブートしてブートメニューが表示されます。</p>
 </div>
 </li>
 <li>
-<p>ブート・メニューでオプション「 6 」を入力します。</p>
+<p>ブート・メニューでオプション「 6` 」を入力します。</p>
 <div class="paragraph">
 <p>システムが何度もブートします。起動プロセスを続行するかどうかを確認するメッセージが表示されたら、肯定応答を返すことができます。</p>
+</div>
+<div class="paragraph">
+<p>リブートが完了すると、システムに LOADER プロンプトが表示されます。</p>
+</div>
+</li>
+<li>
+<p>必要な bootargs を設定します。</p>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.ipaddr ip-address</p>
+</div>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.netmask netmask</p>
+</div>
+<div class="paragraph">
+<p>setsetenv bootarg.kmip.init.gateway gateway-address</p>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>リブートが完了すると、システムに LOADER プロンプトが表示されます。</p>
+<p>setsetenv bootarg.kmip.init.interface interface-id`</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>必要な起動引数を設定します。 'etenv bootarg.kmip.init.ipaddr ip-address 'setenv bootarg.kmip.init.netmask netmask 'setenv bootarg.kmip.init.gateway gateway-address 'etenv bootarg.kmip.init.interface interface-id</p>
+<p>LOADER プロンプトで、ブートメニューを表示します。</p>
+<div class="paragraph">
+<p>「 boot_ontap menu</p>
+</div>
 </li>
 <li>
-<p>LOADER プロンプトで、ブートメニューを表示します。「 boot_ontap menu 」</p>
-</li>
-<li>
-<p>ブートメニューからオプション（ 11 ） Configure node for external key management を再度選択し、必要に応じてプロンプトに応答します。</p>
+<p>ブート・メニューからオプション（ 11 ） Configure node for external key management を再度選択し ' 必要に応じてプロンプトに応答します</p>
 <div class="paragraph">
 <p>システムがブートしてブートメニューが表示されます。</p>
 </div>
 </li>
 <li>
-<p>外部キー管理のリストア：「 securitykey-manager external restore</p>
+<p>外部キー管理をリストアします。</p>
+<div class="paragraph">
+<p>「セキュリティキーマネージャの外部リストア」</p>
+</div>
 </li>
 </ol>
 </div>
@@ -4187,19 +4284,26 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 </div>
 <div class="sect2">
 <h3 id="ネットワーク設定を作成しています">ネットワーク設定を作成しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>FC ノードの設定に一致するネットワーク設定を作成する必要があります。これは、 MetroCluster の IP ノードがブート時に同じ設定を再生するためです。つまり、 node_A_1 の IP ブートと node_B_1 の IP ブート時に、 ONTAP は node_A_1 の FC と node_B_1 の FC で使用されていたポートで LIF をホストしようとします。</p>
 </div>
 <div class="paragraph">
-<p>ネットワーク設定を作成するときは、で作成したプランを使用してください <a href="concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html">MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング</a> を参照してください。</p>
+<p>ネットワーク設定を作成するときは、で作成したプランを使用してください <a href="concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html">"MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング"</a> を参照してください。</p>
 </div>
-<div class="paragraph">
-<p>注</p>
-</div>
-<div class="paragraph">
-<p>MetroCluster IP ノードの設定が完了したら、データ LIF を稼働するために追加の設定が必要になる場合があります。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
+</td>
+<td class="content">
+MetroCluster IP ノードの設定が完了したら、データ LIF を稼働するために追加の設定が必要になる場合があります。
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>すべてのクラスタポートが適切なブロードキャストドメインに属していることを確認します。</p>
@@ -4209,21 +4313,27 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>IP スペースを表示します。「 network ipspace show 」</p>
+<p>IP スペースを表示します。</p>
+<div class="paragraph">
+<p>network ipspace show</p>
+</div>
 </li>
 <li>
 <p>IP スペースを作成し、必要に応じてクラスタポートを割り当てます。</p>
 <div class="paragraph">
-<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html">"IPspace の設定（クラスタ管理者のみ）"</a></p>
+<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html" target="_blank" rel="noopener">"IPspace の設定（クラスタ管理者のみ）"</a></p>
 </div>
 </li>
 <li>
-<p>ブロードキャストドメインを表示します。「 network port broadcast-domain show 」</p>
+<p>ブロードキャストドメインを表示します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain show 」</p>
+</div>
 </li>
 <li>
 <p>必要に応じて、ブロードキャストドメインにクラスタポートを追加します。</p>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html">"ブロードキャストドメインのポートの追加と削除"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html" target="_blank" rel="noopener">"ブロードキャストドメインのポートの追加と削除"</a></p>
 </div>
 </li>
 <li>
@@ -4232,55 +4342,96 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 <p>VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html">"VLAN を作成する"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html" target="_blank" rel="noopener">"VLAN を作成する"</a></p>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html">"物理ポートを組み合わせたインターフェイスグループの作成"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html" target="_blank" rel="noopener">"物理ポートを組み合わせたインターフェイスグループの作成"</a></p>
 </div>
 </li>
 <li>
-<p>ポートおよびブロードキャストドメインの MTU 設定が正しく設定されていることを確認し、次のコマンドを使用して変更を加えます。「 network port broadcast-domain show `network port broadcast-domain modify -broadcast-domain bcastdomainname -mtu 」</p>
+<p>ポートおよびブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、次のコマンドを使用して変更を加えます。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain show 」</p>
+</div>
+<div class="paragraph">
+<p>「 network port broadcast-domain modify -broadcast-domain <em>bcastdomainname _ -mtu_mtu_value</em>`</p>
+</div>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
 <h3 id="クラスタポートとクラスタ-lif-をセットアップする">クラスタポートとクラスタ LIF をセットアップする</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>クラスタポートと LIF をセットアップする必要があります。ルートアグリゲートでブートされたサイト A のノードで、次の手順を実行する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>目的のクラスタポートを使用して LIF のリストを特定します。「 network interface show -curr-node portname 」「 network interface show -home-node portname</p>
+<p>目的のクラスタポートを使用して LIF のリストを特定します。</p>
+<div class="paragraph">
+<p>network interface show -curr-node portname</p>
+</div>
+<div class="paragraph">
+<p>network interface show -home-node portname</p>
+</div>
 </li>
 <li>
 <p>各クラスタポートについて、そのポートのいずれかの LIF のホームポートを別のポートに変更します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>advanced 権限モードに切り替えて、続行するかどうかを尋ねられたら「 y 」と入力します。「 set priv advanced</p>
+<p>advanced 権限モードに切り替え、続行するかどうかを尋ねられたら「 y 」と入力します。</p>
+<div class="paragraph">
+<p>'set priv advanced'</p>
+</div>
 </li>
 <li>
-<p>変更する LIF がデータ LIF である場合は、「 vserver config override-command 」 network interface modify -lif lifname -vserver vservername -home-port new-datahomeport 」を参照してください</p>
+<p>変更する LIF がデータ LIF である場合は、次の手順を実行します。</p>
+<div class="paragraph">
+<p>「 vserver config override command 」 network interface modify -lif lif_name _ -vserver <em>vservername</em>-home-node <em>new-datahomeport</em> 」という形式で指定します</p>
+</div>
 </li>
 <li>
-<p>LIF がデータ LIF でない場合は、「 network interface modify -lif lifname -vserver vservername -home-port new -datahomebport 」のようになります</p>
+<p>LIF がデータ LIF でない場合は、次の手順を実行します。</p>
+<div class="paragraph">
+<p>'network interface modify -lif lif_lifname_-vservername_-home-node home_port_datahome_port_`</p>
+</div>
 </li>
 <li>
-<p>変更した LIF をホームポートにリバートします。「 network interface revert * -vserver vserver_name</p>
+<p>変更した LIF をホームポートにリバートします。</p>
+<div class="paragraph">
+<p>「 network interface revert * -vserver_vserver_name _ 」のように指定します</p>
+</div>
 </li>
 <li>
-<p>クラスタポートに LIF がないことを確認します。「 network interface show -curr-node portname 」「 network interface show -home-node portname</p>
+<p>クラスタポートに LIF がないことを確認します。</p>
+<div class="paragraph">
+<p>network interface show -curr-node Curr -port_portname _</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>'network interface show -home-node port_portname _`</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>現在のブロードキャストドメインからポートを削除します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain remove-ports 」 -ipspacename --broadcast-domain_bcastdomainname&#8201;&#8212;&#8201;ports_node_name : port_name_`</p>
+</div>
 </li>
 <li>
-<p>現在のブロードキャストドメインからポートを削除します。「 network port broadcast-domain remove-ports -ipspace ipspacname -broadcast-domain bcastdomainname -ports node_name ： port_name</p>
-</li>
-<li>
-<p>クラスタ IPspace とブロードキャストドメインにポートを追加します。「 network port broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports node_name ： port_name</p>
+<p>クラスタの IPspace とブロードキャストドメインにポートを追加します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain add-ports -ipspace Cluster -broadcast-domain Cluster -ports_node_name ： port_name_`</p>
+</div>
 </li>
 <li>
 <p>ポートのロールが変更されたことを確認します。「 network port show 」</p>
@@ -4289,7 +4440,10 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 <p>クラスタポートごとに上記の手順を繰り返します。</p>
 </li>
 <li>
-<p>admin モードに戻ります。 'set priv admin'</p>
+<p>admin モードに戻ります。</p>
+<div class="paragraph">
+<p>'set priv admin' のように設定します</p>
+</div>
 </li>
 </ol>
 </div>
@@ -4299,10 +4453,16 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>クラスタ LIF にリンクローカルアドレスを使用して自動設定を行うには、次のコマンドを使用します。 network interface create -vserver Cluster -lif cluster_lifname -service -policy default -cluster -home-node a1name -home-port clusterport -auto true</p>
+<p>クラスタ LIF のリンクローカルアドレスを使用して自動設定を行うには、次のコマンドを使用します。</p>
+<div class="paragraph">
+<p>「 network interface create -vserver Cluster -lif cluster_lifname 」 -service-policy_default_cluster_-home-node <em>a1name _</em> -home-port cluster port -auto true 」のように指定します</p>
+</div>
 </li>
 <li>
-<p>クラスタ LIF に静的 IP アドレスを割り当てるには、次のコマンドを使用します。「 network interface create -vserver Cluster -lif cluster_lifname -service -policy default -cluster -home-node a1name -home-port clusterport -address IP_address -netmask netmask-status -admin up</p>
+<p>クラスタ LIF に静的 IP アドレスを割り当てるには、次のコマンドを使用します。</p>
+<div class="paragraph">
+<p>「 network interface create -vserver Cluster -lif cluster_lifname <em>_ service-policy default -cluster-home-node-a1name</em>-home-node <em>clusterport</em>-address <em>ip-address_netmask</em>-status-admin up</p>
+</div>
 </li>
 </ol>
 </div>
@@ -4312,35 +4472,57 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 </div>
 <div class="sect2">
 <h3 id="lif-の構成を確認しています">LIF の構成を確認しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>古いコントローラからのストレージの移動後も、ノード管理 LIF 、クラスタ管理 LIF 、およびクラスタ間 LIF が残ったままです。必要に応じて、 LIF を適切なポートに移動する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>管理 LIF とクラスタ管理 LIF がすでに目的のポートにあるかどうかを確認します。「 network interface show -service -policy default -management 」 network interface show -service -policy default -intercluster 」</p>
+<p>管理 LIF とクラスタ管理 LIF がすでに目的のポートにあるかどうかを確認します。</p>
+<div class="paragraph">
+<p>「 network interface show -service -policy default -management 」を参照してください</p>
+</div>
+<div class="paragraph">
+<p>「 network interface show -service -policy default -intercluster 」のように表示されます</p>
+</div>
 <div class="paragraph">
 <p>LIF が目的のポートに接続されている場合は、このタスクの残りの手順を省略して次の手順に進むことができます。</p>
 </div>
 </li>
 <li>
-<p>各ノード、クラスタ管理、またはクラスタ間 LIF が目的のポートにない場合は、そのポートのいずれかの LIF のホームポートを別のポートに変更します。</p>
+<p>目的のポートにないノード、クラスタ管理、またはクラスタ間 LIF のそれぞれについて、そのポートのいずれかの LIF のホームポートを別のポートに変更します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>「 vserver config overridecommand 」 network interface modify -lif &lt;lifname&gt; -vserver &lt;vservername&gt; -home-port &lt;new-datahomeport&gt; を使用して、目的のポートでホストされている LIF を別のポートに移動して、目的のポートを再利用します</p>
+<p>目的のポートでホストされている LIF を別のポートに移動することにより、目的のポートを転用します。</p>
+<div class="paragraph">
+<p>「 vserver config override command 」 network interface modify -lif lif_name _ -vserver <em>vservername</em>-home-node <em>new-datahomeport</em> 」という形式で指定します</p>
+</div>
 </li>
 <li>
-<p>変更した LIF を新しいホームポートにリバートします。「 vserver config override-command 」 network interface revert -lif &lt;lifname&gt; -vserver &lt;vservername&gt; 」</p>
+<p>変更した LIF を新しいホームポートにリバートします。</p>
+<div class="paragraph">
+<p>vserver config override -command 「 network interface revert -lif lifname _ -vservername 」のように入力します</p>
+</div>
 </li>
 <li>
-<p>目的のポートが適切な IPspace とブロードキャストドメインにない場合は、そのポートを現在の IPspace とブロードキャストドメインから削除します。「 network port broadcast-domain remove-ports -ipspace &lt;current-ipspace&gt; -broadcast-domain &lt;current-broadcast-domain &gt; -broadcast-domain&gt; -ports &lt;controller-name ： current-port &gt;</p>
+<p>適切な IPspace とブロードキャストドメインにないポートがある場合は、現在の IPspace とブロードキャストドメインからそのポートを削除します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain remove-ports - ipspace_current - broadcast-domain_current - broadcast-domain_Ports_controller-name ： current-port_`</p>
+</div>
 </li>
 <li>
-<p>目的のポートを適切な IPspace に移動し、ブロードキャストドメイン「 network port broadcast-domain add-ports -ipspace 」 &lt;new-ipspace &gt; -broadcast-domain &lt;new-broadcast-domain &gt; -ports &lt;controller-name:new-port &gt; ` に移動します</p>
+<p>目的のポートを適切な IPspace とブロードキャストドメインに移動します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain add -ports -ipspace_new-ipspace 」 -broadcast-domain _new-broadcast-domain _ports_port_name ： new-port _`</p>
+</div>
 </li>
 <li>
-<p>ポートのロールが変更されたことを確認します。「 network port show 」</p>
+<p>ポートのロールが変更されたことを確認します。</p>
+<div class="paragraph">
+<p>「 network port show 」のように表示されます</p>
+</div>
 </li>
 <li>
 <p>ポートごとに上記の手順を繰り返します。</p>
@@ -4349,26 +4531,44 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 </div>
 </li>
 <li>
-<p>次のコマンドを使用して、ノード、クラスタ管理 LIF 、およびクラスタ間 LIF を目的のポートに移動します。</p>
+<p>ノード、クラスタ管理 LIF 、およびクラスタ間 LIF を目的のポートに移動します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>LIF のホームポートを変更します。「 network interface modify -vserver vserver -lif node_name -home-port port -home-node homenode</p>
+<p>LIF のホームポートを変更します。</p>
+<div class="paragraph">
+<p>「 network interface modify -vserver _ -lif <em>node-mgmt</em>-home-node _homenode _ 」を入力します</p>
+</div>
 </li>
 <li>
-<p>LIF を新しいホームポートにリバートします。「 network interface revert -lif Node_mgmt -vserver vservername 」</p>
+<p>LIF を新しいホームポートにリバートします。</p>
+<div class="paragraph">
+<p>'network interface revert -lif LIF_name -vserver_mgmt_' ： vserver_vservername_`</p>
+</div>
 </li>
 <li>
-<p>クラスタ管理 LIF のホームポートを変更します。 <code>network interface modify -vserver vserver -lif cluster-mgmt-LIF -name -home-port port -home-node homenode</code></p>
+<p>クラスタ管理 LIF のホームポートを変更します。</p>
+<div class="paragraph">
+<p>「 network interface modify -vserver _ -lif クラスター -mgmt -lif-lif-name _ -home-port_port_-home-node _homenode _ 」と入力します</p>
+</div>
 </li>
 <li>
-<p>クラスタ管理 LIF を新しいホームポートにリバートします。「 network interface revert -lif cluster-mgmt-LIF -name -vserver vservername 」</p>
+<p>クラスタ管理 LIF を新しいホームポートにリバートします。</p>
+<div class="paragraph">
+<p>「 network interface revert -lif cluster_mgmt -lif-name _ -vservername_` 」のようになります</p>
+</div>
 </li>
 <li>
-<p>インタークラスタ LIF のホームポートを変更します。「 network interface modify -vserver vserver -lif intercluster-lif lif_name -home-node nodename -home-port port 」のように変更します</p>
+<p>クラスタ間 LIF のホームポートを変更します。</p>
+<div class="paragraph">
+<p>「 network interface modify -vserver _ -lif _ intercluster -lif-name _ -home-nodename_home-port_nodename <em>_ home_port_port</em>`</p>
+</div>
 </li>
 <li>
-<p>クラスタ間 LIF を新しいホームポートにリバートします。「 network interface revert lif-lif-name -vserver vservername</p>
+<p>クラスタ間 LIF を新しいホームポートにリバートします。</p>
+<div class="paragraph">
+<p>「 network interface revert -lif lif_intercluster-lif-name _ -vservername_` 」のように入力します</p>
+</div>
 </li>
 </ol>
 </div>
@@ -4381,12 +4581,12 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 <div class="sect1">
 <h2 id="node_b_2-と-node_b_2-の-ip-を起動しています">node_B_2 と node_B_2 の IP を起動しています</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>各サイトで新しい MetroCluster IP ノードを起動して設定し、各サイトに HA ペアを作成する必要があります。</p>
 </div>
 <div class="sect2">
 <h3 id="node_b_2-と-node_b_2-の-ip-を起動しています-2">node_B_2 と node_B_2 の IP を起動しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>新しいコントローラモジュールは、ブートメニューの適切なオプションを使用して、一度に 1 つずつブートする必要があります。</p>
 </div>
 <div class="paragraph">
@@ -4411,9 +4611,10 @@ Enter the cluster-wide passphrase for onboard key management in Vserver "cluster
 </div>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>ブート・オプション 9C を使用して ' 新しいノードをブートします</p>
+<p>ブート・オプション「 9C 」を使用して、新しいノードをブートします。</p>
 <div class="listingblock">
 <div class="content">
 <pre>Please choose one of the following:
@@ -4445,7 +4646,7 @@ To accept a default or omit a question, do not enter a value. .
 </div>
 </div>
 <div class="paragraph">
-<p>オプション 9C が正常に実行されない場合は ' データ損失の可能性を避けるため ' 次の手順に従います</p>
+<p>オプション "9C`" が正常に実行されない場合は ' データ損失の可能性を避けるため ' 次の手順に従います</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4456,9 +4657,9 @@ To accept a default or omit a question, do not enter a value. .
 <p>元の MetroCluster FC 構成（ shelf_A_1 、 shelf_A_2 、 shelf_B_1 、 shelf_B_2 ）のデータが格納されている既存のシェルフを物理的に取り外します。</p>
 </li>
 <li>
-<p>技術情報アーティクルを参照して、テクニカルサポートに連絡してください <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/MetroCluster_FC_to_IP_transition_-_Option_9c_Failing">"MetroCluster FC から IP への移行 - オプション 9C が失敗しました"</a>。</p>
+<p>技術情報アーティクルを参照して、テクニカルサポートに連絡してください <a href="https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/MetroCluster_FC_to_IP_transition_-_Option_9c_Failing" target="_blank" rel="noopener">"MetroCluster FC から IP への移行 - オプション 9C が失敗しました"</a>。</p>
 <div class="paragraph">
-<p><a href="https://mysupport.netapp.com/site/global/dashboard">"ネットアップサポート"</a></p>
+<p><a href="https://mysupport.netapp.com/site/global/dashboard" target="_blank" rel="noopener">"ネットアップサポート"</a></p>
 </div>
 </li>
 </ul>
@@ -4479,16 +4680,25 @@ Enter the node management interface default gateway: 10.228.160.1</pre>
 </div>
 </li>
 <li>
-<p>ストレージフェイルオーバーモードが「 storage failover show -fields mode 」に設定されていることを確認します</p>
+<p>ストレージフェイルオーバーモードが HA に設定されていることを確認します。</p>
 <div class="paragraph">
-<p>モードが HA でない場合は、「 storage failover modify -mode ha -node localhost 」を設定します</p>
+<p>「 storage failover show -fields mode 」を選択します</p>
+</div>
+<div class="paragraph">
+<p>モードが HA でない場合は、設定します。</p>
+</div>
+<div class="paragraph">
+<p>「 storage failover modify -mode ha -node <em>localhost</em>` 」です</p>
 </div>
 <div class="paragraph">
 <p>変更を有効にするには、ノードをリブートする必要があります。</p>
 </div>
 </li>
 <li>
-<p>クラスタ内のポートを表示します。「 network port show 」を参照してください</p>
+<p>クラスタ内のポートの一覧を表示します。</p>
+<div class="paragraph">
+<p>「 network port show 」のように表示されます</p>
+</div>
 <div class="paragraph">
 <p>コマンド構文全体については、マニュアルページを参照してください。</p>
 </div>
@@ -4519,7 +4729,10 @@ cluster01-02
 </div>
 </li>
 <li>
-<p>Node Setup ウィザードを終了します :exit</p>
+<p>ノードのセットアップウィザードを終了します。</p>
+<div class="paragraph">
+<p>「 exit</p>
+</div>
 </li>
 <li>
 <p>admin ユーザ名を使用して admin アカウントにログインします。</p>
@@ -4542,25 +4755,29 @@ join</pre>
 </div>
 </li>
 <li>
-<p>クラスタセットアップウィザードが完了したら、次のコマンドを入力して、クラスタがアクティブで、ノードが正常に機能していることを確認します。「 cluster show</p>
+<p>クラスタセットアップウィザードが完了したら、次のコマンドを入力して、クラスタがアクティブで、ノードが正常であることを確認します。</p>
+<div class="paragraph">
+<p>「 cluster show 」を参照してください</p>
+</div>
 </li>
 <li>
-<p>ディスクの自動割り当てを無効にします。「 storage disk option modify -autoassign off -node node_A_2 -ip 」</p>
+<p>ディスクの自動割り当てを無効にする：</p>
+<div class="paragraph">
+<p>storage disk option modify -autoassign off -node node_name IP</p>
+</div>
 </li>
 <li>
 <p>暗号化を使用する場合は、キー管理設定に対応したコマンドを使用してキーをリストアします。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">使用するポート</th>
-<th class="tableblock halign-left valign-top">使用するコマンド</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用するポート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用するコマンド</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
@@ -4570,7 +4787,10 @@ join</pre>
 </ul>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>セキュリティキー管理ツールのオンボード同期の詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html">"オンボードキー管理の暗号化キーのリストア"</a>。</p>
+<p>「セキュリティキーマネージャオンボード同期」</p>
+</div>
+<div class="paragraph">
+<p>詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html">"オンボードキー管理の暗号化キーのリストア"</a>。</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4582,10 +4802,10 @@ join</pre>
 </ul>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>security key-manager key query -node node-name の詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html">"外部キー管理の暗号化キーのリストア"</a>。</p>
+<p>'security key-manager key query -node-node-name-'</p>
 </div>
 <div class="paragraph">
-<p>[+]</p>
+<p>詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html" target="_blank" rel="noopener">"外部キー管理の暗号化キーのリストア"</a>。</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4599,48 +4819,57 @@ join</pre>
 </div>
 <div class="sect2">
 <h3 id="mtu-設定を確認しています">MTU 設定を確認しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>ポートおよびブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、次のコマンドを使用して変更を加えます</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>クラスタブロードキャストドメインで使用されている MTU サイズを確認します。「 network port broadcast-domain show 」</p>
+<p>クラスタブロードキャストドメインで使用されている MTU サイズを確認します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain show 」</p>
+</div>
 </li>
 <li>
-<p>必要に応じて MTU サイズを更新します。「 network port broadcast-domain modify -broadcast-domain bcast-domain= name -mtu mtu-size 」</p>
+<p>必要に応じて MTU サイズを更新します。</p>
+<div class="paragraph">
+<p>「 network port broadcast-domain modify -broadcast-domain <em>bcast-domain-name-name</em>-mtu_mtu-size_` 」</p>
+</div>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
 <h3 id="クラスタ間-lif-を設定しています">クラスタ間 LIF を設定しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>クラスタピアリングに必要なクラスタ間 LIF を設定</p>
 </div>
 <div class="paragraph">
 <p>このタスクは、新しい両方のノード、 node_B_2 - IP と node_B_2 - IP の両方で実行する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">ステップ</div>
 <ol class="arabic">
 <li>
-<p>MetroCluster IP インストールおよび設定ガイドの手順に従ってクラスタ間 LIF を設定します。</p>
-<div class="paragraph">
-<p><a href="../install-ip/task_sw_config_configure_clusters.html#configuring-intercluster-lifs-for-cluster-peering">"クラスタ間 LIF を設定しています"</a></p>
-</div>
+<p>クラスタ間 LIF を設定を参照してください <a href="../install-ip/task_sw_config_configure_clusters.html#configuring-intercluster-lifs-for-cluster-peering">"クラスタ間 LIF を設定しています"</a></p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
 <h3 id="クラスタピアリングを検証しています">クラスタピアリングを検証しています</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>cluster_A と cluster_B にピア関係が確立されており、各クラスタのノードが相互に通信できることを確認します。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>クラスタピア関係を確認します。 cluster peer health show</p>
+<p>クラスタピア関係を確認します。</p>
+<div class="paragraph">
+<p>cluster peer health show</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>cluster01::&gt; cluster peer health show
@@ -4665,7 +4894,10 @@ node_A_2-IP
 </div>
 </li>
 <li>
-<p>ping を実行して、ピアアドレスに到達できることを確認します。「 cluster peer ping-originating -node local-node-destination-cluster remote-cluster-name 」</p>
+<p>ping を実行して、ピアアドレスに到達できることを確認します。</p>
+<div class="paragraph">
+<p>cluster peer ping -originating -node <em>local-node-destination-cluster_remote-cluster-name</em>`</p>
+</div>
 </li>
 </ol>
 </div>

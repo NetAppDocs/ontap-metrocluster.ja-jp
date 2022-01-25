@@ -3694,24 +3694,24 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
 <span>寄稿者
-  <a target="_blank" href="https://github.com/NetAppZacharyWambold">
-    <img  class="avatar avatar-small"
-          alt="NetAppZacharyWambold"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/73244192?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
   <a target="_blank" href="https://github.com/netapp-thomi">
     <img  class="avatar avatar-small"
           alt="netapp-thomi"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/NetAppZacharyWambold">
+    <img  class="avatar avatar-small"
+          alt="NetAppZacharyWambold"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/73244192?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3731,28 +3731,27 @@
 <div class="sect1">
 <h2 id="autosupport-を設定しています">AutoSupport を設定しています</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>デフォルトでは、 AutoSupport メッセージは Tiebreaker ソフトウェアをインストールしてから 1 週間後にネットアップに送信されます。AutoSupport 通知をトリガーするイベントには、 Tiebreaker ソフトウェアのパニック状態、 MetroCluster 構成での災害状況の検出、 MetroCluster 構成の不明なステータスなどがあります。</p>
 </div>
 <div class="paragraph">
 <p>AutoSupport メッセージを設定するための直接アクセスが必要です。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>Tiebreaker CLI の AutoSupport コマンドで、次のオプションを指定します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">オプション</th>
-<th class="tableblock halign-left valign-top">説明</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オプション</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">説明</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
@@ -3880,23 +3879,21 @@ Autosupport configuration deleted successfully.</pre>
 </div>
 <div class="sect2">
 <h3 id="snmp-イベントとトラップ">SNMP イベントとトラップ</h3>
-<div class="paragraph lead">
+<div class="paragraph">
 <p>NetApp MetroCluster Tiebreaker ソフトウェアは、 SNMP トラップを使用して重大なイベントをユーザに通知します。これらのトラップは NetApp MIB ファイルに含まれています。各トラップには、トラップ名、重大度、影響レベル、タイムスタンプ、およびメッセージに関する情報が含まれています。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">イベント名</th>
-<th class="tableblock halign-left valign-top">イベントの詳細</th>
-<th class="tableblock halign-left valign-top">トラップ番号</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">イベント名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">イベントの詳細</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">トラップ番号</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>MetroCluster Tie-Breaker が MetroCluster 構成に到達できません</p>
@@ -3960,25 +3957,24 @@ Autosupport configuration deleted successfully.</pre>
 <div class="sect1">
 <h2 id="監視処理のステータスを表示する">監視処理のステータスを表示する</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>MetroCluster 構成の監視処理の全体的なステータスを表示できます。</p>
 </div>
 <div class="olist arabic">
+<div class="title">ステップ</div>
 <ol class="arabic">
 <li>
 <p>Tiebreaker CLI の monitor show コマンドを使用して、次のいずれかのオプションを指定して MetroCluster 処理のステータスを表示します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">オプション</th>
-<th class="tableblock halign-left valign-top">説明</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オプション</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">説明</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>-monitor-name を指定します</p>
@@ -4077,10 +4073,11 @@ MetroCluster: cluster_B
 <div class="sect1">
 <h2 id="metrocluster-の設定情報を表示する">MetroCluster の設定情報を表示する</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>Tiebreaker ソフトウェアでは、 MetroCluster 構成のすべてのインスタンスのモニタ名と IP アドレスを表示できます。</p>
 </div>
 <div class="olist arabic">
+<div class="title">ステップ</div>
 <ol class="arabic">
 <li>
 <p>Tiebreaker CLI の configuration show コマンドを使用して、 MetroCluster の設定情報を表示します。</p>
@@ -4105,10 +4102,11 @@ MetroCluster: cluster_B
 <div class="sect1">
 <h2 id="ダンプファイルの作成">ダンプ・ファイルの作成</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>Tiebreaker ソフトウェアの全体的なステータスを、デバッグのためにダンプファイルに保存します。</p>
 </div>
 <div class="olist arabic">
+<div class="title">ステップ</div>
 <ol class="arabic">
 <li>
 <p>Tiebreaker CLI の monitor dump-status コマンドを使用して、すべての MetroCluster 設定の全体的なステータスのダンプファイルを作成する。</p>

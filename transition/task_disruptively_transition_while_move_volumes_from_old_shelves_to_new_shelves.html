@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3704,6 +3704,14 @@
           alt="netapp-martyh"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/66496079?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3743,7 +3751,7 @@
 <li>
 <p>この手順は、 2 ノード MetroCluster FC 構成にのみ適用されます。</p>
 <div class="paragraph">
-<p>4 ノード MetroCluster FC 構成の場合は、を参照してください <a href="concept_choosing_your_transition_procedure_mcc_transition.html">移行する手順を選択します</a>。</p>
+<p>4 ノード MetroCluster FC 構成の場合は、を参照してください <a href="concept_choosing_your_transition_procedure_mcc_transition.html">"移行する手順を選択します"</a>。</p>
 </div>
 </li>
 <li>
@@ -3756,7 +3764,7 @@
 <div class="sect1">
 <h2 id="古いシェルフを撤去する場合の移行要件">古いシェルフを撤去する場合の移行要件</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>移行プロセスを開始する前に、既存の MetroCluster FC 構成が要件を満たしていることを確認する必要があります。</p>
 </div>
 <div class="ulist">
@@ -3770,7 +3778,7 @@
 <li>
 <p>既存のプラットフォームと新しいプラットフォームの組み合わせは、移行対象としてサポートされている必要があります。</p>
 <div class="paragraph">
-<p><a href="concept_supported_platforms_for_transition.html">無停止移行でサポートされるプラットフォーム</a></p>
+<p><a href="concept_supported_platforms_for_transition.html">"無停止移行でサポートされるプラットフォーム"</a></p>
 </div>
 </li>
 <li>
@@ -3789,7 +3797,7 @@
 <li>
 <p>新しい MetroCluster IP プラットフォームモデルで古いストレージシェルフモデルがサポートされている必要があります。</p>
 <div class="paragraph">
-<p><a href="https://hwu.netapp.com">"NetApp Hardware Universe の略"</a></p>
+<p><a href="https://hwu.netapp.com" target="_blank" rel="noopener">"NetApp Hardware Universe の略"</a></p>
 </div>
 </li>
 <li>
@@ -3798,7 +3806,7 @@
 <p>必要なドライブシェルフがほかにもあります。</p>
 </div>
 <div class="paragraph">
-<p>各コントローラに 14-18 ドライブを追加する必要があります。</p>
+<p>各コントローラに 14~18 本のドライブを追加する必要があります。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3820,10 +3828,7 @@
 <li>
 <p>新しいノードを含む構成が、ドライブ数、ルートアグリゲートのサイズ容量など、構成のプラットフォーム制限を超えないようにする必要があります</p>
 <div class="paragraph">
-<p>この情報は、各プラットフォームモデルの NetApp Hardware Universe _ で確認できます。</p>
-</div>
-<div class="paragraph">
-<p><a href="https://hwu.netapp.com">"NetApp Hardware Universe の略"</a></p>
+<p>この情報は、各プラットフォームモデルので確認できます <a href="https://hwu.netapp.com" target="_blank" rel="noopener">"NetApp Hardware Universe の略"</a></p>
 </div>
 </li>
 </ul>
@@ -3836,7 +3841,7 @@
 <div class="sect1">
 <h2 id="データを移動する場合や古いストレージシェルフを撤去する場合の停止を伴う移行ワークフロー">データを移動する場合や古いストレージシェルフを撤去する場合の、停止を伴う移行ワークフロー</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>移行を成功させるには、特定のワークフローに従う必要があります。</p>
 </div>
 <div class="paragraph">
@@ -3852,13 +3857,14 @@
 <div class="sect1">
 <h2 id="構成を移行しています">構成を移行しています</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>詳細な移行手順に従う必要があります。</p>
 </div>
 <div class="paragraph">
 <p>以降の手順では、このガイドの他のセクションに説明します。参照されている各セクションの手順を記載された順序で実行する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>の手順に従って、ポートマッピングを計画します <a href="../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#mapping-ports-from-the-metrocluster-fc-nodes-to-the-metrocluster-ip-nodes">"MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング"</a>。</p>
@@ -3869,37 +3875,37 @@
 <li>
 <p>MetroCluster FC 構成の健常性を確認</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#verifying-the-health-of-the-metrocluster-fc-configuration">"MetroCluster FC 構成の健全性の確認"</a></p>
+<p>の手順を実行します <a href="../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#verifying-the-health-of-the-metrocluster-fc-configuration">"MetroCluster FC 構成の健全性の確認"</a>。</p>
 </div>
 </li>
 <li>
 <p>MetroCluster FC 構成から情報を収集</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="../task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html#gathering-information-from-the-existing-controller-modules-before-the-transition">"移行前に既存のコントローラモジュールから情報を収集"</a></p>
+<p>の手順を実行します <a href="../task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html#gathering-information-from-the-existing-controller-modules-before-the-transition">"移行前に既存のコントローラモジュールから情報を収集"</a>。</p>
 </div>
 </li>
 <li>
 <p>必要に応じて Tiebreaker による監視を削除</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#verifying-the-health-of-the-metrocluster-fc-configuration">"Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します"</a></p>
+<p>の手順を実行します <a href="../transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html#verifying-the-health-of-the-metrocluster-fc-configuration">"Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します"</a>。</p>
 </div>
 </li>
 <li>
 <p>既存の MetroCluster FC ノードを準備して削除</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html">MetroCluster FC ノードを移行します</a>。</p>
+<p>の手順を実行します <a href="task_transition_the_mcc_fc_nodes_2n_mcc_transition_supertask.html">"MetroCluster FC ノードを移行します"</a>。</p>
 </div>
 </li>
 <li>
 <p>新しい MetroCluster IP ノードを接続します。</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html">MetroCluster IP コントローラモジュールを接続します</a>。</p>
+<p>の手順を実行します <a href="task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html">"MetroCluster IP コントローラモジュールを接続します"</a>。</p>
 </div>
 </li>
 <li>
 <p>新しい MetroCluster IP ノードを設定し、移行を完了します。</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="task_configure_the_new_nodes_and_complete_transition.html">新しいノードの設定と移行の完了</a>。</p>
+<p>の手順を実行します <a href="task_configure_the_new_nodes_and_complete_transition.html">"新しいノードの設定と移行の完了"</a>。</p>
 </div>
 </li>
 </ol>
@@ -3909,13 +3915,14 @@
 <div class="sect1">
 <h2 id="ルートアグリゲートを移行します">ルートアグリゲートを移行します</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>移行が完了したら、残りの既存のルートアグリゲートを MetroCluster FC 構成から MetroCluster IP 構成の新しいシェルフに移行します。</p>
 </div>
 <div class="paragraph">
 <p>このタスクでは、 node_A_1 の FC および node_B_1 のルートアグリゲートを、新しい MetroCluster IP コントローラが所有するディスクシェルフに移動します。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>新しいローカルストレージシェルフのプール 0 のディスクを、移動するルートのあるコントローラに割り当てます（例： node_A_1 のルートを移行する場合は、新しいシェルフのプール 0 のディスクを node_A_1 の IP に割り当てます）。</p>
@@ -3924,10 +3931,16 @@
 </div>
 </li>
 <li>
-<p>権限モードを advanced に設定します。「 set priv advanced</p>
+<p>権限モードを advanced に設定します。</p>
+<div class="paragraph">
+<p>'set priv advanced'</p>
+</div>
 </li>
 <li>
-<p>ルートアグリゲートを移行します。「 system node migrate-root -node node_name -disklist disk-id1 、 diskid2 、 diskn -raid-type raid-type</p>
+<p>ルートアグリゲートを移行します。</p>
+<div class="paragraph">
+<p>system node migrate-root -node node_name -disklist disk-id1 、 disk-id2 、 diskn -raid-type raid-type `</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -3940,7 +3953,10 @@
 <p>通常、 RAID タイプは既存のルートアグリゲートの RAID タイプと同じです。</p>
 </li>
 <li>
-<p>移行ステータスを確認するには、 job show -idjob-id -instance コマンドを使用します。この場合、 migrate-root コマンドの実行時に指定した値が job-id になります。たとえば、 node_A_1 の FC のルートアグリゲートの構成が、 RAID-DP を使用して 3 本のディスクで構成されていた場合は、次のコマンドを使用して、ルートを新しいシェルフ 11 に移行します。</p>
+<p>移行ステータスを確認するには、コマンド「 job show -idjob-id-instance 」を使用します。ここで、 job-id は、 migrate-root コマンドの実行時に指定された値です。</p>
+<div class="paragraph">
+<p>たとえば、 node_A_1 の FC のルートアグリゲートの構成が、 RAID-DP を使用して 3 本のディスクで構成されていた場合は、次のコマンドを使用して、ルートを新しいシェルフ 11 に移行します。</p>
+</div>
 </li>
 </ul>
 </div>
@@ -3975,7 +3991,7 @@
 <div class="sect1">
 <h2 id="データアグリゲートを移行する">データアグリゲートを移行する</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>新しいシェルフにデータアグリゲートを作成し、ボリューム移動を使用して、古いシェルフから新しいシェルフ上のアグリゲートにデータボリュームを転送します。</p>
 </div>
 <div class="olist arabic">
@@ -3983,10 +3999,7 @@
 <li>
 <p>新しいコントローラ上のアグリゲートに、一度に 1 つのボリュームずつデータボリュームを移動します。</p>
 <div class="paragraph">
-<p>コントローラアップグレードエクスプレスガイドの次のセクションを使用してください。</p>
-</div>
-<div class="paragraph">
-<p><a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html">"アグリゲートの作成と新しいノードへのボリュームの移動"</a></p>
+<p><a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html" target="_blank" rel="noopener">"アグリゲートの作成と新しいノードへのボリュームの移動"</a></p>
 </div>
 </li>
 </ol>
@@ -3996,7 +4009,7 @@
 <div class="sect1">
 <h2 id="撤去するシェルフは-node_a_1-から-fc-node_a_1-から-fc-を移行">撤去するシェルフは node_A_1 から FC 、 node_A_1 から FC を移行</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>元の MetroCluster FC 構成から古いストレージシェルフを撤去します。これらのシェルフの所有者は、もともと node_A_1 の FC と node_A_1 の FC です。</p>
 </div>
 <div class="olist arabic">
@@ -4050,7 +4063,10 @@ cluster_B::&gt;</pre>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>アグリゲートをオフラインにします。「 storage aggregate offline -aggregate aggregate-name 」</p>
+<p>アグリゲートをオフラインにします。</p>
+<div class="paragraph">
+<p>「 storage aggregate offline-aggregate aggregate-name 」の形式で指定します</p>
+</div>
 <div class="paragraph">
 <p>次の例は、アグリゲート node_B_1 をオフラインにします。</p>
 </div>
@@ -4063,7 +4079,10 @@ Aggregate offline successful on aggregate: node_B_1_aggr0</pre>
 </div>
 </li>
 <li>
-<p>アグリゲート「 storage aggregate delete -aggregate aggregate-name 」を削除します</p>
+<p>アグリゲートを削除します。</p>
+<div class="paragraph">
+<p>「 storage aggregate delete -aggregate aggregate-name 」の形式で指定します</p>
+</div>
 <div class="paragraph">
 <p>プロンプトが表示されたら、プレックスを破棄できます。</p>
 </div>
@@ -4096,15 +4115,16 @@ cluster_B::&gt;</pre>
 <div class="sect1">
 <h2 id="移行を完了しています">移行を完了しています</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>古いコントローラモジュールを取り外した状態で、移行プロセスを完了できます。</p>
 </div>
 <div class="olist arabic">
+<div class="title">ステップ</div>
 <ol class="arabic">
 <li>
 <p>移行プロセスを完了します。</p>
 <div class="paragraph">
-<p>の手順を実行します <a href="task_return_the_system_to_normal_operation_2n_mcc_transition_supertask.html">システムを通常動作に戻します</a></p>
+<p>の手順を実行します <a href="task_return_the_system_to_normal_operation_2n_mcc_transition_supertask.html">"システムを通常動作に戻します"</a>。</p>
 </div>
 </li>
 </ol>

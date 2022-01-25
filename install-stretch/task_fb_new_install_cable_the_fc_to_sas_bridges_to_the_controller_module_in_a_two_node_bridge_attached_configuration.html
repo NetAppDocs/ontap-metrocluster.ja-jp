@@ -3685,7 +3685,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3695,6 +3695,14 @@
           alt="netapp-ivanad"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/76115643?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3727,19 +3735,17 @@
 <div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>各ブリッジが、ブリッジの接続先のすべてのディスクドライブとディスクシェルフを検出できることを確認します。</p>
+<p><a id="step1-verify"></a> ブリッジが接続されているすべてのディスクドライブとディスクシェルフを各ブリッジで検出できることを確認します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">使用する手段</th>
-<th class="tableblock halign-left valign-top">作業</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用する手段</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">作業</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ATTO ExpressNAV の GUI</p>
@@ -3762,7 +3768,7 @@
 <p>メニューの「 * 詳細設定 * 」をクリックします。</p>
 </li>
 <li>
-<p>次のコマンドを実行してから '[<strong>Submit</strong>:+`<strong>sastargets</strong>] をクリックします</p>
+<p>次のコマンドを実行してから '<strong>Submit</strong>:+'sastargets' をクリックします</p>
 </li>
 </ol>
 </div></div></td>
@@ -3775,7 +3781,7 @@
 <p>次のコマンドを実行します。</p>
 </div>
 <div class="paragraph">
-<p>'<strong>sastargets</strong>'</p>
+<p>「 astargets 」</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3790,7 +3796,7 @@
 <img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
 </td>
 <td class="content">
-出力の先頭に「 text response 」が省略されている場合は、 Telnet を使用してブリッジに接続し、同じコマンドを実行すると、すべての出力を表示できます。
+出力の先頭に「 `text response truncated 」と表示される場合は、 Telnet を使用してブリッジに接続し、同じコマンドを実行すると、すべての出力を確認できます。
 </td>
 </tr>
 </table>
@@ -3818,22 +3824,20 @@
 <p>コマンド出力を確認して、ブリッジがスタック内の想定されるすべてのディスクおよびディスクシェルフに接続していることを確認します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 30%;">
+<col style="width: 70%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">出力結果</th>
-<th class="tableblock halign-left valign-top">作業</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">出力結果</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">作業</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>正解です</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>繰り返します <a href="#STEP_524EBC3334F54467B771D9E2FD2B2DDA">手順 1.</a> 残りの各ブリッジ。</p>
+<p>繰り返します <a href="#step1-verify-detect">手順 1.</a> 残りの各ブリッジ。</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3845,11 +3849,11 @@
 <li>
 <p>SAS ケーブルに緩みがないか確認するか、ディスクシェルフからブリッジへの SAS ケーブル接続をやり直します。</p>
 <div class="paragraph">
-<p><a href="task_fb_new_install_cabl.html">ディスクシェルフとブリッジのケーブル接続</a></p>
+<p><a href="task_fb_new_install_cabl.html">"ディスクシェルフとブリッジのケーブル接続"</a></p>
 </div>
 </li>
 <li>
-<p>繰り返します <a href="#STEP_524EBC3334F54467B771D9E2FD2B2DDA">手順 1.</a> 残りの各ブリッジ。</p>
+<p>繰り返します <a href="#step1-verify-detect">手順 1.</a> 残りの各ブリッジ。</p>
 </li>
 </ol>
 </div></div></td>
@@ -3858,7 +3862,7 @@
 </table>
 </li>
 <li>
-<p>各ブリッジをコントローラモジュールにケーブル接続します。</p>
+<p>[step3-cable-mebrider] - 各ブリッジをコントローラモジュールにケーブル接続します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3882,7 +3886,7 @@
 </div>
 </li>
 <li>
-<p>繰り返します <a href="#STEP_F00134584D424D4F869B5E9ECFCD56EB">手順 3</a> 他のブリッジについて、すべてのブリッジがケーブル接続されるまで。</p>
+<p>繰り返します <a href="#step3-cable-each-bridge">手順 3</a> 他のブリッジについて、すべてのブリッジがケーブル接続されるまで。</p>
 </li>
 </ol>
 </div>

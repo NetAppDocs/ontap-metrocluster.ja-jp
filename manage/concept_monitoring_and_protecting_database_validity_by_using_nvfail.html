@@ -3694,24 +3694,24 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
 <span>寄稿者
-  <a target="_blank" href="https://github.com/NetAppZacharyWambold">
-    <img  class="avatar avatar-small"
-          alt="NetAppZacharyWambold"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/73244192?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
   <a target="_blank" href="https://github.com/netapp-thomi">
     <img  class="avatar avatar-small"
           alt="netapp-thomi"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/NetAppZacharyWambold">
+    <img  class="avatar avatar-small"
+          alt="NetAppZacharyWambold"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/73244192?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3745,7 +3745,7 @@
 <div class="sect1">
 <h2 id="nfs-ボリュームまたは-lun-へのアクセスに対する-nvfail-の影響">NFS ボリュームまたは LUN へのアクセスに対する NVFAIL の影響</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>NVFAIL 状態は、起動時に ONTAP が NVRAM エラーを検出した場合、 MetroCluster スイッチオーバー処理が実行された場合、または NVFAIL オプションが設定されたボリュームの HA テイクオーバー処理中に発生します。起動時にエラーが検出されなければ、ファイルサービスは正常に開始されます。ただし、 NVRAM エラーが検出された場合、またはディザスタスイッチオーバーで NVFAIL の処理が実行された場合、 ONTAP はデータベースインスタンスの応答を停止します。</p>
 </div>
 <div class="paragraph">
@@ -3756,13 +3756,11 @@
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">状況</th>
-<th class="tableblock halign-left valign-top">作業</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">状況</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">作業</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ONTAP は NVRAM エラーを検出しませんでした</p>
@@ -3837,7 +3835,7 @@
 <div class="sect1">
 <h2 id="データ損失イベントを監視するコマンド">データ損失イベントを監視するコマンド</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>NVFAIL オプションを有効にすると、 NVRAM の不整合によってシステムクラッシュが発生した場合、または MetroCluster スイッチオーバーが発生した場合に、通知を受け取ることができます。</p>
 </div>
 <div class="paragraph">
@@ -3845,16 +3843,14 @@
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">状況</th>
-<th class="tableblock halign-left valign-top">使用するコマンド</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">状況</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用するコマンド</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>NVFAIL を有効にして新しいボリュームを作成します</p>
@@ -3903,7 +3899,7 @@
 <div class="sect1">
 <h2 id="スイッチオーバー後に-nvfail-状態のボリュームにアクセスする場合">スイッチオーバー後に NVFAIL 状態のボリュームにアクセスする場合</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>スイッチオーバー後に 'volume modify コマンドの -in-nvfailed-state パラメータをリセットし ' クライアントがデータにアクセスする制限を解除することにより 'NVFAIL 状態をクリアする必要があります</p>
 </div>
 <div class="paragraph">
@@ -3934,7 +3930,7 @@
 <div class="sect1">
 <h2 id="スイッチオーバー後の-nvfail-状態にある-lun-のリカバリ">スイッチオーバー後の NVFAIL 状態にある LUN のリカバリ</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>スイッチオーバーが発生すると、 NVFAIL 状態にある LUN 上のデータにホストがアクセスできなくなります。データベースが LUN にアクセスできるようにするには、いくつかの作業が必要です。</p>
 </div>
 <div class="paragraph">

@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3712,6 +3712,14 @@
           alt="netapp-ivanad"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/76115643?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3738,6 +3746,8 @@
 <ol class="arabic">
 <li>
 <p>変更するファブリック内の両方のスイッチで、 ISL の ISL ポートを無効にします。</p>
+<div class="openblock">
+<div class="content">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3749,6 +3759,8 @@
 </td>
 </tr>
 </table>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>次の例に示すように、設定コマンドを 1 行に 1 つ入力し、すべてのコマンドを入力したら Ctrl+Z キーを押す必要があります。</p>
@@ -3776,22 +3788,20 @@ switch_B_1#</pre>
 <p>必要に応じて ISL ポートを変更します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 30%;">
+<col style="width: 70%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">オプション</th>
-<th class="tableblock halign-left valign-top">ステップ</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オプション</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ステップ</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>ISL ポートの速度を変更する</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>速度に応じて、新しい ISL を指定のポートにケーブル接続します。使用しているスイッチの ISL ポートが MetroCluster IP インストールおよび設定ガイド _ に記載されていることを確認する必要があります。</p>
+<p>速度に応じて、新しい ISL を指定のポートにケーブル接続します。使用しているスイッチの ISL ポートが MetroCluster IP インストールおよび設定に表示されていることを確認する必要があります。</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3799,7 +3809,7 @@ switch_B_1#</pre>
 <p>ISL を追加する</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>ISL ポートとして追加するポートに QFSP を挿入します。MetroCluster IP インストールおよび設定ガイド _ に記載されていることを確認し、このガイドに従ってケーブルを接続します。</p>
+<p>ISL ポートとして追加するポートに QFSP を挿入します。MetroCluster IP のインストールと設定に表示されていることを確認し、それに応じてケーブルを接続します。</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -3808,7 +3818,7 @@ switch_B_1#</pre>
 <li>
 <p>ファブリック内の両方のスイッチですべての ISL ポートを有効にします（有効になっていない場合）。最初に次のコマンドを入力します。</p>
 <div class="paragraph">
-<p><code><strong>switch_A_1 # conf t</strong></code></p>
+<p>'switch_A_1# conf t`</p>
 </div>
 <div class="paragraph">
 <p>設定コマンドを 1 行に 1 つ入力し、すべてのコマンドを入力したら Ctrl+Z キーを押す必要があります。</p>
@@ -3838,7 +3848,7 @@ switch_B_1# copy running-config startup-config</pre>
 <li>
 <p>両方のスイッチ間に ISL が確立されたことを確認します。</p>
 <div class="paragraph">
-<p>`*switch_a_1# は int Eth1/17&#8217;eth1/18 brief *' を示します</p>
+<p>`switch_a_1# に int Eth1/17&#8217;eth1/18 brief を示します</p>
 </div>
 <div class="paragraph">
 <p>次の例に示すように、 ISL インターフェイスがコマンド出力に表示されます。</p>

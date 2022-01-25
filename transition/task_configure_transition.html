@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3715,6 +3715,14 @@
           style="border-radius: 50%;"/>
   </a>
   
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
 </span>
 
 
@@ -3731,29 +3739,29 @@
 <div class="sect1">
 <h2 id="カスタム-autosupport-メッセージをメンテナンス前に送信する">カスタム AutoSupport メッセージをメンテナンス前に送信する</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。</p>
 </div>
 <div class="paragraph">
 <p>このタスクは MetroCluster サイトごとに実行する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>サポートケースが自動で生成されないようにするには、メンテナンスが進行中であることを示す AutoSupport メッセージを送信します。</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」</p>
 <div class="paragraph">
-<p>maintenance-window-in-hours にはメンテナンス時間の長さを指定します。最大値は 72 時間です。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間の終了を通知する AutoSupport メッセージ「 'System node AutoSupport invoke -node * -type all -message MAINT=end` 」を起動できます</p>
+<p>「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」というメッセージが表示されます</p>
+</div>
+<div class="paragraph">
+<p>「 maintenance-window-in-hours 」には、メンテナンス・ウィンドウの長さを 72 時間まで指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。</p>
+</div>
+<div class="paragraph">
+<p>「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます</p>
 </div>
 </li>
 <li>
 <p>パートナークラスタに対してこのコマンドを繰り返します。</p>
-</li>
-</ol>
-</div>
 </li>
 </ol>
 </div>
@@ -3762,7 +3770,7 @@
 <div class="sect1">
 <h2 id="移行モードを有効にしてクラスタ-ha-を無効にします">移行モードを有効にしてクラスタ HA を無効にします</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>古いノードと新しいノードを MetroCluster 構成で一緒に動作できるようにし、クラスタ HA を無効にするには、 MetroCluster 移行モードを有効にする必要があります。</p>
 </div>
 <div class="olist arabic">
@@ -3772,10 +3780,16 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>advanced 権限レベルに切り替えます。「 set -privilege advanced 」</p>
+<p>advanced 権限レベルに切り替えます。</p>
+<div class="paragraph">
+<p>「 advanced 」の権限が必要です</p>
+</div>
 </li>
 <li>
-<p>移行モードを有効にする : MetroCluster transition enable-transition-mode non-disruptive</p>
+<p>移行モードを有効にします。</p>
+<div class="paragraph">
+<p>MetroCluster transition enable-transition-mode non-disruptive</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3810,7 +3824,10 @@ cluster_A::*&gt;</pre>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>admin 権限レベルに戻ります。「 set -privilege admin 」</p>
+<p>admin 権限レベルに戻ります。</p>
+<div class="paragraph">
+<p>「特権管理者」</p>
+</div>
 </li>
 </ol>
 </div>
@@ -3920,13 +3937,14 @@ cluster_B::&gt;</pre>
 <div class="sect1">
 <h2 id="metrocluster-ip-ノードのクラスタへの追加">MetroCluster IP ノードのクラスタへの追加</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>4 つの新しい MetroCluster IP ノードを既存の MetroCluster 構成に追加する必要があります。</p>
 </div>
 <div class="paragraph">
 <p>このタスクは両方のクラスタで実行する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>既存の MetroCluster 構成に MetroCluster IP ノードを追加</p>
@@ -4002,19 +4020,23 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 <div class="sect1">
 <h2 id="クラスタ間-lif-の設定-metrocluster-インターフェイスの作成およびルートアグリゲートのミラーリングを行います">クラスタ間 LIF の設定、 MetroCluster インターフェイスの作成、およびルートアグリゲートのミラーリングを行います</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。</p>
 </div>
 <div class="paragraph">
 <p>例で使用しているホームポートはプラットフォーム固有です。MetroCluster IP ノードプラットフォームに固有の適切なホームポートを使用する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
 <p>新しい MetroCluster IP ノードで、 <a href="../install-ip/task_sw_config_configure_clusters.html#configuring-intercluster-lifs-for-cluster-peering">"クラスタ間 LIF を設定"</a>。</p>
 </li>
 <li>
-<p>各サイトで、クラスタピアリングが構成されていることを確認します。「 cluster peer show</p>
+<p>各サイトで、クラスタピアリングが設定されていることを確認します。</p>
+<div class="paragraph">
+<p>cluster peer show</p>
+</div>
 <div class="paragraph">
 <p>次の例は、 cluster_A のクラスタピアリング設定を示しています。</p>
 </div>
@@ -4039,7 +4061,10 @@ cluster_A 1-80-000011 Available ok</pre>
 </div>
 </li>
 <li>
-<p>MetroCluster IP ノードの DR グループを構成します MetroCluster 構成設定 DR-group create -partner-cluster</p>
+<p>MetroCluster IP ノードの DR グループを設定します。</p>
+<div class="paragraph">
+<p>MetroCluster 構成設定 dr-group create -partner-cluster</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::&gt; metrocluster configuration-settings dr-group create -partner-cluster
@@ -4050,7 +4075,10 @@ cluster_A::&gt;</pre>
 </div>
 </li>
 <li>
-<p>DR グループが作成されたことを確認します。「 MetroCluster configurion-settings dr-group show 」を参照してください</p>
+<p>DR グループが作成されたことを確認します。</p>
+<div class="paragraph">
+<p>「 MetroCluster configurion-settings dr-group show 」を参照してください</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::&gt; metrocluster configuration-settings dr-group show
@@ -4114,9 +4142,24 @@ Group Cluster Node               State          Mirroring Mode
 </div>
 </li>
 <li>
-<p>新しく加入した MetroCluster IP ノードの MetroCluster IP インターフェイスを構成します。「 MetroCluster configurion-settings interface create -cluster-name 」</p>
+<p>新しく参加した MetroCluster IP ノードの MetroCluster IP インターフェイスを設定します。</p>
 <div class="paragraph">
-<p>を参照してください <a href="../install-ip/task_sw_config_configure_clusters.html#configuring-and-connecting-the-metrocluster-ip-interfaces">"MetroCluster IP インターフェイスの設定と接続"</a> IP インターフェイスを設定する際の考慮事項については、を参照して注： MetroCluster IP インターフェイスは、どちらのクラスタからも設定できます。また、 ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに「 -gateway 」パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。</p>
+<p>MetroCluster 構成設定インターフェイス create-cluster-name</p>
+</div>
+<div class="paragraph">
+<p>を参照してください <a href="../install-ip/task_sw_config_configure_clusters.html#configuring-and-connecting-the-metrocluster-ip-interfaces">"MetroCluster IP インターフェイスの設定と接続"</a> IP インターフェイスを設定する際の考慮事項については、を参照して</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
+</td>
+<td class="content">
+どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに「 -gateway 」パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
+</td>
+</tr>
+</table>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -4147,7 +4190,10 @@ cluster_A::&gt; metrocluster configuration-settings interface create -cluster-na
 </div>
 </li>
 <li>
-<p>MetroCluster IP インターフェイスが作成されたことを確認します。「 MetroCluster configurion-settings interface show 」</p>
+<p>MetroCluster IP インターフェイスが作成されたことを確認します。</p>
+<div class="paragraph">
+<p>「 MetroCluster configurion-settings interface show 」を参照してください</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::&gt;metrocluster configuration-settings interface show
@@ -4184,7 +4230,10 @@ cluster_A&gt;</pre>
 </div>
 </li>
 <li>
-<p>MetroCluster IP インターフェイスを接続します。「 MetroCluster configuration - settings connection connect 」</p>
+<p>MetroCluster IP インターフェイスを接続します。</p>
+<div class="paragraph">
+<p>MetroCluster 構成設定接続接続</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4206,7 +4255,10 @@ cluster_A::&gt;</pre>
 </div>
 </li>
 <li>
-<p>接続が正しく確立されていることを確認します MetroCluster configurion-settings connection show</p>
+<p>接続が正しく確立されたことを確認します。</p>
+<div class="paragraph">
+<p>「 MetroCluster configurion-settings connection show 」を参照してください</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::&gt; metrocluster configuration-settings connection show
@@ -4279,7 +4331,10 @@ cluster_A::&gt;</pre>
 </div>
 </li>
 <li>
-<p>ディスクの自動割り当てとパーティショニングを確認します : 「 disk show -pool Pool1 」</p>
+<p>ディスクの自動割り当てとパーティショニングを確認します。</p>
+<div class="paragraph">
+<p>「 Disk show -pool Pool1 」</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::&gt; disk show -pool Pool1
@@ -4307,7 +4362,10 @@ cluster_A::&gt;</pre>
 </div>
 </li>
 <li>
-<p>ルートアグリゲートをミラーします。「 storage aggregate mirror -aggregate aggr0_cluster1_01 _3-IP 」</p>
+<p>ルートアグリゲートをミラーします。</p>
+<div class="paragraph">
+<p>「 storage aggregate mirror -aggregate aggr0_cluster1_01 _a_3-IP 」のように指定します</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4346,7 +4404,10 @@ cluster_A::&gt;</pre>
 </div>
 </li>
 <li>
-<p>ルートアグリゲートがミラーされていることを確認します。「 storage aggregate show</p>
+<p>ルートアグリゲートがミラーされたことを確認します。</p>
+<div class="paragraph">
+<p>「 storage aggregate show</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::&gt; aggr show
@@ -4386,13 +4447,17 @@ aggr_data_a2
 <div class="sect1">
 <h2 id="metrocluster-ip-ノードの追加を完了しています">MetroCluster IP ノードの追加を完了しています</h2>
 <div class="sectionbody">
-<div class="paragraph lead">
+<div class="paragraph">
 <p>新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。</p>
 </div>
 <div class="olist arabic">
+<div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>新しい各 MetroCluster ノードにミラーされたデータアグリゲートを作成します。「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-of disks - mirror true 」</p>
+<p>新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。</p>
+<div class="paragraph">
+<p>「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-disks-mirror true 」のように指定します</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4448,7 +4513,10 @@ cluster_A::&gt;</pre>
 </div>
 </li>
 <li>
-<p>変更を実装するように MetroCluster を構成します MetroCluster configure</p>
+<p>変更を実装するように MetroCluster を設定します。</p>
+<div class="paragraph">
+<p>MetroCluster 構成</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::*&gt; metrocluster configure
@@ -4460,7 +4528,10 @@ cluster_A::*&gt;</pre>
 </div>
 </li>
 <li>
-<p>ノードが DR グループに追加されていることを確認します MetroCluster node show</p>
+<p>ノードが対応する DR グループに追加されたことを確認します。</p>
+<div class="paragraph">
+<p>MetroCluster node show</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>cluster_A::*&gt; metrocluster node show
@@ -4528,10 +4599,16 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 </div>
 </li>
 <li>
-<p>advanced 権限レベルを設定します。「 set -privilege advanced 」</p>
+<p>advanced 権限レベルを設定します。</p>
+<div class="paragraph">
+<p>「 advanced 」の権限が必要です</p>
+</div>
 </li>
 <li>
-<p>MDV ボリュームを 1 つずつ移動します。 'volume move start -volume MDV_volume-destination-aggregate aggr-on -new-node-vserver -name'</p>
+<p>MDV ボリュームを 1 つずつ移動します。</p>
+<div class="paragraph">
+<p>'volume move start -volume MDV_volume-destination-aggregate aggr-on -new-node-vserver -name</p>
+</div>
 <div class="paragraph">
 <p>次の例は、 MDV_CRS_d6b0b313ff5611e9837100a098544e51_a を node_A_1 のアグリゲートに移動するコマンドと出力を示しています。</p>
 </div>
@@ -4548,7 +4625,10 @@ Warning: You are about to modify the system volume
 </div>
 </li>
 <li>
-<p>volume show コマンドを使用して、 MDV ボリュームが正常に移動されたことを確認します。「 volume show MDV_name 」</p>
+<p>volume show コマンドを使用して、 MDV ボリュームが正常に移動されたことを確認します。</p>
+<div class="paragraph">
+<p>volume show MDV_name</p>
+</div>
 <div class="paragraph">
 <p>次の出力は、 MDV ボリュームが移動されたことを示しています。</p>
 </div>
@@ -4567,7 +4647,10 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>admin モードに戻ります。 'et -privilege admin'</p>
+<p>admin モードに戻ります。</p>
+<div class="paragraph">
+<p>「特権管理者」</p>
+</div>
 </li>
 </ol>
 </div>

@@ -3694,7 +3694,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-18 03:19:00 +0000">01/18/2022</time>
+    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
     
   
 
@@ -3704,6 +3704,14 @@
           alt="netapp-ivanad"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/76115643?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3717,7 +3725,7 @@
 <p>FibreBridge 7600N ブリッジは、 ONTAP 9.5 以降で、 FibreBridge 7500N / 6500N ブリッジを交換する場合、または MetroCluster 構成に新しいストレージを追加する場合にサポートされます。ゾーニング要件とブリッジの FC ポートの使用に関する制限事項は、 FibreBridge 7500N ブリッジと同じです。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://mysupport.netapp.com/matrix">"NetApp Interoperability Matrix Tool で確認できます"</a></p>
+<p><a href="https://mysupport.netapp.com/matrix" target="_blank" rel="noopener">"NetApp Interoperability Matrix Tool で確認できます"</a></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3733,20 +3741,18 @@ ONTAP 9.8 以降を実行している構成では、 FibreBridge 6500N ブリッ
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 27%;">
+<col style="width: 19%;">
+<col style="width: 27%;">
+<col style="width: 27%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">ユースケース</th>
-<th class="tableblock halign-left valign-top">ゾーニングの変更が必要か</th>
-<th class="tableblock halign-left valign-top">制限事項</th>
-<th class="tableblock halign-left valign-top">手順</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ユースケース</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ゾーニングの変更が必要か</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">制限事項</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">手順</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>1 つの FibreBridge 7500N ブリッジを 1 つの FibreBridge 7600N ブリッジに交換する</p>
@@ -3780,13 +3786,16 @@ ONTAP 9.8 以降を実行している構成では、 FibreBridge 6500N ブリッ
 <p>新しい FibreBridge 7600N ブリッジペアを追加して、新しいストレージを追加します</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>はい新しいブリッジの FC ポートごとにストレージゾーンを追加する必要があります。</p>
+<p>はい。</p>
+</div>
+<div class="paragraph">
+<p>新しいブリッジの各 FC ポート用のストレージゾーンを追加する必要があります。</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>FC スイッチファブリック（ファブリック接続 MetroCluster 構成）またはストレージコントローラ（ストレッチ MetroCluster 構成）に使用可能なポートが必要です。 FibreBridge 7500N / 7600N ブリッジペアは、それぞれ最大 4 つのスタックをサポートできます。</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="task_fb_hot_add_stack_of_shelves_and_bridges.html">MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド</a></p>
+<p><a href="task_fb_hot_add_stack_of_shelves_and_bridges.html">"MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド"</a></p>
 </div></div></td>
 </tr>
 </tbody>
