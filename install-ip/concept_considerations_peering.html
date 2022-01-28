@@ -331,7 +331,7 @@
 <div class="ie-main">
   <!-- Sidebar Column -->
   
-  <div class="col-md-3" >
+  <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
     <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>利用可能なPDF<span>
@@ -3639,6 +3639,13 @@
         法的通知
       </a></li></ul>
 </div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
@@ -3694,7 +3701,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
+    <time datetime="2022-01-28 21:20:05 +0000">01/28/2022</time>
     
   
 
@@ -3750,7 +3757,7 @@
 <li>
 <p>サブネットには、各ノードに 1 つのインタークラスタ LIF が割り当てられる十分な数の IP アドレスが必要です。</p>
 <div class="paragraph">
-<p>たとえば、 6 ノードクラスタの場合、クラスタ間通信で使用するサブネットには使用可能な IP アドレスが 6 つ必要です。</p>
+<p>たとえば、 4 ノードクラスタの場合、クラスタ間通信で使用するサブネットには、使用可能な IP アドレスが 4 つ必要です。</p>
 </div>
 </li>
 </ul>

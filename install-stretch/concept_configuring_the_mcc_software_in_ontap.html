@@ -331,7 +331,7 @@
 <div class="ie-main">
   <!-- Sidebar Column -->
   
-  <div class="col-md-3" >
+  <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
     <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>利用可能なPDF<span>
@@ -3639,6 +3639,13 @@
         法的通知
       </a></li></ul>
 </div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
@@ -3694,7 +3701,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
+    <time datetime="2022-01-28 21:20:05 +0000">01/28/2022</time>
     
   
 
@@ -3720,6 +3727,14 @@
           alt="netapp-ivanad"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/76115643?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-folivia">
+    <img  class="avatar avatar-small"
+          alt="netapp-folivia"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/91882669?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3774,8 +3789,8 @@
 <div class="paragraph">
 <p>システムを設定する前に、最初の MetroCluster サイト（サイト A ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。</p>
 </div>
-<div class="sect3">
-<h4 id="クラスタ作成情報サイト-a">クラスタ作成情報：サイト A</h4>
+<div class="sect2">
+<h3 id="クラスタ作成情報サイト-a">クラスタ作成情報：サイト A</h3>
 <div class="paragraph">
 <p>クラスタを初めて作成するときは、次の情報が必要です。</p>
 </div>
@@ -3822,8 +3837,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="ノード情報サイト-a">ノード情報：サイト A</h4>
+<div class="sect2">
+<h3 id="ノード情報サイト-a">ノード情報：サイト A</h3>
 <div class="paragraph">
 <p>クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。</p>
 </div>
@@ -3867,8 +3882,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="クラスタピアリング用の-lif-およびポートサイト-a">クラスタピアリング用の LIF およびポート：サイト A</h4>
+<div class="sect2">
+<h3 id="クラスタピアリング用の-lif-およびポートサイト-a">クラスタピアリング用の LIF およびポート：サイト A</h3>
 <div class="paragraph">
 <p>クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。</p>
 </div>
@@ -3909,8 +3924,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="タイムサーバ情報サイト-a">タイムサーバ情報：サイト A</h4>
+<div class="sect2">
+<h3 id="タイムサーバ情報サイト-a">タイムサーバ情報：サイト A</h3>
 <div class="paragraph">
 <p>時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。</p>
 </div>
@@ -3951,8 +3966,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="autosupport-情報サイト-a">AutoSupport 情報：サイト A</h4>
+<div class="sect2">
+<h3 id="autosupport-情報サイト-a">AutoSupport 情報：サイト A</h3>
 <div class="paragraph">
 <p>各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。</p>
 </div>
@@ -4013,8 +4028,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="sp-情報サイト-a">SP 情報：サイト A</h4>
+<div class="sect2">
+<h3 id="sp-情報サイト-a">SP 情報：サイト A</h3>
 <div class="paragraph">
 <p>トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。そのためには、各ノードについて次のネットワーク情報が必要です。</p>
 </div>
@@ -4043,13 +4058,16 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="サイト-b-の-ip-ネットワーク情報ワークシート">サイト B の IP ネットワーク情報ワークシート</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="サイト-b-の-ip-ネットワーク情報ワークシート">サイト B の IP ネットワーク情報ワークシート</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>システムを設定する前に、 2 つ目の MetroCluster サイト（サイト B ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。</p>
 </div>
-<div class="sect3">
-<h4 id="クラスタ作成情報サイト-b">クラスタ作成情報：サイト B</h4>
+<div class="sect2">
+<h3 id="クラスタ作成情報サイト-b">クラスタ作成情報：サイト B</h3>
 <div class="paragraph">
 <p>クラスタを初めて作成するときは、次の情報が必要です。</p>
 </div>
@@ -4096,8 +4114,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="ノード情報サイト-b">ノード情報：サイト B</h4>
+<div class="sect2">
+<h3 id="ノード情報サイト-b">ノード情報：サイト B</h3>
 <div class="paragraph">
 <p>クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。</p>
 </div>
@@ -4141,8 +4159,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="クラスタピアリング用の-lif-およびポートサイト-b">クラスタピアリング用の LIF およびポート：サイト B</h4>
+<div class="sect2">
+<h3 id="クラスタピアリング用の-lif-およびポートサイト-b">クラスタピアリング用の LIF およびポート：サイト B</h3>
 <div class="paragraph">
 <p>クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。</p>
 </div>
@@ -4183,8 +4201,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="タイムサーバ情報サイト-b">タイムサーバ情報：サイト B</h4>
+<div class="sect2">
+<h3 id="タイムサーバ情報サイト-b">タイムサーバ情報：サイト B</h3>
 <div class="paragraph">
 <p>時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。</p>
 </div>
@@ -4225,8 +4243,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="autosupport-情報サイト-b">AutoSupport 情報：サイト B</h4>
+<div class="sect2">
+<h3 id="autosupport-情報サイト-b">AutoSupport 情報：サイト B</h3>
 <div class="paragraph">
 <p>各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。</p>
 </div>
@@ -4287,8 +4305,8 @@
 </tbody>
 </table>
 </div>
-<div class="sect3">
-<h4 id="sp-情報サイト-b">SP 情報：サイト B</h4>
+<div class="sect2">
+<h3 id="sp-情報サイト-b">SP 情報：サイト B</h3>
 <div class="paragraph">
 <p>トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。これには、ノードごとに次のネットワーク情報が必要です。</p>
 </div>
@@ -4316,7 +4334,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 </div>

@@ -281,11 +281,11 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/ontap-metrocluster//install-fc/concept_AFF_A900_brocade_port_ISLs.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/ontap-metrocluster/install-fc/concept_AFF_A900_brocade_port_ISLs.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/ontap-metrocluster//install-fc/concept_AFF_A900_brocade_port_ISLs.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/concept_AFF_A900_brocade_port_ISLs.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/ontap-metrocluster//install-fc/concept_AFF_A900_brocade_port_ISLs.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/ontap-metrocluster/install-fc/concept_AFF_A900_brocade_port_ISLs.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -331,7 +331,7 @@
 <div class="ie-main">
   <!-- Sidebar Column -->
   
-  <div class="col-md-3" >
+  <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
     <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>利用可能なPDF<span>
@@ -495,7 +495,7 @@
 
 
     <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/ja-jp/ontap-metrocluster/pdfs/pages//install-fc/concept_AFF_A900_brocade_port_ISLs.pdf" >
+  <a target="_blank" href="/ja-jp/ontap-metrocluster/pdfs/pages/install-fc/concept_AFF_A900_brocade_port_ISLs.pdf" >
     <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>
     PDF of this page
   </a>
@@ -3639,6 +3639,13 @@
         法的通知
       </a></li></ul>
 </div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
@@ -3694,7 +3701,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
+    <time datetime="2022-01-28 21:20:05 +0000">01/28/2022</time>
     
   
 
@@ -3704,6 +3711,14 @@
           alt="netapp-driley"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/18422994?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-folivia">
+    <img  class="avatar avatar-small"
+          alt="netapp-folivia"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/91882669?v=4"
           style="border-radius: 50%;"/>
   </a>
   

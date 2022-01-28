@@ -331,7 +331,7 @@
 <div class="ie-main">
   <!-- Sidebar Column -->
   
-  <div class="col-md-3" >
+  <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
     <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>利用可能なPDF<span>
@@ -3639,6 +3639,13 @@
         法的通知
       </a></li></ul>
 </div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
@@ -3694,7 +3701,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
+    <time datetime="2022-01-28 21:20:05 +0000">01/28/2022</time>
     
   
 
@@ -3704,6 +3711,14 @@
           alt="netapp-thomi"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-folivia">
+    <img  class="avatar avatar-small"
+          alt="netapp-folivia"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/91882669?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3757,8 +3772,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="両方の-fc-ポートを使用した-fibrebridge-7500n-または-7600n-の構成のケーブル接続">両方の FC ポートを使用した FibreBridge 7500N または 7600N の構成のケーブル接続</h3>
+<div class="sect1">
+<h2 id="両方の-fc-ポートを使用した-fibrebridge-7500n-または-7600n-の構成のケーブル接続">両方の FC ポートを使用した FibreBridge 7500N または 7600N の構成のケーブル接続</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 15%;">
@@ -4261,8 +4277,10 @@
 <p>MetroCluster サイト間で FC スイッチの ISL をケーブル接続します。</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="cisco-9250i-のケーブル構成">Cisco 9250i のケーブル構成</h3>
+</div>
+<div class="sect1">
+<h2 id="cisco-9250i-のケーブル構成">Cisco 9250i のケーブル構成</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -4550,6 +4568,7 @@
 </table>
 <div class="paragraph">
 <p>MetroCluster サイト間で FC スイッチの ISL をケーブル接続します。</p>
+</div>
 </div>
 </div>
 

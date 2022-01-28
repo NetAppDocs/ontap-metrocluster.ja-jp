@@ -331,7 +331,7 @@
 <div class="ie-main">
   <!-- Sidebar Column -->
   
-  <div class="col-md-3" >
+  <div class="col-md-3" id="sidebar-height">
       <div class="n-pdf-header">
   <a id="toggleButtonPdf" class="n-pdf-button" type="button">
     <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>利用可能なPDF<span>
@@ -3639,6 +3639,13 @@
         法的通知
       </a></li></ul>
 </div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
@@ -3694,7 +3701,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-25 18:22:10 +0000">01/25/2022</time>
+    <time datetime="2022-01-28 21:20:05 +0000">01/28/2022</time>
     
   
 
@@ -3704,6 +3711,14 @@
           alt="netapp-thomi"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-folivia">
+    <img  class="avatar avatar-small"
+          alt="netapp-folivia"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/91882669?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3790,8 +3805,9 @@
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="fc_switch_a_1-のゾーン">FC_switch_A_1 のゾーン</h3>
+<div class="sect1">
+<h2 id="fc_switch_a_1-のゾーン">FC_switch_A_1 のゾーン</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3851,8 +3867,10 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="fc_switch_a_2-のゾーン">FC_switch_A_2 のゾーン</h3>
+</div>
+<div class="sect1">
+<h2 id="fc_switch_a_2-のゾーン">FC_switch_A_2 のゾーン</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3912,8 +3930,10 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="fc_switch_b_1-のゾーン">FC_switch_B_1 のゾーン</h3>
+</div>
+<div class="sect1">
+<h2 id="fc_switch_b_1-のゾーン">FC_switch_B_1 のゾーン</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -3973,8 +3993,10 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="fc_switch_b_2-のゾーン">FC_switch_B_2 のゾーン</h3>
+</div>
+<div class="sect1">
+<h2 id="fc_switch_b_2-のゾーン">FC_switch_B_2 のゾーン</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4034,8 +4056,10 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="サイト-a-の-fc-vi-接続用のゾーン">サイト A の FC-VI 接続用のゾーン</h3>
+</div>
+<div class="sect1">
+<h2 id="サイト-a-の-fc-vi-接続用のゾーン">サイト A の FC-VI 接続用のゾーン</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4095,8 +4119,10 @@
 </tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="サイト-b-の-fc-vi-接続用のゾーン">サイト B の FC-VI 接続用のゾーン</h3>
+</div>
+<div class="sect1">
+<h2 id="サイト-b-の-fc-vi-接続用のゾーン">サイト B の FC-VI 接続用のゾーン</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -4174,6 +4200,7 @@
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 
