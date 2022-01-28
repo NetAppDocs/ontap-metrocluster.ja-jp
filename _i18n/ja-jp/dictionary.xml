@@ -1702,7 +1702,6 @@
   <block id="1d831089411388d88325ad5510a3865e" category="list-text">ストレージシステムが想定どおりに機能していることを確認します。</block>
   <block id="0ddbccff2e33cdad7e25875f8ed5047b" category="summary">使用可能なポートがある既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドできます。</block>
   <block id="695e87d61d65625619e3a56919865a2c" category="list-text">最新のディスクファームウェアとディスクシェルフファームウェアをダウンロードしておく必要があります。</block>
-  <block id="b7819f3540830948b5496c040d658251" category="list-text">MetroCluster 構成内のすべてのディスクシェルフ（新しいシェルフと既存のシェルフの両方）で同じファームウェアバージョンを実行している必要があります。</block>
   <block id="86c77fb0de5bbd53bda91b1946b5e7d6" category="list-text">FibreBridge 7500N ブリッジが接続されており、使用可能な SAS ポートがある必要があります。</block>
   <block id="8d372617f83f8c0b84203a0c342601a0" category="paragraph">ATTO ExpressNAV GUI は、ブリッジの設定および管理、ブリッジファームウェアの更新に使用できます。ATTO QuickNAV ユーティリティは、ブリッジのイーサネット管理 1 ポートの設定に使用できます。</block>
   <block id="0162c27051eec554a97d6a3f03a4a746" category="list-text">いずれかのコントローラのコンソールで、システムでディスクの自動割り当てが有効になっていることを確認します。</block>
@@ -4795,7 +4794,6 @@
   <block id="1bb94f9e2ed60b2272bc8f79f4657211" category="paragraph">ローカルクラスタのすべてのクラスタ間 LIF が、リモートクラスタのすべてのクラスタ間 LIF と通信できる必要があります。</block>
   <block id="5f67d3359a08246a27947af7c42ea056" category="paragraph">必須ではありませんが、一般に、クラスタ間 LIF には同じサブネットの IP アドレスを使用した方が構成がシンプルになります。IP アドレスは、データ LIF と同じサブネット内や、別のサブネット内に存在できます。各クラスタで使用するサブネットは、次の要件を満たしている必要があります。</block>
   <block id="9b21717a148f9b781c200c30e847f08b" category="list-text">サブネットには、各ノードに 1 つのインタークラスタ LIF が割り当てられる十分な数の IP アドレスが必要です。</block>
-  <block id="ea66ba6e44431309099c3671dba41b18" category="paragraph">たとえば、 6 ノードクラスタの場合、クラスタ間通信で使用するサブネットには使用可能な IP アドレスが 6 つ必要です。</block>
   <block id="e1102d647c03c91bcdfd0502a2a0ab34" category="paragraph">クラスタ間ネットワークでは、各ノードにインタークラスタ LIF と IP アドレスが必要です。</block>
   <block id="8250c97582100ae1b8e8aabdea145002" category="paragraph">クラスタ間 LIF のアドレスには IPv4 または IPv6 のいずれかを使用できます。</block>
   <block id="532611fde4981465e688aa65b87f467e" category="admonition">ONTAP 9 では、必要に応じて IPv4 プロトコルと IPv6 プロトコルがクラスタ間 LIF に共存することを許可し、 IPv4 から IPv6 にピアリングネットワークを移行できます。以前のリリースでは、クラスタ全体のすべてのクラスタ間関係が IPv4 または IPv6 のどちらかだったため、プロトコルの変更はシステム停止を伴うイベントでした。</block>
@@ -12684,4 +12682,9 @@
   <block id="c99f15bb994ce47ced8bf277235d1546" category="list-text">制御 TCP 接続を「 48 」に設定し、データ接続を「 26 」に設定して、 DSCP 値が異なるすべてのパケットをマークします。</block>
   <block id="8d540817d4664a0814876718314b3f2b" category="paragraph">_vsan_id_parameter 値は 'FC-VI プロファイルの場合は「 VSAN 10 」 ' ストレージ・プロファイルの場合は「 VSAN 20 」です</block>
   <block id="faf430f09ba7451587dbb49360b119f4" category="list-text">デフォルトのゾーニング・ポリシーを "permit" に設定します</block>
+  <block id="922511c083015dc29a5735f0502ddd7d" category="paragraph">たとえば、 4 ノードクラスタの場合、クラスタ間通信で使用するサブネットには、使用可能な IP アドレスが 4 つ必要です。</block>
+  <block id="8fb424fc470de611a2a62971976c4206" category="paragraph"><block ref="8fb424fc470de611a2a62971976c4206" category="inline-link-macro-rx"></block></block>
+  <block id="d2a672acb2ab8b5e74822778c1141a70" category="paragraph">system controller コマンドを使用して、コントローラモジュールと NVM を交換します</block>
+  <block id="8385ca59dee772c25d8029fd40151e4e" category="admonition">スイッチには、 switch_A_1 、 switch_B_1 、 switch_B_2 、 switch_B_2 、 switch_B_2 、スイッチ _B_2 を順番にインストールします。</block>
+  <block id="8b82688b3d28b8ce8fbcbb8c09b13ce3" category="list-text">MetroCluster 構成内（既存のシェルフ）のすべてのディスクシェルフで同じファームウェアバージョンを実行する必要があります。1 つ以上のディスクまたはシェルフが最新のファームウェアバージョンを実行していない場合は、新しいディスクまたはシェルフを接続する前にファームウェアを更新します。</block>
 </blocks>
