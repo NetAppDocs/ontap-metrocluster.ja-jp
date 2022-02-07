@@ -3703,7 +3703,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
@@ -3713,6 +3713,14 @@
           alt="netapp-ivanad"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/76115643?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3747,7 +3755,7 @@
 <li>
 <p>スイッチがサポート対象の最新のファームウェアを実行している必要があります。</p>
 <div class="paragraph">
-<p><a href="https://mysupport.netapp.com/matrix">"NetApp Interoperability Matrix Tool で確認できます"</a></p>
+<p><a href="https://mysupport.netapp.com/matrix" target="_blank" rel="noopener">"NetApp Interoperability Matrix Tool で確認できます"</a></p>
 </div>
 </li>
 <li>
@@ -3804,7 +3812,10 @@
 </div>
 </li>
 <li>
-<p>新しいスイッチを無効にします。 +<code><strong>switchCfgPersistentDisable</strong></code></p>
+<p>新しいスイッチを無効にします。</p>
+<div class="paragraph">
+<p>'witchcfgpersistentdisable</p>
+</div>
 <div class="paragraph">
 <p>コマンドは、スイッチファブリック内の両方のスイッチを無効にします。</p>
 </div>
@@ -3817,10 +3828,10 @@
 <li>
 <p>推奨されるポート割り当てを使用して、新しいスイッチをケーブル接続します。</p>
 <div class="paragraph">
-<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html">ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て</a></p>
+<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html">"ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"</a></p>
 </div>
 <div class="paragraph">
-<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html">ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て</a></p>
+<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html">"ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"</a></p>
 </div>
 </li>
 <li>
@@ -3849,7 +3860,7 @@
 <li>
 <p>スイッチの設定を保存します。</p>
 <div class="paragraph">
-<p>「 * cfgSave * 」</p>
+<p>cfgsave</p>
 </div>
 </li>
 <li>
@@ -3858,7 +3869,7 @@
 <li>
 <p>いずれかの MetroCluster ノードで次のコマンドを入力して、ディスクへの接続を確認します。</p>
 <div class="paragraph">
-<p>'*run local sysconfig -v *</p>
+<p>'run local sysconfig -v</p>
 </div>
 <div class="paragraph">
 <p>出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。</p>
@@ -3914,7 +3925,7 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, &lt;UP&gt;)**&lt;=== Ini
 <li>
 <p>スイッチのプロンプトに戻り、スイッチのファームウェアバージョンを確認します。</p>
 <div class="paragraph">
-<p>'<strong>firmwareShow</strong></p>
+<p>「 firmwareShow</p>
 </div>
 <div class="paragraph">
 <p>スイッチがサポート対象の最新のファームウェアを実行している必要があります。</p>
@@ -3928,16 +3939,22 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, &lt;UP&gt;)**&lt;=== Ini
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 +<code>* set -privilege advanced *</code></p>
+<p>いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 + 「 set -privilege advanced 」</p>
 <div class="paragraph">
-<p>advanced モードで続けるかどうかを尋ねられたら、「 * y * 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * &gt; ）。</p>
+<p>advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * &gt; ）。</p>
 </div>
 </li>
 <li>
-<p>「 -simulate 」パラメータ +`* MetroCluster switchover -simulate * を指定して、スイッチオーバー操作を実行します</p>
+<p>「 -simulate 」パラメータを指定して、スイッチオーバー操作を実行します。</p>
+<div class="paragraph">
+<p>MetroCluster switchover -simulate</p>
+</div>
 </li>
 <li>
-<p>admin 特権レベルに戻ります :+<code><strong>set -privilege admin</strong></code></p>
+<p>admin 権限レベルに戻ります。</p>
+<div class="paragraph">
+<p>「特権管理者」</p>
+</div>
 </li>
 </ol>
 </div>

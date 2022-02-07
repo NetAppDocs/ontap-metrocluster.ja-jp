@@ -3703,11 +3703,19 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
 <span>寄稿者
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
   <a target="_blank" href="https://github.com/NetAppZacharyWambold">
     <img  class="avatar avatar-small"
           alt="NetAppZacharyWambold"
@@ -3728,7 +3736,10 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。「 storage aggregate show</p>
+<p>スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。</p>
+<div class="paragraph">
+<p>「 storage aggregate show</p>
+</div>
 <div class="paragraph">
 <p>次の例では、ノード B2 の aggr_b2 がスイッチバックされています。</p>
 </div>
@@ -3750,11 +3761,14 @@ aggr_b2          -         -     - unknown      - node_A_1</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に原因が UNKNOWN と表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。</p>
+<p>ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。</p>
 </div>
 </li>
 <li>
-<p>サバイバークラスタにあるすべての同期先 SVM が休止状態（ Admin State が stopped になっている）であることと、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。「 vserver show -subtype sync-source</p>
+<p>サバイバークラスタにある同期先のすべての SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元の SVM が稼働していることを確認します。</p>
+<div class="paragraph">
+<p>「 vserver show -subtype sync-source 」のようになります</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>node_B_1::&gt; vserver show -subtype sync-source
@@ -3777,23 +3791,21 @@ cluster_A-vs1a-mc  data    sync-destination
 </div>
 </div>
 <div class="paragraph">
-<p>MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいようにサフィックス「 -mc 」が自動的に付加されます。</p>
+<p>MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。</p>
 </div>
 </li>
 <li>
-<p>MetroCluster operation show コマンドを使用して、スイッチバック処理が成功したことを確認します。</p>
+<p>MetroCluster operation show コマンドを使用して、スイッチバック操作が成功したことを確認します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">出力内容</th>
-<th class="tableblock halign-left valign-top">作業</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">出力内容</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">作業</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>スイッチバック処理の状態が「 successful 」である</p>
@@ -3807,7 +3819,7 @@ cluster_A-vs1a-mc  data    sync-destination
 <p>スイッチバック処理またはスイッチバック継続エージェントの処理が「 partially successful 」である</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します。</p>
+<p>MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します</p>
 </div></div></td>
 </tr>
 </tbody>

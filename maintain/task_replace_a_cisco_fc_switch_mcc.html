@@ -3703,7 +3703,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
@@ -3713,6 +3713,14 @@
           alt="netapp-ivanad"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/76115643?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3739,13 +3747,11 @@
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">ロール</th>
-<th class="tableblock halign-left valign-top">ポート</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ロール</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ポート</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>FC-VI 接続</p>
@@ -3789,10 +3795,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html">ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て</a></p>
+<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html">"ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"</a></p>
 </li>
 <li>
-<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html">ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て</a></p>
+<p><a href="concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html">"ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"</a></p>
 </li>
 </ul>
 </div>
@@ -3807,7 +3813,7 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>構成モードに入ります :+<code><strong>conf t</strong></code></p>
+<p>構成モードに切り替えます :+<code>conf t</code></p>
 </li>
 <li>
 <p>「 interface 」コマンドと「 hut 」コマンドを使用して、正常に動作しているスイッチの ISL ポートを無効にします。</p>
@@ -3842,7 +3848,10 @@ FC_switch_A_1#</pre>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>構成モードに入ります :+<code><strong>conf t</strong></code></p>
+<p>コンフィギュレーションモードを開始します。</p>
+<div class="paragraph">
+<p>「 conf t`</p>
+</div>
 </li>
 <li>
 <p>障害が発生したスイッチが稼働している場合は、インターフェイスと shut コマンドを使用して、障害が発生したスイッチの FC-VI ポートと HBA ポートを無効にします。</p>
@@ -3875,7 +3884,7 @@ FC_switch_B_1#</pre>
 <li>
 <p>障害が発生したスイッチが稼働している場合は、スイッチの WWN を確認します。</p>
 <div class="paragraph">
-<p>*show wwn switch *</p>
+<p>'How WWN switch`</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3896,12 +3905,15 @@ FC_switch_B_1#</pre>
 <p>交換用スイッチの電源をオンにして、ブートするのを待ちます。</p>
 </li>
 <li>
-<p>交換用スイッチのファームウェアバージョンを調べて、他の FC スイッチのバージョンと一致していることを確認します。 +<code><strong>show version</strong></code></p>
+<p>交換用スイッチのファームウェアバージョンをチェックして、他の FC スイッチのバージョンと一致していることを確認します。</p>
+<div class="paragraph">
+<p>'how version （バージョンの表示） '</p>
+</div>
 </li>
 <li>
 <p>MetroCluster インストールおよび設定ガイドの説明に従って交換用スイッチを設定します（「 Cisco FC スイッチでのゾーニングの設定」セクションは省略します）。</p>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html">"ファブリック接続 MetroCluster のインストールと設定"</a></p>
+<p><a href="../install-fc/index.html">"ファブリック接続 MetroCluster のインストールと設定"</a></p>
 </div>
 </li>
 </ol>
@@ -3978,7 +3990,7 @@ FC_switch_B_1#</pre>
 <li>
 <p>交換用スイッチの ISL ポートが動作していることを確認します。</p>
 <div class="paragraph">
-<p>*show interface brief *</p>
+<p>「インターフェイスの概要」</p>
 </div>
 </li>
 <li>
@@ -3999,7 +4011,10 @@ FC_switch_A_1(config-zone)# end</pre>
 </div>
 </li>
 <li>
-<p>交換用スイッチで、正常に動作しているスイッチからゾーニング情報が正しく取得されたことを確認します。 +<code>*show zone *</code></p>
+<p>交換用スイッチで、正常に動作しているスイッチからゾーニング情報が適切に取得されたことを確認します。</p>
+<div class="paragraph">
+<p>「ゾーンの方法」</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre>FC_switch_B_1# show zone
@@ -4062,7 +4077,7 @@ FC_switch_A_1#</pre>
 <li>
 <p>2 つのスイッチのスイッチ WWN に属していないゾーンメンバーを削除します。</p>
 <div class="paragraph">
-<p>この例では ' 出力の no member interface は ' ファブリック内のどちらのスイッチのスイッチ WWN にも関連付けられていない次のメンバーを削除する必要があることを示しています</p>
+<p>この例では、出力の「 no member interface 」は、ファブリック内のどちらのスイッチのスイッチ WWN にも関連付けられていない次のメンバーを削除する必要があることを示しています。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -4116,12 +4131,6 @@ FC_switch_A_1#</pre>
 </li>
 <li>
 <p>インターフェイス fc1/11 sWWN 20:00:54:7F:ee:E3-86:50 次の例は、これらのインターフェイスの削除を示しています。</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre> FC_switch_B_1# conf t
@@ -4145,6 +4154,12 @@ FC_switch_A_1#</pre>
  FC_switch_B_1(config-zone)# end
  FC_switch_B_1# copy running-config startup-config</pre>
 </div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </li>
 <li>
@@ -4178,7 +4193,10 @@ FC_switch_A_1#</pre>
 </div>
 </li>
 <li>
-<p>ゾーニングが正しく構成されていることを確認します +<code>*show zone *</code></p>
+<p>ゾーニングが正しく設定されていることを確認します。</p>
+<div class="paragraph">
+<p>「ゾーンの方法」</p>
+</div>
 <div class="paragraph">
 <p>次の出力例は、 3 つのゾーンを示しています。</p>
 </div>
@@ -4247,28 +4265,40 @@ FC_switch_A_1#</pre>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>システムがマルチパスかどうかを確認します。 +<code>* node run -node -name_sysconfig -a *</code></p>
+<p>システムがマルチパスかどうかを確認します。</p>
+<div class="paragraph">
+<p>'node run -node _node-name_sysconfig -a</p>
+</div>
 </li>
 <li>
-<p>両方のクラスタにヘルス・アラートがないかどうかを確認します +<code>* system health alert show *</code></p>
+<p>ヘルスアラートがないかどうかを両方のクラスタで確認します。</p>
+<div class="paragraph">
+<p>「 system health alert show 」というメッセージが表示されます</p>
+</div>
 </li>
 <li>
 <p>MetroCluster 構成と運用モードが正常な状態であることを確認します。</p>
 <div class="paragraph">
-<p>「 * MetroCluster show * 」と入力します</p>
+<p>「 MetroCluster show 」</p>
 </div>
 </li>
 <li>
 <p>MetroCluster チェックを実行します。</p>
 <div class="paragraph">
-<p>「 * MetroCluster check run * 」のようになります</p>
+<p>「 MetroCluster check run 」のようになります</p>
 </div>
 </li>
 <li>
-<p>MetroCluster チェックの結果を表示します :+<code>* MetroCluster check show*</code></p>
+<p>MetroCluster チェックの結果を表示します。</p>
+<div class="paragraph">
+<p>MetroCluster チェックショー</p>
+</div>
 </li>
 <li>
-<p>スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +<code>* storage switch show *</code></p>
+<p>スイッチにヘルスアラートがないかどうかを確認します（ある場合）。</p>
+<div class="paragraph">
+<p>「 storage switch show 」と表示されます</p>
+</div>
 </li>
 <li>
 <p>Config Advisor を実行します。</p>

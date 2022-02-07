@@ -3703,7 +3703,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
@@ -3713,6 +3713,14 @@
           alt="netapp-martyh"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/66496079?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3739,10 +3747,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順が MetroCluster FC 構成で使用されます。</p>
+<p>MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster FC 構成で使用されます。</p>
 </li>
 <li>
-<p>MetroCluster IP ワークフローでは、スイッチオーバー、修復、スイッチバックの手順が MetroCluster IP 構成で使用されます。</p>
+<p>MetroCluster IP ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster IP 構成で使用されます。</p>
 </li>
 <li>
 <p>ユニファイドワークフローでは、 FC ノードと IP ノードの両方を設定する場合、手順は NSO と USO のどちらが実行されるかによって異なります。詳細が表に表示されます。</p>
@@ -3767,20 +3775,18 @@
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">移行のステージ</th>
-<th class="tableblock halign-left valign-top">ネゴシエートスイッチオーバーで使用するワークフロー</th>
-<th class="tableblock halign-left valign-top">計画外スイッチオーバーで使用するワークフロー</th>
-</tr>
-</thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">移行のステージ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ネゴシエートスイッチオーバーで使用するワークフロー</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">計画外スイッチオーバーで使用するワークフロー</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>MetroCluster IP ノードがクラスタに参加する前。</p>
+<p>MetroCluster IP ノードがクラスタに参加する前</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>MetroCluster FC の略</p>
@@ -3791,7 +3797,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>MetroCluster IP ノードがクラスタに参加した後、 MetroCluster configure コマンドを実行します。</p>
+<p>MetroCluster IP ノードがクラスタに参加した後で 'MetroCluster configure' コマンドが実行されます</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>サポート対象外</p>
@@ -3802,7 +3808,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>MetroCluster configure コマンドの実行後ボリューム移動を実行中の可能性があります。</p>
+<p>MetroCluster configure コマンドが発行された後。ボリューム移動を実行中の可能性があります。</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>unified ：リモートサイトのすべてのノードが稼働したままであり、自動的に修復されます</p>
@@ -3813,13 +3819,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>MetroCluster FC ノードが所有するミラーアグリゲートがミラーリングされるのは、ストレージにアクセスできる場合だけで、それ以外のアグリゲートはスイッチオーバー後にデグレード状態になります</p>
+<p>MetroCluster FC ノードが所有するミラーアグリゲートがミラーリングされるのは、ストレージにアクセスできる場合だけで、それ以外のアグリゲートはスイッチオーバー後にデグレード状態になります。</p>
 </li>
 <li>
 <p>すべてのリモートサイトノードがブート可能である。</p>
 </li>
 <li>
-<p>アグリゲートの修復とルートの修復のコマンドは手動で実行する必要があります。</p>
+<p>「アグリゲートの修復」コマンドと「ルートの修復」コマンドは、手動で実行する必要があります。</p>
 </li>
 </ul>
 </div></div></td>
@@ -3837,7 +3843,7 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>MetroCluster の FC ノードに対して cluster unjoin コマンドが実行されました。</p>
+<p>MetroCluster FC ノードで cluster unjoin コマンドが実行されました</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>MetroCluster IP の略</p>

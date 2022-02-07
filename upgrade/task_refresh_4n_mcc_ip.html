@@ -9,7 +9,7 @@
   <meta property="og:title" content="4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/upgrade/task_refresh_4n_mcc_ip.html" />
-	<meta property="og:description" content="ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。これを行うには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。" />
+	<meta property="og:description" content="ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。" />
   <meta property="og:image" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
@@ -18,7 +18,7 @@
   <meta http-equiv="nss-type" content="Product Documentation"/>
   <meta http-equiv="nss-subtype" content="User Guide"/>
   
-  <meta name="description" content="ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。これを行うには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。">
+  <meta name="description" content="ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。">
   <meta name="keywords" content=" metrocluster, upgrade, refresh, four, node, ip, configuration, add, autosupport">
   
   
@@ -3703,7 +3703,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
@@ -3731,7 +3731,7 @@
 
 
 <div class="paragraph lead">
-<p>ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。これを行うには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。</p>
+<p>ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。</p>
 </div>
 <div class="ulist">
 <div class="title">このタスクについて</div>
@@ -3850,14 +3850,11 @@
 </div>
 </li>
 <li>
-<p>次の手順に従って、古いノードから新しいノードにデータを移動します。 _ コントローラハードウェアアップグレードエクスプレスガイド _ 。</p>
-<div class="paragraph">
-<p><a href="https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/home.html">"その他のプラットフォーム手順： Controller Hardware Upgrade Express Guide"</a></p>
-</div>
+<p>の次の手順に従って、古いノードから新しいノードにデータを移動します <a href="https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/home.html" target="_blank" rel="noopener">"その他のプラットフォーム手順： Controller Hardware Upgrade Express Guide"</a></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>のすべての手順を実行します <a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html">"アグリゲートの作成と新しいノードへのボリュームの移動"</a>。</p>
+<p>のすべての手順を実行します <a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html" target="_blank" rel="noopener">"アグリゲートの作成と新しいノードへのボリュームの移動"</a>。</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3939,7 +3936,7 @@
 <p>Tiebreaker</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metrocluster-configurations">"MetroCluster 構成を追加しています"</a> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください</p>
+<p><a href="../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metrocluster-configurations">"MetroCluster 構成を追加しています"</a> MetroCluster Tiebreaker のインストールと設定</p>
 </div></div></td>
 </tr>
 <tr>
@@ -3947,7 +3944,7 @@
 <p>メディエーター</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html">"MetroCluster IP 構成での ONTAP メディエーターサービスの設定"</a> MetroCluster IP インストールおよび設定ガイドのを参照してください</p>
+<p><a href="../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html">"MetroCluster IP 構成での ONTAP メディエーターサービスの設定"</a> MetroCluster IP のインストールと設定 _ 。</p>
 </div></div></td>
 </tr>
 <tr>

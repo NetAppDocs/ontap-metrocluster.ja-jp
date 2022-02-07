@@ -3703,24 +3703,24 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
 <span>寄稿者
-  <a target="_blank" href="https://github.com/netapp-martyh">
-    <img  class="avatar avatar-small"
-          alt="netapp-martyh"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/66496079?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
   <a target="_blank" href="https://github.com/netapp-thomi">
     <img  class="avatar avatar-small"
           alt="netapp-thomi"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/54111336?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-martyh">
+    <img  class="avatar avatar-small"
+          alt="netapp-martyh"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/66496079?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3768,8 +3768,8 @@
 <p>LOADER プロンプトで、 DHCP を使用可能かどうかに基づいて新しいコントローラモジュールの IP アドレスを設定します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3826,8 +3826,8 @@
 <p>LOADER プロンプトで、新しいノードをネットブートします。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <tbody>
 <tr>
@@ -3864,10 +3864,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>HA ペアでの無停止アップグレードではこの手順はサポートされていませんというメッセージが表示されたら '<strong>y`</strong> と入力します</p>
+<p>HA ペアでの無停止アップグレードではこの手順はサポートされていないというメッセージが表示されたら、「 y 」と入力する必要があります。</p>
 </li>
 <li>
-<p>このプロセスで既存の ONTAP ソフトウェアが新しいソフトウェアに置き換えられることを警告するメッセージが表示されたら '<strong>y</strong>' と入力します</p>
+<p>このプロセスで既存の ONTAP ソフトウェアが新しいソフトウェアに置き換えられることを警告するメッセージが表示されたら、「 y 」と入力する必要があります。</p>
 </li>
 <li>
 <p>image.tgz ファイルの URL を求めるプロンプトが表示されたら、次のパスを入力する必要があります。</p>
@@ -3879,7 +3879,7 @@
 </div>
 </li>
 <li>
-<p>ソフトウェアの無停止アップグレードまたは交換に関するプロンプトが表示されたら '<strong>y</strong>' と入力します</p>
+<p>ソフトウェアの無停止アップグレードまたは交換に関するプロンプトが表示されたら 'y`" と入力します</p>
 </li>
 <li>
 <p>パッケージの URL を指定するように求められたら、 image.tgz ファイルへのパスを入力します。</p>
@@ -3890,7 +3890,7 @@
 </div>
 </li>
 <li>
-<p>バックアップ構成のリストアを要求されたら ' バックアップ・リカバリをスキップするには '<strong>n</strong>' を入力します</p>
+<p>バックアップ構成のリストアを要求されたら ' バックアップ・リカバリをスキップするには 'n` を入力します</p>
 <div class="listingblock">
 <div class="content">
 <pre>****************************************************************
@@ -3911,7 +3911,7 @@ now? {y|n} `n`</pre>
 </div>
 </li>
 <li>
-<p>今すぐ再起動するよう求められたら '<strong>y</strong>' と入力します</p>
+<p>今すぐ再起動するように求められたら 'y`" と入力します</p>
 <div class="listingblock">
 <div class="content">
 <pre>The node must be rebooted to start using the newly installed software. Do you want to
@@ -3922,7 +3922,7 @@ reboot now? {y|n} `y`</pre>
 <li>
 <p>必要に応じて、「 Clean configuration and initialize all disks 」オプションを選択し、ノードのブート後にすべてのディスクを初期化します。</p>
 <div class="paragraph">
-<p>新しいコントローラモジュールを設定していて、新しいコントローラモジュールのディスクは空であるため、すべてのディスクが消去されるという警告が表示されたら「 * y * 」と入力します。</p>
+<p>新しいコントローラモジュールを設定していて、新しいコントローラモジュールのディスクは空であるため、すべてのディスクが消去されるという警告が表示されたら「 y 」と入力します。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3954,7 +3954,7 @@ reboot now? {y|n} `y`</pre>
 <li>
 <p>サイトに応じて、残りのプロンプトに応答します。</p>
 <div class="paragraph">
-<p>。 <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html">"ONTAP をセットアップします"</a> 詳細については、お使いのバージョンの ONTAP のを参照してください。</p>
+<p>。 <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html" target="_blank" rel="noopener">"ONTAP をセットアップします"</a> 詳細については、お使いのバージョンの ONTAP のを参照してください。</p>
 </div>
 </li>
 <li>

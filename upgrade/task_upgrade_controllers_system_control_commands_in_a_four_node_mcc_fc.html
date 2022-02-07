@@ -3703,7 +3703,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 14:25:52 +0000">01/31/2022</time>
+    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
     
   
 
@@ -3721,6 +3721,14 @@
           alt="netapp-martyh"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/66496079?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-thomi">
+    <img  class="avatar avatar-small"
+          alt="netapp-thomi"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/54111336?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3908,13 +3916,6 @@
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
-</td>
-<td class="content">
 <div class="paragraph">
 <p>「 system controller replace start 」コマンドで、次の事前確認エラーが報告されることがあります。</p>
 </div>
@@ -3928,10 +3929,6 @@ Node-A-1    Failed         MetroCluster check failed. Reason : MCC check showed 
 </div>
 <div class="paragraph">
 <p>アグリゲートのミラーされていないか、別のアグリゲート問題が原因で、このエラーが発生していないかどうかを確認してくださいすべてのミラーアグリゲートが正常で、デグレードまたはミラーデグレードでないことを確認します。このエラーの原因がミラーされていないアグリゲートのみである場合は、「 system controller replace start 」コマンドで「 -skip-metrocluster-check true 」オプションを選択することで、このエラーを無視できます。リモートストレージにアクセスできる場合、ミラーされていないアグリゲートはスイッチオーバー後にオンラインになります。リモートストレージリンクに障害が発生すると、ミラーされていないアグリゲートがオンラインになりません。</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </li>
 <li>
@@ -4144,10 +4141,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 <div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>Tiebreaker ソフトウェアから既存の MetroCluster 設定を削除します。</p>
-<div class="paragraph">
-<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html" target="_blank" rel="noopener">"MetroCluster 構成を削除しています"</a></p>
-</div>
+<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html" target="_blank" rel="noopener">"既存の MetroCluster 設定を削除します"</a> Tiebreaker ソフトウェアから。</p>
 </li>
 <li>
 <p>スイッチオーバーを開始できるサードパーティ製アプリケーションから既存の MetroCluster 構成を削除します。</p>
@@ -4170,7 +4164,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 <p>自動化操作は ' スイッチオーバー ' 修復アグリゲート ' および修復ルート・アグリゲートのオペレーションを開始しますこれらの処理が完了すると、ユーザの操作のために * 一時停止されます * 。コントローラをラックに設置してパートナーコントローラをブートし、先ほど収集した「 sysconfig 」を使用して、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます。</p>
 </div>
 <div class="paragraph">
-<p>スイッチオーバーを開始する前に自動化処理が一時停止するため、すべての LIF がサイト B で「稼働」していることを手動で確認できます必要に応じて、「 system controller replace resume 」コマンドを使用して、「 up 」の LIF をすべて削除し、自動化処理を再開します。</p>
+<p>スイッチオーバーを開始する前に自動化処理が一時停止するため、サイト B のすべての LIF が「稼働」していることを手動で確認できます必要に応じて 'down' の LIF を up にし 'system controller replace resume' コマンドを使用して自動化処理を再開します</p>
 </div>
 <div class="sect2">
 <h3 id="古いコントローラのネットワーク構成を準備しています">古いコントローラのネットワーク構成を準備しています</h3>
@@ -4207,13 +4201,13 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 <p>「 network interface show 」を参照してください</p>
 </div>
 <div class="paragraph">
-<p>SAN および NAS を含むすべてのデータ LIF は、スイッチオーバーサイト（ cluster_A ）で稼働しているため、管理上の「 up 」状態および運用上の「 own 」状態になります。</p>
+<p>SAN と NAS を含むすべてのデータ LIF は ' スイッチオーバーサイト（ cluster_A ）で稼働しているため ' 管理上の "" および運用上の "" ダウン "" になります</p>
 </div>
 </li>
 <li>
 <p>の出力を確認して、クラスタポートとして使用されていない新旧両方のコントローラで同じ共通の物理ネットワークポートを特定します。</p>
 <div class="paragraph">
-<p>たとえば、 e0d は古いコントローラの物理ポートで、新しいコントローラにも存在します。e0d は、クラスタポート、または新しいコントローラ上で使用されません。</p>
+<p>たとえば、「 e0d 」は古いコントローラ上の物理ポートであり、新しいコントローラ上にも存在します。「 e0d 」は、クラスタポートとしても、新しいコントローラ上でも使用されません。</p>
 </div>
 <div class="paragraph">
 <p>プラットフォームモデルのポートの用途については、を参照してください <a href="https://hwu.netapp.com/" target="_blank" rel="noopener">"NetApp Hardware Universe の略"</a></p>
@@ -4835,7 +4829,7 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 <p>オンボードキー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプション 10</p>
+<p>オプション "10 `"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -4846,7 +4840,7 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 <p>外部キー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプションは 11 です</p>
+<p>オプション "11`"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -4856,10 +4850,10 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 </table>
 </li>
 <li>
-<p>自動ブートが有効になっている場合は、 control-C を押して自動ブートを中断します</p>
+<p>自動ブートが有効になっている場合は、 Ctrl+C を押して自動ブートを中断します</p>
 </li>
 <li>
-<p>ブート・メニューからオプション「 6 」を実行します。</p>
+<p>ブートメニューからオプション "6`" を実行します</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4867,7 +4861,7 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 <img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
 </td>
 <td class="content">
-オプション '6' は ' 完了する前にノードを 2 回再起動します
+オプション "6`" を選択すると ' 完了前にノードが 2 回再起動されます
 </td>
 </tr>
 </table>
@@ -4912,7 +4906,7 @@ Rebooting to load the restored env file...</pre>
 <p>オンボードキー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプション 10</p>
+<p>オプション "10 `"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -4923,7 +4917,7 @@ Rebooting to load the restored env file...</pre>
 <p>外部キー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプションは 11 です</p>
+<p>オプション "11`"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -4932,7 +4926,7 @@ Rebooting to load the restored env file...</pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' リカバリ手順をオプション 1' （通常のブート）で続行する必要がある場合があります</p>
+<p>キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります</p>
 </div>
 </li>
 <li>
@@ -5096,7 +5090,7 @@ Rebooting to load the restored env file...</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>の手順を使用します <a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html">"MetroCluster 構成を追加しています"</a> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください。</p>
+<p>の手順を使用します <a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html">"MetroCluster 構成を追加しています"</a>。</p>
 </li>
 </ol>
 </div>
