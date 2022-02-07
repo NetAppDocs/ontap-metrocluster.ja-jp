@@ -26,6 +26,8 @@ MetroCluster FC ノードのクラスタ接続を IP スイッチに移動する
 次の表に、このタスクで使用するポートの例を示します。
 
 |===
+
+
 | コントローラモジュール上のクラスタ接続の数 | ポートをグループ化します | グループ B のポート 
 
 
@@ -52,8 +54,9 @@ e0b 、 e0d
 
 次の表に、 FC ノードの接続先のスイッチポートを示します。Broadcom BES-53248 スイッチの場合、ポートの用途は MetroCluster IP ノードのモデルによって異なります。
 
-[cols="4*"]
 |===
+
+
 | スイッチモデル | MetroCluster IP ノードモデル | スイッチポート | に接続します 
 
 
@@ -110,7 +113,6 @@ Node_x_2-FC
 
 === 新しい IP スイッチを使用する場合にローカルクラスタ接続を移動する
 
-[role="lead"]
 新しい IP スイッチを使用している場合は、既存の MetroCluster FC ノードのクラスタ接続を新しいスイッチに物理的に移動する必要があります。
 
 . MetroCluster FC ノードグループ A のクラスタ接続を新しい IP スイッチに移動します。
@@ -124,7 +126,10 @@ Node_x_2-FC
 .. FC_switch_A_2 のグループ A のポートを switch_A_1 の FC ノードのスイッチポートに接続します
 
 
-. すべてのクラスタ・ポートが up であることを確認します。「 network port show -ipspace Cluster 」
+. すべてのクラスタポートが動作していることを確認します。
++
+「 network port show -ipspace cluster 」のように表示されます
+
 +
 ....
 cluster_A::*> network port show -ipspace Cluster
@@ -149,7 +154,10 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 
 cluster_A::*>
 ....
-. すべてのインターフェイスが Is Home 列に true と表示されていることを確認します。「 network interface show -vserver cluster 」
+. すべてのインターフェイスが Is Home カラムに true と表示されていることを確認します。
++
+「 network interface show -vserver cluster 」のように表示されます
+
 +
 この処理が完了するまでに数分かかることがあります。
 
@@ -175,14 +183,13 @@ Cluster
 cluster_A::*>
 ....
 . 両方のノード（ node_A_1 -FC および node_B_2 ）で上記の手順を実行して、クラスタインターフェイスのグループ B ポートを移動します。
-. パートナークラスタ「 cluster_B 」に対して、上記の手順を繰り返します。
+. パートナー・クラスタ「 cluster_B 」で上記の手順を繰り返します。
 
 
 
 
 === 既存の IP スイッチを再利用する場合にローカルクラスタ接続を移動する
 
-[role="lead"]
 既存の IP スイッチを再利用する場合は、ファームウェアを更新し、正しい Reference Configure Files （ RCF ；リファレンス構成ファイル）でスイッチを再設定し、接続を正しいポートに一度に 1 つずつ移動する必要があります。
 
 このタスクを実行する必要があるのは、 FC ノードが既存の IP スイッチに接続されており、スイッチを再利用する場合のみです。
@@ -195,25 +202,25 @@ cluster_A::*>
 クラスタポートの使用状況を確認するには、プラットフォームのインストールとセットアップの手順を参照してください。
 
 +
-https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-a320-install-setup/home.html["AFF A320 システム：設置とセットアップ"]
+https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-a320-install-setup/home.html["AFF A320 システム：設置とセットアップ"^]
 
 +
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2842666["AFF A220 / FAS2700 システムの設置とセットアップの手順"]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842666["AFF A220 / FAS2700 システムの設置とセットアップの手順"^]
 
 +
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2842668["AFF A800 システムの設置とセットアップの手順"]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2842668["AFF A800 システムの設置とセットアップの手順"^]
 
 +
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2469722["AFF A300 システム『 Installation and Setup Instructions 』"]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2469722["AFF A300 システム『 Installation and Setup Instructions 』"^]
 
 +
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2316769["FAS8200 システム設置とセットアップの手順"]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2316769["FAS8200 システム設置とセットアップの手順"^]
 
 
 
 . プラットフォームの組み合わせと移行用に生成された RCF ファイルを使用して switch_A_1 IP を再設定します。
 +
-使用しているスイッチベンダーに対応する手順については、次のリンク先の『 MetroCluster IP Installation and Configuration Guide 』を参照してください。
+使用しているスイッチベンダーの手順の手順に従い、 MetroCluster IP Installation and Configuration_ から実行します。
 
 +
 link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]
@@ -244,9 +251,12 @@ MetroCluster IP ノードでサポートされる最新のファームウェア�
 
 . グループ A のポートを switch_A_1 の IP に再接続します。
 +
-で説明したポートを使用します xref:task_transition_from_mcc_fc_to_mcc_ip_configurations..adoc[MetroCluster FC ノードでのクラスタ接続の移動]。
+で説明したポートを使用します link:task_transition_from_mcc_fc_to_mcc_ip_configurations.html["MetroCluster FC ノードでのクラスタ接続の移動"]。
 
-. すべてのクラスタポートが up であることを確認します。「 network port show -ipspace cluster 」
+. すべてのクラスタポートが動作していることを確認します。
++
+「 network port show -ipspace cluster 」のように表示されます
+
 +
 ....
 Cluster-A::*> network port show -ipspace cluster
@@ -271,7 +281,10 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 
 Cluster-A::*>
 ....
-. すべてのインターフェイスがホームポートにあることを確認します。「 network interface show -vserver Cluster
+. すべてのインターフェイスがそれぞれのホームポートにあることを確認します。
++
+「 network interface show -vserver Cluster 」のように表示されます
+
 +
 ....
 Cluster-A::*> network interface show -vserver Cluster
@@ -303,10 +316,12 @@ Cluster-A::*>
 
 == クラスタ接続が移動され、クラスタが正常に動作していることを確認しています
 
-[role="lead"]
 適切な接続があり、構成で移行プロセスを実行する準備ができていることを確認するには、クラスタ接続が正しく移動され、クラスタスイッチが認識され、クラスタが正常であることを確認する必要があります。
 
-. すべてのクラスタ・ポートが起動し、実行中であることを確認します。「 network port show -ipspace Cluster 」
+. すべてのクラスタポートが動作していることを確認します。
++
+「 network port show -ipspace cluster 」のように表示されます
+
 +
 ....
 Cluster-A::*> network port show -ipspace Cluster
@@ -331,12 +346,15 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 
 Cluster-A::*>
 ....
-. すべてのインターフェイスがホームポートにあることを確認します。「 network interface show -vserver Cluster
+. すべてのインターフェイスがそれぞれのホームポートにあることを確認します。
++
+「 network interface show -vserver Cluster 」のように表示されます
+
 +
 この処理が完了するまでに数分かかることがあります。
 
 +
-次の例は、すべてのインターフェイスの Is Home 列に true と表示されていることを示しています。
+次に、すべてのインターフェイスの「 Is Home 」列に true が表示される例を示します。
 
 +
 ....
@@ -359,7 +377,10 @@ Cluster
 
 Cluster-A::*>
 ....
-. 両方のローカル IP スイッチがノードによって検出されたことを確認します。「 network device-discovery show -protocol cdp
+. 両方のローカル IP スイッチがノードで検出されたことを確認します。
++
+「 network device-discovery show -protocol cdp 」と入力します
+
 +
 ....
 Cluster-A::*> network device-discovery show -protocol cdp
@@ -380,7 +401,10 @@ Node-A-2-FC
 
 Cluster-A::*>
 ....
-. IP スイッチで、 MetroCluster IP ノードが両方のローカル IP スイッチで検出されたことを確認します。「 How CDP Neighbors' 」
+. IP スイッチで、両方のローカル IP スイッチで MetroCluster IP ノードが検出されたことを確認します。
++
+'How CDP Neighbors' を参照してください
+
 +
 この手順は各スイッチで実行する必要があります。
 

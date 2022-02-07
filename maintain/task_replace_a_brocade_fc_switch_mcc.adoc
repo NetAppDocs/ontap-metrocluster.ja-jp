@@ -17,6 +17,8 @@ summary: この Brocade 固有の手順を使用して、障害が発生した�
 次の例では、 FC_switch_A_1 が正常に動作しているスイッチ、 FC_switch_B_1 が障害が発生したスイッチです。この例でのスイッチポートの用途を次の表に示します。
 
 |===
+
+
 | ポート接続 | ポート 
 
 
@@ -54,21 +56,27 @@ NOTE: これはシステムの停止を伴わない手順であり、完了ま�
 
 推奨される用途に従ってスイッチポートを割り当ててください。
 
-* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
-* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+* link:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"]
+* link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 
 .手順
 . 交換中のスイッチをフェンシングします。そのためには、ファブリック内の正常に動作しているスイッチの ISL ポート、および障害が発生したスイッチの FC-VI ポートと HBA ポートを無効にします（障害が発生したスイッチが稼働している場合）。
 +
-.. ポートごとに正常に動作しているスイッチの ISL ポートを無効にします。 +`*portcfgpersistentdisable_port-number_*`
+.. 各ポートの正常に動作しているスイッチの ISL ポートを無効にします。
++
+portcfgpersistentdisable_port-number
+
 +
 [listing]
 ----
 FC_switch_A_1:admin> portcfgpersistentdisable 10
 FC_switch_A_1:admin> portcfgpersistentdisable 11
 ----
-.. 障害が発生したスイッチが稼働している場合は、ポートごとにそのスイッチの FC-VI ポートと HBA ポートを無効にします。 +`*portcfgpersistentdisable_port-number _*`
+.. 障害が発生したスイッチが稼働している場合は、各ポートの該当するスイッチの FC-VI ポートと HBA ポートを無効にします。
++
+portcfgpersistentdisable_port-number
+
 +
 [listing]
 ----
@@ -81,7 +89,7 @@ FC_switch_B_1:admin> portcfgpersistentdisable 5
 ----
 
 
-. 障害が発生したスイッチが稼働している場合は '*switchshow*' コマンドの出力を収集します
+. 障害が発生したスイッチが動作可能な場合は 'switchshow コマンドの出力を収集します
 +
 [listing]
 ----
@@ -100,8 +108,11 @@ FC_switch_B_1:admin> switchshow
 . 新しいスイッチを物理的に設置する前に、スイッチをブートして事前設定します。
 +
 .. 新しいスイッチに電源を投入し、起動するのを待ちます。
-.. スイッチのファームウェアバージョンを調べて、他の FC スイッチのバージョンと一致していることを確認します： +`*firmwareShow*`
-.. MetroCluster インストールおよび設定ガイドの説明に従って新しいスイッチを設定しますが 'Brocade FC スイッチでのゾーニングの設定セクションは省略します
+.. スイッチのファームウェアバージョンをチェックして、他の FC スイッチのバージョンと一致していることを確認します。
++
+「 firmwareShow
+
+.. MetroCluster のインストールと構成の説明に従って新しいスイッチを構成しますが 'Brocade FC スイッチでのゾーニングの構成手順は省略します
 +
 https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
 
@@ -138,27 +149,33 @@ FC_switch_B_1:admin> portcfgpersistentdisable 7
 .. 新しい FC スイッチの電源をオンにします。
 
 
-. ISL 暗号化を有効にする場合は、で該当するタスクを実行します link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]。
+. ISL 暗号化を有効にする場合は、の該当するタスクを実行します link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]。
 +
 ISL 暗号化を有効にする場合は、次のタスクを実行する必要があります。
 
 +
 ** 仮想ファブリックを無効にします
-** ペイロードを設定しています
+** ペイロードを設定します
 ** 認証ポリシーを設定します
-** Brocade スイッチでの ISL 暗号化の有効化
+** Brocade スイッチで ISL 暗号化を有効にします
 
 
 . 新しいスイッチの設定を完了します。
 +
-.. ISL を有効にします。 +`* portcfgpersistentenable_port-number _ *
+.. ISL を有効にします。
++
+portcfgpersistentenable_port-number
+
 +
 [listing]
 ----
 FC_switch_B_1:admin> portcfgpersistentenable 10
 FC_switch_B_1:admin> portcfgpersistentenable 11
 ----
-.. 交換用スイッチ（この例では FC_switch_B_1 ）で、 ISL がオンラインであることを確認します。 +`*switchshow*`
+.. 交換用スイッチ（この例では FC_switch_B_1 ）で、 ISL がオンラインであることを確認します。
++
+'witchshow'
+
 +
 [listing]
 ----
@@ -213,35 +230,35 @@ FC_switch_B_1:admin> portcfgpersistentenable 3
 
 . ポートがオンラインであることを確認します。
 +
-*switchshow*`
+'witchshow'
 
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
-.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
+.. システムがマルチパスかどうかを確認します。
++
+'node run -node _node-name_sysconfig -a
+
 .. ヘルスアラートがないかどうかを両方のクラスタで確認します。
 +
-「 * system health alert show * 」というメッセージが表示されます
+「 system health alert show 」というメッセージが表示されます
 
 .. MetroCluster 構成と運用モードが正常な状態であることを確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 .. MetroCluster チェックを実行します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
 .. MetroCluster チェックの結果を表示します。
 +
-「 * MetroCluster check show * 」と表示されます
+MetroCluster チェックショー
 
 .. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
 +
-「 * storage switch show * 」と表示されます
+「 storage switch show 」と表示されます
 
-.. Config Advisor を実行します。
-+
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
-
+.. を実行します https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["Config Advisor"]。
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
 

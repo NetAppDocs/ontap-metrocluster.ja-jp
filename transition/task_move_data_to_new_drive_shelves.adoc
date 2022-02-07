@@ -18,30 +18,18 @@ summary: 移行時に、 MetroCluster FC 構成のドライブシェルフから
 
 . 新しいコントローラ上のアグリゲートに、一度に 1 つのボリュームずつデータボリュームを移動します。
 +
-コントローラアップグレードエクスプレスガイドの次のセクションを使用してください。
-
-+
-http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html["アグリゲートの作成と新しいノードへのボリュームの移動"]
+の手順を使用します http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html["アグリゲートの作成と新しいノードへのボリュームの移動"]。
 
 . 追加したノードに SAN LIF を作成します。
 +
-クラスタ拡張エクスプレスガイドの次のセクションを使用してください。
-
-+
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-expand/GUID-E3BB89AF-6251-4210-A979-130E845BC9A1.html["新しいノードの LUN パスを更新しています"]
+の次の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-expand/GUID-E3BB89AF-6251-4210-A979-130E845BC9A1.html["新しいノードの LUN パスを更新しています"^]。
 
 . FC ノードにノードロックライセンスがあるかどうかを確認します。ある場合は、新しく追加したノードに追加する必要があります。
 +
-クラスタ拡張エクスプレスガイドの次のセクションを使用してください。
-
-+
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-expand/GUID-487FAC36-3C5C-4314-B4BD-4253CB67ABE8.html["ノードロックライセンスを追加しています"]
+の次の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-expand/GUID-487FAC36-3C5C-4314-B4BD-4253CB67ABE8.html["ノードロックライセンスを追加しています"^]。
 
 . データ LIF を移行
 +
-コントローラアップグレードエクスプレスガイドの次のセクションを使用してください。 * do * not * クラスタ管理 LIF を移行するには、最後の 2 つの手順を実行してください。
-
-+
-http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-95CA9262-327D-431D-81AA-C73DEFF3DEE2.html["SAN 以外のデータ LIF とクラスタ管理 LIF を新しいノードに移動する"]
+の手順を使用します  http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-95CA9262-327D-431D-81AA-C73DEFF3DEE2.html["SAN 以外のデータ LIF とクラスタ管理 LIF を新しいノードに移動する"^] クラスタ管理 LIF を移行する手順は、 do * not * ：最後の 2 つの手順で行ってください。
 
 

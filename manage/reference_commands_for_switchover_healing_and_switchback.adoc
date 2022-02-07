@@ -12,22 +12,24 @@ summary: ONTAP には、 MetroCluster のディザスタリカバリプロセス
 [role="lead"]
 ONTAP には、 MetroCluster のディザスタリカバリプロセスを実行するためのコマンドが用意されています。
 
-[cols="2*"]
+[cols="1,2"]
 |===
+
+
 | 状況 | 使用するコマンド 
 
 
  a| 
 スイッチオーバーでエラーや拒否が発生しないことを確認します。
  a| 
-advanced 特権レベルでの MetroCluster switchover -simulate
+MetroCluster switchover -simulate + を advanced 権限レベルで実行します
 
 
 
  a| 
 スイッチバックを実行してもエラーや拒否が発生しないことを確認します。
  a| 
-advanced 権限レベルでの MetroCluster switchback -simulate
+MetroCluster switchback -simulate + at the advanced privilege level
 
 
 

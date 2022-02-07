@@ -27,6 +27,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 .手順
 . LOADER プロンプトで、 DHCP を使用可能かどうかに基づいて新しいコントローラモジュールの IP アドレスを設定します。
 +
+[cols="1,3"]
 |===
 
 
@@ -61,6 +62,7 @@ NOTE: インターフェイスによっては、その他のパラメータが�
 |===
 . LOADER プロンプトで、新しいノードをネットブートします。
 +
+[cols="1,3"]
 |===
 
 
@@ -88,22 +90,22 @@ FAS2200 、 FAS2500 、 FAS3200 、 FAS6200 、 FAS/AFF8000 シリーズシス�
 このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。
 
 +
-** HA ペアでの無停止アップグレードではこの手順はサポートされていませんというメッセージが表示されたら '*y`* と入力します
-** このプロセスで既存の ONTAP ソフトウェアが新しいソフトウェアに置き換えられることを警告するメッセージが表示されたら '*y*' と入力します
+** HA ペアでの無停止アップグレードではこの手順はサポートされていないというメッセージが表示されたら、「 y 」と入力する必要があります。
+** このプロセスで既存の ONTAP ソフトウェアが新しいソフトウェアに置き換えられることを警告するメッセージが表示されたら、「 y 」と入力する必要があります。
 ** image.tgz ファイルの URL を求めるプロンプトが表示されたら、次のパスを入力する必要があります。
 +
 http://__path_to_the_web-accessible_directory__/image.tgz`
 
 
 
-. ソフトウェアの無停止アップグレードまたは交換に関するプロンプトが表示されたら '*y*' と入力します
+. ソフトウェアの無停止アップグレードまたは交換に関するプロンプトが表示されたら 'y`" と入力します
 . パッケージの URL を指定するように求められたら、 image.tgz ファイルへのパスを入力します。
 +
 [listing]
 ----
 What is the URL for the package? `http://path_to_web-accessible_directory/image.tgz`
 ----
-. バックアップ構成のリストアを要求されたら ' バックアップ・リカバリをスキップするには '*n*' を入力します
+. バックアップ構成のリストアを要求されたら ' バックアップ・リカバリをスキップするには 'n` を入力します
 +
 [listing]
 ----
@@ -122,7 +124,7 @@ What is the URL for the package? `http://path_to_web-accessible_directory/image.
 Do you want to restore the backup configuration
 now? {y|n} `n`
 ----
-. 今すぐ再起動するよう求められたら '*y*' と入力します
+. 今すぐ再起動するように求められたら 'y`" と入力します
 +
 [listing]
 ----
@@ -131,7 +133,7 @@ reboot now? {y|n} `y`
 ----
 . 必要に応じて、「 Clean configuration and initialize all disks 」オプションを選択し、ノードのブート後にすべてのディスクを初期化します。
 +
-新しいコントローラモジュールを設定していて、新しいコントローラモジュールのディスクは空であるため、すべてのディスクが消去されるという警告が表示されたら「 * y * 」と入力します。
+新しいコントローラモジュールを設定していて、新しいコントローラモジュールのディスクは空であるため、すべてのディスクが消去されるという警告が表示されたら「 y 」と入力します。
 
 +
 
@@ -149,7 +151,7 @@ Do you want to create a new cluster or join an existing cluster? {create, join}:
 ----
 . サイトに応じて、残りのプロンプトに応答します。
 +
-。 link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["ONTAP をセットアップします"] 詳細については、お使いのバージョンの ONTAP のを参照してください。
+。 link:https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["ONTAP をセットアップします"^] 詳細については、お使いのバージョンの ONTAP のを参照してください。
 
 . システムが 2 ノードスイッチレスクラスタ構成の場合は、 network interface create コマンドを使用して既存のノードにクラスタインターフェイスを作成し、クラスタポートにクラスタ LIF を作成します。
 +

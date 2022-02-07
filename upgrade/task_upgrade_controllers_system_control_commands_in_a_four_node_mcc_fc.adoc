@@ -109,10 +109,9 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 NOTE: 現在のソースシステムと互換性のあるすべてのターゲットシステムが表示されます。ソースコントローラを、異なるバージョンの ONTAP または互換性のないプラットフォームのコントローラと交換した場合、自動処理が停止し、新しいノードがブートされたあとにエラーが報告されます。クラスタを正常な状態に戻すには、手動のリカバリ手順に従う必要があります。
 
 +
-[NOTE]
-====
 「 system controller replace start 」コマンドで、次の事前確認エラーが報告されることがあります。
 
++
 [listing]
 ----
 Cluster-A::*>system controller replace show
@@ -120,9 +119,9 @@ Node        Status         Error-Action
 ----------- -------------- ------------------------------------
 Node-A-1    Failed         MetroCluster check failed. Reason : MCC check showed errors in component aggregates
 ----
++
 アグリゲートのミラーされていないか、別のアグリゲート問題が原因で、このエラーが発生していないかどうかを確認してくださいすべてのミラーアグリゲートが正常で、デグレードまたはミラーデグレードでないことを確認します。このエラーの原因がミラーされていないアグリゲートのみである場合は、「 system controller replace start 」コマンドで「 -skip-metrocluster-check true 」オプションを選択することで、このエラーを無視できます。リモートストレージにアクセスできる場合、ミラーされていないアグリゲートはスイッチオーバー後にオンラインになります。リモートストレージリンクに障害が発生すると、ミラーされていないアグリゲートがオンラインになりません。
 
-====
 . サイト B にログインし、「 system controller replace show 」または「 system controller replace show -details 」コマンドのコンソールメッセージに表示されるコマンドに従って、設定情報を手動で収集します。
 
 
@@ -252,10 +251,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 スイッチオーバーを開始できる MetroCluster Tiebreaker 構成またはその他のサードパーティアプリケーション（たとえば、 ClusterLion ）で既存の構成を監視している場合は、古いコントローラを交換する前に、 Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。
 
 .手順
-. Tiebreaker ソフトウェアから既存の MetroCluster 設定を削除します。
-+
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html["MetroCluster 構成を削除しています"^]
-
+. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html["既存の MetroCluster 設定を削除します"^] Tiebreaker ソフトウェアから。
 . スイッチオーバーを開始できるサードパーティ製アプリケーションから既存の MetroCluster 構成を削除します。
 +
 アプリケーションのマニュアルを参照してください。
@@ -270,7 +266,7 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/G
 
 自動化操作は ' スイッチオーバー ' 修復アグリゲート ' および修復ルート・アグリゲートのオペレーションを開始しますこれらの処理が完了すると、ユーザの操作のために * 一時停止されます * 。コントローラをラックに設置してパートナーコントローラをブートし、先ほど収集した「 sysconfig 」を使用して、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます。
 
-スイッチオーバーを開始する前に自動化処理が一時停止するため、すべての LIF がサイト B で「稼働」していることを手動で確認できます必要に応じて、「 system controller replace resume 」コマンドを使用して、「 up 」の LIF をすべて削除し、自動化処理を再開します。
+スイッチオーバーを開始する前に自動化処理が一時停止するため、サイト B のすべての LIF が「稼働」していることを手動で確認できます必要に応じて 'down' の LIF を up にし 'system controller replace resume' コマンドを使用して自動化処理を再開します
 
 
 
@@ -295,11 +291,11 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/G
 「 network interface show 」を参照してください
 
 +
-SAN および NAS を含むすべてのデータ LIF は、スイッチオーバーサイト（ cluster_A ）で稼働しているため、管理上の「 up 」状態および運用上の「 own 」状態になります。
+SAN と NAS を含むすべてのデータ LIF は ' スイッチオーバーサイト（ cluster_A ）で稼働しているため ' 管理上の "" および運用上の "" ダウン "" になります
 
 .. の出力を確認して、クラスタポートとして使用されていない新旧両方のコントローラで同じ共通の物理ネットワークポートを特定します。
 +
-たとえば、 e0d は古いコントローラの物理ポートで、新しいコントローラにも存在します。e0d は、クラスタポート、または新しいコントローラ上で使用されません。
+たとえば、「 e0d 」は古いコントローラ上の物理ポートであり、新しいコントローラ上にも存在します。「 e0d 」は、クラスタポートとしても、新しいコントローラ上でも使用されません。
 
 +
 プラットフォームモデルのポートの用途については、を参照してください https://hwu.netapp.com/["NetApp Hardware Universe の略"^]
@@ -749,7 +745,7 @@ VLAN とインターフェイスグループを再設定できます。必要に
  a| 
 オンボードキー管理
  a| 
-オプション 10
+オプション "10 `"
 
 プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
@@ -758,16 +754,16 @@ VLAN とインターフェイスグループを再設定できます。必要に
  a| 
 外部キー管理
  a| 
-オプションは 11 です
+オプション "11`"
 
 プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
 |===
-. 自動ブートが有効になっている場合は、 control-C を押して自動ブートを中断します
-. ブート・メニューからオプション「 6 」を実行します。
+. 自動ブートが有効になっている場合は、 Ctrl+C を押して自動ブートを中断します
+. ブートメニューからオプション "6`" を実行します
 +
 
-NOTE: オプション '6' は ' 完了する前にノードを 2 回再起動します
+NOTE: オプション "6`" を選択すると ' 完了前にノードが 2 回再起動されます
 
 +
 システム ID 変更プロンプトに「 y 」と入力します。2 回目のリブートメッセージが表示されるまで待ちます。
@@ -800,7 +796,7 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 オンボードキー管理
  a| 
-オプション 10
+オプション "10 `"
 
 プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
@@ -809,13 +805,13 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 外部キー管理
  a| 
-オプションは 11 です
+オプション "11`"
 
 プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。
 
 |===
 +
-キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' リカバリ手順をオプション 1' （通常のブート）で続行する必要がある場合があります
+キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります
 
 . ノードをブートします。
 +
@@ -927,5 +923,5 @@ MetroCluster node show
 
 MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。
 
-. の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html["MetroCluster 構成を追加しています"] MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください。
+. の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html["MetroCluster 構成を追加しています"]。
 

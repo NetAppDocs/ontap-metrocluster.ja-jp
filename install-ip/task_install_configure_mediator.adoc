@@ -66,13 +66,12 @@ Red Hat Subscription Manager については、 Red Hat のドキュメントを
 リポジトリの設定については、次のリンクを参照してください。
 
 +
-Linux 環境で Link Aggregation Control Protocol （ LACP ）を使用している場合は、カーネルを正しく設定し、「 ysctl net.ipv4.conf all.arp_ignore 」が「 2 」に設定されていることを確認する必要があります。
+Linux 環境で Link Aggregation Control Protocol （ LACP ）を使用している場合は、カーネルを正しく設定し、 sysctl net.ipv4.conf all.arp_ignore が「 2 」に設定されていることを確認する必要があります。
 
 +
 ONTAP メディエーターサービスで必要なパッケージは次のとおりです。
 
 +
-[cols="25,35,40"]
 |===
 
 
@@ -204,7 +203,7 @@ Repository 'rhel-7-server-optional-rpms' is enabled for this system.
 ----
 . yum repolist' コマンドを実行します
 +
-次の例は、このコマンドの実行例を示しています。rhel-7-server-optional-rpms リポジトリがリストに表示されている必要があります。
+次の例は、このコマンドの実行例を示しています。「 RHEL -7 -server Optional -rpms 」リポジトリがリストに表示されます。
 
 +
 [listing]
@@ -276,7 +275,7 @@ enabled=1
 ----
 . yum repolist' コマンドを実行します
 +
-次の例は、このコマンドの実行例を示しています。CentOS-7.6.1810 ベースリポジトリがリストに表示されます。
+次の例は、このコマンドの実行例を示しています。一覧に「 CentOS - 7.6.1810 - Base 」リポジトリが表示されます。
 
 +
 [listing]
@@ -311,7 +310,7 @@ CAUTION: CentOS 8.x のサポートは、 2021 年 12 月 31 日に終了しま�
 を参照してください http://vault.centos.org["CentOS Vault の場合"]で、お使いのオペレーティングシステムに対応する kernel-devel パッケージを探します。最新バージョンの 8.0 （ CentOS 8.0.1905 以降）コアはにあります必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。
 
 .手順
-. [stp1 -rpm] 問題 kernel-devel パッケージを直接インストールするには、次のコマンドを使用します。
+. [step1-rpm] kernel-devel パッケージを直接インストールします。
 +
 「 rpm -i \ http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname -r 」。 rpm
 
@@ -339,7 +338,7 @@ yum 'remove kernel-devel'
 .手順
 . ONTAP メディエーターのページからメディエーターのインストールパッケージをダウンロードします。
 +
-https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-tab["ONTAP メディエーターのダウンロードページ"]
+https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-tab["ONTAP メディエーターのダウンロードページ"^]
 
 . メディエーターのインストールパッケージがターゲットディレクトリにあることを確認します。
 +
@@ -371,7 +370,7 @@ https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-
 
 
 
-link:../media/console_output_mediator_installation.txt["ONTAP メディエーターのインストールの例（コンソール出力）"]
+link:../media/console_output_mediator_installation.txt["ONTAP メディエーターのインストールの例（コンソール出力）"^]
 
 
 

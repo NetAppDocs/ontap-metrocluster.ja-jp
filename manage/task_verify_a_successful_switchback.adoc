@@ -12,7 +12,10 @@ summary: スイッチバックを実行したあとに、すべてのアグリ�
 [role="lead"]
 スイッチバックの実行後に、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。
 
-. スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。「 storage aggregate show
+. スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。
++
+「 storage aggregate show
+
 +
 次の例では、ノード B2 の aggr_b2 がスイッチバックされています。
 
@@ -34,9 +37,12 @@ Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
 aggr_b2          -         -     - unknown      - node_A_1
 ----
 +
-ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に原因が UNKNOWN と表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。
+ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。
 
-. サバイバークラスタにあるすべての同期先 SVM が休止状態（ Admin State が stopped になっている）であることと、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。「 vserver show -subtype sync-source
+. サバイバークラスタにある同期先のすべての SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元の SVM が稼働していることを確認します。
++
+「 vserver show -subtype sync-source 」のようになります
+
 +
 [listing]
 ----
@@ -59,12 +65,13 @@ cluster_A-vs1a-mc  data    sync-destination
                                                                        aggr_b2
 ----
 +
-MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいようにサフィックス「 -mc 」が自動的に付加されます。
+MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。
 
-. MetroCluster operation show コマンドを使用して、スイッチバック処理が成功したことを確認します。
+. MetroCluster operation show コマンドを使用して、スイッチバック操作が成功したことを確認します。
 +
-[cols="2*"]
 |===
+
+
 | 出力内容 | 作業 
 
 
@@ -78,7 +85,7 @@ MetroCluster 構成の同期先アグリゲートの名前には、識別しや�
  a| 
 スイッチバック処理またはスイッチバック継続エージェントの処理が「 partially successful 」である
  a| 
-MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します。
+MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します
 
 |===
 

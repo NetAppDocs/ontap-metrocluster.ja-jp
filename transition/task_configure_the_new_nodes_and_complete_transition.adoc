@@ -189,11 +189,9 @@ MetroCluster transition disable`
 
 新しいノード、 node_B_2 の IP および node_B_2 の IP にデータ LIF を設定する必要があります。
 
-新しいコントローラで使用可能な新しいポートがブロードキャストドメインに割り当てられていない場合は、そのドメインに追加する必要があります。必要に応じて、新しいポートに VLAN またはインターフェイスグループを作成します。『ネットワーク管理ガイド』を参照してください。
+新しいコントローラで使用可能な新しいポートがブロードキャストドメインに割り当てられていない場合は、そのドメインに追加する必要があります。必要に応じて、新しいポートに VLAN またはインターフェイスグループを作成します。を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
-
-. 次のコマンドを実行して、現在のポート使用状況とブロードキャストドメインを確認します。
+. 現在のポートの使用状況とブロードキャストドメインを特定します。
 +
 network port show ` network port broadcast-domain show 」
 
@@ -232,7 +230,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 で収集した情報を参照してください link:task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html["ネットワーク設定を作成しています"]。
 
 +
-.. 次のコマンドを実行して、 LIF のホームポートを確認します。
+.. LIF のホームポートを確認します。
 +
 「 network interface show - field home-port 」のように表示されます
 

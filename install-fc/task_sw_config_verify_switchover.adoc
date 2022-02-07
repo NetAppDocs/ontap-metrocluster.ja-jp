@@ -88,7 +88,7 @@ image::../media/workflow_high_level_node_and_cluster_configuration_software.gif[
  a| 
 クラスタ名
 
-このガイドで使用している例： site_A
+この手順で使用している例： site_A
  a| 
 
 
@@ -131,7 +131,7 @@ DNS ネームサーバ
  a| 
 ノード 1
 
-このガイドで使用している例： controller_A_1
+この手順で使用している例： controller_A_1
  a| 
  a| 
  a| 
@@ -144,7 +144,7 @@ DNS ネームサーバ
 
 2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は不要
 
-このガイドで使用している例： controller_A_2
+この手順で使用している例： controller_A_2
  a| 
  a| 
  a| 
@@ -3091,7 +3091,7 @@ MetroCluster 構成のコンポーネントを監視するには、いくつか�
 ファブリック接続 MetroCluster 構成の FC スイッチを監視するには、いくつかの設定手順を追加で実行する必要があります。
 
 
-NOTE: ONTAP 9.8 以降では、「 storage switch 」コマンドは「 system switch 」コマンドに置き換えられています。次の手順は「 storage switch 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system switch 」コマンドを使用することを推奨します。
+NOTE: ONTAP 9.8 以降では 'storage switch コマンドは 'system switch' に置き換えられています次の手順は「 storage switch 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system switch 」コマンドを使用することを推奨します。
 
 .手順
 . 各 MetroCluster ノードに IP アドレスを指定してスイッチを追加します。
@@ -3156,7 +3156,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["シ�
 
 
 
-NOTE: ONTAP 9.8 以降では、「 storage bridge 」コマンドが「 system bridge 」コマンドに置き換えられています。次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
+NOTE: ONTAP 9.8 以降では 'storage bridge コマンドは 'system bridge コマンドに置き換えられました次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
 .手順
 . ONTAP クラスタのプロンプトで、ブリッジをヘルスモニタの対象に追加します。
@@ -3474,10 +3474,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハ�
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
 
 .ステップ
-. MetroCluster 管理およびディザスタリカバリガイドの手順に従って、ネゴシエートスイッチオーバー、修復、スイッチバックを実行します。
-+
-https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster の管理とディザスタリカバリ"^]
-
+. のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster の管理とディザスタリカバリ"]
 
 
 
@@ -3492,7 +3489,7 @@ https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster
 「システム構成のバックアップ設定は URL-of-destination 」を変更します
 
 +
-https://docs.netapp.com/us-en/ontap/system-admin/index.html["CLI を使用したクラスタ管理"^] セクションの下に追加情報が含まれます。
+https://docs.netapp.com/us-en/ontap/system-admin/config-backup-file-concept.html["構成バックアップの管理"^] 追加情報が含まれます。
 
 
 

@@ -77,13 +77,15 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 . 該当するシナリオの手順に従ってシェルフを取り外します。
 +
 |===
+
+
 | シナリオ（ Scenario ） | 手順 
 
 
  a| 
 ミラーされていないアグリゲート、ミラーされたアグリゲート、または両方のタイプのアグリゲートが含まれているシェルフからアグリゲートを削除する
  a| 
-.. 「 * storage aggregate delete -aggregate name_*` 」コマンドを使用して、アグリゲートを削除します。
+.. アグリゲートを削除するには、「 storage aggregate delete -aggregate name_aggregate name 」コマンドを使用します。
 .. 標準の手順を使用してシェルフ内のすべてのドライブの所有権を削除してから、シェルフを物理的に取り外します。
 +
 シェルフをホットリムーブするには、使用しているシェルフモデルの SAS Disk Shelves Service Guide に記載されている手順に従ってください。
@@ -95,9 +97,9 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
  a| 
 ミラーされたアグリゲートからプレックスを削除するために、アグリゲートのミラーリングを解除する必要がある
  a| 
-.. 「 * run -node local sysconfig -r * 」コマンドを使用して、削除するプレックスを特定します。
+.. run -node local sysconfig -r コマンドを使用して ' 削除するプレックスを特定します
 +
-次の例では、「 Plex /dpg_mcc_8020_13_a1_aggr1/plex0 」行でプレックスを特定できます。この場合、指定するプレックスは plex0 です。
+次の例では、「 Plex /dpg_mcc_8020_13_a1_aggr1/plex0 」行でプレックスを特定できます。この場合 ' 指定するプレックスは plex0 です
 
 +
 [listing]
@@ -126,9 +128,9 @@ Aggregate dpg_mcc_8020_13_a1_aggr1 (online, raid_dp, mirrored) (block checksums)
       data      mcc-cisco-8Gb-fab-3:1-1.126L15  0d    33  14  FC:A   1   SAS 15000 272000/557056000  280104/573653840
       data      mcc-cisco-8Gb-fab-3:1-1.126L45  0d    34  18  FC:A   1   SAS 15000 272000/557056000  280104/573653840
 ----
-.. 「 * storage aggregate plex delete -aggregate _aggr_name _ -plex_plex_name_ * 」コマンドを使用してプレックスを削除します。
+.. storage aggregate plex delete -aggregate _aggr_name --plex_plex_name_` コマンドを使用して、プレックスを削除します。
 +
-plex は 'plex3' や 'plex6' などのプレックス名を定義します
+plex は 'plex3` や 'plex6` などのプレックス名を定義します
 
 .. 標準の手順を使用してシェルフ内のすべてのドライブの所有権を削除してから、シェルフを物理的に取り外します。
 +

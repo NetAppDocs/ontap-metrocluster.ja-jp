@@ -19,6 +19,8 @@ summary: 障害が発生した Cisco FC スイッチを交換するには、 Cis
 この手順の例では、 FC_switch_A_1 が正常に動作しているスイッチ、 FC_switch_B_1 が障害が発生したスイッチです。この例でのスイッチポートの用途を次の表に示します。
 
 |===
+
+
 | ロール | ポート 
 
 
@@ -53,8 +55,8 @@ ISL 接続
 
 推奨される用途に従ってスイッチポートを割り当ててください。
 
-* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
-* xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+* link:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"]
+* link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 
 .手順
@@ -63,7 +65,7 @@ ISL 接続
 次の手順は、正常に動作しているスイッチで実行します。
 
 +
-.. 構成モードに入ります :+`*conf t*`
+.. 構成モードに切り替えます :+`conf t`
 .. 「 interface 」コマンドと「 hut 」コマンドを使用して、正常に動作しているスイッチの ISL ポートを無効にします。
 +
 [listing]
@@ -89,7 +91,10 @@ FC_switch_A_1#
 次の手順は、障害が発生したスイッチで実行します。
 
 +
-.. 構成モードに入ります :+`*conf t*`
+.. コンフィギュレーションモードを開始します。
++
+「 conf t`
+
 .. 障害が発生したスイッチが稼働している場合は、インターフェイスと shut コマンドを使用して、障害が発生したスイッチの FC-VI ポートと HBA ポートを無効にします。
 +
 [listing]
@@ -115,7 +120,7 @@ FC_switch_B_1#
 
 . 障害が発生したスイッチが稼働している場合は、スイッチの WWN を確認します。
 +
-*show wwn switch *
+'How WWN switch`
 
 +
 [listing]
@@ -130,10 +135,13 @@ FC_switch_B_1#
 
 +
 .. 交換用スイッチの電源をオンにして、ブートするのを待ちます。
-.. 交換用スイッチのファームウェアバージョンを調べて、他の FC スイッチのバージョンと一致していることを確認します。 +`*show version*`
+.. 交換用スイッチのファームウェアバージョンをチェックして、他の FC スイッチのバージョンと一致していることを確認します。
++
+'how version （バージョンの表示） '
+
 .. MetroCluster インストールおよび設定ガイドの説明に従って交換用スイッチを設定します（「 Cisco FC スイッチでのゾーニングの設定」セクションは省略します）。
 +
-https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
+link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
 
 +
 ゾーニングはこの手順の後半で設定します。
@@ -184,7 +192,7 @@ FC_switch_B_1#
 ----
 . 交換用スイッチの ISL ポートが動作していることを確認します。
 +
-*show interface brief *
+「インターフェイスの概要」
 
 . 交換用スイッチのゾーニングを MetroCluster の設定に合わせて調整します。
 +
@@ -199,7 +207,10 @@ FC_switch_A_1(config-zone)# zoneset distribute full vsan 10
 FC_switch_A_1(config-zone)# zoneset distribute full vsan 20
 FC_switch_A_1(config-zone)# end
 ----
-.. 交換用スイッチで、正常に動作しているスイッチからゾーニング情報が正しく取得されたことを確認します。 +`*show zone *`
+.. 交換用スイッチで、正常に動作しているスイッチからゾーニング情報が適切に取得されたことを確認します。
++
+「ゾーンの方法」
+
 +
 [listing]
 ----
@@ -240,6 +251,8 @@ FC_switch_B_1#
 *** FC_switch_B_1 ： 20 ： 00 ： 54 ： 7F ： ee ： C6 ： 80 ： 78
 
 
+
+
 +
 [listing]
 ----
@@ -251,9 +264,10 @@ FC_switch_A_1# show wwn switch
 Switch WWN is 20:00:54:7f:ee:b8:24:c0
 FC_switch_A_1#
 ----
++
 .. 2 つのスイッチのスイッチ WWN に属していないゾーンメンバーを削除します。
 +
-この例では ' 出力の no member interface は ' ファブリック内のどちらのスイッチのスイッチ WWN にも関連付けられていない次のメンバーを削除する必要があることを示しています
+この例では、出力の「 no member interface 」は、ファブリック内のどちらのスイッチのスイッチ WWN にも関連付けられていない次のメンバーを削除する必要があることを示しています。
 
 +
 *** ゾーン名 FC-VI_Zone_1_10 VSAN 10
@@ -277,12 +291,6 @@ FC_switch_A_1#
 **** インターフェイス fc1/9 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
 **** インターフェイス fc1/10 sWWN 20:00:54:7F: e:e3:86:50 を参照してください
 **** インターフェイス fc1/11 sWWN 20:00:54:7F:ee:E3-86:50 次の例は、これらのインターフェイスの削除を示しています。
-
-
-
-
-
-
 +
 [listing]
 ----
@@ -308,7 +316,10 @@ FC_switch_A_1#
  FC_switch_B_1(config-zone)# end
  FC_switch_B_1# copy running-config startup-config
 ----
-+
+
+
+
+
 .. 交換用スイッチのポートをゾーンに追加します。
 +
 交換用スイッチのケーブル接続は、障害が発生したスイッチとすべて同じにする必要があります。
@@ -338,7 +349,10 @@ FC_switch_A_1#
  FC_switch_B_1(config-zone)# end
  FC_switch_B_1# copy running-config startup-config
 ----
-.. ゾーニングが正しく構成されていることを確認します +`*show zone *`
+.. ゾーニングが正しく設定されていることを確認します。
++
+「ゾーンの方法」
+
 +
 次の出力例は、 3 つのゾーンを示しています。
 
@@ -401,18 +415,30 @@ FC_switch_A_1#
 
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
-.. システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`
-.. 両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`
+.. システムがマルチパスかどうかを確認します。
++
+'node run -node _node-name_sysconfig -a
+
+.. ヘルスアラートがないかどうかを両方のクラスタで確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
 .. MetroCluster 構成と運用モードが正常な状態であることを確認します。
 +
-「 * MetroCluster show * 」と入力します
+「 MetroCluster show 」
 
 .. MetroCluster チェックを実行します。
 +
-「 * MetroCluster check run * 」のようになります
+「 MetroCluster check run 」のようになります
 
-.. MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`
-.. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`
+.. MetroCluster チェックの結果を表示します。
++
+MetroCluster チェックショー
+
+.. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
++
+「 storage switch show 」と表示されます
+
 .. Config Advisor を実行します。
 +
 https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]

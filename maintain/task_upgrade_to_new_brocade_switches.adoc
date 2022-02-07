@@ -19,7 +19,7 @@ summary: 新しい Brocade FC スイッチにアップグレードする場合�
 
 * スイッチがサポート対象の最新のファームウェアを実行している必要があります。
 +
-https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 * これはシステムの停止を伴わない手順であり、完了までに約 2 時間かかります。
 * 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
@@ -51,7 +51,10 @@ image::../media/brocade_upgr_to_g620_fab_1_down.gif[Brocade Upgr から G620 fab
 +
 image::../media/brocade_upgr_to_g620_replaced_a_1.gif[Brocade Upgr から G620 に変更され、 1 が交換されました]
 
-.. 新しいスイッチを無効にします。 +`*switchCfgPersistentDisable*`
+.. 新しいスイッチを無効にします。
++
+'witchcfgpersistentdisable
+
 +
 コマンドは、スイッチファブリック内の両方のスイッチを無効にします。
 
@@ -62,10 +65,10 @@ FC_switch_A_1:admin> switchCfgPersistentDisable
 ----
 .. 推奨されるポート割り当てを使用して、新しいスイッチをケーブル接続します。
 +
-xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.adoc[ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て]
+link:concept_port_assignments_for_fc_switches_when_using_ontap_9_0.html["ONTAP 9.0 を使用している場合の FC スイッチのポート割り当て"]
 
 +
-xref:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.adoc[ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て]
+link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 .. パートナーの MetroCluster サイトで上記の手順を繰り返して、 1 つ目のスイッチファブリック内の 2 つ目のスイッチを交換します。
 +
@@ -81,12 +84,12 @@ image::../media/brocade_upgr_to_g620_replaced_b_1.gif[Brocade Upgr から G620 �
 . ダウンロードページの指示に従って、ファブリック内の両方の新しいスイッチに RCF ファイルを適用します。
 . スイッチの設定を保存します。
 +
-「 * cfgSave * 」
+cfgsave
 
 . 設定が安定するまで 10 分待ちます。
 . いずれかの MetroCluster ノードで次のコマンドを入力して、ディスクへの接続を確認します。
 +
-'*run local sysconfig -v *
+'run local sysconfig -v
 
 +
 出力には、コントローラのイニシエータポートに接続されているディスクが表示され、 FC-to-SAS ブリッジに接続されているシェルフが示されます。
@@ -141,7 +144,7 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 ----
 . スイッチのプロンプトに戻り、スイッチのファームウェアバージョンを確認します。
 +
-'*firmwareShow*
+「 firmwareShow
 
 +
 スイッチがサポート対象の最新のファームウェアを実行している必要があります。
@@ -151,12 +154,18 @@ https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確�
 
 . スイッチオーバー処理をシミュレートします。
 +
-.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 +`* set -privilege advanced *`
+.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 + 「 set -privilege advanced 」
 +
-advanced モードで続けるかどうかを尋ねられたら、「 * y * 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
+advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * > ）。
 
-.. 「 -simulate 」パラメータ +`* MetroCluster switchover -simulate * を指定して、スイッチオーバー操作を実行します
-.. admin 特権レベルに戻ります :+`*set -privilege admin*`
+.. 「 -simulate 」パラメータを指定して、スイッチオーバー操作を実行します。
++
+MetroCluster switchover -simulate
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
 
 
 . 2 つ目のスイッチファブリックで、ここまでの手順を繰り返します。
