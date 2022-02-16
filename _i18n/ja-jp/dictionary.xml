@@ -11154,8 +11154,6 @@
   <block id="0cbcf8488c0db66baf9b2d34702dd7ba" category="paragraph">MetroCluster 構成設定 add-mediator-address-1.0-ip-address</block>
   <block id="23c36d85c3ecc94e8e88986b2d4194cc" category="paragraph">「 MetroCluster configurion-settings add-mmediator-address-ip-address 」と入力します</block>
   <block id="04c19f5eb2ebdc099239a7074f8d6534" category="paragraph">9.10.1 以降</block>
-  <block id="29f0de2b0e55e07da57cbc094ee90f18" category="inline-link">「 system controller replace 」コマンドを使用して、 ONTAP 9.10.1 以降を実行する AFF A900 に AFF A700 をアップグレードします</block>
-  <block id="698790ff3a9e772b95a90b745268af9a" category="paragraph"><block ref="698790ff3a9e772b95a90b745268af9a" category="inline-link-rx"></block></block>
   <block id="c6d4a9d3f7628712dae7a41ab974439d" category="inline-link">「 system controller replace 」コマンドを使用して、 ONTAP 9.8 以降を実行するコントローラハードウェアをアップグレードします</block>
   <block id="6c8dc70fbcb473ab96451fff57f7f3a0" category="paragraph"><block ref="6c8dc70fbcb473ab96451fff57f7f3a0" category="inline-link-rx"></block></block>
   <block id="e513aa5cfbbd2f249692cdb0e9b36322" category="inline-link">「 system controller replace 」コマンドを使用して、 ONTAP 9.5 を実行しているコントローラハードウェアを ONTAP 9.7 にアップグレードします</block>
@@ -11672,7 +11670,6 @@
   <block id="8dc768991d5b26a5dd964209b0336989" category="paragraph"><block ref="8dc768991d5b26a5dd964209b0336989" category="inline-link-rx"></block></block>
   <block id="65bbb6a451cc080e3b7ee47c366c3253" category="paragraph">の「 SVM 設定のレプリケート」を参照してください<block ref="26e370aec20dfe01945665ebaf4ffc1f" category="inline-link-rx"></block> SVM DR 関係の設定の詳細については、を参照してください。</block>
   <block id="d0ed0d8f16085a6601b051dbf42f09e4" category="paragraph"><block ref="d0ed0d8f16085a6601b051dbf42f09e4" category="inline-link-rx"></block></block>
-  <block id="38640edf067eb08148bbb243d83148a7" category="paragraph">MAUSO が開始されるのは、各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングの両方が動作しており、障害が発生した時点でキャッシュとミラーが同期されている場合だけです。</block>
   <block id="29464d5954abf5bc9affd5f6ae57e7e5" category="admonition">MAUSO が開始されるのは、サイトで障害が発生した場合だけです。サイト災害とは、同じサイトの * すべての * ノードで発生した障害のことですが、例外がいくつかあります。</block>
   <block id="76febd606fc24a36395547ab83980f59" category="paragraph">次のシャットダウンシナリオで MAUSO が開始されません。</block>
   <block id="1fb135b5dd970a96db5c2b3025ddcbf8" category="list-text">シャットダウンを開始した場合。たとえば、次のような場合です。</block>
@@ -12587,7 +12584,6 @@
   <block id="ab08b90a3ec069f002ca9a306b280075" category="admonition">ONTAP 9.6 以降では、 ONTAP System Manager を使用して MetroCluster IP 構成でスイッチオーバーとスイッチバックの処理を実行できます。</block>
   <block id="51c314385c544d39d9b0b57b7e4adc0c" category="paragraph">ONTAP 9.5 以降では、ブリッジのインバンド管理 _ がサポートされます。これは、 ONTAP CLI からブリッジへの FC 接続を介してブリッジを設定および監視できることを意味します。ブリッジのイーサネットポートを介してブリッジに物理的にアクセスする必要がなく、ブリッジのユーザインターフェイスも必要ありません。</block>
   <block id="4de57bb3ff326a74dbe2d8f7f29b872e" category="paragraph">ONTAP 9.8 以降では、ブリッジの _ 帯域内管理 _ がデフォルトでサポートされ、アウトオブバンド SNMP 管理は廃止されています。</block>
-  <block id="76523054e1a9c487e3ee7fc5639b663c" category="paragraph">各スイッチでこの作業を続けて繰り返す必要があります。</block>
   <block id="330b7770e81504eae12777c67ca4c41a" category="admonition">ONTAP 9.8 以降では '*storage switch *' コマンドは '*system switch*' に置き換えられています以下の手順は '*storage switch *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system switch *' コマンドを使用することをお勧めします</block>
   <block id="bcde10ce4a2143b2697a304bf8b1428c" category="list-text">構成モードに切り替えます :+`conf t`</block>
   <block id="373d444a2cd198885d109a2e14d51bec" category="list-text">交換用スイッチのファームウェアバージョンをチェックして、他の FC スイッチのバージョンと一致していることを確認します。</block>
@@ -12728,4 +12724,11 @@
   <block id="62e6ef0d9ca5ed550d07c950fb908783" category="list-text">制御 TCP 接続を 48 、データ接続を 26 に設定して、その Differentiated Services Code Point （ DSCP ）値のすべてのパケットをマークします。</block>
   <block id="cae6c8fdb4bf6ec6d4303accb806c01e" category="list-text">次のプロファイル名で FCIP プロファイルを設定します。</block>
   <block id="186580027a6082f2b0bf52acc31fef23" category="list-text">IOD 設定を確認します。</block>
+  <block id="5c5abfeb23848eee7e1fb00c2a61db6c" category="paragraph">MAUSO が開始されるのは、次のシナリオだけです。</block>
+  <block id="d805df154de0ed954114c0b8a30d6cf0" category="list-text">各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングはどちらも動作しており、障害発生時にキャッシュとミラーが同期されます。</block>
+  <block id="539aa46206b59c007151f02f46d35617" category="list-text">サバイバーサイトのいずれのノードもテイクオーバー状態ではありません。</block>
+  <block id="1bcbe4bd68c550a7ed28f4bdd586bc74" category="inline-link">「 system controller replace 」コマンドを使用して、 ONTAP 9.10.1 RC2 以降を実行する AFF A700 を AFF A900 にアップグレードします</block>
+  <block id="5ddb9938498e31a4b1c392ab5953e15b" category="paragraph"><block ref="5ddb9938498e31a4b1c392ab5953e15b" category="inline-link-rx"></block></block>
+  <block id="9630e0ae86014261ce835fe1e1ffcd0e" category="paragraph">各スイッチでこのタスクを順に実行する必要があります。</block>
+  <block id="b8ce668f7b81ebccc724b47a22aafe9f" category="paragraph">MetroCluster システムのサービス手順には、ファームウェアのアップグレードとハードウェアの交換手順が含まれています。これらの手順には、ドライブシェルフ、 IP スイッチ、 FC スイッチ、 FC-to-SAS ブリッジ、および SAS ケーブルが含まれます。</block>
 </blocks>
