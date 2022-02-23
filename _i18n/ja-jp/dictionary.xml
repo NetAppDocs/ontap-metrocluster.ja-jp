@@ -1937,7 +1937,6 @@
   <block id="2e6da68450b987e7ad374e965e63ad0e" category="list-text">ONTAP 9.8 以降では、 4 ノードおよび 8 ノードの構成がサポートされています。</block>
   <block id="ed332ae2e9a3efd17382e627809f4c84" category="paragraph">ONTAP 9.8 より前のバージョンを実行している 4 ノードまたは 8 ノード構成では、この手順を使用しないでください。</block>
   <block id="dfaa931cb3298c6a8b82f108a31104cb" category="list-text">元のプラットフォームと新しいプラットフォームに互換性があり、サポートされている必要があります。</block>
-  <block id="f0a86e811ffbd36a13f5a704cba084eb" category="admonition">元のプラットフォームまたは新しいプラットフォームが、 FC-VI モードのポート 1c / 1d を使用する 8020 システムの場合は、テクニカルサポートにお問い合わせください。</block>
   <block id="b7071513452c80dcfb33a91f6c6f0ecd" category="list-text">この MetroCluster コントローラモジュールは、手順環境 FC 構成（ 2 ノードのストレッチ MetroCluster 構成または 2 ノードまたは 4 ノードのファブリック接続 MetroCluster 構成）で使用します。</block>
   <block id="b8c2f69c5a69a0de627c50e7bc6a4cf9" category="list-text">構成内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。</block>
   <block id="4eef4343ca82afa388103a13e5acd0be" category="paragraph">このメンテナンス作業以外では、コントローラタイプが異なる MetroCluster 構成を運用することはできません。</block>
@@ -1945,7 +1944,6 @@
   <block id="b93f37f9b29ffcc5ed4a451ba3da2f03" category="paragraph">シェルフ内蔵のプラットフォームモデルはサポートされていません。</block>
   <block id="d9ac7caa0b14c170344b2e959f8034c0" category="cell">旧プラットフォームモデル</block>
   <block id="9ced91efcf548438eaefe7f78378491e" category="cell">新しいプラットフォームモデル</block>
-  <block id="8d26d11f6cef9d6a6c27ff854b3fc1e6" category="list-text">FAS80xx</block>
   <block id="c37feb3492d999b3f216448183986be2" category="list-text">FAS8200</block>
   <block id="1752b126dd5e4219fbf53c09ee63d51e" category="list-text">FAS8300</block>
   <block id="0588c4f1b58eac9f5062dc1da6e8435a" category="list-text">FAS8700 の場合</block>
@@ -1954,7 +1952,6 @@
   <block id="56c7968a1d140906ab8313162854322d" category="list-text">AFF A700</block>
   <block id="cd71bc5f24bea355d7c54ac4a1bd00a5" category="list-text">元のノードと新しいノードの間のストレージ、 FC 、イーサネット接続をあらかじめマッピングしておくことを推奨します。</block>
   <block id="5c2f8b522f7cee27716379e96d7e9f9b" category="list-text">新しいプラットフォームのスロット数が元のシステムのスロット数より少ない場合、またはポートのタイプが異なる場合は、新しいシステムにアダプタを追加しなければならないことがあります。</block>
-  <block id="ac7815000e080de08acacad1aef30632" category="paragraph">詳細については、を参照してください<block ref="bf137fbaca3418d969a7cbbc6acb278c" category="inline-link-rx"></block></block>
   <block id="d56109dc6cdff9e5d4982aefd8e09776" category="paragraph">この手順では、次の名前が使用されています。</block>
   <block id="e9a54e1b4684f979a8cb74d5905f649a" category="list-text">site_A</block>
   <block id="6ebf1aa13bc5d22e1a7b81b495a4bde5" category="list-text">アップグレード前：</block>
@@ -2100,7 +2097,6 @@
   <block id="001201e7e95e93ec36501bc42b2e7e9b" category="paragraph">ラックスペースは、コントローラモジュールのプラットフォームモデル、スイッチのタイプ、構成内のストレージシェルフ数によって異なります。</block>
   <block id="c46deb6c13661b4156a87c65de200ab5" category="list-text">コントローラモジュールをラックまたはキャビネットに設置します。</block>
   <block id="30959867bd2ab160df81515782a357b1" category="list-text">新しいコントローラモジュールに固有の FC-VI カードがない場合、および古いコントローラの FC-VI カードに新しいコントローラの互換性がある場合は、 FC-VI カードを交換し、正しいスロットに取り付けます。</block>
-  <block id="f3a6e1fe094dc62639f83bbc858ee252" category="paragraph">を参照してください <block ref="c7de98113170eef3b5acdc2cf9602241" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="c128b2ab68429454a80c551ee2dde909" category="list-text">コントローラの電源、シリアルコンソール、および管理接続を、 MetroCluster インストールおよび設定ガイド _ の説明に従ってケーブル接続します。</block>
   <block id="af0193fb968af44ba857457d276dbbff" category="paragraph">この時点で古いコントローラから切断されていた他のケーブルは接続しないでください。</block>
   <block id="160d469f0d322af20c918ade628d8dd9" category="list-text">新しいノードに電源を投入し、 LOADER プロンプトを表示するよう求められたら Ctrl+C キーを押します。</block>
@@ -2245,7 +2241,6 @@
   <block id="b7e5b55538476224f8195437bdd6b155" category="section-title">Tiebreaker 監視をリストアしています</block>
   <block id="cf01be10c4ad6c0e087f2447c096712d" category="paragraph">MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。</block>
   <block id="0c3de4f48f152830cf54a3c7110e5b3e" category="inline-link">MetroCluster 構成を追加しています</block>
-  <block id="ace7c96df4bae1a7d80b832dc5c02f95" category="list-text">の手順を使用します<block ref="8a40a48df09f86826787416776d41780" category="inline-link-rx"></block> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください。</block>
   <block id="3a3fe29bce41cc439cab768ef6c51ea0" category="summary">既存のコントローラモジュールのモードを設定するには、 storage failover modify コマンドを使用する必要があります。モード設定はコントローラモジュールのリブート後に有効になります。</block>
   <block id="b6982e2513cfb04d6a59fdcd3b023101" category="doc">既存のコントローラモジュールで HA モードを設定</block>
   <block id="63913131852a8828687463e2ffb0a661" category="list-text">モードを HA に設定します。</block>
@@ -10791,12 +10786,10 @@
   <block id="4ab496c462bc9a729fe703221c683545" category="paragraph"><block ref="4ab496c462bc9a729fe703221c683545" category="inline-link-macro-rx"></block></block>
   <block id="f394db30bc798c9a165a6baa7029734d" category="list-text"><block ref="f394db30bc798c9a165a6baa7029734d" category="inline-link-macro-rx"></block></block>
   <block id="1ba2ae150e1cee5c2dbe25aa1a0e18b0" category="paragraph">プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</block>
-  <block id="d5515afb7a540243e68f5f9378938f3d" category="paragraph">キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' リカバリ手順をオプション 1' （通常のブート）で続行する必要がある場合があります</block>
   <block id="9cf18883abd310f0e24341194095b229" category="list-text">ルート暗号化を使用する場合は、使用している ONTAP のバージョンに応じて、キー管理設定のブートメニューオプションまたは問題 the boot menu コマンドを選択します。</block>
   <block id="716a92112769d0f62895dc8c3a9fe47f" category="list-text">ONTAP 9.8 以降では、ブート・メニュー・オプションを選択します。</block>
   <block id="52b1f5429bdd6813cde83cf7eb1f6838" category="list-text">ONTAP 9.7 以前では、 boot menu コマンドを問題に設定します。</block>
   <block id="2d9e786c47fe4bbb5d2cec20e0f373eb" category="list-text">ルート暗号問題化を使用する場合は、使用している ONTAP のバージョンに応じて、キー管理設定に対してブートメニューオプションを選択するか、ブートメニューコマンドを再度実行します。</block>
-  <block id="96c86abb61a7377e730b6b80e3d90aec" category="paragraph">ノードが完全にブートするまで、ブートメニュープロンプトで recover_xxxxxxxx_keymanager コマンドを何度も問題で実行しなければならない場合があります。</block>
   <block id="1739256103cb7d112712a588fb2f6506" category="inline-link-macro">ONTAP をセットアップします</block>
   <block id="fa60d55773bc424e586a8c4898b4bc9f" category="inline-link-macro">ディスクとアグリゲートの管理</block>
   <block id="a722c96220981ad0bb2bcff8ce41fc72" category="inline-link">CLI によるデータ保護</block>
@@ -12731,4 +12724,15 @@
   <block id="5ddb9938498e31a4b1c392ab5953e15b" category="paragraph"><block ref="5ddb9938498e31a4b1c392ab5953e15b" category="inline-link-rx"></block></block>
   <block id="9630e0ae86014261ce835fe1e1ffcd0e" category="paragraph">各スイッチでこのタスクを順に実行する必要があります。</block>
   <block id="b8ce668f7b81ebccc724b47a22aafe9f" category="paragraph">MetroCluster システムのサービス手順には、ファームウェアのアップグレードとハードウェアの交換手順が含まれています。これらの手順には、ドライブシェルフ、 IP スイッチ、 FC スイッチ、 FC-to-SAS ブリッジ、および SAS ケーブルが含まれます。</block>
+  <block id="46e4f6024087b0e1c3fd4a21ef438dad" category="admonition">元のプラットフォームまたは新規プラットフォームが FAS8020 または AFF8020 システムでは、 FC-VI モードのポート 1c と 1d を使用する場合は、テクニカルサポートにお問い合わせください。</block>
+  <block id="ea82c7b5fb58362afd3d6e95de6eb609" category="list-text">FAS80x0</block>
+  <block id="9b81337122f1b971d326821246c0fb05" category="list-text">AFF80x0 と入力します</block>
+  <block id="9630fdb2df8bbf2bbd201638e1cc2f2e" category="admonition">FAS8020 または AFF8020 は、 FC-VI モードで 1c ポートと 1d ポートを使用する場合はアップグレードできません。</block>
+  <block id="51556e4766045ccfd74aafe1f8271966" category="paragraph">詳細については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
+  <block id="38d923048395adfe402bca08916bd9db" category="paragraph">コントローラのポートの用途は、プラットフォームモジュールおよび MetroCluster IP 構成で使用するスイッチによって異なります。新しいプラットフォームのポート使用量をから収集できます <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block>。</block>
+  <block id="f9f099865bb9d36821db181257896abb" category="list-text">AUTOBOOT が有効になっている場合は、 CTRL-C を押して AUTOBOOT を中断します</block>
+  <block id="806422c50772a82e317db68491ffe3e4" category="paragraph">いずれかのノードがテイクオーバーモードの場合は、ギブバックを実行します。</block>
+  <block id="411fd118744e7bc163c41845c9fedb88" category="paragraph">「 storage failover giveback 」を参照してください</block>
+  <block id="c9616da62905adb15396b653b4d8475b" category="paragraph">クラスタピアリングの再設定が必要になる場合があります。</block>
+  <block id="b196fb7a2e0b15c158585ec325406b3c" category="list-text">の手順を使用します<block ref="abdcb9b507d42a49d77fa45291426271" category="inline-link-rx"></block> MetroCluster Tiebreaker インストールおよび設定 _ 。</block>
 </blocks>
