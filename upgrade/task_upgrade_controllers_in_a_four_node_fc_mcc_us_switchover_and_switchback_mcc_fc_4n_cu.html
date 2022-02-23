@@ -19,7 +19,7 @@
   <meta http-equiv="nss-subtype" content="User Guide"/>
   
   <meta name="description" content="MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。">
-  <meta name="keywords" content=" metrocluster, upgrade, controllers, switchover, switchback, fc, configuration, net, boot, root, aggregate, mcc">
+  <meta name="keywords" content=" metrocluster, upgrade, nondisruptive, controller, switchover, switchback, fc, configuration, net, boot, root, aggregate, mcc">
   
   
 
@@ -3703,7 +3703,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-02-22 14:21:19 +0000">02/22/2022</time>
+    <time datetime="2022-02-23 22:42:10 +0000">02/23/2022</time>
     
   
 
@@ -3788,7 +3788,7 @@
 <img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
 </td>
 <td class="content">
-元のプラットフォームまたは新しいプラットフォームが、 FC-VI モードのポート 1c / 1d を使用する 8020 システムの場合は、テクニカルサポートにお問い合わせください。
+元のプラットフォームまたは新規プラットフォームが FAS8020 または AFF8020 システムでは、 FC-VI モードのポート 1c と 1d を使用する場合は、テクニカルサポートにお問い合わせください。
 </td>
 </tr>
 </table>
@@ -3822,7 +3822,7 @@
 <td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
 <ul>
 <li>
-<p>FAS80xx</p>
+<p>FAS80x0</p>
 </li>
 <li>
 <p>FAS8200</p>
@@ -3834,9 +3834,6 @@
 <li>
 <p>FAS8300</p>
 </li>
-<li>
-<p>FAS8700 の場合</p>
-</li>
 </ul>
 </div></div></td>
 </tr>
@@ -3845,6 +3842,9 @@
 <ul>
 <li>
 <p>AFF A300</p>
+</li>
+<li>
+<p>AFF80x0 と入力します</p>
 </li>
 </ul>
 </div></div></td>
@@ -3862,13 +3862,29 @@
 </tbody>
 </table>
 </li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
+</td>
+<td class="content">
+FAS8020 または AFF8020 は、 FC-VI モードで 1c ポートと 1d ポートを使用する場合はアップグレードできません。
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>元のノードと新しいノードの間のストレージ、 FC 、イーサネット接続をあらかじめマッピングしておくことを推奨します。</p>
 </li>
 <li>
 <p>新しいプラットフォームのスロット数が元のシステムのスロット数より少ない場合、またはポートのタイプが異なる場合は、新しいシステムにアダプタを追加しなければならないことがあります。</p>
 <div class="paragraph">
-<p>詳細については、を参照してください <a href="https://hwu.netapp.com/">"NetApp Hardware Universe の略"</a></p>
+<p>詳細については、を参照してください <a href="https://hwu.netapp.com/" target="_blank" rel="noopener">"NetApp Hardware Universe の略"</a></p>
 </div>
 </li>
 </ul>
@@ -4092,9 +4108,9 @@
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 60%;">
 </colgroup>
 <tbody>
 <tr>
@@ -4135,7 +4151,7 @@
 <li>
 <p>新しいコントローラで使用できる物理ポートとポートでホストできる LIF を確認します。</p>
 <div class="paragraph">
-<p>コントローラのポートの用途は、プラットフォームモジュールおよび MetroCluster IP 構成で使用するスイッチによって異なります。新しいプラットフォームのポート使用量をから収集できます <a href="https://hwu.netapp.com">"NetApp Hardware Universe の略"</a>。</p>
+<p>コントローラのポートの用途は、プラットフォームモジュールおよび MetroCluster IP 構成で使用するスイッチによって異なります。新しいプラットフォームのポート使用量をから収集できます <a href="https://hwu.netapp.com" target="_blank" rel="noopener">"NetApp Hardware Universe の略"</a>。</p>
 </div>
 <div class="paragraph">
 <p>また、 FC-VI カードスロットの用途も示します。</p>
@@ -4856,13 +4872,13 @@ dr-group-id cluster    node      node-systemid dr-partner-systemid
 <li>
 <p>コントローラモジュールをラックまたはキャビネットに設置します。</p>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/platstor/index.jsp">"AFF と FAS ドキュメントセンター"</a></p>
+<p><a href="https://docs.netapp.com/platstor/index.jsp" target="_blank" rel="noopener">"AFF と FAS ドキュメントセンター"</a></p>
 </div>
 </li>
 <li>
 <p>新しいコントローラモジュールに固有の FC-VI カードがない場合、および古いコントローラの FC-VI カードに新しいコントローラの互換性がある場合は、 FC-VI カードを交換し、正しいスロットに取り付けます。</p>
 <div class="paragraph">
-<p>を参照してください <a href="https://hwu.netapp.com">"NetApp Hardware Universe の略"</a> を参照してください。</p>
+<p>を参照してください <a href="https://hwu.netapp.com" target="_blank" rel="noopener">"NetApp Hardware Universe の略"</a> を参照してください。</p>
 </div>
 </li>
 <li>
@@ -4871,7 +4887,7 @@ dr-group-id cluster    node      node-systemid dr-partner-systemid
 <p>この時点で古いコントローラから切断されていた他のケーブルは接続しないでください。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/platstor/index.jsp">"AFF と FAS ドキュメントセンター"</a></p>
+<p><a href="https://docs.netapp.com/platstor/index.jsp" target="_blank" rel="noopener">"AFF と FAS ドキュメントセンター"</a></p>
 </div>
 </li>
 <li>
@@ -5066,8 +5082,8 @@ dr-group-id cluster    node      node-systemid dr-partner-systemid
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 25%;">
+<col style="width: 75%;">
 </colgroup>
 <tbody>
 <tr>
@@ -5454,7 +5470,7 @@ aggr0_node_b_1-root    online      raid_dp, aggr    root, nosnap=on,
 <p>オンボードキー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプション 10</p>
+<p>オプション "10 `"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -5465,7 +5481,7 @@ aggr0_node_b_1-root    online      raid_dp, aggr    root, nosnap=on,
 <p>外部キー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプションは 11 です</p>
+<p>オプション "11`"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -5509,10 +5525,10 @@ aggr0_node_b_1-root    online      raid_dp, aggr    root, nosnap=on,
 </div>
 </li>
 <li>
-<p>自動ブートが有効になっている場合は、 control-C を押して自動ブートを中断します</p>
+<p>AUTOBOOT が有効になっている場合は、 CTRL-C を押して AUTOBOOT を中断します</p>
 </li>
 <li>
-<p>ブートメニューからオプション（ 6 ）を実行します。</p>
+<p>ブートメニューからオプション "6`" を実行します</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5520,7 +5536,7 @@ aggr0_node_b_1-root    online      raid_dp, aggr    root, nosnap=on,
 <img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
 </td>
 <td class="content">
-オプション 6 を指定すると、完了前にノードが 2 回リブートされます
+オプション "6`" を選択すると ' 完了前にノードが 2 回再起動されます
 </td>
 </tr>
 </table>
@@ -5569,7 +5585,7 @@ Rebooting to load the restored env file...</pre>
 <p>オンボードキー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプション 10</p>
+<p>オプション "10 `"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -5580,7 +5596,7 @@ Rebooting to load the restored env file...</pre>
 <p>外部キー管理</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>オプションは 11 です</p>
+<p>オプション "11`"</p>
 </div>
 <div class="paragraph">
 <p>プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</p>
@@ -5589,7 +5605,7 @@ Rebooting to load the restored env file...</pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' リカバリ手順をオプション 1' （通常のブート）で続行する必要がある場合があります</p>
+<p>キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります</p>
 </div>
 </li>
 <li>
@@ -5623,7 +5639,7 @@ Rebooting to load the restored env file...</pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>ノードが完全にブートするまで、ブートメニュープロンプトで recover_xxxxxxxx_keymanager コマンドを何度も問題で実行しなければならない場合があります。</p>
+<p>ノードが完全にブートするまで、ブートメニュープロンプトで「 recover_xxxxxxxx_keymanager 」コマンドを何度も問題に接続する必要がある場合があります。</p>
 </div>
 </li>
 </ul>
@@ -5638,7 +5654,10 @@ Rebooting to load the restored env file...</pre>
 <li>
 <p>交換したノードがブートするまで待ちます。</p>
 <div class="paragraph">
-<p>いずれかのノードがテイクオーバーモードの場合は、「 storage failover giveback 」コマンドを使用してギブバックを実行します。</p>
+<p>いずれかのノードがテイクオーバーモードの場合は、ギブバックを実行します。</p>
+</div>
+<div class="paragraph">
+<p>「 storage failover giveback 」を参照してください</p>
 </div>
 </li>
 <li>
@@ -5678,13 +5697,13 @@ Rebooting to load the restored env file...</pre>
 <p>VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html">"VLAN を作成する"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html" target="_blank" rel="noopener">"VLAN を作成する"</a></p>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html">"物理ポートを組み合わせたインターフェイスグループの作成"</a></p>
+<p><a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html" target="_blank" rel="noopener">"物理ポートを組み合わせたインターフェイスグループの作成"</a></p>
 </div>
 </li>
 <li>
@@ -5707,7 +5726,7 @@ Rebooting to load the restored env file...</pre>
 <p>「セキュリティキーマネージャオンボード同期」</p>
 </div>
 <div class="paragraph">
-<p>詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html">"オンボードキー管理の暗号化キーのリストア"</a>。</p>
+<p>詳細については、を参照してください <a href="https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html" target="_blank" rel="noopener">"オンボードキー管理の暗号化キーのリストア"</a>。</p>
 </div></div></td>
 </tr>
 <tr>
@@ -5957,7 +5976,7 @@ Remote: cluster_A         Configuration state configured
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>の手順を使用します <a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html">"MetroCluster 構成を追加しています"</a> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください。</p>
+<p>の手順を使用します <a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html" target="_blank" rel="noopener">"MetroCluster 構成を追加しています"</a> MetroCluster Tiebreaker インストールおよび設定 _ 。</p>
 </li>
 </ol>
 </div>
