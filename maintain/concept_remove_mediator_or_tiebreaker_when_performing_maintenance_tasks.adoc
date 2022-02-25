@@ -1,0 +1,78 @@
+---
+permalink: maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, maintenance, service, tiebreaker, mediator, ontap mediator 
+summary: Tiebreaker またはメディエーター監視ソフトウェアを使用する構成では、メンテナンスの前にソフトウェアが設定されていない必要があります 
+---
+= メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。
+
+メンテナンスタスクには、コントローラプラットフォームのアップグレード、 ONTAP のアップグレード、ネゴシエートスイッチオーバーとスイッチバックの実行が含まれます。
+
+.手順
+. 次のコマンドの出力を収集します。
++
+「 storage iscsi-initiator show 」のように表示されます
+
+. Tiebreaker 、メディエーター、またはスイッチオーバーを開始できるその他のソフトウェアから既存の MetroCluster 構成を削除します。
++
+|===
+
+
+| 使用するポート | 使用する手順 
+
+
+ a| 
+Tiebreaker
+ a| 
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html["MetroCluster 設定の削除"] MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください
+
+
+
+ a| 
+メディエーター
+ a| 
+ONTAP プロンプトで次のコマンドを問題に設定します。
+
+MetroCluster 構成設定のメディエーターが削除されました
+
+
+
+ a| 
+サードパーティ製アプリケーション
+ a| 
+製品マニュアルを参照してください。
+
+|===
+. MetroCluster 設定のメンテナンスが完了したら、 Tiebreaker またはメディエーターユーティリティを使用して監視を再開できます。
++
+|===
+| 使用するポート | この手順を使用します 
+
+
+ a| 
+Tiebreaker
+ a| 
+link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metrocluster-configurations["MetroCluster 構成を追加しています"] MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。
+
+
+
+ a| 
+メディエーター
+ a| 
+link:../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html["MetroCluster IP 構成での ONTAP メディエーターサービスの設定"] MetroCluster IP のインストールと設定セクションで、次の手順を実行します。
+
+
+
+ a| 
+サードパーティ製アプリケーション
+ a| 
+製品マニュアルを参照してください。
+
+|===
+
