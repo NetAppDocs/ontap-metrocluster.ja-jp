@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head class="at-element-marker">
-  <title>IP スイッチの設定（ MetroCluster IP 構成）</title>
+  <title>メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
   <meta http-equiv="language" content="en">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="IP スイッチの設定（ MetroCluster IP 構成）" />
+  <meta property="og:title" content="メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html" />
-	<meta property="og:description" content="交換した IP スイッチを設定する必要があります。" />
+	<meta property="og:url" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html" />
+	<meta property="og:description" content="Tiebreaker またはメディエーター監視ソフトウェアを使用する構成では、メンテナンスの前にソフトウェアが設定されていない必要があります" />
   <meta property="og:image" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
@@ -18,8 +18,8 @@
   <meta http-equiv="nss-type" content="Product Documentation"/>
   <meta http-equiv="nss-subtype" content="User Guide"/>
   
-  <meta name="description" content="交換した IP スイッチを設定する必要があります。">
-  <meta name="keywords" content=" metrocluster, ip, configuration, switchback, operation">
+  <meta name="description" content="Tiebreaker またはメディエーター監視ソフトウェアを使用する構成では、メンテナンスの前にソフトウェアが設定されていない必要があります">
+  <meta name="keywords" content=" metrocluster, maintain, maintenance, service, tiebreaker, mediator, ontap mediator">
   
   
 
@@ -281,13 +281,13 @@
           <ul class="n-menu__list">
             <li class="n-menu__list-column">
               <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ja-jp/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                  <a href="https://docs.netapp.com/ja-jp/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/us-en/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                  <a href="https://docs.netapp.com/us-en/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/zh-cn/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                  <a href="https://docs.netapp.com/zh-cn/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
                 </li><li class="n-menu__list-item n-menu__list-item--level-1">
-                  <a href="https://docs.netapp.com/ko-kr/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                  <a href="https://docs.netapp.com/ko-kr/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
                 </li></ul>
             </li>
           </ul>
@@ -1691,6 +1691,15 @@
 
 
 
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/ja-jp/ontap-metrocluster/pdfs/pages/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.pdf" >
+    <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
 
 
 
@@ -2533,15 +2542,6 @@
 
 
 
-    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
-  <a target="_blank" href="/ja-jp/ontap-metrocluster/pdfs/pages/disaster-recovery/task_config_switches_mcip.pdf" >
-    <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>
-    PDF of this page
-  </a>
-</li>
-
-</ul>
-  
 
 
 
@@ -3211,7 +3211,7 @@
         MetroCluster のメンテナンスタスクの手順の参照先
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/maintain/reference_mcc_failure_scenarios.html">
         MetroCluster の障害とリカバリのシナリオ
-      </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html">
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html">
         メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します
       </a></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> FC-to-SAS ブリッジのメンテナンス</div>
@@ -3596,7 +3596,7 @@
         MetroCluster IP 構成に必要な環境変数を設定します
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/disaster-recovery/task_power_on_mcip.html">
         ディザスタサイトの機器の電源をオンにする（ MetroCluster IP 構成）
-      </a></li><li class="  active "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html">
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html">
         IP スイッチの設定（ MetroCluster IP 構成）
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/disaster-recovery/task_verify_connectivity_mcip.html">
         リモートサイトへのストレージ接続の確認（ MetroCluster IP 構成）
@@ -3677,7 +3677,7 @@
           <a href="/ja-jp/ontap-metrocluster/">ONTAP&nbsp;MetroCluster</a>
         </li>
         <li class="n-breadcrumb__list-item">
-          IP スイッチの設定（ MetroCluster IP 構成）
+          メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します
         </li>
       </ul>
     </div>
@@ -3700,7 +3700,7 @@
     </div>
   </span>
 </div><div class="n-doc__component-detail-heading-wrap">
-  <h1 class="n-doc__component-detail-heading">IP スイッチの設定（ MetroCluster IP 構成）</h1>
+  <h1 class="n-doc__component-detail-heading">メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します</h1>
 </div>
 
 
@@ -3712,27 +3712,11 @@
   
 
 <span>寄稿者
-  <a target="_blank" href="https://github.com/netapp-thomi">
+  <a target="_blank" href="https://github.com/netapp-folivia">
     <img  class="avatar avatar-small"
-          alt="netapp-thomi"
+          alt="netapp-folivia"
           width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/54111336?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
-  <a target="_blank" href="https://github.com/netapp-ahibbard">
-    <img  class="avatar avatar-small"
-          alt="netapp-ahibbard"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/85892662?v=4"
-          style="border-radius: 50%;"/>
-  </a>
-  
-  <a target="_blank" href="https://github.com/netapp-pcarriga">
-    <img  class="avatar avatar-small"
-          alt="netapp-pcarriga"
-          width="20" height="20"
-          src="https://avatars.githubusercontent.com/u/77334475?v=4"
+          src="https://avatars.githubusercontent.com/u/91882669?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -3743,57 +3727,22 @@
 
 
 <div class="paragraph lead">
-<p>交換した IP スイッチを設定する必要があります。</p>
+<p>メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。</p>
 </div>
 <div class="paragraph">
-<p>このタスクは、環境 MetroCluster IP 構成のみで実行します。</p>
-</div>
-<div class="paragraph">
-<p>両方のスイッチで実行する必要があります。最初のスイッチの設定後に、サバイバーサイトでのストレージアクセスに影響がないことを確認します。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
-</td>
-<td class="content">
-サバイバーサイトでのストレージアクセスに影響がある場合は、 2 つ目のスイッチの設定に進まないでください。
-</td>
-</tr>
-</table>
+<p>メンテナンスタスクには、コントローラプラットフォームのアップグレード、 ONTAP のアップグレード、ネゴシエートスイッチオーバーとスイッチバックの実行が含まれます。</p>
 </div>
 <div class="olist arabic">
 <div class="title">手順</div>
 <ol class="arabic">
 <li>
-<p>を参照してください <a href="../install-ip/concept_considerations_differences.html">"MetroCluster IP のインストールと設定： ONTAP MetroCluster 構成の違い"</a> 交換用スイッチのケーブル接続と設定の手順については、を参照してください。</p>
+<p>次のコマンドの出力を収集します。</p>
 <div class="paragraph">
-<p>次のセクションの手順を使用できます。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>IP スイッチのケーブル接続</p>
-</li>
-<li>
-<p>IP スイッチを設定しています</p>
-</li>
-</ul>
+<p>「 storage iscsi-initiator show 」のように表示されます</p>
 </div>
 </li>
 <li>
-<p>サバイバーサイトで ISL が無効になっている場合は、 ISL を有効にして、 ISL がオンラインであることを確認します。</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>1 つ目のスイッチで ISL インターフェイスを有効にします。</p>
-<div class="paragraph">
-<p>「シャットダウンなし」</p>
-</div>
-<div class="paragraph">
-<p>次の例は、 Broadcom IP スイッチまたは Cisco IP スイッチ用のコマンドを示しています。</p>
-</div>
+<p>Tiebreaker 、メディエーター、またはスイッチオーバーを開始できるその他のソフトウェアから既存の MetroCluster 構成を削除します。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3801,130 +3750,79 @@
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">スイッチベンダー</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">コマンド</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用するポート</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用する手順</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Broadcom</p>
+<p>Tiebreaker</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>(IP_Switch_A_1)&gt; enable
-(IP_switch_A_1)# configure
-(IP_switch_A_1)(Config)# interface 0/13-0/16
-(IP_switch_A_1)(Interface 0/13-0/16 )# no shutdown
-(IP_switch_A_1)(Interface 0/13-0/16 )# exit
-(IP_switch_A_1)(Config)# exit</pre>
-</div>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html">"MetroCluster 設定の削除"</a> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>シスコ</p>
+<p>メディエーター</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>IP_switch_A_1# conf t
-IP_switch_A_1(config)# int eth1/15-eth1/20
-IP_switch_A_1(config)# no shutdown
-IP_switch_A_1(config)# copy running startup
-IP_switch_A_1(config)# show interface brief</pre>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>ONTAP プロンプトで次のコマンドを問題に設定します。</p>
 </div>
+<div class="paragraph">
+<p>MetroCluster 構成設定のメディエーターが削除されました</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>サードパーティ製アプリケーション</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>製品マニュアルを参照してください。</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
 </li>
 <li>
-<p>パートナースイッチで ISL インターフェイスを有効にします。</p>
-<div class="paragraph">
-<p>「シャットダウンなし」</p>
-</div>
-<div class="paragraph">
-<p>次の例は、 Broadcom IP スイッチまたは Cisco IP スイッチ用のコマンドを示しています。</p>
-</div>
+<p>MetroCluster 設定のメンテナンスが完了したら、 Tiebreaker またはメディエーターユーティリティを使用して監視を再開できます。</p>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">使用するポート</th>
+<th class="tableblock halign-left valign-top">この手順を使用します</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">スイッチベンダー</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">コマンド</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Broadcom</p>
+<p>Tiebreaker</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>(IP_Switch_A_2)&gt; enable
-(IP_switch_A_2)# configure
-(IP_switch_A_2)(Config)# interface 0/13-0/16
-(IP_switch_A_2)(Interface 0/13-0/16 )# no shutdown
-(IP_switch_A_2)(Interface 0/13-0/16 )# exit
-(IP_switch_A_2)(Config)# exit</pre>
-</div>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metrocluster-configurations">"MetroCluster 構成を追加しています"</a> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>シスコ</p>
+<p>メディエーター</p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
-<div class="content">
-<pre>IP_switch_A_2# conf t
-IP_switch_A_2(config)# int eth1/15-eth1/20
-IP_switch_A_2(config)# no shutdown
-IP_switch_A_2(config)# copy running startup
-IP_switch_A_2(config)# show interface brief</pre>
-</div>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html">"MetroCluster IP 構成での ONTAP メディエーターサービスの設定"</a> MetroCluster IP のインストールと設定セクションで、次の手順を実行します。</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>サードパーティ製アプリケーション</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>製品マニュアルを参照してください。</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
-</li>
-<li>
-<p>インターフェイスが有効になっていることを確認します。</p>
-<div class="paragraph">
-<p>「インターフェイスの概要」</p>
-</div>
-<div class="paragraph">
-<p>次の例は、 Cisco スイッチの出力例を示しています。</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>IP_switch_A_2(config)# show interface brief
-
---------------------------------------------------------
-Port VRF Status IP Address Speed MTU
---------------------------------------------------------
-mt0 -- up 10.10.99.10 100 1500
---------------------------------------------------------
-Ethernet    VLAN Type Mode    Status Reason Speed   Port
-Interface                                           Ch
-#
---------------------------------------------------------
-.
-.
-.
-Eth1/15    10   eth   access  up     none   40G(D)  --
-Eth1/16    10   eth   access  up     none   40G(D)  --
-Eth1/17    10   eth   access  down   none   auto(D) --
-Eth1/18    10   eth   access  down   none   auto(D) --
-Eth1/19    10   eth   access  down   none   auto(D) --
-Eth1/20    10   eth   access  down   none   auto(D) --
-.
-.
-.
-IP_switch_A_2#</pre>
-</div>
-</div>
 </li>
 </ol>
 </div>
@@ -3938,8 +3836,8 @@ IP_switch_A_2#</pre>
   <div class="page-nav-toolbar">
     <div id="version-dropdown"></div>
     <div class="page-nav-contribute"  >
-      <a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/issues/new?body=Page%3A%20[IP スイッチの設定（ MetroCluster IP 構成）](https://docs.netapp.com/ja-jp/ontap-metrocluster/disaster-recovery/task_config_switches_mcip.html)" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/discuss-sm.svg" class="github-icon" />ドキュメントの変更をリクエスト</a>
-      <a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/blob/main/disaster-recovery/task_config_switches_mcip.adoc" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/edit-sm.svg" class="github-icon" />GitHub で編集</a>
+      <a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/issues/new?body=Page%3A%20[メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します](https://docs.netapp.com/ja-jp/ontap-metrocluster/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html)" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/discuss-sm.svg" class="github-icon" />ドキュメントの変更をリクエスト</a>
+      <a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/blob/main/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.adoc" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/edit-sm.svg" class="github-icon" />GitHub で編集</a>
       <a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ja-jp/ontap-metrocluster/images/article-sm.svg" class="github-icon" />寄稿者向けガイド</a>
     </div>
     <div class="page-nav-container">
