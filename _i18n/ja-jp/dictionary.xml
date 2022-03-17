@@ -92,7 +92,6 @@
   <block id="911215b34b5c274e1926f0abbe14c1aa" category="paragraph">障害が発生したスイッチの交換、またはスイッチのアップグレードやダウングレードが必要になる場合があります。スイッチに障害が発生した場合は、新しいスイッチを古いスイッチと同じにしたり、スイッチのタイプを変更（スイッチをアップグレードまたはダウングレード）したりできます。</block>
   <block id="ebcf4640c5bf8e93ff2b8a2a35c8307c" category="paragraph">障害が発生したスイッチを同じタイプのスイッチに交換する場合は、障害が発生したスイッチを交換するだけで済みます。スイッチをアップグレードまたはダウングレードする場合は、同じネットワークにある 2 つのスイッチを調整する必要があります。2 つのスイッチがスイッチ間リンク（ ISL ）で接続され、かつ同じサイトにない場合、それらのスイッチは同じネットワークにあります。たとえば、ネットワーク 1 に IP_switch_A_1 と ip_switch_B_1 があります。ネットワーク 2 には、次の図に示すように、 IP_switch_a_2 と ip_switch_b_2 が含まれます。</block>
   <block id="8884ae199fd568dc7ca11305cb40b82e" category="image-alt">MCC IP ハードウェアアーキテクチャ IP インターコネクト</block>
-  <block id="598f12aea845d62b91a4163fc3a86122" category="paragraph">この手順は Cisco または Broadcom のスイッチ用です。スイッチベンダーを変更する場合は、追加の手順が必要です。</block>
   <block id="5d1e77979f28e175a4f0a00201b52c96" category="paragraph">ネットワークをアップグレードまたはダウングレードする場合は、 2 つ目のネットワークに対してこの手順を繰り返す必要があります。</block>
   <block id="ab09caec1407f77495e6c20853fcfd75" category="list-text">構成の健全性を確認します。</block>
   <block id="439912781979c2137b20f407615e78f8" category="list-text">MetroCluster が構成されていて、各クラスタで通常モードであることを確認します。「 * MetroCluster show * 」</block>
@@ -3679,7 +3678,6 @@
   <block id="429ea14e884af3038f14fda8c4c66998" category="list-text">外部キー管理を使用している場合は、次の手順を実行して設定をリストアします。</block>
   <block id="db362882fc87c70db48ce198480ddd78" category="paragraph">システムが何度もブートします。起動プロセスを続行するかどうかを確認するメッセージが表示されたら、肯定応答を返すことができます。</block>
   <block id="c0d1ad921b339c978a239b069bf5d41b" category="paragraph">FC ノードの設定に一致するネットワーク設定を作成する必要があります。これは、 MetroCluster の IP ノードがブート時に同じ設定を再生するためです。つまり、 node_A_1 の IP ブートと node_B_1 の IP ブート時に、 ONTAP は node_A_1 の FC と node_B_1 の FC で使用されていたポートで LIF をホストしようとします。</block>
-  <block id="9b9935ad5969c28de13381a2e512b47c" category="paragraph">注</block>
   <block id="bc959078f19acc20660978ed0184720f" category="paragraph">MetroCluster IP ノードの設定が完了したら、データ LIF を稼働するために追加の設定が必要になる場合があります。</block>
   <block id="ea8d54f9b1d04d978812c33c6d2360f9" category="list-text">すべてのクラスタポートが適切なブロードキャストドメインに属していることを確認します。</block>
   <block id="b4078eabb57927ecf677144eddeb01c0" category="paragraph">クラスタ LIF を作成するには、クラスタ IPspace とクラスタブロードキャストドメインが必要です</block>
@@ -7273,7 +7271,6 @@
   <block id="bf71d89d2d339304218351dbe9d54014" category="list-text">must-secure -- MACsec ヘッダーを伝送しないパケットは許可されます ( これがデフォルト値です ) 。</block>
   <block id="27a58fca8f023eee12b9adf8b2d54f0a" category="admonition">リプレイ保護ウィンドウのサイズは、 MACsec が受信して破棄されない最大アウトオブシーケンスフレーム数を表します。指定できる範囲は 0 ～ 596000000 です。</block>
   <block id="1b8d4d654146b4eec3cc22bd8b461dbb" category="paragraph">次のいずれかのオプションを選択します。</block>
-  <block id="bb7076dff2fa5f0d308e776f5006e07e" category="section-title">MACsec 構成の確認</block>
   <block id="8111242ac0c7119fbea7317d86a32103" category="list-text">コンフィギュレーション内の 2 番目のスイッチで上記の手順 * すべて * を繰り返して、 MACsec セッションを確立します。</block>
   <block id="2b5b30d6ad7e8f227ed89895d9b7ecd6" category="list-text">次のコマンドを実行して、両方のスイッチが正常に暗号化されたことを確認します。</block>
   <block id="f44cc0b00957a58a4a3e229de1d5580a" category="paragraph">MACsec 設定を確認するには、次のコマンドを使用します。</block>
@@ -7286,7 +7283,6 @@
   <block id="f6d141f9c0ebe12ce79c36ba0585ecf8" category="paragraph">MACsec MKA 設定</block>
   <block id="b6b47858b43ec1819137a7dbb17a0e1c" category="paragraph">'How MACsec policy policy-name' 」を参照してください</block>
   <block id="b73bb1a80bfcd166befb33ddc1a9fe9d" category="paragraph">特定の MACsec ポリシーまたはすべての MACsec ポリシーの設定</block>
-  <block id="f0336856a5a2f4bfae1adfb71fa3ae60" category="section-title">WAN ISL ポートでの MACsec フォールバックキーの設定</block>
   <block id="fd6b314abc631729200274092a59dbde" category="paragraph">スイッチとピアの間のキー / キー名（ CKN ）の不一致または有限のキー持続時間の結果としてプライマリセッションに障害が発生した場合に、バックアップセッションを開始するようにフォールバックキーを設定できます。</block>
   <block id="cc9f85a6f649e0f320a34bda0a52ee70" category="list-text">設定するインターフェイスを指定します。</block>
   <block id="dcf432534686dfbd4a5057ebd44a4d2a" category="list-text">MACsec を使用して追加の WAN ISL ポートを設定するには、上記の手順を繰り返します。</block>
@@ -10442,7 +10438,6 @@
   <block id="9284c86c82929cc854bc1886a966ff6f" category="list-text">「 How MACsec mka summary 」を実行します</block>
   <block id="3db9b1ed217c4d51bc9eb8d1b2a88879" category="list-text">実行 :'How MACsec mka session`</block>
   <block id="56cfbbd408a7b951d0c7de29a7686f39" category="list-text">実行： 'How MACsec mka statistics （ MACsec mka 統計情報）</block>
-  <block id="ffe1f559bee6f65df8232945e7f1517d" category="section-title">25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
   <block id="b22352ed85b6b2a829683807066af496" category="paragraph">このタスクを実行できるのは、 25Gbps 接続を使用する環境プラットフォームのみです。• AFF A300 • FAS 8200 • FAS 500f • AFF A250</block>
   <block id="7903ea9f597270ba2cf2405fbc17ebd8" category="list-text">昇格されたコマンドプロンプト (`#`):'enable' に変更します</block>
   <block id="4be4d4968b5e919059610e2ee4b965ce" category="list-text">スタートアップコンフィギュレーションを消去し、バナーを削除します</block>
@@ -11641,7 +11636,6 @@
   <block id="daa40df4e509296134e63fc33d3ec362" category="paragraph">「 SAK-expiry-date time 」</block>
   <block id="06db921aa0f25025beb44d21cecefecd" category="list-text">暗号化を開始するレイヤ 2 フレームで、次の機密性オフセットのいずれかを設定します。</block>
   <block id="e11afee8dde4674d7948e54940ebcd3e" category="paragraph">「 conf-offsetconfidentiality offset 」を参照してください</block>
-  <block id="5382d2282494796171738f35b9361ab8" category="admonition">このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
   <block id="dbedb7cefba22d6d33123561705f89d7" category="list-text">MACsec ポリシー設定を表示します。</block>
   <block id="388f63f7d6fad1c81c4ee48ef9a6717c" category="paragraph">「 MACsec ポリシー」</block>
   <block id="73e78255dbf78b6041f893d45a07746c" category="paragraph">インターフェイスのタイプと ID を指定できます。イーサネットポートの場合は、次のコマンドを使用します。</block>
@@ -12741,4 +12735,16 @@
   <block id="4a397091a3693a57176ee396010387ca" category="paragraph">メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。</block>
   <block id="65e494c11bd4a371acff4afdb4808d87" category="paragraph">メンテナンスタスクには、コントローラプラットフォームのアップグレード、 ONTAP のアップグレード、ネゴシエートスイッチオーバーとスイッチバックの実行が含まれます。</block>
   <block id="362c54fb8886bdfe1e59d87ffffef547" category="list-text">MetroCluster 設定のメンテナンスが完了したら、 Tiebreaker またはメディエーターユーティリティを使用して監視を再開できます。</block>
+  <block id="7fab172697215ab39d868b582f7aa8fc" category="paragraph">この手順 は、ネットアップ検証済みのスイッチを使用している場合に適用されます。MetroCluster 準拠のスイッチを使用している場合は、スイッチのベンダーを参照してください。</block>
+  <block id="154b79668d2e81b5a47cc3c8bb3378a1" category="paragraph">このセクションの手順のいくつかは独立した手順であり、実行する必要があるのは自分がタスクに指示された手順、またはタスクに関連する手順のみです。</block>
+  <block id="136250a3d403690fe2a4881cb4fea613" category="paragraph">RCF ファイルをインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。この手順 は、以前のインストールに失敗したあとに同じ RCF ファイルを再インストールする場合、または新しいバージョンのファイルをインストールする場合に必要です。</block>
+  <block id="697dfb9b235783676b63d2f1ed07cad5" category="paragraph">&lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; 頭部</block>
+  <block id="12a3ed4eff6140d7bb77c294de0b000a" category="paragraph">&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; fb53efa2361ac88998ad17907c3a3fe6d3aafb6d 注：このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
+  <block id="30af5a80e49a51994861ac88eeb8c9fd" category="paragraph">== MACsec 設定を確認します</block>
+  <block id="f707836a27e5775fa200fe99e8336319" category="paragraph">=== WAN ISL ポートでの MACsec フォールバックキーの設定</block>
+  <block id="bb92609b325d2a0888dda72c3922a9d6" category="paragraph">=== 25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
+  <block id="0895beb9eb45e7d12c0c7d8ff398935a" category="paragraph">&lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; 頭部。コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。構成モードを開始します :config t..設定する 25Gbps インターフェイスを「 interface interface-id` 」と指定します。fec を off に設定します。スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。。構成モードを終了します : exit</block>
+  <block id="787ecd419f9570a45ad7d6ce5504c937" category="paragraph">[exit] &gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; の順にクリックします fb53efa2361ac88998ad17907c3a3fe6d3aafb6d</block>
+  <block id="c902bf858b7534a7f5dae73adb86fcab" category="section-title">キー管理をリストアしています</block>
+  <block id="f4f5fa0da45d620edd37e7bd122f0953" category="paragraph">データボリュームが暗号化されている場合は、キー管理をリストアする必要があります。ルートボリュームが暗号化されている場合は、キー管理をリカバリする必要があります。</block>
 </blocks>

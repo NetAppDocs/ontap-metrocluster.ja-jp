@@ -111,6 +111,42 @@ NOTE: 必要な新しいライセンスキーが自動的に生成され、 E �
 
 
 
+== キー管理をリストアしています
+
+データボリュームが暗号化されている場合は、キー管理をリストアする必要があります。ルートボリュームが暗号化されている場合は、キー管理をリカバリする必要があります。
+
+.手順
+. データボリュームが暗号化されている場合は、キー管理設定に対応したコマンドを使用してキーをリストアします。
++
+[cols="1,2"]
+|===
+
+
+| 使用するポート | 使用するコマンド 
+
+
+ a| 
+* オンボードキー管理 *
+ a| 
+「セキュリティキーマネージャオンボード同期」
+
+詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html["オンボードキー管理の暗号化キーのリストア"^]。
+
+
+
+ a| 
+* 外部キー管理 *
+ a| 
+'security key-manager key query -node node-name
+
+詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html["外部キー管理の暗号化キーのリストア"^]。
+
+|===
+. ルートボリュームが暗号化されている場合は、の手順を使用します link:../transition/task_connect_the_mcc_ip_controller_modules_2n_mcc_transition_supertask.html#recovering-key-management-if-the-root-volume-is-encrypted["ルートボリュームが暗号化されている場合のキー管理のリカバリ"]。
+
+
+
+
 == スイッチバックを実行しています
 
 MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。
