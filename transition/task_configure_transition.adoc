@@ -593,6 +593,49 @@ aggr_data_a2
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。
 
 .手順
+. 変更を実装するように MetroCluster を設定します。
++
+MetroCluster 構成
+
++
+
+NOTE: 「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります。
+
++
+....
+cluster_A::> metrocluster configure
+
+[Job 439] Job succeeded: Configure is successful.
+
+cluster_A::>
+....
+. ノードが対応する DR グループに追加されたことを確認します。
++
+MetroCluster node show
+
++
+....
+cluster_A::> metrocluster node show
+
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node-A-1-FC        configured     enabled   normal
+              node-A-2-FC        configured     enabled   normal
+      Cluster-B
+              node-B-1-FC        configured     enabled   normal
+              node-B-2-FC        configured     enabled   normal
+2     cluster_A
+              node-A-3-IP        configured     enabled   normal
+              node-A-4-IP        configured     enabled   normal
+      Cluster-B
+              node-B-3-IP        configured     enabled   normal
+              node-B-4-IP        configured     enabled   normal
+8 entries were displayed.
+
+cluster_A::>
+....
 . 新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。
 +
 「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-disks-mirror true 」のように指定します
@@ -641,45 +684,6 @@ Do you want to continue? {y|n}: y
 
 cluster_A::>
 ....
-. 変更を実装するように MetroCluster を設定します。
-+
-MetroCluster 構成
-
-+
-....
-cluster_A::*> metrocluster configure
-
-[Job 439] Job succeeded: Configure is successful.
-
-cluster_A::*>
-....
-. ノードが対応する DR グループに追加されたことを確認します。
-+
-MetroCluster node show
-
-+
-....
-cluster_A::*> metrocluster node show
-
-DR                               Configuration  DR
-Group Cluster Node               State          Mirroring Mode
------ ------- ------------------ -------------- --------- --------------------
-1     cluster_A
-              node-A-1-FC        configured     enabled   normal
-              node-A-2-FC        configured     enabled   normal
-      Cluster-B
-              node-B-1-FC        configured     enabled   normal
-              node-B-2-FC        configured     enabled   normal
-2     cluster_A
-              node-A-3-IP        configured     enabled   normal
-              node-A-4-IP        configured     enabled   normal
-      Cluster-B
-              node-B-3-IP        configured     enabled   normal
-              node-B-4-IP        configured     enabled   normal
-8 entries were displayed.
-
-cluster_A::*>
-....
 . advanced 権限で、 MDV_CRS ボリュームを古いノードから新しいノードに移動します。
 +
 .. ボリュームを表示して MDV ボリュームを特定します。
@@ -721,7 +725,7 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 
 +
 ....
-cluster_A::> vol move start -volume MDV_CRS_d6b0b313ff5611e9837100a098544e51_A -destination-aggregate data_a3 -vserver cluster_A
+cluster_A::*> vol move start -volume MDV_CRS_d6b0b313ff5611e9837100a098544e51_A -destination-aggregate data_a3 -vserver cluster_A
 
 Warning: You are about to modify the system volume
          "MDV_CRS_d6b0b313ff5611e9837100a098544e51_A". This might cause severe
@@ -738,7 +742,7 @@ volume show MDV_name
 
 +
 ....
-cluster_A::> vol show MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
+cluster_A::*> vol show MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 Vserver     Volume       Aggregate    State      Type       Size  Available Used%
 ---------   ------------ ------------ ---------- ---- ---------- ---------- -----
 cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
