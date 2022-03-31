@@ -844,19 +844,11 @@ IP_switch_A_1(config-macsec-policy)# sak-expiry-time 100
 IP_switch_A_1(config-macsec-policy)# conf-offset CONF-OFFSET-0
 ----
 +
-< < < < < < < < < < < < < < 頭部
+
+NOTE: このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。
 
 
 
-
-
-====
-[+]
-
---
->> >> >> >> fb53efa2361ac88998ad17907c3a3fe6d3aafb6d 注：このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。
-
---
 . 実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
 +
 'copy running-config startup-config
@@ -877,7 +869,9 @@ IP_switch_A_1(config-macsec-policy)# show macsec policy
 ----
 
 
-== MACsec 設定を確認します
+
+
+=== MACsec 構成の確認
 
 .手順
 . コンフィギュレーション内の 2 番目のスイッチで上記の手順 * すべて * を繰り返して、 MACsec セッションを確立します。
@@ -923,6 +917,8 @@ MACsec MKA 設定
 特定の MACsec ポリシーまたはすべての MACsec ポリシーの設定
 
 |===
+
+
 
 
 
@@ -980,7 +976,9 @@ IP_switch_A_1(config)# copy running-config startup-config
 ----
 
 
-=== 25Gbps 接続を使用するシステムの前方誤り訂正の設定
+
+
+== 25Gbps 接続を使用するシステムの前方誤り訂正の設定
 
 25Gbps 接続を使用してシステムが設定されている場合は、 RCF ファイルの適用後に前方誤り訂正（ fec ）パラメータを手動で off に設定する必要があります。この設定は RCF ファイルでは適用されません。
 
@@ -988,33 +986,24 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 link:port_usage_3232c_9336c.html["Cisco 3232C スイッチまたは Cisco 9336C スイッチのプラットフォームポートの割り当て"]
 
-このタスクを実行できるのは、 25Gbps 接続を使用する環境プラットフォームのみです。• AFF A300 • FAS 8200 • FAS 500f • AFF A250
+このタスクでは、 25Gbps 接続を使用する環境 プラットフォームのみを使用します。
+
+* AFF A300
+* FAS 8200
+* FAS 500f
+* AFF A250
+
 
 このタスクは、 MetroCluster IP 構成の 4 つのスイッチすべてで実行する必要があります。
 
-< < < < < < < < < < < < < < 頭部。コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。構成モードを開始します :config t..設定する 25Gbps インターフェイスを「 interface interface-id` 」と指定します。fec を off に設定します。スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。。構成モードを終了します : exit
-
-====
 .手順
-. コントローラモジュールに接続されている各 25Gbps ポートで「 fec 」パラメータを「 off 」に設定し、実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。
+. コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。
 +
-.. コンフィギュレーションモードを開始します。
-+
-'config t`
-
-.. 設定する 25Gbps インターフェイスを指定します。
-+
-'interface interface-ID'
-
-.. 「 fec 」を「 off 」に設定します。
-+
-「 fec off 」と入力します
-
+.. 構成モードを開始します :config t
+.. 設定する 25Gbps インターフェイスを「 interface interface-Id 」と指定します
+.. fec を off に設定します
 .. スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。
-.. 構成モードを終了します。
-+
-[exit] >> >> >> >> の順にクリックします fb53efa2361ac88998ad17907c3a3fe6d3aafb6d
-
+.. 構成モードを終了します : exit
 +
 次の例は、スイッチ IP_switch_A_1 のインターフェイス Ethernet1/25/1 に対するコマンドを示しています。
 

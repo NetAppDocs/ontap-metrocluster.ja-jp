@@ -10438,7 +10438,6 @@
   <block id="9284c86c82929cc854bc1886a966ff6f" category="list-text">「 How MACsec mka summary 」を実行します</block>
   <block id="3db9b1ed217c4d51bc9eb8d1b2a88879" category="list-text">実行 :'How MACsec mka session`</block>
   <block id="56cfbbd408a7b951d0c7de29a7686f39" category="list-text">実行： 'How MACsec mka statistics （ MACsec mka 統計情報）</block>
-  <block id="b22352ed85b6b2a829683807066af496" category="paragraph">このタスクを実行できるのは、 25Gbps 接続を使用する環境プラットフォームのみです。• AFF A300 • FAS 8200 • FAS 500f • AFF A250</block>
   <block id="7903ea9f597270ba2cf2405fbc17ebd8" category="list-text">昇格されたコマンドプロンプト (`#`):'enable' に変更します</block>
   <block id="4be4d4968b5e919059610e2ee4b965ce" category="list-text">スタートアップコンフィギュレーションを消去し、バナーを削除します</block>
   <block id="4995c150e07b7ecfa34c3c0fbef2e928" category="paragraph">*`erase startup-config *</block>
@@ -11643,11 +11642,6 @@
   <block id="963f5eadacb40d1c09a8a4b55061def7" category="list-text">キー / キー ID の不一致またはキーの有効期限が原因で MACsec セッションに失敗した場合に使用するフォールバックキーチェーンを指定します。</block>
   <block id="acdb387736771ac188de8a6d086cdb34" category="paragraph">「 MACsec keychain -name policy -name fallback-keychain keychain -name 」という名前のキーチェーンがあります</block>
   <block id="3b0db3e385223be11fabb9ef92f30540" category="admonition">この手順に進む前に、「 _MACsec キーチェーンの設定」および「 Keys_ 」の手順を使用して、フォールバックキーチェーンを設定する必要があります。</block>
-  <block id="4cec7911357b6eb3689d0122c3176f27" category="list-text">コントローラモジュールに接続されている各 25Gbps ポートで「 fec 」パラメータを「 off 」に設定し、実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします。</block>
-  <block id="72235e2c95c886b0e9576a4dc260f166" category="list-text">設定する 25Gbps インターフェイスを指定します。</block>
-  <block id="47a42949192c261eb9481cfd05e85141" category="paragraph">'interface interface-ID'</block>
-  <block id="33e296cd4b6f1f4d354f09470978fe71" category="list-text">「 fec 」を「 off 」に設定します。</block>
-  <block id="aaa283892de0705f6292714e2ecb4234" category="paragraph">「 fec off 」と入力します</block>
   <block id="ab6f20f5b829d0d0c601421db2ea7500" category="paragraph">2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーの発生時にクラスタがパートナーにデータをシームレスに提供できるかどうかに依存します。</block>
   <block id="ab3bedf5b2bac1f18aa979a42fb1871b" category="paragraph"><block ref="ab3bedf5b2bac1f18aa979a42fb1871b" category="inline-link-rx"></block></block>
   <block id="43a384668d02383bb19c7b1d54761855" category="paragraph">FabricPool の使用に関する一般的な情報については、を参照してください<block ref="46a180d322a34c1f2719942dadd3e4fb" category="inline-link-rx"></block>。</block>
@@ -12738,14 +12732,20 @@
   <block id="7fab172697215ab39d868b582f7aa8fc" category="paragraph">この手順 は、ネットアップ検証済みのスイッチを使用している場合に適用されます。MetroCluster 準拠のスイッチを使用している場合は、スイッチのベンダーを参照してください。</block>
   <block id="154b79668d2e81b5a47cc3c8bb3378a1" category="paragraph">このセクションの手順のいくつかは独立した手順であり、実行する必要があるのは自分がタスクに指示された手順、またはタスクに関連する手順のみです。</block>
   <block id="136250a3d403690fe2a4881cb4fea613" category="paragraph">RCF ファイルをインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。この手順 は、以前のインストールに失敗したあとに同じ RCF ファイルを再インストールする場合、または新しいバージョンのファイルをインストールする場合に必要です。</block>
-  <block id="697dfb9b235783676b63d2f1ed07cad5" category="paragraph">&lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; 頭部</block>
-  <block id="12a3ed4eff6140d7bb77c294de0b000a" category="paragraph">&gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; fb53efa2361ac88998ad17907c3a3fe6d3aafb6d 注：このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
-  <block id="30af5a80e49a51994861ac88eeb8c9fd" category="paragraph">== MACsec 設定を確認します</block>
-  <block id="f707836a27e5775fa200fe99e8336319" category="paragraph">=== WAN ISL ポートでの MACsec フォールバックキーの設定</block>
-  <block id="bb92609b325d2a0888dda72c3922a9d6" category="paragraph">=== 25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
-  <block id="0895beb9eb45e7d12c0c7d8ff398935a" category="paragraph">&lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; 頭部。コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。構成モードを開始します :config t..設定する 25Gbps インターフェイスを「 interface interface-id` 」と指定します。fec を off に設定します。スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。。構成モードを終了します : exit</block>
-  <block id="787ecd419f9570a45ad7d6ce5504c937" category="paragraph">[exit] &gt;&gt; &gt;&gt; &gt;&gt; &gt;&gt; の順にクリックします fb53efa2361ac88998ad17907c3a3fe6d3aafb6d</block>
   <block id="c902bf858b7534a7f5dae73adb86fcab" category="section-title">キー管理をリストアしています</block>
   <block id="f4f5fa0da45d620edd37e7bd122f0953" category="paragraph">データボリュームが暗号化されている場合は、キー管理をリストアする必要があります。ルートボリュームが暗号化されている場合は、キー管理をリカバリする必要があります。</block>
-  <block id="fc5ed1fc7f860e8b42d66e226e5650e6" category="admonition">「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります。</block>
+  <block id="2ab9c070f5e78bc6f7809e89ecd023eb" category="admonition">「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります</block>
+  <block id="5382d2282494796171738f35b9361ab8" category="admonition">このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
+  <block id="bb7076dff2fa5f0d308e776f5006e07e" category="section-title">MACsec 構成の確認</block>
+  <block id="f0336856a5a2f4bfae1adfb71fa3ae60" category="section-title">WAN ISL ポートでの MACsec フォールバックキーの設定</block>
+  <block id="ffe1f559bee6f65df8232945e7f1517d" category="section-title">25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
+  <block id="250b5ed5389f4260b31c4ede97dea809" category="paragraph">このタスクでは、 25Gbps 接続を使用する環境 プラットフォームのみを使用します。</block>
+  <block id="44ebc7deaba92b772a9bf569e1c8ca12" category="list-text">FAS 8200</block>
+  <block id="78e08a3638b519a59d38434c6f124b1a" category="list-text">FAS 500f</block>
+  <block id="55847fe0c50cc0b24f2766a0f17dcb5e" category="list-text">コントローラモジュールに接続されている各 25Gbps ポートで fec パラメータを off に設定し、実行中の設定をスタートアップ設定にコピーします。</block>
+  <block id="4e435c962be317de1557265dfbacc427" category="list-text">構成モードを開始します :config t</block>
+  <block id="03afbf28e660c550f09da5f3436dd99d" category="list-text">設定する 25Gbps インターフェイスを「 interface interface-Id 」と指定します</block>
+  <block id="df181c6434803cd5a18218c45eca6655" category="list-text">fec を off に設定します</block>
+  <block id="344fc0c43530ccad90a38944b632b1e4" category="list-text">構成モードを終了します : exit</block>
+  <block id="9c0c1022f821ad4ee9fd20c2731bc6f1" category="list-text">トラブルシューティングに役立てるため、各 MetroCluster DR グループ内の各 SAS ディスクシェルフには、シェルフ ID を一意にすることを強く推奨します。</block>
 </blocks>

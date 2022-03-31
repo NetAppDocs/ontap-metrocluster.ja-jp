@@ -62,11 +62,11 @@ https://library.netapp.com/ecm/ecm_download_file/ECMLP2874463["FAS9000 システ
 . ディスクシェルフを設置し、電源を投入して、シェルフ ID を設定します。
 +
 ** 各ディスクシェルフの電源を再投入する必要があります。
-** 各 MetroCluster DR グループ（両サイトを含む）で、各 SAS ディスクシェルフのシェルフ ID が一意である必要があります。
+** トラブルシューティングに役立てるため、各 MetroCluster DR グループ内の各 SAS ディスクシェルフには、シェルフ ID を一意にすることを強く推奨します。
+
+
 +
 
 IMPORTANT: ミラーされていないアグリゲートが含まれるディスクシェルフは、この時点ではケーブル接続しないでください。MetroCluster 構成が完了するまで、ミラーされていないアグリゲート用のシェルフを配置し、「 MetroCluster modify -enable -munSHELVed-aggr-deployment true 」コマンドを使用した後にのみ配置する必要があります。
-
-
 
 
