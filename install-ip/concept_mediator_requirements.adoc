@@ -4,16 +4,17 @@ sidebar: sidebar
 keywords: ontap, mediator, service, assist, metrocluster, ip, configuration, perform, automatic, unplan, switchover, physical, repository, status, information, configuring, configure, install, configuring, configure, mtu size, packet loss, bandwidth, firewall, rhel, centos, linux, revert, kernal, upgrade, latency 
 summary: ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使用してステータス情報用のリポジトリを物理的に切り離すことで、 MetroCluster IP 構成で自動計画外スイッチオーバーを実行できます。 
 ---
-= ONTAP メディエーターサービスをインストールする準備をしています
+= ONTAP メディエーターサービスをインストールする準備をします
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使用してステータス情報用のリポジトリを物理的に切り離すことで、 MetroCluster IP 構成で自動計画外スイッチオーバーを実行できます。環境が次の要件を満たしている必要があります。Linux のバージョンの更新が必要になる場合があります。
+環境が次の要件を満たしている必要があります。
 
 [NOTE]
 ====
+* Linux のバージョンを更新する場合は、最新の ONTAP メディエーターサービスをインストールする前にアップグレードしてください。
 * ONTAP メディエーターサービスと MetroCluster Tiebreaker ソフトウェアの両方を同じ MetroCluster 構成で使用することはできません。
 * ONTAP メディエーターは、 MetroCluster サイトとは別の場所にある Linux ホストにインストールする必要があります。
 * ONTAP メディエーターサービスでは、最大 5 つの MetroCluster 構成を同時にサポートできます。
@@ -51,16 +52,9 @@ MTU サイズは 1400 以上にする必要があります。
 
 ONTAP メディエーターは、複数のポートを使用して特定のサービスと通信します。
 
-* サードパーティのファイアウォールを使用している場合は、次の手順を実行します。
-+
-** HTTPS アクセスが有効になっている必要があります。
-** ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。
-+
-Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。
+サードパーティのファイアウォールを使用している場合： * HTTPS アクセスが有効になっている必要があります。* ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。
 
-
-
-
++ Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。
 
 次の表に、ファイアウォールで許可する必要があるポートを示します。
 
@@ -97,184 +91,14 @@ ONTAP メディエーターの iSCSI ターゲット
 
 ONTAP メディエーターをアップグレードする場合は、 Linux のバージョン要件を満たし、アップグレードのガイドラインに従う必要があります。
 
-* メディエーターサービスはバージョン 1.0 から 1.1 にアップグレードできます。
+* メディエーターサービスは、以前のバージョンから現在のバージョンにアップグレードすることができます。
 * MetroCluster 9.7 以降を実行する ONTAP IP 構成では、すべてのメディエーターのバージョンがサポートされます。
 
 
+link:https://docs.netapp.com/us-en/ontap/mediator/index.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"^]
 
-
-== ホストのオペレーティングシステムとメディエーターを一緒にアップグレードする
-
-次の表に、メディエーターのバージョンをアップグレードするだけでなく、 RHEL / CentOS 7.6 から新しい RHEL / CentOS リリースにアップグレードする場合のアップグレードガイドラインを示します。
-
-[cols="20,20,60"]
-|===
-
-
-| Linux のターゲットバージョン | メディエーターのターゲットのバージョン | アップグレードに関する注意事項 
-
-
- a| 
-RHEL/CentOS 7.7
- a| 
-1.1
- a| 
-* アップグレードは、次の順序で実行する必要があります。
-+
-.. オペレーティングシステムを RHEL / CentOS バージョン 7.6 から 7.7 にアップグレードします。
-+
-* 注：オペレーティングシステムのアップグレード中は、 ONTAP メディエーターとメディエーターアシストの自動計画外スイッチオーバーは使用できません。メディエーターのバージョン 1.0 から 1.1 へのアップグレードプロセスが完了するまでは、メディエーターはオフラインです。
-
-.. ホストをリブートしてカーネルモジュールの変更を適用します。
-.. メディエーターのバージョン 1.0 を 1.1 にアップグレードします。
-+
-link:task_install_configure_mediator.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"]
-
-
-
-* アップグレードの実行中に、 storage iscsi-initiator show コマンドでメディエーターサービスへの接続が停止したと報告されます。
-* ONTAP オペレーティングシステムは、アップグレード中に cf.mccip.med.auso.stDisabled EMS イベントを生成します。
-* 自動計画外スイッチオーバーが再度有効になると、 ONTAP オペレーティングシステムで cf.mccip.med.auso.stEnabled EMS イベントが生成されます。
-
-
-
-
- a| 
-RHEL/CentOS 8.0 または 8.1
- a| 
-1.1
- a| 
-直接アップグレードパスはありません。オペレーティングシステムのアップグレード後に、 1.0 バージョンを削除し、 1.1 バージョンをインストールする必要があります。
-
-. ONTAP 設定からメディエーターサービスを削除します。
-+
-MetroCluster 構成設定のメディエーターが削除されました
-
-. メディエーターサービスの 1.0 バージョンをアンインストールします。
-+
-link:../install-ip/task_uninstall_mediator.html["ONTAP メディエーターサービスをアンインストールします"]
-
-. Linux オペレーティングシステムをバージョン 8.0 または 8.1 にアップグレードします。
-. メディエーターサービスのバージョン 1.1 をインストールします。
-+
-link:task_uninstall_mediator.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"]
-
-. メディエーターサービスを ONTAP 設定に追加します。
-+
-「 MetroCluster configurion-settings add-mmediator-address-1.1-ip-address 」と入力します
-
-
-
-|===
 
 
 == アップグレード後
 
 メディエーターとオペレーティングシステム問題のアップグレードが完了したら、「 storage iscsi-initiator show 」コマンドを実行して、メディエーター接続が稼働していることを確認する必要があります。
-
-
-
-== メディエーター 1.1 のインストールからリバートする
-
-メディエーターバージョン 1.1 から 1.0 への直接のリバートはサポートされていません。1.1 バージョンを削除して、 1.0 バージョンを再インストールする必要があります。
-
-. ONTAP 設定からメディエーターサービスを削除します。
-+
-MetroCluster 構成設定のメディエーターが削除されました
-
-. メディエーターサービスのバージョン 1.1 をアンインストールします。
-+
-link:../install-ip/task_uninstall_mediator.html["ONTAP メディエーターサービスをアンインストールします"]
-
-. メディエーターサービスの 1.0 バージョンをインストールします。
-+
-link:task_install_configure_mediator.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"]
-
-. メディエーターサービスを ONTAP 設定に追加します。
-+
-MetroCluster 構成設定 add-mediator-address-1.0-ip-address
-
-
-
-
-
-== Linux カーネルのアップグレードからの回復
-
-ONTAP メディエーターには、 SCST カーネルモジュールが必要です。Linux カーネルが更新されると、この依存関係によってサービスが失われる可能性があります。カーネルパッケージを変更した場合は、 SCST カーネルモジュールを再構築することを強くお勧めします。
-
-[NOTE]
-====
-* ONTAP メディエーターバージョン 1.0 から 1.1 にアップグレードすると、 SCST モジュールが再構築されます。
-* カーネルモジュールの変更は、 Linux カーネルのリブート後に適用されます。
-
-
-====
-次のいずれかの手順を使用して、メディエーターのサービスが失われたカーネルのアップグレードからリカバリできます。
-
-[cols="30,70"]
-|===
-
-
-| 手順 | 手順 
-
-
- a| 
-SCST カーネルモジュールを取り外し、取り付け直します
- a| 
-メディエーターのバージョンで使用している SCST tar バンドルが必要です。
-
-* ONTAP メディエーター 1.0 には、 scst-3.3.0 .tar.bz2 が必要です
-* ONTAP メディエーター 1.1 には scst-3.4.0.tar.bz2 が必要です
-+
-.. SCST モジュールをアンインストールします。
-+
-... メディエーターのバージョンで必要な SCST tar バンドルをダウンロードして解凍します。
-... scst ディレクトリ内で次のコマンドを実行します。
-+
-[listing]
-----
-systemctl stop mediator-scst
-make scstadm_uninstall
-make iscsi_uninstall
-make usr_uninstall
-make scst_uninstall
-depmod
-----
-
-
-.. scst ディレクトリ内で次のコマンドを実行して、使用しているメディエーターのバージョンに SCST モジュールを再インストールします。
-+
-[listing]
-----
-make scst_install
-make usr_install
-make iscsi_install
-make scstadm_install
-depmod
-patch /etc/init.d/scst < /opt/netapp/lib/ontap_mediator/systemd/scst.patch
-reboot
-----
-
-
-
-
-
-
- a| 
-ONTAP メディエーターを削除して再度インストールします
-
-** 注： ** これには ONTAP でメディエーターを再設定する必要があります。
- a| 
-. ONTAP 設定からメディエーターサービスを削除します。
-+
-MetroCluster 構成設定のメディエーターが削除されました
-
-. link:../install-ip/task_uninstall_mediator.html["ONTAP メディエーターサービスをアンインストールします"]。
-. link:../install-ip/task_install__configure_mediator.html["メディエーターサービスを再インストールします"]。
-. メディエーターサービスを ONTAP 設定に追加します。
-+
-「 MetroCluster configurion-settings add-mmediator-address-ip-address 」と入力します
-
-
-
-|===

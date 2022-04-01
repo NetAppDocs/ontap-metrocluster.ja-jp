@@ -7185,10 +7185,6 @@
   <block id="296dac618f93ae6f579e81fc82e8538f" category="paragraph">MetroCluster 構成内に LIF が正常に作成されたことを確認するには、 MetroCluster check lif show コマンドを実行します。LIF の作成中に問題が発生した場合は、 MetroCluster の check lif repair-placement コマンドを使用して問題を修正できます。</block>
   <block id="b679b36e0d45b5eafe371b27fca76877" category="paragraph">到達可能性チェックで到達可能とマークされたポートから、 ONTAP では、 LIF のサブネットに関連付けられたブロードキャストドメイン内のポートが優先されます。 LIF のサブネットに関連付けられたブロードキャストドメイン内の使用可能なネットワークポートが DR クラスタにない場合は、 次に、 ONTAP がソース LIF に到達可能なポートを選択します。</block>
   <block id="7e7397a7b79323762c61941fc0e6b5f9" category="inline-link">データ保護</block>
-  <block id="c27f8d08f54639e1ea065a458bb5450b" category="summary">必要に応じて、 ONTAP メディエーターサービスを削除できます。</block>
-  <block id="c02d4950c4ce62ccd8590b978866a586" category="doc">ONTAP メディエーターのユーザ名を変更しています</block>
-  <block id="5dc574c75d3a0b59f4965eca3a6c2c5f" category="paragraph">メディエーターサービスを削除するには、事前にメディエーターを ONTAP から切断する必要があります。</block>
-  <block id="baf6e7771f84cf5db3fbc9533db52b40" category="paragraph">このタスクは、 ONTAP メディエーターサービスがインストールされた Linux ホストで実行します。</block>
   <block id="a88a3ffd094ac9c3e4781378daf727b2" category="summary">MetroCluster IP 構成を計画するときは、ハードウェアコンポーネントとその相互接続について理解しておく必要があります。</block>
   <block id="131a1d95b4315c0e5bb2b356dc23edb5" category="doc">MetroCluster IP 構成の一部</block>
   <block id="c9f9c7cefa54edfacbeb4382ddff3f5e" category="paragraph">MetroCluster IP の設定には、次の主要なハードウェア要素が含まれます。</block>
@@ -7320,7 +7316,6 @@
   <block id="2ac5b29f2d20bbfbdc32651d31618463" category="summary">8 ノード構成は、 2 つの DR グループで構成されます。このセクションのタスクを使用して、最初の DR グループを設定します。</block>
   <block id="146d142d8ea797f93d593a6fe9556787" category="doc">8 ノード構成の処理</block>
   <block id="dd42913fad72868b65fced98cfecfcd6" category="paragraph">次に、のタスクを実行します <block ref="3e70f7d1f526cf6dd7a89a97c88d0cc8" category="inline-link-macro-rx"></block></block>
-  <block id="87c73779bdee7b395b93de88e2529301" category="doc">ONTAP メディエーターサービスをインストールする準備をしています</block>
   <block id="927ed696d98572bdb5039cbffcfdb480" category="section-title">MetroCluster 構成でメディエーターを使用するためのネットワーク要件</block>
   <block id="b2b90a2080b20a433104d14b3164613a" category="paragraph">ONTAP 構成で MetroCluster メディエーターサービスをインストールするには、いくつかのネットワーク要件を満たす必要があります。</block>
   <block id="584cbb7b9a5b8e8c3d576c37046ef4f5" category="list-text">ラウンドトリップレイテンシ</block>
@@ -7333,10 +7328,6 @@
   <block id="72b09b4c164fb776e6577cef10d7084d" category="paragraph">メディエーターサービスと MetroCluster 構成の間のリンクには、少なくとも 1Gbps の帯域幅が必要です。</block>
   <block id="652f10975e44b79de998287113035fac" category="section-title">ONTAP メディエーターのファイアウォール要件</block>
   <block id="671e00f956495c99ae5aae5896e8542a" category="paragraph">ONTAP メディエーターは、複数のポートを使用して特定のサービスと通信します。</block>
-  <block id="861ef6676813cbc81369ee701ae73269" category="list-text">サードパーティのファイアウォールを使用している場合は、次の手順を実行します。</block>
-  <block id="041f3a27fe8b40cc213210949eb4f036" category="list-text">HTTPS アクセスが有効になっている必要があります。</block>
-  <block id="8b8101ed71d5bd32d2f9d4de05e470c1" category="list-text">ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。</block>
-  <block id="cc1e6f116b4b45ffde821f0aef59e030" category="paragraph">Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。</block>
   <block id="5946d090ccc9cc4eb9c55cf3e9e8d35a" category="paragraph">31784/TCP</block>
   <block id="39af2fc562277654190ca9b83e431189" category="paragraph">ONTAP クラスタ管理インターフェイス</block>
   <block id="47c5e6a166f9432ff96681fa2a62c791" category="paragraph">ONTAP メディエーター Web サーバ</block>
@@ -7347,50 +7338,8 @@
   <block id="a3993ea912c0ecd6926aed69b72fd59a" category="paragraph">メールボックス用の iSCSI データ接続</block>
   <block id="63639615515d028231f302c56bab6ad7" category="section-title">MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン</block>
   <block id="2eb1029cd264d9f182cfb37b0492ad43" category="paragraph">ONTAP メディエーターをアップグレードする場合は、 Linux のバージョン要件を満たし、アップグレードのガイドラインに従う必要があります。</block>
-  <block id="07042419ecf3ef833bec94711072410a" category="list-text">メディエーターサービスはバージョン 1.0 から 1.1 にアップグレードできます。</block>
   <block id="80f0fa63ac735fb302ee06c9c1c515ae" category="list-text">MetroCluster 9.7 以降を実行する ONTAP IP 構成では、すべてのメディエーターのバージョンがサポートされます。</block>
-  <block id="f275e7f70d8f999068761bd03506f0d2" category="section-title">ホストのオペレーティングシステムとメディエーターを一緒にアップグレードする</block>
-  <block id="3f2f9f3216025313cf31d8b43b3718b8" category="paragraph">次の表に、メディエーターのバージョンをアップグレードするだけでなく、 RHEL / CentOS 7.6 から新しい RHEL / CentOS リリースにアップグレードする場合のアップグレードガイドラインを示します。</block>
-  <block id="1a9dd4a9c96e2863ec3f38f5667b2669" category="cell">Linux のターゲットバージョン</block>
-  <block id="3d48ec6a07eabeb99d3b80b1f889cf92" category="cell">メディエーターのターゲットのバージョン</block>
-  <block id="b5cb41a6703cf18b4cecd5a0817f91cf" category="cell">アップグレードに関する注意事項</block>
-  <block id="6a8de62be2aba3050fe2cb285953ea9e" category="paragraph">RHEL/CentOS 7.7</block>
-  <block id="777d45bbbcdf50d49c42c70ad7acf5fe" category="paragraph">1.1</block>
-  <block id="03f4d43f4c43ea861fdce10fac096113" category="list-text">アップグレードは、次の順序で実行する必要があります。</block>
-  <block id="be7a8da01f06535e5b1c825376fb13e3" category="list-text">オペレーティングシステムを RHEL / CentOS バージョン 7.6 から 7.7 にアップグレードします。</block>
-  <block id="17d6d5a8a6de38dd282c99abc975ec47" category="list-text">ホストをリブートしてカーネルモジュールの変更を適用します。</block>
-  <block id="3ba55116604ed821f5ce045a1e006709" category="list-text">メディエーターのバージョン 1.0 を 1.1 にアップグレードします。</block>
-  <block id="024f6b2ceb960af0370d128ea02e3bb1" category="inline-xref-macro">ONTAP メディエーターサービスをインストールまたはアップグレードします</block>
-  <block id="797bfc3436949aeab76668d5c4a46d22" category="list-text">アップグレードの実行中に、 storage iscsi-initiator show コマンドでメディエーターサービスへの接続が停止したと報告されます。</block>
-  <block id="62ac39b42107cd3cf20201925c95f754" category="list-text">ONTAP オペレーティングシステムは、アップグレード中に cf.mccip.med.auso.stDisabled EMS イベントを生成します。</block>
-  <block id="2eacb51d1b60982ec71d3b87f9d967c9" category="list-text">自動計画外スイッチオーバーが再度有効になると、 ONTAP オペレーティングシステムで cf.mccip.med.auso.stEnabled EMS イベントが生成されます。</block>
-  <block id="d6844ff42f175efd4429d9bbe872a8f6" category="paragraph">RHEL/CentOS 8.0 または 8.1</block>
-  <block id="13db436ef9104ac8217c5942baa439dd" category="paragraph">直接アップグレードパスはありません。オペレーティングシステムのアップグレード後に、 1.0 バージョンを削除し、 1.1 バージョンをインストールする必要があります。</block>
-  <block id="b8f876840850ae6eec722731d20577a1" category="list-text">メディエーターサービスの 1.0 バージョンをアンインストールします。</block>
-  <block id="1712916ea86b92e1dc65c6376e57dbdc" category="inline-link-macro">ONTAP メディエーターサービスをアンインストールします</block>
-  <block id="cedb2eedc9be91c46ad0eebf891a04c2" category="paragraph"><block ref="cedb2eedc9be91c46ad0eebf891a04c2" category="inline-link-macro-rx"></block></block>
-  <block id="5a57e5770a7f3f6093180752cff0d9b0" category="list-text">Linux オペレーティングシステムをバージョン 8.0 または 8.1 にアップグレードします。</block>
-  <block id="7c4b6e403cbff0ec5097c53fbb8b73b9" category="list-text">メディエーターサービスのバージョン 1.1 をインストールします。</block>
   <block id="fe8f2bed933b5baccdaadbe566f09126" category="section-title">アップグレード後</block>
-  <block id="e757d32d746d3d6a86c0e1e0c565ae81" category="section-title">メディエーター 1.1 のインストールからリバートする</block>
-  <block id="bfdbe680fc75eecc4ef0b63fafccccab" category="paragraph">メディエーターバージョン 1.1 から 1.0 への直接のリバートはサポートされていません。1.1 バージョンを削除して、 1.0 バージョンを再インストールする必要があります。</block>
-  <block id="876c65eb22dee3ed901e633fbb746563" category="list-text">メディエーターサービスのバージョン 1.1 をアンインストールします。</block>
-  <block id="1b58be7ab5c19ce77ef566da58eafc6f" category="list-text">メディエーターサービスの 1.0 バージョンをインストールします。</block>
-  <block id="a91fb4c2f26a34da08dc0d60df26191f" category="section-title">Linux カーネルのアップグレードからの回復</block>
-  <block id="14cbdd3ff28baa5ad34b838f1cdfd80d" category="paragraph">ONTAP メディエーターには、 SCST カーネルモジュールが必要です。Linux カーネルが更新されると、この依存関係によってサービスが失われる可能性があります。カーネルパッケージを変更した場合は、 SCST カーネルモジュールを再構築することを強くお勧めします。</block>
-  <block id="1513e346075ff4cb53e8b13f74797242" category="list-text">ONTAP メディエーターバージョン 1.0 から 1.1 にアップグレードすると、 SCST モジュールが再構築されます。</block>
-  <block id="458808065ca0aca8ac27a5be6cf038a7" category="list-text">カーネルモジュールの変更は、 Linux カーネルのリブート後に適用されます。</block>
-  <block id="67d5dcdc5d8e2084ea8d15e52bc220de" category="paragraph">次のいずれかの手順を使用して、メディエーターのサービスが失われたカーネルのアップグレードからリカバリできます。</block>
-  <block id="41f0d067784b5d77c67c5cb8a8d27ab5" category="paragraph">SCST カーネルモジュールを取り外し、取り付け直します</block>
-  <block id="16e9eaaa525605067841e3acea249bee" category="paragraph">メディエーターのバージョンで使用している SCST tar バンドルが必要です。</block>
-  <block id="dd8a600684ca75e62507b1a2ba59bb88" category="list-text">ONTAP メディエーター 1.0 には、 scst-3.3.0 .tar.bz2 が必要です</block>
-  <block id="c67f8c6b45774dc77f53b1037cdb9c4d" category="list-text">ONTAP メディエーター 1.1 には scst-3.4.0.tar.bz2 が必要です</block>
-  <block id="1b7d3b4fc56775c78dcdbc605fcecf91" category="list-text">SCST モジュールをアンインストールします。</block>
-  <block id="9541f06b5a8106059ae792b60b33a1f2" category="list-text">メディエーターのバージョンで必要な SCST tar バンドルをダウンロードして解凍します。</block>
-  <block id="2a57d67b29d5c7bd4a714518aa1897bc" category="list-text">scst ディレクトリ内で次のコマンドを実行します。</block>
-  <block id="b1b38660f957e7723cbac948066d8a8c" category="list-text">scst ディレクトリ内で次のコマンドを実行して、使用しているメディエーターのバージョンに SCST モジュールを再インストールします。</block>
-  <block id="430ee00fceaabe9e9489be3a0d2475b8" category="paragraph">ONTAP メディエーターを削除して再度インストールします</block>
-  <block id="489d957f264863b3f4437f805ebfcc30" category="inline-link-macro">メディエーターサービスを再インストールします</block>
   <block id="4d8cac4d4c182ff6fe50e9fb53cc4d82" category="summary">構成をクリーンにするために、コントローラモジュールのデフォルトをリセットおよびリストアする必要があります。</block>
   <block id="88e93acfeced73f4407df4da34dadb16" category="list-text">IP スイッチをラックまたはキャビネットに設置します。</block>
   <block id="1ff31a738d26e47dfa5c26bac0568556" category="summary">各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。</block>
@@ -7408,87 +7357,6 @@
   <block id="c8a47a2f93307e796690ebd7d82f5573" category="paragraph">この時点では MetroCluster IP インターフェイスは設定されておらず、コマンド出力に表示されません。</block>
   <block id="76c896ac6b7a90ae2d17c2b3934e8219" category="paragraph">次の例は、 node_A_1 の 2 つのクラスタポートを示しています。</block>
   <block id="cdf29de4c8a5a778670e597ff53bb862" category="list-text">パートナークラスタで同じ手順を繰り返します。</block>
-  <block id="5dd41c69dbbf6464456398569c1dc43b" category="summary">ONTAP メディエーターサービスをインストールするには、すべての前提条件を満たしていることを確認してから、インストールパッケージを取得してホストでインストーラを実行する必要があります。</block>
-  <block id="4dbae59f3cbe15012d73996ea5e7efd7" category="cell">メディエーターのバージョン</block>
-  <block id="7086defea73bc85dfa4588f2db92a805" category="cell">サポートされている Linux バージョン</block>
-  <block id="0b0ec9f1cc28b3c19dc6c36dcd5af7cc" category="paragraph">1.3</block>
-  <block id="56765472680401499c79732468ba4340" category="paragraph">1/2</block>
-  <block id="d55d8aaf12099eb46ec871f4ea80b39d" category="list-text">64 ビットの物理インストールまたは仮想マシン</block>
-  <block id="83626eda7582435cdf0eb139d5cc8972" category="list-text">8GB の RAM</block>
-  <block id="2774e53c6d33bb76442da628f467bbda" category="paragraph">Red Hat Enterprise Linux または CentOS とその関連リポジトリをシステムにインストールする際のベストプラクティスは次のとおりです。別の方法でインストールまたは設定されたシステムでは、追加の手順が必要になる</block>
-  <block id="d78f805366335574fe9a7a8a768188ec" category="list-text">Red Hat Enterprise Linux または CentOS への ONTAP メディエーターサービスのインストール中にインストールプログラムが必要なすべてのソフトウェアにアクセスしてインストールできるように、システムには該当するリポジトリへのアクセスが必要です。</block>
-  <block id="177124ed5a050ade35cf0ca9bbfbea42" category="list-text">yum インストーラで Red Hat Enterprise Linux リポジトリから依存するソフトウェアを検索するには、 Red Hat Enterprise Linux のインストール中またはインストール後に有効な Red Hat サブスクリプションを使用してシステムを登録しておく必要があります。</block>
-  <block id="3fd0a1c0edf135c3937e76bd17a097d3" category="paragraph">Red Hat Subscription Manager については、 Red Hat のドキュメントを参照してください。</block>
-  <block id="b2a4296360f5b0414eec745b6a908f44" category="list-text">次のポートをメディエーター用に空けておく必要があります。</block>
-  <block id="f35f71b69154572b602a36ded3d5e04b" category="list-text">31784 です</block>
-  <block id="d54ce9de9df77c579775a7b6b1a4bdc0" category="list-text">3260</block>
-  <block id="0c52d328e3575ffed90f3f02c8504ef7" category="list-text">Linux ホストがインターネットにアクセスできない場所にある場合は、パッケージを手動でインストールできます。必要なパッケージがローカルリポジトリにあることを確認してください。</block>
-  <block id="2fb8fab8d316710dc04148da14d65653" category="paragraph">リポジトリの設定については、次のリンクを参照してください。</block>
-  <block id="3674977431a44980c31f81d6a2b8cc32" category="paragraph">ONTAP メディエーターサービスで必要なパッケージは次のとおりです。</block>
-  <block id="f813fcc7239eff34d867d55b252023dc" category="cell">すべての RHEL または CentOS バージョン</block>
-  <block id="2b4506837d7956224ca67c3fe50a62f1" category="cell">RHEL / CentOS 7.x の追加パッケージ</block>
-  <block id="73e41e821a9762dfeb2467ba42329069" category="cell">RHEL / CentOS 8.x の追加パッケージ</block>
-  <block id="50955d4b2031271f8fda1764c1a66ac3" category="list-text">openssl</block>
-  <block id="bfb048701bda18c214ce545e4c956329" category="list-text">openssl-devel</block>
-  <block id="181eb1934d9e8f95069e533e5364b99d" category="list-text">kernel-devel</block>
-  <block id="e0d511356bd44120af49cc96c9dcf3b3" category="list-text">GCC</block>
-  <block id="d40270eef8bab470027aedc1b59294ef" category="list-text">libselinux-utils</block>
-  <block id="099dafc678df7d266c25f95ccf6cde22" category="list-text">メーカー</block>
-  <block id="d8ccd8a2339a5abdfd1aa26a18065592" category="list-text">RedHat LSB コアです</block>
-  <block id="e5c5e6dae38b284e8cf0bd1fb0efac03" category="list-text">パッチ</block>
-  <block id="03ce1ba314f367fdd09887fc8f60578b" category="list-text">Bzip2.</block>
-  <block id="feed9f9eee114f237486f709d5bd0248" category="list-text">ピトノン 36</block>
-  <block id="bb0d72f88d770a3fb163f1db9068533b" category="list-text">python36-devel</block>
-  <block id="017b459c471455ea6ffb7b32b1598286" category="list-text">Perl - データダンパー</block>
-  <block id="6d290149925db69430ede61961477f82" category="list-text">PERLA-ExtUtils-MakeMaker</block>
-  <block id="e08cb560fa0fac340ce6e958daaf5e4d" category="list-text">python3-pip の略</block>
-  <block id="84ca4ac1c16ddb3230798bc5eb343137" category="list-text">policycoreutils - Python</block>
-  <block id="6bd1d4e8dbf8645d427b0d591dfaa638" category="list-text">ピトノン 36-pip</block>
-  <block id="6461c12b2a26dbd0adddb0db161c7020" category="list-text">elfutils-libelf-devel</block>
-  <block id="c8dff58175a7ddfedf00d77953ef42dd" category="list-text">policycoreutils -python-utils</block>
-  <block id="e781852df8c9fc982198148d005ed892" category="list-text">シグニチャ検証が設定されている場合は、ディセーブルにする必要があります。これは、次の 2 つの方法のいずれかで実行できます。</block>
-  <block id="56edd0d6ba5ec6dd9ebe0dfe46cd6e7e" category="list-text">UEFI SecureBoot メカニズムが設定されている場合は、無効にします。</block>
-  <block id="e6518c986f6d4680dfac1ee6e165f115" category="list-text">grub.cfg ファイルを更新し、再生成して、署名検証メカニズムを無効にします。</block>
-  <block id="ac6439da643a87aca9345317b0df6695" category="list-text">/etc/default/grub ファイルを開きます。</block>
-  <block id="555ac066a0a725c3b21878ee11396baa" category="list-text">GRUB _cmdline_linux 文の最後に文字列 module.sig_enforce =0 を追加します。</block>
-  <block id="8418b94a2a307b3e96b6474bc55e08b7" category="list-text">ホストをリブートします。</block>
-  <block id="970e1040f661445042b9cc4524e79084" category="paragraph">メディエーターのインストールパッケージは自己解凍形式の圧縮 tar ファイルで、次のものが含まれます。</block>
-  <block id="40ee7f81efc7bee0246bfd8b4313ff05" category="list-text">サポートされているリリースのリポジトリから取得できないすべての依存関係を含む RPM ファイル。</block>
-  <block id="8bbf3efceb42cd45e316987343509e73" category="list-text">インストールスクリプト。</block>
-  <block id="ae90f7d74aeb9331f16b20106d00bbb7" category="paragraph">この手順に記載されているように、有効な SSL 証明書を使用することを推奨します。</block>
-  <block id="08dcc2869a95098cf8ff34aa8213d3f2" category="paragraph">この手順は、既存の環境のインストールまたはアップグレードに使用します。</block>
-  <block id="966d347d6cc1563a226816ae5a81a78b" category="section-title">リポジトリへのアクセスを有効にします</block>
-  <block id="9f14218e5135dda7b7530841c740770a" category="cell">オペレーティングシステム</block>
-  <block id="c76eda301cb02c29a872a2edc87fac66" category="cell">リポジトリへのアクセスを指定する必要があります ...</block>
-  <block id="886dab0e73d247379a1479ecce7a2e23" category="paragraph">RHEL 7.x</block>
-  <block id="3272bb50aa49abfece4d0ff5d7f2f1c9" category="paragraph">rhel-7-server-optional-rpms のいずれかです</block>
-  <block id="66985170e641a7e20698bfec3c1d889f" category="paragraph">CentOS 7.x</block>
-  <block id="29bbf40549849d260ac98466712efae4" category="paragraph">C7.6.1810 - ベースリポジトリ</block>
-  <block id="9871c3e3eef10eb83f1020bf0f40a11c" category="paragraph">RHEL 8.x の場合</block>
-  <block id="53edaf3b5c2db40d342cf9b501bc24c1" category="list-text">RHEL-8-For x86_64-baseos-RPMs</block>
-  <block id="77e5c42f280ea35ee2926680eb9b47bd" category="list-text">RHEL-8-For x86_64-AppStream-RPMs</block>
-  <block id="af01f167586e9fbd8632c8a1a0ec0690" category="paragraph">CentOS 8.0</block>
-  <block id="89fbd37c27e26bf7336116db7ac1b466" category="paragraph">インストールプロセスでメディエーターから必要なパッケージにアクセスできるように、上記のリポジトリへのアクセスを有効にします。お使いのオペレーティングシステムに応じて、以下の手順を使用してください。</block>
-  <block id="29a3901faa47143beca695a85de7db4c" category="paragraph">オペレーティング・システムが * RHEL 7.x * の場合：</block>
-  <block id="b89b54d5af46b251354ba0599e815d76" category="paragraph">次の例は、このコマンドの実行例を示しています。</block>
-  <block id="f55bcd9897346cefe1eb6f488358d4b7" category="paragraph">オペレーティング・システムが * RHEL 8.x * の場合：</block>
-  <block id="3a1b4b15b3782aff48704dfaea19c4ca" category="paragraph">新しくサブスクライブしたリポジトリがリストに表示されます。</block>
-  <block id="22245074a7cac6efac9483e3712eb75c" category="paragraph">オペレーティングシステムが * CentOS 7.x * の場合：</block>
-  <block id="95e57bf68611e6ba7f518e0e34d40385" category="list-text">C7.6.1810 ベースリポジトリを追加します。C7.6.1810 - ベースボールトリポジトリには、 ONTAP メディエーターに必要な kernel-devel パッケージが含まれています。</block>
-  <block id="a9a0d20bc8c82736f7aca5ab3b01ecdf" category="list-text">次の行を /etc/yum.repos_d/Center-Vault.repo に追加します。</block>
-  <block id="d35432a6cd9635c21aa35d7b00ab2a18" category="paragraph">オペレーティングシステムが * CentOS 8.0.1905 以降のビルド * の場合：</block>
-  <block id="f79787ab160e21523526e72ba51652ad" category="paragraph">パッケージがすでにインストールされていることを示すエラーが表示された場合は、パッケージを削除してから再試行してください。</block>
-  <block id="e1daa66710a7c955cba4452a694495af" category="section-title">メディエーターのインストールパッケージをダウンロードします</block>
-  <block id="658af565337d40fc1457f7afa13ddfee" category="list-text">ONTAP メディエーターのページからメディエーターのインストールパッケージをダウンロードします。</block>
-  <block id="b02f3046b150b191e2d899be132a42bf" category="inline-link">ONTAP メディエーターのダウンロードページ</block>
-  <block id="bfaf18d8dfedf8024736910386965918" category="paragraph">インターネットにアクセスできない場所にいる場合は、インストーラが必要なパッケージにアクセスできることを確認する必要があります。</block>
-  <block id="8381a4805481041eb6ea8539d663156b" category="list-text">必要に応じて、メディエーターのインストールパッケージをダウンロードディレクトリから Linux メディエーターホストのインストールディレクトリに移動します。</block>
-  <block id="f7def9f508355bb00fa3a45cb1f5748c" category="section-title">ONTAP メディエーターのインストールパッケージをインストールします</block>
-  <block id="e62715a71f6beca82d6df0e20b5bd455" category="paragraph">インストールプロセスが開始され、必要なアカウントの作成と必要なパッケージのインストールが行われます。以前のバージョンのメディエーターがホストにインストールされている場合は、アップグレードを確認するプロンプトが表示されます。</block>
-  <block id="db1646631b8bff8b437c37c322aa0a61" category="inline-link-macro">ONTAP メディエーターのインストールの例（コンソール出力）</block>
-  <block id="8a03d3e4e3fbf1d4d358c62350ffc64b" category="list-text">ONTAP メディエーターサービスで使用しているポートの netstat を使用して確認します</block>
-  <block id="8eea62084ca7e541d918e823422bd82e" category="section-title">結果</block>
-  <block id="e08c70cd39bb34f43d0f131e35bb05f8" category="paragraph">これで、 ONTAP メディエーターサービスがインストールされて実行された状態になります。メディエーターの機能を使用するには、 ONTAP ストレージシステムでさらに設定を行う必要があります。</block>
   <block id="d7bc3e4699ceee82586454b661f07889" category="list-text">ONTAP メディエーターサービスと MetroCluster Tiebreaker ソフトウェアの両方を同じ MetroCluster 構成で使用することはできません。</block>
   <block id="965fd53f15f7bf99e2336c9a442ebb53" category="list-text">ONTAP メディエーターサービスでは、最大 5 つの MetroCluster 構成を同時にサポートできます。</block>
   <block id="73333563890b10eb0a0e6a525715ce08" category="paragraph">プロンプトに「 yes 」と応答すると、コマンドが発行されたサイトがパートナーサイトを切り替えます。</block>
@@ -8072,10 +7940,6 @@
   <block id="13fb17d9959e5b76dfb561a0f95edc25" category="paragraph">MetroCluster ONE は、ネットアップの検証済みスイッチ、 ONTAP 9.6 、および共有トポロジを使用する MetroCluster 構成です。MetroCluster 2 は、ネットアップ準拠のスイッチと ONTAP 9.7 を使用した MetroCluster 構成です。</block>
   <block id="5ad2282d147bc627a5ce751a67599c20" category="admonition">中間スイッチはネットアップの仕様に準拠している必要があります。</block>
   <block id="c7f89880448c82e7f3ca4625488b3680" category="image-alt">MCC IP では、 2 台の MCCS を共有スイッチに直接接続することはできません</block>
-  <block id="d5aeb358681fe8cf66166fa74195a2fd" category="summary">ONTAP メディエーターサービスをインストールしたあと、必要に応じてパスワードを変更できます。パスワードは 2 つの方法で変更できます。</block>
-  <block id="e3aa7011a37bc39acddb421d35fe5c6b" category="doc">ONTAP メディエーターのパスワードを変更しています</block>
-  <block id="0fea72913528353e02baddfe85a03e5e" category="paragraph">次のいずれかを実行してパスワードを変更します。</block>
-  <block id="858e574cb48e3c7de231574b683ba3f3" category="list-text">mediator_change_password コマンドを実行して、次の例のようにプロンプトに応答します。</block>
   <block id="c209703458c468cdf952f490276996a0" category="summary">MetroCluster 構成の各ノードは、ノードレベルの設定や 2 つのサイトへのノードの設定を含めて、 ONTAP で設定する必要があります。また、 2 つのサイト間に MetroCluster 関係を実装する必要があります。</block>
   <block id="ef6b52b87a839f50cbfacc69d34de0af" category="image-alt">ワークフロー MCC IP ：ノードおよびクラスタ構成ソフトウェアの概要</block>
   <block id="ff63653e290a8e5b339966cb9855555f" category="summary">MetroCluster 構成を削除したあと、すべてのディスク接続とインターコネクトをサポートされる状態に調整する必要があります。MetroCluster 構成を削除する必要がある場合は、テクニカルサポートにお問い合わせください。</block>
@@ -8127,9 +7991,6 @@
   <block id="5d21ef93e8cb12318e2d8486435cc6f1" category="section-title">AFF A320 、 AFF A400 、 AFF A700 、 AFF A800 を Cisco 9336C-FX2 共有スイッチにケーブル接続する方法</block>
   <block id="8522044be3175fd7ff7606798d41836f" category="image-alt">MCC IP ケーブル接続 AFF A320 400A700 A800 から Cisco 9336c 共有スイッチへの接続</block>
   <block id="2b1013f1c2f3e9436213f4a43069d1f4" category="image-alt">プラットフォームごとの MCC インターフェイス 9336 共有</block>
-  <block id="363d2acb4bc2d2fd26d5676edcfecde3" category="paragraph">ONTAP メディエーターサービスをインストールしたあと、必要に応じてユーザ名を変更できます。パスワードは 2 つの方法で変更できます。</block>
-  <block id="493069b37797535af86a5daa9bd2e352" category="paragraph">次のいずれかを実行してユーザ名を変更します。</block>
-  <block id="2c7c13674c748cbd47e89d7e894c0c63" category="list-text">次の例に示すように、コマンド mediator_change_user を実行してプロンプトに応答します。</block>
   <block id="19d820a9221f4c3142921037b434a337" category="summary">MetroCluster IP 構成で多重化機器を使用する場合は、一定の考慮事項に注意する必要があります。</block>
   <block id="879911f6e225e29ff8e098fa74f5ff53" category="doc">MetroCluster IP 構成で TDM / xWDM および暗号化機器を使用</block>
   <block id="c1c2a0409868d06a74bf1b3203711a03" category="paragraph">これらの考慮事項は、 MetroCluster の専用の直接のバックエンドリンクおよびスイッチにのみ適用され、 MetroCluster 以外のトラフィックと共有されるリンクには適用されません。</block>
@@ -9800,30 +9661,7 @@
   <block id="24559ad233b20440003c4d9094713621" category="paragraph"><block ref="24559ad233b20440003c4d9094713621" category="inline-link-macro-rx"></block></block>
   <block id="1c609f3ddab3b14ddf26fc53264aff33" category="paragraph"><block ref="1c609f3ddab3b14ddf26fc53264aff33" category="inline-link-macro-rx"></block></block>
   <block id="8d7c5a2fec33d152c060971aa3253c4b" category="paragraph">vol modify -vserver vserver-name -volume volume-name -dr-force-nvfail on `</block>
-  <block id="1baaf248a80e9f2df9149ad24bcd0836" category="paragraph">* 注：オペレーティングシステムのアップグレード中は、 ONTAP メディエーターとメディエーターアシストの自動計画外スイッチオーバーは使用できません。メディエーターのバージョン 1.0 から 1.1 へのアップグレードプロセスが完了するまでは、メディエーターはオフラインです。</block>
-  <block id="050bfbcc74f502e3ef3716d883f61c92" category="list-text">ONTAP 設定からメディエーターサービスを削除します。</block>
-  <block id="8484266510c971479df6392894ce9e31" category="list-text">メディエーターサービスを ONTAP 設定に追加します。</block>
   <block id="ed92588fcdb50fce92fb0e01fb8449b0" category="paragraph">メディエーターとオペレーティングシステム問題のアップグレードが完了したら、「 storage iscsi-initiator show 」コマンドを実行して、メディエーター接続が稼働していることを確認する必要があります。</block>
-  <block id="59ce098408ba22153827c3740f7439ed" category="paragraph">** 注： ** これには ONTAP でメディエーターを再設定する必要があります。</block>
-  <block id="956ab0574d8251a8ec8c6c74f42bf11d" category="inline-link-macro">ONTAP メディエーターサービスをアンインストールします</block>
-  <block id="4d3a5688cd619b6a471bd27705ed11b7" category="list-text"><block ref="e5b98464b5c0e6ec01b305f3fb5a465a" category="inline-link-macro-rx"></block>。</block>
-  <block id="d538323207536710bf9482e713fccdb0" category="paragraph">次の前提条件を満たしている必要があります。</block>
-  <block id="7ca10fe4adcfe26c58b56f49be56e4d0" category="admonition">カーネルのバージョンがオペレーティングシステムのバージョンと一致している必要があります。</block>
-  <block id="aab7c1d9cccd04fb93c38e242c676b4a" category="inline-xref">CentOS 8.0.1095 以降</block>
-  <block id="ebb1c48020075aff153ff6902c0e37db" category="list-text">必要なリポジトリに登録します。</block>
-  <block id="b3dd10b8fd4e14d2545dc0003d3ad87a" category="paragraph">'subscription-manager repos_--enable rhel-7-server-optional-rpms</block>
-  <block id="981295ff2a0d7463991a885ba18dcf9d" category="list-text">yum repolist' コマンドを実行します</block>
-  <block id="7dd1ebc4d5b183898da5921f08d7b314" category="paragraph">'subscription-manager repos_--enable RHEL-8-For -x86_64-baseos-rpms</block>
-  <block id="bb80618cbf594385d599f59db2af5e33" category="paragraph">'subscription-manager repos_--enable RHEL-8-For -x86_64-AppStream-RPM'</block>
-  <block id="5842c617760ec88e74403fcbbdac12a9" category="list-text">kernel-devel パッケージを削除します。</block>
-  <block id="6d97c3b1955e8f90cdc265fad38ddb79" category="paragraph">yum 'remove kernel-devel'</block>
-  <block id="99bb9681cb725875d0be400f49eca9d6" category="list-text">に示すように 'rpm' コマンドを繰り返します <block ref="fd049611d5f23ebb101acec1a21657d5" category="inline-xref-macro-rx"></block>。</block>
-  <block id="8206c273a22a9771c0ddd5eb500e8908" category="list-text">メディエーターのインストールパッケージがターゲットディレクトリにあることを確認します。</block>
-  <block id="74ba1d61d7167ef9092b8a56f7804e73" category="paragraph">「 ls 」と入力します</block>
-  <block id="88d054d5f3a3fafd9ba1b4f2b9d83d80" category="list-text">メディエーターのインストールパッケージをインストールし、必要に応じてプロンプトに応答します。</block>
-  <block id="5f733d0fb3040c5d3ddeb8aecc22ad76" category="paragraph">`./ONTAP-Mmediator_1.3`</block>
-  <block id="727f7e66f563ac8a9894cde4ef7cae57" category="list-text">次のコマンドを実行して、 ONTAP メディエーターサービスのステータスを表示します。</block>
-  <block id="2c101feb286ad2210cbfe89cbea82b4a" category="paragraph">'systemctl `</block>
   <block id="8e1b87e111c6a25dd28266989f14eb98" category="paragraph">設定レプリケーションサービス（ CRS ）メタデータボリュームとデータ SVM ルートボリュームは、ミラーされたアグリゲートに配置する必要があります。これらのボリュームをミラーされていないアグリゲートに移動することはできませミラーされていないアグリゲートにある場合、ネゴシエートスイッチオーバー処理とスイッチバック処理が拒否されます。MetroCluster check コマンドは ' その場合に警告を表示します</block>
   <block id="f04ccee1003dbd5f1c9c6351af3f0b4e" category="list-text">メンテナンスモードで、ノードのローカルアグリゲートのドライブを手動で割り当てます。</block>
   <block id="b9ddc3ef83ffe8e2847e207d39a98687" category="list-text">ブートメニューからオプション 4 を選択し、システムをブートします。</block>
@@ -9842,11 +9680,6 @@
   <block id="d0aa5bb25a5ec51528b605049e583e4c" category="list-text">MetroCluster 構成から現在の ONTAP メディエーターを削除します。</block>
   <block id="fb936fa23d866b3d364f6eb5c606725a" category="list-text">MetroCluster 構成への新しい ONTAP メディエーター接続を確立します。</block>
   <block id="2df82e698bfc14af74dd0684edfa8af0" category="paragraph">MetroCluster の構成設定メディエーターの追加メディエーターのアドレス IP-addressof mediator-host`</block>
-  <block id="e3bdaded12d38863b3e782d2277f8891" category="paragraph">このコマンドを実行できない場合は、次の例のように完全パスを使用してコマンドを実行する必要があります。</block>
-  <block id="183b2aa3a5eb88aeb88e71147b8bcf77" category="paragraph">`/usr/local/bin/mediator_change_password`</block>
-  <block id="e2a6f3f0659d65cb3836785cf8a67738" category="list-text">「 mediator_change_password 」コマンドを実行し、次の例に示すようにプロンプトに応答します。</block>
-  <block id="42e7b099f6b0528770f02ee25377b671" category="paragraph">`m EDIATOR_USERNAME=mediatoradmin mediator_password=mediator1 mediator1 mediator_new_password=mediator2 mediator2 mediator_change_password'</block>
-  <block id="170fad7ce1323bd1ac99a22d153c057d" category="paragraph">この例では、パスワードが「 mediator1 」から「 mediator2 」に変更されています。</block>
   <block id="1645e08f0bfdf72de9dd9cf2ec8208de" category="admonition">メディエーターの admin ユーザアカウントのユーザ名とパスワードを入力するように求められます。</block>
   <block id="80e98c813fb4e1db7539339fdcc19d00" category="list-text">自動スイッチオーバー機能が有効になっていることを確認します。</block>
   <block id="241c04bf46a427ee9559a37db9cfc64c" category="list-text">メディエーターの仮想ディスクを表示します。</block>
@@ -9854,8 +9687,6 @@
   <block id="e0a63c2d875daa748729bbc9b043b578" category="list-text">権限モードを advanced に設定します。</block>
   <block id="1b3b2eb3ea38d6c2916cd4e043a581a0" category="list-text">mediator というラベルのイニシエータを表示します。</block>
   <block id="0064d443ab5a950b5f6aadf617249813" category="paragraph">「 storage iscsi-initiator show -label mediator 」という名前のストレージがあります</block>
-  <block id="6b650cfd5a5122af7703db2cfff2b455" category="paragraph">/usr/local/bin/mediator_username</block>
-  <block id="b41c8853c66915bd8a05346255719968" category="paragraph">`m EDIATOR_USERNAME=mediator2 mediator_new_username=mediatoradmin mediatoradmin mediator_change_user'</block>
   <block id="dfedcd37df868d1ac2683539148a334c" category="list-text">自動ドライブ割り当てを無効にします。</block>
   <block id="268f1e3113b76d1115b1dfd6ea2805c8" category="paragraph">「 storage disk option modify -node node_name -autoassign off</block>
   <block id="4c51711fe99868d826269d8b57f9bb67" category="paragraph">次の例は、外付けシェルフがない AFF A800 システムの cluster_A についての出力を示しています。</block>
@@ -10249,9 +10080,6 @@
   <block id="785d9b929c797e7831a4713eabd0827d" category="list-text">あるリモートクラスタとの通信に使用するポートは、すべて同じ IPspace に属している必要があります。</block>
   <block id="b886fb19ae0fdb270531dfdcb20663bd" category="list-text">クラスタ間通信で使用されるブロードキャストドメインに、 1 ノードあたり最低 2 つのポートがあり、クラスタ間通信で別のポートへのフェイルオーバーが可能になっている。</block>
   <block id="2bd06228e1f57eaa8e5ebd6cbc49cba5" category="list-text">データプロトコル（ CIFS 、 NFS 、 iSCSI ）によるネットワーク利用率が 50% を超える場合は、レプリケーションにポートを専用に割り当てて、ノードのフェイルオーバーが発生してもパフォーマンスが低下しないようにします。</block>
-  <block id="04e18ededf9b4f7e991de51ad7fa228d" category="paragraph">/usr/local/bin/uninstall_ontap _ mediator</block>
-  <block id="af016f6803224b169dbdc2d486a7034d" category="list-text">ONTAP メディエーターサービスをアンインストールします</block>
-  <block id="c53d7ae8b9830f4d572f86414bfcc5ab" category="paragraph">uninstall_ONTAP_mediator</block>
   <block id="e39c1c9f6137c6dbe9a36e7da08ce525" category="paragraph"><block ref="e39c1c9f6137c6dbe9a36e7da08ce525" category="inline-link-macro-rx"></block></block>
   <block id="d6c1b26afb87081a7358d272268afbf0" category="paragraph"><block ref="d6c1b26afb87081a7358d272268afbf0" category="inline-link-macro-rx"></block></block>
   <block id="a72d2a4ca552186cbf62f182a7dfbe82" category="paragraph"><block ref="a72d2a4ca552186cbf62f182a7dfbe82" category="inline-link-macro-rx"></block></block>
@@ -10281,9 +10109,6 @@
   <block id="406bb351c55daa6b29920fa6ce644c29" category="paragraph">「原稿リスト」</block>
   <block id="158cb58d37ae471e855a50eebdf79050" category="list-text">RCF スクリプトを適用します。</block>
   <block id="3c0c5e88db6d4b3741126778351471ec" category="paragraph">「 script apply BES-53248 v1.32_Switch-A1.scr 」を参照してください</block>
-  <block id="7ae90f92f4c3116089ea1691a1481c66" category="paragraph"><block ref="7ae90f92f4c3116089ea1691a1481c66" category="inline-link-macro-rx"></block></block>
-  <block id="ae295e7cab9e10826cf8dfdf49ccefd4" category="paragraph"><block ref="ae295e7cab9e10826cf8dfdf49ccefd4" category="inline-link-macro-rx"></block></block>
-  <block id="cb34f32d49a6adde57a3822c5d1146c9" category="list-text"><block ref="72ca1e083d77bc61b26140e9f36ae29f" category="inline-link-macro-rx"></block>。</block>
   <block id="c77851b696911673647cb7bed20ed179" category="paragraph">システムが保守モードになっている場合は、 halt コマンドを問題して保守モードを終了し、次に「 boot_ontap 」コマンドを問題してシステムをブートし、クラスタセットアップを開始する必要があります。</block>
   <block id="2c4ba3dc166bed104e5a7cb242a33b52" category="list-text">各クラスタの最初のノードで、プロンプトに従ってクラスタを設定します</block>
   <block id="66b81db08cfd6dc65c91f43c33637ff2" category="inline-link">System Manager を使用したクラスタの管理（バージョン 9.0 から 9.6 ）</block>
@@ -10291,21 +10116,6 @@
   <block id="a20a27311b456fc6207eda19880125cd" category="inline-link">ONTAP システムマネージャ（バージョン 9.7 以降）</block>
   <block id="1ca0d9647eb663a44ff0a5fef980ff52" category="paragraph"><block ref="1ca0d9647eb663a44ff0a5fef980ff52" category="inline-link-rx"></block></block>
   <block id="b4c9e1380e1ed5373eae1207de120c59" category="paragraph">そうでない場合は、各ノードで HA モードを設定し、ノードをリブートする必要があります。</block>
-  <block id="647537229263aefa3c54288c7bb1c9c9" category="list-text">サードパーティ製ファイアウォールを使用している場合は、を参照してください <block ref="18d19bad9a4543e182a0d97d3b9dd92c" category="inline-link-macro-rx"></block></block>
-  <block id="66b839172e851682436ef771164bf0b9" category="list-text">grub.cfg ファイルを再生成し、変更を実装します。</block>
-  <block id="c4e74e306f571ddb1de7142533ff4394" category="paragraph">「 update-bootloader 」 | 「 update-grub 」 | 「 grub2 -mkconfig -o /boot/grub2/grub.cfg 」を参照してください</block>
-  <block id="6ec67c7f9ae6e79cdc1ecaba58a63339" category="paragraph"><block ref="6ec67c7f9ae6e79cdc1ecaba58a63339" category="inline-link-macro-rx"></block></block>
-  <block id="ef86cc5f8c1cf0649edb8980819d5ccb" category="list-text">の手順 <block ref="cfad4f933445fe3e149c146ecc0b3865" category="inline-xref-macro-rx"></block> オペレーティングシステム：</block>
-  <block id="e5e4fe7cae071f868354ffe124c8eac4" category="list-text">の手順 <block ref="7f25bb534eeedad3193848983965dfb8" category="inline-xref-macro-rx"></block> オペレーティングシステム：</block>
-  <block id="871694b01e89140015514ce2a9ec485a" category="list-text">の手順 <block ref="d65b2d64eb8a246b44f850f01d3b24a4" category="inline-xref-macro-rx"></block> オペレーティングシステム：</block>
-  <block id="67293445361633138c116474626ee0d9" category="list-text">の手順 <block ref="6cd33e8d98a7bb7cb5f5ed641272afcc" category="inline-xref-macro-rx"></block> オペレーティングシステム：</block>
-  <block id="f9338b001083c1207b750f7ca56fb6ce" category="section-title">RHEL 7.x オペレーティングシステム用の手順</block>
-  <block id="99e8c68b889cb147e7d7f3a766bcbc08" category="section-title">RHEL 8.x オペレーティングシステム用の手順</block>
-  <block id="aa3f631fc5c50fd8386f95cdb6d4a080" category="section-title">CentOS 7.x オペレーティングシステムの手順</block>
-  <block id="e77417f9b3a025db5c9b897480397f05" category="section-title">手順 for CentOS 8.0.1905 以降のオペレーティングシステム</block>
-  <block id="776b863d23f8f3c1ad323efc746ad581" category="inline-link">CentOS Vault の場合</block>
-  <block id="9a57fec066e0a61fb842162f033faf88" category="paragraph">「 rpm -i \ http://vault.centos.org/8.0.1905/BaseOS/x86_64/os/Packages/kernel-devel-$(uname -r 」。 rpm</block>
-  <block id="9c0f95d6de9186b24cce94c1c19ad0bb" category="section-title">インストールを確認します。</block>
   <block id="bc123056e228f601bd0d262cb4470668" category="list-text">ONTAP 9.4 以前を実行しているシステムの場合は、データアグリゲートを修復します。</block>
   <block id="f7435cd78551a0fd45d3c8d37a295df3" category="paragraph">MetroCluster はアグリゲートを修復します</block>
   <block id="25df9fc7c4242bd1e2418d12f58a6bd2" category="list-text">ONTAP 9.4 以前を実行しているシステムの場合は、ルートアグリゲートを修復します。</block>
@@ -10505,14 +10315,6 @@
   <block id="ab4a2de3931dbed092e0d44be3c87116" category="list-text">MetroCluster IP 用の Broadcom RCF ファイルを生成します。</block>
   <block id="fd550a9c3a7b7c6106ae07bc6bb69106" category="list-text">をダウンロードします<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block></block>
   <block id="7d5c4b7a8cb7bc598a3b2eb9fb74fe60" category="list-text">RcfFileGenerator for MetroCluster IP を使用して、設定用の RCF ファイルを生成します</block>
-  <block id="fcc29e51109ca100014a87a9b9694411" category="list-text">Red Hat Enterprise Linux ： 7.6 、 7.7 、 7.8 、 7.9 、 8.0 、 8.1 、 8.2 、 8.3</block>
-  <block id="7756ed262f2157ad61f237289d31648e" category="list-text">CentOS ： 7.6 、 7.7 、 7.8 、 7.9</block>
-  <block id="070add3768287c5f5f5f77d13c4a72af" category="list-text">Red Hat Enterprise Linux ： 7.6 、 7.7 、 7.8 、 8.0 、 8.1</block>
-  <block id="a565f362dbb8e1b9f57a08e86e8f79c8" category="list-text">CentOS ： 7.6 、 7.7 、 7.8</block>
-  <block id="8e6d01361c0a0174b1932a821de7a679" category="list-text">Red Hat Enterprise Linux または CentOS のインストールについては、 Red Hat のベストプラクティスに従う必要があります。CentOS 8.x のバージョンは寿命を通じてサポートされるようになったため、 RHEL または互換性のあるバージョンの CentOS 7.x を使用することは推奨されません</block>
-  <block id="81c7a3cb2e63f472014dfe2b68d0038b" category="admonition">CentOS 8.x のサポートは、 2021 年 12 月 31 日に終了します。CentOS と ONTAP を使用する場合は、にリバートすることを推奨します <block ref="d65b2d64eb8a246b44f850f01d3b24a4" category="inline-xref-macro-rx"></block> オペレーティングシステムまたは RHEL を使用</block>
-  <block id="6ba27586854ba0abe529cf9dfcdd935e" category="paragraph">を参照してください<block ref="ca696ba3aa939e934b2df752c3821404" category="inline-link-rx"></block>で、お使いのオペレーティングシステムに対応する kernel-devel パッケージを探します。最新バージョンの 8.0 （ CentOS 8.0.1905 以降）コアはにあります<block ref="0ea159b669197108632fac010ad6fa88" category="inline-link-rx"></block>必要なカーネルモジュールをコンパイルするためには、対応する kernel-devel パッケージへのアクセスを提供する必要があります。</block>
-  <block id="2699fab59dd92a1ee8ec7edfb1c53cc2" category="admonition">上記のコマンドの例は、 CentOS 8.0.1905 固有のものです。他の CentoOS 8.x ビルドの場合は、必要に応じてパスを変更します。</block>
   <block id="83be746defb3baacbca8a27913d5e887" category="summary">共有ストレージ MetroCluster スイッチを使用して、 NS224 シェルフを MetroCluster に追加する必要がある場合があります。</block>
   <block id="81614ec1c85e193dd436e86dd56ed40d" category="doc">共有ストレージ MetroCluster スイッチを使用した MetroCluster IP へのシェルフの追加</block>
   <block id="0aefe0e277b60b987afe007a43a31ca0" category="paragraph">ONTAP 9.10.1 以降では、共有のストレージ / MetroCluster スイッチを使用して、 MetroCluster から NS224 シェルフを追加できます。シェルフは一度に複数追加できます。</block>
@@ -10760,7 +10562,6 @@
   <block id="01fe01722f1775c1b67e7b20a14951de" category="summary">ONTAP 9.9..1 以降では、 IP ルーティング（レイヤ 3 ）バックエンド接続を使用して MetroCluster IP 設定を実装できます。</block>
   <block id="190cbd15f1cbbd86a76eac6847a93472" category="admonition">ネットアップではネットアップ検証済みのスイッチのみをサポートしていますこれらのスイッチは、ネットアップがテストして販売します。これらはに一覧表示されています <block ref="d4ffdef7e991262a330f44b113eb81ba" category="inline-link-macro-rx"></block> およびインチ <block ref="d708b823ca770dd1bbb2d28ee68bd021" category="inline-link-macro-rx"></block>。</block>
   <block id="c1444ba460cdd9b59c8ecf988ca907c4" category="list-text">ONTAP 9.7 以降では、自動計画外スイッチオーバーがサポートされます。</block>
-  <block id="f0324d386ec4ed7f8c8ebf742291230a" category="paragraph">「 MetroCluster configurion-settings add-mmediator-address-1.1-ip-address 」と入力します</block>
   <block id="9be8f8020bac531bf90d3e9e43090821" category="list-text">MetroCluster Tiebreaker ソフトウェアの最新バージョンをダウンロードします。この例では、バージョン 1.21P3-1 を使用します。</block>
   <block id="91cf0413661523a86216dbb468e63b8e" category="paragraph">「 rpm -ivh NetApp-MetroCluster-Tiebreaker -Software-1.21P3-1x86_64.rpm 」</block>
   <block id="efbc224381e9ee3b7c21a4934b2b6740" category="paragraph">「 rpm -Uvh NetApp-MetroCluster-Tiebreaker -Software-1.21P3-1.x86_64 」 rpm</block>
@@ -10890,8 +10691,6 @@
   <block id="71a38375f76a7ed87f8e28fa9645d356" category="sidebar">ONTAP メディエーターサービスをインストールまたはアップグレードします</block>
   <block id="4a013e1601591220c48257d9b4f85901" category="sidebar">MetroCluster IP 構成から ONTAP メディエーターサービスを設定します</block>
   <block id="f49bd82ec28b5ed1e86bb99d8be7e44e" category="sidebar">MetroCluster 構成を別の ONTAP メディエーターインスタンスに接続します</block>
-  <block id="ccb82146b8d97fe4c7eca00b48d743d4" category="sidebar">ONTAP メディエーターのパスワードを変更します</block>
-  <block id="1cc7ca7bd5f05790fc8714f3758d47eb" category="sidebar">ONTAP メディエーターのユーザ名を変更します</block>
   <block id="2497da01927dd78867fe48a11bd87f93" category="sidebar">MetroCluster 構成をテストします</block>
   <block id="38484792ce18e1ac90df07df1cbe4040" category="sidebar">Tiebreaker ソフトウェアをインストールします</block>
   <block id="77d873129b2551d3791bd53918453706" category="sidebar">Tiebreaker ソフトウェアを設定します</block>
@@ -11138,8 +10937,6 @@
   <block id="a017a6db2fc01588987d027787f42d9c" category="section-title">AFF A900 から Cisco 3232C または Cisco 9336C スイッチへのケーブル接続</block>
   <block id="34bc1dd80a773d74b460af7f29e7d10f" category="image-alt">AFF a900 から Cisco 32c または Cisco 9336c スイッチへのケーブル接続</block>
   <block id="1700747af42734556058284b63ef6e71" category="paragraph"><block ref="1700747af42734556058284b63ef6e71" category="inline-link-macro-rx"></block></block>
-  <block id="0cbcf8488c0db66baf9b2d34702dd7ba" category="paragraph">MetroCluster 構成設定 add-mediator-address-1.0-ip-address</block>
-  <block id="23c36d85c3ecc94e8e88986b2d4194cc" category="paragraph">「 MetroCluster configurion-settings add-mmediator-address-ip-address 」と入力します</block>
   <block id="04c19f5eb2ebdc099239a7074f8d6534" category="paragraph">9.10.1 以降</block>
   <block id="c6d4a9d3f7628712dae7a41ab974439d" category="inline-link">「 system controller replace 」コマンドを使用して、 ONTAP 9.8 以降を実行するコントローラハードウェアをアップグレードします</block>
   <block id="6c8dc70fbcb473ab96451fff57f7f3a0" category="paragraph"><block ref="6c8dc70fbcb473ab96451fff57f7f3a0" category="inline-link-rx"></block></block>
@@ -12433,13 +12230,6 @@
   <block id="fa06f628b32f0d1ba3fc7ece00862b96" category="paragraph"><block ref="fa06f628b32f0d1ba3fc7ece00862b96" category="inline-link-rx"></block></block>
   <block id="9f6ef9d803a6a101c30a47069149abd6" category="list-text">EFOS バージョン 3.7.x.x 以降では、 FIPS に準拠していないバージョンと FIPS に準拠したバージョンが提供されています。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
   <block id="c92c490b97a94b8ad700c26b41c33c18" category="summary">ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使用してステータス情報用のリポジトリを物理的に切り離すことで、 MetroCluster IP 構成で自動計画外スイッチオーバーを実行できます。</block>
-  <block id="f99a7e2cc2f68abed09630b1b61f8cd9" category="paragraph">ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使用してステータス情報用のリポジトリを物理的に切り離すことで、 MetroCluster IP 構成で自動計画外スイッチオーバーを実行できます。環境が次の要件を満たしている必要があります。Linux のバージョンの更新が必要になる場合があります。</block>
-  <block id="6be6d40c3750758375151aaf5ce76c7a" category="paragraph">Linux 環境で Link Aggregation Control Protocol （ LACP ）を使用している場合は、カーネルを正しく設定し、 sysctl net.ipv4.conf all.arp_ignore が「 2 」に設定されていることを確認する必要があります。</block>
-  <block id="56f9797f838faa0e4bcaf2634a6882b4" category="paragraph">次の例は、このコマンドの実行例を示しています。「 RHEL -7 -server Optional -rpms 」リポジトリがリストに表示されます。</block>
-  <block id="ff55a787e94b8141de1d31a08ef3978a" category="paragraph">次の例は、このコマンドの実行例を示しています。一覧に「 CentOS - 7.6.1810 - Base 」リポジトリが表示されます。</block>
-  <block id="428213827ee56071818425b8652e1717" category="list-text">[step1-rpm] kernel-devel パッケージを直接インストールします。</block>
-  <block id="1c25284cbe99f20a5f633ae8ef6d7f53" category="paragraph"><block ref="1c25284cbe99f20a5f633ae8ef6d7f53" category="inline-link-rx"></block></block>
-  <block id="bc11709638b090ced2d64b33a0568e86" category="paragraph"><block ref="bc11709638b090ced2d64b33a0568e86" category="inline-link-macro-rx"></block></block>
   <block id="e90535a051902416d901e147c4c59930" category="summary">このマニュアルでは、 MetroCluster Tiebreaker ソフトウェアをインストールおよび設定する方法について説明します。</block>
   <block id="884324de7d536976016cc7e2b34b0da9" category="paragraph">この情報は、 MetroCluster Tiebreaker ソフトウェアをインストールする際に使用します。</block>
   <block id="26a1b5abfaa8d36a512417a3da776baf" category="summary">MetroCluster の設定と処理の詳細については、を参照してください。</block>
@@ -12748,4 +12538,10 @@
   <block id="df181c6434803cd5a18218c45eca6655" category="list-text">fec を off に設定します</block>
   <block id="344fc0c43530ccad90a38944b632b1e4" category="list-text">構成モードを終了します : exit</block>
   <block id="9c0c1022f821ad4ee9fd20c2731bc6f1" category="list-text">トラブルシューティングに役立てるため、各 MetroCluster DR グループ内の各 SAS ディスクシェルフには、シェルフ ID を一意にすることを強く推奨します。</block>
+  <block id="70fef59fffa5df67d10b024d11f37399" category="paragraph"><block ref="70fef59fffa5df67d10b024d11f37399" category="inline-link-macro-rx"></block></block>
+  <block id="466ed123ab8f5845237d3ae425397ec7" category="paragraph">環境が次の要件を満たしている必要があります。</block>
+  <block id="c5cd3d887ef507cadc249c592410542a" category="list-text">Linux のバージョンを更新する場合は、最新の ONTAP メディエーターサービスをインストールする前にアップグレードしてください。</block>
+  <block id="38553b6946adff245ef7423d34544e4b" category="paragraph">サードパーティのファイアウォールを使用している場合： * HTTPS アクセスが有効になっている必要があります。* ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。</block>
+  <block id="63fb21fb55a9451afb7b60d2b7d593b2" category="paragraph">+ Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。</block>
+  <block id="5981ded82c976bff5c9a73686842655a" category="list-text">メディエーターサービスは、以前のバージョンから現在のバージョンにアップグレードすることができます。</block>
 </blocks>
