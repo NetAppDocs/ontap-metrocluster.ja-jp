@@ -45,12 +45,52 @@
   <link rel="stylesheet" href='/ja-jp/ontap-metrocluster/css/na-utility.css' type='text/css'>
   <link rel="stylesheet" href='/ja-jp/ontap-metrocluster/css/na-sidebar.css' type='text/css'>
   <link rel='stylesheet' href='/ja-jp/ontap-metrocluster/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/ja-jp/ontap-metrocluster/css/custom-dropdown.css' type='text/css'>
   <link rel='stylesheet' href='/ja-jp/ontap-metrocluster/css/na-pagenav.css' type='text/css'>
 
   
   <link rel="stylesheet" href="/ja-jp/ontap-metrocluster/css/landing-page.css" type="text/css">
   <link rel="stylesheet" href="/ja-jp/ontap-metrocluster/css/tabbed-blocks.css" type="text/css">
-  <link rel='stylesheet' href='/ja-jp/ontap-metrocluster/css/na-feature.css' type='text/css'><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/ja-jp/ontap-metrocluster/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
   <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
@@ -60,15 +100,6 @@
 
   <script src='/ja-jp/ontap-metrocluster/js/na-utility.js'></script>
   <script src='/ja-jp/ontap-metrocluster/js/clouddocs.js'></script>
-  <script>
-  if (document.location.hostname === "docs.netapp.com") {
-    var head = document.getElementsByTagName('head')[0];
-    var adobe = document.createElement("script");
-    adobe.type = "text/javascript";
-    adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
-    head.appendChild(adobe);
-  }
-  </script>
   <script src='/ja-jp/ontap-metrocluster/js/jquery.navgoco.min.js'></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src='/ja-jp/ontap-metrocluster/js/toc.js'></script>
@@ -121,16 +152,8 @@
               $("#tg-sb-icon").toggleClass('fa-toggle-off');
           });
       });
-  </script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-81697994-3"></script>
-  <script>
-  if (document.location.hostname === "docs.netapp.com") {
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-81697994-3');
-  }
   </script>
-  <script src='/ja-jp/ontap-metrocluster/js/version-dropdown.js'></script>
+  <script src='/ja-jp/ontap-metrocluster/js/custom-dropdown.js'></script>
   <script src='/ja-jp/ontap-metrocluster/js/FileSaver.min.js'></script>
   <script src='/ja-jp/ontap-metrocluster/js/jszip-utils.min.js'></script>
   <script src='/ja-jp/ontap-metrocluster/js/jszip.min.js'></script>
@@ -138,20 +161,15 @@
 </head>
 
 
-  <body class role="document">
+  <body class role="document" data-flavor="">
     <div id="page" class="n-off-canvas-menu">
       <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
       <div class="n-off-canvas-menu__content-wrap">
         <header class="site-header" id="banner">
   
   <!-- Start Page Toolbar -->
-  <div class="page-nav-toolbar">
-    <div id="version-dropdown"></div>
-    <div class="page-nav-contribute"  >
-      <a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/issues/new?body=Page%3A%20[FC から IP への移行を停止させる準備をしています](https://docs.netapp.com/ja-jp/ontap-metrocluster/transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html)" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/discuss-sm.svg" class="github-icon" />ドキュメントの変更をリクエスト</a>
-      <a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/blob/main/transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.adoc" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/edit-sm.svg" class="github-icon" />GitHub で編集</a>
-      <a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ja-jp/ontap-metrocluster/images/article-sm.svg" class="github-icon" />寄稿者向けガイド</a>
-    </div>
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/issues/new?body=Page%3A%20[FC から IP への移行を停止させる準備をしています](https://docs.netapp.com/ja-jp/ontap-metrocluster/transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html)" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/discuss-sm.svg" class="github-icon" />ドキュメントの変更をリクエスト</a><a target="_blank" href="https://github.com/NetAppDocs/ontap-metrocluster/blob/main/transition/concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.adoc" class="page-nav-contribute-link" role="button"><img src="/ja-jp/ontap-metrocluster/images/edit-sm.svg" class="github-icon" />GitHub で編集</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/ja-jp/ontap-metrocluster/images/article-sm.svg" class="github-icon" />寄稿者向けガイド</a></div>
     <div class="page-nav-container">
       <nav class="page-nav-fixed">
         <div class="page-nav-title">このページ</div>
@@ -161,6 +179,7 @@
       </nav>
     </div>
   </div>
+  
   
   <!-- Start top_hat -->
   <div class="n-top-hat">
@@ -244,7 +263,8 @@
           data-did-you-mean="{suggestion} を検索" 
           data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?" 
           data-results-found="{hitCount} 件見つかりました"  
-          data-sk-es-pf-indexes=""></div>
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
           <button class="n-property-bar__search-toggle-button" type="button">
             <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
               <title>search</title>
@@ -333,6 +353,9 @@
 </div>
 <div class="n-pdf-body-container">
   <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
         <a target="_blank" href="/ja-jp/ontap-metrocluster/pdfs/fullsite-sidebar/MetroCluster_のドキュメント.pdf" >
           <img src="/ja-jp/ontap-metrocluster/images/pdf.png" width="16" height="16"/>このドキュメントサイトのPDF</a>
 
@@ -343,6 +366,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ファブリック接続_MetroCluster_をインストール.pdf" 
@@ -358,6 +384,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_のインストールを準備.pdf" 
@@ -400,6 +429,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ファブリック接続_MetroCluster_構成をケーブル接続.pdf" 
@@ -415,6 +447,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ファブリック_MetroCluster_構成のコンポーネント.pdf" 
@@ -451,6 +486,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_コンポーネントを設置してケーブルを配線します.pdf" 
@@ -476,6 +514,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/AFF_A900_システムを使用する場合の_FC_スイッチのポート割り当て.pdf" 
@@ -523,6 +564,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/FC_スイッチを設定.pdf" 
@@ -536,6 +580,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/RCF_ファイルを使用して_Brocade_FC_スイッチを設定します.pdf" 
@@ -564,6 +611,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/RCF_ファイルを使用して_Cisco_FC_スイッチを設定します.pdf" 
@@ -616,6 +666,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/移行中に_Brocade_6510_FC_ファブリックを共有するためのハードウェアを構成します.pdf" 
@@ -637,6 +690,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/7_Mode_と_clustered_MetroCluster_の間で共有するようにスイッチファブリックを設定します.pdf" 
@@ -684,6 +740,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/アレイ_LUN_を使用する_MetroCluster_構成を計画してインストール.pdf" 
@@ -703,6 +762,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/アレイ_LUN_を使用する構成で_MetroCluster_コンポーネントを設置してケーブル接続します.pdf" 
@@ -722,6 +784,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/アレイ_LUN_を使用する_MetroCluster_構成で__FC_VI_ポートと_HBA_ポートをケーブル接続します.pdf" 
@@ -760,6 +825,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_構成でストレージアレイを_FC_スイッチにケーブル接続します.pdf" 
@@ -799,6 +867,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/アレイ_LUN_を使用する_MetroCluster_構成におけるスイッチゾーニング.pdf" 
@@ -829,6 +900,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/アレイ_LUN_を使用する_MetroCluster_構成で_ONTAP_をセットアップする.pdf" 
@@ -869,6 +943,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ディスクとアレイ_LUN_の両方を使用する_MetroCluster_構成を実装します.pdf" 
@@ -908,6 +985,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/Active_IQ_Unified_Manager_と_ONTAP_System_Manager_を使用して設定と監視を強化する方法.pdf" 
@@ -945,6 +1025,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_IP_構成をインストール.pdf" 
@@ -960,6 +1043,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_のインストールを準備.pdf" 
@@ -985,6 +1071,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/レイヤ_3_ワイドエリアネットワークの使用方法.pdf" 
@@ -1030,6 +1119,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_ハードウェアコンポーネントを設定します.pdf" 
@@ -1049,6 +1141,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_IP_スイッチをケーブル接続します.pdf" 
@@ -1081,6 +1176,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_IP_スイッチを設定します.pdf" 
@@ -1096,6 +1194,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/Cisco_IP_スイッチを設定する.pdf" 
@@ -1140,6 +1241,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ONTAP_で_MetroCluster_ソフトウェアを設定します.pdf" 
@@ -1186,6 +1290,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/自動計画外スイッチオーバーのための_ONTAP_メディエーターサービスを設定します.pdf" 
@@ -1231,6 +1338,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ストレッチ_MetroCluster_構成をインストール.pdf" 
@@ -1246,6 +1356,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_のインストールを準備.pdf" 
@@ -1278,6 +1391,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/2_ノード_SAS_接続ストレッチ_MetroCluster_構成のケーブル接続.pdf" 
@@ -1297,6 +1413,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/2_ノード_SAS_接続ストレッチ構成の_MetroCluster_コンポーネントを設置してケーブル接続します.pdf" 
@@ -1338,6 +1457,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/2_ノードブリッジ接続ストレッチ_MetroCluster_構成をケーブル接続します.pdf" 
@@ -1359,6 +1481,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_コンポーネントを設置してケーブルを配線します.pdf" 
@@ -1406,6 +1531,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/アレイ_LUN_を使用するストレッチ_MetroCluster_構成での接続.pdf" 
@@ -1438,6 +1566,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/Active_IQ_Unified_Manager_と_ONTAP_System_Manager_を使用して設定と監視を強化する方法.pdf" 
@@ -1479,6 +1610,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_Tiebreaker_をインストールして設定します.pdf" 
@@ -1517,6 +1651,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_のデータ保護とディザスタリカバリを理解する.pdf" 
@@ -1541,6 +1678,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/スイッチオーバー_修復_スイッチバックを実行.pdf" 
@@ -1554,6 +1694,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/テストやメンテナンスのためにスイッチオーバーを実行.pdf" 
@@ -1579,6 +1722,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/構成を修復.pdf" 
@@ -1592,6 +1738,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_構成の構成を修復します.pdf" 
@@ -1661,6 +1810,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_のコンポーネントをメンテナンスします.pdf" 
@@ -1680,6 +1832,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/FC_to_SAS_ブリッジのメンテナンス.pdf" 
@@ -1722,6 +1877,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/FC_スイッチのメンテナンスと交換.pdf" 
@@ -1764,6 +1922,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/IP_スイッチのメンテナンスと交換.pdf" 
@@ -1800,6 +1961,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_構成へのストレージのホットアド.pdf" 
@@ -1815,6 +1979,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/ブリッジ接続型_MetroCluster_FC_構成への_SAS_ストレージのホットアド.pdf" 
@@ -1832,6 +1999,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/SAS_ディスクシェルフのスタックに_SAS_ディスクシェルフをホットアドします.pdf" 
@@ -1898,6 +2068,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/FC_スイッチのポート割り当て.pdf" 
@@ -1939,6 +2112,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_から_MetroCluster_IP_に移行します.pdf" 
@@ -1956,6 +2132,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_から_MetroCluster_IP_構成への無停止での移行__ONTAP_9_8_以降_.pdf" 
@@ -1971,6 +2150,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_構成から_MetroCluster_IP_構成への移行を準備.pdf" 
@@ -2007,6 +2189,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_から_MetroCluster_IP_構成への移行.pdf" 
@@ -2060,6 +2245,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/2_ノード_MetroCluster_FC_から_4_ノード_MetroCluster_IP_構成への無停止での移行__ONTAP_9_8_以降_.pdf" 
@@ -2124,6 +2312,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_構成をアップグレードまたは拡張する.pdf" 
@@ -2153,6 +2344,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/2_ノード_MetroCluster_FC_構成を_4_ノード構成に拡張.pdf" 
@@ -2174,6 +2368,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/各クラスタに新しいコントローラモジュールを追加します.pdf" 
@@ -2201,6 +2398,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/新しいコントローラモジュールを設置してケーブル接続します.pdf" 
@@ -2243,6 +2443,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/クラスタ間_LIF_を設定する.pdf" 
@@ -2301,6 +2504,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/4_ノード_MetroCluster_FC_構成を_8_ノード構成に拡張.pdf" 
@@ -2326,6 +2532,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/新しいノードのスイッチファブリックにケーブルを再接続してゾーニングします.pdf" 
@@ -2352,6 +2561,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/新しいコントローラで_ONTAP_を設定します.pdf" 
@@ -2375,6 +2587,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/クラスタを_MetroCluster_構成に設定.pdf" 
@@ -2388,6 +2603,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/クラスタ間_LIF_を設定する.pdf" 
@@ -2474,6 +2692,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/災害からリカバリします.pdf" 
@@ -2493,6 +2714,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/マルチコントローラまたはストレージの障害からリカバリする.pdf" 
@@ -2510,6 +2734,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_IP_構成でスイッチバックを準備.pdf" 
@@ -2556,6 +2783,9 @@
     
       <ul class="subfolders" style="display:none;">
         <li class="pdf-ux-container">
+          
+          
+          
           <a target="_blank" 
             
               href="/ja-jp/ontap-metrocluster/pdfs/sidebar/MetroCluster_FC_構成でスイッチバックを準備.pdf" 
@@ -2765,7 +2995,7 @@
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_download_and_install_the_cisco_fc_switch_rcf_files.html">
         Cisco FC RCF ファイルをダウンロードしてインストールします
       </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html">
-        Brocade FC スイッチの手動設定
+        Brocade FC スイッチを手動で設定
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_fcsw_cisco_configure_a_cisco_switch_supertask.html">
         Cisco FC スイッチを手動で設定
       </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_fb_new_install.html">
@@ -2775,7 +3005,7 @@
       </a>
       <ul><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_fmc_mcc_transition_configure_the_mcc_hardware_for_share_a_7_mode_brocade_6510_fc_fabric_dure_transition.html">
         概要
-      </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/concept_fcsw_brocade_review_brocade_license_requirements.html">
+      </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/concept_fcsw_brocade_reviewing_brocade_license_requirements.html">
         Brocade ライセンス要件を確認します
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_rack_the_hardware_components_mcc_fabric_and_ip.html">
         ラックにハードウェアコンポーネントを配置
@@ -2812,7 +3042,7 @@
       </a></li><li class="subfolders "><a href="#">
         <div class="na-navbar-padding"> アレイ LUN を使用する構成で MetroCluster コンポーネントを設置してケーブル接続します</div>
       </a>
-      <ul><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_racking_the_hardware_components_in_a_mcc_configuration_with_array_luns.html">
+      <ul><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_rack_the_hardware_components_in_a_mcc_configuration_with_array_luns.html">
         アレイ LUN を使用する MetroCluster 構成で、ハードウェアコンポーネントをラックに搭載します
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/install-fc/task_prepare_a_storage_array_for_use_with_ontap_systems.html">
         ONTAP システムで使用するストレージアレイを準備します
@@ -3630,6 +3860,7 @@
 <!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
 <script>$("li.active").parents('li').toggleClass("active");</script>
 
+
   </div>
   
 
@@ -3678,7 +3909,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-02-07 17:38:53 +0000">02/07/2022</time>
+    <time datetime="2022-04-13 14:12:30 +0000">04/13/2022</time>
     
   
 
@@ -4671,98 +4902,122 @@ MetroCluster FC コントローラに接続された既存のストレージシ�
   <div class="n-footer__bottom">
     <div class="n-container">
       <div class="n-footer__bottom-left">
-
         <div class="n-footer__copyright">
           <ul class="n-footer__copyright-list">
             <li class="n-footer__copyright-link">
-            <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
             </li>
-
-</ul>
-</div>
-<div class="n-footer__social-links">
-<ul class="n-footer__social-link-list">
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com" target="_blank" title="blog" alt="blog">
-<span class="n-footer__social-link-text">blog</span>
-<svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
-  <title>blog@</title>
-  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#blog"></use>
-</svg>
-
-</a>
-</li>
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/" target="_blank" title="community" alt="community">
-<span class="n-footer__social-link-text">community</span>
-<svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
-<title>community@</title>
-<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#comments"></use>
-</svg>
-
-</a>
-</li>
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp" target="_blank" title="twitter" alt="twitter">
-<span class="n-footer__social-link-text">twitter</span>
-<svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
-<title>twitter@</title>
-<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#twitter"></use>
-</svg>
-
-</a>
-</li>
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp" target="_blank" title="facebook" alt="facebook">
-<span class="n-footer__social-link-text">facebook</span>
-<svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
-<title>facebook@</title>
-<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#facebook"></use>
-</svg>
-
-</a>
-</li>
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-linkedin" href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
-<span class="n-footer__social-link-text">linkedin</span>
-<svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
-<title>linkedin@</title>
-<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#linkedin"></use>
-</svg>
-
-</a>
-</li>
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-youtube" href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
-<span class="n-footer__social-link-text">youtube</span>
-<svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
-<title>youtube@</title>
-<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#youtube"></use>
-</svg>
-
-</a>
-</li>
-<li class="n-footer__social-link-list-item">
-<a class="n-footer__social-link" data-ntap-social="follow-slideshare" href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
-<span class="n-footer__social-link-text">slideshare</span>
-<svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
-<title>slideshare@</title>
-<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#slideshare"></use>
-</svg>
-
-</a>
-</li>
-</ul>
-</div>
-
-</div>
-<div class="n-footer__bottom-right">
-  <p class="n-footer__fine-print">Web サイトについてのフィードバックを<a target="_self" href="javascript:netapp_mailto()" class="n-footer__copyright">お寄せください</a>
-  <a href="https://docs.netapp.com/ja-jp/announcements/" class="n-footer__copyright">お知らせ</a>
-  </p>
-</div>
-</div>
-</div>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">利用条件</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">プライバシー ポリシー</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">クッキー ポリシー</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">クッキーの設定</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">Web サイトについてのフィードバックを</span>
+              <a target="_self" href="javascript:netapp_mailto()">お寄せください</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/ja-jp/announcements/">お知らせ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/ja-jp/ontap-metrocluster/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
 
       </div><!-- Elasticsearch JS -->
