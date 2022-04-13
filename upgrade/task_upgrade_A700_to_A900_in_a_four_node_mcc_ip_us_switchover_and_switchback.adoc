@@ -5,6 +5,7 @@ keywords: metrocluster, upgrade, controller, ip, configuration, switchover, swit
 summary: ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
 ---
 = スイッチオーバーとスイッチバックを使用して MetroCluster IP 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）
+:allow-uri-read: 
 
 
 [role="lead"]
@@ -123,8 +124,8 @@ AFF A700 上の MetroCluster IP 構成では、 VLAN は使用されません。
 使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"] 内容
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]
+** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]
 
 
 . RCF ファイルをダウンロードしてインストールします。
@@ -132,8 +133,8 @@ AFF A700 上の MetroCluster IP 構成では、 VLAN は使用されません。
 の手順に従います link:../install-ip/index.html["MetroCluster IP のインストールと設定"] 内容
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]
+** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]
 
 
 
@@ -831,8 +832,8 @@ MetroCluster IP のインストールと設定セクションに記載されて�
 link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]
+** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]
 
 
 . RCF ファイルをダウンロードしてインストールします。
@@ -840,8 +841,8 @@ link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
 使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"]。
 
 +
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_install_and_cable_the_mcc_components.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]
+** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]
 
 
 
@@ -1446,7 +1447,7 @@ link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metro
  a| 
 メディエーター
  a| 
-link:../install-ip/concept_configure_the_ontap_mediator_for_unplanned_automatic_switchover.html["MetroCluster IP 構成での ONTAP メディエーターサービスの設定"] MetroCluster IP のインストールと設定セクションで、次の手順を実行します。
+リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration] （ _ MetroCluster IP Installation and Configuration_ セクション）
 
 
 

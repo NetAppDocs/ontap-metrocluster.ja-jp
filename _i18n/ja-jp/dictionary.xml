@@ -1606,7 +1606,6 @@
   <block id="0431067b6c41659cab8cdd9db401130e" category="list-text">ブリッジに接続する FC スイッチポートを再度有効にします。</block>
   <block id="3951ec8f2fc02767a1eae0cd589a3733" category="paragraph">たとえば、次の出力は、システムがマルチパス HA 用に接続されていることを示しています。</block>
   <block id="26b4da5ef440db55c9d7fb90222428b3" category="paragraph">混在パスまたはシングルパスの HA 構成であることがコマンド出力で示された場合は、新しいブリッジ経由でアクセスできないディスクドライブがあるため、 SAS ケーブルと FC ケーブルの接続を修正する必要があります。</block>
-  <block id="236b42e7d6f2c4b9984f5b984b7a652b" category="list-text">障害のある部品は、キットに付属する RMA 指示書に従ってネットアップに返却してください。</block>
   <block id="09ea0908fbfc4cde85bf416e35dc55c8" category="inline-link">ネットアップサポート</block>
   <block id="f6f56bebe6148622ba9ce4aea023473a" category="summary">ディスクシェルフまたはディスクシェルフシャーシがフル装備されたストレッチ MetroCluster 構成では、システムを停止することなくディスクシェルフを交換し、取り外すシェルフからコンポーネントを移すことができます。</block>
   <block id="12082ae7a19098ad438ecb1e6a0ceecc" category="doc">ストレッチ MetroCluster 構成のシェルフの無停止での交換</block>
@@ -2597,7 +2596,6 @@
   <block id="c07217a12145454189c265ecf5f40173" category="list-text">古いノードから情報を収集します。</block>
   <block id="220023d80ca24d69e962de981075e392" category="paragraph">この段階では、次の図に示すように 4 ノード構成が表示されます。</block>
   <block id="bcf9f8bb6be3a3d38d87e026dd4cfe95" category="image-alt">MCC DR グループ A</block>
-  <block id="54a30e0ba58741e8ec7cbc4dfc92ecd1" category="paragraph"><block ref="83c26e5bd0b8a6dff43d38aeb91fb3e1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください</block>
   <block id="c2c1067a31958842c8438647512d141e" category="list-text">のすべての手順を実行します <block ref="3e70f7d1f526cf6dd7a89a97c88d0cc8" category="inline-link-macro-rx"></block> をクリックして新しいノードとストレージを構成に追加してください。</block>
   <block id="37c43c60431d0988dbc66af885d529aa" category="paragraph">拡張手順が完了すると、次の図のような構成が表示されます。</block>
   <block id="82100af698d65aee7d8eee88a9f650ea" category="image-alt">MCC DR グループ b</block>
@@ -3362,7 +3360,6 @@
   <block id="9d5dedaa21b8b6a9a7e44d2adc53aac3" category="paragraph">名前変更処理が完了するまでに数分かかることがあります。system show -fields node コマンドを使用して他の手順を続行する前に、名前の変更が各ノードに伝播されていることを確認します。</block>
   <block id="d5c7b5758935e090373e3105cfac7ea4" category="list-text">必要に応じて監視サービスを設定します。</block>
   <block id="6d83b3cc0c5c986a38aa0e7f75c60a63" category="inline-link-macro">自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定</block>
-  <block id="80d884692d4825b1aded41bb42eaba5e" category="paragraph"><block ref="80d884692d4825b1aded41bb42eaba5e" category="inline-link-macro-rx"></block></block>
   <block id="9cc3a2a2e8c24fe291907c539aa19b26" category="paragraph">移行が完了したら、メンテナンスの終了を通知する AutoSupport メッセージを送信してケースの自動作成を再開します。</block>
   <block id="41b8790769bbfee8f1ded6ca87dc546a" category="list-text">問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT=end 」</block>
   <block id="52f72ede6203ab699b41d971d336eaed" category="summary">新しいノードを追加したら、移行手順を完了して、 MetroCluster IP ノードを設定する必要があります。</block>
@@ -3914,7 +3911,6 @@
   <block id="1bbaa38a5e85ee37eb6f052871599d1b" category="paragraph">MetroCluster IP スイッチ：</block>
   <block id="cb66ac900bd3c2fa6ceac440c69f6cf8" category="paragraph">初期スイッチ（ファブリック接続構成の場合）：</block>
   <block id="68ca4c8699281e1858977752c796cd45" category="paragraph">MetroCluster FC 構成のクラスタインターフェイスを IP スイッチに移動する必要があります。</block>
-  <block id="7a7fc289890af932361e87db34a988e7" category="section-title">MetroCluster FC ノードでのクラスタ接続の移動</block>
   <block id="faa907fa21172fe5049a9e06b580a22f" category="paragraph">MetroCluster FC ノードのクラスタ接続を IP スイッチに移動する必要があります。手順は、既存の IP スイッチを使用するか、新しい IP スイッチを使用するかによって異なります。</block>
   <block id="a4508902f6a0e0fe2638bb2698abffe9" category="paragraph">このタスクは両方の MetroCluster サイトで実行する必要があります。</block>
   <block id="9a6a031361d5fc2d07e0496f2d3f35aa" category="paragraph">次のタスクでは、コントローラモジュールがクラスタ接続に 2 つのポートを使用していることを前提としています。一部のコントローラモジュールモデルでは、クラスタ接続に 4 つ以上のポートを使用します。この場合、この例では、ポートは 2 つのグループに分割され、 2 つのグループ間でポートが交互に使用されます</block>
@@ -7256,8 +7252,6 @@
   <block id="aebbde0d48d31742f98866fb5fd93228" category="paragraph">MACsec キーチェーンまたはキーをコンフィギュレーションに作成できます。</block>
   <block id="2438f61312714fdde0ea5d2291cacf5a" category="paragraph">* キーライフタイムと Hitless Key Rollover *</block>
   <block id="432af3885800eb3d0fdfa0d72b0e8f83" category="paragraph">MACsec キーチェーンには、複数の Pre-Shared Key （ PSK; 事前共有キー）を設定できます。各 PSKs には、キー ID とオプションのライフタイムが設定されています。キーの有効期間は、キーがアクティブになって有効期限が切れるタイミングを指定します。ライフタイム設定がない場合、デフォルトのライフタイムは無制限です。ライフタイムが設定されている場合、ライフタイムが期限切れになると、 MKA はキーチェーン内で設定されている次の事前共有キーにロールオーバーします。キーのタイムゾーンは、 local または UTC です。デフォルトのタイムゾーンは UTC です。キーを同じキーチェーン内の 2 番目のキー（キーチェーン内）にロールオーバーして、最初のキーのライフタイムを設定することができます。最初のキーの有効期間が終了すると、自動的にリスト内の次のキーにロールオーバーされます。リンクの両側で同じキーが同時に設定されている場合、キーのロールオーバーはヒットレスになります（つまり、キーはトラフィックを中断することなくロールオーバーされます）。</block>
-  <block id="a84ec9413c1eeb220ff2c85c15c3da91" category="paragraph">* フォールバックキー *</block>
-  <block id="afa4816f1e4efec6be7d5a9580f8af8a" category="paragraph">MACsec セッションは、キー / キー名（ CKN ）の不一致、またはスイッチとピアの間の有限のキー持続時間により失敗する可能性があります。MACsec セッションに障害が発生した場合、フォールバックキーが設定されていれば、フォールバックセッションを引き継ぐことができます。フォールバックセッションを使用すると、プライマリセッションの障害によるダウンタイムを回避できます。また、ユーザは障害の原因となっているキー問題を修復する時間を確保できます。フォールバックキーは、プライマリセッションの開始に失敗した場合にもバックアップセッションを提供します。この機能はオプションです。</block>
   <block id="1b7a49127c059c9782571e668d1b9394" category="paragraph">オクテット文字列は、コンフィギュレーションをファイルに保存するときにも非表示になります。</block>
   <block id="82a54f643a125ec28b0318b12e98edc4" category="paragraph">デフォルトでは、 PSK キーは暗号化形式で表示され、簡単に復号化できます。このコマンドは、 MACsec キーチェーンにのみ適用されます。</block>
   <block id="50c7b42b6fb7bfaab985fc93a2f5adbe" category="paragraph">指定できる 16 進数のキー文字列の範囲は 1 ～ 32 で、最大サイズは 64 文字です。</block>
@@ -7279,9 +7273,6 @@
   <block id="f6d141f9c0ebe12ce79c36ba0585ecf8" category="paragraph">MACsec MKA 設定</block>
   <block id="b6b47858b43ec1819137a7dbb17a0e1c" category="paragraph">'How MACsec policy policy-name' 」を参照してください</block>
   <block id="b73bb1a80bfcd166befb33ddc1a9fe9d" category="paragraph">特定の MACsec ポリシーまたはすべての MACsec ポリシーの設定</block>
-  <block id="fd6b314abc631729200274092a59dbde" category="paragraph">スイッチとピアの間のキー / キー名（ CKN ）の不一致または有限のキー持続時間の結果としてプライマリセッションに障害が発生した場合に、バックアップセッションを開始するようにフォールバックキーを設定できます。</block>
-  <block id="cc9f85a6f649e0f320a34bda0a52ee70" category="list-text">設定するインターフェイスを指定します。</block>
-  <block id="dcf432534686dfbd4a5057ebd44a4d2a" category="list-text">MACsec を使用して追加の WAN ISL ポートを設定するには、上記の手順を繰り返します。</block>
   <block id="85b091192b5f7d8d84eccf6181fd6ae8" category="paragraph">25Gbps 接続を使用してシステムが設定されている場合は、 RCF ファイルの適用後に前方誤り訂正（ fec ）パラメータを手動で off に設定する必要があります。この設定は RCF ファイルでは適用されません。</block>
   <block id="21b34813f1e8c3819fcd4c2d1a97dc87" category="paragraph">この手順を実行する前に、 25Gbps ポートがケーブル接続されている必要があります。</block>
   <block id="de42a51018ae76cdec0d5104c4b44724" category="inline-link-macro">Cisco 3232C スイッチまたは Cisco 9336C スイッチのプラットフォームポートの割り当て</block>
@@ -7832,7 +7823,6 @@
   <block id="ef707581c5c00eaa0743321b02294606" category="list-text">site_B-shelf_1 の半分のディスクを node_B_2 のプール 0 に割り当てます。</block>
   <block id="8645ab46e52c8bc8dde41a2d070d37a1" category="list-text">site_B-shelf_2 の半分のディスクを node_A_1 のプール 1 に割り当てます。</block>
   <block id="8f234811a84b4e31259fe07e29ca1dec" category="list-text">site_B-shelf_2 の半分のディスクを node_B_2 のプール 1 に割り当てます。</block>
-  <block id="169ea076206029b921aba5b11aeb1224" category="section-title">既存構成へのシェルフの追加</block>
   <block id="27c6fcf081b1c055fab70dab85df9058" category="paragraph">自動ドライブ割り当てでは、既存の構成にシェルフを対称的に追加できます。</block>
   <block id="1ad37847dbce444ea5080d0121d5409b" category="paragraph">新しいシェルフが追加されると、追加されたシェルフに同じ割り当てポリシーが適用されます。たとえば、各サイトにシェルフが 1 台ある構成でシェルフを追加した場合、新しいシェルフにはクォータシェルフの割り当てルールが適用されます。</block>
   <block id="7b1967ab8b38aa7f5c2c50d91fb6d616" category="section-title">MetroCluster IP 構成での ADP とディスク割り当てのシステム別の違い</block>
@@ -10064,7 +10054,6 @@
   <block id="64977ab6a02737ff27944bb4e643f9a9" category="paragraph">Tiebreaker またはメディエーターをインストールおよび設定するには、次のリンクを使用します。</block>
   <block id="416e335daad496ad8619dd5e0873c083" category="inline-link-macro">MetroCluster Tiebreaker ソフトウェアをインストールして設定します。</block>
   <block id="4eb00e76349103bb49f834540fdce720" category="inline-link-macro">自動計画外スイッチオーバーのための ONTAP メディエーターサービスを設定します</block>
-  <block id="6d16b8dff033f574f07e4b71a797f5de" category="list-text"><block ref="6d16b8dff033f574f07e4b71a797f5de" category="inline-link-macro-rx"></block></block>
   <block id="4d60f545ef2535cd524505ef40a30ea5" category="section-title">NetApp MetroCluster Tiebreaker ソフトウェアで障害を検出する方法</block>
   <block id="32cbf293fe64d853582c8537f6165030" category="paragraph">MAUSO が開始されるのは、各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングの両方が動作しており、障害発生時にキャッシュとミラーが同期されている場合だけです。</block>
   <block id="19d390d9b8d24ef2e5e8d530b56b6c3a" category="paragraph">+ 次のプラットフォームモデルでは VLAN を使用し、デフォルト以外の VLAN ID を設定できます。</block>
@@ -10454,7 +10443,6 @@
   <block id="62d21575da14f82a5429be44997ffec0" category="paragraph"><block ref="2d12f9e136c597ced9bd3fed196a9a6b" category="inline-xref-macro-rx"></block></block>
   <block id="69b040d4f8adaa4c34e437207036c73c" category="list-text">SNMP が設定されたことを確認します。</block>
   <block id="da82ec774885b0fd4ea7e17756ffc01b" category="paragraph">「 snmp config test 」</block>
-  <block id="a1fecf534698cc371187a3c3028827a7" category="paragraph">#https://docs.netapp.com/us-en/ontap/[Installation お使いの AFF または FAS システムの手順 ]]&gt;</block>
   <block id="3b0649c72650c313a357338dcdfb64ec" category="cell">注</block>
   <block id="4d2df55d2343b32800bfea20e735c55a" category="paragraph">AFF A700 および FAS900</block>
   <block id="09cb6984bdf1b82c9749906ba1a69331" category="summary">MetroCluster IP インターフェイス、 IP アドレスとマスク、およびゲートウェイの次のプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
@@ -10661,7 +10649,6 @@
   <block id="9ce923539fb1123fe118101d429941ae" category="list-text"><block ref="9ce923539fb1123fe118101d429941ae" category="inline-link-macro-rx"></block></block>
   <block id="6a12946cbb81d960abd7b608085f126a" category="inline-link-macro">Tiebreaker ソフトウェアのインストールと設定</block>
   <block id="e71402603f50c2282d8c7bcc53d63e72" category="paragraph"><block ref="e71402603f50c2282d8c7bcc53d63e72" category="inline-link-macro-rx"></block></block>
-  <block id="6977cb2f448c534eb0fe8b9c3ab46f80" category="paragraph">で説明したポートを使用します <block ref="218c51413835cd54b79a77004931a9e5" category="inline-link-macro-rx"></block>。</block>
   <block id="ffaeaa66271f98acd0156b9dadf03b5b" category="list-text"><block ref="ffaeaa66271f98acd0156b9dadf03b5b" category="inline-link-macro-rx"></block></block>
   <block id="1a031f58441757494134fdebb9c1beb1" category="list-text"><block ref="1a031f58441757494134fdebb9c1beb1" category="inline-link-macro-rx"></block></block>
   <block id="343c2d0dbf210b79686912b38bd4f45d" category="list-text"><block ref="680a4f630b21eab8e23842ce1e77c536" category="inline-link-macro-rx"></block> **</block>
@@ -10871,7 +10858,6 @@
   <block id="00b95021ee9d17915062023af515e24c" category="sidebar">Cisco FC スイッチを工場出荷時のデフォルトにリセットします</block>
   <block id="04feb40ba41d7f08a0ed11c320036b50" category="sidebar">Cisco FC スイッチの NX-OS ソフトウェアをダウンロードしてインストールします</block>
   <block id="3c25e8c40f06568b29ce946fd777d561" category="sidebar">Cisco FC RCF ファイルをダウンロードしてインストールします</block>
-  <block id="0657e393d82d82dc4317b0d4cb80b4b8" category="sidebar">Brocade FC スイッチの手動設定</block>
   <block id="9ee7e057ce8f87d9c6d58a3ac45b4a14" category="sidebar">Cisco FC スイッチを手動で設定</block>
   <block id="a843b71ec15aadada63575eb83031c0b" category="sidebar">移行中に Brocade 6510 FC ファブリックを共有するためのハードウェアを構成します</block>
   <block id="7a624101744abdf7e3500edd9f2b8245" category="sidebar">Brocade ライセンス要件を確認します</block>
@@ -10970,11 +10956,7 @@
   <block id="01624fead9baaddc3669cdd47ad795ed" category="list-text">サポートされている最小バージョンの RCF ファイルがスイッチに設定されていない場合は、 RCF ファイルを更新する必要があります。使用しているスイッチモデルに対応した正しい RCF ファイルバージョンについては、を参照してください <block ref="da64f60a95327a9651de90bff4a67cd3" category="inline-link-macro-rx"></block>。次に、 RCF ファイルアプリケーションの手順を示します。</block>
   <block id="590efa3b2ef6486e61048a848e166d21" category="inline-link-macro">MetroCluster IP のインストールと設定</block>
   <block id="1f41258ab009387cbd7e42b144372d55" category="paragraph">使用しているスイッチベンダーに対応する手順については、を参照してください <block ref="1a8a3204a30c37aed38d8cb8818b0107" category="inline-link-macro-rx"></block> 内容</block>
-  <block id="b01a590ee5a5c4d39d2ea827140d95fd" category="list-text"><block ref="b01a590ee5a5c4d39d2ea827140d95fd" category="inline-link-macro-rx"></block></block>
-  <block id="662be47b2e290d723b00fe0a9dc2e8b8" category="list-text"><block ref="662be47b2e290d723b00fe0a9dc2e8b8" category="inline-link-macro-rx"></block></block>
   <block id="e886156cd00bbd9320ba94c39cce2772" category="paragraph">の手順に従います <block ref="1a8a3204a30c37aed38d8cb8818b0107" category="inline-link-macro-rx"></block> 内容</block>
-  <block id="b04dcda81f4d3d1adcd9bfdd252098b0" category="list-text"><block ref="b04dcda81f4d3d1adcd9bfdd252098b0" category="inline-link-macro-rx"></block></block>
-  <block id="51a2c292407c79a580014258c5f17d8d" category="list-text"><block ref="51a2c292407c79a580014258c5f17d8d" category="inline-link-macro-rx"></block></block>
   <block id="dadca3d57b191a678f23de76f79b283e" category="section-title">古いノードから新しいノードへのポートのマッピング</block>
   <block id="87ff91e75692235d02e091de808fd819" category="paragraph">AFF A700 から AFF A900 にアップグレードする場合、データネットワークポート、 FCP SAN アダプタポート、および SAS ストレージポートと NVMe ストレージポートを変更する必要はありません。データ LIF は、アップグレード中もアップグレード後もそのままの状態になります。そのため、古いノードのネットワークポートを新しいノードにマッピングする必要はありません。</block>
   <block id="0c8985d7cfbb81f5f054993ed8285211" category="section-title">サイトをアップグレードする前に MetroCluster の健全性を確認</block>
@@ -11136,7 +11118,6 @@
   <block id="343d98ffad90e979903b8bd5def2f91c" category="list-text">同じ手順を繰り返して、 site_A のノードをアップグレードします <block ref="e8971f193bd5ef38f76b660d12d17607" category="inline-link-macro-rx"></block>。</block>
   <block id="98c99ee34c8774fa11a9a533fe708618" category="paragraph">タスクを実行すると、サイトおよびノードへのすべてのサンプル参照が反転されます。たとえば、この例で site_A からスイッチオーバーする場合は site_B からスイッチオーバーします</block>
   <block id="0c429b26fd1db8d4b7bb104d284c1cea" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
-  <block id="5b68f0b098986e0ac238ae377c414032" category="paragraph"><block ref="2a039788d8e6faddff2d947b20403dfe" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定セクションで、次の手順を実行します。</block>
   <block id="a16fca697a4d7027a976fdabfbb92414" category="doc">スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）</block>
   <block id="8a51355d335889c9ddb7276ab9a129ab" category="paragraph">MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
   <block id="b93e6d7c2789cd393ddbb5ccdfac4676" category="paragraph">ストレージシェルフやスイッチなど、構成内の他のコンポーネントも同時にアップグレードすることはできません。</block>
@@ -11419,7 +11400,6 @@
   <block id="44ffef92ef8c50e3bead6fe6609d137d" category="list-text">キーの送信ライフタイムを設定します（秒単位）。</block>
   <block id="553e37d1edf682c2d4e3e0044a0e8f59" category="paragraph">「 send-lifetime start-time duration 」</block>
   <block id="8dd0074f8606108f750defc9306a01b3" category="list-text">キーチェーン設定を表示します。</block>
-  <block id="49a66a48bbc301445b1c144ea99c4dbf" category="paragraph">「鍵チェーン名」</block>
   <block id="dde20920c9bc2285cedc0171616ad91e" category="list-text">MACsec ポリシーを作成します。</block>
   <block id="3ec088691927601a692a22de57f7b714" category="paragraph">「 ACSEC ポリシー名」</block>
   <block id="f6f1bccdbe1b9de16d5e5c9a259735ef" category="list-text">次のいずれかの暗号、 gcm-aes-128 、 gcm-aes-256 、 gcm-aes-xpN-128 、または gcm-aes-xpN-256 を設定します。</block>
@@ -11434,11 +11414,6 @@
   <block id="e11afee8dde4674d7948e54940ebcd3e" category="paragraph">「 conf-offsetconfidentiality offset 」を参照してください</block>
   <block id="dbedb7cefba22d6d33123561705f89d7" category="list-text">MACsec ポリシー設定を表示します。</block>
   <block id="388f63f7d6fad1c81c4ee48ef9a6717c" category="paragraph">「 MACsec ポリシー」</block>
-  <block id="73e78255dbf78b6041f893d45a07746c" category="paragraph">インターフェイスのタイプと ID を指定できます。イーサネットポートの場合は、次のコマンドを使用します。</block>
-  <block id="41837e780d5f604a1688e70404f818d8" category="paragraph">Ethernet スロット / ポート</block>
-  <block id="963f5eadacb40d1c09a8a4b55061def7" category="list-text">キー / キー ID の不一致またはキーの有効期限が原因で MACsec セッションに失敗した場合に使用するフォールバックキーチェーンを指定します。</block>
-  <block id="acdb387736771ac188de8a6d086cdb34" category="paragraph">「 MACsec keychain -name policy -name fallback-keychain keychain -name 」という名前のキーチェーンがあります</block>
-  <block id="3b0db3e385223be11fabb9ef92f30540" category="admonition">この手順に進む前に、「 _MACsec キーチェーンの設定」および「 Keys_ 」の手順を使用して、フォールバックキーチェーンを設定する必要があります。</block>
   <block id="ab6f20f5b829d0d0c601421db2ea7500" category="paragraph">2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーの発生時にクラスタがパートナーにデータをシームレスに提供できるかどうかに依存します。</block>
   <block id="ab3bedf5b2bac1f18aa979a42fb1871b" category="paragraph"><block ref="ab3bedf5b2bac1f18aa979a42fb1871b" category="inline-link-rx"></block></block>
   <block id="43a384668d02383bb19c7b1d54761855" category="paragraph">FabricPool の使用に関する一般的な情報については、を参照してください<block ref="46a180d322a34c1f2719942dadd3e4fb" category="inline-link-rx"></block>。</block>
@@ -11791,7 +11766,6 @@
   <block id="eb2dc3b03a2e44937ef05ba889d58803" category="list-text">SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <block ref="aea98f9277e5f61a9dbd74fc91b6a01c" category="inline-xref-macro-rx"></block>。</block>
   <block id="46f03cfe658451b3cda06c84b1f935ad" category="list-text">両方のコントローラのシステムコンソールで、すべてのコントローラが新しいブリッジ経由でディスクシェルフにアクセスできること（システムがマルチパス HA 用に適切に接続されていること）を確認します。</block>
   <block id="d7b12022bf276b2113771c05b8e93cd3" category="list-text">ブリッジが追加され、正しく設定されていることを確認します。 +`storage bridge show`</block>
-  <block id="a3a77716c94ad331870c1ba138c3f00c" category="paragraph">テクニカルサポートにお問い合わせください<block ref="9a6f401ca1e7e89d8a0c29fb0cbe81b7" category="inline-link-rx"></block>RMA 番号を確認する場合や、交換用手順にサポートが必要な場合は、日本国内サポート用電話番号：国内フリーダイヤル 0066-33-123-265 または 0066-33-821-274 （国際フリーフォン 800-800-80-800 も使用可能）までご連絡ください。</block>
   <block id="94750a1855ecbd10c3792f552c9502dc" category="paragraph">既存のシェルフが新しいプラットフォームモデルでサポートされていない場合は、を参照してください <block ref="85bb194a69db1254e3990cfd7e6324af" category="inline-link-macro-rx"></block>。</block>
   <block id="95df95f1ae9fec68de468a293d0b5145" category="list-text">新しいコントローラで使用できる物理ポートとポートでホストできる LIF を確認します。</block>
   <block id="510771fb0bd315f647b0c3501cf5aac7" category="paragraph">すべてのコンポーネントの HA 状態は「 mccip 」である必要があります。</block>
@@ -12256,7 +12230,6 @@
   <block id="f1318dc614d34488bcb6f8bef3e32bff" category="paragraph">オプション "11`"</block>
   <block id="37ef00a03e6b4bacbc26b2ee369f838f" category="paragraph">キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'Recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります</block>
   <block id="ff8648705a32483b6efc36e81f3ff6c9" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block>。</block>
-  <block id="91866c0618812e699061cb4e2f764274" category="paragraph"><block ref="2a039788d8e6faddff2d947b20403dfe" category="inline-link-macro-rx"></block>。</block>
   <block id="9dc1904e0c3ace141704b477cd9b345d" category="inline-link-macro">Network Management の略</block>
   <block id="a329e8bb19b80d658f071e8e3a9b43df" category="paragraph">ONTAP のポート、 LIF 、およびネットワーク設定の詳細については、を参照してください <block ref="b7287c70d2b20ddb4e9eda3d1f5462cf" category="inline-link-macro-rx"></block>。</block>
   <block id="84c335ab98bb834a85c89e20e223e638" category="paragraph">プラットフォームのデフォルトのポートロールのリストについては、を参照してください<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block></block>
@@ -12281,7 +12254,6 @@
   <block id="377469609affd7863d1b91e8c08f8efe" category="list-text">の次の手順に従って、古いノードから新しいノードにデータを移動します<block ref="5807d40cbe0aa8dbcf7fb966b3a22848" category="inline-link-rx"></block></block>
   <block id="f6352e453f366612cb28420644953c44" category="list-text">のすべての手順を実行します<block ref="bbef996a3720f9825acbe3a7239b4c3c" category="inline-link-rx"></block>。</block>
   <block id="f0c5b568bbaab2490082e4d2aaf08123" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定</block>
-  <block id="9b81be6eaafefd1e5ea3279470770a1a" category="paragraph"><block ref="2a039788d8e6faddff2d947b20403dfe" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定 _ 。</block>
   <block id="7965e118387157e57593becb6ae60117" category="list-text">の手順を使用します <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> 新しいストレージシステム、ディスクシェルフ、および FC-to-SAS ブリッジをラックに設置するため。</block>
   <block id="bd583895c72d99233af8746d9463ab07" category="list-text">の手順を使用します <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> 8 ノード MetroCluster 構成のポート用途を使用して、スイッチタイプに対応したケーブルレイアウトを作成します。</block>
   <block id="7215f927afe2ef194199487494b76dd7" category="paragraph">リファレンス構成ファイル（ RCF ）を使用できるようにするためには、 FC スイッチポートの用途が手順に記載されている用途と同じである必要があります。</block>
@@ -12426,7 +12398,6 @@
   <block id="4aeccceec58ed237296dba5ea0673521" category="paragraph">既存のスイッチを使用している場合は、に進みます <block ref="a43d04863a085a87276f8dea37ae5895" category="inline-link-macro-rx"></block>。</block>
   <block id="0297e6ce2162b2f01b03b57027b0de3f" category="paragraph">MetroCluster IP インストールおよび設定については、使用しているスイッチベンダーのセクションに記載されている手順を実行してください。</block>
   <block id="7efa6fc838c006d396e42638b4ff25d1" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block></block>
-  <block id="d0575e4ffcaa94137b559df66450e762" category="paragraph"><block ref="d0575e4ffcaa94137b559df66450e762" category="inline-link-macro-rx"></block></block>
   <block id="bc77bf857b365d445270101e2d7ce03f" category="list-text">MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster FC 構成で使用されます。</block>
   <block id="58f51e86971b6d1d53b59f46792a926c" category="list-text">MetroCluster IP ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster IP 構成で使用されます。</block>
   <block id="be841ef50614c5c74b8d6a685c367458" category="cell">ネゴシエートスイッチオーバーで使用するワークフロー</block>
@@ -12453,7 +12424,6 @@
   <block id="6754d52ab3aba634c1d3868f6ff1173b" category="paragraph">「 network interface show -vserver cluster 」のように表示されます</block>
   <block id="535ec980e99542a3e46527ed475d4ce5" category="list-text">パートナー・クラスタ「 cluster_B 」で上記の手順を繰り返します。</block>
   <block id="6ac37c1e4002ef5cd117acd818874c0f" category="paragraph">使用しているスイッチベンダーの手順の手順に従い、 MetroCluster IP Installation and Configuration_ から実行します。</block>
-  <block id="71202b6dd001af35585cf163b87312a1" category="paragraph">で説明したポートを使用します <block ref="c686921008a79d8a2f4cb70ab4d03caf" category="inline-link-macro-rx"></block>。</block>
   <block id="2e3c0afc2d193f3727d220d4c952e88c" category="list-text">すべてのインターフェイスがそれぞれのホームポートにあることを確認します。</block>
   <block id="df263d0c9cee0f502a35c7a48d5606b3" category="list-text">すべてのクラスタポートが動作していることを確認します。</block>
   <block id="407eedf4c99afddafe143a1c132d2205" category="paragraph">次に、すべてのインターフェイスの「 Is Home 」列に true が表示される例を示します。</block>
@@ -12527,7 +12497,6 @@
   <block id="2ab9c070f5e78bc6f7809e89ecd023eb" category="admonition">「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります</block>
   <block id="5382d2282494796171738f35b9361ab8" category="admonition">このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
   <block id="bb7076dff2fa5f0d308e776f5006e07e" category="section-title">MACsec 構成の確認</block>
-  <block id="f0336856a5a2f4bfae1adfb71fa3ae60" category="section-title">WAN ISL ポートでの MACsec フォールバックキーの設定</block>
   <block id="ffe1f559bee6f65df8232945e7f1517d" category="section-title">25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
   <block id="250b5ed5389f4260b31c4ede97dea809" category="paragraph">このタスクでは、 25Gbps 接続を使用する環境 プラットフォームのみを使用します。</block>
   <block id="44ebc7deaba92b772a9bf569e1c8ca12" category="list-text">FAS 8200</block>
@@ -12541,7 +12510,28 @@
   <block id="70fef59fffa5df67d10b024d11f37399" category="paragraph"><block ref="70fef59fffa5df67d10b024d11f37399" category="inline-link-macro-rx"></block></block>
   <block id="466ed123ab8f5845237d3ae425397ec7" category="paragraph">環境が次の要件を満たしている必要があります。</block>
   <block id="c5cd3d887ef507cadc249c592410542a" category="list-text">Linux のバージョンを更新する場合は、最新の ONTAP メディエーターサービスをインストールする前にアップグレードしてください。</block>
-  <block id="38553b6946adff245ef7423d34544e4b" category="paragraph">サードパーティのファイアウォールを使用している場合： * HTTPS アクセスが有効になっている必要があります。* ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。</block>
-  <block id="63fb21fb55a9451afb7b60d2b7d593b2" category="paragraph">+ Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。</block>
   <block id="5981ded82c976bff5c9a73686842655a" category="list-text">メディエーターサービスは、以前のバージョンから現在のバージョンにアップグレードすることができます。</block>
+  <block id="6bec966647e1b9c8a03ddd277c8fe864" category="inline-link-macro">パーツの返品と交換</block>
+  <block id="844f223d5d27d9ea92473e2d258ee969" category="list-text">部品の交換後、障害のある部品は、キットに付属する RMA 指示書に従ってネットアップに返却してください。を参照してください <block ref="af64d870205b209887217377e716cd40" category="inline-link-macro-rx"></block> 詳細については、を参照してください。</block>
+  <block id="73deb7011cb325e1dbd9f40a4995786e" category="paragraph">リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration] （ _ MetroCluster IP Installation and Configuration_ セクション）</block>
+  <block id="455aeb5b6e6bb2c51d7485e26da56e30" category="paragraph">リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration]</block>
+  <block id="e62a18c77eddb4d80155a6c15402f7e5" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください</block>
+  <block id="7da41c16475b7dae8b0b8ab6424918d7" category="paragraph">リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration] （ _ MetroCluster IP インストールおよび設定 _ でのメディエーターサービスの設定）</block>
+  <block id="1694bd7aa5b3b3ecd0394ac449f774af" category="list-text">リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]</block>
+  <block id="40f8dac9d3afe2ad9f3eb063b5a8ebe6" category="list-text">リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]</block>
+  <block id="a016106990032abc8e07606eb9a35a34" category="list-text">リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]</block>
+  <block id="2092fa2d67720266015440eaa2d835ab" category="list-text">リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]</block>
+  <block id="861ef6676813cbc81369ee701ae73269" category="paragraph">サードパーティのファイアウォールを使用している場合は、次の手順を実行します。</block>
+  <block id="041f3a27fe8b40cc213210949eb4f036" category="list-text">HTTPS アクセスが有効になっている必要があります。</block>
+  <block id="8b8101ed71d5bd32d2f9d4de05e470c1" category="list-text">ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。</block>
+  <block id="cc1e6f116b4b45ffde821f0aef59e030" category="paragraph">Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。</block>
+  <block id="a6bcf63661955f7af02bb69a2cd4d604" category="section-title">既存構成へのシェルフの追加</block>
+  <block id="6257739eb87a755c28bf814ad261df2d" category="section-title">MetroCluster FC ノードでクラスタ接続を移動します</block>
+  <block id="9d8f122e284d64a31d50c5040fe4f338" category="section-title">移動する接続</block>
+  <block id="508763c5ecfa3096ab25520f14c971f5" category="paragraph">で説明したポートを使用します <block ref="10769c5348734bed7e40370eea435ab1" category="inline-xref-macro-rx"></block>。</block>
+  <block id="fe45fe811f6f58baafc88df1114b43df" category="paragraph">リンク： ./install-ip/ concept_mediator_requirements.html # configuring-The ONTAP-mmediator-service-from-A-MetroCluster-IP-configuration [ MetroCluster IP 構成からの ONTAP メディエーターサービスの設定 ]</block>
+  <block id="353f64efd56caa103dcbf2b9e24c3129" category="paragraph">リンク： ./install-ip/concept_mediator_requirements.html</block>
+  <block id="dd23316b696cd08f3479c6e2d7baadc0" category="inline-link">AFF または FAS システムのインストール手順</block>
+  <block id="17959b19c1c128d5d74608a22de28cf9" category="paragraph"><block ref="17959b19c1c128d5d74608a22de28cf9" category="inline-link-rx"></block></block>
+  <block id="e5303b615c196a6ae1c68873f1d05073" category="sidebar">Brocade FC スイッチを手動で設定</block>
 </blocks>

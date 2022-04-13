@@ -1,10 +1,11 @@
 ---
 permalink: transition/task_move_cluster_connections.html 
 sidebar: sidebar 
-keywords: Transitioning from MetroCluster FC to MetroCluster IP configurations, review, requirement, preparing, prepare, transition, perform, procedure, order, completing, complete, step, task, moving, move, controller, storage, shelves, shelf, exist, configuration, direct, metrocluster, fc, ip, verify, health, removing, remove, tiebreaker, monitor, software, generating, generate, apply, rcf, switch, controller, configure, prepare, preparing 
+keywords: transition, cluster connections 
 summary: すべての要件を確認して移行の準備を完了したら、移行手順を実行します。各タスクを順番に実行し、各タスクのすべての手順を完了してから次のタスクに進む必要があります。指示が出るまで、新しいコントローラまたはストレージシェルフを既存の構成に接続しないでください。 
 ---
-= ローカルクラスタ接続を移動しています
+= ローカルクラスタ接続を移動します
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
@@ -14,12 +15,16 @@ MetroCluster FC 構成のクラスタインターフェイスを IP スイッチ
 
 
 
-== MetroCluster FC ノードでのクラスタ接続の移動
+== MetroCluster FC ノードでクラスタ接続を移動します
 
 [role="lead"]
 MetroCluster FC ノードのクラスタ接続を IP スイッチに移動する必要があります。手順は、既存の IP スイッチを使用するか、新しい IP スイッチを使用するかによって異なります。
 
 このタスクは両方の MetroCluster サイトで実行する必要があります。
+
+
+
+=== 移動する接続
 
 次のタスクでは、コントローラモジュールがクラスタ接続に 2 つのポートを使用していることを前提としています。一部のコントローラモジュールモデルでは、クラスタ接続に 4 つ以上のポートを使用します。この場合、この例では、ポートは 2 つのグループに分割され、 2 つのグループ間でポートが交互に使用されます
 
@@ -117,7 +122,7 @@ Node_x_2-FC
 
 . MetroCluster FC ノードグループ A のクラスタ接続を新しい IP スイッチに移動します。
 +
-で説明したポートを使用します link:../transition/task_verify_mcc_health_fc_to_ip.html#moving-the-cluster-connections-on-the-metrocluster-fc-nodes["MetroCluster FC ノードでのクラスタ接続の移動"]。
+で説明したポートを使用します <<Which connections to move>>。
 
 +
 .. スイッチからすべてのグループ A ポートを切断します。 MetroCluster FC 構成がスイッチレスクラスタの場合は、パートナーノードからポートを切断します。
@@ -251,7 +256,7 @@ MetroCluster IP ノードでサポートされる最新のファームウェア�
 
 . グループ A のポートを switch_A_1 の IP に再接続します。
 +
-で説明したポートを使用します link:task_transition_from_mcc_fc_to_mcc_ip_configurations.html["MetroCluster FC ノードでのクラスタ接続の移動"]。
+で説明したポートを使用します <<Which connections to move>>。
 
 . すべてのクラスタポートが動作していることを確認します。
 +
