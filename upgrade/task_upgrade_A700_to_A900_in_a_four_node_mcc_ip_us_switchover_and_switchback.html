@@ -9,14 +9,14 @@
   <meta property="og:title" content="スイッチオーバーとスイッチバックを使用して MetroCluster IP 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html" />
-	<meta property="og:description" content="ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。" />
+	<meta property="og:description" content="BYou は、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールのアップグレード中にクライアントに無停止のサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。" />
   <meta property="og:image" content="https://docs.netapp.com/ja-jp/ontap-metrocluster/images/logo-tophat-social.png" />
   <meta property="og:image:alt" content="NetApp Logo" />
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="encoding" content="utf-8">
   <meta http-equiv="nss-type" content="Product Documentation"/>
-  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。">
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="BYou は、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールのアップグレード中にクライアントに無停止のサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。">
   <meta name="keywords" content=" metrocluster, upgrade, controller, ip, configuration, switchover, switchback, workflow, nodes, tiebreaker, verify, bootrage, root, aggregate, disks"><!-- Icons -->
   <link rel="icon" href="/ja-jp/ontap-metrocluster/images/favicon.ico" type="image/x-icon">
 
@@ -3909,7 +3909,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-04-13 14:12:30 +0000">04/13/2022</time>
+    <time datetime="2022-04-14 13:26:38 +0000">04/14/2022</time>
     
   
 
@@ -4129,10 +4129,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults">"Broadcom IP スイッチを工場出荷時のデフォルトにリセット"</a></p>
 </li>
 <li>
-<p>リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults">"Cisco IP スイッチを工場出荷時のデフォルトにリセットする"</a></p>
 </li>
 </ul>
 </div>
@@ -4145,10 +4145,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files">"Broadcom の RCF ファイルのダウンロードとインストール"</a></p>
 </li>
 <li>
-<p>リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files">"Cisco IP RCF ファイルのダウンロードとインストール"</a></p>
 </li>
 </ul>
 </div>
@@ -4512,7 +4512,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
 <p>Tiebreaker</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><a href="install-stretch/concept_considerations_when_removing_mcc_configurations.html">"MetroCluster 設定の削除"</a> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</p>
+<p><a href="tiebreaker/concept_configuring_the_tiebreaker_software.html#commands-for-modifying-metrocluster-tiebreaker-configurations">"MetroCluster 設定の削除"</a> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</p>
 </div></div></td>
 </tr>
 <tr>
@@ -4920,7 +4920,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
 <p>Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。</p>
 </li>
 <li>
-<p>ディレクトリの一覧に &lt;ONTAP_version&gt;_image.tgz が表示されている必要があります。</p>
+<p>ディレクトリの一覧に &lt;ONTAP_version&gt;\_image.tgz が表示されている必要があります。</p>
 </li>
 <li>
 <p>次のいずれかを実行してネットブート接続を設定します。</p>
@@ -4962,7 +4962,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
 <p>ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= &lt;filer_addr&gt; -mask= &lt;netmask&gt; -gw= &lt;gateway&gt; -dns= &lt;dns_addr&gt; domain= &lt;dns_domain&gt;</p>
 </div>
 <div class="paragraph">
-<p>「 &lt;filer_addr&gt; 」は、ストレージ・システムの IP アドレスです。<code>&lt;netmask&gt;</code> はストレージシステムのネットワークマスクです。「 &lt;gateway&gt;` 」は、ストレージシステムのゲートウェイです。「 &lt;dns_addr' 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 &lt;dns_domain&gt; 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。</p>
+<p>「 &lt;filer_addr&gt; 」は、ストレージ・システムの IP アドレスです。<code>&lt;netmask&gt;</code> はストレージシステムのネットワークマスクです。「 &lt;gateway&gt;` 」は、ストレージシステムのゲートウェイです。「 &lt;dns_addr&gt; 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 &lt;dns_domain&gt; 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -4971,7 +4971,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
 <li>
 <p>node_B_1 でネットブートを実行します：ネットブート <a href="http://&lt;web_server_ip/path_to_web_accessible_directory&gt;/netboot/kernel`" class="bare">http://&lt;web_server_ip/path_to_web_accessible_directory&gt;/netboot/kernel`</a></p>
 <div class="paragraph">
-<p>「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;_image.tgz 」をダウンロードした場所を指します <a href="#step2-download-software">手順 2</a>。</p>
+<p>「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;\_image.tgz 」をダウンロードした場所に配置する必要があります <a href="#step2-download-software">手順 2</a>。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -5014,7 +5014,7 @@ Selection (1-11)?</pre>
 </div>
 </li>
 <li>
-<p>手順を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://&lt;web_server_ip/path_to_web-accessible_directory&gt;/&lt;ontap_version&gt;_image.tgz` と入力します</p>
+<p>手順 を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://&lt;web_server_ip/path_to_web-accessible_directory&gt;/&lt;ontap_version&gt;\_image.tgz` と入力します</p>
 </li>
 <li>
 <p>次の手順を実行してコントローラモジュールをリブートします。</p>
@@ -5043,7 +5043,7 @@ Selection (1-11)?</pre>
 </div>
 </li>
 <li>
-<p>ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止し ' コマンド・プロンプト *&gt; が表示されるまで ' プロンプトに yes と表示されます回答</p>
+<p>ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止して ' コマンド・プロンプト \*&gt; が表示されるまで ' プロンプトを表示します回答</p>
 </li>
 <li>
 <p>上記の手順を繰り返して、 node_B_2 をネットブートします。</p>
@@ -5249,10 +5249,10 @@ Selection (1-11)?</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults">"Broadcom IP スイッチを工場出荷時のデフォルトにリセット"</a></p>
 </li>
 <li>
-<p>リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults">"Cisco IP スイッチを工場出荷時のデフォルトにリセットする"</a></p>
 </li>
 </ul>
 </div>
@@ -5265,10 +5265,10 @@ Selection (1-11)?</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files">"Broadcom の RCF ファイルのダウンロードとインストール"</a></p>
 </li>
 <li>
-<p>リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]</p>
+<p><a href="../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files">"Cisco IP RCF ファイルのダウンロードとインストール"</a></p>
 </li>
 </ul>
 </div>
