@@ -2,7 +2,7 @@
 permalink: upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html 
 sidebar: sidebar 
 keywords: metrocluster, upgrade, controller, ip, configuration, switchover, switchback, workflow, nodes, tiebreaker, verify, bootrage, root, aggregate, disks 
-summary: ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
+summary: BYou は、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールのアップグレード中にクライアントに無停止のサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
 ---
 = スイッチオーバーとスイッチバックを使用して MetroCluster IP 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）
 :allow-uri-read: 
@@ -124,8 +124,8 @@ AFF A700 上の MetroCluster IP 構成では、 VLAN は使用されません。
 使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"] 内容
 
 +
-** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]
-** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
@@ -133,8 +133,8 @@ AFF A700 上の MetroCluster IP 構成では、 VLAN は使用されません。
 の手順に従います link:../install-ip/index.html["MetroCluster IP のインストールと設定"] 内容
 
 +
-** リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]
-** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
 
 
 
@@ -378,7 +378,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
  a| 
 Tiebreaker
  a| 
-link:install-stretch/concept_considerations_when_removing_mcc_configurations.html["MetroCluster 設定の削除"] MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください
+link:tiebreaker/concept_configuring_the_tiebreaker_software.html#commands-for-modifying-metrocluster-tiebreaker-configurations["MetroCluster 設定の削除"] MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください
 
 
 
@@ -620,7 +620,7 @@ AFF A900 コントローラモジュールと NVS をスワップしたら、 AF
 . にアクセスします https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
 . [step2-download-software]] ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 ONTAP-version image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。
 . Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
-. ディレクトリの一覧に <ONTAP_version>_image.tgz が表示されている必要があります。
+. ディレクトリの一覧に <ONTAP_version>\_image.tgz が表示されている必要があります。
 . 次のいずれかを実行してネットブート接続を設定します。
 +
 
@@ -645,12 +645,12 @@ NOTE: ネットブート接続として管理ポートおよび IP を使用す�
  a| 
 ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= <filer_addr> -mask= <netmask> -gw= <gateway> -dns= <dns_addr> domain= <dns_domain>
 
-「 <filer_addr> 」は、ストレージ・システムの IP アドレスです。`<netmask>` はストレージシステムのネットワークマスクです。「 <gateway>` 」は、ストレージシステムのゲートウェイです。「 <dns_addr' 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 <dns_domain> 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。
+「 <filer_addr> 」は、ストレージ・システムの IP アドレスです。`<netmask>` はストレージシステムのネットワークマスクです。「 <gateway>` 」は、ストレージシステムのゲートウェイです。「 <dns_addr> 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 <dns_domain> 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。
 
 |===
 . node_B_1 でネットブートを実行します：ネットブート http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`
 +
-「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します <<step2-download-software,手順 2>>。
+「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>\_image.tgz 」をダウンロードした場所に配置する必要があります <<step2-download-software,手順 2>>。
 
 +
 
@@ -679,7 +679,7 @@ Selection (1-11)?
 +
 新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、正しいイメージがインストールされないことがあります。この問題環境 All ONTAP リリース
 
-. 手順を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://<web_server_ip/path_to_web-accessible_directory>/<ontap_version>_image.tgz` と入力します
+. 手順 を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://<web_server_ip/path_to_web-accessible_directory>/<ontap_version>\_image.tgz` と入力します
 . 次の手順を実行してコントローラモジュールをリブートします。
 +
 .. 次のプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしますバックアップ構成を今すぐリストアしますか ? {y|n}`
@@ -692,7 +692,7 @@ Selection (1-11)?
 .. ノードがリブートして「 wipeconfig 」を終了し、ブートメニューで停止します。
 
 
-. ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止し ' コマンド・プロンプト *> が表示されるまで ' プロンプトに yes と表示されます回答
+. ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止して ' コマンド・プロンプト \*> が表示されるまで ' プロンプトを表示します回答
 . 上記の手順を繰り返して、 node_B_2 をネットブートします。
 
 
@@ -832,8 +832,8 @@ MetroCluster IP のインストールと設定セクションに記載されて�
 link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
 
 +
-** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]
-** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
@@ -841,8 +841,8 @@ link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
 使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"]。
 
 +
-** リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]
-** リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-& installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
 
 
 

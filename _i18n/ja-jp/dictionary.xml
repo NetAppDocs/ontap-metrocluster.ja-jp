@@ -2267,7 +2267,6 @@
   <block id="5cc254ef11dfb638d3f63eedc93039ba" category="list-text">新しいアグリゲートの RAID グループとドライブを確認します。</block>
   <block id="cb7debfd6008e33f68615f75d3145513" category="summary">『 MetroCluster アップグレード、移行、拡張ガイド』の著作権、商標、機械、翻訳に関する情報。</block>
   <block id="774a065cb3548cc61fb0ec3bc1494fbe" category="inline-link">ONTAP 9 ドキュメンテーション・センター</block>
-  <block id="467b03d67513f90008dacfccf9aaad2c" category="paragraph"><block ref="467b03d67513f90008dacfccf9aaad2c" category="inline-link-macro-rx"></block></block>
   <block id="ee3eb67d59a11b958b7071c3dadc57e6" category="list-text">MetroCluster 構成について</block>
   <block id="9b8ae1b2ea2900ace97f9bd5cc82d344" category="list-text">スイッチオーバー、修復、スイッチバック</block>
   <block id="645a84975202e30700b572b49a5ee29d" category="list-text">ディザスタリカバリ</block>
@@ -3495,7 +3494,6 @@
   <block id="38182d0b7f94eabf093a27fc21d6c6e6" category="paragraph">iSCSI 接続を移動するには、 MetroCluster IP ノードへの新しい iSCSI 接続をセットアップする必要があります。</block>
   <block id="b5c888106b46101190a9a9446ff7aeba" category="list-text">MetroCluster IP ノードに iSCSI インターフェイスを作成し、 iSCSI クライアントから MetroCluster IP ノード上の新しい IP インターフェイスへの ping 接続を確認します。</block>
   <block id="f2a6a6dfe9a7cb508ec1e1f475d326dc" category="inline-link">ネットワークインターフェイスを作成しています</block>
-  <block id="76c12ddb0f3ab2b6a3d727beb50de2d3" category="paragraph"><block ref="76c12ddb0f3ab2b6a3d727beb50de2d3" category="inline-link-rx"></block></block>
   <block id="0dc491dada4885353b9e96030fce6bd3" category="paragraph">SVM からのすべての iSCSI インターフェイスに iSCSI クライアントから到達できる必要があります。</block>
   <block id="acb0e987f9b29d1eab50c31f4f95aa9a" category="list-text">iSCSI ホストまたはクライアント上で ' ホストから MetroCluster FC ノードへの既存の iSCSI 接続を特定します iscsiadm -m session</block>
   <block id="d163a1c94db271251417ac64b011f503" category="list-text">MetroCluster IP ノードからの接続を確認します。「 iscsi session show -vserver vserver-name 」</block>
@@ -7753,7 +7751,6 @@
   <block id="4b7a16d6d162a666fd84016cdf343a72" category="paragraph">MetroCluster バックエンドスイッチは、ルータに直接接続するか（次の簡単な例を参照）、または他の介在するスイッチを介してルーティングされた IP ネットワークに接続されます。</block>
   <block id="39a69537fd3d24cb81ea2bc0e26adec5" category="image-alt">MCC レイヤ 3 バックエンド</block>
   <block id="fe77866a46d2eb6a7c2af4e6da3afb40" category="inline-link-macro">MetroCluster ハードウェアコンポーネントを設定します</block>
-  <block id="45dd59cfa07c747ed4243a8798b12e55" category="paragraph">MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構成で構成およびケーブル接続されます <block ref="dff375c743905386a2b0925d1ae7b141" category="inline-link-macro-rx"></block>。手順の設置とケーブル接続を行うときは、レイヤ 3 構成に固有の手順を実行する必要があります。</block>
   <block id="50355476e9050b2a291f3aee1615aa53" category="list-text">MetroCluster スイッチは、ルータに直接接続することも、介在する 1 つ以上のスイッチに接続することもできます。VLAN をゲートウェイデバイスに拡張する必要があります。</block>
   <block id="0e94eed6c84ca698067d35e27e2c2b56" category="list-text">MetroCluster IP （ MCC-IP ）インターフェイスアドレスと IP ゲートウェイアドレスを設定するには、 -gateway パラメータを使用します。</block>
   <block id="8f02ff97112ef08ffb62f88c80b6aab7" category="paragraph">ルータおよびゲートウェイの IP アドレスを設定するときは、次の要件を満たしていることを確認します。</block>
@@ -9359,12 +9356,10 @@
   <block id="5249dbc8eb004a9fbac1419d22d7bcd0" category="section-title">MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない</block>
   <block id="b3597a38069ce88bd5e71904ddba930d" category="paragraph">MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、「 failed 」と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。</block>
   <block id="15036251faefea85ea9b6ffa4f283c29" category="list-text">スイッチオーバー時に MetroCluster 構成で NVFAIL をトリガーするには、「 vol-dr-force-nvfail 」パラメータを「 on 」に設定します。</block>
-  <block id="6cce65fe6924e8263912ac73c8865cc0" category="paragraph"><block ref="6cce65fe6924e8263912ac73c8865cc0" category="inline-link-macro-rx"></block></block>
   <block id="3d46a6eeb65ebe391571feddc1cc5164" category="paragraph"><block ref="3d46a6eeb65ebe391571feddc1cc5164" category="inline-link-macro-rx"></block></block>
   <block id="9eecc3d31e1dca8ff5a3adf6988fa6d7" category="paragraph"><block ref="9eecc3d31e1dca8ff5a3adf6988fa6d7" category="inline-link-macro-rx"></block></block>
   <block id="2740d289d4d49097464e045111134762" category="paragraph"><block ref="2740d289d4d49097464e045111134762" category="inline-link-macro-rx"></block></block>
   <block id="c860f7f0a8aaf5b10a9ec71f48b87682" category="inline-link-macro">仮想 IP LIF を設定</block>
-  <block id="71fdbf59db45133c4aca9c7831b44466" category="paragraph">レイヤ 3 解決策を計画する際は、次のガイドラインと図を確認してください。ONTAP での VIP および BGP の実装の詳細については、を参照してください <block ref="19f78610f7fe22aa3fb117b5aee3e2a3" category="inline-link-macro-rx"></block>。</block>
   <block id="64d6dcdca907cf2218bf062bdef6f301" category="paragraph">ネイティブディスクおよびアレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成または 4 ノード MetroCluster 構成では、 FC-to-SAS ブリッジを使用して ONTAP システムとディスクシェルフを FC スイッチ経由で接続する必要があります。アレイ LUN は FC スイッチ経由で ONTAP システムに接続できます。</block>
   <block id="133e5cbc5686e035d77f84f694299e20" category="paragraph"><block ref="133e5cbc5686e035d77f84f694299e20" category="inline-link-macro-rx"></block></block>
   <block id="a2a2dcbf66bceb16c822e146bfd4ee0d" category="paragraph"><block ref="a2a2dcbf66bceb16c822e146bfd4ee0d" category="inline-link-macro-rx"></block></block>
@@ -9443,7 +9438,6 @@
   <block id="6fc1a0c4ecbbd59364bf4b20f10bd0b6" category="paragraph">* 注： Brocade 7840 スイッチでは、 FCIP ISL を作成するために、スイッチあたり 2 つの 40Gbps VE ポートまたは最大 4 つの 10Gbps VE ポートがサポートされます。</block>
   <block id="013d9d1788f79068cc17e1128a0db3ad" category="cell">スイッチモデル</block>
   <block id="051877dc61179a5af3a2aea7072b0a87" category="cell">* Cisco 9250i スイッチは ISL に FCIP ポートを使用します。FCIP ポートの使用に関しては一定の制限と手順があります。</block>
-  <block id="0b88045c51cbb65bd086c5bfd592aaa5" category="paragraph"><block ref="0b88045c51cbb65bd086c5bfd592aaa5" category="inline-link-macro-rx"></block></block>
   <block id="72b3f4df9ba178ac37c68c3130df2a2c" category="list-text"><block ref="72b3f4df9ba178ac37c68c3130df2a2c" category="inline-link-macro-rx"></block></block>
   <block id="e7f78ef846f1e6e4f4517bf5c0ce40bc" category="list-text">[ * 日付と時刻 * （ * Date and Time * ） ] ウィンドウで、日付と時刻の設定に加えた変更を確認します。</block>
   <block id="51af5f9273b0bde121a10742b4065824" category="list-text">MetroCluster 構成の各 Brocade DCX 8510-8 スイッチを ISL ポートとストレージ接続用に正しく設定する必要があります。使用するポートについては、次のセクションを参照してください。 <block ref="fb60c06f4120cd75fc9ac39720fd32d8" category="inline-link-macro-rx"></block>。</block>
@@ -10070,7 +10064,6 @@
   <block id="b886fb19ae0fdb270531dfdcb20663bd" category="list-text">クラスタ間通信で使用されるブロードキャストドメインに、 1 ノードあたり最低 2 つのポートがあり、クラスタ間通信で別のポートへのフェイルオーバーが可能になっている。</block>
   <block id="2bd06228e1f57eaa8e5ebd6cbc49cba5" category="list-text">データプロトコル（ CIFS 、 NFS 、 iSCSI ）によるネットワーク利用率が 50% を超える場合は、レプリケーションにポートを専用に割り当てて、ノードのフェイルオーバーが発生してもパフォーマンスが低下しないようにします。</block>
   <block id="e39c1c9f6137c6dbe9a36e7da08ce525" category="paragraph"><block ref="e39c1c9f6137c6dbe9a36e7da08ce525" category="inline-link-macro-rx"></block></block>
-  <block id="d6c1b26afb87081a7358d272268afbf0" category="paragraph"><block ref="d6c1b26afb87081a7358d272268afbf0" category="inline-link-macro-rx"></block></block>
   <block id="a72d2a4ca552186cbf62f182a7dfbe82" category="paragraph"><block ref="a72d2a4ca552186cbf62f182a7dfbe82" category="inline-link-macro-rx"></block></block>
   <block id="237ceede529524160f9215c07a41b01a" category="paragraph">「 enable 」を選択します</block>
   <block id="56c0e77173118d9438d0428e9dc7a715" category="list-text">スタートアップ設定を消去します。</block>
@@ -10525,7 +10518,6 @@
   <block id="b6929e4968ce2ed48274a887d3709bf9" category="cell">構成</block>
   <block id="3badf494f1e5507594701f730003f4b3" category="cell">実行する手順</block>
   <block id="7ed92f84948f4fe94d9e740b0e479a4e" category="paragraph">MetroCluster FC 構成</block>
-  <block id="7dd614724556a3966b03ba1f571c938d" category="paragraph">の手順に従います <block ref="fd64fad0fd85c76ef3ac6d154403d818" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
   <block id="cc65b45d9cd6a58be27baf40866d52dc" category="paragraph">Tiebreaker ソフトウェアの新しいインスタンスをインストールする必要がある場合は、に従います <block ref="41bac20da3e04dcec3e43f3b27170310" category="inline-link-macro-rx"></block>。</block>
   <block id="b935de63e2396f2d2fe997c9028969f7" category="inline-link">MetroCluster Tiebreaker ソフトウェアのインストールおよび設定</block>
   <block id="8510397a0db0873faf52a037f4e5c265" category="paragraph"><block ref="8510397a0db0873faf52a037f4e5c265" category="inline-link-rx"></block></block>
@@ -10538,11 +10530,9 @@
   <block id="c467b861736195e319f9323a1f51b76d" category="paragraph">。<block ref="752795714a55b77b4bc7d5d8c99674d1" category="inline-link-rx"></block> 追加情報が含まれています。</block>
   <block id="c4b7332c983d9f374f57570f90ffe107" category="paragraph"><block ref="c4b7332c983d9f374f57570f90ffe107" category="inline-link-macro-rx"></block></block>
   <block id="e413eba49b15917b0c9dbf2620f3e66e" category="inline-link-macro">ディザスタリカバリ</block>
-  <block id="9cb8502fd35a89cbfe1fcdcfbf276ed4" category="paragraph"><block ref="9cb8502fd35a89cbfe1fcdcfbf276ed4" category="inline-link-macro-rx"></block></block>
   <block id="1fdc00427d8a28cfd858de71d68438ad" category="inline-link-macro">MetroCluster メンテナンス</block>
   <block id="9433101051cd4f7f52c941cccdc15be4" category="paragraph"><block ref="9433101051cd4f7f52c941cccdc15be4" category="inline-link-macro-rx"></block></block>
   <block id="c750cfcf9c6045b6e0b4b0d6de2212f3" category="inline-link-macro">MetroCluster のアップグレードと拡張</block>
-  <block id="6634ea1415fe897674389adb775394f0" category="paragraph"><block ref="6634ea1415fe897674389adb775394f0" category="inline-link-macro-rx"></block></block>
   <block id="a9fd24893aed7bda18921eb1da6f8440" category="inline-link-macro">MetroCluster の移行</block>
   <block id="b6f8655d9cab6bf8d32e7b0bdc6c8eef" category="inline-link-macro">MetroCluster のアップグレード、移行、拡張</block>
   <block id="78d0e38065ed90f1fe7de25c50775110" category="paragraph"><block ref="78d0e38065ed90f1fe7de25c50775110" category="inline-link-macro-rx"></block></block>
@@ -10971,7 +10961,6 @@
   <block id="bebcf28331e2ef1173754b217ce3b9d4" category="list-text">Onboard Key Manager が設定されている場合： security key-manager onboard show-backup + アップグレード手順であとでパスフレーズが必要になります。</block>
   <block id="10a7f52b07c24ded6796ce7b186bcafe" category="list-text">既存のノードのシステム ID を収集します。 MetroCluster node show -fields node-systemid 、 ha-partner-systemid 、 dr-partner-systemid 、 dr-auxiliary-systemid</block>
   <block id="1cefe6fb0bd3a21a29c31cc3652723ce" category="section-title">メディエーターまたは Tiebreaker の監視を削除します</block>
-  <block id="a2e29f8228cdb7ac2387f9aa36bb0ea1" category="paragraph"><block ref="4f455031542b6708352ac5ad428a2b70" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
   <block id="2c8c38da3af9290bc8367a776b867b51" category="section-title">カスタム AutoSupport メッセージをメンテナンス前に送信する</block>
   <block id="9db835e4c4f6ecab5779d22af305de38" category="paragraph">メンテナンスを実行する前に、 AutoSupport an 問題 message to notify technical support that maintenance is maintenance.システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。</block>
   <block id="0cd13c32173979ae3ca88ab25050c571" category="section-title">MetroCluster 構成をスイッチオーバーします</block>
@@ -11036,7 +11025,6 @@
   <block id="7e50dc6378f3e2a11e73b6c2111ee61e" category="list-text">ご使用のシステムに必要なシステムファイルと、適切なバージョンの ONTAP をネットアップサポートサイトからダウンロードする必要があります。</block>
   <block id="008f1056138f3dd1061c0c135f496d75" category="paragraph">インストールされている ONTAP のバージョンが元のコントローラにインストールされているバージョンと異なる場合は、新しいコントローラをネットブートする必要があります。新しいコントローラをそれぞれ取り付けたら、 Web サーバに保存されている ONTAP 9 イメージからシステムをブートします。その後、以降のシステムブートで使用するブートメディアデバイスに正しいファイルをダウンロードできます。</block>
   <block id="e4c7a6a9ed6a7acb0614144c062d21fd" category="list-text">[step2-download-software]] ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 ONTAP-version image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。</block>
-  <block id="bc90acdb3802fef8bffa06c039008c30" category="list-text">ディレクトリの一覧に &lt;ONTAP_version&gt;_image.tgz が表示されている必要があります。</block>
   <block id="f47f57e3434d00c4cb0ddb03933b3fc5" category="list-text">次のいずれかを実行してネットブート接続を設定します。</block>
   <block id="d1adb867eac5534b9fe3de6b0b271291" category="admonition">ネットブート接続として管理ポートおよび IP を使用する必要があります。アップグレードの実行中にデータ LIF IP を使用しないでください。データ LIF が停止する可能性があります。</block>
   <block id="192da45ead024e4835d5b54e26e539c3" category="cell">Dynamic Host Configuration Protocol （ DCHP ）の設定</block>
@@ -11044,22 +11032,18 @@
   <block id="c05c7a2303ef34ab95234ebadd79fc8f" category="paragraph">ブート環境プロンプトで次のコマンドを使用して、自動的に接続を設定します。 ifconfig e0M -auto</block>
   <block id="19e185aea92cb0890229c16489d9c4cc" category="paragraph">実行されていません</block>
   <block id="78da5f94688332d9080947e0f923b416" category="paragraph">ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= &lt;filer_addr&gt; -mask= &lt;netmask&gt; -gw= &lt;gateway&gt; -dns= &lt;dns_addr&gt; domain= &lt;dns_domain&gt;</block>
-  <block id="cd303869834d5ee5e6aaca427a21f2b7" category="paragraph">「 &lt;filer_addr&gt; 」は、ストレージ・システムの IP アドレスです。`&lt;netmask&gt;` はストレージシステムのネットワークマスクです。「 &lt;gateway&gt;` 」は、ストレージシステムのゲートウェイです。「 &lt;dns_addr' 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 &lt;dns_domain&gt; 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。</block>
   <block id="8cadcd3d278c7bf112a3d2eb870dfb3e" category="list-text">node_B_1 でネットブートを実行します：ネットブート http://&lt;web_server_ip/path_to_web_accessible_directory&gt;/netboot/kernel`</block>
   <block id="e31ad1284b7618a9c10777ed99b12e64" category="inline-xref">手順 2</block>
-  <block id="177534e7487672f74e65482ce040eff2" category="paragraph">「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;_image.tgz 」をダウンロードした場所を指します <block ref="28cd24b5ecf937229eb419cc55587b9d" category="inline-xref-macro-rx"></block>。</block>
   <block id="85bd8aebb41cb27f7bc364e977313958" category="admonition">トランクを中断しないでください。</block>
   <block id="6f6f6695a268d5918427f02892c43312" category="list-text">AFF A900 コントローラモジュールで node_B_1 がブートするまで待ち、次のようにブートメニューオプションを表示します。</block>
   <block id="2653300b079109b65a613fd185414faa" category="list-text">起動メニューから ' オプション (7) Install new software first.`` を選択します このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。注意 : 次のメッセージは無視してください : この手順は 'HA ペアでの無停止アップグレードではサポートされていません 環境の無停止の ONTAP ソフトウェアアップグレード。コントローラのアップグレードは含まれません。</block>
   <block id="f7462137da4e89b12e82937bb5da165f" category="paragraph">新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、正しいイメージがインストールされないことがあります。この問題環境 All ONTAP リリース</block>
-  <block id="7464b9510418d0b0f92366d413fdb495" category="list-text">手順を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://&lt;web_server_ip/path_to_web-accessible_directory&gt;/&lt;ontap_version&gt;_image.tgz` と入力します</block>
   <block id="7b3f6c26774d36cd594edf297f0f8f57" category="list-text">次の手順を実行してコントローラモジュールをリブートします。</block>
   <block id="61ee95ecb870c833ca0f73515cef5bce" category="list-text">次のプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしますバックアップ構成を今すぐリストアしますか ? {y|n}`</block>
   <block id="d7672ee0e4d46e194ae0b844a3cf32ad" category="list-text">次のプロンプトが表示されたら 'y と入力して再起動します ' 新しくインストールしたソフトウェアの使用を開始するには ' ノードを再起動する必要があります今すぐリブートしますか？{y|n}`` コントローラモジュールは再フォーマットされたために再起動しますが、ブートメニューで停止します。そして、設定データを復元する必要があります。</block>
   <block id="963f89f538a2fcd5d086c865807c540a" category="list-text">プロンプトで「 wipeconfig 」コマンドを実行して、ブートメディアの以前の設定をクリアします。</block>
   <block id="c9c4b352c210e485b70af0c63a95e7fa" category="list-text">次のメッセージが表示されたら、回答は「 yes 」を選択します。これにより、クラスタメンバーシップを含む重要なシステム構成が削除されます。警告：テイクオーバーされた HA ノードでは実行しないでください。続行してもよろしいですか ?:`</block>
   <block id="d9942055ef69c8d0b4c6c187ca017527" category="list-text">ノードがリブートして「 wipeconfig 」を終了し、ブートメニューで停止します。</block>
-  <block id="6ebf5df07db410036bc7fe70797c789b" category="list-text">ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止し ' コマンド・プロンプト *&gt; が表示されるまで ' プロンプトに yes と表示されます回答</block>
   <block id="c97b27c69af0eb8712cf22da6b167f03" category="list-text">上記の手順を繰り返して、 node_B_2 をネットブートします。</block>
   <block id="0ea9cea3e113063ccea6ef4b69487681" category="section-title">HBA 構成をリストア</block>
   <block id="63db75147bb8e9b621622657ecea58d6" category="section-title">新しいコントローラとシャーシで HA 状態を設定</block>
@@ -11503,8 +11487,6 @@
   <block id="01287956f61234602c5c75e0132f809e" category="list-text">表示されたシャーシのシステム状態が「 mcc-2n 」でない場合は、シャーシの HA 状態を設定します。</block>
   <block id="3812f4161cb57e4e096ace5a3a653d71" category="list-text">Enter キーを押してシステムのデフォルトの "yes" をそのまま使用するか ' または "no`" と入力してから Enter キーを押して独自の値を入力します</block>
   <block id="9312a7c47a9915cb921363b9989a8320" category="paragraph"><block ref="9312a7c47a9915cb921363b9989a8320" category="inline-link-rx"></block></block>
-  <block id="2afa460df5e410797c1820ebc7e4d05c" category="paragraph"><block ref="2afa460df5e410797c1820ebc7e4d05c" category="inline-link-macro-rx"></block></block>
-  <block id="49496c260d6e69c957fc9fece654f5e0" category="paragraph"><block ref="49496c260d6e69c957fc9fece654f5e0" category="inline-link-macro-rx"></block></block>
   <block id="e379ec23aefb4ea298d6539bf663e4ce" category="paragraph">次の例は 'cluster0' 内のネットワーク・ポートを示しています</block>
   <block id="ae9570444f7281706174b8d5e38ee0a2" category="paragraph">次の例は、ポート「 e0e 」および「 e0f 」に LIF が割り当てられていないことを示しています。</block>
   <block id="eb9899081d81dbac3fdb716cd1490d3e" category="paragraph">次の例では、ポート「 e0e 」および「 e0f 」を、システム SVM 「 cluster01 」上のフェイルオーバーグループ「 intercluster01 」に割り当てます。</block>
@@ -11626,7 +11608,6 @@
   <block id="888372be024925328ca6e321c9a44891" category="paragraph">「 vsan [vsna#] suspend` 」</block>
   <block id="37e68b1ed6861ebdf386fc5e91c46ae5" category="list-text">使用<block ref="df3a11b0f7b8977a7ee2ae6dd464c6cb" category="inline-link-rx"></block> スイッチタイプのケーブルレイアウトを決定するには、 8 ノード MetroCluster 構成のポート用途を使用します。</block>
   <block id="f2fa326e6e1c8de922a1dcd02e4670eb" category="paragraph">使用する FC スイッチポートは、に記載されている用途と一致する必要があります<block ref="df3a11b0f7b8977a7ee2ae6dd464c6cb" category="inline-link-rx"></block> RCF を使用できるようにするためです。</block>
-  <block id="f6ebc97c3dd18d3e590229f14e2b997f" category="list-text">の説明に従って、ネゴシエートスイッチオーバー、修復、スイッチバックを実行します<block ref="b1691cf28bc690bfdc6f2071919d62d4" category="inline-link-rx"></block>。</block>
   <block id="2f33c0ab177d6cfd4b52b9e6472de2a0" category="paragraph">ゾーニングの変更や FibreBridge 6500 から FibreBridge 7500 へのアップグレードの実行には、の手順ホットスワップ対応 FibreBridge 6500N ブリッジと FibreBridge 7500N / 7600N ブリッジ _ を使用します <block ref="aeb2eb91b4a88826f71d1fbd30b29e7b" category="inline-link-macro-rx"></block>。</block>
   <block id="29c81145f8df4c302d2a5db797d28b64" category="paragraph"><block ref="29c81145f8df4c302d2a5db797d28b64" category="inline-link-rx"></block></block>
   <block id="91683a88a240de71b025c11834d0b99a" category="paragraph">新しいブリッジの各 FC ポート用のストレージゾーンを追加する必要があります。</block>
@@ -11651,9 +11632,7 @@
   <block id="0603c73cf9470cfd549fa2ceb0683f8f" category="admonition">再同期の進行状況は 'aggr status --raggr_name_` コマンドを使用して監視できます</block>
   <block id="7af2fe8b48be4009b6b73d9be9af389b" category="paragraph"><block ref="7af2fe8b48be4009b6b73d9be9af389b" category="inline-link-rx"></block></block>
   <block id="ec9ed7bffd77d0096865ed2f7cdcc6cb" category="inline-link-macro">MetroCluster ® のアップグレードと拡張</block>
-  <block id="4ad0984b4112e2f4fcdb04cdbb047f30" category="paragraph"><block ref="4ad0984b4112e2f4fcdb04cdbb047f30" category="inline-link-macro-rx"></block></block>
   <block id="5a302b1db223d113f18ba828a7728831" category="paragraph"><block ref="5a302b1db223d113f18ba828a7728831" category="inline-link-macro-rx"></block></block>
-  <block id="36ac47baf32c3a2932ed1874fed7e2af" category="paragraph"><block ref="36ac47baf32c3a2932ed1874fed7e2af" category="inline-link-macro-rx"></block></block>
   <block id="19b62c619e1b1ed88877f41babaf2907" category="paragraph"><block ref="19b62c619e1b1ed88877f41babaf2907" category="inline-link-macro-rx"></block></block>
   <block id="53c3a61c42f70985acf2b36a3d805bcb" category="paragraph"><block ref="53c3a61c42f70985acf2b36a3d805bcb" category="inline-link-rx"></block></block>
   <block id="08b87b0df84f23bedc3bd35f30bfa073" category="paragraph">ミラーされていないアグリゲートのシェルフを追加する場合は、を参照してください<block ref="a4e92f124c7c2dcbe4223de70278d181" category="inline-link-rx"></block></block>
@@ -11675,7 +11654,6 @@
   <block id="10df5509416416659fe58fd40c64d2ec" category="paragraph"><block ref="10df5509416416659fe58fd40c64d2ec" category="inline-link-rx"></block></block>
   <block id="585e085c167dffb4091a9c937b46294a" category="paragraph"><block ref="585e085c167dffb4091a9c937b46294a" category="inline-link-rx"></block></block>
   <block id="5844eb4847c89603c89f034b72ecb0bf" category="paragraph"><block ref="5844eb4847c89603c89f034b72ecb0bf" category="inline-link-macro-rx"></block></block>
-  <block id="bd73c346b7b65c18cc82c35d84f4f2cb" category="paragraph"><block ref="bd73c346b7b65c18cc82c35d84f4f2cb" category="inline-link-macro-rx"></block></block>
   <block id="24c1a0c448c4959cdafdf2e44ab0c978" category="paragraph">'set FCDataRate_port-number port-speed_</block>
   <block id="e06e69206cb15e7112885a81ac1efdff" category="list-text">2 番目のポートを使用しない場合は、ポート +`FCPortDisable_port-number_` を無効にする必要があります</block>
   <block id="ad2d5ff88922ccf7648298e4e6db9116" category="list-text">セキュリティ保護されていないブリッジのポートのステータスを確認します :+`info`</block>
@@ -11717,7 +11695,6 @@
   <block id="c1e404b965bd033d8d0a2284a04382d6" category="list-text">両方のパーティションが更新されたことを確認します。</block>
   <block id="378d97c929a2501d1e50a01e1e1a5b97" category="paragraph">'run local sysconfig -v</block>
   <block id="8a55d02eab45d757aa9762d06c09ae5f" category="list-text">次のガイドラインを確認し、の手順を使用して「最上部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="958de5ee2f25b5fa2715cdd4e27fa14c" category="inline-link-macro-rx"></block>：</block>
-  <block id="fb18671b6f6bd3a4b0f317ae03bbecaa" category="list-text">次のガイドラインを確認し、の手順を使用して「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="4a5897c402dc3c400f037316fba4e4fc" category="inline-link-macro-rx"></block>：</block>
   <block id="37c8362167e23bbca70c828a9376397b" category="list-text">システムが正しくケーブル接続されていない場合は、ケーブルを取り外し、ケーブル接続を修正してから、正しいケーブルを再接続します。</block>
   <block id="9c70e58ba306d049dc41ed64cf6e8f62" category="paragraph">ゾーニングコマンドの詳細については、の FC スイッチに関するセクションを参照してください <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> または <block ref="c4b7332c983d9f374f57570f90ffe107" category="inline-link-macro-rx"></block>。</block>
   <block id="1a4f45d5a5a5d25d76225f6a14a02044" category="cell">図の色 ( 図にはサイト A のみが表示されます )</block>
@@ -11728,7 +11705,6 @@
   <block id="f212fe67c4a158c06179f881b179791b" category="paragraph">'SASortEnable_portlet-letter_</block>
   <block id="31f00624937d0a077f284d8382109c74" category="paragraph">SaveConfiguration Restart を実行します</block>
   <block id="f0505ad7890c6164f5000303b931f7a4" category="admonition">出力の先頭に「 response truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、「 sastargets 」コマンドを使用してすべての出力を表示できます。</block>
-  <block id="7fa4d7e9b20d58127b8754982ea5604a" category="admonition">ノード障害からの追加情報のリカバリについては、の「正しいリカバリ手順の選択」を参照してください <block ref="f5649c77521ce57ea1c3069471789f1d" category="inline-link-macro-rx"></block>。</block>
   <block id="089e7751774b9c40081d48030c4cdcb9" category="paragraph"><block ref="089e7751774b9c40081d48030c4cdcb9" category="inline-link-macro-rx"></block></block>
   <block id="c66ee767a2af6fdd3015bee0ecf09c9e" category="paragraph"><block ref="c66ee767a2af6fdd3015bee0ecf09c9e" category="inline-link-macro-rx"></block></block>
   <block id="1aef385dad1ee825cccc96f9bd7798c0" category="paragraph">storage bridge run -cli-name_bridge-name_command "info"`</block>
@@ -11790,7 +11766,6 @@
   <block id="c810f42d19e2ccb28c4ba2385d911476" category="paragraph"><block ref="c810f42d19e2ccb28c4ba2385d911476" category="inline-link-macro-rx"></block></block>
   <block id="d6ef215e9ee12ea54d86a3aebb395fa4" category="paragraph">この情報は、各プラットフォームモデルので確認できます<block ref="f73c85a53b5d65cc9c35da0b9e0d2f09" category="inline-link-rx"></block></block>
   <block id="bd06c304e78aaf8098a0eb5757ca869d" category="paragraph">の手順を実行します <block ref="4c4984fc1287cfa1cec22e3d9418abef" category="inline-link-macro-rx"></block>。</block>
-  <block id="62c215bcf61b167f8876345b8e7617e9" category="paragraph">の手順を実行します <block ref="16de910b8ac33cc8ca168ae42f313127" category="inline-link-macro-rx"></block>。</block>
   <block id="87026ac24b693b99c9187b6c59dd08ba" category="paragraph">の手順を実行します <block ref="d6c8cfbb59e30552477d5b22014936e3" category="inline-link-macro-rx"></block>。</block>
   <block id="ed9d74f787f4f2a214d44f822ee3e099" category="paragraph">の手順を実行します <block ref="76871526ce91339339e5e8b0ca720caf" category="inline-link-macro-rx"></block>。</block>
   <block id="ab5740671143f54aca9d18a1d52e6692" category="paragraph">の手順を実行します <block ref="c54a1ac9a7ac2407367e179872409032" category="inline-link-macro-rx"></block>。</block>
@@ -12216,14 +12191,12 @@
   <block id="0bae9da7e045b91539ca2636147550a9" category="inline-link">その他のプラットフォーム手順： Controller Hardware Upgrade Express</block>
   <block id="074e456fb5fc2d75c702ca853d7ff4a7" category="list-text">の次の手順に従って、古いノードから新しいノードにデータを移動します<block ref="c8d46be4ca27ce42222e434f46ed9bd4" category="inline-link-rx"></block>。</block>
   <block id="6abf8fcf1209a0e61a34ee20748a726e" category="paragraph">各コントローラのクラスタポートを、手順 b で特定したクラスタネットワークスイッチのポートに接続します</block>
-  <block id="fe4855b1c6b801b5e92176cd902d4a76" category="list-text">のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します <block ref="467b03d67513f90008dacfccf9aaad2c" category="inline-link-macro-rx"></block>。</block>
   <block id="30ff186227aaf51cf730a9cf5a73a9e1" category="inline-link">物理ストレージ管理</block>
   <block id="139a2480b517efabfcd850e52aeab3e8" category="paragraph"><block ref="139a2480b517efabfcd850e52aeab3e8" category="inline-link-rx"></block></block>
   <block id="a8307b4c5fa271005a1338d5b405ca1f" category="paragraph">ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。</block>
   <block id="a4aa69385ab0a1b92a7a5635cdb2f2b2" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block>。</block>
   <block id="1cab2231671234cf1e23b1ca0a52ef3e" category="list-text">新しい MetroCluster IP ノードで、次の手順に従ってクラスタ間 LIF を設定します。</block>
   <block id="bc13f269b8fcdbac7ef84f083e616363" category="paragraph">MetroCluster の設定と接続の詳細については、次のトピックを参照してください。</block>
-  <block id="826921064deb9c03eeb155f2c78b5ec6" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.1.1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するには、 -gateway パラメータも指定する必要があります。を参照してください <block ref="39d6ebbaa38ab1d3a91c83593d55d602" category="inline-link-macro-rx"></block>。</block>
   <block id="cd60490d5712d0d4fead93178d76d0d7" category="paragraph">使用しているスイッチベンダーの手順で次の手順を実行します。</block>
   <block id="143982074a2586885b81ca0686673560" category="list-text">の説明に従って、コントローラを IP スイッチにケーブル接続します <block ref="4ab496c462bc9a729fe703221c683545" category="inline-link-macro-rx"></block>。</block>
   <block id="c09c91c40853cc803259a2c27d8fa946" category="paragraph">システム ID 変更プロンプトに「 y 」と入力します。2 回目のリブートメッセージが表示されるまで待ちます。</block>
@@ -12267,8 +12240,6 @@
   <block id="c115301f599f6a61a213f015820f2807" category="paragraph">新しいコントローラモジュールを設定していて、新しいコントローラモジュールのディスクは空であるため、すべてのディスクが消去されるという警告が表示されたら「 y 」と入力します。</block>
   <block id="3967230285e3296d4600c5d6f8a225a2" category="list-text">ノードにログインし 'cluster setup を入力し ' クラスタへの参加を求めるプロンプトが表示されたら 'join を入力します</block>
   <block id="2aae09e4f065abad72f108794c111bcd" category="paragraph">。 <block ref="95a2ad6fc516d3f7074e7d260643f587" category="inline-link-macro-rx"></block> 詳細については、お使いのバージョンの ONTAP のを参照してください。</block>
-  <block id="496284ad6f6aafd5df774eb7019e89ee" category="paragraph"><block ref="496284ad6f6aafd5df774eb7019e89ee" category="inline-link-macro-rx"></block></block>
-  <block id="5fb9f0561cb803f508ed9e3b73633212" category="paragraph"><block ref="5fb9f0561cb803f508ed9e3b73633212" category="inline-link-macro-rx"></block></block>
   <block id="75f592488d6be5738040725bd9891f31" category="list-text">追加する機器がサポートされており、次の手順で説明するすべての要件を満たしている必要があります。</block>
   <block id="d0adaf602e73b54e5ed4fca02915a8c2" category="inline-link">機械翻訳に関する免責事項</block>
   <block id="9d5c01825c136f7f2d4457afa4f41770" category="paragraph">翻訳版のコンテンツに関する重要な情報については、を参照してください<block ref="f07125fb97264bd7aeb45160d145d34f" category="inline-link-rx"></block></block>
@@ -12341,7 +12312,6 @@
   <block id="3e364a62394cf176526399560d023208" category="paragraph">ONTAP 9.5 以降では、 ONTAP CLI を使用して FibreBridge コマンドをブリッジに送信し、コマンドの結果を表示することができます。</block>
   <block id="e57ca4b3df83a88b6254675613163df0" category="list-text">に記載されたすべての要件をシステムが満たしている必要があります <block ref="08d6c3cbf42a81a0c26843f87c874545" category="inline-link-macro-rx"></block>。</block>
   <block id="680f2c91c58cc6532106b87cb564cc68" category="admonition">この手順では、リンク先に記載されている手順のダウンロード部分のみを実行します。の手順に従う必要があります <block ref="47adb28a466429763b049bd78d160e0f" category="inline-link-macro-rx"></block> ディスクシェルフの設置については、セクションを参照してください。</block>
-  <block id="d90a7659d57c5e308b960baf3ceb0ad6" category="admonition">ONTAP 9.8 のリリースでは、 MetroCluster のアップグレードおよび拡張手順はに移動しました <block ref="6634ea1415fe897674389adb775394f0" category="inline-link-macro-rx"></block> および <block ref="4b2bd901a298e1bc3ed2224632f2e517" category="inline-link-macro-rx"></block>。</block>
   <block id="b2d9f80a5c71fe34bed7839914c2fd68" category="paragraph">新しいブリッジのタイプがパートナーブリッジと同じ場合は、パートナーブリッジと同じファームウェアにアップグレードします。新しいブリッジのタイプがパートナーブリッジと異なる場合は、ブリッジと ONTAP のバージョンでサポートされている最新のファームウェアにアップグレードします。MetroCluster Maintenance _ の「 Updating firmware on a FibreBridge bridge 」セクションを参照してください。</block>
   <block id="3240aad2738f70e3ab16c6dadcff4f64" category="list-text">ブリッジファームウェアを更新します。</block>
   <block id="befb8d9c3b9caecfce0121a43afa3ce1" category="admonition">ATTO ファームウェアバージョン 2.95 以降ではブリッジが自動的に再起動するため、この手順は不要です。</block>
@@ -12395,7 +12365,6 @@
   <block id="af6710425f9b72f8e5aeb24aa9d0bac6" category="summary">ONTAP 9.8 以降では、既存の 4 ノード MetroCluster FC 構成から新しい MetroCluster IP 構成へのワークロードおよびデータの無停止移行がサポートされます。</block>
   <block id="dd29cf7134047c7a311edc4776b9021e" category="paragraph">2 ノード MetroCluster FC 構成の場合は、を参照してください <block ref="ef88855c7d052c0aa5ce46e187d01954" category="inline-link-macro-rx"></block>。</block>
   <block id="2912e0eba45e116506958546503977b9" category="paragraph"><block ref="2912e0eba45e116506958546503977b9" category="inline-link-macro-rx"></block></block>
-  <block id="4aeccceec58ed237296dba5ea0673521" category="paragraph">既存のスイッチを使用している場合は、に進みます <block ref="a43d04863a085a87276f8dea37ae5895" category="inline-link-macro-rx"></block>。</block>
   <block id="0297e6ce2162b2f01b03b57027b0de3f" category="paragraph">MetroCluster IP インストールおよび設定については、使用しているスイッチベンダーのセクションに記載されている手順を実行してください。</block>
   <block id="7efa6fc838c006d396e42638b4ff25d1" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block></block>
   <block id="bc77bf857b365d445270101e2d7ce03f" category="list-text">MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster FC 構成で使用されます。</block>
@@ -12449,7 +12418,6 @@
   <block id="c3473aa37fb65a96d05747e3b9043979" category="paragraph">必要に応じて、 IP アドレスを設定できます。</block>
   <block id="94d54d70c5d7ee5cc198da3e79246db2" category="list-text">トランキングを使用する場合は、トランキングを確認します。</block>
   <block id="3c4e32c4ec392d71a4445aa8de2c38a3" category="paragraph">「トラクショー」</block>
-  <block id="0561b2a8ba939086c6798ec4eb3c4290" category="paragraph">ONTAP 9.0 以前を実行している構成の場合は、を参照してください <block ref="9ddd202dbf59bf7876d81864f2edbb11" category="inline-link-macro-rx"></block>。</block>
   <block id="968a5c710f7421980907a4cc6a0df2a5" category="list-text">スイッチをデフォルトの設定に戻します。</block>
   <block id="c96e5513a57e88173ad4f14750758f4c" category="paragraph">コマンドの確認を求められたら、「 y 」と入力します。これにより、スイッチのライセンスおよび設定情報がすべて消去されます。</block>
   <block id="b9333c3e2ee70bdb29c9d7d9026f0127" category="paragraph">コマンドの確認を求められたら、「 y 」と入力します。</block>
@@ -12517,10 +12485,6 @@
   <block id="455aeb5b6e6bb2c51d7485e26da56e30" category="paragraph">リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration]</block>
   <block id="e62a18c77eddb4d80155a6c15402f7e5" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください</block>
   <block id="7da41c16475b7dae8b0b8ab6424918d7" category="paragraph">リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration] （ _ MetroCluster IP インストールおよび設定 _ でのメディエーターサービスの設定）</block>
-  <block id="1694bd7aa5b3b3ecd0394ac449f774af" category="list-text">リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the Broadcom-ip-switch-to-factory-defaults [Broadcom IP switch を工場出荷時のデフォルトにリセット ]</block>
-  <block id="40f8dac9d3afe2ad9f3eb063b5a8ebe6" category="list-text">リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # reset-the -Cisco-ip-switch-to-factory-defaults [ シスコ IP スイッチを工場出荷時のデフォルトにリセットする ]</block>
-  <block id="a016106990032abc8e07606eb9a35a34" category="list-text">リンク： ./install-ip/task_switch _config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the Broadcom-RCF files [ Broadcom RCF ファイルのダウンロードとインストール ]</block>
-  <block id="2092fa2d67720266015440eaa2d835ab" category="list-text">リンク： ./install-ip/task_switch_config_Broadcom.html# reset-the Broadcom-ip-switch-to-factory-defaults # downloading-&amp; installing-the -cisco-ip-rcf-files [ ダウンロードしてインストールする Cisco IP RCF ファイル ]</block>
   <block id="861ef6676813cbc81369ee701ae73269" category="paragraph">サードパーティのファイアウォールを使用している場合は、次の手順を実行します。</block>
   <block id="041f3a27fe8b40cc213210949eb4f036" category="list-text">HTTPS アクセスが有効になっている必要があります。</block>
   <block id="8b8101ed71d5bd32d2f9d4de05e470c1" category="list-text">ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。</block>
@@ -12534,4 +12498,39 @@
   <block id="dd23316b696cd08f3479c6e2d7baadc0" category="inline-link">AFF または FAS システムのインストール手順</block>
   <block id="17959b19c1c128d5d74608a22de28cf9" category="paragraph"><block ref="17959b19c1c128d5d74608a22de28cf9" category="inline-link-rx"></block></block>
   <block id="e5303b615c196a6ae1c68873f1d05073" category="sidebar">Brocade FC スイッチを手動で設定</block>
+  <block id="2e7e413d490de09cb96837b5567b668c" category="paragraph"><block ref="2e7e413d490de09cb96837b5567b668c" category="inline-link-macro-rx"></block></block>
+  <block id="97f70489df0d405722087f0f98dc7c3f" category="paragraph"><block ref="97f70489df0d405722087f0f98dc7c3f" category="inline-link-macro-rx"></block></block>
+  <block id="6b85600ee1be273e93253da5e134fb16" category="admonition">ノード障害からの追加情報のリカバリについては、の「正しいリカバリ手順の選択」を参照してください <block ref="e623fd8091406f43d52a7bc3543c2f9f" category="inline-link-macro-rx"></block>。</block>
+  <block id="8ef2465c629a51ad799f916321355ab0" category="paragraph"><block ref="8ef2465c629a51ad799f916321355ab0" category="inline-link-macro-rx"></block></block>
+  <block id="c160b6358f7336db6f2a26360400f661" category="list-text">次のガイドラインを確認し、の手順を使用して「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="958de5ee2f25b5fa2715cdd4e27fa14c" category="inline-link-macro-rx"></block>：</block>
+  <block id="8b8800e8b5ac43d8ac015a60e243a711" category="admonition">ONTAP 9.8 のリリースでは、 MetroCluster のアップグレードおよび拡張手順はに移動しました <block ref="97f70489df0d405722087f0f98dc7c3f" category="inline-link-macro-rx"></block> および <block ref="a8125364ced10d8a90aedca98aa02032" category="inline-link-macro-rx"></block>。</block>
+  <block id="ebe3b07d927344896c24a9e5e5eee917" category="paragraph"><block ref="ebe3b07d927344896c24a9e5e5eee917" category="inline-link-macro-rx"></block></block>
+  <block id="5e6d9dff4a682d0558edb1406ac87060" category="paragraph"><block ref="5e6d9dff4a682d0558edb1406ac87060" category="inline-link-macro-rx"></block></block>
+  <block id="80063a26d9eb84904fdbb388ac3a5629" category="list-text">の説明に従って、ネゴシエートスイッチオーバー、修復、スイッチバックを実行します<block ref="be2bdafda4a97cad52118e4d9ef914b5" category="inline-link-rx"></block>。</block>
+  <block id="44b7f701c8b22fd32471d911de4c0984" category="paragraph">の手順に従います <block ref="c355f6bb3dca677defb89e8a84e6c55b" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
+  <block id="e3d7ead0f01b9fa985ec5c35c22c44f3" category="paragraph"><block ref="e3d7ead0f01b9fa985ec5c35c22c44f3" category="inline-link-macro-rx"></block></block>
+  <block id="6405f02626b672ea5ce042f43244f057" category="paragraph"><block ref="6405f02626b672ea5ce042f43244f057" category="inline-link-macro-rx"></block></block>
+  <block id="f62e57388ece8ed3ab39425498977dae" category="paragraph"><block ref="f62e57388ece8ed3ab39425498977dae" category="inline-link-macro-rx"></block></block>
+  <block id="291349860e45161d05b403e88ba2f28b" category="list-text">のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します <block ref="e3d7ead0f01b9fa985ec5c35c22c44f3" category="inline-link-macro-rx"></block>。</block>
+  <block id="070a06c68e9e4e7cecc2e9719193b28c" category="summary">BYou は、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールのアップグレード中にクライアントに無停止のサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
+  <block id="35b541137c97f0d986b3779c7a322603" category="list-text"><block ref="35b541137c97f0d986b3779c7a322603" category="inline-link-macro-rx"></block></block>
+  <block id="7781c27327814c0f7935ce903ca1101f" category="list-text"><block ref="7781c27327814c0f7935ce903ca1101f" category="inline-link-macro-rx"></block></block>
+  <block id="8e077a574605e13d75ee083e7cd96f27" category="list-text"><block ref="8e077a574605e13d75ee083e7cd96f27" category="inline-link-macro-rx"></block></block>
+  <block id="5860040c16ad914f0dc769bbc79c2a6d" category="list-text"><block ref="5860040c16ad914f0dc769bbc79c2a6d" category="inline-link-macro-rx"></block></block>
+  <block id="4a3e665f4593afeb6ebcabea7ce85845" category="paragraph"><block ref="97b0c50183125e551abb5b04258316bf" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
+  <block id="398ca4e3f9e65b681f95fee13804bab9" category="list-text">ディレクトリの一覧に &lt;ONTAP_version&gt;\_image.tgz が表示されている必要があります。</block>
+  <block id="befdb6ab41f0cd39ff57e00b0ee8c3f6" category="paragraph">「 &lt;filer_addr&gt; 」は、ストレージ・システムの IP アドレスです。`&lt;netmask&gt;` はストレージシステムのネットワークマスクです。「 &lt;gateway&gt;` 」は、ストレージシステムのゲートウェイです。「 &lt;dns_addr&gt; 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 &lt;dns_domain&gt; 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。</block>
+  <block id="f9917e026c23b682e18bcd6bc125c1b9" category="paragraph">「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;\_image.tgz 」をダウンロードした場所に配置する必要があります <block ref="28cd24b5ecf937229eb419cc55587b9d" category="inline-xref-macro-rx"></block>。</block>
+  <block id="b04e99a0adbd90ade4803bbd436b76af" category="list-text">手順 を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://&lt;web_server_ip/path_to_web-accessible_directory&gt;/&lt;ontap_version&gt;\_image.tgz` と入力します</block>
+  <block id="dbfa5994b398cd0fb3a814715f0dc252" category="list-text">ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止して ' コマンド・プロンプト \*&gt; が表示されるまで ' プロンプトを表示します回答</block>
+  <block id="d201d18b165e21d1a9986863a5788d3c" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.1.1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するには、 -gateway パラメータも指定する必要があります。を参照してください <block ref="babfc343bda1ae07500c981be392a72d" category="inline-link-macro-rx"></block>。</block>
+  <block id="76c06c220bafe4dc7e175b4584717344" category="paragraph"><block ref="76c06c220bafe4dc7e175b4584717344" category="inline-link-macro-rx"></block></block>
+  <block id="b16f070ef0ff70f134e9de232ff4d07d" category="paragraph">MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構成で構成およびケーブル接続されます <block ref="1f208108354e7662d904d86579319d48" category="inline-link-macro-rx"></block>。手順の設置とケーブル接続を行うときは、レイヤ 3 構成に固有の手順を実行する必要があります。</block>
+  <block id="2445f74267948c10619896a5e47cd3d6" category="paragraph">の手順を実行します <block ref="0e3caa859006182753aee07c6f57c3cf" category="inline-link-macro-rx"></block>。</block>
+  <block id="b0f85a0199d1b83b2b8a32a5f34bdd8d" category="paragraph">既存のスイッチを使用している場合は、に進みます <block ref="4da30401760153ceb5481ac559dbe601" category="inline-link-macro-rx"></block>。</block>
+  <block id="cdf93537d7257dad75e41411958bb32c" category="paragraph"><block ref="cdf93537d7257dad75e41411958bb32c" category="inline-link-rx"></block></block>
+  <block id="f44903a02a813582e3877d0c017bdfcb" category="paragraph"><block ref="f44903a02a813582e3877d0c017bdfcb" category="inline-link-macro-rx"></block></block>
+  <block id="255e6fa1222b0f5f7521f1965844c1bf" category="paragraph">レイヤ 3 解決策を計画する際は、次のガイドラインと図を確認してください。ONTAP での VIP および BGP の実装の詳細については、を参照してください <block ref="245303d2c60ac1935683ed89eb13f165" category="inline-link-macro-rx"></block>。</block>
+  <block id="83e579bcd33d25206730a931a64a84a1" category="paragraph">ONTAP 9.0 以前を実行している構成の場合は、を参照してください <block ref="249227e2d8f8114c9bdc6db2520e9445" category="inline-link-macro-rx"></block>。</block>
+  <block id="bc08b638ff7480a2fa85e0dcdee0d692" category="paragraph"><block ref="bc08b638ff7480a2fa85e0dcdee0d692" category="inline-link-macro-rx"></block></block>
 </blocks>
