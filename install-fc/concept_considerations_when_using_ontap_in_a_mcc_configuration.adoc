@@ -122,6 +122,12 @@ ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサ
 
 
 
+== MetroCluster 構成での整合グループのサポート
+
+ONTAP 9.11.1以降、 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["整合グループ"^] MetroCluster 構成でサポートされます。
+
+
+
 == MetroCluster 構成のジョブスケジュール
 
 ONTAP 9.3 以降では、ユーザが作成したジョブスケジュールが MetroCluster 構成のクラスタ間で自動的にレプリケートされます。クラスタでジョブスケジュールを作成、変更、または削除すると、 Configuration Replication Service （ CRS ）を使用して同じスケジュールがパートナークラスタに自動的に作成されます。
@@ -403,6 +409,8 @@ MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシ
 == MetroCluster 構成の SVM ディザスタリカバリ
 
 ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。
+
+ONTAP 9.11.1以降では、MetroCluster 構成内の両方のクラスタを第3のサイトのSVM DR関係のソースにすることができます。
 
 SVM を SnapMirror ディザスタリカバリで使用する場合は、次の要件と制限事項に注意してください。
 
