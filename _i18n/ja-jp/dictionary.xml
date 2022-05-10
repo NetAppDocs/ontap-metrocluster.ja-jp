@@ -3311,7 +3311,6 @@
   <block id="c5ca83d0e723113560fb2c95b33b532b" category="inline-xref-macro">無停止移行でサポートされるプラットフォーム</block>
   <block id="1c80ea06ae866b6e42e9d266e0cb8906" category="list-text">スイッチクラスタ構成をサポートしている。</block>
   <block id="9dbbc592d23a777892a7b326fdecb27a" category="summary">その後、 MetroCluster IP 構成に移行するには、サポートされるプラットフォームモデルを組み合わせて使用する必要があります。</block>
-  <block id="5bb55ff54cc0047e95b27d7917c63627" category="paragraph">次の表に、サポートされるプラットフォームの組み合わせを示します。左側の列にあるプラットフォームから、列の右側にサポートされているプラットフォームに移行できます。これは、緑の表のセルで示されます。</block>
   <block id="e9f061fb2bc125b997083e48a3442510" category="list-text">緑色のセルは、その組み合わせがサポートされていることを示します。</block>
   <block id="7bf7e1a6cec96a843176b66291c50547" category="list-text">白い ( 空白の ) セルは、その組み合わせがサポートされていないことを示します。</block>
   <block id="1799408ec992ed3e5561f7b04ccef0fe" category="paragraph">たとえば、 AFF8060 コントローラモジュールで構成される MetroCluster FC 構成から、 AFF A400 コントローラモジュールで構成される IP 構成への移行がサポートされます。</block>
@@ -7226,7 +7225,6 @@
   <block id="27f2dbe71bb8cb5d2174056e5aa5a63a" category="list-text">グローバルコンフィギュレーションモード「 configure terminal 」を入力します</block>
   <block id="f3b35ec0554707831c93f8d1726c3e1d" category="list-text">デバイスで MACsec と MKA を有効にします。「 feature MACsec」</block>
   <block id="67d10db60edc762f7873c87cd6b4d249" category="list-text">実行コンフィギュレーションをスタートアップコンフィギュレーションにコピーします</block>
-  <block id="c65d9e378f505697a236ecdbbf4f570d" category="section-title">MetroCluster IP 構成での Cisco MACsec 暗号化 WAN ISL のディセーブル化</block>
   <block id="749ac7a2f1348088d99ca5c98ffd2d16" category="paragraph">MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化を無効にする必要がある場合があります。</block>
   <block id="408e437eca7dacdea718d8544eb31c70" category="list-text">デバイスの MACsec 設定を無効にします : 「 ACSEC SHUTDOWN 」</block>
   <block id="a78ca51eaaf1a7fe31e057a59182b175" category="admonition">no オプションを選択すると、 MACsec 機能が復元されます。</block>
@@ -7241,7 +7239,6 @@
   <block id="1b7a49127c059c9782571e668d1b9394" category="paragraph">オクテット文字列は、コンフィギュレーションをファイルに保存するときにも非表示になります。</block>
   <block id="82a54f643a125ec28b0318b12e98edc4" category="paragraph">デフォルトでは、 PSK キーは暗号化形式で表示され、簡単に復号化できます。このコマンドは、 MACsec キーチェーンにのみ適用されます。</block>
   <block id="50c7b42b6fb7bfaab985fc93a2f5adbe" category="paragraph">指定できる 16 進数のキー文字列の範囲は 1 ～ 32 で、最大サイズは 64 文字です。</block>
-  <block id="2861de74286d86a770050eefe484b016" category="section-title">MACsec ポリシーを設定します</block>
   <block id="af4bc42ec156aea78d9e37d8ba7fa765" category="paragraph">次のオプションからセキュリティポリシーを選択します。</block>
   <block id="f0a86fc52b7860d783cd18c3274a660e" category="list-text">must-secure -- MACsec ヘッダーを伝送していないパケットはドロップされます</block>
   <block id="bf71d89d2d339304218351dbe9d54014" category="list-text">must-secure -- MACsec ヘッダーを伝送しないパケットは許可されます ( これがデフォルト値です ) 。</block>
@@ -10023,7 +10020,6 @@
   <block id="deba5df0dea3cbba9463f219100e5ba4" category="list-text">古い DR グループの構成を削除します。+ MetroCluster 構成設定 DR-group delete</block>
   <block id="cdab15f9840a783bfc35d8f8baa514e9" category="list-text">ノードを削除します :+`cluster unjoin -node -node_name _`</block>
   <block id="06b28530123c83dfb519d35b8e3e11f5" category="list-text">admin 特権レベルを設定します。 +'set -privilege admin'</block>
-  <block id="7e78f2c6ef0bb1c644bf13957f799b3e" category="paragraph">MetroCluster IP 構成に移行する場合は、サポートされているプラットフォームモデルを組み合わせて使用する必要があります。</block>
   <block id="d82e4b6cc46afb567474f7178afb5796" category="list-text">スイッチオーバー、修復、スイッチバック</block>
   <block id="70a6af377eaf4da39eb5c40bd123522b" category="list-text">強制スイッチオーバー</block>
   <block id="0ece35432200ec94e379aeb1ce68db94" category="list-text">複数のコントローラまたはストレージの障害からのリカバリ</block>
@@ -10146,15 +10142,12 @@
   <block id="bfbb3cda3599b6898415d47ca3b06d9f" category="list-text">MetroCluster に '-allow-with-one-aggregate true パラメータを設定します</block>
   <block id="74d845e51b59918636d9a13b9fc37d69" category="list-text">アグリゲートに追加するドライブまたはアレイ LUN のリスト</block>
   <block id="755643e3264b43687573ebc08e75d0aa" category="list-text">RAID グループに含めることができるドライブまたはアレイ LUN の最大数</block>
-  <block id="2045016bec8bea27ddbdf3bf4b176595" category="paragraph"><block ref="2045016bec8bea27ddbdf3bf4b176595" category="inline-link-macro-rx"></block></block>
-  <block id="6c8f611a4b721174f4789122858e5dc3" category="paragraph"><block ref="6c8f611a4b721174f4789122858e5dc3" category="inline-link-macro-rx"></block></block>
   <block id="fb2c0ebeb18b9e1080333a65b192bdc3" category="list-text">ONTAP メディエーターの既存のインスタンスを使用している場合は、 ONTAP メディエーターサービスを ONTAP に追加します。</block>
   <block id="6852fcac58b417258b30784060002d89" category="list-text">MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 など）を追跡します。この情報は、この構成手順で後述するように、 RcfFileGenerator ツールを使用する場合に必要になります。</block>
   <block id="b070262d5faad84092129cb1c7a44daa" category="list-text">。<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block> また、各スイッチのポートごとのケーブル接続の概要についても説明します。ケーブル接続の概要を使用して、ケーブル接続を検証します。</block>
   <block id="3ff849ca07e8d8a0986114f9a8f37362" category="paragraph">必要に応じて、サイト間で実行される WAN ISL ポートに MACsec 暗号化を設定できます。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。</block>
   <block id="b3b4314c99a828808ed95dc975e51425" category="admonition">MACsec 暗号化は、 WAN ISL ポートにのみ適用できます。</block>
   <block id="8289fc55a0dea0e27a08723be563875e" category="section-title">Cisco MACsec Encryption をディセーブルにします</block>
-  <block id="096c074687c2dd6452629aee93157757" category="admonition">暗号化を無効にする場合は、 XXX の説明に従って、キーも削除する必要があります。</block>
   <block id="531b740381cddffce7b8440283ae7533" category="paragraph">MACsec キーチェーンの設定の詳細については、ご使用のスイッチのシスコのマニュアルを参照してください。</block>
   <block id="3390d4f6bfc1502eb6b943d94b2ccf81" category="paragraph"><block ref="3390d4f6bfc1502eb6b943d94b2ccf81" category="inline-link-macro-rx"></block></block>
   <block id="472d27b022b8174e4ae4cbdabe2bc8a7" category="list-text">site_B-shelf_2 のすべてのディスクが node_A_1 のプール 1 に自動的に割り当てられます</block>
@@ -10601,7 +10594,6 @@
   <block id="e36320198d71e90e7fbc80a9b47b9394" category="paragraph">いずれかのスイッチについて、 RCF ファイルのバージョンを示す行を出力から探します。たとえば、次の出力は Cisco スイッチを使用したもので、 RCF ファイルのバージョンが「 v1.80 」であることを示しています。</block>
   <block id="c7534d571d84fdfe4912d24b4f1f30bf" category="list-text">特定の ONTAP バージョン、スイッチ、およびプラットフォームでサポートされているファイルを確認するには、 RcfFileGenerator を使用します。現在使用している設定またはにアップグレードする設定用の RCF ファイルを生成できる場合は、そのファイルがサポートされます。</block>
   <block id="282bc05e82ec2895ab48f3f9377e06d3" category="list-text">スイッチファームウェアがサポートされていることを確認するには、次のマニュアルを参照してください。</block>
-  <block id="e77a7dbb2ff81ed5602321d5148ff36e" category="list-text"><block ref="e77a7dbb2ff81ed5602321d5148ff36e" category="inline-link-rx"></block></block>
   <block id="8ae1a8b6dc4a3df150f27ca419fb9a6c" category="list-text"><block ref="8ae1a8b6dc4a3df150f27ca419fb9a6c" category="inline-link-rx"></block></block>
   <block id="bde0605fb74695c23ddd122685cfc65e" category="section-title">RCF ファイルをアップグレードします</block>
   <block id="1a9778326fd00d0e011a777089b2bc6a" category="list-text">実行中の MetroCluster チェック処理のステータスを確認します。</block>
@@ -11123,8 +11115,6 @@
   <block id="c5c663e6628e19ffabcbcb01ecaa23e3" category="list-text">Node_B_1-A700 ： 0537407114</block>
   <block id="447b7bdefc8e750f8d7dab18bb9172ea" category="list-text">node_B_2 - A700 ： 537035354</block>
   <block id="50d704bfae735cf9f8824da705413abc" category="paragraph">追加情報の場合は、を参照してください<block ref="0abbdd13a8c045ec09bd7c54eb2d0bef" category="inline-link-rx"></block>。</block>
-  <block id="02f80d1409d40adabdcd4b00959239b0" category="inline-link-macro">MetroCluster 構成を削除</block>
-  <block id="b0d3c2e52841601c113af9d2ec1d76e1" category="paragraph"><block ref="b0d3c2e52841601c113af9d2ec1d76e1" category="inline-link-macro-rx"></block></block>
   <block id="fbb702216c9d47455a0b8dbde9a6a6ca" category="paragraph">構成から古いコントローラを削除する必要があります。</block>
   <block id="aa7985a89f1c2f960f222e4a5876a369" category="paragraph">次の手順を使用して、 AFF A700 コントローラモジュールを取り外します。</block>
   <block id="594c103f2c6e04c3d8ab059f031e0c1a" category="inline-image-macro">コントローラ</block>
@@ -11199,8 +11189,6 @@
   <block id="7b3f395dfaa27c58576d75c624d2acd9" category="section-title">LIF の設定を確認</block>
   <block id="23331dcb3c2ad6b3d014807669c00671" category="image-alt">4 ノード MetroCluster</block>
   <block id="641ef094fd6e3f18fc8a62270dc2b543" category="section-title">Tiebreaker による監視をリストアします</block>
-  <block id="9708813a6edf75a072848cc8c19d1d0b" category="inline-link-macro">MetroCluster 構成を追加</block>
-  <block id="41e5a570a4f2d19e8390709e59c70fa0" category="list-text">の手順を使用します <block ref="12128e797396b704d910303dde9a32c0" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
   <block id="ec976e4d69eacba58f181f263322d975" category="paragraph">ONTAP 9.1 以降を使用して FC スイッチをケーブル接続する場合は、指定のポート割り当てを使用していることを確認する必要があります。</block>
   <block id="198c714a4bb6842827adc2e8110de106" category="summary">ストレッチ MetroCluster 構成をインストールするには、いくつかの手順を正しい順序で実行する必要があります。</block>
   <block id="714ba9270e253d9f6653c910f28c6d51" category="list-text"><block ref="714ba9270e253d9f6653c910f28c6d51" category="inline-link-macro-rx"></block></block>
@@ -11353,8 +11341,6 @@
   <block id="8593f4ba6cc280cf6c5bf594528f3eb4" category="list-text">デバイスの MACsec 設定を無効にします。</block>
   <block id="cdb4bb93b3a531a567e11665f5148cc9" category="paragraph">「 ACSEC SHUTDOWN 」のようになります</block>
   <block id="c00cade2f94121d752e8500322a535ab" category="admonition">「 no 」オプションを選択すると、 MACsec 機能が復元されます。</block>
-  <block id="994f1ea1f472d234f9c01b086bcddfff" category="list-text">インターフェイスに設定されているキーチェーン、ポリシー、およびフォールバックキーチェーンを削除して、 MACsec 設定を削除します。</block>
-  <block id="4433609b41a7b52c237c57c092b2feb7" category="paragraph">「 no MACsec keychain keychain -name policy -name fallback-keychain keychain -name 」という名前のキーチェーンがあります</block>
   <block id="09d2459b8ba15bdb94703e39490766cf" category="list-text">暗号化されたキーオクテット文字列を非表示にするには、「 show running-config 」コマンドと「 show startup-config 」コマンドの出力で、文字列をワイルドカード文字に置き換えます。</block>
   <block id="74e0480b8ca480716d1a5cd50a1ceb85" category="list-text">MACsec キーチェーンを作成して一連の MACsec キーを保持し、 MACsec キーチェーンコンフィギュレーションモードを開始します。</block>
   <block id="1b5dce8a5e1076414ab0a1f651e86626" category="paragraph">キーチェーン名 MACsec</block>
@@ -11492,7 +11478,6 @@
   <block id="52973309c9943640c8f3c4005afc0a1c" category="admonition">複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください<block ref="2eaa0ca511dd4de94634e58820ea7180" category="inline-link-rx"></block>。</block>
   <block id="c77c236a9e8399fe3f4e66a32fcdd188" category="paragraph">次のコマンドは 'controller_A_1 を含む DR グループ内のすべてのノードで MetroCluster 構成を有効にします</block>
   <block id="a51a9fa7ea4ed8f7d2d312630ac5f093" category="list-text">サイト A から構成を確認します :+`MetroCluster show`</block>
-  <block id="8e2467ce90556be64053bd8e7c611ad8" category="paragraph">RO アクセスを必要とする場合、「 User (ro):: 」の後に、「 snmpv3user 」を次の例のように指定します。</block>
   <block id="6c004e557097d04e25499f1d1a527295" category="paragraph">ONTAP 9.5 以降</block>
   <block id="4ae8d24c72dd765a4920ac53c2dafe90" category="paragraph">ONTAP 9.4 以前</block>
   <block id="361772e9851772534036695f2c569190" category="paragraph">ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。</block>
@@ -12499,7 +12484,6 @@
   <block id="7781c27327814c0f7935ce903ca1101f" category="list-text"><block ref="7781c27327814c0f7935ce903ca1101f" category="inline-link-macro-rx"></block></block>
   <block id="8e077a574605e13d75ee083e7cd96f27" category="list-text"><block ref="8e077a574605e13d75ee083e7cd96f27" category="inline-link-macro-rx"></block></block>
   <block id="5860040c16ad914f0dc769bbc79c2a6d" category="list-text"><block ref="5860040c16ad914f0dc769bbc79c2a6d" category="inline-link-macro-rx"></block></block>
-  <block id="4a3e665f4593afeb6ebcabea7ce85845" category="paragraph"><block ref="97b0c50183125e551abb5b04258316bf" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
   <block id="398ca4e3f9e65b681f95fee13804bab9" category="list-text">ディレクトリの一覧に &lt;ONTAP_version&gt;\_image.tgz が表示されている必要があります。</block>
   <block id="befdb6ab41f0cd39ff57e00b0ee8c3f6" category="paragraph">「 &lt;filer_addr&gt; 」は、ストレージ・システムの IP アドレスです。`&lt;netmask&gt;` はストレージシステムのネットワークマスクです。「 &lt;gateway&gt;` 」は、ストレージシステムのゲートウェイです。「 &lt;dns_addr&gt; 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 &lt;dns_domain&gt; 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。</block>
   <block id="f9917e026c23b682e18bcd6bc125c1b9" category="paragraph">「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;\_image.tgz 」をダウンロードした場所に配置する必要があります <block ref="28cd24b5ecf937229eb419cc55587b9d" category="inline-xref-macro-rx"></block>。</block>
@@ -12521,7 +12505,6 @@
   <block id="26ae7bdd1d6fb8c4886e6fde8d12601c" category="list-text">レイテンシ</block>
   <block id="66420f475101cc9c2b0d458605176249" category="paragraph">ラウンドトリップレイテンシは75ミリ秒以下である必要があります。</block>
   <block id="d89a2477841e85e6d37fac9fb392f350" category="paragraph">ジッターは25ミリ秒以下である必要があります。</block>
-  <block id="31677ea68806d62bf012786b0cfb0379" category="paragraph">メディエーターサービスとMetroCluster 構成の間のリンクには、少なくとも20Gbpsの帯域幅が必要です。</block>
   <block id="37e445da4970f1c0106716e8dba83be8" category="paragraph">使用するVLANが10/20以上の場合は、次のプラットフォームモデルを既存のMetroCluster 構成に追加できます。他のMetroCluster インターフェイスは設定できないため、これらのプラットフォームを既存の設定に追加することはできません。他のプラットフォームを使用している場合は、ONTAP では必要ないため、VLANの設定は関係ありません。</block>
   <block id="9e9a93655547f7858baef5194a909e2c" category="cell">Cisco 3132Q-V、3232C、または9336C-FX2</block>
   <block id="a825d9b135e0604b1a8244aa950f4952" category="paragraph">FCノード上のローカルクラスタインターフェイス</block>
@@ -12537,4 +12520,25 @@
   <block id="b36742dbca767f044c826ec8fbe9b099" category="inline-link">整合グループ</block>
   <block id="2b9902d272c75c4def3400c620342746" category="paragraph">ONTAP 9.11.1以降、<block ref="cf613318e210a5e8a8ae9de011eafc43" category="inline-link-rx"></block> MetroCluster 構成でサポートされます。</block>
   <block id="fe92f5934bf96194725b46db02f72324" category="list-text">この手順 は、FAS2750システムとAFF A220システムではサポートされていません。</block>
+  <block id="610f11b52907034f4715c6fa1abf8d1b" category="paragraph">メディエーターサービスとMetroCluster 構成の間のリンクには、20MBps以上の帯域幅が必要です。</block>
+  <block id="f5cd93f67ab362b3830ef2c47249e909" category="paragraph"><block ref="f5cd93f67ab362b3830ef2c47249e909" category="inline-link-macro-rx"></block></block>
+  <block id="a3816a0d57fcb59bc1a3bfba35af44cf" category="paragraph"><block ref="a3816a0d57fcb59bc1a3bfba35af44cf" category="inline-link-macro-rx"></block></block>
+  <block id="8a4f175190a1710cdcd52e7efde01268" category="section-title">MetroCluster IP構成でCisco MACsec暗号化WAN ISLを有効にします</block>
+  <block id="dbbfd3dd70a4d25284d890b07ad9bc31" category="section-title">MACsecキーチェーンとキーを設定します</block>
+  <block id="2903318a6fa99cbae17be8d84747e6f4" category="section-title">MACsecポリシーを設定します</block>
+  <block id="d2b2747d0c22a09619558cfbac550396" category="section-title">インターフェイス上でCisco MACsec暗号化をイネーブルにします</block>
+  <block id="022ccd39646806bfe7a58384a672a87d" category="list-text">MACsec暗号化で設定したインターフェイスを選択します。</block>
+  <block id="b07933039277c17cd5a85e3d7906d601" category="list-text">インターフェイスに設定するキーチェーンとポリシーを追加して、MACsec設定を追加します。</block>
+  <block id="82cc9e863d73c099e61d0b3f2db03cbf" category="paragraph">「MACsec keychain -name policy policy-name」という名前のキーチェーンがあります</block>
+  <block id="5b62e90551dcaf31183c797f549f19f5" category="list-text">MACsec暗号化を設定するすべてのインターフェイスで、ステップ1と2を繰り返します。</block>
+  <block id="2df81ef73ca6234e1f2efffdc855e826" category="section-title">MetroCluster IP構成でCisco MACsec暗号化WAN ISLをディセーブルにします</block>
+  <block id="dc58a5917fbb05da0e560a4cbcb1f72c" category="list-text">インターフェイスに設定されているキーチェーンとポリシーを削除して、MACsec設定を削除します。</block>
+  <block id="c988e8ca5d6e6bb62b67254721e13586" category="paragraph">「no MACsec keychain keychain -name policy policy-name」</block>
+  <block id="8d0f34f00997c62960ad51adbe64457d" category="list-text"><block ref="8d0f34f00997c62960ad51adbe64457d" category="inline-link-rx"></block></block>
+  <block id="2687b88898e3642fcc69aaef6be8e73c" category="paragraph">MetroCluster IP 構成に移行する場合は、サポートされているプラットフォームモデルを組み合わせて使用する必要があります。また、MetroCluster IPプラットフォームが、MetroCluster FC構成からMetroCluster IP構成に移行する負荷に適したサイズであることを確認する必要があります。</block>
+  <block id="d9599a6265b31306f6c79d760a47a9aa" category="paragraph">次の表に、サポートされるプラットフォームの組み合わせを示します。左側の列にあるプラットフォームから、列の右側にサポートされているプラットフォームに移行できます。これは、色付きの表のセルで示されます。</block>
+  <block id="d84d4239724af43bfdc3b74836c335fe" category="paragraph">設定が完了すると、v0a（v0bなど）が接続を継続的に検証し、LIFの移行またはフェイルオーバーが成功するかどうかを（停止したあとにのみ構成の分断が認識されるL2とは異なります）チェックします。</block>
+  <block id="222561f9cba21343a81a9b2ee1890d68" category="paragraph"><block ref="222561f9cba21343a81a9b2ee1890d68" category="inline-link-macro-rx"></block></block>
+  <block id="81fe00b955881476878ae80a1ff92b24" category="list-text">の手順を使用します。 <block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
+  <block id="61324fd73aeb16a8318bff07556941ad" category="paragraph"><block ref="222561f9cba21343a81a9b2ee1890d68" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
 </blocks>
