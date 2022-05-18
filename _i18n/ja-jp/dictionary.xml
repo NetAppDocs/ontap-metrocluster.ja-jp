@@ -10466,7 +10466,6 @@
   <block id="40613ace69e06cacd37d3181d20fb498" category="cell">3.7.x.x 以降の非 FIPS 準拠</block>
   <block id="887c6ed9e13340447fb1a67de5440f79" category="cell">方法 1 を使用して EFOS をアップグレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x 以降の RCF ファイルを適用します</block>
   <block id="71ed00a3a2145967178b8429c44dd605" category="cell">3.7.x.x 以降の FIPS に準拠しています</block>
-  <block id="8dae46f3452d05c7a36200c9a9200768" category="paragraph">次の図は、 MetroCluster 構成を示しています。メンテナンスのために cluster_A の電源がオフになります。</block>
   <block id="13453110a818269a21fc3929d2514208" category="image-alt">データセンターの電源をオフにします</block>
   <block id="d8a69cf9d5438bcb021a7abc71ab4571" category="paragraph">次の手順のすべてのコマンドを、電源をオフにするサイトから実行します。</block>
   <block id="a05a5ee5c3ac194989ef258bddaa30d0" category="list-text">ディザスタサイトのディスクにあるミラーされたプレックスを使用してアグリゲートをミラーリングする。オフラインにすると、プレックスにアクセスできなくなります。</block>
@@ -12501,7 +12500,6 @@
   <block id="bc08b638ff7480a2fa85e0dcdee0d692" category="paragraph"><block ref="bc08b638ff7480a2fa85e0dcdee0d692" category="inline-link-macro-rx"></block></block>
   <block id="cf5928613cf8b77d8355882cdec38712" category="paragraph">16本の内蔵ドライブのみ</block>
   <block id="90cd0db781b4639c1c46407e5a4f0a93" category="paragraph">+使用するVLANが10/20以上の場合は、既存のMetroCluster 設定に次のプラットフォームモデルを追加できます。他のMetroCluster インターフェイスは設定できないため、これらのプラットフォームを既存の設定に追加することはできません。他のプラットフォームを使用している場合は、ONTAP では必要ないため、VLANの設定は関係ありません。</block>
-  <block id="92083475c7b52cf5e29e7faa8db9dc17" category="paragraph">ONTAP 9.11.1以降では、MetroCluster 構成内の両方のクラスタを第3のサイトのSVM DR関係のソースにすることができます。</block>
   <block id="26ae7bdd1d6fb8c4886e6fde8d12601c" category="list-text">レイテンシ</block>
   <block id="66420f475101cc9c2b0d458605176249" category="paragraph">ラウンドトリップレイテンシは75ミリ秒以下である必要があります。</block>
   <block id="d89a2477841e85e6d37fac9fb392f350" category="paragraph">ジッターは25ミリ秒以下である必要があります。</block>
@@ -12541,4 +12539,14 @@
   <block id="222561f9cba21343a81a9b2ee1890d68" category="paragraph"><block ref="222561f9cba21343a81a9b2ee1890d68" category="inline-link-macro-rx"></block></block>
   <block id="81fe00b955881476878ae80a1ff92b24" category="list-text">の手順を使用します。 <block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
   <block id="61324fd73aeb16a8318bff07556941ad" category="paragraph"><block ref="222561f9cba21343a81a9b2ee1890d68" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
+  <block id="1fe9ee738ca0e6e9e3aeec4c7902cb67" category="paragraph">次の図は、 MetroCluster 構成を示しています。メンテナンスのためにcluster_Bの電源がオフになっています。</block>
+  <block id="04609bc4c74d3a1d83089f636a27a4b0" category="paragraph">ONTAP 9.11.1以降では、次の図に示すように、MetroCluster 構成内の両方のサイトを、FAS またはAFF デスティネーションクラスタを使用したSVM DR関係のソースにすることができます。</block>
+  <block id="66a9b9ac77fa7e18f707ae56e903dd9c" category="inline-image-macro">SVM DRの新しいトポロジ</block>
+  <block id="852e82b3cf4859eb193e979d1ed02eba" category="paragraph"><block ref="852e82b3cf4859eb193e979d1ed02eba" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="11956e846be834740959ad71d40b9547" category="list-text">2つのMetroCluster 構成を接続し、両方で同じ種類のコントローラを使用する場合は、MetroCluster ポートグループ3と4を使用する必要があります。コントローラが異なる場合は、一方のタイプにMetroCluster ポートグループ3と4を、もう一方のタイプにMetroCluster ポートグループ1と2を使用する必要があります。</block>
+  <block id="691efed68d0449f254968b0811d65b71" category="list-text">たとえば、次のように接続したとします。</block>
+  <block id="2ad4e214daf4f2fbe760328984025270" category="list-text">FAS2750 / AFF A220のみまたはFAS500f/AFF A250のみで構成される2つのMetroCluster 設定については、MetroCluster ポートグループ3と4を選択する必要があります。</block>
+  <block id="1c4e028af9d72f4e84ad919004a88581" category="list-text">一方のMetroCluster がFAS2750 / AFF A220で、もう一方がFAS500f/AFF A250である2つのMetroCluster 構成では、一方のポートグループで3と4を選択し、もう一方のでポートグループ1と2を選択する必要があります。を参照してください<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block>ドロップダウンフィールド1と2は、ドロップダウンフィールド3と4でプラットフォームを選択した後、サポートされているプラットフォームのみを表示します。を参照してください <block ref="4dfd72a31c74d2e269d1ca49dcbd7291" category="inline-link-macro-rx"></block> ポートテーブルの使用方法の詳細については、を参照してください。</block>
+  <block id="a9bf0a810b5c634110cced1dcc9dd514" category="section-title">AFF A250またはFAS500fとAFF A220またはFAS2750システムの組み合わせで使用するスイッチポート</block>
+  <block id="eab2b22490c89198b6c41f5b7c6e6104" category="image-alt">MCC IPケーブルAFF A250およびA220をBroadcom BES-53248スイッチに接続</block>
 </blocks>

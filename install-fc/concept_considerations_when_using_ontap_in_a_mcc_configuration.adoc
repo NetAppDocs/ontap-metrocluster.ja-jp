@@ -410,7 +410,9 @@ MetroCluster 構成内のノードのルートアグリゲート（ HA ポリシ
 
 ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。
 
-ONTAP 9.11.1以降では、MetroCluster 構成内の両方のクラスタを第3のサイトのSVM DR関係のソースにすることができます。
+ONTAP 9.11.1以降では、次の図に示すように、MetroCluster 構成内の両方のサイトを、FAS またはAFF デスティネーションクラスタを使用したSVM DR関係のソースにすることができます。
+
+image:../media/svmdr_new_topology-2.png["SVM DRの新しいトポロジ"]
 
 SVM を SnapMirror ディザスタリカバリで使用する場合は、次の要件と制限事項に注意してください。
 
