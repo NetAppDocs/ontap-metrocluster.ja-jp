@@ -1,10 +1,10 @@
 ---
-permalink: manage/task_confirm_that_dr_partners_have_come_online.html 
+permalink: manage/task_verify_SVMs are_running_and_aggregates_are_online.html 
 sidebar: sidebar 
 keywords: switchover, dr, partner, ownership, disk, svm, online, confirm 
 summary: スイッチオーバーが完了したら、 DR パートナーがディスクの所有権を取得し、パートナー SVM がオンラインになったことを確認する必要があります。 
 ---
-= DR パートナーのオンライン確認
+= SVMが実行されていて、アグリゲートがオンラインになっていることを確認してください
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,27 +13,9 @@ summary: スイッチオーバーが完了したら、 DR パートナーがデ�
 [role="lead"]
 スイッチオーバーが完了したら、 DR パートナーがディスクの所有権を取得し、パートナー SVM がオンラインになったことを確認する必要があります。
 
-.手順
-. アグリゲートディスクが「 storage disk show -fields owner 、 dr-home 」という災害サイトにスイッチオーバーされていることを確認します
-+
-次の出力例では、スイッチオーバーされたディスクの dr-home フィールドに値が設定されています。
+MetroCluster のスイッチオーバー後に storage aggregate plex show コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。
 
-+
-[listing]
-----
-cluster_A::> storage disk show -fields owner,dr-home
-disk                 owner           dr-home
--------------------- --------------- -------
-1.11.0               node_A_1        node_B_1
-1.11.1               node_A_1        node_B_1
-1.11.2               node_A_1        node_B_1
-1.11.3               node_A_1        node_B_1
-1.11.4               node_A_1        node_B_1
-1.11.5               node_A_1        node_B_1
-1.11.6               node_A_1        node_B_1
-1.11.7               node_A_1        node_B_1
-1.11.8               node_A_1        node_B_1
-----
+.手順
 . storage aggregate show コマンドを使用して、アグリゲートがスイッチオーバーされたことを確認します。
 +
 この例では、アグリゲートがスイッチオーバーされています。ルートアグリゲート（ aggr0_b2 ）はデグレード状態、データアグリゲート（ b2_aggr2 ）はミラーされた正常な状態になっています。

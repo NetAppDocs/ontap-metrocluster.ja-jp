@@ -127,8 +127,6 @@
   <block id="41b2f3ef63acb5f586f26ec3300768fe" category="paragraph">「 * auso-disabled * 」と表示されます</block>
   <block id="2021d03f97e8529efb1b76bbd7c4a674" category="list-text">コマンドを使用して、変更を確認します</block>
   <block id="183cbc2c0b8779013e355a482aba5c4d" category="paragraph">「 * MetroCluster operation show * 」と表示されます</block>
-  <block id="c4e7bf68890c72361daa13a0af4f08f2" category="list-text">次のコマンドを使用して、ノードを停止します。</block>
-  <block id="74baa61a2162fe0f71b9573c2f34fc32" category="paragraph">*halt *** 4 ノードまたは 8 ノードの MetroCluster 構成では '+`*inhibit-takeover *` パラメータを使用します</block>
   <block id="26b17225b626fb9238849fd60eabdf60" category="paragraph">[+]</block>
   <block id="93081236e78e8a13aff59ffaa04927e9" category="list-text">2 ノード MetroCluster 構成の場合は、コマンドを使用します。</block>
   <block id="a58d52a12cc22d2e3c3b60974ce27273" category="list-text">サイトで次の機器の電源をオフにします。</block>
@@ -4316,9 +4314,6 @@
   <block id="083ae15759c6d64783e2acdb9d48b5b8" category="list-text">パートナーサイト（元のディザスタサイト）の対応する SVM を削除する</block>
   <block id="afdbb4c25b5c48d9c164c9fcd2b5b211" category="list-text">削除された SVM にピアリング関係がある場合は削除する</block>
   <block id="2213f433c7bd712d0cb81eedc430d2bd" category="summary">スイッチオーバーが完了したら、 DR パートナーがディスクの所有権を取得し、パートナー SVM がオンラインになったことを確認する必要があります。</block>
-  <block id="8603db18d8c416ccc81d2b424b35cf76" category="doc">DR パートナーのオンライン確認</block>
-  <block id="66122b38af0f3f61bd3ec6b33481e4cf" category="list-text">アグリゲートディスクが「 storage disk show -fields owner 、 dr-home 」という災害サイトにスイッチオーバーされていることを確認します</block>
-  <block id="067a26f886e470db719ff9cb0e9f3446" category="paragraph">次の出力例では、スイッチオーバーされたディスクの dr-home フィールドに値が設定されています。</block>
   <block id="61b3dba0ec8dd8583fd3305e70822e04" category="list-text">storage aggregate show コマンドを使用して、アグリゲートがスイッチオーバーされたことを確認します。</block>
   <block id="9088c944ef75a914aa5d4867e1767842" category="paragraph">この例では、アグリゲートがスイッチオーバーされています。ルートアグリゲート（ aggr0_b2 ）はデグレード状態、データアグリゲート（ b2_aggr2 ）はミラーされた正常な状態になっています。</block>
   <block id="e6425dc24f9a2e2af2f6d10b0fe7e9bd" category="list-text">vserver show コマンドを使用して、セカンダリ SVM がオンラインになったことを確認します。</block>
@@ -6045,11 +6040,9 @@
   <block id="7808905132392bd0ce5a445469e4132d" category="summary">MetroCluster 構成の各 Cisco スイッチを ISL 接続とストレージ接続用にそれぞれ設定する必要があります。</block>
   <block id="7cd3fb6e6f6deaf7b1a2916711a6b7e0" category="doc">Cisco FC スイッチを手動で設定する</block>
   <block id="e5d68dba728fb2d82fcd5253e45d2606" category="paragraph">Cisco FC スイッチには次の要件が適用されます。</block>
-  <block id="961d09a7e51b8ffaa03e9f30944b0adf" category="list-text">同じ NX-OS バージョンおよびライセンスの同じモデルでサポートされている 4 台の Cisco スイッチを使用している必要があります。</block>
   <block id="3ec266ea74a45a024e2d5a1bd41809e5" category="list-text">MetroCluster 構成には 4 つのスイッチが必要です。</block>
   <block id="2761e9bec5ebacec4c753af20fb77c0b" category="paragraph">それぞれ 2 つのスイッチで構成される 2 つのファブリックに接続されます。各ファブリックが両方のサイトにまたがっている必要があります。</block>
   <block id="94ddea3989db862af4097d594a0b3616" category="list-text">ATTO FibreBridge モデルへの接続をサポートしている必要があります。</block>
-  <block id="6b0913c627afc4001314955fa8aa4721" category="list-text">Cisco FC ストレージファブリックで暗号化または圧縮を使用していない必要があります。MetroCluster 構成ではサポートされません。</block>
   <block id="02bbbf38700dabcfb5519437d1e2d0bb" category="paragraph">を参照してください<block ref="a5900d751cd970c3de875b616ebb9e28" category="inline-link-rx"></block>では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。</block>
   <block id="bdec96a67c6505262de48bb96911cf92" category="paragraph">環境スイッチ間リンク（ ISL ）接続には次の要件があります。</block>
   <block id="83b23219f5596e10bed8c27500b5613d" category="paragraph">ISL の長さはファブリックが異なる場合は同じである必要はありませんが、速度はすべてのファブリックで同じである必要があります。</block>
@@ -8766,7 +8759,6 @@
   <block id="3139f8423b6707a01c072b52b74bba88" category="list-text">「マスク」には、 xxx.xxx.xxx.xxx という形式のサブネットマスクを指定できます。</block>
   <block id="fd027079bbe69098f8750a9a1f564dac" category="paragraph">次の例では、 IP サブネットマスクはイーサネットポート 1 の 255.255.255.0 です。</block>
   <block id="bd82535b64d275e691210920ce86e57c" category="list-text">「 set EthernetSpeed port speed 」コマンドを使用して、イーサネットポートに速度を設定します。</block>
-  <block id="8d9110a527c214f8634fced6b92afa82" category="list-text">「速度」には「 100 」、「 1000 」、または「 auto 」を指定できます。</block>
   <block id="c77a0844b861447f5e1f655105bfc197" category="paragraph">次の例では、イーサネットポート 1 のイーサネット速度が 1000 に設定されています。</block>
   <block id="b9fe6f89437e8317bad43dd8d668d48b" category="list-text">'aveConfiguration' コマンドを使用して設定を保存し ' プロンプトが表示されたらブリッジを再起動します</block>
   <block id="fb9b5d11aea961816a10aea050894354" category="paragraph">イーサネットポートの設定後に設定を保存すると、 Telnet を使用してブリッジの設定を続行でき、 FTP を使用してブリッジにアクセスしてファームウェアの更新を実行できます。</block>
@@ -9885,7 +9877,6 @@
   <block id="d8a793fcd41c059cecfec311c4831598" category="paragraph">ケーブルを再接続するときに簡単に識別できるように、ケーブルにラベルを付けておく必要があります。ISL ポートのケーブルだけを接続したままにしておきます。</block>
   <block id="a6344715e21a74094ac5f97c4b6becd5" category="list-text">ディスクの自動割り当てが無効になっていることを確認します。</block>
   <block id="b2fa14e3df9342c7d9ce9f5ac1643744" category="paragraph">使用するプラットフォームとディスクシェルフに対応した _Installation と Setup_documentation の手順を使用してください。</block>
-  <block id="ed4a2e0538bc20c760b1ea91bd6a8e39" category="list-text">ディスクの自動割り当てが有効になっていることを確認します。</block>
   <block id="192be3850da5f8f6f36f9c637a13cc65" category="list-text">既存のコントローラモジュールのプロンプトからノードを停止します。</block>
   <block id="a0f166275a301177f6c2068f95dcace7" category="paragraph">halt local-inhibit-takeover true</block>
   <block id="7b81608943ac3eca516246d3d8222559" category="paragraph">80xx システムでは NVMEM の LED はコントローラモジュールのネットワークポートの右側にあり、電池のマークが付いています。</block>
@@ -10739,7 +10730,6 @@
   <block id="96effe55f4da22d5c25718b62d05d235" category="sidebar">システムでスイッチオーバーの準備が完了していることを確認します</block>
   <block id="6f4a780481b56c575dbc6baddb640db2" category="sidebar">ネゴシエートスイッチオーバーの前にカスタム AutoSupport メッセージを送信する</block>
   <block id="fb46e3fec300d7afb8d95ad37dd036c2" category="sidebar">ネゴシエートスイッチオーバーを実行する</block>
-  <block id="54d232cc2492683cacdfa62436baae04" category="sidebar">DR パートナーがオンラインになったことを確認します</block>
   <block id="dc83484006791ea1b99aaaea10c1bafb" category="sidebar">構成を修復</block>
   <block id="a3a667e65760237e6d02c759034ddd73" category="sidebar">MetroCluster FC 構成の構成を修復します</block>
   <block id="efe698fdacf5509f669bbfa66669a1e4" category="sidebar">ネゴシエートスイッチオーバー後にデータアグリゲートを修復します</block>
@@ -12551,4 +12541,15 @@
   <block id="cbb84028bf466aea1ee153b79bbe1a90" category="list-text">Red Hat Enterprise Linux 71~7.9、またはCentOS 71~7.9 64ビット（物理インストールまたは仮想マシン）</block>
   <block id="7ddeb0fd81d52fb9d56f1689ef0faa65" category="list-text">Red Hat Enterprise Linux 8.1-8.5</block>
   <block id="af5c7720c35a6c5bbdbd9a0118f9b86a" category="list-text">MariaDB 10.x（「yum install MariaDB -server. x86_64」を使用してインストールされたデフォルトバージョンを使用）</block>
+  <block id="f59e44c66a463087eb80b00cc5e7867c" category="list-text">同じNX-OSバージョンおよびライセンスの同じモデルの、サポートされている4台のCiscoスイッチを使用する必要があります。</block>
+  <block id="de27fc3292cfa48f233ba5969313e590" category="list-text">Cisco FCストレージファブリックでは暗号化や圧縮を使用できません。MetroCluster 構成ではサポートされません。</block>
+  <block id="17a482b02d43109c8b8a1497839ff0b4" category="list-text">次のコマンドを使用してノードを停止します:`* halt *`</block>
+  <block id="fad9503a100b92ad7c54437a9309f256" category="list-text">4ノードまたは8ノードのMetroCluster 構成の場合は、パラメータ「* inhibit-takeover *」を使用します</block>
+  <block id="63e64e288714d32cded7a6ed8dfec32c" category="list-text">MetroCluster FCスイッチ（2ノードストレッチ構成でない場合に使用）</block>
+  <block id="a2a7d27c6bf1ad121aeada48fc70ca1d" category="list-text">30分待ってから、サイトで次の機器の電源をオンにします。</block>
+  <block id="383d92c84e46dd00caa3dbad6de7fe2f" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
+  <block id="688f019e2f851b28c81904e0acd0c450" category="paragraph"><block ref="6f99ee259693716af238b16f6b3287d3" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定セクションで、次の手順を実行します。</block>
+  <block id="e3b4bec7cc0382f3d2b420e4d37da974" category="list-text">ストレージコントローラの電源をオンにします。</block>
+  <block id="be8e7921b8bc696adb0f989ee98b7e9f" category="list-text">「speed」には「100」または「1000」を指定できます。</block>
+  <block id="e44042693910b4bd1a0494893ddc1892" category="doc">SVMが実行されていて、アグリゲートがオンラインになっていることを確認してください</block>
 </blocks>

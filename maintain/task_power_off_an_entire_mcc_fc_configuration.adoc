@@ -52,19 +52,14 @@ cluster_A_site_A::*>metrocluster modify -auto-switchover-failure-domain auso-dis
         End Time: 4/25/2020 20:20:36
           Errors: -
 ----
-. 次のコマンドを使用して、ノードを停止します。
+. 次のコマンドを使用してノードを停止します:`* halt *`
 +
-*halt *** 4 ノードまたは 8 ノードの MetroCluster 構成では '+`*inhibit-takeover *` パラメータを使用します
-
-+
-[+]
-
+** 4ノードまたは8ノードのMetroCluster 構成の場合は、パラメータ「* inhibit-takeover *」を使用します
 +
 [listing]
 ----
 system node halt -node node1_SiteA -inhibit-takeover true -ignore-quorum-warnings true
 ----
-+
 ** 2 ノード MetroCluster 構成の場合は、コマンドを使用します。
 +
 [listing]
@@ -76,12 +71,19 @@ system node halt -node node1_SiteA -ignore-quorum-warnings true
 . サイトで次の機器の電源をオフにします。
 +
 ** ストレージコントローラ
-** MetroCluster FC スイッチ
+** MetroCluster FCスイッチ（2ノードストレッチ構成でない場合に使用）
 ** ATTO FibreBridge
 ** ストレージシェルフ
 
 
-. 30 分待ってから、すべてのコントローラの電源をオンにします。
+. 30分待ってから、サイトで次の機器の電源をオンにします。
++
+** ストレージシェルフ
+** ATTO FibreBridge
+** MetroCluster FC スイッチ
+** ストレージコントローラ
+
+
 . コントローラの電源をオンにしたら、両方のサイトで MetroCluster 構成を確認します。
 +
 設定を確認するには、手順 1 を繰り返します。
