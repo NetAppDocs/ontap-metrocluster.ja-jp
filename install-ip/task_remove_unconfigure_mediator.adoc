@@ -1,0 +1,39 @@
+---
+permalink: install-ip/task_remove_unconfigure_mediator.html 
+sidebar: sidebar 
+keywords: ontap, mediator, service, assist, remove, unconfigure, requirements, mediator requirements 
+summary: MetroCluster IP構成からONTAP メディエーターサービスを削除できます。 
+---
+= MetroCluster IP設定からONTAP メディエーターサービスの設定を解除します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP メディエーターサービスの設定をMetroCluster IP設定から解除できます。
+
+両方のMetroCluster サイトからアクセスできるネットワークの場所にONTAP メディエーターがインストールされて設定されている必要があります。
+
+このタスクは、MetroCluster IP構成の両方のクラスタで実行する必要があります。
+
+.手順
+. 次のコマンドを使用して、ONTAP メディエーターサービスの設定を解除します。
++
+MetroCluster 構成設定のメディエーターが削除されました
+
++
+.. 次のコマンドを使用して、破損ディスクがないかどうかを確認します。
++
+「disk show -broken」
+
++
+* 例 *
+
++
+....
+There are no entries matching your query.
+....
+
+
+
