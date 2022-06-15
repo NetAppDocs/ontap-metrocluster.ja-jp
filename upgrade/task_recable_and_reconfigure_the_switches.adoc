@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, apply, rcf, files, recable, switches 
 summary: RCF ファイルを適用して、新しいノードに対応するようにゾーニングを再設定する必要があります。 
 ---
-= RCF ファイルの適用およびスイッチの再接続
+= スイッチにケーブルを再接続して再設定します
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -12,6 +12,12 @@ summary: RCF ファイルを適用して、新しいノードに対応するよ�
 
 [role="lead"]
 RCF ファイルを適用して、新しいノードに対応するようにゾーニングを再設定する必要があります。
+
+RCFファイルを使用してスイッチを設定できない場合は、スイッチを手動で設定する必要があります。を参照してください
+
+* link:../install-fc/task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["Brocade FC スイッチを手動で設定"]
+* link:../install-fc/task_fcsw_cisco_configure_a_cisco_switch_supertask.html["Cisco FC スイッチを手動で設定"]
+
 
 .手順
 . 使用している構成用の RCF ファイルを探します。
@@ -24,10 +30,6 @@ RCF ファイルを適用して、新しいノードに対応するようにゾ�
 . 作成したケーブルレイアウトを使用して、既存の FC-to-SAS ブリッジと新しい FC-to-SAS ブリッジの両方を FC スイッチにケーブル接続します。
 +
 FC スイッチポートの用途が、に記載されている 8 ノード MetroCluster の用途と同じである必要があります link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"] リファレンス構成ファイル（ RCF ）を使用できるようにするためです。
-
-+
-
-NOTE: RCF ファイルを使用できるようにケーブル接続できない場合は、テクニカルサポートにお問い合わせください。RCF ファイルを使用できないケーブル接続の場合は、この手順を使用しないでください。
 
 . スイッチに対応したコマンドを使用して、ポートがオンラインであることを確認します。
 +
@@ -53,10 +55,6 @@ SwitchShow
 . の手順を使用します link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"] 作成したケーブルレイアウトを使用して、既存のコントローラの FC-VI ポートと新しいコントローラのケーブルを接続します。
 +
 FC スイッチポートの用途が、に記載されている 8 ノード MetroCluster の用途と同じである必要があります link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"] リファレンス構成ファイル（ RCF ）を使用できるようにするためです。
-
-+
-
-NOTE: RCF ファイルを使用できるようにケーブル接続できない場合は、テクニカルサポートにお問い合わせください。RCF ファイルを使用できないケーブル接続の場合は、この手順を使用しないでください。
 
 . 既存のノードから、 FC-VI ポートがオンラインであることを確認します。
 +

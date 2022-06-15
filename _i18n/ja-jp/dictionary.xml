@@ -2316,13 +2316,11 @@
   <block id="aa7634a6c4e974b52faf565e007e1b60" category="doc">ファブリック接続 MetroCluster 構成でコントローラモジュールを追加する際の新しいコントローラポートのゾーニング</block>
   <block id="f1671ac439417f75927f98ad97323bf7" category="paragraph">FC スイッチゾーニングが新しいコントローラ接続に対応している必要があります。ネットアップが提供する Reference Configuration File （ RCF ；リファレンス構成ファイル）を使用してスイッチを設定した場合、ゾーニングは事前に設定されているため、変更は必要ありません。</block>
   <block id="f13350a82ffb5e406781c64809e8f8a8" category="summary">RCF ファイルを適用して、新しいノードに対応するようにゾーニングを再設定する必要があります。</block>
-  <block id="6016ea2cf4e87fb0a89afdab83b8a98b" category="doc">RCF ファイルの適用およびスイッチの再接続</block>
   <block id="c0b2ef0c7e8bedc314010fcbe929e544" category="paragraph">使用しているスイッチモデルに対応した 8 ノード構成用の RCF ファイルを使用する必要があります。</block>
   <block id="93db71f559f17fb1c146361893f3ff36" category="list-text">ダウンロードページの指示に従って RCF ファイルを適用し、必要に応じて ISL 設定を調整します。</block>
   <block id="b862528f72ea6d2ddcdf03d59e55fa27" category="list-text">スイッチの設定が保存されていることを確認します。</block>
   <block id="9566c6febae9d51d50e73e64dbd10cfe" category="list-text">FC スイッチをリブートします。</block>
   <block id="cc421f36cbb2a622eb7463c75215237e" category="list-text">作成したケーブルレイアウトを使用して、既存の FC-to-SAS ブリッジと新しい FC-to-SAS ブリッジの両方を FC スイッチにケーブル接続します。</block>
-  <block id="81f2b3db69617a2591d70d6a0ed93fe7" category="admonition">RCF ファイルを使用できるようにケーブル接続できない場合は、テクニカルサポートにお問い合わせください。RCF ファイルを使用できないケーブル接続の場合は、この手順を使用しないでください。</block>
   <block id="6bea4e12f9fc7219e8f9f668a51bbd7e" category="list-text">スイッチに対応したコマンドを使用して、ポートがオンラインであることを確認します。</block>
   <block id="603daf7d0ebdc9f03b83a713f846bd99" category="cell">スイッチベンダー</block>
   <block id="f767ce6f0ed7bd206c39e1687db0b685" category="paragraph">Brocade</block>
@@ -6559,7 +6557,6 @@
   <block id="fd9e565a205d3a9bdcf8f0ad5751385a" category="list-text">スイッチ名</block>
   <block id="b37d06f90ca61851b4fc3bf1013590e6" category="list-text">アウトオブバンド管理設定</block>
   <block id="a1b3b561806404b50d16aea5aee1d0d1" category="list-text">デフォルトゲートウェイ</block>
-  <block id="2d49954711bf3702573c6a8e8d807645" category="list-text">SSH サービス（ Remote Support Agent ）設定ウィザードが完了すると、スイッチがリブートします。</block>
   <block id="ecfda639eec705bbed4e75e9968cba1e" category="list-text">プロンプトが表示されたら、ユーザ名とパスワードを入力してスイッチにログインします。</block>
   <block id="f1739ac2b66c3c894842c1cb12d27102" category="paragraph">次の例は、スイッチにログインする際のプロンプトおよびシステム応答を示しています。山括弧（「 * &lt;&lt;*&gt; 」）は、情報を入力する場所を示します。</block>
   <block id="5a50560fb9b26d7fc2c92b7d5f6ae1b1" category="list-text">次のプロンプトで、スイッチ名、管理アドレス、ゲートウェイなどの基本情報を入力し、 SSH キーに「 * rsa * 」と入力します。</block>
@@ -10678,7 +10675,6 @@
   <block id="1d6f4a845a954c7b875dc506c2f3b1dc" category="sidebar">カスタム AutoSupport メッセージは、 MetroCluster 構成にノードを追加する前に送信します</block>
   <block id="991d75ef8b30d43e0c77377fdedbced8" category="sidebar">新しいノードのスイッチファブリックにケーブルを再接続してゾーニングします</block>
   <block id="5d4fa840aa69061d766097a3909fad83" category="sidebar">既存の DR グループをファブリックから切断します</block>
-  <block id="59c85c278b8f5f8a994f268744829b19" category="sidebar">RCF ファイルを適用し、スイッチにケーブルを再接続します</block>
   <block id="d9a531a3f31df861443133dd9765f39c" category="sidebar">新しいコントローラで ONTAP を設定します</block>
   <block id="a3d53cea9a8b8b61d7bf5ff5d1804260" category="sidebar">AFF システムでディスク所有権を割り当てます</block>
   <block id="83acf92ff8f6812b50314e32473081e5" category="sidebar">AFF 以外のシステムでディスク所有権を割り当てます</block>
@@ -12561,4 +12557,11 @@
   <block id="0c87e171b9e1156bebc0a65b722d174d" category="list-text">次のコマンドを使用して、破損ディスクがないかどうかを確認します。</block>
   <block id="27bf55792722dd4b16925981ef8953b4" category="paragraph">「disk show -broken」</block>
   <block id="938f1047c15f00fdd0cbfc8e4cfa15e1" category="paragraph">* 例 *</block>
+  <block id="2e5c6d46dc39a1cc71a6f41b56106221" category="list-text">SSHサービス（Remote Support Agent）。</block>
+  <block id="4c20f2b5dfebba1daad521c7b3ab4c3b" category="paragraph">設定ウィザードが完了すると、スイッチがリブートします。</block>
+  <block id="5582507cb9f874f57ac6bf62db65d371" category="doc">スイッチにケーブルを再接続して再設定します</block>
+  <block id="6647147ed73881ba6516c57ac1b5fe4a" category="paragraph">RCFファイルを使用してスイッチを設定できない場合は、スイッチを手動で設定する必要があります。を参照してください</block>
+  <block id="71620bedc8491865816460c55b3cde98" category="list-text"><block ref="71620bedc8491865816460c55b3cde98" category="inline-link-macro-rx"></block></block>
+  <block id="3a8190b24d904ae352e54f8a0a3df0bb" category="list-text"><block ref="3a8190b24d904ae352e54f8a0a3df0bb" category="inline-link-macro-rx"></block></block>
+  <block id="bee24b783e44923012afab506584e701" category="list-text">SSH サービス（ RSA ）</block>
 </blocks>
