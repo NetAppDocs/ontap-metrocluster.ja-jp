@@ -1967,13 +1967,8 @@ NOTE: 使用できるドライブ数が限られている最小サポート構�
 ** アグリゲート上の RAID グループの RAID タイプ
 ** RAID グループに含めることができるドライブの最大数
 ** これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。
-
-
 +
 次のコマンドでは、 10 本のディスクを含むミラーアグリゲートが作成されます。
-
-+
-[+]
 
 +
 [listing]
@@ -1983,6 +1978,8 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 [Job 15] The job is starting.
 [Job 15] Job succeeded: DONE
 ----
+
+
 . 新しいアグリゲートの RAID グループとドライブを確認します。
 +
 「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
@@ -2010,6 +2007,9 @@ NOTE: ミラーされた単一のデータアグリゲートを使用する場�
 MetroCluster 構成を有効にするには ' 任意のノードで MetroCluster configure コマンドを 1 回実行します問題サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
 
 MetroCluster configure コマンドを実行すると '2 つのクラスタそれぞれのシステム ID が最も小さい 2 つのノードが 'DR （災害復旧）パートナーとして自動的にペア設定されます4 ノード MetroCluster 構成の場合は、 DR パートナーのペアは 2 組になります。2 つ目の DR ペアは、システム ID が大きい 2 つのノードで作成されます。
+
+
+NOTE: コマンドMetroCluster configure'を実行する前に'Onboard Key Manager（OKM；オンボードキーマネージャ）または外部キー管理を構成しないでください
 
 .手順
 . [[step1_single_mirror]] 次の形式で MetroCluster を構成します。

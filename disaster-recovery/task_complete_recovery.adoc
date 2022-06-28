@@ -90,7 +90,7 @@ FCP               periodic-check-enabled            ok
 . 新しいライセンスキーが必要な場合は、ネットアップサポートサイトの「ソフトウェアライセンス」の下の「サポート」セクションで交換用ライセンスキーを入手します。
 +
 
-NOTE: 必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。ライセンスキーが記載された E メールが 30 日以内に届かないは、テクニカルサポートにお問い合わせください。
+NOTE: 必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。30日以内にライセンスキーが記載されたEメールが届かない場合は、の「ライセンスに問題がある場合は、誰に連絡すればよいですか？」セクションを参照してくださいlink:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/Post_Motherboard_Replacement_Process_to_update_Licensing_on_a_AFF_FAS_system["ネットアップのナレッジベース：「ポストマザーボードの交換プロセス」を参照して、AFF / FASシステムのライセンスを更新する。"^]
 
 . 各ライセンスキーをインストールします。
 +
@@ -275,7 +275,7 @@ Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
 aggr_b2          -         -     - unknown      - node_A_1
 ----
 +
-ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。
+ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。テクニカルサポートに連絡して、ミラーされていないアグリゲートの古いエントリを削除します。参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/How_to_remove_stale_unmirrored_aggregate_entries_in_a_MetroCluster_following_disaster_where_storage_was_lost["ネットアップのナレッジベース：ストレージが失われた場合にMetroCluster でミラーされていない古いアグリゲートのエントリを削除する方法"^]
 
 . サバイバークラスタにあるすべての同期先 SVM が休止状態（ Admin State が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。
 +

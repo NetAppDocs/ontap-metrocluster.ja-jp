@@ -21,7 +21,7 @@ MetroCluster スイッチオーバー処理を使用すると、パートナー�
 * この手順は、特定のバージョンの ONTAP で使用できます。
 +
 ** ONTAP 9.3 以降では 2 ノード構成がサポートされます。
-** ONTAP 9.8 以降では、 4 ノードおよび 8 ノードの構成がサポートされています。
+** ONTAP 9.8以降では、4ノード構成と8ノード構成がサポートされます。
 +
 ONTAP 9.8 より前のバージョンを実行している 4 ノードまたは 8 ノード構成では、この手順を使用しないでください。
 
@@ -33,8 +33,9 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 
 +
 
-NOTE: 元のプラットフォームまたは新規プラットフォームが FAS8020 または AFF8020 システムでは、 FC-VI モードのポート 1c と 1d を使用する場合は、テクニカルサポートにお問い合わせください。
+NOTE: 元のプラットフォームまたは新規プラットフォームがFAS8020またはAFF8020システムで、FC-VIモードのポート1cと1dを使用する場合は、を確認してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/Upgrading_controllers_when_FCVI_connections_on_existing_FAS8020_or_AFF8020_nodes_use_ports_1c_and_1d["ネットアップのナレッジベース：既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合のコントローラのアップグレード"^]
 
+* 両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。
 * この MetroCluster コントローラモジュールは、手順環境 FC 構成（ 2 ノードのストレッチ MetroCluster 構成または 2 ノードまたは 4 ノードのファブリック接続 MetroCluster 構成）で使用します。
 * 構成内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。
 +
@@ -1416,6 +1417,16 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 +
 必要に応じて、すべての SVM でこの手順を実行します。
 
+
+
+
+
+=== 新しいライセンスをインストールします
+
+スイッチバック処理の前に、新しいコントローラのライセンスをインストールする必要があります。
+
+.手順
+. link:task_install_licenses_on_the_new_controller_module_cluster_mode.html["新しいコントローラモジュール用のライセンスをインストールしています"]
 
 
 

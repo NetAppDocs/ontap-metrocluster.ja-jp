@@ -1397,7 +1397,6 @@
   <block id="0d687993b6b67e20ff0472f32d9693b0" category="paragraph">新しいコントローラモジュールおよび新しいディスクシェルフと既存の FC スイッチとのケーブル接続を決定する必要があります。</block>
   <block id="6485f9afbf9c5f34e988054e67e3b142" category="paragraph">このタスクは MetroCluster サイトごとに実行する必要があります。</block>
   <block id="9846b9bd1d098858cca0855cc4e56c18" category="paragraph">リファレンス構成ファイル（ RCF ）を使用できるようにするために、 FC スイッチポートの用途がこのガイドに記載されている用途と同じである必要があります。</block>
-  <block id="9abd645e397061a8e3dab1bb33124897" category="admonition">RCF を使用できるようにケーブル接続できない場合は、テクニカルサポートにお問い合わせください。RCF を使用できないケーブル接続の場合は、この手順を使用しないでください。</block>
   <block id="62f6cc0bf7eb35e158a953058ca74eca" category="section-title">RCF ファイルの適用およびスイッチの再接続</block>
   <block id="240180de393c4a94b035628cb25892f2" category="paragraph">新しいノードに合わせてスイッチを再設定するためには、適切なリファレンス構成ファイル（ RCF ）を適用する必要があります。RCF ファイルを適用したら、スイッチを再接続できます。</block>
   <block id="6a82c384f85f037d7996beaa2d1d7d15" category="list-text">使用している構成用の RCF ファイルを探します。</block>
@@ -1930,7 +1929,6 @@
   <block id="9b7868adf853e7eebe0da1408c6ccd24" category="paragraph">ストレージシェルフやスイッチなど、構成内の他のコンポーネントは同時にアップグレードできません。</block>
   <block id="775b84147d85d58d8180690300a5d104" category="list-text">この手順は、特定のバージョンの ONTAP で使用できます。</block>
   <block id="0658afd7b63854a03c773da7890b79c4" category="list-text">ONTAP 9.3 以降では 2 ノード構成がサポートされます。</block>
-  <block id="2e6da68450b987e7ad374e965e63ad0e" category="list-text">ONTAP 9.8 以降では、 4 ノードおよび 8 ノードの構成がサポートされています。</block>
   <block id="ed332ae2e9a3efd17382e627809f4c84" category="paragraph">ONTAP 9.8 より前のバージョンを実行している 4 ノードまたは 8 ノード構成では、この手順を使用しないでください。</block>
   <block id="dfaa931cb3298c6a8b82f108a31104cb" category="list-text">元のプラットフォームと新しいプラットフォームに互換性があり、サポートされている必要があります。</block>
   <block id="b7071513452c80dcfb33a91f6c6f0ecd" category="list-text">この MetroCluster コントローラモジュールは、手順環境 FC 構成（ 2 ノードのストレッチ MetroCluster 構成または 2 ノードまたは 4 ノードのファブリック接続 MetroCluster 構成）で使用します。</block>
@@ -2627,7 +2625,6 @@
   <block id="41365539a8ffcff55d887255791f26f6" category="list-text">既存のコントローラモジュールの電源装置をオンにします。</block>
   <block id="81849b984186456aa612c556a4914aaa" category="list-text">新しいコントローラモジュールについて、上記の手順を繰り返します</block>
   <block id="4b7867ffe681fd760cc93c409952f239" category="paragraph">各コントローラモジュールには、 LOADER プロンプト（「 LOADER&gt;` 」、「 LOADER-A&gt; 」、または「 LOADER-B&gt;` ）が表示されます。</block>
-  <block id="ff3d4335d0a6cda4d1a193cc9b93d0ac" category="admonition">LOADER プロンプトが表示されない場合は、エラーメッセージをメモし、テクニカルサポートに連絡してください。システムにブートメニューが表示された場合は、リブートし、もう一度ブートプロセスを中断します。</block>
   <block id="48f1cbfd98903541f8e454a15e0879c3" category="doc">スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成でのコントローラのアップグレード（ ONTAP 9.8 以降）</block>
   <block id="bcd52c133e0292437778058a5ed793b1" category="list-text">プラットフォームで ONTAP 9.8 以降が実行されている必要があります。</block>
   <block id="5606659eb62f79273b91080445f7165a" category="list-text">この手順環境コントローラモジュールは MetroCluster IP 構成です。</block>
@@ -2817,7 +2814,6 @@
   <block id="df2ef58daa49e755e50530b551f462b9" category="paragraph">標準（ノードロック）ライセンスが必要な ONTAP サービスがある場合は、新しいコントローラモジュールにライセンスを追加する必要があります。標準ライセンスを使用する機能では、クラスタ内の各ノードにその機能用のキーが必要です。</block>
   <block id="3995801a90ce2d1b48223a6bace39bcd" category="paragraph">ライセンスの詳細については、ネットアップサポートサイトの技術情報アーティクル 3013749 ：「 Data ONTAP 8.2 Licensing Overview and References 」と「 _System Administration Reference_」 を参照してください。</block>
   <block id="e5514e918432d58e8d631dcf6889b269" category="list-text">必要に応じて、ネットアップサポートサイトの「ソフトウェアライセンス」の下の「 My Support 」セクションで新しいノードのライセンスキーを取得します。</block>
-  <block id="ecf4debaa8ac551655e89b1663c331ed" category="paragraph">必要なライセンスキーがサイトにない場合は、営業またはサポート担当者にお問い合わせください。</block>
   <block id="cecf1f14234757f8afb171021ce16823" category="list-text">問題各ライセンスキーをインストールするには、次のコマンドを使用します。</block>
   <block id="20ddcb4ab055c5c617f1c025424029d3" category="paragraph">`_license_key_` は 28 桁の長さである。</block>
   <block id="60da9a265bc4a7751e78320152a60b69" category="paragraph">必要な標準（ノードロック）ライセンスごとにこの手順を繰り返します。</block>
@@ -6919,7 +6915,6 @@
   <block id="afc362bb21237b3cf262e5bb73c2e7ce" category="paragraph">ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。</block>
   <block id="882861c4cbc2720bbf7b9b7ae1dbada9" category="doc">MetroCluster 構成を削除する際の考慮事項</block>
   <block id="0ea00d4fc48d7eb7ff02d29820696767" category="paragraph">MetroCluster 構成を削除する場合は、 MetroCluster 構成のすべてのノードまたはディザスタリカバリ（ DR ）グループのすべてのノードから構成を削除します。MetroCluster 構成を削除したあと、すべてのディスク接続とインターコネクトをサポートされる状態に調整する必要があります。MetroCluster 構成を削除する必要がある場合は、テクニカルサポートにお問い合わせください。</block>
-  <block id="42c2aaa725120c3eba302533d73629d7" category="admonition">MetroCluster の設定解除を元に戻すことはできません。このプロセスは、テクニカルサポートの助言の下でのみ実施してください。</block>
   <block id="4f06b4d64acae1e487dfeee6d05acf87" category="doc">MetroCluster サイトでのファイアウォールの使用状況</block>
   <block id="babbebe817de4ac640d017ba3dca7743" category="summary">両方の地理的サイトで MetroCluster コンポーネントを物理的に設置し、ケーブル接続して、設定する必要があります。ネイティブのディスクシェルフを使用するシステムと、アレイ LUN を使用するシステムでは、手順が少々異なります。</block>
   <block id="da677daf9723918166ed931256a804a8" category="image-alt">ワークフローハードウェアの設置と構成： 4 ノードまたは 2 ノードのファブリック</block>
@@ -8511,7 +8506,6 @@
   <block id="838e866ece9701e5a58755a132b144d0" category="paragraph">スイッチバックの完了に時間がかかる場合は、次のコマンドを advanced 権限レベルで使用して、進行中のベースライン転送のステータスを確認できます。</block>
   <block id="eca7334e4ced3e1626aa264456a4abf0" category="paragraph">「 MetroCluster config-replication resync-status show 」を参照してください</block>
   <block id="3579c4d393b95e31540a220033fd8ed1" category="list-text">スイッチオーバーされたデータアグリゲートがスイッチバックされたことを確認します。</block>
-  <block id="db835b1e3cf598f7016d1b565d22d173" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、「 storage aggregate show 」コマンドの出力に「 unknown 」と表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。</block>
   <block id="8d90a1ad74872449b69dcbc9a1230a79" category="list-text">サバイバークラスタにあるすべての同期先 SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。</block>
   <block id="529311fd1dafee8998290952c2b30156" category="paragraph">「 vserver show -subtype sync-source 」のようになります</block>
   <block id="702f8c89c26d6cb5eb222b0149dcf136" category="list-text">スイッチバック処理が成功したことを確認します。</block>
@@ -8616,7 +8610,6 @@
   <block id="1523d0cbbedf508597567dac56417eb2" category="paragraph">「 MetroCluster check license show 」を参照してください</block>
   <block id="881fe4323212cb8e35cee6be8d05c929" category="paragraph">次の例は、ノードのライセンスに問題がないことを表示します。</block>
   <block id="bc6cb5ca7b5ffe469e55f15360b228c7" category="list-text">新しいライセンスキーが必要な場合は、ネットアップサポートサイトの「ソフトウェアライセンス」の下の「サポート」セクションで交換用ライセンスキーを入手します。</block>
-  <block id="d3c2ed97232b4e6667d7111adb92a79c" category="admonition">必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。ライセンスキーが記載された E メールが 30 日以内に届かないは、テクニカルサポートにお問い合わせください。</block>
   <block id="179f3c48aec46d54f5f4fe15ed0484b2" category="list-text">各ライセンスキーをインストールします。</block>
   <block id="c71ddef805b4933b2cfdcf19e62282bf" category="paragraph">'system license add - license-code license-key'license-key...+' を選択します</block>
   <block id="11d90ad9838fdc1545ee368cd8943df9" category="list-text">必要に応じて、古いライセンスを削除します。</block>
@@ -11486,7 +11479,6 @@
   <block id="f4d1718476f238773172cc8143587c05" category="paragraph"><block ref="f4d1718476f238773172cc8143587c05" category="inline-link-rx"></block></block>
   <block id="31adf6c46538c00d916f0a1f7acc11f5" category="list-text">FabricPool 構成の詳細については、を参照してください <block ref="35c3ebb4e6a9e3c67e4d7c35a500b0be" category="inline-link-macro-rx"></block>。</block>
   <block id="1340a5b41b84e7246a789cfe5e1eb1a7" category="list-text">の手順「 Replacing a FabricPool mirror on a MetroCluster configuration 」に従います <block ref="35c3ebb4e6a9e3c67e4d7c35a500b0be" category="inline-link-macro-rx"></block>。</block>
-  <block id="673c12c7e6525bb3d967abd59cf88b50" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。</block>
   <block id="aa22b9d198bd6a038b670437eee9be3f" category="list-text">サバイバークラスタにあるすべての同期先 SVM が休止状態（ Admin State が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元 SVM が稼働していることを確認します。</block>
   <block id="ab1dba64bb6e8de017000d69dfdb9ac8" category="paragraph"><block ref="ab1dba64bb6e8de017000d69dfdb9ac8" category="inline-link-macro-rx"></block></block>
   <block id="e5d7a25b7e762503563170086c5defa9" category="paragraph"><block ref="e5d7a25b7e762503563170086c5defa9" category="inline-link-macro-rx"></block></block>
@@ -12392,7 +12384,6 @@
   <block id="5ddb9938498e31a4b1c392ab5953e15b" category="paragraph"><block ref="5ddb9938498e31a4b1c392ab5953e15b" category="inline-link-rx"></block></block>
   <block id="9630e0ae86014261ce835fe1e1ffcd0e" category="paragraph">各スイッチでこのタスクを順に実行する必要があります。</block>
   <block id="b8ce668f7b81ebccc724b47a22aafe9f" category="paragraph">MetroCluster システムのサービス手順には、ファームウェアのアップグレードとハードウェアの交換手順が含まれています。これらの手順には、ドライブシェルフ、 IP スイッチ、 FC スイッチ、 FC-to-SAS ブリッジ、および SAS ケーブルが含まれます。</block>
-  <block id="46e4f6024087b0e1c3fd4a21ef438dad" category="admonition">元のプラットフォームまたは新規プラットフォームが FAS8020 または AFF8020 システムでは、 FC-VI モードのポート 1c と 1d を使用する場合は、テクニカルサポートにお問い合わせください。</block>
   <block id="ea82c7b5fb58362afd3d6e95de6eb609" category="list-text">FAS80x0</block>
   <block id="9b81337122f1b971d326821246c0fb05" category="list-text">AFF80x0 と入力します</block>
   <block id="9630fdb2df8bbf2bbd201638e1cc2f2e" category="admonition">FAS8020 または AFF8020 は、 FC-VI モードで 1c ポートと 1d ポートを使用する場合はアップグレードできません。</block>
@@ -12564,4 +12555,25 @@
   <block id="71620bedc8491865816460c55b3cde98" category="list-text"><block ref="71620bedc8491865816460c55b3cde98" category="inline-link-macro-rx"></block></block>
   <block id="3a8190b24d904ae352e54f8a0a3df0bb" category="list-text"><block ref="3a8190b24d904ae352e54f8a0a3df0bb" category="inline-link-macro-rx"></block></block>
   <block id="bee24b783e44923012afab506584e701" category="list-text">SSH サービス（ RSA ）</block>
+  <block id="39ceb938ecce9e03ffb814b0ab98c3ff" category="inline-link-macro">ネットアップのナレッジベース：「MetroCluster 構成-解決ガイド」からノードを削除する方法</block>
+  <block id="ddcd0bc62cc0d6ad3a96c234e8e9acc2" category="admonition">MetroCluster の設定解除を元に戻すことはできません。このプロセスは、テクニカルサポートの助言の下でのみ実施してください。ネットアップテクニカルサポートにお問い合わせのうえ、構成に対応するガイドをにご参照ください <block ref="6b274ee2da4e368d83246d3228463b74" category="inline-link-macro-rx"></block></block>
+  <block id="aac7cfec46f1e12804543ab7e9f0bf82" category="admonition">コマンドMetroCluster configure'を実行する前に'Onboard Key Manager（OKM；オンボードキーマネージャ）または外部キー管理を構成しないでください</block>
+  <block id="b7dc5f17370f3f6d8f0564ad37092c2e" category="list-text">ONTAP 9.8以降では、4ノード構成と8ノード構成がサポートされます。</block>
+  <block id="4d8ef96135f1fcc906a1c836b94ccd72" category="inline-link-macro">ネットアップのナレッジベース：既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合のコントローラのアップグレード</block>
+  <block id="3b66e88b9eec711f27eed9c397de04df" category="admonition">元のプラットフォームまたは新規プラットフォームがFAS8020またはAFF8020システムで、FC-VIモードのポート1cと1dを使用する場合は、を確認してください <block ref="5f6e886a55fbfce55c807e98c86f0ed7" category="inline-link-macro-rx"></block></block>
+  <block id="6f2e4be613f6e5c211f118c1604357ae" category="list-text">両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>。</block>
+  <block id="4bf20a918b2c6b62364371fe4f4d9c7f" category="section-title">新しいライセンスをインストールします</block>
+  <block id="c24d2fcd8511c8b51a6aef773200e0d8" category="paragraph">スイッチバック処理の前に、新しいコントローラのライセンスをインストールする必要があります。</block>
+  <block id="07beb3f4161a6f204edf78213ee21dd3" category="list-text"><block ref="07beb3f4161a6f204edf78213ee21dd3" category="inline-link-macro-rx"></block></block>
+  <block id="852fee667b0218d56efb26732593192d" category="inline-link-macro">マザーボードの交換後プロセスを実行して、AFF / FASシステムのライセンスを更新</block>
+  <block id="4d373838f1432114e8cb3f53c45f8736" category="paragraph">ライセンス交換の詳細については、を参照してください <block ref="7fa6d13435a2a82c954f1735e8d67b30" category="inline-link-macro-rx"></block></block>
+  <block id="42f4edc2efb2c786550a905c38a8416c" category="admonition">LOADERプロンプトが表示されない場合は、エラーメッセージを記録してください。システムにブートメニューが表示された場合は、リブートし、もう一度ブートプロセスを中断します。</block>
+  <block id="8c4c17369ebab47cd3919b9e6b1e8537" category="admonition">RCF を使用できないケーブル接続の場合は、この手順を使用しないでください。</block>
+  <block id="07d36974183f0bd379705eb8861c8bba" category="inline-link-macro">ネットアップのナレッジベース：ストレージが失われた場合にMetroCluster でミラーされていない古いアグリゲートのエントリを削除する方法</block>
+  <block id="e8a2aa8f2b533983c4b701d088ac2fa9" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、「 storage aggregate show 」コマンドの出力に「 unknown 」と表示されることがあります。テクニカルサポートに連絡して、ミラーされていないアグリゲートの最新ではないエントリを削除し、参照してください <block ref="857cf6ab3254f5ce14b6347a5dc33b9f" category="inline-link-macro-rx"></block></block>
+  <block id="34e63b4d455bee1fbdab9ea6d4e3fcb7" category="inline-link-macro">ネットアップのナレッジベース：「ポストマザーボードの交換プロセス」を参照して、AFF / FASシステムのライセンスを更新する。</block>
+  <block id="6abc18b19d1261841c5bebef07ade3cc" category="admonition">必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。30日以内にライセンスキーが記載されたEメールが届かない場合は、の「ライセンスに問題がある場合は、誰に連絡すればよいですか？」セクションを参照してください<block ref="01bfbfba842a68c11d464652fb5b8666" category="inline-link-macro-rx"></block></block>
+  <block id="a83bdcaf895c6161de37c26c6fde86a6" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。テクニカルサポートに連絡して、ミラーされていないアグリゲートの古いエントリを削除します。参照してください <block ref="857cf6ab3254f5ce14b6347a5dc33b9f" category="inline-link-macro-rx"></block></block>
+  <block id="efa4707d1136ea0f455cfb38e7371895" category="inline-link-macro">ネットアップのナレッジベース：「ポストマザーボードの交換プロセス」を参照して、AFF / FASシステムのライセンスを更新する</block>
+  <block id="e4d43f7afcae270903f6fda758c33beb" category="paragraph">ライセンス交換の詳細については、を参照してください <block ref="fd34fb83b47f441a190e089e21262454" category="inline-link-macro-rx"></block></block>
 </blocks>
