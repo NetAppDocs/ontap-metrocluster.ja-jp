@@ -14,34 +14,14 @@ summary: HA ペアにアップグレードする前に、システムがすべ�
 HA ペアにアップグレードする前に、システムがすべての要件を満たしていること、および必要な情報がすべて揃っていることを確認する必要があります。
 
 .手順
-. 新しいコントローラモジュールに割り当てることができる未割り当てのディスクまたはスペアディスクを特定する必要があります。
+. 次のコマンドを使用して、新しいコントローラモジュールに割り当て可能な未割り当てのディスクまたはスペアディスクを特定します。
 +
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2427462["物理ストレージ管理"^]
+** storage disk show -container-type spare
+** 'storage disk show -container-type unassigned （ storage disk show -container-type unassigned
 
+
+. 次の手順を実行します。
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
-
-. 前の手順の結果に基づいて、次のいずれかを実行します。
-+
-[cols="1,3"]
-|===
-
-
-| 結果 | 作業 
-
-
- a| 
-ルート / データパーティショニングを使用しないシステムに、新しいコントローラモジュール用の十分な数のスペアディスクがありません
- a| 
-詳細については、テクニカルサポートにお問い合わせください。
-
-
-
- a| 
-その他の結果
- a| 
-次の手順を実行します。
-
 .. 既存のノードのアグリゲートが配置されている場所を特定します。
 +
 「 storage aggregate show
@@ -57,7 +37,6 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 .. 新しいノードに必要な数のディスクについて、前の手順を繰り返します。
 
 
-|===
 . 次の接続用のケーブルがあることを確認します。
 +
 ** クラスタ接続

@@ -30,16 +30,7 @@ Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
 aggr_b2    227.1GB   227.1GB    0% online       0 node_B_2   raid_dp,
                                                                    mirrored,
                                                                    normal
-
-node_A_1::> aggr show
-Aggregate     Size Available Used% State   #Vols  Nodes            RAID Status
---------- -------- --------- ----- ------- ------ ---------------- ------------
-...
-aggr_b2          -         -     - unknown      - node_A_1
 ----
-+
-ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。
-
 . サバイバークラスタにある同期先のすべての SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元の SVM が稼働していることを確認します。
 +
 「 vserver show -subtype sync-source 」のようになります

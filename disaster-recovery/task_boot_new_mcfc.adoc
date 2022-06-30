@@ -30,7 +30,7 @@ summary: データアグリゲートとルートアグリゲート両方の修�
 
 +
 
-NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、を繰り返します <<step2>> システムをブートして ONTAP プロンプトを表示します。その後、ルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。
+NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、を繰り返します <<step2>> システムをブートして ONTAP プロンプトを表示します。次に、が必要です <<Reset-the-boot-recovery,ブートリカバリとr確保 されていないbootargsRDBの破損をリセットします>>
 
 . プレックス 0 でルートアグリゲートをミラーします。
 +
@@ -89,3 +89,35 @@ cluster_B::>
 
 
 に進みます link:../disaster-recovery/task_complete_recovery.html["ディザスタリカバリプロセスを完了する"]。
+
+
+
+=== boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします
+
+[role="lead"]
+必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます
+
+.手順
+. ノードを停止してLOADERプロンプトに戻ります。
++
+[listing]
+----
+node_A_1::*> halt -node _node-name_
+----
+. 次のbootargsが設定されているかどうかを確認します
++
+[listing]
+----
+LOADER> printenv bootarg.init.boot_recovery
+LOADER> printenv bootarg.rdb_corrupt
+----
+. どちらかのbootargが値に設定されている場合は、設定を解除してONTAP をブートします。
++
+[listing]
+----
+LOADER> unsetenv bootarg.init.boot_recovery
+LOADER> unsetenv bootarg.rdb_corrupt
+LOADER> saveenv
+LOADER> bye
+----
+

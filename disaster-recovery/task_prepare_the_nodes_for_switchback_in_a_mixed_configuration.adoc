@@ -64,7 +64,7 @@ summary: スイッチバック処理用に MetroCluster IP と FC を混在さ�
 
 +
 
-NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。その後、ルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。
+NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。次に、が必要です <<Reset-the-boot-recovery,ブートリカバリとr確保 されていないbootargsRDBの破損をリセットします>>
 
 
 
@@ -132,4 +132,36 @@ Group Cluster Node               State          Mirroring Mode
 . MetroCluster FC ノードで、の手順を実行します link:task_heal_restore_mcfc.html["アグリゲートの修復とミラーのリストア（ MetroCluster FC 構成）"]。
 . MetroCluster IP ノードで、の手順を実行します link:task_heal_restore_mcip.html["アグリゲートの修復とミラーのリストア（ MetroCluster IP 構成）"]。
 . 以降のリカバリプロセスの残りのタスクを実行します link:task_complete_recovery.html#reestablishing-object-stores-for-fabricpool-configurations["FabricPool 構成のオブジェクトストアの再確立"]。
+
+
+
+
+=== boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします
+
+[role="lead"]
+必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます
+
+.手順
+. ノードを停止してLOADERプロンプトに戻ります。
++
+[listing]
+----
+node_A_1::*> halt -node _node-name_
+----
+. 次のbootargsが設定されているかどうかを確認します
++
+[listing]
+----
+LOADER> printenv bootarg.init.boot_recovery
+LOADER> printenv bootarg.rdb_corrupt
+----
+. どちらかのbootargが値に設定されている場合は、設定を解除してONTAP をブートします。
++
+[listing]
+----
+LOADER> unsetenv bootarg.init.boot_recovery
+LOADER> unsetenv bootarg.rdb_corrupt
+LOADER> saveenv
+LOADER> bye
+----
 

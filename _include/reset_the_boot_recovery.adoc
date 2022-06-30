@@ -1,0 +1,31 @@
+= 
+:allow-uri-read: 
+
+
+[role="lead"]
+必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます
+
+.手順
+. ノードを停止してLOADERプロンプトに戻ります。
++
+[listing]
+----
+node_A_1::*> halt -node _node-name_
+----
+. 次のbootargsが設定されているかどうかを確認します
++
+[listing]
+----
+LOADER> printenv bootarg.init.boot_recovery
+LOADER> printenv bootarg.rdb_corrupt
+----
+. どちらかのbootargが値に設定されている場合は、設定を解除してONTAP をブートします。
++
+[listing]
+----
+LOADER> unsetenv bootarg.init.boot_recovery
+LOADER> unsetenv bootarg.rdb_corrupt
+LOADER> saveenv
+LOADER> bye
+----
+

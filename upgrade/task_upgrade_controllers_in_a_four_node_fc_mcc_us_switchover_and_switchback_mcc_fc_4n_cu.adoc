@@ -33,13 +33,13 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 
 +
 
-NOTE: 元のプラットフォームまたは新規プラットフォームがFAS8020またはAFF8020システムで、FC-VIモードのポート1cと1dを使用する場合は、を確認してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/Upgrading_controllers_when_FCVI_connections_on_existing_FAS8020_or_AFF8020_nodes_use_ports_1c_and_1d["ネットアップのナレッジベース：既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合のコントローラのアップグレード"^]
+NOTE: 元のプラットフォームまたは新しいプラットフォームがFAS8020またはAFF8020システムでは、FC-VIモードのポート1cと1dを使用する場合は、ナレッジベースの記事を参照してください link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/Upgrading_controllers_when_FCVI_connections_on_existing_FAS8020_or_AFF8020_nodes_use_ports_1c_and_1d["既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合は、コントローラをアップグレードします。"^]
 
-* 両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]。
-* この MetroCluster コントローラモジュールは、手順環境 FC 構成（ 2 ノードのストレッチ MetroCluster 構成または 2 ノードまたは 4 ノードのファブリック接続 MetroCluster 構成）で使用します。
-* 構成内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。
+* 両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます link:https://mysupport.netapp.com/site/["ネットアップサポート"^]。
+* この 手順 環境 コントローラモジュールは、MetroCluster FC構成（2ノードのストレッチMetroCluster 構成または2ノード、4ノード、または8ノードのファブリック接続MetroCluster 構成）で使用します。
+* 同じDRグループ内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。
 +
-このメンテナンス作業以外では、コントローラタイプが異なる MetroCluster 構成を運用することはできません。
+同じDRグループに種類の異なるコントローラを含むMetroCluster 構成の運用は、このメンテナンス作業以外ではサポートされません。8ノードMetroCluster 構成では、DRグループ内のコントローラは同じである必要がありますが、両方のDRグループで異なる種類のコントローラを使用できます。
 
 * サポートされるアップグレードパスは、元のプラットフォームモデルによって異なります。
 +

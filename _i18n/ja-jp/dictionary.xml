@@ -1931,7 +1931,6 @@
   <block id="0658afd7b63854a03c773da7890b79c4" category="list-text">ONTAP 9.3 以降では 2 ノード構成がサポートされます。</block>
   <block id="ed332ae2e9a3efd17382e627809f4c84" category="paragraph">ONTAP 9.8 より前のバージョンを実行している 4 ノードまたは 8 ノード構成では、この手順を使用しないでください。</block>
   <block id="dfaa931cb3298c6a8b82f108a31104cb" category="list-text">元のプラットフォームと新しいプラットフォームに互換性があり、サポートされている必要があります。</block>
-  <block id="b7071513452c80dcfb33a91f6c6f0ecd" category="list-text">この MetroCluster コントローラモジュールは、手順環境 FC 構成（ 2 ノードのストレッチ MetroCluster 構成または 2 ノードまたは 4 ノードのファブリック接続 MetroCluster 構成）で使用します。</block>
   <block id="b8c2f69c5a69a0de627c50e7bc6a4cf9" category="list-text">構成内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。</block>
   <block id="4eef4343ca82afa388103a13e5acd0be" category="paragraph">このメンテナンス作業以外では、コントローラタイプが異なる MetroCluster 構成を運用することはできません。</block>
   <block id="16f5e23eca91ea2c50cf5ebde29656d2" category="list-text">サポートされるアップグレードパスは、元のプラットフォームモデルによって異なります。</block>
@@ -2494,11 +2493,6 @@
   <block id="327221e852c98244ddf26f6a4f3c61c5" category="list-text">新しいノード（ node_A_1 ）でイプシロンを true に設定します。</block>
   <block id="468a7d44a90e2d51ce44106bf786e824" category="list-text">イプシロンが正しいノードに移動されたことを確認します。</block>
   <block id="ae0930527dc1f23b45618d9c343cf9e0" category="summary">HA ペアにアップグレードする前に、システムがすべての要件を満たしていること、および必要な情報がすべて揃っていることを確認する必要があります。</block>
-  <block id="3d9091c2e30d55a610e464250d80ae97" category="list-text">新しいコントローラモジュールに割り当てることができる未割り当てのディスクまたはスペアディスクを特定する必要があります。</block>
-  <block id="a2fd0d057f2ea8496e15a769414d84b0" category="list-text">前の手順の結果に基づいて、次のいずれかを実行します。</block>
-  <block id="37a8f31a7e8b7690ba6e2ff0ddbc6fcc" category="cell">結果</block>
-  <block id="e4a39395bf8b1ab17a3ba564d7947d03" category="paragraph">ルート / データパーティショニングを使用しないシステムに、新しいコントローラモジュール用の十分な数のスペアディスクがありません</block>
-  <block id="2208b4293f1ea60ea2302dbae5547ea5" category="paragraph">詳細については、テクニカルサポートにお問い合わせください。</block>
   <block id="3678fe02acf5ec3ff8f4fbebc3fd7a4d" category="paragraph">次の手順を実行します。</block>
   <block id="69031ee219c15dfa776f0869add071f5" category="list-text">新しいノードに必要な数のディスクについて、前の手順を繰り返します。</block>
   <block id="619b4fd010ff9f6cf652e131bac6351b" category="list-text">次の接続用のケーブルがあることを確認します。</block>
@@ -2907,7 +2901,6 @@
   <block id="ac5b83bcd716e4f73dc30fdc6a4c5c55" category="paragraph">クラスタピアリングには、各コントローラモジュールの少なくとも 2 つのポートを使用します。</block>
   <block id="0fb6c3d63792ef7dc83798e7407f80e4" category="paragraph">ポートおよびネットワーク接続の推奨される最小帯域幅は 1GbE です。</block>
   <block id="5206bcb346755220c00fbc45647faca6" category="list-text">クラスタピアリングに使用する少なくとも 2 つのポートを特定してケーブル接続し、そのポートがパートナークラスタとネットワーク接続されていることを確認します。</block>
-  <block id="262ce168ea85d04c696b00eca18415d4" category="paragraph">この手順は ONTAP 9.8 以降でサポートされています。以前のバージョンの ONTAP では、 DR グループを削除する場合はテクニカルサポートにお問い合わせください。</block>
   <block id="cba784dbb6dad30cadc1fcb2d1b5ee81" category="paragraph"><block ref="cba784dbb6dad30cadc1fcb2d1b5ee81" category="inline-link-rx"></block></block>
   <block id="19df577c80891b37cfa2f1b29c518f6e" category="paragraph">8 ノード構成では、 8 つのノードが 2 つの 4 ノード DR グループとして編成されています。</block>
   <block id="e66e23247af7503f663027daef188754" category="paragraph">DR グループを 1 つ削除することで、 4 つのノードが構成に残ります。</block>
@@ -4236,7 +4229,6 @@
   <block id="a9954c87406948a9244102f901d9fddb" category="admonition">MetroCluster IP 構成では、自動計画外スイッチオーバーはサポートされません。</block>
   <block id="cc98b13ef41574a22c96136d7ba3ca4e" category="paragraph">MetroCluster FC 構成では、次の理由でサイトのすべてのノードに障害が発生した場合に AUSO がトリガーされます。</block>
   <block id="c4a46c6949c88ae14f48c1ec17cc024b" category="list-text">電源をオフにします</block>
-  <block id="0fd4e09726402ce862074b93272dce4a" category="list-text">電源がパニック状態です</block>
   <block id="61da928f74d2d91963b98396376808e7" category="admonition">8 ノード MetroCluster FC 構成では、 HA ペアの両方のノードで障害が発生した場合に AUSO をトリガーするオプションを設定できます。</block>
   <block id="29548d02eff38acb713ead1e542313f7" category="paragraph">2 ノード MetroCluster 構成ではローカル HA フェイルオーバーを使用できないため、システムが AUSO を実行してコントローラ障害発生後も処理が継続されるようにします。この機能は、 HA ペアの HA テイクオーバー機能に相当します。2 ノード MetroCluster 構成では、次のシナリオで AUSO がトリガーされます。</block>
   <block id="cb8e3939c868fc0e87662c41607fd2a7" category="list-text">ノードの電源がオフになりました</block>
@@ -8256,7 +8248,6 @@
   <block id="a1ea8f7e98610dd5fef2ac85b3267080" category="list-text">交換用ノードの 1 つで、 LOADER プロンプト「 halt 」を終了します</block>
   <block id="aba47a73453a4b018e569fef6094364f" category="list-text">ブートメニューからオプション 6 、 * アップデートフラッシュをバックアップ構成から * 選択します。</block>
   <block id="ae9185bf6adb2fa07aa8f16b9fabf53e" category="paragraph">システムが 2 回ブートします。続行するかどうかを確認するメッセージが表示されたら 'yes' と入力します2 回目の起動後、システム ID の不一致に関するプロンプトが表示されたら、「 y 」と応答する必要があります。</block>
-  <block id="860d5f3016c12a37c0c22c0cbda49625" category="admonition">使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。そのあとにルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。</block>
   <block id="6359390f2bf4b3d61775f586653a8795" category="list-text">続行の確認のプロンプト：</block>
   <block id="3906957452f2289e724b0ecfd78b63bc" category="list-text">システム ID の不一致のプロンプト：</block>
   <block id="128fa92dd8a609500440a24cb01e7c12" category="list-text">サバイバーサイトで、正しいパートナーシステム ID がノードに適用されていることを確認します。</block>
@@ -8776,7 +8767,6 @@
   <block id="5b4b0e7e80cfc96d7b00d2037086ecaf" category="list-text">次のプロンプトに「 y 」と入力します。</block>
   <block id="5da0ed75f8d94f3ba9a459b96d248368" category="paragraph">これは ' オール・フラッシュ・ベースの構成をディスクへの最後のバックアップに置き換えます続行してもよろしいですか ?:y`</block>
   <block id="960738ca2fc1770da21e6c687ca1c350" category="paragraph">システムが 2 回ブートし、 2 回目に新しい設定がロードされます。</block>
-  <block id="8782ce5e44a58103b967cd55863bf183" category="admonition">使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、を繰り返します <block ref="358c6da937c27d6519a48f813996b4db" category="inline-xref-macro-rx"></block> システムをブートして ONTAP プロンプトを表示します。その後、ルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。</block>
   <block id="d16c283588f04c1ce2bf0f46ad1b9ea4" category="list-text">プレックス 0 でルートアグリゲートをミラーします。</block>
   <block id="ee5ab6f8636a09cbbf2aa0b4a2b5e769" category="list-text">3 本の pool0 ディスクを新しいコントローラモジュールに割り当てます。</block>
   <block id="574d18b9a555a66e217652610abd0f80" category="list-text">ルートアグリゲートの pool1 プレックスをミラーします。</block>
@@ -8887,7 +8877,6 @@
   <block id="9e047a63ea4d67fbbdb533c9160dba7e" category="list-text">ルートアグリゲートがオンラインになっていない場合は、オンラインにします。</block>
   <block id="f697b3488e8c346fc3a6e11a2ee8761b" category="list-text">MetroCluster FC ノードをブートします。</block>
   <block id="dc883740b10089cb91865f7c96fc5ac5" category="paragraph">これらの手順を両方の MetroCluster FC ノードで実行する必要があります。</block>
-  <block id="b2010eca22012b8a09d2f9548f1d744a" category="admonition">使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。その後、ルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。</block>
   <block id="f433c39c3c339b913b2223e31d633f9d" category="list-text">メンテナンスモードに戻ります。</block>
   <block id="b89bea07847accf12561ace475459c4d" category="list-text">ノードをメンテナンスでブートします。</block>
   <block id="fd02d447099008ddc827133dc034246f" category="paragraph">「 ode ： boot_ontap maint 」となっています</block>
@@ -9843,7 +9832,6 @@
   <block id="19b075b0ff8fbdf79efbef8787bbf0d7" category="paragraph">cluster show -fields epsilon</block>
   <block id="d75b73420fff0db8b490d51327d3ac30" category="paragraph">cluster modify -node _old-node--epsilon false *</block>
   <block id="7e8573f61e56d88c570a9b47a35d2872" category="paragraph">cluster modify -node-new-node--epsilon true</block>
-  <block id="5ee53f5a50bdec7bbc4b95227e35b804" category="paragraph">その他の結果</block>
   <block id="70ede8550fd471e8c5c1bef06eb1447b" category="list-text">既存のノードのアグリゲートが配置されている場所を特定します。</block>
   <block id="9fb69b3f5bbfa809364de634824a9137" category="list-text">ディスク所有権の自動割り当てを有効にしている場合は無効にします。</block>
   <block id="38fbafa509133a013747e437a5f4667f" category="list-text">アグリゲートのないディスクの所有権を削除します。</block>
@@ -10254,7 +10242,6 @@
   <block id="ca06807503101d86e21d40fd5c8ff94b" category="cell">v2.x</block>
   <block id="ab4a2de3931dbed092e0d44be3c87116" category="list-text">MetroCluster IP 用の Broadcom RCF ファイルを生成します。</block>
   <block id="fd550a9c3a7b7c6106ae07bc6bb69106" category="list-text">をダウンロードします<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block></block>
-  <block id="7d5c4b7a8cb7bc598a3b2eb9fb74fe60" category="list-text">RcfFileGenerator for MetroCluster IP を使用して、設定用の RCF ファイルを生成します</block>
   <block id="83be746defb3baacbca8a27913d5e887" category="summary">共有ストレージ MetroCluster スイッチを使用して、 NS224 シェルフを MetroCluster に追加する必要がある場合があります。</block>
   <block id="81614ec1c85e193dd436e86dd56ed40d" category="doc">共有ストレージ MetroCluster スイッチを使用した MetroCluster IP へのシェルフの追加</block>
   <block id="0aefe0e277b60b987afe007a43a31ca0" category="paragraph">ONTAP 9.10.1 以降では、共有のストレージ / MetroCluster スイッチを使用して、 MetroCluster から NS224 シェルフを追加できます。シェルフは一度に複数追加できます。</block>
@@ -10862,8 +10849,6 @@
   <block id="8d48afc2af7642b1eb38cbfe7c3b33d8" category="list-text">第 3 クォータに 4 本のドライブ： 12 、 13 、 14 、 15</block>
   <block id="807910399f003942a09396612760caef" category="list-text">第 4 クォータに 4 本のドライブ： 18 、 19 、 20 、 21</block>
   <block id="ef552e9c89303b51a8bdce9d5298edba" category="paragraph">e7b</block>
-  <block id="a017a6db2fc01588987d027787f42d9c" category="section-title">AFF A900 から Cisco 3232C または Cisco 9336C スイッチへのケーブル接続</block>
-  <block id="34bc1dd80a773d74b460af7f29e7d10f" category="image-alt">AFF a900 から Cisco 32c または Cisco 9336c スイッチへのケーブル接続</block>
   <block id="1700747af42734556058284b63ef6e71" category="paragraph"><block ref="1700747af42734556058284b63ef6e71" category="inline-link-macro-rx"></block></block>
   <block id="04c19f5eb2ebdc099239a7074f8d6534" category="paragraph">9.10.1 以降</block>
   <block id="c6d4a9d3f7628712dae7a41ab974439d" category="inline-link">「 system controller replace 」コマンドを使用して、 ONTAP 9.8 以降を実行するコントローラハードウェアをアップグレードします</block>
@@ -10876,9 +10861,6 @@
   <block id="c3e6669930ba273936fc70ff1592ca3d" category="paragraph"><block ref="c3e6669930ba273936fc70ff1592ca3d" category="inline-link-rx"></block></block>
   <block id="3c0d1e1f00418201fc22f92ffeea2a6f" category="summary">ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
   <block id="fc295d422c1cefba3de763612fefa26b" category="doc">スイッチオーバーとスイッチバックを使用して MetroCluster IP 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）</block>
-  <block id="8a3326b69dc57d7b9fb4be4e8d481446" category="list-text">コントローラで ONTAP 9.10.1 以降が実行されている必要があります。</block>
-  <block id="96f2d97f0b631b5c95ff1b6d9ef6ab34" category="list-text">この手順環境 AFF A700 コントローラモジュールは、 MetroCluster IP 構成で AFF A900 にアップグレードします。</block>
-  <block id="65f94a89140814fe0c4770b2e8f9bd58" category="paragraph">MetroCluster A700 および AFF A900 コントローラを使用した AFF 構成の運用は、このメンテナンス作業以外ではサポートされません。</block>
   <block id="93b195f498a318e8891093dd91595a9f" category="list-text">site_A</block>
   <block id="fb39e7e5fd586564e99b66fe5b47009b" category="list-text">node_A_1 - A700</block>
   <block id="e928ff569b047799fddf3bb2a586aadf" category="list-text">Node_a_2-A700</block>
@@ -10891,16 +10873,13 @@
   <block id="ba6437ec6a5b86f7113439313eac431a" category="list-text">node_B_2 - A900</block>
   <block id="d6a05f216ff3e2d50b361bbcdff5ee3d" category="section-title">MetroCluster IP 構成のコントローラをアップグレードするためのワークフロー</block>
   <block id="c95ade519950de23a4b47d2d182edbdf" category="section-title">AFF A700 コントローラのスロット 7 をクリアします</block>
-  <block id="7e4f355d90b64a0e17c9b35fa200a081" category="paragraph">AFF A900 の MetroCluster 設定では、スロット 5 と 7 にある DR カードの各ポートのいずれかを使用します。アップグレードを開始する前に、 AFF A700 のスロット 7 にカードがある場合は、それらをクラスタのすべてのノード用の他のスロットに移動する必要があります。</block>
   <block id="a38c8b65ec97b4e54f007517a94544d5" category="section-title">コントローラをアップグレードする前に、 MetroCluster スイッチの RCF ファイルを更新してください</block>
-  <block id="89115546d2dcc62b1c87ef172b932966" category="paragraph">AFF A700 上の MetroCluster IP 構成では、 VLAN は使用されません。AFF A900 の MetroCluster 設定では、 VLAN を使用します。そのため、 AFF A700 から AFF A900 にアップグレードする際に、 RCF ファイルを変更する必要があります。</block>
   <block id="381666f515959bb42f36179e1ccf18b0" category="inline-link-macro">RcfFileGenerator ツール</block>
   <block id="01624fead9baaddc3669cdd47ad795ed" category="list-text">サポートされている最小バージョンの RCF ファイルがスイッチに設定されていない場合は、 RCF ファイルを更新する必要があります。使用しているスイッチモデルに対応した正しい RCF ファイルバージョンについては、を参照してください <block ref="da64f60a95327a9651de90bff4a67cd3" category="inline-link-macro-rx"></block>。次に、 RCF ファイルアプリケーションの手順を示します。</block>
   <block id="590efa3b2ef6486e61048a848e166d21" category="inline-link-macro">MetroCluster IP のインストールと設定</block>
   <block id="1f41258ab009387cbd7e42b144372d55" category="paragraph">使用しているスイッチベンダーに対応する手順については、を参照してください <block ref="1a8a3204a30c37aed38d8cb8818b0107" category="inline-link-macro-rx"></block> 内容</block>
   <block id="e886156cd00bbd9320ba94c39cce2772" category="paragraph">の手順に従います <block ref="1a8a3204a30c37aed38d8cb8818b0107" category="inline-link-macro-rx"></block> 内容</block>
   <block id="dadca3d57b191a678f23de76f79b283e" category="section-title">古いノードから新しいノードへのポートのマッピング</block>
-  <block id="87ff91e75692235d02e091de808fd819" category="paragraph">AFF A700 から AFF A900 にアップグレードする場合、データネットワークポート、 FCP SAN アダプタポート、および SAS ストレージポートと NVMe ストレージポートを変更する必要はありません。データ LIF は、アップグレード中もアップグレード後もそのままの状態になります。そのため、古いノードのネットワークポートを新しいノードにマッピングする必要はありません。</block>
   <block id="0c8985d7cfbb81f5f054993ed8285211" category="section-title">サイトをアップグレードする前に MetroCluster の健全性を確認</block>
   <block id="35ea33e0235c583b6402101248b20260" category="paragraph">このコマンドは、各クラスタで問題を実行する必要があります。時刻とタイムゾーンを設定するには 'cluster date コマンドを使用します</block>
   <block id="3868a54921a81264bddb64b574765582" category="paragraph"><block ref="3868a54921a81264bddb64b574765582" category="inline-link-rx"></block></block>
@@ -10919,11 +10898,9 @@
   <block id="efa982219e642bd5186be6c92fb7a64f" category="paragraph">このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、アップグレードプロセスを開始する準備ができています。</block>
   <block id="cf88bd4ca7f9abb34dda4d2a47769931" category="list-text">site_A で次のコマンドを問題に設定します。</block>
   <block id="d02e71ae77b3af75d1cc326f36f84ae3" category="paragraph">コントローラのアップグレード中は、ネゴシエートスイッチオーバー後のアグリゲートの自動修復が無効になります。site_B のノードは、 LOADER プロンプトで停止および停止します。</block>
-  <block id="d04a9d363414c80a7dddd513e822e599" category="section-title">AFF A700 プラットフォームコントローラモジュールと NVS を取り外します</block>
   <block id="b780f876891edc15fa85c699a7f8bfcb" category="list-text">site_B の両方のノードから bootarg の値を収集します printenv</block>
   <block id="1e80b49a305b8f9776f5ad016b85d8e7" category="list-text">site_B のシャーシの電源をオフにします</block>
   <block id="7772cd0198105a3d1385b2e8a38dfd13" category="section-title">AFF A700 コントローラモジュールを取り外します</block>
-  <block id="9062e1727eade9a5acf76c04072793bc" category="paragraph">次の手順を使用して、 AFF A700 コントローラモジュールを取り外します</block>
   <block id="f6cb76da900c86fece5eb404a84c66d1" category="list-text">コントローラモジュールを取り外す前に、コントローラモジュールからコンソールケーブル（ある場合）と管理ケーブルを外します。</block>
   <block id="dfa9bdf3553d14d1f1265d5adf46b338" category="list-text">コントローラモジュールのロックを解除してシャーシから取り外します。</block>
   <block id="c1ed0cd23ea77c49b5611e5929537b3f" category="list-text">カムハンドルのオレンジ色のボタンを下にスライドさせてロックを解除します。</block>
@@ -10937,7 +10914,6 @@
   <block id="f0231ce2b907f79181e8b9703e9a2c98" category="list-text">カムハンドルを回転させて、コントローラモジュールをシャーシから完全に外し、コントローラモジュールをシャーシから引き出します。このとき、空いている手でコントローラモジュールの底面を支えてください。</block>
   <block id="fd22b7848c5af6378d0b6f4b2d27e00f" category="section-title">AFF A700 NVS モジュールを取り外します</block>
   <block id="79c5d41bbb72ea24170f3061addd9ece" category="paragraph">次の手順を使用して、 AFF A700 NVS モジュールを取り外します。</block>
-  <block id="71721121b3fecd9454fc35fcfd4f05e0" category="paragraph">メモ： AFF A700 NVS モジュール NVS モジュールはスロット 6 にあり、システム内の他のモジュールと比較して高さが 2 倍になっています。</block>
   <block id="0d64a71c5e54f6a18144ca98af6bba12" category="list-text">NVS のロックを解除し、スロット 6 から取り外します。</block>
   <block id="97bf9cd87a9cbb5619926733a7d23035" category="list-text">文字と数字が記載された「カム」ボタンを押し下げます。カムボタンがシャーシから離れます。</block>
   <block id="3e40de17d289a21aa0995b29466f1eab" category="list-text">カムラッチを下に回転させて水平にします。NVS がシャーシから外れ、数インチ移動します。</block>
@@ -10949,15 +10925,8 @@
   <block id="3db14b7ee6183c9d58f1e9d5e8e63efd" category="inline-image-macro">番号 2</block>
   <block id="53ced8e8440d5837c67cd7e98c36b357" category="cell"><block ref="53ced8e8440d5837c67cd7e98c36b357" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0e50691d6ac3e9df529fa546f2486bd7" category="cell">ロックが完全に解除された I/O ラッチ</block>
-  <block id="f3f482b3a383653a62a89aa0855a51a2" category="list-text">AFF A700 NVS のコアダンプデバイスとして使用するアドオンモジュールを使用している場合は、それらを AFF A900 NVS に転送しないでください。AFF A700 コントローラモジュールと NVS から AFF A900 にパーツを転送しないでください。</block>
-  <block id="69dad03f2f8fa3ab596af770d202a4f7" category="section-title">AFF A900 NVS およびコントローラモジュールを取り付けます</block>
-  <block id="e077f9e44aa337907651a4b315e224b8" category="paragraph">このアップグレードキットに含まれていた AFF A900 NVS とコントローラモジュールを site_B の両方のノードにインストールする必要がありますコアダンプデバイスを AFF A700 NVS モジュールから AFF A900 NVS モジュールに移動しないでください。</block>
-  <block id="34290340b4b3829c1db8fd373c38d431" category="section-title">AFF A900 NVS を取り付けます</block>
-  <block id="2088ccd3511f01144c1a8efc333f0042" category="paragraph">次の手順を使用して、 site_B の両方のノードのスロット 6 に AFF A900 NVS を取り付けます</block>
   <block id="3f417eabfc9204738789b7d35e1ec889" category="list-text">NVS をスロット 6 のシャーシ開口部の端に合わせます。</block>
   <block id="89ecb4d27fdab7dab9977862e3a2aea5" category="list-text">NVS をスロットにそっと挿入し、文字と数字が記載された I/O カムラッチを上に押して NVS を所定の位置にロックします。</block>
-  <block id="01b60e3dda8cb6b16d737a4fba5c154c" category="section-title">AFF A900 コントローラモジュールを取り付けます。</block>
-  <block id="46c5f3a7ae22aa54244fc367a806c8c0" category="paragraph">次の手順を使用して、 AFF A900 コントローラモジュールを取り付けます。</block>
   <block id="0dc0820d363c65f7e12beec6160b793f" category="list-text">コントローラモジュールの端をシャーシの開口部に合わせ、コントローラモジュールをシステムに半分までそっと押し込みます。</block>
   <block id="d88810fb8906950d9f286c06d1c3782d" category="list-text">コントローラモジュールをシャーシに挿入し、ミッドプレーンまでしっかりと押し込んで完全に装着します。コントローラモジュールが完全に装着されると、ロックラッチが上がります。注意：コネクタの破損を防ぐため、コントローラモジュールをシャーシに挿入する際に力を入れすぎないように注意してください。</block>
   <block id="0211a688f7d2788036c23138bf4edb82" category="list-text">管理ポートとコンソールポートをコントローラモジュールにケーブル接続します。</block>
@@ -10971,7 +10940,6 @@
   <block id="d7ba82af5856ab55308cde8e78ff093f" category="list-text">LOADER プロンプトで、デフォルトの環境変数を設定します。 set-defaults</block>
   <block id="960a61d8ce9851a898f21bd064898378" category="list-text">デフォルトの環境変数設定である saveenv を保存します</block>
   <block id="55abff1e847770dde7396e977b6f43a8" category="section-title">site_B のネットブートノード</block>
-  <block id="9df90297634f0e8d8ac52c13d00e352d" category="paragraph">AFF A900 コントローラモジュールと NVS をスワップしたら、 AFF A900 ノードをネットブートし、クラスタ上で実行されているものと同じ ONTAP バージョンおよびパッチレベルをインストールする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを追加する必要があります。AFF A900 コントローラモジュールのブートメディアにインストールされている ONTAP のバージョンは、シャーシに取り付けて電源がオンになっていないかぎり確認できません。AFF A900 ブートメディアの ONTAP バージョンは、アップグレード対象の AFF A700 システムで実行されている ONTAP バージョンと同じで、プライマリブートイメージとバックアップブートイメージの両方が一致している必要があります。イメージを設定するには、ネットブートを実行してからブートメニューの「 wipeconfig 」コマンドを実行します。コントローラモジュールが以前に別のクラスタで使用されていた場合は、「 wipeconfig 」コマンドはブートメディア上の残留設定をクリアします。</block>
   <block id="bf49a2af93184828c602f30985ab7b3e" category="list-title">を開始する前に</block>
   <block id="1d32dacc20fe1feb077659fd0bebdc03" category="list-text">システムから HTTP サーバにアクセスできることを確認します。</block>
   <block id="7e50dc6378f3e2a11e73b6c2111ee61e" category="list-text">ご使用のシステムに必要なシステムファイルと、適切なバージョンの ONTAP をネットアップサポートサイトからダウンロードする必要があります。</block>
@@ -10987,7 +10955,6 @@
   <block id="8cadcd3d278c7bf112a3d2eb870dfb3e" category="list-text">node_B_1 でネットブートを実行します：ネットブート http://&lt;web_server_ip/path_to_web_accessible_directory&gt;/netboot/kernel`</block>
   <block id="e31ad1284b7618a9c10777ed99b12e64" category="inline-xref">手順 2</block>
   <block id="85bd8aebb41cb27f7bc364e977313958" category="admonition">トランクを中断しないでください。</block>
-  <block id="6f6f6695a268d5918427f02892c43312" category="list-text">AFF A900 コントローラモジュールで node_B_1 がブートするまで待ち、次のようにブートメニューオプションを表示します。</block>
   <block id="2653300b079109b65a613fd185414faa" category="list-text">起動メニューから ' オプション (7) Install new software first.`` を選択します このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。注意 : 次のメッセージは無視してください : この手順は 'HA ペアでの無停止アップグレードではサポートされていません 環境の無停止の ONTAP ソフトウェアアップグレード。コントローラのアップグレードは含まれません。</block>
   <block id="f7462137da4e89b12e82937bb5da165f" category="paragraph">新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、正しいイメージがインストールされないことがあります。この問題環境 All ONTAP リリース</block>
   <block id="7b3f6c26774d36cd594edf297f0f8f57" category="list-text">次の手順を実行してコントローラモジュールをリブートします。</block>
@@ -11054,25 +11021,16 @@
   <block id="343d98ffad90e979903b8bd5def2f91c" category="list-text">同じ手順を繰り返して、 site_A のノードをアップグレードします <block ref="e8971f193bd5ef38f76b660d12d17607" category="inline-link-macro-rx"></block>。</block>
   <block id="98c99ee34c8774fa11a9a533fe708618" category="paragraph">タスクを実行すると、サイトおよびノードへのすべてのサンプル参照が反転されます。たとえば、この例で site_A からスイッチオーバーする場合は site_B からスイッチオーバーします</block>
   <block id="0c429b26fd1db8d4b7bb104d284c1cea" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
-  <block id="a16fca697a4d7027a976fdabfbb92414" category="doc">スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）</block>
   <block id="8a51355d335889c9ddb7276ab9a129ab" category="paragraph">MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
   <block id="b93e6d7c2789cd393ddbb5ccdfac4676" category="paragraph">ストレージシェルフやスイッチなど、構成内の他のコンポーネントも同時にアップグレードすることはできません。</block>
-  <block id="4ba76377711a6b41b576dc98a6d77475" category="list-text">この手順は ONTAP 9.10.1 以降で使用できます。</block>
   <block id="0dc490dd8b5efdca7b88c08cca2f094e" category="list-text">ONTAP 9.10.1 以降では、 4 ノードと 8 ノードの構成がサポートされます。</block>
   <block id="4917ae881b859c002a74dd97a85dc1a1" category="admonition">AFF A900 システムは、 ONTAP 9.10.1 以降でのみサポートされます。</block>
   <block id="4c1c93397a0ad82f0b80502a6c7c0799" category="paragraph"><block ref="4c1c93397a0ad82f0b80502a6c7c0799" category="inline-link-rx"></block></block>
   <block id="e9341f18ed4204c823e94155fc3f3291" category="list-text">アップグレード用の手順では、 RCF やケーブル接続の物理的な変更を含めて、 MetroCluster ファブリックを変更する必要があります。RCF およびケーブル接続の変更は、コントローラのアップグレード前に実行できます。</block>
   <block id="921e8f2bccd093913cccd021ff87834b" category="list-text">このアップグレード手順では、元のノードと新しいノードの間のストレージ接続、 FC 接続、イーサネット接続を変更する必要はありません。</block>
-  <block id="427137cf506c596ab903f51949d69296" category="list-text">手順のアップグレード中は、 AFF A700 システムに他のカードを追加したり、取り外したりしないでください。詳細については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
-  <block id="9b43ae11d5506ae36d605efa71d75d03" category="paragraph">既存の MetroCluster 設定に変更を加える前に、設定の健全性を確認し、 RCF ファイルおよびケーブル接続を AFF A900 ファブリック MetroCluster の設定に必要な新しいポート接続トポロジに変更し、その他のタスクを実行する必要があります。</block>
-  <block id="1e56d1624f07d77f2f7328ad84907663" category="paragraph">AFF A900 の MetroCluster 構成では、スロット 5 および 7 の FC-VI カードに FC-VI ポートが 8 つ必要です。アップグレードを開始する前に、 AFF A700 のスロット 7 にカードがある場合は、それらをクラスタのすべてのノード用の他のスロットに移動する必要があります。</block>
-  <block id="0c92be5dc9bacc6fec90d4eda711663f" category="paragraph">AFF A900 ファブリック MetroCluster 構成の RCF ファイルおよびケーブル接続を更新する前に、構成の健全性と接続を確認する必要があります。</block>
   <block id="55c7e830ad3437c4f8fd31ab9226f8c8" category="section-title">ファブリックスイッチの RCF ファイルを更新します</block>
-  <block id="0f89570dfac2c9fb6f2c766555d80984" category="paragraph">AFF A900 ファブリック MetroCluster には、ノードあたり 2 つの 4 ポート FC-VI アダプタが必要ですが、 AFF A700 で必要な 4 ポート FC-VI アダプタは 1 つ必要です。AFF A900 コントローラへのコントローラのアップグレードを開始する前に、ファブリックスイッチの RCF ファイルを変更して AFF A900 接続トポロジをサポートする必要があります。</block>
   <block id="72a262115ee86c554da1619c96bfeeee" category="inline-link">MetroCluster の RCF ファイルのダウンロードページ</block>
-  <block id="59c5fa349bbe7c349edaab194073a5eb" category="list-text">から<block ref="6f619f85f519d88d6754ebdd8b0379b5" category="inline-link-rx"></block>で、 AFF A900 ファブリック MetroCluster と、 AFF A700 構成で使用しているスイッチモデルに対応した正しい RCF ファイルをダウンロードします。</block>
   <block id="39de322b7893b3a67a5b64826dbc9649" category="list-text">[[Update-RCF ]] の手順に従って、ファブリック A のスイッチ、スイッチ A1 、およびスイッチ B1 の RCF ファイルを更新します <block ref="0d46bcb6b73f6dc40e567a72dc62e0bb" category="inline-link-macro-rx"></block>。</block>
-  <block id="be348e1dd15b6d8c27d3e0c621822d20" category="admonition">AFF A900 ファブリック MetroCluster 構成をサポートするための RCF ファイルの更新では、 AFF A700 ファブリックの MetroCluster 構成に使用するポートと接続には影響しません。</block>
   <block id="c26e64a5009ccc789dbec17cba2c94ad" category="list-text">ファブリック A のスイッチで RCF ファイルを更新したら、ストレージと FC-VI のすべての接続をオンラインにする必要があります。FC-VI 接続を確認します。</block>
   <block id="0adb4f1b4288fc4eed5b163b48e9e83d" category="list-text">ローカル・サイト・ディスクとリモート・サイト・ディスクが sysconfig 出力結果に表示されていることを確認します</block>
   <block id="3fc17475ce1dc3ff5bb802858331640f" category="list-text">[[verify-backup ]] ファブリック A スイッチの MetroCluster ファイル更新後に、 が正常な状態であることを確認する必要があります。</block>
@@ -11083,9 +11041,7 @@
   <block id="2ecd99ab4785312fa2bf124d83f7951a" category="list-text">を繰り返してファブリック B のスイッチ（スイッチ 2 と 4 ）を更新します <block ref="9f27406d35f42d93476705a0a18bfe19" category="inline-xref-macro-rx"></block> 終了： <block ref="ae794ac9e946dd061b07601f0aed5cc8" category="inline-xref-macro-rx"></block>。</block>
   <block id="1c86d82f8c3d0da890a22ac664ed4e79" category="section-title">RCF ファイルの更新後に MetroCluster 設定の健全性を確認します</block>
   <block id="4391b07561c519a0e33f2d598bbaf24e" category="paragraph">アップグレードを実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。</block>
-  <block id="eab49f20a38cb319af1c5032035c5d8a" category="section-title">AFF A700 ノードから AFF A900 ノードへのポートのマッピング</block>
   <block id="1009168ca9b613e3f4fa7884c8377f36" category="paragraph">コントローラのアップグレードプロセスで変更する必要があるのは、この手順に記載されている接続だけです。</block>
-  <block id="cf06fb5873d66fa2a000cef39e03e781" category="paragraph">AFF A700 コントローラのスロット 7 手順にカードが挿入されている場合は、コントローラのアップグレードを開始する前に、カードを別のスロットに移動する必要があります。AFF A900 でファブリック MetroCluster を機能させるために必要な 2 つ目の FC-VI アダプタの追加に、スロット 7 を使用できる必要があります。</block>
   <block id="e8b2b31f6129e480376a3948b9b9d73c" category="list-text">MetroCluster 構成ノードのシステム ID を収集します。</block>
   <block id="3c0b6cb420c455a5a165c08c7cd7af73" category="paragraph">交換用手順では、これらのシステム ID をコントローラモジュールのシステム ID に置き換えます。</block>
   <block id="52d83d7ca0d0ff43bc0929d376512989" category="list-text">node_A_1 - A700 ： 537037649</block>
@@ -11101,22 +11057,15 @@
   <block id="771fe3d405626b11981b56d013399632" category="list-text">文字と数字が記載されたカムボタンを押し下げます。カムボタンがシャーシから離れます。</block>
   <block id="dd1cfa8d899a8ddd6f4a00978117e5f0" category="inline-image-macro">NVS モジュール</block>
   <block id="20d7cafa77ced4deb94fb09d7a230ff9" category="paragraph"><block ref="20d7cafa77ced4deb94fb09d7a230ff9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0633c91c5a4508e5dec03750074b6f0d" category="admonition">AFF A700 不揮発性ストレージモジュールにコアダンプデバイスとして使用されているアドオンモジュールがある場合は、それらを AFF A900 NVS に転送しないでください。AFF A700 コントローラモジュールと NVS から AFF A900 にパーツを転送しないでください。</block>
-  <block id="4f29f89e2c29c172aeb92e4fab1d80f1" category="section-title">AFF A900 NVS およびコントローラモジュールを取り付けます</block>
-  <block id="98c079e634c6d65d9fa54a62906f3de9" category="paragraph">Site_B の両方のノードに、アップグレードキットから AFF A900 NVS およびコントローラモジュールをインストールする必要がありますコアダンプデバイスを AFF A700 NVS モジュールから AFF A900 NVS モジュールに移動しないでください。</block>
-  <block id="887d66d2227e68134a4ce7a92c0d5522" category="section-title">AFF A900 コントローラモジュールを取り付けます</block>
   <block id="5e3db24c1810c8b2903e6716613744e9" category="list-text">コントローラモジュールをシャーシに挿入し、ミッドプレーンまでしっかりと押し込んで完全に装着します。コントローラモジュールが完全に装着されると、ロックラッチが上がります。</block>
   <block id="ca40fd9083dd4ade691492058e938f48" category="admonition">コネクタの破損を防ぐため、コントローラモジュールをスライドしてシャーシに挿入する際に力を入れすぎないでください。</block>
   <block id="0715013d30fff3fad3eac3c38b9777ef" category="list-text">各ノードのスロット 7 に 2 枚目の X91129A カードを取り付けます。</block>
   <block id="b3a621e112846c20710b79eacb2e43fe" category="inline-link-macro">ファブリック接続型のインストールと設定</block>
-  <block id="c27b4d527bbbbd163bf7803ce6a4eac3" category="list-text">スロット 7 の FC-VI ポートをスイッチに接続します。を参照してください <block ref="995b1601992c6a25573ab03322643d00" category="inline-link-macro-rx"></block> 環境内のスイッチタイプに応じた AFF A900 ファブリック MetroCluster 接続の要件については、を参照してください。</block>
   <block id="4570827282a7195b67f3c4e03ad406e9" category="list-text">シャーシの電源を入れ、シリアルコンソールに接続します。</block>
   <block id="13e7ec57497ed1146060eb34bb91857a" category="list-text">BIOS の初期化後にノードで自動ブートが開始された場合は、 Ctrl-C を押して自動ブートを中断します</block>
   <block id="7d667bf02951c187f0d201b2091ed082" category="list-text">AUTOBOOT を中断すると、ノードで LOADER プロンプトが停止します。ブートを中断せずに node1 でブートが開始された場合は、 Ctrl+C キーを押してブートメニューに入るまで待ちます。ブートメニューでノードが停止したら、オプション 8 を使用してノードをリブートし、リブート時に自動ブートを中断します。</block>
   <block id="e15df7abd18a1784d56a916d5eea87f8" category="list-text">「 loader 」プロンプトで、デフォルトの環境変数「 set-defaults 」を設定します</block>
   <block id="9cb93e3e52c9acd5dbc54779bde1d1f9" category="list-text">デフォルトの環境変数設定である saveenv を保存します</block>
-  <block id="70146809c2d89438d1fffd038bc77510" category="paragraph">AFF A900 コントローラモジュールと NVS をスワップしたら、 AFF A900 ノードをネットブートし、クラスタ上で実行されているものと同じ ONTAP バージョンおよびパッチレベルをインストールする必要があります。「 netboot 」という用語は、リモート・サーバに保存されている ONTAP イメージからブートすることを意味します。ネットブートを準備するときは ' システムがアクセスできる Web サーバに ONTAP 9 ブート・イメージのコピーを追加する必要があります</block>
-  <block id="a4cd91be64df1f08e86dd4135dc70c84" category="paragraph">AFF A900 コントローラモジュールのブートメディアにインストールされている ONTAP のバージョンは、シャーシに取り付けて電源がオンになっていないかぎり確認できません。AFF A900 ブートメディアの ONTAP バージョンは、アップグレード対象の AFF A700 システムで実行されている ONTAP バージョンと同じで、プライマリブートイメージとバックアップブートイメージの両方が一致している必要があります。イメージを設定するには、「 netboot 」に続けて「 wipeconfig 」コマンドを実行します。コントローラモジュールが以前に別のクラスタで使用されていた場合は、「 wipeconfig 」コマンドはブートメディア上の残留設定をクリアします。</block>
   <block id="c8ccdf38ac9270bf4afbb1e3492b8838" category="list-text">ご使用のシステムに必要なシステムファイルと、適切なバージョンの ONTAP をからダウンロードする必要があります <block ref="3bd7a72b5bb22d07b50aba30cd6fdbe6" category="inline-link-macro-rx"></block> サイトこのタスクについて、インストールされている ONTAP のバージョンが元のコントローラにインストールされているバージョンと異なる場合は、新しいコントローラを「ネットブート」する必要があります。新しいコントローラをそれぞれ取り付けたら、 Web サーバに保存されている ONTAP 9 イメージからシステムをブートします。その後、以降のシステムブートで使用するブートメディアデバイスに正しいファイルをダウンロードできます。</block>
   <block id="38b125b63e361f104f9462c713554e23" category="list-text">にアクセスします <block ref="3bd7a72b5bb22d07b50aba30cd6fdbe6" category="inline-link-macro-rx"></block> システムのネットブートの実行に使用するシステム・ネットブートの実行に必要なファイルをダウンロードするには、次の手順を実行します。</block>
   <block id="563aa54c6a7f25b423465d6da71ac244" category="list-text">[step2-download-software]] ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 &lt;ONTAP_version&gt;_image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。</block>
@@ -11126,7 +11075,6 @@
   <block id="84435c8fed125c1f06699e20bdcee63d" category="cell">実行されていません</block>
   <block id="5952ce6c5039c7475de3fea77be26768" category="cell">ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= &lt;filer_addr&gt; -mask= &lt;netmask&gt; -gw= &lt;gateway&gt; -dns= &lt;dns_addr&gt; domain= &lt;dns_domain&gt; `&lt;filer_addr&gt;`&lt;netmask&gt;` はストレージシステムのネットワークマスクです。「 &lt;gateway&gt;` 」は、ストレージシステムのゲートウェイです。「 &lt;dns_addr&gt; 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 &lt;dns_domain&gt; 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。詳細については、ファームウェアのプロンプトで「 help ifconfig 」と入力してください。</block>
   <block id="3e740d926a40d82c2fcc72ee1fb84e5b" category="list-text">ノード 1 でネットブートを実行します<block ref="489fdc1c448bf7fbb7b53d2ad099b1ec" category="inline-link-rx"></block>「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;_image.tgz 」をダウンロードした場所を指します <block ref="28cd24b5ecf937229eb419cc55587b9d" category="inline-xref-macro-rx"></block>。</block>
-  <block id="c365fef4a48637bf4080ee61f4a8ce61" category="list-text">AFF A900 コントローラモジュールで実行されているノード 1 がブートするのを待ち、次のようにブートメニューオプションを表示します。</block>
   <block id="188edb9f514b65304cf0a3564a7bc692" category="list-text">起動メニューからオプション（ 7 ） Install new software first （新しいソフトウェアを最初にインストール）を選択します。このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。</block>
   <block id="81ff6a54875aaf720a2c324484bc2178" category="admonition">次のメッセージは無視してください： This 手順 is not supported for Non-Disruptive Upgrade on an HA pair. 環境の無停止の ONTAP ソフトウェアアップグレード。コントローラのアップグレードは含まれません。新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、間違ったイメージがインストールされることがあります。この問題環境 All ONTAP リリース</block>
   <block id="9fbd27646b729fd730070da29cb836c5" category="list-text">手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたら URL を入力します。<block ref="a2ba1d0ee1c156220079edd2f4d50848" category="inline-link-rx"></block></block>
@@ -11183,7 +11131,6 @@
   <block id="a8125364ced10d8a90aedca98aa02032" category="paragraph"><block ref="a8125364ced10d8a90aedca98aa02032" category="inline-link-macro-rx"></block></block>
   <block id="f352cbf1ebb01c90cd667f55932f9c18" category="paragraph">リンク： ./transition/concept_choosing_your_transition_procedure_mcc_transition.html</block>
   <block id="dac255183ddd968b772755feaa9b4cd7" category="summary">次の表に、使用する ISL ポートを示します。</block>
-  <block id="cbe2b16a509b760d191376479e32ca46" category="doc">AFF A900 ： ONTAP 9.10.1 以降を実行する MetroCluster 構成での 8 ノード構成での ISL に使用するシスコのポート</block>
   <block id="83e876af5f485a9a733864cbf5a3e21b" category="cell">Cisco 9132T （ LEM × 1</block>
   <block id="629f8f8fa5cb9442f2cf5a2289a1e051" category="cell">ISL1</block>
   <block id="e7e6eebc5253d1872205b3e8e4fe67cb" category="cell">LEM1-15</block>
@@ -11205,8 +11152,6 @@
   <block id="8ea7d7250e65620033ebe8e6de7604db" category="cell">ISL8</block>
   <block id="a443a45b4f59f90651355f5e7502dd6d" category="cell">LEM2-16</block>
   <block id="96cf9ddcf3fc08fd3054be11d6e19c44" category="summary">次の表に、 1 つの DR グループに 8 つの AFF A900 コントローラモジュールを配置した場合の、サポートされる最大構成を示します。</block>
-  <block id="7c01bf7bcd73a403f5efa68a836503a3" category="doc">ONTAP 9.10.1 以降を実行する MetroCluster 構成での AFF A900 コントローラのシスコポートの使用</block>
-  <block id="49a0ddc4c9cb3939ab0983fc26175d57" category="list-text">次の表は、 FC-VI ポートが 8 つあるシステムを示しています。AFF A900 には、 FC-VI ポートが 8 個（ FC-VI 1 および FC-VI 2 には a 、 b 、 c 、 d ）あります。</block>
   <block id="f537ff78df4afb387541f1166be1d417" category="list-text">MetroCluster 2 または DR 2 は、 9132T スイッチではサポートされません。</block>
   <block id="e0c3bd3b17898f5fa1d870e22fd0b2a7" category="cell">Cisco スイッチのモデル</block>
   <block id="105a26504e48c255c684a48adb3a654d" category="cell">9132T （ LEM x 1 ）</block>
@@ -11240,12 +11185,9 @@
   <block id="9886bd0d1558f3c4c6b4b7c6ccd6d4ca" category="cell">LEM2-4</block>
   <block id="8aed0fcdb92053bce2340c69664e26c5" category="list-text">追加のブリッジは、 2 個の LEM モジュールを搭載した 9132T スイッチのポート LEM2-5 ～ LEM2-8 にケーブル接続できます。</block>
   <block id="a2529b9a22421965b80dca74f0e8ac35" category="list-text">1 つの LEM モジュールを持つ 9132T スイッチを使用した場合、 1 つのブリッジスタックのみがサポートされます。</block>
-  <block id="8841354ff2977f75451a48280abce5e4" category="list-text">AFF A900 および FAS9000 ストレージシステムでは、ファブリックあたり最大 8 つの ISL がサポートされます。それ以外のストレージシステムモデルでは、ファブリックごとに最大 4 つの ISL がサポートされます。</block>
   <block id="99a578284ada1b8807f86cb25b927d6b" category="inline-link-macro">AFF A900 システムを使用する場合の FC スイッチのポート割り当て</block>
   <block id="5383551238fc98d2f75e63be48523c04" category="list-text"><block ref="5383551238fc98d2f75e63be48523c04" category="inline-link-macro-rx"></block></block>
   <block id="6a3afd8e0bd4d7b0e5cc9f66134c7c8d" category="summary">以下の表は、 AFF A900 システムでの Brocade スイッチのポート用途です</block>
-  <block id="7b73f35b5be5225d6f5bdfe1008d55a6" category="doc">ONTAP 9.10.1 以降を実行する MetroCluster 構成で AFF A900 コントローラに使用する Brocade ポート</block>
-  <block id="29a8f5d5fb8dceda7389ca8a30f56ec8" category="paragraph">以下の表は、 Brocade スイッチでのポート用途です。以下の表に、 4 つの DR グループに 8 つのコントローラモジュールを配置した、サポートされる最大構成を示します。AFF A900 には、 FC-VI ポートが 8 個（ FC-VI 1 および FC-VI 2 には a 、 b 、 c 、 d ）あります。</block>
   <block id="56e8146206df37b2e114695d0ee8d127" category="cell">6505 、 G610</block>
   <block id="6468480fd8b1a2f75ef118118bd03a58" category="cell">G620 、 G620 - 1</block>
   <block id="81df3dccd5bcac9f92dc3ce6a45f1ac2" category="cell">G630 、 G630-1</block>
@@ -11287,10 +11229,7 @@
   <block id="11be15880eab3352c16856fa1475d4db" category="list-text"><block ref="11be15880eab3352c16856fa1475d4db" category="inline-link-macro-rx"></block></block>
   <block id="29ad4be139be5b3e7f2133bef476991d" category="list-text"><block ref="29ad4be139be5b3e7f2133bef476991d" category="inline-link-macro-rx"></block></block>
   <block id="aef9e13f2797744b62209b58e52a9a40" category="paragraph">ONTAP 9.10.1 以降を使用している場合に FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。</block>
-  <block id="e9f60c97614e1831c49ced50d37383dd" category="list-text">AFF A900 ストレージシステムには、 FC-VI ポートが 8 つ必要です。AFF A900 を使用している場合は、 8 ポート構成を使用する必要があります。構成に他のストレージシステムモデルが含まれている場合は、表に示されているケーブル接続を使用し、不要な FC-VI ポートのケーブル接続は無視してください。</block>
   <block id="72fa0ea37e0389a6c2e6107de6bbcbe8" category="summary">次の表に、 AFF A900 システムでの Brocade スイッチの ISL ポートの用途を示します。</block>
-  <block id="088d34fa95b78fea4357e6fb952a2960" category="doc">MetroCluster A900 - ONTAP 9.10.1 以降を実行する AFF 構成での ISL に使用する Brocade ポート</block>
-  <block id="e7f0f0c64372c73e52760c46dea51cf3" category="admonition">AFF A900 システムでは、 8 つの ISL がサポートされます。Brocade 6510 、 G620 、 G620 -1 、および G720 スイッチでは 8 個の ISL がサポートされます。</block>
   <block id="83f8b75cddaf0acd53872b333bc5d6c1" category="paragraph">6510 、 G620 、 G620 -1 、 G720</block>
   <block id="f3089a69f0cb0a583fab7f5c1ea7226c" category="cell">6505 、 G610</block>
   <block id="e912938f380bdbc5125a46cb6974c985" category="sidebar">2 ノード MetroCluster を展開します</block>
@@ -11388,7 +11327,6 @@
   <block id="e4dfa2cb8ac36daa9c5d60ebed0d438b" category="paragraph">このタスクは site_B で実行します</block>
   <block id="e9e9340e13d6253f17a48e08970ad599" category="list-text">site_B の古いコントローラのシリアルコンソール（ node_B_1 700 および node_B_2 700 ）に接続し、「 LOADER」 プロンプトが表示されていることを確認します。</block>
   <block id="60086a2b9ff0b21debbb0d8bf099b8e7" category="section-title">site_B の両方のノードからコントローラモジュールと NVS を取り外します</block>
-  <block id="308ec104a3637bade21210dfaf7f4f61" category="paragraph">次の手順を使用して、 site_B の両方のノードのスロット 6 に AFF A900 NVS を取り付けます</block>
   <block id="88ddfc7e314aeb15a213f2a59a493e9f" category="section-title">site_B のノードをネットブートします</block>
   <block id="09d09b12e62bbea5812e7cd6ee644ddd" category="list-text">同じ手順を繰り返して、 site_A のノードをアップグレードします <block ref="0e6ccb461a8e4072917a7db8187a2ba6" category="inline-link-macro-rx"></block>。</block>
   <block id="aef044e8d9907a55ceb4a933de45cc66" category="paragraph">タスクを実行すると、サイトおよびノードへのすべてのサンプル参照が反転されます。たとえば、この例で site_A からスイッチオーバーする場合は、 site_B からスイッチオーバーします</block>
@@ -12135,8 +12073,6 @@
   <block id="0bae9da7e045b91539ca2636147550a9" category="inline-link">その他のプラットフォーム手順： Controller Hardware Upgrade Express</block>
   <block id="074e456fb5fc2d75c702ca853d7ff4a7" category="list-text">の次の手順に従って、古いノードから新しいノードにデータを移動します<block ref="c8d46be4ca27ce42222e434f46ed9bd4" category="inline-link-rx"></block>。</block>
   <block id="6abf8fcf1209a0e61a34ee20748a726e" category="paragraph">各コントローラのクラスタポートを、手順 b で特定したクラスタネットワークスイッチのポートに接続します</block>
-  <block id="30ff186227aaf51cf730a9cf5a73a9e1" category="inline-link">物理ストレージ管理</block>
-  <block id="139a2480b517efabfcd850e52aeab3e8" category="paragraph"><block ref="139a2480b517efabfcd850e52aeab3e8" category="inline-link-rx"></block></block>
   <block id="a8307b4c5fa271005a1338d5b405ca1f" category="paragraph">ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。</block>
   <block id="a4aa69385ab0a1b92a7a5635cdb2f2b2" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block>。</block>
   <block id="1cab2231671234cf1e23b1ca0a52ef3e" category="list-text">新しい MetroCluster IP ノードで、次の手順に従ってクラスタ間 LIF を設定します。</block>
@@ -12229,7 +12165,6 @@
   <block id="2872394e3c89268bb37adaa024dc9195" category="paragraph">。<block ref="6e7f74aa9001f0524a965144f528bbc2" category="inline-link-rx"></block> 新機能、アップグレードに関する注意事項、解決済みの問題、既知の制限事項、および既知の問題について説明する。</block>
   <block id="64c598a52dd8cdadea545647c7d064a6" category="summary">MetroCluster の構成と運用の詳細については、ネットアップの広範なドキュメントを参照してください。</block>
   <block id="04d9ec83167120e239825f4726f351cc" category="paragraph">Active IQ Unified Manager のドキュメント<block ref="1cf4a9f6324bfcec73ee8652129ceb47" category="inline-link-rx"></block></block>
-  <block id="eaee39239c11bb1725bfd13bb19bb2a1" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する場合は、テクニカルサポートにお問い合わせください。</block>
   <block id="7b173496e8f6041144abc83f7e17506f" category="list-text">サバイバークラスタにある同期先のすべての SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元の SVM が稼働していることを確認します。</block>
   <block id="90755aace4dbf79660e4f610c3481e12" category="paragraph">MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。</block>
   <block id="a06ba402461ed4d507397d322c6630a2" category="list-text">ONTAP 9.5 以降では、ディザスタサイトのノードがブートしたままの場合、ローカルプレックスとリモートプレックスの両方がオンラインのままになります。</block>
@@ -12555,25 +12490,110 @@
   <block id="71620bedc8491865816460c55b3cde98" category="list-text"><block ref="71620bedc8491865816460c55b3cde98" category="inline-link-macro-rx"></block></block>
   <block id="3a8190b24d904ae352e54f8a0a3df0bb" category="list-text"><block ref="3a8190b24d904ae352e54f8a0a3df0bb" category="inline-link-macro-rx"></block></block>
   <block id="bee24b783e44923012afab506584e701" category="list-text">SSH サービス（ RSA ）</block>
-  <block id="39ceb938ecce9e03ffb814b0ab98c3ff" category="inline-link-macro">ネットアップのナレッジベース：「MetroCluster 構成-解決ガイド」からノードを削除する方法</block>
-  <block id="ddcd0bc62cc0d6ad3a96c234e8e9acc2" category="admonition">MetroCluster の設定解除を元に戻すことはできません。このプロセスは、テクニカルサポートの助言の下でのみ実施してください。ネットアップテクニカルサポートにお問い合わせのうえ、構成に対応するガイドをにご参照ください <block ref="6b274ee2da4e368d83246d3228463b74" category="inline-link-macro-rx"></block></block>
   <block id="aac7cfec46f1e12804543ab7e9f0bf82" category="admonition">コマンドMetroCluster configure'を実行する前に'Onboard Key Manager（OKM；オンボードキーマネージャ）または外部キー管理を構成しないでください</block>
   <block id="b7dc5f17370f3f6d8f0564ad37092c2e" category="list-text">ONTAP 9.8以降では、4ノード構成と8ノード構成がサポートされます。</block>
-  <block id="4d8ef96135f1fcc906a1c836b94ccd72" category="inline-link-macro">ネットアップのナレッジベース：既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合のコントローラのアップグレード</block>
-  <block id="3b66e88b9eec711f27eed9c397de04df" category="admonition">元のプラットフォームまたは新規プラットフォームがFAS8020またはAFF8020システムで、FC-VIモードのポート1cと1dを使用する場合は、を確認してください <block ref="5f6e886a55fbfce55c807e98c86f0ed7" category="inline-link-macro-rx"></block></block>
-  <block id="6f2e4be613f6e5c211f118c1604357ae" category="list-text">両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block>。</block>
   <block id="4bf20a918b2c6b62364371fe4f4d9c7f" category="section-title">新しいライセンスをインストールします</block>
   <block id="c24d2fcd8511c8b51a6aef773200e0d8" category="paragraph">スイッチバック処理の前に、新しいコントローラのライセンスをインストールする必要があります。</block>
   <block id="07beb3f4161a6f204edf78213ee21dd3" category="list-text"><block ref="07beb3f4161a6f204edf78213ee21dd3" category="inline-link-macro-rx"></block></block>
-  <block id="852fee667b0218d56efb26732593192d" category="inline-link-macro">マザーボードの交換後プロセスを実行して、AFF / FASシステムのライセンスを更新</block>
-  <block id="4d373838f1432114e8cb3f53c45f8736" category="paragraph">ライセンス交換の詳細については、を参照してください <block ref="7fa6d13435a2a82c954f1735e8d67b30" category="inline-link-macro-rx"></block></block>
   <block id="42f4edc2efb2c786550a905c38a8416c" category="admonition">LOADERプロンプトが表示されない場合は、エラーメッセージを記録してください。システムにブートメニューが表示された場合は、リブートし、もう一度ブートプロセスを中断します。</block>
   <block id="8c4c17369ebab47cd3919b9e6b1e8537" category="admonition">RCF を使用できないケーブル接続の場合は、この手順を使用しないでください。</block>
-  <block id="07d36974183f0bd379705eb8861c8bba" category="inline-link-macro">ネットアップのナレッジベース：ストレージが失われた場合にMetroCluster でミラーされていない古いアグリゲートのエントリを削除する方法</block>
-  <block id="e8a2aa8f2b533983c4b701d088ac2fa9" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、「 storage aggregate show 」コマンドの出力に「 unknown 」と表示されることがあります。テクニカルサポートに連絡して、ミラーされていないアグリゲートの最新ではないエントリを削除し、参照してください <block ref="857cf6ab3254f5ce14b6347a5dc33b9f" category="inline-link-macro-rx"></block></block>
-  <block id="34e63b4d455bee1fbdab9ea6d4e3fcb7" category="inline-link-macro">ネットアップのナレッジベース：「ポストマザーボードの交換プロセス」を参照して、AFF / FASシステムのライセンスを更新する。</block>
-  <block id="6abc18b19d1261841c5bebef07ade3cc" category="admonition">必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。30日以内にライセンスキーが記載されたEメールが届かない場合は、の「ライセンスに問題がある場合は、誰に連絡すればよいですか？」セクションを参照してください<block ref="01bfbfba842a68c11d464652fb5b8666" category="inline-link-macro-rx"></block></block>
-  <block id="a83bdcaf895c6161de37c26c6fde86a6" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。テクニカルサポートに連絡して、ミラーされていないアグリゲートの古いエントリを削除します。参照してください <block ref="857cf6ab3254f5ce14b6347a5dc33b9f" category="inline-link-macro-rx"></block></block>
-  <block id="efa4707d1136ea0f455cfb38e7371895" category="inline-link-macro">ネットアップのナレッジベース：「ポストマザーボードの交換プロセス」を参照して、AFF / FASシステムのライセンスを更新する</block>
-  <block id="e4d43f7afcae270903f6fda758c33beb" category="paragraph">ライセンス交換の詳細については、を参照してください <block ref="fd34fb83b47f441a190e089e21262454" category="inline-link-macro-rx"></block></block>
+  <block id="8d9fb55ee32f6df582d661812847c467" category="doc">AFF A900またはFAS9500システムを使用する場合のFCスイッチのポート割り当て</block>
+  <block id="4382ff0992965ffdabb9c638b6f2ecf2" category="list-text">AFF A900またはFAS9500ストレージシステムでは、FC-VIポートが8つ必要です。AFF A900またはFAS9500を使用している場合は、8つのポート構成を使用する必要があります。構成に他のストレージシステムモデルが含まれている場合は、表に示されているケーブル接続を使用し、不要な FC-VI ポートのケーブル接続は無視してください。</block>
+  <block id="649ae78fb315c7c5f6a700dfdf86f4bb" category="doc">AFF A900またはFAS9500 - ONTAP 9.10.1以降を実行するMetroCluster 構成の8ノード構成でISLに使用するポート</block>
+  <block id="a0bc38f50488b4f686bd2fe145def041" category="inline-link-macro">MetroCluster 構成-解決ガイドからノードを削除する方法</block>
+  <block id="8b54a6608c7aceee8d4dfde954124547" category="admonition">MetroCluster の設定解除を元に戻すことはできません。このプロセスは、テクニカルサポートの助言の下でのみ実施してください。ネットアップテクニカルサポートにお問い合わせのうえ、構成に対応するガイドをにご参照ください <block ref="c2ef60fcbce343052d34da400cf98089" category="inline-link-macro-rx"></block></block>
+  <block id="8ec1014b27ed523596c5c910443b0827" category="paragraph">AFF A900およびFAS9500</block>
+  <block id="87ba2462050ce75d6d9915d834efe9b7" category="doc">AFF A900またはFAS9500 - ONTAP 9.10.1以降を実行しているMetroCluster 構成でISLに使用するポート</block>
+  <block id="801938c63db0b16215aa712c6d1fd12c" category="paragraph">次の表に、AFF A900またはFAS9500システムのBrocadeスイッチでのISLポートの用途を示します。</block>
+  <block id="5cc34fc9164e77d33b971042da17edf2" category="admonition">AFF A900システムとFAS9500システムでは、8つのISLがサポートされています。Brocade 6510 、 G620 、 G620 -1 、および G720 スイッチでは 8 個の ISL がサポートされます。</block>
+  <block id="1dcd768f9d116bda4a2253d295e01fb8" category="doc">ONTAP 9.10.1以降を実行するMetroCluster 構成のAFF A900またはFAS9500コントローラでのBrocadeポートの使用状況</block>
+  <block id="e33ab3eabb81d3db08bba17fee6ed399" category="paragraph">以下の表は、 Brocade スイッチでのポート用途です。以下の表に、 4 つの DR グループに 8 つのコントローラモジュールを配置した、サポートされる最大構成を示します。AFF A900およびFAS9500システムでは、FC-VIポートが8個（FC-VI 1およびFC-VI 2ではa、b、c、d）あります。</block>
+  <block id="e0477011a5767f5250fc49bfe9ab153c" category="list-text">AFF A700、FAS9000、AFF A900、およびFAS9500ストレージシステムでは、ファブリックごとに最大8つのISLがサポートされます。それ以外のストレージシステムモデルでは、ファブリックごとに最大 4 つの ISL がサポートされます。</block>
+  <block id="f7326e6cfc29ebefdb936677ae7dd110" category="doc">ONTAP 9.10.1以降を実行するMetroCluster 構成でAFF A900またはFAS9500コントローラに使用するCiscoのポート</block>
+  <block id="dfed8939b1f16a32e24cbf7db94e77b4" category="paragraph">次の表に、1つのDRグループに8つのAFF A900またはFAS9500コントローラモジュールがある、サポートされる最大構成を示します。</block>
+  <block id="850f7b79a5d7e3532f3461f2abbf9036" category="list-text">次の表は、 FC-VI ポートが 8 つあるシステムを示しています。AFF A900およびFAS9500には、FC-VIポートが8つあります（FC-VI 1およびFC-VI 2にはa、b、c、d）。</block>
+  <block id="756d409209ace98589705774b5011aa0" category="paragraph">FAS9500</block>
+  <block id="9c4b6feb4a0e2e1a3b0880149249570d" category="section-title">AFF A900またはFAS9500からCisco 3232CスイッチまたはCisco 9336Cスイッチへのケーブル接続</block>
+  <block id="c12126891bd5121c9da9a05042a756ac" category="paragraph"><block ref="c12126891bd5121c9da9a05042a756ac" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="413a1a8040eaed9020b7af4ba6c24e5f" category="section-title">FAS9500システムでのディスク割り当て</block>
+  <block id="dd6721b9055a32492dda0434480da44d" category="admonition">ダウンロード後にRCFファイルを変更することはできません。</block>
+  <block id="03b9eedf57c55a2eb9b4feaa990c85f6" category="list-text">RcfFileGenerator for MetroCluster IPを使用して、設定用のRCFファイルを生成します。</block>
+  <block id="52ad3b024ecc6eae02e8415cef1140ba" category="summary">バックエンドMetroCluster IP接続を提供するようにIPスイッチを設定する必要があります。</block>
+  <block id="9e93b10c56fcff9e0d1564e5ad629c03" category="doc">スイッチを設定します</block>
+  <block id="e3af9bb8aab2257a1ad4ff7a5c3ecd15" category="list-text"><block ref="e3af9bb8aab2257a1ad4ff7a5c3ecd15" category="inline-link-macro-rx"></block></block>
+  <block id="72f9c6aaf4948fa7910f533f9d8355a5" category="list-text"><block ref="72f9c6aaf4948fa7910f533f9d8355a5" category="inline-link-macro-rx"></block></block>
+  <block id="8c6cfac074d0567f4c5a941062f42343" category="paragraph">この手順は ONTAP 9.8 以降でサポートされています。ONTAP 9.7以前を実行しているシステムについては、技術情報アーティクルを参照してください</block>
+  <block id="d5d6932337b2af2eda1bd96fd5aa3832" category="inline-link-macro">MetroCluster 構成からDRグループを削除する方法</block>
+  <block id="44fa5f61d97cbf15ad67ee9c5aedc1c6" category="paragraph"><block ref="44fa5f61d97cbf15ad67ee9c5aedc1c6" category="inline-link-macro-rx"></block></block>
+  <block id="240e83062f934da5c217268779ad19cc" category="inline-link-macro">既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合は、コントローラをアップグレードします。</block>
+  <block id="7d52f2b0abe5122410e02b6a1f5063c2" category="admonition">元のプラットフォームまたは新しいプラットフォームがFAS8020またはAFF8020システムでは、FC-VIモードのポート1cと1dを使用する場合は、ナレッジベースの記事を参照してください <block ref="932e72f00053653311064be7a28a435b" category="inline-link-macro-rx"></block></block>
+  <block id="0304fb1b1795f11d66da6052c99f1cca" category="list-text">両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます <block ref="3bd7a72b5bb22d07b50aba30cd6fdbe6" category="inline-link-macro-rx"></block>。</block>
+  <block id="01e6fb16c1595a47f506d4d654f7859f" category="list-text">この 手順 環境 コントローラモジュールは、MetroCluster FC構成（2ノードのストレッチMetroCluster 構成または2ノード、4ノード、または8ノードのファブリック接続MetroCluster 構成）で使用します。</block>
+  <block id="7935b714e63d97b0e787db90607ba0fc" category="list-text">同じDRグループ内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。</block>
+  <block id="810c9113a382d35f83c48d0bc5ad007c" category="paragraph">同じDRグループに種類の異なるコントローラを含むMetroCluster 構成の運用は、このメンテナンス作業以外ではサポートされません。8ノードMetroCluster 構成では、DRグループ内のコントローラは同じである必要がありますが、両方のDRグループで異なる種類のコントローラを使用できます。</block>
+  <block id="f0f7e2a1799d8b479b19f71aa5a163de" category="inline-link-macro">マザーボードの交換後プロセスを実行して、AFF / FASシステムのライセンスを更新</block>
+  <block id="70dc27aa0b1b6fd743baaf39ac831057" category="paragraph">ライセンスの置換の詳細については、Knowledge Baseの記事を参照してください <block ref="fefc92a8d5d54e07ec6a27ea1fbe0992" category="inline-link-macro-rx"></block></block>
+  <block id="b36fd383298dd454964a70693b082d21" category="doc">スイッチオーバーとスイッチバックを使用してMetroCluster IP構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
+  <block id="fa5bebfbd3b64c98d09c75db575bd11c" category="list-text">AFF A700コントローラモジュールをAFF A900にアップグレードするには、コントローラでONTAP 9.10.1以降が実行されている必要があります。</block>
+  <block id="b8c01685df64d764fee3ea66bb33411d" category="list-text">FAS9000コントローラモジュールをFAS9500にアップグレードするには、コントローラでONTAP 9.10.1P3以降が実行されている必要があります。</block>
+  <block id="ae4867e3d506833b86caef7b0885d0ba" category="paragraph">AFF A700とAFF A900、またはFAS9000とFAS9500コントローラを使用したMetroCluster 構成の運用は、この保守作業の外部ではサポートされません。</block>
+  <block id="975e1cbd2148147537ebaf00649d3b64" category="list-text">この手順 では、例と図の両方で次の名前が使用されています。</block>
+  <block id="07861cb79e114503ecd43d810982548c" category="section-title">AFF A700またはFAS9000コントローラのスロット7をクリアします</block>
+  <block id="33fde62eca72a6b040fde5ee872c847c" category="paragraph">AFF A900またはFAS9500のMetroCluster 構成では、スロット5と7にあるDRカードの各ポートのいずれかが使用されます。アップグレードを開始する前に、AFF A700またはFAS9000のスロット7にカードがある場合は、それらをクラスタのすべてのノード用の他のスロットに移動する必要があります。</block>
+  <block id="ea9c648e1ece3666c16468e1b7bf9609" category="paragraph">AFF A700またはFAS9000のMetroCluster IP構成では、VLANは使用されません。AFF A900またはFAS9500のMetroCluster 構成では、VLANが使用されます。そのため、AFF A700またはFAS9000からAFF A900またはFAS9500にアップグレードする際に、RCFファイルを変更する必要があります。</block>
+  <block id="367b6ed56e5d72c6f7fc505e20f24bd2" category="list-text">AFF A900またはFAS9500</block>
+  <block id="faab2cbd973ffc485dff6e74aeeab547" category="paragraph">AFF A700からAFF A900またはFAS9000からFAS9500にアップグレードした場合、データネットワークポート、FCP SANアダプタポート、SASストレージポートとNVMeストレージポートは変更されません。データ LIF は、アップグレード中もアップグレード後もそのままの状態になります。そのため、古いノードのネットワークポートを新しいノードにマッピングする必要はありません。</block>
+  <block id="e834b095ea947be3c6866a33f1da8979" category="section-title">AFF A700またはFAS9000プラットフォームのコントローラモジュールとNVSを取り外します</block>
+  <block id="ba579f865c148542656e741f915bc210" category="section-title">AFF A700またはFAS9000コントローラモジュールを取り外します</block>
+  <block id="9215947559c2e7cc959d296b609112d9" category="paragraph">次の手順 を使用して、AFF A700またはFAS9000コントローラモジュールを取り外します</block>
+  <block id="294524298144dbbf0480ba277400b734" category="section-title">AFF A700またはFAS9000 NVSモジュールを取り外します</block>
+  <block id="59b55859e42bb9a8cb7f2f21d794fed6" category="paragraph">次の手順 を使用して、AFF A700またはFAS9000 NVSモジュールを取り外します。</block>
+  <block id="7a682da1b921c288604ff1ba20b3701e" category="paragraph">メモ：NVSモジュールはスロット6にあり、システム内の他のモジュールと比較して高さが2倍になっています。</block>
+  <block id="15d293596473daa84e96fb0a5cafc3c3" category="list-text">AFF A700またはFAS9000 NVSでコアダンプデバイスとして使用されるアドオンモジュールを使用している場合、それらのモジュールをAFF A900またはFAS9500 NVSに転送しないでください。AFF A700またはFAS9000コントローラモジュールとNVSからAFF A900またはFAS9500モジュールにパーツを転送しないでください。</block>
+  <block id="d3a228303e1f5019fd998731b94f3832" category="section-title">AFF A900またはFAS9500 NVSとコントローラモジュールを取り付けます</block>
+  <block id="7967219dee6205a6946c519fdf6d46c6" category="paragraph">アップグレードキットに含まれていたAFF A900またはFAS9500 NVSとコントローラモジュールをsite_Bの両方のノードにインストールする必要がありますコアダンプデバイスをAFF A700またはFAS9000 NVSモジュールからAFF A900またはFAS9500 NVSモジュールに移動しないでください。</block>
+  <block id="cc6aecd0b77f7e4d0e9b241213c30d89" category="section-title">AFF A900またはFAS9500 NVSをインストールします</block>
+  <block id="3d927ff83f34d204c25685406d4c4bb6" category="paragraph">次の手順 を使用して、site_Bの両方のノードのスロット6にAFF A900またはFAS9500 NVSをインストールします</block>
+  <block id="ae5f8d8d7bae730e7805e4ab226507ca" category="section-title">AFF A900またはFAS9500コントローラモジュールを取り付けます。</block>
+  <block id="f3462e9a0da818d19db18b31c71a3b87" category="paragraph">次の手順 を使用して、AFF A900またはFAS9500コントローラモジュールをインストールします。</block>
+  <block id="2c375ca355c558652a52988f89bdc033" category="paragraph">AFF A900またはFAS9500コントローラモジュールとNVSを交換したら、AFF A900またはFAS9500ノードをネットブートして、クラスタで実行されているものと同じバージョンのONTAP とパッチレベルをインストールする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを追加する必要があります。AFF A900またはFAS9500コントローラモジュールのブートメディアにインストールされているONTAP のバージョンは、シャーシに取り付けて電源がオンになっていないかぎり確認できません。AFF A900またはFAS9500ブートメディア上のONTAP バージョンは、アップグレード対象のAFF A700またはFAS9000システムで実行されているONTAP バージョンと同じで、プライマリブートイメージとバックアップブートイメージの両方が一致している必要があります。イメージを設定するには、ネットブートを実行してからブートメニューの「 wipeconfig 」コマンドを実行します。コントローラモジュールが以前に別のクラスタで使用されていた場合は、「 wipeconfig 」コマンドはブートメディア上の残留設定をクリアします。</block>
+  <block id="c90754ff62c724c351a1fdbc2c0922dc" category="list-text">AFF A900またはFAS9500コントローラモジュールで実行されているnode_B_1がブートするまで待ち、次のようにブートメニューオプションを表示します。</block>
+  <block id="1efe4497214b901f523cf96a2c33ab26" category="list-text">次のコマンドを使用して、新しいコントローラモジュールに割り当て可能な未割り当てのディスクまたはスペアディスクを特定します。</block>
+  <block id="2849cfeed499bf8aebf6e17e9cf254ca" category="list-text">storage disk show -container-type spare</block>
+  <block id="45a22a50381b7d0a6d65f4f38ec04b7d" category="doc">スイッチオーバーとスイッチバックを使用してMetroCluster FC構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
+  <block id="304e34c553d5aabda89299a7fe2902b4" category="list-text">この手順 ONTAP を使用して、AFF A700からAFF 9.10.1以降を搭載したA900にアップグレードできます。</block>
+  <block id="35a4e2939e219a109bc9eacce7e98324" category="list-text">この手順 を使用して、ONTAP 9.10.1P3以降を搭載したFAS9000をFAS9500にアップグレードできます。</block>
+  <block id="995bf77226d032f3f7bb0a9172e19e98" category="list-text">手順 のアップグレード中は、AFF A700またはFAS9000システムに他のカードを追加したり取り外したりしないでください。詳細については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
+  <block id="ed21ec6cc897803ab446d04522b8215b" category="paragraph">この手順 の例と図では、次の名前が使用されています。</block>
+  <block id="4f7fa4ba8a2b7d1dcd5684cabdf4bf8d" category="paragraph">既存のMetroCluster 構成に変更を加える前に、構成の健全性を確認し、RCFファイルとケーブル接続をAFF A900またはFAS9000ファブリックのMetroCluster 構成に必要な新しいポート接続トポロジに変更し、その他のタスクを実行する必要があります。</block>
+  <block id="8e8ad934b559d7b31276a88f6629cbae" category="paragraph">AFF A900またはFAS9500のMetroCluster 構成では、スロット5と7のFC-VIカードに8つのFC-VIポートが必要です。アップグレードを開始する前に、AFF A700またはFAS9000のスロット7にカードがある場合は、それらをクラスタのすべてのノード用の他のスロットに移動する必要があります。</block>
+  <block id="dce33c4d4b745f3879d39503bee14c22" category="paragraph">AFF A900またはFAS9500ファブリックのMetroCluster 構成用にRCFファイルを更新してケーブル接続する前に、構成の健全性と接続を確認する必要があります。</block>
+  <block id="0ed649b51c980caac951192bd233e8ca" category="paragraph">AFF A900またはFAS9500ファブリックのMetroCluster では、ノードごとに2つの4ポートFC-VIアダプタが必要です。AFF A700で必要な4ポートFC-VIアダプタは1つだけです。AFF A900またはFAS9500コントローラへのコントローラのアップグレードを開始する前に、ファブリックスイッチのRCFファイルを変更して、AFF A900またはFAS9500接続トポロジをサポートする必要があります。</block>
+  <block id="e6b6dbc98b28672b7d02790d1de0295a" category="list-text">から<block ref="6f619f85f519d88d6754ebdd8b0379b5" category="inline-link-rx"></block>で、AFF A900またはFAS9500ファブリックのMetroCluster と、AFF A700またはFAS9000構成で使用されているスイッチモデルに対応した正しいRCFファイルをダウンロードします。</block>
+  <block id="1a246311887a704e5ab1d187d0cc6336" category="admonition">AFF A900またはFAS9500ファブリックのMetroCluster 構成をサポートするためのRCFファイルの更新では、AFF A700またはFAS9000ファブリックのMetroCluster 構成に使用されるポートと接続には影響しません。</block>
+  <block id="20924b6eb8b6cea108e86b88645e9bcc" category="section-title">AFF A700ノードまたはFAS9000ノードからAFF A900ノードまたはFAS9500ノードへのポートのマッピング</block>
+  <block id="28533a78f5b9ed1a1d242b6608b33990" category="paragraph">AFF A700またはFAS9000コントローラのスロット7手順 にカードが取り付けられている場合は、コントローラのアップグレードを開始する前に、カードを別のスロットに移動する必要があります。AFF A900またはFAS9500コントローラでファブリックMetroCluster を機能させるために必要な2つ目のFC-VIアダプタを追加するために、スロット7を用意しておく必要があります。</block>
+  <block id="f54a1f359c3619ec4b54a5cbaf5a1d68" category="admonition">AFF A700またはFAS9000の不揮発性ストレージモジュールにコアダンプデバイスとして使用されているアドオンモジュールがある場合は、それらのモジュールをAFF A900またはFAS9500 NVSに転送しないでください。AFF A700またはA900コントローラモジュールとNVSからAFF A900またはFAS9500コントローラモジュールにパーツを転送しないでください。</block>
+  <block id="147bc4d2dafd157a0f974f42f685692c" category="section-title">AFF A900またはFAS9500 NVSとコントローラモジュールを取り付けます</block>
+  <block id="d0cf791b8d9197d3aeb94c14818053cb" category="paragraph">Site_Bの両方のノードに、アップグレードキットからAFF A900またはFAS9500 NVSとコントローラモジュールをインストールする必要がありますコアダンプデバイスをAFF A700またはFAS9000 NVSモジュールからAFF A900またはFAS9500 NVSモジュールに移動しないでください。</block>
+  <block id="f92e6303c5bbd6720b3a3c23e3e7d624" category="paragraph">次の手順 を使用して、site_Bの両方のノードのスロット6にAFF A900またはFAS9500 NVSをインストールします</block>
+  <block id="5f2bbf9d53b83c5d58b1fbf3a16b8016" category="section-title">AFF A900またはFAS9500コントローラモジュールを取り付けます</block>
+  <block id="e4c18ff35056da1d93c0204834351b0d" category="list-text">スロット 7 の FC-VI ポートをスイッチに接続します。を参照してください <block ref="995b1601992c6a25573ab03322643d00" category="inline-link-macro-rx"></block> ドキュメントを参照し、環境内のスイッチタイプに応じたAFF A900またはFAS9500ファブリックのMetroCluster 接続要件を確認します。</block>
+  <block id="3cf4fc594d7fd1cf039eb4ac58c28e8c" category="paragraph">AFF A900またはFAS9500コントローラモジュールとNVSを交換したら、AFF A900またはFAS9500ノードをネットブートして、クラスタで実行されているものと同じバージョンのONTAP とパッチレベルをインストールする必要があります。「 netboot 」という用語は、リモート・サーバに保存されている ONTAP イメージからブートすることを意味します。ネットブートを準備するときは ' システムがアクセスできる Web サーバに ONTAP 9 ブート・イメージのコピーを追加する必要があります</block>
+  <block id="0a9836acbabf719b22960977cfaa6666" category="paragraph">AFF A900またはFAS9500コントローラモジュールのブートメディアにインストールされているONTAP のバージョンは、シャーシに取り付けて電源がオンになっていないかぎり確認できません。AFF A900またはFAS9500ブートメディア上のONTAP バージョンは、アップグレード対象のAFF A700またはFAS9000システムで実行されているONTAP バージョンと同じで、プライマリブートイメージとバックアップブートイメージの両方が一致している必要があります。イメージを設定するには、「 netboot 」に続けて「 wipeconfig 」コマンドを実行します。コントローラモジュールが以前に別のクラスタで使用されていた場合は、「 wipeconfig 」コマンドはブートメディア上の残留設定をクリアします。</block>
+  <block id="739b832185fa1247626c05bbd7c49e6b" category="list-text">AFF A900またはFAS9500コントローラモジュールで実行されているノード1がブートするまで待ち、次のようにブートメニューオプションを表示します。</block>
+  <block id="14df4d809d9812994f1e4264e6272db6" category="paragraph">必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます</block>
+  <block id="d2c039898f8a935b9869f711551f1bdc" category="list-text">ノードを停止してLOADERプロンプトに戻ります。</block>
+  <block id="0b0c0d8fa1e4052e4b5d4195ede1e340" category="list-text">次のbootargsが設定されているかどうかを確認します</block>
+  <block id="99892b3569ad9c719e8f7c24fa15b733" category="list-text">どちらかのbootargが値に設定されている場合は、設定を解除してONTAP をブートします。</block>
+  <block id="097a789cebf1d8b62e0e25ac5634e09a" category="inline-xref">ブートリカバリとr確保 されていないbootargsRDBの破損をリセットします</block>
+  <block id="bbfd04df316138a8bd107ee376a54dc1" category="admonition">使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、を繰り返します <block ref="358c6da937c27d6519a48f813996b4db" category="inline-xref-macro-rx"></block> システムをブートして ONTAP プロンプトを表示します。次に、が必要です <block ref="98b89efafafc6baeefb50e35f16eee3c" category="inline-xref-macro-rx"></block></block>
+  <block id="749bb4f63c981ace3f4595e0221aeaa6" category="section-title">boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします</block>
+  <block id="e6d0640faf9a5179bcd547053596e9fb" category="admonition">使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。次に、が必要です <block ref="98b89efafafc6baeefb50e35f16eee3c" category="inline-xref-macro-rx"></block></block>
+  <block id="04008409e45af76f1283ce88932da449" category="inline-link-macro">ストレージが失われた場合にMetroCluster でミラーされていない古いアグリゲートエントリを削除する方法</block>
+  <block id="2acb95fae93eb0a712fe18af796439f5" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、「 storage aggregate show 」コマンドの出力に「 unknown 」と表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する方法については、テクニカルサポートにお問い合わせください。また、技術情報アーティクルも参照してください <block ref="5f58a40bfe898f128ca76e4a4e4715d4" category="inline-link-macro-rx"></block></block>
+  <block id="24f7d38b1eaa5b3c78d65d263e040011" category="admonition">必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。30日以内にライセンスキーが記載された電子メールを受信できない場合は、Knowledge Baseの記事の_「ライセンスに問題がある場合は、誰に連絡すればよいですか？」_セクションを参照してください <block ref="fefc92a8d5d54e07ec6a27ea1fbe0992" category="inline-link-macro-rx"></block></block>
+  <block id="d903b046ad4e23192a38f289cf8b3677" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する方法については、テクニカルサポートにお問い合わせください。サポート技術情報アーティクルを参照してください <block ref="5f58a40bfe898f128ca76e4a4e4715d4" category="inline-link-macro-rx"></block></block>
+  <block id="9734751a8e945b1c9cd85ffbdd0c241e" category="admonition">使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。次に、が必要です <block ref="81092c96bc8b36fe9ac80e13a918f8bb" category="inline-xref-macro-rx"></block></block>
+  <block id="2117e88807c2074036a5c585d3364860" category="sidebar">スイッチオーバーとスイッチバックを使用してMetroCluster IP構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
 </blocks>
