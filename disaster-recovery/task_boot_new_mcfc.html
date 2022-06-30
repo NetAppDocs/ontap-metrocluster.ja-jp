@@ -3472,13 +3472,13 @@
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html">
         スイッチオーバーとスイッチバックを使用して、 MetroCluster FC 構成のコントローラをアップグレードします
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_fc_us_switchover_and_switchback.html">
-        スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）
+        スイッチオーバーとスイッチバックを使用してMetroCluster FC構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html">
         4 ノード MetroCluster FC 構成のコントローラを、「 system controller replace 」コマンドを使用してスイッチオーバーとスイッチバックを使用してアップグレードします（ ONTAP 9.10.1 以降）。
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html">
         スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成のコントローラのアップグレード（ ONTAP 9.8 以降）
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html">
-        スイッチオーバーとスイッチバックを使用して MetroCluster IP 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）
+        スイッチオーバーとスイッチバックを使用してMetroCluster IP構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_refresh_4n_mcc_fc.html">
         4 ノード MetroCluster FC 構成を更新しています
       </a></li><li class=" "><a class="na-navbar-padding" href="/ja-jp/ontap-metrocluster/upgrade/task_refresh_4n_mcc_ip.html">
@@ -3757,13 +3757,15 @@
 <p class="page-details">
   
     
-    <time datetime="2022-04-13 14:12:30 +0000">04/13/2022</time>
+    <time datetime="2022-06-30 21:16:07 +0000">06/30/2022</time>
     
   
 
 
 </p>
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph lead">
 <p>データアグリゲートとルートアグリゲート両方の修復が完了したら、ディザスタサイトのノードをブートする必要があります。</p>
 </div>
@@ -3797,7 +3799,7 @@
 <img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
 </td>
 <td class="content">
-使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid&#8230;&#8203; 」というメッセージが表示されることがあります この場合は、を繰り返します <a href="#step2">[step2]</a> システムをブートして ONTAP プロンプトを表示します。その後、ルートリカバリを実行する必要があります。詳しくはテクニカルサポートにお問い合わせください。
+使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid&#8230;&#8203; 」というメッセージが表示されることがあります この場合は、を繰り返します <a href="#step2">[step2]</a> システムをブートして ONTAP プロンプトを表示します。次に、が必要です <a href="#Reset-the-boot-recovery">ブートリカバリとr確保 されていないbootargsRDBの破損をリセットします</a>
 </td>
 </tr>
 </table>
@@ -3883,6 +3885,47 @@ cluster_B::&gt;</pre>
 </div>
 <div class="paragraph">
 <p>に進みます <a href="../disaster-recovery/task_complete_recovery.html">"ディザスタリカバリプロセスを完了する"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="boot_recoveryおよびr確保-するr確保-するノードをrdbにリセットします">boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします</h3>
+<div class="paragraph lead">
+<p>必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます</p>
+</div>
+<div class="olist arabic">
+<div class="title">手順</div>
+<ol class="arabic">
+<li>
+<p>ノードを停止してLOADERプロンプトに戻ります。</p>
+<div class="listingblock">
+<div class="content">
+<pre>node_A_1::*&gt; halt -node _node-name_</pre>
+</div>
+</div>
+</li>
+<li>
+<p>次のbootargsが設定されているかどうかを確認します</p>
+<div class="listingblock">
+<div class="content">
+<pre>LOADER&gt; printenv bootarg.init.boot_recovery
+LOADER&gt; printenv bootarg.rdb_corrupt</pre>
+</div>
+</div>
+</li>
+<li>
+<p>どちらかのbootargが値に設定されている場合は、設定を解除してONTAP をブートします。</p>
+<div class="listingblock">
+<div class="content">
+<pre>LOADER&gt; unsetenv bootarg.init.boot_recovery
+LOADER&gt; unsetenv bootarg.rdb_corrupt
+LOADER&gt; saveenv
+LOADER&gt; bye</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
 </div>
 
     </article>
