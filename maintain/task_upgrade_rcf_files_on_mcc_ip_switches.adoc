@@ -127,20 +127,22 @@ MetroCluster オペレーション履歴 show -job-id 38`
 ** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
 
 
-. スイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。
-+
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
-** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
-
-
-+
-スイッチは次の順序で更新します。
-
-+
-.. switch_A_1
-.. switch_B_1
-.. switch_a_2
-.. switch_B_2
+. スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。
 
 
 
+NOTE: L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。
+
++* link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
+
++* link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+
++次の順序でスイッチを更新します。
+
+. switch_A_1
+. switch_B_1
+. switch_a_2
+. switch_B_2
+
+
+GitHub問題 135、2022年7月4日

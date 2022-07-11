@@ -28,7 +28,7 @@ image::power-on-off-data-center.gif[データセンターの電源をオフに�
 
 サイトのメンテナンスや再配置を開始する前に、サイトとすべての機器の電源をオフにする必要があります。
 
-次の手順のすべてのコマンドを、電源をオフにするサイトから実行します。
+次の手順のすべてのコマンドは、電源をオンのままにするためにサイトから実行します。
 
 .手順
 . 開始する前に、ミラーされていないアグリゲートがサイトですべてオフラインになっていることを確認します。
@@ -62,10 +62,15 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
 
-. 次のコマンドを入力して、スイッチオーバーを実行します。
+. 稼働したままにするサイトから、スイッチオーバーを実行します。
 +
 MetroCluster スイッチオーバー
 
++
+[listing]
+----
+cluster_A::*> metrocluster switchover
+----
 +
 この処理が完了するまでに数分かかることがあります。
 
@@ -99,6 +104,28 @@ cluster_A::*> metrocluster operation show
 +
 以前のバージョンの ONTAP を実行している MetroCluster IP 構成では、ディザスタサイトのノードは ONTAP から自動的にブートせず、プレックスはオフラインのままです。MetroCluster FC 構成の場合は、すべてのプレックスがオンラインのままであるため、プレックスをオンラインにする必要はありません。
 
+. ボリュームとLUNをオフラインにします。
++
+.. ボリュームをオフラインにします。
++
+[listing]
+----
+cluster_A::* volume offline <volume name>
+----
+.. LUNをオフラインにします。
++
+[listing]
+----
+cluster_A::* lun offline lun_path <lun_path>
+----
+
+
+. ミラーされていないアグリゲートをオフラインにします：「storage aggregate offline
++
+[listing]
+----
+cluster_A*::> storage aggregate offline -aggregate <aggregate-name>
+----
 . 構成と ONTAP のバージョンに応じて、ディザスタサイト（ cluster_B ）にあるオフラインの影響を受けるプレックスを特定して移動します。
 +
 [NOTE]

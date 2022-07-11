@@ -934,7 +934,6 @@
   <block id="e42120d29d88cc6c3c023d82236437a8" category="admonition">この手順は、 MetroCluster IP 構成と FC 構成の両方で使用されます。</block>
   <block id="efe31da79ff42582640c229b718168aa" category="section-title">MetroCluster サイトの電源切断</block>
   <block id="4bfd66c37cd5ce244e0dfdd30c499d83" category="list-text">開始する前に、ミラーされていないアグリゲートがサイトですべてオフラインになっていることを確認します。</block>
-  <block id="9458e87c0098f44c3f2f9a56df027289" category="list-text">次のコマンドを入力して、スイッチオーバーを実行します。</block>
   <block id="edc7b16c34c41ad12b6699da441a1e45" category="paragraph">この処理が完了するまでに数分かかることがあります。</block>
   <block id="0829264e645ef456fedfb9d7d6e189a9" category="paragraph">MetroCluster FC 構成では、ミラーされていないアグリゲートがスイッチオーバー後にオンラインになるのは、アグリゲート内のリモートディスクにアクセスできる場合のみです。ISL で障害が発生すると、ミラーされていないリモートディスク内のデータにローカルノードがアクセスできなくなる可能性があります。アグリゲートに障害が発生すると、ローカルノードがリブートされる場合があります。</block>
   <block id="c35cb6405b316f2999613190b9a610f3" category="list-text">スイッチオーバーの完了を監視して確認します。</block>
@@ -1927,7 +1926,6 @@
   <block id="3f28886cbb43f1c7c0c4f4d35ecafdde" category="doc">スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成のコントローラをアップグレードする</block>
   <block id="b33f40e27c2c4b0024c1160808166b4d" category="list-text">この手順は、コントローラのアップグレードにのみ使用できます。</block>
   <block id="9b7868adf853e7eebe0da1408c6ccd24" category="paragraph">ストレージシェルフやスイッチなど、構成内の他のコンポーネントは同時にアップグレードできません。</block>
-  <block id="775b84147d85d58d8180690300a5d104" category="list-text">この手順は、特定のバージョンの ONTAP で使用できます。</block>
   <block id="0658afd7b63854a03c773da7890b79c4" category="list-text">ONTAP 9.3 以降では 2 ノード構成がサポートされます。</block>
   <block id="ed332ae2e9a3efd17382e627809f4c84" category="paragraph">ONTAP 9.8 より前のバージョンを実行している 4 ノードまたは 8 ノード構成では、この手順を使用しないでください。</block>
   <block id="dfaa931cb3298c6a8b82f108a31104cb" category="list-text">元のプラットフォームと新しいプラットフォームに互換性があり、サポートされている必要があります。</block>
@@ -10435,7 +10433,6 @@
   <block id="887c6ed9e13340447fb1a67de5440f79" category="cell">方法 1 を使用して EFOS をアップグレードします。スイッチを工場出荷時のデフォルトにリセットして、 EFOS 3.x.x 以降の RCF ファイルを適用します</block>
   <block id="71ed00a3a2145967178b8429c44dd605" category="cell">3.7.x.x 以降の FIPS に準拠しています</block>
   <block id="13453110a818269a21fc3929d2514208" category="image-alt">データセンターの電源をオフにします</block>
-  <block id="d8a69cf9d5438bcb021a7abc71ab4571" category="paragraph">次の手順のすべてのコマンドを、電源をオフにするサイトから実行します。</block>
   <block id="a05a5ee5c3ac194989ef258bddaa30d0" category="list-text">ディザスタサイトのディスクにあるミラーされたプレックスを使用してアグリゲートをミラーリングする。オフラインにすると、プレックスにアクセスできなくなります。</block>
   <block id="d4f18ae628e27ab34b26b8a43c48ace9" category="list-text">影響を受けるプレックスをオフラインにします。</block>
   <block id="2a8e88f52bc016e030fb4bcd3be6617a" category="paragraph">「ストレージアグリゲートのプレックスはオフライン」です</block>
@@ -10566,10 +10563,6 @@
   <block id="1a9778326fd00d0e011a777089b2bc6a" category="list-text">実行中の MetroCluster チェック処理のステータスを確認します。</block>
   <block id="fbd55aa6c7d3ee9ec90836dfa01b62d2" category="paragraph">MetroCluster オペレーション履歴 show -job-id 38`</block>
   <block id="c58c2c8b494a438765beae02806faf3a" category="paragraph">スイッチベンダーの手順に従います。</block>
-  <block id="2deafafde550e3fbeae046746ef3f599" category="list-text">スイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。</block>
-  <block id="c1e630c896fe7378e2dd05cd5272a6ff" category="list-text"><block ref="c1e630c896fe7378e2dd05cd5272a6ff" category="inline-link-macro-rx"></block></block>
-  <block id="e36e202b6cdca1dbc2cdea18cfdd7bdb" category="list-text"><block ref="e36e202b6cdca1dbc2cdea18cfdd7bdb" category="inline-link-macro-rx"></block></block>
-  <block id="d42d9a9e37bc8567ae9ea46bcfad54c0" category="paragraph">スイッチは次の順序で更新します。</block>
   <block id="78000b0502657029700618498b49c2a2" category="list-text">switch_A_1</block>
   <block id="e8ec5d8866ea800460ce1192269d2c8f" category="list-text">switch_B_1</block>
   <block id="9c84e76a527ed2550b5deb0129b1f0ef" category="list-text">switch_a_2</block>
@@ -12596,4 +12589,23 @@
   <block id="d903b046ad4e23192a38f289cf8b3677" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する方法については、テクニカルサポートにお問い合わせください。サポート技術情報アーティクルを参照してください <block ref="5f58a40bfe898f128ca76e4a4e4715d4" category="inline-link-macro-rx"></block></block>
   <block id="9734751a8e945b1c9cd85ffbdd0c241e" category="admonition">使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。次に、が必要です <block ref="81092c96bc8b36fe9ac80e13a918f8bb" category="inline-xref-macro-rx"></block></block>
   <block id="2117e88807c2074036a5c585d3364860" category="sidebar">スイッチオーバーとスイッチバックを使用してMetroCluster IP構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
+  <block id="0ab5e32384cf33a80caff743210417d8" category="admonition">HAとストレージフェイルオーバーの想定される構成状態は次のとおりです。</block>
+  <block id="a9c14bf4555cada69be518fce567a21c" category="list-text">HAモードが設定されていますが、ストレージフェイルオーバーが有効になっていません。</block>
+  <block id="917db687ec940c706231d4c917812bb2" category="list-text">HAテイクオーバー機能が無効になっています。</block>
+  <block id="202fc6604bcb0268741426bb0d623520" category="list-text">HAインターフェイスがオフラインです。</block>
+  <block id="9064d0cb38703eeae4019097f2ba6dee" category="list-text">HAモード、ストレージフェイルオーバー、およびインターフェイスは、あとで設定します。</block>
+  <block id="a5820aab646669a3b5a9ad826ceaf514" category="list-text">この手順 は、特定のバージョンのONTAP で使用できます。</block>
+  <block id="5ac8082d208bbf03d0cce2d606e0f49f" category="paragraph">一致するポートがありません。アップグレード後にクラスタポートを再作成する必要があります。<block ref="2305a256def4f5c38d82352fac177e1d" category="inline-link-macro-rx"></block></block>
+  <block id="44489e59a236bf582156026d721d7300" category="list-text">スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。</block>
+  <block id="a208547a21e1dc907c538b655cfee7c1" category="admonition">L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。</block>
+  <block id="a7ad2cc3f2e65335d382b74029354ee6" category="paragraph">+* <block ref="c1e630c896fe7378e2dd05cd5272a6ff" category="inline-link-macro-rx"></block></block>
+  <block id="15229eb2fb74ec06320e5767f87322b0" category="paragraph">+* <block ref="e36e202b6cdca1dbc2cdea18cfdd7bdb" category="inline-link-macro-rx"></block></block>
+  <block id="6103dfdbf1ef77c8394206644595ce63" category="paragraph">+次の順序でスイッチを更新します。</block>
+  <block id="440e5d46a3352ce5e00ab6b9ecdbc792" category="paragraph">GitHub問題 135、2022年7月4日</block>
+  <block id="05cb8d64e2770620783bfd98ba2c571c" category="paragraph">次の手順のすべてのコマンドは、電源をオンのままにするためにサイトから実行します。</block>
+  <block id="714cb8627bb0d04d6b5d032326cab4a3" category="list-text">稼働したままにするサイトから、スイッチオーバーを実行します。</block>
+  <block id="d5e08bac7a66723faca8e245c44582ae" category="list-text">ボリュームとLUNをオフラインにします。</block>
+  <block id="4434ac45fa2bd65c77619dc4135a3848" category="list-text">ボリュームをオフラインにします。</block>
+  <block id="8a0f98caf632998576a36c94b83328a6" category="list-text">LUNをオフラインにします。</block>
+  <block id="e7edce3217788bc841a63851100c9164" category="list-text">ミラーされていないアグリゲートをオフラインにします：「storage aggregate offline</block>
 </blocks>
