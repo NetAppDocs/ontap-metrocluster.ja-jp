@@ -3757,7 +3757,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-04-13 14:12:30 +0000">04/13/2022</time>
+    <time datetime="2022-07-11 22:39:25 +0000">07/11/2022</time>
     
   
 
@@ -3991,8 +3991,37 @@ Where is the controller located []: site_A</pre>
 <div class="paragraph">
 <p>「 storage failover modify -mode ha -node localhost 」を参照してください</p>
 </div>
-<div class="paragraph">
-<p>このコマンドを実行するとハイアベイラビリティモードが設定されますが、ストレージフェイルオーバーは有効になりません。ストレージフェイルオーバーは、あとで実行する MetroCluster 構成の設定プロセスで自動的に有効になります。</p>
+<div class="exampleblock">
+<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
+</td>
+<td class="content">
+HAとストレージフェイルオーバーの想定される構成状態は次のとおりです。
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HAモードが設定されていますが、ストレージフェイルオーバーが有効になっていません。</p>
+</li>
+<li>
+<p>HAテイクオーバー機能が無効になっています。</p>
+</li>
+<li>
+<p>HAインターフェイスがオフラインです。</p>
+</li>
+<li>
+<p>HAモード、ストレージフェイルオーバー、およびインターフェイスは、あとで設定します。</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </li>
 <li>

@@ -3757,7 +3757,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-06-01 14:10:15 +0000">06/01/2022</time>
+    <time datetime="2022-07-11 22:39:25 +0000">07/11/2022</time>
     
   
 
@@ -3801,7 +3801,7 @@
 <p>サイトのメンテナンスや再配置を開始する前に、サイトとすべての機器の電源をオフにする必要があります。</p>
 </div>
 <div class="paragraph">
-<p>次の手順のすべてのコマンドを、電源をオフにするサイトから実行します。</p>
+<p>次の手順のすべてのコマンドは、電源をオンのままにするためにサイトから実行します。</p>
 </div>
 <div class="olist arabic">
 <div class="title">手順</div>
@@ -3859,9 +3859,14 @@
 </div>
 </li>
 <li>
-<p>次のコマンドを入力して、スイッチオーバーを実行します。</p>
+<p>稼働したままにするサイトから、スイッチオーバーを実行します。</p>
 <div class="paragraph">
 <p>MetroCluster スイッチオーバー</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cluster_A::*&gt; metrocluster switchover</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>この処理が完了するまでに数分かかることがあります。</p>
@@ -3901,6 +3906,37 @@ cluster_A::*&gt; metrocluster operation show
 <p>ONTAP 9.6 以降を実行している MetroCluster IP 構成がある場合は、ディザスタサイトのプレックスがオンラインになり、修復処理が自動的に完了するまで待ちます。</p>
 <div class="paragraph">
 <p>以前のバージョンの ONTAP を実行している MetroCluster IP 構成では、ディザスタサイトのノードは ONTAP から自動的にブートせず、プレックスはオフラインのままです。MetroCluster FC 構成の場合は、すべてのプレックスがオンラインのままであるため、プレックスをオンラインにする必要はありません。</p>
+</div>
+</li>
+<li>
+<p>ボリュームとLUNをオフラインにします。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>ボリュームをオフラインにします。</p>
+<div class="listingblock">
+<div class="content">
+<pre>cluster_A::* volume offline &lt;volume name&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>LUNをオフラインにします。</p>
+<div class="listingblock">
+<div class="content">
+<pre>cluster_A::* lun offline lun_path &lt;lun_path&gt;</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>ミラーされていないアグリゲートをオフラインにします：「storage aggregate offline</p>
+<div class="listingblock">
+<div class="content">
+<pre>cluster_A*::&gt; storage aggregate offline -aggregate &lt;aggregate-name&gt;</pre>
+</div>
 </div>
 </li>
 <li>

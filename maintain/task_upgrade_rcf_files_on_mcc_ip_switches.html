@@ -3757,7 +3757,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-10 16:10:50 +0000">05/10/2022</time>
+    <time datetime="2022-07-11 22:39:25 +0000">07/11/2022</time>
     
   
 
@@ -3930,19 +3930,33 @@ volumes             ok
 </div>
 </li>
 <li>
-<p>スイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files">"Broadcom IP の RCF ファイルをダウンロードしてインストールします"</a></p>
+<p>スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。</p>
 </li>
-<li>
-<p><a href="../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files">"Cisco IP RCF ファイルのダウンロードとインストール"</a></p>
-<div class="paragraph">
-<p>スイッチは次の順序で更新します。</p>
+</ol>
 </div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
+</td>
+<td class="content">
+L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>+* <a href="../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files">"Broadcom IP の RCF ファイルをダウンロードしてインストールします"</a></p>
+</div>
+<div class="paragraph">
+<p>+* <a href="../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files">"Cisco IP RCF ファイルのダウンロードとインストール"</a></p>
+</div>
+<div class="paragraph">
+<p>+次の順序でスイッチを更新します。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>switch_A_1</p>
 </li>
@@ -3957,11 +3971,8 @@ volumes             ok
 </li>
 </ol>
 </div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
+<div class="paragraph">
+<p>GitHub問題 135、2022年7月4日</p>
 </div>
 </div>
 </div>
