@@ -74,18 +74,10 @@
   <block id="77df057daf76f735d0f043a72ec2aa0d" category="paragraph">'*copy_source_filetarget_file_*</block>
   <block id="d79569db55a245ec84059695dcfda462" category="paragraph">次の例では、キックスタートファイル (`m 9200-s2ek9-mz.5.2.1.bin') とシステムファイル (`/firmware/`path の FTP サーバ 10.10.10.55 にあります。</block>
   <block id="a457135adaa0f04d7a51bf9454377797" category="paragraph">次の例は、 FC_switch_A_1 で実行するコマンドを示しています。</block>
-  <block id="49423ea450a2fb44c7b0112f25a9e604" category="list-text">このファブリック内の両方のスイッチで、すべての VSAN を無効にします。</block>
   <block id="dd6b9024482bdc7dffb370c445595e90" category="list-text">必要なファームウェアをスイッチにインストールします。</block>
   <block id="f4c4d9dac1fcf9ad55f947c425db6845" category="paragraph">すべてのシステムブートフラッシュをインストールします :__ systemfile_name _kickstart bootflash:_kickstartfile_name _*`</block>
   <block id="ba7c5d6f6ef0b4eeeb3cf2edceb16a5e" category="list-text">各スイッチのファームウェアのバージョンをチェックして、正しいバージョンがインストールされていることを確認します。</block>
   <block id="14afcc8b85712a75a7cf7514c1e75983" category="paragraph">*show version *`</block>
-  <block id="a69604ad0e31be276b2fc1bb94145857" category="list-text">このファブリック内の両方のスイッチで、すべての VSAN を有効にします。</block>
-  <block id="365ca0e4f2197423629324647193d170" category="list-text">システムがマルチパスかどうかを確認します。 +`* node run -node -name_sysconfig -a *`</block>
-  <block id="8c97991d1f2e00c0d96a3986c86bdf7f" category="list-text">両方のクラスタにヘルス・アラートがないかどうかを確認します +`* system health alert show *`</block>
-  <block id="da0ff0da60f7f00ebb996e20b72f9ee8" category="list-text">MetroCluster 構成と動作モードが正常であることを確認します :+`* MetroCluster show*`</block>
-  <block id="ff6eadd340dcb509a7ffff48fb0151c6" category="list-text">MetroCluster チェック :+`* MetroCluster check run*` を実行します</block>
-  <block id="083232ed80a0455172fded40eccc1ef8" category="list-text">MetroCluster チェックの結果を表示します :+`* MetroCluster check show*`</block>
-  <block id="6f480ffa9f23ccd58b24ca38c10600d4" category="list-text">スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`* storage switch show *`</block>
   <block id="5d0aacff762759dbda6dfa013df2be6e" category="list-text">2 つ目のスイッチファブリックに対してこの手順を繰り返します。</block>
   <block id="0f4890949e646d00de6b9e66bd1b1968" category="summary">障害が発生したスイッチの交換、またはスイッチのアップグレードやダウングレードが必要になる場合があります。スイッチに障害が発生した場合は、新しいスイッチを古いスイッチと同じにすることも、スイッチタイプを変更することもできます（スイッチをアップグレードまたはダウングレードします）。</block>
   <block id="5e2a519a0cc2ae15695c5cf1d46f0cc9" category="doc">IP スイッチの交換</block>
@@ -7266,7 +7258,6 @@
   <block id="146d142d8ea797f93d593a6fe9556787" category="doc">8 ノード構成の処理</block>
   <block id="dd42913fad72868b65fced98cfecfcd6" category="paragraph">次に、のタスクを実行します <block ref="3e70f7d1f526cf6dd7a89a97c88d0cc8" category="inline-link-macro-rx"></block></block>
   <block id="927ed696d98572bdb5039cbffcfdb480" category="section-title">MetroCluster 構成でメディエーターを使用するためのネットワーク要件</block>
-  <block id="b2b90a2080b20a433104d14b3164613a" category="paragraph">ONTAP 構成で MetroCluster メディエーターサービスをインストールするには、いくつかのネットワーク要件を満たす必要があります。</block>
   <block id="1a03f6720968dfb968df6cc034114444" category="list-text">MTU</block>
   <block id="6b55a3ff2ffe6275beb9e73d58d08007" category="paragraph">MTU サイズは 1400 以上にする必要があります。</block>
   <block id="64ddceb2cbf941d1fc93373ce9219a1f" category="list-text">パケット損失</block>
@@ -12347,7 +12338,6 @@
   <block id="344fc0c43530ccad90a38944b632b1e4" category="list-text">構成モードを終了します : exit</block>
   <block id="9c0c1022f821ad4ee9fd20c2731bc6f1" category="list-text">トラブルシューティングに役立てるため、各 MetroCluster DR グループ内の各 SAS ディスクシェルフには、シェルフ ID を一意にすることを強く推奨します。</block>
   <block id="70fef59fffa5df67d10b024d11f37399" category="paragraph"><block ref="70fef59fffa5df67d10b024d11f37399" category="inline-link-macro-rx"></block></block>
-  <block id="466ed123ab8f5845237d3ae425397ec7" category="paragraph">環境が次の要件を満たしている必要があります。</block>
   <block id="c5cd3d887ef507cadc249c592410542a" category="list-text">Linux のバージョンを更新する場合は、最新の ONTAP メディエーターサービスをインストールする前にアップグレードしてください。</block>
   <block id="5981ded82c976bff5c9a73686842655a" category="list-text">メディエーターサービスは、以前のバージョンから現在のバージョンにアップグレードすることができます。</block>
   <block id="6bec966647e1b9c8a03ddd277c8fe864" category="inline-link-macro">パーツの返品と交換</block>
@@ -12406,8 +12396,6 @@
   <block id="cf5928613cf8b77d8355882cdec38712" category="paragraph">16本の内蔵ドライブのみ</block>
   <block id="90cd0db781b4639c1c46407e5a4f0a93" category="paragraph">+使用するVLANが10/20以上の場合は、既存のMetroCluster 設定に次のプラットフォームモデルを追加できます。他のMetroCluster インターフェイスは設定できないため、これらのプラットフォームを既存の設定に追加することはできません。他のプラットフォームを使用している場合は、ONTAP では必要ないため、VLANの設定は関係ありません。</block>
   <block id="26ae7bdd1d6fb8c4886e6fde8d12601c" category="list-text">レイテンシ</block>
-  <block id="66420f475101cc9c2b0d458605176249" category="paragraph">ラウンドトリップレイテンシは75ミリ秒以下である必要があります。</block>
-  <block id="d89a2477841e85e6d37fac9fb392f350" category="paragraph">ジッターは25ミリ秒以下である必要があります。</block>
   <block id="37e445da4970f1c0106716e8dba83be8" category="paragraph">使用するVLANが10/20以上の場合は、次のプラットフォームモデルを既存のMetroCluster 構成に追加できます。他のMetroCluster インターフェイスは設定できないため、これらのプラットフォームを既存の設定に追加することはできません。他のプラットフォームを使用している場合は、ONTAP では必要ないため、VLANの設定は関係ありません。</block>
   <block id="9e9a93655547f7858baef5194a909e2c" category="cell">Cisco 3132Q-V、3232C、または9336C-FX2</block>
   <block id="a825d9b135e0604b1a8244aa950f4952" category="paragraph">FCノード上のローカルクラスタインターフェイス</block>
@@ -12422,7 +12410,6 @@
   <block id="b36742dbca767f044c826ec8fbe9b099" category="inline-link">整合グループ</block>
   <block id="2b9902d272c75c4def3400c620342746" category="paragraph">ONTAP 9.11.1以降、<block ref="cf613318e210a5e8a8ae9de011eafc43" category="inline-link-rx"></block> MetroCluster 構成でサポートされます。</block>
   <block id="fe92f5934bf96194725b46db02f72324" category="list-text">この手順 は、FAS2750システムとAFF A220システムではサポートされていません。</block>
-  <block id="610f11b52907034f4715c6fa1abf8d1b" category="paragraph">メディエーターサービスとMetroCluster 構成の間のリンクには、20MBps以上の帯域幅が必要です。</block>
   <block id="f5cd93f67ab362b3830ef2c47249e909" category="paragraph"><block ref="f5cd93f67ab362b3830ef2c47249e909" category="inline-link-macro-rx"></block></block>
   <block id="a3816a0d57fcb59bc1a3bfba35af44cf" category="paragraph"><block ref="a3816a0d57fcb59bc1a3bfba35af44cf" category="inline-link-macro-rx"></block></block>
   <block id="8a4f175190a1710cdcd52e7efde01268" category="section-title">MetroCluster IP構成でCisco MACsec暗号化WAN ISLを有効にします</block>
@@ -12608,4 +12595,45 @@
   <block id="4434ac45fa2bd65c77619dc4135a3848" category="list-text">ボリュームをオフラインにします。</block>
   <block id="8a0f98caf632998576a36c94b83328a6" category="list-text">LUNをオフラインにします。</block>
   <block id="e7edce3217788bc841a63851100c9164" category="list-text">ミラーされていないアグリゲートをオフラインにします：「storage aggregate offline</block>
+  <block id="eeb4c33e80d1b1f4f321335e6c0a8948" category="list-text">このファブリック内の両方のスイッチで、すべてのVSANを無効にします。</block>
+  <block id="f214faa187b0f8585d0284ecf49f3906" category="paragraph">VSANをディセーブルにするには、次の手順 を使用します。</block>
+  <block id="cb8fb6423ba4514d27c43e02fd22b2c5" category="list-text">設定端末を開きます。</block>
+  <block id="aaa8e3ee96b410b325315a1de30cec4d" category="paragraph">'*config t*`</block>
+  <block id="b8afb7257af8298e9b39672376c99b62" category="list-text">「*VSAN database *'」と入力します</block>
+  <block id="bdcc1fc68db08008dfc00ee2fb9f43d0" category="list-text">VSANの状態を確認します。</block>
+  <block id="e9f0b0392908ef9837a95fcb28e5f3ce" category="paragraph">*show vsan*</block>
+  <block id="bfa47473eeda6cdc1320879f81c9474d" category="paragraph">すべてのVSANがアクティブである必要があります。</block>
+  <block id="05d72f61ef02c2140fd7e59819dbf084" category="list-text">VSANを一時停止します。</block>
+  <block id="30299303da61f3e16530da93773dc942" category="paragraph">`*VSAN_vsan-num_suspend*`</block>
+  <block id="aff73339a7ace49d8fb821447e5e8511" category="paragraph">*例：*'VSAN 10 suspend</block>
+  <block id="39c87be3adad4cc73e3eb8d71d59b30e" category="list-text">VSANの状態を再度確認します。</block>
+  <block id="8374d5822320e4bcecd77348b45777e9" category="paragraph">*show vsan*+all VSANを一時停止する必要があります</block>
+  <block id="60e747d08548393572fe33c71de63c4d" category="list-text">設定ターミナルを終了します。</block>
+  <block id="867c6e1e47ae23bbfc994dfb678e8dd7" category="paragraph">「* end *」と入力します</block>
+  <block id="25812ed1432cfe46632186b5957ebe26" category="list-text">設定を保存します。</block>
+  <block id="f97309b3069a96764144d271543ba39d" category="paragraph">次の例は、FC_switch_A_1の出力を表示します。</block>
+  <block id="4bee25b7ef41eb8c76d388627d6c9875" category="list-text">このファブリック内の両方のスイッチで、すべてのVSANを有効にします。</block>
+  <block id="9197f672eba96636ff2e194f924458d7" category="paragraph">VSANをイネーブルにするには、次の手順 を使用します。</block>
+  <block id="c2a01cfc17a5081ae1c7a2c5be9d857b" category="paragraph">VSANは一時停止する必要があります。</block>
+  <block id="b727a9424b5e29f595c0aa427109dab9" category="list-text">VSANをアクティブにします。</block>
+  <block id="b05dfe32ff54f216e31f69b3bcf35430" category="paragraph">'*no vsan_vsan-num_suspend*</block>
+  <block id="59bf52ba61a46286e679847925ce1f3c" category="paragraph">*例：*no vsan 10 suspend`</block>
+  <block id="32a9706efc49910d5f907e98994d74f1" category="paragraph">「 * MetroCluster show * 」と入力します</block>
+  <block id="b88bf0c809fffc695990879900c60d29" category="paragraph">ご使用の環境が特定の要件を満たしている必要があり</block>
+  <block id="a624bf1cb8ea6541888d2e3bfed29f37" category="paragraph">1つのディザスタリカバリグループ（DRグループ）に次の要件が適用されます。の詳細を確認してください <block ref="0244a225d1215475caa277f136d50b4a" category="inline-link-macro-rx"></block>。</block>
+  <block id="9f6204fe619ab6c1e9a1fcd03de81cb5" category="paragraph">ONTAP メディエーターと各サイトの間の接続には、2つの異なる障害ドメインが必要です。</block>
+  <block id="5030719f4c55271135b32bdf9c634c88" category="paragraph">ONTAP メディエーターサービスをMetroCluster 構成にインストールするには、それらの構成がいくつかのネットワーク要件を満たしている必要があります。</block>
+  <block id="ceeccb67c4ca8801e51075063d898307" category="paragraph">最大レイテンシは75ms（RTT）未満</block>
+  <block id="2c66766b3cbb0e01db3809a4370c911e" category="paragraph">ジッターは5ミリ秒以下である必要があります。</block>
+  <block id="192e68ef3df9e07712be5cfbedf63575" category="paragraph">Internet Control Message Protocol（ICMP）とTCPトラフィックの両方で、パケット損失は0.01%未満でなければなりません。</block>
+  <block id="918d95987e6cf19fe89998499e6e9348" category="paragraph">メディエーターサービスと1つのDRグループの間のリンクに20MBps以上の帯域幅が必要です。</block>
+  <block id="4f1f2bb1718b231428cfd539cdbe7657" category="list-text">独立した接続性</block>
+  <block id="d4fda9bf787c3a38a379763f5d621600" category="paragraph">各サイトとONTAP メディエーターは個別に接続する必要があります。一方のサイトで障害が発生しても、影響を受けない他の2つのサイト間のIP接続は中断しないでください。</block>
+  <block id="f743e29bd73cf3b477b5b3c15fcf6ec1" category="section-title">MetroCluster 構成でのONTAP メディエーターのホストの要件</block>
+  <block id="fec21bcdc858f42f1c942fd943d09de4" category="paragraph">構成が複数のホスト要件を満たしていることを確認する必要があります。</block>
+  <block id="aecf60a0046b893cbed6332405eb3aa3" category="list-text">ONTAP メディエーターは、2つのONTAP クラスタから物理的に分離された外部サイトにインストールする必要があります。</block>
+  <block id="6f044e53b0f973c21b9f45e9f29dd890" category="list-text">ONTAP メディエーターでサポートされるMetroCluster 構成は最大5つです。</block>
+  <block id="00dcc4021e9b5b5c4107ab832d8a3b22" category="list-text">ONTAP メディエーターでは、ホストオペレーティングシステムの最小要件であるCPUおよびメモリ（RAM）は必要ありません。</block>
+  <block id="3238177a17500506d8e25597811d95a1" category="list-text">ホストオペレーティングシステムの最小要件に加えて、使用可能なディスクスペースが少なくとも30GB必要です。</block>
+  <block id="d87323d7c443195bdfe43686953d17da" category="list-text">各DRグループには、最大200MBのディスクスペースが必要です。</block>
 </blocks>
