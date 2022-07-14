@@ -258,11 +258,13 @@
           <div id="react-search" 
           data-search-html="/ja-jp/ontap-metrocluster/search.html"
           data-type="widget" 
-          data-placeholder="ドキュメントを検索" 
-          data-no-results-found="{query}に該当する結果はありません" 
-          data-did-you-mean="{suggestion} を検索" 
-          data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?" 
-          data-results-found="{hitCount} 件見つかりました"  
+          data-placeholder="ドキュメントを検索"
+          data-no-results-found="{query}に該当する結果はありません"
+          data-did-you-mean="{suggestion} を検索"
+          data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?"
+          data-results-found="{hitCount} 件見つかりました"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
           data-sk-es-pf-indexes=""
           data-flavor=""></div>
           <button class="n-property-bar__search-toggle-button" type="button">
@@ -3757,7 +3759,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-04-13 14:12:30 +0000">04/13/2022</time>
+    <time datetime="2022-07-14 20:56:11 +0000">07/14/2022</time>
     
   
 
@@ -3850,7 +3852,145 @@ FC_switch_A_1# copy ftp://10.10.10.55/firmware/m9200-s2ek9-mz.5.2.1.bin bootflas
 </div>
 </li>
 <li>
-<p>このファブリック内の両方のスイッチで、すべての VSAN を無効にします。</p>
+<p>このファブリック内の両方のスイッチで、すべてのVSANを無効にします。</p>
+<div class="paragraph">
+<p>VSANをディセーブルにするには、次の手順 を使用します。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>設定端末を開きます。</p>
+<div class="paragraph">
+<p>'<strong>config t</strong>`</p>
+</div>
+</li>
+<li>
+<p>「*VSAN database *'」と入力します</p>
+</li>
+<li>
+<p>VSANの状態を確認します。</p>
+<div class="paragraph">
+<p><strong>show vsan</strong></p>
+</div>
+<div class="paragraph">
+<p>すべてのVSANがアクティブである必要があります。</p>
+</div>
+</li>
+<li>
+<p>VSANを一時停止します。</p>
+<div class="paragraph">
+<p><code><strong>VSAN_vsan-num_suspend</strong></code></p>
+</div>
+<div class="paragraph">
+<p><strong>例：</strong>'VSAN 10 suspend</p>
+</div>
+</li>
+<li>
+<p>VSANの状態を再度確認します。</p>
+<div class="paragraph">
+<p><strong>show vsan</strong>+all VSANを一時停止する必要があります</p>
+</div>
+</li>
+<li>
+<p>設定ターミナルを終了します。</p>
+<div class="paragraph">
+<p>「* end *」と入力します</p>
+</div>
+</li>
+<li>
+<p>設定を保存します。</p>
+<div class="paragraph">
+<p>'*copy running-config startup-config *</p>
+</div>
+<div class="paragraph">
+<p>次の例は、FC_switch_A_1の出力を表示します。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>FC_switch_A_1# config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# show vsan
+vsan 1 information
+         name:VSAN0001  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:up
+
+vsan 30 information
+         name:MC1_FCVI_2_30  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:up
+
+vsan 40 information
+         name:MC1_STOR_2_40  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:up
+
+vsan 70 information
+         name:MC2_FCVI_2_70  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:up
+
+vsan 80 information
+         name:MC2_STOR_2_80  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:up
+
+vsan 4079:evfp_isolated_vsan
+
+vsan 4094:isolated_vsan
+
+FC_switch_A_1(config-vsan-db)# vsan 1 suspend
+FC_switch_A_1(config-vsan-db)# vsan 30 suspend
+FC_switch_A_1(config-vsan-db)# vsan 40 suspend
+FC_switch_A_1(config-vsan-db)# vsan 70 suspend
+FC_switch_A_1(config-vsan-db)# vsan 80 suspend
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1#
+FC_switch_A_1# show vsan
+vsan 1 information
+         name:VSAN0001  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:down
+
+vsan 30 information
+         name:MC1_FCVI_2_30  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:down
+
+vsan 40 information
+         name:MC1_STOR_2_40  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:down
+
+vsan 70 information
+         name:MC2_FCVI_2_70  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:down
+
+vsan 80 information
+         name:MC2_STOR_2_80  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:down
+
+vsan 4079:evfp_isolated_vsan
+
+vsan 4094:isolated_vsan</pre>
+</div>
+</div>
 </li>
 <li>
 <p>必要なファームウェアをスイッチにインストールします。</p>
@@ -3874,29 +4014,190 @@ Enter Yes to confirm the installation.</pre>
 </div>
 </li>
 <li>
-<p>このファブリック内の両方のスイッチで、すべての VSAN を有効にします。</p>
+<p>このファブリック内の両方のスイッチで、すべてのVSANを有効にします。</p>
+<div class="paragraph">
+<p>VSANをイネーブルにするには、次の手順 を使用します。</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>設定端末を開きます。</p>
+<div class="paragraph">
+<p>'<strong>config t</strong>`</p>
+</div>
+</li>
+<li>
+<p>「*VSAN database *'」と入力します</p>
+</li>
+<li>
+<p>VSANの状態を確認します。</p>
+<div class="paragraph">
+<p><strong>show vsan</strong></p>
+</div>
+<div class="paragraph">
+<p>VSANは一時停止する必要があります。</p>
+</div>
+</li>
+<li>
+<p>VSANをアクティブにします。</p>
+<div class="paragraph">
+<p>'<strong>no vsan_vsan-num_suspend</strong></p>
+</div>
+<div class="paragraph">
+<p>*例：*no vsan 10 suspend`</p>
+</div>
+</li>
+<li>
+<p>VSANの状態を再度確認します。</p>
+<div class="paragraph">
+<p><strong>show vsan</strong></p>
+</div>
+<div class="paragraph">
+<p>すべてのVSANがアクティブである必要があります。</p>
+</div>
+</li>
+<li>
+<p>設定ターミナルを終了します。</p>
+<div class="paragraph">
+<p>「* end *」と入力します</p>
+</div>
+</li>
+<li>
+<p>設定を保存します。</p>
+<div class="paragraph">
+<p>'*copy running-config startup-config *</p>
+</div>
+<div class="paragraph">
+<p>次の例は、FC_switch_A_1の出力を表示します。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>FC_switch_A_1# config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# show vsan
+vsan 1 information
+         name:VSAN0001  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:down
+
+vsan 30 information
+         name:MC1_FCVI_2_30  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:down
+
+vsan 40 information
+         name:MC1_STOR_2_40  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:down
+
+vsan 70 information
+         name:MC2_FCVI_2_70  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:down
+
+vsan 80 information
+         name:MC2_STOR_2_80  state:suspended
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:down
+
+vsan 4079:evfp_isolated_vsan
+
+vsan 4094:isolated_vsan
+
+FC_switch_A_1(config-vsan-db)# no vsan 1 suspend
+FC_switch_A_1(config-vsan-db)# no vsan 30 suspend
+FC_switch_A_1(config-vsan-db)# no vsan 40 suspend
+FC_switch_A_1(config-vsan-db)# no vsan 70 suspend
+FC_switch_A_1(config-vsan-db)# no vsan 80 suspend
+FC_switch_A_1(config-vsan-db)#
+FC_switch_A_1(config-vsan-db)# show vsan
+vsan 1 information
+         name:VSAN0001  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:up
+
+vsan 30 information
+         name:MC1_FCVI_2_30  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:up
+
+vsan 40 information
+         name:MC1_STOR_2_40  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:up
+
+vsan 70 information
+         name:MC2_FCVI_2_70  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id
+         operational state:up
+
+vsan 80 information
+         name:MC2_STOR_2_80  state:active
+         interoperability mode:default
+         loadbalancing:src-id/dst-id/oxid
+         operational state:up
+
+vsan 4079:evfp_isolated_vsan
+
+vsan 4094:isolated_vsan
+
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1#</pre>
+</div>
+</div>
 </li>
 <li>
 <p>ONTAP で MetroCluster 構成の動作を確認します。</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>システムがマルチパスかどうかを確認します。 +<code>* node run -node -name_sysconfig -a *</code></p>
+<p>システムがマルチパスかどうかを確認します。</p>
+<div class="paragraph">
+<p>'*node run -node node_name sysconfig -a *</p>
+</div>
 </li>
 <li>
-<p>両方のクラスタにヘルス・アラートがないかどうかを確認します +<code>* system health alert show *</code></p>
+<p>ヘルスアラートがないかどうかを両方のクラスタで確認します。</p>
+<div class="paragraph">
+<p>「 * system health alert show * 」というメッセージが表示されます</p>
+</div>
 </li>
 <li>
-<p>MetroCluster 構成と動作モードが正常であることを確認します :+<code>* MetroCluster show*</code></p>
+<p>MetroCluster 構成と運用モードが正常な状態であることを確認します。</p>
+<div class="paragraph">
+<p>「 * MetroCluster show * 」と入力します</p>
+</div>
 </li>
 <li>
-<p>MetroCluster チェック :+<code>* MetroCluster check run*</code> を実行します</p>
+<p>MetroCluster チェックを実行します。</p>
+<div class="paragraph">
+<p>「 * MetroCluster check run * 」のようになります</p>
+</div>
 </li>
 <li>
-<p>MetroCluster チェックの結果を表示します :+<code>* MetroCluster check show*</code></p>
+<p>MetroCluster チェックの結果を表示します。</p>
+<div class="paragraph">
+<p>「 * MetroCluster check show * 」と表示されます</p>
+</div>
 </li>
 <li>
-<p>スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +<code>* storage switch show *</code></p>
+<p>スイッチにヘルスアラートがないかどうかを確認します（ある場合）。</p>
+<div class="paragraph">
+<p>「 * storage switch show * 」と表示されます</p>
+</div>
 </li>
 <li>
 <p>Config Advisor を実行します。</p>

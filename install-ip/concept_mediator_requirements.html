@@ -258,11 +258,13 @@
           <div id="react-search" 
           data-search-html="/ja-jp/ontap-metrocluster/search.html"
           data-type="widget" 
-          data-placeholder="ドキュメントを検索" 
-          data-no-results-found="{query}に該当する結果はありません" 
-          data-did-you-mean="{suggestion} を検索" 
-          data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?" 
-          data-results-found="{hitCount} 件見つかりました"  
+          data-placeholder="ドキュメントを検索"
+          data-no-results-found="{query}に該当する結果はありません"
+          data-did-you-mean="{suggestion} を検索"
+          data-no-results-found-did-you-mean="{query} に該当する結果はありません。{suggestion} の間違いではありませんか?"
+          data-results-found="{hitCount} 件見つかりました"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
           data-sk-es-pf-indexes=""
           data-flavor=""></div>
           <button class="n-property-bar__search-toggle-button" type="button">
@@ -3757,7 +3759,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-05-10 16:10:50 +0000">05/10/2022</time>
+    <time datetime="2022-07-14 20:56:11 +0000">07/14/2022</time>
     
   
 
@@ -3767,15 +3769,11 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph lead">
-<p>環境が次の要件を満たしている必要があります。</p>
+<p>ご使用の環境が特定の要件を満たしている必要があり</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<img src="/us-en/ontap-metrocluster/images/note.svg" alt="注記">
-</td>
-<td class="content">
+<div class="paragraph">
+<p>1つのディザスタリカバリグループ（DRグループ）に次の要件が適用されます。の詳細を確認してください <a href="concept_parts_of_an_ip_mcc_configuration_mcc_ip.html#disaster-recovery-dr-groups">"DR グループ"</a>。</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -3786,6 +3784,9 @@
 </li>
 <li>
 <p>ONTAP メディエーターは、 MetroCluster サイトとは別の場所にある Linux ホストにインストールする必要があります。</p>
+<div class="paragraph">
+<p>ONTAP メディエーターと各サイトの間の接続には、2つの異なる障害ドメインが必要です。</p>
+</div>
 </li>
 <li>
 <p>ONTAP メディエーターサービスでは、最大 5 つの MetroCluster 構成を同時にサポートできます。</p>
@@ -3795,27 +3796,23 @@
 </li>
 </ul>
 </div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="metrocluster-構成でメディエーターを使用するためのネットワーク要件">MetroCluster 構成でメディエーターを使用するためのネットワーク要件</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ONTAP 構成で MetroCluster メディエーターサービスをインストールするには、いくつかのネットワーク要件を満たす必要があります。</p>
+<p>ONTAP メディエーターサービスをMetroCluster 構成にインストールするには、それらの構成がいくつかのネットワーク要件を満たしている必要があります。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>レイテンシ</p>
 <div class="paragraph">
-<p>ラウンドトリップレイテンシは75ミリ秒以下である必要があります。</p>
+<p>最大レイテンシは75ms（RTT）未満</p>
 </div>
 <div class="paragraph">
-<p>ジッターは25ミリ秒以下である必要があります。</p>
+<p>ジッターは5ミリ秒以下である必要があります。</p>
 </div>
 </li>
 <li>
@@ -3827,13 +3824,50 @@
 <li>
 <p>パケット損失</p>
 <div class="paragraph">
-<p>パケット損失は 0.01% 以下である必要があります。</p>
+<p>Internet Control Message Protocol（ICMP）とTCPトラフィックの両方で、パケット損失は0.01%未満でなければなりません。</p>
 </div>
 </li>
 <li>
 <p>帯域幅</p>
 <div class="paragraph">
-<p>メディエーターサービスとMetroCluster 構成の間のリンクには、20MBps以上の帯域幅が必要です。</p>
+<p>メディエーターサービスと1つのDRグループの間のリンクに20MBps以上の帯域幅が必要です。</p>
+</div>
+</li>
+<li>
+<p>独立した接続性</p>
+<div class="paragraph">
+<p>各サイトとONTAP メディエーターは個別に接続する必要があります。一方のサイトで障害が発生しても、影響を受けない他の2つのサイト間のIP接続は中断しないでください。</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="metrocluster-構成でのontap-メディエーターのホストの要件">MetroCluster 構成でのONTAP メディエーターのホストの要件</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>構成が複数のホスト要件を満たしていることを確認する必要があります。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ONTAP メディエーターは、2つのONTAP クラスタから物理的に分離された外部サイトにインストールする必要があります。</p>
+</li>
+<li>
+<p>ONTAP メディエーターでサポートされるMetroCluster 構成は最大5つです。</p>
+</li>
+<li>
+<p>ONTAP メディエーターでは、ホストオペレーティングシステムの最小要件であるCPUおよびメモリ（RAM）は必要ありません。</p>
+</li>
+<li>
+<p>ホストオペレーティングシステムの最小要件に加えて、使用可能なディスクスペースが少なくとも30GB必要です。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>各DRグループには、最大200MBのディスクスペースが必要です。</p>
+</li>
+</ul>
 </div>
 </li>
 </ul>
