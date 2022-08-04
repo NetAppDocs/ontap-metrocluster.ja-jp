@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, controllers, switchover, switchback, fc, configuration, net, boot, root, aggregate, mcc 
 summary: MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
 ---
-= スイッチオーバーとスイッチバックを使用してMetroCluster FC構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）
+= スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A990 / FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -472,7 +472,7 @@ site_B のプラットフォームをアップグレードできるように、�
 
 このタスクは site_A で実行する必要があります
 
-このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。
+このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。
 
 image::../media/mcc_upgrade_cluster_a_in_switchover_A900.png[MCC アップグレードクラスタ A をスイッチオーバー A900 でアップグレードします]
 
@@ -544,7 +544,7 @@ cluster_A::> metrocluster operation show
 
 
 
-== site_B の AFF A700 コントローラモジュールと NVS を取り外します
+== site_BまたはAFF A700コントローラモジュールとNVSをsite_Bで取り外します
 
 構成から古いコントローラを削除する必要があります。
 
@@ -564,9 +564,9 @@ cluster_A::> metrocluster operation show
 
 
 
-=== AFF A700 コントローラモジュールを取り外します
+=== AFF A700またはFAS9000コントローラモジュールを取り外します
 
-次の手順を使用して、 AFF A700 コントローラモジュールを取り外します。
+次の手順 を使用して、AFF A700またはFAS9000コントローラモジュールを取り外します。
 
 .手順
 . コントローラモジュールを取り外す前に、コントローラモジュールからコンソールケーブル（ある場合）と管理ケーブルを外します。
@@ -592,12 +592,12 @@ image:../media/drw_9500_remove_PCM.png["コントローラ"]
 
 
 
-=== AFF A700 NVS モジュールを取り外します
+=== AFF A700またはFAS9000 NVSモジュールを取り外します
 
-次の手順を使用して、 AFF A700 NVS モジュールを取り外します。
+次の手順 を使用して、AFF A700またはFAS9000 NVSモジュールを取り外します。
 
 
-NOTE: AFF A700 NVS モジュールはスロット 6 にあり、システム内の他のモジュールと比較して高さが 2 倍になっています。
+NOTE: AFF A700またはFAS9000 NVSモジュールはスロット6に搭載されており、システム内の他のモジュールと比較して高さが2倍になっています。
 
 . NVS のロックを解除し、スロット 6 から取り外します。
 +
@@ -1244,7 +1244,7 @@ link:https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_cr
 
 新しいコントローラを設定したら、 MetroCluster 構成をスイッチバックして構成を通常動作に戻します。
 
-このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。site_A のノードはまだアップグレード待ちです。
+このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。次の図に示すように、site_Aのノードはまだアップグレードを待っています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。
 
 image::../media/mcc_upgrade_cluster_a_switchback_A900.png[4 ノード MetroCluster]
 

@@ -6852,7 +6852,6 @@
   <block id="be8958e515095147a6dd8614b428fe8d" category="cell">MetroCluster 構成の内容</block>
   <block id="9792a4eebc59c44369f1f98f9d27237a" category="cell">操作</block>
   <block id="5a886364f7be07108a866a1dbf84580e" category="paragraph">複数のデータアグリゲート</block>
-  <block id="7f844e6639d44c336dfaaa0017b0dbc8" category="paragraph">任意のノードのプロンプトから、 MetroCluster を構成します。 MetroCluster configure node-name</block>
   <block id="eb4d985f7e803275c39a27eca837d150" category="paragraph">ミラーされた 1 つのデータアグリゲート</block>
   <block id="ea00fbc3649d5a240ebf0ffe4ebe4dc5" category="paragraph">advanced モードで続行するかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（ * &gt; ）が表示されます。</block>
   <block id="c1720ee15ca6b853bdb55d81deac3213" category="paragraph">次のコマンドは、 controller_A_1 を含む DR グループ内のすべてのノードの MetroCluster 構成を有効にします。</block>
@@ -7282,7 +7281,6 @@
   <block id="1ff31a738d26e47dfa5c26bac0568556" category="summary">各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。</block>
   <block id="da6a152013b01d35131c7e6a0a834b28" category="paragraph">新しいコントローラをネットブートする必要がある場合は、を参照してください <block ref="3b790cf59184cbd534b9cbce1ed9244d" category="inline-link-macro-rx"></block>。</block>
   <block id="6ac62fa13c69ad320702cd9a98f97b12" category="list-text">ローカルサイトの各ノードに電源が入っていない場合は電源を投入し、すべてのノードを完全にブートします。</block>
-  <block id="973fe20c86fcee0442e8a4a7a7390bba" category="list-text">各クラスタの最初のノードで、プロンプトに従ってクラスタを設定します</block>
   <block id="b97ee3821e4a08c69e3c5029696ca2c6" category="list-text">プロンプトに従ってノード管理インターフェイスを設定します。</block>
   <block id="5a09db16e39519f87adda9a1868b72b7" category="list-text">プロンプトに従ってクラスタを作成します。</block>
   <block id="8c6652271cf9962cf25d57593f2e0998" category="list-text">ライセンスを追加し、クラスタ管理 SVM をセットアップします。プロンプトに従って DNS 情報を入力します。</block>
@@ -7290,7 +7288,6 @@
   <block id="b842db396e001f50d74b654f1314df5d" category="list-text">ノードの設定を完了します。ただし、データアグリゲートは作成しません。</block>
   <block id="3dda58d6d9375a71c538f50ab53299f6" category="paragraph">ONTAP System Manager を使用して、 Web ブラウザでクラスタ管理 IP アドレスを指定できます <block ref="a014d2689df7be806072ba0665b78ca6" category="inline-link-rx"></block>。</block>
   <block id="cbb4f42385447257b0524c80bc88c203" category="list-text">次のコントローラをブートし、プロンプトに従ってクラスタに追加します。</block>
-  <block id="734411caacc66dc5fb48af46a3ee7524" category="paragraph">このコマンドを実行するとハイアベイラビリティモードが設定されますが、ストレージフェイルオーバーは有効になりません。ストレージフェイルオーバーは、あとで実行する MetroCluster 構成の設定プロセスで自動的に有効になります。</block>
   <block id="c8a47a2f93307e796690ebd7d82f5573" category="paragraph">この時点では MetroCluster IP インターフェイスは設定されておらず、コマンド出力に表示されません。</block>
   <block id="76c896ac6b7a90ae2d17c2b3934e8219" category="paragraph">次の例は、 node_A_1 の 2 つのクラスタポートを示しています。</block>
   <block id="cdf29de4c8a5a778670e597ff53bb862" category="list-text">パートナークラスタで同じ手順を繰り返します。</block>
@@ -7468,8 +7465,6 @@
   <block id="87d86e0d3cf65f69738c696c5ab800b4" category="paragraph">10.1.1.4</block>
   <block id="cc291563cd7eddd5afa9db9213280427" category="paragraph">10.1.2.4</block>
   <block id="7836fec023af8279b6813ce6178cea83" category="paragraph">次の表に示すように、 MetroCluster IP インターフェイスで使用される物理ポートはプラットフォームモデルによって異なります。</block>
-  <block id="577e6b9899e57c4e54e43cf79c919f83" category="paragraph">e3a の場合</block>
-  <block id="969d430598a257671bdf944480e4d46b" category="paragraph">e3b</block>
   <block id="e84adb514eb7cf544f0458fa9f233a94" category="paragraph">FAS8300 と FAS8700</block>
   <block id="bb696bca91d9d001f9391644f8ffc55b" category="paragraph">この例で使用するポートは、 AFF A700 または FAS9000 システムの場合のものです。</block>
   <block id="26474283e53d2bcc6e465bb015d10ac6" category="paragraph">ディスクの自動割り当てでは、シェルフ単位でプール 0 とプール 1 のディスクが割り当てられます。</block>
@@ -7514,10 +7509,6 @@
   <block id="39e93eb17757fd8fb52d7c9292dd9372" category="list-text">サイト B で同じ手順を繰り返します</block>
   <block id="919e6408348a7dae1112a733a620d17b" category="section-title">プール 1 のディスクの手動割り当て（ ONTAP 9.3 ）</block>
   <block id="01f1f803c245894da41eff36602972c9" category="paragraph">ONTAP の自動ディスク割り当て機能は、シェルフ単位でディスクを割り当てます。例：</block>
-  <block id="0225c53f2baba94a31b5eb0d90e365cf" category="list-text">site_B-shelf_2 のすべてのディスクが node_A_1 のプール 1 に自動的に割り当てられます</block>
-  <block id="48f3a4ccc31158c28a0543a8d0931d55" category="list-text">site_B-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます</block>
-  <block id="275964d7b48391c0fbb2a8a50a6722d9" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_1 のプール 1 に自動的に割り当てられます</block>
-  <block id="04c166136aa1b3c5a330651de02e8c2c" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます</block>
   <block id="ea0ac128cbb46e41c5edee49bafee325" category="list-text">MetroCluster IP 構成の各ノードで、リモートディスクを 1 つプール 1 に割り当てます。</block>
   <block id="d2e9f5e56abff80fcdc1dfd04ecda147" category="paragraph">次の出力は、シェルフ 23 のディスクが割り当てられ、表示されていないことを示しています。</block>
   <block id="dc39a7bb0328bf49da6969242ecc1465" category="section-title">ONTAP 9.4 での自動ドライブ割り当ての有効化</block>
@@ -7531,11 +7522,9 @@
   <block id="860e1e683db2fc2e67aeec00dc74b357" category="paragraph">MetroCluster 構成の両方のクラスタにネットワークで接続された Linux ホストが必要です。具体的な要件については、 MetroCluster Tiebreaker または ONTAP メディエーターのドキュメントを参照してください。</block>
   <block id="ffd76385e89b64e24fcfe106dc5b4533" category="paragraph">Tiebreaker または ONTAP メディエーターの既存のインスタンスに接続する場合は、 Tiebreaker またはメディエーターサービスのユーザ名、パスワード、および IP アドレスが必要です。</block>
   <block id="9d4b44162692abd2769e8e0a1c1f0155" category="paragraph">ONTAP メディエーターの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。</block>
-  <block id="c9016b3f72dba4b8f61408d9d613c969" category="paragraph">Tiebreaker ソフトウェアの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。</block>
   <block id="9a044a9c813dcf5d075c67eae7c4ec7c" category="paragraph">MetroCluster Tiebreaker ソフトウェアと ONTAP メディエーターの両方を同じ MetroCluster 構成で使用することはできません。</block>
   <block id="9cb623298dd6b51e66fbc2bbb1086057" category="inline-xref-macro">ONTAP メディエーターまたは MetroCluster Tiebreaker を使用する場合の考慮事項</block>
   <block id="8e57e18da9d7e1ec40a754e3453835ac" category="list-text">ONTAP メディエーターサービスまたは Tiebreaker ソフトウェアを設定します。</block>
-  <block id="24135708f40bc30abbe1b5a601010307" category="list-text">Tiebreaker ソフトウェアを使用している場合は、 Tiebreaker のドキュメントを参照してください。</block>
   <block id="f36114c708cdf027cb87470b60b2bf8d" category="summary">MetroCluster IP 構成を計画する際には、必要なサポート対象のハードウェアコンポーネントとソフトウェアコンポーネントを把握しておく必要があります。また、内容を正しく理解するためには、このドキュメントで使用しているコンポーネントの命名規則も確認しておく必要があります。</block>
   <block id="138070c8ec80f4ea916e550a8882b671" category="doc">必要な MetroCluster IP コンポーネントと命名規則</block>
   <block id="fed8598d34d2dd09e02d810def0e98ef" category="paragraph">ハードウェアとソフトウェアは、 MetroCluster IP 構成でサポートされている必要があります。</block>
@@ -9591,7 +9580,6 @@
   <block id="8e1b87e111c6a25dd28266989f14eb98" category="paragraph">設定レプリケーションサービス（ CRS ）メタデータボリュームとデータ SVM ルートボリュームは、ミラーされたアグリゲートに配置する必要があります。これらのボリュームをミラーされていないアグリゲートに移動することはできませミラーされていないアグリゲートにある場合、ネゴシエートスイッチオーバー処理とスイッチバック処理が拒否されます。MetroCluster check コマンドは ' その場合に警告を表示します</block>
   <block id="f04ccee1003dbd5f1c9c6351af3f0b4e" category="list-text">メンテナンスモードで、ノードのローカルアグリゲートのドライブを手動で割り当てます。</block>
   <block id="b9ddc3ef83ffe8e2847e207d39a98687" category="list-text">ブートメニューからオプション 4 を選択し、システムをブートします。</block>
-  <block id="777c3d143908c77e542462fee4831d88" category="list-text">に進みます <block ref="0ec0f3cb91ab6923e11455d08d5019fc" category="inline-link-macro-rx"></block>。</block>
   <block id="6fd8791145f4993bd4306df9034fd9c1" category="paragraph">各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してローカル（プール 0 ）のディスクを自動的に割り当てます。</block>
   <block id="48c67acec6c16a97bcb54a609d44b6a4" category="paragraph">ノードをメンテナンスモードにした状態で、最初にシェルフの 1 つのディスクをプール 0 に割り当てる必要があります。シェルフの残りのディスクは ONTAP によって同じプールに自動的に割り当てられます。このタスクは、プール 0 に事前設定されたルートアグリゲートが含まれる、工場出荷状態のシステムでは必要ありません。</block>
   <block id="1ec5c0416f18c1d0898b4ac732193700" category="list-text">各ノードでルートアグリゲートに 1 つのディスクを手動で割り当てます。</block>
@@ -9842,7 +9830,6 @@
   <block id="25101db8425d5c0bc04e6d109223fd02" category="paragraph"><block ref="25101db8425d5c0bc04e6d109223fd02" category="inline-link-macro-rx"></block></block>
   <block id="955880d2c90799dfc7d399125affbb1c" category="paragraph">「 storage port disable -node -node-name 」 - ポート番号 _</block>
   <block id="d8a793fcd41c059cecfec311c4831598" category="paragraph">ケーブルを再接続するときに簡単に識別できるように、ケーブルにラベルを付けておく必要があります。ISL ポートのケーブルだけを接続したままにしておきます。</block>
-  <block id="a6344715e21a74094ac5f97c4b6becd5" category="list-text">ディスクの自動割り当てが無効になっていることを確認します。</block>
   <block id="b2fa14e3df9342c7d9ce9f5ac1643744" category="paragraph">使用するプラットフォームとディスクシェルフに対応した _Installation と Setup_documentation の手順を使用してください。</block>
   <block id="192be3850da5f8f6f36f9c637a13cc65" category="list-text">既存のコントローラモジュールのプロンプトからノードを停止します。</block>
   <block id="a0f166275a301177f6c2068f95dcace7" category="paragraph">halt local-inhibit-takeover true</block>
@@ -10053,53 +10040,17 @@
   <block id="af1cf569a025dd01876e4b16b86cbc5e" category="admonition">次の手順に従う必要があります <block ref="fa2050fe1fe203254b9a9c610c6240ba" category="inline-xref-macro-rx"></block>。</block>
   <block id="f8dc7177731310562718d80a3440fa9d" category="paragraph">MetroCluster の構成設定メディエーターの追加 mediator-address_ip-address-bmediator-host_`</block>
   <block id="d0dddd5779102f5b72e8edf336fef717" category="list-text">コントローラモジュールとシャーシの HA 状態を表示します。</block>
-  <block id="eb7f8625ee8e86a6bca2611bb12442ec" category="list-text"><block ref="c1f5a94cfd066062167f55d534e50946" category="inline-xref-macro-rx"></block></block>
-  <block id="6c7a64a1f4e024ce7a69797733e5ea70" category="list-text"><block ref="a68a4adac480e2cd0e0cb4df2db11ae4" category="inline-xref-macro-rx"></block></block>
-  <block id="f9a26e7e1146416447089df2dd5e9a7a" category="list-text">オプション「 9a 」を選択します。</block>
-  <block id="f2c62ba974aeba381c63dedf483a3554" category="list-text">ノードが再起動したら、プロンプトが表示されたら Ctrl+C キーを押してブートメニューを表示し、 * Maintenance mode boot * オプションを選択します。</block>
-  <block id="9620a315fe49582f83b352cb3df7065d" category="paragraph">ノードをメンテナンスモードにした状態で、最初にシェルフの 1 つのディスクをプール 0 に割り当てる必要があります。シェルフの残りのディスクは ONTAP で自動的に同じプールに割り当てられます。このタスクは、プール 0 に事前設定されたルートアグリゲートが含まれる、工場出荷状態のシステムでは必要ありません。</block>
-  <block id="da4ffc9643edc63e8b45b98c3db4e4d1" category="list-text">ブートメニューからオプション 4 を選択して次に進みます。</block>
-  <block id="e8453ea55ca2ab8a592b2cb35594bcab" category="inline-link">ONTAP System Manager （バージョン 9.7 以降）</block>
   <block id="f753a91b4868b4d2d7ad06fa15958542" category="paragraph">「 storage failover modify -mode ha -node _localhost_` 」です</block>
   <block id="e40d6a178d9137d254eca9144fcc5d3c" category="paragraph"><block ref="e40d6a178d9137d254eca9144fcc5d3c" category="inline-link-macro-rx"></block></block>
-  <block id="6823c1546d13fbb3599a3e00ab6bcc7a" category="paragraph">「 storage disk option modify -node node_name -autoassign off</block>
   <block id="eda5874a95d7087883feb5817a56dbc4" category="paragraph"><block ref="eda5874a95d7087883feb5817a56dbc4" category="inline-link-macro-rx"></block></block>
   <block id="27132b64b45cb3c4074f45d4fde2af5a" category="paragraph"><block ref="27132b64b45cb3c4074f45d4fde2af5a" category="inline-link-macro-rx"></block></block>
-  <block id="1a42d5e3ae526a4699281b8767219ce1" category="paragraph">次の例は、「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。</block>
-  <block id="83da41cb2046392d9c91b9b42b375ebe" category="list-text">各ノードで次のコマンドを入力して、 DR グループを作成する準備ができていることを確認します。</block>
   <block id="cb8db61556b998f0533a4e329749c0f3" category="list-text">すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートをもう一方の VLAN に作成する必要があります。を参照してください <block ref="0d7e2206ca44f9cb7344ddf469b6d625" category="inline-link-macro-rx"></block>。</block>
-  <block id="af46fd28618bde8b135c1c6b4d3405ac" category="paragraph">MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `</block>
-  <block id="4f756847ca1507865cb117aa60347adb" category="list-text">接続を確立します。</block>
-  <block id="459f816e984e3774fe54bd0c3739bd78" category="paragraph">ストレージ構成に応じて、 MetroCluster IP 構成の各ノードのプール 1 のドライブ割り当てを確認するか、ドライブを手動で割り当てる必要があります。</block>
-  <block id="576b0156512a49a83913a3d968e689c1" category="paragraph">使用する手順は、使用する ONTAP のバージョンによって異なります。</block>
-  <block id="b210f8e02a0b572eec2a5c98da81b46b" category="paragraph">コマンドの出力には、次の形式でディスク名が表示されます。</block>
-  <block id="5bddb9f920514b0a0a299f0a0cca3e7e" category="paragraph">「 node-name:0m.i1.0L1` 」</block>
-  <block id="705296b22d53fe306b6160e173a7dfff" category="list-text">プール 1 のディスクが自動で割り当てられていることを確認します。</block>
   <block id="7f252cde9b9d80bca3f1b99cc3c2ae55" category="paragraph">手動でディスクを割り当てる必要があるかどうかの詳細については、を参照してください <block ref="e40d6a178d9137d254eca9144fcc5d3c" category="inline-link-macro-rx"></block>。</block>
-  <block id="2e9a660786a2138a9457f0cdb952c99d" category="paragraph">「 disk-id 」は、「 owner-node-name 」のリモートシェルフ上のドライブを識別する必要があります。</block>
-  <block id="654be415f4fd25d4eb7ef5d13950da64" category="paragraph">各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してリモート（プール 1 ）のディスクを自動的に割り当てます。</block>
   <block id="fbfcf0e3733710ed69ed10b5fa779fed" category="paragraph">この手順は、各ノードにディスクシェルフが少なくとも 2 台あり、それによってシェルフレベルでディスクの自動割り当てが可能な場合にのみ使用できます。</block>
   <block id="7b062536c43e31fbee2942433f3ccb31" category="paragraph">シェルフレベルの自動割り当てを使用できない場合は、リモートディスクを手動で割り当てて、各ノードにディスクのリモートプール（プール 1 ）を構成する必要があります。</block>
   <block id="ee7e48631bbfc8e832cadee5bbbc03a9" category="paragraph">各シェルフでディスクを 1 つ指定して、自動割り当てを「開始」する必要があります。</block>
-  <block id="6a9998a797a4b4ebbb6e136447e6189c" category="paragraph">「 disk assign -disk disk-id -pool 1 -owner owner-node-name 」です</block>
   <block id="123e6c3d9c94f11e38d58164f434bdf4" category="paragraph">ONTAP ディスクの自動割り当て機能により、指定したディスクを含むリモートシェルフのすべてのディスクが割り当てられます。</block>
   <block id="81b4294a2f342064d8a63544ff17f60d" category="list-text">ディスクの自動割り当てが開始されるまで少なくとも 60 秒待ってから、シェルフのリモートディスクがプール 1 に自動的に割り当てられたことを確認します。</block>
-  <block id="49252d08fb330c8c53b08b310f655d3f" category="paragraph">クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。アグリゲートを特定のノード上に作成するには、「 -node 」パラメータを使用するか、そのノードが所有するドライブを指定します。</block>
-  <block id="2da5317e4e730871c4e0eebd9caf388e" category="list-text">アグリゲートのホームノード（通常運用時にアグリゲートを所有するノード）</block>
-  <block id="24039e9f7463121386eb64f0a5fbe184" category="list-text">アグリゲートに追加するドライブのリスト</block>
-  <block id="cbd02cd515fef46c3f5978bf3a1c2fa5" category="list-text">追加するドライブ数</block>
-  <block id="3b03d743e2fdb9ba04471b09a100499d" category="list-text">アグリゲートに使用するチェックサム形式</block>
-  <block id="915fe9fcfebfa751a522bb919d397401" category="list-text">使用するドライブのタイプ</block>
-  <block id="aa3349a8ef996a1caa4d11cec0481ea2" category="list-text">使用するドライブのサイズ</block>
-  <block id="28430df9d9883e95bc26f63f68cab7ac" category="list-text">使用するドライブの速度</block>
-  <block id="dbf6704815a89e026e7222b9ddbd1be6" category="list-text">アグリゲート上の RAID グループの RAID タイプ</block>
-  <block id="32e5424b78c791c02cd24f2a1f66b779" category="list-text">RAID グループに含めることができるドライブの最大数</block>
-  <block id="6314ba11af07fde9f749195a4938e623" category="list-text">RPM の異なるドライブが許可されるかどうか</block>
-  <block id="ef59cc1d4f18c9ecc43389044e0b17b3" category="admonition">ミラーされた単一のデータアグリゲートを使用する場合は、を参照してください <block ref="69c8031a2de94253e9843bb8f5d7573d" category="inline-xref-macro-rx"></block> 手順については、を参照し</block>
-  <block id="f8a921915ee07bb012df13da2fdd7c05" category="list-text">[[step1_single_mirrored ]] 次の形式で MetroCluster を設定します。</block>
-  <block id="bfbb3cda3599b6898415d47ca3b06d9f" category="list-text">MetroCluster に '-allow-with-one-aggregate true パラメータを設定します</block>
-  <block id="74d845e51b59918636d9a13b9fc37d69" category="list-text">アグリゲートに追加するドライブまたはアレイ LUN のリスト</block>
-  <block id="755643e3264b43687573ebc08e75d0aa" category="list-text">RAID グループに含めることができるドライブまたはアレイ LUN の最大数</block>
   <block id="fb2c0ebeb18b9e1080333a65b192bdc3" category="list-text">ONTAP メディエーターの既存のインスタンスを使用している場合は、 ONTAP メディエーターサービスを ONTAP に追加します。</block>
   <block id="6852fcac58b417258b30784060002d89" category="list-text">MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 など）を追跡します。この情報は、この構成手順で後述するように、 RcfFileGenerator ツールを使用する場合に必要になります。</block>
   <block id="b070262d5faad84092129cb1c7a44daa" category="list-text">。<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block> また、各スイッチのポートごとのケーブル接続の概要についても説明します。ケーブル接続の概要を使用して、ケーブル接続を検証します。</block>
@@ -10369,7 +10320,6 @@
   <block id="69b040d4f8adaa4c34e437207036c73c" category="list-text">SNMP が設定されたことを確認します。</block>
   <block id="da82ec774885b0fd4ea7e17756ffc01b" category="paragraph">「 snmp config test 」</block>
   <block id="3b0649c72650c313a357338dcdfb64ec" category="cell">注</block>
-  <block id="4d2df55d2343b32800bfea20e735c55a" category="paragraph">AFF A700 および FAS900</block>
   <block id="09cb6984bdf1b82c9749906ba1a69331" category="summary">MetroCluster IP インターフェイス、 IP アドレスとマスク、およびゲートウェイの次のプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
   <block id="bacf5875940eb96c091917a5d1b9e1ad" category="doc">MetroCluster IP のアドレス、ネットマスク、およびゲートウェイを変更する</block>
   <block id="40505aafe5fd41af1999393ab341c808" category="paragraph">ONTAP 9.10.1 以降では、 MetroCluster IP インターフェイスの IP アドレス、マスク、およびゲートウェイのプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
@@ -10454,7 +10404,6 @@
   <block id="b268877da374fd4b7e106d3ffa6da9f8" category="list-text">Tiebreaker ソフトウェアを使用している場合は、を参照してください <block ref="62330c976dd51c7f2d31efa54ddec6c7" category="inline-link-macro-rx"></block>。</block>
   <block id="7e2317ea641d19001e33fe184824ff0d" category="paragraph">Tiebreaker ソフトウェアを使用する前に、を参照してください <block ref="f62e57388ece8ed3ab39425498977dae" category="inline-link-macro-rx"></block></block>
   <block id="4b8414b2021cbbd4b58cc5b95bc166cd" category="list-text">_Disks and aggregates management _ アグリゲートのミラーリングの詳細については、を参照してください。</block>
-  <block id="5fb51bd58dc6b3d970f3c719b5895808" category="paragraph">CLI を使用したクラスタ管理では、「構成バックアップの管理」セクションの追加情報が使用されます。</block>
   <block id="81469bbc8b1e22a393e56fdba3d5a1f3" category="list-text">MetroCluster 準拠スイッチを使用する MetroCluster IP 構成では、 ONTAP 9.6 以前へのリバートはサポートされません。</block>
   <block id="6f7582d0e120db40c637399cfa1b6c6b" category="inline-link">CLI を使用したクラスタ管理</block>
   <block id="c467b861736195e319f9323a1f51b76d" category="paragraph">。<block ref="752795714a55b77b4bc7d5d8c99674d1" category="inline-link-rx"></block> 追加情報が含まれています。</block>
@@ -10884,7 +10833,6 @@
   <block id="d02e71ae77b3af75d1cc326f36f84ae3" category="paragraph">コントローラのアップグレード中は、ネゴシエートスイッチオーバー後のアグリゲートの自動修復が無効になります。site_B のノードは、 LOADER プロンプトで停止および停止します。</block>
   <block id="b780f876891edc15fa85c699a7f8bfcb" category="list-text">site_B の両方のノードから bootarg の値を収集します printenv</block>
   <block id="1e80b49a305b8f9776f5ad016b85d8e7" category="list-text">site_B のシャーシの電源をオフにします</block>
-  <block id="7772cd0198105a3d1385b2e8a38dfd13" category="section-title">AFF A700 コントローラモジュールを取り外します</block>
   <block id="f6cb76da900c86fece5eb404a84c66d1" category="list-text">コントローラモジュールを取り外す前に、コントローラモジュールからコンソールケーブル（ある場合）と管理ケーブルを外します。</block>
   <block id="dfa9bdf3553d14d1f1265d5adf46b338" category="list-text">コントローラモジュールのロックを解除してシャーシから取り外します。</block>
   <block id="c1ed0cd23ea77c49b5611e5929537b3f" category="list-text">カムハンドルのオレンジ色のボタンを下にスライドさせてロックを解除します。</block>
@@ -10896,8 +10844,6 @@
   <block id="33d42cfbdf6857f6d56828022546f696" category="cell"><block ref="33d42cfbdf6857f6d56828022546f696" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b733ab833a64f07b84375a26a6af83f0" category="cell">カムハンドル</block>
   <block id="f0231ce2b907f79181e8b9703e9a2c98" category="list-text">カムハンドルを回転させて、コントローラモジュールをシャーシから完全に外し、コントローラモジュールをシャーシから引き出します。このとき、空いている手でコントローラモジュールの底面を支えてください。</block>
-  <block id="fd22b7848c5af6378d0b6f4b2d27e00f" category="section-title">AFF A700 NVS モジュールを取り外します</block>
-  <block id="79c5d41bbb72ea24170f3061addd9ece" category="paragraph">次の手順を使用して、 AFF A700 NVS モジュールを取り外します。</block>
   <block id="0d64a71c5e54f6a18144ca98af6bba12" category="list-text">NVS のロックを解除し、スロット 6 から取り外します。</block>
   <block id="97bf9cd87a9cbb5619926733a7d23035" category="list-text">文字と数字が記載された「カム」ボタンを押し下げます。カムボタンがシャーシから離れます。</block>
   <block id="3e40de17d289a21aa0995b29466f1eab" category="list-text">カムラッチを下に回転させて水平にします。NVS がシャーシから外れ、数インチ移動します。</block>
@@ -11034,10 +10980,8 @@
   <block id="447b7bdefc8e750f8d7dab18bb9172ea" category="list-text">node_B_2 - A700 ： 537035354</block>
   <block id="50d704bfae735cf9f8824da705413abc" category="paragraph">追加情報の場合は、を参照してください<block ref="0abbdd13a8c045ec09bd7c54eb2d0bef" category="inline-link-rx"></block>。</block>
   <block id="fbb702216c9d47455a0b8dbde9a6a6ca" category="paragraph">構成から古いコントローラを削除する必要があります。</block>
-  <block id="aa7985a89f1c2f960f222e4a5876a369" category="paragraph">次の手順を使用して、 AFF A700 コントローラモジュールを取り外します。</block>
   <block id="594c103f2c6e04c3d8ab059f031e0c1a" category="inline-image-macro">コントローラ</block>
   <block id="5370787e20e547791ddb1e14849b2cd9" category="paragraph"><block ref="5370787e20e547791ddb1e14849b2cd9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="87f2b2201ecbf070e4e854d1304aeeac" category="admonition">AFF A700 NVS モジュールはスロット 6 にあり、システム内の他のモジュールと比較して高さが 2 倍になっています。</block>
   <block id="771fe3d405626b11981b56d013399632" category="list-text">文字と数字が記載されたカムボタンを押し下げます。カムボタンがシャーシから離れます。</block>
   <block id="dd1cfa8d899a8ddd6f4a00978117e5f0" category="inline-image-macro">NVS モジュール</block>
   <block id="20d7cafa77ced4deb94fb09d7a230ff9" category="paragraph"><block ref="20d7cafa77ced4deb94fb09d7a230ff9" category="inline-image-macro-rx" type="image"></block></block>
@@ -11306,8 +11250,6 @@
   <block id="fb22c4a7b5c0395bdf46487a4665275e" category="list-text">Tiebreaker CLI の「 monitor show-status 」コマンドを使用して、 MetroCluster 設定が正しく削除されたことを確認します。</block>
   <block id="1ab09d70d6824875fab00d3405138192" category="image-alt">MCC アップグレードクラスタ A をスイッチオーバー A900 でアップグレードします</block>
   <block id="968f84559c2abd0caee37a550c003bec" category="image-alt">MCC アップグレードクラスタ A スイッチバック A900</block>
-  <block id="2038f837dd43f190a92c79bb698d5d00" category="paragraph">このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。</block>
-  <block id="b1b207442d1d74b512ee7783091ec80b" category="section-title">site_B の AFF A700 コントローラモジュールと NVS を取り外します</block>
   <block id="e4dfa2cb8ac36daa9c5d60ebed0d438b" category="paragraph">このタスクは site_B で実行します</block>
   <block id="e9e9340e13d6253f17a48e08970ad599" category="list-text">site_B の古いコントローラのシリアルコンソール（ node_B_1 700 および node_B_2 700 ）に接続し、「 LOADER」 プロンプトが表示されていることを確認します。</block>
   <block id="60086a2b9ff0b21debbb0d8bf099b8e7" category="section-title">site_B の両方のノードからコントローラモジュールと NVS を取り外します</block>
@@ -11983,50 +11925,7 @@
   <block id="c1420c708cdb03e8e6259f7cb1285a08" category="paragraph">コントローラモジュールとシャーシには、「 mccip 」という値が表示されます。</block>
   <block id="717daacc38ffb11ae03c79a7871ba94a" category="list-text">表示されたコントローラのシステム状態が「 mccip 」でない場合は、コントローラの HA 状態を設定します。</block>
   <block id="1be7c4ddc79016b4335125e64b368241" category="list-text">表示されたシャーシのシステム状態が「 mccip 」でない場合は、シャーシの HA 状態を設定します。</block>
-  <block id="25b5ead61653e93322d7cdd02e68bed7" category="list-text">ブート・メニューのオプション「 4 」を使用して、サイト A の各ノードをブートします。</block>
-  <block id="d6262ce3ce8d4552f5bba743fa687f27" category="list-text">ブート・メニューからオプション「 4` 」を選択して、次に進みます。</block>
-  <block id="c00ad9db1ba9b2390705a2374f4d3c8b" category="list-text">ブート・メニューのオプション「 4 」を使用して、サイト B の各ノードをブートします。</block>
-  <block id="8628c8f82d22aaba7e4ff8640b5c8913" category="paragraph"><block ref="8628c8f82d22aaba7e4ff8640b5c8913" category="inline-link-rx"></block></block>
-  <block id="4c5303bd380c1014a165c1ad253ea2f5" category="paragraph"><block ref="4c5303bd380c1014a165c1ad253ea2f5" category="inline-link-rx"></block></block>
-  <block id="b8aeb50ab1946f3c20e4f5ceed42b633" category="paragraph">次の例では ' ポート "e0e "`e0e "' および "e0f "e0f -" を ' システム "SVMcluster01 `" 上のフェイルオーバーグループ "intercluster0` に割り当てます</block>
-  <block id="1012d3a631b6876c6dcb7face2d6a501" category="list-text">すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートを他の VLAN に作成する必要があります。を参照してください <block ref="0d7e2206ca44f9cb7344ddf469b6d625" category="inline-link-macro-rx"></block>。</block>
-  <block id="89084e438af77c52e3bb123d64f339eb" category="list-text">インターフェイスを「 node_A_1 」に作成します。</block>
   <block id="1631c24dd2645318c89e780c4904812a" category="list-text">ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください <block ref="c0c95b98444cb413fd783099a9c566d2" category="inline-link-macro-rx"></block>。</block>
-  <block id="34b309a7a8f5ac4692710dfcf5a00777" category="list-text">「 node_A_1 」のポート「 e5a 」のインターフェイスを設定します。</block>
-  <block id="b44259ae71dce764eaaa8b48707da56a" category="list-text">「 node_A_1 」のポート「 e5b 」にインターフェイスを設定します。</block>
-  <block id="9b466f494271828adb713455019d23f2" category="paragraph">次の例は 'IP アドレスが 10.1.2.1' のポート ""e5b"" にインタフェースを作成する例を示しています</block>
-  <block id="718d065eac1ff3e2a2be302bd8ff88ce" category="list-text">インタフェースを 'node_A_1 に作成します</block>
-  <block id="ff775bc8ad4e6cc1937bbf2876775f01" category="list-text">次の例で使用するポートは、 AFF A700 または FAS9000 システム（ "e5a" および "e5b"") の場合のものです。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。</block>
-  <block id="c628ef83038584c5f47c7ddfe50d38c0" category="list-text">「 node_A_2 」のポート「 e5a 」のインターフェイスを設定します。</block>
-  <block id="b69208c65d61eacde5488594766fd3b8" category="paragraph">次の例は 'IP アドレスが 10.1.1.2` のポート "e5a" にインターフェイスを作成する例を示しています</block>
-  <block id="5ecd7c22ce3acd95a76953721fa8aeb8" category="paragraph">MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に「 -vlan-id 」パラメータを指定できます。次に、 VLAN ID が「 120 」の AFF A220 システムに対するコマンドの例を示します。</block>
-  <block id="20b7ea9a5bf1a5d7c5fabf9131abf09c" category="list-text">「 node_A_2 」のポート「 e5b 」にインターフェイスを設定します。</block>
-  <block id="c59dee00f6497e29ef0226d20704dc10" category="paragraph">次の例は 'IP アドレスが 10.1.2.2' のポート "e5b" にインタフェースを作成する例を示しています</block>
-  <block id="49d2fe60521b8a0cdb30285ac8543c5b" category="paragraph">MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に「 -vlan-id 」パラメータを指定できます。次の例は、 VLAN ID が「 220 」の AFF A220 システムに対するコマンドを示しています。</block>
-  <block id="b62e9bf9d023237b47ada0b7d6d4cf59" category="list-text">「 node_B_1 」にインターフェイスを作成します。</block>
-  <block id="80c6329501b0e5f8b016ef76f6be3664" category="list-text">「 node_B_1 」のポート「 e5a 」のインターフェイスを設定します。</block>
-  <block id="270269f59ee1cd9bc99f05eb79147eeb" category="paragraph">次の例は 'IP アドレスが 10.1.1.3` のポート "e5b""" にインタフェースを作成する例を示しています</block>
-  <block id="616f51ca22d7fe8514da17f4fb96fa92" category="list-text">「 node_B_1 」のポート「 e5b 」にインターフェイスを設定します。</block>
-  <block id="e4c1125b6535c7798f7ae85e122d60e2" category="paragraph">次の例は ' ノード node_B_1 のポート e5b に IP アドレスが 10.1.2.3` のインターフェイスを作成する例を示しています</block>
-  <block id="d26f7b805ed0dcb944e2e280b30bbd07" category="list-text">"'node_B_2 "' にインターフェイスを作成します</block>
-  <block id="e2d56705aef6b7c5a25f72f46d88bbe7" category="list-text">「 node_B_2 」のポート「 e5a 」のインターフェイスを設定します。</block>
-  <block id="3149faae3d7ae9c0621829d63f66c33d" category="paragraph">次の例は 'IP アドレスが 10.1.1.4` のポート "e5b""" にインタフェースを作成する例を示しています</block>
-  <block id="9c7f78e9d2e564d314650f4f8d2f89cf" category="list-text">「 node_B_2 」のポート「 e5b 」にインターフェイスを設定します。</block>
-  <block id="426b66c3321be38bf5e743497b7a06cd" category="paragraph">次の例は ' ノード B_2 のポート "e5b""" に IP アドレスが "10.1.2.4"" のインターフェイスを作成する例を示しています</block>
-  <block id="36531c09673685da2eb7a9b424719e07" category="paragraph">次の例は、「 ready for connection 」状態のすべてのノードを示しています。</block>
-  <block id="6cf81a0d4823756f8f92c439387e37c5" category="paragraph">次の例は 'cluster_a ` が正常に接続されたことを示しています</block>
-  <block id="3c5bea345bf95b2ddd2d4480093df667" category="paragraph">advanced モードで続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（「 * &gt; 」）が表示されます。</block>
-  <block id="89afa329dc5f807f2e8486478a15c3a4" category="paragraph">ドライブの自動割り当てでは 'node_A_1' に 4 分の 1 （ 8 ドライブ）が割り当てられ 'node_A_2 に 1 つのクォータが割り当てられています残りのドライブは 'node_B_1' および `node_B_2` のリモート（プール 1 ）ディスクになります</block>
-  <block id="808399043c3072cd0aa24746698a6720" category="list-text">リモートドライブ（ 0m ）の所有権を最初のノード（例：「 node_A_1 」）のプール 1 に割り当てます。</block>
-  <block id="3ce7f1b9ad5e0866fca8bb3ed3bfaf24" category="paragraph">次の出力では、シェルフ「 23」 のドライブが割り当てられ、割り当てられていないドライブのリストに表示されていません。</block>
-  <block id="15ca6babcd89f4df7fef4ad08eebc182" category="list-text">これらの手順を繰り返して ' サイト A の 2 番目のノードにプール 1 ドライブを割り当てます ( 例 : "node_A_2`")</block>
-  <block id="ec556c6f0a7c1341af78db8c6979a3ec" category="paragraph">各シェルフでディスクを 1 つ指定して ' 自動割り当てを " シード " する必要があります</block>
-  <block id="a106bbb8c6a0404bf4119f09f97f4b2b" category="list-text">リモートディスク（ 0m ）を選択し、ディスクの所有権を最初のノードのプール 1 に割り当てます（例：「 node_A_1 」）：</block>
-  <block id="0c90186b6a1b1bb07d839515b5838513" category="paragraph">次の出力は、シェルフ「 23 」のディスクが割り当てられ、表示されなくなったことを示しています。</block>
-  <block id="cc5f058fa8df2998a58b6fe6de2c6ca6" category="list-text">これらの手順を繰り返して ' サイト A の 2 番目のノードにプール 1 のディスクを割り当てます（例： "node_A_2`" ）</block>
-  <block id="5064cf282b956b1a00cb68a958a94a35" category="list-text">コントローラとシャーシの ha-config の状態が「 mccip 」である必要があります。</block>
-  <block id="d3e0fb982a529e06bf305b944b1f5000" category="list-text">のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します<block ref="31eae521f3e4fd8fd098b415771facd9" category="inline-link-rx"></block></block>
-  <block id="c5ca300fc0462691509bf45ae10e3bc5" category="paragraph">MetroCluster Tiebreaker ソフトウェアまたは ONTAP 9.7 以降の ONTAP メディエーターは、第 3 のサイトにダウンロードしてインストールできます。</block>
   <block id="9bdf1ed180b1b862f7cea11085897aca" category="paragraph">○（ ONTAP 9.4 以降）</block>
   <block id="a27983e963a18385eebdc3381062e49b" category="paragraph">○（ ONTAP 9.8 以降）</block>
   <block id="098fadefd1319cbc560b7d741aa7210e" category="paragraph">○（ ONTAP 9.7 以降）</block>
@@ -12410,8 +12309,6 @@
   <block id="b36742dbca767f044c826ec8fbe9b099" category="inline-link">整合グループ</block>
   <block id="2b9902d272c75c4def3400c620342746" category="paragraph">ONTAP 9.11.1以降、<block ref="cf613318e210a5e8a8ae9de011eafc43" category="inline-link-rx"></block> MetroCluster 構成でサポートされます。</block>
   <block id="fe92f5934bf96194725b46db02f72324" category="list-text">この手順 は、FAS2750システムとAFF A220システムではサポートされていません。</block>
-  <block id="f5cd93f67ab362b3830ef2c47249e909" category="paragraph"><block ref="f5cd93f67ab362b3830ef2c47249e909" category="inline-link-macro-rx"></block></block>
-  <block id="a3816a0d57fcb59bc1a3bfba35af44cf" category="paragraph"><block ref="a3816a0d57fcb59bc1a3bfba35af44cf" category="inline-link-macro-rx"></block></block>
   <block id="8a4f175190a1710cdcd52e7efde01268" category="section-title">MetroCluster IP構成でCisco MACsec暗号化WAN ISLを有効にします</block>
   <block id="dbbfd3dd70a4d25284d890b07ad9bc31" category="section-title">MACsecキーチェーンとキーを設定します</block>
   <block id="2903318a6fa99cbae17be8d84747e6f4" category="section-title">MACsecポリシーを設定します</block>
@@ -12513,7 +12410,6 @@
   <block id="810c9113a382d35f83c48d0bc5ad007c" category="paragraph">同じDRグループに種類の異なるコントローラを含むMetroCluster 構成の運用は、このメンテナンス作業以外ではサポートされません。8ノードMetroCluster 構成では、DRグループ内のコントローラは同じである必要がありますが、両方のDRグループで異なる種類のコントローラを使用できます。</block>
   <block id="f0f7e2a1799d8b479b19f71aa5a163de" category="inline-link-macro">マザーボードの交換後プロセスを実行して、AFF / FASシステムのライセンスを更新</block>
   <block id="70dc27aa0b1b6fd743baaf39ac831057" category="paragraph">ライセンスの置換の詳細については、Knowledge Baseの記事を参照してください <block ref="fefc92a8d5d54e07ec6a27ea1fbe0992" category="inline-link-macro-rx"></block></block>
-  <block id="b36fd383298dd454964a70693b082d21" category="doc">スイッチオーバーとスイッチバックを使用してMetroCluster IP構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
   <block id="fa5bebfbd3b64c98d09c75db575bd11c" category="list-text">AFF A700コントローラモジュールをAFF A900にアップグレードするには、コントローラでONTAP 9.10.1以降が実行されている必要があります。</block>
   <block id="b8c01685df64d764fee3ea66bb33411d" category="list-text">FAS9000コントローラモジュールをFAS9500にアップグレードするには、コントローラでONTAP 9.10.1P3以降が実行されている必要があります。</block>
   <block id="ae4867e3d506833b86caef7b0885d0ba" category="paragraph">AFF A700とAFF A900、またはFAS9000とFAS9500コントローラを使用したMetroCluster 構成の運用は、この保守作業の外部ではサポートされません。</block>
@@ -12540,7 +12436,6 @@
   <block id="c90754ff62c724c351a1fdbc2c0922dc" category="list-text">AFF A900またはFAS9500コントローラモジュールで実行されているnode_B_1がブートするまで待ち、次のようにブートメニューオプションを表示します。</block>
   <block id="1efe4497214b901f523cf96a2c33ab26" category="list-text">次のコマンドを使用して、新しいコントローラモジュールに割り当て可能な未割り当てのディスクまたはスペアディスクを特定します。</block>
   <block id="2849cfeed499bf8aebf6e17e9cf254ca" category="list-text">storage disk show -container-type spare</block>
-  <block id="45a22a50381b7d0a6d65f4f38ec04b7d" category="doc">スイッチオーバーとスイッチバックを使用してMetroCluster FC構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
   <block id="304e34c553d5aabda89299a7fe2902b4" category="list-text">この手順 ONTAP を使用して、AFF A700からAFF 9.10.1以降を搭載したA900にアップグレードできます。</block>
   <block id="35a4e2939e219a109bc9eacce7e98324" category="list-text">この手順 を使用して、ONTAP 9.10.1P3以降を搭載したFAS9000をFAS9500にアップグレードできます。</block>
   <block id="995bf77226d032f3f7bb0a9172e19e98" category="list-text">手順 のアップグレード中は、AFF A700またはFAS9000システムに他のカードを追加したり取り外したりしないでください。詳細については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
@@ -12575,7 +12470,6 @@
   <block id="24f7d38b1eaa5b3c78d65d263e040011" category="admonition">必要な新しいライセンスキーが自動的に生成され、 E メールで送信されます。30日以内にライセンスキーが記載された電子メールを受信できない場合は、Knowledge Baseの記事の_「ライセンスに問題がある場合は、誰に連絡すればよいですか？」_セクションを参照してください <block ref="fefc92a8d5d54e07ec6a27ea1fbe0992" category="inline-link-macro-rx"></block></block>
   <block id="d903b046ad4e23192a38f289cf8b3677" category="paragraph">ディザスタサイトにミラーされていないアグリゲートが含まれていて、ミラーされていないアグリゲートが存在しない場合、 storage aggregate show コマンドの出力に「 unknown 」という状態が表示されることがあります。ミラーされていないアグリゲートの古いエントリを削除する方法については、テクニカルサポートにお問い合わせください。サポート技術情報アーティクルを参照してください <block ref="5f58a40bfe898f128ca76e4a4e4715d4" category="inline-link-macro-rx"></block></block>
   <block id="9734751a8e945b1c9cd85ffbdd0c241e" category="admonition">使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。次に、が必要です <block ref="81092c96bc8b36fe9ac80e13a918f8bb" category="inline-xref-macro-rx"></block></block>
-  <block id="2117e88807c2074036a5c585d3364860" category="sidebar">スイッチオーバーとスイッチバックを使用してMetroCluster IP構成のAFF A700 / A900からFAS9x00にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
   <block id="0ab5e32384cf33a80caff743210417d8" category="admonition">HAとストレージフェイルオーバーの想定される構成状態は次のとおりです。</block>
   <block id="a9c14bf4555cada69be518fce567a21c" category="list-text">HAモードが設定されていますが、ストレージフェイルオーバーが有効になっていません。</block>
   <block id="917db687ec940c706231d4c917812bb2" category="list-text">HAテイクオーバー機能が無効になっています。</block>
@@ -12591,9 +12485,6 @@
   <block id="440e5d46a3352ce5e00ab6b9ecdbc792" category="paragraph">GitHub問題 135、2022年7月4日</block>
   <block id="05cb8d64e2770620783bfd98ba2c571c" category="paragraph">次の手順のすべてのコマンドは、電源をオンのままにするためにサイトから実行します。</block>
   <block id="714cb8627bb0d04d6b5d032326cab4a3" category="list-text">稼働したままにするサイトから、スイッチオーバーを実行します。</block>
-  <block id="d5e08bac7a66723faca8e245c44582ae" category="list-text">ボリュームとLUNをオフラインにします。</block>
-  <block id="4434ac45fa2bd65c77619dc4135a3848" category="list-text">ボリュームをオフラインにします。</block>
-  <block id="8a0f98caf632998576a36c94b83328a6" category="list-text">LUNをオフラインにします。</block>
   <block id="e7edce3217788bc841a63851100c9164" category="list-text">ミラーされていないアグリゲートをオフラインにします：「storage aggregate offline</block>
   <block id="eeb4c33e80d1b1f4f321335e6c0a8948" category="list-text">このファブリック内の両方のスイッチで、すべてのVSANを無効にします。</block>
   <block id="f214faa187b0f8585d0284ecf49f3906" category="paragraph">VSANをディセーブルにするには、次の手順 を使用します。</block>
@@ -12636,4 +12527,19 @@
   <block id="00dcc4021e9b5b5c4107ab832d8a3b22" category="list-text">ONTAP メディエーターでは、ホストオペレーティングシステムの最小要件であるCPUおよびメモリ（RAM）は必要ありません。</block>
   <block id="3238177a17500506d8e25597811d95a1" category="list-text">ホストオペレーティングシステムの最小要件に加えて、使用可能なディスクスペースが少なくとも30GB必要です。</block>
   <block id="d87323d7c443195bdfe43686953d17da" category="list-text">各DRグループには、最大200MBのディスクスペースが必要です。</block>
+  <block id="cba78abc40cd6aa38755c20692e16922" category="list-text">ミラーされていないアグリゲートに属するボリュームとLUNをすべてオフラインにします。</block>
+  <block id="7386845cd79b01875eaa7f006f46b9f2" category="list-text">ボリュームをオフラインにします。</block>
+  <block id="cd69a3dbda56dd351c139686ba9519dc" category="list-text">LUNをオフラインにします。</block>
+  <block id="17327179cc24e43223407ad31775b347" category="doc">スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
+  <block id="4adc962ec0036e99dcb3ed30b5a7bb90" category="doc">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A990 / FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）</block>
+  <block id="18d71f6f9b2869ce694a656dc6e2f46c" category="paragraph">このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。</block>
+  <block id="104b8a291f0127f5923408928b5ee7e9" category="section-title">site_BまたはAFF A700コントローラモジュールとNVSをsite_Bで取り外します</block>
+  <block id="208671d931da81374958ab0bdeb8d0f0" category="paragraph">次の手順 を使用して、AFF A700またはFAS9000コントローラモジュールを取り外します。</block>
+  <block id="d1bba686a5b245f47f0d8653cd12d51c" category="admonition">AFF A700またはFAS9000 NVSモジュールはスロット6に搭載されており、システム内の他のモジュールと比較して高さが2倍になっています。</block>
+  <block id="400837732a47a77ab9ec9d475301631a" category="paragraph">このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。次の図に示すように、site_Aのノードはまだアップグレードを待っています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。</block>
+  <block id="aacdf7a1a9a3666db3b501d37a579c04" category="summary">バックエンドMetroCluster FC接続を提供するようにFCスイッチを設定する必要があります。</block>
+  <block id="3c2e7a09f3e6838bdc9926952b8e998b" category="list-text"><block ref="3c2e7a09f3e6838bdc9926952b8e998b" category="inline-link-macro-rx"></block></block>
+  <block id="8c67eafd90e097bf6228c8d6f91f15cb" category="list-text"><block ref="8c67eafd90e097bf6228c8d6f91f15cb" category="inline-link-macro-rx"></block></block>
+  <block id="6fc32e58ee37ceb6ca0bb1590e84ab08" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A900/ FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）</block>
+  <block id="121ccccf0953c4b38cd58e1f1be63ffd" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
 </blocks>
