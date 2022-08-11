@@ -1,0 +1,293 @@
+---
+permalink: maintain/task_upgrade_rcf_files_on_mcc_ip_switches_with_cleanupfiles.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, upgrade, rcf, files, ip, switches, cleanupfiles 
+summary: MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。 
+---
+= CleanUpFilesを使用して、MetroCluster IPスイッチのRCFファイルをアップグレードします
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。
+
+RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。
+
+この方法は、構成が次の要件を満たしている場合に使用できます。
+
+* 標準のRCF設定が適用されます。
+* 。 https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["RcfFileGenerator の順にクリックします"] 適用するRCFファイルは、同じバージョンおよび設定（プラットフォーム、VLAN）で作成できる必要があります。
+* 適用されるRCFファイルは、特別な設定のためにネットアップから提供されたものではありません。
+* RCFファイルは適用前に変更されませんでした。
+* 現在のRCFファイルを適用する前に、スイッチを工場出荷時のデフォルトにリセットする手順を実行しました。
+* RCFの適用後にスイッチ（ポート）の設定を変更していません。
++
+これらの要件を満たしていない場合は、RCFファイルの生成時に作成されたCleanUpFilesは使用できません。しかし、この関数を利用して一般的なCleanUpFilesを作成することもできます。このメソッドを使用したクリーンアップは、「show running-config」の出力から得られます。これはベストプラクティスです。
+
++
+
+NOTE: スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_B_1を同時に更新し、さらにSwitch_B_1とSwitch_B_2を更新できます。
+
+
+
+.手順
+. 現在のRCFファイルのバージョン、および使用するポートとVLANを確認します。「ip_switch_A_1# show banner motd」
++
+
+NOTE: この情報は4つのスイッチすべてから取得し、次の情報の表を完成させる必要があります。
+
++
+[listing]
+----
+* NetApp Reference Configuration File (RCF)
+*
+* Switch : NX9336C (SAS storage, L2 Networks, direct ISL)
+* Filename : NX9336_v1.81_Switch-A1.txt
+* Date : Generator version: v1.3c_2022-02-24_001, file creation time: 2021-05-11, 18:20:50
+*
+* Platforms : MetroCluster 1 : FAS8300, AFF-A400, FAS8700
+*              MetroCluster 2 : AFF-A320, FAS9000, AFF-A700, AFF-A800
+* Port Usage:
+* Ports 1- 2: Intra-Cluster Node Ports, Cluster: MetroCluster 1, VLAN 111
+* Ports 3- 4: Intra-Cluster Node Ports, Cluster: MetroCluster 2, VLAN 151
+* Ports 5- 6: Ports not used
+* Ports 7- 8: Intra-Cluster ISL Ports, local cluster, VLAN 111, 151
+* Ports 9-10: MetroCluster 1, Node Ports, VLAN 119
+* Ports 11-12: MetroCluster 2, Node Ports, VLAN 159
+* Ports 13-14: Ports not used
+* Ports 15-20: MetroCluster-IP ISL Ports, VLAN 119, 159, Port Channel 10
+* Ports 21-24: MetroCluster-IP ISL Ports, VLAN 119, 159, Port Channel 11, breakout mode 10gx4
+* Ports 25-30: Ports not used
+* Ports 31-36: Ports not used
+*
+
+#
+IP_switch_A_1#
+----
++
+この出力から、次の2つの表に示す情報を収集する必要があります。
+
++
+|===
+
+
+| 一般的な情報 | MetroCluster | データ 
+
+
+| RCF ファイルのバージョン |  | 1.81 
+
+
+| スイッチのタイプ |  | NX9336 
+
+
+| ネットワークのタイプロジー |  | L2ネットワーク、直接ISL 
+
+
+| ストレージタイプ |  | SASストレージ 
+
+
+.2+| プラットフォーム | 1. | AFF A400 
+
+
+| 2. | FAS9000 
+|===
++
+|===
+| VLANの情報 | ネットワーク | MetroCluster の設定 | スイッチポート | サイト A | サイト B 
+
+
+.4+| VLANローカルクラスタ .2+| ネットワーク1 | 1. | 1、2 | 111 | 222 
+
+
+| 2. | 3、4 | 151. | 251 
+
+
+.2+| ネットワーク2. | 1. | 1、2 | 111 | 222 
+
+
+| 2. | 3、4 | 151. | 251 
+
+
+.4+| VLAN MetroCluster の略 .2+| ネットワーク1 | 1. | 9、10 | 119 番 | 119 番 
+
+
+| 2. | 11、12 | 159 | 159 
+
+
+.2+| ネットワーク2. | 1. | 9、10 | 219 | 219 
+
+
+| 2. | 11、12 | 259 | 259 
+|===
+. [[Create]- RCFファイルおよび-CleanUpFiles-or -create-generic-CleanUpFiles]]現在の設定用にRCFファイルとCleanUpFilesを作成するか、汎用のUpCleanFilesを作成します。
++
+ご使用の構成が前提条件に記載されている要件を満たしている場合は、*オプション1 *を選択します。お使いの構成が前提条件に記載されている要件を*満たしていない*場合は、*オプション2 *を選択します。
+
++
+[role="tabbed-block"]
+====
+.オプション1：RCFファイルとCleanUpFilesを作成します
+--
+この手順 は、構成が要件を満たしている場合に使用します。
+
+.手順
+.. RcfFileGenerator 1.4a以降を使用して、手順1で取得した情報を使用してRCFファイルを作成します。RcfFileGeneratorの新しいバージョンでは、CleanUpFilesのセットが追加されています。このセットを使用して、いくつかの設定を元に戻し、スイッチで新しいRCF設定を適用する準備をすることができます。
+.. banner motdを、現在適用されているRCFファイルと比較します。プラットフォームタイプ、スイッチタイプ、ポート、およびVLANの使用方法は同じである必要があります。
++
+
+NOTE: RCFファイルと同じバージョンのCleanUpFilesを使用し、まったく同じ設定を行う必要があります。CleanUpFileを使用しても機能せず、スイッチの完全なリセットが必要になる場合があります。
+
++
+
+NOTE: ストレージタイプは、SASストレージまたは直接ストレージとは異なる場合があります。
+
++
+
+NOTE: 用に作成したONTAP のバージョンは関係ありません。RCFファイルのバージョンのみが重要です。
+
++
+
+NOTE: RCFファイルには、同じバージョンのものも含まれており、プラットフォームの数が少ない場合もあればそれよりも多い場合もあります。プラットフォームがリストに表示されていることを確認します。
+
+
+
+--
+.オプション2：一般的なCleanUpFilesを作成します
+--
+この手順 は、構成が*一部の要件を満たしていない場合に使用してください。
+
+.手順
+.. 各スイッチから「show running-config」の出力を取得します。
+.. RcfFileGeneratorツールを開き、ウィンドウの下部にある「Create generic CleanUpFiles」をクリックします
+.. 手順1で取得した出力を「1」スイッチから上のウィンドウにコピーします。デフォルトの出力は削除することもそのまま使用することもできます。
+.. 'CUFファイルの作成'をクリックします。
+.. 下のウィンドウの出力をテキストファイルにコピーします（このファイルはCleanUpFileです）。
+.. 構成内のすべてのスイッチについて、手順c、d、eを繰り返します。
++
+この手順 の最後に、スイッチごとに1つずつ、合計4つのテキストファイルが必要です。これらのファイルは、オプション1を使用して作成できるCleanUpFilesと同じ方法で使用できます。
+
+
+
+--
+====
+. [[new-RCF -files-ing-new-configuration]]新しい設定用の「新しい」RCFファイルを作成します。前の手順で作成したファイルと同じ方法でこれらのファイルを作成します。ただし、ONTAP とRCFのそれぞれのファイルバージョンを選択してください。
++
+この手順の完了後、それぞれ12個のファイルで構成される2セットのRCFファイルを用意する必要があります。
+
+. ブートフラッシュにファイルをダウンロードします。
++
+.. で作成したCleanUpFilesをダウンロードします <<Create-RCF-files-and-CleanUpFiles-or-create-generic-CleanUpFiles,RCFファイルとCleanUpFilesを作成するか、現在の設定用の汎用CleanUpFilesを作成します>>
++
+
+NOTE: このCleanUpFileは、適用されている現在のRCFファイル用であり、アップグレード先の新しいRCF用には*ありません。
+
++
+Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.81_Switch-A1.txt
+
+.. で作成した新しいRCFファイルをダウンロードします <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成用に「新しい」RCFファイルを作成します。>>
++
+Switch-A1のRCFファイルの例: NX9336_v1.90_Switch-A1.txt
+
+.. で作成したCleanUpFilesをダウンロードします <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成用に「新しい」RCFファイルを作成します。>> この手順はオプションです。あとでこのファイルを使用して、スイッチの設定を更新できます。現在適用されている設定に一致します。
++
+Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.90_Switch-A1.txt
+
++
+
+NOTE: 正しい（一致する）RCFバージョンには、CleanUpFileを使用する必要があります。異なるRCFバージョンまたは別の設定に対してCleanUpFileを使用すると、設定のクリーンアップが正しく機能しない可能性があります。
+
++
+次に、3つのファイルをブートフラッシュにコピーする例を示します。
+
++
+[listing]
+----
+IP_switch_A_1# copy sftp://user@50.50.50.50/RcfFiles/NX9336-direct-SAS_v1.81_MetroCluster-IP_L2Direct_A400FAS8700_xxx_xxx_xxx_xxx/Cleanup_NX9336_v1.81_Switch-A1.txt bootflash:
+IP_switch_A_1# copy sftp://user@50.50.50.50/RcfFiles/NX9336-direct-SAS_v1.90_MetroCluster-IP_L2Direct_A400FAS8700A900FAS9500_xxx_xxx_xxx_xxxNX9336_v1.90//NX9336_v1.90_Switch-A1.txt bootflash:
+IP_switch_A_1# copy sftp://user@50.50.50.50/RcfFiles/NX9336-direct-SAS_v1.90_MetroCluster-IP_L2Direct_A400FAS8700A900FAS9500_xxx_xxx_xxx_xxxNX9336_v1.90//Cleanup_NX9336_v1.90_Switch-A1.txt bootflash:
+----
+
+
+. CleanUpFileまたはGeneric CleanUpFileを適用します。
++
+一部の設定はリバートされ、スイッチポートは「オフライン」になります。
+
++
+.. スタートアップコンフィギュレーションに保留中の変更がないことを確認します。「show running-config diff」
++
+[listing]
+----
+IP_switch_A_1# show running-config diff
+IP_switch_A_1#
+----
+
+
+. システム出力が表示された場合は、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存します
++
+
+NOTE: システム出力は、スタートアップコンフィギュレーションと実行コンフィギュレーションが異なること、および保留中の変更であることを示します。保留中の変更を保存しないと、スイッチのリロードを使用してロールバックできません。
+
++
+.. CleanUpFileを適用します。
++
+[listing]
+----
+
+IP_switch_A_1# copy bootflash:Cleanup_NX9336_v1.81_Switch-A1.txt running-config
+
+IP_switch_A_1#
+----
++
+
+NOTE: スイッチのプロンプトに戻るまでに時間がかかることがあります。出力は想定されません。
+
+
+
+. 実行コンフィギュレーションを表示して、コンフィギュレーションがクリアされたことを確認します。「show running-config」
++
+現在の設定は次のように表示されます。
+
++
+** クラスマップとIPアクセスリストは設定されていません
+** ポリシーマップは設定されません
+** サービスポリシーが設定されていません
+** ポートプロファイルが設定されていません
+** すべてのイーサネットインターフェイス（mgmt0を除くすべての構成を表示しないでください。VLAN 1だけを設定してください）。
++
+上記のいずれかが設定されている場合は、新しいRCFファイルの設定を適用できない可能性があります。ただし、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。
+
+
+
+. RCFファイルを適用してポートがオンラインであることを確認します。
++
+.. RCFファイルを適用します。
++
+[listing]
+----
+IP_switch_A_1# copy bootflash:NX9336_v1.90-X2_Switch-A1.txt running-config
+----
++
+
+NOTE: 設定の適用中にいくつかの警告メッセージが表示されます。エラーメッセージは想定されません。
+
+.. 設定を適用したら、「show interface brief」、「show cdp neighbors」、「show lldp neighbors」のいずれかのコマンドを使用して、クラスタポートとMetroCluster ポートがオンラインになっていることを確認します
++
+
+NOTE: ローカルクラスタのVLANを変更したあとにサイトの最初のスイッチをアップグレードした場合、古い設定と新しい設定のVLANが一致しないため、クラスタヘルスモニタで状態が「正常」と報告されないことがあります。2番目のスイッチが更新されると、状態はhealthyに戻るはずです。
+
++
+設定が正しく適用されていない場合、または設定を保持しない場合は、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。
+
+
+
+. 設定を保存し、スイッチをリロードします。
++
+[listing]
+----
+IP_switch_A_1# copy running-config startup-config
+
+IP_switch_A_1# reload
+----
+

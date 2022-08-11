@@ -1514,6 +1514,20 @@ Remote: cluster_A         Configuration state configured
 +
 MetroCluster チェックショー
 
++
+
+NOTE: MetroCluster check runとMetroCluster check showを実行すると'次のようなエラーメッセージが表示されます
+
++
+.例
+[listing]
+----
+Failed to validate the node and cluster components before the switchover operation.
+                  Cluster_A:: node_A_1 (non-overridable veto): DR partner NVLog mirroring is not online. Make sure that the links between the two sites are healthy and properly configured.
+----
++
+これは、アップグレードプロセス時にコントローラが一致しないことが原因で想定される動作であり、エラーメッセージが無視しても問題ありません。
+
 
 
 
