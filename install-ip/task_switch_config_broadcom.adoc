@@ -275,6 +275,34 @@ MetroCluster IP 構成の各スイッチにスイッチのオペレーティン�
 
 
 ====
+.手順
+. 「show fips status」コマンドを使用して、EFOSのバージョンがFIPSに準拠しているか、FIPSに準拠していないかを確認します。次の例では'ip_switch_a_1'はFIPS準拠のEFOSを使用しており'ip_switch_a_2'はFIPS非準拠のEFOSを使用しています
++
+*例1 *
+
++
+[listing]
+----
+IP_switch_A_1 #show fips status
+
+System running in FIPS mode
+
+IP_switch_A_1 #
+----
++
+*例2 *
+
++
+[listing]
+----
+IP_switch_A_2 #show fips status
+                     ^
+% Invalid input detected at `^` marker.
+
+IP_switch_A_2 #
+----
+. 次の表を参照して、実行する必要がある方法を確認してください。
++
 |===
 
 
@@ -341,8 +369,11 @@ FIPS に準拠している
 FIPS に準拠していません
 
 |===
-* 方法 1 ： <<Steps to upgrade EFOS with downloading the software image to the backup boot partition>>
-* 方法 2 ： <<Steps to upgrade EFOS using the ONIE OS installation>>
++
+** 方法 1 ： <<Steps to upgrade EFOS with downloading the software image to the backup boot partition>>
+** 方法 2 ： <<Steps to upgrade EFOS using the ONIE OS installation>>
+
+
 
 
 
