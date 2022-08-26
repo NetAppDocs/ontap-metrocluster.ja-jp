@@ -10007,7 +10007,6 @@
   <block id="ae791522c9f7834f0edc56277ffe2340" category="paragraph">「ブート・システム・バックアップ」を参照してください</block>
   <block id="59ddc72eeb53790ebf968ba8067ff5bc" category="list-text">次回ブート時に新しいブートイメージがアクティブになることを確認します。</block>
   <block id="2ab6a6c6e3efa9ded96d007db3c8ddd6" category="paragraph">'How bootvar'</block>
-  <block id="c02e1d7f483cf9ccd0ff120c09ebc64f" category="list-text">RCF ファイルを最初のスイッチにコピーします。 'copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -RCF nvram: script BES-53248_v1.32_Switch-A1.txt nvram: script BES-53248 v1.32_Switch-A1.SCR</block>
   <block id="0fde531bbbf90d47fe7905001a962dde" category="paragraph">この例では、「 BES-53248_v1.32_Switch-A1.txt 」 RCF ファイルを、 SFTP サーバの「 0.50.50.50 」からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。</block>
   <block id="e1e09f5dca0aef21d822f07bad5eea3b" category="list-text">RCF ファイルがスクリプトとして保存されたことを確認します。</block>
   <block id="406bb351c55daa6b29920fa6ce644c29" category="paragraph">「原稿リスト」</block>
@@ -12533,7 +12532,6 @@
   <block id="8c67eafd90e097bf6228c8d6f91f15cb" category="list-text"><block ref="8c67eafd90e097bf6228c8d6f91f15cb" category="inline-link-macro-rx"></block></block>
   <block id="6fc32e58ee37ceb6ca0bb1590e84ab08" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A900/ FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）</block>
   <block id="121ccccf0953c4b38cd58e1f1be63ffd" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
-  <block id="cfb1fc36dd671ed91ba25af840a49e64" category="doc">CleanUpFilesを使用して、MetroCluster IPスイッチのRCFファイルをアップグレードします</block>
   <block id="44d9da525f678322921a73864bd0b924" category="paragraph">RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。</block>
   <block id="0d98f6fd87f88cd68844ee1450081b43" category="paragraph">この方法は、構成が次の要件を満たしている場合に使用できます。</block>
   <block id="cf5d82da1dbb504eeff51105d1c22631" category="list-text">標準のRCF設定が適用されます。</block>
@@ -12543,7 +12541,6 @@
   <block id="22bfd0bc1ef7b5ec6b0c3d09a25173dd" category="list-text">現在のRCFファイルを適用する前に、スイッチを工場出荷時のデフォルトにリセットする手順を実行しました。</block>
   <block id="bdda45d6734a620758197fdb8292141f" category="list-text">RCFの適用後にスイッチ（ポート）の設定を変更していません。</block>
   <block id="7db0739314c77bc294505bdbb23e67b7" category="paragraph">これらの要件を満たしていない場合は、RCFファイルの生成時に作成されたCleanUpFilesは使用できません。しかし、この関数を利用して一般的なCleanUpFilesを作成することもできます。このメソッドを使用したクリーンアップは、「show running-config」の出力から得られます。これはベストプラクティスです。</block>
-  <block id="c9adb95bef755c2c28edaaae2720ea48" category="admonition">スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_B_1を同時に更新し、さらにSwitch_B_1とSwitch_B_2を更新できます。</block>
   <block id="0e0fe23e527e37b417182290ff6ed374" category="list-text">現在のRCFファイルのバージョン、および使用するポートとVLANを確認します。「ip_switch_A_1# show banner motd」</block>
   <block id="e020d7382ce2a21b56ea6460a45b49c2" category="admonition">この情報は4つのスイッチすべてから取得し、次の情報の表を完成させる必要があります。</block>
   <block id="2b6ad2a040294d5c6d9cd85338614383" category="paragraph">この出力から、次の2つの表に示す情報を収集する必要があります。</block>
@@ -12662,4 +12659,11 @@
   <block id="0b9982c26f9b690896e158b901c7001c" category="paragraph">*例1 *</block>
   <block id="66fcc909c7d6b29950f9da753e168312" category="paragraph">*例2 *</block>
   <block id="beb59952abfbd2e99ff165a613423fa0" category="list-text">次の表を参照して、実行する必要がある方法を確認してください。</block>
+  <block id="242fc88f1fc9a405fa9f0e7cbf2c069b" category="summary">Cisco IPスイッチのRCFファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。</block>
+  <block id="ec9296ef857e944ab344eb684e789ddc" category="doc">CleanUpFilesを使用して、Cisco IPスイッチのRCFファイルをアップグレードします</block>
+  <block id="88d8da08ee7e7170ae3a43278a025761" category="admonition">スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_A_1スイッチを同時に更新し、Switch_B_1とSwitch_B_2を更新します。</block>
+  <block id="6eedc2d4a1f7c30325c52c25b14dda09" category="admonition">次のような場合は、構成に追加のライセンス（100Gbポートライセンス×6）が必要になります。</block>
+  <block id="d4a39e254ca0e79abbaea7e91f10d1c8" category="list-text">ポート53および54を40Gbpsまたは100GbpsのMetroCluster ISLとして使用します。</block>
+  <block id="39d6f919c4f9487cf3eba1907393cc85" category="list-text">ローカルクラスタインターフェイスとMetroCluster インターフェイスをポート49-52に接続するプラットフォームを使用します。</block>
+  <block id="b457d19307b0152d2948b75490c21739" category="list-text">RCFファイルを最初のスイッチにコピーします。'copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -RCF / BES-53248_v1.32_Switch-A1.txt nvram：script BES-53248 v1.32_Switch-A1.SCR</block>
 </blocks>

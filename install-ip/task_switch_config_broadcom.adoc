@@ -14,6 +14,13 @@ summary: クラスタインターコネクトおよびバックエンド MetroCl
 クラスタインターコネクトおよびバックエンド MetroCluster IP 接続用に Broadcom IP スイッチを設定する必要があります。
 
 
+NOTE: 次のような場合は、構成に追加のライセンス（100Gbポートライセンス×6）が必要になります。
+
+* ポート53および54を40Gbpsまたは100GbpsのMetroCluster ISLとして使用します。
+* ローカルクラスタインターフェイスとMetroCluster インターフェイスをポート49-52に接続するプラットフォームを使用します。
+
+
+
 
 == Broadcom IP スイッチを工場出荷時のデフォルトにリセット
 
@@ -715,7 +722,7 @@ NOTE: ダウンロード後にRCFファイルを変更することはできま�
 
 . RCF ファイルをスイッチにコピーします。
 +
-.. RCF ファイルを最初のスイッチにコピーします。 'copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -RCF nvram: script BES-53248_v1.32_Switch-A1.txt nvram: script BES-53248 v1.32_Switch-A1.SCR
+.. RCFファイルを最初のスイッチにコピーします。'copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -RCF / BES-53248_v1.32_Switch-A1.txt nvram：script BES-53248 v1.32_Switch-A1.SCR
 +
 この例では、「 BES-53248_v1.32_Switch-A1.txt 」 RCF ファイルを、 SFTP サーバの「 0.50.50.50 」からローカルブートフラッシュにコピーしています。使用する TFTP / SFTP サーバの IP アドレスを指定し、インストールする必要がある RCF ファイルのファイル名を指定する必要があります。
 
