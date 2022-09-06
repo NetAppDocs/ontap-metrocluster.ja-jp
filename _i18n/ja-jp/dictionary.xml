@@ -7808,7 +7808,6 @@
   <block id="f674c4dddbf3c8f5d8282775b8f64dfc" category="list-text">スペアパーティション × 1</block>
   <block id="e544ed43da5fbe5f1ff53ed83f313e27" category="section-title">FAS2750 システムでのディスク割り当て</block>
   <block id="8a9765ee788aa0ec121d5869524dbbb4" category="paragraph">内蔵シェルフと外付けシェルフは、 2 つに均等に分割されます。各ハーフが自動的に別々のプールに割り当てられます</block>
-  <block id="1727ed989c7f4287136d81d78aeb960e" category="paragraph">該当なし。</block>
   <block id="9b69500f7139e9ab34f753b13df6c609" category="section-title">FAS8200 システムでのディスク割り当て</block>
   <block id="f5282c0c22db3753989149a870ee22a6" category="paragraph">外付けシェルフのドライブが 2 つのグループ（ハーフ）に均等に分割されます。シェルフの各ハーフが自動的に別々のプールに割り当てられます。</block>
   <block id="f279008175291c0c57dfde21cb38762c" category="section-title">FAS500f システムでのディスク割り当て</block>
@@ -12650,10 +12649,6 @@
   <block id="eb4cfd99b709d0b0ddc435f063be95cf" category="paragraph">ブレークアウトケーブル（2）</block>
   <block id="e5df3565fbad5a4849fc6fb6ec79e8d1" category="list-text">BES-53248スイッチで40個または100GbpsのISLポートを使用するには、追加のライセンスが必要です。</block>
   <block id="394d86b50aa384c22c3eeb7d90023e15" category="list-text">Cisco 9336C-FX2（NS224シェルフを接続）用にRCFファイルを作成する場合は、ISLをネイティブ*または*ブレークアウトモードで設定するように選択する必要があります。</block>
-  <block id="a455825d44f1e4a4ab9b205b1b01f846" category="sidebar">クリーンアップファイルを使用して、MetroCluster IPスイッチのRCFファイルをアップグレードします</block>
-  <block id="b811a3677c5b098a6945ad54c6058363" category="section-title">スイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ</block>
-  <block id="773198299cf56ea3814545219f2bb9cb" category="paragraph">スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。</block>
-  <block id="0af1623ce613439fe5aa524f7c4b1e1b" category="image-alt">サポートされるコントローラのアップグレードの組み合わせ</block>
   <block id="bc85eece93965de5b37264d01e4e5eeb" category="image-alt">FC IPの移行（メトロポリタンおよびそれ以降）</block>
   <block id="731380609e4acd613ed054b92fc261e6" category="list-text">「show fips status」コマンドを使用して、EFOSのバージョンがFIPSに準拠しているか、FIPSに準拠していないかを確認します。次の例では'ip_switch_a_1'はFIPS準拠のEFOSを使用しており'ip_switch_a_2'はFIPS非準拠のEFOSを使用しています</block>
   <block id="0b9982c26f9b690896e158b901c7001c" category="paragraph">*例1 *</block>
@@ -12666,4 +12661,15 @@
   <block id="d4a39e254ca0e79abbaea7e91f10d1c8" category="list-text">ポート53および54を40Gbpsまたは100GbpsのMetroCluster ISLとして使用します。</block>
   <block id="39d6f919c4f9487cf3eba1907393cc85" category="list-text">ローカルクラスタインターフェイスとMetroCluster インターフェイスをポート49-52に接続するプラットフォームを使用します。</block>
   <block id="b457d19307b0152d2948b75490c21739" category="list-text">RCFファイルを最初のスイッチにコピーします。'copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -RCF / BES-53248_v1.32_Switch-A1.txt nvram：script BES-53248 v1.32_Switch-A1.SCR</block>
+  <block id="ea32627e820d2d706867bdf52f203354" category="section-title">MetroCluster IP構成でのスイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ</block>
+  <block id="5a133f61008521cf04b795cbed594afb" category="paragraph">MetroCluster IP構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。</block>
+  <block id="3683e9c25b6907e036fd4e9c0b1f6c3e" category="image-alt">IP構成でサポートされるコントローラのアップグレードの組み合わせ</block>
+  <block id="c18cacb38175bec2261f766082f949f2" category="section-title">MetroCluster FC構成でのスイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ</block>
+  <block id="d71f8b4a76cf6eed8f9c4126a751829c" category="paragraph">MetroCluster FC構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。</block>
+  <block id="2a9c49e8bc60cebb402b316352750e02" category="image-alt">FC構成でサポートされるコントローラのアップグレードの組み合わせ</block>
+  <block id="6ecbc3bbbc5acac0e3a1eaa928b0ef3a" category="list-text">データ用パーティション×2</block>
+  <block id="203589fdbad6f6dc48cf251ed51e812a" category="list-text">スペアパーティションがありません</block>
+  <block id="78da571ba5b07c0449886d55d21269c6" category="paragraph">手動で割り当てる必要があります</block>
+  <block id="361139022557555da3940779901816d7" category="paragraph">手動で割り当てる必要があります。</block>
+  <block id="6d54b17c6700f2c764e16c85409687ad" category="sidebar">クリーンアップファイルを使用してCisco IPスイッチのRCFファイルをアップグレードします</block>
 </blocks>
