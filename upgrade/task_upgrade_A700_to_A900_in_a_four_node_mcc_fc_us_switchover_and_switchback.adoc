@@ -228,7 +228,7 @@ MetroCluster interconnect mirror show
 .. 実行が完了したら、 MetroCluster の実行結果を確認します。「 MetroCluster check show 」
 
 
-. を繰り返してファブリック B のスイッチ（スイッチ 2 と 4 ）を更新します <<Update-RCF,手順 2>> 終了： <<verify-healthy,手順 5>>。
+. を繰り返してファブリック B のスイッチ（スイッチ 2 と 4 ）を更新します ,手順 2 終了： ,手順 5。
 
 
 
@@ -722,7 +722,7 @@ AFF A900またはFAS9500コントローラモジュールのブートメディ�
 
 | 実行されていません | ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= <filer_addr> -mask= <netmask> -gw= <gateway> -dns= <dns_addr> domain= <dns_domain> `<filer_addr>`<netmask>` はストレージシステムのネットワークマスクです。「 <gateway>` 」は、ストレージシステムのゲートウェイです。「 <dns_addr> 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 <dns_domain> 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。詳細については、ファームウェアのプロンプトで「 help ifconfig 」と入力してください。 
 |===
-. ノード 1 でネットブートを実行します http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`[]「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します <<step2-download-software,手順 2>>。
+. ノード 1 でネットブートを実行します http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`[]「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します ,手順 2。
 +
 
 NOTE: トランクを中断しないでください。
