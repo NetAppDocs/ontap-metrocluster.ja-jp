@@ -1,0 +1,339 @@
+---
+permalink: install-ip/task_switch_config_nvidia.html 
+sidebar: sidebar 
+keywords: ip, switch, connection, configuring, configure, NVIDIA, factory defaults, MSN2100, SN2100 
+summary: クラスタインターコネクトおよびバックエンドMetroCluster のIP接続用にNVIDIA IPスイッチを設定する必要があります。 
+---
+= NVIDIA IP SN2100スイッチを設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+クラスタインターコネクトおよびバックエンドMetroCluster IP接続用にNVIDIA SN2100 IPスイッチを設定する必要があります。
+
+
+
+== NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセットします
+
+スイッチを工場出荷時のデフォルト設定にリセットするには、次のいずれかの方法を選択します。
+
+* ,RCFファイルオプションを使用してスイッチをリセットします
+* ,Cumulusインストールオプションを使用して、スイッチをリセットします
+
+
+
+
+=== RCFファイルオプションを使用してスイッチをリセットします
+
+新しいRCF設定をインストールする前に、NVIDIAスイッチ設定をリバートする必要があります。
+
+スイッチをデフォルト設定に戻すには、「restoreDefaults」オプションを指定してRCFファイルを実行します。このオプションを選択すると、元のバックアップファイルが元の場所にコピーされ、スイッチがリブートされます。リブート後、スイッチを設定するためにRCFファイルを最初に実行したときに使用していた元の設定がスイッチにオンラインになります。
+
+次の設定の詳細はリセットされません。
+
+* ユーザおよびクレデンシャルの設定
+* 管理ネットワークポートeth0の設定
+
+
+
+NOTE: RCFファイルの適用中に発生するその他の設定変更は、すべて元の設定にリバートされます。
+
+.作業を開始する前に
+* に従ってスイッチを設定する必要があります ,NVIDIAのRCFファイルをダウンロードしてインストールします。この方法で設定していない場合やRCFファイルを実行する前に追加機能を設定している場合は、この手順 を使用できません。
+* この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
+* シリアルコンソール接続を使用してスイッチに接続する必要があります。
+* このタスクでは、管理ネットワークの設定をリセットします。
+
+
+.手順
+. 同じバージョンまたは互換性のあるRCFファイルを使用してRCF設定が正常に適用され、バックアップファイルが存在することを確認します。
++
+
+NOTE: 出力には、バックアップファイル、保持されたファイル、またはその両方が表示されます。バックアップファイルまたは保存されたファイルが出力に表示されない場合は、この手順 を使用できません。
+
++
+[listing, subs="+quotes"]
+----
+cumulus@IP_switch_A_1:mgmt:~$ sudo python3 MSN2100_v1.0_IP_switch_A_1.py
+[sudo] password for cumulus:
+>>> Opened RcfApplyLog
+*A RCF configuration has been successfully applied.*
+  *Backup files exist.*
+    *Preserved files exist.*
+    Listing completion of the steps:
+        Success: Step: 1: Performing Backup and Restore
+        Success: Step: 2: updating MOTD file
+        Success: Step: 3: Disabling apt-get
+        Success: Step: 4: Disabling cdp
+        Success: Step: 5: Adding lldp config
+        Success: Step: 6: Creating interfaces
+        Success: Step: 7: Configuring switch basic settings: Hostname, SNMP
+        Success: Step: 8: Configuring switch basic settings: bandwidth allocation
+        Success: Step: 9: Configuring switch basic settings: ecn
+        Success: Step: 10: Configuring switch basic settings: cos and dscp remark
+        Success: Step: 11: Configuring switch basic settings: generic egress cos mappings
+        Success: Step: 12: Configuring switch basic settings: traffic classification
+        Success: Step: 13: Configuring LAG load balancing policies
+        Success: Step: 14: Configuring the VLAN bridge
+        Success: Step: 15: Configuring local cluster ISL ports
+        Success: Step: 16: Configuring MetroCluster ISL ports
+        Success: Step: 17: Configuring ports for MetroCluster-1, local cluster and MetroCluster interfaces
+        Success: Step: 18: Configuring ports for MetroCluster-2, local cluster and MetroCluster interfaces
+        Success: Step: 19: Configuring ports for MetroCluster-3, local cluster and MetroCluster interfaces
+        Success: Step: 20: Configuring L2FC for MetroCluster interfaces
+        Success: Step: 21: Configuring the interface to UP
+        Success: Step: 22: Final commit
+        Success: Step: 23: Final reboot of the switch
+    Exiting ...
+<<< Closing RcfApplyLog
+cumulus@IP_switch_A_1:mgmt:~$
+
+----
+. デフォルトに戻すオプションを指定してRCFファイルを実行します。'restoreDefaults'
++
+[listing]
+----
+cumulus@IP_switch_A_1:mgmt:~$ sudo python3 MSN2100_v1.0_IP_switch_A_2.py restoreDefaults
+[sudo] password for cumulus:
+>>> Opened RcfApplyLog
+Can restore from backup directory. Continuing.
+This will reboot the switch !!!
+Enter yes or no: yes
+----
+. プロンプトに「yes」と入力します。スイッチが元の設定に戻り、リブートします。
+. スイッチがリブートするまで待ちます。
++
+スイッチがリセットされ、RCFファイルを適用する前の既存の管理ネットワーク設定や現在のクレデンシャルなどの初期設定が保持されます。リブート後は、同じバージョンまたは異なるバージョンのRCFファイルを使用して新しい設定を適用できます。
+
+
+
+
+
+=== Cumulusインストールオプションを使用して、スイッチをリセットします
+
+Cumulus画像を適用してスイッチを完全にリセットするには、次の手順を実行します。
+
+.作業を開始する前に
+* シリアルコンソール接続を使用してスイッチに接続する必要があります。
+* Cumulusスイッチソフトウェアイメージには、HTTP経由でアクセスできます。
+* コマンドへの「sudo」アクセス用のrootパスワードが必要です。
+
+
+.手順
+. Cumulusコンソールから、スイッチ・ソフトウェアのインストールを「ONIE-install-A-i」コマンドに続けてスイッチ・ソフトウェアへのファイル・パスを指定して、ダウンロードしてキューに入れます。
++
+この例では、ファームウェアファイル「cumulus - linux-4.4.4.2 - MLX - amd64.bin」がHTTPサーバ「50.50.50」からローカルスイッチにコピーされています。
+
++
+[listing]
+----
+cumulus@IP_switch_A_1:mgmt:~$ sudo onie-install -a -i http://50.50.50.50/switchsoftware/cumulus-linux-4.4.2-mlx-amd64.bin
+Fetching installer: http://50.50.50.50/switchsoftware/cumulus-linux-4.4.2-mlx-amd64.bin
+Downloading URL: http://50.50.50.50/switchsoftware/cumulus-linux-4.4.2-mlx-amd64.bin
+######################################################################### 100.0%
+Success: HTTP download complete.
+tar: ./sysroot.tar: time stamp 2021-01-30 17:00:58 is 53895092.604407122 s in the future
+tar: ./kernel: time stamp 2021-01-30 17:00:58 is 53895092.582826352 s in the future
+tar: ./initrd: time stamp 2021-01-30 17:00:58 is 53895092.509682557 s in the future
+tar: ./embedded-installer/bootloader/grub: time stamp 2020-12-10 15:25:16 is 49482950.509433937 s in the future
+tar: ./embedded-installer/bootloader/init: time stamp 2020-12-10 15:25:16 is 49482950.509336507 s in the future
+tar: ./embedded-installer/bootloader/uboot: time stamp 2020-12-10 15:25:16 is 49482950.509213637 s in the future
+tar: ./embedded-installer/bootloader: time stamp 2020-12-10 15:25:16 is 49482950.509153787 s in the future
+tar: ./embedded-installer/lib/init: time stamp 2020-12-10 15:25:16 is 49482950.509064547 s in the future
+tar: ./embedded-installer/lib/logging: time stamp 2020-12-10 15:25:16 is 49482950.508997777 s in the future
+tar: ./embedded-installer/lib/platform: time stamp 2020-12-10 15:25:16 is 49482950.508913317 s in the future
+tar: ./embedded-installer/lib/utility: time stamp 2020-12-10 15:25:16 is 49482950.508847367 s in the future
+tar: ./embedded-installer/lib/check-onie: time stamp 2020-12-10 15:25:16 is 49482950.508761477 s in the future
+tar: ./embedded-installer/lib: time stamp 2020-12-10 15:25:47 is 49482981.508710647 s in the future
+tar: ./embedded-installer/storage/blk: time stamp 2020-12-10 15:25:16 is 49482950.508631277 s in the future
+tar: ./embedded-installer/storage/gpt: time stamp 2020-12-10 15:25:16 is 49482950.508523097 s in the future
+tar: ./embedded-installer/storage/init: time stamp 2020-12-10 15:25:16 is 49482950.508437507 s in the future
+tar: ./embedded-installer/storage/mbr: time stamp 2020-12-10 15:25:16 is 49482950.508371177 s in the future
+tar: ./embedded-installer/storage/mtd: time stamp 2020-12-10 15:25:16 is 49482950.508293856 s in the future
+tar: ./embedded-installer/storage: time stamp 2020-12-10 15:25:16 is 49482950.508243666 s in the future
+tar: ./embedded-installer/platforms.db: time stamp 2020-12-10 15:25:16 is 49482950.508179456 s in the future
+tar: ./embedded-installer/install: time stamp 2020-12-10 15:25:47 is 49482981.508094606 s in the future
+tar: ./embedded-installer: time stamp 2020-12-10 15:25:47 is 49482981.508044066 s in the future
+tar: ./control: time stamp 2021-01-30 17:00:58 is 53895092.507984316 s in the future
+tar: .: time stamp 2021-01-30 17:00:58 is 53895092.507920196 s in the future
+Staging installer image...done.
+WARNING:
+WARNING: Activating staged installer requested.
+WARNING: This action will wipe out all system data.
+WARNING: Make sure to back up your data.
+WARNING:
+Are you sure (y/N)? y
+Activating staged installer...done.
+Reboot required to take effect.
+cumulus@IP_switch_A_1:mgmt:~$
+----
+. イメージのダウンロードおよび確認時に'プロンプトにyと応答してインストールを確認します
+. 新しいソフトウェア「sudo reboot」をインストールするには、スイッチを再起動します
++
+[listing]
+----
+cumulus@IP_switch_A_1:mgmt:~$ sudo reboot
+----
++
+
+NOTE: スイッチがリブートし、スイッチソフトウェアのインストールが開始されます。この処理にはしばらく時間がかかります。インストールが完了すると、スイッチがリブートし、「log-in」プロンプトが表示されたままになります。
+
+. スイッチの基本設定を行います
++
+.. スイッチがブートされ、ログインプロンプトでログインし、パスワードを変更します。
++
+
+NOTE: ユーザ名は「cumulus」で、デフォルトのパスワードは「cumulus」です。
+
+
+
++
+[listing]
+----
+Debian GNU/Linux 10 cumulus ttyS0
+
+cumulus login: cumulus
+Password:
+You are required to change your password immediately (administrator enforced)
+Changing password for cumulus.
+Current password:
+New password:
+Retype new password:
+Linux cumulus 4.19.0-cl-1-amd64 #1 SMP Cumulus 4.19.206-1+cl4.4.2u1 (2021-12-18) x86_64
+
+Welcome to NVIDIA Cumulus (R) Linux (R)
+
+For support and online technical documentation, visit
+http://www.cumulusnetworks.com/support
+
+The registered trademark Linux (R) is used pursuant to a sublicense from LMI,
+the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide
+basis.
+
+cumulus@cumulus:mgmt:~$
+----
+. 管理ネットワークインターフェイスを設定
++
+
+NOTE: 次に、コマンド「net add hostname」、「net add interface eth0 ip address」、「IPAddress<IPAddress/mask>」、および「net add interface eth0 ip gateway <Gateway>」を使用して、ホスト名（IP_switch_A_1）、IPアドレス（10.10.10.10）、ネットマスク（255.255.255.0）、およびゲートウェイ（10.10.10.1）を設定する例を示します。
+
++
+[listing]
+----
+
+cumulus@cumulus:mgmt:~$ net add hostname IP_switch_A_1
+cumulus@cumulus:mgmt:~$ net add interface eth0 ip address 10.0.10.10/24
+cumulus@cumulus:mgmt:~$ net add interface eth0 ip gateway 10.10.10.1
+cumulus@cumulus:mgmt:~$ net pending
+
+.
+.
+.
+
+
+cumulus@cumulus:mgmt:~$ net commit
+
+.
+.
+.
+
+
+net add/del commands since the last "net commit"
+
+
+User Timestamp Command
+
+cumulus 2021-05-17 22:21:57.437099 net add hostname Switch-A-1
+cumulus 2021-05-17 22:21:57.538639 net add interface eth0 ip address 10.10.10.10/24
+cumulus 2021-05-17 22:21:57.635729 net add interface eth0 ip gateway 10.10.10.1
+
+cumulus@cumulus:mgmt:~$
+----
+. sudo rebootコマンドを使用してスイッチをリブートします。
++
+[listing]
+----
+cumulus@cumulus:~$ sudo reboot
+----
++
+スイッチがリブートしたら、の手順に従って新しい設定を適用できます ,NVIDIAのRCFファイルをダウンロードしてインストールします。
+
+
+
+
+
+== NVIDIAのRCFファイルをダウンロードしてインストールします
+
+MetroCluster IP 構成の各スイッチにスイッチの RCF ファイルをダウンロードしてインストールする必要があります。
+
+.作業を開始する前に
+* コマンドへの「sudo」アクセス用のrootパスワードが必要です。
+* スイッチソフトウェアがインストールされ、管理ネットワークが設定されている。
+* 方法1または方法2のいずれかを使用して、スイッチを最初に設置する手順を実行しました。
+* 初期インストール後に追加の設定を適用しなかった場合。
++
+
+NOTE: RCFファイルを適用する前にスイッチをリセットしたあとに以降の設定を実行する場合は、この手順 を使用できません。
+
+
+
+この手順は、MetroCluster IP構成（新規の設置）または交換用スイッチ（スイッチの交換）の各IPスイッチで実行する必要があります。
+
+.手順
+. MetroCluster IP用のNVIDIA RCFファイルを生成します。
++
+.. をダウンロードします https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"^]。
+.. RcfFileGenerator for MetroCluster IPを使用して、設定用のRCFファイルを生成します。
+.. ホームディレクトリに移動します。「cumulus」として記録されている場合、ファイルパスは「/home/cumulus」です。
++
+[listing]
+----
+cumulus@IP_switch_A_1:mgmt:~$ cd ~
+cumulus@IP_switch_A_1:mgmt:~$ pwd
+/home/cumulus
+cumulus@IP_switch_A_1:mgmt:~$
+----
+.. このディレクトリにRCFファイルをダウンロードします。次の例ではSCPを使用して'MSN2100_v1.0.1_IP_switch_a_1.txt'ファイルをサーバ'50.50.50.50'からホームディレクトリにダウンロードし'MSN2100_v1.0.1_IP_switch_a_1.py'として保存します
++
+[listing]
+----
+cumulus@Switch-A-1:mgmt:~$ scp username@50.50.50.50:/RcfFiles/MSN2100_v1.0_IP_switch_A_1.txt ./MSN2100_v1.0_IP_switch-A1.py
+The authenticity of host '50.50.50.50 (50.50.50.50)' can't be established.
+RSA key fingerprint is SHA256:B5gBtOmNZvdKiY+dPhh8=ZK9DaKG7g6sv+2gFlGVF8E.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '50.50.50.50' (RSA) to the list of known hosts.
+***********************************************************************
+Banner of the SCP server
+***********************************************************************
+username@50.50.50.50's password:
+MSN2100_v1.0-X2_IP_switch_A1.txt 100% 55KB 1.4MB/s 00:00
+cumulus@IP_switch_A_1:mgmt:~$
+----
+
+
+. RCFファイルを実行します。RCFファイルでは、1つ以上の手順を適用するためのオプションが必要です。テクニカルサポートから指示がないかぎり、コマンドラインオプションを指定せずにRCFファイルを実行します。RCFファイルのさまざまな手順の完了ステータスを確認するには、オプション「-1」または「all」を使用してすべての（保留中の）手順を適用します。
++
+[listing]
+----
+
+cumulus@IP_switch_A_1:mgmt:~$ sudo python3 MSN2100_v1.0_IP_switch_A_1.py
+all
+[sudo] password for cumulus:
+The switch will be rebooted after the step(s) have been run.
+Enter yes or no: yes
+
+
+
+... the steps will apply - this is generating a lot of output ...
+
+
+
+Running Step 24: Final reboot of the switch
+
+
+
+... The switch will reboot if all steps applied successfully ...
+----
+

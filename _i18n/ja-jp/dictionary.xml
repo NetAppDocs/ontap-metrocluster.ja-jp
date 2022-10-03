@@ -12673,4 +12673,74 @@
   <block id="29011b2c4a1fcc691d4080c12a975cd2" category="inline-link-macro">Linux iSCSIホストをMetroCluster FCノードからMetroCluster IPノードに移動しています。</block>
   <block id="15c49ac51668072fdf92e5d8db0ec9ff" category="list-text">MetroCluster ノードのFCからIPへの移行が完了したあと、iSCSIホスト接続を新しいノードに移動しなければならない場合があります。を参照してください <block ref="e3ab265f03332ea44056fafa567b430d" category="inline-link-macro-rx"></block></block>
   <block id="1fd94f8dc4aef371c8059f7aadb13ffb" category="list-text">次の手順 を使用して、AFF A700 / FAS9000コントローラからAFF A900 / FAS9500コントローラにアップグレードできます。 <block ref="d4055a630aa0f5dfe07651f60a376ff8" category="inline-link-macro-rx"></block></block>
+  <block id="e52e46b2e9a285a92c4fb276c84c544e" category="summary">クラスタインターコネクトおよびバックエンドMetroCluster のIP接続用にNVIDIA IPスイッチを設定する必要があります。</block>
+  <block id="12dfda519b07b8627c017865df4388a6" category="doc">NVIDIA IP SN2100スイッチを設定します</block>
+  <block id="056bd4ccfa99eecc32b7151072832cb7" category="paragraph">クラスタインターコネクトおよびバックエンドMetroCluster IP接続用にNVIDIA SN2100 IPスイッチを設定する必要があります。</block>
+  <block id="80d79e74efb3cf7c2ad45e7e1c96223d" category="section-title">NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセットします</block>
+  <block id="7c3ceaca0865f6c6621d894d5c1f5274" category="paragraph">スイッチを工場出荷時のデフォルト設定にリセットするには、次のいずれかの方法を選択します。</block>
+  <block id="61168c45da9c3d852ce200a8e6fe5441" category="inline-xref">RCFファイルオプションを使用してスイッチをリセットします</block>
+  <block id="f39c98e742374a832c3bc1976a82c99a" category="list-text"><block ref="4d1a1da583a14975a026f863f46efa9e" category="inline-xref-macro-rx"></block></block>
+  <block id="2905d1a656f6dd8b76df3793ca9d808a" category="inline-xref">Cumulusインストールオプションを使用して、スイッチをリセットします</block>
+  <block id="07e63a61b44e7110afc73ee228b45e9f" category="list-text"><block ref="c5c4030964ab0fc53589e1f003b13a41" category="inline-xref-macro-rx"></block></block>
+  <block id="465c9065d10e2d00f4f4116734ac1084" category="paragraph">新しいRCF設定をインストールする前に、NVIDIAスイッチ設定をリバートする必要があります。</block>
+  <block id="4cc34c69d718b06fff00dea4b3e4a9d7" category="paragraph">スイッチをデフォルト設定に戻すには、「restoreDefaults」オプションを指定してRCFファイルを実行します。このオプションを選択すると、元のバックアップファイルが元の場所にコピーされ、スイッチがリブートされます。リブート後、スイッチを設定するためにRCFファイルを最初に実行したときに使用していた元の設定がスイッチにオンラインになります。</block>
+  <block id="2678e0ba955ea31dc3a2b8d425811dfc" category="paragraph">次の設定の詳細はリセットされません。</block>
+  <block id="0ed4e7e607ce6aeb54fbe2eee71c8925" category="list-text">ユーザおよびクレデンシャルの設定</block>
+  <block id="a93cf3e8ddcdb9137b78b02a173624c6" category="list-text">管理ネットワークポートeth0の設定</block>
+  <block id="0359ad641e8604c134d24d2bbddd1f44" category="admonition">RCFファイルの適用中に発生するその他の設定変更は、すべて元の設定にリバートされます。</block>
+  <block id="764bb8fed74d46f6a6171f7253b5bb18" category="inline-xref">NVIDIAのRCFファイルをダウンロードしてインストールします</block>
+  <block id="e1f1980ba1430c6d4553ef8f7963bb4f" category="list-text">に従ってスイッチを設定する必要があります <block ref="67df29514d3fd31c6e0b92fb5ef28c21" category="inline-xref-macro-rx"></block>。この方法で設定していない場合やRCFファイルを実行する前に追加機能を設定している場合は、この手順 を使用できません。</block>
+  <block id="9d06a5d3de791df53c7a1c71fe30deed" category="list-text">シリアルコンソール接続を使用してスイッチに接続する必要があります。</block>
+  <block id="4e95898c852022962fdebc7727a93f46" category="list-text">同じバージョンまたは互換性のあるRCFファイルを使用してRCF設定が正常に適用され、バックアップファイルが存在することを確認します。</block>
+  <block id="b6446010a605d2f225bc5b4a651d77f6" category="admonition">出力には、バックアップファイル、保持されたファイル、またはその両方が表示されます。バックアップファイルまたは保存されたファイルが出力に表示されない場合は、この手順 を使用できません。</block>
+  <block id="50fc7f4fc4780b7f326a480f73bd0267" category="list-text">デフォルトに戻すオプションを指定してRCFファイルを実行します。'restoreDefaults'</block>
+  <block id="389656231e83b20cf8f1080911ace092" category="list-text">プロンプトに「yes」と入力します。スイッチが元の設定に戻り、リブートします。</block>
+  <block id="9c7625742f7f1ccd999df088ad4a3ae7" category="paragraph">スイッチがリセットされ、RCFファイルを適用する前の既存の管理ネットワーク設定や現在のクレデンシャルなどの初期設定が保持されます。リブート後は、同じバージョンまたは異なるバージョンのRCFファイルを使用して新しい設定を適用できます。</block>
+  <block id="8ea07ce14527ee98182ee1d95fed9b57" category="paragraph">Cumulus画像を適用してスイッチを完全にリセットするには、次の手順を実行します。</block>
+  <block id="7ad863bb2a72d36c0234f4f6bfc2e19f" category="list-text">Cumulusスイッチソフトウェアイメージには、HTTP経由でアクセスできます。</block>
+  <block id="f230e571a49fa16f56965586613d2b79" category="list-text">コマンドへの「sudo」アクセス用のrootパスワードが必要です。</block>
+  <block id="c67ce273436af6008876bf44654fd767" category="list-text">Cumulusコンソールから、スイッチ・ソフトウェアのインストールを「ONIE-install-A-i」コマンドに続けてスイッチ・ソフトウェアへのファイル・パスを指定して、ダウンロードしてキューに入れます。</block>
+  <block id="c6f62465ade5eb8bf0739b3b9e260823" category="paragraph">この例では、ファームウェアファイル「cumulus - linux-4.4.4.2 - MLX - amd64.bin」がHTTPサーバ「50.50.50」からローカルスイッチにコピーされています。</block>
+  <block id="0271d2dea0397f75aa8c0d5cd4c35209" category="list-text">イメージのダウンロードおよび確認時に'プロンプトにyと応答してインストールを確認します</block>
+  <block id="efb5ccaab9d7fe2b2ab5b9f178475a7a" category="list-text">新しいソフトウェア「sudo reboot」をインストールするには、スイッチを再起動します</block>
+  <block id="1f66fcbdc3a63bbe8e57cebc96e1d8a9" category="admonition">スイッチがリブートし、スイッチソフトウェアのインストールが開始されます。この処理にはしばらく時間がかかります。インストールが完了すると、スイッチがリブートし、「log-in」プロンプトが表示されたままになります。</block>
+  <block id="8c1c8ef99f8d9e49251d5052029a2122" category="list-text">スイッチの基本設定を行います</block>
+  <block id="c6f0365546c55b3f9de31ce3118ed962" category="list-text">スイッチがブートされ、ログインプロンプトでログインし、パスワードを変更します。</block>
+  <block id="9d837b283737463bc96b390a448572da" category="admonition">ユーザ名は「cumulus」で、デフォルトのパスワードは「cumulus」です。</block>
+  <block id="462a12e5e5fc8a8f0f2503ac82e01e16" category="list-text">管理ネットワークインターフェイスを設定</block>
+  <block id="404f235a0e668325747a3bbe34a85550" category="admonition">次に、コマンド「net add hostname」、「net add interface eth0 ip address」、「IPAddress&lt;IPAddress/mask&gt;」、および「net add interface eth0 ip gateway &lt;Gateway&gt;」を使用して、ホスト名（IP_switch_A_1）、IPアドレス（10.10.10.10）、ネットマスク（255.255.255.0）、およびゲートウェイ（10.10.10.1）を設定する例を示します。</block>
+  <block id="fd56421b5278bf3b069d8729f920f29e" category="list-text">sudo rebootコマンドを使用してスイッチをリブートします。</block>
+  <block id="c55cbcd30055e2eecf2070469bd7907a" category="paragraph">スイッチがリブートしたら、の手順に従って新しい設定を適用できます <block ref="67df29514d3fd31c6e0b92fb5ef28c21" category="inline-xref-macro-rx"></block>。</block>
+  <block id="8fa6539999f2d3aff134c30600c80e41" category="section-title">NVIDIAのRCFファイルをダウンロードしてインストールします</block>
+  <block id="62217055050b5f95ab3ac1b301982bec" category="list-text">スイッチソフトウェアがインストールされ、管理ネットワークが設定されている。</block>
+  <block id="8d8734eaa9f80f06163e261ecd8dfd87" category="list-text">方法1または方法2のいずれかを使用して、スイッチを最初に設置する手順を実行しました。</block>
+  <block id="f5029a9b9e4cf676befc86e9839549bd" category="list-text">初期インストール後に追加の設定を適用しなかった場合。</block>
+  <block id="223a78def5043a8e8a25a141206e0278" category="admonition">RCFファイルを適用する前にスイッチをリセットしたあとに以降の設定を実行する場合は、この手順 を使用できません。</block>
+  <block id="696548cd048bf1ec4d31654cdbb3c156" category="paragraph">この手順は、MetroCluster IP構成（新規の設置）または交換用スイッチ（スイッチの交換）の各IPスイッチで実行する必要があります。</block>
+  <block id="b547506e85823bfaa1522cd7d20ababb" category="list-text">MetroCluster IP用のNVIDIA RCFファイルを生成します。</block>
+  <block id="a68522a1adf950d13a0dab9b74d36669" category="list-text">をダウンロードします<block ref="b3f8a8564bd91efeacbc3b6197426c6e" category="inline-link-rx"></block>。</block>
+  <block id="38325ef6d268e93ab480af3cd0b3bd5f" category="list-text">RcfFileGenerator for MetroCluster IPを使用して、設定用のRCFファイルを生成します。</block>
+  <block id="7332a56dad899da7a26afe16c9ca077a" category="list-text">ホームディレクトリに移動します。「cumulus」として記録されている場合、ファイルパスは「/home/cumulus」です。</block>
+  <block id="323d6ef10b6c3c66d13f049670cbdb83" category="list-text">このディレクトリにRCFファイルをダウンロードします。次の例ではSCPを使用して'MSN2100_v1.0.1_IP_switch_a_1.txt'ファイルをサーバ'50.50.50.50'からホームディレクトリにダウンロードし'MSN2100_v1.0.1_IP_switch_a_1.py'として保存します</block>
+  <block id="59c778d760eb930375b77337b3ee45b9" category="list-text">RCFファイルを実行します。RCFファイルでは、1つ以上の手順を適用するためのオプションが必要です。テクニカルサポートから指示がないかぎり、コマンドラインオプションを指定せずにRCFファイルを実行します。RCFファイルのさまざまな手順の完了ステータスを確認するには、オプション「-1」または「all」を使用してすべての（保留中の）手順を適用します。</block>
+  <block id="91fda6ec6c364088ae4a9e6553b26f99" category="doc">NVIDIAがサポートするSN2100 IPスイッチのプラットフォームポート割り当て</block>
+  <block id="1f0b82560627b660c6c6958a1df834b8" category="section-title">サポートされている構成</block>
+  <block id="5b7679ef32240286811b416ba05c54c1" category="paragraph">現在サポートされているプラットフォームは次のとおりです。</block>
+  <block id="e1da8c334241f25c9cc939f9d9e1c5b2" category="list-text">AFF A250</block>
+  <block id="cbdc5a97c94bd42a3c869ae6831f7b04" category="list-text">FAS8300 / AFF A400</block>
+  <block id="4c744d90883c4aab83c5469643da24c7" category="list-text">FAS9000 / AFF A700</block>
+  <block id="b6db688996a59c9dcd63d8adb538f928" category="paragraph">次のプラットフォームと構成は現在サポートされていません。</block>
+  <block id="570a8334b13f037157ca46f8cbbf662b" category="list-text">MetroCluster FC-to IPの移行</block>
+  <block id="67ce3d63d94102f7ff725a6564099821" category="list-text">8ノードMetroCluster 構成</block>
+  <block id="5aa692c4552b821f69bb151f7aa0f216" category="paragraph">複数のMetroCluster 構成をケーブル接続する場合は、該当する表に従ってください。例：</block>
+  <block id="8bcb14049f972f715f22c433283f9028" category="list-text">AFF A700タイプの4ノードMetroCluster 構成を2つケーブル接続する場合は、最初のMetroCluster を「MetroCluster 1」と、2番目のMetroCluster をAFF A700テーブルに「MetroCluster 2」と表示して接続します。</block>
+  <block id="88a7b55f8e462f6453124192f872e512" category="admonition">ポート13と14は、40Gbpsと100Gbpsをサポートするネイティブ速度モードまたは4×25Gbpsをサポートするブレークアウトモードで使用できます。ネイティブ速度モードを使用する場合は、ポート13および14と表されます。ブレークアウトモード（4×25 Gbpsまたは4×10 Gbps）を使用する場合、これらは13s0-3および14s0-3として表されます。</block>
+  <block id="10fe94c98083f4e751ef035d96910a62" category="paragraph">以降の各セクションでは、物理的なケーブル接続の概要について説明します。を参照することもできます<block ref="c52b4d12f68853a25c52576697c6b2b5" category="inline-link-rx"></block> ケーブル接続の詳細については、を参照して</block>
+  <block id="09a5cc95a7bf7e0d1b588340d9deb189" category="image-alt">MCC IPケーブルA250 MSN2100</block>
+  <block id="189ceff67ac9718189406d45e1d9192a" category="image-alt">MCC IPケーブルA400 MSN2100</block>
+  <block id="9b1abf59f2c97ca1a2592e463ceb99ff" category="section-title">AFF A700またはFAS9000でのスイッチポートの用途</block>
+  <block id="ef983d4a2755d55ad39ed1892fc3e613" category="image-alt">MCC IPケーブル配線A700 MSN2100</block>
+  <block id="e22ae8f3e1d3ede96551e02f922872f0" category="section-title">AFF A800で使用するスイッチポート</block>
+  <block id="31b0afd6a52b93da38138e53814052b1" category="image-alt">MCC IPケーブル、A800 MSN2100</block>
+  <block id="fb66ffdb7a65b64035629ded64b78faf" category="sidebar">NVIDIA IPスイッチを設定します</block>
 </blocks>
