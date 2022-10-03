@@ -11,6 +11,8 @@ summary: 移行時に、 MetroCluster FC 構成のドライブシェルフから
 [role="lead"]
 移行時に、 MetroCluster FC 構成のドライブシェルフから新しい MetroCluster IP 構成へデータを移動します。
 
+新しいアグリゲートにボリュームを移動する前に、デスティネーションノードまたはIPノードに新しいSAN LIFを作成し、ホストを接続する必要があります。
+
 . サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。
 +
 .. 問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT=end 」
@@ -34,3 +36,11 @@ summary: 移行時に、 MetroCluster FC 構成のドライブシェルフから
 の手順を使用します  http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-95CA9262-327D-431D-81AA-C73DEFF3DEE2.html["SAN 以外のデータ LIF とクラスタ管理 LIF を新しいノードに移動する"^] クラスタ管理 LIF を移行する手順は、 do * not * ：最後の 2 つの手順で行ってください。
 
 
+
+[NOTE]
+====
+* VMware vStorage APIs for Array Integration （ VAAI ）でコピーオフロード処理に使用されている LIF を移行することはできません。
+* MetroCluster ノードのFCからIPへの移行が完了したあと、iSCSIホスト接続を新しいノードに移動しなければならない場合があります。を参照してください link:task_move_linux_iscsi_hosts_from_mcc_fc_to_mcc_ip_nodes.html["Linux iSCSIホストをMetroCluster FCノードからMetroCluster IPノードに移動しています。"]
+
+
+====
