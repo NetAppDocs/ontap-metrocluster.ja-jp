@@ -1923,7 +1923,6 @@
   <block id="dfaa931cb3298c6a8b82f108a31104cb" category="list-text">元のプラットフォームと新しいプラットフォームに互換性があり、サポートされている必要があります。</block>
   <block id="b8c2f69c5a69a0de627c50e7bc6a4cf9" category="list-text">構成内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。</block>
   <block id="4eef4343ca82afa388103a13e5acd0be" category="paragraph">このメンテナンス作業以外では、コントローラタイプが異なる MetroCluster 構成を運用することはできません。</block>
-  <block id="16f5e23eca91ea2c50cf5ebde29656d2" category="list-text">サポートされるアップグレードパスは、元のプラットフォームモデルによって異なります。</block>
   <block id="b93f37f9b29ffcc5ed4a451ba3da2f03" category="paragraph">シェルフ内蔵のプラットフォームモデルはサポートされていません。</block>
   <block id="d9ac7caa0b14c170344b2e959f8034c0" category="cell">旧プラットフォームモデル</block>
   <block id="9ced91efcf548438eaefe7f78378491e" category="cell">新しいプラットフォームモデル</block>
@@ -2614,7 +2613,6 @@
   <block id="73ab298c8e00d66d28156892903a39ce" category="list-text">AFF A320</block>
   <block id="ec5c696a4bc57321a5a79c91b886d5ff" category="list-text">FAS9000</block>
   <block id="986d1720aef5da8bb727fdc9d630f18b" category="admonition">BES-53248 IP スイッチを使用している場合、 AFF A320 プラットフォームモデルはアップグレードに対応していません。</block>
-  <block id="63b2aba8957ed20a93aa020d51c5ac7d" category="list-text">新しいプラットフォームは、元のプラットフォームとは別のモデルである必要があります。</block>
   <block id="60182e6504cabd5c1f32193f850cc537" category="list-text">サポートされているファームウェアバージョンが IP スイッチで実行されている必要があります。</block>
   <block id="85a877eb6731bf16cfd35e46ab6896fb" category="paragraph">詳細については、を参照してください<block ref="bf137fbaca3418d969a7cbbc6acb278c" category="inline-link-rx"></block>。</block>
   <block id="6aad6e6acf8d07a11804f458ffbdcd50" category="list-text">元のプラットフォームの IP アドレス、ネットマスク、ゲートウェイを新しいプラットフォームで再利用します。</block>
@@ -2856,8 +2854,6 @@
   <block id="3fc44516e07f7c4278d79a805adf2be2" category="list-text">サイト B から構成を確認します。</block>
   <block id="dc2d97a05f4493a33fe850c759870e80" category="summary">使用するアップグレードまたは更新手順は、プラットフォームモデル、アップグレードの範囲、および MetroCluster 構成の種類によって異なります。</block>
   <block id="301e2a674920a7bb1b220a6ccd88ce36" category="doc">アップグレードまたは更新方法を選択します</block>
-  <block id="2a890ad6442d5b1a8fb8758f4dbe8fcf" category="paragraph">アップグレードと更新には、さまざまな種類の手順があります。</block>
-  <block id="b07b0bd1c1284028df7a43bf76f1453b" category="list-text">アップグレード手順はコントローラモジュールにのみ適用されます。コントローラが新しいコントローラモデルに置き換えられます。</block>
   <block id="e9cc835f575fa0eefab2ba42acde2667" category="paragraph">ストレージシェルフモデルはアップグレードされません。</block>
   <block id="383a0cf8106e046d5c9ded7717bf77af" category="list-text">スイッチオーバーとスイッチバックの手順では、パートナークラスタのコントローラモジュールをアップグレードしている間、 MetroCluster スイッチオーバー処理を使用してクライアントに無停止のサービスが提供されます。</block>
   <block id="bd31f0917ae1abfe9ca14e8e4e9848e4" category="list-text">ARL ベースコントローラのアップグレード手順では、アグリゲートの再配置処理を使用して、古い構成からアップグレード後の新しい構成へ、データを無停止で移動します。</block>
@@ -10212,8 +10208,6 @@
   <block id="6cd89c0a24f678f7acedd8c76ccac487" category="list-text">この手順環境コントローラモジュールは、 4 ノード MetroCluster FC 構成です。</block>
   <block id="09a0c3b49fdf8f3d3d97fd599ba851dc" category="list-text">プラットフォームで ONTAP 9.10.1 以降が実行されている必要があります。</block>
   <block id="2b378caa5145e2c7adf8d8e9a477ac03" category="paragraph">次の表に、コントローラのアップグレードでサポートされるモデルマトリックスを示します。</block>
-  <block id="97567631bf69a0efb4d4607d674cfab1" category="cell">交換用プラットフォームモデル</block>
-  <block id="3987c2b3042faa1f0f41d1ec08f2ed7e" category="paragraph">AFF A400 、 AFF A700</block>
   <block id="7c5ee56a01b06b00d2d910cc295d8c56" category="paragraph"><block ref="7c5ee56a01b06b00d2d910cc295d8c56" category="inline-link-rx"></block></block>
   <block id="0e490704226a6f678e043e59eee46210" category="inline-link">ONTAP 9.8 以降を実行しているコントローラハードウェアをアップグレードするには、「 system controller replace 」コマンドを使用します</block>
   <block id="433c23ac1d50e2f792a96846827071e3" category="list-text">この手順を使用して、 NSO ベースの自動スイッチオーバーとスイッチバックを使用して、 4 ノード MetroCluster FC 構成のコントローラをアップグレードできます。アグリゲートの再配置（ ARL ）を使用してコントローラをアップグレードする場合は、を参照してください<block ref="ce0fc11b0e13b00ed4b15a0d6c2e1624" category="inline-link-rx"></block>。NSO ベースの自動化された手順を使用することを推奨します。</block>
@@ -10533,9 +10527,6 @@
   <block id="77d873129b2551d3791bd53918453706" category="sidebar">Tiebreaker ソフトウェアを設定します</block>
   <block id="842ed7dcbaa63b60b53e91a89a33e02c" category="sidebar">Tiebreaker ソフトウェアの SNMP 設定を行います</block>
   <block id="9e22e5887d35d0e7eed7b0656d5e7bfa" category="sidebar">MetroCluster の設定を監視する</block>
-  <block id="1689664751a50a7233fe1e7130ed7294" category="sidebar">アップグレードまたは更新方法を選択します</block>
-  <block id="9d11e1781fbe5b44456d1d295cddc92b" category="sidebar">スイッチオーバーとスイッチバックを使用して、 MetroCluster FC 構成のコントローラをアップグレードします</block>
-  <block id="86c26e1621d0bd8e2c4210c81fd2b539" category="sidebar">4 ノード MetroCluster FC 構成のコントローラを、「 system controller replace 」コマンドを使用してスイッチオーバーとスイッチバックを使用してアップグレードします（ ONTAP 9.10.1 以降）。</block>
   <block id="30836d6051134105cf07f488afe11425" category="sidebar">4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）</block>
   <block id="6e1b901662872166ef0e661d1481924c" category="sidebar">2 ノード MetroCluster FC 構成を 4 ノード構成に拡張</block>
   <block id="fbda6a351e5c32b65583383006360afa" category="sidebar">MetroCluster 構成の状態を確認します</block>
@@ -11150,7 +11141,6 @@
   <block id="c495f5fb55d923c4b5bdcc9031d17504" category="sidebar">MetroCluster 構成にコントローラを追加して、 4 ノードまたは 8 ノード構成を作成します。</block>
   <block id="8b9fb0a48d871747071a5767bb11c3c9" category="sidebar">4 ノード MetroCluster を展開します</block>
   <block id="f0de1d093d27614c73e83446489eec92" category="sidebar">コントローラを MetroCluster 構成に追加して 8 ノード構成を作成</block>
-  <block id="6766503a2944f47284f696078258e1c1" category="sidebar">スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成のコントローラのアップグレード（ ONTAP 9.8 以降）</block>
   <block id="b6d684e18fbacf209337f80ec1a6dbd2" category="sidebar">ONTAP 9.10.1 以降を実行するコントローラでの AFF A900 Brocade ポートの使用</block>
   <block id="20be931e6a91f7361d271248d9c2f477" category="sidebar">ONTAP 9.10.1 以降を実行する ISL では AFF A900 Brocade ポートを使用します</block>
   <block id="224ad006d44a9886d7665e4aad6a905c" category="sidebar">ONTAP 9.10.1 以降を実行する AFF A900 シスコポート使用コントローラ</block>
@@ -12185,9 +12175,6 @@
   <block id="5ddb9938498e31a4b1c392ab5953e15b" category="paragraph"><block ref="5ddb9938498e31a4b1c392ab5953e15b" category="inline-link-rx"></block></block>
   <block id="9630e0ae86014261ce835fe1e1ffcd0e" category="paragraph">各スイッチでこのタスクを順に実行する必要があります。</block>
   <block id="b8ce668f7b81ebccc724b47a22aafe9f" category="paragraph">MetroCluster システムのサービス手順には、ファームウェアのアップグレードとハードウェアの交換手順が含まれています。これらの手順には、ドライブシェルフ、 IP スイッチ、 FC スイッチ、 FC-to-SAS ブリッジ、および SAS ケーブルが含まれます。</block>
-  <block id="ea82c7b5fb58362afd3d6e95de6eb609" category="list-text">FAS80x0</block>
-  <block id="9b81337122f1b971d326821246c0fb05" category="list-text">AFF80x0 と入力します</block>
-  <block id="9630fdb2df8bbf2bbd201638e1cc2f2e" category="admonition">FAS8020 または AFF8020 は、 FC-VI モードで 1c ポートと 1d ポートを使用する場合はアップグレードできません。</block>
   <block id="51556e4766045ccfd74aafe1f8271966" category="paragraph">詳細については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
   <block id="38d923048395adfe402bca08916bd9db" category="paragraph">コントローラのポートの用途は、プラットフォームモジュールおよび MetroCluster IP 構成で使用するスイッチによって異なります。新しいプラットフォームのポート使用量をから収集できます <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block>。</block>
   <block id="f9f099865bb9d36821db181257896abb" category="list-text">AUTOBOOT が有効になっている場合は、 CTRL-C を押して AUTOBOOT を中断します</block>
@@ -12515,7 +12502,6 @@
   <block id="3c2e7a09f3e6838bdc9926952b8e998b" category="list-text"><block ref="3c2e7a09f3e6838bdc9926952b8e998b" category="inline-link-macro-rx"></block></block>
   <block id="8c67eafd90e097bf6228c8d6f91f15cb" category="list-text"><block ref="8c67eafd90e097bf6228c8d6f91f15cb" category="inline-link-macro-rx"></block></block>
   <block id="6fc32e58ee37ceb6ca0bb1590e84ab08" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A900/ FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）</block>
-  <block id="121ccccf0953c4b38cd58e1f1be63ffd" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）</block>
   <block id="44d9da525f678322921a73864bd0b924" category="paragraph">RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。</block>
   <block id="0d98f6fd87f88cd68844ee1450081b43" category="paragraph">この方法は、構成が次の要件を満たしている場合に使用できます。</block>
   <block id="cf5d82da1dbb504eeff51105d1c22631" category="list-text">標準のRCF設定が適用されます。</block>
@@ -12646,11 +12632,6 @@
   <block id="d4a39e254ca0e79abbaea7e91f10d1c8" category="list-text">ポート53および54を40Gbpsまたは100GbpsのMetroCluster ISLとして使用します。</block>
   <block id="39d6f919c4f9487cf3eba1907393cc85" category="list-text">ローカルクラスタインターフェイスとMetroCluster インターフェイスをポート49-52に接続するプラットフォームを使用します。</block>
   <block id="b457d19307b0152d2948b75490c21739" category="list-text">RCFファイルを最初のスイッチにコピーします。'copy sftp://user@ftp-server-ip-address/RcfFiles/switch-specific -RCF / BES-53248_v1.32_Switch-A1.txt nvram：script BES-53248 v1.32_Switch-A1.SCR</block>
-  <block id="ea32627e820d2d706867bdf52f203354" category="section-title">MetroCluster IP構成でのスイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ</block>
-  <block id="5a133f61008521cf04b795cbed594afb" category="paragraph">MetroCluster IP構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。</block>
-  <block id="3683e9c25b6907e036fd4e9c0b1f6c3e" category="image-alt">IP構成でサポートされるコントローラのアップグレードの組み合わせ</block>
-  <block id="c18cacb38175bec2261f766082f949f2" category="section-title">MetroCluster FC構成でのスイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ</block>
-  <block id="d71f8b4a76cf6eed8f9c4126a751829c" category="paragraph">MetroCluster FC構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。</block>
   <block id="2a9c49e8bc60cebb402b316352750e02" category="image-alt">FC構成でサポートされるコントローラのアップグレードの組み合わせ</block>
   <block id="6ecbc3bbbc5acac0e3a1eaa928b0ef3a" category="list-text">データ用パーティション×2</block>
   <block id="203589fdbad6f6dc48cf251ed51e812a" category="list-text">スペアパーティションがありません</block>
@@ -12672,7 +12653,6 @@
   <block id="87375b5769d5bc8e37ee39d964c25804" category="list-text">VMware vStorage APIs for Array Integration （ VAAI ）でコピーオフロード処理に使用されている LIF を移行することはできません。</block>
   <block id="29011b2c4a1fcc691d4080c12a975cd2" category="inline-link-macro">Linux iSCSIホストをMetroCluster FCノードからMetroCluster IPノードに移動しています。</block>
   <block id="15c49ac51668072fdf92e5d8db0ec9ff" category="list-text">MetroCluster ノードのFCからIPへの移行が完了したあと、iSCSIホスト接続を新しいノードに移動しなければならない場合があります。を参照してください <block ref="e3ab265f03332ea44056fafa567b430d" category="inline-link-macro-rx"></block></block>
-  <block id="1fd94f8dc4aef371c8059f7aadb13ffb" category="list-text">次の手順 を使用して、AFF A700 / FAS9000コントローラからAFF A900 / FAS9500コントローラにアップグレードできます。 <block ref="d4055a630aa0f5dfe07651f60a376ff8" category="inline-link-macro-rx"></block></block>
   <block id="e52e46b2e9a285a92c4fb276c84c544e" category="summary">クラスタインターコネクトおよびバックエンドMetroCluster のIP接続用にNVIDIA IPスイッチを設定する必要があります。</block>
   <block id="12dfda519b07b8627c017865df4388a6" category="doc">NVIDIA IP SN2100スイッチを設定します</block>
   <block id="056bd4ccfa99eecc32b7151072832cb7" category="paragraph">クラスタインターコネクトおよびバックエンドMetroCluster IP接続用にNVIDIA SN2100 IPスイッチを設定する必要があります。</block>
@@ -12743,4 +12723,56 @@
   <block id="e22ae8f3e1d3ede96551e02f922872f0" category="section-title">AFF A800で使用するスイッチポート</block>
   <block id="31b0afd6a52b93da38138e53814052b1" category="image-alt">MCC IPケーブル、A800 MSN2100</block>
   <block id="fb66ffdb7a65b64035629ded64b78faf" category="sidebar">NVIDIA IPスイッチを設定します</block>
+  <block id="344184862169747549deee4b87dc1cf2" category="section-title">サポートされるプラットフォームの組み合わせ</block>
+  <block id="a3e36fda70f465bc183d8a10d4112db7" category="paragraph">MetroCluster FC構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。</block>
+  <block id="c847f7b69bc5bbe9de608a708803dafc" category="paragraph">[現行プラットフォーム*行]と[ターゲットプラットフォーム*]列の交差が緑でない場合、この手順 は使用できません。</block>
+  <block id="96235e4cabe659a051590175116c1e60" category="paragraph">を参照してください<block ref="2c4f45f6db308a425e052afade2ba656" category="inline-link-rx"></block> を参照してください。</block>
+  <block id="8c97e6473cb544145de6aa0144fc60b6" category="inline-link-macro">AFF A700 / FAS9500スイッチオーバー/スイッチバック手順</block>
+  <block id="4eef8f838c31b644dbfa5638ac4dae43" category="admonition">AFF A700 / FAS9000コントローラからAFF A900 / FAS9500コントローラへのアップグレードはこの表に記載されていません。この組み合わせは、を使用してサポートされます <block ref="246d2420012a9cc76fe218ed0d95c813" category="inline-link-macro-rx"></block>。</block>
+  <block id="339aff0aa186e93b68d974842b334cfa" category="doc">はじめに：コントローラのアップグレード、システムの更新、拡張のいずれかを選択してください</block>
+  <block id="d9072960df90d32fffa3f4db1496457e" category="paragraph">機器のアップグレードの範囲に応じて、コントローラのアップグレード手順 、システムの更新手順 、または拡張手順 を選択します。</block>
+  <block id="0fa722347ab16c39e7070989619c6d3a" category="list-text">コントローラのアップグレード手順は、コントローラモジュールにのみ適用されます。コントローラが新しいコントローラモデルに置き換えられます。</block>
+  <block id="d54a35a8f37af3fbffcb482b7998215b" category="list-text">拡張手順によって、MetroCluster 構成にコントローラとシェルフが追加されるだけで、取り外しは不要になります。</block>
+  <block id="855a42fae714160495a9f9f355ec5d3e" category="paragraph">使用する手順 は、MetroCluster のタイプと既存のコントローラの数によって異なります。</block>
+  <block id="2a015a1910d04c96ecfc0afb936a5f50" category="cell">アップグレードの種類</block>
+  <block id="ec434af0a2786fa23b468584c5622fe1" category="cell">手順</block>
+  <block id="7a34713b5b314d0601e7f0b4d2891432" category="paragraph">コントローラのアップグレード</block>
+  <block id="f51d3678c201a622cf18e8f30b08f3de" category="inline-link-macro">コントローラのアップグレード手順 を選択します</block>
+  <block id="1bee30f9c5932b39ca60631e46d351c4" category="paragraph"><block ref="1bee30f9c5932b39ca60631e46d351c4" category="inline-link-macro-rx"></block></block>
+  <block id="39a312e16a6992b15a09373f77934847" category="paragraph">システムの更新</block>
+  <block id="4af3311caa78d1d3f55967915ca2b518" category="inline-link-macro">システム更新手順 を選択します</block>
+  <block id="011f33756c08780dd7f0a5052471c2b4" category="paragraph"><block ref="011f33756c08780dd7f0a5052471c2b4" category="inline-link-macro-rx"></block></block>
+  <block id="47e8426faae2aa682c3096c3e32d3956" category="paragraph">拡張</block>
+  <block id="89dbe141e950ad77974d19d490093acc" category="inline-link-macro">2ノードMetroCluster から4ノード</block>
+  <block id="ce424b2d05c913b7acda20f773137372" category="list-text"><block ref="ce424b2d05c913b7acda20f773137372" category="inline-link-macro-rx"></block></block>
+  <block id="eac32abfe349f5fc06674c5de9da136a" category="inline-link-macro">4ノードMetroCluster FCから8ノード</block>
+  <block id="acdda3ad5a5d389cfe0b094f79763b0a" category="list-text"><block ref="acdda3ad5a5d389cfe0b094f79763b0a" category="inline-link-macro-rx"></block></block>
+  <block id="07bc2a5731d1521a6cfc759a3253b273" category="inline-link-macro">4ノードMetroCluster のIPアドレスを8に設定します</block>
+  <block id="2c67410cdfbda39caa185635976fb5a3" category="list-text"><block ref="2c67410cdfbda39caa185635976fb5a3" category="inline-link-macro-rx"></block></block>
+  <block id="af90c7c33f97cc152b46f35af11f2720" category="summary">使用するリフレッシュ手順 は、プラットフォームモデル、アップグレードの範囲、およびMetroCluster 構成の種類によって異なります。</block>
+  <block id="c3845446d08fee33d16bfdbbedffdc88" category="doc">システムの更新方法を選択する</block>
+  <block id="67d9ea64d4d1f19a6fa9178bcb2a126b" category="paragraph">使用するシステム更新手順 は、プラットフォームモデル、アップグレードの範囲、およびMetroCluster 構成の種類によって異なります。</block>
+  <block id="5d113f2038d289f391614c39043629e8" category="cell">適用範囲</block>
+  <block id="fc392b1e7219ffdf49fa895aa4900b36" category="cell">コンフィギュレーションタイプ</block>
+  <block id="013647ab1eb017c353f89f46ca2c0d85" category="cell">ONTAP のサポート</block>
+  <block id="ebc2ca8d2c7ef918abcfff80809d9aab" category="summary">使用するアップグレード手順 はプラットフォームモデルによって異なります。</block>
+  <block id="1c9a0818e732ba5a475e7e19b4991adf" category="doc">コントローラのアップグレード手順を選択します</block>
+  <block id="895bf4a1ca3e66ce2801d409eb6daf37" category="paragraph">使用するコントローラアップグレード手順 は、プラットフォームモデル、アップグレードの範囲、およびMetroCluster 構成の種類によって異なります。</block>
+  <block id="362eddecd5ba3f79183ea3b743c4526c" category="paragraph">次の表に、サポートされるコントローラモデルの組み合わせを示します。</block>
+  <block id="c163452b6d6fda6fddd3c92df9b52e8f" category="section-title">この手順 でサポートされているプラットフォーム</block>
+  <block id="3af8c4bc8c1236580221c8d8a69ebe0a" category="list-text">ターゲット（新規）プラットフォームは、元のプラットフォームとは異なるモデルである必要があります。</block>
+  <block id="1105b1e9f2d843b22143dc8f0c9ab49c" category="list-text">MetroCluster IP構成では、この手順 を使用してアップグレードできるプラットフォームモデルは限られています。</block>
+  <block id="c66499ab9700410fb3d8b3a64e9e291c" category="list-text">次の表に、サポートされるプラットフォームモデルの組み合わせを示します。</block>
+  <block id="dd3dcc697b8eff7c7acdca7e5bb2b62a" category="image-alt">サポートされているコントローラアップグレードはmccip ssobです</block>
+  <block id="173073f2b4c10001197b8ecb42c6e83b" category="paragraph">8000シリーズシステム</block>
+  <block id="cc4c5c397558976c3fb0387232297737" category="sidebar">まずはこちらから-手順 を選択してください</block>
+  <block id="db267dea88bedafa5679df8ad5247270" category="sidebar">コントローラのアップグレード、システムの更新、拡張のいずれかを選択します</block>
+  <block id="676a1a7f93fd600585d02e62f2d0a51b" category="sidebar">コントローラアップグレード手順 を選択します</block>
+  <block id="62cbee147331935911956f9a0173e5dc" category="sidebar">システム更新手順 を選択します</block>
+  <block id="3cf7b8011f891632a5de191822ee417b" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FCのコントローラをアップグレードします</block>
+  <block id="00dc868cd4449d840bca045060dbf7cb" category="sidebar">スイッチオーバーとスイッチバックを使用して、AFF MetroCluster FCのMetroCluster FCのコントローラ（ONTAP A700 / FAS9000からAFF A900 / FAS9500へ）をアップグレードする（9.10.1以降）</block>
+  <block id="ebd157c1e8defc9bf33ac98105172329" category="sidebar">「system controller replace」コマンドを使用してスイッチオーバーとスイッチバックを行うことで、4ノードのMetroCluster FCのコントローラをアップグレードします（ONTAP 9.10.1以降）。</block>
+  <block id="31214012750b888cbecfe6100ea9a335" category="sidebar">スイッチオーバーとスイッチバックを使用したMetroCluster IPのコントローラのアップグレード（ONTAP 9.8以降）</block>
+  <block id="0f0bf8d23aa860be830e25b6f1b90c86" category="sidebar">スイッチオーバーとスイッチバックを使用してMetroCluster IPのコントローラ（AFF A700 / FAS9000からAFF A900 / FAS9500）をアップグレードする（ONTAP 9.10.1以降）</block>
+  <block id="34e0a85e8dfaaeca6dadc1260cdef2ae" category="sidebar">4 ノード MetroCluster FC 構成を更新</block>
 </blocks>

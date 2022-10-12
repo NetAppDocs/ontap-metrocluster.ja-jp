@@ -4,18 +4,16 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, choose, upgrade, refresh, method 
 summary: 使用するアップグレードまたは更新手順は、プラットフォームモデル、アップグレードの範囲、および MetroCluster 構成の種類によって異なります。 
 ---
-= アップグレードまたは更新方法を選択します
+= はじめに：コントローラのアップグレード、システムの更新、拡張のいずれかを選択してください
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-使用するアップグレードまたは更新手順は、プラットフォームモデル、アップグレードの範囲、および MetroCluster 構成の種類によって異なります。
+機器のアップグレードの範囲に応じて、コントローラのアップグレード手順 、システムの更新手順 、または拡張手順 を選択します。
 
-アップグレードと更新には、さまざまな種類の手順があります。
-
-* アップグレード手順はコントローラモジュールにのみ適用されます。コントローラが新しいコントローラモデルに置き換えられます。
+* コントローラのアップグレード手順は、コントローラモジュールにのみ適用されます。コントローラが新しいコントローラモデルに置き換えられます。
 +
 ストレージシェルフモデルはアップグレードされません。
 
@@ -31,173 +29,39 @@ summary: 使用するアップグレードまたは更新手順は、プラッ�
 +
 その後、元のコントローラが撤去されます。
 
+* 拡張手順によって、MetroCluster 構成にコントローラとシェルフが追加されるだけで、取り外しは不要になります。
++
+使用する手順 は、MetroCluster のタイプと既存のコントローラの数によって異なります。
 
 
 
-
-== MetroCluster IP構成でのスイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ
-
-MetroCluster IP構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。
-
-image::supported_controller_upgrades.png[IP構成でサポートされるコントローラのアップグレードの組み合わせ]
-
-
-
-== MetroCluster FC構成でのスイッチオーバーとスイッチバックを使用したコントローラのアップグレードでサポートされるプラットフォームの組み合わせ
-
-MetroCluster FC構成では、スイッチオーバーとスイッチバックの処理を使用して特定のプラットフォームをアップグレードできます。次の表に、サポートされるコントローラのアップグレードの組み合わせを示します。
-
-image::supported_controller_upgrades_fc_configurations.png[FC構成でサポートされるコントローラのアップグレードの組み合わせ]
-
-* 次の手順 を使用して、AFF A700 / FAS9000コントローラからAFF A900 / FAS9500コントローラにアップグレードできます。 link:task_upgrade_A700_to_A900_in_a_four_node_mcc_fc_us_switchover_and_switchback.html["スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A900/ FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）"]
-
-
-
-
-== アグリゲートの再配置を使用しない手順を選択しています
-
+[cols="2,5"]
 |===
 
 
-| アップグレードまたは更新のタイプ | MetroCluster タイプ | 最初の ONTAP バージョンのサポート | 手順 
+| アップグレードの種類 | 手順 
 
 
  a| 
-* 範囲：プラットフォーム（コントローラモジュール）のみ
-* 方法：自動スイッチオーバー / スイッチバック
-
+コントローラのアップグレード
  a| 
-FC
- a| 
-9.10.1
- a| 
-link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html["4 ノード MetroCluster FC 構成でのコントローラのアップグレード。スイッチオーバーとスイッチバックに「 system controller replace 」コマンドを使用（ ONTAP 9.10.1 以降）"]
+link:../upgrade/concept_choosing_controller_upgrade_mcc.html["コントローラのアップグレード手順 を選択します"]
 
 
 
  a| 
-* 範囲：プラットフォーム（コントローラモジュール）のみ
-* 方法：自動スイッチオーバー / スイッチバック
-
+システムの更新
  a| 
-IP
- a| 
-9.10.1
- a| 
-link:task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html["スイッチオーバーとスイッチバックを使用して MetroCluster IP 構成の AFF A700 から AFF A900 にコントローラをアップグレード（ ONTAP 9.10.1 以降）"]
+link:../upgrade/concept_choosing_tech_refresh_mcc.html["システム更新手順 を選択します"]
 
 
 
  a| 
-* 範囲：プラットフォーム（コントローラモジュール）のみ
-* 方法：スイッチオーバー / スイッチバック
+拡張
+ a| 
+* link:../upgrade/task_expand_a_two_node_mcc_fc_configuration_to_a_four_node_fc_configuration_supertask.html["2ノードMetroCluster から4ノード"]
+* link:../upgrade/task_expand_a_four_node_mcc_fc_configuration_to_an_eight_node_configuration.html["4ノードMetroCluster FCから8ノード"]
+* link:../upgrade/task_expand_a_four_node_mcc_ip_configuration.html["4ノードMetroCluster のIPアドレスを8に設定します"]
 
- a| 
-FC
- a| 
-9.8
- a| 
-link:task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html["スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成のコントローラをアップグレードする"]
-
-
-
- a| 
-* 範囲：プラットフォーム（コントローラモジュール）のみ
-* 方法：スイッチオーバー / スイッチバック
-
- a| 
-IP
- a| 
-9.8
- a| 
-link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html["スイッチオーバーとスイッチバックを使用した MetroCluster IP 構成でのコントローラのアップグレード（ ONTAP 9.8 以降）"]
-
-
-
- a| 
-* 範囲：プラットフォーム（コントローラモジュール）とストレージシェルフ
-* 方法： MetroCluster 設定を展開して古いノードを削除します
-
- a| 
-FC
- a| 
-9.6 以降
- a| 
-link:task_refresh_4n_mcc_fc.html["4 ノード MetroCluster FC 構成を更新しています"]
-
-
-
- a| 
-* 範囲：プラットフォーム（コントローラモジュール）とストレージシェルフ
-* 方法： MetroCluster 設定を展開して古いノードを削除します
-
- a| 
-IP
- a| 
-9.8
- a| 
-link:task_refresh_4n_mcc_ip.html["4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）"]
-
-|===
-
-
-== アグリゲートの再配置を使用した手順の選択
-
-|===
-| アグリゲートの再配置手順 | MetroCluster タイプ | 最初の ONTAP バージョンのサポート | 手順 
-
-
- a| 
-system controller コマンドを使用して、コントローラモジュールと NVM を交換します
- a| 
-FC
- a| 
-9.10.1 以降
- a| 
-https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-auto-affa900/index.html["「 system controller replace 」コマンドを使用して、 ONTAP 9.10.1 RC2 以降を実行する AFF A700 を AFF A900 にアップグレードします"^]
-
-
-
- a| 
-「 system controller replace 」コマンドを使用します
- a| 
-FC
- a| 
-9.8 以降
- a| 
-https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-auto-app/index.html["「 system controller replace 」コマンドを使用して、 ONTAP 9.8 以降を実行するコントローラハードウェアをアップグレードします"^]
-
-
-
- a| 
-「 system controller replace 」コマンドを使用します
- a| 
-FC
- a| 
-9.5 ～ 9.7
- a| 
-https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-auto/index.html["「 system controller replace 」コマンドを使用して、 ONTAP 9.5 を実行しているコントローラハードウェアを ONTAP 9.7 にアップグレードします"^]
-
-
-
- a| 
-手動 ARL コマンドを使用
- a| 
-FC
- a| 
-9.8
- a| 
-https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-manual-app/index.html["ONTAP 9.8 以降を実行しているコントローラハードウェアを手動でアップグレードします"^]
-
-
-
- a| 
-手動 ARL コマンドを使用
- a| 
-FC
- a| 
-9.7 以前
- a| 
-https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-manual/index.html["ONTAP 9.7 以前を実行しているコントローラハードウェアを手動でアップグレードします"^]
 
 |===
