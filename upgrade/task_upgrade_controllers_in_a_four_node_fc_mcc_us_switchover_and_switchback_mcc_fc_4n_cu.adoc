@@ -23,9 +23,13 @@ MetroCluster FC構成では、スイッチオーバーとスイッチバック�
 
 を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新方法を選択します"] を参照してください。
 
+[NOTE]
+====
+* AFF A700 / FAS9000コントローラからAFF A900 / FAS9500コントローラへのアップグレードはこの表に記載されていません。この組み合わせは、を使用してサポートされます link:task_upgrade_A700_to_A900_in_a_four_node_mcc_fc_us_switchover_and_switchback.html["AFF A700 / FAS9500スイッチオーバー/スイッチバック手順"]。
+* オンボードポート0eおよび0fをFC-VI接続として使用してAFF A300またはFAS8200プラットフォームからアップグレードする場合、9.10.1より前のバージョンのONTAP を実行しているシステムのみサポートされます。
 
-NOTE: AFF A700 / FAS9000コントローラからAFF A900 / FAS9500コントローラへのアップグレードはこの表に記載されていません。この組み合わせは、を使用してサポートされます link:task_upgrade_A700_to_A900_in_a_four_node_mcc_fc_us_switchover_and_switchback.html["AFF A700 / FAS9500スイッチオーバー/スイッチバック手順"]。
 
+====
 image::supported_controller_upgrades_mccfc_sosb.png[FC構成でサポートされるコントローラのアップグレードの組み合わせ]
 
 
