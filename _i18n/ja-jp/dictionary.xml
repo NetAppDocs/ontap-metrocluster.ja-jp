@@ -12778,4 +12778,13 @@
   <block id="80a030e3352fb989821aa7c6d15bcfad" category="inline-link-macro">パブリックレポート</block>
   <block id="9f65944593edc840cbe5ddb177ae6b75" category="list-text">オンボードポート0eおよび0fをFC-VI接続として使用してAFF A300またはFAS8200プラットフォームからコントローラをアップグレードする場合、9.6.1より前のバージョンのONTAP を実行しているシステムのみサポートされます。詳細については、を参照してください <block ref="845e64151c0738e7120f5a63234759b0" category="inline-link-macro-rx"></block>。</block>
   <block id="bf65ff1f2c88ec7d1999086f6c8ba8ea" category="list-text">オンボードポート0eおよび0fをFC-VI接続として使用してAFF A300またはFAS8200プラットフォームからアップグレードする場合は、9.6.1より前のバージョンのONTAP を実行しているシステムのみサポートされます。詳細については、を参照してください <block ref="845e64151c0738e7120f5a63234759b0" category="inline-link-macro-rx"></block>。</block>
+  <block id="dda33fc9a3cc083db08123f7d7e692a8" category="inline-link-macro">MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項</block>
+  <block id="160ccce82c893f99e3f0614ca209899d" category="admonition">ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動強制スイッチオーバー機能をイネーブルにできます。この機能は、メディエーターアシスト計画外スイッチオーバーの拡張機能です。この機能を有効にする前に、を参照してください <block ref="a3a7e72ce1f5f993a44ac5e44397056b" category="inline-link-macro-rx"></block>。</block>
+  <block id="2c697c75c3912edd44d925cbf3b6566c" category="list-text">MetroCluster の自動強制スイッチオーバーを設定する場合は、次のコマンドを実行します。<block ref="956c336644e4861eddad733e8ae9f18c" prefix=" " category="inline-code"></block></block>
+  <block id="4830d0eb35b6c7bd558e3bba215a9a3f" category="paragraph">この機能を有効にする前に、を参照してください <block ref="a3a7e72ce1f5f993a44ac5e44397056b" category="inline-link-macro-rx"></block>。</block>
+  <block id="d49fffd0ec397c8f5b53fbeb1bc93ee2" category="paragraph">ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動強制スイッチオーバー機能をイネーブルにできます。この機能は、Mediator-Assisted Unplanned Switchover（MAUSO；メディエーターアシスト計画外スイッチオーバー）機能の拡張です。</block>
+  <block id="a6e62874574d6ae8ffc9dc6ea98c08e7" category="paragraph">サイト障害検出時のスイッチオーバーは、MetroCluster の自動強制スイッチオーバー機能を有効にすると自動的に実行されます。この機能は、MetroCluster IP自動スイッチオーバー機能を補完するために使用できます。</block>
+  <block id="64aca5dcd09842ce5e26c9c9f52a5c79" category="paragraph">MetroCluster IP設定を自動強制スイッチオーバーモードで実行すると、次の既知の問題によってデータが失われる可能性があります。</block>
+  <block id="432fccc7d25e83271acb25e6c686d22f" category="list-text">ストレージコントローラの不揮発性メモリは、パートナーサイトのリモートディザスタリカバリ（DR）パートナーにミラーリングされません。</block>
+  <block id="4e94608087f1df11aa020cbfe28a7876" category="admonition">ここに記載されていない状況が発生することもあります。ネットアップは、MetroCluster の自動強制スイッチオーバー機能を有効にした場合に発生する可能性があるデータの破損、データの損失、その他の破損について責任を負いません。リスクと制限を許容できない場合は、MetroCluster の自動強制スイッチオーバー機能を使用しないでください。</block>
 </blocks>

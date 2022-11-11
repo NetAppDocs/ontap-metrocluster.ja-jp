@@ -1,0 +1,24 @@
+---
+permalink: install-ip/concept-risks-limitations-automatic-switchover.html 
+sidebar: sidebar 
+keywords: ontap, mediator, service, assist, metrocluster, ip, configuration, perform, automatic, unplan, switchover, physical, repository, status, information, configuring, configure, install, configuring, configure, forced 
+summary:  
+---
+= MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動強制スイッチオーバー機能をイネーブルにできます。この機能は、Mediator-Assisted Unplanned Switchover（MAUSO；メディエーターアシスト計画外スイッチオーバー）機能の拡張です。
+
+サイト障害検出時のスイッチオーバーは、MetroCluster の自動強制スイッチオーバー機能を有効にすると自動的に実行されます。この機能は、MetroCluster IP自動スイッチオーバー機能を補完するために使用できます。
+
+MetroCluster IP設定を自動強制スイッチオーバーモードで実行すると、次の既知の問題によってデータが失われる可能性があります。
+
+* ストレージコントローラの不揮発性メモリは、パートナーサイトのリモートディザスタリカバリ（DR）パートナーにミラーリングされません。
+
+
+
+CAUTION: ここに記載されていない状況が発生することもあります。ネットアップは、MetroCluster の自動強制スイッチオーバー機能を有効にした場合に発生する可能性があるデータの破損、データの損失、その他の破損について責任を負いません。リスクと制限を許容できない場合は、MetroCluster の自動強制スイッチオーバー機能を使用しないでください。
