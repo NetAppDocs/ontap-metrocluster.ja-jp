@@ -1810,11 +1810,6 @@
   <block id="78945de8de090e90045d299651a68a9b" category="paragraph">利用可能</block>
   <block id="7a15f8c2a97f6388700c82fdf3a949b2" category="paragraph">「 * ifconfig e0M -auto * 」と入力します</block>
   <block id="2d25c72c1b18e562f6654fff8e11711e" category="paragraph">使用できません</block>
-  <block id="5cae28c48acee98f2baac425290bbe14" category="paragraph">「 filer_addr 」は、ストレージ・システムの IP アドレスです。</block>
-  <block id="846aab4775f72f7500de656fcc2ac584" category="paragraph">「 netmask 」は、ストレージ・システムのネットワーク・マスクです。</block>
-  <block id="5c53dd4f07d069ff3358f3008241d6cd" category="paragraph">「 gateway 」はストレージ・システムのゲートウェイです。</block>
-  <block id="e14b9c106486400a1e3f574403b479e2" category="paragraph">「 dns_addr 」は、ネットワーク上のネームサーバの IP アドレスです。</block>
-  <block id="5eeab609359fce246c8785de7ee7e37a" category="paragraph">「 dns_domain 」は Domain Name System （ DNS ）ドメイン名です。このオプションパラメータを使用する場合は、ネットブートサーバの URL に完全修飾ドメイン名を指定する必要はなく、サーバのホスト名だけを指定します。</block>
   <block id="204216aae6f9292b8a5efb27c92a401f" category="admonition">インターフェイスによっては、その他のパラメータが必要になる場合もあります。詳細については、 LOADER プロンプトで「 help ifconfig 」コマンドを使用してください。</block>
   <block id="10b41884caecbbf69bf85b01824d86cc" category="list-text">LOADER プロンプトで、新しいノードをネットブートします。</block>
   <block id="0ba2b3e0a887666765eb2d690768c576" category="cell">用途</block>
@@ -4547,7 +4542,6 @@
   <block id="4051be1a3983dca295d33b07d3d4aeb9" category="list-text">ADP 用に設定されたシステムを使用している場合は ' 起動メニューからオプション 9a' を選択し ' プロンプトが表示されたら 'yes' と入力します</block>
   <block id="4e7b785e4493cbe0b79242ce203ac879" category="admonition">このプロセスはシステムの停止を伴います。</block>
   <block id="5cb307132c3a15fc08a921c25fd8f05e" category="doc">クラスタピアリングの前提条件</block>
-  <block id="3ace0101eda807644a901de4c89f212a" category="paragraph">各 MetroCluster サイトは、パートナーサイトのピアとして設定されます。ここでは、ピア関係を設定し、それらの関係に共有ポートと専用ポートのどちらを使用するかを決定する際に理解しておく必要がある前提条件とガイドラインを示します。</block>
   <block id="e332effd770e4f47249bcffd39577fea" category="inline-link">クラスタと SVM のピアリングの簡単な設定</block>
   <block id="acddc206ee430cbefcf4cbd6e76dc36c" category="paragraph"><block ref="acddc206ee430cbefcf4cbd6e76dc36c" category="inline-link-rx"></block></block>
   <block id="77495e745fe2123250999bee6aa73027" category="section-title">接続要件</block>
@@ -6815,7 +6809,6 @@
   <block id="a79109432485cb634f66654d4bce4833" category="paragraph">「 network interface show -role intercluster-failover 」の略</block>
   <block id="ce2034e3e322f8406cf6ca46f905c9fb" category="paragraph">「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です</block>
   <block id="5234664df25823d24e2779ea23a2aea1" category="paragraph">「 network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です</block>
-  <block id="b8e7cebe68f75c9a508edbf43913f3f6" category="paragraph">次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。</block>
   <block id="af38ecaa21f292a282a9ff2da5fa8c28" category="paragraph">「 network interface show – service-policy default-intercluster-failover 」と表示されます</block>
   <block id="58ba31c3d84fdbdc2be198ae5852fa82" category="paragraph">MetroCluster クラスタ間にクラスタピア関係を作成する必要があります。</block>
   <block id="1d8f4251a8e86e2424aff140993d62ef" category="paragraph">cluster peer create コマンドを使用すると、ローカルクラスタとリモートクラスタ間のピア関係を作成できます。ピア関係が作成されたら、リモートクラスタで cluster peer create を実行して、ローカルクラスタに対してピア関係を認証できます。</block>
@@ -7782,7 +7775,6 @@
   <block id="3101be4d53f99469f2c1b39892d6d93f" category="list-text">Q2 ： node_A_1 のプール 0</block>
   <block id="dbe07d3b0e16c3d4d765887b1b29b7bd" category="list-text">Q3 ： node_B_1 のプール 1</block>
   <block id="36a6b2d82f1c99925006210a57878b24" category="list-text">Q4 ： node_B_2 のプール 1</block>
-  <block id="78901a670ecee0e2cae92a552370d833" category="list-text">データ用パーティション × 1</block>
   <block id="88f336a63a2478d097af48b4a173b710" category="section-title">AFF A250 システムでの ADP とディスク割り当て</block>
   <block id="f3a88820bdb6aec9f587dc31d6c8d2a5" category="paragraph">各シェルフのパーティションは、ルートアグリゲートの作成に使用されます。ルートアグリゲートの各プレックスには、次のパーティションが含まれます。</block>
   <block id="ebc41c749d217e4e33d72e9e61f637ae" category="paragraph">内蔵ドライブ 24 本のみ</block>
@@ -9182,7 +9174,6 @@
   <block id="1456cda5fcdd4ba6dc58aaeb75ae33ca" category="paragraph">次の例は、 SVM 「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。</block>
   <block id="2c473c2b0dd7e7fd0a780aba4f6b52cb" category="paragraph">専用のポートを使用することが適切なクラスタ間ネットワーク解決策であるかどうかを判断するには、 LAN のタイプ、利用可能な WAN 帯域幅、レプリケーション間隔、変更率、ポート数などの設定や要件を考慮する必要があります。</block>
   <block id="376d4fd6163673e8ce3ef73b91ff9c9d" category="cell">「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -address_port_ip_-netmask_`</block>
-  <block id="121791834cc106d1f75cc10ba9274408" category="cell">* ONTAP 9.6 以降 * ：</block>
   <block id="70368afdba29ef090427320b39d6868b" category="paragraph">次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。</block>
   <block id="d3895c0d50943a96774ef267cc45ca30" category="paragraph">cluster peer create -generate-passphrase -offer-expiration_mm/dd/YYYY HH ： MM ： SS|1...7days | 1...168hours_-peer-addrs_peer_lif_ips_-ipspace_ips_`</block>
   <block id="797647e34bade9092632b77423181a50" category="list-text">ソースクラスタで、ソースクラスタをデスティネーションクラスタに対して認証します。</block>
@@ -9395,7 +9386,6 @@
   <block id="b2b6e23ab57653d1006049cf37bfed5b" category="list-text">クラスタ内のすべての必要なノードに V_StorageAttach ライセンスがインストールされていることを確認します。</block>
   <block id="f52d44aaa981f34fa588225f9d4cc820" category="paragraph">「 system license show 」を参照してください</block>
   <block id="4cd1110435955b3b14ac2d145c6baae1" category="paragraph">各 MetroCluster サイトは、パートナーサイトのピアとして設定されます。ここでは、ピア関係を設定し、それらの関係に共有ポートと専用ポートのどちらを使用するかを決定する際に理解しておく必要がある前提条件とガイドラインを示します。</block>
-  <block id="4f14bd83165c34717fd8f31fd01148f6" category="paragraph"><block ref="4f14bd83165c34717fd8f31fd01148f6" category="inline-link-macro-rx"></block></block>
   <block id="f515fca759b029639b19b471d7a2c1ed" category="inline-link">MetroCluster IP 解決策のアーキテクチャおよび設計、 TR-4689</block>
   <block id="8d4727f84fc5ba727eb23a4ce93c87c2" category="list-text">MetroCluster IP の構成と運用の技術概要</block>
   <block id="dd6ee1233d0e34b47648ba9732a67411" category="list-text">MetroCluster IP 構成のベストプラクティス</block>
@@ -10475,7 +10465,6 @@
   <block id="c5578900d835092e78f37c68ccc1b2ea" category="paragraph">スイッチで実行している ONTAP のバージョンを変更する場合は、そのバージョンでサポートされている RCF ファイルがあることを確認する必要があります。RCF ジェネレータを使用すると、正しい RCF ファイルが生成されます。</block>
   <block id="bdff20b545d5f7f451d6cc86cddcd9d5" category="list-text">RCF ファイルのバージョンを確認するには、スイッチから次のコマンドを使用します。</block>
   <block id="cb1e716ab831d1ef2a5741deabd44bd7" category="cell">スイッチ</block>
-  <block id="e1b2d6a1b751cb96efc81bdc19b3dec8" category="paragraph">Brocade スイッチ</block>
   <block id="196859a46785802c1b55cf0cc9501818" category="paragraph">`(IP_switch_A_1) # show clibanner`</block>
   <block id="4b7e6b18c6a39aa5ac2a1c68aebcc388" category="paragraph">Cisco スイッチ</block>
   <block id="9b3b2c674f3b4b1f564ace7400510bbc" category="paragraph">ip_switch _A_1# には、 banner motd が表示されます</block>
@@ -12322,7 +12311,6 @@
   <block id="dbef88bf7072abf7cb1500b76c098158" category="doc">MetroCluster IP設定からONTAP メディエーターサービスの設定を解除します</block>
   <block id="b265dc310dca1d74417a4715e46c4168" category="paragraph">ONTAP メディエーターサービスの設定をMetroCluster IP設定から解除できます。</block>
   <block id="db31f506e34352cf979355688abceeac" category="paragraph">両方のMetroCluster サイトからアクセスできるネットワークの場所にONTAP メディエーターがインストールされて設定されている必要があります。</block>
-  <block id="5bf67de758861fac80bba5762e2395d5" category="paragraph">このタスクは、MetroCluster IP構成の両方のクラスタで実行する必要があります。</block>
   <block id="c8dd54fd6141594c239adba6bd3401ff" category="list-text">次のコマンドを使用して、ONTAP メディエーターサービスの設定を解除します。</block>
   <block id="0c87e171b9e1156bebc0a65b722d174d" category="list-text">次のコマンドを使用して、破損ディスクがないかどうかを確認します。</block>
   <block id="27bf55792722dd4b16925981ef8953b4" category="paragraph">「disk show -broken」</block>
@@ -12787,4 +12775,31 @@
   <block id="64aca5dcd09842ce5e26c9c9f52a5c79" category="paragraph">MetroCluster IP設定を自動強制スイッチオーバーモードで実行すると、次の既知の問題によってデータが失われる可能性があります。</block>
   <block id="432fccc7d25e83271acb25e6c686d22f" category="list-text">ストレージコントローラの不揮発性メモリは、パートナーサイトのリモートディザスタリカバリ（DR）パートナーにミラーリングされません。</block>
   <block id="4e94608087f1df11aa020cbfe28a7876" category="admonition">ここに記載されていない状況が発生することもあります。ネットアップは、MetroCluster の自動強制スイッチオーバー機能を有効にした場合に発生する可能性があるデータの破損、データの損失、その他の破損について責任を負いません。リスクと制限を許容できない場合は、MetroCluster の自動強制スイッチオーバー機能を使用しないでください。</block>
+  <block id="80f6a6e12e6ca0304707e7a67581f248" category="paragraph">Broadcomスイッチ</block>
+  <block id="530dbe55cb10e603b69b517d0cb2f4bc" category="list-text">両方のクラスタで次のコマンドを実行して、ONTAP メディエーターサービスがMetroCluster 構成から削除されたことを確認します。</block>
+  <block id="49b7410e94a7ca7d1c674a14241ebe49" category="list-text"><block ref="7200673afad174d0ff258c801fbb9def" prefix="" category="inline-code"></block></block>
+  <block id="f85af53e3d7c278ec6cd756cf3365359" category="list-text">スペアなし</block>
+  <block id="385f02022cf6cb2f3cfc0aa026b7c3d7" category="list-text">構成に一致するオプションを選択し、cluster_Aの正しいコマンドを問題 します。</block>
+  <block id="ee300e8560b29f936da49959eebf76e9" category="open-title">オプション1：ONTAP 9.8以降を実行する4ノードまたは8ノードのFC構成</block>
+  <block id="33bc2208a49f224c5922ce3b2b42fb21" category="paragraph">次のコマンドを実行します。<block ref="71b269d201dc030c963a1b0b33ee014f" prefix=" " category="inline-code"></block></block>
+  <block id="322ed43657dad6df7189e69bbea9fe57" category="open-title">オプション2：ONTAP 9.3以降を実行する2ノードFC構成</block>
+  <block id="ad714f1a11f3ed1c3d1a9c5c0a9c185b" category="paragraph">次のコマンドを実行します。<block ref="803740ddd57a4d0c8a51c6ede10e3096" prefix=" " category="inline-code"></block></block>
+  <block id="dda9fac268f3774282dbdcee2b98e206" category="paragraph"><block ref="c823de4f8bc2e5e070e3f2a6b83c709f" prefix="" category="inline-code"></block></block>
+  <block id="9a63e80a7a324f409930e8d454b5e538" category="paragraph"><block ref="cb485a0e6e52cf58d8ed72bd00e074ec" prefix="" category="inline-code"></block></block>
+  <block id="4ee3c0b4cfc3305a195d42ce617dcc41" category="paragraph"><block ref="854a4be4b1fce65bf3a90ee74692188e" prefix="" category="inline-code"></block> は、ストレージシステムのIPアドレスです。</block>
+  <block id="db90801e232a1746aec7c835ee93e932" category="paragraph"><block ref="220b0a4790e2c047ae96a881e506e1fe" prefix="" category="inline-code"></block> は、ストレージシステムのネットワークマスクです。</block>
+  <block id="2341e6b2fbc3a695ee3dd2358295392c" category="paragraph"><block ref="14fb245f7140583707d1cda241eeeff2" prefix="" category="inline-code"></block> は、ストレージシステムのゲートウェイです。</block>
+  <block id="9ecb124bd7cc72ce8836d42500ccf1c1" category="paragraph"><block ref="573c932508ccab841c5c117fb2cd2186" prefix="" category="inline-code"></block> は、ネットワーク上のネームサーバのIPアドレスです。</block>
+  <block id="0b01a5f19097da529bc5a887225bb6d0" category="paragraph"><block ref="79e5a69f76d034adaafbb5cb6cb8fc45" prefix="" category="inline-code"></block> は、Domain Name System（DNS；ドメインネームシステム）ドメイン名です。このオプションパラメータを使用する場合は、ネットブートサーバの URL に完全修飾ドメイン名を指定する必要はなく、サーバのホスト名だけを指定します。</block>
+  <block id="bafe4bc75cd2dda40df8007d783f6a0b" category="paragraph"><block ref="bafe4bc75cd2dda40df8007d783f6a0b" category="inline-link-macro-rx"></block></block>
+  <block id="2fc63d7ef73ec51fea07c22bee9e5328" category="open-title">ONTAP 9.6以降では</block>
+  <block id="a6716741999f9bc3ac379c0b1266ee9e" category="paragraph">次のコマンドを実行します。<block ref="adc0f0943e919c37894a966fa46c4084" prefix=" " category="inline-code"></block></block>
+  <block id="99aae08435ef4a82bc4ed2301471d60e" category="paragraph">次のコマンドを実行します。<block ref="b7394405b5c746164dce6dfd2501d986" prefix=" " category="inline-code"></block></block>
+  <block id="6ddde2f3f00d7171e5fc3d8622653a6e" category="paragraph">コマンドを実行します。<block ref="fdb848f6761ac46e0ea7678b5269bd3c" prefix=" " category="inline-code"></block></block>
+  <block id="9bb6c900985ca15d936c8e04295202f6" category="paragraph">次のコマンドを実行します。<block ref="4686e63f75ecbb5593b9aac27ab89dd7" prefix=" " category="inline-code"></block></block>
+  <block id="ef272f06b8afd4c6381d192259829c5a" category="paragraph">次のコマンドを実行します。<block ref="e24a79e2175b07b7a27cd83a3dc6847e" prefix=" " category="inline-code"></block></block>
+  <block id="bea69222028495543641d681312bfac9" category="paragraph">次のコマンドを実行します。<block ref="a95e2d29f4907b8b27d7a8683d428c09" prefix=" " category="inline-code"></block></block>
+  <block id="a417bfe3b0e85c20658fe71357feb3ef" category="paragraph">コマンド構文全体については、マニュアルページを参照してください。次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。</block>
+  <block id="0074a60c2f111fa09e324bfc6f086bfd" category="paragraph">次のコマンドを実行します。<block ref="08fd4296d1145ee217b3ba481add0899" prefix=" " category="inline-code"></block></block>
+  <block id="bb084c29063404b6611bde28d4ed57d3" category="paragraph">次のコマンドを実行します。<block ref="4686e63f75ecbb5593b9aac27ab89dd7" prefix=" " category="inline-code"></block></block>
 </blocks>

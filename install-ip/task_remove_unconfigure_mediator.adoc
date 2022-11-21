@@ -15,8 +15,6 @@ ONTAP メディエーターサービスの設定をMetroCluster IP設定から�
 
 両方のMetroCluster サイトからアクセスできるネットワークの場所にONTAP メディエーターがインストールされて設定されている必要があります。
 
-このタスクは、MetroCluster IP構成の両方のクラスタで実行する必要があります。
-
 .手順
 . 次のコマンドを使用して、ONTAP メディエーターサービスの設定を解除します。
 +
@@ -34,6 +32,28 @@ MetroCluster 構成設定のメディエーターが削除されました
 ....
 There are no entries matching your query.
 ....
+
+
+. 両方のクラスタで次のコマンドを実行して、ONTAP メディエーターサービスがMetroCluster 構成から削除されたことを確認します。
++
+.. `metrocluster configuration-settings mediator show`
++
+* 例 *
+
++
+[listing]
+----
+This table is currently empty.
+----
+.. 「 storage iscsi-initiator show -label mediator 」という名前のストレージがあります
++
+* 例 *
+
++
+[listing]
+----
+There are no entries matching your query.
+----
 
 
 

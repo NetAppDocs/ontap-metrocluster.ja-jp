@@ -54,14 +54,14 @@ NOTE: ルートアグリゲートは削除されません。
 
 ... すべてのデータ LIF を別の DR グループのホームノードに移行する。+`network interface show -home-node _old_node_name
 +
-「 network interface modify -vserver _svm -name _ -lif data -lif lif _ -home-port_port -id_ 」と入力します
+`network interface modify -vserver svm-name -lif data-lif -home-node new_node -home-port port-id`
 
 ... クラスタ管理 LIF を別の DR グループのホームノードに移行する。
 +
 network interface show -role cluster-mgmt-`
 
 +
-「 network interface modify -vserver _svm -name _ -lif data -lif lif _ -home-port_port -id_ 」と入力します
+`network interface modify -vserver svm-name -lif cluster_mgmt -home-node new_node -home-port port-id`
 
 +
 ノード管理 LIF とクラスタ間 LIF は移行されません。

@@ -560,10 +560,21 @@ image::../media/mcc_upgrade_cluster_a_in_switchover.png[MCC アップグレー�
 .手順
 . site_B のノードをアップグレードできるように、 MetroCluster 構成を site_A にスイッチオーバーします。
 +
-.. cluster_A で次のコマンドを問題します。
+.. 構成に一致するオプションを選択し、cluster_Aの正しいコマンドを問題 します。
 +
-MetroCluster switche-controller-replacement true
+[role="tabbed-block"]
+====
+.オプション1：ONTAP 9.8以降を実行する4ノードまたは8ノードのFC構成
+--
+次のコマンドを実行します。 `metrocluster switchover -controller-replacement true`
 
+--
+.オプション2：ONTAP 9.3以降を実行する2ノードFC構成
+--
+次のコマンドを実行します。 `metrocluster switchover`
+
+--
+====
 +
 この処理が完了するまでに数分かかることがあります。
 
