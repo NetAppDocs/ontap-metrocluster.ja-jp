@@ -2858,7 +2858,6 @@
   <block id="09dfcbc0cceee8247717360bd0733f1c" category="section-title">アグリゲートの再配置を使用しない手順を選択しています</block>
   <block id="9f7143c3ebe35a24d494d7e347dc4f89" category="cell">アップグレードまたは更新のタイプ</block>
   <block id="75f7d2bcde6cf0fe3c3db259a2547dbc" category="cell">MetroCluster タイプ</block>
-  <block id="d11c86a74db1b7830a8684cc5563ece4" category="cell">最初の ONTAP バージョンのサポート</block>
   <block id="f56ee108e3b47664e82456fbf68b6cda" category="list-text">範囲：プラットフォーム（コントローラモジュール）のみ</block>
   <block id="776bc492f3a4f2cc9ec5ac519b3c8522" category="list-text">方法：スイッチオーバー / スイッチバック</block>
   <block id="4f7dd0fe0940df4a5fda327a4ee4ddbd" category="paragraph">9.8</block>
@@ -4076,7 +4075,6 @@
   <block id="c2b2988e42872fbbf4eff058f98ecdb3" category="list-text">複数の連続的な障害</block>
   <block id="8bda26ec15d7a55dcc4af3d09db73eb6" category="paragraph">複数のコンポーネントで連続して発生する障害です。たとえば、コントローラモジュール、スイッチファブリック、シェルフで連続して障害が発生すると、ダウンタイムやデータ損失から保護するために、ストレージフェイルオーバー、ファブリックの冗長化、および SyncMirror が順次行われる場合があります。</block>
   <block id="9ed60e8ae7b59768be2e8ff8e49e0aaf" category="paragraph">次の表に、障害の種類、および対応するディザスタリカバリ（ DR ）メカニズムとリカバリ方法を示します。</block>
-  <block id="33dbd84fe8a89808f645b461285d67c4" category="admonition">MetroCluster IP 構成では、自動計画外スイッチオーバー（ AUSO ）はサポートされません。</block>
   <block id="286b093812b48d02d5bfa7dc2e6ad646" category="cell">障害のタイプ</block>
   <block id="3834f1439a798cb231c757c26bc43fe1" category="cell">DR メカニズム</block>
   <block id="3173632519dbe423e6f3bb42d6703d70" category="cell">リカバリ方法の概要</block>
@@ -4539,7 +4537,6 @@
   <block id="af247723d3e5855980c90c146b7390f5" category="paragraph">次の画面はブートメニューのプロンプトを示しています。</block>
   <block id="9910351078cedaa4acdcce504c5c0274" category="paragraph">コントローラモジュールのデフォルトをリセットおよびリストアする。</block>
   <block id="d1bfdd1ce3b6b225b5bd39959c1b640e" category="list-text">ノードの設定をクリアします。</block>
-  <block id="4051be1a3983dca295d33b07d3d4aeb9" category="list-text">ADP 用に設定されたシステムを使用している場合は ' 起動メニューからオプション 9a' を選択し ' プロンプトが表示されたら 'yes' と入力します</block>
   <block id="4e7b785e4493cbe0b79242ce203ac879" category="admonition">このプロセスはシステムの停止を伴います。</block>
   <block id="5cb307132c3a15fc08a921c25fd8f05e" category="doc">クラスタピアリングの前提条件</block>
   <block id="e332effd770e4f47249bcffd39577fea" category="inline-link">クラスタと SVM のピアリングの簡単な設定</block>
@@ -7300,7 +7297,6 @@
   <block id="214c33046f97b509157b1013dd22254b" category="list-text">node_B_1 と node_B_2 のドライブ：</block>
   <block id="d0cb731fe5149fa15d3093ec620dc573" category="list-text">site_B-shelf_1 （ローカル）</block>
   <block id="bf12adc163db611b54b1d064ba31ce27" category="list-text">site_A-shelf_2 （リモート）</block>
-  <block id="b824b6c6758ea18eb50dcbcc628e8f4e" category="list-text">オプション 9a を選択します。</block>
   <block id="b909e72d13e8da91fcea9c40534ed958" category="list-text">ノードが再起動したら、プロンプトが表示されたら Ctrl+C キーを押してブートメニューを表示し、 * Maintenance mode boot * オプションを選択します。</block>
   <block id="9a822ac91871848c374e270fa9dd2525" category="paragraph">各ノードのドライブ数が同じになるよう、ドライブは対称的に割り当てる必要があります。次の手順は、各サイトにストレージシェルフが 2 台ある構成のものです。</block>
   <block id="e9fcf143cf76f592b11367260ec37d57" category="list-text">node_A_1 の設定では、スロット 0~11 のドライブを site_A-shelf_1 のノード A1 のプール 0 に手動で割り当てます。</block>
@@ -7349,8 +7345,6 @@
   <block id="a14dc0dfb776471bcbc1e3c1239e4bb1" category="paragraph">以下のセクションを確認して、 ISL に必要なエンドツーエンドの容量を正しく計算してください。MetroCluster 構成では、不揮発性キャッシュとストレージのレプリケーションのレイテンシを継続的に低く抑えることが重要です。バックエンドネットワークのレイテンシは、クライアント IO のレイテンシとスループットに影響します。</block>
   <block id="449a2bdc6a969f884c1d33fb66eecea7" category="section-title">ISL のレイテンシとパケット損失の制限</block>
   <block id="e96606e3ebee8eeb5bb85d4955c381cb" category="paragraph">MetroCluster 構成の安定した運用状態を維持するには、 site_A と site_B の MetroCluster IP スイッチ間のラウンドトリップトラフィックについて次の要件を満たしている必要があります。</block>
-  <block id="53207176b7e0da899c3b41dd3e31f0e7" category="list-text">ラウンドトリップレイテンシは 7 ミリ秒以下である必要があります。</block>
-  <block id="bc0948c79fe270cb100d796564e0fb2c" category="paragraph">最大距離は 700km であるため、サイト間の距離はレイテンシまたは最大距離のいずれかの制限に先に達した時点で制限されます。</block>
   <block id="c9bc211a49ab07521cd90557ecdd0cbb" category="paragraph">2 つの MetroCluster サイト間の距離が長くなるとレイテンシが増加します。通常、ラウンドトリップ遅延時間は 100km （ 62 マイル）ごとに 1 ミリ秒程度です。このレイテンシは、ネットワークの ISL リンクの帯域幅、パケット破棄率、ジッターに関する Service Level Agreement （ SLA ；サービスレベル契約）にも左右されます。低帯域幅、高ジッター、ランダムなパケット破棄などが発生すると、パケットを適切に配信できるように、スイッチやコントローラモジュールの TCP エンジンによってさまざまなリカバリメカニズムが実施されます。このようなリカバリメカニズムによって、全体的なレイテンシが増加することがあり</block>
   <block id="5b39512a68b8704473f81b0e6ba1272e" category="paragraph">レイテンシに影響するすべてのデバイスについて考慮する必要があります。</block>
   <block id="331d81871af9648aed5dcdc16b042e36" category="paragraph">パケット損失には、物理的な損失や輻輳やオーバーサブスクリプションによる損失が含まれます。</block>
@@ -9557,7 +9551,6 @@
   <block id="ed92588fcdb50fce92fb0e01fb8449b0" category="paragraph">メディエーターとオペレーティングシステム問題のアップグレードが完了したら、「 storage iscsi-initiator show 」コマンドを実行して、メディエーター接続が稼働していることを確認する必要があります。</block>
   <block id="8e1b87e111c6a25dd28266989f14eb98" category="paragraph">設定レプリケーションサービス（ CRS ）メタデータボリュームとデータ SVM ルートボリュームは、ミラーされたアグリゲートに配置する必要があります。これらのボリュームをミラーされていないアグリゲートに移動することはできませミラーされていないアグリゲートにある場合、ネゴシエートスイッチオーバー処理とスイッチバック処理が拒否されます。MetroCluster check コマンドは ' その場合に警告を表示します</block>
   <block id="f04ccee1003dbd5f1c9c6351af3f0b4e" category="list-text">メンテナンスモードで、ノードのローカルアグリゲートのドライブを手動で割り当てます。</block>
-  <block id="b9ddc3ef83ffe8e2847e207d39a98687" category="list-text">ブートメニューからオプション 4 を選択し、システムをブートします。</block>
   <block id="6fd8791145f4993bd4306df9034fd9c1" category="paragraph">各ノードにディスクシェルフが複数ある場合は、 ONTAP の自動割り当て機能を使用してローカル（プール 0 ）のディスクを自動的に割り当てます。</block>
   <block id="48c67acec6c16a97bcb54a609d44b6a4" category="paragraph">ノードをメンテナンスモードにした状態で、最初にシェルフの 1 つのディスクをプール 0 に割り当てる必要があります。シェルフの残りのディスクは ONTAP によって同じプールに自動的に割り当てられます。このタスクは、プール 0 に事前設定されたルートアグリゲートが含まれる、工場出荷状態のシステムでは必要ありません。</block>
   <block id="1ec5c0416f18c1d0898b4ac732193700" category="list-text">各ノードでルートアグリゲートに 1 つのディスクを手動で割り当てます。</block>
@@ -10190,7 +10183,6 @@
   <block id="f18720a1eb7d7bace925c2a97a20075f" category="list-text">にアクセスします<block ref="3725c06f412bedb14ffd610de312875d" category="inline-link-rx"></block> システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。</block>
   <block id="e4194351c70f628f28ee542a65494961" category="list-text">一部のプラットフォームでは、 MetroCluster IP インターフェイスに VLAN が使用されています。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。</block>
   <block id="344a350961d4b3279a1bf51e3f2def2a" category="list-text">方法：自動スイッチオーバー / スイッチバック</block>
-  <block id="ea2aca94e5b174a1b84f2c3891379526" category="paragraph">9.10.1</block>
   <block id="f49f60b6304797900db897e855566402" category="inline-link-macro">4 ノード MetroCluster FC 構成でのコントローラのアップグレード。スイッチオーバーとスイッチバックに「 system controller replace 」コマンドを使用（ ONTAP 9.10.1 以降）</block>
   <block id="966e34443f418eb2dc544779908833ab" category="paragraph"><block ref="966e34443f418eb2dc544779908833ab" category="inline-link-macro-rx"></block></block>
   <block id="c305ce21377f146200c5e9ef13536599" category="summary">このガイドに記載された自動 MetroCluster スイッチオーバー処理を使用して、 4 ノード MetroCluster FC 構成のコントローラを無停止でアップグレードできます。</block>
@@ -12614,7 +12606,6 @@
   <block id="beb59952abfbd2e99ff165a613423fa0" category="list-text">次の表を参照して、実行する必要がある方法を確認してください。</block>
   <block id="242fc88f1fc9a405fa9f0e7cbf2c069b" category="summary">Cisco IPスイッチのRCFファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。</block>
   <block id="ec9296ef857e944ab344eb684e789ddc" category="doc">CleanUpFilesを使用して、Cisco IPスイッチのRCFファイルをアップグレードします</block>
-  <block id="88d8da08ee7e7170ae3a43278a025761" category="admonition">スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_A_1スイッチを同時に更新し、Switch_B_1とSwitch_B_2を更新します。</block>
   <block id="6eedc2d4a1f7c30325c52c25b14dda09" category="admonition">次のような場合は、構成に追加のライセンス（100Gbポートライセンス×6）が必要になります。</block>
   <block id="d4a39e254ca0e79abbaea7e91f10d1c8" category="list-text">ポート53および54を40Gbpsまたは100GbpsのMetroCluster ISLとして使用します。</block>
   <block id="39d6f919c4f9487cf3eba1907393cc85" category="list-text">ローカルクラスタインターフェイスとMetroCluster インターフェイスをポート49-52に接続するプラットフォームを使用します。</block>
@@ -12784,8 +12775,6 @@
   <block id="33bc2208a49f224c5922ce3b2b42fb21" category="paragraph">次のコマンドを実行します。<block ref="71b269d201dc030c963a1b0b33ee014f" prefix=" " category="inline-code"></block></block>
   <block id="322ed43657dad6df7189e69bbea9fe57" category="open-title">オプション2：ONTAP 9.3以降を実行する2ノードFC構成</block>
   <block id="ad714f1a11f3ed1c3d1a9c5c0a9c185b" category="paragraph">次のコマンドを実行します。<block ref="803740ddd57a4d0c8a51c6ede10e3096" prefix=" " category="inline-code"></block></block>
-  <block id="dda9fac268f3774282dbdcee2b98e206" category="paragraph"><block ref="c823de4f8bc2e5e070e3f2a6b83c709f" prefix="" category="inline-code"></block></block>
-  <block id="9a63e80a7a324f409930e8d454b5e538" category="paragraph"><block ref="cb485a0e6e52cf58d8ed72bd00e074ec" prefix="" category="inline-code"></block></block>
   <block id="4ee3c0b4cfc3305a195d42ce617dcc41" category="paragraph"><block ref="854a4be4b1fce65bf3a90ee74692188e" prefix="" category="inline-code"></block> は、ストレージシステムのIPアドレスです。</block>
   <block id="db90801e232a1746aec7c835ee93e932" category="paragraph"><block ref="220b0a4790e2c047ae96a881e506e1fe" prefix="" category="inline-code"></block> は、ストレージシステムのネットワークマスクです。</block>
   <block id="2341e6b2fbc3a695ee3dd2358295392c" category="paragraph"><block ref="14fb245f7140583707d1cda241eeeff2" prefix="" category="inline-code"></block> は、ストレージシステムのゲートウェイです。</block>
@@ -12802,4 +12791,19 @@
   <block id="a417bfe3b0e85c20658fe71357feb3ef" category="paragraph">コマンド構文全体については、マニュアルページを参照してください。次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。</block>
   <block id="0074a60c2f111fa09e324bfc6f086bfd" category="paragraph">次のコマンドを実行します。<block ref="08fd4296d1145ee217b3ba481add0899" prefix=" " category="inline-code"></block></block>
   <block id="bb084c29063404b6611bde28d4ed57d3" category="paragraph">次のコマンドを実行します。<block ref="4686e63f75ecbb5593b9aac27ab89dd7" prefix=" " category="inline-code"></block></block>
+  <block id="52fef25c133f347af6547e0d7325285d" category="list-text">データLIFをオフラインにします。[+]<block ref="58d060d8bc95409e743c7b8e95e72710" prefix=" " category="inline-code"></block></block>
+  <block id="3c01c02ef0bb0d39aaf5f9cbc5c8ea4b" category="paragraph"><block ref="6b5ac3bb2bcffd222567cf972f8a2548" prefix="" category="inline-code"></block></block>
+  <block id="f7967c2b46538ede39d7960526ce1fa4" category="list-text">データLIFをオンラインに戻します。<block ref="c5b63f9c60f25a11e5c1cde65fb540f1" prefix=" " category="inline-code"></block></block>
+  <block id="f677111a20e676139c4a865021fafa0d" category="paragraph"><block ref="850d7b5cf3d569632a8982fc791023b0" prefix="" category="inline-code"></block></block>
+  <block id="00b7088169fa7f91ce7c54fd96b41d7b" category="list-text">インタークラスタLIFをホストする物理ポートを対応するブロードキャストドメインに追加します。</block>
+  <block id="e64aaeac172dbd7d324ded015d3b620f" category="list-text">パートナークラスタが到達可能であり、パートナークラスタで設定が再同期されたことを確認します。</block>
+  <block id="e3c9aa07778be11d3bb374e3a6486e23" category="paragraph"><block ref="982b6fd5e36acd031c5af800a9951ed1" prefix="" category="inline-code"></block></block>
+  <block id="d8181c8a06e26fd37aba60f3ff3a08ed" category="admonition">MetroCluster IP構成では、AUSO（自動計画外スイッチオーバー）はサポートされません。</block>
+  <block id="cfe5a553856e4e9131ebeda8844ee3c2" category="list-text">オプション9aを選択して応答します<block ref="7fa3b767c460b54a2be4d49030b349c7" prefix=" " category="inline-code"></block> プロンプトが表示されたら、</block>
+  <block id="bc3cbfae3cfe082620539cbe61e53bb4" category="list-text">両方のノードのブートメニューからオプション* 4を選択し、システムをブートします。</block>
+  <block id="5bb182767225fa9e1ca2133f4aa4f1df" category="inline-link-macro">Hardware Universe の略。</block>
+  <block id="e04f67144663da34a17311a720ccf0a1" category="list-text">構成のラウンドトリップレイテンシおよび最大距離の要件の詳細については、を参照してください <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block></block>
+  <block id="5dae04759c79459bcbe855ce6759cc39" category="list-text">ADP用に設定されたシステムを使用している場合は、オプションを選択します<block ref="3de20f8f6d054d551e879fef0f0fc83c" prefix=" " category="inline-code"></block> ブートメニューから、と入力します<block ref="7fa3b767c460b54a2be4d49030b349c7" prefix=" " category="inline-code"></block> プロンプトが表示されたら、</block>
+  <block id="0bab44e07fec8808eebb4c9baedcc312" category="admonition">スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_B_1を同時に更新し、Switch_A_1とSwitch_B_2を更新します。</block>
+  <block id="70743d1dc2a6fb8238c19b7d315abc9f" category="admonition">Virtual Routing and Forwarding（VRF；仮想ルーティング転送）を指定するように求められます。</block>
 </blocks>

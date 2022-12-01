@@ -28,7 +28,7 @@ RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行す�
 
 +
 
-NOTE: スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_A_1スイッチを同時に更新し、Switch_B_1とSwitch_B_2を更新します。
+NOTE: スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_B_1を同時に更新し、Switch_A_1とSwitch_B_2を更新します。
 
 
 
@@ -208,6 +208,10 @@ IP_switch_A_1# copy sftp://user@50.50.50.50/RcfFiles/NX9336-direct-SAS_v1.81_Met
 IP_switch_A_1# copy sftp://user@50.50.50.50/RcfFiles/NX9336-direct-SAS_v1.90_MetroCluster-IP_L2Direct_A400FAS8700A900FAS9500_xxx_xxx_xxx_xxxNX9336_v1.90//NX9336_v1.90_Switch-A1.txt bootflash:
 IP_switch_A_1# copy sftp://user@50.50.50.50/RcfFiles/NX9336-direct-SAS_v1.90_MetroCluster-IP_L2Direct_A400FAS8700A900FAS9500_xxx_xxx_xxx_xxxNX9336_v1.90//Cleanup_NX9336_v1.90_Switch-A1.txt bootflash:
 ----
++
+
+NOTE: Virtual Routing and Forwarding（VRF；仮想ルーティング転送）を指定するように求められます。
+
 
 
 . CleanUpFileまたはGeneric CleanUpFileを適用します。
