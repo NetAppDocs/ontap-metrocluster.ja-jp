@@ -71,7 +71,7 @@ Tiebreaker ソフトウェアをインストールまたはアップグレード
 .手順
 . Java Runtime Environment をインストールします。
 +
-,Java Runtime Environment 1.8 をインストールします
+<<install-java-1-8,Java Runtime Environment 1.8 をインストールします>>
 
 . MySQL サーバまたは MariaDB サーバをインストールします。
 +
@@ -87,7 +87,7 @@ Red Hat Enterprise Linux 7 / CentOS 7.
  a| 
 MySQL をインストール
 
-,Red Hat Enterprise Linux 6 または CentOS 7 への MySQL Server 5.5.30 以降および 5.7x バージョンのインストール
+<<install-mysql-redhat,Red Hat Enterprise Linux 6 または CentOS 7 への MySQL Server 5.5.30 以降および 5.7x バージョンのインストール>>
 
 
 
@@ -96,7 +96,7 @@ Red Hat Enterprise Linux 8
  a| 
 MariaDB をインストールします
 
-,Red Hat Enterprise Linux 8 への MariaDB サーバのインストール
+<<install-mariadb,Red Hat Enterprise Linux 8 への MariaDB サーバのインストール>>
 
 |===
 
@@ -475,6 +475,7 @@ mysqld.service     enabled
 
 Tiebreaker ソフトウェアをインストールまたはアップグレードする前に、ホストシステムに MariaDB サーバをインストールする必要があります。
 
+.作業を開始する前に
 ホストシステムが Red Hat Enterprise Linux （ RHEL ） 8 で実行されている必要があります。
 
 .手順
@@ -559,7 +560,7 @@ Nov 08 21:29:01 scspr0523972001 systemd[1]: Started MariaDB database server.
 ....
 +
 
-NOTE: MariaDB に対して自動起動を有効にする設定がオンになっていることを確認しますを参照してください 。
+NOTE: MariaDB に対して自動起動を有効にする設定がオンになっていることを確認しますを参照してください <<mariadb-autostart>>。
 
 . セキュリティとパスワードを設定します。
 +
@@ -712,6 +713,7 @@ NOTE: 誤った MySQL ルートパスワードを入力すると、 Tiebreaker �
 . Tiebreaker ホストから各ノード管理 LIF およびクラスタ管理 LIF への SSH 接続を開き、 Tiebreaker が MetroCluster ソフトウェアに接続していることを確認します。
 
 
+.関連情報
 https://mysupport.netapp.com/site/["ネットアップサポート"]
 
 
@@ -764,7 +766,7 @@ NetApp MetroCluster Tiebreaker :> monitor modify -monitor-name _monitor_name_ -o
 ....
 . Tiebreaker ホストをアップグレードするには、次の手順のすべての手順を実行します。
 +
-,ソフトウェアパッケージをインストールまたはアップグレードする
+<<install-upgrade-sw-pkg,ソフトウェアパッケージをインストールまたはアップグレードする>>
 
 . オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。
 +

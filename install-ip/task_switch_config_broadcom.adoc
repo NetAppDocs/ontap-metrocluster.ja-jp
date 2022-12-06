@@ -271,6 +271,7 @@ Configuration Saved!
 
 MetroCluster IP 構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
 
+.このタスクについて
 このタスクは、 MetroCluster IP 構成内のスイッチごとに実行する必要があります。
 
 []
@@ -378,8 +379,8 @@ FIPS に準拠していません
 
 |===
 +
-** 方法 1 ：  to upgrade EFOS with downloading the software image to the backup boot partition
-** 方法 2 ：  to upgrade EFOS using the ONIE OS installation
+** 方法 1 ： <<ソフトウェアイメージをバックアップブートパーティションにダウンロードして EFOS をアップグレードする手順>>
+** 方法 2 ： <<ONIE OS インストールを使用して EFOS をアップグレードする手順>>
 
 
 
@@ -492,12 +493,12 @@ Are you sure you would like to reset the system? (y/n) y
 . スイッチがリブートするまで待ちます。
 +
 
-NOTE: まれに、スイッチが起動しないことがあります。に従ってください  to upgrade EFOS using the ONIE OS installation 新しいイメージをインストールします。
+NOTE: まれに、スイッチが起動しないことがあります。に従ってください <<ONIE OS インストールを使用して EFOS をアップグレードする手順>> 新しいイメージをインストールします。
 
 . スイッチを EFOS 3.x.x から EFOS 3.x.x に変更した場合、またはその逆の場合は、次の 2 つの手順に従って正しい設定（ RCF ）を適用します。
 +
-..  the Broadcom IP switch to factory defaults
-..  and installing the Broadcom RCF files
+.. <<Broadcom IP スイッチを工場出荷時のデフォルトにリセット>>
+.. <<Broadcom の RCF ファイルのダウンロードとインストール>>
 
 
 . MetroCluster IP 構成の残りの 3 つの IP スイッチについて、上記の手順を繰り返します。
@@ -645,8 +646,8 @@ unit 	active 	   backup   current-active  next-active
 設定を適用せずにスイッチがリブートし、工場出荷時のデフォルトにリセットされます。2 つの手順に従ってスイッチの基本設定を行い、次の 2 つのドキュメントに記載されているように RCF ファイルを適用します。
 
 +
-.. スイッチの基本設定を行います。手順 4 以降を実行します。  the Broadcom IP switch to factory defaults
-.. の説明に従って、 RCF ファイルを作成して適用します  and installing the Broadcom RCF files
+.. スイッチの基本設定を行います。手順 4 以降を実行します。 <<Broadcom IP スイッチを工場出荷時のデフォルトにリセット>>
+.. の説明に従って、 RCF ファイルを作成して適用します <<Broadcom の RCF ファイルのダウンロードとインストール>>
 
 
 
@@ -657,8 +658,10 @@ unit 	active 	   backup   current-active  next-active
 
 MetroCluster IP 構成の各スイッチにスイッチの RCF ファイルをダウンロードしてインストールする必要があります。
 
+.作業を開始する前に
 この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。
 
+.このタスクについて
 この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
 
 RCF ファイルは 4 つあり、それぞれが MetroCluster IP 構成の 4 つの各スイッチに対応しています。使用するスイッチのモデルに対応した正しい RCF ファイルを使用する必要があります。

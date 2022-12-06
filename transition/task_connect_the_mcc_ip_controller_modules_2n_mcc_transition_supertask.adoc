@@ -19,6 +19,7 @@ summary: 4 つの新しいコントローラモジュールとストレージシ
 
 新しい MetroCluster IP コントローラを、以前に MetroCluster FC コントローラに接続したストレージシェルフにラックに設置してケーブル接続する必要があります。
 
+.このタスクについて
 この手順は、各 MetroCluster IP ノードで実行する必要があります。
 
 * node_A_1 の IP
@@ -219,6 +220,7 @@ MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? 
 
 ルートボリュームが暗号化されている場合は、特別なブートコマンドを使用してキー管理をリストアする必要があります。
 
+.作業を開始する前に
 パスフレーズを事前に収集しておく必要があります。
 
 .手順
@@ -373,6 +375,7 @@ setsetenv bootarg.kmip.init.interface interface-id`
 
 FC ノードの設定に一致するネットワーク設定を作成する必要があります。これは、 MetroCluster の IP ノードがブート時に同じ設定を再生するためです。つまり、 node_A_1 の IP ブートと node_B_1 の IP ブート時に、 ONTAP は node_A_1 の FC と node_B_1 の FC で使用されていたポートで LIF をホストしようとします。
 
+.このタスクについて
 ネットワーク設定を作成するときは、で作成したプランを使用してください link:concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html["MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング"] を参照してください。
 
 
@@ -574,6 +577,7 @@ vserver config override -command 「 network interface revert -lif lifname _ -vs
 
 新しいコントローラモジュールは、ブートメニューの適切なオプションを使用して、一度に 1 つずつブートする必要があります。
 
+.このタスクについて
 この手順では、 2 つの新しいノードをブートして、 2 ノード構成を 4 ノード構成に拡張します。
 
 これらの手順は、次のノードで実行します。

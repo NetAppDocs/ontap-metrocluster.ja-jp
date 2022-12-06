@@ -228,7 +228,7 @@ MetroCluster interconnect mirror show
 .. 実行が完了したら、 MetroCluster の実行結果を確認します。「 MetroCluster check show 」
 
 
-. を繰り返してファブリック B のスイッチ（スイッチ 2 と 4 ）を更新します ,手順 2 終了： ,手順 5。
+. を繰り返してファブリック B のスイッチ（スイッチ 2 と 4 ）を更新します <<Update-RCF,手順 2>> 終了： <<verify-healthy,手順 5>>。
 
 
 
@@ -333,6 +333,7 @@ AFF A700またはFAS9000コントローラのスロット7手順 にカードが
 
 アップグレードの開始前に各ノードについて情報を収集し、必要に応じてネットワークブロードキャストドメインを調整し、 VLAN やインターフェイスグループを削除して、暗号化情報を収集する必要があります。
 
+.このタスクについて
 このタスクは、既存の MetroCluster FC 構成で実行します。
 
 .手順
@@ -444,6 +445,7 @@ link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#removing-met
 
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
 
+.このタスクについて
 このタスクは MetroCluster サイトごとに実行する必要があります。
 
 .手順
@@ -470,6 +472,7 @@ link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#removing-met
 
 site_B のプラットフォームをアップグレードできるように、設定を site_A にスイッチオーバーする必要があります。
 
+.このタスクについて
 このタスクは site_A で実行する必要があります
 
 このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、次の図のようにアップグレードプロセスを開始する準備ができています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。
@@ -550,6 +553,7 @@ cluster_A::> metrocluster operation show
 
 このタスクは site_B で実行します
 
+.作業を開始する前に
 接地対策がまだの場合は、自身で適切に実施します。
 
 .手順
@@ -629,6 +633,7 @@ NOTE: AFF A700またはFAS9000の不揮発性ストレージモジュールに�
 
 Site_Bの両方のノードに、アップグレードキットからAFF A900またはFAS9500 NVSとコントローラモジュールをインストールする必要がありますコアダンプデバイスをAFF A700またはFAS9000 NVSモジュールからAFF A900またはFAS9500 NVSモジュールに移動しないでください。
 
+.を開始する前に
 接地対策がまだの場合は、自身で適切に実施します。
 
 
@@ -722,7 +727,7 @@ AFF A900またはFAS9500コントローラモジュールのブートメディ�
 
 | 実行されていません | ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= <filer_addr> -mask= <netmask> -gw= <gateway> -dns= <dns_addr> domain= <dns_domain> `<filer_addr>`<netmask>` はストレージシステムのネットワークマスクです。「 <gateway>` 」は、ストレージシステムのゲートウェイです。「 <dns_addr> 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 <dns_domain> 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。詳細については、ファームウェアのプロンプトで「 help ifconfig 」と入力してください。 
 |===
-. ノード 1 でネットブートを実行します http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`[]「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します ,手順 2。
+. ノード 1 でネットブートを実行します http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`[]「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します <<step2-download-software,手順 2>>。
 +
 
 NOTE: トランクを中断しないでください。
@@ -950,6 +955,7 @@ MCC
 
 前の手順で確認したシステム ID を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします
 
+.このタスクについて
 このタスクはメンテナンスモードで実行します。
 
 古いシステム ID は、で識別されています link:task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html["アップグレード前に情報を収集"]。
@@ -1058,6 +1064,7 @@ aggr0_node_b_1-root    online      raid_dp, aggr    root, nosnap=on,
 
 コントローラのフラッシュイメージを更新するには、ブートメニューからコントローラをリブートする必要があります。暗号化が設定されている場合は、追加の手順が必要です。
 
+.このタスクについて
 このタスクはすべての新しいコントローラで実行する必要があります。
 
 .手順
@@ -1210,6 +1217,7 @@ link:https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_cr
 
 スイッチバックの前に、 LIF が適切なノード / ポートにホストされていることを確認します。次の手順を実行する必要があります
 
+.このタスクについて
 このタスクは site_B で実行します。ノードはルートアグリゲートでブートされています。
 
 .手順
@@ -1244,6 +1252,7 @@ link:https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_cr
 
 新しいコントローラを設定したら、 MetroCluster 構成をスイッチバックして構成を通常動作に戻します。
 
+.このタスクについて
 このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。次の図に示すように、site_Aのノードはまだアップグレードを待っています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。
 
 image::../media/mcc_upgrade_cluster_a_switchback_A900.png[4 ノード MetroCluster]
@@ -1306,6 +1315,7 @@ Remote: cluster_A         Configuration state configured
 
 コントローラモジュールをアップグレードしたら、 MetroCluster 構成の健全性を確認する必要があります。
 
+.このタスクについて
 このタスクは、 MetroCluster 構成の任意のノードで実行できます。
 
 .手順

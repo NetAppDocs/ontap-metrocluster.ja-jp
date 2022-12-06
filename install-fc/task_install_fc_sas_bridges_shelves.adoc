@@ -13,6 +13,7 @@ summary: 新しいストレージを構成に追加する際には、 ATTO Fibre
 [role="lead"]
 新しいストレージを構成に追加する際には、 ATTO FibreBridge ブリッジおよび SAS ディスクシェルフを設置してケーブル接続します。
 
+.このタスクについて
 工場出荷状態のシステムの場合は、 FC-to-SAS は事前に構成されているため、追加の構成は不要です。
 
 この手順は、推奨されるブリッジ管理インターフェイスである ATTO ExpressNAV GUI と ATTO QuickNAV ユーティリティを使用していることを前提としています。
@@ -138,6 +139,7 @@ NOTE: MetroCluster 構成の SAS シェルフでは、 ACP ケーブル接続は
 
 9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。
 
+.このタスクについて
 ATTO FibreBridge 7500N および 6500N ブリッジとは異なり、 FibreBridge 7600N ブリッジは、すべての IP ポートプロトコルおよびサービスが無効になった状態で出荷されます。
 
 ONTAP 9.5 以降では、ブリッジのインバンド管理 _ がサポートされます。これは、 ONTAP CLI からブリッジへの FC 接続を介してブリッジを設定および監視できることを意味します。ブリッジのイーサネットポートを介してブリッジに物理的にアクセスする必要がなく、ブリッジのユーザインターフェイスも必要ありません。
@@ -197,11 +199,13 @@ SNMP は、別個の enable コマンドを必要とする唯一のプロトコ�
 
 モデルに応じた FC-to-SAS ブリッジのケーブル接続に進む前に、 FibreBridge ソフトウェアで設定を行う必要があります。
 
+.作業を開始する前に
 ブリッジのインバンド管理を使用するかどうかを決めておく必要があります。
 
 
 NOTE: ONTAP 9.8 以降では 'storage bridge コマンドは 'system bridge コマンドに置き換えられました次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。
 
+.このタスクについて
 IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
 
 .手順
@@ -443,6 +447,7 @@ link:../maintain/index.html["MetroCluster コンポーネントの保守"]
 
 
 
+.関連情報
 link:task_fb_new_install.html["FC-to-SAS ブリッジのインバンド管理"]
 
 
@@ -452,9 +457,9 @@ link:task_fb_new_install.html["FC-to-SAS ブリッジのインバンド管理"]
 ディスクシェルフのケーブル接続には、正しい FC-to-SAS ブリッジを使用する必要があります。
 
 .選択肢
-* ,IOM12 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続
-* ,IOM6 または IOM3 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続
-* ,FibreBridge 6500N ブリッジと IOM6 / IOM3 モジュールを使用するディスクシェルフのケーブル接続
+* <<cabling_fb_7600N_7500N_with_iom12,IOM12 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続>>
+* <<cabling_fb_7600N_7500N_with_iom6_iom3,IOM6 または IOM3 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続>>
+* <<cabling_fb_6500N_with_iom6_iom3,FibreBridge 6500N ブリッジと IOM6 / IOM3 モジュールを使用するディスクシェルフのケーブル接続>>
 
 
 
@@ -463,6 +468,7 @@ link:task_fb_new_install.html["FC-to-SAS ブリッジのインバンド管理"]
 
 ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。
 
+.このタスクについて
 ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。
 
 . 各スタックのディスクシェルフをデイジーチェーン接続します。
@@ -509,6 +515,7 @@ image::../media/mcc_cabling_bridge_and_sas3_stack_with_7500n_and_multiple_stacks
 
 ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。FibreBridge 7600N / 7500N ブリッジは Mini-SAS コネクタを使用し、 IOM6 または IOM3 モジュールを使用するシェルフをサポートします。
 
+.このタスクについて
 IOM3 モジュールは FibreBridge 7600N ブリッジではサポートされていません。
 
 ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。
@@ -545,6 +552,7 @@ image::../media/mcc_cabling_bridge_and_sas_stack_with_7500n_four_stacks.gif[MCC 
 
 ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。FibreBridge 6500N ブリッジは QSFP コネクタを使用します。
 
+.このタスクについて
 ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。
 
 FibreBridge 6500N ブリッジでは、 IOM12 を使用するディスクシェルフはサポートされません。
@@ -646,7 +654,7 @@ Tgt VendorID ProductID        Type        SerialNumber
  a| 
 正解です
  a| 
-繰り返します ,手順 1. 残りの各ブリッジ。
+繰り返します <<step1_bridge,手順 1.>> 残りの各ブリッジ。
 
 
 
@@ -655,9 +663,9 @@ Tgt VendorID ProductID        Type        SerialNumber
  a| 
 .. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します。
 +
- disk shelves to the bridges
+<<ディスクシェルフとブリッジのケーブル接続>>
 
-.. 繰り返します ,手順 1.。
+.. 繰り返します <<step1_bridge,手順 1.>>。
 
 
 |===
@@ -672,6 +680,7 @@ IMPORTANT: FibreBridge 7500N ブリッジの 2 つ目の FC ポート接続に�
 . パートナーサイトのブリッジに対して同じ手順を繰り返します。
 
 
+.関連情報
 link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 ONTAP 9.1 以降を使用している場合、 FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。

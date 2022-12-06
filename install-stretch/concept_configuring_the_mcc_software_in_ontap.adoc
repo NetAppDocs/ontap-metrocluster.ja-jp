@@ -158,7 +158,7 @@ NTP サーバ 2
 |===
 
 
-=== AutoSupport 情報：サイト A
+=== サイトA nbsp；AutoSupport 情報
 
 各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。
 
@@ -372,7 +372,7 @@ NTP サーバ 2
 |===
 
 
-=== AutoSupport 情報：サイト B
+=== サイトB nbsp；AutoSupport 情報
 
 各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。
 
@@ -431,7 +431,7 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
-=== SP 情報：サイト B
+=== サイトB nbsp；SP情報
 
 トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。これには、ノードごとに次のネットワーク情報が必要です。
 
@@ -522,6 +522,7 @@ MetroCluster 設定を有効にします。
 
 MetroCluster を正しくインストールするには、コントローラモジュールのデフォルトをリセットしてリストアします。
 
+.重要
 このタスクを実行する必要があるのは、 FC-to-SAS ブリッジを使用するストレッチ構成のみです。
 
 .手順
@@ -655,6 +656,7 @@ Please choose one of the following:
 
 FAS8020 システムで X1132A-R6 クアッドポートカードを使用している場合は、メンテナンスモードに切り替えて、ポート 1a / 1b を FC-VI およびイニシエータ用に使用するように設定できます。工場出荷状態の MetroCluster システムでは、構成に応じて適切にポートが設定されているため、この設定は必要ありません。
 
+.このタスクについて
 このタスクはメンテナンスモードで実行する必要があります。
 
 
@@ -760,8 +762,10 @@ controller_B_1
 
 システムを ONTAP で完全にブートする前に、システムをメンテナンスモードでブートして、ノードのディスク割り当てを確認することもできます。ディスクは、両方のサイトが独自のディスクシェルフを所有してデータを提供し、各ノードおよび各プールのミラーディスク数が等しい、完全に対称な構成を形成するように割り当てられている必要があります。
 
+.作業を開始する前に
 システムをメンテナンスモードにする必要があります。
 
+.このタスクについて
 新しい MetroCluster システムの場合、出荷前にディスク割り当てが完了しています。
 
 次の表に、 MetroCluster 構成のプール割り当ての例を示します。ディスクはシェルフ単位でプールに割り当てられます。
@@ -909,6 +913,7 @@ DR パートナーのプール 1
 
 工場出荷時に事前設定されていないストレッチ MetroCluster 構成では、コントローラおよびシャーシのコンポーネントの HA の状態が「 mcc-2n 」に設定されていることを確認し、適切にブートする必要があります。工場出荷状態のシステムでは事前に設定されているため、検証は不要です。
 
+.作業を開始する前に
 システムをメンテナンスモードにする必要があります。
 
 .手順
@@ -942,8 +947,10 @@ DR パートナーのプール 1
 
 2 ノード MetroCluster 構成では、各クラスタでノードをブートし、クラスタセットアップウィザードを終了し、「 cluster setup 」コマンドを使用してノードをシングルノードクラスタに構成する必要があります。
 
+.作業を開始する前に
 サービスプロセッサが設定されていないことを確認してください。
 
+.このタスクについて
 このタスクは、ネットアップの標準のストレージを使用した 2 ノード MetroCluster 構成が対象です。
 
 新規で購入した MetroCluster システムは事前に設定されており、ここで説明する手順を実行する必要はありません。ただし、 AutoSupport を設定する必要があります。
@@ -1044,6 +1051,7 @@ cluster1-01           true    true
 
 MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
 
+.関連情報
 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"^]
 
 link:concept_considerations_peering.html#considerations-when-using-dedicated-ports["専用のポートを使用する場合の考慮事項"]
@@ -1288,6 +1296,7 @@ cluster01
 ----
 
 
+.関連情報
 link:concept_considerations_peering.html#considerations-when-using-dedicated-ports["専用のポートを使用する場合の考慮事項"]
 
 
@@ -1449,6 +1458,7 @@ cluster01
 ----
 
 
+.関連情報
 link:concept_considerations_peering.html#considerations-when-sharing-data-ports["データポートを共有する場合の考慮事項"]
 
 
@@ -1677,6 +1687,7 @@ cluster01-02
 
 データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
 
+.このタスクについて
 デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
 
 「 storage aggregate modify – aggregate_name _raidtype raid4 」と表示されます
@@ -1703,6 +1714,7 @@ controller_A_1::> storage aggregate mirror aggr0_controller_A_1
 . MetroCluster 構成の各ノードについて、同じ手順を繰り返します。
 
 
+.関連情報
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"^]
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["ONTAP の概念"^]
@@ -1869,6 +1881,7 @@ NOTE: ミラーされた単一のデータアグリゲートを使用する場�
 * コントローラおよびシャーシの ha-config の状態が「 mcc-2n 」である必要があります。
 
 
+.このタスクについて
 MetroCluster 構成をイネーブルにするには、任意のノード上で、 MetroCluster configure コマンドを 1 回実行し問題ます。サイトごとまたはノードごとにコマンドを問題で実行する必要はありません。また、問題するノードまたはサイトはどれでもかまいません。
 
 .手順
@@ -2178,6 +2191,7 @@ mccint-fas9000-0304
 ----
 
 
+.関連情報
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]

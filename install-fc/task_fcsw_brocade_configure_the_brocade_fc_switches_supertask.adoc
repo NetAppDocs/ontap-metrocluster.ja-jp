@@ -66,6 +66,7 @@ IMT では、 Storage 解決策フィールドを使用して MetroCluster 解�
 
 MetroCluster 構成内のスイッチには所定のライセンスが必要です。これらのライセンスは 4 つのスイッチすべてにインストールする必要があります。
 
+.このタスクについて
 MetroCluster 構成での Brocade ライセンス要件は次のとおりです。
 
 * 推奨される複数の ISL を使用するシステムのトランキングライセンスです。
@@ -92,6 +93,7 @@ Enterprise ライセンスには、 Brocade Network Advisor と、追加のポ�
 
 設定を適切に行うには、スイッチを工場出荷時のデフォルトに設定する必要があります。また、各スイッチに一意な名前を割り当てる必要があります。
 
+.このタスクについて
 この手順の例では、ファブリックは BrocadeSwitchA と BrocadeSwitchB で構成されています。
 
 .手順
@@ -325,6 +327,7 @@ FC_switch_B_1:admin> reboot
 
 Brocade スイッチに対して、ドメイン ID を含む基本的なグローバル設定を行う必要があります。
 
+.このタスクについて
 このタスクには、両方の MetroCluster サイトの各スイッチで実行する必要のある手順が含まれています。
 
 この手順では、次の例に示すように、スイッチごとに一意のドメイン ID を設定します。この例では、ドメイン ID 5 と 7 が fabric_1 を形成し、ドメイン ID 6 と 8 が fabric_2 を形成します。
@@ -648,6 +651,7 @@ FC_switch_B_1:admin> switchcfgpersistentenable
 
 Brocade スイッチに対して、ドメイン ID を含む基本的なグローバル設定を行う必要があります。
 
+.このタスクについて
 この手順は、両方の MetroCluster サイトの各スイッチで実行する必要があります。この手順では、次の例に示すように、各スイッチのドメイン ID を設定します。
 
 * FC_switch_A_1 をドメイン ID 5 に割り当てます
@@ -738,6 +742,7 @@ switchenable
 ----
 
 
+.関連情報
 link:concept_prepare_for_the_mcc_installation.html["Brocade DCX 8510-8 スイッチを使用するための要件"]
 
 
@@ -759,6 +764,7 @@ IMT では、 Storage 解決策フィールドを使用して MetroCluster 解�
 * ISL リンクには専用のラムダが必要であり、 Brocade によって距離、スイッチタイプ、および Fabric Operating System （ FOS ）がサポートされている必要があります。
 
 
+.このタスクについて
 portCfgLongDistance コマンドを実行する際、 L0 設定は使用しないでください。代わりに LE または LS 設定を使用し、 Brocade スイッチで LE の距離レベルを最小値とする距離を設定します。
 
 xWDM/TDM 機器で作業をする場合は 'portCfgLongDistance コマンドを実行する際に LD 設定は使用しないでください代わりに LE または LS 設定を使用し、 Brocade スイッチで距離を設定します。
@@ -1238,9 +1244,10 @@ FC_switch_B_1:admin> trunkshow
 ----
 
 
-. 繰り返します ,手順 1. から ,手順 10 2 つ目の FC スイッチファブリック。
+. 繰り返します <<step1_brocade_config,手順 1.>> から <<step10_brocade_config,手順 10>> 2 つ目の FC スイッチファブリック。
 
 
+.関連情報
 link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html["ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て"]
 
 
@@ -1249,6 +1256,7 @@ link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.htm
 
 ISL に 10Gbps VE ポート（ FCIP を使用）を使用する場合は、各ポートに IP インターフェイスを作成し、 FCIP トンネルと各トンネルの回線を設定する必要があります。
 
+.このタスクについて
 この手順は、 MetroCluster 構成の各スイッチファブリックで実行する必要があります。
 
 この手順の例では、 2 つの Brocade 7840 スイッチの IP アドレスを次のように想定しています。
@@ -1404,6 +1412,7 @@ FC_switch_A_1:root> portshow fcipcircuit all
 
 ISL に 2 つの 40GbE VE ポート（ FCIP を使用）を使用する場合は、各ポートに IP インターフェイスを作成し、 FCIP トンネルと各トンネルの回線を設定する必要があります。
 
+.このタスクについて
 この手順は、 MetroCluster 構成の各スイッチファブリックで実行する必要があります。
 
 この手順の例では、次の 2 つのスイッチを使用します。
@@ -1556,6 +1565,7 @@ FC_switch_A_1:root> portshow fcipcircuit all
 
 FC スイッチ上の非 E ポートを設定する必要があります。MetroCluster 構成では、これらのポートによって、スイッチと HBA イニシエータ、 FC-VI インターコネクト、および FC-to-SAS ブリッジが接続されます。この手順はポートごとに実行する必要があります。
 
+.このタスクについて
 次の例では、ポートを FC-to-SAS ブリッジに接続します。
 
 --
@@ -1645,6 +1655,7 @@ Non-DFE                             ..  ..  ..  ..  ..  ..  ..  ..  ..
 
 Brocade G620 スイッチを使用している場合に ISL で圧縮を有効にするには、スイッチの各 E ポートで圧縮を設定する必要があります。
 
+.このタスクについて
 このタスクは、 ISL を使用する両方のスイッチの ISL ポートで実行する必要があります。
 
 .手順
@@ -4268,6 +4279,7 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC2
 
 スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。また、 FC-VI ポートのゾーンとストレージポートのゾーンも含める必要があります。
 
+.このタスクについて
 次の手順では、 MetroCluster 構成の標準的なゾーニングを使用します。
 
 link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FC-VI ポートのゾーニング"]
@@ -4396,6 +4408,7 @@ NOTE: Brocade G620 スイッチでの ISL 暗号化の使用は、 ONTAP 9.4 以
 * スイッチと Fabric Operating System のバージョンに対応する Brocade のドキュメントを参照して、帯域幅とポートの制限を確認しておく必要があります。
 
 
+.このタスクについて
 この手順は、同じファブリック内の両方のスイッチで実行する必要があります。
 
 
@@ -4418,6 +4431,7 @@ fosconfig -- VF' を無効にします
 
 仮想ファブリックを無効にしたら、ファブリック内の両方のスイッチでペイロードまたはデータフィールドサイズを設定する必要があります。
 
+.このタスクについて
 データフィールドサイズは 2048 以下にする必要があります。
 
 .手順
@@ -4444,6 +4458,7 @@ fosconfig -- VF' を無効にします
 
 認証ポリシーおよび関連するパラメータを設定する必要があります。
 
+.このタスクについて
 コマンドはスイッチコンソールで実行する必要があります。
 
 .手順
@@ -4585,4 +4600,5 @@ Port  configured     Active
 ----
 
 
+.次に何をするか
 MetroCluster 構成の他のファブリック内のスイッチで、すべての手順を実行します。

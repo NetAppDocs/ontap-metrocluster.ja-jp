@@ -13,6 +13,7 @@ summary: ディザスタサイトの交換用ノードで ONTAP オペレーテ�
 [role="lead"]
 ディザスタサイトの交換用ノードで ONTAP オペレーティングシステムをブートする必要があります。
 
+.このタスクについて
 このタスクは、メンテナンスモードのディザスタサイトのノードから開始します。
 
 .手順
@@ -24,7 +25,7 @@ summary: ディザスタサイトの交換用ノードで ONTAP オペレーテ�
 
 +
 
-NOTE: 使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。次に、が必要です ,boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします
+NOTE: 使用した交換用コントローラモジュールの NVRAM の内容を消去しなかった場合は、「 PANIC ： NVRAM contents are invalid... 」というパニックメッセージが表示されることがあります この場合は、システムをもう一度 ONTAP プロンプト（「 boot_ontap menu 」）でブートしてください。次に、が必要です <<Reset-the-boot-recovery,boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします>>
 
 +
 ** 続行の確認のプロンプト：
@@ -194,7 +195,7 @@ cluster_B::*>
 
 
 
-=== boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします
+=== [[Reset-The -boot-recovery]] boot_recoveryとrdata_Corrupt bootargsをリセットします
 
 [role="lead"]
 必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます

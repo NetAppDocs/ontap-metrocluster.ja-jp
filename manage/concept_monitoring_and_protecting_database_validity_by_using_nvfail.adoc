@@ -112,6 +112,7 @@ volume show
 * 注： * 指定したボリュームの NVFAIL 属性を表示するには、「 -fields 」パラメータを「 nvfail 」に設定します。
 
 |===
+.関連情報
 詳細については、各コマンドのマニュアルページを参照してください。
 
 
@@ -120,18 +121,22 @@ volume show
 
 スイッチオーバー後に 'volume modify コマンドの -in-nvfailed-state パラメータをリセットし ' クライアントがデータにアクセスする制限を解除することにより 'NVFAIL 状態をクリアする必要があります
 
+.作業を開始する前に
 データベースまたはファイルシステムが実行されていない、または影響を受けたボリュームにアクセスしようとしていないことが必要です。
 
+.このタスクについて
 in-nvfailed-state パラメータを設定するには、 advanced 権限が必要です。
 
 .ステップ
 . in-nvfailed-state パラメータを false に設定して volume modify コマンドを実行し、ボリュームをリカバリします。
 
 
+.完了後
 データベースファイルの有効性を調べる方法については、ご使用のデータベースソフトウェアのマニュアルを参照してください。
 
 データベースで LUN が使用されている場合は、 NVRAM 障害後にホストから LUN にアクセスできるようにする手順を確認してください。
 
+.関連情報
 link:../manage/concept_monitoring_and_protecting_database_validity_by_using_nvfail.html["NVFAIL を使用したファイルシステム整合性の監視および保護"]
 
 
@@ -140,6 +145,7 @@ link:../manage/concept_monitoring_and_protecting_database_validity_by_using_nvfa
 
 スイッチオーバーが発生すると、 NVFAIL 状態にある LUN 上のデータにホストがアクセスできなくなります。データベースが LUN にアクセスできるようにするには、いくつかの作業が必要です。
 
+.作業を開始する前に
 データベースが実行されていないことを確認します。
 
 .手順

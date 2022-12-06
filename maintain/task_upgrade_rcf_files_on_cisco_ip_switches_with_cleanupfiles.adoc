@@ -13,8 +13,10 @@ summary: Cisco IPスイッチのRCFファイルのアップグレードが必要
 [role="lead"]
 Cisco IPスイッチのRCFファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。
 
+.このタスクについて
 RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。
 
+.作業を開始する前に
 この方法は、構成が次の要件を満たしている場合に使用できます。
 
 * 標準のRCF設定が適用されます。
@@ -178,7 +180,7 @@ NOTE: RCFファイルには、同じバージョンのものも含まれてお�
 
 . ブートフラッシュにファイルをダウンロードします。
 +
-.. で作成したCleanUpFilesをダウンロードします ,RCFファイルとCleanUpFilesを作成するか、現在の設定用の汎用CleanUpFilesを作成します
+.. で作成したCleanUpFilesをダウンロードします <<Create-RCF-files-and-CleanUpFiles-or-create-generic-CleanUpFiles,RCFファイルとCleanUpFilesを作成するか、現在の設定用の汎用CleanUpFilesを作成します>>
 +
 
 NOTE: このCleanUpFileは、適用されている現在のRCFファイル用であり、アップグレード先の新しいRCF用には*ありません。
@@ -186,11 +188,11 @@ NOTE: このCleanUpFileは、適用されている現在のRCFファイル用で
 +
 Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.81_Switch-A1.txt
 
-.. で作成した新しいRCFファイルをダウンロードします ,新しい構成用に「新しい」RCFファイルを作成します。
+.. で作成した新しいRCFファイルをダウンロードします <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成用に「新しい」RCFファイルを作成します。>>
 +
 Switch-A1のRCFファイルの例: NX9336_v1.90_Switch-A1.txt
 
-.. で作成したCleanUpFilesをダウンロードします ,新しい構成用に「新しい」RCFファイルを作成します。 この手順はオプションです。あとでこのファイルを使用して、スイッチの設定を更新できます。現在適用されている設定に一致します。
+.. で作成したCleanUpFilesをダウンロードします <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成用に「新しい」RCFファイルを作成します。>> この手順はオプションです。あとでこのファイルを使用して、スイッチの設定を更新できます。現在適用されている設定に一致します。
 +
 Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.90_Switch-A1.txt
 

@@ -75,6 +75,7 @@ MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッ�
 
 スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります
 
+.関連情報
 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["FlexCache ボリューム管理"^]
 
 
@@ -104,6 +105,7 @@ FabricPool の使用に関する一般的な情報については、を参照し
 
 NOTE: アグリゲートを設定する前に、の「 MetroCluster 構成での FabricPool 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]。
 
+.手順
 FabricPool で使用するアグリゲートを設定するには、次の手順を実行します。
 
 . アグリゲートを作成するか、既存のアグリゲートを選択します。
@@ -157,6 +159,7 @@ MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている�
 
 MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。
 
+.関連情報
 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
 
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
@@ -221,6 +224,7 @@ subnet1   192.168.2.0/24   Default   192.168.2.1       10/10    192.168.2.21-192
 
 一方のサイトで IPv6 が設定されている場合は、もう一方のサイトでも IPv6 を設定する必要があります。
 
+.関連情報
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration["MetroCluster 構成での LIF の作成に関する要件"]
 
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues["LIF のレプリケーションおよび配置の要件と問題"]
@@ -246,6 +250,7 @@ LIF を作成する際は、次のガイドラインを考慮する必要があ�
 
 MetroCluster 構成内に LIF が正常に作成されたことを確認するには、 MetroCluster check lif show コマンドを実行します。LIF の作成中に問題が発生した場合は、 MetroCluster の check lif repair-placement コマンドを使用して問題を修正できます。
 
+.関連情報
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
 
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#lif-replication-and-placement-requirements-and-issues["LIF のレプリケーションおよび配置の要件と問題"]
@@ -348,6 +353,7 @@ MetroCluster check lif show コマンドで表示される LIF 配置エラー�
 
 NOTE: ソース SVM がダウンしている場合でも、デスティネーション SVM で同じ IPspace とネットワークを使用するポートに別の SVM に所属する LIF が設定されていれば、 LIF の配置は続行されます。
 
+.関連情報
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#ipspace-object-replication-and-subnet-configuration-requirements["IPspace オブジェクトのレプリケーションとサブネットの設定の要件"]
 
 link:concept_considerations_when_using_ontap_in_a_mcc_configuration.html#requirements-for-lif-creation-in-a-metrocluster-configuration["MetroCluster 構成での LIF の作成に関する要件"]

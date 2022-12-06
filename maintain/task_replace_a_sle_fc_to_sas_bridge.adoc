@@ -13,14 +13,17 @@ summary: ブリッジを同じモデルのブリッジまたは新しいモデ�
 [role="lead"]
 ブリッジを同じモデルのブリッジまたは新しいモデルのブリッジに無停止で交換することができます。
 
+.作業を開始する前に
 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
 
+.このタスクについて
 これはシステムの停止を伴わない手順であり、完了までに約 60 分かかります。
 
 この手順では、ブリッジ CLI を使用してブリッジを設定および管理し、ブリッジファームウェアと ATTO QuickNAV ユーティリティを更新してブリッジイーサネット管理 1 ポートを設定します。要件を満たしていれば、他のインターフェイスも使用できます。
 
 link:reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.html["他のインターフェイスを使用して FibreBridge ブリッジを設定および管理するための要件"]
 
+.関連情報
 link:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html["FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換する"]
 
 
@@ -29,6 +32,7 @@ link:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_
 
 ブリッジを交換する前に、ブリッジとストレージの接続を確認する必要があります。設定を変更したあとに接続を確認できるよう、コマンド出力について理解しておいてください。
 
+.このタスクについて
 これらのコマンドは、メンテナンス中のサイトの MetroCluster 構成にある任意のコントローラモジュールの管理プロンプトから問題できます。
 
 .手順
@@ -95,6 +99,7 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 
 障害が発生したブリッジを同じモデルの別のブリッジとホットスワップすることができます。
 
+.このタスクについて
 IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
 
 
@@ -511,15 +516,15 @@ Tgt VendorID ProductID        Type SerialNumber
  a| 
 正解です
  a| 
-繰り返します ,手順 18 残りの各ブリッジ。
+繰り返します <<step18-verify-each-bridge,手順 18>> 残りの各ブリッジ。
 
 
 
  a| 
 不正解です
  a| 
-.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します ,手順 17。
-.. 繰り返します ,手順 18。
+.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <<step17-reconnect-newbridge,手順 17>>。
+.. 繰り返します <<step18-verify-each-bridge,手順 18>>。
 
 
 |===
@@ -633,6 +638,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 
 
+.関連情報
 link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリッジのインバンド管理"]
 
 
@@ -641,6 +647,7 @@ link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリ�
 
 FibreBridge 7500N ブリッジと 7600N ブリッジをホットスワップできます。
 
+.このタスクについて
 IP 管理ではなくブリッジのインバンド管理を使用する場合は、該当する手順に記載されているように、イーサネットポートと IP を設定する手順を省略できます。
 
 
@@ -899,7 +906,7 @@ Tgt VendorID ProductID        Type        SerialNumber
  a| 
 不正解です
  a| 
-.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します ,手順 17。
+.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <<step17-reconnect-cables,手順 17>>。
 .. 前の手順を繰り返します。
 
 
@@ -1015,6 +1022,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 
 
+.関連情報
 link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリッジのインバンド管理"]
 
 
@@ -1334,7 +1342,7 @@ NOTE: 出力の先頭に「 response truncated 」というテキストが表示
  a| 
 不正解です
  a| 
-.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します ,手順 17。
+.. SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <<step17-recable,手順 17>>。
 .. 残りの各ブリッジについて、同じ手順を繰り返します。
 
 
@@ -1450,4 +1458,5 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 . 部品の交換後、障害のある部品は、キットに付属する RMA 指示書に従ってネットアップに返却してください。を参照してください link:https://mysupport.netapp.com/site/info/rma["パーツの返品と交換"] 詳細については、を参照してください。
 
 
+.関連情報
 link:concept_in_band_management_of_the_fc_to_sas_bridges.html["FC-to-SAS ブリッジのインバンド管理"]

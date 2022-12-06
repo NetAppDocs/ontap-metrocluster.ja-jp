@@ -130,6 +130,7 @@ Node-A-1    Failed         MetroCluster check failed. Reason : MCC check showed 
 
 アップグレードの実行前にルートボリュームが暗号化されている場合は、暗号化された古いルートボリュームを含む新しいコントローラをブートするために、バックアップキーとその他の情報を収集する必要があります。
 
+.このタスクについて
 このタスクは、既存の MetroCluster FC 構成で実行します。
 
 .手順
@@ -263,8 +264,10 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 
 情報を収集して処理を再開すると、スイッチオーバー処理が自動化されます。
 
+.このタスクについて
 自動化操作は ' スイッチオーバー ' 修復アグリゲート ' および修復ルート・アグリゲートのオペレーションを開始しますこれらの処理が完了すると、ユーザの操作のために * 一時停止されます * 。コントローラをラックに設置してパートナーコントローラをブートし、先ほど収集した「 sysconfig 」を使用して、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます。
 
+.作業を開始する前に
 スイッチオーバーを開始する前に自動化処理が一時停止するため、サイト B のすべての LIF が「稼働」していることを手動で確認できます必要に応じて 'down' の LIF を up にし 'system controller replace resume' コマンドを使用して自動化処理を再開します
 
 
@@ -275,7 +278,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 
 .このタスクについて
 * このタスクは、古いノードごとに実行する必要があります。
-* で収集した情報を使用します  for the upgrade。
+* で収集した情報を使用します <<アップグレードの準備を行います>>。
 
 
 .手順
@@ -593,6 +596,7 @@ fcadmin show`
 
 前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします
 
+.このタスクについて
 このタスクはメンテナンスモードで実行します。
 
 古いシステム ID は、で識別されています link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html#gathering-information-before-the-upgrade["アップグレード前に情報を収集"]。
@@ -709,6 +713,7 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 
 VLAN とインターフェイスグループを再設定できます。必要に応じて、「 system controller replace resume 」コマンドを使用して処理を再開する前に、クラスタ LIF とブロードキャストドメインのポートを手動で変更します。
 
+.このタスクについて
 このタスクはすべての新しいコントローラで実行する必要があります。
 
 .手順

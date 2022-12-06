@@ -13,6 +13,7 @@ summary: スイッチバック処理用に MetroCluster IP と FC を混在さ�
 [role="lead"]
 スイッチバック処理用に MetroCluster IP と FC を混在させる構成を準備するには、特定のタスクを実行する必要があります。この手順のみの環境構成で、 MetroCluster から IP への移行プロセスで障害が発生しました。
 
+.このタスクについて
 この手順は、障害発生時に移行中だったシステムに対してリカバリを実行する場合にのみ使用してください。
 
 このシナリオでは、 MetroCluster が混在構成です。
@@ -27,6 +28,7 @@ summary: スイッチバック処理用に MetroCluster IP と FC を混在さ�
 
 
 
+.手順
 次の手順を順序どおりに実行します。
 
 . 次のタスクを順序どおりに実行して、 FC ノードのスイッチバックを準備します。
@@ -64,7 +66,7 @@ summary: スイッチバック処理用に MetroCluster IP と FC を混在さ�
 
 +
 
-NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。次に、が必要です ,ブートリカバリとr確保 されていないbootargsRDBの破損をリセットします
+NOTE: 使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、上記の手順を繰り返して、システムを ONTAP プロンプトにブートします。次に、が必要です <<Reset-the-boot-recovery,ブートリカバリとr確保 されていないbootargsRDBの破損をリセットします>>
 
 
 
@@ -136,7 +138,7 @@ Group Cluster Node               State          Mirroring Mode
 
 
 
-=== boot_recoveryおよびr確保 するr確保 するノードをrdbにリセットします
+=== [[Reset-The -boot-recovery]] boot_recoveryとrdata_Corrupt bootargsをリセットします
 
 [role="lead"]
 必要に応じて、boot_recovery引数とrd_corrupt_bootargsをリセットできます

@@ -53,6 +53,7 @@ summary: 災害が発生した場合にデータサービスを安全に継続�
 
 NOTE: SnapMirror と SnapVault の設定は自動的に削除されます。
 
+.このタスクについて
 「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
 
 .手順
@@ -86,6 +87,7 @@ mcc1A::> metrocluster operation show
 
 
 
+.完了後
 スイッチオーバー後に、 SnapMirror 関係を再確立する必要があります。
 
 
@@ -100,16 +102,20 @@ MetroCluster のスイッチオーバー後に「 storage aggregate plex show �
 
 スイッチオーバー後に 'volume modify コマンドの -in-nvfailed-state パラメータをリセットし ' クライアントがデータにアクセスする制限を解除することにより 'NVFAIL 状態をクリアする必要があります
 
+.作業を開始する前に
 データベースまたはファイルシステムが実行されていない、または影響を受けたボリュームにアクセスしようとしていないことが必要です。
 
+.このタスクについて
 in-nvfailed-state パラメータを設定するには、 advanced 権限が必要です。
 
 .ステップ
 . -in-nvfailed-state パラメータを false に設定して volume modify コマンドを実行し ' ボリュームをリカバリします
 
 
+.完了後
 データベースファイルの有効性を調べる方法については、ご使用のデータベースソフトウェアのマニュアルを参照してください。
 
 データベースで LUN が使用されている場合は、 NVRAM 障害後にホストから LUN にアクセスできるようにする手順を確認してください。
 
+.関連情報
 link:../manage/concept_monitoring_and_protecting_database_validity_by_using_nvfail.html["NVFAIL を使用したデータベースの有効性監視および保護"]
