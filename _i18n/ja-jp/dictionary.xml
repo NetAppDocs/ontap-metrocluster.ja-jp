@@ -7602,29 +7602,22 @@
   <block id="7169e1403b175332b81d333c6e2af6ab" category="paragraph">MetroCluster 1 では、 FAS2750 プラットフォームの表と MetroCluster 1 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。</block>
   <block id="0dc1c4c70bff26c7c3ae5646d99a32f7" category="paragraph">MetroCluster 2 （ 2 つ目の DR グループ）の場合は、 AFF A700 プラットフォームの表と MetroCluster 2 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。</block>
   <block id="965fd21ca9743b38007dc88ab0a81ba7" category="summary">各 MetroCluster サイトは、パートナーサイトのピアとして設定されます。</block>
-  <block id="169ba71a4cacfeff085e3e52ecd7cc5c" category="summary">ONTAP 9.7 以降では、ネットアップの仕様に準拠していれば、ネットアップで検証されていないスイッチでも MetroCluster IP 構成でサポートされます。</block>
   <block id="598ab8da90f7b08fb85eebf2cdb5b642" category="doc">MetroCluster 準拠スイッチの使用に関する考慮事項</block>
-  <block id="436efa93c0f96363240fcf2f6fe616f3" category="paragraph">ネットアップが提供する MetroCluster IP スイッチは、ネットアップで検証済みです。ONTAP 9.7 以降では、ネットアップの仕様に準拠していれば、ネットアップで検証されていないスイッチでも MetroCluster IP 構成でサポートされます。</block>
-  <block id="a1a264e616e24563d4b8f8b5795ea403" category="section-title">一般的な要件</block>
   <block id="c33e2f23b789dd4d078b0a5b51963f75" category="list-text">MetroCluster IP インターフェイスは、要件を満たすように設定できる任意のスイッチポートに接続できます。</block>
   <block id="33205e28b19e76b7edcb7bc5cad77101" category="list-text">FAS8200 および AFF A300 プラットフォームではスイッチポートの速度が 25Gbps 、その他のプラットフォームでは 40Gbps 以上（ 40Gbps または 100Gbps ）である必要があります。</block>
   <block id="92f69bca586043acecbd273c5ea2d217" category="list-text">ISL は 10Gbps 以上で、 MetroCluster 構成の負荷に応じて適切なサイズにする必要があります。</block>
-  <block id="a4818aee56ba88705889fb4cb2e4d582" category="list-text">MetroCluster 構成は、 2 つのネットワークに接続する必要があります。両方の MetroCluster インターフェイスを同じネットワークまたはスイッチに接続することはできません。各 MetroCluster ノードは、 2 つのネットワークスイッチに接続する必要があります。</block>
   <block id="2d8f234d7714dedd101fd476b6581d02" category="list-text">ネットワークは、次の要件を満たしている必要があります。</block>
   <block id="8bbac031447994e5b8b245f9bb913a6e" category="list-text"><block ref="8bbac031447994e5b8b245f9bb913a6e" category="inline-link-macro-rx"></block></block>
   <block id="b0a09f47597f8af9c573c32b664dfa45" category="list-text"><block ref="b0a09f47597f8af9c573c32b664dfa45" category="inline-link-macro-rx"></block></block>
   <block id="67500937686453a2388ecdf97823b682" category="inline-link-macro">中間スイッチに必要な設定</block>
   <block id="377c20999d3a2f2bf6430aba5269fa35" category="list-text"><block ref="377c20999d3a2f2bf6430aba5269fa35" category="inline-link-macro-rx"></block></block>
   <block id="e2cccfe2013ba1930aabf09a154e5ffe" category="list-text">MetroCluster IP トラフィックに使用されるすべてのスイッチで、 MTU が 9216 に設定されている必要があります。</block>
-  <block id="b60ff3ae4eb5663308d013544c57fe67" category="section-title">スイッチとケーブル接続の要件</block>
   <block id="0d3b7c7f0d8918f762dea13c0abfd697" category="list-text">スイッチで QoS / トラフィック分類がサポートされている必要があります。</block>
   <block id="4ff5b50b72910d305ce187223bd1d86d" category="list-text">スイッチで Explicit Congestion Notification （ ECN ；明示的輻輳通知）がサポートされている必要</block>
   <block id="d1e15e63c1fd6cbe9ab03ae500fe90cc" category="list-text">パスで順序が維持されるように、スイッチで L4 ポート VLAN ロードバランシングポリシーがサポートされている必要があります。</block>
   <block id="d40f7578a0d14b583c64b9e1238ce357" category="list-text">スイッチで L2 Flow Control （ L2FC ； L2 フロー制御）がサポートされている必要があります。</block>
   <block id="0cbb4d7d4f143fb521b8b3f87302bd06" category="list-text">ノードとスイッチの接続には、ネットアップから購入したケーブルを使用する必要があります。スイッチベンダーがサポートしているケーブルを使用する必要があります。</block>
-  <block id="e646e16bee8b32e6ea29e30d01970a6c" category="section-title">制限</block>
   <block id="bd7d6c816fdd7d9da30ecc293b76db32" category="list-text">4 ノード MetroCluster IP 設定の更新</block>
-  <block id="4d9a55c7ba617b9a2f2637145490e989" category="admonition">値がない場合は、プラットフォームがサポートされていないことを示します。</block>
   <block id="419f3742e6de8e0ec4b22cce005e7630" category="cell">プラットフォーム</block>
   <block id="4995a003b2b1032b64bcc8805dea3b99" category="cell">ネットワーク速度（ Gbps ）</block>
   <block id="35b8c775f2c2f1e3186a213d6b7931b3" category="paragraph">40 または 100</block>
@@ -7643,7 +7636,6 @@
   <block id="1e3c8e05b670c33032815dc9f814a471" category="paragraph">ポート 65200 を経由するすべての TCP トラフィックをストレージ（ iSCSI ）クラスにマッピングします。ポート 10006 を経由するすべての TCP トラフィックを RDMA クラスにマッピングします。</block>
   <block id="7232053d17d6d458acd3dc6a3b06e8ef" category="paragraph">入力ポリシーを設定する必要があります。入力ポリシーは、トラフィックを異なる COS グループに分類してマッピングします。この例では、 RDMA トラフィックを COS グループ 5 にマッピングし、 iSCSI トラフィックを COS グループ 4 にマッピングしています。</block>
   <block id="8d099e100c2db650c7b3c9471d6c3021" category="paragraph">スイッチに出力ポリシーを設定する必要があります。出力ポリシーは、トラフィックを出力キューにマッピングします。この例では、 RDMA トラフィックをキュー 5 にマッピングし、 iSCSI トラフィックをキュー 4 にマッピングしています。</block>
-  <block id="25bc22925b2f9068c9fb64ebc4252797" category="paragraph">ISL に MetroCluster トラフィックがあるが、 MetroCluster インターフェイスに接続されていないスイッチを設定する必要があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。</block>
   <block id="40188be7ae52fbad0eec10d341d64dca" category="section-title">ISL を設定します</block>
   <block id="139ee81500499fa6a20d90091e35aedf" category="paragraph">許可された VLAN を設定するときに、「トランク」モードポートを設定できます。</block>
   <block id="7f46b9452d630356ab3904d38691b3f5" category="paragraph">許可する VLAN リストには、 1 ～ * set * 、 1 ～ * add * の 2 つのコマンドがあります。</block>
@@ -11181,8 +11173,6 @@
   <block id="512faff67d2109381c61bd2d3609c40f" category="list-text">ファンまたはコンポーネントの障害によってシャットダウンが開始される（環境によるシャットダウン）</block>
   <block id="0fd2020965353993ca7470eaf762f030" category="paragraph">これらの要件は、 Reference Configuration File （ RCF ；リファレンス構成ファイル）を使用せずに MetroCluster 準拠スイッチを設定する場合のものです。</block>
   <block id="73c8b60f13f3d62360643fda70255745" category="list-text">MetroCluster ノードに接続されたスイッチは、 MetroCluster 以外のトラフィックを伝送できます。</block>
-  <block id="cf098cf2e14a69fa3c2b33958b968ef8" category="list-text">スイッチレスクラスタインターコネクトに専用ポートを提供するプラットフォームのみがサポートされます。FAS2750 や AFF A220 などのプラットフォームは、 MetroCluster トラフィックと MetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているためサポートされません。</block>
-  <block id="1aadfb9e7ccba10af1978cf9b5713b16" category="paragraph">MetroCluster 準拠スイッチへのローカルクラスタ接続はサポートされていません。</block>
   <block id="ea95364bcb87fe94517fe5fdd5716eae" category="paragraph">クラスタ管理 LIF</block>
   <block id="194e182d2e1cbd0c241a90d312430762" category="paragraph">HTTP （ SSL ）を使用したクラスタへのセキュアな通信</block>
   <block id="745401930416d41133d5e612be003ead" category="paragraph">SSH を使用してクラスタとの通信を保護します</block>
@@ -12822,4 +12812,25 @@
   <block id="c1902fd1f00ac0b0e269fd37dd64f7e8" category="section-title">サイトA nbsp；AutoSupport 情報</block>
   <block id="a321560b2ae4d0c708a5027ac5562270" category="section-title">サイトB nbsp；AutoSupport 情報</block>
   <block id="87713443a9395f659a438c305d6fa70d" category="section-title">サイトB nbsp；SP情報</block>
+  <block id="a43f4b9d18f498b517f7dd9eede1654d" category="inline-link-macro">NetApp Hardware Universe の略</block>
+  <block id="d5b877d116ca4502862349e4a1fea007" category="summary">でサポートされるスイッチとして表示されるMetroCluster IPスイッチ <block ref="81064abf44a077ab44fc1d50feb7e8e0" category="inline-link-macro-rx"></block> また、ネットアップが提供するのはネットアップ検証済みです。ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、ネットアップでは、検証されていないスイッチについては、サポートサービス、トラブルシューティング、設定を提供していません。</block>
+  <block id="4275c1aa69fa12af30bea79f33b6ab8b" category="section-title">ネットアップ検証済みスイッチ</block>
+  <block id="1891f9d47aa8c3949d63aba63cfd538e" category="paragraph">スイッチがネットアップで検証されるのは、次の条件をすべて満たしている場合です。</block>
+  <block id="cf8d2c69254b785016eeecea385f1512" category="list-text">スイッチは、MetroCluster IP構成の一部としてネットアップから提供されます</block>
+  <block id="57bc5d4a7e0c60e62b42b542a38a19d8" category="list-text">スイッチの一覧は、を参照してください <block ref="81064abf44a077ab44fc1d50feb7e8e0" category="inline-link-macro-rx"></block> 「MetroCluster over IP接続」の下のサポートされるスイッチとして使用</block>
+  <block id="44f5b263d419c190d99a3b681f245dad" category="list-text">このスイッチは、MetroCluster IPコントローラと、一部の構成ではNS224ドライブシェルフへの接続にのみ使用します</block>
+  <block id="643a5bb556beb7d67fd22c0d3de4c759" category="list-text">スイッチは、ネットアップが提供するRCF（リファレンス構成ファイル）を使用して設定します。</block>
+  <block id="579d6ce20a4bdaad6dff3e52bc4e42ba" category="paragraph">上記の条件を満たしていないスイッチは、ネットアップ検証済みのスイッチではなく*使用されています。</block>
+  <block id="92bf95b2bb1fdf762ca6c2507b432332" category="section-title">MetroCluster準拠のスイッチ</block>
+  <block id="fb0fc5c459c3f4029ec7b03dd85a909a" category="paragraph">MetroCluster準拠のスイッチはネットアップによる検証は行われていませんが、以下の要件と設定ガイドラインを満たしていれば、MetroCluster IP構成で使用できます。</block>
+  <block id="f2153c30c0089338d3848e4eaa64fc3e" category="admonition">ネットアップでは、検証済みでないMetroCluster準拠スイッチのサポートサービス、トラブルシューティング、設定を提供していません。</block>
+  <block id="2e3b6cbd29fbe534f65b62b67e974e1a" category="section-title">MetroCluster準拠スイッチの一般的な要件</block>
+  <block id="e167cf704969390451b66b4604d89501" category="list-text">MetroCluster準拠のスイッチで使用できるのは、スイッチレスクラスタインターコネクト専用ポートを提供するプラットフォームのみです。FAS2750やAFF A220などのプラットフォームは、MetroCluster トラフィックとMetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているため使用できません。</block>
+  <block id="832bfdec136453c59e06674dc5b1fbfc" category="paragraph">MetroCluster準拠のスイッチをローカルクラスタ接続に使用しないでください。</block>
+  <block id="cef3763dc37c86b326ba9f36674ba2b4" category="list-text">MetroCluster 構成は、 2 つのネットワークに接続する必要があります。MetroCluster インターフェイスを同じネットワークまたはスイッチに接続することはできません。各 MetroCluster ノードは、 2 つのネットワークスイッチに接続する必要があります。</block>
+  <block id="320aeba3423b75436241c00392964782" category="section-title">MetroCluster準拠スイッチのスイッチとケーブル接続の要件</block>
+  <block id="00da554e6014936ea814019f7270b104" category="section-title">MetroCluster準拠スイッチに関する制限事項</block>
+  <block id="68d8047cbf72a612dd739f574baa912c" category="paragraph">ローカルクラスタ接続を必要とする設定または機能をスイッチに接続することはできません。たとえば、次の設定と手順はMetroCluster準拠のスイッチでは使用できません。</block>
+  <block id="999a0234ad26235f40e860b0131203f6" category="admonition">値がない場合は、プラットフォームをMetroCluster準拠のスイッチで使用できないことを示しています。</block>
+  <block id="e6e94fa732001e55f7fcf67c01c5f249" category="paragraph">ISL上にMetroCluster トラフィックがあるが、MetroCluster インターフェイスに接続されていないスイッチの設定が必要になる場合があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。</block>
 </blocks>

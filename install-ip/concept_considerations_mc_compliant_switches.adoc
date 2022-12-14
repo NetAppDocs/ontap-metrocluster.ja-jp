@@ -2,7 +2,7 @@
 permalink: install-ip/concept_considerations_mc_compliant_switches.html 
 sidebar: sidebar 
 keywords: metrocluster ip, metrocluster-compliant switches, metrocluster-compliant, requirements, compliant 
-summary: ONTAP 9.7 以降では、ネットアップの仕様に準拠していれば、ネットアップで検証されていないスイッチでも MetroCluster IP 構成でサポートされます。 
+summary: 'でサポートされるスイッチとして表示されるMetroCluster IPスイッチ link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] また、ネットアップが提供するのはネットアップ検証済みです。ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、ネットアップでは、検証されていないスイッチについては、サポートサービス、トラブルシューティング、設定を提供していません。' 
 ---
 = MetroCluster 準拠スイッチの使用に関する考慮事項
 :allow-uri-read: 
@@ -11,24 +11,47 @@ summary: ONTAP 9.7 以降では、ネットアップの仕様に準拠してい�
 
 
 [role="lead"]
-ネットアップが提供する MetroCluster IP スイッチは、ネットアップで検証済みです。ONTAP 9.7 以降では、ネットアップの仕様に準拠していれば、ネットアップで検証されていないスイッチでも MetroCluster IP 構成でサポートされます。
+でサポートされるスイッチとして表示されるMetroCluster IPスイッチ link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] また、ネットアップが提供するのはネットアップ検証済みです。ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、ネットアップでは、検証されていないスイッチについては、サポートサービス、トラブルシューティング、設定を提供していません。
 
 
 
-== 一般的な要件
+== ネットアップ検証済みスイッチ
+
+スイッチがネットアップで検証されるのは、次の条件をすべて満たしている場合です。
+
+* スイッチは、MetroCluster IP構成の一部としてネットアップから提供されます
+* スイッチの一覧は、を参照してください link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] 「MetroCluster over IP接続」の下のサポートされるスイッチとして使用
+* このスイッチは、MetroCluster IPコントローラと、一部の構成ではNS224ドライブシェルフへの接続にのみ使用します
+* スイッチは、ネットアップが提供するRCF（リファレンス構成ファイル）を使用して設定します。
+
+
+上記の条件を満たしていないスイッチは、ネットアップ検証済みのスイッチではなく*使用されています。
+
+
+
+== MetroCluster準拠のスイッチ
+
+MetroCluster準拠のスイッチはネットアップによる検証は行われていませんが、以下の要件と設定ガイドラインを満たしていれば、MetroCluster IP構成で使用できます。
+
+
+NOTE: ネットアップでは、検証済みでないMetroCluster準拠スイッチのサポートサービス、トラブルシューティング、設定を提供していません。
+
+
+
+== MetroCluster準拠スイッチの一般的な要件
 
 これらの要件は、 Reference Configuration File （ RCF ；リファレンス構成ファイル）を使用せずに MetroCluster 準拠スイッチを設定する場合のものです。
 
 * MetroCluster ノードに接続されたスイッチは、 MetroCluster 以外のトラフィックを伝送できます。
-* スイッチレスクラスタインターコネクトに専用ポートを提供するプラットフォームのみがサポートされます。FAS2750 や AFF A220 などのプラットフォームは、 MetroCluster トラフィックと MetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているためサポートされません。
+* MetroCluster準拠のスイッチで使用できるのは、スイッチレスクラスタインターコネクト専用ポートを提供するプラットフォームのみです。FAS2750やAFF A220などのプラットフォームは、MetroCluster トラフィックとMetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているため使用できません。
 +
-MetroCluster 準拠スイッチへのローカルクラスタ接続はサポートされていません。
+MetroCluster準拠のスイッチをローカルクラスタ接続に使用しないでください。
 
 * MetroCluster IP インターフェイスは、要件を満たすように設定できる任意のスイッチポートに接続できます。
 * FAS8200 および AFF A300 プラットフォームではスイッチポートの速度が 25Gbps 、その他のプラットフォームでは 40Gbps 以上（ 40Gbps または 100Gbps ）である必要があります。
 * スイッチファブリックごとに 2 つ、計 4 つの IP スイッチが必要です。
 * ISL は 10Gbps 以上で、 MetroCluster 構成の負荷に応じて適切なサイズにする必要があります。
-* MetroCluster 構成は、 2 つのネットワークに接続する必要があります。両方の MetroCluster インターフェイスを同じネットワークまたはスイッチに接続することはできません。各 MetroCluster ノードは、 2 つのネットワークスイッチに接続する必要があります。
+* MetroCluster 構成は、 2 つのネットワークに接続する必要があります。MetroCluster インターフェイスを同じネットワークまたはスイッチに接続することはできません。各 MetroCluster ノードは、 2 つのネットワークスイッチに接続する必要があります。
 * ネットワークは、次の要件を満たしている必要があります。
 +
 ** link:../install-ip/concept_considerations_isls.html#basic-metrocluster-isl-requirements["MetroCluster ISL の基本要件"]
@@ -42,7 +65,7 @@ MetroCluster 準拠スイッチへのローカルクラスタ接続はサポー�
 
 
 
-== スイッチとケーブル接続の要件
+== MetroCluster準拠スイッチのスイッチとケーブル接続の要件
 
 * スイッチで QoS / トラフィック分類がサポートされている必要があります。
 * スイッチで Explicit Congestion Notification （ ECN ；明示的輻輳通知）がサポートされている必要
@@ -53,9 +76,9 @@ MetroCluster 準拠スイッチへのローカルクラスタ接続はサポー�
 
 
 
-== 制限
+== MetroCluster準拠スイッチに関する制限事項
 
-ローカルクラスタ接続を必要とする設定または機能がスイッチに接続されていても、サポートされていません。たとえば、次の設定と手順はサポートされていません。
+ローカルクラスタ接続を必要とする設定または機能をスイッチに接続することはできません。たとえば、次の設定と手順はMetroCluster準拠のスイッチでは使用できません。
 
 * 8 ノード MetroCluster 構成
 * MetroCluster FC から MetroCluster IP 構成への移行
@@ -69,7 +92,7 @@ MetroCluster 準拠スイッチへのローカルクラスタ接続はサポー�
 次の表に、MetroCluster 準拠スイッチのプラットフォーム固有のネットワーク速度とスイッチポートモードを示します。次の表に示すように、スイッチポートモードを設定します。
 
 
-NOTE: 値がない場合は、プラットフォームがサポートされていないことを示します。
+NOTE: 値がない場合は、プラットフォームをMetroCluster準拠のスイッチで使用できないことを示しています。
 
 |===
 
@@ -309,7 +332,7 @@ class type queuing c-out-8q-q-default
   bandwidth remaining percent 100
   random-detect threshold burst-optimized ecn
 ----
-ISL に MetroCluster トラフィックがあるが、 MetroCluster インターフェイスに接続されていないスイッチを設定する必要があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。
+ISL上にMetroCluster トラフィックがあるが、MetroCluster インターフェイスに接続されていないスイッチの設定が必要になる場合があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。
 
 例
 
