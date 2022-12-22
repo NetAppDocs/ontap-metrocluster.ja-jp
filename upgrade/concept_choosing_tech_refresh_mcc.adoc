@@ -11,35 +11,57 @@ summary: 使用するリフレッシュ手順 は、プラットフォームモ�
 
 
 [role="lead"]
-使用するシステム更新手順 は、プラットフォームモデル、アップグレードの範囲、およびMetroCluster 構成の種類によって異なります。
+使用するシステム更新手順 は、プラットフォームモデルおよびMetroCluster 構成のタイプによって異なります。更新手順は、コントローラとストレージシェルフに適用されます。更新手順では、新しいコントローラとシェルフを MetroCluster 構成に追加して 2 つ目の DR グループを作成すると、データが新しいノードに無停止で移行されます。その後、元のコントローラが撤去されます。
+
+
+
+=== サポートされるMetroCluster FC機器更改の組み合わせ
+
+image::../media/metrocluster_fc_tech_refresh.png[MetroCluster fc tech refresh]
+
+* 新しい負荷を追加する前に、Tech Refresh手順 が完了したことを確認してください。
+
+
+
+NOTE: 組み合わせて使用するプラットフォームの「下位」のオブジェクト制限を超えないようにしてください。2つのプラットフォームのオブジェクトの下限を適用します。を参照してください link:https://hwu.netapp.html["Hardware Universe"^] プラットフォームの制限：
+
+
+
+=== サポートされているMetroCluster IP Tech Refreshの組み合わせ
+
+image::../media/metrocluster_ip_tech_refresh.png[MetroCluster IP Tech Refreshの略]
+
+* 新しい負荷を追加する前に、Tech Refresh手順 が完了したことを確認してください。
+
+
+
+NOTE: 組み合わせて使用するプラットフォームの「下位」のオブジェクト制限を超えないようにしてください。2つのプラットフォームのオブジェクトの下限を適用します。を参照してください link:https://hwu.netapp.html["Hardware Universe"^] プラットフォームの制限：
 
 [cols="2,1,1,2"]
 |===
-| 適用範囲 | コンフィギュレーションタイプ | ONTAP のサポート | 手順 
+| リフレッシュ方法 | 構成タイプ | ONTAP バージョン | 手順 
 
 
  a| 
-* 範囲：プラットフォーム（コントローラモジュール）とストレージシェルフ
 * 方法： MetroCluster 設定を展開して古いノードを削除します
 
  a| 
-FC
+4ノードFC
  a| 
 9.6 以降
  a| 
-link:task_refresh_4n_mcc_fc.html["4 ノード MetroCluster FC 構成を更新しています"]
+link:task_refresh_4n_mcc_fc.html["手順 へのリンク"]
 
 
 
  a| 
-* 範囲：プラットフォーム（コントローラモジュール）とストレージシェルフ
 * 方法： MetroCluster 設定を展開して古いノードを削除します
 
  a| 
-IP
+4ノードIP
  a| 
-9.8
+9.8 以降
  a| 
-link:task_refresh_4n_mcc_ip.html["4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）"]
+link:task_refresh_4n_mcc_ip.html["手順 へのリンク"]
 
 |===

@@ -11,6 +11,22 @@ summary: 既存の MetroCluster FC 構成に応じて、移行手順を選択す
 
 
 [role="lead"]
+MetroCluster IP 構成に移行する場合は、サポートされているプラットフォームモデルを組み合わせて使用する必要があります。また、MetroCluster IPプラットフォームが、MetroCluster FC構成からMetroCluster IP構成に移行する負荷に適したサイズであることを確認する必要があります。
+
+次の表に、サポートされるプラットフォームの組み合わせを示します。左側の列にあるプラットフォームから、列の右側にサポートされているプラットフォームに移行できます。これは、色付きの表のセルで示されます。
+
+たとえば、 AFF8060 コントローラモジュールで構成される MetroCluster FC 構成から、 AFF A400 コントローラモジュールで構成される IP 構成への移行がサポートされます。
+
+image::../media/metrocluster_fc_ip_transition_matrix.png[MetroCluster FC IPの移行マトリクス]
+
+* 注1：このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。
+* 注2：FCノードのローカルクラスタインターフェイスには、40GbEインターフェイスが必要です。
+* 注3：FCノードのローカルクラスタインターフェイスには100GbEインターフェイスが必要です。
+
+
+
+NOTE: 組み合わせて使用するプラットフォームの「下位」のオブジェクト制限を超えないようにしてください。2つのプラットフォームのオブジェクトの下限を適用します。を参照してください link:https://hwu.netapp.html["Hardware Universe"^] プラットフォームの制限：
+
 既存の MetroCluster FC 構成に応じて、移行手順を選択する必要があります。
 
 移行手順は、バックエンドの FC スイッチファブリックまたは FC-VI 接続を IP スイッチネットワークに置き換えます。正確な手順は、使用する開始構成によって異なります。
@@ -31,7 +47,7 @@ summary: 既存の MetroCluster FC 構成に応じて、移行手順を選択す
  a| 
 新しいプラットフォームでは、新しいストレージシェルフがサポートされます。
  a| 
-link:concept_requirements_for_fc_to_ip_transition_mcc.html["MetroCluster FC から MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）"]
+link:concept_requirements_for_fc_to_ip_transition_mcc.html["手順 へのリンク"]
 
 
 
@@ -42,7 +58,7 @@ link:concept_requirements_for_fc_to_ip_transition_mcc.html["MetroCluster FC か�
  a| 
 新しいストレージシェルフは、元のプラットフォームと新しいプラットフォームの両方でサポートされます。
  a| 
-link:task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_configuration.html["2 ノード MetroCluster FC から 4 ノード MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）"]
+link:task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_configuration.html["手順 へのリンク"]
 
 
 
@@ -53,7 +69,7 @@ link:task_disruptively_transition_from_a_two_node_mcc_fc_to_a_four_node_mcc_ip_c
  a| 
 新しいストレージシェルフは、元のプラットフォームと新しいプラットフォームの両方でサポートされます。古いストレージシェルフは撤去する必要があります。
  a| 
-link:task_disruptively_transition_while_move_volumes_from_old_shelves_to_new_shelves.html["ストレージシェルフを撤去する際の、 MetroCluster FC から MetroCluster IP への停止を伴う移行（ ONTAP 9.8 以降）"]
+link:task_disruptively_transition_while_move_volumes_from_old_shelves_to_new_shelves.html["手順 へのリンク"]
 
 
 
@@ -64,6 +80,13 @@ link:task_disruptively_transition_while_move_volumes_from_old_shelves_to_new_she
  a| 
 古いストレージシェルフは、新しいプラットフォームではサポートされません。古いストレージシェルフは撤去する必要があります。
  a| 
-link:task_disruptively_transition_when_exist_shelves_are_not_supported_on_new_controllers.html["新しいコントローラで既存シェルフを使用できない場合の停止を伴う移行（ ONTAP 9.8 以降）"]
+link:task_disruptively_transition_when_exist_shelves_are_not_supported_on_new_controllers.html["手順 へのリンク"]
 
 |===
+
+
+=== Cisco 9336C-FX2 共有スイッチ構成に移行します
+
+Cisco 9336C-FX2 共有スイッチ構成への移行はサポートされていません。a_shared スイッチの設定 _ は、 MetroCluster 接続とストレージシェルフ接続の両方を提供します。
+
+Cisco 9336C-FX2 スイッチが MetroCluster 接続のみを提供する構成がサポートされています。
