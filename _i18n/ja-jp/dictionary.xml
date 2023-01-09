@@ -11506,7 +11506,6 @@
   <block id="2b6500c40992c83321292f4bcb8ec93d" category="paragraph">を参照してください <block ref="865643442db88296ffae2da0df72fe39" category="inline-link-macro-rx"></block> IP インターフェイスを設定する際の考慮事項については、を参照して</block>
   <block id="df55218c243d9c828a05e4f0ae9c96d8" category="list-text">接続が正しく確立されたことを確認します。</block>
   <block id="29f2ad546591daf9c21a8e1e2148edae" category="list-text">ディスクの自動割り当てとパーティショニングを確認します。</block>
-  <block id="f919294b56bd6736c2dacccd6ba7e8d2" category="paragraph">「 storage aggregate mirror -aggregate aggr0_cluster1_01 _a_3-IP 」のように指定します</block>
   <block id="a8f0490385b664bc34aae209741dbdce" category="paragraph">「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-disks-mirror true 」のように指定します</block>
   <block id="ab1c45cb56358465162f8f3a812e6fbe" category="list-text">変更を実装するように MetroCluster を設定します。</block>
   <block id="7e6d5ec0a20a9a4499623036df823e6b" category="list-text">ノードが対応する DR グループに追加されたことを確認します。</block>
@@ -12767,8 +12766,6 @@
   <block id="e6e94fa732001e55f7fcf67c01c5f249" category="paragraph">ISL上にMetroCluster トラフィックがあるが、MetroCluster インターフェイスに接続されていないスイッチの設定が必要になる場合があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。</block>
   <block id="09d852286694a04fbe67a38fda6ca956" category="image-alt">MetroCluster FC IPの移行マトリクス</block>
   <block id="421c8863e1f7223f216aacf99393b7dd" category="list-text">注1：このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
-  <block id="234207cc1f3002485022da1892b4559b" category="list-text">注2：FCノードのローカルクラスタインターフェイスには、40GbEインターフェイスが必要です。</block>
-  <block id="6ae32e231af4316f91162f3b9a761e43" category="list-text">注3：FCノードのローカルクラスタインターフェイスには100GbEインターフェイスが必要です。</block>
   <block id="60ddbd1babdd945c26fbc431202fea6c" category="inline-link-macro">Hardware Universe</block>
   <block id="f90dfbd0dbb63ace6227bf8f3e75efb6" category="admonition">組み合わせて使用するプラットフォームの「下位」のオブジェクト制限を超えないようにしてください。2つのプラットフォームのオブジェクトの下限を適用します。を参照してください <block ref="62911b0739c1772914819ee9e7282ee4" category="inline-link-macro-rx"></block> プラットフォームの制限：</block>
   <block id="6e2ee39d0f9ccdad593782674a048e67" category="inline-link-macro">手順 へのリンク</block>
@@ -12844,4 +12841,9 @@
   <block id="81cce2035bed6113b6ccecaeb9cf25a9" category="sidebar">拡張手順 を選択します</block>
   <block id="6ff6555fd4c104df84532572f5435476" category="sidebar">スイッチオーバーとスイッチバックを使用して、AFF MetroCluster FCのMetroCluster FCのコントローラ（ONTAP A700 / FAS9000からAFF A900 / FAS9500へ）をアップグレードする（9.10.1以降）</block>
   <block id="87663f3a8212644181733b0573eae80d" category="sidebar">スイッチオーバーとスイッチバックを使用したMetroCluster IPのコントローラのアップグレード（ONTAP 9.8以降）</block>
+  <block id="cbfda5b02caeddc103ebee1baa66d92c" category="list-text">注2：FCノードのローカルクラスタインターフェイスには、40GbEインターフェイスが必要です。このプラットフォームの組み合わせには、ONTAP 9.12.1以降が必要です。</block>
+  <block id="55b44ccf6250ba590ce25f63cea8e958" category="list-text">注3：FCノードのローカルクラスタインターフェイスには100GbEインターフェイスが必要です。このプラットフォームの組み合わせには、ONTAP 9.12.1以降が必要です。</block>
+  <block id="9418f262fda4ce79d51366cacd6743b2" category="list-text">移行手順を実行するには、特に記載がないかぎり、または個 々 のプラットフォームで必要とされる場合を除き、ONTAP 9.8以降が必要です。</block>
+  <block id="90041d31025da7832d4e0b6bec8c78d3" category="paragraph"><block ref="a29b6e7e71b2408a7ef70fb423944511" prefix="" category="inline-code"></block></block>
+  <block id="1ecf45c0e50d338e165546ea9f33580d" category="paragraph">次の例は、node_A_1のIP上にアグリゲートを作成します。</block>
 </blocks>
