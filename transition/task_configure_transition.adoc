@@ -167,7 +167,7 @@ cluster_B::>
 .手順
 . 既存の MetroCluster 構成に MetroCluster IP ノードを追加
 +
-.. 最初の MetroCluster IP ノード（ node_A_1 の IP ）を既存の MetroCluster FC 構成に追加します。
+.. 最初のMetroCluster IPノード（node_A_1のIP）を既存のMetroCluster FC構成に追加します。
 +
 ....
 
@@ -219,10 +219,10 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 .
 .
 ....
-.. 2 つ目の MetroCluster IP ノード（ node_A_1 の IP ）を既存の MetroCluster FC 構成に追加します。
+.. 2つ目のMetroCluster IPノード（node_A_1の4つのIP）を既存のMetroCluster FC構成に追加します。
 
 
-. 同じ手順を繰り返して、 node_B_1 の IP と node_B_2 の IP を cluster_B に追加します
+. 同じ手順を繰り返して、node_B_1のIPとnode_B_2のIPをcluster_Bに追加します
 
 
 
@@ -343,7 +343,7 @@ MetroCluster 構成設定インターフェイス create-cluster-name
 
 +
 
-NOTE: どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに「 -gateway 」パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。
+NOTE: どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、ONTAP 9.9..1以降では、レイヤ3設定を使用している場合は、も指定する必要があります `-gateway` MetroCluster IPインターフェイスを作成するときにパラメータを指定します。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]
 
 +
 ....
@@ -520,9 +520,12 @@ Disk                   Size Shelf Bay Type    Type        Name      Owner
 2.20.10             546.9GB    20  10 SAS     aggregate   rha1_a1_aggr1 node_a_1
 ...
 43 entries were displayed.
-
 cluster_A::>
 ....
++
+
+NOTE: アドバンストドライブパーティショニング（ADP）用に構成されたシステムでは、次の出力例のようにコンテナタイプが「remote」ではなく「shared」になっています。
+
 . ルートアグリゲートをミラーします。
 +
 `storage aggregate mirror -aggregate aggr0_node_A_3_IP`

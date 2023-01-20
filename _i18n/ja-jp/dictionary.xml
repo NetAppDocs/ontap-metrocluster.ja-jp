@@ -3540,9 +3540,6 @@
   <block id="d7c2f1f68dfab85a30e0ec280fd028ec" category="list-text">クラスタ HA が無効になっていることを確認する。</block>
   <block id="5c3e762ebb6954ea6ec1df3ec8289fc7" category="section-title">MetroCluster IP ノードのクラスタへの追加</block>
   <block id="0374a6e5ac7874327546ae00b1a604d8" category="list-text">既存の MetroCluster 構成に MetroCluster IP ノードを追加</block>
-  <block id="fbfd3619aa54cd6546a334791148c766" category="list-text">最初の MetroCluster IP ノード（ node_A_1 の IP ）を既存の MetroCluster FC 構成に追加します。</block>
-  <block id="c6bbfa16738696bfd63392cfdc4c0a5c" category="list-text">2 つ目の MetroCluster IP ノード（ node_A_1 の IP ）を既存の MetroCluster FC 構成に追加します。</block>
-  <block id="3bd4a265daa0ebad936e251efefd2525" category="list-text">同じ手順を繰り返して、 node_B_1 の IP と node_B_2 の IP を cluster_B に追加します</block>
   <block id="c278969e1942414c418d0d7d8ac9a149" category="inline-link-macro">クラスタ間 LIF を設定</block>
   <block id="8ba940ea91d09fe81fb2362bd009f4b4" category="list-text">新しい MetroCluster IP ノードで、 <block ref="658f71494f9e3f098a91c18b3f1ed366" category="inline-link-macro-rx"></block>。</block>
   <block id="925a374df72441676234c4ae91c02e71" category="paragraph">「 MetroCluster configurion-settings dr-group show 」コマンドを実行した場合、古い MetroCluster FC ノード（ DR グループ 1 ）の DR グループは表示されません。</block>
@@ -12015,7 +12012,6 @@
   <block id="2b114f6498e5132b0cbcc04ccda11d53" category="list-text">MetroCluster のインストールと設定の手順に記載されているすべての要件とケーブル接続を満たしている必要があります。</block>
   <block id="80a501c7c310f786642caeb4ba98a43d" category="paragraph">特定された LIF は、の手順 1 に移動する必要があります <block ref="f19930c3c7cb7f705cf91593411955ab" category="inline-link-macro-rx"></block>。</block>
   <block id="db53daa46cc857a5ca6ccd9ab19fe451" category="paragraph">次の手順では、他の手順に進みます。参照されている各手順で、指定された順序で手順を実行する必要があります。</block>
-  <block id="29e21146baddc462ae95a60cebbec773" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、 ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに「 -gateway 」パラメータも指定する必要があります。リンク： ./install-ip/concept_consideration_layer_3.html を参照してください。</block>
   <block id="679c1dc70b523e1092eb2a7b3129711d" category="paragraph">ポートとブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、変更を加えます。</block>
   <block id="af6710425f9b72f8e5aeb24aa9d0bac6" category="summary">ONTAP 9.8 以降では、既存の 4 ノード MetroCluster FC 構成から新しい MetroCluster IP 構成へのワークロードおよびデータの無停止移行がサポートされます。</block>
   <block id="dd29cf7134047c7a311edc4776b9021e" category="paragraph">2 ノード MetroCluster FC 構成の場合は、を参照してください <block ref="ef88855c7d052c0aa5ce46e187d01954" category="inline-link-macro-rx"></block>。</block>
@@ -12846,4 +12842,21 @@
   <block id="9e70c8a747dbcd4eb73fc72a2155c425" category="paragraph">MetroCluster Tiebreakerソフトウェアで自動スイッチオーバーが有効になっていない場合は、USOを手動で計画外スイッチオーバーします。</block>
   <block id="03a06951389ef81ee2c73f9db6d94fbf" category="list-text">サポートされているプラットフォームアップグレードの組み合わせについては、のMetroCluster IP更新の表を参照してください <block ref="ca31e6122d170c1a660e1ab5d0a9430f" category="inline-link-macro-rx"></block>。</block>
   <block id="04d849614bcf7a25c057bcb4f136cfc7" category="list-text">サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FC更新の表を参照してください <block ref="2026df26c379ba66a79d2229c4a71dd8" category="inline-link-macro-rx"></block>。</block>
+  <block id="7f3573698486df0e906484a42b56260a" category="list-text">最初のMetroCluster IPノード（node_A_1のIP）を既存のMetroCluster FC構成に追加します。</block>
+  <block id="2cc9b0ebb585ef702d75e1a9560e44ee" category="list-text">2つ目のMetroCluster IPノード（node_A_1の4つのIP）を既存のMetroCluster FC構成に追加します。</block>
+  <block id="43978c682537332f0c17e45dcf81c394" category="list-text">同じ手順を繰り返して、node_B_1のIPとnode_B_2のIPをcluster_Bに追加します</block>
+  <block id="56276c01f8fdea330f7d547910dbe817" category="inline-link-macro">レイヤ 3 ワイドエリアネットワークに関する考慮事項</block>
+  <block id="5464631d6fd9ed12f95c271bf666c4bc" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。また、ONTAP 9.9..1以降では、レイヤ3設定を使用している場合は、も指定する必要があります<block ref="50e57debf79bf52aa078c6e993f8969f" prefix=" " category="inline-code"></block> MetroCluster IPインターフェイスを作成するときにパラメータを指定します。を参照してください <block ref="1e1496262359096cc1cfeecfa4cefcb5" category="inline-link-macro-rx"></block></block>
+  <block id="d62d7bce1fe91e6c1145e8a56018d13e" category="admonition">アドバンストドライブパーティショニング（ADP）用に構成されたシステムでは、次の出力例のようにコンテナタイプが「remote」ではなく「shared」になっています。</block>
+  <block id="bad8ee5726316ec5f26bb0039cbf4bc6" category="summary">MetroCluster Tiebreakerのアクティビティはイベントログファイルに記録されます。</block>
+  <block id="08b9323d7a1af549de439f419bb3096a" category="doc">MetroCluster Tiebreakerのイベントログファイル</block>
+  <block id="bbeded76bf1f0922d3c3d140c95591b9" category="paragraph">イベントログファイルには、MetroCluster Tiebreakerソフトウェアで実行されたすべての処理のログが含まれています。</block>
+  <block id="a683f94e07dea51d4fd5a8ef0f351f0a" category="paragraph">Tiebreakerソフトウェアは次の処理を実行します。</block>
+  <block id="4b331bdac9dc044af8ef6c6502e176f3" category="list-text">サイト障害を検出</block>
+  <block id="62bb78b2baed22256e5a91c1b10b48ae" category="list-text">データベース、他のTiebreakerモニタ、またはMetroCluster Tiebreakerソフトウェアに関連する設定変更を検出します</block>
+  <block id="74e0bf9f3312e196cf0f79415f5fd557" category="list-text">SSH接続および切断を検出します</block>
+  <block id="e7937ee1a1ffc7f60a0d80b1dcee5b56" category="list-text">MetroCluster 構成を検出します</block>
+  <block id="98c16872714765876ef7301d6b92820a" category="paragraph">これらのアクションは、次の形式でイベントログファイルに記録されます。</block>
+  <block id="efddb3b6772ab4f446bebb2bda2d2155" category="paragraph">タイムスタンプの重大度/ログレベルのスレッドIDモジュール</block>
+  <block id="690f8ff3b8b65da4f1bc779fb507da9d" category="sidebar">MetroCluster Tiebreakerイベントログファイル</block>
 </blocks>
