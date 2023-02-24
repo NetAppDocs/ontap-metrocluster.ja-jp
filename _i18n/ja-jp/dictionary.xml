@@ -11500,7 +11500,6 @@
   <block id="df55218c243d9c828a05e4f0ae9c96d8" category="list-text">接続が正しく確立されたことを確認します。</block>
   <block id="29f2ad546591daf9c21a8e1e2148edae" category="list-text">ディスクの自動割り当てとパーティショニングを確認します。</block>
   <block id="a8f0490385b664bc34aae209741dbdce" category="paragraph">「 storage aggregate create -aggregate aggregate-name -node node-name -diskcount no-disks-mirror true 」のように指定します</block>
-  <block id="ab1c45cb56358465162f8f3a812e6fbe" category="list-text">変更を実装するように MetroCluster を設定します。</block>
   <block id="7e6d5ec0a20a9a4499623036df823e6b" category="list-text">ノードが対応する DR グループに追加されたことを確認します。</block>
   <block id="9727e668cbd91ea1a73ea3f2e53d09ec" category="paragraph">'volume move start -volume MDV_volume-destination-aggregate aggr-on -new-node-vserver -name</block>
   <block id="b8fe2ce6521b74b903977795ff693df9" category="paragraph">volume show MDV_name</block>
@@ -12861,4 +12860,8 @@
   <block id="4026cb63b92cdc28e17e39a79de589f7" category="paragraph">ONTAP クラスタ（データLIFまたはデータ管理LIF）</block>
   <block id="fd9b3eaeebb236fdcf40b5456ccc900e" category="admonition">AFF A900システムとFAS9500システムでは、8つのISLがサポートされています。Brocade 6510、G620、G620 -1、G630、G630-1、およびG720スイッチ。</block>
   <block id="81d4bf20c117cfe06c727511dd63382b" category="paragraph">6510、G620、G620 -1、G630、G630-1、G720</block>
+  <block id="64cdec386f8cc50c2a2ec9316633b629" category="paragraph">を実行する前に<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block>、HAモードおよびDRミラーリングが有効になっていないため、この想定動作に関連するエラーメッセージが表示される場合があります。HAモードとDRミラーリングは、あとでコマンドを実行するときに有効にします<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> をクリックして構成を実装してください。</block>
+  <block id="929a405a00082b7cddc01ac6b47159f6" category="list-text">MetroCluster は、データアグリゲートが1つであるか複数であるかに応じて設定します。</block>
+  <block id="5ffd33f8dea25274cffabd9b7ab1c36e" category="paragraph">と応答する必要があります<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block> advancedモードで続けるかどうかを尋ねられたら、advancedモードのプロンプト（*）が表示されます。</block>
+  <block id="1fd3081a4bf2b2b1ccafeb89c824a5d2" category="admonition">ミラーされたデータアグリゲートを複数使用することを推奨します。ミラーされたアグリゲートが1つしかない場合、メタデータボリュームは別 々 のアグリゲートではなく同じアグリゲートに配置されるため、保護レベルは低くなります。</block>
 </blocks>

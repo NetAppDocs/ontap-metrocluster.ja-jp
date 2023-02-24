@@ -600,22 +600,51 @@ aggr_data_a2
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。
 
 .手順
-. 変更を実装するように MetroCluster を設定します。
+. MetroCluster は、データアグリゲートが1つであるか複数であるかに応じて設定します。
 +
-MetroCluster 構成
+|===
 
-+
+
+| MetroCluster 構成の内容 | 操作 
+
+
+ a| 
+複数のデータアグリゲート
+ a| 
+いずれかのノードのプロンプトで、 MetroCluster を設定します。
+
+MetroCluster configure_node-name_` です
+
 
 NOTE: 「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります
 
+
+
+ a| 
+ミラーされた 1 つのデータアグリゲート
+ a| 
+.. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。
 +
-....
-cluster_A::> metrocluster configure
+「 advanced 」の権限が必要です
 
-[Job 439] Job succeeded: Configure is successful.
++
+と応答する必要があります `y` advancedモードで続けるかどうかを尋ねられたら、advancedモードのプロンプト（*）が表示されます。
 
-cluster_A::>
-....
+.. MetroCluster に -allow-with-one-aggregate true パラメータを設定します。
++
+「 MetroCluster configure -allow-with-one-aggregate true_node-name_` 」
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+
+
+|===
++
+
+NOTE: ミラーされたデータアグリゲートを複数使用することを推奨します。ミラーされたアグリゲートが1つしかない場合、メタデータボリュームは別 々 のアグリゲートではなく同じアグリゲートに配置されるため、保護レベルは低くなります。
+
 . ノードが対応する DR グループに追加されたことを確認します。
 +
 MetroCluster node show
