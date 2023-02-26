@@ -8446,7 +8446,6 @@
   <block id="b3f86a877f6ea26216000f89d5bf892c" category="list-text">コントローラモジュールの外部にあるハードウェアでも障害が発生した</block>
   <block id="fd4a684eb57b47e219dba160f184d10a" category="paragraph">ドライブ割り当てのすべての手順を省略する必要があります。</block>
   <block id="dc0c368a1922eaf19a6855f5ad8d0d14" category="list-text">DR グループ内の複数のコントローラモジュールの障害（その他の障害あり、またはなし）</block>
-  <block id="9bf79a5c424f73ef9e47171ed7990f3e" category="section-title">MetroCluster FC-to IP 移行時のコントローラモジュール障害のシナリオ</block>
   <block id="22585ab22291d597a4bba70a7c31406b" category="paragraph">リカバリ手順は、移行中にサイト障害が発生した場合に使用できます。ただし、この方法を使用できるのは、 FC DR グループと IP DR グループの両方が完全に設定された安定した混在構成の場合のみです。「 MetroCluster node show 」コマンドの出力には、 8 つのノードすべてを含む両方の DR グループが表示されます。</block>
   <block id="5a7fd8ca0af58c99ec76faf59c614922" category="admonition">ノードの追加または削除を実行中に移行中に障害が発生した場合は、テクニカルサポートに連絡する必要があります。</block>
   <block id="ab1494884dc22965631b6a9814fe75a6" category="section-title">8 ノード MetroCluster 構成でのコントローラモジュールの障害のシナリオ</block>
@@ -12864,4 +12863,13 @@
   <block id="929a405a00082b7cddc01ac6b47159f6" category="list-text">MetroCluster は、データアグリゲートが1つであるか複数であるかに応じて設定します。</block>
   <block id="5ffd33f8dea25274cffabd9b7ab1c36e" category="paragraph">と応答する必要があります<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block> advancedモードで続けるかどうかを尋ねられたら、advancedモードのプロンプト（*）が表示されます。</block>
   <block id="1fd3081a4bf2b2b1ccafeb89c824a5d2" category="admonition">ミラーされたデータアグリゲートを複数使用することを推奨します。ミラーされたアグリゲートが1つしかない場合、メタデータボリュームは別 々 のアグリゲートではなく同じアグリゲートに配置されるため、保護レベルは低くなります。</block>
+  <block id="3a02d8d4d0c731efe2550cb0db8b9626" category="inline-link-macro">MetroCluster のインストール中のコントローラモジュールの障害のシナリオ</block>
+  <block id="3975d998da71c5679e24fd76827cedb3" category="paragraph">設定中にコントローラモジュールに障害が発生した場合は、を参照してください <block ref="5184dce34568aa2bdcc7cb6d2fe3f540" category="inline-link-macro-rx"></block>。</block>
+  <block id="c772808016cce686234dc8c5339463c5" category="paragraph">次の表に示す情報は、インストールまたは移行が完了していること、つまりが完了していることを前提としています<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> コマンドが実行されました。</block>
+  <block id="7d677bbca4c8c648b22ad2b73d684197" category="section-title">MetroCluster のインストール中のコントローラモジュールの障害のシナリオ</block>
+  <block id="5f07f69c69bd236d8043669ebd3a920b" category="paragraph">MetroCluster 構成手順 でのコントローラモジュール障害への対応は、が搭載されているかどうかによって異なります<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> コマンドが完了しました。</block>
+  <block id="d8230f83ef3ade7e9ba6071d54f0e853" category="list-text">状況に応じて<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> コマンドがまだ実行されていないか失敗しました。交換用コントローラモジュールを使用して、MetroCluster ソフトウェア設定手順 を最初から再起動する必要があります。</block>
+  <block id="6a9c67444d70fbe1484e9983092ffff8" category="admonition">の手順を必ず実行してください <block ref="b6e3e97b1b6ab70165db8088036aef95" category="inline-link-macro-rx"></block> 各コントローラ（交換用コントローラを含む）で、以前の設定が削除されたことを確認します。</block>
+  <block id="779a44ac931df50e9ba3ac26bbca035e" category="list-text">状況に応じて<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> コマンドが正常に完了し、コントローラモジュールが故障しました。前の表を使用して、正しいリカバリ手順 を特定してください。</block>
+  <block id="57c5f3148ec34d732973b7f905f1ca84" category="section-title">MetroCluster FC-to-IP移行時のコントローラモジュールの障害のシナリオ</block>
 </blocks>

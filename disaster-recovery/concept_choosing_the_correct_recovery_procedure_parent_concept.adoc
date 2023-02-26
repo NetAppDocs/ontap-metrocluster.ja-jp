@@ -13,6 +13,8 @@ summary: MetroCluster 構成で障害が発生したら、障害の範囲に応�
 [role="lead"]
 MetroCluster 構成で障害が発生した場合は、正しいリカバリ手順を選択する必要があります。次の表と例を使用して、適切なリカバリ手順を選択してください。
 
+次の表に示す情報は、インストールまたは移行が完了していること、つまりが完了していることを前提としています `metrocluster configure` コマンドが実行されました。
+
 |===
 
 
@@ -71,7 +73,21 @@ link:task_recover_from_a_multi_controller_and_or_storage_failure.html["マルチ
 |===
 
 
-== MetroCluster FC-to IP 移行時のコントローラモジュール障害のシナリオ
+== MetroCluster のインストール中のコントローラモジュールの障害のシナリオ
+
+MetroCluster 構成手順 でのコントローラモジュール障害への対応は、が搭載されているかどうかによって異なります `metrocluster configure` コマンドが完了しました。
+
+* 状況に応じて `metrocluster configure` コマンドがまだ実行されていないか失敗しました。交換用コントローラモジュールを使用して、MetroCluster ソフトウェア設定手順 を最初から再起動する必要があります。
++
+
+NOTE: の手順を必ず実行してください link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/task_sw_config_restore_defaults.html["コントローラモジュールでのシステムデフォルトのリストア"] 各コントローラ（交換用コントローラを含む）で、以前の設定が削除されたことを確認します。
+
+* 状況に応じて `metrocluster configure` コマンドが正常に完了し、コントローラモジュールが故障しました。前の表を使用して、正しいリカバリ手順 を特定してください。
+
+
+
+
+== MetroCluster FC-to-IP移行時のコントローラモジュールの障害のシナリオ
 
 リカバリ手順は、移行中にサイト障害が発生した場合に使用できます。ただし、この方法を使用できるのは、 FC DR グループと IP DR グループの両方が完全に設定された安定した混在構成の場合のみです。「 MetroCluster node show 」コマンドの出力には、 8 つのノードすべてを含む両方の DR グループが表示されます。
 
