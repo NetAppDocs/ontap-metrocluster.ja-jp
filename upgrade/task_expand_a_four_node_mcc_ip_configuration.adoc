@@ -17,11 +17,11 @@ ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グ�
 * 古いノードと新しいノードで同じバージョンの ONTAP を実行する必要があります。
 * プラットフォームの混在をサポートするプラットフォームモデルについては、新旧がサポートされることを確認する必要があります。
 +
-https://hwu.netapp.com["NetApp Hardware Universe の略"]
+https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 * 古いプラットフォームモデルと新しいプラットフォームモデルの両方が IP スイッチでサポートされていることを確認する必要があります。
 +
-https://hwu.netapp.com["NetApp Hardware Universe の略"]
+https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 * 新しいノードには、古いノードのデータを格納するための十分なストレージと、ルートアグリゲートとスペアディスク用の十分なディスクが必要です。
 * この手順 は、FAS2750システムとAFF A220システムではサポートされていません。
@@ -132,16 +132,16 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 . クラスタが正常であることを確認します。
 +
-cluster show -vserver Cluster
+「 cluster show 」を参照してください
 
 +
 [listing]
 ----
-cluster_A::> cluster show -vserver Cluster
-Node           Health  Eligibility   Epsilon
--------------- ------  -----------   -------
-node_A_1    true    true          false
-node_A_2    true    true          false
+cluster_A::> cluster show
+Node           Health  Eligibility
+-------------- ------  -----------
+node_A_1       true    true
+node_A_2       true    true
 
 cluster_A::>
 ----
@@ -310,6 +310,93 @@ link:../install-ip/using_rcf_generator.html["IP スイッチのケーブル接�
 . 保守モードから問題 the halt コマンドを実行して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタセットアップを開始します。
 +
 このとき、クラスタウィザードやノードウィザードを実行しないでください。
+
+
+
+
+
+== RCF ファイルをアップグレードします
+
+[role="lead"]
+新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
+
+.このタスクについて
+この手順では、 RCF ファイルをアップグレードするスイッチ上のトラフィックが中断されます。新しい RCF ファイルが適用されると、トラフィックは再開されます。
+
+.手順
+. 構成の健全性を確認
++
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+「 MetroCluster check run 」のようになります
+
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+
+----
+
+
++
+この処理はバックグラウンドで実行されます。
+
++
+.. MetroCluster check run オペレーションが完了したら ' MetroCluster check show を実行して結果を表示します
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+-----------
+::*> metrocluster check show
+
+Last Checked On: 4/7/2019 21:15:05
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          warning
+clusters            ok
+connections         not-applicable
+volumes             ok
+7 entries were displayed.
+----
+.. 実行中の MetroCluster チェック処理のステータスを確認します。
++
+MetroCluster オペレーション履歴 show -job-id 38`
+
+.. ヘルスアラートがないことを確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
+
+
+. 新しい RCF ファイルを適用するための IP スイッチを準備します。
++
+スイッチベンダーの手順に従います。
+
++
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"^]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"^]
+
+
+. スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。
++
+
+NOTE: スイッチを次の順序で更新します。Switch_A_1、Switch_B_1、Switch_A_1、Switch_B_2
+
++
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
+** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
++
+
+NOTE: L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。
+
+
 
 
 
@@ -873,6 +960,32 @@ aggr_data_a2
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。
 
 .手順
+. MetroCluster 構成を更新します。
++
+.. advanced 権限モードに切り替えます。
++
+「 advanced 」の権限が必要です
+
+.. 新しいノードの 1 つで MetroCluster 構成を更新します。
++
+MetroCluster 構成
+
++
+次の例では、両方の DR グループで MetroCluster 構成を更新しています。
+
++
+[listing]
+----
+cluster_A::*> metrocluster configure -refresh true
+
+[Job 726] Job succeeded: Configure is successful.
+----
+.. admin 権限モードに戻ります。
++
+「特権管理者」
+
+
+
 . 新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。
 +
 「 storage aggregate create -aggregate _aggregate-name _ -node_name_diskcount 」 - disks_no-of disks _ -mirror true 」という名前のアグリゲートが作成されます
@@ -922,32 +1035,6 @@ Do you want to continue? {y|n}: y
 
 cluster_A::>
 ----
-. MetroCluster 構成を更新します。
-+
-.. advanced 権限モードに切り替えます。
-+
-「 advanced 」の権限が必要です
-
-.. 新しいノードの 1 つで MetroCluster 構成を更新します。
-+
-MetroCluster 構成
-
-+
-次の例では、両方の DR グループで MetroCluster 構成を更新しています。
-
-+
-[listing]
-----
-cluster_A::*> metrocluster configure -refresh true
-
-[Job 726] Job succeeded: Configure is successful.
-----
-.. admin 権限モードに戻ります。
-+
-「特権管理者」
-
-
-
 . ノードが DR グループに追加されたことを確認します。
 +
 [listing]
@@ -1016,7 +1103,7 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 +
 [listing]
 ----
-cluster_A::> vol move start -volume MDV_CRS_d6b0b313ff5611e9837100a098544e51_A -destination-aggregate data_a3 -vserver cluster_A
+cluster_A::*> vol move start -volume MDV_CRS_d6b0b313ff5611e9837100a098544e51_A -destination-aggregate data_a3 -vserver cluster_A
 
 Warning: You are about to modify the system volume
          "MDV_CRS_d6b0b313ff5611e9837100a098544e51_A". This might cause severe
@@ -1034,16 +1121,12 @@ Warning: You are about to modify the system volume
 +
 [listing]
 ----
-cluster_A::> vol show MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
+cluster_A::*> vol show MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 Vserver     Volume       Aggregate    State      Type       Size  Available Used%
 ---------   ------------ ------------ ---------- ---- ---------- ---------- -----
 cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
                        aggr_a2      online     RW         10GB     9.50GB    0%
 ----
-.. admin モードに戻ります。
-+
-「特権管理者」
-
 
 
 . 古いノードから新しいノードにイプシロンを移動します。
@@ -1055,7 +1138,7 @@ cluster show -fields epsilon
 +
 [listing]
 ----
-cluster_B::> cluster show -fields epsilon
+cluster_B::*> cluster show -fields epsilon
 node             epsilon
 ---------------- -------
 node_A_1-old      true
@@ -1079,7 +1162,7 @@ cluster show -fields epsilon
 +
 [listing]
 ----
-cluster_A::> cluster show -fields epsilon
+cluster_A::*> cluster show -fields epsilon
 node             epsilon
 ---------------- -------
 node_A_1-old      false

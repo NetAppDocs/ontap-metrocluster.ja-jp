@@ -4046,11 +4046,9 @@
   <block id="09f81e5c41b5cbf59e868532256e9c4d" category="paragraph">MetroCluster 構成を使用して適切に対応できるように、さまざまな種類の障害や災害について熟知しておく必要があります。</block>
   <block id="5bfc201d41e9f1d875dab1348c8fe184" category="list-text">単一ノード障害です</block>
   <block id="6c628e5bd1e441cf84dbfb33c4e702fe" category="paragraph">ローカル HA ペアの 1 つのコンポーネントで障害が発生した場合。</block>
-  <block id="b3595fee10e224030fc39a6fcf960976" category="paragraph">4 ノード MetroCluster 構成の場合、障害が発生したコンポーネントによっては、障害ノードの自動テイクオーバーまたはネゴシエートテイクオーバーが行われる可能性があります。データリカバリについては、『ハイアベイラビリティ構成ガイド』を参照してください。</block>
   <block id="6f22e733ca2220a1bcbe5e8c43b2b096" category="paragraph">2 ノード MetroCluster 構成の場合は、 Automatic Unplanned Switchover （ AUSO ；自動計画外スイッチオーバー）が行われます。</block>
   <block id="568ff3fa260956a48e6aec64320335ec" category="list-text">サイト全体のコントローラ障害</block>
   <block id="97a8761d85aa340fbdd48793649910be" category="paragraph">電源の喪失、機器の交換、または災害が原因で、サイトのすべてのコントローラモジュールで発生する障害です。通常、 MetroCluster 構成では障害と災害を区別できません。ただし、 MetroCluster Tiebreaker ソフトウェアなどの監視ソフトウェアはこれらを区別できます。スイッチ間リンク（ ISL ）およびスイッチが稼働しており、ストレージにアクセスできる場合は、サイト全体のコントローラ障害によって自動スイッチオーバーが実行される可能性があります。</block>
-  <block id="0b5534d532d225b5627bcdb233683b18" category="paragraph">『ハイアベイラビリティ構成ガイド』では、サイト全体のコントローラ障害、および 1 台以上のコントローラを含む障害からのリカバリ方法について詳しく説明しています。</block>
   <block id="de977f98763f9cb159f730adb49d54f6" category="list-text">ISL 障害です</block>
   <block id="9a3848005e80fb99f99cbd76fac6e3ad" category="paragraph">サイト間のリンクで障害が発生した場合MetroCluster の設定は何の動作も行いません。各ノードは通常どおりデータを提供しますが、対応するディザスタリカバリサイトにアクセスできないため、ミラーデータの書き込みは行われません。</block>
   <block id="c2b2988e42872fbbf4eff058f98ecdb3" category="list-text">複数の連続的な障害</block>
@@ -8837,14 +8835,10 @@
   <block id="a51e1a2414271dabb40bc15842ca2d83" category="paragraph">「 system node halt -node disaster -site -node-name 」のように入力します</block>
   <block id="000918ea512f2105cbb6880aa17027ff" category="paragraph">ディザスタサイトノードが破損したか停止できない場合は、ノードへの電源をオフにし、リカバリ用手順で指示が出るまで交換用ノードをブートしないでください。</block>
   <block id="8d05d7bd3136c1c3d27ce612d1642b55" category="paragraph">スイッチオーバープロセスによって、テスト時とメンテナンス時のノンストップオペレーションが実現するだけでなく、コマンド 1 つでサイト障害からリカバリできます。</block>
-  <block id="e79358e0d6be348f3b30497d0f74086f" category="list-text">スイッチオーバーを実行する前に、サバイバーサイトの少なくとも 1 つのノードが稼働している必要があります。</block>
   <block id="46244e26ed027de3f7dac5055551ea67" category="list-text">スイッチバック処理を実行する前に、設定の変更がすべて完了している必要があります。</block>
   <block id="ca776b7a0f214042bab6636ff7235436" category="admonition">SnapMirror と SnapVault の設定は自動的に削除されます。</block>
   <block id="7adfea65bac9026340a67e4c4fbc6cf1" category="paragraph">「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。</block>
-  <block id="f0e97f395ca7acc4142d44b8d5fcd22a" category="list-text">スイッチオーバーを実装します。</block>
-  <block id="5872a2b6450f234576cf5d48bcdde6d1" category="paragraph">処理が完了するまでに数分かかることがあります。</block>
   <block id="7e2e7baa90ed02c71ec0c1aff8c2f52f" category="list-text">スイッチオーバーを続行するかどうかを確認するメッセージが表示されたら、回答は y を押します。</block>
-  <block id="b046f473d72fa4bb3a8b003d1f1c4ca0" category="list-text">MetroCluster operation show コマンドを実行して、スイッチオーバーが正常に完了したことを確認します。</block>
   <block id="37a919d754d5135e54d0f9a3243827d8" category="paragraph">スイッチオーバーが拒否された場合は '--override-override-vetoes オプションを指定して MetroCluster switchover -forced-on-disaster true コマンドを再実行できますこのオプションパラメータを使用すると、スイッチオーバーを妨げるソフトな拒否はすべて無視されます。</block>
   <block id="8e2df6a076ab8c2df47dff186e779dab" category="paragraph">スイッチオーバー後に、 SnapMirror 関係を再確立する必要があります。</block>
   <block id="3f98066376e4f19519c40bfdf06de035" category="paragraph">MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。</block>
@@ -11256,7 +11250,6 @@
   <block id="c9be8983d832ceeb7431b3d34e79d29f" category="cell">ノードがリストアされた後は ' MetroCluster heal-phase aggregates コマンド 'MetroCluster heal-phase root-aggregates コマンド 'MetroCluster switchback コマンドを使用して ' 手動で修復およびスイッチバックを行う必要があります注 MetroCluster : ONTAP 9.5 以降を実行する MetroCluster IP 構成では 'CLI heal-' コマンドは必要ありません</block>
   <block id="c3abe929e3f8742291998fd60cfc40f2" category="cell">ノードがリストアされた後には ' MetroCluster healing' および MetroCluster switchback コマンドを使用した手動での修復とスイッチバックが必要ですONTAP 9.5 を実行する MetroCluster IP 構成では 'CLI MetroCluster heal-' コマンドは必要ありません</block>
   <block id="51c891ddfc65b7cd72dee57af8c5bb3d" category="cell">MetroCluster は 'MetroCluster switche-forced-on-disaster コマンドを使用して強制的にスイッチオーバーします</block>
-  <block id="2541c7fda2cb2bc37bc40ec988280653" category="paragraph"><block ref="2541c7fda2cb2bc37bc40ec988280653" category="inline-link-rx"></block></block>
   <block id="258d0f4f46275edb228af1aa3070307e" category="paragraph">を参照してください<block ref="8b3dd639d38b6901224b7572bee11d00" category="inline-link-rx"></block>。</block>
   <block id="82c4a9d1333f46979f5cb311c6ec88f7" category="paragraph">パニックが原因で 2 つのサイトのどちらかに問題がある場合は、 MetroCluster スイッチオーバーによって中断のないノンストップオペレーションが実現します。停電がノードとストレージの両方に影響を与える場合 ' スイッチオーバーは自動的には行われず 'MetroCluster switchover' コマンドが発行されるまで停止します</block>
   <block id="6d4916a696465226956e5724ea76b8d1" category="paragraph"><block ref="6d4916a696465226956e5724ea76b8d1" category="inline-link-macro-rx"></block></block>
@@ -12695,7 +12688,6 @@
   <block id="a417bfe3b0e85c20658fe71357feb3ef" category="paragraph">コマンド構文全体については、マニュアルページを参照してください。次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。</block>
   <block id="0074a60c2f111fa09e324bfc6f086bfd" category="paragraph">次のコマンドを実行します。<block ref="08fd4296d1145ee217b3ba481add0899" prefix=" " category="inline-code"></block></block>
   <block id="bb084c29063404b6611bde28d4ed57d3" category="paragraph">次のコマンドを実行します。<block ref="4686e63f75ecbb5593b9aac27ab89dd7" prefix=" " category="inline-code"></block></block>
-  <block id="52fef25c133f347af6547e0d7325285d" category="list-text">データLIFをオフラインにします。[+]<block ref="58d060d8bc95409e743c7b8e95e72710" prefix=" " category="inline-code"></block></block>
   <block id="3c01c02ef0bb0d39aaf5f9cbc5c8ea4b" category="paragraph"><block ref="6b5ac3bb2bcffd222567cf972f8a2548" prefix="" category="inline-code"></block></block>
   <block id="f7967c2b46538ede39d7960526ce1fa4" category="list-text">データLIFをオンラインに戻します。<block ref="c5b63f9c60f25a11e5c1cde65fb540f1" prefix=" " category="inline-code"></block></block>
   <block id="f677111a20e676139c4a865021fafa0d" category="paragraph"><block ref="850d7b5cf3d569632a8982fc791023b0" prefix="" category="inline-code"></block></block>
@@ -12872,4 +12864,16 @@
   <block id="6a9c67444d70fbe1484e9983092ffff8" category="admonition">の手順を必ず実行してください <block ref="b6e3e97b1b6ab70165db8088036aef95" category="inline-link-macro-rx"></block> 各コントローラ（交換用コントローラを含む）で、以前の設定が削除されたことを確認します。</block>
   <block id="779a44ac931df50e9ba3ac26bbca035e" category="list-text">状況に応じて<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> コマンドが正常に完了し、コントローラモジュールが故障しました。前の表を使用して、正しいリカバリ手順 を特定してください。</block>
   <block id="57c5f3148ec34d732973b7f905f1ca84" category="section-title">MetroCluster FC-to-IP移行時のコントローラモジュールの障害のシナリオ</block>
+  <block id="b79001d76282bba800ccc9b5187d2ad4" category="list-text">データLIFをオフラインにします。<block ref="58d060d8bc95409e743c7b8e95e72710" prefix=" " category="inline-code"></block></block>
+  <block id="6bf7a249268f3de77afe5f47cab93371" category="list-text"><block ref="6bf7a249268f3de77afe5f47cab93371" category="inline-link-macro-rx"></block></block>
+  <block id="6a6fc2b9cb4bc74b0b6f0528b0da3e1e" category="list-text"><block ref="6a6fc2b9cb4bc74b0b6f0528b0da3e1e" category="inline-link-macro-rx"></block></block>
+  <block id="467f07382f2568a4248a6dee67437d64" category="paragraph"><block ref="467f07382f2568a4248a6dee67437d64" category="inline-link-macro-rx"></block></block>
+  <block id="d570f5d821344a6838aaa260987eafc8" category="inline-link-macro">ハイアベイラビリティペアの管理</block>
+  <block id="519460f530eb0c6817aeafcaef72fd69" category="paragraph">4 ノード MetroCluster 構成の場合、障害が発生したコンポーネントによっては、障害ノードの自動テイクオーバーまたはネゴシエートテイクオーバーが行われる可能性があります。データ・リカバリについては、を参照してください <block ref="098c4bee7c591ea5429ed6be6c4ddd42" category="inline-link-macro-rx"></block> 。</block>
+  <block id="9b8483df982fc88c283d98b86d41f86f" category="paragraph"><block ref="098c4bee7c591ea5429ed6be6c4ddd42" category="inline-link-macro-rx"></block> サイト全体のコントローラ障害（コントローラ障害を含まない）および1台以上のコントローラを含む障害からのリカバリ方法について詳しく説明します。</block>
+  <block id="098c4bee7c591ea5429ed6be6c4ddd42" category="paragraph"><block ref="098c4bee7c591ea5429ed6be6c4ddd42" category="inline-link-macro-rx"></block></block>
+  <block id="2054a94796fbdefe9b1b24a74c1e246e" category="list-text">スイッチオーバーを実行する前に、サバイバーサイトの少なくとも1つのノードが稼働している必要があります。</block>
+  <block id="6fe56a61eacaba0f58f729f4dff36b33" category="list-text">サバイバーサイトで次のコマンドを実行して、スイッチオーバーを実行します。</block>
+  <block id="9b6012ae921487ba43de70a4b89eea50" category="admonition">処理が完了するまでに数分かかることがあります。進捗状況はを使用して確認できます<block ref="0d47d8f5f26b2a71aacf597494f0adbb" prefix=" " category="inline-code"></block> コマンドを実行します</block>
+  <block id="732b254ce7502fe430a0cca5faf72038" category="list-text">を実行して、スイッチオーバーが正常に完了したことを確認します<block ref="0d47d8f5f26b2a71aacf597494f0adbb" prefix=" " category="inline-code"></block> コマンドを実行します</block>
 </blocks>

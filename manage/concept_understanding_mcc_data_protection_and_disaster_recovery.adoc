@@ -36,7 +36,7 @@ MetroCluster 構成での HA ペアの仕組みを理解する必要がありま
 image::../media/mcc_hw_architecture_local_ha.gif[MCC ハードウェアアーキテクチャローカル HA]
 
 .関連情報
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"^]
+link:https://docs.netapp.com/us-en/ontap/high-availability/index.html["ハイアベイラビリティ構成"^]
 
 
 
@@ -225,7 +225,7 @@ MetroCluster 構成を使用して適切に対応できるように、さまざ�
 ローカル HA ペアの 1 つのコンポーネントで障害が発生した場合。
 
 +
-4 ノード MetroCluster 構成の場合、障害が発生したコンポーネントによっては、障害ノードの自動テイクオーバーまたはネゴシエートテイクオーバーが行われる可能性があります。データリカバリについては、『ハイアベイラビリティ構成ガイド』を参照してください。
+4 ノード MetroCluster 構成の場合、障害が発生したコンポーネントによっては、障害ノードの自動テイクオーバーまたはネゴシエートテイクオーバーが行われる可能性があります。データ・リカバリについては、を参照してください link:https://docs.netapp.com/us-en/ontap/high-availability/index.html["ハイアベイラビリティペアの管理"^] 。
 
 +
 2 ノード MetroCluster 構成の場合は、 Automatic Unplanned Switchover （ AUSO ；自動計画外スイッチオーバー）が行われます。
@@ -235,7 +235,7 @@ MetroCluster 構成を使用して適切に対応できるように、さまざ�
 電源の喪失、機器の交換、または災害が原因で、サイトのすべてのコントローラモジュールで発生する障害です。通常、 MetroCluster 構成では障害と災害を区別できません。ただし、 MetroCluster Tiebreaker ソフトウェアなどの監視ソフトウェアはこれらを区別できます。スイッチ間リンク（ ISL ）およびスイッチが稼働しており、ストレージにアクセスできる場合は、サイト全体のコントローラ障害によって自動スイッチオーバーが実行される可能性があります。
 
 +
-『ハイアベイラビリティ構成ガイド』では、サイト全体のコントローラ障害、および 1 台以上のコントローラを含む障害からのリカバリ方法について詳しく説明しています。
+link:https://docs.netapp.com/us-en/ontap/high-availability/index.html["ハイアベイラビリティペアの管理"^] サイト全体のコントローラ障害（コントローラ障害を含まない）および1台以上のコントローラを含む障害からのリカバリ方法について詳しく説明します。
 
 * ISL 障害です
 +
@@ -285,7 +285,7 @@ NOTE: MetroCluster IP構成では、AUSO（自動計画外スイッチオーバ�
 
 4 ノードおよび 8 ノードの MetroCluster 構成では、パニックまたは停電によるノード障害が原因の自動スイッチオーバーによって発生する可能性があります。
 
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"^]
+link:https://docs.netapp.com/us-en/ontap/high-availability/index.html["ハイアベイラビリティペアの管理"^]
 
 ローカルのフェイルオーバー後に 2 回目の障害が発生した場合、 MetroCluster のスイッチオーバーイベントによって、中断のないノンストップオペレーションが実現します。同様に、スイッチオーバー処理後にサバイバーノードの 1 つで次の障害が発生すると、ローカルのフェイルオーバーイベントによってノンストップオペレーションが継続されます。この場合、 1 つのサバイバーノードが、 DR グループ内の他の 3 つのノードにデータを提供します。
 
