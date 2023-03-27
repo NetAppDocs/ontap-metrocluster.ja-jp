@@ -11,29 +11,32 @@ summary: Tiebreaker ソフトウェアで SNMP を使用するには、 SNMP を
 
 
 [role="lead"]
-Tiebreaker ソフトウェアで SNMP を使用するには、 SNMP を設定する必要があります。
+TiebreakerソフトウェアでSNMPを使用するには、SNMPを設定する必要があります。
 
-. Tiebreaker CLI の SNMP 設定ウィザードのコマンドを使用して、 MetroCluster 設定を追加します。
+. Tiebreaker CLIを使用します `snmp config wizard` コマンドを使用してMetroCluster 構成を追加します。
 +
 
 NOTE: 現在サポートされている SNMP トラップホストは 1 つだけです。
 
 +
-次の例は、 IP アドレスが 10.222.210.234 、トラップメッセージ用のポート番号が 162 、コミュニティストリングが public に設定された SNMP V1 をサポートする SNMP レシーバの構成を示しています。
+次に、IPアドレスが10.240.45.66で、トラップメッセージ用のポート番号が162のSNMP V3をサポートするSNMPレシーバの設定例を示します。これで、 Tiebreaker ソフトウェアは、指定した SNMP レシーバにトラップを送信することができます。
 
 +
 ....
 
 NetApp MetroCluster Tiebreaker :> snmp config wizard
-Enter SNMP Version [V1/V3]: V1
-Enter SNMP Host: 10.222.210.234
+Enter SNMP Version[V1/V3]: v3
+Enter SNMP Host: 10.240.45.66
 Enter SNMP Port: 162
-Enter SNMP V1 Community: public
+Enter SNMP V3 Security Name: v3sec
+Enter SNMP V3 Authentication password:
+Enter SNMP V3 Privacy password:
+Engine ID : 8000031504932eff571825192a6f1193b265e24593
 Successfully added SNMP properties to NetApp MetroCluster Tiebreaker software.
-NetApp MetroCluster Tiebreaker :>
 ....
 +
-これで、 Tiebreaker ソフトウェアは、指定した SNMP レシーバにトラップを送信することができます。
+
+NOTE: SNMPv1はセキュアではないため、SNMPv3を設定する必要があります。デフォルトのコミュニティストリングが* NOT * PUBLICに設定されていることを確認します。
 
 . SNMP が設定されたことを確認します。
 +

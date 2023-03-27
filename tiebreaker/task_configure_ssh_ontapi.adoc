@@ -1,0 +1,25 @@
+---
+permalink: tiebreaker/task_configure_ssh_ontapi.html 
+sidebar: sidebar 
+keywords: admin, access, ontapi, ssh, configure 
+summary: ONTAP APIおよびSSHへの管理アクセスを設定できます。 
+---
+= ONTAP APIおよびSSHへの管理アクセスを設定します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP APIおよびSSHへの管理アクセスを設定できます。
+
+.手順
+. ONTAP APIアクセスを持つ管理者ユーザを作成します。 `security login create -user-or-group-name _mcctb_ -application ontapi -authentication-method _password_`
+. SSHアクセスを持つ管理者ユーザを作成します。 `security login create -user-or-group-name _mcctb_ -application _ssh_ -authentication-method _password_`
+. 新しい管理者ユーザが作成されたことを確認します。 `security login show`
+. パートナークラスタで同じ手順を繰り返します。
++
+
+NOTE: link:https://docs.netapp.com/us-en/ontap/concepts/administrator-authentication-rbac-concept.html["管理者認証と RBAC"^] が実装されます。
+
+
