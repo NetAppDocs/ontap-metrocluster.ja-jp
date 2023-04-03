@@ -2030,7 +2030,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.6以降では
+.ONTAP 9.6 以降
 --
 次のコマンドを実行します。 `network interface show -service-policy default-intercluster`
 
@@ -2061,9 +2061,9 @@ cluster01
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.6以降では
+.ONTAP 9.6 以降
 --
-コマンドを実行します。 `network interface show -service-policy default-intercluster -failover`
+次のコマンドを実行します。 `network interface show -service-policy default-intercluster -failover`
 
 --
 .ONTAP 9.5 以前
@@ -2078,8 +2078,7 @@ cluster01
 +
 次の例は、 SVM 「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。
 
-
-
++
 [listing]
 ----
 cluster01::> network interface show -service-policy default-intercluster –failover
@@ -2094,6 +2093,8 @@ cluster01
                             Failover Targets:  cluster01-02:e0e,
                                                cluster01-02:e0f
 ----
+
+
 .関連情報
 link:concept_prepare_for_the_mcc_installation.html["専用のポートを使用する場合の考慮事項"]
 
@@ -2139,7 +2140,7 @@ cluster01-02
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.6以降では
+.ONTAP 9.6 以降
 --
 次のコマンドを実行します。 `network interface create -vserver _system_SVM_ -lif _LIF_name_ -service-policy default-intercluster -home-node _node_ -home-port _port_ -address _port_IP_ -netmask _netmask_`
 
@@ -2170,7 +2171,7 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.6以降では
+.ONTAP 9.6 以降
 --
 次のコマンドを実行します。 `network interface show -service-policy default-intercluster`
 
@@ -2201,7 +2202,7 @@ cluster01
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.6以降では
+.ONTAP 9.6 以降
 --
 次のコマンドを実行します。 `network interface show –service-policy default-intercluster -failover`
 
@@ -3291,7 +3292,7 @@ NOTE: Config Advisor のサポートには制限があり、オンラインで�
 .手順
 . Config Advisor のダウンロードページにアクセスし、ツールをダウンロードします。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 . Config Advisor を実行し、ツールの出力を確認して、問題が検出された場合は出力に表示される推奨事項に従って対処します。
 
