@@ -2894,6 +2894,9 @@ Remote: cluster_A         Configuration state configured
 
 Fibre Channel （ FC ）スイッチの設定に応じて、フレームの In-Order Delivery （ IOD ；インオーダー配信）または Out-of-Order Delivery （ OOD ；アウトオブオーダー配信）のいずれかを設定する必要があります。FC スイッチが IOD に設定されている場合は、 ONTAP ソフトウェアを IOD に設定する必要があります。同様に、 FC スイッチが OOD に設定されている場合は、 ONTAP を OOD に設定する必要があります。
 
+
+NOTE: 設定を変更するには、コントローラをリブートする必要があります。
+
 .手順
 . ONTAP でのフレームの処理方法として IOD または OOD のいずれかを設定します。
 +
@@ -2963,6 +2966,7 @@ MetroCluster インターコネクトアダプタ modify -node node name -is-ood
 mcc4-b12_siteB::*> metrocluster interconnect adapter modify -node mcc4-b1 -is-ood-enabled true
 mcc4-b12_siteB::*> metrocluster interconnect adapter modify -node mcc4-b2 -is-ood-enabled true
 ----
+... 両方向でハイアベイラビリティ（HA）テイクオーバーを実行してコントローラをリブートします。
 ... 設定を確認します。
 +
 MetroCluster インターコネクト・アダプタ・ショー
