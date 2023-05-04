@@ -29,20 +29,24 @@ FCまたはIPの表から現在のプラットフォームを選択してくだ�
 
 === サポートされるMetroCluster IPコントローラのアップグレード
 
-image::../media/metrocluster_ip_upgrade_table_yellowdogdp1.PNG[MetroCluster IPアップグレードテーブルyellowdogdp1]
+お使いのプラットフォームがリストに表示されない場合は、サポートされているコントローラのアップグレードの組み合わせはありません。
+
+image::../media/metrocluster_ip_upgrade_table_9_13_1.PNG[MetroCluster IPアップグレード表9 13 1.]
 
 * 注1：このアップグレードでは、手順 を使用します link:task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html["スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）"]
+* 注2：コントローラのアップグレードは、ONTAP 9.13.1以降を実行しているシステムでサポートされます。
 
 
 
 
 === サポートされるMetroCluster FCコントローラのアップグレード
 
-image::../media/metrocluster_fc_upgrade_table_yellowdogp1.PNG[MetroCluster fcアップグレードテーブルyellowdogp1]
+image::../media/metrocluster_fc_upgrade_table_p_13_1.PNG[MetroCluster fcアップグレード表p 13 1.]
 
 * 注1：既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合は、次のコントローラをアップグレードしますhttps://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/Upgrading_controllers_when_FCVI_connections_on_existing_FAS8020_or_AFF8020_nodes_use_ports_1c_and_1d["ナレッジベースの記事"^]。
 * 注2：オンボードポート0eおよび0fをFC-VI接続として使用してAFF A300またはFAS8200プラットフォームからコントローラをアップグレードする場合、ONTAP 9.9..1を実行しているシステムのみサポートされます。またはそれ以前のバージョン。詳細については、を参照してください link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1507088["パブリックレポート"^]。
 * 注3：このアップグレードについては、を参照してください link:task_upgrade_A700_to_A900_in_a_four_node_mcc_fc_us_switchover_and_switchback.html["スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A900/ FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）"]
+* 注4：コントローラのアップグレードは、ONTAP 9.13.1以降を実行しているシステムでサポートされます。
 
 
 [cols="2,1,1,2"]
@@ -50,6 +54,17 @@ image::../media/metrocluster_fc_upgrade_table_yellowdogp1.PNG[MetroCluster fcア
 
 
 | MetroCluster タイプ | アップグレード方法 | ONTAP バージョン | 手順 
+
+
+ a| 
+IP
+ a| 
+「system controller replace」コマンドを使用してアップグレードします
+ a| 
+9.13.1以降
+ a| 
+link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_ip.html["手順 へのリンク"]
+
 
 
  a| 

@@ -4,24 +4,40 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, refresh, four, node, ip, configuration, add, autosupport 
 summary: ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。 
 ---
-= 4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）
+= 4ノードまたは8ノードのMetroCluster IP構成の更新（ONTAP 9.8以降）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。
+この手順 を使用して、4ノードまたは8ノード構成のコントローラとストレージをアップグレードできます。
+
+ONTAP 9.13.1以降では、8ノードMetroCluster IP構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的に12ノード構成にし、古いディザスタリカバリ（DR）グループを削除します。
+
+ONTAP 9.8以降では、4ノードMetroCluster IP構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な8ノード構成にしてから、古いDRグループを削除します。
 
 .このタスクについて
-* この手順は、 ONTAP 9.8 以降を実行しているシステムでサポートされています。
-* IP スイッチをアップグレードする場合は、このリフレッシュ手順を実行する前にスイッチをアップグレードする必要があります。
-* 「古いノード」とは、置き換えるノードを意味します。
-* この手順 を使用できるのは、MetroCluster FC構成の特定のプラットフォームモデルのみです。
+* 8ノード構成の場合は、システムでONTAP 9.13.1以降が実行されている必要があります。
+* 4ノード構成の場合は、システムでONTAP 9.8以降が実行されている必要があります。
+* IPスイッチもアップグレードする場合は、このリフレッシュ手順 を実行する前にスイッチをアップグレードする必要があります。
+* この手順 では、1つの4ノードDRグループを更新するために必要な手順について説明します。8ノード構成（DRグループが2つ）の場合は、一方または両方のDRグループを更新できます。
 +
-** サポートされているプラットフォームアップグレードの組み合わせについては、のMetroCluster IP更新の表を参照してください link:../upgrade/concept_choosing_tech_refresh_mcc.html#supported-metrocluster-ip-tech-refresh-combinations["システムの更新方法を選択する"]。
+両方のDRグループを更新する場合は、一度に1つのDRグループを更新する必要があります。
+
+* 「古いノード」とは、置き換えるノードを意味します。
+* 8ノード構成では、ソースとターゲットの8ノードMetroCluster プラットフォームの組み合わせがサポートされている必要があります。
++
+
+NOTE: 両方のDRグループを更新する場合、最初のDRグループを更新したあとにプラットフォームの組み合わせがサポートされないことがあります。サポートされる8ノード構成にするには、両方のDRグループを更新する必要があります。
+
+* MetroCluster IP構成では、この手順 を使用して特定のプラットフォームモデルのみを更新できます。
++
+** サポートされるプラットフォームのアップグレードの組み合わせについては、のMetroCluster IP更新テーブルを参照してください link:../upgrade/concept_choosing_tech_refresh_mcc.html#supported-metrocluster-ip-tech-refresh-combinations["システムの更新方法を選択する"]。
 
 
+* ソースプラットフォームとターゲットプラットフォームの下限が適用されます。上位のプラットフォームに移行する場合は、すべてのDRグループの機器更改が完了するまで新しいプラットフォームの制限が適用されません。
+* ソースプラットフォームよりも制限が低いプラットフォームに対して機器更改を実行する場合は、この手順 を実行する前に、ターゲットプラットフォームの制限に合わせて制限を調整し、制限をターゲットプラットフォームの制限以下にする必要があります。
 
 
 .手順
@@ -31,6 +47,12 @@ ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントロー�
 
 +
 image::../media/mcc_dr_group_a.png[MCC DR グループ A]
+
++
+次の図のような8ノード構成が表示されます。
+
++
+image::../media/mcc_dr_groups_8_node.gif[MCC DR グループ 8 ノード]
 
 . サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。
 +
@@ -59,7 +81,26 @@ image::../media/mcc_dr_group_a.png[MCC DR グループ A]
  a| 
 Tiebreaker
  a| 
-link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#commands-for-modifying-metrocluster-tiebreaker-configurations["MetroCluster 設定の削除"] MetroCluster Tiebreaker インストールおよび設定ガイドのを参照してください
+.. MetroCluster 構成を削除するには 'Tiebreaker CLI の monitor remove コマンドを使用します
++
+次の例では ' "cluster_a" がソフトウェアから削除されています
+
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker :> monitor remove -monitor-name cluster_A
+Successfully removed monitor from NetApp MetroCluster Tiebreaker
+software.
+----
+.. Tiebreaker CLIを使用して、MetroCluster の設定が正しく削除されたことを確認します `monitor show -status` コマンドを実行します
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker :> monitor show -status
+----
+
 
 
 
@@ -78,18 +119,23 @@ MetroCluster 構成設定のメディエーターが削除されました
 製品マニュアルを参照してください。
 
 |===
-. のすべての手順を実行します link:../upgrade/task_expand_a_four_node_mcc_ip_configuration.html["4 ノード MetroCluster IP 構成から 8 ノード構成への拡張"] をクリックして新しいノードとストレージを構成に追加してください。
+. のすべての手順を実行します link:../upgrade/task_expand_a_four_node_mcc_ip_configuration.html["MetroCluster IP構成の拡張"] をクリックして新しいノードとストレージを構成に追加してください。
 +
-拡張手順が完了すると、次の図のような構成が表示されます。
+拡張手順 が完了すると、一時的な設定が次の図のように表示されます。
 
 +
+.8ノードの一時的な構成
 image::../media/mcc_dr_group_b.png[MCC DR グループ b]
+
++
+.一時的な12ノード構成
+image::../media/mcc_dr_group_c4.png[MCC DRグループC4]
 
 . CRS ボリュームを移動します。
 +
 の手順を実行します link:../maintain/task_move_a_metadata_volume_in_mcc_configurations.html["MetroCluster 構成でのメタデータボリュームの移動"]。
 
-. の次の手順に従って、古いノードから新しいノードにデータを移動します https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/home.html["その他のプラットフォーム手順： Controller Hardware Upgrade Express Guide"^]
+. の次の手順に従って、古いノードから新しいノードにデータを移動します link:https://docs.netapp.com/us-en/ontap-systems-upgrade/index.html["AFF および FAS システムのアップグレードに関するドキュメント"^]
 +
 .. のすべての手順を実行します http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-AFE432F6-60AD-4A79-86C0-C7D12957FA63.html["アグリゲートの作成と新しいノードへのボリュームの移動"^]。
 +
@@ -99,15 +145,121 @@ NOTE: アグリゲートのミラーリングは、作成時または作成後�
 .. のすべての手順を実行します http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-95CA9262-327D-431D-81AA-C73DEFF3DEE2.html["SAN 以外のデータ LIF とクラスタ管理 LIF を新しいノードに移動する"]。
 
 
-. 手順の手順に従って、古い DR グループを削除します。
+. 各クラスタについて、移行したノードのクラスタピアのIPアドレスを変更します。
 +
-link:concept_removing_a_disaster_recovery_group.html["ディザスタリカバリグループを削除しています"]
+.. を使用して、cluster_Aピアを特定します `cluster peer show` コマンドを実行します
++
+[listing]
+----
+cluster_A::> cluster peer show
+Peer Cluster Name         Cluster Serial Number Availability   Authentication
+------------------------- --------------------- -------------- --------------
+cluster_B         1-80-000011           Unavailable    absent
+----
++
+... cluster_AピアのIPアドレスを変更します。
++
+`cluster peer modify -cluster cluster_A -peer-addrs node_A_3_IP -address-family ipv4`
+
+
+
+.. を使用して、cluster_Bピアを特定します `cluster peer show` コマンドを実行します
++
+[listing]
+----
+cluster_B::> cluster peer show
+Peer Cluster Name         Cluster Serial Number Availability   Authentication
+------------------------- --------------------- -------------- --------------
+cluster_A         1-80-000011           Unavailable    absent
+----
++
+... cluster_BピアのIPアドレスを変更します。
++
+`cluster peer modify -cluster cluster_B -peer-addrs node_B_3_IP -address-family ipv4`
+
+
+
+.. 各クラスタのクラスタピアIPアドレスが更新されていることを確認します。
++
+... を使用して、各クラスタのIPアドレスが更新されていることを確認します `cluster peer show -instance` コマンドを実行します
++
+。 `Remote Intercluster Addresses` 次の例のフィールドには、更新されたIPアドレスが表示されます。
 
 +
-古い DR グループ（ DR グループ 1 ）を削除すると、次の図のような構成が表示されます。
+cluster_Aの例：
 
 +
+[listing]
+----
+cluster_A::> cluster peer show -instance
+
+Peer Cluster Name: cluster_B
+           Remote Intercluster Addresses: 172.21.178.204, 172.21.178.212
+      Availability of the Remote Cluster: Available
+                     Remote Cluster Name: cluster_B
+                     Active IP Addresses: 172.21.178.212, 172.21.178.204
+                   Cluster Serial Number: 1-80-000011
+                    Remote Cluster Nodes: node_B_3-IP,
+                                          node_B_4-IP
+                   Remote Cluster Health: true
+                 Unreachable Local Nodes: -
+          Address Family of Relationship: ipv4
+    Authentication Status Administrative: use-authentication
+       Authentication Status Operational: ok
+                        Last Update Time: 4/20/2023 18:23:53
+            IPspace for the Relationship: Default
+Proposed Setting for Encryption of Inter-Cluster Communication: -
+Encryption Protocol For Inter-Cluster Communication: tls-psk
+  Algorithm By Which the PSK Was Derived: jpake
+
+cluster_A::>
+
+----
++
+たとえば、cluster_Bです
+
++
+[listing]
+----
+cluster_B::> cluster peer show -instance
+
+                       Peer Cluster Name: cluster_A
+           Remote Intercluster Addresses: 172.21.178.188, 172.21.178.196 <<<<<<<< Should reflect the modified address
+      Availability of the Remote Cluster: Available
+                     Remote Cluster Name: cluster_A
+                     Active IP Addresses: 172.21.178.196, 172.21.178.188
+                   Cluster Serial Number: 1-80-000011
+                    Remote Cluster Nodes: node_A_3-IP,
+                                          node_A_4-IP
+                   Remote Cluster Health: true
+                 Unreachable Local Nodes: -
+          Address Family of Relationship: ipv4
+    Authentication Status Administrative: use-authentication
+       Authentication Status Operational: ok
+                        Last Update Time: 4/20/2023 18:23:53
+            IPspace for the Relationship: Default
+Proposed Setting for Encryption of Inter-Cluster Communication: -
+Encryption Protocol For Inter-Cluster Communication: tls-psk
+  Algorithm By Which the PSK Was Derived: jpake
+
+cluster_B::>
+----
+
+
+
+
+. の手順に従います link:concept_removing_a_disaster_recovery_group.html["ディザスタリカバリグループを削除しています"] をクリックして、古いDRグループを削除します。
+. 8ノード構成で両方のDRグループを更新する場合は、各DRグループに対して手順 全体を繰り返す必要があります。
++
+古いDRグループを削除すると、次の図のような設定が表示されます。
+
++
+.4 ノード構成
 image::../media/mcc_dr_group_d.png[MCC DR グループ d]
+
++
+.8ノード構成
+image::../media/mcc_dr_group_c5.png[MCC DRグループC5]
 
 . MetroCluster 構成の運用モードを確認し、 MetroCluster チェックを実行
 +
@@ -148,7 +300,7 @@ link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metro
  a| 
 メディエーター
  a| 
-リンク： ./install-ip/concept_mediator_requirements.html [Configuring the ONTAP Mediator service from a MetroCluster IP configuration] （ _ MetroCluster IP インストールおよび設定 _ でのメディエーターサービスの設定）
+link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_mediator_requirements.html["MetroCluster IP 構成での ONTAP メディエーターサービスの設定"] MetroCluster IP のインストールと設定 _ 。
 
 
 
