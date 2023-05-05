@@ -17,7 +17,7 @@ summary: このガイド付きの自動MetroCluster スイッチオーバー処�
 
 == サポートされるプラットフォームの組み合わせ
 
-この手順 では、FAS8200からFAS9500へのアップグレードと、AFF A300からAFF A900へのコントローラのアップグレードがサポートされます。
+この手順 では、AFF A300からAFF A900へのコントローラのアップグレードのみがサポートされます。
 
 プラットフォームのアップグレードの組み合わせの詳細については、のMetroCluster IPアップグレードの表を参照してください link:concept_choosing_controller_upgrade_mcc.html#supported-metrocluster-ip-controller-upgrades["コントローラのアップグレード手順 を選択します"]。
 
@@ -88,7 +88,7 @@ NOTE: 4ノードMetroCluster IP構成では、「systems controller replace」�
 
 コントローラのアップグレードを準備するには、システムの事前確認を実行し、構成情報を収集する必要があります。
 
-ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、を実行する必要があります link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_ip.html#reconfigure-ontap-mediator["ONTAP メディエーターを手動で再設定します"]。
+ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、を実行する必要があります <<man_reconfig_mediator,ONTAP メディエーターを手動で再設定します>>。
 
 アップグレードのどの段階でも、サイト A から「 system controller replace show 」または「 system controller replace show -details 」コマンドを実行してステータスを確認できます。コマンドから何も出力されない場合は、数分待ってからコマンドを再実行してください。
 
@@ -282,7 +282,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 
 .このタスクについて
 * このタスクは、古いノードごとに実行する必要があります。
-* で収集した情報を使用します <<アップグレードの準備を行います>>。
+* で収集した情報を使用します <<アップグレードを準備>>。
 
 
 .手順

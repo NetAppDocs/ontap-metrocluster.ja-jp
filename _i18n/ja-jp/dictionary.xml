@@ -13017,7 +13017,6 @@
   <block id="7085ef0783c3069c714c62b941d51195" category="summary">このガイド付きの自動MetroCluster スイッチオーバー処理を使用すると、4ノードMetroCluster IP構成のコントローラの無停止アップグレードを実行できます。</block>
   <block id="be2a104272635035d829d9eb66247a6e" category="doc">「system controller replace」コマンドを使用したスイッチオーバーとスイッチバックを使用した4ノードMetroCluster IP構成のコントローラのアップグレード（ONTAP 9.13.1以降）</block>
   <block id="7644562e2fb618084cb09ad85c576c00" category="paragraph">このガイド付きの自動MetroCluster スイッチオーバー処理を使用すると、4ノードMetroCluster IP構成でコントローラの無停止アップグレードを実行できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
-  <block id="23006e2e0a92cb1615e8aaf31b4fa13e" category="paragraph">この手順 では、FAS8200からFAS9500へのアップグレードと、AFF A300からAFF A900へのコントローラのアップグレードがサポートされます。</block>
   <block id="db8b16f8a162b64f9227ab0fe83ffe4c" category="paragraph">プラットフォームのアップグレードの組み合わせの詳細については、のMetroCluster IPアップグレードの表を参照してください <block ref="2a99f679e02927fd36d8e489a7ee9535" category="inline-link-macro-rx"></block>。</block>
   <block id="e9f3eb39072498fcd6fd79f6beb0b0f4" category="list-text">ONTAP 9.13.1以降を実行している4ノードMetroCluster IP構成のこの 手順 環境 コントローラモジュール。</block>
   <block id="d6777f90334e4deb82616ecb9b6f9fb9" category="list-text">MetroCluster システムで両方のサイトで同じバージョンのONTAP が実行されている必要があります。</block>
@@ -13025,7 +13024,6 @@
   <block id="c5825fe35515c4155fffecab1329d16f" category="admonition">4ノードMetroCluster IP構成では、「systems controller replace」コマンドを使用したアグリゲートの再配置（ARL）を使用したアップグレードはサポートされていません。</block>
   <block id="77eb4e36d322d7ab218107d7c498326a" category="list-text">NSOコントローラの自動アップグレード手順 を使用して、両方のサイトのコントローラを順番にアップグレードする必要があります。</block>
   <block id="06b8cd9278c28e36ddc1fc586a6f840c" category="inline-link-macro">ONTAP メディエーターを手動で再設定します</block>
-  <block id="6647b31592f54f2deed2633fe8863ba5" category="paragraph">ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、を実行する必要があります <block ref="8eeedc881b874d23b9b6cbc9929c7075" category="inline-link-macro-rx"></block>。</block>
   <block id="3cc4806cb19cbb655dbea9a73d4aab85" category="paragraph"><block ref="4baef16133ebdeaa64de2abee5aaa778" prefix="" category="inline-code"></block></block>
   <block id="ad84135061ac4d026b0f6b6b0b90c976" category="list-text">を実行しない場合<block ref="4baef16133ebdeaa64de2abee5aaa778" prefix=" " category="inline-code"></block> コマンドを実行すると、コントローラのアップグレード手順 では、MetroCluster IPシステムのデフォルト手順 としてNSOベースの自動スイッチオーバーとスイッチバックが選択されます。</block>
   <block id="c37cd78225bfd28b27aba6fdb4ffdb05" category="paragraph">このタスクは、既存のMetroCluster IP設定で実行します。</block>
@@ -13150,7 +13148,6 @@
   <block id="ffd6b825c885ce7458a8f30023fc7852" category="list-text">MetroCluster IPインターフェイスを切断します</block>
   <block id="67cc98572471f894a699ad039887fbf2" category="list-text">MetroCluster ISLを切断します</block>
   <block id="afbde099dc8a26a6394d60f258d7b937" category="paragraph">を参照してください <block ref="6c63cd5b30d21cdd776aa75d41e55cc0" category="inline-xref-macro-rx"></block>スイッチは変更されません。MetroCluster ISLは再配置されます。切断する必要があります。ワークシートに緑色でマークされている接続を切断する必要はありません。</block>
-  <block id="7b9cd3f24cb1c28f865438cbd149932b" category="list-text">新しいスイッチを使用する場合は、古いスイッチの電源をオフにしてケーブルを外し、古いIP_switch_B_1を物理的に取り外します。</block>
   <block id="f5ce4d426c8852e0090ab32842d1cd09" category="inline-xref">手順 6</block>
   <block id="a5717edbc2c781c1beaa710a27186585" category="paragraph">既存のスイッチを再利用する場合は、に進みます <block ref="2e61491c69f93a4146be17b4939efb61" category="inline-xref-macro-rx"></block>。</block>
   <block id="333d2f9cc8c6ad8010d2882a39d82f4b" category="admonition">管理インターフェイス（使用している場合）を除き、新しいスイッチをケーブル接続しないでください。</block>
@@ -13186,4 +13183,8 @@
   <block id="d87d22ecaeaff0e5d4bd4030a9e08302" category="sidebar">「system controller replace」コマンドを使用したスイッチオーバーとスイッチバックを使用して、4ノードMetroCluster IPのコントローラをアップグレードする（ONTAP 9.13.1以降）</block>
   <block id="12651c133a2edc8c764efaddca32ca42" category="sidebar">4ノードまたは8ノードのMetroCluster IP構成を更新（ONTAP 9.8以降）</block>
   <block id="f11af7573a10a71e1161a2099db36bcc" category="sidebar">MetroCluster IP設定を展開します</block>
+  <block id="fd069f5f1b9ec4fce867ea78d80b2049" category="paragraph">この手順 では、AFF A300からAFF A900へのコントローラのアップグレードのみがサポートされます。</block>
+  <block id="f60298ca20150ed82728ebbcf934dcdd" category="paragraph">ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、を実行する必要があります <block ref="27c582b1d219a53bd62704e35b9572aa" category="inline-xref-macro-rx"></block>。</block>
+  <block id="cf26e00f9d9d62aac6ab045ca55c7c29" category="list-text">で収集した情報を使用します <block ref="4349c160b4ba85d15c9d1b99e7fab03e" category="inline-xref-macro-rx"></block>。</block>
+  <block id="a6d521ed969131c6ad881b1c930a769c" category="list-text">新しいスイッチを使用する場合は、古いスイッチの電源をオフにしてケーブルを外し、古いスイッチを物理的に取り外します。</block>
 </blocks>
