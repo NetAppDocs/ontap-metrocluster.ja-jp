@@ -27,7 +27,7 @@ MetroCluster スイッチオーバー処理を使用すると、パートナー�
 NOTE: AFF A900 システムは、 ONTAP 9.10.1 以降でのみサポートされます。
 
 +
-https://hwu.netapp.com/["NetApp Hardware Universe の略"^]
+https://["NetApp Hardware Universe の略"^]
 
 
 
@@ -62,7 +62,7 @@ https://hwu.netapp.com/["NetApp Hardware Universe の略"^]
 |===
 * アップグレード用の手順では、 RCF やケーブル接続の物理的な変更を含めて、 MetroCluster ファブリックを変更する必要があります。RCF およびケーブル接続の変更は、コントローラのアップグレード前に実行できます。
 * このアップグレード手順では、元のノードと新しいノードの間のストレージ接続、 FC 接続、イーサネット接続を変更する必要はありません。
-* 手順 のアップグレード中は、AFF A700またはFAS9000システムに他のカードを追加したり取り外したりしないでください。詳細については、を参照してください https://hwu.netapp.com/["NetApp Hardware Universe の略"^]
+* 手順 のアップグレード中は、AFF A700またはFAS9000システムに他のカードを追加したり取り外したりしないでください。詳細については、を参照してください https://["NetApp Hardware Universe の略"^]
 
 
 この手順 の例と図では、次の名前が使用されています。
@@ -194,7 +194,7 @@ MetroCluster チェックショー
 +
 .. Config Advisor をダウンロードして実行します。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
+https://["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
@@ -207,7 +207,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 AFF A900またはFAS9500ファブリックのMetroCluster では、ノードごとに2つの4ポートFC-VIアダプタが必要です。AFF A700で必要な4ポートFC-VIアダプタは1つだけです。AFF A900またはFAS9500コントローラへのコントローラのアップグレードを開始する前に、ファブリックスイッチのRCFファイルを変更して、AFF A900またはFAS9500接続トポロジをサポートする必要があります。
 
-. から https://mysupport.netapp.com/site/products/all/details/metrocluster-rcf/downloads-tab["MetroCluster の RCF ファイルのダウンロードページ"^]で、AFF A900またはFAS9500ファブリックのMetroCluster と、AFF A700またはFAS9000構成で使用されているスイッチモデルに対応した正しいRCFファイルをダウンロードします。
+. から https://["MetroCluster の RCF ファイルのダウンロードページ"^]で、AFF A900またはFAS9500ファブリックのMetroCluster と、AFF A700またはFAS9000構成で使用されているスイッチモデルに対応した正しいRCFファイルをダウンロードします。
 . [[Update-RCF ]] の手順に従って、ファブリック A のスイッチ、スイッチ A1 、およびスイッチ B1 の RCF ファイルを更新します link:../disaster-recovery/task_cfg_switches_mcfc.html["FC スイッチを設定します"]。
 +
 
@@ -312,7 +312,7 @@ MetroCluster チェックショー
 +
 .. Config Advisor をダウンロードして実行します。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
+https://["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
@@ -401,7 +401,7 @@ dr-group-id cluster    node           node-systemid ha-partner-systemid dr-partn
 
 . MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。
 +
-追加情報の場合は、を参照してください https://docs.netapp.com/us-en/ontap/encryption-at-rest/backup-key-management-information-manual-task.html["オンボードキー管理情報の手動でのバックアップ"^]。
+追加情報の場合は、を参照してください https://["オンボードキー管理情報の手動でのバックアップ"^]。
 
 +
 .. オンボードキーマネージャが設定されている場合：
@@ -624,9 +624,13 @@ image:../media/drw_a900_move-remove_NVRAM_module.png["NVS モジュール"]
 
 
 
+[NOTE]
+====
+* スロット6のAFF A700不揮発性ストレージモジュールでコアダンプデバイスとして使用されているアドオンモジュールをAFF A900 NVSモジュールに転送しないでください。AFF A700コントローラおよびNVSモジュールからAFF A900コントローラモジュールにパーツを移さないでください。
+* FAS9000からFAS9500へのアップグレードでは、FAS9000 NVSモジュールのFlash CacheモジュールのみをFAS9500 NVSモジュールに転送してください。FAS9000コントローラモジュールおよびNVSモジュールからFAS9500コントローラモジュールに他のパーツを移さないでください。
 
-NOTE: AFF A700またはFAS9000の不揮発性ストレージモジュールにコアダンプデバイスとして使用されているアドオンモジュールがある場合は、それらのモジュールをAFF A900またはFAS9500 NVSに転送しないでください。AFF A700またはA900コントローラモジュールとNVSからAFF A900またはFAS9500コントローラモジュールにパーツを転送しないでください。
 
+====
 
 
 == AFF A900またはFAS9500 NVSとコントローラモジュールを取り付けます
@@ -727,7 +731,7 @@ AFF A900またはFAS9500コントローラモジュールのブートメディ�
 
 | 実行されていません | ブート環境プロンプトで次のコマンドを使用して、接続を手動で設定します。 ifconfig e0M -addr= <filer_addr> -mask= <netmask> -gw= <gateway> -dns= <dns_addr> domain= <dns_domain> `<filer_addr>`<netmask>` はストレージシステムのネットワークマスクです。「 <gateway>` 」は、ストレージシステムのゲートウェイです。「 <dns_addr> 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 <dns_domain> 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。詳細については、ファームウェアのプロンプトで「 help ifconfig 」と入力してください。 
 |===
-. ノード 1 でネットブートを実行します http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`[]「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します <<step2-download-software,手順 2>>。
+. ノード 1 でネットブートを実行します http://[]「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>_image.tgz 」をダウンロードした場所を指します <<step2-download-software,手順 2>>。
 +
 
 NOTE: トランクを中断しないでください。
@@ -756,7 +760,7 @@ Selection (1-11)?
 
 NOTE: 次のメッセージは無視してください： This 手順 is not supported for Non-Disruptive Upgrade on an HA pair. 環境の無停止の ONTAP ソフトウェアアップグレード。コントローラのアップグレードは含まれません。新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、間違ったイメージがインストールされることがあります。この問題環境 All ONTAP リリース
 
-. 手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたら URL を入力します。http://<web_server_ip/path_to_web-accessible_directory>/<ontap_version>_image.tgz[]
+. 手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたら URL を入力します。http://[]
 . 次の手順を実行してコントローラモジュールをリブートします。
 +
 .. 次のプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしますバックアップ構成を今すぐリストアしますか ? {y|n}`
@@ -1332,6 +1336,17 @@ Remote: cluster_A         Configuration state configured
 .. MetroCluster チェックの結果を表示します。
 +
 MetroCluster チェックショー
+
++
+を実行したあと `metrocluster check run` および `metrocluster check show` 次の例のようなエラーが表示されることがあります。
+
++
+[listing]
+----
+Cluster_A:: node_A_1 (non-overridable veto): DR partner NVLog mirroring is not online. Make sure that the links between the two sites are healthy and properly configured.
+----
++
+このエラーは、アップグレードプロセス中のコントローラの不一致が原因で発生します。このエラーは無視してsite_Aのノードのアップグレードに進みます
 
 
 

@@ -117,7 +117,6 @@
   <block id="da7a50a0e8e8ff0c06082864043b3257" category="list-text">MetroCluster FC スイッチ</block>
   <block id="043cef7f3b4952ab49e47a66b62d07cb" category="list-text">ATTO FibreBridge</block>
   <block id="2817c308965584631c0d98d1640317ca" category="list-text">ストレージシェルフ</block>
-  <block id="9e94d7eb41fe7e730da1976b7ad41884" category="list-text">30 分待ってから、すべてのコントローラの電源をオンにします。</block>
   <block id="2f186765402b54ae503e7c11d851ca43" category="list-text">コントローラの電源をオンにしたら、両方のサイトで MetroCluster 構成を確認します。</block>
   <block id="a93300f1d0aeb5fa8781f15375c55fc1" category="paragraph">設定を確認するには、手順 1 を繰り返します。</block>
   <block id="22eeed3fff7b55b768266be126a12dcf" category="list-text">電源再投入チェックを実行します。</block>
@@ -2807,7 +2806,6 @@
   <block id="76f5c0ad19e3d42c56b6ba3174176fe1" category="doc">4 ノード MetroCluster FC 構成を更新しています</block>
   <block id="ae20966b5600e8ca93f94853f5c5fb45" category="paragraph">4 ノード MetroCluster 構成のコントローラとストレージをアップグレードするには、構成を拡張して 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。</block>
   <block id="cb0344550b820e06b780b2e5d8b7b8ed" category="list-text">MetroCluster タイプに対応した 4 ノード拡張手順のすべての手順を実行します。</block>
-  <block id="236eeda4c8d48fc292788d239a772b52" category="paragraph">の手順を実行します<block ref="56fddf2b85ee23d29212804ee4b58ff1" category="inline-link-rx"></block>。</block>
   <block id="77ea2d02d900614e0cd0117f920d3510" category="inline-link">SAN LIF を元のノードから削除</block>
   <block id="d40cb1d255ffbf920b82077655761954" category="list-text">のすべての手順を実行します<block ref="de6e057f7eef868ca5fb52c843a52d68" category="inline-link-rx"></block>。</block>
   <block id="adf58506887f695b399bc6e224b5ec19" category="summary">一般的な構成エラーの有無を確認する Config Advisor ツールをネットアップサポートサイトからダウンロードできます。</block>
@@ -2863,7 +2861,6 @@
   <block id="f2bf546b53e3f6cc54f274876ab2cb36" category="list-text">「 MetroCluster remove-dr-group 」コマンドは、 ONTAP 9.8 以降でのみサポートされます。</block>
   <block id="cdfb112bdd5ad036d9715bddf30e7912" category="list-text">DR グループがない場合は、削除する準備をします。</block>
   <block id="95e7c6b72cfdf5397dbe8a6653bdc7c1" category="list-text">すべてのデータボリュームを別の DR グループに移動します。</block>
-  <block id="5aba19facd12672131c8ed9f8c19d6c3" category="list-text">MDV_CRS メタデータボリュームはすべて別の DR グループに移動してください。次の手順の手順に従います。<block ref="56fddf2b85ee23d29212804ee4b58ff1" category="inline-link-rx"></block></block>
   <block id="92cccd899142da5e06923ac8991bc5fc" category="list-text">次の例に示すように、 DR グループ内のすべてのデータアグリゲートを削除します。</block>
   <block id="73f68d9b46d6064cae47a18da8004723" category="admonition">ルートアグリゲートは削除されません。</block>
   <block id="0eb68bef79fda0557a1bd86cd43b0afa" category="paragraph">ノード管理 LIF とクラスタ間 LIF は移行されません。</block>
@@ -3940,7 +3937,6 @@
   <block id="97730fe9a08541e432c243803e14fc87" category="paragraph">次の図は、 MetroCluster FC 構成を示しています。HA 機能は、 HA インターコネクトがクラスタスイッチで確立されている点を除いて、 MetroCluster IP 構成と同じです。</block>
   <block id="aafe8a4ce4016fbab5e120bfc5e08251" category="image-alt">MCC ハードウェアアーキテクチャローカル HA</block>
   <block id="2fb654e5399843c45685502bcc696315" category="inline-link">ハイアベイラビリティ構成</block>
-  <block id="25f7dc38caaf02e2f9a5b9e898eed532" category="paragraph"><block ref="25f7dc38caaf02e2f9a5b9e898eed532" category="inline-link-rx"></block></block>
   <block id="4a2c464d69fb9288517ee974b525f8a9" category="section-title">MetroCluster 構成でのデータと設定のレプリケーション</block>
   <block id="8a08fc76a4bf535752fb08fa04755908" category="paragraph">MetroCluster 構成では、各種の ONTAP 機能を使用して、 2 つの MetroCluster サイト間でデータと設定の同期レプリケーションが行われます。</block>
   <block id="ea916db9690756aca3d8ff98e0a4dcb5" category="section-title">設定レプリケーションサービスによる設定の保護</block>
@@ -4591,7 +4587,6 @@
   <block id="088f906179e95184476cce093f9c4729" category="list-text">FlexCache のもう一方の端（ vs2 の origin_1 ）は、 site_A に配置されています（ MetroCluster 構成ではありません）。</block>
   <block id="05997981cacb7abc8efa68a4cb489aaa" category="paragraph">スイッチオーバーがトリガーされたときに site_A と site_B が接続されていない場合は、スイッチオーバー後に vserver peer repeer コマンドを使用して site_B の SVM （スイッチオーバークラスタ）と site_B の SVM を手動で再ピアリングする必要があります。</block>
   <block id="64ffde0294a1e95d407067a972556182" category="paragraph">スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります</block>
-  <block id="ecea9649650e61f80fa7e4d035f5052f" category="inline-link">FlexCache ボリューム管理</block>
   <block id="0513c77713bdaca92c899d67245d714a" category="section-title">MetroCluster 構成での FabricPool のサポート</block>
   <block id="4096949315fbb0590283002717421da7" category="section-title">FabricPool を使用する際の考慮事項</block>
   <block id="cb2882d39ecc345874a2172a679345a0" category="list-text">クラスタに同じ容量制限の FabricPool ライセンスが必要です。</block>
@@ -6763,7 +6758,6 @@
   <block id="d186d7e6f485bde78646481eaab1a111" category="paragraph">次の例は、クラスタ間 LIF の IP アドレス 192.140.112.203 および 192.140.112.204 でローカルクラスタをリモートクラスタに対して認証します。</block>
   <block id="da5ca6ae1de018f91fb173975dfb47fa" category="inline-link">論理ストレージ管理</block>
   <block id="c990f2f1519c6cbe8981cd3b660b7278" category="paragraph"><block ref="c990f2f1519c6cbe8981cd3b660b7278" category="inline-link-rx"></block></block>
-  <block id="d2b0d40b2282002fc4ed782c5f9ebc52" category="list-text">アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください<block ref="bdfdc55438d1bd89079bcd52bcc353e7" category="inline-link-rx"></block>。</block>
   <block id="095878b2b9ceb6ee18550854864bc080" category="list-text">storage aggregate create -mirror true コマンドを使用して、アグリゲートを作成します。</block>
   <block id="184f9da9dc438e19cd9cecb2175ad4c5" category="paragraph">クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートを作成するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。</block>
   <block id="d9bd86ef926208fe90e170b165fc17ad" category="admonition">使用可能なドライブ数が限られている最小サポート構成では、 force-small-aggregate オプションを使用して、 3 ディスクの RAID-DP アグリゲートを作成できるように設定する必要があります。</block>
@@ -9875,8 +9869,6 @@
   <block id="3c0c5e88db6d4b3741126778351471ec" category="paragraph">「 script apply BES-53248 v1.32_Switch-A1.scr 」を参照してください</block>
   <block id="c77851b696911673647cb7bed20ed179" category="paragraph">システムが保守モードになっている場合は、 halt コマンドを問題して保守モードを終了し、次に「 boot_ontap 」コマンドを問題してシステムをブートし、クラスタセットアップを開始する必要があります。</block>
   <block id="2c4ba3dc166bed104e5a7cb242a33b52" category="list-text">各クラスタの最初のノードで、プロンプトに従ってクラスタを設定します</block>
-  <block id="66b81db08cfd6dc65c91f43c33637ff2" category="inline-link">System Manager を使用したクラスタの管理（バージョン 9.0 から 9.6 ）</block>
-  <block id="02cd0671731ab4d34407ccdb1bd2c455" category="paragraph"><block ref="02cd0671731ab4d34407ccdb1bd2c455" category="inline-link-rx"></block></block>
   <block id="a20a27311b456fc6207eda19880125cd" category="inline-link">ONTAP システムマネージャ（バージョン 9.7 以降）</block>
   <block id="1ca0d9647eb663a44ff0a5fef980ff52" category="paragraph"><block ref="1ca0d9647eb663a44ff0a5fef980ff52" category="inline-link-rx"></block></block>
   <block id="b4c9e1380e1ed5373eae1207de120c59" category="paragraph">そうでない場合は、各ノードで HA モードを設定し、ノードをリブートする必要があります。</block>
@@ -10351,7 +10343,6 @@
   <block id="302236925d66f4e5011613180b9839b1" category="admonition">アグリゲートを設定する前に、 FabricPool の「 MetroCluster 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります<block ref="6ca1f1c4f557736e9b169b0bb2581c65" category="inline-link-rx"></block></block>
   <block id="99dc2e42eb5cbad5dfa0fe00d5193924" category="list-text">の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します<block ref="d80da76762d0e5fadaefb2c12eee2740" category="inline-link-rx"></block></block>
   <block id="9f1e892e838f85f0b4330fcfad0f245a" category="paragraph">の「 SVM の設定のレプリケート」セクションを参照してください <block ref="eedeed859392052ace3070cab5bd7d76" category="inline-link-macro-rx"></block> SVM DR 関係の設定の詳細については、を参照してください。</block>
-  <block id="53859114136088fdcd8566623bb6df02" category="paragraph">ONTAP のセットアップに関するその他の一般的な情報については、を参照してください<block ref="b6819648fd16f3919c90cb1d213b3480" category="inline-link-rx"></block></block>
   <block id="06eff1ae70df860b6c817c9ab3858d3d" category="list-text">に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します<block ref="6d6ef49fcb406c2ba2bda06977913f53" category="inline-link-rx"></block>。</block>
   <block id="76171250896c5dfe6901a6c8c3fb3f68" category="paragraph"><block ref="76171250896c5dfe6901a6c8c3fb3f68" category="inline-link-macro-rx"></block></block>
   <block id="9bc07042d75b92db9b8b24b372c11865" category="summary">ファブリック接続 MetroCluster のインストールと設定に関する著作権情報。</block>
@@ -11022,8 +11013,6 @@
   <block id="dbedb7cefba22d6d33123561705f89d7" category="list-text">MACsec ポリシー設定を表示します。</block>
   <block id="388f63f7d6fad1c81c4ee48ef9a6717c" category="paragraph">「 MACsec ポリシー」</block>
   <block id="ab6f20f5b829d0d0c601421db2ea7500" category="paragraph">2 つのクラスタの ONTAP 構成は、ネットワークも含めて同一である必要があります。 MetroCluster 機能は、スイッチオーバーの発生時にクラスタがパートナーにデータをシームレスに提供できるかどうかに依存します。</block>
-  <block id="ab3bedf5b2bac1f18aa979a42fb1871b" category="paragraph"><block ref="ab3bedf5b2bac1f18aa979a42fb1871b" category="inline-link-rx"></block></block>
-  <block id="43a384668d02383bb19c7b1d54761855" category="paragraph">FabricPool の使用に関する一般的な情報については、を参照してください<block ref="46a180d322a34c1f2719942dadd3e4fb" category="inline-link-rx"></block>。</block>
   <block id="84225993604927d7b2805e680fc6afb7" category="paragraph">これは、デフォルト IPspace または管理者が作成した IP スペースです。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。</block>
   <block id="d3478949021db31ee899464708ca14ab" category="admonition">アグリゲートを設定する前に、の「 MetroCluster 構成での FabricPool 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要があります<block ref="46a180d322a34c1f2719942dadd3e4fb" category="inline-link-rx"></block>。</block>
   <block id="79dcbafadac58a942bac3ebf531c5894" category="list-text">の説明に従って、アグリゲートを含む FabricPool ミラーを作成します<block ref="46a180d322a34c1f2719942dadd3e4fb" category="inline-link-rx"></block></block>
@@ -11641,7 +11630,6 @@
   <block id="ce54cea34e79331ac5a0d8398a0daeb2" category="list-text">MetroCluster IP 構成でのスイッチオーバーとスイッチバック（ ONTAP 9.7 以降）</block>
   <block id="b9dc5407731afe77b8474622a7260199" category="list-text">MetroCluster IP 構成でのミラーされたアグリゲートのプロビジョニングおよび拡張（ ONTAP 9.8 以降）</block>
   <block id="64df84e5dd9457f7ff6fca59541532f7" category="paragraph">ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。</block>
-  <block id="e12b7ce615b4c57da01f7f573c2a5a1f" category="paragraph">FabricPool の使用に関する一般的な情報については、を参照してください<block ref="02623f162960bb96fdc9b7c3d9989219" category="inline-link-rx"></block></block>
   <block id="a022874e7e093c6eb907a009ffd5005e" category="paragraph"><block ref="a022874e7e093c6eb907a009ffd5005e" category="inline-link-macro-rx"></block></block>
   <block id="124cab4a0c8129881bfe483bc9e5655a" category="admonition">ONTAP 9.8 以降では 'storage bridge コマンドは 'system bridge コマンドに置き換えられました次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。</block>
   <block id="403c6a302379155c8e053bb5c9fa510c" category="list-text">ONTAP 9.8 以降では、ブリッジはデフォルトでインバンド接続を介して管理され、 SNMP を介したブリッジのアウトオブバンド管理は廃止されています。</block>
@@ -11757,7 +11745,6 @@
   <block id="37ef00a03e6b4bacbc26b2ee369f838f" category="paragraph">キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'Recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります</block>
   <block id="ff8648705a32483b6efc36e81f3ff6c9" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block>。</block>
   <block id="9dc1904e0c3ace141704b477cd9b345d" category="inline-link-macro">Network Management の略</block>
-  <block id="a329e8bb19b80d658f071e8e3a9b43df" category="paragraph">ONTAP のポート、 LIF 、およびネットワーク設定の詳細については、を参照してください <block ref="b7287c70d2b20ddb4e9eda3d1f5462cf" category="inline-link-macro-rx"></block>。</block>
   <block id="84c335ab98bb834a85c89e20e223e638" category="paragraph">プラットフォームのデフォルトのポートロールのリストについては、を参照してください<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block></block>
   <block id="4b921a602b7b9dfd3ef2bf07ef52ad90" category="paragraph">次の例では、ポート「 e0a 」、「 e0b 」、「 e0c 」、および「 e0d 」をクラスタポートに変更する必要があります。</block>
   <block id="0af6886a9c45bb0f127ab39da3242e24" category="paragraph">次の例では、 LIF 「 datalif1 」を新しいホームポート「 e1b 」にリバートします。</block>
@@ -11932,7 +11919,6 @@
   <block id="bef95e9ae70e84ecacc09d17b5b2d101" category="inline-link-macro">メディエーターに関する考慮事項</block>
   <block id="7900124947b526ad60ee913634068229" category="paragraph"><block ref="7900124947b526ad60ee913634068229" category="inline-link-macro-rx"></block></block>
   <block id="99e1566c550fe0f9db0d7ecf84e5a3d6" category="list-text">サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。</block>
-  <block id="011567f6ce64681304cb07cf8a11db65" category="paragraph">新しいコントローラで使用可能な新しいポートがブロードキャストドメインに割り当てられていない場合は、そのドメインに追加する必要があります。必要に応じて、新しいポートに VLAN またはインターフェイスグループを作成します。を参照してください<block ref="b067056c82d13ccc87c33c109530910b" category="inline-link-rx"></block></block>
   <block id="81cd4f21303da57c00dcdd0182de6982" category="list-text">現在のポートの使用状況とブロードキャストドメインを特定します。</block>
   <block id="8570d4b69bd3be86ec49bb299da8d8e8" category="list-text">LIF のホームポートを確認します。</block>
   <block id="d8ea814f2fff910e06cd5858dd803441" category="paragraph">「 network port show -ipspace cluster 」のように表示されます</block>
@@ -12215,7 +12201,6 @@
   <block id="1a246311887a704e5ab1d187d0cc6336" category="admonition">AFF A900またはFAS9500ファブリックのMetroCluster 構成をサポートするためのRCFファイルの更新では、AFF A700またはFAS9000ファブリックのMetroCluster 構成に使用されるポートと接続には影響しません。</block>
   <block id="20924b6eb8b6cea108e86b88645e9bcc" category="section-title">AFF A700ノードまたはFAS9000ノードからAFF A900ノードまたはFAS9500ノードへのポートのマッピング</block>
   <block id="28533a78f5b9ed1a1d242b6608b33990" category="paragraph">AFF A700またはFAS9000コントローラのスロット7手順 にカードが取り付けられている場合は、コントローラのアップグレードを開始する前に、カードを別のスロットに移動する必要があります。AFF A900またはFAS9500コントローラでファブリックMetroCluster を機能させるために必要な2つ目のFC-VIアダプタを追加するために、スロット7を用意しておく必要があります。</block>
-  <block id="f54a1f359c3619ec4b54a5cbaf5a1d68" category="admonition">AFF A700またはFAS9000の不揮発性ストレージモジュールにコアダンプデバイスとして使用されているアドオンモジュールがある場合は、それらのモジュールをAFF A900またはFAS9500 NVSに転送しないでください。AFF A700またはA900コントローラモジュールとNVSからAFF A900またはFAS9500コントローラモジュールにパーツを転送しないでください。</block>
   <block id="147bc4d2dafd157a0f974f42f685692c" category="section-title">AFF A900またはFAS9500 NVSとコントローラモジュールを取り付けます</block>
   <block id="d0cf791b8d9197d3aeb94c14818053cb" category="paragraph">Site_Bの両方のノードに、アップグレードキットからAFF A900またはFAS9500 NVSとコントローラモジュールをインストールする必要がありますコアダンプデバイスをAFF A700またはFAS9000 NVSモジュールからAFF A900またはFAS9500 NVSモジュールに移動しないでください。</block>
   <block id="f92e6303c5bbd6720b3a3c23e3e7d624" category="paragraph">次の手順 を使用して、site_Bの両方のノードのスロット6にAFF A900またはFAS9500 NVSをインストールします</block>
@@ -13187,4 +13172,30 @@
   <block id="f60298ca20150ed82728ebbcf934dcdd" category="paragraph">ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、を実行する必要があります <block ref="27c582b1d219a53bd62704e35b9572aa" category="inline-xref-macro-rx"></block>。</block>
   <block id="cf26e00f9d9d62aac6ab045ca55c7c29" category="list-text">で収集した情報を使用します <block ref="4349c160b4ba85d15c9d1b99e7fab03e" category="inline-xref-macro-rx"></block>。</block>
   <block id="a6d521ed969131c6ad881b1c930a769c" category="list-text">新しいスイッチを使用する場合は、古いスイッチの電源をオフにしてケーブルを外し、古いスイッチを物理的に取り外します。</block>
+  <block id="3e49e5936cffd2e96856c25fa0417df2" category="inline-link-macro">Network Management の略</block>
+  <block id="a4c47e03a7d497b0826db4991d94d6d6" category="paragraph">新しいコントローラで使用可能な新しいポートがブロードキャストドメインに割り当てられていない場合は、そのドメインに追加する必要があります。必要に応じて、新しいポートに VLAN またはインターフェイスグループを作成します。を参照してください <block ref="1c21ab35e530b06d4d331f67f55dccef" category="inline-link-macro-rx"></block></block>
+  <block id="9e0b4796d1405bd6e331c19494270494" category="paragraph"><block ref="9e0b4796d1405bd6e331c19494270494" category="inline-link-macro-rx"></block></block>
+  <block id="a6facdfa8cf4a377f1f75c53c09e707a" category="inline-link-macro">ONTAP をセットアップする</block>
+  <block id="c9f409d76d5cc24dd25ab0f887c5a174" category="paragraph">ONTAP の設定の詳細については、を参照してください <block ref="d97ab501661fbbca35d40c80c06f0e45" category="inline-link-macro-rx"></block>。</block>
+  <block id="c1a14ef4c1320caf80e81dff4161eb9b" category="inline-link-macro">CLI を使用した論理ストレージ管理</block>
+  <block id="23806251831778e9042b7dc8e04e42d9" category="paragraph"><block ref="23806251831778e9042b7dc8e04e42d9" category="inline-link-macro-rx"></block></block>
+  <block id="2352ff1ae19f26a07b1327f9c16fc49b" category="list-text">アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください <block ref="0b0765834489040687dfd80e9c9de26e" category="inline-link-macro-rx"></block>。</block>
+  <block id="48cc474587952d5ed9e7d5ac09cd9721" category="inline-link-macro">ディスクと階層（アグリゲート）の管理</block>
+  <block id="4795213e623b148f220cf084c6476c34" category="paragraph"><block ref="4795213e623b148f220cf084c6476c34" category="inline-link-macro-rx"></block></block>
+  <block id="ec27418ec1f48cdc9bf22eaf5b14b004" category="paragraph"><block ref="ec27418ec1f48cdc9bf22eaf5b14b004" category="inline-link-macro-rx"></block></block>
+  <block id="0f1853ecc95d28b4e20f71e016846751" category="paragraph">8ノードまたは4ノードのMetroCluster 構成では、各サイトでローカルコントローラモジュール間のクラスタインターコネクトをケーブル接続する必要があります。</block>
+  <block id="628016d3218c797c356699f3b0303679" category="inline-link-macro">FlexCache ボリュームの管理には CLI を使用します</block>
+  <block id="448f267d686472e9454713b7d3e7c668" category="paragraph"><block ref="448f267d686472e9454713b7d3e7c668" category="inline-link-macro-rx"></block></block>
+  <block id="82cd62f837d53c3bc3323448e9f22eee" category="paragraph">FabricPool の使用に関する一般的な情報については、を参照してください <block ref="4795213e623b148f220cf084c6476c34" category="inline-link-macro-rx"></block>。</block>
+  <block id="72e662b10113513ea641d5b3354b185d" category="inline-link">System Managerを使用したクラスタ管理（ONTAP 9.7以前）</block>
+  <block id="30ff87be8b58b0ba65f6add20f9047e8" category="paragraph"><block ref="30ff87be8b58b0ba65f6add20f9047e8" category="inline-link-rx"></block></block>
+  <block id="f7bfc5eb5d8ec63be63bd6bba0125d51" category="paragraph">FabricPool の使用に関する一般的な情報については、を参照してください<block ref="966068e36a5307fcc960e1ebcf3ade1b" category="inline-link-rx"></block>。</block>
+  <block id="9573102a4ce6d4f101cdb2919ff28999" category="list-text">スロット6のAFF A700不揮発性ストレージモジュールでコアダンプデバイスとして使用されているアドオンモジュールをAFF A900 NVSモジュールに転送しないでください。AFF A700コントローラおよびNVSモジュールからAFF A900コントローラモジュールにパーツを移さないでください。</block>
+  <block id="8c2906d7fe83e39ba6743c6a9583efe2" category="list-text">FAS9000からFAS9500へのアップグレードでは、FAS9000 NVSモジュールのFlash CacheモジュールのみをFAS9500 NVSモジュールに転送してください。FAS9000コントローラモジュールおよびNVSモジュールからFAS9500コントローラモジュールに他のパーツを移さないでください。</block>
+  <block id="3eab0c13bca99d4dd3b66f80ccacdb36" category="paragraph">を実行したあと<block ref="c2966f2f3bfc7e81dae5df7c44ce66ea" prefix=" " category="inline-code"></block> および<block ref="da68e7539bf844a8366ded5d17b246d7" prefix=" " category="inline-code"></block> 次の例のようなエラーが表示されることがあります。</block>
+  <block id="4b6b157113ce170877f5d11a96afff8a" category="paragraph">このエラーは、アップグレードプロセス中のコントローラの不一致が原因で発生します。このエラーは無視してsite_Aのノードのアップグレードに進みます</block>
+  <block id="1acf191212a145fa4d362e381005b820" category="paragraph">の手順を実行します <block ref="9273ba8e8bd1c5c1cc0cd85662f27754" category="inline-link-macro-rx"></block>。</block>
+  <block id="f624129c4d6772a2f62200de12382ad0" category="list-text">の手順に従って、すべてのMDV_CRSメタデータボリュームを別のDRグループに移動します <block ref="9273ba8e8bd1c5c1cc0cd85662f27754" category="inline-link-macro-rx"></block> 手順</block>
+  <block id="112564590ec1ae4e651904cd571ed9d4" category="paragraph">ONTAP のポート、 LIF 、およびネットワーク設定の詳細については、を参照してください <block ref="378e9004462b7ecfad8256f25b57fbf6" category="inline-link-macro-rx"></block>。</block>
+  <block id="347bde5f3be96b6c3eab8b4a360b9028" category="list-text">30分待ってから、すべてのストレージシェルフ、MetroCluster IPスイッチ、およびストレージコントローラの電源をオンにします。</block>
 </blocks>

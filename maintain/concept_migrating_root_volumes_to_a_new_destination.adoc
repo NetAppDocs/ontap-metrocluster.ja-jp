@@ -17,20 +17,20 @@ summary: 2 ノードまたは 4 ノードの MetroCluster 構成内で、ルー�
 
 == 2 ノード MetroCluster 構成でルートボリュームを移行
 
-2 ノード MetroCluster 構成内で新しいルートアグリゲートにルートボリュームをマイグレートする場合は、を参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/How_to_move_mroot_to_a_new_root_aggregate_in_a_2-node_Clustered_MetroCluster_with_Switchover["2 ノードの clustered MetroCluster スイッチオーバーを使用した新しいルートアグリゲートへの mroot の移動方法"]。この手順では、 MetroCluster スイッチオーバー処理の実行中にルートボリュームを無停止で移行する方法を示します。この手順は、 4 ノード構成で使用する手順とは少し異なります。
+2 ノード MetroCluster 構成内で新しいルートアグリゲートにルートボリュームをマイグレートする場合は、を参照してください https://["2 ノードの clustered MetroCluster スイッチオーバーを使用した新しいルートアグリゲートへの mroot の移動方法"]。この手順では、 MetroCluster スイッチオーバー処理の実行中にルートボリュームを無停止で移行する方法を示します。この手順は、 4 ノード構成で使用する手順とは少し異なります。
 
 
 
 == 4 ノード MetroCluster 構成でのルートボリュームの移行
 
-4 ノード MetroCluster 構成内で新しいルートアグリゲートにルートボリュームを移行する場合は、を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-cmpr-930/system%5F%5Fnode%5F%5Fmigrate-root.html["system node migrate-root"] コマンドを実行しながら、次の要件を満たしていること。
+4 ノード MetroCluster 構成内で新しいルートアグリゲートにルートボリュームを移行する場合は、を使用します http://["system node migrate-root"] コマンドを実行しながら、次の要件を満たしていること。
 
 * system node migrate-root は、 4 ノード MetroCluster 構成内でルートアグリゲートを移動する場合に使用できます。
 * ルートアグリゲートがすべてミラーされている必要があります。
 * ルートアグリゲートをホストするための小容量のドライブを搭載した新しいシェルフを両方のサイトに追加することができます。
 * 新しいドライブを接続する前に、プラットフォームでサポートされているドライブの最大数を確認する必要があります。
 +
-https://hwu.netapp.com["NetApp Hardware Universe の略"]
+https://["NetApp Hardware Universe の略"]
 
 * ルートアグリゲートを小容量のドライブに移動する場合は、プラットフォームの最小ルートボリュームサイズを調整して、すべてのコアファイルが保存されるようにする必要があります。
 

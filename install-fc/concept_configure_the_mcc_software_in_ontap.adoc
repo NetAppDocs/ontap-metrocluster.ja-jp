@@ -1620,7 +1620,7 @@ ha-config modify chassis mccip
 
 各コントローラモジュールに ONTAP をセットアップする必要があります。
 
-新しいコントローラをネットブートする必要がある場合は、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-upgrade/GUID-3370EC34-310E-4F09-829F-F632EC8CDD9B.html["新しいコントローラモジュールのネットブート"] MetroCluster アップグレード、移行、および拡張ガイドの各ガイドを参照してください。
+新しいコントローラをネットブートする必要がある場合は、を参照してください http://["新しいコントローラモジュールのネットブート"] MetroCluster アップグレード、移行、および拡張ガイドの各ガイドを参照してください。
 
 .選択肢
 * <<setup_ontap_2node_MCC,2 ノード MetroCluster 構成での ONTAP のセットアップ>>
@@ -1643,7 +1643,7 @@ ha-config modify chassis mccip
 
 このタスクは、 MetroCluster 構成の両方のクラスタで実行する必要があります。
 
-ONTAP のセットアップに関するその他の一般的な情報については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["ONTAP をセットアップします"]
+ONTAP の設定の詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["ONTAP をセットアップする"^]。
 
 .手順
 . 最初のノードの電源をオンにします。
@@ -2493,7 +2493,7 @@ controller_A_1::> storage aggregate mirror aggr0_controller_A_1
 
 
 .関連情報
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"]
+link:https://docs.netapp.com/us-en/ontap/volumes/index.html["CLI を使用した論理ストレージ管理"^]
 
 
 
@@ -2504,7 +2504,7 @@ DR グループの各ノードに、ミラーされたデータアグリゲー�
 * 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
 * ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
-* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]。
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください link:https://docs.netapp.com/us-en/ontap/disks-aggregates/index.html["ディスクおよびアグリゲートの管理"^]。
 
 
 .手順
@@ -2628,7 +2628,7 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 
 .関連情報
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+link:https://docs.netapp.com/us-en/ontap/disks-aggregates/index.html["ディスクと階層（アグリゲート）の管理"^]
 
 
 
@@ -2700,7 +2700,7 @@ advanced モードで続行するかどうかを尋ねられたら、「 y 」�
 |===
 +
 
-NOTE: 複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/GUID-114DAE6E-F105-4908-ABB1-CE1D7B5C7048.html["MetroCluster 構成でのメタデータボリュームの移動"]。
+NOTE: 複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://["MetroCluster 構成でのメタデータボリュームの移動"]。
 
 +
 次のコマンドは、 controller_A_1 を含む DR グループ内のすべてのノードの MetroCluster 構成を有効にします。
@@ -3075,7 +3075,7 @@ controller_A_1::>
 
 
 .関連情報
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"]
+https://["システム管理"]
 
 
 
@@ -3277,9 +3277,9 @@ mccint-fas9000-0304
 
 
 .関連情報
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"]
+https://["ディスクおよびアグリゲートの管理"]
 
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+link:https://docs.netapp.com/us-en/ontap/network-management/index.html["ネットワークと LIF の管理"^]
 
 
 
@@ -3296,7 +3296,7 @@ NOTE: Config Advisor のサポートには制限があり、オンラインで�
 .手順
 . Config Advisor のダウンロードページにアクセスし、ツールをダウンロードします。
 +
-https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
+https://["ネットアップのダウンロード： Config Advisor"^]
 
 . Config Advisor を実行し、ツールの出力を確認して、問題が検出された場合は出力に表示される推奨事項に従って対処します。
 
@@ -3407,7 +3407,7 @@ controller_A_2 controller_A_1 true     Connected to controller_A_1
 
 
 .関連情報
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"]
+link:https://docs.netapp.com/us-en/ontap/cloud/high-availability-concept.html["ハイアベイラビリティ構成"^]
 
 
 
@@ -3416,7 +3416,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハ�
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
 
 .ステップ
-. に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["災害からリカバリします"]。
+. に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します https://["災害からリカバリします"]。
 
 
 
@@ -3431,6 +3431,6 @@ MetroCluster 構成のスイッチオーバー、修復、スイッチバック�
 「システム構成のバックアップ設定 MODIT_URL-of-destination_ 」
 
 +
-。 https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["CLI を使用したクラスタ管理"] 追加情報が含まれています。
+。 https://["CLI を使用したクラスタ管理"] 追加情報が含まれています。
 
 

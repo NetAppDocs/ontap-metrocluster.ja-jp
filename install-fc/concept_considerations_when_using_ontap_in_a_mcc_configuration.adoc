@@ -68,7 +68,7 @@ MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッ�
 スイッチバックが実行された場合は、 site_A （元のクラスタ）と site_B の SVM のピア関係を再設定する必要があります
 
 .関連情報
-http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["FlexCache ボリューム管理"^]
+link:https://docs.netapp.com/us-en/ontap/flexcache/index.html["FlexCache ボリュームの管理には CLI を使用します"^]
 
 
 
@@ -76,7 +76,7 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["FlexC
 
 ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。
 
-FabricPool の使用に関する一般的な情報については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"^]
+FabricPool の使用に関する一般的な情報については、を参照してください link:https://docs.netapp.com/us-en/ontap/disks-aggregates/index.html["ディスクと階層（アグリゲート）の管理"^]。
 
 
 
@@ -95,14 +95,14 @@ FabricPool の使用に関する一般的な情報については、を参照し
 === ミラーリングされた FabricPool で使用するアグリゲートを設定する
 
 
-NOTE: アグリゲートを設定する前に、 FabricPool の「 MetroCluster 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要がありますhttps://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"]
+NOTE: アグリゲートを設定する前に、 FabricPool の「 MetroCluster 用のオブジェクトストアのセットアップ」の説明に従ってオブジェクトストアを設定する必要がありますhttps://["ディスクとアグリゲートの管理"]
 
 .手順
 FabricPool で使用するアグリゲートを設定するには、次の手順を実行します。
 
 . アグリゲートを作成するか、既存のアグリゲートを選択します。
 . アグリゲートを MetroCluster 構成内の標準のミラーアグリゲートとしてミラーリングします。
-. の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクとアグリゲートの管理"]
+. の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します https://["ディスクとアグリゲートの管理"]
 +
 .. プライマリオブジェクトストアを接続します。
 +
@@ -126,7 +126,7 @@ ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサ
 
 == MetroCluster 構成での整合グループのサポート
 
-ONTAP 9.11.1以降、 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["整合グループ"^] MetroCluster 構成でサポートされます。
+ONTAP 9.11.1以降、 https://["整合グループ"^] MetroCluster 構成でサポートされます。
 
 
 
@@ -158,7 +158,7 @@ MetroCluster 以外のクラスタで ONTAP 8.3 以降が実行されている�
 MetroCluster 構成で LIF がどのように作成およびレプリケートされるかを理解しておく必要があります。また、ネットワーク設定時に適切に判断できるように、どういった整合性が必要とされるかも把握しておく必要があります。
 
 .関連情報
-* https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"]
+* https://["ネットワークと LIF の管理"]
 * パートナークラスタに IPspace オブジェクトをレプリケートするための要件、および MetroCluster 構成でサブネットと IPv6 を設定するための要件を理解しておく必要があります。
 +
 <<ipspace_obj_rep,IPspace オブジェクトのレプリケーションとサブネットの設定の要件>>
