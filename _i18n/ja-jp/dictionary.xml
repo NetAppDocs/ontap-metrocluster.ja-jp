@@ -7593,7 +7593,6 @@
   <block id="b6a9903c2ef511ee44c51b65db292bf6" category="list-text">サポートされる MetroCluster 構成は 4 ノード構成（サイトごとに 2 ノード）のみです。</block>
   <block id="b793654a30cf8567ed25af895400affb" category="list-text">各 MetroCluster サイトには、ネットワークごとに 1 つ、合計 2 つのサブネットが必要です。</block>
   <block id="4ef3b220e04ca274abbe1def1b61d2bc" category="list-text">自動 IP 割り当てはサポートされていません。</block>
-  <block id="34e560639ffdd9bc9704af3387945fde" category="paragraph">ONTAP 9.4 以降のリリースでは、 ADP のサポートについて次の変更が加えられました。</block>
   <block id="a4a9824ba125eba903fb3d347f4f5eb6" category="list-text">プール 0 のディスクは出荷時点で割り当て済みです。</block>
   <block id="a1fbd6da7a08fa8c0a2a6b92a3b0a9c5" category="list-text">ミラーされていないルートが工場出荷時に作成されています。</block>
   <block id="c60c48f30552c5ad7630dd7b31eb4943" category="list-text">データパーティションは、手順のセットアップ時にお客様のサイトで割り当てます。</block>
@@ -11696,7 +11695,6 @@
   <block id="eb737ed666dd88bebf10d994bb6b0a10" category="paragraph"><block ref="eb737ed666dd88bebf10d994bb6b0a10" category="inline-link-rx"></block></block>
   <block id="8bcabb3e778663882c95082b775c75b8" category="summary">ONTAP 9.4 以降の MetroCluster IP 構成では、 ADP （アドバンストドライブパーティショニング）を使用した AFF システムの新規設置がサポートされます。</block>
   <block id="3299ba9863a06ef7650cf2bb56d8651c" category="paragraph">ONTAP 9.4 以降の MetroCluster IP 構成では、 ADP （アドバンストドライブパーティショニング）を使用した AFF システムの新規設置がサポートされます。ほとんどの構成では、パーティショニングとディスク割り当ては MetroCluster サイトの初期設定時に自動的に実行されます。</block>
-  <block id="732888c3eafbc36a6c179a0d04b80675" category="admonition">ONTAP 9.5 以降では ' storage disk option modify -autoassign on コマンドを使用して ' ディスクの自動割り当てを有効にする必要があります</block>
   <block id="b8f6677db24add5f2af4be56aa22ea68" category="list-text">ONTAP 9.5 以降では、 FAS システムへの MetroCluster IP の新規インストールがサポートされます。</block>
   <block id="04be3a6c5ee416a84b497452ccd41ffd" category="list-text">ONTAP 9.4 以降では、 ADP 用に設定されたコントローラモジュールがサポートされます。</block>
   <block id="5dddfa582624b89f44517d6ff5b20963" category="paragraph">ONTAP 9.7 以降では、 MetroCluster IP 構成で ONTAP Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を使用するか、 MetroCluster Tiebreaker ソフトウェアを使用できます。MetroCluster IP 設定で使用できるサービスは、 2 つのうちの 1 つだけです。</block>
@@ -12933,7 +12931,6 @@
   <block id="e5c3d25338f9cf52b0644af8df5dd491" category="admonition">ポート13と14は、40Gbpsと100Gbpsをサポートするネイティブ速度モードまたは4×25Gbpsをサポートするブレークアウトモードで使用できます。ネイティブ速度モードを使用している場合は、ポート13と14として表されます。ブレークアウトモード（4×25Gbpsまたは4×10Gbps）を使用する場合、ポート13s0-3および14s0-3として表されます。</block>
   <block id="1ad95d38a718a40f57a452228a018366" category="section-title">FAS500f、AFF C250、またはAFF A250でのスイッチポートの用途</block>
   <block id="32749c9f2fe889b20a4f9ed309297f2b" category="image-alt">MCC IPケーブルA250 C250 MSN2100</block>
-  <block id="3a1adad502af8b0ad25b006361e23ce5" category="section-title">AFF C400、AFF A400、AFF A700またはFAS9000、FAS8300、FAS8700 AFF A800で使用するスイッチポート</block>
   <block id="6f71608a9b02340c422ff3d643b4afd7" category="image-alt">MCC IPケーブル接続aff250 400 700 800 cseriesMSN2100</block>
   <block id="0995dd589b8b5229e4b9e28862db9b91" category="paragraph">複数のMetroCluster 構成をCisco 3132Q-Vスイッチにケーブル接続する場合は、該当する表に従って各MetroCluster をケーブル接続する必要があります。たとえば、FAS2750とAFF A700を同じCisco 3132Q-Vスイッチにケーブル接続する場合などです。次に、表1の「MetroCluster 1」に従ってFAS2750をケーブル接続し、表2の「MetroCluster 2」または「MetroCluster 3」に従ってAFF A700をケーブル接続します。FAS2750とAFF A700の両方を「MetroCluster 1」として物理的にケーブル接続することはできません。</block>
   <block id="014322233c716b51b659a375ee0b236f" category="section-title">AFF A150、FAS2750、AFF A220、FAS500f、AFF C250、またはAFF A250とCisco 3232CまたはCisco 9336-FX2Cスイッチのケーブル接続</block>
@@ -13198,4 +13195,18 @@
   <block id="f624129c4d6772a2f62200de12382ad0" category="list-text">の手順に従って、すべてのMDV_CRSメタデータボリュームを別のDRグループに移動します <block ref="9273ba8e8bd1c5c1cc0cd85662f27754" category="inline-link-macro-rx"></block> 手順</block>
   <block id="112564590ec1ae4e651904cd571ed9d4" category="paragraph">ONTAP のポート、 LIF 、およびネットワーク設定の詳細については、を参照してください <block ref="378e9004462b7ecfad8256f25b57fbf6" category="inline-link-macro-rx"></block>。</block>
   <block id="347bde5f3be96b6c3eab8b4a360b9028" category="list-text">30分待ってから、すべてのストレージシェルフ、MetroCluster IPスイッチ、およびストレージコントローラの電源をオンにします。</block>
+  <block id="0434950fcf46c88299084ad712ed62cc" category="list-text">AFF A900</block>
+  <block id="bf63be372af426fed8556dc915b7ccb6" category="section-title">AFF C400、AFF A400、AFF A700、FAS9000、FAS8300でのスイッチポートの用途 FAS8700、AFF A800、FAS9500、またはAFF A900</block>
+  <block id="6789cbf331ef2c9b50d45082c81e74cb" category="paragraph">ONTAP 9.4以降では、ADPのサポートに次の変更が加えられています。</block>
+  <block id="4b72d9ad6a5a5828529f4266cc3f2713" category="list-text">ディスクとそのすべてのパーティションは、同じハイアベイラビリティ（HA）ペアのノードが所有している必要があります。ローカルHAペアとディザスタリカバリ（DR）パートナーまたはDR補助パートナーと、1つのドライブ内でパーティションまたはドライブの所有権を混在させることはできません。</block>
+  <block id="352c5d749caa22e221b7fc037fede87d" category="paragraph">サポートされる構成の例：</block>
+  <block id="cd1c00b76cbbe512b20985ec2344b5ed" category="cell">ドライブ/パーティション</block>
+  <block id="de6f944fd72539769b70781e85ebcb0d" category="cell">ドライブ：</block>
+  <block id="5eceec2cc5b83a608e155b1545a68237" category="cell"><block ref="3adbe009bdc9265b370999a77c471e08" prefix="" category="inline-code"></block></block>
+  <block id="59e29fe03e3616d7a0f604bccecab054" category="cell">パーティション1：</block>
+  <block id="282e3c3f77057f75613970647a21e39b" category="cell">パーティション2：</block>
+  <block id="5e14931fa3c39251787af92197392ae0" category="cell"><block ref="b5713f91ed0348a8e6565b40d2be523a" prefix="" category="inline-code"></block></block>
+  <block id="7794a024d3134acafeb3b112e36c9a3f" category="cell">パーティション3：</block>
+  <block id="6129d8bcf6f4ed452d528f954ce79ee6" category="admonition">ONTAP 9.5以降では、でディスクの自動割り当てを有効にする必要があります<block ref="9518ee5351ea31dd67cceada18bfcfd6" prefix=" " category="inline-code"></block> コマンドを実行します</block>
+  <block id="00427bfa7d8d8bd516409a3466e96821" category="paragraph">ha-config状態をに設定する必要があります<block ref="32b858596eeb9351eca27c2906a21da4" prefix=" " category="inline-code"></block> 自動プロビジョニングの前に、ルートボリュームのサイズが適切になるように正しいパーティションサイズが選択されていることを確認します。詳細については、を参照してください <block ref="ee9beb37ef6441cda28497e9b5b08a94" category="inline-link-macro-rx"></block>。</block>
 </blocks>
