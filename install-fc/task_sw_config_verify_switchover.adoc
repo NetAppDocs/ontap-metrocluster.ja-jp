@@ -1705,7 +1705,7 @@ ha-config modify chassis mccip
 
 各コントローラモジュールに ONTAP をセットアップする必要があります。
 
-新しいコントローラをネットブートする必要がある場合は、を参照してください http://["新しいコントローラモジュールのネットブート"] MetroCluster アップグレード、移行、および拡張ガイドの各ガイドを参照してください。
+新しいコントローラをネットブートする必要がある場合は、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-mcc-upgrade/GUID-3370EC34-310E-4F09-829F-F632EC8CDD9B.html["新しいコントローラモジュールのネットブート"] MetroCluster アップグレード、移行、および拡張ガイドの各ガイドを参照してください。
 
 
 
@@ -1805,7 +1805,7 @@ cluster1-01           true    true
 
 
 
-https://["ソフトウェアのセットアップ"]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["ソフトウェアのセットアップ"]
 
 
 
@@ -1946,7 +1946,7 @@ ONTAP のコマンドラインインターフェイスに戻り、後続のタ�
 MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
 
 .関連情報
-http://["クラスタと SVM のピアリングの簡単な設定"]
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-clus-peer/home.html["クラスタと SVM のピアリングの簡単な設定"]
 
 link:concept_prepare_for_the_mcc_installation.html["専用のポートを使用する場合の考慮事項"]
 
@@ -2595,7 +2595,7 @@ controller_A_1::> storage aggregate mirror aggr0_controller_A_1
 
 
 .関連情報
-https://["論理ストレージ管理"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["論理ストレージ管理"^]
 
 
 
@@ -2607,7 +2607,7 @@ DR グループの各ノードに、ミラーされたデータアグリゲー�
 * 新しいアグリゲートで使用するドライブまたはアレイ LUN を把握しておきます。
 * 複数のドライブタイプを含むシステム（異機種混在ストレージ）の場合は、正しいドライブタイプが選択されるようにする方法を確認しておく必要があります。
 * ドライブとアレイ LUN は特定のノードによって所有されます。アグリゲートを作成する場合、アグリゲート内のすべてのドライブは同じノードによって所有される必要があります。そのノードが、作成するアグリゲートのホームノードになります。
-* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください https://["ディスクおよびアグリゲートの管理"^]。
+* アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]。
 
 
 .手順
@@ -2732,7 +2732,7 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 
 .関連情報
-https://["ディスクおよびアグリゲートの管理"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
 
 
@@ -2801,7 +2801,7 @@ MetroCluster configure -allow-with-one-aggregate true node-name ●
 --
 [NOTE]
 ====
-複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://["MetroCluster 構成でのメタデータボリュームの移動"^]。
+複数のデータアグリゲートを使用することを推奨します。最初の DR グループにアグリゲートが 1 つしかなく、 1 つのアグリゲートを含む DR グループを追加する場合は、メタデータボリュームを単一のデータアグリゲートから移動する必要があります。この手順の詳細については、を参照してください http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-service/GUID-114DAE6E-F105-4908-ABB1-CE1D7B5C7048.html["MetroCluster 構成でのメタデータボリュームの移動"^]。
 
 ====
 --
@@ -3171,7 +3171,7 @@ controller_A_1::>
 
 
 .関連情報
-https://["システム管理"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["システム管理"^]
 
 
 
@@ -3369,9 +3369,9 @@ mccint-fas9000-0304
 
 
 .関連情報
-https://["ディスクおよびアグリゲートの管理"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
-https://["ネットワークと LIF の管理"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/home.html["ネットワークと LIF の管理"^]
 
 
 
@@ -3388,7 +3388,7 @@ NOTE: Config Advisor のサポートには制限があり、オンラインで�
 .手順
 . Config Advisor のダウンロードページにアクセスし、ツールをダウンロードします。
 +
-https://["ネットアップのダウンロード： Config Advisor"^]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 . Config Advisor を実行し、ツールの出力を確認して、問題が検出された場合は出力に表示される推奨事項に従って対処します。
 
@@ -3499,7 +3499,7 @@ controller_A_2 controller_A_1 true     Connected to controller_A_1
 
 
 .関連情報
-https://["ハイアベイラビリティ構成"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/home.html["ハイアベイラビリティ構成"^]
 
 
 
@@ -3508,7 +3508,7 @@ https://["ハイアベイラビリティ構成"^]
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
 
 .ステップ
-. のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します https://["MetroCluster の管理とディザスタリカバリ"]
+. のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster の管理とディザスタリカバリ"]
 
 
 
@@ -3523,9 +3523,9 @@ MetroCluster 構成のスイッチオーバー、修復、スイッチバック�
 「システム構成のバックアップ設定は URL-of-destination 」を変更します
 
 +
-https://["構成バックアップの管理"^] 追加情報が含まれます。
+https://docs.netapp.com/us-en/ontap/system-admin/config-backup-file-concept.html["構成バックアップの管理"^] 追加情報が含まれます。
 
 
 
 .関連情報
-https://["クラスタ管理"^]
+https://docs.netapp.com/us-en/ontap/cluster-admin/index.html["クラスタ管理"^]

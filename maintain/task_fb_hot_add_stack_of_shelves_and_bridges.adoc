@@ -32,14 +32,14 @@ SAS ディスクシェルフとブリッジのペアのスタックのホット�
 .作業を開始する前に
 * サポートされている構成である必要があり、サポートされているバージョンの ONTAP が実行されている必要があります。
 +
-https://["NetApp Interoperability Matrix Tool で確認できます"^]
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 * システム内のすべてのディスクドライブとディスクシェルフで最新のファームウェアバージョンが実行されている必要があります。
 +
 シェルフを追加する前に、 MetroCluster 構成全体でディスクとシェルフのファームウェアを更新しなければならない場合があります。
 
 +
-https://["アップグレード、リバート、ダウングレード"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ug-rdg/home.html["アップグレード、リバート、ダウングレード"^]
 
 * 各 FC スイッチで、 1 つの FC ポートを 1 つのブリッジに接続できる必要があります。
 +
@@ -55,7 +55,7 @@ ATTO Product Release Notes に、サポートされている Web ブラウザの
 .手順
 . ネットアップサポートサイトから次のドキュメントをダウンロードまたは表示します。
 +
-** https://["NetApp Interoperability Matrix Tool で確認できます"^]
+** https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 ** 使用しているディスクシェルフモデルの Installation and Service Guide を参照してください。
 
 
@@ -90,11 +90,11 @@ NOTE: この手順では、リンク先に記載されている手順のダウ�
 +
 .. ディスクファームウェアをダウンロードし、あとで参照できるよう、ディスクファームウェアの説明書をコピーします。
 +
-https://["ネットアップのダウンロード：ディスクドライブファームウェア"^]
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"^]
 
 .. ディスクシェルフファームウェアをダウンロードし、あとで参照できるよう、ディスクシェルフファームウェアの説明書をコピーします。
 +
-https://["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
 
 
 
@@ -134,7 +134,7 @@ link:task_fb_hot_add_stack_of_shelves_and_bridges.html["SAS ディスクシェ�
 
 * 相互運用性の要件をすべて満たしている場合、 SAS ディスクシェルフとブリッジのスタックのホットアドは無停止の手順となります。
 +
-https://["NetApp Interoperability Matrix Tool で確認できます"^]
+https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
 
 +
 link:concept_using_the_interoperability_matrix_tool_to_find_mcc_information.html["Interoperability Matrix Tool を使用した MetroCluster 情報の検索"]
@@ -1700,18 +1700,18 @@ NOTE: G620 、 G630 、 G620 -1 、および G630-1 スイッチでは、追加�
 このコマンドは両方のコントローラモジュールで実行する必要があります。
 
 +
-https://["ネットアップのダウンロード：ディスクドライブファームウェア"^]
+https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネットアップのダウンロード：ディスクドライブファームウェア"^]
 
 . ダウンロードしたファームウェアの手順に従って、ディスクシェルフファームウェアを最新バージョンに更新します。
 +
 手順のコマンドは、どちらのコントローラモジュールのシステムコンソールからも実行できます。
 
 +
-https://["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
+https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
 
 . システムでディスクの自動割り当てが有効になっていない場合は、ディスクドライブの所有権を割り当てます。
 +
-https://["ディスクおよびアグリゲートの管理"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["ディスクおよびアグリゲートの管理"^]
 
 +
 
@@ -1732,7 +1732,7 @@ NOTE: ディスクドライブファームウェアとディスクシェルフ�
 .. スイッチにヘルス・アラートがあるかどうかを確認します（ある場合）： +`storage switch show`
 .. Config Advisor を実行します。
 +
-https://["ネットアップのダウンロード： Config Advisor"^]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 

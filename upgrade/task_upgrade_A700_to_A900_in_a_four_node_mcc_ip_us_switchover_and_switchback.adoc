@@ -195,7 +195,7 @@ MetroCluster チェックショー
 +
 .. Config Advisor をダウンロードして実行します。
 +
-https://["ネットアップのダウンロード： Config Advisor"^]
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"^]
 
 .. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
 
@@ -311,7 +311,7 @@ aa9a7a7a1-9a81-11e7-a4e9-00a098908c35
 
 
 . ルート・ボリュームが暗号化されている場合は 'key-manager に使用するパスフレーズを収集して保存しますつまり 'security key-manager backup show
-. MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。追加情報の場合は、を参照してください https://["オンボードキー管理情報の手動でのバックアップ"^]。
+. MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。追加情報の場合は、を参照してください https://docs.netapp.com/us-en/ontap/encryption-at-rest/backup-key-management-information-manual-task.html["オンボードキー管理情報の手動でのバックアップ"^]。
 +
 .. Onboard Key Manager が設定されている場合： security key-manager onboard show-backup + アップグレード手順であとでパスフレーズが必要になります。
 .. Enterprise Key Management （ KMIP ）が設定されている場合は、次のコマンドを問題で実行します。
@@ -607,7 +607,7 @@ AFF A900またはFAS9500コントローラモジュールとNVSを交換した�
 インストールされている ONTAP のバージョンが元のコントローラにインストールされているバージョンと異なる場合は、新しいコントローラをネットブートする必要があります。新しいコントローラをそれぞれ取り付けたら、 Web サーバに保存されている ONTAP 9 イメージからシステムをブートします。その後、以降のシステムブートで使用するブートメディアデバイスに正しいファイルをダウンロードできます。
 
 .手順
-. にアクセスします https://["ネットアップサポートサイト"^] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
+. にアクセスします https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
 . [step2-download-software]] ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 ONTAP-version image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。
 . Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
 . ディレクトリの一覧に <ONTAP_version>\_image.tgz が表示されている必要があります。
@@ -1218,7 +1218,7 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 「セキュリティキーマネージャオンボード同期」
 
-詳細については、を参照してください https://["オンボードキー管理の暗号化キーのリストア"^]。
+詳細については、を参照してください https://docs.netapp.com/us-en/ontap/encryption-at-rest/restore-onboard-key-management-encryption-keys-task.html["オンボードキー管理の暗号化キーのリストア"^]。
 
 
 
@@ -1227,7 +1227,7 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 「 securitykey manager external restore -vserver _svm_-node __ key -server_host_name | ip_address ： port_-key-id key_id -key tag key_tag_node-name_ 」
 
-詳細については、を参照してください https://["外部キー管理の暗号化キーのリストア"^]。
+詳細については、を参照してください https://docs.netapp.com/us-en/ontap/encryption-at-rest/restore-external-encryption-keys-93-later-task.html["外部キー管理の暗号化キーのリストア"^]。
 
 |===
 . すべてのポートがブロードキャストドメインに属していることを確認します。
@@ -1238,17 +1238,17 @@ partner-sysid が正しくない場合は、次のように設定します。
 
 .. 必要に応じて、ブロードキャストドメインにポートを追加します。
 +
-https://["ブロードキャストドメインのポートの追加と削除"^]
+https://docs.netapp.com/us-en/ontap/networking/add_or_remove_ports_from_a_broadcast_domain97.html["ブロードキャストドメインのポートの追加と削除"^]
 
 .. 必要に応じて、 VLAN とインターフェイスグループを再作成します。
 +
 VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。
 
 +
-https://["VLAN を作成する"^]
+https://docs.netapp.com/us-en/ontap/networking/configure_vlans_over_physical_ports.html#create-a-vlan["VLAN を作成する"^]
 
 +
-https://["物理ポートを組み合わせたインターフェイスグループの作成"^]
+https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_create_interface_groups.html["物理ポートを組み合わせたインターフェイスグループの作成"^]
 
 
 
