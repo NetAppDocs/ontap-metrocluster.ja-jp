@@ -1,0 +1,85 @@
+---
+permalink: maintain/task_modify_switch_or_bridge_ip_address_for_health_monitoring.html 
+sidebar: sidebar 
+keywords: metrocluster, atto, fc, switches, bridges, modify, IP, address 
+summary: MetroCluster FCバックエンドスイッチまたはATTOブリッジのIPアドレスを変更したら、古い健常性監視IPアドレスを置き換えます。 
+---
+= 健常性監視用に、スイッチまたはATTOブリッジのIPアドレスを変更します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster FCバックエンドスイッチとATTOブリッジのIPアドレスを変更したら、古いヘルスモニタのIPアドレスを新しい値に置き換える必要があります。
+
+* <<スイッチのIPアドレスを変更します>>
+* <<ATTOブリッジのIPアドレスを変更します>>
+
+
+
+
+== スイッチのIPアドレスを変更します
+
+MetroCluster FCバックエンドスイッチの古いヘルスモニタIPアドレスを置き換えます。
+
+.作業を開始する前に
+ヘルスモニタのIPアドレスを変更する前に、使用しているスイッチモデルに対応するスイッチベンダーのドキュメントを参照して、スイッチのIPアドレスを変更してください。
+
+.手順
+. を実行します `::> storage switch show` コマンドと出力で、エラーを報告しているスイッチを確認します。
+. 古いIPアドレスを持つスイッチエントリを削除します。
++
+`::> storage switch remove -name _switch_name_`
+
+. 新しいIPアドレスを使用してスイッチを追加します。
++
+`::> storage switch add -name _switch_name_ -address _new_IP_address_ -managed-by in-band`
+
+. 新しいIPアドレスを確認し、エラーがないことを確認します。
++
+`::> storage switch show`
+
+. 必要に応じて、エントリを更新します。
++
+`::> set advanced`
+
++
+`::*> storage switch refresh`
+
++
+`::*> set admin`
+
+
+
+
+
+== ATTOブリッジのIPアドレスを変更します
+
+ATTOブリッジの古いヘルスモニタIPアドレスを置き換えます。
+
+.手順
+. を実行します `::> storage bridge show` コマンドと出力で、エラーを報告しているATTOブリッジを確認します。
+. 古いIPアドレスを使用してATTOブリッジのエントリを削除します。
++
+`::> storage bridge remove -name _ATTO_bridge_name_`
+
+. 新しいIPアドレスでATTOブリッジを追加します。
++
+`::> storage bridge add -name _ATTO_bridge_name_ -address _new_IP_address_ -managed-by in-band`
+
+. 新しいIPアドレスを確認し、エラーがないことを確認します。
++
+`::> storage bridge show`
+
+. 必要に応じて、エントリを更新します。
++
+`::> set advanced`
+
++
+`::*> storage bridge refresh`
+
++
+`::*> set admin`
+
+
