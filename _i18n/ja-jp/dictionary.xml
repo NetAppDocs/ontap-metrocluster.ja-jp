@@ -4917,7 +4917,6 @@
   <block id="1711fdcc6944bbeddd35a626101f4b4d" category="list-text">スイッチが Dynamic Port On Demand （ PoD ；動的ポートオンデマンド）方式を使用していることを確認します。</block>
   <block id="2f3d07c01cbdac4d395d3a14b661150c" category="admonition">バージョン 8.0 より前の Brocade Fabric OS では、次のコマンドを admin として実行し、バージョン 8.0 以降では root として実行します。</block>
   <block id="d63c14f8f4da1b2f3355284117aa43d6" category="list-text">Brocade によって root ユーザが無効にされている場合は、有効にします。</block>
-  <block id="dca190678a04e60a515a67708b3f0c76" category="admonition">動的な POD メソッドが使用されていない場合（ POD メソッドが静的の場合）は、ライセンスの割り当て方法を dynamic に変更する必要があります。動的な POD メソッドを使用している場合は、この手順を省略します。</block>
   <block id="79d1eabb3b4c3024eae6de87ff7920f8" category="summary">clustered ONTAP MetroCluster 構成のコントローラごとに、 FC-VI アダプタと HBA を、既存の FC スイッチの特定のポートにケーブル接続する必要があります。</block>
   <block id="2afb7d32516fb529a3e53b6573b3f8f5" category="doc">新しい MetroCluster コントローラから既存の FC ファブリックへのケーブル接続</block>
   <block id="2d010e96fad956349ccad086ca0223ca" category="list-text">次の表に従って、 FC-VI ポートと HBA ポートをケーブル接続します。</block>
@@ -5451,7 +5450,6 @@
   <block id="e7acec6ea00d47c0f7752735341c6bb3" category="list-text">Extended Fabric ライセンス（ ISL の距離が 6km を超える場合）</block>
   <block id="9095235ccbae1acead09e083fb7b20dd" category="list-text">ISL の距離が 6km を超えるサイト用の Enterprise ライセンスです</block>
   <block id="c447450429c7aa0c8fa978a8c7ab1f67" category="paragraph">Enterprise ライセンスには、 Brocade Network Advisor と、追加のポートライセンスを除くすべてのライセンスが含まれます。</block>
-  <block id="aaf82250987f97db574d1fc26bfc8c06" category="paragraph">ライセンスがインストールされているかどうかは 'licenseshow' コマンドを使用して確認できますこれらのライセンスをお持ちでない場合は、作業を進める前に営業担当者までお問い合わせください。</block>
   <block id="29beb95dbfa349b40c8e018564927306" category="section-title">Brocade FC スイッチの値を工場出荷時のデフォルトに設定</block>
   <block id="bc9a8f24ac7c37a611a7d6eccad46c1a" category="paragraph">設定を適切に行うには、スイッチを工場出荷時のデフォルトに設定する必要があります。また、各スイッチに一意な名前を割り当てる必要があります。</block>
   <block id="3744ff2a3bc1a90b0f8d4c247c723bba" category="paragraph">この手順の例では、ファブリックは BrocadeSwitchA と BrocadeSwitchB で構成されています。</block>
@@ -5502,10 +5500,7 @@
   <block id="bb455cc655a37d9370a7b572be5c356a" category="list-text">root ユーザを有効にします。</block>
   <block id="9982799dc107b44357ff54b7e3b835e7" category="paragraph">Brocade によって root ユーザがすでに無効にされている場合は、次の例に示すように root ユーザを有効にします。</block>
   <block id="64fa0d568b3592806aa948b76b25721e" category="list-text">ライセンスコマンドを実行します。</block>
-  <block id="67c13f78d822be3160ea3c5b07cae707" category="paragraph">「 licensePort -- show 」を入力します</block>
-  <block id="0495c36d7c4cd6e18740fbb344d64ab4" category="list-text">ライセンス方式を動的な方式に変更します。</block>
   <block id="58245d98714cc00602b18f5cd698870e" category="paragraph">licenseport -- メソッドの動的</block>
-  <block id="46714aac3ad4ae91307dcd356eefab49" category="admonition">動的ライセンス方式が使用されていない場合（静的な方式の場合）は、ライセンス方式を動的な方式に変更する必要があります。動的ライセンス方式を使用している場合は、この手順を省略します。</block>
   <block id="95da9f6e517e5c030f88ab1f88a8412b" category="list-text">ONTAP でスイッチの健常性を監視できるように、 T11-FC-ZONE-SERVER-MIB のトラップを有効にします。</block>
   <block id="ed4e949381c1b26b6a818efefef7af72" category="list-text">T11-FC-ZONE-SERVER-MIB を有効にします。</block>
   <block id="30b22579f9b8f04df9b75ac978e270dc" category="paragraph">'mpconfig -- set mibCapability-mib_name T11-FC-ZONE-SERVER-MIB-Bitz-0x3f</block>
@@ -9326,7 +9321,6 @@
   <block id="def254e4a0c7a3ab5bdda4567d0d813b" category="list-text">デフォルトの設定を行います。</block>
   <block id="f92a1dd9f6cabae10516a2a0618256ba" category="paragraph">「 configDefault 」</block>
   <block id="d7a01c9755b9d94f47a5a7d930b0905d" category="paragraph">`portcfgdefault_port-number_`</block>
-  <block id="2fc05e860677e088c66d18d9fe3bb918" category="paragraph">「 licensePort -- show 」を入力します</block>
   <block id="06628fac4ad175a059dea1e8992ec356" category="paragraph">「 Fastboot 」を参照してください</block>
   <block id="ede0376c0e0928f0e121e5c4a17e579f" category="list-text">デフォルト設定が実装されたことを確認します。</block>
   <block id="384bb33c884dd5c4aed5b1cef7c99c53" category="list-text">IP アドレスが正しく設定されていることを確認します。</block>
@@ -9355,7 +9349,6 @@
   <block id="bb2f4cb66d4e9c0b103783ed18a0a7af" category="paragraph">ペア内の 'bridge_site_stack グループ・ロケーション</block>
   <block id="be9e20a5c1946eecb2721766dbc15b77" category="paragraph"><block ref="be9e20a5c1946eecb2721766dbc15b77" category="inline-link-macro-rx"></block></block>
   <block id="5f864e9896e626c0a0c857ef2de8b1d6" category="list-text">ライセンスがインストールされていることを確認します。</block>
-  <block id="085c43e1c750634547ed6d634183b052" category="paragraph">「 licenseshow` 」</block>
   <block id="4d8abf4bb34371dfeb410341732e506b" category="paragraph">これらのライセンスをお持ちでない場合は、作業を進める前に営業担当者までお問い合わせください。</block>
   <block id="a19d4be02a044232d958ced2de5c0fd1" category="paragraph">これにより、リブート後や高速ブート後もスイッチが無効なままになります。このコマンドが使用できない場合は、「 witchDisable 」コマンドを使用します。</block>
   <block id="9ffa5b59dbda46c0c9ff70fa86e6e1d5" category="list-text">スイッチ名を設定します。</block>
@@ -9371,7 +9364,6 @@
   <block id="e39c65b9d816e2a7741f1d5584f8ae65" category="paragraph">'witchcfgtrunk 0`</block>
   <block id="ae6d4e9d4497377541a0ac6446e39a09" category="list-text">Brocade 6510 スイッチで、 Brocade Virtual Fabric （ VF ）機能を無効にします。</block>
   <block id="5592272feb1a1ba6847cf13d1a8c1474" category="list-text">Administrative Domain （ AD ）設定をクリアします。</block>
-  <block id="acb1a0aabd466b89953a635308b148ef" category="paragraph">「広告オプション」</block>
   <block id="9c5e2ae210ac93c8c28206f6341c674f" category="list-text">OOD 設定を確認します。</block>
   <block id="50b8b403756b45c9e01c17db3e6fc0c2" category="list-text">* オプション * ：コミュニティストリングを「 public 」以外の値に設定した場合は、指定したコミュニティストリングを使用して ONTAP ヘルスモニタを設定する必要があります。</block>
   <block id="97c275ee11d6b8887300898b0c961322" category="paragraph"><block ref="97c275ee11d6b8887300898b0c961322" category="inline-link-macro-rx"></block></block>
@@ -13237,4 +13229,14 @@
   <block id="c6b98eed0e9727a5dfb3f152632a0f26" category="paragraph"><block ref="abef28b214988e1f461b70d9ddd96084" prefix="" category="inline-code"></block></block>
   <block id="5da08e80e3eab08ebb4baa8e1b142991" category="paragraph"><block ref="c15b1a514541c60b840d997ade873f6d" prefix="" category="inline-code"></block></block>
   <block id="9c2b22a66311e51f1e1983454811963b" category="paragraph"><block ref="6253a5e48e30f72d3113196e1239627c" prefix="" category="inline-code"></block></block>
+  <block id="5aec6e2f211b9dfd0cbd3f6c569bd08c" category="open-title">Fabric OS 8.2.x以前の場合</block>
+  <block id="21a858f81918f7707fbcd7bef86f8797" category="paragraph">コマンドを実行します<block ref="c53664d593e772e240ea0e6fdcfc79e1" prefix=" " category="inline-code"></block>。</block>
+  <block id="afff4aa2c1e899c46d499fb894d82ada" category="open-title">Fabric OS 9.0以降の場合</block>
+  <block id="39219ac241ea7f4ccb98564b8a02b92c" category="paragraph">コマンドを実行します<block ref="ee9cf2be6d80be01f66c5272dabe9164" prefix=" " category="inline-code"></block>。</block>
+  <block id="6662b782a3a75b8e31dda70ebe53c4f0" category="paragraph">コマンドを実行します<block ref="c3d759c84d82a17cd2fc31c0bbd2be02" prefix=" " category="inline-code"></block>。</block>
+  <block id="1fb30ffcb217df70eb8b61a9c76f518f" category="paragraph">コマンドを実行します<block ref="f7fd6058274b87da3f8cba419f53bb7e" prefix=" " category="inline-code"></block>。</block>
+  <block id="3c8938b87b13dff113f84a2814ddff39" category="paragraph"><block ref="f7fd6058274b87da3f8cba419f53bb7e" prefix="" category="inline-code"></block></block>
+  <block id="1ad5a70ead9bdd722df6000495e21c24" category="list-text">Fabric OS 8.2.x以前を実行している場合は、ライセンス方式をdynamicに変更する必要があります。</block>
+  <block id="7fafa568d6f3c9a0ee98323f64b1c01c" category="admonition">Fabric OS 9.0以降では、ライセンス方式はデフォルトで動的です。静的ライセンス方式はサポートされていません。</block>
+  <block id="0b6c4085e3a8dba280dd11e4bbbbeee1" category="paragraph">ライセンスがインストールされていることを確認するには、「license」コマンドを使用します。</block>
 </blocks>
