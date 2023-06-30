@@ -1617,9 +1617,7 @@
   <block id="3d279499ea2a81f9a00ce4066b98ca8b" category="list-text">アグリゲートをミラーリングして、削除されたプレックスを再作成します。</block>
   <block id="f4505b4308dc25601259bdbab60912b4" category="list-text">プレックスで再同期が開始されるのを監視します。</block>
   <block id="1d831089411388d88325ad5510a3865e" category="list-text">ストレージシステムが想定どおりに機能していることを確認します。</block>
-  <block id="0ddbccff2e33cdad7e25875f8ed5047b" category="summary">使用可能なポートがある既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドできます。</block>
   <block id="695e87d61d65625619e3a56919865a2c" category="list-text">最新のディスクファームウェアとディスクシェルフファームウェアをダウンロードしておく必要があります。</block>
-  <block id="86c77fb0de5bbd53bda91b1946b5e7d6" category="list-text">FibreBridge 7500N ブリッジが接続されており、使用可能な SAS ポートがある必要があります。</block>
   <block id="8d372617f83f8c0b84203a0c342601a0" category="paragraph">ATTO ExpressNAV GUI は、ブリッジの設定および管理、ブリッジファームウェアの更新に使用できます。ATTO QuickNAV ユーティリティは、ブリッジのイーサネット管理 1 ポートの設定に使用できます。</block>
   <block id="0162c27051eec554a97d6a3f03a4a746" category="list-text">いずれかのコントローラのコンソールで、システムでディスクの自動割り当てが有効になっていることを確認します。</block>
   <block id="becfc287d1bcb7464e8d37448baeb034" category="list-text">ペアの各ブリッジで、新しいスタックに接続する SAS ポートを有効にします。</block>
@@ -12088,7 +12086,6 @@
   <block id="f59e44c66a463087eb80b00cc5e7867c" category="list-text">同じNX-OSバージョンおよびライセンスの同じモデルの、サポートされている4台のCiscoスイッチを使用する必要があります。</block>
   <block id="de27fc3292cfa48f233ba5969313e590" category="list-text">Cisco FCストレージファブリックでは暗号化や圧縮を使用できません。MetroCluster 構成ではサポートされません。</block>
   <block id="17a482b02d43109c8b8a1497839ff0b4" category="list-text">次のコマンドを使用してノードを停止します:`* halt *`</block>
-  <block id="fad9503a100b92ad7c54437a9309f256" category="list-text">4ノードまたは8ノードのMetroCluster 構成の場合は、パラメータ「* inhibit-takeover *」を使用します</block>
   <block id="63e64e288714d32cded7a6ed8dfec32c" category="list-text">MetroCluster FCスイッチ（2ノードストレッチ構成でない場合に使用）</block>
   <block id="a2a7d27c6bf1ad121aeada48fc70ca1d" category="list-text">30分待ってから、サイトで次の機器の電源をオンにします。</block>
   <block id="383d92c84e46dd00caa3dbad6de7fe2f" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
@@ -12607,7 +12604,6 @@
   <block id="421c8863e1f7223f216aacf99393b7dd" category="list-text">注1：このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
   <block id="60ddbd1babdd945c26fbc431202fea6c" category="inline-link-macro">Hardware Universe</block>
   <block id="6e2ee39d0f9ccdad593782674a048e67" category="inline-link-macro">手順 へのリンク</block>
-  <block id="7fcdce91feb430306391667c0a012cd7" category="paragraph"><block ref="7fcdce91feb430306391667c0a012cd7" category="inline-link-macro-rx"></block></block>
   <block id="0a623e8d3b5ae84e14f2fe4f454a3abb" category="paragraph"><block ref="0a623e8d3b5ae84e14f2fe4f454a3abb" category="inline-link-macro-rx"></block></block>
   <block id="8435af9be97e0c50b0d730d64b42f198" category="paragraph"><block ref="8435af9be97e0c50b0d730d64b42f198" category="inline-link-macro-rx"></block></block>
   <block id="f7080628c8d078c209fb6b6b18f03a3a" category="paragraph"><block ref="f7080628c8d078c209fb6b6b18f03a3a" category="inline-link-macro-rx"></block></block>
@@ -13239,4 +13235,12 @@
   <block id="1ad5a70ead9bdd722df6000495e21c24" category="list-text">Fabric OS 8.2.x以前を実行している場合は、ライセンス方式をdynamicに変更する必要があります。</block>
   <block id="7fafa568d6f3c9a0ee98323f64b1c01c" category="admonition">Fabric OS 9.0以降では、ライセンス方式はデフォルトで動的です。静的ライセンス方式はサポートされていません。</block>
   <block id="0b6c4085e3a8dba280dd11e4bbbbeee1" category="paragraph">ライセンスがインストールされていることを確認するには、「license」コマンドを使用します。</block>
+  <block id="6c05b41ac12af301a1c1201b16997220" category="paragraph">この手順の手順は、両方のサイトで同時に実行する必要があります。</block>
+  <block id="a934aebb7868eacad4999d15212ac85f" category="list-text">4ノードまたは8ノードのMetroCluster構成の場合は、を使用します<block ref="1f019d491fcfc3956d780ccfd54601ba" prefix=" " category="inline-code"></block> および<block ref="6c99881ddd2f188436900ed8d41d99ba" prefix=" " category="inline-code"></block> パラメータ：</block>
+  <block id="28289de886d4bf23487d962fb6a696a3" category="summary">使用可能なポートがある既存のFibreBridge 7600N / 7500Nブリッジペアに、SASディスクシェルフのスタックをホットアドできます。</block>
+  <block id="2e53212ba8ca8b35cbf4ed2b9eb52b0c" category="doc">既存のFibreBridge 7600N / 7500NブリッジペアへのSASディスクシェルフのスタックのホットアド</block>
+  <block id="e3e17f353727a0bf80bc5f781fadd978" category="list-text">FibreBridge 7600N / 7500Nブリッジが接続され、使用可能なSASポートがある必要があります。</block>
+  <block id="7ec840edd23c7b1a5bd3b9167d726942" category="list-text">新しいスタックを追加したあとに、ブリッジに健全性アラートがないかどうかを確認します。</block>
+  <block id="4aa202a3c65f2813f56a71404d4e0d9f" category="paragraph">8ノード</block>
+  <block id="74c873abf18bb043c43561d25adce539" category="paragraph"><block ref="74c873abf18bb043c43561d25adce539" category="inline-link-macro-rx"></block></block>
 </blocks>

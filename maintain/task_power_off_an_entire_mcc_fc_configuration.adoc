@@ -13,9 +13,13 @@ summary: サイトのメンテナンスや再配置を開始する前に、 Metr
 [role="lead"]
 サイトのメンテナンスや再配置を開始する前に、 MetroCluster FC 構成全体とすべての機器の電源をオフにする必要があります。
 
+.このタスクについて
+この手順の手順は、両方のサイトで同時に実行する必要があります。
+
 
 NOTE: ONTAP 9.8 以降では '*storage switch *' コマンドは '*system switch*' に置き換えられています以下の手順は '*storage switch *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system switch *' コマンドを使用することをお勧めします
 
+.手順
 . MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
 +
 .. MetroCluster 構成と運用モードが正常な状態であることを確認します。+`* MetroCluster show*`
@@ -54,11 +58,11 @@ cluster_A_site_A::*>metrocluster modify -auto-switchover-failure-domain auso-dis
 ----
 . 次のコマンドを使用してノードを停止します:`* halt *`
 +
-** 4ノードまたは8ノードのMetroCluster 構成の場合は、パラメータ「* inhibit-takeover *」を使用します
+** 4ノードまたは8ノードのMetroCluster構成の場合は、を使用します `*inhibit-takeover*` および `*skip-lif-migration-before-shutdown*` パラメータ：
 +
 [listing]
 ----
-system node halt -node node1_SiteA -inhibit-takeover true -ignore-quorum-warnings true
+system node halt -node node1_SiteA -inhibit-takeover true -ignore-quorum-warnings true -skip-lif-migration-before-shutdown true
 ----
 ** 2 ノード MetroCluster 構成の場合は、コマンドを使用します。
 +

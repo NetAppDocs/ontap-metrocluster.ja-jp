@@ -2,16 +2,16 @@
 permalink: maintain/task_hot_add_a_stack_to_exist_7500n_pair.html 
 sidebar: sidebar 
 keywords: metrocluster, maintain, service, hot, add, stack, sas, disk, shelves, existing, pair, fibrebridge, bridge 
-summary: 使用可能なポートがある既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドできます。 
+summary: 使用可能なポートがある既存のFibreBridge 7600N / 7500Nブリッジペアに、SASディスクシェルフのスタックをホットアドできます。 
 ---
-= 既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドする
+= 既存のFibreBridge 7600N / 7500NブリッジペアへのSASディスクシェルフのスタックのホットアド
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-使用可能なポートがある既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドできます。
+使用可能なポートがある既存のFibreBridge 7600N / 7500Nブリッジペアに、SASディスクシェルフのスタックをホットアドできます。
 
 .作業を開始する前に
 * 最新のディスクファームウェアとディスクシェルフファームウェアをダウンロードしておく必要があります。
@@ -22,7 +22,7 @@ https://mysupport.netapp.com/site/downloads/firmware/disk-drive-firmware["ネッ
 +
 https://mysupport.netapp.com/site/downloads/firmware/disk-shelf-firmware["ネットアップのダウンロード：ディスクシェルフファームウェア"^]
 
-* FibreBridge 7500N ブリッジが接続されており、使用可能な SAS ポートがある必要があります。
+* FibreBridge 7600N / 7500Nブリッジが接続され、使用可能なSASポートがある必要があります。
 
 
 .このタスクについて
@@ -54,11 +54,6 @@ node_A_1             on           on           on           default
 node_A_2             on           on           on           default
 2 entries were displayed.
 ----
-. 新しいスタックのスイッチポートを無効にします。
-. 各ブリッジの FibreBridge ファームウェアを更新します。
-+
-新しいブリッジのタイプがパートナーブリッジと同じ場合は、パートナーブリッジと同じファームウェアにアップグレードします。新しいブリッジのタイプがパートナーブリッジと異なる場合は、ブリッジと ONTAP のバージョンでサポートされている最新のファームウェアにアップグレードします。MetroCluster メンテナンスガイドの「 FibreBridge ブリッジのファームウェアの更新」のセクションを参照してください。
-
 . ペアの各ブリッジで、新しいスタックに接続する SAS ポートを有効にします。
 +
 'SASortEnable_portlet-letter_
@@ -208,7 +203,6 @@ NOTE: ディスクシェルフの 1 つのスタックの所有権を複数の�
 
 NOTE: ディスクドライブファームウェアとディスクシェルフファームウェアが更新され、このタスクの検証手順が完了するまで、アグリゲートまたはボリュームにディスクドライブを追加しないでください。
 
-. 新しいスタックのスイッチポートを有効にします。
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
 .. システムがマルチパスかどうかを確認します。
@@ -231,9 +225,9 @@ NOTE: ディスクドライブファームウェアとディスクシェルフ�
 +
 MetroCluster チェックショー
 
-.. スイッチにヘルスアラートがないかどうかを確認します（ある場合）。
+.. 新しいスタックを追加したあとに、ブリッジに健全性アラートがないかどうかを確認します。
 +
-「 storage switch show 」と表示されます
+「 storage bridge show 」
 
 .. Config Advisor を実行します。
 +
