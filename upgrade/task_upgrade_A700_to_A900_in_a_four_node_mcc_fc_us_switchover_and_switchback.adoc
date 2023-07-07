@@ -35,8 +35,7 @@ https://hwu.netapp.com/["NetApp Hardware Universe の略"^]
 +
 次の表に、コントローラのアップグレードでサポートされるモデルマトリックスを示します。
 
-
-
++
 |===
 
 
@@ -44,19 +43,19 @@ https://hwu.netapp.com/["NetApp Hardware Universe の略"^]
 
 
  a| 
-* AFF A700
+** AFF A700
 
  a| 
-* AFF A900 の略
+** AFF A900 の略
 
 
 
 
  a| 
-* FAS9000
+** FAS9000
 
  a| 
-* FAS9500
+** FAS9500
 
 
 |===
@@ -331,7 +330,7 @@ AFF A700またはFAS9000コントローラのスロット7手順 にカードが
 
 === アップグレード前に情報を収集
 
-アップグレードの開始前に各ノードについて情報を収集し、必要に応じてネットワークブロードキャストドメインを調整し、 VLAN やインターフェイスグループを削除して、暗号化情報を収集する必要があります。
+アップグレードの前に、古い各ノードの情報を収集し、必要に応じてネットワークブロードキャストドメインを調整し、VLANとインターフェイスグループを削除し、暗号化情報を収集する必要があります。
 
 .このタスクについて
 このタスクは、既存の MetroCluster FC 構成で実行します。
@@ -342,7 +341,7 @@ AFF A700またはFAS9000コントローラのスロット7手順 にカードが
 MetroCluster node show -fields node-systemid 、 dr-partner-systemid'
 
 +
-交換用手順では、これらのシステム ID をコントローラモジュールのシステム ID に置き換えます。
+手順のアップグレード時に、これらの古いシステムIDをコントローラモジュールのシステムIDに置き換えます。
 
 +
 この 4 ノード MetroCluster FC 構成の例では、次の古いシステム ID が取得されます。
@@ -367,7 +366,7 @@ dr-group-id cluster    node           node-systemid ha-partner-systemid dr-partn
 
 4 entries were displayed.
 ----
-. 各ノードのポートと LIF の情報を収集
+. 古い各ノードのポートとLIFの情報を収集します。
 +
 ノードごとに次のコマンドの出力を収集する必要があります。
 

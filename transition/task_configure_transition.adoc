@@ -720,6 +720,22 @@ Do you want to continue? {y|n}: y
 
 cluster_A::>
 ....
+. 両方のクラスタで次のコマンドを実行して、テイクオーバーが可能で、ノードが接続されていることを確認します。
++
+「 storage failover show 」をクリックします
+
++
+[listing]
+----
+cluster_A::> storage failover show
+                                    Takeover
+Node           Partner              Possible    State Description
+-------------- -------------------- ---------   ------------------
+Node_FC_1      Node_FC_2              true      Connected to Node_FC_2
+Node_FC_2      Node_FC_1              true      Connected to Node_FC_1
+Node_IP_1      Node_IP_2              true      Connected to Node_IP_2
+Node_IP_2      Node_IP_1              true      Connected to Node_IP_1
+----
 . advanced 権限で、 MDV_CRS ボリュームを古いノードから新しいノードに移動します。
 +
 .. ボリュームを表示して MDV ボリュームを特定します。
