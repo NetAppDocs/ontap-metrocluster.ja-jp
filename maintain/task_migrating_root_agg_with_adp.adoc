@@ -1,0 +1,308 @@
+---
+permalink: maintain/task_migrating_root_agg_with_adp.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, migrate, root, aggregate, adp, disks, partition, advanced, disk, partitioning 
+summary: アドバンストディスクパーティショニング（ADP）を使用している既存のルートアグリゲートは、無停止で移行できます。 
+---
+= MetroCluster IP構成でADPが設定されたルートアグリゲートを移行する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+ルートアグリゲートのスペースが不足している場合や大容量のSSDから大容量のSSDに切り替える場合は、アドバンストディスクパーティショニング（ADP）を使用している既存のルートアグリゲートを無停止で移行できます。
+
+.このタスクについて
+* ストレージフェイルオーバーでは、ローカルのハイアベイラビリティ（HA）ペアを有効にする必要があります。
+* この手順は無停止で実行されます。
+* システムを頻繁に停止することなく、安定した状態でデータを正常に提供しておく必要があります。
+* この手順の実行中は、ハードウェアのアップグレードや原因が停止する可能性のあるその他の処理は実行しないでください。
+* ルートアグリゲートは一度に1つだけ移行できます。2つのルートアグリゲートを同時に移行しないでください。
+
+
+.手順
+. [[step_1、構成の健全性を確認]]構成の健全性を確認します。
++
+.. 各クラスタで MetroCluster が設定されており、通常モードであることを確認します。
+ [+]
+`metrocluster show`
++
+[listing]
+----
+cluster_A::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+----
+.. 各ノードでミラーリングが有効であることを確認します。
++
+MetroCluster node show
+
++
+[listing]
+----
+cluster_A::> metrocluster node show
+DR                           Configuration  DR
+Group Cluster Node           State          Mirroring Mode
+----- ------- -------------- -------------- --------- --------
+1     cluster_A
+              node_A_1       configured     enabled   normal
+      cluster_B
+              node_B_1       configured     enabled   normal
+2 entries were displayed.
+----
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+「 MetroCluster check run 」のようになります
+
++
+[listing]
+----
+cluster_A::> metrocluster check run
+
+Last Checked On: 10/1/2014 16:03:37
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+4 entries were displayed.
+
+Command completed. Use the "metrocluster check show -instance" command or sub-commands in "metrocluster check" directory for detailed results.
+To check if the nodes are ready to do a switchover or switchback operation, run "metrocluster switchover -simulate" or "metrocluster switchback -simulate", respectively.
+----
+.. ヘルスアラートがないことを確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
+
+
+. ローカルHAペアでストレージフェイルオーバーが有効になっていることを確認します。
++
+「 storage failover show 」をクリックします
+
++
+両方のノードでテイクオーバーが可能であることが出力に示されます。
+
++
+[listing]
+----
+cluster_A::> storage failover show
+                              Takeover
+Node           Partner        Possible State Description
+-------------- -------------- -------- ---------------------------
+cluster-01     cluster-02      true     Connected to cluster-02
+
+cluster-02     cluster-01      true     Connected to cluster-01
+2 entries were displayed.
+----
+. スペアディスクを初期化します。
++
+`run * disk zero spares`
+
+. ルートアグリゲートのサイズを確認します。
++
+`node run local aggr status -r <root_agg_name>`
+
++
+次の例では、ルートアグリゲートに「Pool0」に10本、「Pool1」に10本のディスクがあります。
+
++
+[listing]
+----
+cluster_A::*> node run local aggr status -r <root_agg_name>
+Aggregate <root_agg_name> (online, raid_dp, mirrored, fast zeroed) (block checksums)
+  Plex /<root_agg_name>/plex0 (online, normal, active, pool0)
+    RAID group /<root_agg_name>/plex0/rg0 (normal, block checksums, max_wdbn 5767167)
+
+      RAID Disk Device  HA  SHELF BAY CHAN Pool Type  RPM  Used (MB/blks)    Phys (MB/blks)
+      --------- ------  ------------- ---- ---- ---- ----- --------------    --------------
+      dparity   e2a.11.0.0P3    e2a   11  0   NV:A   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      parity    e10b.11.3.1P3   e10b  11  1   NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e2a.11.0.2P3    e2a   11  2   NV:A   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e2a.11.0.3P3    e2a   11  3   NV:A   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e2a.11.0.4P3    e2a   11  4   NV:A   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e10b.11.3.5P3   e10b  11  5   NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e10b.11.3.12P3  e10b  11  12  NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e10b.11.3.13P3  e10b  11  13  NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e10b.11.3.14P3  e10b  11  14  NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e10b.11.3.15P3  e10b  11  15  NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+
+  Plex /<root_agg_name>/plex2 (online, normal, active, pool1)
+    RAID group /<root_agg_name>/plex2/rg0 (normal, block checksums, max_wdbn 5767167)
+
+      RAID Disk Device  HA  SHELF BAY CHAN Pool Type  RPM  Used (MB/blks)    Phys (MB/blks)
+      --------- ------  ------------- ---- ---- ---- ----- --------------    --------------
+      dparity   0m.i2.2L1P3     0m    22  5          1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      parity    0m.i1.0L36P3    0m    22  14         1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0v.i2.2L18P3    0v    22  12         1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0v.i2.3L17P3    0v    22  2          1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0v.i1.0L25P3    0v    22  13         1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0v.i1.0L40P3    0v    22  4          1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0m.i1.1L39P3    0m    22  17         1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0m.i1.1L46P3    0m    22  15         1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0m.i2.3L13P3    0m    22  0          1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      0v.i1.1L26P3    0v    22  1          1 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+
+cluster_A::*>
+----
+. コンテナディスクを割り当てます。
++
+ディスクを割り当てる前に、推奨数のスペアドライブが各ノードに割り当てられていることを確認します。これらのドライブは、ルートアグリゲートが移行される前にパーティショニングされます。詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動ドライブ割り当てと ADP システムに関する考慮事項"]。
+
++
+次のコマンドを実行してディスクを割り当てます。
+
++
+`storage disk assign -disklist 1.11.0,1.11.1,…  -owner cluster-01 -pool 0`
+
+. ルートパーティションのサイズを確認します。
++
+ルートパーティションのサイズは、各ノードでパーティションに使用できるディスクの数によって異なります。NetAppでは、各ノードに少なくとも12本のドライブをパーティションに使用できるようにすることを推奨しています。
+
++
+次の表を使用して、ルートアグリゲートのレイアウトを決定できます。
+
++
+[cols="25,75"]
+|===
+| パーティショニングするディスクの数 | ルートアグリゲートのレイアウト 
+
+
+| ノードあたり4本のディスク | データドライブ×2、パリティドライブ×2 
+
+
+| ノードあたり12本のディスク | データドライブ×8、パリティドライブ×2、スペアドライブ×2 
+
+
+| ノードあたり24本のディスク | データドライブ×20、パリティドライブ×2、スペアドライブ×2 
+|===
++
+ルートパーティションのサイズを確認するには、4Kブロックの総数をすべてのデータドライブに均等に割ります。
+
++
+たとえば、ルートアグリゲートのレイアウトがデータドライブ8本、パリティドライブ2本、スペアドライブ2本で、ルートアグリゲートのサイズが112958795ブロックの場合、112958795を8で割ってルートパーティションのサイズを計算する必要があります。
+
++
+(112958795/8)= 14119849.375
+
++
+この数値が切り上げられた後、ルートパーティションのサイズは14119850になります。
+
+. ルートアグリゲートの各ディスクをパーティショニングします。
++
+`cluster_A*> disk partition -n 3 -i 3 -b <root_partition_size> <disk_id>`
+
+. パーティションを割り当てます。
++
+
+NOTE: ADP を使用するシステムではパーティションを使用してアグリゲートが作成され、各ドライブがパーティション P1 、 P2 、 P3 に分割されます。
+
++
+.. P3パーティションをコンテナディスクの所有者と同じノードに割り当てます。
++
+`storage disk assign -disk <disk_id> -root true -pool 0 -owner cluster-01`
+
+.. HAペアのシステムID番号が小さい方のシステムにP1パーティションを割り当てます。
++
+`storage disk assign -disk <disk_id> -data1 true -pool 0 -owner cluster-01`
+
+.. HAペアのシステムID番号の大きい方のシステムにP2パーティションを割り当てます。
++
+`storage disk assign -disk <disk_name> -data2 true -pool 0 -owner cluster-02`
+
++
+パーティショニングされたすべてのディスクについてこの手順を繰り返します。
+
+
+
+. テイクオーバーが可能であることを確認します。
++
+「 storage failover show 」をクリックします
+
++
+[listing]
+----
+cluster_A::> storage failover show
+                              Takeover
+Node           Partner        Possible State Description
+-------------- -------------- -------- ---------------------------
+cluster-01     cluster-02      true     Connected to cluster-02
+
+cluster-02     cluster-01      true     Connected to cluster-01
+2 entries were displayed.
+----
+. ルートアグリゲートを移行します。
++
+ノードごとに、Pool0のディスクのリストとターゲットのRAIDタイプをパラメータとして指定して移行を実行します。
+
++
+`system node migrate-root -node cluster-01 -disklist <pool0_disk_list> -raid-type <target_raid_type>`
+
++
+たとえば、「cluster-01」のルートアグリゲートが「raid_dp」を含む10本のディスクで構成されている場合、次のコマンドはルートアグリゲートを移行します。
+
++
+[listing]
+----
+system node migrate-root -node cluster-01 -disklist 1.11.1.P3,1.11.2.P3,1.11.3.P3,1.11.4.P3,1.11.5.P3,1.11.6.P3,1.11.7.P3,1.11.8.P3,1.11.9.P3,1.11.10.P3 -raid-type raid_dp
+
+Warning: This is a partially automated and guided procedure for migrating the
+         root aggregate on the node "cluster-01".
+         Negotiated switchover is about to start.
+         Warning: This operation will create a new root aggregate and replace
+         the existing root on the node "cluster-01". The existing root
+         aggregate will be discarded.
+Do you want to continue? {y|n}: y
+
+Info: Started migrate-root job. Run "job show -id 51 -instance" command to
+      check the progress of the job.
+      Once the job is complete, mirror the root aggregate using the "storage
+      aggregate mirror" command
+----
++
+
+IMPORTANT: ディスクの数が足りない場合は、ディスクを追加するか、別のRAIDタイプを選択してください。
+
++
+移行プロセスが完了するまでに数分かかることがあります。移行中にノードが数回リブートされ、他のノードにエラーが表示されることがあります。これらのエラーは無視して、移行プロセスが完了するまで待つことができます。
+
+. 必要に応じて、移行の進捗状況を監視します。
++
+2番目のサイトで、次のコマンドを実行します。
+
++
+`job show -id 51 -instance`
+
+. すべてのMetroCluster IPノードでRAID自動パーティショニングを再度有効にします。
++
+`storage raidlm policy modify -node <node> -policy-name auto_partition_ssds_post_init -policy-type Shared-Disk -is-enable true`
+
+. 移行が正常に完了したことを確認します。
++
+`run local aggr status -r <root_agg_name>`
+
++
+[listing]
+----
+cluster_A::*> node run local aggr status -r <root_agg_name>
+Aggregate <root_agg_name> (online, raid0, fast zeroed) (block checksums)
+  Plex /<root_agg_name>/plex0 (online, normal, active, pool0)
+    RAID group /<root_agg_name>/plex0/rg0 (normal, block checksums, max_wdbn 6127616)
+
+      RAID Disk Device  HA  SHELF BAY CHAN Pool Type  RPM  Used (MB/blks)    Phys (MB/blks)
+      --------- ------  ------------- ---- ---- ---- ----- --------------    --------------
+      data      e2a.11.0.16P3   e2a   11  16  NV:A   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+      data      e10b.11.3.17P3  e10b  11  17  NV:B   0 SSD-NVM   N/A 23956/6132864     23964/6134912 (fast zeroed)
+
+cluster_A::*>
+----
+. 次の手順を繰り返します。 <<step_1,構成の健全性を確認>>。
+

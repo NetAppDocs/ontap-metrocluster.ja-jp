@@ -7485,8 +7485,6 @@
   <block id="38e9ca24d9e7113360711013b88b23e6" category="list-text">ベイ 42-47</block>
   <block id="0faf54ae87b608cc5c6178aed539592e" category="paragraph">このシステムに 16 本のドライブを搭載する場合、各クォータに次のように対称的にドライブを配置する必要があります。</block>
   <block id="47794e225a3759f0cec4e4a452895e26" category="list-text">第 1 クォータに 4 本のドライブ： 0 、 1 、 2 、 3</block>
-  <block id="2d716fdf7c87986b17b0909afae65ddf" category="paragraph">使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がを参照してください<block ref="20b3ed9b2f9da473a6e4768420d303b2" category="inline-link-rx"></block> 使用している ONTAP のバージョンがシェルフの混在をサポートしているかどうかを確認します。</block>
-  <block id="1e037233961e5101c212f4947f98f38d" category="paragraph">シェルフ混在の詳細については、を参照してください<block ref="96c52bfd2d59063b848ae852888ce36d" category="inline-link-rx"></block></block>
   <block id="54744df94a6fdb7104348dee41697c48" category="summary">MetroCluster IP 構成で使用するポートは、スイッチのモデルとプラットフォームのタイプによって異なります。</block>
   <block id="3e7d7088000e9b3208b36b1397763f5e" category="doc">Broadcom 対応 BES-53248 IP スイッチのプラットフォームポート割り当て</block>
   <block id="1ea1224e95806d38188ac2833eef5d68" category="paragraph">以下の表に関する注意事項：</block>
@@ -13251,4 +13249,70 @@
   <block id="8358918e22c23bbc5881522d821dd13e" category="list-text"><block ref="8358918e22c23bbc5881522d821dd13e" category="inline-link-macro-rx"></block></block>
   <block id="e3aa563f27ef718a2d0767e57ad2f0c2" category="inline-link-macro">MetroCluster IP構成でのMAUSOの管理について説明します</block>
   <block id="b1a9c412046cbd6accefdfa3f6f94916" category="list-text"><block ref="b1a9c412046cbd6accefdfa3f6f94916" category="inline-link-macro-rx"></block></block>
+  <block id="3ee4e0077776d9fbd0c4f6992af9bbf9" category="summary">アドバンストディスクパーティショニング（ADP）を使用している既存のルートアグリゲートは、無停止で移行できます。</block>
+  <block id="74015d5b319e36b12436216a112999aa" category="doc">MetroCluster IP構成でADPが設定されたルートアグリゲートを移行する</block>
+  <block id="24a789c2302c76cbfe854e55ad5fc147" category="paragraph">ルートアグリゲートのスペースが不足している場合や大容量のSSDから大容量のSSDに切り替える場合は、アドバンストディスクパーティショニング（ADP）を使用している既存のルートアグリゲートを無停止で移行できます。</block>
+  <block id="1e6ef0d7d8876fb7ad623724c319d6dc" category="list-text">ストレージフェイルオーバーでは、ローカルのハイアベイラビリティ（HA）ペアを有効にする必要があります。</block>
+  <block id="7fb0823205360f944da2d5bbda7bb66c" category="list-text">システムを頻繁に停止することなく、安定した状態でデータを正常に提供しておく必要があります。</block>
+  <block id="f0df128e0728d89f636d034d20727cc3" category="list-text">この手順の実行中は、ハードウェアのアップグレードや原因が停止する可能性のあるその他の処理は実行しないでください。</block>
+  <block id="dcd6c84f0be895a0014bccb3695847f8" category="list-text">ルートアグリゲートは一度に1つだけ移行できます。2つのルートアグリゲートを同時に移行しないでください。</block>
+  <block id="cc4ed671d086b5e6b57a7330c8b5a086" category="list-text">[[step_1、構成の健全性を確認]]構成の健全性を確認します。</block>
+  <block id="056a7858b288e3d7ed97852dd1108acd" category="list-text">各クラスタで MetroCluster が設定されており、通常モードであることを確認します。
+ [+]<block ref="0d51371cbb850772d2130a36f4368df4" prefix=" " category="inline-code"></block></block>
+  <block id="25ffe8e51f1f537dafdb1676802b36a5" category="list-text">ローカルHAペアでストレージフェイルオーバーが有効になっていることを確認します。</block>
+  <block id="f041b96228e7b3d71de8f1c0526b26d2" category="list-text">スペアディスクを初期化します。</block>
+  <block id="e5d9d6b5400b0657d0060a2823cabd1d" category="paragraph"><block ref="20a01c07125289631f92854eb8396610" prefix="" category="inline-code"></block></block>
+  <block id="6986dfd84142c4fac27da9b3b5c3e670" category="list-text">ルートアグリゲートのサイズを確認します。</block>
+  <block id="a61fbdb6104b1f10d4038d76ca03998e" category="paragraph"><block ref="9914c8f3706500d4a11aa48e975b2509" prefix="" category="inline-code"></block></block>
+  <block id="1dd1bcb3443d6b0f45f22f3f5898cb6a" category="paragraph">次の例では、ルートアグリゲートに「Pool0」に10本、「Pool1」に10本のディスクがあります。</block>
+  <block id="6f375ad06cba5e1bf16231fe03094a5a" category="list-text">コンテナディスクを割り当てます。</block>
+  <block id="f288bce4376ff298b02106d1f5c7f9ab" category="paragraph">ディスクを割り当てる前に、推奨数のスペアドライブが各ノードに割り当てられていることを確認します。これらのドライブは、ルートアグリゲートが移行される前にパーティショニングされます。詳細については、を参照してください <block ref="6d810bbb5852716fcad9edf1241d237a" category="inline-link-macro-rx"></block>。</block>
+  <block id="1ef1457e8523d1b3b994840932af8c34" category="paragraph">次のコマンドを実行してディスクを割り当てます。</block>
+  <block id="85815306b7c321900c699ff1f4aa3aa5" category="paragraph"><block ref="8a06b22dd0db1686240683a5bb516abd" prefix="" category="inline-code"></block></block>
+  <block id="a8c587fec8f9799e9250416b424a84eb" category="list-text">ルートパーティションのサイズを確認します。</block>
+  <block id="3920f2ea7ca6e1b4f5cf423a53bc9051" category="paragraph">ルートパーティションのサイズは、各ノードでパーティションに使用できるディスクの数によって異なります。NetAppでは、各ノードに少なくとも12本のドライブをパーティションに使用できるようにすることを推奨しています。</block>
+  <block id="4f814dafb8c2da78db77109cfb4deca0" category="paragraph">次の表を使用して、ルートアグリゲートのレイアウトを決定できます。</block>
+  <block id="63cb9f7c10b1721a063c8f1e59881ab1" category="cell">パーティショニングするディスクの数</block>
+  <block id="759b9dbbcbd74f5ad1ddf35c759a3c59" category="cell">ルートアグリゲートのレイアウト</block>
+  <block id="2004308892a701a728d335b9fce41368" category="cell">ノードあたり4本のディスク</block>
+  <block id="600217b9247426847aab490af6580977" category="cell">データドライブ×2、パリティドライブ×2</block>
+  <block id="e0304dab20a48b302ec7b0c39efc367d" category="cell">ノードあたり12本のディスク</block>
+  <block id="8d4c55399ede5d32bca57645cff078c3" category="cell">データドライブ×8、パリティドライブ×2、スペアドライブ×2</block>
+  <block id="feb2a36c1f236464e86e8560b95f695b" category="cell">ノードあたり24本のディスク</block>
+  <block id="25110366c8f2da7b56b579a6e0552bcb" category="cell">データドライブ×20、パリティドライブ×2、スペアドライブ×2</block>
+  <block id="c773eba71a70989d44e90c6022e99e6c" category="paragraph">ルートパーティションのサイズを確認するには、4Kブロックの総数をすべてのデータドライブに均等に割ります。</block>
+  <block id="ab9988dc196a45ed6732c7cc31004d6c" category="paragraph">たとえば、ルートアグリゲートのレイアウトがデータドライブ8本、パリティドライブ2本、スペアドライブ2本で、ルートアグリゲートのサイズが112958795ブロックの場合、112958795を8で割ってルートパーティションのサイズを計算する必要があります。</block>
+  <block id="781da94200d9a07043815bafc29d2c3d" category="paragraph">(112958795/8)= 14119849.375</block>
+  <block id="9e2cac5b50187a5236c91e11f6395855" category="paragraph">この数値が切り上げられた後、ルートパーティションのサイズは14119850になります。</block>
+  <block id="1d3e8acab7097ab9196691e4dad86e0d" category="list-text">ルートアグリゲートの各ディスクをパーティショニングします。</block>
+  <block id="46f57cee9235c6230c51a255d962250c" category="paragraph"><block ref="92a47f55cb3bffcba7f27685c266eba5" prefix="" category="inline-code"></block></block>
+  <block id="105a09c5d661de6f8c24b06c0411962a" category="list-text">パーティションを割り当てます。</block>
+  <block id="f03d16bce31de329c4e742292fc93b37" category="list-text">P3パーティションをコンテナディスクの所有者と同じノードに割り当てます。</block>
+  <block id="fa70c741f02b049be375a76bd70aca71" category="paragraph"><block ref="1cf19cfaba68ec589ad709b775196d98" prefix="" category="inline-code"></block></block>
+  <block id="5bfbaf4243f6043be413593a0f7ffdf4" category="list-text">HAペアのシステムID番号が小さい方のシステムにP1パーティションを割り当てます。</block>
+  <block id="56e9a79cfa3eed80b5c15da245a60890" category="paragraph"><block ref="6d33ff246b76244db45f233884827afe" prefix="" category="inline-code"></block></block>
+  <block id="62ef6f7ab1c059659a81dc67d8e73e53" category="list-text">HAペアのシステムID番号の大きい方のシステムにP2パーティションを割り当てます。</block>
+  <block id="f96d86554fdac108c5a1432d469a729b" category="paragraph"><block ref="f25093ef7292e8988c1b58a77f8c6cb4" prefix="" category="inline-code"></block></block>
+  <block id="e2e637afa208920387f5053e40ed58d2" category="paragraph">パーティショニングされたすべてのディスクについてこの手順を繰り返します。</block>
+  <block id="05676fea1d1887cfdd6f5af68de0df0a" category="list-text">テイクオーバーが可能であることを確認します。</block>
+  <block id="8a85734d78fdaf400bfa62b4b651fd99" category="list-text">ルートアグリゲートを移行します。</block>
+  <block id="df71252ed58d68e80437563dfbd33558" category="paragraph">ノードごとに、Pool0のディスクのリストとターゲットのRAIDタイプをパラメータとして指定して移行を実行します。</block>
+  <block id="e9e0447af35e7e0de4740db0f20764ed" category="paragraph"><block ref="83aa458cb02ebc1ec53a3792475063c2" prefix="" category="inline-code"></block></block>
+  <block id="cdd05231f7224a23cbac4281a2438326" category="paragraph">たとえば、「cluster-01」のルートアグリゲートが「raid_dp」を含む10本のディスクで構成されている場合、次のコマンドはルートアグリゲートを移行します。</block>
+  <block id="cd0e059df97825ab157f1939efa364e7" category="admonition">ディスクの数が足りない場合は、ディスクを追加するか、別のRAIDタイプを選択してください。</block>
+  <block id="7d6bbe7b71b13c2b54cec2ee662fbdf1" category="paragraph">移行プロセスが完了するまでに数分かかることがあります。移行中にノードが数回リブートされ、他のノードにエラーが表示されることがあります。これらのエラーは無視して、移行プロセスが完了するまで待つことができます。</block>
+  <block id="d868d604f3bd20c9f9a11a2520543292" category="list-text">必要に応じて、移行の進捗状況を監視します。</block>
+  <block id="eda60734cb89d535e800dab8da6383eb" category="paragraph">2番目のサイトで、次のコマンドを実行します。</block>
+  <block id="5881411832603d39f355beead4af51c8" category="paragraph"><block ref="7303f257f154b13cdaca05ba99fbd04f" prefix="" category="inline-code"></block></block>
+  <block id="c0d4d16bc2ccc265fcf1e6ff40c7d881" category="list-text">すべてのMetroCluster IPノードでRAID自動パーティショニングを再度有効にします。</block>
+  <block id="4ae87ec4d41caa9c10f63ab9906652fe" category="paragraph"><block ref="b3c8c569f5af61a744510d8f9bdf90bf" prefix="" category="inline-code"></block></block>
+  <block id="9a11d290badf0b1c9242a25f4679755b" category="list-text">移行が正常に完了したことを確認します。</block>
+  <block id="8357a096ccf9fce81f2506410698452e" category="paragraph"><block ref="e297cfda2aceb4e7716b304f7e66f6cd" prefix="" category="inline-code"></block></block>
+  <block id="1ea488beca98f867b6167d03c9864f18" category="inline-xref">構成の健全性を確認</block>
+  <block id="6888438bdb2750b7d57e71e38ad05afd" category="list-text">次の手順を繰り返します。 <block ref="02254f32065f3812e96478a40b394643" category="inline-xref-macro-rx"></block>。</block>
+  <block id="7632b8724806890acaf96c668d641251" category="inline-link-macro">MetroCluster IP構成での自動ドライブ割り当てとADPシステムの概要</block>
+  <block id="04a1df006b1c7589273df10cf6fc5ac4" category="paragraph"><block ref="04a1df006b1c7589273df10cf6fc5ac4" category="inline-link-macro-rx"></block></block>
+  <block id="85488d881ebf03beb1eca3be4b5fda44" category="paragraph">使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がを参照してください<block ref="e78382cc6f841e7f00c97b18a2e30f41" category="inline-link-rx"></block> 使用している ONTAP のバージョンがシェルフの混在をサポートしているかどうかを確認します。</block>
+  <block id="5fdc7ff67ace146413ecd7d44157aca4" category="paragraph">シェルフ混在の詳細については、を参照してください<block ref="532c1f47a9370f9e21538610051f3830" category="inline-link-rx"></block></block>
+  <block id="2b2a5cb87d298900008c3873faf7fc40" category="sidebar">MetroCluster IP構成でADPを使用してルートアグリゲートを移行する</block>
 </blocks>
