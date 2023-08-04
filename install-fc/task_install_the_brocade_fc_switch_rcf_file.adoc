@@ -42,18 +42,6 @@ Password: <user input>
 +
 パスワードを入力すると、スイッチはコンフィギュレーションファイルをダウンロードして実行します。
 
-. スイッチを永続的に有効にします。
-+
-'witchcfgpersistentenable
-
-+
-次の例は、 FC switch_A_1 を永続的に有効にします。
-
-+
-[listing]
-----
-FC_switch_A_1:admin> switchcfgpersistentenable
-----
 . 構成ファイルでスイッチドメインが設定されていることを確認します。
 +
 'witchshow'
@@ -161,6 +149,18 @@ FC_switch_A_1:admin> portcfglongdistance 21 LS 1 -distance 30
 [listing]
 ----
 FC_switch_A_1:admin> portcfglongdistance 21 LE 1
+----
+. スイッチを永続的に有効にします。
++
+'witchcfgpersistentenable
+
++
+次の例は、 FC switch_A_1 を永続的に有効にします。
+
++
+[listing]
+----
+FC_switch_A_1:admin> switchcfgpersistentenable
 ----
 . IP アドレスが正しく設定されていることを確認します。
 +
