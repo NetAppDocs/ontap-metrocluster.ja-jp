@@ -56,7 +56,7 @@ vsa_1 iscsi_lf__n2_p1_ 4 iqn.2020-01.com.netapp.englab.gdl:scspr1789621001 00:02
 
 2 entries were displayed.
 ----
-. インターフェイスが含まれる ONTAP の iSCSI インターフェイスの一覧を表示します。「 iscsi interface show -vserver svm_name
+. インターフェイスが含まれているSVMのONTAPのiSCSIインターフェイスを一覧表示します。 `iscsi interface show -vserver svm-name`
 +
 [listing]
 ----
@@ -210,7 +210,8 @@ vsa_1 /vol/vsa_1_vol1/lun_linux_3 igroup_linux node_A_1-FC,node_A_2-FC,node_A_1-
 
 12 entries were displayed.
 ----
-. ホストで問題次のコマンドを使用して ' ホスト上の SCSI バスを再スキャンし ' 新しく追加されたパスを検出します `/usr/bin/rescan-scsi-bus.sh -a ``
+. を確認します `sg3-utils` パッケージがLinuxホストにインストールされている。これにより、 `rescan-scsi-bus.sh utility not found` 新しくマッピングされたLUNのLinuxホストをを使用して再スキャンするとエラーが発生する `rescan-scsi-bus` コマンドを実行します
+. ホストで次のコマンドを実行して問題を実行し、ホストのSCSIバスを再スキャンし、新しく追加したパスを検出します。 `/usr/bin/rescan-scsi-bus.sh -a`
 +
 [listing]
 ----
@@ -331,7 +332,8 @@ vsa_1 /vol/vsa_1_vol2/lun_linux_4   group_linux   node_A_1-IP,node_A_2-IP
 
 12 entries were displayed.
 ----
-. iSCSI ホストで 'SCSI バスを再スキャンします /usr/bin/rescan-scsi-bus.sh -r
+. を確認します `sg3-utils` パッケージがLinuxホストにインストールされている。これにより、 `rescan-scsi-bus.sh utility not found` 新しくマッピングされたLUNのLinuxホストをを使用して再スキャンするとエラーが発生する `rescan-scsi-bus` コマンドを実行します
+. iSCSIホストで、SCSIバスを再スキャンします。 `/usr/bin/rescan-scsi-bus.sh -r`
 +
 削除されるパスは FC ノードからのパスです。
 

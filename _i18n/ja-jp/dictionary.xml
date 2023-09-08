@@ -1717,7 +1717,6 @@
   <block id="1249ce19ef6180e143506b5287be8a7a" category="list-text">ICMP</block>
   <block id="19928e39d24e38d1c9928b94667fa5d5" category="list-text">QuickNAV</block>
   <block id="96f9963e25520a9011c82401920794f0" category="list-text">SNMP</block>
-  <block id="0e9f0a250a9d56072ce7737a3cd51f63" category="list-text">Telnet 特定のプロトコルが有効になっているか無効になっているかを調べるには 'get closePort' コマンドを使用します</block>
   <block id="9d05079a491a98497153e953bbaddaa4" category="list-text">SNMP を有効にする場合は、 set snmp enabled コマンドも問題で実行する必要があります。</block>
   <block id="944957367bcbba5f885d8dc885354148" category="paragraph">'*set snmp enabled*</block>
   <block id="2773e82b500feb0530b8577db9c276d7" category="paragraph">SNMP は、別個の enable コマンドを必要とする唯一のプロトコルです。</block>
@@ -3399,7 +3398,6 @@
   <block id="0dc491dada4885353b9e96030fce6bd3" category="paragraph">SVM からのすべての iSCSI インターフェイスに iSCSI クライアントから到達できる必要があります。</block>
   <block id="acb0e987f9b29d1eab50c31f4f95aa9a" category="list-text">iSCSI ホストまたはクライアント上で ' ホストから MetroCluster FC ノードへの既存の iSCSI 接続を特定します iscsiadm -m session</block>
   <block id="d163a1c94db271251417ac64b011f503" category="list-text">MetroCluster IP ノードからの接続を確認します。「 iscsi session show -vserver vserver-name 」</block>
-  <block id="47e1989be910f2a95cba13df244916de" category="list-text">インターフェイスが含まれる ONTAP の iSCSI インターフェイスの一覧を表示します。「 iscsi interface show -vserver svm_name</block>
   <block id="a36d68710357482d2ab6a01760a3ed96" category="list-text">iSCSI クライアントで、 SVM 上のいずれかの iSCSI IP アドレスに対して検出を実行し、新しいターゲットを検出します。「 iscsiadm -m discovery -t sendtargets -p iscsi-ip-address</block>
   <block id="6d5e653b42496cb611cacbd3f1622d89" category="paragraph">検出は、 iSCSI 以外のインターフェイスを含め、 SVM の任意の IP アドレスで実行できます。</block>
   <block id="a461f22b707612a699bc8af021961c83" category="list-text">iSCSI クライアントで ' 検出されたすべてのアドレスにログインします iscsiadm -m node -L all -T node -address -p portal -address -l</block>
@@ -3413,7 +3411,6 @@
   <block id="ca3831196a5922b44d1bd6c3f098a76e" category="paragraph">次のレポートノードは、 FC ノード node_A_1 の FC および node_A_1 の FC に LUN が物理的に存在するため、ローカルノードです。</block>
   <block id="ada767f49af9e4d84ffa661e5dca75c7" category="list-text">MetroCluster ノードで、レポートノードを追加します。 lun mapping add-reporting-nodes -vserver SVM-name -path /vol/ VSA_1_vol * /lun_linux_* -nodes node1 、 node2 -igroup igroup_linux です</block>
   <block id="7b0a84102a195b8e0f8d8953620707ba" category="list-text">MetroCluster ノード上に、新しく追加したノードが存在することを確認します。 lun mapping show -vserver vserver-name -fields reporting-nodes -ostype linux vserver path igroup reporting-nodes 」</block>
-  <block id="33a3004b4b08a0f2ce598422f5d7b5f6" category="list-text">ホストで問題次のコマンドを使用して ' ホスト上の SCSI バスを再スキャンし ' 新しく追加されたパスを検出します `/usr/bin/rescan-scsi-bus.sh -a ``</block>
   <block id="897e36e6985e9d4eb2bed54f3762a125" category="list-text">ホスト上で、新たに追加されたパスの一覧を表示するために、問題は次のコマンドを実行します。 'lun lun lun show -p</block>
   <block id="2a12888d763445436f29b56694f714b2" category="paragraph">LUN ごとに 4 つのパスが表示されます。</block>
   <block id="2511d667d00c1cb6eba362bc0093b244" category="list-text">MetroCluster で、 LUN を含むボリュームを FC ノードから IP ノードに移動します。</block>
@@ -3425,7 +3422,6 @@
   <block id="8ab7ca6cd6e1f79872ab4f322117ca76" category="list-text">MetroCluster IP ノードから、 Linux LUN のリモートレポートノード（ MetroCluster IP ノード）を削除します。「 lun mapping remove-reporting-nodes -vserver vsA_1-path * -igroup igroup_linux-remote-nodes true</block>
   <block id="05048e4fdd078ddd77168cd8270fe3f4" category="paragraph">この場合、リモートノードは FC ノードです。</block>
   <block id="e90434592ed415a541e2a6f03284ae2d" category="list-text">MetroCluster の IP ノードから、 LUN のレポートノードを確認します。「 lun mapping show -vserver vsA_1 -fields reporting-nodes -ostype linux</block>
-  <block id="1e7ae3480577387e1ba55438a03a4513" category="list-text">iSCSI ホストで 'SCSI バスを再スキャンします /usr/bin/rescan-scsi-bus.sh -r</block>
   <block id="d535eedec31c0a58f698132001cbc9bb" category="paragraph">削除されるパスは FC ノードからのパスです。</block>
   <block id="39128f9051c3d4355aead1a61c996c25" category="summary">MetroCluster のアップグレード、拡張、または移行の違いを理解し、目的に合った手順を選択する必要があります。</block>
   <block id="c614230ffa3ceef0cb27e7fbc1f50307" category="doc">使用する手順の決定</block>
@@ -3874,21 +3870,17 @@
   <block id="aba0064857c6ce89cc764da8d55ce5c1" category="doc">FC SAN ワークロードを MetroCluster FC ノードから MetroCluster IP ノードに移動する</block>
   <block id="73f9743e086ef8ac735d8d9a5a299535" category="list-text">MetroCluster IP ノードで新しい FC インターフェイス（ LIF ）をセットアップします。</block>
   <block id="e050f35561c7894ee0a0e945c979a806" category="list-text">必要に応じて、 MetroCluster IP ノードで、 FC ターゲットパーソナリティへのクライアント接続に使用する FC ポートを変更します。</block>
-  <block id="4dbd9443241248d896c42809416cff33" category="paragraph">ノードのリブートが必要になる場合があります。</block>
-  <block id="24bdd4e6fd63a2598d59b77c5076d636" category="list-text">すべての SAN SVM の IP ノードに FC LIF / インターフェイスを作成します。必要に応じて、新しく作成した FC LIF の WWPN が FC SAN スイッチにログインすることを確認します</block>
   <block id="2ea8e9b085e6487dc8f8677dad1b2007" category="list-text">MetroCluster IP ノードに新しく追加した FC LIF の SAN ゾーニング設定を更新します。</block>
   <block id="46be4a0b4ce48ea62086efafc65dbbab" category="paragraph">FC SAN クライアントにデータをアクティブに提供している LUN を含むボリュームを移動しやすいように、既存の FC スイッチゾーンを更新して、 FC SAN クライアントが MetroCluster IP ノード上の LUN にアクセスできるようにします。</block>
   <block id="7cbcf73edeac7dc26492a2312ceba51d" category="list-text">FC SAN スイッチ（ Cisco または Brocade ）で、新しく追加した FC SAN LIF の WWPN をゾーンに追加します。</block>
   <block id="4c3d801187dd3bd83498ab4cc39962cb" category="list-text">ゾーニングの変更を更新、保存、コミットします。</block>
   <block id="780d54d0c3dcaee808b6d845b2755068" category="list-text">クライアントから、 MetroCluster IP ノード上の新しい SAN LIF への FC イニシエータログインを確認します。「 svmluns lun show -p</block>
   <block id="7ff219f4bc061d194735ac6928a7e661" category="paragraph">この時点で、クライアントは MetroCluster FC ノードと MetroCluster IP ノードの両方の FC インターフェイスを認識し、ログインしている必要があります。LUN とボリュームは引き続き MetroCluster FC ノードで物理的にホストされます。</block>
-  <block id="047884ddcb740bc854ce7ccb563642b2" category="paragraph">MetroCluster は FC ノードインターフェイスでのみ報告されるため、クライアントには FC ノード経由のパスのみが表示されます。この値は、 sanlun lun show -p コマンドおよび multipath -ll -d コマンドの出力に表示されます。</block>
   <block id="7903e3004ba7d039fbd00c128bd855bf" category="list-text">レポートノードを変更して MetroCluster IP ノードを追加します</block>
   <block id="b37c9b18c1fffc0a2c04176485cc32aa" category="list-text">SVM 上の LUN のレポートノードを一覧表示します。 lun mapping show -vserver vserver-name -fields reporting-nodes -ostype linux</block>
   <block id="a8ac1b93cf5cb550949dfea97a05b60a" category="paragraph">表示されるレポートノードはローカルノードで、 LUN は FC ノード A_1 および a_2 に物理的に配置されています。</block>
   <block id="ed464784c3f6c07bdf64a809c105429b" category="list-text">MetroCluster IP ノードを追加してレポートノードを追加します。</block>
   <block id="c74a06acbdafccea854827ab3c1389ac" category="list-text">レポートノードをリストし、新しいノードが存在することを確認します。</block>
-  <block id="7cb622a0ff86a1bb88637f6d85cf9f43" category="list-text">ホスト上の SCSI バスを再スキャンして ' 新しく追加されたパスを検出します :/usr/bin/rescan-scsi-bus.sh -a</block>
   <block id="e1ee3a062911dfd9a5f37daadbab5edb" category="list-text">新しく追加されたパス「 'lun lun lun lun show -p 」を表示します</block>
   <block id="05eafc0806ed7438ec13d238537264c7" category="paragraph">各 LUN には 4 つのパスがあります。</block>
   <block id="42d2c72ed1b78cf2ef6ae94126ea459b" category="list-text">コントローラで、 LUN が含まれているボリュームを MetroCluster FC から MetroCluster IP ノードに移動します。</block>
@@ -3900,7 +3892,6 @@
   <block id="3412078ebeec5a57c10057087d69f64e" category="list-text">レポートノードを削除し、クライアントからパスを再スキャンします。</block>
   <block id="4bb7a2cf16de0e88533fe09d20e8cacf" category="list-text">Linux LUN のリモートレポートノード（ MetroCluster FC ノード）を削除します。「 lun mapping remove-reporting-nodes -vserver vsA_1-path * -igroup igroup_linux-remote-nodes true</block>
   <block id="f2eed01c29702a10f9291aaa3e13f368" category="list-text">LUN のレポートノードを確認します。「 lun mapping show -vserver vsA_1 -fields reporting-nodes - ostype linux</block>
-  <block id="cb35b692ef8bc5399820e0ba83b8cb35" category="list-text">クライアントの SCSI バスを再スキャンします :/usr/bin/rescan-scsi-bus.sh -r</block>
   <block id="8f8c9a65b706c1177309d44848cd6abe" category="paragraph">MetroCluster FC ノードからパスが削除されます。</block>
   <block id="9dbd28fb326c06062ade74756b1829ab" category="list-text">MetroCluster IP ノードからのパスだけがホストから認識されていることを確認します。 'lun lun lun show -p</block>
   <block id="0dcfa974a402a3458da069a245602792" category="list-text">必要に応じて、 MetroCluster FC ノードから iSCSI LIF を削除します。</block>
@@ -9547,7 +9538,6 @@
   <block id="6a711c2982ba094c44be794ffb3bf1a2" category="list-text">リンクをクリックし、ブリッジを設定するときに指定したユーザ名とパスワードを入力します。</block>
   <block id="3fff43b275954b2824b3aee6836ae256" category="paragraph">「 astargets 」コマンドの出力には、ブリッジに接続されているデバイス（ディスクおよびディスクシェルフ）が表示されます。出力行には行番号が振られているため、デバイスの台数を簡単に把握できます。</block>
   <block id="4948cb8b3eded5b39ec6d64f06687462" category="list-text">コマンド出力を確認して、ブリッジがスタック内の想定されるすべてのディスクおよびディスクシェルフに接続していることを確認します。</block>
-  <block id="b952b3eddebea29b6169cd5bd56a3bc5" category="paragraph">コントローラモジュールにクアッドポート FC アダプタが設定されている場合は、ストレージスタックを同じ ASIC の 2 つの FC ポートに接続してください。ポート a とポート b で同じ ASIC を、ポート c とポート d で同じ ASIC をそれぞれ共有します。シェルフのスタックをポート A とポート B に接続しないでください代わりに、ポート a とポート c を使用するか、ポート b とポート d を使用して、 ASIC に障害が発生した場合の単一点障害を回避します。</block>
   <block id="48dda5bb7b1f8b58b068fa47d9879c67" category="paragraph">コントローラモジュールに複数の FC アダプタが設定されている場合は、両方のブリッジポートを同じアダプタに接続しないでください。単一点障害を避けるために、 FC ポート 1 をアダプタ A 、 FC ポート 2 をアダプタ B に分散させる必要があります。</block>
   <block id="9c99fef0430bb16c4a28d231ae5f8299" category="paragraph">ネイティブディスクおよびアレイ LUN を使用するストレッチ MetroCluster 構成では、 FC-to-SAS ブリッジまたは SAS 光ケーブルのいずれかを使用して ONTAP システムをディスクシェルフに接続する必要があります。また、 ONTAP システムにアレイ LUN を接続するためには、 FC スイッチを使用する必要があります。</block>
   <block id="f1ab023e5e9e9bdeb7a934c85edec3d1" category="paragraph">ONTAP システムをネイティブディスクとアレイ LUN の両方に接続するには、 HBA ポートが 8 個以上必要です。</block>
@@ -9573,7 +9563,6 @@
   <block id="f2d45f03c22fbeb03b74cbd880d693fe" category="list-text">ファブリック接続またはストレッチ MetroCluster FC 構成のディザスタリカバリサイトでのハードウェア交換</block>
   <block id="786bcd5bd1b18eea716b58462b00e890" category="summary">9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV \ ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。</block>
   <block id="ef402cf927be6e8ac7911e7437ce8e76" category="paragraph">9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。</block>
-  <block id="40e7c640678c064d478e2a07e47eb68a" category="list-text">Telnet+ 特定のプロトコルが有効になっているか無効になっているかを調べるには 'get closePort' コマンドを使用します</block>
   <block id="12e1a43f9bf6da32583b815f8c9f66e1" category="summary">ブリッジを設定したら、システムのケーブル接続を開始できます。</block>
   <block id="6fd15be7f6a37829673663b10699e3a1" category="paragraph">ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。</block>
   <block id="ffa7a5441f187dc7d843a978ea76034c" category="list-text">スタック内の論理的な最初のシェルフから順番に、 IOM A のポート 3 を次のシェルフの IOM A のポート 1 に接続します。スタック内の各 IOM A が接続されるまで、この手順を繰り返します。</block>
@@ -13271,4 +13260,14 @@
   <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link-macro">こちらをご覧ください</block>
   <block id="4992f0045a6913a2fb77a09884c4e55c" category="admonition">上記の表に記載されているコントローラのアップグレードは、ONTAP 9.12.1または9.11.1を実行しているシステムで、手順の手動アップグレード手順に従って実行できます。 <block ref="4254cdc4ef28ceba663ec4031c88c9dd" category="inline-link-macro-rx"></block>。</block>
   <block id="050dafe962829ef847f34f7607e36eb3" category="list-text"><block ref="050dafe962829ef847f34f7607e36eb3" category="inline-link-macro-rx"></block></block>
+  <block id="96011b4dbcd722924f3c53c7252522f8" category="list-text">インターフェイスが含まれているSVMのONTAPのiSCSIインターフェイスを一覧表示します。<block ref="3c78b9e1a9fef2eea89905b0233c19ad" prefix=" " category="inline-code"></block></block>
+  <block id="2af958a8143c65676390b5e251abe90a" category="list-text">を確認します<block ref="a78608714add699f555f2a66df0ee249" prefix=" " category="inline-code"></block> パッケージがLinuxホストにインストールされている。これにより、<block ref="b0c94f1494e22d963244e235719a2582" prefix=" " category="inline-code"></block> 新しくマッピングされたLUNのLinuxホストをを使用して再スキャンするとエラーが発生する<block ref="685ca42026debec2f3691cc5faae67d5" prefix=" " category="inline-code"></block> コマンドを実行します</block>
+  <block id="f4b770b44b57fa84a8b8fc29d6c6c8bb" category="list-text">ホストで次のコマンドを実行して問題を実行し、ホストのSCSIバスを再スキャンし、新しく追加したパスを検出します。<block ref="9e65638d5d13acb691c4bec2ede5a483" prefix=" " category="inline-code"></block></block>
+  <block id="d1b38e9b356895decf6917b400433e15" category="list-text">iSCSIホストで、SCSIバスを再スキャンします。<block ref="06653a48f6165608045bd55ec32d95fb" prefix=" " category="inline-code"></block></block>
+  <block id="1f52bd2314f9805b0a0098b0f56a0dc4" category="paragraph">そのためには、ノードのリブートが必要になる場合があります。</block>
+  <block id="ab85fd4f549c390675df901a8ef3f78e" category="list-text">すべてのSAN SVMについて、IPノードにFC LIF /インターフェイスを作成します。必要に応じて、新しく作成したFC LIFのWWPNがFC SANスイッチにログインしていることを確認します。</block>
+  <block id="cbabd53b8268cb963ad7b2c67de0b634" category="paragraph">MetroCluster は FC ノードインターフェイスでのみ報告されるため、クライアントには FC ノード経由のパスのみが表示されます。これは、の出力で確認できます。<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> および<block ref="2fbf63deae0938cf669e6ca451f1eb2c" prefix=" " category="inline-code"></block> コマンド</block>
+  <block id="7162464dfaefdef75b18029dcb1bb1f1" category="list-text">ホストのSCSIバスを再スキャンして、新しく追加したパスを検出します。<block ref="9e65638d5d13acb691c4bec2ede5a483" prefix=" " category="inline-code"></block></block>
+  <block id="9b3bd2afae038f8967e9373560a3b6d2" category="list-text">クライアントのSCSIバスを再スキャンします。<block ref="06653a48f6165608045bd55ec32d95fb" prefix=" " category="inline-code"></block></block>
+  <block id="77139d079fd912afd88e4ca7f5623393" category="paragraph">コントローラモジュールにクアッドポートFCアダプタが設定されている場合は、ストレージスタックが同じASICの2つのFCポートに接続されていないことを確認します。ポート a とポート b で同じ ASIC を、ポート c とポート d で同じ ASIC をそれぞれ共有します。シェルフのスタックをポート A とポート B に接続しないでください代わりに、ポート a とポート c を使用するか、ポート b とポート d を使用して、 ASIC に障害が発生した場合の単一点障害を回避します。</block>
 </blocks>

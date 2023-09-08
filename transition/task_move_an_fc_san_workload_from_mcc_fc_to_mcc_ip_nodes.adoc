@@ -17,9 +17,9 @@ MetroCluster FC ノードから IP ノードへの無停止移行時は、 FC SA
 +
 .. 必要に応じて、 MetroCluster IP ノードで、 FC ターゲットパーソナリティへのクライアント接続に使用する FC ポートを変更します。
 +
-ノードのリブートが必要になる場合があります。
+そのためには、ノードのリブートが必要になる場合があります。
 
-.. すべての SAN SVM の IP ノードに FC LIF / インターフェイスを作成します。必要に応じて、新しく作成した FC LIF の WWPN が FC SAN スイッチにログインすることを確認します
+.. すべてのSAN SVMについて、IPノードにFC LIF /インターフェイスを作成します。必要に応じて、新しく作成したFC LIFのWWPNがFC SANスイッチにログインしていることを確認します。
 
 
 . MetroCluster IP ノードに新しく追加した FC LIF の SAN ゾーニング設定を更新します。
@@ -34,7 +34,7 @@ FC SAN クライアントにデータをアクティブに提供している LUN
 この時点で、クライアントは MetroCluster FC ノードと MetroCluster IP ノードの両方の FC インターフェイスを認識し、ログインしている必要があります。LUN とボリュームは引き続き MetroCluster FC ノードで物理的にホストされます。
 
 +
-MetroCluster は FC ノードインターフェイスでのみ報告されるため、クライアントには FC ノード経由のパスのみが表示されます。この値は、 sanlun lun show -p コマンドおよび multipath -ll -d コマンドの出力に表示されます。
+MetroCluster は FC ノードインターフェイスでのみ報告されるため、クライアントには FC ノード経由のパスのみが表示されます。これは、の出力で確認できます。 `sanlun lun show -p` および `multipath -ll -d` コマンド
 
 +
 [listing]
@@ -117,7 +117,8 @@ vsa_1   /vol/vsa_1_vol3/lun_linux_7   igroup_linux    A_1,A_2,B_1,B_2
 
 12 entries were displayed.
 ----
-.. ホスト上の SCSI バスを再スキャンして ' 新しく追加されたパスを検出します :/usr/bin/rescan-scsi-bus.sh -a
+.. を確認します `sg3-utils` パッケージがLinuxホストにインストールされている。これにより、 `rescan-scsi-bus.sh utility not found` 新しくマッピングされたLUNのLinuxホストをを使用して再スキャンするとエラーが発生する `rescan-scsi-bus` コマンドを実行します
+.. ホストのSCSIバスを再スキャンして、新しく追加したパスを検出します。 `/usr/bin/rescan-scsi-bus.sh -a`
 +
 [listing]
 ----
@@ -234,7 +235,7 @@ vsa_1 /vol/vsa_1_vol2/lun_linux_4 igroup_linux B_1,B_2
 
 12 entries were displayed.
 ----
-.. クライアントの SCSI バスを再スキャンします :/usr/bin/rescan-scsi-bus.sh -r
+.. クライアントのSCSIバスを再スキャンします。 `/usr/bin/rescan-scsi-bus.sh -r`
 +
 MetroCluster FC ノードからパスが削除されます。
 
