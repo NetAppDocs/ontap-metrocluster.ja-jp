@@ -2904,19 +2904,12 @@
   <block id="4bb6eb436a53b66a4cce0bbf726cb740" category="paragraph">MetroCluster 構成を監視する必要がなくなった場合は、 Tiebreaker ソフトウェアで監視している MetroCluster 設定を削除できます。</block>
   <block id="f434e67fe7c948db94749474e31b44c4" category="summary">著作権および商標</block>
   <block id="d5e32abfbd3e5376cc7d90c1003b3516" category="summary">Tiebreaker ソフトウェアは、クラスタストレージ環境に監視機能を提供します。また、ノード接続の問題やサイト障害が発生した場合に SNMP 通知を送信します。</block>
-  <block id="1e03abc52b8015d8bfda380a49a74d3d" category="doc">Tiebreaker ソフトウェアをインストールします</block>
-  <block id="dfecead04927b98b4718817e8ee72b45" category="section-title">Tiebreaker ソフトウェアをインストールまたはアップグレードするためのシステム要件</block>
-  <block id="41cf1c389a424db4cc6188d92f8873e1" category="paragraph">MetroCluster Tiebreaker ソフトウェアには、次の監視機能と要件があります。</block>
-  <block id="fa16f1eaa9378fa31cb55f8791abfbc4" category="list-text">最大 15 の MetroCluster 構成を同時に監視できます。</block>
-  <block id="74c24f77157a44b3d1b75c7a631b2f1a" category="list-text">MetroCluster IP 構成、 MetroCluster FC 構成、ストレッチ MetroCluster 構成の組み合わせがサポートされます。</block>
-  <block id="0051a43c14e5ca151dedc81a1b8f3b8e" category="list-text">ハードウェアとソフトウェア：</block>
   <block id="f211a801e18d8052b211fd5a87a83253" category="list-text">4GB の RAM</block>
   <block id="6d6a8e3be3c8694034944ec6e631c4be" category="list-text">ディスク容量： 8GB</block>
   <block id="4c009b85d61ad347b56add00274e7453" category="list-text">ファイアウォール：</block>
   <block id="3c78850f45b6edfc4af8ec0a93a2a1ab" category="list-text">AutoSupport メッセージをセットアップするための直接アクセス</block>
   <block id="cde2b4acd898c32670d230559bc6a550" category="list-text">SSH （ポート 22 / TCP ）、 HTTPS （ポート 443 / TCP ）、および ping （ ICMP ）</block>
   <block id="d622b09f9e4518b80b223d0f3d83f9cd" category="section-title">MetroCluster Tiebreaker の依存関係をインストールします</block>
-  <block id="c484a86c621669bc61d7e0ad166de57f" category="paragraph">Tiebreaker ソフトウェアをインストールまたはアップグレードする前に、ホストである Linux オペレーティングシステムに応じて、 MySQL サーバまたは MariaDB サーバをインストールする必要があります。</block>
   <block id="b56e6f0af6a9b1b27daa95d4a36afdc4" category="list-text">MySQL サーバまたは MariaDB サーバをインストールします。</block>
   <block id="6d3e1ad458b8305490e7f3f555ee8c93" category="cell">Linux ホストの種類は、です</block>
   <block id="2f4f94cc5a0950a910a46c35cf923e05" category="list-text">MySQL をインストール</block>
@@ -2937,8 +2930,6 @@
   <block id="35a8ad649b3194dfec4cd801fff9f656" category="section-title">Tiebreaker モニタが実行されているホストをアップグレードしています</block>
   <block id="dd369bd80b51fade2a8040849d0cdfb3" category="list-text">すべてのモニタをオブザーバーモードに変更します。</block>
   <block id="364ba5b8b3d13bcb103f29814c8bdc8b" category="list-text">Tiebreaker ホストをアップグレードするには、次の手順のすべての手順を実行します。</block>
-  <block id="3da068989b58a6354f99f0db984b6df2" category="section-title">Tiebreaker ソフトウェアの NTP ソースを選択しています</block>
-  <block id="ce5425c2550b256ea43d516197da426d" category="paragraph">Tiebreaker ソフトウェアには、ローカルのネットワークタイムプロトコル（ NTP ）ソースを使用する必要があります。Tiebreaker ソフトウェアが監視する MetroCluster サイトと同じソースは使用しないでください。</block>
   <block id="0f96cd982e393bde238790eeffc45a91" category="summary">NetApp MetroCluster Tiebreaker ソフトウェアの概要、およびどのように障害のタイプが特定されるかを理解しておくと、 MetroCluster 構成を効率的に監視できます。設定の管理、および MetroCluster 構成のステータスと処理の監視には、 Tiebreaker の CLI を使用します。</block>
   <block id="6896949575280512a6bafbe8d6a34966" category="doc">Tiebreaker ソフトウェアの概要</block>
   <block id="afb7e20d234166f2551194936416feee" category="section-title">NetApp MetroCluster Tiebreaker ソフトウェアによる障害の検出</block>
@@ -9247,7 +9238,6 @@
   <block id="dd6ee1233d0e34b47648ba9732a67411" category="list-text">MetroCluster IP 構成のベストプラクティス</block>
   <block id="8aec6a2bcfb78af1fffa4f2c52dfe49d" category="paragraph">Active IQ デジタルアドバイザのドキュメント</block>
   <block id="b71713ca01ebff14cbc13bd7cfcb2b05" category="list-text">G720 スイッチでは、追加のブリッジをポート 36-39 にケーブル接続できます。</block>
-  <block id="e4099d7825368082bd4b43f083cb9213" category="paragraph">&amp;ast; ポート 12 ～ 15 は 'Brocade 7840 スイッチの 2 番目の MetroCluster または DR グループ用に予約されています</block>
   <block id="cab785737f7e01bc6cf334a3297e22c3" category="cell">Cisco 9250i 注： Cisco 9250i スイッチは、 8 ノード MetroCluster 構成ではサポートされません。</block>
   <block id="affc2dad5d0c570ef33673937b9be675" category="list-text">の手順に従います <block ref="3165f1b1a2826f5bf149f919c95e9838" category="inline-link-macro-rx"></block> トランキングと QoS ゾーンをイネーブルにするには、を参照してください。</block>
   <block id="a33a00ea9f83279f39be404461d06dc1" category="paragraph">ファブリックを共有する場合のポート番号は、のセクションに記載されている番号とは異なります。共有する場合は、ポート 46 と 47 を ISL ポートに使用します。ISL ポートを移動した場合は、の手順を使用する必要があります <block ref="57ce78b7c8c4db3fb44a8dbd447a3f1f" category="inline-link-macro-rx"></block> セクションでポートを設定します。</block>
@@ -10115,7 +10105,6 @@
   <block id="436d3553136413496f4c1ab193b0224a" category="list-text">MySQL ログインが機能していることを確認します。</block>
   <block id="a4fddf98cdbecd6a73cbff1c16747db4" category="paragraph">「 [root@mcctb~]#mysql-u root – p`</block>
   <block id="f514e222790761ef9b22f805623d3f36" category="paragraph">ホストシステムが Red Hat Enterprise Linux （ RHEL ） 8 で実行されている必要があります。</block>
-  <block id="6dba822f853f76701715a4f97696a53a" category="list-text">MariaDB サーバをインストールします。</block>
   <block id="cef7dfc261d8a8420d1938a361c69aa9" category="paragraph">`[root@mcctb~]#yum は MariaDB -server.x86_64 をインストールします</block>
   <block id="60d8aee94c480f814db37523f4bf4e7c" category="list-text">MariaDB サーバを起動します。</block>
   <block id="5dfdc749670b1b02e69d44bfaebcca7a" category="paragraph">「 [root@mcctb~]# systemctl start MariaDB 」</block>
@@ -10123,7 +10112,6 @@
   <block id="937a7baab3806f1c4b9f6865102b0452" category="list-text">セキュリティとパスワードを設定します。</block>
   <block id="669f62b51efaf771cdc56bbd948e67a7" category="admonition">誤った MySQL ルートパスワードを入力すると、 Tiebreaker ソフトウェアのインストールが完了したことが通知されますが、 Access denied メッセージが表示されます。問題を解決するには 'rpm -e コマンドを使用して Tiebreaker ソフトウェアをアンインストールし ' 正しい MySQL ルート・パスワードを使用してソフトウェアを再インストールする必要があります</block>
   <block id="01e2bc057f0d0c9226b9b72fe02073dc" category="paragraph">「モニタの表示 - ステータス」</block>
-  <block id="62d21575da14f82a5429be44997ffec0" category="paragraph"><block ref="2d12f9e136c597ced9bd3fed196a9a6b" category="inline-xref-macro-rx"></block></block>
   <block id="69b040d4f8adaa4c34e437207036c73c" category="list-text">SNMP が設定されたことを確認します。</block>
   <block id="da82ec774885b0fd4ea7e17756ffc01b" category="paragraph">「 snmp config test 」</block>
   <block id="3b0649c72650c313a357338dcdfb64ec" category="cell">注</block>
@@ -10147,12 +10135,10 @@
   <block id="907482e03a773bacd1197e79ad353d1a" category="list-text">MySQL がブート時に自動で起動することが有効になっていることを確認します</block>
   <block id="9828a53574d333fd2cfd570e38922b4f" category="paragraph">「 [root@mcctb~]# systemctl list-buny-files mysqld.service` 」と入力します</block>
   <block id="6b78bf98fe8a405df5e22ad1b5b3a1ba" category="paragraph">ブート時に MySQL を自動で起動することが有効になっていない場合は、 MySQL のドキュメントを参照して、自動起動機能を有効にしてください。</block>
-  <block id="a6a94dd70978b2b80d52534ad2ff0763" category="section-title">MariaDB の自動起動設定を有効にします</block>
   <block id="3a792898663e436585860dc61b16ebbe" category="list-text">自動起動サービスを有効にします。</block>
   <block id="702b74d571398b97d529b92567ce42a7" category="paragraph">「 [root@mcctb~]# systemctl enable mariadb.service` 」を参照してください</block>
   <block id="5c77e1603fd1c29c92901cf08deda7ef" category="list-text">ブート時に MariaDB が自動で起動できることを確認します。</block>
   <block id="20859c72927d81163c0ef8c70e5f5855" category="paragraph">「 [root@mcctb~]# systemctl list-buny-files mariadb.service` 」と入力します</block>
-  <block id="742dc42b1fe2cbc56c22d6c1ccda0d88" category="paragraph">アップグレード前にモニタをオブザーバーモードに切り替えても、 Tiebreaker モニタが実行されているホストを最小限の中断でアップグレードできます。</block>
   <block id="c1b20466030a9b3540d83155ad9678ce" category="list-text">モニタがオブザーバーモードになっていることを確認します。</block>
   <block id="3e3282862342655e70b0b4d411fbb78b" category="list-text">オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。</block>
   <block id="088c19240da89dbb9f8682a7168eea93" category="paragraph">新しいノード（ site_B ）の状態が「 Waiting for switchback state * from site_A 」であることを確認します</block>
@@ -12061,7 +12047,6 @@
   <block id="2ad4e214daf4f2fbe760328984025270" category="list-text">FAS2750 / AFF A220のみまたはFAS500f/AFF A250のみで構成される2つのMetroCluster 設定については、MetroCluster ポートグループ3と4を選択する必要があります。</block>
   <block id="1c4e028af9d72f4e84ad919004a88581" category="list-text">一方のMetroCluster がFAS2750 / AFF A220で、もう一方がFAS500f/AFF A250である2つのMetroCluster 構成では、一方のポートグループで3と4を選択し、もう一方のでポートグループ1と2を選択する必要があります。を参照してください<block ref="166489b3c340ece1eccb5706fda90624" category="inline-link-rx"></block>ドロップダウンフィールド1と2は、ドロップダウンフィールド3と4でプラットフォームを選択した後、サポートされているプラットフォームのみを表示します。を参照してください <block ref="4dfd72a31c74d2e269d1ca49dcbd7291" category="inline-link-macro-rx"></block> ポートテーブルの使用方法の詳細については、を参照してください。</block>
   <block id="eab2b22490c89198b6c41f5b7c6e6104" category="image-alt">MCC IPケーブルAFF A250およびA220をBroadcom BES-53248スイッチに接続</block>
-  <block id="cbb84028bf466aea1ee153b79bbe1a90" category="list-text">Red Hat Enterprise Linux 71~7.9、またはCentOS 71~7.9 64ビット（物理インストールまたは仮想マシン）</block>
   <block id="af5c7720c35a6c5bbdbd9a0118f9b86a" category="list-text">MariaDB 10.x（「yum install MariaDB -server. x86_64」を使用してインストールされたデフォルトバージョンを使用）</block>
   <block id="f59e44c66a463087eb80b00cc5e7867c" category="list-text">同じNX-OSバージョンおよびライセンスの同じモデルの、サポートされている4台のCiscoスイッチを使用する必要があります。</block>
   <block id="de27fc3292cfa48f233ba5969313e590" category="list-text">Cisco FCストレージファブリックでは暗号化や圧縮を使用できません。MetroCluster 構成ではサポートされません。</block>
@@ -12494,8 +12479,6 @@
   <block id="80a030e3352fb989821aa7c6d15bcfad" category="inline-link-macro">パブリックレポート</block>
   <block id="dda33fc9a3cc083db08123f7d7e692a8" category="inline-link-macro">MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項</block>
   <block id="160ccce82c893f99e3f0614ca209899d" category="admonition">ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動強制スイッチオーバー機能をイネーブルにできます。この機能は、メディエーターアシスト計画外スイッチオーバーの拡張機能です。この機能を有効にする前に、を参照してください <block ref="a3a7e72ce1f5f993a44ac5e44397056b" category="inline-link-macro-rx"></block>。</block>
-  <block id="2c697c75c3912edd44d925cbf3b6566c" category="list-text">MetroCluster の自動強制スイッチオーバーを設定する場合は、次のコマンドを実行します。<block ref="956c336644e4861eddad733e8ae9f18c" prefix=" " category="inline-code"></block></block>
-  <block id="4830d0eb35b6c7bd558e3bba215a9a3f" category="paragraph">この機能を有効にする前に、を参照してください <block ref="a3a7e72ce1f5f993a44ac5e44397056b" category="inline-link-macro-rx"></block>。</block>
   <block id="d49fffd0ec397c8f5b53fbeb1bc93ee2" category="paragraph">ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動強制スイッチオーバー機能をイネーブルにできます。この機能は、Mediator-Assisted Unplanned Switchover（MAUSO；メディエーターアシスト計画外スイッチオーバー）機能の拡張です。</block>
   <block id="a6e62874574d6ae8ffc9dc6ea98c08e7" category="paragraph">サイト障害検出時のスイッチオーバーは、MetroCluster の自動強制スイッチオーバー機能を有効にすると自動的に実行されます。この機能は、MetroCluster IP自動スイッチオーバー機能を補完するために使用できます。</block>
   <block id="64aca5dcd09842ce5e26c9c9f52a5c79" category="paragraph">MetroCluster IP設定を自動強制スイッチオーバーモードで実行すると、次の既知の問題によってデータが失われる可能性があります。</block>
@@ -12717,20 +12700,13 @@
   <block id="928cee617936aa2a4fa44c397f9242d0" category="paragraph">Tiebreakerソフトウェアをインストールして設定する必要があります。</block>
   <block id="2cdf4d361a0254ca58a3bec3a13f4c97" category="admonition">MetroCluster Tiebreakerソフトウェアとそれに依存するパッケージをインストールするには、「root」権限が必要です。</block>
   <block id="08821d58a0ccf55fa3dc84c09844d2be" category="admonition">複数のMetroCluster Tiebreakerモニタとの競合を回避するために、MetroCluster 構成ごとに1つのTiebreakerモニタのみを使用できます。</block>
-  <block id="32c7669c4b727c3dd30ff98a0c602bff" category="list-text">ONTAP 8.3.x、9.0、9.1、9.2、9.3、 9.4、9.5、9.6、9.7、9.8、 9.9.1、9.10.1、9.11.1、または9.12.1</block>
-  <block id="c332d926b941e2e435266f227d47f710" category="admonition">RHELバージョン7-7.9と互換性があるのは、MetroCluster Tiebreaker 1.4のみです。</block>
   <block id="589527a6e982279d79d4094b9cb6a17d" category="list-text">JRE 8を開きます</block>
   <block id="b54b2f8d3b7da844c5372449a2f2e34b" category="list-text">Red Hat Enterprise Linux 8.1から8.7</block>
-  <block id="b4405cee9bd65889bb2683ee9723f1a6" category="paragraph">Tiebreaker 1.4以前を実行しているシステムの場合は、JRE 8を実行します。Tiebreaker 1.5以降を実行しているシステムの場合は、OpenJDK 17、18、または19を実行します。</block>
-  <block id="df3d50023ef4040e27c74e460fb82c76" category="section-title">ホストとデータベースのインストールを保護します</block>
   <block id="a70255bc79978e30e2226102ec52a8b4" category="paragraph">MetroCluster Tiebreaker 1.5以降を実行する構成では、ホストOSとデータベースを保護および強化できます。</block>
   <block id="fb42bff9ef98fcd52bf0394e5b82dbc4" category="section-title">ホストを保護します</block>
   <block id="ba55431ffbe07990825776e0189349f9" category="paragraph">次のガイドラインは、Tiebreakerソフトウェアがインストールされているホストを保護する方法を示しています。</block>
   <block id="77af0d306f63f871aed8775a2fee284e" category="list-text">「root」ユーザのアクセスを制限します。</block>
-  <block id="61f7733093f25bb223a42607ca2406c1" category="list-text">rootアクセスに昇格できるユーザを使用して、Tiebreakerソフトウェアをインストールおよび管理できます。</block>
   <block id="30550ee0195aa8c918aee8678daf6dc8" category="list-text">ルートアクセスに昇格できないユーザを使用してTiebreakerソフトウェアを管理できます。</block>
-  <block id="33e6988813e236adab8df9d5f7902aa5" category="admonition">インストール時に、「mcctbgrp」という名前のグループを作成する必要があります。ホストのrootユーザとインストール中に作成されたユーザは、両方ともメンバーです。Tiebreakerソフトウェアを完全に管理できるのは、このグループのメンバーだけです。</block>
-  <block id="4c57532a7794b3dceffcfaa9c83555c3" category="list-text">このグループのメンバーでないユーザはTiebreakerソフトウェアやCLIにアクセスできません。ホスト上に追加のユーザを作成して、それらのユーザをグループのメンバーにすることができます。これらの追加メンバーは、Tiebreakerソフトウェアを完全に管理することはできません。ReadOnlyアクセス権を持ち、モニタを追加、変更、削除することはできません。</block>
   <block id="c1f8ac8c1a56ebb5dd571d1786563ed6" category="list-text">ディスク暗号化を使用する</block>
   <block id="b0c14dc494b591e529b0b6c13cfbd8dd" category="list-text">ディスク暗号化を有効にすることができます。FullDiskEncryption（ハードウェア）か、HostOS（ソフトウェア）またはSVMホストが提供する暗号化です。</block>
   <block id="6b1d6ed0d8e28b63b51388bb7b60fd63" category="list-text">着信接続を許可する未使用のサービスを無効にします。使用していないサービスは無効にすることができます。Tiebreakerソフトウェアでは、Tiebreakerインストールからの接続はすべて発信であるため、受信接続にサービスは必要ありません。デフォルトで有効になっていて無効にできるサービスは次のとおりです。</block>
@@ -12743,20 +12719,15 @@
   <block id="0b188830f4d45166fb7cb045426789cd" category="list-text">FIPSを使用してホストを保護します</block>
   <block id="94591c4a627b8be3a77cc91a7b0c39ed" category="list-text">ホストOSをFIPS準拠モードでインストールしてからTiebreakerをインストールできます。</block>
   <block id="3e91f62daa13f5b54cc2bbf0a5356d5c" category="admonition">OpenJDK 19は、ホストがFIPSモードでインストールされているかどうかを起動時にチェックします。手動で変更する必要はありません。</block>
-  <block id="dd3533624ea6d478890db012d2a96e07" category="list-text">ベースラインの推奨事項</block>
   <block id="28f1a9422a1c43b899dff40ac21f8195" category="list-text">Tiebreakerをrootユーザとして実行しないでください。Tiebreakerの実行には、権限のない専用のサービスアカウントを使用します。</block>
   <block id="34b38a81712963f8bc96b575fb9e9d63" category="list-text">「/etc/snmp/snmpd.conf」ファイルのデフォルトのコミュニティストリングを変更します。</block>
   <block id="22792bff9ca0a70da01bbf3a534fb0a8" category="list-text">最小限の書き込み権限を許可します。権限のないTiebreakerサービスアカウントには、実行可能バイナリや構成ファイルを上書きするアクセス権がありません。Tiebreakerユーザが書き込みできるのは、ローカルのTiebreakerストレージ（統合バックエンドストレージなど）または監査ログのディレクトリとファイルだけです。</block>
-  <block id="78e2f9fbccdc78c822a630b60fdb45d2" category="list-text">End-to-End Transport Layer Security（TLS）：Tiebreakerは常にTLSで使用する必要があります。Tiebreakerの前面に中間ロードバランサまたはリバースプロキシを使用する場合は、システムのすべてのコンポーネント（バックエンドストレージを含む）間のすべてのネットワーク接続にTLSを使用して、Tiebreakerとの間で送受信されるすべてのトラフィックが暗号化されるようにする必要があります。可能な場合は、Tiebreakerのカスタム応答ヘッダー機能を使用してHTTP Strict Transport Security（HSTS）ヘッダーを設定します。</block>
-  <block id="d793625b2b0dd5dc51e94311cfc93a64" category="list-text">最新バージョンのOpenSSHをインストールして実行する必要があります。</block>
   <block id="ce7f15a2d18ae2db0c61e3bd34a36461" category="list-text">匿名ユーザを許可しないでください。</block>
   <block id="8e69b78393ea997402c47bcf5e3dc234" category="list-text">AllowTcpForwardingを「no」に設定するか、matchディレクティブを使用して匿名ユーザを制限します。</block>
   <block id="126a7d9f821252d114afe5a3bd55d49a" category="list-text">シェルコマンド履歴を無効にします。</block>
   <block id="98789e20ad857b904690ce90333052d6" category="list-text">頻繁にアップグレードする。Tiebreakerは積極的に開発されており、セキュリティ修正プログラムや、キーの長さや暗号スイートなどのデフォルト設定の変更を組み込むには、頻繁に更新することが重要です。</block>
   <block id="59c35ef819d1dde06d960624fd6fafd1" category="list-text">HashiCorp Announcementメーリングリストに登録すると、新しいリリースのお知らせを受け取ることができます。Tiebreaker CHANGELOGにアクセスして、新しいリリースの最新のアップデートの詳細を確認してください。</block>
   <block id="43a32642c83792b717745d6ba0b8ce88" category="list-text">正しいファイル権限を使用してください。Tiebreakerソフトウェアを起動する前に、特に機密情報を含むファイルに対して適切な権限が適用されていることを必ず確認してください。</block>
-  <block id="1aeb0f3005db6ba70bd420bae561dc5d" category="list-text">多要素認証（MFA）は、管理者がユーザ名とパスワード以外のものを使用して自身を識別するように要求することで、組織のセキュリティを強化します。ユーザー名とパスワードは重要ですが、ブルートフォース攻撃に対して脆弱であり、第三者によって盗まれる可能性があります。RHEL 8はMFAを提供します。MFAでは、アカウントまたはLinuxホストに対して正常に認証するために、ユーザが複数の情報を入力する必要があります。追加情報 は、SMSまたはGoogle Authenticator、Twilio Authy、FreeOTPなどのアプリからの認証情報を介して携帯電話に送信されるワンタイムパスワードです。</block>
-  <block id="92726ab5faeb2cb9208eaac9af0346bd" category="paragraph-title">ユーザ管理</block>
   <block id="29e7446bddd5d43e5b134b0195974dc4" category="inline-link-macro">ユーザアカウントの管理を開始します</block>
   <block id="e7093675e4f7ff464368a2c6885c0eff" category="paragraph"><block ref="e7093675e4f7ff464368a2c6885c0eff" category="inline-link-macro-rx"></block></block>
   <block id="65c86c5fc3a334e5116b9bb178b8f05f" category="inline-link-macro">ユーザアカウントとグループアカウントの管理の概要</block>
@@ -12768,20 +12739,9 @@
   <block id="11e979f92d60857c96e7cef79b2098cd" category="inline-link-macro">コマンドラインを使用したユーザグループの編集</block>
   <block id="5182eba1834da91a1e9b917f0ba52913" category="paragraph"><block ref="5182eba1834da91a1e9b917f0ba52913" category="inline-link-macro-rx"></block></block>
   <block id="b063c000eb4fba48d6e75b79adf42a9d" category="inline-link-macro">sudoアクセスの管理</block>
-  <block id="9d11eb8265b20d1b5cc3258afeee0197" category="paragraph"><block ref="9d11eb8265b20d1b5cc3258afeee0197" category="inline-link-macro-rx"></block></block>
   <block id="c5d7be9e703097d4676ec00c2b6b552e" category="inline-link-macro">rootパスワードの管理とリセット</block>
   <block id="6bff5b8adae91af0fd158a7e1d80c4fd" category="paragraph"><block ref="6bff5b8adae91af0fd158a7e1d80c4fd" category="inline-link-macro-rx"></block></block>
-  <block id="addb25ae677e0b8a55734ab57c09d585" category="inline-link-macro">セキュリティの強化</block>
-  <block id="77948500a8ac32e65224ff3e88f584f7" category="paragraph"><block ref="77948500a8ac32e65224ff3e88f584f7" category="inline-link-macro-rx"></block></block>
-  <block id="7e6eb8a8fac82fdcaf2a5595f008d4f8" category="inline-link-macro">ネットワークのセキュリティ保護</block>
-  <block id="e987f366c618f88054ad128bd499b7ee" category="paragraph"><block ref="e987f366c618f88054ad128bd499b7ee" category="inline-link-macro-rx"></block></block>
-  <block id="48bf78646325b8dac0d057af95860a05" category="inline-link-macro">systemctlによるシステムサービスの管理</block>
-  <block id="47bfa795f3168c6e7510c4c9ad03c05a" category="paragraph"><block ref="47bfa795f3168c6e7510c4c9ad03c05a" category="inline-link-macro-rx"></block></block>
-  <block id="48ff390f0fb64944dc24e6b219359ffe" category="inline-link-macro">RHEL 8のドキュメント</block>
-  <block id="810a71e7a8ed8d9a40260fe78cf59339" category="paragraph"><block ref="810a71e7a8ed8d9a40260fe78cf59339" category="inline-link-macro-rx"></block></block>
   <block id="a0b41d356b93c9dfaa68be7187603656" category="inline-link-macro">OpenJDK 8でのFIPSのデフォルト設定</block>
-  <block id="afa39d1513aaa715d473b01160b979a5" category="paragraph"><block ref="afa39d1513aaa715d473b01160b979a5" category="inline-link-macro-rx"></block></block>
-  <block id="da450a003a78f5bc0db625b903ebe4df" category="admonition">ホストを保護する場合は、ユーザの介入なしにホストをブートできることを確認する必要があります。ユーザの操作が必要な場合は、ホストが予期せずリブートした場合にTiebreaker機能を使用できないことがあります。この場合、Tiebreaker機能は手動操作が完了し、ホストが完全にブートした場合にのみ使用できます。</block>
   <block id="c22cb96c998e3ef3a46e95e20b46cc25" category="section-title">データベースのインストールを保護します</block>
   <block id="dde18c163a52fbc5fd51944f7a5cc78a" category="paragraph">次のガイドラインは、MariaDB 10.xデータベースのインストールを保護および強化する方法を示しています。</block>
   <block id="72cc9b23ef9181d84a5d1574a7d6b0fa" category="list-text">「root」ユーザのアクセスを制限します。</block>
@@ -12793,10 +12753,8 @@
   <block id="35217fef3323400eef6c43eae284fa4f" category="list-text">データベース・ユーザをデータベースおよびテーブルに関連付け、アクセス権を割り当てる機能</block>
   <block id="60353b50c7233098e0964ca219364fc6" category="admonition">Tiebreakerのインストール時に指定するユーザアカウントには、これらのすべての権限が必要です。異なるタスクに複数のユーザアカウントを使用することはサポートされていません。</block>
   <block id="9dc09eec2f0b114fc44ada1400453e18" category="list-text">データベースの暗号化を使用します</block>
-  <block id="9061f04f4bcdcda1f9e55b752788fb3d" category="list-text">保存データの暗号化をサポートしています</block>
   <block id="aa6d61e03c8f89f9d032024a34407fc4" category="list-text">転送中のデータは暗号化されません。転送中のデータは、ローカルの「ソックス」ファイル接続を使用します。</block>
   <block id="247b92755de52d8ede5f08728ea55244" category="list-text">MariaDBのFIPS準拠--データベースでFIPS準拠を有効にする必要はありません。FIPS準拠モードでホストをインストールすれば十分です。</block>
-  <block id="853fa7832b3e31e56f9427d88404dee9" category="admonition">暗号化が必要な場合は、Tiebreakerソフトウェアをインストールする前に暗号化設定を有効にする必要があります。</block>
   <block id="26f428eaa625d88e18348654825b4df2" category="list-text">データベースユーザ管理</block>
   <block id="65c931ac7059c8d8027b5347a2bc458a" category="inline-link-macro">アクセス制御とアカウント管理</block>
   <block id="6e668ee7d7022baf28de7345f448095c" category="paragraph"><block ref="6e668ee7d7022baf28de7345f448095c" category="inline-link-macro-rx"></block></block>
@@ -12805,11 +12763,6 @@
   <block id="529e037a8731bcfd360d39247cd9009f" category="paragraph"><block ref="529e037a8731bcfd360d39247cd9009f" category="inline-link-macro-rx"></block></block>
   <block id="6c64c3998d1974786fb6c7319be77e44" category="inline-link-macro">MariaDBの保護</block>
   <block id="85909cec38d8e32308f892163433f22f" category="paragraph"><block ref="85909cec38d8e32308f892163433f22f" category="inline-link-macro-rx"></block></block>
-  <block id="f460d5928c4cc0c85aa0f4f16edeefb7" category="list-text">保存データの暗号化</block>
-  <block id="a39641b0bac8191fa991bd279a1cb8aa" category="inline-link-macro">保存データの暗号化の概要</block>
-  <block id="481b20702b29a344c7e3fbc0ed5c8cd2" category="paragraph"><block ref="481b20702b29a344c7e3fbc0ed5c8cd2" category="inline-link-macro-rx"></block></block>
-  <block id="1d262274bf6315ede4b316f1c1ac7294" category="inline-link-macro">MySQL Enterprise Transparent Data Encryption（TDE）</block>
-  <block id="c738467feabecf5154d502220ea938b4" category="paragraph"><block ref="c738467feabecf5154d502220ea938b4" category="inline-link-macro-rx"></block></block>
   <block id="c212b56e6344256b819057aa0ff26e93" category="list-text">Vaultインストールを保護します</block>
   <block id="adfa274b93101556376a5c1c110a25b1" category="inline-link-macro">生産性の強化</block>
   <block id="3de794741da4d53ee89d2cfb65848ddb" category="paragraph"><block ref="3de794741da4d53ee89d2cfb65848ddb" category="inline-link-macro-rx"></block></block>
@@ -12819,28 +12772,15 @@
   <block id="6641dbbe07c8e6fe53f1f58917a97776" category="list-text">Vaultをインストールして設定します。</block>
   <block id="f798a783218170fc044aaf03491e8c63" category="inline-xref">Vaultをインストールして設定します</block>
   <block id="ef1f1252873864d80f380df4f260b300" category="paragraph"><block ref="11cd3d25aa255f8670dd0bfb1bb1d11c" category="inline-xref-macro-rx"></block></block>
-  <block id="4f98b9e93c5515ca7d85806f3a0879e7" category="paragraph">Tiebreakerソフトウェアをインストールまたはアップグレードする前に、ホストシステムにJREをインストールする必要があります。Tiebreaker 1.4以前を実行しているシステムの場合は、JRE 8を実行します。Tiebreaker 1.5以降を実行しているシステムの場合は、OpenJDK 17、18、または19を実行します。この例の出力はJRE 1.8.0を示しています。（JRE 8）。</block>
   <block id="037b7d55a30f474064c10ac0edbaf6d3" category="list-text">「root」ユーザまたはadvanced権限モードに変更できるsudoユーザとしてログインします。</block>
-  <block id="a5bdeb77664eccd64392e790b5c620a8" category="paragraph"><block ref="350a7ebb397b46f12bb07dab4792547e" prefix="" category="inline-code"></block></block>
   <block id="75c3358765861dfefd4446691eccaebc" category="paragraph">ローカルのボールトサーバーを持っていない場合、または使用する場合は、ボールトをインストールする必要があります。Vaultのインストールについては、この標準の手順 を参照してください。別のガイドラインについては、Hashicorpのインストール手順を参照してください。</block>
-  <block id="ae861828484d4409805ec1edb73c2ede" category="admonition">ネットワークにバックアップサーバがある場合は、そのバックアップを使用するようにMetroCluster Tiebreakerホストを設定できます。この場合、ホストにVaultをインストールする必要はありません。</block>
   <block id="6ab2b19db2409ff46893b7cf13d70d9d" category="list-text">Vault zipファイルをダウンロードします。</block>
   <block id="67445ff9dcb93ae0c427e0999e64cf35" category="list-text">ボールトファイルを解凍します。</block>
   <block id="17ddf110eb6e52617c8b7cf887babcb0" category="list-text">インストールを確認します。</block>
-  <block id="cc99362ed38d28fc7af6e2036222f681" category="list-text">ボールト構成ファイルを作成し、構成ファイルが"/root"ディレクトリの下に作成されていることを確認します。</block>
-  <block id="2a87ce89d72e3f90bd878edd443d805c" category="admonition">Vaultとの通信を保護するには、TLSを使用する必要があります。</block>
-  <block id="e8ab497790f83f5fc3740edafdb6d723" category="list-text">ボールトサーバーを起動します。<block ref="853dbf1e30ce9caf7a28a537403dabef" prefix=" " category="inline-code"></block></block>
   <block id="c3fa5062efbe5addb0b829217e486e9a" category="list-text">ボールトアドレスをエクスポートします。</block>
-  <block id="4de432bd9c82befd87621d345b19046d" category="paragraph">TLSを使用しているかどうかに応じて、正しいオプションを選択します。</block>
-  <block id="3279d9dbec65a434bbbaf6075818c7c5" category="open-title">オプション1：TLSを使用する場合</block>
-  <block id="3f8c35444ffef5a5d567e66fe6a43370" category="open-title">オプション2：TLSを使用しない場合</block>
   <block id="91e6f0d9d3028913e9b2e534b86ef446" category="list-text">Vaultを初期化します。</block>
   <block id="4c540f118761cf389d03c5408a7163e8" category="list-text">ボールトルートトークンをエクスポートします。</block>
-  <block id="30a9676a23282e273d7f6cbe1022a6eb" category="list-text">作成された3つのキーのいずれかを使用してボールトのシールを解除します。</block>
   <block id="4abdc80f31b6532d800862a32fe8ed41" category="list-text">Vault sealedステータスがfalseであることを確認します。</block>
-  <block id="6244f17ea488fb3773f5740fe78c9df2" category="list-text">起動中にホストでVaultサービスが開始されることを確認します。</block>
-  <block id="cb6b0d7f9ede942a2b4f800a3fcfa03e" category="list-text">次のコマンドを実行します。<block ref="df6090330d99fecb3392520a0dd713fe" prefix=" " category="inline-code"></block></block>
-  <block id="bccb0874ce0428092d8ca432cf7ff3dc" category="list-text">次のコマンドを実行します。<block ref="1ff331fe1baeee901f4e0e0790fc6fc3" prefix=" " category="inline-code"></block></block>
   <block id="b25f8301169ab26c8100b788b5a04f1f" category="list-text">次のコマンドを実行します。<block ref="269b117015efb12595eebf74692e5cbc" prefix=" " category="inline-code"></block></block>
   <block id="fe78cd97d75c844b841d778a0e4b605e" category="list-text">次のコマンドを実行します。<block ref="cbf0dd11767a9f63b03243350db0a86e" prefix=" " category="inline-code"></block></block>
   <block id="df9fc85b72713a8a0de9939c26c83353" category="admonition">MetroCluster Tiebreakerのインストール時に、この機能を使用するように求められます。Vaultのシールを解除する方法を変更する場合は、MetroCluster Tiebreakerソフトウェアをアンインストールして再インストールする必要があります。</block>
@@ -12850,8 +12790,6 @@
   <block id="c74f17ce72c64bc3a5d3eacc0affa867" category="paragraph">MySQLデーモンに対して自動起動機能が有効になっていることを確認する必要があります。MySQL デーモンを有効にすると、 MetroCluster Tiebreaker ソフトウェアがインストールされているシステムがリブートした場合に MySQL が自動的に再起動されます。MySQL デーモンが実行されていない場合、 Tiebreaker ソフトウェアは引き続き実行されますが、再起動したり設定を変更したりすることはできません。</block>
   <block id="7b21144e83a2d9bef049269b16711fb4" category="list-text">としてログインします<block ref="63a9f0ea7bb98050796b649e85481845" prefix=" " category="inline-code"></block> ユーザまたはadvanced権限モードでsudoを実行できるユーザ。</block>
   <block id="a85ec808ef0cc8f00cfefb33625bee2e" category="list-text">MariaDBサーバが起動したことを確認します。</block>
-  <block id="39082d88e748813ca7c4289ec8bb91b8" category="admonition">MariaDBで「自動起動を有効にする」設定がオンになっていることを確認します。を参照してください <block ref="357a9b2b77cd4c5da8d2b51300246283" category="inline-xref-macro-rx"></block>。</block>
-  <block id="516012473dc0564d6ae8f1bb21c934d0" category="paragraph">MariaDBで自動起動機能がオンになっていることを確認する必要があります。自動起動機能を有効にしておらず、 MetroCluster Tiebreaker ソフトウェアがインストールされているシステムをリブートする必要がある場合、 Tiebreaker ソフトウェアは引き続き実行されますが、 MariaDB サービスを再起動できず、設定を変更できません。</block>
   <block id="fe62eeb322eff90b81676630826cee46" category="list-text">を使用してOpenJDKをインストールしておく必要があります<block ref="366f2699f7c6384b966350ad31d76b9d" prefix=" " category="inline-code"></block> コマンドを実行しますTiebreaker 1.4以前を実行しているシステムの場合は、JRE 8を実行します。Tiebreaker 1.5以降を実行しているシステムの場合は、OpenJDK 17、18、または19を実行します。この例の出力はJRE 1.8.0を示しています。（JRE 8）。</block>
   <block id="8043dd95e39830a755744f552dcbfe87" category="list-text">MetroCluster Tiebreakerは、Tiebreakerのインストール、テーブル、ユーザの作成、ユーザパスワードの設定などを実行するための十分な管理権限を持つroot以外のユーザとしてインストールできます</block>
   <block id="9e60d73d0ca4d4a89597b4e9640c5dab" category="list-text">MetroCluster Tiebreaker ソフトウェアの最新バージョンをダウンロードします。この例ではバージョン1.5を使用しています。</block>
@@ -12866,7 +12804,6 @@
   <block id="fe5c4e6d23d7df5197bb3306f0890eba" category="admonition">Tiebreakerバージョン1.4からアップグレードする場合は、Tiebreakerバージョン1.5にのみアップグレードできます。以前のバージョンからTiebreaker 1.5へのアップグレードはサポートされていません。</block>
   <block id="f02f0088b75e56893084f3c6d0e11382" category="paragraph">新規インストールを実行するか、既存のインストールをアップグレードするかに応じて、以下から正しい手順 を選択します。</block>
   <block id="53a3299075fc91e0efbd249fca6a3b62" category="open-title">新規インストールを実行します</block>
-  <block id="40459a63d8595edf157d373070798f30" category="list-text">次のコマンドを実行します。<block ref="03b215d9ee73daa38b9c74b25129b68a" prefix=" " category="inline-code"></block></block>
   <block id="d0797ac7be86e76f779b0cdc4f75e306" category="list-text">サポートされているバージョンのOpenJDKがインストールされていること、およびホストにある現在のJavaバージョンであることを確認します。</block>
   <block id="bf9295a397fc51fb6414b02eb7dce4e7" category="admonition">Tiebreaker 1.5にアップグレードするには、OpenJDKバージョン17、18、または19をインストールする必要があります。</block>
   <block id="ee7ebb7261a4f55ecf1a40b55f7ec926" category="list-text">Vaultサービスが封印されておらず、実行されていることを確認します。<block ref="95a8292a01bd6ac4b1373bf95faab177" prefix=" " category="inline-code"></block></block>
@@ -13270,4 +13207,114 @@
   <block id="7162464dfaefdef75b18029dcb1bb1f1" category="list-text">ホストのSCSIバスを再スキャンして、新しく追加したパスを検出します。<block ref="9e65638d5d13acb691c4bec2ede5a483" prefix=" " category="inline-code"></block></block>
   <block id="9b3bd2afae038f8967e9373560a3b6d2" category="list-text">クライアントのSCSIバスを再スキャンします。<block ref="06653a48f6165608045bd55ec32d95fb" prefix=" " category="inline-code"></block></block>
   <block id="77139d079fd912afd88e4ca7f5623393" category="paragraph">コントローラモジュールにクアッドポートFCアダプタが設定されている場合は、ストレージスタックが同じASICの2つのFCポートに接続されていないことを確認します。ポート a とポート b で同じ ASIC を、ポート c とポート d で同じ ASIC をそれぞれ共有します。シェルフのスタックをポート A とポート B に接続しないでください代わりに、ポート a とポート c を使用するか、ポート b とポート d を使用して、 ASIC に障害が発生した場合の単一点障害を回避します。</block>
+  <block id="9df52fd51f68e1f0a1c54d87fbcf2d9f" category="paragraph">Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。Tiebreakerソフトウェアは3番目のサイトのLinuxホストに配置され、クラスタ内の各パートナーでISL障害（サイト間リンクが停止した場合）とサイト障害を区別できます。</block>
+  <block id="776aa0db93dc60ccb39a1a2bac58edd0" category="paragraph">Tiebreakerソフトウェアでは、最大15個のMetroCluster構成を同時に監視できます。MetroCluster IP構成、MetroCluster FC構成、ストレッチMetroCluster構成の組み合わせがサポートされます。</block>
+  <block id="2c6d3f6cb9e7e0273e71c2ee07e103ef" category="paragraph">Tiebreakerソフトウェアをインストールまたはアップグレードする前に、ホストのLinuxオペレーティングシステムに応じて、MySQLサーバまたはMariaDBサーバをインストールする必要があります。</block>
+  <block id="8844126d289515e2e309c080e84ee43c" category="paragraph">Tiebreakerソフトウェアをインストールまたはアップグレードする前に、ホストシステムにJREをインストールする必要があります。Tiebreaker 1.4以前を実行しているシステムの場合は、JRE 8を実行します。Tiebreaker 1.5以降を実行しているシステムの場合は、OpenJDK 17、18、または19を実行します。</block>
+  <block id="b5331b4efb390ddc30f3887a25420519" category="admonition">次の例の出力はJRE 1.8.0を示しています。（JRE 8）。</block>
+  <block id="154b8d6790ee60fd4d75865b3817482f" category="list-text">使用可能なJREバージョンを確認します。</block>
+  <block id="7865dda488c185a7d613d74e7df3f15e" category="paragraph"><block ref="a99f9b32ea34805f9efcc4f331f10afc" prefix="" category="inline-code"></block></block>
+  <block id="dbdea63ff1558fc908b06e926327423d" category="list-text">インストールするTiebreakerのバージョンに対応するJREバージョンをインストールします。</block>
+  <block id="27ed5e7119f96428586081a25adfe698" category="paragraph"><block ref="2ca50315d5ef6249cb28806653cc3bfe" prefix="" category="inline-code"></block></block>
+  <block id="b90b751e14131dd4f7b6cf9757e8e97a" category="admonition">ネットワークにバックアップサーバがある場合は、そのバックアップを使用するようにMetroCluster Tiebreakerホストを設定できます。この場合、ホストにVaultをインストールする必要はありません。</block>
+  <block id="5ecbe9b96b4eb8694b1debe91d9978db" category="list-text">に移動します<block ref="1e80cb7e0fbfc9f5c0509a465ecdf6cf" prefix=" " category="inline-code"></block> ディレクトリ：</block>
+  <block id="2cfe406f28049c6dd9fc09b125ac017c" category="list-text">に移動します<block ref="887904812217cca9bc2b9adb875daf42" prefix=" " category="inline-code"></block> ディレクトリ：</block>
+  <block id="e5fed78390db14651df11502997eefc1" category="list-text">ボルトコンフィギュレーションファイルを<block ref="887904812217cca9bc2b9adb875daf42" prefix=" " category="inline-code"></block> ディレクトリ。</block>
+  <block id="77ee658d0da12a583d90f46142713a70" category="paragraph">で<block ref="0f15246aac8ee03cc7aa24924035fc47" prefix=" " category="inline-code"></block> プロンプトが表示されたら、次のコマンドをコピーして実行し、<block ref="c26ec7c333d6f205a8a1e455e5b63152" prefix=" " category="inline-code"></block> ファイル：</block>
+  <block id="af2f867cdde590f904b311cec9ffb55f" category="list-text">ボールトサーバーを起動します。</block>
+  <block id="50e00d7db9933bcd338f8ad7584b9a82" category="admonition">キーIDと初期ルートトークンは、後で手順で使用できるように、記録して安全な場所に保存する必要があります。</block>
+  <block id="fad6f3fe2d13976932c4de2f7321158a" category="list-text">作成された5つのキーのうち3つを使用してVaultのシールを解除します。</block>
+  <block id="bf66ee77a260c1d89b48aa7abc777a2c" category="paragraph">を実行する必要があります<block ref="6f00b3924e35d47234f86b6ffaa53f3d" prefix=" " category="inline-code"></block> 3つのキーそれぞれに対して次のコマンドを実行します。</block>
+  <block id="8c927363df00bd6b4c2576cf88ba5638" category="list-text">最初のキーを使用してボールトのシールを解除します。</block>
+  <block id="bf04d903c71e68612d3567de44b27f15" category="list-text">2番目のキーを使用してボールトのシールを解除します。</block>
+  <block id="a4eba1eb7596f334db828f94b10645a6" category="list-text">3番目のキーを使用してボールトのシールを解除します。</block>
+  <block id="d1c2865b61def39472f4abfd355046b1" category="list-text">起動時に起動するようにVaultサービスを設定します。</block>
+  <block id="edf98314f5da2615b0c5d3b4b5e0b9b4" category="list-text">次のコマンドを実行します。<block ref="8c9e9c1b15b194b39e4608bcfd2378bb" prefix=" " category="inline-code"></block></block>
+  <block id="e03f788bbf29419e636a27e1f472e11a" category="list-text">で<block ref="8a496517030fe431ec5836d0c8ae9ba7" prefix=" " category="inline-code"></block> 次のコマンドをプロンプト表示し、コピーして実行して、ボールトサービスファイルを作成します。</block>
+  <block id="9b064180fbc505f7486a763d137edca1" category="list-text">MariaDBサーバをインストールします。</block>
+  <block id="6b79acfbbc5bbc131d2f2f0095452588" category="admonition">rootパスワードの入力を求められたら、空のままEnterキーを押してセキュリティとパスワードの設定を続行します。</block>
+  <block id="6f176c8a2e23e14b4e6fbf22deaea7f1" category="section-title">MariaDBサーバの自動起動設定の有効化</block>
+  <block id="b0d6d2175ecec830760ddc378a14c197" category="paragraph">MariaDBサーバで自動起動機能がオンになっていることを確認する必要があります。自動起動機能を有効にしておらず、 MetroCluster Tiebreaker ソフトウェアがインストールされているシステムをリブートする必要がある場合、 Tiebreaker ソフトウェアは引き続き実行されますが、 MariaDB サービスを再起動できず、設定を変更できません。</block>
+  <block id="457e8f6231f529b8a11028ebae92d27b" category="doc">Tiebreakerのホストとデータベースのインストールを保護する</block>
+  <block id="e97506311a4625245b4c7a4b57176ce3" category="section-title">ユーザ管理の推奨事項</block>
+  <block id="3232523ff4a40d267f68a13bbb03df0c" category="list-text">rootアクセスに昇格できるユーザを使用して、Tiebreakerソフトウェアをインストールおよび管理できます。 <block ref="9d11eb8265b20d1b5cc3258afeee0197" category="inline-link-macro-rx"></block></block>
+  <block id="5e5b4bcd476f7fe9e363a188ab99443b" category="list-text">インストール時に、「mcctbgrp」という名前のグループを作成する必要があります。ホストのrootユーザとインストール中に作成されたユーザは、両方ともメンバーである必要があります。Tiebreakerソフトウェアを完全に管理できるのは、このグループのメンバーだけです。</block>
+  <block id="0dcb0b0233e3f2356aaca0e848f12cc4" category="admonition">このグループのメンバーでないユーザはTiebreakerソフトウェアやCLIにアクセスできません。ホスト上に追加のユーザを作成して、それらのユーザをグループのメンバーにすることができます。これらの追加メンバーは、Tiebreakerソフトウェアを完全に管理することはできません。ReadOnlyにアクセスできるため、モニタの追加、変更、削除はできません。</block>
+  <block id="fe59497b414fc467e4ab9b4b2fd0be66" category="list-text">ユーザとアカウントの管理</block>
+  <block id="7f727428c803270e583eaddeb013aca4" category="list-text">WebコンソールまたはCLIを使用したユーザとグループの管理</block>
+  <block id="e61515ae08809701bf1ead416820c29d" category="list-text">rootパスワードの管理</block>
+  <block id="88ab4db9318fd99a5973f7836c0a8ee2" category="section-title">ベースラインホストセキュリティの推奨事項</block>
+  <block id="061515bf7de72fb94353317af70f32a5" category="inline-link-macro">systemctlを使用したシステムサービスの管理について</block>
+  <block id="04c83df2471b53349a1380d6594a6dfb" category="paragraph"><block ref="04c83df2471b53349a1380d6594a6dfb" category="inline-link-macro-rx"></block></block>
+  <block id="cf4ea178c9802758c291b6fe04a80105" category="paragraph">詳細については、を参照してください <block ref="afa39d1513aaa715d473b01160b979a5" category="inline-link-macro-rx"></block></block>
+  <block id="f6167fc25dca4237241452d4c50ff80f" category="list-text">ホストを保護する場合は、ユーザの介入なしにホストがブートできることを確認する必要があります。ユーザの操作が必要な場合、ホストが予期せずリブートしたときにTiebreaker機能を使用できないことがあります。この場合、Tiebreaker機能は手動操作後、ホストが完全にブートされた場合にのみ使用できます。</block>
+  <block id="627c400de9f499aced07d42c09563122" category="inline-link-macro">セキュリティ強化の詳細</block>
+  <block id="cd1ebc5ab6a9193c3eccbb08b0b7ed73" category="list-text">多要素認証（MFA）は、管理者がユーザ名とパスワード以外のものを使用して自身を識別するように要求することで、組織のセキュリティを強化します。ユーザー名とパスワードは重要ですが、ブルートフォース攻撃に対して脆弱であり、第三者によって盗まれる可能性があります。 <block ref="e9290f469c98ab9e8674920b93043758" category="inline-link-macro-rx"></block></block>
+  <block id="f49bc52f11d809c3633742c41eeec0a7" category="inline-link-macro">ネットワークのセキュリティ保護の詳細</block>
+  <block id="29a308883ebb4a95b6ddf165b75bed02" category="list-text">Red Hat Enterprise Linux 8にはMFAが用意されており、アカウントまたはLinuxホストに対して正常に認証するために複数の情報を指定する必要があります。追加情報 は、SMSまたはGoogle Authenticator、Twilio Authy、FreeOTPなどのアプリからの認証情報を介して携帯電話に送信されるワンタイムパスワードです。 <block ref="963efb6e18c87b850ef6a75fe996325a" category="inline-link-macro-rx"></block></block>
+  <block id="0c1569b269fb49dcb3a19e461599f8b2" category="inline-link-macro">保存データ暗号化の詳細</block>
+  <block id="d037eff76ce863bc8073ee65a4d7aa0f" category="list-text">保存データの暗号化がサポートされます。 <block ref="b9ec4fd69d69350fd85a6abd4005da82" category="inline-link-macro-rx"></block></block>
+  <block id="8fdb4169cdca0d0e1f02d4b06965140f" category="inline-link-macro">MySQL Enterprise Transparent Data Encryption（TDE）の詳細</block>
+  <block id="8d9f6f71afbbb7fa07ef3e65a4faa015" category="paragraph"><block ref="8d9f6f71afbbb7fa07ef3e65a4faa015" category="inline-link-macro-rx"></block></block>
+  <block id="287230691bdd80a939d056f48b82a01a" category="admonition">暗号化設定は、Tiebreakerソフトウェアをインストールする前に有効にする必要があります。</block>
+  <block id="74ca9f2037f85f9bee172d20503c7375" category="paragraph"><block ref="74ca9f2037f85f9bee172d20503c7375" category="inline-link-rx"></block></block>
+  <block id="6d4aa18fe97585a33f001d298b030e6f" category="list-text">をダウンロードします<block ref="24c30cbfcff7f858d1a30b6193122a01" prefix=" " category="inline-code"></block> キー：</block>
+  <block id="bf23d230569e17dc83fe9974217175d4" category="list-text">root以外のユーザを作成し、<block ref="d5a9c5909d563fb968e1c3dc3e45cd64" prefix=" " category="inline-code"></block> グループ：</block>
+  <block id="38197215de6dcb136775c6796090b013" category="list-text">root以外のユーザを作成し、パスワードを設定します。</block>
+  <block id="da3c3579b3acc10ce03265f6ec0f662b" category="paragraph">次の例は、という名前のroot以外のユーザを作成します。<block ref="9a0193f01098d3db3f929747ecaa2bda" prefix=" " category="inline-code"></block>：</block>
+  <block id="d7bb77ecb3c540f6987ab2f507fe3866" category="list-text">という名前のグループを作成します。<block ref="d5a9c5909d563fb968e1c3dc3e45cd64" prefix=" " category="inline-code"></block>：</block>
+  <block id="43a9e8daa1ed87294695ca1cc6c44bfb" category="paragraph"><block ref="d41ee33fcac5b73ea8ab475ee787f3dc" prefix="" category="inline-code"></block></block>
+  <block id="244e7509a99f4be8215251e45f757157" category="list-text">作成したroot以外のユーザをに追加します。<block ref="d5a9c5909d563fb968e1c3dc3e45cd64" prefix=" " category="inline-code"></block> グループ：</block>
+  <block id="4a2e3179b016527d95a95ddbfdbbfb52" category="paragraph">次のコマンドでは、<block ref="9a0193f01098d3db3f929747ecaa2bda" prefix=" " category="inline-code"></block> に移動します<block ref="d5a9c5909d563fb968e1c3dc3e45cd64" prefix=" " category="inline-code"></block> グループ：</block>
+  <block id="918fd9b3587bd491716d7f8d146e2977" category="paragraph"><block ref="4e4bd83892276983ed037073ae5e4a67" prefix="" category="inline-code"></block></block>
+  <block id="c59388cc8762bb4b6aadfd611484625f" category="paragraph">RPMキーが格納されているディレクトリから、次の手順を実行します。</block>
+  <block id="a41a029b875096344ffc788be91b9870" category="list-text">Javaの絶対パスを取得して記録します。</block>
+  <block id="bf2a1a18c2c6398b764f31d46e296f2f" category="list-text">次のコマンドを実行します。<block ref="03b215d9ee73daa38b9c74b25129b68a" prefix=" " category="inline-code"></block></block>
+  <block id="3ac11446b528739d814fa9e6668fa288" category="admonition">インストール中にプロンプトが表示されたら、以前に作成してに割り当てたroot以外のユーザを指定します。<block ref="d5a9c5909d563fb968e1c3dc3e45cd64" prefix=" " category="inline-code"></block> グループ：</block>
+  <block id="2d0e9a7694bf5bc701c3af145a6bba71" category="doc">要件を確認</block>
+  <block id="7ddb33edf227a18eb76201fcb9e2c9db" category="section-title">ソフトウェア要件</block>
+  <block id="652ef26e1fed1ab97fdc4a6c15b02207" category="paragraph">インストールするTiebreakerのバージョンに応じて、次のソフトウェア要件を満たしている必要があります。</block>
+  <block id="7756d8f2d40ed781cebba0f1c1f2b14d" category="cell">ONTAP Tiebreakerのバージョン</block>
+  <block id="eae7ed824c301543a7e09d88d74d7b19" category="cell">サポートされるONTAPのバージョン</block>
+  <block id="7086defea73bc85dfa4588f2db92a805" category="cell">サポートされている Linux バージョン</block>
+  <block id="15ba8037db400229bb5f51956efd5111" category="cell">Java/MariaDBノヨウケン</block>
+  <block id="64b48b15797ae9ce8dde94af89070b3d" category="paragraph">Red Hat Enterprise Linux 8.1から8.7の場合：</block>
+  <block id="389dbd9d6deb8eabbab651256bf77680" category="list-text">OpenJDK 17、18、または19</block>
+  <block id="9e605ce3bb6ad134bb55c54d861ceb6a" category="paragraph">1.4</block>
+  <block id="d1b3737d5bc8f98b3241666f4d0cd1cf" category="paragraph">ONTAP 9.2以降</block>
+  <block id="09eecd50480033ff43835a86efed6607" category="list-text">Red Hat Enterprise Linux 7～7.9</block>
+  <block id="ae1dfcc629f4542382fd6286dbfe5a0d" category="list-text">CentOS 7～7.9 64ビット</block>
+  <block id="3f4ac8596d411de0ef0ad341cbeb82aa" category="paragraph">CentOSの場合：</block>
+  <block id="66df7c0e2a0c107715ece74d340b7499" category="paragraph">* MariaDB 10.x（yum install mariaDB-server.x86_64を使用してインストールされるデフォルトのバージョンを使用）
+* JRE 8</block>
+  <block id="024464eb7b3fd909a9746dff88c6b9c9" category="section-title">その他の要件</block>
+  <block id="4b0a6058e6a6f2eafcc1db1a3a9573fb" category="paragraph">さらに次の要件に注意する必要があります。</block>
+  <block id="64f896c377dcdc9e0d5ae4809d1c3a73" category="list-text">Tiebreakerソフトウェアのネットワークタイムプロトコル（NTP）ソースを選択する場合は、ローカルのNTPソースを使用する必要があります。Tiebreakerソフトウェアが監視するMetroClusterサイトと同じソースをTiebreakerソフトウェアで使用しないでください。</block>
+  <block id="490414e0366b091220802d406e52c076" category="doc">新機能</block>
+  <block id="f68e01d366d2b521019205564511ae77" category="paragraph">各リリースでは、MetroCluster Tiebreakerの機能が強化されています。MetroCluster Tiebreakerの最近のリリースの新機能は次のとおりです。</block>
+  <block id="c1748037d10cffabb8e95e4ccf77c613" category="section-title">拡張機能</block>
+  <block id="6a2fab1a92eaec5f3c3d9b2d28d580c4" category="list-text">サポートライブラリの更新</block>
+  <block id="5f6c185eb38c56187fc699dfbe62654b" category="list-text">セキュリティの機能拡張</block>
+  <block id="d278aad9be542d15b42d2b30e3ac0701" category="section-title">OSサポートマトリックス</block>
+  <block id="bc66e40e6d2b679666709d4696a3e3a0" category="cell">Tiebreakerバージョン</block>
+  <block id="2ff01ce7887ede183a0dcb4bf579a040" category="cell">CentOS 7-7.9</block>
+  <block id="afdc9e833dc368813fa4f4ad3b6ff344" category="cell">RedHat 7-7.9</block>
+  <block id="a3d07f12ac6e702822c54bd39beca7e2" category="cell">RedHat 8.1-8.7</block>
+  <block id="f3bda6ae20e6fe147fffa682501d3941" category="paragraph">アップグレード前にモニタをオブザーバーモードにした場合は、Tiebreakerモニタが実行されているホストを最小限の中断でアップグレードできます。</block>
+  <block id="41d2ed82aa95a99454a02273bf71db16" category="inline-link-macro">Tiebreakerパッケージのインストールまたはアップグレード</block>
+  <block id="4df70720c02e1beb11cbc3ae87370ddf" category="paragraph"><block ref="4df70720c02e1beb11cbc3ae87370ddf" category="inline-link-macro-rx"></block></block>
+  <block id="e409cbaf30133c40afd8ba79b71e06ee" category="paragraph">#42;ポート12~15はBrocade 7840スイッチの2番目のMetroClusterまたはDRグループ用に予約されています。</block>
+  <block id="2a8e60d3a0b3d603c27fa9c4562178bf" category="summary">NetApp MetroCluster構成では、アレイベースのクラスタリングと同期レプリケーションを組み合わせて継続的な可用性を実現し、ミッションクリティカルなすべてのデータをトランザクション単位で即座に複製します。</block>
+  <block id="99d7ea00899cf98fde6ae4bd7a763fe6" category="list-text">Automatic Unplanned Switchover（AUSO；自動計画外スイッチオーバー）障害ドメインの状態を確認します。</block>
+  <block id="914c0f805af7b6a979c9b14a8fca637d" category="admonition">次の例は、環境 ONTAP 9.13.1以降の出力を示しています。ONTAP 9.12.1以前では、AUSO障害ドメインの状態は<block ref="8371e13c4fc64771e634f39be50ec198" prefix=" " category="inline-code"></block>。</block>
+  <block id="1d2738c61f2ddb3b312cabca3378259b" category="list-text">必要に応じて、MetroClusterの自動強制スイッチオーバーを設定します。</block>
+  <block id="09bb2a0904755eb985fc0c00a8eaeb29" category="paragraph">次のコマンドはadvanced権限レベルでのみ使用できます。</block>
+  <block id="142e30c0e2bc40260b6bba783159349f" category="admonition">このコマンドを使用する前に、 <block ref="a3a7e72ce1f5f993a44ac5e44397056b" category="inline-link-macro-rx"></block>。</block>
+  <block id="626946adf45b7bb7ff18b4ffcb520404" category="paragraph"><block ref="c3c9b152afaa4bfa0aa390b3e2063a6d" prefix="" category="inline-code"></block></block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新機能</block>
+  <block id="f76aaf3aaa7b30238e7a3e2b1a04493b" category="sidebar">インストールの準備</block>
+  <block id="bbce41d7b43eef36d5db9bed94db0495" category="sidebar">インストールの依存関係</block>
+  <block id="9adb8eb34f7ed5a25405fe6af3b01c0a" category="sidebar">インストールのセキュリティを確保する</block>
+  <block id="357559d73c5bb22e54ab3aeafca1013b" category="sidebar">ソフトウェアパッケージのインストール</block>
+  <block id="3689ab983cde586722e4881cdbf1822a" category="sidebar">ホストのアップグレード</block>
 </blocks>

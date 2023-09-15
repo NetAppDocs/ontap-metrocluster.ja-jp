@@ -1,0 +1,89 @@
+---
+permalink: tiebreaker/install_prepare.html 
+sidebar: sidebar 
+keywords: install, tiebreaker, software, monitor, capabilities, capability, cluster, storage, environment, snmp, notification, event, node, connectivity, issue, site, disaster, system, install, upgrade, upgrading, software, dependencies, dependency, package, ntp, requirements, requirements for tiebreaker, tiebreaker requirements, mysql, mariadb, autostart, database 
+summary: Tiebreaker ソフトウェアは、クラスタストレージ環境に監視機能を提供します。また、ノード接続の問題やサイト障害が発生した場合に SNMP 通知を送信します。 
+---
+= 要件を確認
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tiebreaker ソフトウェアは、クラスタストレージ環境に監視機能を提供します。また、ノード接続の問題やサイト障害が発生した場合に SNMP 通知を送信します。
+
+Tiebreakerソフトウェアをインストールして設定する必要があります。
+
+
+
+== ソフトウェア要件
+
+インストールするTiebreakerのバージョンに応じて、次のソフトウェア要件を満たしている必要があります。
+
+[cols="1,1,1,2"]
+|===
+
+
+| ONTAP Tiebreakerのバージョン | サポートされるONTAPのバージョン | サポートされている Linux バージョン | Java/MariaDBノヨウケン 
+
+
+ a| 
+1.5
+ a| 
+ONTAP 9.8以降
+ a| 
+* Red Hat Enterprise Linux 8.1から8.7
+
+ a| 
+Red Hat Enterprise Linux 8.1から8.7の場合：
+
+* MariaDB 10.x（「yum install MariaDB -server. x86_64」を使用してインストールされたデフォルトバージョンを使用）
+* OpenJDK 17、18、または19
+
+
+
+
+ a| 
+1.4
+ a| 
+ONTAP 9.2以降
+ a| 
+* Red Hat Enterprise Linux 8.1から8.7
+* Red Hat Enterprise Linux 7～7.9
+* CentOS 7～7.9 64ビット
+
+ a| 
+CentOSの場合：
+
+* MariaDB 5.5.52.x / MySQL サーバ 5.6x
+* 4GB の RAM
+* JRE 8を開きます
+
+
+Red Hat Enterprise Linux 8.1から8.7の場合：
+
+* MariaDB 10.x（yum install mariaDB-server.x86_64を使用してインストールされるデフォルトのバージョンを使用）
+* JRE 8
+
+|===
+
+
+== その他の要件
+
+さらに次の要件に注意する必要があります。
+
+* Tiebreaker ソフトウェアは 3 つ目のサイトにインストールします。これにより、スイッチ間リンク（ ISL ）障害（サイト間リンクが停止している）障害とサイト障害をソフトウェアが区別できるようになります。ローカルコンピュータに Tiebreaker ソフトウェアをインストールまたはアップグレードして MetroCluster 構成を監視するには、ホストシステムが特定の要件を満たしている必要があります。
+* MetroCluster Tiebreakerソフトウェアとそれに依存するパッケージをインストールするには、「root」権限が必要です。
+* 複数のMetroCluster Tiebreakerモニタとの競合を回避するために、MetroCluster 構成ごとに1つのTiebreakerモニタのみを使用できます。
+* Tiebreakerソフトウェアのネットワークタイムプロトコル（NTP）ソースを選択する場合は、ローカルのNTPソースを使用する必要があります。Tiebreakerソフトウェアが監視するMetroClusterサイトと同じソースをTiebreakerソフトウェアで使用しないでください。
+
+
+* ディスク容量： 8GB
+* ファイアウォール：
++
+** AutoSupport メッセージをセットアップするための直接アクセス
+** SSH （ポート 22 / TCP ）、 HTTPS （ポート 443 / TCP ）、および ping （ ICMP ）
+
+
+

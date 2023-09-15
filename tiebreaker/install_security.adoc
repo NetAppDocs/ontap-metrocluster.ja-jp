@@ -1,0 +1,175 @@
+---
+permalink: tiebreaker/install_security.html 
+sidebar: sidebar 
+keywords: install, tiebreaker, software, monitor, capabilities, capability, cluster, storage, environment, snmp, notification, event, node, connectivity, issue, site, disaster, system, install, upgrade, upgrading, software, dependencies, dependency, package, ntp, requirements, requirements for tiebreaker, tiebreaker requirements, mysql, mariadb, autostart, database 
+summary: Tiebreaker ソフトウェアは、クラスタストレージ環境に監視機能を提供します。また、ノード接続の問題やサイト障害が発生した場合に SNMP 通知を送信します。 
+---
+= Tiebreakerのホストとデータベースのインストールを保護する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster Tiebreaker 1.5以降を実行する構成では、ホストOSとデータベースを保護および強化できます。
+
+
+
+== ホストを保護します
+
+次のガイドラインは、Tiebreakerソフトウェアがインストールされているホストを保護する方法を示しています。
+
+
+
+=== ユーザ管理の推奨事項
+
+* 「root」ユーザのアクセスを制限します。
++
+** rootアクセスに昇格できるユーザを使用して、Tiebreakerソフトウェアをインストールおよび管理できます。 link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-sudo-access_configuring-basic-system-settings["sudoアクセスの管理"^]
+** ルートアクセスに昇格できないユーザを使用してTiebreakerソフトウェアを管理できます。
+** インストール時に、「mcctbgrp」という名前のグループを作成する必要があります。ホストのrootユーザとインストール中に作成されたユーザは、両方ともメンバーである必要があります。Tiebreakerソフトウェアを完全に管理できるのは、このグループのメンバーだけです。
++
+
+NOTE: このグループのメンバーでないユーザはTiebreakerソフトウェアやCLIにアクセスできません。ホスト上に追加のユーザを作成して、それらのユーザをグループのメンバーにすることができます。これらの追加メンバーは、Tiebreakerソフトウェアを完全に管理することはできません。ReadOnlyにアクセスできるため、モニタの追加、変更、削除はできません。
+
+** Tiebreakerをrootユーザとして実行しないでください。Tiebreakerの実行には、権限のない専用のサービスアカウントを使用します。
+
+
+* 「/etc/snmp/snmpd.conf」ファイルのデフォルトのコミュニティストリングを変更します。
+* 最小限の書き込み権限を許可します。権限のないTiebreakerサービスアカウントには、実行可能バイナリや構成ファイルを上書きするアクセス権がありません。Tiebreakerユーザが書き込みできるのは、ローカルのTiebreakerストレージ（統合バックエンドストレージなど）または監査ログのディレクトリとファイルだけです。
+* 匿名ユーザを許可しないでください。
++
+** AllowTcpForwardingを「no」に設定するか、matchディレクティブを使用して匿名ユーザを制限します。
+
+
+
+
+.関連情報
+* ユーザとアカウントの管理
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_getting-started-with-managing-user-accounts_configuring-basic-system-settings["ユーザアカウントの管理を開始します"^]
+
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/introduction-to-managing-user-and-group-accounts_configuring-basic-system-settings["ユーザアカウントとグループアカウントの管理の概要"^]
+
+* WebコンソールまたはCLIを使用したユーザとグループの管理
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-user-accounts-in-the-web-console-new_configuring-basic-system-settings["Webコンソールでのユーザアカウントの管理"^]
+
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-users-from-the-command-line_configuring-basic-system-settings["コマンドラインからのユーザの管理"^]
+
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/editing-user-groups-using-the-command-line_configuring-basic-system-settings["コマンドラインを使用したユーザグループの編集"^]
+
+* rootパスワードの管理
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/changing-and-resetting-the-root-password-from-the-command-line_configuring-basic-system-settings["rootパスワードの管理とリセット"^]
+
+
+
+
+
+=== ベースラインホストセキュリティの推奨事項
+
+* ディスク暗号化を使用する
++
+** ディスク暗号化を有効にすることができます。FullDiskEncryption（ハードウェア）か、HostOS（ソフトウェア）またはSVMホストが提供する暗号化です。
+
+
+* 着信接続を許可する未使用のサービスを無効にします。使用していないサービスは無効にすることができます。Tiebreakerソフトウェアでは、Tiebreakerインストールからの接続はすべて発信であるため、受信接続にサービスは必要ありません。デフォルトで有効になっていて無効にできるサービスは次のとおりです。
++
+** HTTP / HTTPSサーバ
+** FTPサーバ
+** Telnet、RSH、rlogin
+** NFS、CIFS、およびその他のプロトコルアクセス
+** RDP（RemoteDesktopProtocol）、X11サーバ、VNC、またはその他のリモート「デスクトップ」サービスプロバイダー。
++
+
+NOTE: ホストをリモートで管理するには、シリアルコンソールアクセス（サポートされている場合）または少なくとも1つのプロトコルを有効にしておく必要があります。すべてのプロトコルを無効にすると、管理のためにホストに物理的にアクセスする必要があります。
+
++
+link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-system-services-with-systemctl_configuring-basic-system-settings["systemctlを使用したシステムサービスの管理について"^]
+
+
+
+* FIPSを使用してホストを保護します
++
+** ホストOSをFIPS準拠モードでインストールしてからTiebreakerをインストールできます。
++
+
+NOTE: OpenJDK 19は、ホストがFIPSモードでインストールされているかどうかを起動時にチェックします。手動で変更する必要はありません。
+
++
+詳細については、を参照してください link:https://access.redhat.com/documentation/ru-ru/openjdk/8/html/configuring_openjdk_8_on_rhel_with_fips/openjdk-default-fips-configuration["OpenJDK 8でのFIPSのデフォルト設定"^]
+
+** ホストを保護する場合は、ユーザの介入なしにホストがブートできることを確認する必要があります。ユーザの操作が必要な場合、ホストが予期せずリブートしたときにTiebreaker機能を使用できないことがあります。この場合、Tiebreaker機能は手動操作後、ホストが完全にブートされた場合にのみ使用できます。
+
+
+* シェルコマンド履歴を無効にします。
+* 頻繁にアップグレードする。Tiebreakerは積極的に開発されており、セキュリティ修正プログラムや、キーの長さや暗号スイートなどのデフォルト設定の変更を組み込むには、頻繁に更新することが重要です。
+* HashiCorp Announcementメーリングリストに登録すると、新しいリリースのお知らせを受け取ることができます。Tiebreaker CHANGELOGにアクセスして、新しいリリースの最新のアップデートの詳細を確認してください。
+* 正しいファイル権限を使用してください。Tiebreakerソフトウェアを起動する前に、特に機密情報を含むファイルに対して適切な権限が適用されていることを必ず確認してください。
+* 多要素認証（MFA）は、管理者がユーザ名とパスワード以外のものを使用して自身を識別するように要求することで、組織のセキュリティを強化します。ユーザー名とパスワードは重要ですが、ブルートフォース攻撃に対して脆弱であり、第三者によって盗まれる可能性があります。 link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/index["セキュリティ強化の詳細"^]
++
+** Red Hat Enterprise Linux 8にはMFAが用意されており、アカウントまたはLinuxホストに対して正常に認証するために複数の情報を指定する必要があります。追加情報 は、SMSまたはGoogle Authenticator、Twilio Authy、FreeOTPなどのアプリからの認証情報を介して携帯電話に送信されるワンタイムパスワードです。 link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/securing_networks/index["ネットワークのセキュリティ保護の詳細"^]
+
+
+
+
+
+
+== データベースのインストールを保護します
+
+次のガイドラインは、MariaDB 10.xデータベースのインストールを保護および強化する方法を示しています。
+
+* 「root」ユーザのアクセスを制限します。
++
+** Tiebreakerは専用のアカウントを使用します。（設定）データを格納するアカウントとテーブルは、Tiebreakerのインストール時に作成されます。データベースへの昇格アクセスが必要なのは、インストール中だけです。
+
+
+* インストール中は、次のアクセス権と権限が必要です。
++
+** データベースとテーブルを作成する機能
+** グローバルオプションを作成する機能
+** データベースユーザを作成し、パスワードを設定する機能
+** データベース・ユーザをデータベースおよびテーブルに関連付け、アクセス権を割り当てる機能
++
+
+NOTE: Tiebreakerのインストール時に指定するユーザアカウントには、これらのすべての権限が必要です。異なるタスクに複数のユーザアカウントを使用することはサポートされていません。
+
+
+
+* データベースの暗号化を使用します
++
+** 保存データの暗号化がサポートされます。 link:https://mariadb.com/kb/en/data-at-rest-encryption-overview/["保存データ暗号化の詳細"^]
+** 転送中のデータは暗号化されません。転送中のデータは、ローカルの「ソックス」ファイル接続を使用します。
+** MariaDBのFIPS準拠--データベースでFIPS準拠を有効にする必要はありません。FIPS準拠モードでホストをインストールすれば十分です。
++
+link:https://www.mysql.com/products/enterprise/tde.html["MySQL Enterprise Transparent Data Encryption（TDE）の詳細"^]
+
++
+
+NOTE: 暗号化設定は、Tiebreakerソフトウェアをインストールする前に有効にする必要があります。
+
+
+
+
+
+.関連情報
+* データベースユーザ管理
++
+link:https://dev.mysql.com/doc/refman/8.0/en/access-control.html["アクセス制御とアカウント管理"^]
+
+* データベースを保護します
++
+link:https://dev.mysql.com/doc/refman/8.0/en/security-against-attack.html["MySQLを攻撃者から保護する"^]
+
++
+link:https://mariadb.com/kb/en/securing-mariadb/["MariaDBの保護"^]
+
+* Vaultインストールを保護します
++
+link:https://developer.hashicorp.com/vault/tutorials/operations/production-hardening/["生産性の強化"^]
+
+

@@ -17,9 +17,11 @@ NetApp MetroCluster Tiebreaker ソフトウェアの概要、およびどのよ�
 
 == NetApp MetroCluster Tiebreaker ソフトウェアによる障害の検出
 
-Tiebreaker ソフトウェアは Linux ホストにインストールされます。Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。これにより、サイト間リンクが停止した場合に、クラスタ内の各パートナーで ISL 障害とサイト障害を区別することができます。
+Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。Tiebreakerソフトウェアは3番目のサイトのLinuxホストに配置され、クラスタ内の各パートナーでISL障害（サイト間リンクが停止した場合）とサイト障害を区別できます。
 
 Linux ホストに Tiebreaker ソフトウェアをインストールしたら、災害状況を監視するように MetroCluster 構成内のクラスタを設定できます。
+
+Tiebreakerソフトウェアでは、最大15個のMetroCluster構成を同時に監視できます。MetroCluster IP構成、MetroCluster FC構成、ストレッチMetroCluster構成の組み合わせがサポートされます。
 
 
 
