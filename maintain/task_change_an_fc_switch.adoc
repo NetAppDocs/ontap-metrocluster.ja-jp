@@ -1,0 +1,110 @@
+---
+permalink: maintain/task_change_an_fc_switch.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, change, fc, switch 
+summary: FCスイッチのベンダーの変更（CiscoからBrocadeへ、またはその逆）、スイッチモデルの変更、またはその両方が必要になる場合があります。 
+---
+= FCスイッチのベンダーまたはモデルを変更する
+:allow-uri-read: 
+
+
+[role="lead"]
+FCスイッチのベンダーをCiscoからBrocadeに（またはその逆に）変更しなければならない場合があります。また、スイッチモデルの変更、またはその両方を行う必要があります。
+
+.このタスクについて
+* この手順は、NetApp検証済みスイッチを使用している場合に適用されます。
+* 構成内の両方のファブリックについて、この手順の手順を一度に1つのファブリックで実行する必要があります。
+
+
+.手順
+. [[step_1、手順1]]構成の健全性を確認します。
++
+.. MetroCluster が構成されていて、各クラスタで通常モードであることを確認します。「 * MetroCluster show * 」
++
+[listing]
+----
+cluster_A::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+Remote: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain auso-on-cluster-disaster
+----
+.. 各ノードでミラーリングが有効になっていることを確認します。「 * MetroCluster node show * 」
++
+[listing]
+----
+cluster_A::> metrocluster node show
+DR                           Configuration  DR
+Group Cluster Node           State          Mirroring Mode
+----- ------- -------------- -------------- --------- --------------------
+1     cluster_A
+              node_A_1       configured     enabled   normal
+      cluster_B
+              node_B_1       configured     enabled   normal
+2 entries were displayed.
+----
+.. MetroCluster コンポーネントが正常であることを確認します :'* MetroCluster check run*
++
+[listing]
+----
+cluster_A::> metrocluster check run
+
+Last Checked On: 10/1/2014 16:03:37
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+4 entries were displayed.
+
+Command completed. Use the "metrocluster check show -instance" command or sub-commands in "metrocluster check" directory for detailed results.
+To check if the nodes are ready to do a switchover or switchback operation, run "metrocluster switchover -simulate" or "metrocluster switchback -simulate", respectively.
+----
+.. ヘルス・アラートがないことを確認してください： * system health alert show *
+
+
+. 設置前に新しいスイッチを設定します。
++
+の手順に従います link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/task_reset_the_brocade_fc_switch_to_factory_defaults.html["FC スイッチを設定"]。
+
+. 次の順序で接続を外して、古いスイッチから接続を切断します。
++
+.. ローカルクラスタインターフェイスがスイッチに接続されている場合は、次の手順を実行します。
++
+... ローカルクラスタインターフェイスを切断します
+... ローカルクラスタのISLを切断します
+
+
+.. MetroCluster IPインターフェイスを切断します。
+.. MetroCluster ISLを切断します。
+
+
+. 古いスイッチの電源をオフにしてケーブルを外し、古いスイッチを新しいスイッチと物理的に交換します。
+. 次の順序でスイッチをケーブル接続します。
++
+の手順に従う必要があります。 link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/task_rack_the_hardware_components_mcc_fabric_and_ip.html["MetroClusterコンポーネントの設置とケーブル接続"]。
+
++
+.. リモートサイトにISLをケーブル接続します。
+.. MetroCluster IPインターフェイスをケーブル接続します。
+.. ローカルクラスタインターフェイスをケーブル接続します。
++
+ローカルクラスタインターフェイスがスイッチに接続されている場合は、次の手順を実行します。
+
++
+... ローカルクラスタインターフェイスをケーブル接続します。
+... ローカルクラスタのISLをケーブル接続します。
+
+
+
+
+. スイッチの電源をオンにします。
+. を繰り返して、MetroCluster 構成が正常であることを確認します <<手順 1.>>。
+. 構成内の2つ目のファブリックについて、手順1～7を繰り返します。
+

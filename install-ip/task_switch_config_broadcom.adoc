@@ -865,3 +865,44 @@ IP_switch_A_1# reload
 ----
 . MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
 
+
+
+
+== 未使用のISLポートとポートチャネルを無効にする
+
+NetAppでは、不要なヘルスアラートを回避するために、未使用のISLポートとポートチャネルを無効にすることを推奨します
+
+. RCFファイルのバナーを使用して、未使用のISLポートとポートチャネルを特定します。
++
+
+NOTE: ポートがブレークアウトモードの場合は、コマンドで指定するポート名がRCFバナーに表示される名前と異なることがあります。RCFケーブル接続ファイルを使用してポート名を検索することもできます。
+
++
+[role="tabbed-block"]
+====
+.ISLホオトノシヨウサイ
+--
+コマンドを実行します `show port all`。
+
+--
+.ポートチャネルの詳細
+--
+コマンドを実行します `show port-channel all`。
+
+--
+====
+. 未使用のISLポートとポートチャネルを無効にします。
++
+特定された未使用のポートまたはポートチャネルごとに、次のコマンドを実行する必要があります。
+
++
+[listing]
+----
+(SwtichA_1)> enable
+(SwtichA_1)# configure
+(SwtichA_1)(Config)# <port_name>
+(SwtichA_1)(Interface 0/15)# shutdown
+(SwtichA_1)(Interface 0/15)# end
+(SwtichA_1)# write memory
+----
+

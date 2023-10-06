@@ -585,3 +585,32 @@ IP_switch_A_1# copy running-config startup-config
 
 . MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
 
+
+
+
+== 未使用のISLポートとポートチャネルを無効にする
+
+NetAppでは、不要なヘルスアラートを回避するために、未使用のISLポートとポートチャネルを無効にすることを推奨します
+
+. 未使用のISLポートとポートチャネルを特定します。
++
+「インターフェイスの概要」
+
+. 未使用のISLポートとポートチャネルを無効にします。
++
+特定された未使用のポートまたはポートチャネルごとに、次のコマンドを実行する必要があります。
+
++
+[listing]
+----
+SwitchA_1# config t
+Enter configuration commands, one per line. End with CNTL/Z.
+SwitchA_1(config)# int Eth1/14
+SwitchA_1(config-if)# shutdown
+SwitchA_12(config-if)# exit
+SwitchA_1(config-if)# copy running-config startup-config
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+
