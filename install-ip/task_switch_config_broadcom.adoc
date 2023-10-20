@@ -224,6 +224,29 @@ NOTE: キーがすでに存在する場合は、それらを上書きするよ�
 (Routing) (Config)#exit
 (Routing) (Config)#
 ----
++
+EFOSバージョン3.10.0.3以降の場合は、 `ntp` 次の例に示すように、コマンドを実行します。
+
++
+[listing]
+----
+> (Config)# ntp ?
+
+authenticate             Enables NTP authentication.
+authentication-key       Configure NTP authentication key.
+broadcast                Enables NTP broadcast mode.
+broadcastdelay           Configure NTP broadcast delay in microseconds.
+server                   Configure NTP server.
+source-interface         Configure the NTP source-interface.
+trusted-key              Configure NTP authentication key number for trusted time source.
+vrf                      Configure the NTP VRF.
+
+>(Config)# ntp server ?
+
+ip-address|ipv6-address|hostname  Enter a valid IPv4/IPv6 address or hostname.
+
+>(Config)# ntp server 10.99.99.5
+----
 . スイッチ名を設定します。
 +
 'hostname ip_switch_a_1'
