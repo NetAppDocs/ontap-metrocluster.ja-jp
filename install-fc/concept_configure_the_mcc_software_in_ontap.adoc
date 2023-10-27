@@ -3009,6 +3009,8 @@ MetroCluster 構成のコンポーネントを監視するには、いくつか�
 .このタスクについて
 これらのタスクは、 FC-to-SAS ブリッジを使用するシステムにのみ適用されます。
 
+Fabric OS 9.0.1以降では、Brocadeスイッチでのヘルス監視でSNMPv2はサポートされていません。代わりにSNMPv3を使用する必要があります。SNMPv3を使用している場合は、次のセクションに進む前に、ONTAPでSNMPv3を設定する必要があります。詳細については、を参照してください <<MetroCluster 構成での SNMPv3 の設定>>。
+
 [NOTE]
 ====
 * ブリッジとノード管理 LIF は、他のソースからの干渉を避けるために専用のネットワークに配置する必要があります。
@@ -3028,8 +3030,22 @@ NOTE: ONTAP 9.8 以降では 'storage switch コマンドは 'system switch' に
 .手順
 . 各 MetroCluster ノードに IP アドレスを指定してスイッチを追加します。
 +
+実行するコマンドは、SNMPv2とSNMPv3のどちらを使用しているかによって異なります。
+
++
+[role="tabbed-block"]
+====
+.SNMPv3を使用してスイッチを追加します。
+--
+`storage switch add -address <ip_adddress> -snmp-version SNMPv3 -snmp-community-or-username <SNMP_user_configured_on_the_switch>`
+
+--
+.SNMPv2を使用してスイッチを追加します。
+--
 「 storage switch add -address ipaddress 」と入力します
 
+--
+====
 +
 このコマンドは、 MetroCluster 構成の 4 つのスイッチすべてに対して繰り返す必要があります。
 
