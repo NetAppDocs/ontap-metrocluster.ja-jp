@@ -4498,7 +4498,6 @@
   <block id="38aab50f6d81fce560ddcd4349e66fc7" category="list-text">SnapMirror SVM ディザスタリカバリは、 ONTAP 9.5 以降のバージョンを実行している MetroCluster 構成でのみサポートされます。</block>
   <block id="8aa8953fa014032d4074fce6f76630d4" category="section-title">ONTAP System Manager での MetroCluster 処理</block>
   <block id="a0e45cbea6afae054f370a0854ab9b4f" category="paragraph">ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実行できる MetroCluster 固有の処理もあります。</block>
-  <block id="dea75c52e73dcc7b5308af6dfbc8d3df" category="paragraph">ミラーされていないアグリゲートは System Manager ではサポートされません。</block>
   <block id="89bbe5f6f49d96ef3219b3e3960c33d5" category="section-title">MetroCluster 構成での FlexCache のサポート</block>
   <block id="25f74bbacb558877b948827961d27de6" category="section-title">FlexCache の元のデータとキャッシュが同じ MetroCluster サイト内にある場合のスイッチオーバー後の SVM 削除</block>
   <block id="43d8c9bae66c0d9ea51cdfb946c37379" category="paragraph">ネゴシエートスイッチオーバーまたは計画外スイッチオーバーのあと、クラスタ内の SVM FlexCache ピア関係を手動で設定する必要があります。</block>
@@ -9317,7 +9316,6 @@
   <block id="00d8a967aae192561db3b04fc12aaf7a" category="paragraph">MetroCluster インターコネクトアダプタ modify -node node name -is-ood-enabled true</block>
   <block id="f507f320d40c8a1840acd2dba0476fce" category="paragraph">「システム構成のバックアップ設定は URL-of-destination 」を変更します</block>
   <block id="22811c5f1e2d772ad5aef6aa78286f3b" category="paragraph"><block ref="22811c5f1e2d772ad5aef6aa78286f3b" category="inline-link-macro-rx"></block></block>
-  <block id="f6fd567c32c1fb87872959aed0c80c2e" category="paragraph">ONTAP のバージョンに応じて、 ONTAP System Manager を使用して実行できる MetroCluster 固有の処理もあります。</block>
   <block id="05b1987240de2b0227bb9f6af346a70e" category="paragraph">MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッチオーバー中に関連するクラスタが切断モードになっている場合、スイッチオーバー後に常にピアリングを手動で再設定する必要があります。</block>
   <block id="490a63609f039f044bb9790dcc2cd376" category="paragraph">このオブジェクトストアは、プライマリオブジェクトストアよりもクラスタから物理的に離れています。</block>
   <block id="186047a757cb9863fcb93d32f5c0c989" category="paragraph">Active IQ Unified Manager と ONTAP の System Manager は、 GUI を使用したクラスタ管理および設定監視に使用できます。</block>
@@ -11515,8 +11513,6 @@
   <block id="38b7b08d8ed3faec86ad53759a8b0954" category="paragraph">のすべての手順を実行します <block ref="292cab966580df90468ac356e9988afb" category="inline-link-macro-rx"></block>。</block>
   <block id="32f3f1e210eff78eccc26ad8d5525be2" category="paragraph">のすべての手順を実行します <block ref="c54a1ac9a7ac2407367e179872409032" category="inline-link-macro-rx"></block>。</block>
   <block id="a4a6e92d9fef3be4547cae630e64fbc3" category="paragraph">のすべての手順を実行します <block ref="5cab6bf3632aa874d9ae28211caa0b5c" category="inline-link-macro-rx"></block>。</block>
-  <block id="ce54cea34e79331ac5a0d8398a0daeb2" category="list-text">MetroCluster IP 構成でのスイッチオーバーとスイッチバック（ ONTAP 9.7 以降）</block>
-  <block id="b9dc5407731afe77b8474622a7260199" category="list-text">MetroCluster IP 構成でのミラーされたアグリゲートのプロビジョニングおよび拡張（ ONTAP 9.8 以降）</block>
   <block id="64df84e5dd9457f7ff6fca59541532f7" category="paragraph">ONTAP 9.7 以降では、 MetroCluster 構成で FabricPool ストレージ階層がサポートされます。</block>
   <block id="a022874e7e093c6eb907a009ffd5005e" category="paragraph"><block ref="a022874e7e093c6eb907a009ffd5005e" category="inline-link-macro-rx"></block></block>
   <block id="124cab4a0c8129881bfe483bc9e5655a" category="admonition">ONTAP 9.8 以降では 'storage bridge コマンドは 'system bridge コマンドに置き換えられました次の手順は「 storage bridge 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system bridge 」コマンドが優先されます。</block>
@@ -13341,4 +13337,6 @@
   <block id="bd041cb07dda4e5f8fbcf9fc40cd8e53" category="open-title">SNMPv3を使用してスイッチを追加します。</block>
   <block id="1ec64a333712792d694f6485f208d7bf" category="paragraph"><block ref="6483c1c2c512d0e62f46ddc53b9d4638" prefix="" category="inline-code"></block></block>
   <block id="ebbf46e9806730b0f0c4ca0133de2d34" category="open-title">SNMPv2を使用してスイッチを追加します。</block>
+  <block id="10982c02dbedeb50373ef205f82ca3c8" category="inline-link-macro">System Manager を使用して MetroCluster サイトを管理する</block>
+  <block id="53eaf367aa3b61105b8ddce45278ab85" category="paragraph">詳細については、 <block ref="eef6283454e42ed2d47fdb00a9ff3e0c" category="inline-link-macro-rx"></block> ドキュメント</block>
 </blocks>
