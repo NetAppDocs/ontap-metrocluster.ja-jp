@@ -19,12 +19,14 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 * 速度が異なるポート（ 100Gbps ポートと 40Gbps ポートなど）をスイッチに設定することはできません。
 * スイッチを使用して 1 つの MetroCluster を設定する場合は、 * MetroCluster 1 * ポートグループを使用します。
 +
-MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 、または MetroCluster 3 ）を追跡します。RcfFileGenerator ツールを使用する場合は、この設定手順で後述するように、このツールが必要になります。
+MetroClusterポートグループ（MetroCluster 1、MetroCluster 2、MetroCluster 3、またはMetroCluster 4）を追跡します。RcfFileGenerator ツールを使用する場合は、この設定手順で後述するように、このツールが必要になります。
 
 * また、 RcfFileGenerator for MetroCluster IP では、各スイッチのポートごとのケーブル配線の概要についても説明します。
 +
 ケーブル接続の概要を使用して、ケーブル接続を検証します。
 
+* MetroCluster ISLの25Gブレークアウトモードには、バージョンv2.10以降のRCFファイルが必要です。
+* 「MetroCluster 4」グループでFAS8200またはAFF A300以外のプラットフォームを使用するには、ONTAP 9.13.1以降およびRCFファイルバージョン2.00が必要です。
 
 
 
@@ -35,24 +37,25 @@ MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 、ま�
 
 
 
-== AFF A150、FAS2750、AFF A220、FAS500f、AFF C250、またはAFF A250とCisco 3232CまたはCisco 9336-FX2Cスイッチのケーブル接続
+== AFF A150、ASA A150、FAS2750、AFF A220、FAS500fのケーブル接続 AFF C250、ASA C250、AFF A250、またはASA A250システムからCisco 3232CまたはCisco 9336-FX2Cスイッチへ
 
 image::../media/mcc_ip_cabling_a150_a220_a250_to_a_cisco_3232c_or_cisco_9336c_switch.png[a150 A220 A250とCisco 3232cまたはCisco 9336cスイッチのMCC IPケーブル接続]
 
 
 
-== FAS8200またはAFF A300とCisco 3232CまたはCisco 9336Cスイッチのケーブル接続
+== FAS8200 / AFF A300システムとCisco 3232C / 9336Cスイッチのケーブル接続
 
 image::../media/mcc_ip_cabling_a_aff_a300_or_fas8200_to_a_cisco_3232c_or_cisco_9336c_switch.png[MCC IP ケーブル構成： AFF A300 または fas8200 から Cisco 32c または Cisco 9336c スイッチへの接続]
 
+古いRCFファイルからアップグレードする場合は、「MetroCluster 4」グループのポート（ポート25 / 26および29 / 30）をケーブル接続構成で使用している可能性があります。
 
 
-== AFF A320、FAS8300、AFF C400、AFF A400、FAS8700のケーブル接続 FAS9000、AFF A700、AFF C800、AFF A800、FAS9500、またはAFF A900
+
+== AFF A320、FAS8300、AFF C400、ASA C400、AFF A400のケーブル接続 ASA A400、FAS8700、FAS9000、AFF A700、AFF C800、 ASA C800、AFF A800、ASA A800、FAS9500、AFF A900、 またはASA A900システムからCisco 3232CまたはCisco 9336C-FX2スイッチへ
 
 image::../media/mcc_ip_cabling_a320_a400_a700_a800_a900 _cisco_3232C or_9336c_switch.png[A320 a400 A700 A800 a900 Cisco 3232Cまたは9336cスイッチのMCC IPケーブル接続]
 
+*注1 *：X91440Aアダプタ（40Gbps）を使用している場合は、ポートe4aとe4e、またはe4aとe8aのいずれかを使用します。X91153Aアダプタ（100Gbps）を使用する場合は、ポートe4aとe4b、またはe4aとe8aのいずれかを使用します。
 
 
-== AFF A320、AFF C400、AFF A400、AFF A700、AFF C800のケーブル接続 またはAFF A800からCisco 9336C-FX2共有スイッチへの接続
-
-image::../media/mcc_ip_cabling_aff_a320_c400_a400_a700_c800_a800_to_cisco_9336c_shared_switch_revised.png[AFF A320 C400 a400 a700 c800 A800からCisco 9336c共有スイッチへのMCC IPケーブル接続の改訂]
+NOTE: 「MetroCluster 4」グループのポートを使用するには、ONTAP 9.13.1以降が必要です。

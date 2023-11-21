@@ -17,26 +17,18 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 
 == サポートされている構成
 
-現在サポートされているプラットフォームは次のとおりです。
-
-* FAS500f / AFF C250 / AFF A250
-* FAS8300 / AFF C400 / AFF A400
-* FAS8700 の場合
-* FAS9000 / AFF A700
-* AFF C800 / AFF A800
-* AFF A900
-
-
-次のプラットフォームと構成は現在サポートされていません。
+次の構成は現在サポートされていません。
 
 * MetroCluster FC-to IPの移行
-* 8ノードMetroCluster 構成
 
 
 .設定テーブルを使用する前に、これらの考慮事項を確認してください
-複数のMetroCluster 構成をケーブル接続する場合は、該当する表に従ってください。例：
+* 8ノードまたは2つの4ノードMetroCluster構成を接続するには、ONTAP 9.14.1以降とRCFファイルバージョン2.00以降が必要です。
+* 複数のMetroCluster 構成をケーブル接続する場合は、該当する表に従ってください。例：
++
+** タイプがAFF A700の2つの4ノードMetroCluster 構成をケーブル接続する場合は、AFF A700の表で「MetroCluster 1」と表示されている最初のMetroCluster と「MetroCluster 2」と表示されている2つ目のMetroCluster を接続します。
 
-* タイプがAFF A700の2つの4ノードMetroCluster 構成をケーブル接続する場合は、AFF A700の表で「MetroCluster 1」と表示されている最初のMetroCluster と「MetroCluster 2」と表示されている2つ目のMetroCluster を接続します。
+
 
 
 
@@ -46,12 +38,14 @@ NOTE: ポート13と14は、40Gbpsと100Gbpsをサポートするネイティブ
 
 
 
-== FAS500f、AFF C250、またはAFF A250でのスイッチポートの用途
+== AFF A150、ASA A150、FAS500f、AFF C250、ASA C250のケーブル接続 AFF A250またはASA A250システムからNVIDIA SN2100スイッチへ
 
-image::../media/mcc_ip_cabling_A250_C250_MSN2100.png[MCC IPケーブルA250 C250 MSN2100]
+image::../media/mcc_ip_cabling_aff_asa_a150_fas500f_A250_C250_MSN2100.png[MCC IPケーブルAFF ASA a150 fas500f A250 C250 MSN2100]
 
 
 
-== AFF C400、AFF A400、AFF A700、FAS9000、FAS8300でのスイッチポートの用途 FAS8700、AFF A800、FAS9500、またはAFF A900
+== FAS8300、AFF C400、ASA C400、AFF A400、ASA A400のケーブル接続 FAS8700、FAS9000、AFF A700、AFF C800、ASA C800、 AFF A800、ASA A800、FAS9500、AFF A900、またはASA A900システムからNVIDIA SN2100スイッチへの接続
 
-image::../media/mcc_ip_cabling_aff250_400_700_800_cseriesMSN2100.png[MCC IPケーブル接続aff250 400 700 800 cseriesMSN2100]
+image::../media/mcc_ip_cabling_fas8300_aff_asa_c400_a400_fas8700_fas9000_a700_a800_a900_fas9500_MSN2100.png[MCC IPケーブル接続fas8300 AFF ASA C400 a400 fas8700 fas9000 A700 a800 a900 fas9500 MSN2100]
+
+*注1 *：X91440Aアダプタ（40Gbps）を使用している場合は、ポートe4aとe4e、またはe4aとe8aのいずれかを使用します。X91153Aアダプタ（100Gbps）を使用する場合は、ポートe4aとe4b、またはe4aとe8aのいずれかを使用します。

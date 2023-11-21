@@ -15,16 +15,20 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 
 速度が異なるリモート ISL ポート（ 10Gbps ISL ポートに接続されている 25Gbps ポートなど）では、スイッチを使用できません。
 
-.以下の表に関する注意事項：
-. 一部のプラットフォームでは、 MetroCluster ISL または MetroCluster インターフェイス接続にポート 49-54 を使用できます。
+.表を使用する前に、次の情報を確認してください。
+* スイッチをMetroCluster FCからIPへの移行用に設定する場合は、選択したターゲットプラットフォームに応じて次のポートが使用されます。
 +
-これらのポートには追加のライセンスが必要です。
+[cols="75,25"]
+|===
+| ターゲットプラットフォーム | ポート 
 
-. AFF A320システムを使用する単一の4ノードMetroCluster のみをスイッチに接続できます。
-+
-スイッチクラスタを必要とする機能は、 MetroCluster から IP への移行や機器更改の手順など、この構成ではサポートされていません。
 
-. AFF A320 システムが Broadcom BES-53248 スイッチで構成されている場合、一部の機能がサポートされないことがあります。
+| FAS500f、AFF C250、ASA C250、AFF A250、ASA A250、 FAS8300、AFF C400、ASA C400、AFF A400、ASA A400、 またはFAS8700プラットフォーム | ポート1~6、10Gbps 
+
+
+| FAS8200またはAFF A300プラットフォーム | ポート3~4および9~12、10Gbps 
+|===
+* AFF A320 システムが Broadcom BES-53248 スイッチで構成されている場合、一部の機能がサポートされないことがあります。
 +
 ローカルクラスタ接続を必要とする設定または機能がスイッチに接続されていても、サポートされていません。たとえば、次の設定と手順はサポートされていません。
 
@@ -34,39 +38,31 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 ** 4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）
 
 
-. 2つのMetroCluster 構成を接続し、両方で同じ種類のコントローラを使用する場合は、MetroCluster ポートグループ3と4を使用する必要があります。コントローラが異なる場合は、一方のタイプにMetroCluster ポートグループ3と4を、もう一方のタイプにMetroCluster ポートグループ1と2を使用する必要があります。
+
+
+.表で参照されているメモ：
+* *注1 *：これらのポートを使用するには、追加ライセンスが必要です。
+* *注2 *：AFF A320システムを使用する単一の4ノードMetroClusterのみをスイッチに接続できます。
 +
-** たとえば、次のように接続したとします。
+この構成では、MetroClusterのFCからIPへの移行や機器更改の手順など、スイッチクラスタを必要とする機能はサポートされません。
+
+* *注3 *：BES-53248スイッチでは、4ポートグループ内のすべてのポートが同じ速度で動作する必要があります。AFF 150、ASA A150、FAS2750、AFF A220およびFAS500f、AFF C250、ASA C250、AFF A250、およびASA A250プラットフォームを混在させる場合は、別 々 の4ポートグループにあるスイッチポートを使用する必要があります。このタイプの設定が必要な場合は、次の条件が適用されます。
 +
-*** FAS2750 / AFF A220のみまたはFAS500f/AFF A250のみで構成される2つのMetroCluster 設定については、MetroCluster ポートグループ3と4を選択する必要があります。
-*** 一方のMetroCluster がFAS2750 / AFF A220で、もう一方がFAS500f/AFF A250である2つのMetroCluster 構成では、一方のポートグループで3と4を選択し、もう一方のでポートグループ1と2を選択する必要があります。を参照してください https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"]ドロップダウンフィールド1と2は、ドロップダウンフィールド3と4でプラットフォームを選択した後、サポートされているプラットフォームのみを表示します。を参照してください link:../install-ip/using_rcf_generator.html["RcfFileGenerator ツールまたは複数の MetroCluster 設定でポートテーブルを使用する"] ポートテーブルの使用方法の詳細については、を参照してください。
+** を参照してください https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"]「MetroCluster 1」および「MetroCluster 2」のドロップダウンフィールドには、MetroCluster 3または「MetroCluster 4」のプラットフォームを選択した場合にのみ値が入力されます。  を参照してください link:../install-ip/using_rcf_generator.html["RcfFileGenerator ツールまたは複数の MetroCluster 設定でポートテーブルを使用する"] ポートテーブルの使用方法の詳細については、を参照してください。
+** 両方のMetroCluster構成で同じプラットフォームを使用している場合、NetAppでは、一方の構成にグループ「MetroCluster 3」を、もう一方の構成にグループ「MetroCluster 4」を選択することを推奨します。プラットフォームが異なる場合は、最初の構成で「MetroCluster 3」または「MetroCluster 4」を選択し、2つ目の構成で「MetroCluster 1」または「MetroCluster 2」を選択する必要があります。
 
 
 
 
 
 
+== AFF A150、ASA A150、FAS2750、AFF A220、FAS500fのケーブル接続 AFF C250、ASA C250、AFF A250、またはASA A250からBroadcom BES-53248スイッチ
 
-
-== FAS2750、AFF 150、またはAFF A220システムでのスイッチポートの用途
-
-image::../media/mcc_ip_cabling_a_aff_a150_a220_or_fas2750_to_a_broadcom_bes_53248_switch.png[AFF a150 A220またはfas2750をBroadcom BES 53248スイッチにMCC IPでケーブル接続します]
-
-
-
-== FAS500f、AFF C250、またはAFF A250システムでのスイッチポートの用途
-
-image::../media/mcc_ip_cabling_a_aff_c250_a250_or_fas500f_to_a_broadcom_bes_53248_switch.png[AFF C250 A250またはfas500fとBroadcom BES 53248スイッチのMCC IPケーブル接続]
+image::../media/mcc_ip_cabling_a_aff_asa_a150_a220_c250_a250_fas2750_to_a_broadcom_bes_53248_switch.png[AFF ASA a150 A220 C250 A250 fas2750とBroadcom BES 53248スイッチのMCC IPのケーブル接続]
 
 
 
-== AFF A150、FAS2750、AFF A220、FAS500fまたはAFF C250を組み合わせて使用する場合のスイッチポートの用途 またはAFF A250システム
-
-image::../media/mcc_ip_cabling_aff_a250_and_ a220_to_a_broadcom_bes_53248_switch.png[MCC IPケーブルAFF A250およびA220をBroadcom BES-53248スイッチに接続]
-
-
-
-== FAS8200またはAFF A300システムでのスイッチポートの用途
+== FAS8200、AFF A300、またはAFF A320システムとBroadcom BES-53248スイッチのケーブル接続
 
 image::../media/mcc_ip_cabling_a_aff_a300_or_fas8200_to_a_broadcom_bes_53248_switch.png[MCC IP のケーブル接続： AFF A300 または fas8200 から Broadcom BES-53248 スイッチへ]
 
@@ -74,6 +70,6 @@ image::../media/mcc_ip_cabling_a_aff_a320_to_a_broadcom_bes_53248_switch.png[MCC
 
 
 
-== FAS8300、AFF C400、AFF A400、FAS8700システムでのスイッチポートの用途
+== FAS8300、AFF C400、ASA C400、AFF A400、ASA A400、またはFAS8700システムとBroadcom BES-53248スイッチのケーブル接続
 
-image::../media/mcc_ip_cabling_a_fas8300_a400_or_fas8700_to_a_broadcom_bes_53248_switch.png[MCC IP ケーブル構成： fas8300 、 fas8700 から Broadcom BES-53248 スイッチへ]
+image::../media/mcc_ip_cabling_a_fas8300_a400_c400_or_fas8700_to_a_broadcom_bes_53248_switch.png[MCC IPでのfas8300 a400 C400またはfas8700とBroadcom BES 53248スイッチのケーブル接続]
