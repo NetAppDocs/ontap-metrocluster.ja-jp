@@ -28,6 +28,10 @@ link:../install-fc/index.html["ファブリック接続 MetroCluster のイン�
 link:../install-stretch/concept_considerations_differences.html["ストレッチ MetroCluster のインストールと設定"]
 
 * 新しいコントローラとブリッジに対応する FC スイッチポートが必要です。
+* 古いノードにデフォルトのブロードキャストドメインが作成されていることを確認します。
++
+デフォルトのブロードキャストドメインがない既存のクラスタに新しいノードを追加すると、想定される名前ではなくUniversal Unique Identifier（UUID）を使用して新しいノード用のノード管理LIFが作成されます。詳細については、技術情報アーティクルを参照してください https://kb.netapp.com/onprem/ontap/os/Node_management_LIFs_on_newly-added_nodes_generated_with_UUID_names["UUID名で生成された新しく追加されたノードのノード管理LIF"^]。
+
 * 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
 
 

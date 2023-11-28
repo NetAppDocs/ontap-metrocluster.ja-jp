@@ -2340,8 +2340,6 @@
   <block id="b330eebf161ca27c703eccf6e8e36d29" category="summary">MetroCluster IP 構成に 4 つの新しいノードを 2 つ目の DR グループとして追加することができます。これにより、 8 ノード MetroCluster 構成が作成されます。</block>
   <block id="0cd02877aca872fed2b891e70e7d6d9d" category="doc">4 ノード MetroCluster IP 構成から 8 ノード構成への拡張</block>
   <block id="44e7e75e628cd7549a2dac175d45b418" category="list-text">古いノードと新しいノードで同じバージョンの ONTAP を実行する必要があります。</block>
-  <block id="8af994ab1dc202d685a253237ad12acd" category="list-text">プラットフォームの混在をサポートするプラットフォームモデルについては、新旧がサポートされることを確認する必要があります。</block>
-  <block id="b721d4593513d27cdfc55ebe6ceb044f" category="list-text">古いプラットフォームモデルと新しいプラットフォームモデルの両方が IP スイッチでサポートされていることを確認する必要があります。</block>
   <block id="2ee2465217913ae7b455ab4ef5e995e6" category="list-text">新しいノードには、古いノードのデータを格納するための十分なストレージと、ルートアグリゲートとスペアディスク用の十分なディスクが必要です。</block>
   <block id="1ba701b5ad5528986d9e0eb838638aae" category="section-title">この手順での命名例</block>
   <block id="a9b1d4be69539e9b95a2c6672035550c" category="paragraph">この手順では、全体的な名前の例を使用して、 DR グループ、ノード、および関連するスイッチを特定します。</block>
@@ -13360,4 +13358,9 @@
   <block id="825d65b3b18d444d8008136946a33a99" category="list-text">注5：コントローラのアップグレードは、ONTAP 9.14.1以降を実行しているシステムでサポートされます。</block>
   <block id="50338c34cfec6d9e54eae1256352e18d" category="image-alt">MetroCluster FC機器更改914</block>
   <block id="94487339ee219de4122a1e81d3919b34" category="admonition">コントローラのアップグレードプロセスで再割り当てが必要なディスクは、ルートアグリゲートディスクだけです。データアグリゲートのディスク所有権は、スイッチオーバー/スイッチバック処理の一環として処理されます。</block>
+  <block id="67c0d618a712fed303dbbf2eaf09695a" category="list-text">古いノードにデフォルトのブロードキャストドメインが作成されていることを確認します。</block>
+  <block id="4fff770200a5d089fd8db4325afa94fc" category="inline-link">UUID名で生成された新しく追加されたノードのノード管理LIF</block>
+  <block id="fdf5e2eb479f201de0c9c62e9a32e769" category="paragraph">デフォルトのブロードキャストドメインがない既存のクラスタに新しいノードを追加すると、想定される名前ではなくUniversal Unique Identifier（UUID）を使用して新しいノード用のノード管理LIFが作成されます。詳細については、技術情報アーティクルを参照してください<block ref="4808e3ddae1b3b2c14dc148b67bd36ea" category="inline-link-rx"></block>。</block>
+  <block id="f6410291c32fa961402f5a821c332f6c" category="list-text">新旧のプラットフォームモデルでプラットフォームの混在がサポートされていることを確認します。</block>
+  <block id="e220a628f1c5f8fb65824aaeb387520e" category="list-text">古いプラットフォームモデルと新しいプラットフォームモデルの両方がIPスイッチでサポートされていることを確認します。</block>
 </blocks>
