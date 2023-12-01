@@ -55,8 +55,14 @@ MAUSO が開始されるのは、次のシナリオだけです。
 * 各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングはどちらも動作しており、障害発生時にキャッシュとミラーが同期されます。
 * サバイバーサイトのいずれのノードもテイクオーバー状態ではありません。
 * サイト災害が発生した場合。サイト災害とは、同じサイトで*すべての*ノードで発生した障害です。
++
+
+NOTE: ONTAP 9.13.1以降では、クラスタ*またはHAペアの障害発生時にMAUSOを開始するように動作を変更できます。HAペアの場合は、両方のノードで同時に障害が発生する必要があります。
+
 * ONTAP 9.13.1以降では、上記の条件が満たされ、ファンまたはハードウェアの障害によって環境のシャットダウンが開始された場合（電源装置、NVRAMバッテリ、サービスプロセッサのハートビートの障害、高温または低温など）。
 
+
+上記以外のシナリオの場合は、MAUSOを開始できます。詳細については、を参照してください link:concept-risks-limitations-automatic-switchover.html["MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項"]。
 
 次のシャットダウンシナリオで MAUSO が開始されません。
 
@@ -70,6 +76,4 @@ MAUSO が開始されるのは、次のシナリオだけです。
 
 * 関連情報 *
 
-* link:concept-risks-limitations-automatic-switchover.html["MetroClusterの自動強制スイッチオーバーを使用する場合のリスクと制限事項について説明します"]
-* link:../manage/concept_understanding_mcc_data_protection_and_disaster_recovery.html#mediator-assisted-automatic-unplanned-switchover-in-metrocluster-ip-configurations["MetroCluster IP構成でのMAUSOの管理について説明します"]
-
+link:../manage/concept_understanding_mcc_data_protection_and_disaster_recovery.html#mediator-assisted-automatic-unplanned-switchover-in-metrocluster-ip-configurations["MetroCluster IP構成でのMAUSOの詳細"]。
