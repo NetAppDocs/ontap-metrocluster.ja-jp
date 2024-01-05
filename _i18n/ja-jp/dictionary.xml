@@ -512,7 +512,6 @@
   <block id="ccbbe54d32019572b537370d771a1004" category="paragraph">'*show topology isl*</block>
   <block id="a3bf857f81a4bba7e1f5e22c53499add" category="list-text">2 つ目のスイッチファブリックに対して手順を繰り返します。</block>
   <block id="6397abfc307e631ca1c862e2d899a88a" category="summary">ISL ポートの追加、削除、または変更が必要になる場合があります。専用の ISL ポートを共有 ISL ポートに変換したり、スイッチの ISL ポートの速度を変更したりできます。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。また、ハードウェアを追加またはアップグレードする場合は、システムのアップグレードに合わせて ISL ポートの速度を上げ、 Cisco IP スイッチに ISL を追加することがあります。</block>
-  <block id="d10e49d0bde942d5917f6688f5e0de46" category="doc">ISL ポートを無停止で追加、削除、または変更する</block>
   <block id="f078a67a2f40dd76bea8cfd45ac3fd50" category="paragraph">次の手順では、スイッチポート Eth1/24/1 に接続されている 10Gb ISL を、スイッチポート 17 と 18 に接続されている 2 つの 100Gb ISL に交換します。</block>
   <block id="cb9c3ddf9101f8fc2f94bd964e4b5972" category="list-text">変更するファブリック内の両方のスイッチで、 ISL の ISL ポートを無効にします。</block>
   <block id="6239956fd5ce88e71e182ec3e2a298fa" category="admonition">現在の ISL ポートを無効にするのは、ポートを別のポートに移動している場合や ISL の速度が変更されている場合だけです。既存の ISL と同じ速度の ISL ポートを追加する場合は、手順 3 に進みます。</block>
@@ -778,8 +777,6 @@
   <block id="a2e494f9e893e2ce2495f61aebe60a0a" category="paragraph">コントローラモジュール</block>
   <block id="1e20cffa93df3d0429097954136bfc8c" category="paragraph">FRU の交換（コントローラモジュール、 PCIe カード、 FC-VI カードなど）</block>
   <block id="d42cf82f955fcaf61a8de7f584bf0e63" category="admonition">MetroCluster ストレージシステム間でのストレージコントローラモジュールまたは NVRAM カードの移動はサポートされていません。</block>
-  <block id="2dece9a9495d8764b16760fe7d05d7a9" category="inline-link">AFF と FAS ドキュメントセンター</block>
-  <block id="112864a76081118148a479a1da39eb09" category="paragraph"><block ref="112864a76081118148a479a1da39eb09" category="inline-link-rx"></block></block>
   <block id="1b11a607d1bb5556b64964d84ade46e0" category="paragraph">アップグレードと拡張</block>
   <block id="85c536a9f52fed53890ea4e081f3019f" category="paragraph">FC から IP への接続に移行します</block>
   <block id="efc8f4d1076344beccb8353312cb002a" category="paragraph">ドライブシェルフ</block>
@@ -9986,7 +9983,6 @@
   <block id="790ffccea2ff9cd7b795660c9047f0af" category="paragraph">プラットフォームモデルのポートの用途については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
   <block id="28c7702130266714c425efb099b41082" category="list-text">ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。</block>
   <block id="4446a830a9fbc0b2d0c78c432aa57d3e" category="list-text">クラスタポートをメンバーポートとして使用し、インターフェイスグループをメンバーポートとして使用している VLAN ポートをすべて削除します。</block>
-  <block id="4ab1e5de67e4fdb090409b744f44bb19" category="paragraph"><block ref="4ab1e5de67e4fdb090409b744f44bb19" category="inline-link-rx"></block></block>
   <block id="76947da623011473e258bcef85f2724d" category="paragraph">を参照してください <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="664faa773b897771d732ec0de99d505a" category="paragraph">前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします</block>
   <block id="34c4e01a7077e9106112da52b0cc894e" category="paragraph">古いシステム ID は、で識別されています <block ref="c251a9631962af6f05d9aa0aeb7678df" category="inline-link-macro-rx"></block>。</block>
@@ -10071,8 +10067,6 @@
   <block id="3e3282862342655e70b0b4d411fbb78b" category="list-text">オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。</block>
   <block id="088c19240da89dbb9f8682a7168eea93" category="paragraph">新しいノード（ site_B ）の状態が「 Waiting for switchback state * from site_A 」であることを確認します</block>
   <block id="70797c25b23e4d3313107866a946ef86" category="paragraph">速度が異なるリモート ISL ポート（ 10Gbps ISL ポートに接続されている 25Gbps ポートなど）では、スイッチを使用できません。</block>
-  <block id="16319414c65274d365d86327a61ef5dc" category="inline-link">AFF および FAS システムのマニュアル</block>
-  <block id="63799698c3b4bb55f091a324342f6ef6" category="paragraph">使用しているプラットフォームに対応したインストール手順をで使用します<block ref="0b3a876cb84d37c698b419ae2be696d8" category="inline-link-rx"></block>。</block>
   <block id="145dacb3237a86979e113708eea5ccbb" category="list-text">スイッチファブリックごとに 2 つ、計 4 つの IP スイッチが必要です。</block>
   <block id="678c0cc3a8e347e1b6670261a41c4c3e" category="list-text">修復処理によって実行される LIF の自動移行が正常に完了したことを確認します。 MetroCluster check lif show</block>
   <block id="3e0af8ae696d5e7c0a0c4cf08d2caa05" category="list-text">シミュレートされたスイッチバックを実行して、システムが「 MetroCluster switchback -simulate 」状態であることを確認します</block>
@@ -10128,7 +10122,6 @@
   <block id="a9fd24893aed7bda18921eb1da6f8440" category="inline-link-macro">MetroCluster の移行</block>
   <block id="b6f8655d9cab6bf8d32e7b0bdc6c8eef" category="inline-link-macro">MetroCluster のアップグレード、移行、拡張</block>
   <block id="78d0e38065ed90f1fe7de25c50775110" category="paragraph"><block ref="78d0e38065ed90f1fe7de25c50775110" category="inline-link-macro-rx"></block></block>
-  <block id="9b69c1695f55a4595dbf315316635dc3" category="inline-link">AFF および FAS のドキュメント</block>
   <block id="01fe01722f1775c1b67e7b20a14951de" category="summary">ONTAP 9.9..1 以降では、 IP ルーティング（レイヤ 3 ）バックエンド接続を使用して MetroCluster IP 設定を実装できます。</block>
   <block id="190cbd15f1cbbd86a76eac6847a93472" category="admonition">ネットアップではネットアップ検証済みのスイッチのみをサポートしていますこれらのスイッチは、ネットアップがテストして販売します。これらはに一覧表示されています <block ref="d4ffdef7e991262a330f44b113eb81ba" category="inline-link-macro-rx"></block> およびインチ <block ref="d708b823ca770dd1bbb2d28ee68bd021" category="inline-link-macro-rx"></block>。</block>
   <block id="c1444ba460cdd9b59c8ecf988ca907c4" category="list-text">ONTAP 9.7 以降では、自動計画外スイッチオーバーがサポートされます。</block>
@@ -10348,7 +10341,6 @@
   <block id="706be03f02099b320a48663ab49614b7" category="sidebar">IP スイッチのメンテナンスと交換</block>
   <block id="40414fb3a79648f825985d2f107661f0" category="sidebar">MetroCluster IP スイッチのファームウェアをアップグレードします</block>
   <block id="6fc3e23fc447e1c003feca250d853db5" category="sidebar">Cisco IP スイッチの名前を変更します</block>
-  <block id="c674510981c9027bb4d0c0161679026d" category="sidebar">ISL ポートを無停止で追加、削除、または変更する</block>
   <block id="8939a3071227e9e768ef56f5cc7f2c4d" category="sidebar">MetroCluster IP 構成でストレージを識別する方法</block>
   <block id="1c833178608e8e9495706619170addcc" category="sidebar">共有ストレージ / MetroCluster スイッチを使用して、 MetroCluster にシェルフを追加します</block>
   <block id="806e10b1bc39f5ac90158ffc4013b751" category="sidebar">MetroCluster FC 構成へのストレージのホットアド</block>
@@ -10998,7 +10990,6 @@
   <block id="13044932159e150c28f3e3cabd33ea68" category="list-text">繰り返します <block ref="92a9f0aaafd1755c239f3740bca9b5f0" category="inline-xref-macro-rx"></block> 他のブリッジについて、すべてのブリッジがケーブル接続されるまで。</block>
   <block id="663ca2bb9d69f00e40b12629c141073d" category="paragraph"><block ref="663ca2bb9d69f00e40b12629c141073d" category="inline-link-rx"></block></block>
   <block id="95052b14282825e23d588959737ad63b" category="paragraph"><block ref="95052b14282825e23d588959737ad63b" category="inline-link-macro-rx"></block></block>
-  <block id="f7569c5539a611615a6389d7051bfe9c" category="cell"><block ref="f7569c5539a611615a6389d7051bfe9c" category="inline-link-macro-rx"></block></block>
   <block id="fcc1179d9dc8927679bbc81b610ebfe5" category="list-text">構成に応じてすべてのコンポーネントが正しくケーブル接続されていることを確認します。</block>
   <block id="45a90cf1797a736ff538fdca7b5c8902" category="list-text"><block ref="45a90cf1797a736ff538fdca7b5c8902" category="inline-link-macro-rx"></block></block>
   <block id="4e3b6dac43e0506da50eaa98573ccb1c" category="inline-link-macro">MetroCluster ファブリック接続構成</block>
@@ -11583,7 +11574,6 @@
   <block id="1e9c37d63bd64093dd1167b70b4e684f" category="section-title">MetroCluster およびその他の情報</block>
   <block id="a82be0f551b8708bc08eb33cd9ded0cf" category="cell">情報</block>
   <block id="c7892ebbb139886662c6f2fc8c450710" category="cell">件名</block>
-  <block id="2847e89fee2d01cd879013b5c3c38cf6" category="paragraph"><block ref="2847e89fee2d01cd879013b5c3c38cf6" category="inline-link-rx"></block></block>
   <block id="fa06f628b32f0d1ba3fc7ece00862b96" category="paragraph"><block ref="fa06f628b32f0d1ba3fc7ece00862b96" category="inline-link-rx"></block></block>
   <block id="9f6ef9d803a6a101c30a47069149abd6" category="list-text">EFOS バージョン 3.7.x.x 以降では、 FIPS に準拠していないバージョンと FIPS に準拠したバージョンが提供されています。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
   <block id="c92c490b97a94b8ad700c26b41c33c18" category="summary">ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使用してステータス情報用のリポジトリを物理的に切り離すことで、 MetroCluster IP 構成で自動計画外スイッチオーバーを実行できます。</block>
@@ -12788,7 +12778,6 @@
   <block id="103e238a461bced8a19653fadfc6b06f" category="paragraph">この4ノードMetroCluster IP構成の例では、次の古いシステムIDが取得されます。</block>
   <block id="f517753faa986ef4fe936b6ef049742a" category="paragraph">この2ノードMetroCluster IP構成の例では、次の古いシステムIDが取得されます。</block>
   <block id="8351b67dee4e0c692cf4f28e83b54b0a" category="paragraph">自動化処理によってスイッチオーバー処理が開始されます。これらの処理が完了すると、処理は* paused for user intervention *で一時停止します。これにより、を使用して、コントローラをラックに設置し、パートナーコントローラをブートし、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます<block ref="5fb641c5977b93de82b81e36db0454cf" prefix=" " category="inline-code"></block> さっき集まった。</block>
-  <block id="8582c1480060e39fb79b0996133a48d6" category="paragraph"><block ref="8582c1480060e39fb79b0996133a48d6" category="inline-link-rx"></block></block>
   <block id="956cd19055bcda776c4aa38d849f5270" category="paragraph">ディレクトリの一覧に、カーネルファイル ONTAP-version image.tgz のネットブートフォルダが含まれている必要があります</block>
   <block id="d58685908c79a70d5ff1a6db6c223402" category="paragraph">image.tgz ファイルを展開する必要はありません。</block>
   <block id="f3b7262f888ca591450dde27d2e71aaf" category="paragraph">次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_1の値を設定します。</block>
@@ -12845,8 +12834,6 @@
   <block id="7d7fd277012689535b693bcae0693459" category="image-title">8ノードの一時的な構成</block>
   <block id="cb3b06d4f89d32589bbce6abb75941fc" category="image-title">一時的な12ノード構成</block>
   <block id="830d9e0f5e1de2a97686d67c2397dae5" category="image-alt">MCC DRグループC4</block>
-  <block id="6af6b76d592516d40ca101051c678be3" category="inline-link-macro">AFF および FAS システムのアップグレードに関するドキュメント</block>
-  <block id="73463ea97bfc9f9e1267ea63ebdd42a3" category="list-text">の次の手順に従って、古いノードから新しいノードにデータを移動します <block ref="292db4887d6135b1e0f2f8467d29f1d6" category="inline-link-macro-rx"></block></block>
   <block id="bbe65d15d9db73ecb088957ca54464a4" category="list-text">各クラスタについて、移行したノードのクラスタピアのIPアドレスを変更します。</block>
   <block id="5f733ea5e4f1c7cf03ff4e0dcc486e49" category="list-text">の手順に従います <block ref="e5ebde3067c5558de277c40cd868d611" category="inline-link-macro-rx"></block> をクリックして、古いDRグループを削除します。</block>
   <block id="91658906d8262381ddcdb44c01a8989d" category="list-text">8ノード構成で両方のDRグループを更新する場合は、各DRグループに対して手順 全体を繰り返す必要があります。</block>
@@ -13370,4 +13357,13 @@
   <block id="1aa145ddf3cafc3bf77b04a1c7069f71" category="list-text">「MetroClusterのインストールと設定_」の説明に従って新しいスイッチを設定しますが、「Brocade FCスイッチでのゾーニングの設定」の手順は省略します。</block>
   <block id="21b5cf2db61fccc0ace8b80bac8b35b7" category="list-text">注2：FCノードのローカルクラスタインターフェイスには、40GbEインターフェイスが必要です。このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
   <block id="13cdbd43c145584bcad75658a29e498d" category="list-text">注3：FCノードのローカルクラスタインターフェイスには100GbEインターフェイスが必要です。このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
+  <block id="646d7d5f93b4a6d7bbbc65acf5ac1077" category="inline-link">ONTAPハードウェアシステムのドキュメント</block>
+  <block id="a6060d4587fc5fc5f841d3287d08316c" category="paragraph"><block ref="a6060d4587fc5fc5f841d3287d08316c" category="inline-link-rx"></block></block>
+  <block id="777cc85682fbb64f0c41aa09dccf0ca4" category="paragraph"><block ref="777cc85682fbb64f0c41aa09dccf0ca4" category="inline-link-rx"></block></block>
+  <block id="9701f608cd28914f41da9cef3b56ba90" category="paragraph">使用しているプラットフォームに対応したインストール手順をで使用します<block ref="ba9533a8784109065785b5514b6caa78" category="inline-link-rx"></block>。</block>
+  <block id="1f1b4aed93819376fcceca70dcc661a8" category="paragraph"><block ref="1f1b4aed93819376fcceca70dcc661a8" category="inline-link-rx"></block></block>
+  <block id="ddd2d923df0e2b56b89593bd7e74dec1" category="list-text">の次の手順に従って、古いノードから新しいノードにデータを移動します <block ref="4af1ab31bd03b6b171b2abfc54231e72" category="inline-link-macro-rx"></block></block>
+  <block id="13b7f77edb33af927a5eb756e92d3e1e" category="doc">Cisco IPスイッチのISLポートを無停止で追加、削除、変更</block>
+  <block id="d0b4d4a01f6fdfe6150ce107537b1a30" category="paragraph">Cisco IPスイッチでISLポートの追加、削除、または変更が必要になる場合があります。Cisco IPスイッチでは、専用ISLポートを共有ISLポートに変換したり、ISLポートの速度を変更したりできます。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。ハードウェアを追加またはアップグレードする場合は、システムアップグレードを利用してCisco IPスイッチにISLを追加するために、ISLポートの速度を上げなければならないことがあります。</block>
+  <block id="f8661864113fa686fbcb0e8305046574" category="cell"><block ref="f8661864113fa686fbcb0e8305046574" category="inline-link-macro-rx"></block></block>
 </blocks>
