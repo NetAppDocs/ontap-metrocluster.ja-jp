@@ -146,14 +146,16 @@ NOTE: 古い構成と新しい構成で同じポートを使用していない�
 次の順序で接続を削除します。
 
 +
-** ローカルクラスタインターフェイスがスイッチに接続されている場合は、次の手順を実行します。
+.. すべてのクラスタLIFを変更して自動リバートを無効にします。
 +
-*** ローカルクラスタインターフェイスを切断します
-*** ローカルクラスタのISLを切断します
-
-
-** MetroCluster IPインターフェイスを切断します
-** MetroCluster ISLを切断します
+[source, asciidoc]
+----
+net int modify -vserver <vserver_name> -lif <lif_name> -auto-revert false
+----
+.. ローカルクラスタインターフェイスを切断します
+.. ローカルクラスタのISLを切断します
+.. MetroCluster IPインターフェイスを切断します
+.. MetroCluster ISLを切断します
 +
 を参照してください <<port_usage_worksheet>>スイッチは変更されません。MetroCluster ISLは再配置されます。切断する必要があります。ワークシートに緑色でマークされている接続を切断する必要はありません。
 
