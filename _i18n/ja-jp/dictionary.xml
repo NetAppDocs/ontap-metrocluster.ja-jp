@@ -1241,14 +1241,12 @@
   <block id="9e56f2203627e1f0f852b03165f1f73c" category="cell">Cisco 9148S</block>
   <block id="4d5ea9cc493e38f0bd25ce9f073330be" category="cell">Cisco 9132T</block>
   <block id="0f39a39e2e8a1309b826dae2289dd8fb" category="cell">MDS モジュール 1</block>
-  <block id="4ae081212f8a0475febe92be5c491cbc" category="paragraph">MDS モジュール 2</block>
   <block id="14f265c9ad9a81b21c667b4042fc7575" category="admonition">次の表に、 FC-VI ポートが 2 つあるシステムを示します。AFF A700 システムと FAS9000 システムには、 FC-VI ポートが 4 つ（ a 、 b 、 c 、 d ）あります。AFF A700 または FAS9000 システムを使用している場合、ポートの割り当ては 1 つ上の位置に沿って移動します。たとえば、 FC-VI ポート c と d をスイッチポート 2 に、 HBA ポート a と b をスイッチポート 3 にそれぞれ移動します。</block>
   <block id="3db30a6fa1c05224aef86dc9b48a9085" category="cell">Cisco 9250i *</block>
   <block id="7454ecd5190b690ccf9ee77f2e438c0c" category="section-title">ONTAP 9.1 以降を実行する MetroCluster 構成で FC-to-SAS ブリッジに使用する Cisco のポート</block>
   <block id="68d960c549d05fc84233ef70c7a67687" category="cell">2 つの FC ポートを使用する FibreBridge 7500</block>
   <block id="89eaf3610015ecc12505a2408ff9fda6" category="paragraph">ポート 17~40 および 57~88 を使用して、同じパターンで追加のブリッジを接続できます。</block>
   <block id="a1d4f21ed73518b99dbbab05134b5c9a" category="paragraph">ポート 33~40 を使用して、同じパターンで 2 つ目の DR グループまたは 2 つ目の MetroCluster 構成の追加のブリッジを接続できます。</block>
-  <block id="c4d2587ed11ac65a9b9af2de531f3dce" category="paragraph">2 つ目の MDS モジュールで同じポート番号を使用して、 2 つ目の DR グループまたは 2 つ目の MetroCluster 構成の追加のブリッジを接続できます。</block>
   <block id="f656d69f7bbae519056da03a8e9e50d0" category="cell">Cisco 9250i</block>
   <block id="a6bd250708a75e43f157a7b657e654c5" category="paragraph">ポート 25~48 を使用して、同じパターンで 2 つ目の DR グループまたは 2 つ目の MetroCluster 構成の追加のブリッジを接続できます。</block>
   <block id="ba310a61cda35bab44af31435467361f" category="paragraph">次の表は、 FibreBridge 6500 ブリッジ、または 1 つの FC ポート（ FC1 または FC2 ）を使用する FibreBridge 7500 を使用する場合のブリッジポートの用途です。1 つの FC ポートを使用する FibreBridge 7500 ブリッジの場合、 FC1 または FC2 のいずれかを FC1 と記載されたポートにケーブル接続できます。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
@@ -8755,48 +8753,6 @@
   <block id="5dd03e8d039863e563e049be198c3fd3" category="sidebar">リリースノート</block>
   <block id="13c1fe346da53d3c9c58ab0c190eb172" category="sidebar">MetroCluster のデータ保護とディザスタリカバリを理解する</block>
   <block id="f6ded8bde676e251409725df18ef579a" category="sidebar">MetroCluster がデータを保護し、ディザスタリカバリを実現する仕組み</block>
-  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">はじめに</block>
-  <block id="2ef693575e01de24e090245f10a59777" category="sidebar">MetroCluster IP をインストールします</block>
-  <block id="5a3b01a5bff3f06441fb7188a02f105e" category="sidebar">ファブリック接続 MetroCluster をインストールします</block>
-  <block id="fdb8b17580937ddecfddeee4298a1482" category="sidebar">Stretch MetroCluster をインストールします</block>
-  <block id="18bd3543357b4fa11f6a58101dfa61a5" category="sidebar">Tiebreaker をインストールします</block>
-  <block id="d2875782347edc6066d3025cecc9df38" category="sidebar">メディエーターのインストール（ MetroCluster IP のみ）</block>
-  <block id="ade01a5a398372194a42c36e9f5279ac" category="sidebar">メンテナンス</block>
-  <block id="7b8e5f5947a6dadc276f09b5a095667d" category="sidebar">MetroCluster FC 構成での FC スイッチの保守と交換</block>
-  <block id="7f5d1cf6b92b5f6a9e5fe290c7d568fa" category="sidebar">IP スイッチ</block>
-  <block id="e9e6a0d40b20996536edcfae7b0ca501" category="sidebar">MetroCluster IP 構成で IP スイッチの保守と交換を行います。</block>
-  <block id="5360721f5d15a4a50d1c0ea177551d33" category="sidebar">ATTO ブリッジ</block>
-  <block id="6659ad060d95c49da27c02efe70880ee" category="sidebar">MetroCluster FC 構成で ATTO FC-to-SAS ブリッジをメンテナンスし、交換します。</block>
-  <block id="c89a58741e7240ddf3c43ec7dbb21cd7" category="sidebar">ドライブシェルフ</block>
-  <block id="bb2a6473813b98ffe9edacc863bb749e" category="sidebar">ドライブシェルフ MetroCluster FC 構成のホットアドおよび無停止での交換</block>
-  <block id="9deb979aa141eacec55a34ce9dfd4cc9" category="sidebar">RCF ファイル</block>
-  <block id="277ccac115bb10401c3dbe796a5fd555" category="sidebar">MetroCluster RCF ファイル</block>
-  <block id="f4ff45e882d7ee5ad1b4a9e07301850d" category="sidebar">MetroCluster スイッチ用の RCF ファイルを生成またはダウンロードします。</block>
-  <block id="d59048f21fd887ad520398ce677be586" category="sidebar">詳細はこちら。</block>
-  <block id="b92dd7cb5813aceca4052255be1046a0" category="sidebar">NetApp MetroCluster 解決策のアーキテクチャと設計 | TR-4705</block>
-  <block id="c8ed4eb56c00a193e2bf85d5a38119ee" category="sidebar">MetroCluster FC 解決策を理解する</block>
-  <block id="d821955413ef2ce3b63ac32371a5186e" category="sidebar">MetroCluster IP 解決策のアーキテクチャと設計 | TR-4689</block>
-  <block id="33d6c0f3568f32d65b84533fcc9dcbcb" category="sidebar">MetroCluster IP 解決策を理解する。</block>
-  <block id="3d5cf400e4fb829207d0ab81798b6587" category="sidebar">アップグレード、拡張、変換</block>
-  <block id="64cd3f6f5347e9d6c92e09aa1c656f87" category="sidebar">ハードウェアのアップグレードと更新</block>
-  <block id="fdc7fb09ec4ebc533362a55d221d305f" category="sidebar">MetroCluster 構成のコントローラをアップグレードします。</block>
-  <block id="daf3fcb291d6eb9e42a7777197caa458" category="sidebar">MetroCluster FC を MetroCluster IP に変換</block>
-  <block id="689a3f6927feed4862b6b5b03d4f0018" category="sidebar">既存の MetroCluster IP 構成を MetroCluster IP 構成に移行する。</block>
-  <block id="822970998ef8866cd59ed6ba8d63af83" category="sidebar">MetroCluster IP RCF ファイルをアップグレードします</block>
-  <block id="b2899a6511f7a2ac6656022f75581e5a" category="sidebar">MetroCluster IP 構成のスイッチ RCF ファイルをアップグレードします。</block>
-  <block id="b7c02f1bc7ffc889ddb9e99702663c56" category="sidebar">ATTO ブリッジファームウェア</block>
-  <block id="ddac5beff5f77bf22595caa98bac08f9" category="sidebar">FibreBridge 7600N</block>
-  <block id="7189e471dda7f4816814f7b74c6948d1" category="sidebar">7600 ブリッジのファームウェアをダウンロードします。</block>
-  <block id="dcb741f9e6e5d6050aeb3d8fd347e9fd" category="sidebar">FibreBridge 7500N</block>
-  <block id="81defdfe6f2018754b9c90215acaf8c1" category="sidebar">7500 ブリッジのファームウェアをダウンロードします。</block>
-  <block id="dcfbd7fd6db6301d4cc61e9b319755d1" category="sidebar">FibreBridge 6500N</block>
-  <block id="230d9a7150bac60512d2faea2daf48aa" category="sidebar">6500 ブリッジのファームウェアをダウンロードします。</block>
-  <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">リソースの追加</block>
-  <block id="fa0344a10c89a05b4e9232391d5feb01" category="sidebar">NetApp Config Advisor の略</block>
-  <block id="7bde48e6b0d33c17d731b283a4674428" category="sidebar">構成とケーブル接続を検証</block>
-  <block id="d5552b01bf48dde88719269e524ddbb9" category="sidebar">ハードウェアがサポートされていることを確認します。</block>
-  <block id="3f2b90ec5a9b43745b9c8c9fedf48d8d" category="sidebar">ネットアップのサポートナレッジベース</block>
-  <block id="b2cdf9234a2dabbbb6acb6f71e098209" category="sidebar">サポートに関する質問の回答を検索します。</block>
   <block id="9117c89e6f250da2f36e47a459f0d84d" category="sidebar">MetroCluster のコンポーネントをメンテナンスします</block>
   <block id="b25d5935c651d85fc394ce7858eb2c60" category="sidebar">MetroCluster Tiebreaker をインストールして設定します</block>
   <block id="fe8f0af35a77ee3de429b839700538fb" category="sidebar">MetroCluster FC から MetroCluster IP に移行します</block>
@@ -10776,7 +10732,6 @@
   <block id="9135f01e21f3378e93e8e79d77b55ba9" category="cell">LEM2-2</block>
   <block id="fab602535b4be80321a95b9f39dfb023" category="cell">LEM2-3</block>
   <block id="9886bd0d1558f3c4c6b4b7c6ccd6d4ca" category="cell">LEM2-4</block>
-  <block id="8aed0fcdb92053bce2340c69664e26c5" category="list-text">追加のブリッジは、 2 個の LEM モジュールを搭載した 9132T スイッチのポート LEM2-5 ～ LEM2-8 にケーブル接続できます。</block>
   <block id="a2529b9a22421965b80dca74f0e8ac35" category="list-text">1 つの LEM モジュールを持つ 9132T スイッチを使用した場合、 1 つのブリッジスタックのみがサポートされます。</block>
   <block id="99a578284ada1b8807f86cb25b927d6b" category="inline-link-macro">AFF A900 システムを使用する場合の FC スイッチのポート割り当て</block>
   <block id="5383551238fc98d2f75e63be48523c04" category="list-text"><block ref="5383551238fc98d2f75e63be48523c04" category="inline-link-macro-rx"></block></block>
@@ -10823,10 +10778,6 @@
   <block id="aef9e13f2797744b62209b58e52a9a40" category="paragraph">ONTAP 9.10.1 以降を使用している場合に FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。</block>
   <block id="72fa0ea37e0389a6c2e6107de6bbcbe8" category="summary">次の表に、 AFF A900 システムでの Brocade スイッチの ISL ポートの用途を示します。</block>
   <block id="f3089a69f0cb0a583fab7f5c1ea7226c" category="cell">6505 、 G610</block>
-  <block id="e912938f380bdbc5125a46cb6974c985" category="sidebar">2 ノード MetroCluster を展開します</block>
-  <block id="c495f5fb55d923c4b5bdcc9031d17504" category="sidebar">MetroCluster 構成にコントローラを追加して、 4 ノードまたは 8 ノード構成を作成します。</block>
-  <block id="8b9fb0a48d871747071a5767bb11c3c9" category="sidebar">4 ノード MetroCluster を展開します</block>
-  <block id="f0de1d093d27614c73e83446489eec92" category="sidebar">コントローラを MetroCluster 構成に追加して 8 ノード構成を作成</block>
   <block id="b6d684e18fbacf209337f80ec1a6dbd2" category="sidebar">ONTAP 9.10.1 以降を実行するコントローラでの AFF A900 Brocade ポートの使用</block>
   <block id="20be931e6a91f7361d271248d9c2f477" category="sidebar">ONTAP 9.10.1 以降を実行する ISL では AFF A900 Brocade ポートを使用します</block>
   <block id="224ad006d44a9886d7665e4aad6a905c" category="sidebar">ONTAP 9.10.1 以降を実行する AFF A900 シスコポート使用コントローラ</block>
@@ -11567,7 +11518,6 @@
   <block id="a27983e963a18385eebdc3381062e49b" category="paragraph">○（ ONTAP 9.8 以降）</block>
   <block id="098fadefd1319cbc560b7d741aa7210e" category="paragraph">○（ ONTAP 9.7 以降）</block>
   <block id="b9afd1726285b60db7d467ad0820e411" category="list-text">ONTAP 9.9..1 以降では、 8 ノード構成がサポートされます。</block>
-  <block id="fa59de86b7e9bd4898cb6907726259d6" category="paragraph">ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレードを移行する場合、一時的な 8 ノード構成にするには、 2 つ目の 4 ノード DR グループを構成に追加する必要があります。ONTAP 9.9..1 以降では、永続的な 8 ノード MetroCluster 構成がサポートされます。</block>
   <block id="e03959092a5c4014e786cb1caa8e7067" category="summary">ONTAP 9.5 以降では、 ONTAP で仮想 IP アドレス \ （ VIP \ ）とボーダーゲートウェイプロトコル \ （ BGP\ ）を使用したレイヤ 3 接続がサポートされます。VIP と BGP を組み合わせることで、フロントエンドネットワークでの冗長性とバックエンド MetroCluster の冗長性が確保され、レイヤ 3 ディザスタリカバリ解決策が実現します。</block>
   <block id="ca06ae8121f1cc11363fc78862822c7c" category="summary">MetroCluster IP の設定と運用の詳細については、ネットアップのマニュアルを参照してください。</block>
   <block id="cc3e055fb471a8cb2ae09b695769980f" category="paragraph">MetroCluster 設定の詳細については、を参照してください。</block>
@@ -12802,8 +12752,6 @@
   <block id="eae1d6e5dc6115799413390aecfa0c7c" category="paragraph">自動化処理によってスイッチオーバーが開始され、<block ref="4bc031ebd90e06c679bed249595b6c90" prefix=" " category="inline-code"></block>および<block ref="a233091efff166ee24ee5a89d344dcdf" prefix=" " category="inline-code"></block> 操作：これらの処理が完了すると、処理は* paused for user intervention *で一時停止します。これにより、を使用して、コントローラをラックに設置し、パートナーコントローラをブートし、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます<block ref="5fb641c5977b93de82b81e36db0454cf" prefix=" " category="inline-code"></block> さっき集まった。</block>
   <block id="3d296dee09f5acd9721e7bd1f885a1ff" category="doc">MetroCluster IP構成の拡張</block>
   <block id="f7ebd0c3919ed1a579352a95f757a9e6" category="paragraph">ONTAP のバージョンに応じて、4つの新しいノードを新しいDRグループとして追加することでMetroCluster IP構成を拡張できます。</block>
-  <block id="bb12c6e41d92f6e4a5251b0dd54e9b0f" category="paragraph">ONTAP 9.13.1以降では、4つの新しいノードを3つ目のDRグループとしてMetroCluster IP構成に追加できます。これにより、12ノードのMetroCluster 構成が作成されます。</block>
-  <block id="1b9d79df22b9bc1c5dc1b1baa6f53e05" category="list-text">この手順 では、1つの4ノードDRグループを拡張するために必要な手順について説明します。8ノード構成（DRグループが2つ）の場合は、DRグループごとに手順 全体を繰り返す必要があります。</block>
   <block id="5ffb6f10d2a660f5653c90be923e511a" category="section-title">2つ目のDRグループを追加する際にサポートされるプラットフォームの組み合わせ</block>
   <block id="c7a5837b5fbd32fe6a2e393e60dbd4a3" category="paragraph">次の表に、8ノードIP構成でサポートされるプラットフォームの組み合わせを示します。</block>
   <block id="a321522d8592d70cc3e6c26d2e63f256" category="list-text">この表の組み合わせは、通常の8ノード構成または永続的な8ノード構成にのみ該当します。</block>
@@ -13369,4 +13317,34 @@
   <block id="69f5f299da1076246b1de6b47387e82c" category="list-text">すべてのクラスタLIFを変更して自動リバートを無効にします。</block>
   <block id="44f3e9b14f204b411afdea78f7b0391c" category="doc">MetroClusterリリースノート</block>
   <block id="af8a69aa12393a4d9b6992e884f1c919" category="sidebar">MetroCluster のドキュメント</block>
+  <block id="b8b5370c063dd2b4ce4021558a49ac07" category="paragraph">ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレードを移行する場合、一時的な 8 ノード構成にするには、 2 つ目の 4 ノード DR グループを構成に追加する必要があります。  ONTAP 9.9.1以降では、永続的な8ノードMetroCluster構成がサポートされます。</block>
+  <block id="ff66d22d6ddbc0a6a59188599728f8d1" category="paragraph">ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください <block ref="6e6fb56321b906b7bb3a671d5fc5dfc7" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="0abe9117fda19697d2dbf1bd1d754e02" category="list-text">この手順では、既存のMetroCluster IP構成に4ノードDRグループを1つ追加する手順について説明します。8ノード構成を更新する場合は、手順全体をDRグループごとに1つずつ追加して繰り返す必要があります。</block>
+  <block id="84d04e0c7f711ba6800f8d3bd5bc0847" category="inline-xref">ONTAP 9.4以降を実行しているMetroCluster構成でのCisco 9132Tポートの用途</block>
+  <block id="ccdfc130a534c248f558d6495323cb02" category="admonition">Cisco 9132Tについては、を参照してください。 <block ref="3db7a367aafc64164b814f36e8341eaa" category="inline-xref-macro-rx"></block>。</block>
+  <block id="da1fe90f1a7c8d5426c9fb653143159c" category="inline-xref">ONTAP 9.1以降を実行しているMetroCluster構成のCisco 9132TでのISLポートの用途</block>
+  <block id="ebaff03f6ed502f4a413a1ce08e7b523" category="admonition">Cisco 9132Tについては、を参照してください。 <block ref="745f667c2207ac60e33bebf6a26d4908" category="inline-xref-macro-rx"></block>。</block>
+  <block id="b6adc54642d6ea9466bf5956bfd90921" category="section-title">ONTAP 9.4以降を実行するMetroCluster 4ノードおよび8ノード構成でのCisco 9132Tポートの用途</block>
+  <block id="34adac1b835db756e4bda81aeab17aee" category="paragraph">次の表に、Cisco 9132Tスイッチのポート用途を示します。次の表に、2つのDRグループに4台および8台のコントローラモジュールを含む、サポートされる最大構成を示します。</block>
+  <block id="65ac5210a13e16ff0c09cc508d39f010" category="admonition">8ノード構成の場合は、RCFは提供されないため、ゾーニングを手動で実行する必要があります。</block>
+  <block id="24ce95dff7cdbe82f47d82b0c5e3c3bd" category="paragraph">LEM2-5</block>
+  <block id="d1219ba7b45f6028da9ef53dc1d962dc" category="paragraph">LEM2-6</block>
+  <block id="d72635ed8e78c8bf248888485d54fefc" category="paragraph">LEM2-7</block>
+  <block id="bf56acff15a22deda5e2b827afffd42e" category="paragraph">LEM2-8</block>
+  <block id="148fa39b011d75fbf87b5c6a6e4eb7ac" category="list-text">4ノード構成では、LEMを2台搭載した9132TスイッチのポートLEM2-5~LEM2-8に追加のブリッジをケーブル接続できます。</block>
+  <block id="1b3edf8d6e61a53c159f115111d76631" category="list-text">8ノード構成では、LEM×2を搭載した9132TスイッチのポートLEM2-13~LEM2-16に追加のブリッジをケーブル接続できます。</block>
+  <block id="7aff2de5bc0a96f53245830100b31a76" category="section-title">MetroCluster ONTAP 9.1以降を実行している4ノードおよび8ノード構成のISLでのCisco 9132Tポートの用途</block>
+  <block id="e919df0feb57e826b9f8b6224efe2e04" category="paragraph">次の表に、Cisco 9132TスイッチでのISLポートの用途を示します。</block>
+  <block id="a261c053c0fcf9998b34ce893b64a413" category="paragraph"><block ref="c0d0f2b19dc6b7f887420d5bf33adaba" prefix="" category="inline-code"></block></block>
+  <block id="8eca95447c2280ec1cef00c74fbdd026" category="paragraph"><block ref="08781b24c8be1fcc1ac4a86a67a6752f" prefix="" category="inline-code"></block></block>
+  <block id="e7b29d0915f737610eeeb345da9728aa" category="list-text">クラスタ内のすべてのノードが正常であることを確認します。</block>
+  <block id="bd0d55b78c7361cb6bee641b1a3f51f1" category="paragraph">出力に<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> をクリックします<block ref="555bf8344ca0caf09b42f55e185526d8" prefix=" " category="inline-code"></block> すべてのノードのフィールド。</block>
+  <block id="a52d9220769f6761bf129d7261ce8c50" category="list-text">新しく追加したMetroCluster IPノードに接続されているすべてのディスクがあることを確認します。</block>
+  <block id="31fd58e5bb5b343f46192bb2a5c46678" category="list-text">次のコマンドを実行して、MetroCluster構成の健全性を確認します。</block>
+  <block id="0684ea3076044d6489f161fa34d1768f" category="list-text">2台のLEMモジュールを搭載した9132Tスイッチでは、追加のブリッジをポートLEM2-5～LEM2-8にケーブル接続できます。</block>
+  <block id="2f446d31523b281d945a5fb6d94e09f7" category="cell">MetroCluster FCの設定状態</block>
+  <block id="b25919189b4340e1b84dd00de09921d3" category="cell">MetroCluster IPの設定状態</block>
+  <block id="e402ac65c66b96e2f07562ac550c53d8" category="paragraph">オフライン（注1）</block>
+  <block id="5993b684cff34ce50e30b3a1293c1f25" category="paragraph">*注1 *：MetroCluster IP構成では、スイッチオーバーの完了後に、ミラーされていないアグリゲートを手動でオンラインにすることができます。</block>
+  <block id="0fc1dc5210ab6635b5582671b5100aaf" category="paragraph">の詳細を確認してください <block ref="26007d4b0afff1c47eeefe43a1492ee9" category="inline-xref-macro-rx"></block>。</block>
 </blocks>

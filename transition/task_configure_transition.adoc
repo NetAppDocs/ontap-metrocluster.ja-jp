@@ -613,7 +613,7 @@ aggr_data_a2
  a| 
 いずれかのノードのプロンプトで、 MetroCluster を設定します。
 
-MetroCluster configure_node-name_` です
+`metrocluster configure <node-name>`
 
 
 NOTE: 「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります
@@ -632,7 +632,7 @@ NOTE: 「 MetroCluster configure 」と「 MetroCluster configure -refresh true 
 
 .. MetroCluster に -allow-with-one-aggregate true パラメータを設定します。
 +
-「 MetroCluster configure -allow-with-one-aggregate true_node-name_` 」
+`metrocluster configure -allow-with-one-aggregate true -node-name <node-name>`
 
 .. admin 権限レベルに戻ります。
 +
@@ -720,6 +720,13 @@ Do you want to continue? {y|n}: y
 
 cluster_A::>
 ....
+. クラスタ内のすべてのノードが正常であることを確認します。
++
+「 cluster show 」を参照してください
+
++
+出力に `true` をクリックします `health` すべてのノードのフィールド。
+
 . 両方のクラスタで次のコマンドを実行して、テイクオーバーが可能で、ノードが接続されていることを確認します。
 +
 「 storage failover show 」をクリックします
@@ -736,6 +743,18 @@ Node_FC_2      Node_FC_1              true      Connected to Node_FC_1
 Node_IP_1      Node_IP_2              true      Connected to Node_IP_2
 Node_IP_2      Node_IP_1              true      Connected to Node_IP_1
 ----
+. 新しく追加したMetroCluster IPノードに接続されているすべてのディスクがあることを確認します。
++
+「ディスクショー」
+
+. 次のコマンドを実行して、MetroCluster構成の健全性を確認します。
++
+.. 「 MetroCluster check run 」のようになります
+.. MetroCluster チェックショー
+.. MetroCluster interconnect mirror show
+.. MetroCluster インターコネクト・アダプタ・ショー
+
+
 . advanced 権限で、 MDV_CRS ボリュームを古いノードから新しいノードに移動します。
 +
 .. ボリュームを表示して MDV ボリュームを特定します。

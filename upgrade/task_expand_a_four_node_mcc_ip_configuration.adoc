@@ -13,13 +13,13 @@ summary: MetroCluster IP 構成に 4 つの新しいノードを 2 つ目の DR 
 [role="lead"]
 ONTAP のバージョンに応じて、4つの新しいノードを新しいDRグループとして追加することでMetroCluster IP構成を拡張できます。
 
-ONTAP 9.13.1以降では、4つの新しいノードを3つ目のDRグループとしてMetroCluster IP構成に追加できます。これにより、12ノードのMetroCluster 構成が作成されます。
+ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください link:https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/task_refresh_4n_mcc_ip.html["4ノードまたは8ノードのMetroCluster IP構成の更新（ONTAP 9.8以降）"] を参照してください。
 
 ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。
 
 .作業を開始する前に
 * 古いノードと新しいノードで同じバージョンの ONTAP を実行する必要があります。
-* この手順 では、1つの4ノードDRグループを拡張するために必要な手順について説明します。8ノード構成（DRグループが2つ）の場合は、DRグループごとに手順 全体を繰り返す必要があります。
+* この手順では、既存のMetroCluster IP構成に4ノードDRグループを1つ追加する手順について説明します。8ノード構成を更新する場合は、手順全体をDRグループごとに1つずつ追加して繰り返す必要があります。
 * 新旧のプラットフォームモデルでプラットフォームの混在がサポートされていることを確認します。
 +
 https://hwu.netapp.com["NetApp Hardware Universe の略"^]
