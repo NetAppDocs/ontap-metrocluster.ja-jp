@@ -4,67 +4,23 @@ sidebar: sidebar
 keywords: install, tiebreaker, software, monitor, capabilities, capability, cluster, storage, environment, snmp, notification, event, node, connectivity, issue, site, disaster, system, install, upgrade, upgrading, software, dependencies, dependency, package, ntp, requirements, requirements for tiebreaker, tiebreaker requirements, mysql, mariadb, autostart, database 
 summary: Tiebreaker ソフトウェアは、クラスタストレージ環境に監視機能を提供します。また、ノード接続の問題やサイト障害が発生した場合に SNMP 通知を送信します。 
 ---
-= Tiebreaker モニタが実行されているホストをアップグレードしています
+= Tiebreakerモニタが実行されているホストをアップグレードする
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-アップグレード前にモニタをオブザーバーモードにした場合は、Tiebreakerモニタが実行されているホストを最小限の中断でアップグレードできます。
+Tiebreakerモニタを実行しているホストのアップグレードが必要になる場合があります。
 
 .手順
-. モニタがオブザーバーモードになっていることを確認します。
+. Tiebreakerソフトウェアをアンインストールします。
 +
-「モニタの表示 - ステータス」
+`rpm -e NetApp-MetroCluster-Tiebreaker-Software`
 
+. ホストをアップグレードします。詳細については、ホストOSのドキュメントを参照してください。
+. Tiebreakerソフトウェアを再インストールします。
 +
-[listing]
-----
-NetApp MetroCluster Tiebreaker:> monitor show -status
-MetroCluster: cluster_A
-    Disaster: false
-    Monitor State: Normal
-    Observer Mode: true
-    Silent Period: 15
-    Override Vetoes: false
-    Cluster: cluster_Ba(UUID:4d9ccf24-080f-11e4-9df2-00a098168e7c)
-        Reachable: true
-        All-Links-Severed: FALSE
-            Node: node-a1(UUID:78b44707-0809-11e4-9be1-e50dab9e83e1)
-                Reachable: true
-                All-Links-Severed: FALSE
-                State: normal
-            Node: node-a2(UUID:9a8b1059-0809-11e4-9f5e-8d97cdec7102)
-                Reachable: true
-                All-Links-Severed: FALSE
-                State: normal
-    Cluster: cluster_B(UUID:70dacd3b-0823-11e4-a7b9-00a0981693c4)
-        Reachable: true
-        All-Links-Severed: FALSE
-            Node: node-b1(UUID:961fce7d-081d-11e4-9ebf-2f295df8fcb3)
-                Reachable: true
-                All-Links-Severed: FALSE
-                State: normal
-            Node: node-b2(UUID:9393262d-081d-11e4-80d5-6b30884058dc)
-                Reachable: true
-                All-Links-Severed: FALSE
-                State: normal
-----
-. すべてのモニタをオブザーバーモードに変更します。
-+
-[listing]
-----
-NetApp MetroCluster Tiebreaker :> monitor modify -monitor-name monitor_name -observer-mode true
-----
-. Tiebreaker ホストをアップグレードするには、次の手順のすべての手順を実行します。
-+
-link:install_tiebreaker_package.html["Tiebreakerパッケージのインストールまたはアップグレード"]
+の手順に従ってTiebreakerの新規インストールを実行します。 link:install-choose-procedure.html["Tiebreaker ソフトウェアをインストールします"]。
 
-. オブザーバーモードを無効にして、すべてのモニタをオンラインモードに戻します。
-+
-[listing]
-----
-NetApp MetroCluster Tiebreaker :> monitor modify -monitor-name monitor_name -observer-mode false
-----
 
