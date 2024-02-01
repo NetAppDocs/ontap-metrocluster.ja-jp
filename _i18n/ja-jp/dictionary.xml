@@ -455,7 +455,6 @@
   <block id="bdf5a4145db18b2c7dd55def53b3ed55" category="list-text">MetroCluster 構成が正常に動作している必要があります。</block>
   <block id="d5d3590e43714c27f890df20d7fb4b09" category="list-text">MetroCluster 構成内のすべての FibreBridge ブリッジが稼働している必要があります。</block>
   <block id="0450d35c3e42ba9d9532f666b14a8b24" category="list-text">すべてのストレージパスが使用可能である必要があります。</block>
-  <block id="6c84f57441ac5f9c9fc0a2b2600dbfcb" category="list-text">管理パスワードと HTTP サーバへのアクセスが必要です。</block>
   <block id="166dba728289a6a5685576331ebb01f7" category="list-text">サポートされているファームウェアバージョンを使用している必要があります。</block>
   <block id="b5281259f02365989ee0c66878541c97" category="paragraph">IMT では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。</block>
   <block id="b64e329a5994176cf6b7c2cf5a95361c" category="list-text">このタスクは、 ONTAP 9.4 以降を実行している構成の FibreBridge 7600N / 7500N ブリッジでのみ使用できます。</block>
@@ -4446,7 +4445,6 @@
   <block id="2cf96570d05093e79354fdebf6a25c6f" category="paragraph">4 ノード構成および 2 ノードファブリック接続構成で ONTAP システムをスイッチ経由でディスクシェルフと接続するには、 FC-to-SAS ブリッジが必要です。</block>
   <block id="f1b073b17d11b6a85cff8fafe775f23e" category="paragraph">ストレージアレイへの接続と FC-to-SAS ブリッジへの接続に同じスイッチを使用する必要があります。</block>
   <block id="209a28f98adf7a11fd98e407f778da76" category="paragraph">FC イニシエータポートを使用する</block>
-  <block id="9e5e027fd19574761ea3d87eebdedffa" category="inline-xref-macro">Cisco または Brocade FC スイッチを手動で設定する</block>
   <block id="db08f81e8313778dec890ddaca5cb3d3" category="inline-xref-macro">アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例</block>
   <block id="207c024d1855ef3c7e08eb0a0aceac8f" category="inline-xref-macro">アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例</block>
   <block id="a9ed40443a225cecce5742ada138b243" category="inline-xref-macro">FC-to-SAS ブリッジおよび SAS ディスクシェルフの設置</block>
@@ -8785,7 +8783,6 @@
   <block id="c941b5c4cf46259dd41b222aa38a58f3" category="paragraph">'witchcfgpersistentenable</block>
   <block id="f22c92f3b10744efbd0e82db9d85f42a" category="paragraph">'witchshow'</block>
   <block id="bad3a2380613a08cffd8b317771de374" category="list-text">fmc_dc ユーティリティを実行して、 7-Mode ファブリック MetroCluster が正常に機能していることを確認します。</block>
-  <block id="d6d64090fd47c5235492fd5cc4f11ff5" category="paragraph"><block ref="d6d64090fd47c5235492fd5cc4f11ff5" category="inline-link-macro-rx"></block></block>
   <block id="da94a7db0f9882c4b3c67c4b02d65a87" category="paragraph"><block ref="da94a7db0f9882c4b3c67c4b02d65a87" category="inline-link-macro-rx"></block></block>
   <block id="6e2b6e2786426e2aeed4db0ecc5b8890" category="paragraph"><block ref="6e2b6e2786426e2aeed4db0ecc5b8890" category="inline-link-macro-rx"></block></block>
   <block id="5d80f4634e8ee066c641d17f726ec994" category="paragraph"><block ref="5d80f4634e8ee066c641d17f726ec994" category="inline-link-macro-rx"></block></block>
@@ -13383,4 +13380,10 @@
   <block id="7d04b9af5dfbfc78c7040183f68afdc4" category="cell">Red Hat 8.1-8.7</block>
   <block id="33ef1f5aa9b12ecd01c340c91d8f9150" category="cell">Red Hat 8.8-9.2</block>
   <block id="003d136e5089a4f9ae0f1df3f6fc37fa" category="cell">Rocky Linux 9.0</block>
+  <block id="9d0101bb262cf2b07ff8dcfa1f6cf004" category="list-text">管理者パスワードと、HTTP、FTP、SFTP、またはTrivial File Transfer Protocol（TFTP）サーバへのアクセスが必要です。</block>
+  <block id="c422062a1c7b3d9ed9b2282378699dc7" category="paragraph"><block ref="c422062a1c7b3d9ed9b2282378699dc7" category="inline-link-macro-rx"></block></block>
+  <block id="f54824b249675e35c90a450877126d13" category="inline-link-macro">Brocade FCスイッチの手動設定</block>
+  <block id="da09acdb1d2e578a9e771c592cf62afa" category="paragraph"><block ref="da09acdb1d2e578a9e771c592cf62afa" category="inline-link-macro-rx"></block></block>
+  <block id="94d0fc55d9356d3d18534836cae75c1d" category="doc">FCスイッチの設定の概要</block>
+  <block id="67af9bc4271944d43da3bdca5451bf73" category="paragraph">RCFファイルを使用してCiscoとBrocadeのFCスイッチを設定できます。また、必要に応じてスイッチを手動で設定することもできます。</block>
 </blocks>
