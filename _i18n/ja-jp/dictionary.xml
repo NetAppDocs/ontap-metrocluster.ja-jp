@@ -745,7 +745,6 @@
   <block id="670c82721eda362e6fbddff0dd85e845" category="list-text">交換中のスイッチをフェンシングします。そのためには、ファブリック内の正常に動作しているスイッチの ISL ポート、および障害が発生したスイッチの FC-VI ポートと HBA ポートを無効にします（障害が発生したスイッチが稼働している場合）。</block>
   <block id="105fa3122987d45fae2de8b9e61228dc" category="list-text">新しいスイッチを物理的に設置する前に、スイッチをブートして事前設定します。</block>
   <block id="e8097a3b165e180d56bd06e7a7f7df02" category="list-text">新しいスイッチに電源を投入し、起動するのを待ちます。</block>
-  <block id="b78f0a4f76dcc1e77900d332f928827a" category="paragraph">ゾーニングはこの手順の後半で設定します。</block>
   <block id="b8e631780d1dd27b4f2d09d46aff4b4b" category="admonition">この時点では、新しいスイッチは MetroCluster 構成にケーブル接続されていません。</block>
   <block id="44cc543a1a8236a9d069faa85442a84b" category="list-text">新しいスイッチの FC-VI 、 HBA 、ストレージポート、および FC-SAS ブリッジに接続されているポートを無効にします。</block>
   <block id="32d094a9a039fb0268cc6295ed9c3e91" category="list-text">スイッチを物理的に交換します。</block>
@@ -13282,7 +13281,6 @@
   <block id="aa71e3dcbe0cdabbe4cce28385ab2fd6" category="paragraph">ONTAPまたはスイッチファームウェアのバージョンを変更する場合は、そのバージョンでサポートされるRCFファイルがあることを確認する必要があります。RCF ジェネレータを使用すると、正しい RCF ファイルが生成されます。</block>
   <block id="9f4a5b5c7a3f862c1d0ff77f72d3eea0" category="paragraph">ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求められます。</block>
   <block id="c471c44c2f26c78f9327863d90427cb7" category="admonition">ONTAPメディエーターが停止している場合は、<block ref="1eafb93bfc40f298e60cf17e8a8c598c" prefix=" " category="inline-code"></block> ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求めるプロンプトが引き続き表示され、ONTAPメディエーターサービスがMetroCluster構成から削除されます。</block>
-  <block id="1aa145ddf3cafc3bf77b04a1c7069f71" category="list-text">「MetroClusterのインストールと設定_」の説明に従って新しいスイッチを設定しますが、「Brocade FCスイッチでのゾーニングの設定」の手順は省略します。</block>
   <block id="21b5cf2db61fccc0ace8b80bac8b35b7" category="list-text">注2：FCノードのローカルクラスタインターフェイスには、40GbEインターフェイスが必要です。このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
   <block id="13cdbd43c145584bcad75658a29e498d" category="list-text">注3：FCノードのローカルクラスタインターフェイスには100GbEインターフェイスが必要です。このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
   <block id="646d7d5f93b4a6d7bbbc65acf5ac1077" category="inline-link">ONTAPハードウェアシステムのドキュメント</block>
@@ -13387,4 +13385,36 @@
   <block id="94d0fc55d9356d3d18534836cae75c1d" category="doc">FCスイッチの設定の概要</block>
   <block id="67af9bc4271944d43da3bdca5451bf73" category="paragraph">RCFファイルを使用してCiscoとBrocadeのFCスイッチを設定できます。また、必要に応じてスイッチを手動で設定することもできます。</block>
   <block id="1399637937931de009069d1a13a152fb" category="paragraph">*注1：*この組み合わせにはONTAP 9.13.1以降が必要です。</block>
+  <block id="9ae99044ddcd14d01b26630cedd8846d" category="list-text">の手順に従って、新しいスイッチを設定します。 <block ref="435cf525be06a494222aa18eba4f6000" category="inline-link-macro-rx"></block>。</block>
+  <block id="02d80d458a48a16bd927a203d6bb2c73" category="list-text">ゾーニング設定を確認します。</block>
+  <block id="62c870995fe52ce6aa5f9fc71ef4da98" category="paragraph"><block ref="ed3badb92af3298762df5a811de2da80" prefix="" category="inline-code"></block></block>
+  <block id="79787dbf023f957de1bd4970858b26be" category="summary">ヘルス監視にSNMPv3を使用するようにIPスイッチを設定できます。</block>
+  <block id="3a4aa5b142f66d14a43abf77cc49c599" category="doc">健全性監視用のMetroCluster IPスイッチの設定</block>
+  <block id="877caefa8e802eac248e66b46636c94b" category="paragraph">MetroCluster IP構成では、IPスイッチのヘルスを監視するようにSNMPv3を設定できます。</block>
+  <block id="b3d73929ddf74bb4c7d3cac6eeda8684" category="section-title">手順1：MetroCluster IPスイッチでSNMPv3ユーザを設定する</block>
+  <block id="038fbd2fc792b1165c5e88791a09113a" category="paragraph">次の手順に従って、MetroCluster IPスイッチでSNMPv3ユーザを設定します。</block>
+  <block id="f1407eaef69e4aa9948574be11c0a49b" category="admonition">コマンドでは、認証プロトコルとプライバシープロトコルの両方を使用する必要があります。プライバシーなしの認証の使用はサポートされていません。</block>
+  <block id="165237cf57452c2427f247f1c6589434" category="open-title">BroadcomIPスイツチ</block>
+  <block id="8d09188a2cfea4cc57e0f38750b68c97" category="list-text">「network-admin」ユーザグループが存在しない場合は、作成します。</block>
+  <block id="0f3a15963e4657a9c97ab6b3db322d27" category="paragraph"><block ref="173ceda524dbc87af297f813b0f50cd8" prefix="" category="inline-code"></block></block>
+  <block id="ec714ba3bea7bae033524709c8ddb144" category="list-text">「network-admin」グループが作成されたことを確認します。</block>
+  <block id="a24bdf92e7d1dc2d2e5714305a56e0eb" category="paragraph"><block ref="77aa57f376fe73c9581fb729ddeb38eb" prefix="" category="inline-code"></block></block>
+  <block id="6697365f2e46593a5513af21ee61a084" category="list-text">Broadcom IPスイッチでSNMPv3ユーザを設定します。</block>
+  <block id="3289ce0836654122a2c0d3bfd4fab942" category="paragraph">認証パスワードとプライバシーパスワードは、次の例に示すように引用符で囲む必要があります。</block>
+  <block id="9253168d7e5e9b3b8152a8ff1870743f" category="open-title">Cisco IPスイッチ</block>
+  <block id="4a2ec710ab28d8f45e2fdabacdc2dfc6" category="list-text">次のコマンドを実行して、Cisco IPスイッチでSNMPv3ユーザを設定します。</block>
+  <block id="a8b5c32b456efe8e0fcb23cd218c6b6c" category="list-text">スイッチにSNMPv3ユーザが設定されていることを確認します。</block>
+  <block id="dcc1c100b3f25557081f2e0b39235331" category="paragraph"><block ref="b74f60eeed5179550ade1e96ba13e2f9" prefix="" category="inline-code"></block></block>
+  <block id="82551d68c685b978ef7462fc2759040f" category="paragraph">次の出力例は、ユーザが<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> SNMPv3用に設定されています。</block>
+  <block id="54095e9794a9fd93e475a7911543f88e" category="section-title">手順2：ONTAPでSNMPv3ユーザを設定する</block>
+  <block id="584b7eab2aafafcbe01855419f896b21" category="paragraph">次の手順に従って、ONTAPでSNMPv3ユーザを設定します。</block>
+  <block id="1bff762b431027892d402682570d40ac" category="list-text">ONTAPでSNMPv3ユーザを設定します。</block>
+  <block id="ddc11f6ac980cbb07f08bef9febcc0e7" category="paragraph"><block ref="d122104842549610cab7a5c1c6e791ab" prefix="" category="inline-code"></block></block>
+  <block id="c74135dc000c228de7018358eaf099e5" category="list-text">新しいSNMPv3ユーザを使用してスイッチを監視するようにスイッチヘルスモニタを設定します。</block>
+  <block id="19acda7cb8d15af8dcf62dcf74bcbe00" category="paragraph"><block ref="536a54b756351ba8978169ff37fc419d" prefix="" category="inline-code"></block></block>
+  <block id="102bc61adb74b49384536c35a485dea4" category="list-text">新しく作成したSNMPv3ユーザで監視するデバイスのシリアル番号が正しいことを確認します。</block>
+  <block id="189afc0f727c57bbef41f18728ebe44a" category="list-text">スイッチヘルスモニタのポーリング期間を表示します。</block>
+  <block id="4e8c2092c0a2bb40fde077763873c66c" category="paragraph"><block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix="" category="inline-code"></block></block>
+  <block id="b9035c5f27542cbf7fb14fced8e330ba" category="list-text">ポーリング期間が経過したら、次のコマンドを実行します。</block>
+  <block id="20c4c39b07a94d810605541c0137f531" category="paragraph"><block ref="9214d4fe696fff6386a131ecee126bc4" prefix="" category="inline-code"></block></block>
 </blocks>

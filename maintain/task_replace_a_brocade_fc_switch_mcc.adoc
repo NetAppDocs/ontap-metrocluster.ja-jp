@@ -113,13 +113,7 @@ FC_switch_B_1:admin> switchshow
 +
 「 firmwareShow
 
-.. 「MetroClusterのインストールと設定_」の説明に従って新しいスイッチを設定しますが、「Brocade FCスイッチでのゾーニングの設定」の手順は省略します。
-+
-https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
-
-+
-ゾーニングはこの手順の後半で設定します。
-
+.. の手順に従って、新しいスイッチを設定します。 link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["Brocade FC スイッチを手動で設定"]。
 +
 
 NOTE: この時点では、新しいスイッチは MetroCluster 構成にケーブル接続されていません。
@@ -173,6 +167,10 @@ portcfgpersistentenable_port-number
 FC_switch_B_1:admin> portcfgpersistentenable 10
 FC_switch_B_1:admin> portcfgpersistentenable 11
 ----
+.. ゾーニング設定を確認します。
++
+`cfg show`
+
 .. 交換用スイッチ（この例では FC_switch_B_1 ）で、 ISL がオンラインであることを確認します。
 +
 'witchshow'
