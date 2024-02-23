@@ -13,7 +13,7 @@ summary: MetroCluster IP 構成に 4 つの新しいノードを 2 つ目の DR 
 [role="lead"]
 ONTAP のバージョンに応じて、4つの新しいノードを新しいDRグループとして追加することでMetroCluster IP構成を拡張できます。
 
-ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください link:https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/task_refresh_4n_mcc_ip.html["4ノードまたは8ノードのMetroCluster IP構成の更新（ONTAP 9.8以降）"] を参照してください。
+ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください link:task_refresh_4n_mcc_ip.html["4ノードまたは8ノードのMetroCluster IP構成の更新（ONTAP 9.8以降）"] を参照してください。
 
 ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。
 
@@ -28,7 +28,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 +
 https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
-* 新しいノードには、古いノードのデータを格納するための十分なストレージと、ルートアグリゲートとスペアディスク用の十分なディスクが必要です。
+* 実行中の場合 link:task_refresh_4n_mcc_ip.html["4ノードまたは8ノードのMetroCluster IP構成の更新"]新しいノードには、古いノードのデータを収容するための十分なストレージに加え、ルートアグリゲート用の十分なディスクとスペアディスクが必要です。
 * 古いノードにデフォルトのブロードキャストドメインが作成されていることを確認します。
 +
 デフォルトのブロードキャストドメインがない既存のクラスタに新しいノードを追加すると、想定される名前ではなくUniversal Unique Identifier（UUID）を使用して新しいノード用のノード管理LIFが作成されます。詳細については、技術情報アーティクルを参照してください https://kb.netapp.com/onprem/ontap/os/Node_management_LIFs_on_newly-added_nodes_generated_with_UUID_names["UUID名で生成された新しく追加されたノードのノード管理LIF"^]。
@@ -380,8 +380,6 @@ cluster_A::*> metrocluster check run
 ----
 -----------
 ::*> metrocluster check show
-
-Last Checked On: 4/7/2019 21:15:05
 
 Component           Result
 ------------------- ---------

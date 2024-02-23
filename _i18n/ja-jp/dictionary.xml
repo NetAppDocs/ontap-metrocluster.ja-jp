@@ -2333,7 +2333,6 @@
   <block id="b330eebf161ca27c703eccf6e8e36d29" category="summary">MetroCluster IP 構成に 4 つの新しいノードを 2 つ目の DR グループとして追加することができます。これにより、 8 ノード MetroCluster 構成が作成されます。</block>
   <block id="0cd02877aca872fed2b891e70e7d6d9d" category="doc">4 ノード MetroCluster IP 構成から 8 ノード構成への拡張</block>
   <block id="44e7e75e628cd7549a2dac175d45b418" category="list-text">古いノードと新しいノードで同じバージョンの ONTAP を実行する必要があります。</block>
-  <block id="2ee2465217913ae7b455ab4ef5e995e6" category="list-text">新しいノードには、古いノードのデータを格納するための十分なストレージと、ルートアグリゲートとスペアディスク用の十分なディスクが必要です。</block>
   <block id="1ba701b5ad5528986d9e0eb838638aae" category="section-title">この手順での命名例</block>
   <block id="a9b1d4be69539e9b95a2c6672035550c" category="paragraph">この手順では、全体的な名前の例を使用して、 DR グループ、ノード、および関連するスイッチを特定します。</block>
   <block id="360264088f5b0d4a8993fa7a8e15856d" category="cell">DR グループ</block>
@@ -4626,7 +4625,6 @@
   <block id="81af25de9f68ba8cc7b0883b71b9d3cb" category="inline-xref-macro">8 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例</block>
   <block id="5482b27fb601c9d5069a7533e0dd1b02" category="summary">Brocade FC スイッチを設定する際には、特定の構成のスイッチ設定がすべて定義されたスイッチ構成ファイルをインストールできます。</block>
   <block id="c2a1b1aaf420fd5fc4e694faa94de89f" category="doc">Brocade FC スイッチの RCF ファイルをインストールします</block>
-  <block id="40a501dacb79ddf4f770555994a4dbe9" category="paragraph">この手順は、 MetroCluster ファブリック構成内の各 Brocade FC スイッチで実行する必要があります。</block>
   <block id="2d6424f21b7898ba895ef0e70f5c13c8" category="list-text">ダウンロードと設定のプロセスを開始します。</block>
   <block id="d304e0e1a0c74d4f29c7bf97c9e6c845" category="paragraph">次の例に示すようにプロンプトに応答します。</block>
   <block id="7d0f2c3cd748fccbce47bc4e830563ed" category="paragraph">パスワードを入力すると、スイッチはコンフィギュレーションファイルをダウンロードして実行します。</block>
@@ -13296,7 +13294,6 @@
   <block id="44f3e9b14f204b411afdea78f7b0391c" category="doc">MetroClusterリリースノート</block>
   <block id="af8a69aa12393a4d9b6992e884f1c919" category="sidebar">MetroCluster のドキュメント</block>
   <block id="b8b5370c063dd2b4ce4021558a49ac07" category="paragraph">ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレードを移行する場合、一時的な 8 ノード構成にするには、 2 つ目の 4 ノード DR グループを構成に追加する必要があります。  ONTAP 9.9.1以降では、永続的な8ノードMetroCluster構成がサポートされます。</block>
-  <block id="ff66d22d6ddbc0a6a59188599728f8d1" category="paragraph">ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください <block ref="6e6fb56321b906b7bb3a671d5fc5dfc7" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="0abe9117fda19697d2dbf1bd1d754e02" category="list-text">この手順では、既存のMetroCluster IP構成に4ノードDRグループを1つ追加する手順について説明します。8ノード構成を更新する場合は、手順全体をDRグループごとに1つずつ追加して繰り返す必要があります。</block>
   <block id="84d04e0c7f711ba6800f8d3bd5bc0847" category="inline-xref">ONTAP 9.4以降を実行しているMetroCluster構成でのCisco 9132Tポートの用途</block>
   <block id="ccdfc130a534c248f558d6495323cb02" category="admonition">Cisco 9132Tについては、を参照してください。 <block ref="3db7a367aafc64164b814f36e8341eaa" category="inline-xref-macro-rx"></block>。</block>
@@ -13417,4 +13414,15 @@
   <block id="4e8c2092c0a2bb40fde077763873c66c" category="paragraph"><block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix="" category="inline-code"></block></block>
   <block id="b9035c5f27542cbf7fb14fced8e330ba" category="list-text">ポーリング期間が経過したら、次のコマンドを実行します。</block>
   <block id="20c4c39b07a94d810605541c0137f531" category="paragraph"><block ref="9214d4fe696fff6386a131ecee126bc4" prefix="" category="inline-code"></block></block>
+  <block id="0ca1a0fce29aa8b27d10b5cf276a5a5c" category="list-text">xWDM構成を使用する場合は、ISLで追加の設定が必要になることがあります。詳細については、xWDMベンダーのドキュメントを参照してください。</block>
+  <block id="e389e5759cd93883cfbee1a000ab0c47" category="list-text">この手順は、MetroClusterファブリック構成内の各Brocade FCスイッチで実行する必要があります。</block>
+  <block id="9dc72cfc812a43dbca6ba4e6357b2b04" category="paragraph">ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください <block ref="df5e6373f54c9330727709bb1055a079" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="e6f19b92e0e69fc5d74e94088b442a26" category="inline-link-macro">4ノードまたは8ノードのMetroCluster IP構成の更新</block>
+  <block id="ae236ebe2cd05ce4da7fe73d504f4946" category="list-text">実行中の場合 <block ref="54f4a86aff0fc5aba4d6e37b225734c0" category="inline-link-macro-rx"></block>新しいノードには、古いノードのデータを収容するための十分なストレージに加え、ルートアグリゲート用の十分なディスクとスペアディスクが必要です。</block>
+  <block id="30db39dffca5d3a3ab759b48303153b1" category="list-text">削除するDRグループに負荷共有ミラーボリュームが含まれている場合、それらのボリュームを移動することはできません。  別のDRグループにすべての負荷共有ミラーボリュームを再作成し、削除するDRグループ内の負荷共有ミラーボリュームを削除します。</block>
+  <block id="0108924065f583138162139c8d2325c4" category="list-text">Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2の手順を一度に1つずつ実行します。</block>
+  <block id="4c73c980356e24dbc4b9bfa823ff3540" category="inline-link-macro">NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット</block>
+  <block id="5ea045545da6545f166122f615c720c2" category="list-text"><block ref="5ea045545da6545f166122f615c720c2" category="inline-link-macro-rx"></block></block>
+  <block id="9d2a9152feb1a65b3472b15d2e557bca" category="inline-link-macro">NVIDIA IPのRCFファイルのダウンロードとインストール</block>
+  <block id="3ebe02a815587b2ddedbada8c501d0ef" category="list-text"><block ref="3ebe02a815587b2ddedbada8c501d0ef" category="inline-link-macro-rx"></block></block>
 </blocks>

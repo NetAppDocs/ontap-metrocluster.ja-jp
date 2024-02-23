@@ -65,7 +65,9 @@ Filename : NX3232_v1.80_Switch-A2.txt
 新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
 
 .このタスクについて
-この手順では、 RCF ファイルをアップグレードするスイッチ上のトラフィックが中断されます。新しい RCF ファイルが適用されると、トラフィックは再開されます。
+* この手順では、 RCF ファイルをアップグレードするスイッチ上のトラフィックが中断されます。新しい RCF ファイルが適用されると、トラフィックは再開されます。
+* Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2の手順を一度に1つずつ実行します。
+
 
 .手順
 . 構成の健全性を確認
@@ -96,8 +98,6 @@ cluster_A::*> metrocluster check run
 -----------
 ::*> metrocluster check show
 
-Last Checked On: 4/7/2019 21:15:05
-
 Component           Result
 ------------------- ---------
 nodes               ok
@@ -126,16 +126,14 @@ MetroCluster オペレーション履歴 show -job-id 38`
 +
 ** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
 ** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
 . スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。
 +
-
-NOTE: スイッチを次の順序で更新します。Switch_A_1、Switch_B_1、Switch_A_1、Switch_B_2
-
-+
 ** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
 ** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IPのRCFファイルのダウンロードとインストール"]
 +
 
 NOTE: L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。
