@@ -25,7 +25,7 @@ MetroCluster Tiebreaker 1.5以降を実行する構成では、ホストOSとデ
 
 * 「root」ユーザのアクセスを制限します。
 +
-** rootアクセスに昇格できるユーザを使用して、Tiebreakerソフトウェアをインストールおよび管理できます。 link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-sudo-access_configuring-basic-system-settings["sudoアクセスの管理"^]
+** rootアクセスに昇格できるユーザを使用して、Tiebreakerソフトウェアをインストールおよび管理できます。
 ** ルートアクセスに昇格できないユーザを使用してTiebreakerソフトウェアを管理できます。
 ** インストール時に、「mcctbgrp」という名前のグループを作成する必要があります。ホストのrootユーザとインストール中に作成されたユーザは、両方ともメンバーである必要があります。Tiebreakerソフトウェアを完全に管理できるのは、このグループのメンバーだけです。
 +
@@ -45,27 +45,8 @@ NOTE: このグループのメンバーでないユーザはTiebreakerソフト�
 
 
 .関連情報
-* ユーザとアカウントの管理
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/assembly_getting-started-with-managing-user-accounts_configuring-basic-system-settings["ユーザアカウントの管理を開始します"^]
-
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/introduction-to-managing-user-and-group-accounts_configuring-basic-system-settings["ユーザアカウントとグループアカウントの管理の概要"^]
-
-* WebコンソールまたはCLIを使用したユーザとグループの管理
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-user-accounts-in-the-web-console-new_configuring-basic-system-settings["Webコンソールでのユーザアカウントの管理"^]
-
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-users-from-the-command-line_configuring-basic-system-settings["コマンドラインからのユーザの管理"^]
-
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/editing-user-groups-using-the-command-line_configuring-basic-system-settings["コマンドラインを使用したユーザグループの編集"^]
-
-* rootパスワードの管理
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/changing-and-resetting-the-root-password-from-the-command-line_configuring-basic-system-settings["rootパスワードの管理とリセット"^]
-
+* link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/["Red Hat Enterprise Linux 8の製品ドキュメント"^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/["Red Hat Enterprise Linux 9製品ドキュメント"^]
 
 
 
@@ -88,9 +69,6 @@ link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/ht
 
 NOTE: ホストをリモートで管理するには、シリアルコンソールアクセス（サポートされている場合）または少なくとも1つのプロトコルを有効にしておく必要があります。すべてのプロトコルを無効にすると、管理のためにホストに物理的にアクセスする必要があります。
 
-+
-link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/managing-system-services-with-systemctl_configuring-basic-system-settings["systemctlを使用したシステムサービスの管理について"^]
-
 
 
 * FIPSを使用してホストを保護します
@@ -100,9 +78,6 @@ link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/ht
 
 NOTE: OpenJDK 19は、ホストがFIPSモードでインストールされているかどうかを起動時にチェックします。手動で変更する必要はありません。
 
-+
-詳細については、を参照してください link:https://access.redhat.com/documentation/ru-ru/openjdk/8/html/configuring_openjdk_8_on_rhel_with_fips/openjdk-default-fips-configuration["OpenJDK 8でのFIPSのデフォルト設定"^]
-
 ** ホストを保護する場合は、ユーザの介入なしにホストがブートできることを確認する必要があります。ユーザの操作が必要な場合、ホストが予期せずリブートしたときにTiebreaker機能を使用できないことがあります。この場合、Tiebreaker機能は手動操作後、ホストが完全にブートされた場合にのみ使用できます。
 
 
@@ -110,11 +85,16 @@ NOTE: OpenJDK 19は、ホストがFIPSモードでインストールされてい
 * 頻繁にアップグレードする。Tiebreakerは積極的に開発されており、セキュリティ修正プログラムや、キーの長さや暗号スイートなどのデフォルト設定の変更を組み込むには、頻繁に更新することが重要です。
 * HashiCorp Announcementメーリングリストに登録すると、新しいリリースのお知らせを受け取ることができます。Tiebreaker CHANGELOGにアクセスして、新しいリリースの最新のアップデートの詳細を確認してください。
 * 正しいファイル権限を使用してください。Tiebreakerソフトウェアを起動する前に、特に機密情報を含むファイルに対して適切な権限が適用されていることを必ず確認してください。
-* 多要素認証（MFA）は、管理者がユーザ名とパスワード以外のものを使用して自身を識別するように要求することで、組織のセキュリティを強化します。ユーザー名とパスワードは重要ですが、ブルートフォース攻撃に対して脆弱であり、第三者によって盗まれる可能性があります。 link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/index["セキュリティ強化の詳細"^]
+* 多要素認証（MFA）は、管理者がユーザ名とパスワード以外のものを使用して自身を識別するように要求することで、組織のセキュリティを強化します。ユーザー名とパスワードは重要ですが、ブルートフォース攻撃に対して脆弱であり、第三者によって盗まれる可能性があります。
 +
-** Red Hat Enterprise Linux 8にはMFAが用意されており、アカウントまたはLinuxホストに対して正常に認証するために複数の情報を指定する必要があります。追加情報 は、SMSまたはGoogle Authenticator、Twilio Authy、FreeOTPなどのアプリからの認証情報を介して携帯電話に送信されるワンタイムパスワードです。 link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/securing_networks/index["ネットワークのセキュリティ保護の詳細"^]
+** Red Hat Enterprise Linux 8にはMFAが用意されており、アカウントまたはLinuxホストに対して正常に認証するために複数の情報を指定する必要があります。追加情報 は、SMSまたはGoogle Authenticator、Twilio Authy、FreeOTPなどのアプリからの認証情報を介して携帯電話に送信されるワンタイムパスワードです。
 
 
+
+
+.関連情報
+* link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/["Red Hat Enterprise Linux 8の製品ドキュメント"^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/["Red Hat Enterprise Linux 9製品ドキュメント"^]
 
 
 

@@ -11,7 +11,7 @@ summary: ISL ポートの追加、削除、または変更が必要になる場�
 
 
 [role="lead"]
-Cisco IPスイッチでISLポートの追加、削除、または変更が必要になる場合があります。Cisco IPスイッチでは、専用ISLポートを共有ISLポートに変換したり、ISLポートの速度を変更したりできます。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。ハードウェアを追加またはアップグレードする場合は、システムアップグレードを利用してCisco IPスイッチにISLを追加するために、ISLポートの速度を上げなければならないことがあります。
+Cisco IPスイッチでISLポートの追加、削除、または変更が必要になる場合があります。Cisco IPスイッチでは、専用ISLポートを共有ISLポートに変換したり、ISLポートの速度を変更したりできます。
 
 .このタスクについて
 専用の ISL ポートを共有 ISL ポートに変換する場合は、新しいポートがに対応していることを確認してください link:../install-ip/concept_considerations_layer_2.html["共有 ISL ポートの要件"]。
@@ -19,6 +19,9 @@ Cisco IPスイッチでISLポートの追加、削除、または変更が必要
 ISL 接続を確保するためには、両方のスイッチですべての手順を実行する必要があります。
 
 次の手順では、スイッチポート Eth1/24/1 に接続されている 10Gb ISL を、スイッチポート 17 と 18 に接続されている 2 つの 100Gb ISL に交換します。
+
+
+NOTE: NS224シェルフを接続する共有構成でCisco 9336C-FX2スイッチを使用している場合は、ISLを変更するときに新しいRCFファイルが必要になることがあります。現在のISL速度が40Gbpsおよび100Gbpsの場合は、新しいRCFファイルは必要ありません。ISLの速度に対するその他の変更には、新しいRCFファイルが必要です。たとえば、ISLの速度を40Gbpsから100Gbpsに変更しても新しいRCFファイルは必要ありませんが、ISLの速度を10Gbpsから40Gbpsに変更するには新しいRCFファイルが必要です。
 
 .作業を開始する前に
 の*スイッチ*セクションを参照してください。 link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] をクリックして、サポートされているトランシーバを確認します。
@@ -52,6 +55,10 @@ switch_B_1#
 ----
 . 既存のケーブルとトランシーバを取り外します。
 . 必要に応じて ISL ポートを変更します。
++
+
+NOTE: NS224シェルフを接続する共有構成でCisco 9336C-FX2スイッチを使用していて、RCFファイルをアップグレードして新しいISLポートに新しい構成を適用する必要がある場合は、次の手順を実行します。 link:task_upgrade_rcf_files_on_mcc_ip_switches.html["MetroCluster IPスイッチでRCFファイルをアップグレードします。"]
+
 +
 [cols="30,70"]
 |===
@@ -101,9 +108,9 @@ switch_B_1(config-if)#
 switch_B_1#
 switch_B_1# copy running-config startup-config
 ----
-. 両方のスイッチ間に ISL が確立されたことを確認します。
+. 両方のスイッチ間にISLとポートチャネルが確立されていることを確認します。
 +
-`switch_a_1# に int Eth1/17'eth1/18 brief を示します
+`switch_A_1# show int brief`
 
 +
 次の例に示すように、 ISL インターフェイスがコマンド出力に表示されます。
@@ -111,21 +118,20 @@ switch_B_1# copy running-config startup-config
 +
 [listing]
 ----
-switch_A_1# show int eth1/17,eth1/18 brief
+Switch_A_1# show interface brief
 --------------------------------------------------------------------------------
-Ethernet      VLAN    Type Mode   Status  Reason                   Speed     Port
-Interface                                                                                                        Ch #
+Ethernet        VLAN    Type Mode   Status  Reason                 Speed     Port
+Interface                                                                    Ch #
 --------------------------------------------------------------------------------
-Eth1/17       10         eth     access    up      none                       100G(D) 10
-Eth1/18       10         eth     access    up      none                       100G(D) 10
+Eth1/17         1       eth  access down    XCVR not inserted        auto(D) --
+Eth1/18         1       eth  access down    XCVR not inserted        auto(D) --
 
-switch_B_1# show int eth1/17,eth1/18 brief
---------------------------------------------------------------------------------
-Ethernet      VLAN    Type Mode   Status  Reason                   Speed     Port
-Interface                                                                                                        Ch #
---------------------------------------------------------------------------------
-Eth1/17       10         eth     access    up      none                       100G(D) 10
-Eth1/18       10         eth     access    up      none                       100G(D) 10
+------------------------------------------------------------------------------------------
+Port-channel VLAN    Type Mode   Status  Reason                              Speed   Protocol
+Interface
+------------------------------------------------------------------------------------------
+Po10         1       eth  trunk  up      none                                a-100G(D)  lacp
+Po11         1       eth  trunk  up      none                                a-100G(D)  lacp
 ----
 . ファブリック 2 についても手順を繰り返します。
 
