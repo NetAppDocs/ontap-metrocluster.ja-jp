@@ -736,18 +736,7 @@ link:task_perform_switchover_for_tests_or_maintenance.html["テストまたは�
 
 === MetroCluster IP 構成でのメディエーターアシスト自動計画外スイッチオーバー
 
-MetroCluster IP 構成では、 ONTAP メディエーターを使用して障害を検出し、 Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を実行できます。
-
-ONTAP 9.13.1以降では、MetroCluster IP構成でAUSOステータスのデフォルト値が「auso-on-dr-group」に設定されます。ONTAP 9.12.1以前では、デフォルト値は「auso-on-cluster-disaster」に設定されています。8ノードMetroCluster IP構成では、HAペアの両方のノードで障害が発生した場合にAUSOがトリガーされます。
-
-を使用して、AUSOドメインを「auso-on-cluster-disaster」ドメインに変更できます `metrocluster modify -auto-switchover-failure-domain auso-on-cluster-disaster` コマンドを実行します
-
-
-NOTE: MetroCluster FC 構成では、 MAUSO はサポートされません。
-
-ONTAP メディエーターは、 MetroCluster IP ノード用のメールボックス LUN を提供します。これらの LUN は ONTAP メディエーターと一緒に配置され、 MetroCluster サイトとは物理的に分離された Linux ホストで実行されます。
-
-MetroCluster ノードでは、このメールボックスの情報を使用して MAUSO が必要かどうかを判断します。ストレージコントローラの不揮発性メモリ（プラットフォームモデルに応じて NVRAM または NVMEM ）がパートナーサイトのリモートディザスタリカバリ（ DR ）パートナーにミラーリングされていない場合、 MAUSO は開始されません
+link:../install-ip/concept-ontap-mediator-supports-automatic-unplanned-switchover.html["MetroCluster IP構成での自動計画外スイッチオーバーのONTAPメディエーターによるサポートの詳細"]。
 
 
 

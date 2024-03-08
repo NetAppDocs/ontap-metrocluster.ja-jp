@@ -1,0 +1,74 @@
+---
+permalink: install-ip/concept-ontap-mediator-supports-automatic-unplanned-switchover.html 
+sidebar: sidebar 
+keywords: ontap, mediator, service, assist, metrocluster, ip, configuration, perform, automatic, unplan, switchover, physical, repository, status, information, configuring, configure, install, configuring, configure, forced 
+summary:  
+---
+= ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAPメディエーターは、MetroCluster IPノードに関する状態情報を格納するためのメールボックスLUNを提供します。これらの LUN は ONTAP メディエーターと一緒に配置され、 MetroCluster サイトとは物理的に分離された Linux ホストで実行されます。MetroCluster IPノードでは、メールボックス情報を使用してディザスタリカバリ（DR）パートナーの状態を監視し、災害発生時にMediator-Assisted Unplanned Switchover（MAUSO；メディエーターアシスト計画外スイッチオーバー）を実装できます。
+
+
+NOTE: MetroCluster FC 構成では、 MAUSO はサポートされません。
+
+スイッチオーバーが必要なサイト障害がノードで検出されると、スイッチオーバーに該当する状況であることを確認したうえでスイッチオーバーが実行されます。デフォルトでは、次のシナリオでMAUSOが開始されます。
+
+* 各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングはどちらも動作しており、障害発生時にキャッシュとミラーが同期されます。
+* サバイバーサイトのいずれのノードもテイクオーバー状態ではありません。
+* サイト災害が発生した場合。サイトディザスタとは、同じサイトで_all_nodesの障害です。
+
+
+次のシャットダウンシナリオでは、MAUSOは_not_initiatedです。
+
+* シャットダウンを開始した場合。たとえば、次のような場合です。
++
+** ノードを停止する
+** ノードをリブート
+
+
+
+
+各ONTAP 9リリースで使用できるMAUSO機能について説明します。
+
+[cols="1a,5a"]
+|===
+| 先頭のドキュメント | 説明 
+
+
+ a| 
+ONTAP 9.13.1
+ a| 
+* MAUSOが開始されるのは、 <<default_scenarios,デフォルトのシナリオ>> ファンまたはハードウェアの障害が発生し、環境シャットダウンが開始されます。ハードウェア障害には、高温または低温、電源装置、NVRAMバッテリ、サービスプロセッサのハートビート障害などがあります。
+* MetroCluster IP構成では、障害ドメインのデフォルト値は「auso-on-dr-group」に設定されます。ONTAP 9.12.1以前では、デフォルト値は「auso-on-cluster-disaster」に設定されています。
++
+8ノードMetroCluster IP構成では、クラスタまたは1つのDRグループのHAペアに障害が発生すると、「auso-on-dr-group」によってMAUSOがトリガーされます。HAペアの場合は、両方のノードで同時に障害が発生する必要があります。
+
++
+必要に応じて、障害ドメインの設定を「auso-on-cluster-disaster」ドメインに変更できます。 `metrocluster modify -auto-switchover-failure-domain auso-on-cluster-disaster` 両方のDRグループでHAノードペアに障害が発生した場合にのみ、MAUSOをトリガーするコマンド。
+
+* 障害発生時にNVRAMが同期されていない場合でも、強制的にMAUSOを実行するように動作を変更できます。
+
+
+
+
+ a| 
+[[mauso-9-12-1]] ONTAP 9.12.1
+ a| 
+MetroCluster IP構成でMetroCluster自動強制スイッチオーバー機能を有効にするには、 `metrocluster modify -allow-auto-forced-switchover true` コマンドを実行します
+
+サイト障害検出時のスイッチオーバーは、MetroCluster の自動強制スイッチオーバー機能を有効にすると自動的に実行されます。この機能は、MetroCluster IP自動スイッチオーバー機能を補完するために使用できます。
+
+.MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項
+MetroCluster IP構成を自動強制スイッチオーバーモードで動作させると、次の既知の問題によってデータが失われる可能性があります。
+
+* ストレージコントローラの不揮発性メモリは、パートナーサイトのリモートDRパートナーにミラーされません。
+
+
+*注意*：記載されていないシナリオが発生する場合があります。ネットアップは、MetroCluster の自動強制スイッチオーバー機能を有効にした場合に発生する可能性があるデータの破損、データの損失、その他の破損について責任を負いません。リスクと制限を許容できない場合は、MetroCluster の自動強制スイッチオーバー機能を使用しないでください。
+
+|===

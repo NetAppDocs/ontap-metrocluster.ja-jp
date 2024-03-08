@@ -11,7 +11,7 @@ summary: MetroCluster 構成のタイプごとに、必要なコンポーネン�
 
 
 [role="lead"]
-ONTAP 9.7 以降では、 MetroCluster IP 構成で ONTAP Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を使用するか、 MetroCluster Tiebreaker ソフトウェアを使用できます。MetroCluster IP 設定で使用できるサービスは、 2 つのうちの 1 つだけです。
+ONTAP 9.7 以降では、 MetroCluster IP 構成で ONTAP Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を使用するか、 MetroCluster Tiebreaker ソフトウェアを使用できます。MAUSOまたはTiebreakerソフトウェアを使用する必要はありませんが、これらのサービスのどちらも使用しない場合は、 link:../disaster-recovery/concept_dr_workflow.html["手動リカバリの実行"] 災害が発生した場合。
 
 MetroCluster 構成に応じて、異なる状況で自動スイッチオーバーが実行されます。
 
@@ -24,8 +24,7 @@ MetroCluster 構成に応じて、異なる状況で自動スイッチオーバ�
 これらの構成では、前述の AUSO と同じ状況に加え、サイト全体（コントローラ、ストレージ、スイッチ）の障害が発生した場合に MAUSO が開始されます。
 
 +
-
-NOTE: MAUSO が開始されるのは、障害が発生した時点で不揮発性キャッシュミラーリング（ _DR mirroring_） と SyncMirror プレックスミラーリングが同期されている場合だけです。
+link:concept-ontap-mediator-supports-automatic-unplanned-switchover.html["ONTAPメディエーターでの自動計画外スイッチオーバーのサポート"]。
 
 * * アクティブモードで Tiebreaker ソフトウェアを使用した MetroCluster IP または FC 構成 *
 +
@@ -42,38 +41,5 @@ Tiebreaker ソフトウェアを使用する前に、を参照してください
 
 スイッチオーバーをトリガーできるサードパーティのアプリケーションやアプライアンスを ONTAP メディエーターと組み合わせて使用することはできません。また、 ONTAP メディエーターを使用した場合、 MetroCluster Tiebreaker ソフトウェアでの MetroCluster 構成の監視はサポートされません。
 
-
-
-== ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
-
-ONTAP メディエーターは、メディエーターホストにあるメールボックスに MetroCluster ノードに関する状態情報を格納します。MetroCluster ノードは、この情報を使用してDRパートナーの状態を監視し、災害発生時にMAUSOを実装できます。
-
-スイッチオーバーが必要なサイト障害がノードで検出されると、スイッチオーバーに該当する状況であることを確認したうえでスイッチオーバーが実行されます。
-
-MAUSO が開始されるのは、次のシナリオだけです。
-
-* 各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングはどちらも動作しており、障害発生時にキャッシュとミラーが同期されます。
-* サバイバーサイトのいずれのノードもテイクオーバー状態ではありません。
-* サイト災害が発生した場合。サイト災害とは、同じサイトで*すべての*ノードで発生した障害です。
-+
-
-NOTE: ONTAP 9.13.1以降では、クラスタ*またはHAペアの障害発生時にMAUSOを開始するように動作を変更できます。HAペアの場合は、両方のノードで同時に障害が発生する必要があります。
-
-* ONTAP 9.13.1以降では、上記の条件が満たされ、ファンまたはハードウェアの障害によって環境のシャットダウンが開始された場合（電源装置、NVRAMバッテリ、サービスプロセッサのハートビートの障害、高温または低温など）。
-
-
-上記以外のシナリオの場合は、MAUSOを開始できます。詳細については、を参照してください link:concept-risks-limitations-automatic-switchover.html["MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項"]。
-
-次のシャットダウンシナリオで MAUSO が開始されません。
-
-* シャットダウンを開始した場合。たとえば、次のような場合です。
-+
-** ノードを停止します
-** ノードをリブートします
-
-
-
-
-* 関連情報 *
-
+.関連情報
 link:../manage/concept_understanding_mcc_data_protection_and_disaster_recovery.html#mediator-assisted-automatic-unplanned-switchover-in-metrocluster-ip-configurations["MetroCluster IP構成でのMAUSOの詳細"]。
