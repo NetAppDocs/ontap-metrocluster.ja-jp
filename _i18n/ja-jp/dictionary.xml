@@ -12123,7 +12123,6 @@
   <block id="a7c1dc82620aa47d13a5325a92e48b8b" category="paragraph">上記のいずれかが設定されている場合は、新しいRCFファイルの設定を適用できない可能性があります。ただし、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。</block>
   <block id="b96e894aca032efb6ce18c3fee836f2e" category="list-text">RCFファイルを適用してポートがオンラインであることを確認します。</block>
   <block id="57eec47f7c1d3f7c578a164a838dcb88" category="list-text">RCFファイルを適用します。</block>
-  <block id="f3f957cad54a09303c58187ea562c4e0" category="admonition">設定の適用中にいくつかの警告メッセージが表示されます。エラーメッセージは想定されません。</block>
   <block id="94f2f59cf614fa38bf778db2f227f97f" category="list-text">設定を適用したら、「show interface brief」、「show cdp neighbors」、「show lldp neighbors」のいずれかのコマンドを使用して、クラスタポートとMetroCluster ポートがオンラインになっていることを確認します</block>
   <block id="36654f0d51aef3cf2ff1ad8320086412" category="admonition">ローカルクラスタのVLANを変更したあとにサイトの最初のスイッチをアップグレードした場合、古い設定と新しい設定のVLANが一致しないため、クラスタヘルスモニタで状態が「正常」と報告されないことがあります。2番目のスイッチが更新されると、状態はhealthyに戻るはずです。</block>
   <block id="d83d3a40a56d46ffaf1367b944bbd493" category="paragraph">設定が正しく適用されていない場合、または設定を保持しない場合は、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。</block>
@@ -12975,7 +12974,6 @@
   <block id="64b48b15797ae9ce8dde94af89070b3d" category="paragraph">Red Hat Enterprise Linux 8.1から8.7の場合：</block>
   <block id="389dbd9d6deb8eabbab651256bf77680" category="list-text">OpenJDK 17、18、または19</block>
   <block id="9e605ce3bb6ad134bb55c54d861ceb6a" category="paragraph">1.4</block>
-  <block id="d1b3737d5bc8f98b3241666f4d0cd1cf" category="paragraph">ONTAP 9.2以降</block>
   <block id="09eecd50480033ff43835a86efed6607" category="list-text">Red Hat Enterprise Linux 7～7.9</block>
   <block id="ae1dfcc629f4542382fd6286dbfe5a0d" category="list-text">CentOS 7～7.9 64ビット</block>
   <block id="3f4ac8596d411de0ef0ad341cbeb82aa" category="paragraph">CentOSの場合：</block>
@@ -13393,8 +13391,6 @@
   <block id="b6933415b566c13842c75e7153f5e0bd" category="paragraph">ONTAP 9.7 以降では、 MetroCluster IP 構成で ONTAP Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を使用するか、 MetroCluster Tiebreaker ソフトウェアを使用できます。MAUSOまたはTiebreakerソフトウェアを使用する必要はありませんが、これらのサービスのどちらも使用しない場合は、 <block ref="ffc76c5e8798538fa424ea31c8f712bb" category="inline-link-macro-rx"></block> 災害が発生した場合。</block>
   <block id="b65bf2d95ccaa5163ee3e519ccc4f46c" category="inline-link-macro">ONTAPメディエーターでの自動計画外スイッチオーバーのサポート</block>
   <block id="79fa79dc9ecfb5181a7024131b90413f" category="paragraph"><block ref="66850f0d314a9b674fb83121fdb5639b" category="inline-link-macro-rx"></block>。</block>
-  <block id="2927bb12dad92f3aa1e9f54de7ac5c86" category="inline-link-macro">MetroCluster IP構成でのMAUSOの詳細</block>
-  <block id="861d9a7b4136ca5c52adba1b162580b0" category="paragraph"><block ref="dedd67391845326372399eb154d21c6c" category="inline-link-macro-rx"></block>。</block>
   <block id="88ddeb4aaff386fa8928e9ed590bcdd6" category="admonition">ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動強制スイッチオーバー機能をイネーブルにできます。この機能は、メディエーターアシスト計画外スイッチオーバーの拡張機能です。この機能を有効にする前に、 <block ref="b36331871b99d608d499593ef0805d3b" category="inline-link-macro-rx"></block>。</block>
   <block id="6627a26235928f19183374e55b041466" category="admonition">このコマンドを使用する前に、 <block ref="b36331871b99d608d499593ef0805d3b" category="inline-link-macro-rx"></block>。</block>
   <block id="62dab2247ca5697a261fd865abf3712d" category="paragraph">第4クォータ：ベイ36~47</block>
@@ -13432,4 +13428,11 @@
   <block id="b07b13f7f6740ff05e2edecf69453d1e" category="paragraph">詳細については、を参照してください <block ref="54dac02f94a6488bb50eb2223b2531dc" category="inline-link-macro-rx"></block>。</block>
   <block id="6c788f4f91230d4481264ef0fc97d4b2" category="inline-link-macro">MetroCluster IP構成での自動計画外スイッチオーバーのONTAPメディエーターによるサポートの詳細</block>
   <block id="83401bd8eb751fc79a9ff9e2e69be029" category="paragraph"><block ref="ff41f8886897126f1b4109a0b09cd291" category="inline-link-macro-rx"></block>。</block>
+  <block id="8ee0349da94a79740c2458822156c3f3" category="paragraph">ONTAP 9.13.1以前</block>
+  <block id="58ff5f456710e2c10351958a374f1bae" category="paragraph">ONTAP 9.11.1以前</block>
+  <block id="0b0ec9f1cc28b3c19dc6c36dcd5af7cc" category="paragraph">1.3</block>
+  <block id="7477ed6488d6dd27883a39484d4cd5f8" category="paragraph">ONTAP 9.10.1以前</block>
+  <block id="09e34111ef8649a5302b1889e0c7d303" category="list-text">JRE 8</block>
+  <block id="d434765df1b814e459b22676bed43318" category="paragraph">1.21Px</block>
+  <block id="b3c0f57dcdb05faa9fbc38832a492a4e" category="admonition">設定の適用中にいくつかの警告メッセージが表示されます。通常、エラーメッセージは予期されません。ただし、SSHを使用してログインすると、次のエラーが表示されることがあります。<block ref="f6ffe33fb36eb714adf6f81147c665f6" prefix=" " category="inline-code"></block></block>
 </blocks>
