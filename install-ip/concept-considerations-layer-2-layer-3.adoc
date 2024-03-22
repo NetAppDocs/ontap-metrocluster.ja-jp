@@ -1,0 +1,298 @@
+---
+permalink: install-ip/concept-considerations-layer-2-layer-3.html 
+sidebar: sidebar 
+keywords: differences, eight-node, four-node, fabric-attached, stretch, metrocluster ip, storage, bridges, fc-to-sas, atto, fibrebridge, SAS, local HA, auso, automatic unplanned switchover, array luns, mediator, tiebreaker 
+summary: 要件に応じて、共有レイヤ2またはレイヤ3ネットワークを使用してMetroClusterを導入できます。 
+---
+= 共有レイヤ2またはレイヤ3ネットワークにMetroClusterを導入する際の考慮事項
+:allow-uri-read: 
+
+
+[role="lead"]
+要件に応じて、共有レイヤ2またはレイヤ3ネットワークを使用してMetroClusterを導入できます。
+
+ONTAP 9.6以降では、サポート対象のCiscoスイッチを使用するMetroCluster IP構成で、専用のMetroCluster ISLを使用する代わりに、スイッチ間リンク（ISL）で既存のネットワークを共有できます。このトポロジは_共有レイヤ2ネットワーク_と呼ばれます。
+
+ONTAP 9.9.1以降では、MetroCluster IP設定をIPルーテッド（レイヤ3）バックエンド接続で実装できます。このトポロジは_共有レイヤ3ネットワーク_と呼ばれます。
+
+[NOTE]
+====
+* ネットワーク容量が十分であり、ISLサイズが構成に適していることを確認する必要があります。MetroCluster サイト間でのデータのレプリケーションでは、レイテンシを低く抑えることが重要になります。これらの接続にレイテンシの問題があると、クライアント I/O に影響する可能性があります
+* MetroClusterバックエンドスイッチとは、いずれもネットアップが検証したスイッチ、またはMetroClusterに準拠しているスイッチを指します。を参照してください link:mcc-compliant-netapp-validated-switches.html["ネットアップが検証したMetroCluster準拠スイッチ"] 詳細：
+
+
+====
+
+
+== レイヤ2およびレイヤ3ネットワークのISL要件
+
+次の環境レイヤ2およびレイヤ3ネットワーク：
+
+* MetroClusterスイッチと中間ネットワークスイッチ間で、ISLの速度と数が一致している必要はありません。同様に、中間ネットワークスイッチ間で速度が一致している必要はありません。
++
+たとえば、1つの40Gbps ISLを使用してMetroClusterスイッチを中間スイッチに接続し、2つの100Gbps ISLを使用して中間スイッチを相互に接続できます。
+
+* ISLの使用状況、エラー（ドロップ、リンクフラップ、破損など）を監視するには、中間ネットワークでネットワーク監視を設定する必要があります。 そして失敗。
+* MetroClusterエンドツーエンドトラフィックを伝送するすべてのポートで、MTUサイズを9216に設定する必要があります。
+* 他のトラフィックには、Class of Service（COS;サービスクラス）5よりも高いプライオリティを設定することはできません。
+* エンドツーエンドMetroClusterトラフィックを伝送するすべてのパスで、Explicit Congestion Notification（ECN;明示的輻輳通知）を設定する必要があります。
+* MetroCluster トラフィックを伝送する ISL は、スイッチ間のネイティブリンクである必要があります。
++
+マルチプロトコルラベルスイッチング（ MPLS ）リンクなどのリンク共有サービスはサポートされません。
+
+* レイヤ2 VLANは、ネイティブに複数のサイトにまたがっている必要があります。Virtual Extensible LAN （ VXLAN ）などの VLAN オーバーレイはサポートされていません。
+* 中間スイッチの数に制限はありません。ただし、NetAppでは、スイッチの数を必要な最小数に保つことを推奨しています。
+* MetroClusterスイッチのISLは次のように設定されます。
++
+** LACPポートチャネルの一部としてのスイッチポートモード「trunk」
+** MTUサイズは9216
+** ネイティブVLANが設定されていない
+** サイト間のMetroClusterトラフィックを伝送するVLANのみが許可されます。
+** スイッチのデフォルトVLANは許可されていません。
+
+
+
+
+
+
+== レイヤ2ネットワークに関する考慮事項
+
+MetroClusterバックエンドスイッチがお客様のネットワークに接続されている。
+
+image::../media/MCC_layer2.png[MCCレイヤ2]
+
+お客様側で用意する中間スイッチは、次の要件を満たしている必要があります。
+
+* 中間ネットワークは、サイト間で同じVLANを提供する必要があります。これは、RCFファイルに設定されているMetroCluster VLANと一致している必要があります。
+* RcfFileGenerator では、プラットフォームでサポートされていない VLAN を使用して RCF ファイルを作成することはできません。
+* RcfFileGeneratorは、将来の使用を想定している場合など、特定のVLAN IDの使用を制限することがあります。一般的に、予約済み VLAN は最大で 100 です。
+* MetroCluster VLAN ID と ID が一致するレイヤ 2 VLAN で共有ネットワークを構成する必要があります。
+
+
+.ONTAPでのVLANの設定
+VLANはインターフェイスの作成時にのみ指定できます。MetroClusterインターフェイスの作成後にVLAN IDを変更することはできません。他のVLANはインターフェイスの作成時に設定できますが、10～20の範囲、または101～4096の範囲（またはスイッチベンダーがサポートする数のうち小さい方）で設定する必要があります。
+
+
+NOTE: 一部のスイッチベンダーでは、特定のVLANの使用を予約する場合があります。
+
+次のシステムでは、ONTAP内でVLANを設定する必要はありません。VLANは、スイッチポートの設定によって指定されます。
+
+* FAS8200 と AFF A300
+* AFF A320
+* FAS9000およびAFF A700
+* AFF A800、ASA A800、AFF C800、およびASA C800
++
+
+NOTE: 上記のシステムは、VLAN 100以下を使用して設定できます。ただし、この範囲の一部のVLANは、他の用途や将来の用途に予約されている可能性があります。
+
+
+
+他のすべてのシステムでは、ONTAPでMetroClusterインターフェイスを作成するときにVLANを設定する必要があります。次の制限事項が適用されます。
+
+* デフォルトのVLANは10および20です。
+* ONTAP 9.7以前を実行している場合は、デフォルトのVLAN 10およびVLAN 20のみを使用できます。
+* ONTAP 9.8以降を実行している場合は、デフォルトのVLAN 10および20を使用できます。また、100を超えるVLAN（101以上）も使用できます。
+
+
+
+
+== レイヤ3ネットワークに関する考慮事項
+
+MetroCluster バックエンドスイッチは、ルータに直接接続するか（次の簡単な例を参照）、または他の介在するスイッチを介してルーティングされた IP ネットワークに接続されます。
+
+image::../media/mcc_layer3_backend.png[MCC レイヤ 3 バックエンド]
+
+MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構成で構成およびケーブル接続されます link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_parts_of_an_ip_mcc_configuration_mcc_ip.html["MetroCluster ハードウェアコンポーネントを設定します"]。手順のインストールとケーブル接続を実行する場合は、レイヤ3構成に固有の手順を実行する必要があります。次の環境レイヤ3設定
+
+* MetroClusterスイッチは、ルータに直接接続することも、介入する1つ以上のスイッチに接続することもできます。
+* MetroCluster IPインターフェイスは、ルータに直接接続することも、介在するスイッチの1つに接続することもできます。
+* VLAN をゲートウェイデバイスに拡張する必要があります。
+* を使用します `-gateway parameter` MetroCluster IPインターフェイスアドレスにIPゲートウェイアドレスを設定するには、次の手順を実行します。
+* MetroCluster VLAN の VLAN ID は、各サイトで同じである必要があります。ただし、サブネットは異なる場合があります。
+* ダイナミックルーティングは、 MetroCluster トラフィックではサポートされていません。
+* 次の機能はサポートされません。
++
+** 8 ノード MetroCluster 構成
+** 4ノードMetroCluster構成の更新
+** MetroCluster FC から MetroCluster IP に移行します
+
+
+* 各 MetroCluster サイトには、ネットワークごとに 1 つ、合計 2 つのサブネットが必要です。
+* 自動 IP 割り当てはサポートされていません。
+
+
+ルータおよびゲートウェイのIPアドレスを設定する場合は、次の要件を満たす必要があります。
+
+* 一方のノードの2つのインターフェイスに同じゲートウェイIPアドレスを設定することはできません。
+* 各サイトの HA ペアの対応するインターフェイスには、同じゲートウェイ IP アドレスが必要です。
+* ノードとその DR パートナーおよび AUX パートナーの対応するインターフェイスは、同じゲートウェイ IP アドレスを持つことはできません。
+* ノードとその DR パートナーおよび AUX パートナーの対応するインターフェイスは、同じ VLAN ID を持つ必要があります。
+
+
+
+
+== 中間スイッチに必要な設定
+
+MetroClusterトラフィックが中間ネットワークのISLを経由する場合は、中間スイッチの設定によって、MetroClusterサイト間のパス全体でMetroClusterトラフィック（RDMAおよびストレージ）が必要なサービスレベルを満たしていることを確認する必要があります。
+
+次の図に、NetApp検証済みCiscoスイッチを使用する場合の必要な設定の概要を示します。
+
+image::../media/switch_traffic_with_cisco_switches.png[Cisco スイッチでトラフィックを切り替えます]
+
+次の図は、外部スイッチがBroadcom IPスイッチの場合の共有ネットワークに必要な設定の概要を示しています。
+
+image::../media/switch_traffic_with_broadcom_switches.png[Broadcom スイッチでトラフィックを切り替えます]
+
+この例では、 MetroCluster トラフィックに対して次のポリシーとマップが作成されます。
+
+* 。 `MetroClusterIP_ISL_Ingress` ポリシーは、MetroCluster IPスイッチに接続する中間スイッチのポートに適用されます。
++
+。 `MetroClusterIP_ISL_Ingress` ポリシーは、着信タグ付きトラフィックを中間スイッチの適切なキューにマッピングします。
+
+* A `MetroClusterIP_ISL_Egress` ポリシーは、中間スイッチ間のISLに接続する中間スイッチのポートに適用されます。
+* MetroCluster IP スイッチ間のパスに沿って、一致する QoS アクセスマップ、クラスマップ、およびポリシーマップを使用して中間スイッチを設定する必要があります。中間スイッチは、 RDMA トラフィックを COS5 にマッピングし、ストレージトラフィックを COS4 にマッピングします。
+
+
+次に、Cisco Nexus 3232Cおよび9336C-FX2スイッチの例を示します。スイッチのベンダーとモデルに応じて、中間スイッチの構成が適切であることを確認する必要があります。
+
+.中間スイッチISLポートのクラスマップを設定する
+次に、入力でトラフィックを分類する必要があるか一致させる必要があるかに応じたクラスマップ定義の例を示します。
+
+[role="tabbed-block"]
+====
+.入力時のトラフィックの分類：
+--
+[listing]
+----
+ip access-list rdma
+  10 permit tcp any eq 10006 any
+  20 permit tcp any any eq 10006
+ip access-list storage
+  10 permit tcp any eq 65200 any
+  20 permit tcp any any eq 65200
+
+class-map type qos match-all rdma
+  match access-group name rdma
+class-map type qos match-all storage
+  match access-group name storage
+----
+--
+.入力のトラフィックを照合します。
+--
+[listing]
+----
+class-map type qos match-any c5
+  match cos 5
+  match dscp 40
+class-map type qos match-any c4
+  match cos 4
+  match dscp 32
+----
+--
+====
+.中間スイッチのISLポートに入力ポリシーマップを作成します。
+次に、入力でトラフィックを分類する必要があるか照合する必要があるかに応じて、入力ポリシーマップを作成する例を示します。
+
+[role="tabbed-block"]
+====
+.入力時にトラフィックを分類します。
+--
+[listing]
+----
+policy-map type qos MetroClusterIP_ISL_Ingress_Classify
+  class rdma
+    set dscp 40
+    set cos 5
+    set qos-group 5
+  class storage
+    set dscp 32
+    set cos 4
+    set qos-group 4
+  class class-default
+    set qos-group 0
+----
+--
+.入力のトラフィックを照合します。
+--
+[listing]
+----
+policy-map type qos MetroClusterIP_ISL_Ingress_Match
+  class c5
+    set dscp 40
+    set cos 5
+    set qos-group 5
+  class c4
+    set dscp 32
+    set cos 4
+    set qos-group 4
+  class class-default
+    set qos-group 0
+----
+--
+====
+.ISLポートの出力キューイングポリシーを設定する
+次に、出力キューイングポリシーを設定する例を示します。
+
+[listing]
+----
+policy-map type queuing MetroClusterIP_ISL_Egress
+   class type queuing c-out-8q-q7
+      priority level 1
+   class type queuing c-out-8q-q6
+      priority level 2
+   class type queuing c-out-8q-q5
+      priority level 3
+      random-detect threshold burst-optimized ecn
+   class type queuing c-out-8q-q4
+      priority level 4
+      random-detect threshold burst-optimized ecn
+   class type queuing c-out-8q-q3
+      priority level 5
+   class type queuing c-out-8q-q2
+      priority level 6
+   class type queuing c-out-8q-q1
+      priority level 7
+   class type queuing c-out-8q-q-default
+      bandwidth remaining percent 100
+      random-detect threshold burst-optimized ecn
+----
+これらの設定は、MetroClusterトラフィックを伝送するすべてのスイッチおよびISLに適用する必要があります。
+
+この例では、Q4とQ5は `random-detect threshold burst-optimized ecn`。構成によっては、次の例に示すように、最小しきい値と最大しきい値の設定が必要になる場合があります。
+
+[listing]
+----
+class type queuing c-out-8q-q5
+  priority level 3
+  random-detect minimum-threshold 3000 kbytes maximum-threshold 4000 kbytes drop-probability 0 weight 0 ecn
+class type queuing c-out-8q-q4
+  priority level 4
+  random-detect minimum-threshold 2000 kbytes maximum-threshold 3000 kbytes drop-probability 0 weight 0 ecn
+----
+
+NOTE: 最小値と最大値は、スイッチと要件によって異なります。
+
+.例1：Cisco
+構成にCiscoスイッチが含まれている場合は、中間スイッチの最初の入力ポートで分類する必要はありません。次に、次のマップとポリシーを設定します。
+
+* `class-map type qos match-any c5`
+* `class-map type qos match-any c4`
+* `MetroClusterIP_ISL_Ingress_Match`
+
+
+ユーザーは、 `MetroClusterIP_ISL_Ingress_Match` MetroClusterトラフィックを伝送するISLポートへのポリシーマップ。
+
+.例2：Broadcom
+Broadcomスイッチを使用する構成の場合は、中間スイッチの最初の入力ポートで分類する必要があります。次に、次のマップとポリシーを設定します。
+
+* `ip access-list rdma`
+* `ip access-list storage`
+* `class-map type qos match-all rdma`
+* `class-map type qos match-all storage`
+* `MetroClusterIP_ISL_Ingress_Classify`
+* `MetroClusterIP_ISL_Ingress_Match`
+
+
+割り当て `the MetroClusterIP_ISL_Ingress_Classify` Broadcomスイッチに接続する中間スイッチのISLポートへのポリシーマップ
+
+ユーザーは、 `MetroClusterIP_ISL_Ingress_Match` MetroClusterトラフィックを伝送しているがBroadcomスイッチを接続していない中間スイッチのISLポートへのポリシーマップ。

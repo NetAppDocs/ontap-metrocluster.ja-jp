@@ -7067,7 +7067,6 @@
   <block id="1a03f6720968dfb968df6cc034114444" category="list-text">MTU</block>
   <block id="6b55a3ff2ffe6275beb9e73d58d08007" category="paragraph">MTU サイズは 1400 以上にする必要があります。</block>
   <block id="64ddceb2cbf941d1fc93373ce9219a1f" category="list-text">パケット損失</block>
-  <block id="48826ffed53f55da6bc21c81ca1b5e8f" category="paragraph">パケット損失は 0.01% 以下である必要があります。</block>
   <block id="7d724e4bd163fe8323200b15500517f9" category="list-text">帯域幅</block>
   <block id="652f10975e44b79de998287113035fac" category="section-title">ONTAP メディエーターのファイアウォール要件</block>
   <block id="671e00f956495c99ae5aae5896e8542a" category="paragraph">ONTAP メディエーターは、複数のポートを使用して特定のサービスと通信します。</block>
@@ -7148,78 +7147,15 @@
   <block id="33d85c30487ab45d9d74c20ce219e9ee" category="paragraph">この手順は、次のノードに進む前に各ノードで実行する必要があります。</block>
   <block id="e95cf3aef5a080c0def37ff65465786d" category="list-text">ブートメニューからオプション 4 を選択して次に進みます。</block>
   <block id="52239e8f1ddb4afa2e6bacb01bd05eb6" category="list-text">ブートメニューのオプション 4 を使用して、サイト B の各ノードをブートします。</block>
-  <block id="ea9736859da816cfcd8267f7a6c4256a" category="summary">構成に応じた ISL の要件を確認しておく必要があります。</block>
-  <block id="827f9b527fbba564ef9eced1f2580e8f" category="section-title">MetroCluster ISL の基本要件</block>
-  <block id="48b322af5cc10f141bccf9319f5b9635" category="paragraph">すべての MetroCluster IP 構成で ISL が次の要件を満たしている必要があります。</block>
-  <block id="2cf083b4052be0be399ea3ba03b033d9" category="list-text">ネイティブ速度の ISL スイッチポートは、ネイティブ速度の ISL スイッチポートに接続する必要があります。</block>
-  <block id="70dbdfcc1fcf9942925567a4bb68c457" category="paragraph">たとえば、 40Gbps ポートは 40Gbps ポートに接続します。</block>
-  <block id="cbb950e5b5a1e828d01a30e24e878972" category="list-text">ブレークアウトケーブルを使用しないネイティブモードの 10Gbps ポートは、ネイティブモードの 10Gbps ポートに接続できます。</block>
-  <block id="89bde422fe859df0cc4ffa75c63bf660" category="list-text">MetroCluster IP スイッチとネットワークの間の ISL 、および中間スイッチ間の ISL は、速度に関して同じルールに従います。</block>
-  <block id="ab170f7d66135266cdcb2262d9678b17" category="list-text">MetroCluster スイッチとネットワークスイッチの間と、ネットワークスイッチ間で、 ISL の数が一致している必要はありません。</block>
-  <block id="fdc56c61f9ac64c24f76ec4804e7cc39" category="paragraph">たとえば、 MetroCluster スイッチは、 2 つの ISL を使用して中間スイッチに接続でき、 10 個の ISL を使用して中間スイッチどうしを接続できます。</block>
-  <block id="275769550a9388aeaf2fa2c16427b081" category="list-text">MetroCluster スイッチとネットワークスイッチの間と、ネットワークスイッチ間で、 ISL の速度が一致している必要はありません。</block>
-  <block id="6aab2d09edb8be7e6076e1b402176d1d" category="paragraph">たとえば、 40Gbps の ISL を使用して MetroCluster スイッチを中間スイッチに接続し、 100Gbps の ISL を使用して中間スイッチをどうしを接続できます。</block>
-  <block id="eec3041ce00c0146de19cb1a1ed37539" category="list-text">各 MetroCluster スイッチを中間スイッチに接続する ISL の数と速度は、両方の MetroCluster サイトで同じである必要があります。</block>
-  <block id="7b271aec8b32a0f14193aee31d2831c3" category="section-title">共有レイヤ 2 ネットワークにおける ISL の要件</block>
-  <block id="4f1be337d4a681e3d7b80bec073ab5fb" category="inline-link-macro">共有ネットワークで ISL トラフィックを共有する</block>
-  <block id="e86157d5182c2cc0ba39de2fa88b66d0" category="paragraph">いつ <block ref="901f15628992a82bc2ea044529a4cc50" category="inline-link-macro-rx"></block>をクリックし、十分な容量を確保し、 ISL のサイズを適切に設定する必要があります。MetroCluster サイト間でのデータのレプリケーションでは、レイテンシを低く抑えることが重要になります。これらの接続にレイテンシの問題があると、クライアント I/O に影響する可能性があります</block>
-  <block id="a14dc0dfb776471bcbc1e3c1239e4bb1" category="paragraph">以下のセクションを確認して、 ISL に必要なエンドツーエンドの容量を正しく計算してください。MetroCluster 構成では、不揮発性キャッシュとストレージのレプリケーションのレイテンシを継続的に低く抑えることが重要です。バックエンドネットワークのレイテンシは、クライアント IO のレイテンシとスループットに影響します。</block>
   <block id="449a2bdc6a969f884c1d33fb66eecea7" category="section-title">ISL のレイテンシとパケット損失の制限</block>
-  <block id="e96606e3ebee8eeb5bb85d4955c381cb" category="paragraph">MetroCluster 構成の安定した運用状態を維持するには、 site_A と site_B の MetroCluster IP スイッチ間のラウンドトリップトラフィックについて次の要件を満たしている必要があります。</block>
-  <block id="c9bc211a49ab07521cd90557ecdd0cbb" category="paragraph">2 つの MetroCluster サイト間の距離が長くなるとレイテンシが増加します。通常、ラウンドトリップ遅延時間は 100km （ 62 マイル）ごとに 1 ミリ秒程度です。このレイテンシは、ネットワークの ISL リンクの帯域幅、パケット破棄率、ジッターに関する Service Level Agreement （ SLA ；サービスレベル契約）にも左右されます。低帯域幅、高ジッター、ランダムなパケット破棄などが発生すると、パケットを適切に配信できるように、スイッチやコントローラモジュールの TCP エンジンによってさまざまなリカバリメカニズムが実施されます。このようなリカバリメカニズムによって、全体的なレイテンシが増加することがあり</block>
   <block id="5b39512a68b8704473f81b0e6ba1272e" category="paragraph">レイテンシに影響するすべてのデバイスについて考慮する必要があります。</block>
-  <block id="331d81871af9648aed5dcdc16b042e36" category="paragraph">パケット損失には、物理的な損失や輻輳やオーバーサブスクリプションによる損失が含まれます。</block>
-  <block id="46c3dc1c366b76273938fe1ce08ca0de" category="paragraph">パケットの破棄により、原因の再送信が発生し、輻輳ウィンドウが減少することがあります。</block>
-  <block id="ad89c5a048917b4cc556bf23d46e1874" category="list-text">サポートされるジッタ値は、往復で 3 ミリ秒（一方向で 1.5 ミリ秒）です。</block>
-  <block id="8f1a0df354aadab81c22bc45d64cfe7c" category="list-text">ネットワークの SLA については、トラフィックのマイクロバーストや急増も考慮して、 MetroCluster トラフィックに必要な帯域幅に対応する SLA を割り当てて維持する必要があります。</block>
-  <block id="581ca7facb47e256cb2467b52ebc32ad" category="paragraph">低帯域幅の場合、原因キューの遅延およびテールドロップがスイッチで発生する可能性があります。ONTAP 9.7 以降を使用している場合、 2 つのサイト間の中間ネットワークで、 MetroCluster 構成用に 4.5Gbps 以上の帯域幅を確保する必要があります。</block>
-  <block id="c0ce48bf5ebe05cb782d8edd4436f621" category="list-text">MetroCluster トラフィックは、完全な帯域幅を消費せず、 MetroCluster 以外のトラフィックにも悪影響を与えません。</block>
-  <block id="e8d6e7fbaeb7ee39717e31140102b2f7" category="list-text">共有ネットワークでネットワーク監視を設定し、 ISL の利用率、エラー（破棄、リンクフラップ、破損など）、障害を監視する必要があります。</block>
-  <block id="b4c0ed3196b7f0fc8d0177f2d4a47089" category="section-title">お客様のスイッチの接続制限とトランキング</block>
   <block id="616cfd3e2d847183316a89a2940d8ba6" category="paragraph">お客様側で用意する中間スイッチは、次の要件を満たしている必要があります。</block>
-  <block id="d4116be21d3fbe2654067267fd582693" category="list-text">中間スイッチの数に制限はなく、 MetroCluster IP スイッチ間で 3 つ以上のスイッチがサポートされます。</block>
-  <block id="25d74f2daccefbc881453b697d0166cf" category="paragraph">MetroCluster IP スイッチは、長距離リンクを提供する中間スイッチにできるだけ近い場所に配置する必要があります。ルート上のすべての ISL 接続が MetroCluster ISL のすべての要件を満たしている必要があります。</block>
-  <block id="32955279f53f3e8b806605d25c94f1b0" category="list-text">十分な帯域幅を確保し、配信順序が維持されるようにネットワークの ISL （お客様のスイッチ間の ISL ）を設定する必要があります。</block>
-  <block id="22d652e4993228d5b92712170fa6290f" category="paragraph">そのためには、十分な数のリンクをトランキングし、ロードバランシングポリシーを適用して順序を維持します。</block>
-  <block id="b1111b151f189b85097d8f0496491fa1" category="section-title">その他のネットワーク要件</block>
-  <block id="cfa9c666a1b648f7bb3bf57be1c65b91" category="list-text">RCF ファイルに設定されている MetroCluster VLAN に一致するサイト間で、お客様のネットワークが同じ VLAN を提供する必要があります。</block>
   <block id="1b7cbc00704b6ef833ca0edf0071abef" category="paragraph">MetroCluster VLAN ID と ID が一致するレイヤ 2 VLAN で共有ネットワークを構成する必要があります。</block>
-  <block id="39cf9b2bcdacdfeb7b63d18129c991bf" category="list-text">ONTAP 9.7 以前では、 FAS2750 システムと AFF A220 システムで VLAN 10 および 20 が必要です。</block>
-  <block id="6dd7ab791ca7dbeea96f6883017c405f" category="list-text">ONTAP 9.8 以降では、 FAS2750 、 AFF A220 、 FAS500f 、 AFF A250 、 FAS8300 、 AFF A400 、 FAS8700 の各システムは、デフォルトで VLAN 10 と 20 を使用します。インターフェイスの作成時に他の VLAN を設定できます。範囲は 101-4096 にする必要があります。前述したすべてのプラットフォームについて、 VLAN はインターフェイスの作成時にのみ指定できます。MetroCluster インターフェイスを作成したあとに VLAN ID を変更することはできません。前述していない他のすべてのプラットフォームでは、任意の VLAN を使用でき、これらのプラットフォーム用の VLAN ID はいつでも変更できますが、新しい RCF ファイルを作成して適用する必要があります。</block>
   <block id="d4d2baddcab9cd51d2fbec64f215447e" category="admonition">RcfFileGenerator では、プラットフォームでサポートされていない VLAN を使用して RCF ファイルを作成することはできません。</block>
-  <block id="1ae258b0d1f5d352443737727b61370e" category="admonition">RcfFileGenerator では、特定の VLAN ID の使用が制限される場合があります（将来使用する場合など）。一般的に、予約済み VLAN は最大で 100 です。</block>
-  <block id="44320ea25002137ed4c7ae17e4e2c3c4" category="list-text">ネットワークのエンドツーエンドのすべてのデバイスについて、 MTU サイズを 9216 に設定する必要があります。</block>
-  <block id="89135c2bf7d6ba269eae563b2b92f041" category="list-text">他のトラフィックに Class of Service （ COS ；サービスクラス） 5 よりも高い優先度を設定することはできません。</block>
-  <block id="cddd34f6d4d277285aa4639fd92f80de" category="list-text">エンドツーエンドのすべてのパスで Explicit Congestion Notification （ ECN ；明示的輻輳通知）を設定する必要があります。</block>
-  <block id="7417b1510f8c5a301f6398d855561505" category="section-title">共有 ISL を使用する場合のケーブル接続要件</block>
-  <block id="a9cb6e376a12c0c6b5deb0f0438259da" category="paragraph">MetroCluster IP 構成で共有 ISL を使用する場合は、サイト A のコントローラポートからサイト B のコントローラポートまでのエンドツーエンドの MetroCluster ISL の要件を理解しておく必要があります</block>
-  <block id="a0195e692f2c0be63d231173e3a75422" category="section-title">共有ネットワーク内の ISL およびブレークアウトケーブルの数</block>
-  <block id="b1ff9e42c9daa73ff3fe3b02d56090b0" category="paragraph">MetroCluster IP スイッチを共有ネットワークに接続する ISL の数は、スイッチのモデルとポートタイプによって異なります。</block>
   <block id="d16af7f5896d12cf0cd0ace2315785f4" category="cell">MetroCluster IP スイッチのモデル</block>
-  <block id="ad31a22d752d43c3309f6c3ed2021019" category="cell">ISL 数</block>
   <block id="87ac6ecba347afc9b3bfcf5a25512ddc" category="paragraph">Broadcom 対応 BES-53248 スイッチ</block>
   <block id="ac00d0051561ed303dd8e72e72447f4f" category="paragraph">ネイティブポート</block>
-  <block id="78de8fe46d62f85d57ba50aa182fbd0f" category="paragraph">ISL × 4 、 10Gbps または 25Gbps ポートを使用</block>
-  <block id="cd089c0b60ab24530eec57a25c3db128" category="paragraph">ISL × 6 、 40Gbps ポートを使用</block>
   <block id="93f0d165366aa023f16e11d7c9adcd64" category="paragraph">ブレークアウトケーブル</block>
-  <block id="61b74a953ea1f4810d962b6c3c7d0d2e" category="paragraph">10 Gbps ISL × 16</block>
-  <block id="4c9949dbf0df72405925c5aa0a2567c4" category="paragraph">ISL × 6 、 40Gbps または 100Gbps ポートを使用</block>
-  <block id="6968ac086701343ff37d9889e7c66a54" category="list-text">Cisco スイッチでは、ブレークアウトケーブルの使用（ 1 つの物理ポートを 4 つの 10Gbps ポートとして使用）がサポートされます。</block>
-  <block id="f8fce322a8edd097d065fb99a37ff7d4" category="list-text">IP スイッチの RCF ファイルでは、標準モードとブレークアウトモードのポートが設定されています。</block>
-  <block id="81d3c2b4ee2f461abdccb3d6cdce9095" category="paragraph">標準ポート速度モードとブレークアウトモードの ISL ポートの混在はサポートされていません。同じネットワーク内で、 MetroCluster IP スイッチから中間スイッチへのすべての ISL で速度と長さが同じである必要があります。</block>
-  <block id="dc42da7855100b1c361cd94167e5704b" category="list-text">ラウンドトリップレイテンシが上記の要件の範囲内であれば、外部暗号化デバイス（外部リンクの暗号化や WDM デバイスによる暗号化など）の使用がサポートされます。</block>
-  <block id="faca76a5b29adc7d5fa5ff7f0d9b653c" category="paragraph">最適なパフォーマンスを実現するには、ネットワークごとに少なくとも 1 つの 40Gbps ISL か複数の 10Gbps ISL を使用します。AFF A800 システムでは、ネットワークごとに 1 つの 10Gbps ISL を使用することは推奨されません。</block>
-  <block id="452528f4539349b3f1c2d6c52b377435" category="paragraph">共有 ISL の理論上の最大スループット（たとえば 40Gbps ISL が 6 つであれば 240Gbps ）は、すべての条件が揃った場合の最大値です。複数の ISL を使用する場合は、統計上の負荷分散が最大スループットに影響することがあります。負荷が均一でなくなった場合、単一の ISL と同じレベルまでスループットが低下する可能性があります。</block>
-  <block id="b64af5cd785842d6bf6cd01ead747f85" category="paragraph">L2 VLAN を使用する構成の場合、これらの VLAN をサイトにネイティブにまたがって設定する必要があります。Virtual Extensible LAN （ VXLAN ）などの VLAN オーバーレイはサポートされていません。</block>
-  <block id="29df3d2a3fbed3e329eebdafb198548b" category="paragraph">MetroCluster トラフィックを伝送する ISL は、スイッチ間のネイティブリンクである必要があります。マルチプロトコルラベルスイッチング（ MPLS ）リンクなどのリンク共有サービスはサポートされません。</block>
-  <block id="b3c298f9bcf8ef440bfc199365b29a8e" category="section-title">Broadcom BES-53248 スイッチでの WAN ISL のサポート</block>
-  <block id="55c5dc89f1ac68c2bcb189c6aa17ee81" category="list-text">ファブリックあたりの WAN ISL の最小数： 1 （ 10GbE 、 25GbE 、 40GbE 、または 100GbE ）</block>
-  <block id="8bfedfb9f058f538424f53d5078319d0" category="list-text">ファブリックあたりの 10GbE WAN ISL の最大数： 4</block>
-  <block id="c324e731d42e84dbec1e5b4c71d30110" category="list-text">ファブリックあたりの最大 25GbE WAN ISL 数： 4</block>
-  <block id="2a6e6f4fa9d966c23c1cb254e6a5f0e1" category="list-text">ファブリックあたりの最大 40GbE WAN ISL 数： 2</block>
-  <block id="4c347bcd948e8c65dedccc01d292af64" category="list-text">ファブリックあたりの最大 100GbE WAN ISL 数： 2</block>
-  <block id="fad747cfa36fbbfa745283703977fe09" category="paragraph">40GbE または 100GbE の WAN ISL には、 RCF ファイルのバージョンが 1.40 以降である必要があります。</block>
-  <block id="0bb3bfbc599df59ab910863567e82b1f" category="admonition">追加のポートには追加のライセンスが必要です。</block>
   <block id="6e951796cc7b3ef0b3cbdf6750702b5c" category="doc">ミラーされていないアグリゲートを</block>
   <block id="691a1c982701a36663600612625b18c0" category="paragraph">ONTAP 9.4.1 より前のバージョンでは、 LUN をミラーされていないアグリゲートに配置しないでください。ミラーされていないアグリゲートに LUN を設定すると、スイッチオーバー処理が 120 秒を超え、データを利用できなくなる可能性があります。</block>
   <block id="aeaa739c92ec82faf927b61679580290" category="section-title">ミラーされていないアグリゲート用にストレージシェルフを追加する場合の考慮事項</block>
@@ -7405,69 +7341,17 @@
   <block id="965fd21ca9743b38007dc88ab0a81ba7" category="summary">各 MetroCluster サイトは、パートナーサイトのピアとして設定されます。</block>
   <block id="598ab8da90f7b08fb85eebf2cdb5b642" category="doc">MetroCluster 準拠スイッチの使用に関する考慮事項</block>
   <block id="c33e2f23b789dd4d078b0a5b51963f75" category="list-text">MetroCluster IP インターフェイスは、要件を満たすように設定できる任意のスイッチポートに接続できます。</block>
-  <block id="33205e28b19e76b7edcb7bc5cad77101" category="list-text">FAS8200 および AFF A300 プラットフォームではスイッチポートの速度が 25Gbps 、その他のプラットフォームでは 40Gbps 以上（ 40Gbps または 100Gbps ）である必要があります。</block>
-  <block id="92f69bca586043acecbd273c5ea2d217" category="list-text">ISL は 10Gbps 以上で、 MetroCluster 構成の負荷に応じて適切なサイズにする必要があります。</block>
-  <block id="2d8f234d7714dedd101fd476b6581d02" category="list-text">ネットワークは、次の要件を満たしている必要があります。</block>
-  <block id="8bbac031447994e5b8b245f9bb913a6e" category="list-text"><block ref="8bbac031447994e5b8b245f9bb913a6e" category="inline-link-macro-rx"></block></block>
-  <block id="b0a09f47597f8af9c573c32b664dfa45" category="list-text"><block ref="b0a09f47597f8af9c573c32b664dfa45" category="inline-link-macro-rx"></block></block>
   <block id="67500937686453a2388ecdf97823b682" category="inline-link-macro">中間スイッチに必要な設定</block>
-  <block id="377c20999d3a2f2bf6430aba5269fa35" category="list-text"><block ref="377c20999d3a2f2bf6430aba5269fa35" category="inline-link-macro-rx"></block></block>
-  <block id="e2cccfe2013ba1930aabf09a154e5ffe" category="list-text">MetroCluster IP トラフィックに使用されるすべてのスイッチで、 MTU が 9216 に設定されている必要があります。</block>
-  <block id="0d3b7c7f0d8918f762dea13c0abfd697" category="list-text">スイッチで QoS / トラフィック分類がサポートされている必要があります。</block>
   <block id="4ff5b50b72910d305ce187223bd1d86d" category="list-text">スイッチで Explicit Congestion Notification （ ECN ；明示的輻輳通知）がサポートされている必要</block>
-  <block id="d1e15e63c1fd6cbe9ab03ae500fe90cc" category="list-text">パスで順序が維持されるように、スイッチで L4 ポート VLAN ロードバランシングポリシーがサポートされている必要があります。</block>
   <block id="d40f7578a0d14b583c64b9e1238ce357" category="list-text">スイッチで L2 Flow Control （ L2FC ； L2 フロー制御）がサポートされている必要があります。</block>
-  <block id="0cbb4d7d4f143fb521b8b3f87302bd06" category="list-text">ノードとスイッチの接続には、ネットアップから購入したケーブルを使用する必要があります。スイッチベンダーがサポートしているケーブルを使用する必要があります。</block>
   <block id="bd7d6c816fdd7d9da30ecc293b76db32" category="list-text">4 ノード MetroCluster IP 設定の更新</block>
-  <block id="419f3742e6de8e0ec4b22cce005e7630" category="cell">プラットフォーム</block>
-  <block id="4995a003b2b1032b64bcc8805dea3b99" category="cell">ネットワーク速度（ Gbps ）</block>
-  <block id="35b8c775f2c2f1e3186a213d6b7931b3" category="paragraph">40 または 100</block>
-  <block id="f899139df5e1059396431415e770c6dd" category="paragraph">100</block>
-  <block id="ce345fbefe9cca9ddd58d8e672f0f91e" category="section-title">例で想定している状況です</block>
-  <block id="85d4a8f9f28aad1082eeb4a658c7d835" category="paragraph">ここで紹介する例は、 Cisco NX31xx および NX32xx スイッチのものです。他のスイッチを使用する場合も参考になりますが、使用するスイッチによってコマンドが異なることがあります。例に示す機能がスイッチで使用できない場合、そのスイッチは最小要件を満たしておらず、 MetroCluster 設定の導入には使用できません。これは、 MetroCluster 構成を接続しているすべてのスイッチ、およびそれらのスイッチ間のパスにあるすべてのスイッチに当てはまります。</block>
-  <block id="1931721e4ef4af703b868f902825c2ef" category="list-text">ISL ポートは 15 と 16 で、速度は 40Gbps です。</block>
-  <block id="c111bb8c12e2f784f729520e744f565c" category="list-text">ネットワーク 1 の VLAN は 10 で、ネットワーク 2 の VLAN は 20 です。例は、 1 つのネットワークのみで表示される場合があります。</block>
-  <block id="8b61600dc20618a035e4d19c78a78b09" category="list-text">MetroCluster インターフェイスは各スイッチのポート 9 に接続され、速度は 100Gbps です。</block>
-  <block id="0058cf79c1cc371a6eee83f772cee308" category="list-text">例の完全なコンテキストは、設定も表示もされていません。コマンドを実行するには、プロファイル、 VLAN 、インターフェイスなどの詳細な設定情報の入力が必要になる場合があります。</block>
-  <block id="cc386b0adbc0859c1bbf9c56dbf7e711" category="section-title">一般的なスイッチ設定</block>
-  <block id="6c74eea0bd0204c5de756cb1cc1fca0e" category="paragraph">各ネットワークの VLAN を設定する必要があります。次に、ネットワーク 10 に VLAN を設定する例を示します。</block>
-  <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph">例</block>
-  <block id="eb746570e6ed0bb49e25cd189acf94bb" category="paragraph">順序が維持されるように、ロードバランシングポリシーを設定する必要があります。</block>
-  <block id="ee5374c58f192971aa6985bd24d83a9e" category="paragraph">アクセスマップとクラスマップを設定して、 RDMA トラフィックと iSCSI トラフィックを適切なクラスにマッピングする必要があります。</block>
-  <block id="1e3c8e05b670c33032815dc9f814a471" category="paragraph">ポート 65200 を経由するすべての TCP トラフィックをストレージ（ iSCSI ）クラスにマッピングします。ポート 10006 を経由するすべての TCP トラフィックを RDMA クラスにマッピングします。</block>
-  <block id="7232053d17d6d458acd3dc6a3b06e8ef" category="paragraph">入力ポリシーを設定する必要があります。入力ポリシーは、トラフィックを異なる COS グループに分類してマッピングします。この例では、 RDMA トラフィックを COS グループ 5 にマッピングし、 iSCSI トラフィックを COS グループ 4 にマッピングしています。</block>
-  <block id="8d099e100c2db650c7b3c9471d6c3021" category="paragraph">スイッチに出力ポリシーを設定する必要があります。出力ポリシーは、トラフィックを出力キューにマッピングします。この例では、 RDMA トラフィックをキュー 5 にマッピングし、 iSCSI トラフィックをキュー 4 にマッピングしています。</block>
-  <block id="40188be7ae52fbad0eec10d341d64dca" category="section-title">ISL を設定します</block>
-  <block id="139ee81500499fa6a20d90091e35aedf" category="paragraph">許可された VLAN を設定するときに、「トランク」モードポートを設定できます。</block>
-  <block id="7f46b9452d630356ab3904d38691b3f5" category="paragraph">許可する VLAN リストには、 1 ～ * set * 、 1 ～ * add * の 2 つのコマンドがあります。</block>
-  <block id="01e38d1895fd26b959a83b5e7c474615" category="paragraph">次の例に示すように、許可される VLAN を * 設定できます。</block>
-  <block id="a113ac43e845b37ed3c4d24db88ce41d" category="paragraph">次の例に示すように、許可リストに VLAN を * 追加できます。</block>
-  <block id="68c7fc319da1886292fc942cdde96eaa" category="paragraph">この例では、 VLAN 10 にポートチャネル 10 を設定しています。</block>
-  <block id="5cb440886a621a8372b845ad70883325" category="paragraph">次の例に示すように、 ISL ポートをポートチャネルの一部として設定し、出力キューに割り当てる必要があります。</block>
-  <block id="0e140510bf85c7aa8339935669d8b836" category="section-title">ノードポートを設定します</block>
-  <block id="04b15a1dc82e7721a50071d0d546bffa" category="paragraph">ノードポートをブレークアウトモードで設定する必要がある場合があります。この例では、ポート 25 と 26 をブレークアウトモードで 4 つの 25Gbps ポートとして設定しています。</block>
-  <block id="8a63315a2ffec2485df2f1442ae57ba9" category="paragraph">MetroCluster インターフェイスポート速度の設定が必要になる場合があります。次の例は、速度を「 auto 」に設定する方法を示しています。</block>
-  <block id="3a1d3c6085d08ba32283ec7dca7f4f8c" category="paragraph">次の例は、速度を 40Gbps に固定します。</block>
-  <block id="40d09af1b4eb1caa952d1cfeedc72c6b" category="paragraph">インターフェイスの設定が必要になる場合があります。次の例では、インターフェイスの速度を「 auto 」に設定しています。</block>
-  <block id="0b6fb4c3000783272b8778eb9804b9cc" category="paragraph">VLAN 10 のポートはアクセスモードで、 MTU が 9216 に設定され、 MetroCluster 入力ポリシーが割り当てられています。</block>
-  <block id="7b87d868779f28cca35a9a8ba5f90614" category="paragraph">25Gbps ポートでは、次の例に示すように、 FEC 設定を「 off 」に設定する必要がある場合があります。</block>
-  <block id="333816f1143329ca2f87a87e778f7420" category="admonition">このコマンドは、インターフェイスの設定後に必ず * 実行してください。コマンドを実行するには、トランシーバモジュールの挿入が必要になる場合があります。</block>
   <block id="4b7a16d6d162a666fd84016cdf343a72" category="paragraph">MetroCluster バックエンドスイッチは、ルータに直接接続するか（次の簡単な例を参照）、または他の介在するスイッチを介してルーティングされた IP ネットワークに接続されます。</block>
   <block id="39a69537fd3d24cb81ea2bc0e26adec5" category="image-alt">MCC レイヤ 3 バックエンド</block>
   <block id="fe77866a46d2eb6a7c2af4e6da3afb40" category="inline-link-macro">MetroCluster ハードウェアコンポーネントを設定します</block>
-  <block id="50355476e9050b2a291f3aee1615aa53" category="list-text">MetroCluster スイッチは、ルータに直接接続することも、介在する 1 つ以上のスイッチに接続することもできます。VLAN をゲートウェイデバイスに拡張する必要があります。</block>
-  <block id="0e94eed6c84ca698067d35e27e2c2b56" category="list-text">MetroCluster IP （ MCC-IP ）インターフェイスアドレスと IP ゲートウェイアドレスを設定するには、 -gateway パラメータを使用します。</block>
-  <block id="8f02ff97112ef08ffb62f88c80b6aab7" category="paragraph">ルータおよびゲートウェイの IP アドレスを設定するときは、次の要件を満たしていることを確認します。</block>
-  <block id="254c2137e0390496acb79dd0bc699a37" category="list-text">各ノードで、 2 つのインターフェイスを同じゲートウェイ IP アドレスにすることはできません。</block>
   <block id="7529321ce137d7312b6e8ba5d13f21e9" category="list-text">各サイトの HA ペアの対応するインターフェイスには、同じゲートウェイ IP アドレスが必要です。</block>
   <block id="c2fdaa32e3c40d58194e8a3db0bc7230" category="list-text">ノードとその DR パートナーおよび AUX パートナーの対応するインターフェイスは、同じゲートウェイ IP アドレスを持つことはできません。</block>
   <block id="f9444a19576866e65f0aef4edcc3a6f3" category="list-text">ノードとその DR パートナーおよび AUX パートナーの対応するインターフェイスは、同じ VLAN ID を持つ必要があります。</block>
-  <block id="0c0528f146b2a317df8f2dcc9f042cba" category="paragraph">MetroCluster VLAN は、エッジ MetroCluster スイッチからゲートウェイルータまで拡張して、 MetroCluster トラフィックがゲートウェイに到達するようにする必要があります（上の図を参照）。MetroCluster VLAN の VLAN ID は、各サイトで同じである必要があります。ただし、サブネットは異なる場合があります。</block>
-  <block id="fbe952f2d6d84cc85d1e1f8f557ede0e" category="paragraph">RcfFileGenerator ツールで作成した RCF ファイルを使用します。MetroCluster ノードとゲートウェイルータ間のネットワークには、 RCF ファイルで設定した VLAN ID と同じ VLAN ID を使用する必要があります。</block>
-  <block id="b9190193c292a0ff200a479f4f92d534" category="section-title">IP ルーティングされたネットワークの要件</block>
-  <block id="c6c1faa8edb04466748eaa20b9f1af27" category="paragraph">IP ルーテッドネットワークは、次の要件を満たしている必要があります。</block>
   <block id="33fea8e13b43fdb7df3cb24e51cc42c4" category="list-text">ダイナミックルーティングは、 MetroCluster トラフィックではサポートされていません。</block>
-  <block id="b6a9903c2ef511ee44c51b65db292bf6" category="list-text">サポートされる MetroCluster 構成は 4 ノード構成（サイトごとに 2 ノード）のみです。</block>
   <block id="b793654a30cf8567ed25af895400affb" category="list-text">各 MetroCluster サイトには、ネットワークごとに 1 つ、合計 2 つのサブネットが必要です。</block>
   <block id="4ef3b220e04ca274abbe1def1b61d2bc" category="list-text">自動 IP 割り当てはサポートされていません。</block>
   <block id="a4a9824ba125eba903fb3d347f4f5eb6" category="list-text">プール 0 のディスクは出荷時点で割り当て済みです。</block>
@@ -7573,53 +7457,17 @@
   <block id="f279008175291c0c57dfde21cb38762c" category="section-title">FAS500f システムでのディスク割り当て</block>
   <block id="f0c4d23b82531840374581ef188b7b09" category="section-title">FAS9000 システムでのディスク割り当て</block>
   <block id="b31528d4d44f8ae9a9a8ee050022bd35" category="paragraph">シェルフのドライブが 2 つのグループ（ハーフ）に均等に分割されます。シェルフの各ハーフが自動的に別々のプールに割り当てられます。</block>
-  <block id="36e19271cbd156de524b5ae13872cb4f" category="doc">プライベートレイヤ 2 ネットワークの共有に関する考慮事項</block>
-  <block id="26a46433a2f75a74966a962fd286906b" category="paragraph">MetroCluster IP スイッチは MetroCluster 構成専用であり、共有することはできません。したがって、一連の MetroCluster IP スイッチで接続できる MetroCluster 設定は 1 つだけです。共有スイッチに接続できるのは、 MetroCluster IP スイッチの MetroCluster ISL ポートだけです。</block>
-  <block id="8ac8df48acb2ee9b6d05e12a33e47a64" category="admonition">共有ネットワークを使用する場合は、共有ネットワークの MetroCluster ネットワーク要件を満たす必要があります。</block>
   <block id="967e7fe5e26ac9c522059f0a938773bb" category="section-title">ISL の要件</block>
-  <block id="7785ade42189cf6d11ccb19313c44f6f" category="paragraph">の要件を満たしている必要があります。</block>
-  <block id="2824c9af33977c76eaa395e6e43f06cf" category="paragraph">共有ネットワークで ISL トラフィックを共有する場合、 MetroCluster サイト間のすべてのパスにおいて MetroCluster トラフィック（ RDMA とストレージ）が必要なサービスレベルを満たすように、お客様提供の中間スイッチを設定する必要があります。</block>
-  <block id="65d2eae171038871014da39c8ce5212d" category="paragraph">次の例は、 Cisco Nexus 3000 スイッチと IP Broadcom スイッチを示しています。スイッチのベンダーやモデルに応じて、使用する中間スイッチで同等の設定を確認する必要があります。</block>
-  <block id="c6300f8f433dd2ce7fbf121a8739ab01" category="section-title">Cisco Nexus スイッチ</block>
-  <block id="97b5c02d2e6962aa18f521d8e70f5be1" category="paragraph">次の図は、 Cisco スイッチを使用する場合の共有ネットワークの必須設定の概要を示しています。</block>
   <block id="6c3d514454f211b4331e09486e926e74" category="image-alt">Cisco スイッチでトラフィックを切り替えます</block>
   <block id="60878e723ef52f68f389c7c8fd6c072c" category="paragraph">この例では、 MetroCluster トラフィックに対して次のポリシーとマップが作成されます。</block>
-  <block id="b167c89e35597c39657522cff264a281" category="list-text">MetroClusterIP_Ingress ポリシー。 MetroCluster IP スイッチに接続する中間スイッチのポートに適用されます。</block>
-  <block id="d944b4fc13286119be43ab42d06a32be" category="paragraph">MetroClusterIP_Ingress ポリシーは、受信するタグ付きトラフィックを中間スイッチの適切なキューにマッピングします。タグ付けは ISL ではなくノードポートで行われます。ISL で同じポートを使用している MetroCluster 以外のトラフィックは、デフォルトキューに残ります。</block>
-  <block id="e18fbf6fce702c71742e8d27a2d6a7ae" category="list-text">MetroClusterIP_Egress ポリシー。中間スイッチ間の ISL に接続する中間スイッチのポートに適用されます</block>
   <block id="69aaacac83508073d197d4bf65062708" category="paragraph">MetroCluster IP スイッチ間のパスに沿って、一致する QoS アクセスマップ、クラスマップ、およびポリシーマップを使用して中間スイッチを設定する必要があります。中間スイッチは、 RDMA トラフィックを COS5 にマッピングし、ストレージトラフィックを COS4 にマッピングします。</block>
-  <block id="6ddbc452227e26b7b8bc21217c891718" category="paragraph">次の例は、お客様が用意した Cisco Nexus 3000 スイッチの設定を示しています。Cisco スイッチを使用している場合は、この例を使用してパスに沿ってスイッチを設定できます。Cisco スイッチを使用していない場合は、使用している中間スイッチに対し、同等の設定を確認して適用する必要があります。</block>
-  <block id="bedbf87beaf6932452b34e84aa5ee3dd" category="paragraph">次に、クラスマップ定義の例を示します。</block>
-  <block id="dd804fb484432fe551ac3fba99fc92f0" category="admonition">この例は、 Cisco MetroCluster IP スイッチを使用する構成のものです。この例は、 MetroCluster IP スイッチに接続していない MetroCluster トラフィックを伝送するスイッチのスイッチタイプに関係なく使用できます。</block>
-  <block id="b4327d52f05535a2882438ad4f3e25f3" category="paragraph">次に、ポリシーマップ定義の例を示します。</block>
-  <block id="490e2a5ce4a3b1e54b04eacc64117857" category="section-title">MetroCluster IP Broadcom スイッチ</block>
-  <block id="9c6be93159d26c882e6ffd6c1598ade0" category="paragraph">次の図は、外部スイッチが IP Broadcom スイッチの場合に共有ネットワークに必要な設定の概要を示しています。</block>
   <block id="05b3e3fb6ac0659ae9bfe38cf0c825e9" category="image-alt">Broadcom スイッチでトラフィックを切り替えます</block>
-  <block id="cf3219433ded79f81b130bc7d338f32d" category="paragraph">MetroCluster IP Broadcom スイッチを使用する構成では、追加の設定が必要です。</block>
-  <block id="654f12da649b915a9c194b9f37867d88" category="list-text">エクステリアスイッチの場合、アクセスマップとクラスマップを設定して、カスタマーネットワークへの入力トラフィックを分類する必要があります。</block>
-  <block id="f49d57475c4de1abef662a0c701bd2df" category="admonition">MetroCluster IP スイッチを使用する構成では必要ありません。</block>
-  <block id="0247f45671c0550817a407f11075ad25" category="paragraph">次の例は、 MetroCluster IP Broadcom スイッチ間で ISL を接続する 1 番目と最後のお客様のスイッチでアクセスマップとクラスマップを設定する方法を示しています。</block>
-  <block id="026a4c2590405563bbb18611864325aa" category="list-text">最初のカスタマースイッチの ISL スイッチポートに入力ポリシーを割り当てる必要があります。</block>
-  <block id="a5caef8a168ae3398b49dd56ada3c819" category="section-title">お客様の中間スイッチ</block>
-  <block id="a6b73a04bfd2c671e7b9ad270923041b" category="list-text">中間顧客のスイッチの場合、出力ポリシーを ISL スイッチポートに割り当てる必要があります。</block>
-  <block id="68174da7b47b2116e36e80409f154967" category="list-text">MetroCluster トラフィックを伝送するパスにあるその他すべての内部スイッチについては、 _Cisco Nexus 3000 switchs_. のクラスマップおよびポリシーマップの例を参照してください。</block>
   <block id="37322f94dec561a9cb13c3ba1266cfd1" category="section-title">MetroCluster ネットワークトポロジの例</block>
   <block id="1884419e0250b6ad508f2fd36f98d40d" category="section-title">直接リンクを使用した共有ネットワーク構成</block>
-  <block id="192af72fd3a6a8f8e1eed7df8b911dc4" category="paragraph">このトポロジでは、 2 つのサイトが直接リンクで接続されます。直接リンクは、波長分割多重機器（ xWDM ）またはスイッチとの間に設定できます。ISL の容量は MetroCluster トラフィック専用ではなく、他のトラフィックと共有されます。</block>
-  <block id="3d46b75a9510ff3b2fc1221089b507b1" category="paragraph">ISL の容量が最小要件を満たしている必要があります。xWDM デバイスとスイッチのどちらを使用するかによって、適用できるネットワーク構成の組み合わせが変わります。</block>
   <block id="5929fb5bb5d1ff9a7e46817ed17ab0b2" category="image-alt">共有 ISL を使用する MCC IP ネットワーク</block>
   <block id="fbf66ccc845f0c441c22f8be84b750c9" category="section-title">中間ネットワークを使用する共有インフラ</block>
-  <block id="78b1baea44bd8a7cd1e99e2d555265cb" category="paragraph">このトポロジでは、 MetroCluster IP コアスイッチのトラフィックとホストトラフィックが、ネットアップが提供したものでないネットワークを経由します。ネットワークインフラとリンク（リースされた直接リンクを含む）は、 MetroCluster 構成の外部にあります。ネットワークは一連の xWDM とスイッチで構成できますが、直接 ISL を使用した共有構成とは異なり、サイト間のリンクは直接接続ではありません。サイト間のインフラによっては、ネットワーク構成を任意に組み合わせて設定できます。中間インフラストラクチャは「クラウド」として表されます（サイト間に複数のデバイスを配置できます）が、お客様の管理下にあります。この中間インフラの処理容量は、 MetroCluster トラフィック専用ではなく、他のトラフィックと共有されます。</block>
-  <block id="a024d8d17577278b0e1443f54ce83c52" category="paragraph">VLAN およびネットワーク xWDM またはスイッチの設定が、最小要件を満たしている必要があります。</block>
   <block id="de47f3bace55dd3bf08de34a0ed075d6" category="image-alt">中間プライベートネットワークを使用する MCC IP ネットワーク</block>
-  <block id="74d2d15fdbde676ffa0713db987d6e1b" category="section-title">2 つの MetroCluster 構成が中間ネットワークを共有します</block>
-  <block id="01a462fc9c6195d0a7624ef8e043e011" category="paragraph">このトポロジでは、 2 つの異なる MetroCluster 構成が同じ中間ネットワークを共有しています。この例では、 MetroCluster 1 の switch_A_1 と MetroCluster 2 の switch_A_1 が同じ中間スイッチに接続されています。</block>
-  <block id="6387b5c2765ea3b2679035cdac3eb1ea" category="paragraph">この例はわかりやすくするために簡略化したものです。</block>
   <block id="9111fcd943391a3325aaa7508427ee6f" category="image-alt">同じ共有ネットワーク SX を共有する MCC IP 2 MCCS</block>
-  <block id="c1418d0a4d3dae89c1089eb73647aa7b" category="section-title">2 つの MetroCluster 構成。 1 つは中間ネットワークに直接接続します</block>
-  <block id="0f22a23cdeb43d757abb6d17f14c0dd8" category="paragraph">このトポロジは ONTAP 9.7 以降でサポートされています。2 つの MetroCluster 構成は同じ中間ネットワークを共有し、 1 つの MetroCluster 構成のノードは中間スイッチに直接接続されます。</block>
-  <block id="13fb17d9959e5b76dfb561a0f95edc25" category="paragraph">MetroCluster ONE は、ネットアップの検証済みスイッチ、 ONTAP 9.6 、および共有トポロジを使用する MetroCluster 構成です。MetroCluster 2 は、ネットアップ準拠のスイッチと ONTAP 9.7 を使用した MetroCluster 構成です。</block>
-  <block id="5ad2282d147bc627a5ce751a67599c20" category="admonition">中間スイッチはネットアップの仕様に準拠している必要があります。</block>
   <block id="c7f89880448c82e7f3ca4625488b3680" category="image-alt">MCC IP では、 2 台の MCCS を共有スイッチに直接接続することはできません</block>
   <block id="c209703458c468cdf952f490276996a0" category="summary">MetroCluster 構成の各ノードは、ノードレベルの設定や 2 つのサイトへのノードの設定を含めて、 ONTAP で設定する必要があります。また、 2 つのサイト間に MetroCluster 関係を実装する必要があります。</block>
   <block id="ef6b52b87a839f50cbfacc69d34de0af" category="image-alt">ワークフロー MCC IP ：ノードおよびクラスタ構成ソフトウェアの概要</block>
@@ -7652,19 +7500,6 @@
   <block id="240c641ec7d44f443373981bb513fa5c" category="list-text">また、 RcfFileGenerator for MetroCluster IP では、各スイッチのポートごとのケーブル配線の概要についても説明します。</block>
   <block id="9ae436c3a98ee403124b8482b69c2296" category="section-title">2 つの MetroCluster 構成とスイッチのケーブル接続</block>
   <block id="08c525f5d86974627253ff3c6ab1498f" category="image-alt">MCC IP ケーブル構成： AFF A300 または fas8200 から Cisco 32c または Cisco 9336c スイッチへの接続</block>
-  <block id="19d820a9221f4c3142921037b434a337" category="summary">MetroCluster IP 構成で多重化機器を使用する場合は、一定の考慮事項に注意する必要があります。</block>
-  <block id="879911f6e225e29ff8e098fa74f5ff53" category="doc">MetroCluster IP 構成で TDM / xWDM および暗号化機器を使用</block>
-  <block id="c1c2a0409868d06a74bf1b3203711a03" category="paragraph">これらの考慮事項は、 MetroCluster の専用の直接のバックエンドリンクおよびスイッチにのみ適用され、 MetroCluster 以外のトラフィックと共有されるリンクには適用されません。</block>
-  <block id="e9557f8098c7727893e65c1b6a2e977b" category="paragraph">Hardware Universe ツールには、 MetroCluster IP 構成で TDM / xWDM 機器を使用する場合の要件について、いくつかの注意事項が記載されています。</block>
-  <block id="4a3cb00dbc665a78cfbd19ade6a9ff95" category="section-title">WDM または外部暗号化デバイスでの暗号化の使用</block>
-  <block id="eb2492c73c4c4ff8b6d6fa30c78306b3" category="paragraph">MetroCluster IP 構成において WDM デバイスで暗号化を使用する場合は、次の要件を満たす必要があります。</block>
-  <block id="8ee32e06f78f7dec719f3b73b0878e94" category="list-text">該当するスイッチのベンダーの認定を受けた外部暗号化デバイスまたは DWDM 機器を使用する必要があります。</block>
-  <block id="68d9a2569dbad6c1e8772013f1aafac9" category="paragraph">動作モード（トランキングや暗号化など）に対応した認定が必要です。</block>
-  <block id="086e8208bc8bdabded9057c56fa703ab" category="list-text">暗号化を含むエンドツーエンドの全体的なレイテンシおよびジッターが IMT または本ドキュメントに記載されている最大値以下である必要があります。</block>
-  <block id="4c592893625bfd66101dc3598e44db86" category="section-title">SFP に関する考慮事項</block>
-  <block id="16c5d56f540f017cc98cc397c77b811a" category="paragraph">MetroCluster ISL では、機器のベンダーがサポートしている SFP または QSFP がサポートされます。SFP と QSFP はネットアップまたは機器のベンダーから入手できます。</block>
-  <block id="038405b3bd431b24c757922ba1e38abb" category="paragraph">ISL のトポロジは、 1 つのファブリックのすべての ISL で同じである必要があります。たとえば、すべての ISL を直接リンクにするか、または WDM を使用する場合はすべての ISL で WDM を使用する必要があります。</block>
-  <block id="33fc3bd0047ef5d3f8fb4a1a8611e593" category="paragraph">ファブリック 1 とファブリック 2 の距離の最大サポート距離は 20 km です</block>
   <block id="59418a047111afb00de5bb3eb4f3827d" category="summary">コントローラがリモートストレージにアクセスする方法と MetroCluster IP アドレスの仕組みを理解しておく必要があります。</block>
   <block id="b65d630d5a52eaba7cd171cb5e3ae37d" category="doc">MetroCluster IP 構成に関する考慮事項</block>
   <block id="504a0fb5b9a72e32c346e2faacc54cab" category="section-title">MetroCluster IP 構成のリモートストレージへのアクセス</block>
@@ -8733,7 +8568,6 @@
   <block id="d5bca41ec2c9b2bc82b68b782983610c" category="sidebar">MetroCluster IP 構成をインストール</block>
   <block id="06800b31fe5394b22e1a11163137b326" category="sidebar">ONTAP メディエーターと MetroCluster Tiebreaker のどちらかを決定する必要があります</block>
   <block id="4ae1141d3ba10797d5f82641406d5702" category="sidebar">ONTAP 9.4 以降では、自動ドライブ割り当てと ADP システムがサポートされます</block>
-  <block id="876c5ee843ae5fc2720d374b7e063de5" category="sidebar">プライベートレイヤ 2 ネットワークの共有</block>
   <block id="d3afb6862c8b819caa7f03082d2af919" category="sidebar">MetroCluster IP 構成のミラーされていないアグリゲート</block>
   <block id="b8e55c88d2ead2425b022ce67ac4bb75" category="sidebar">ラックにハードウェアコンポーネントを配置</block>
   <block id="5a4d16a157dad9438b527caaa9b4b2ab" category="sidebar">MetroCluster IP スイッチをケーブル接続します</block>
@@ -9696,7 +9530,6 @@
   <block id="fdae3324d19034e1e1308ccde69ec68b" category="paragraph">手動でディスクを割り当てる必要があるかどうかを確認するには、を参照してください <block ref="e40d6a178d9137d254eca9144fcc5d3c" category="inline-link-macro-rx"></block>。</block>
   <block id="b067ff15634ee127c0e9368bdd50693d" category="paragraph">「ディスク assign_disk-id_-p 0 -s _local-node-sysid_ 」</block>
   <block id="1a731b6b2711f5533b67a659f8e5e7c3" category="list-text">に進みます <block ref="5b0b3430fd5af0e5a4020af54ce263e7" category="inline-link-macro-rx"></block>。</block>
-  <block id="af1cf569a025dd01876e4b16b86cbc5e" category="admonition">次の手順に従う必要があります <block ref="fa2050fe1fe203254b9a9c610c6240ba" category="inline-xref-macro-rx"></block>。</block>
   <block id="f8dc7177731310562718d80a3440fa9d" category="paragraph">MetroCluster の構成設定メディエーターの追加 mediator-address_ip-address-bmediator-host_`</block>
   <block id="d0dddd5779102f5b72e8edf336fef717" category="list-text">コントローラモジュールとシャーシの HA 状態を表示します。</block>
   <block id="f753a91b4868b4d2d7ad06fa15958542" category="paragraph">「 storage failover modify -mode ha -node _localhost_` 」です</block>
@@ -9722,7 +9555,6 @@
   <block id="c1583a2a104bf12c781b545bd0852240" category="list-text">site_B-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます</block>
   <block id="b81ee4c855b35f971c50421790bc7928" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_1 のプール 1 に自動的に割り当てられます</block>
   <block id="41d172bd600e8fe0dc5103788a6f78c1" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます</block>
-  <block id="957f130ae934815da7e3f565a1d9e150" category="paragraph">ISL を MetroCluster 以外のネットワークと共有する場合は、のガイドラインに従う必要があります <block ref="dbac327de76ab613d0e2b5848ebc320c" category="inline-link-macro-rx"></block>。</block>
   <block id="e0dd1e85604316427a557d67b3079843" category="summary">FlexArray LUN を使用しているかどうか、およびストレージコントローラとストレージシェルフの接続方法に基づいて、正しいインストール手順を選択する必要があります。</block>
   <block id="84a335bc70808c0497de1c62a99aaf43" category="sidebar">基本設定を行います</block>
   <block id="175313fe612a432e5a51082817a697f1" category="sidebar">Cisco 9336C スイッチに MACsec 暗号化を設定します</block>
@@ -9963,8 +9795,6 @@
   <block id="da82ec774885b0fd4ea7e17756ffc01b" category="paragraph">「 snmp config test 」</block>
   <block id="3b0649c72650c313a357338dcdfb64ec" category="cell">注</block>
   <block id="09cb6984bdf1b82c9749906ba1a69331" category="summary">MetroCluster IP インターフェイス、 IP アドレスとマスク、およびゲートウェイの次のプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
-  <block id="bacf5875940eb96c091917a5d1b9e1ad" category="doc">MetroCluster IP のアドレス、ネットマスク、およびゲートウェイを変更する</block>
-  <block id="40505aafe5fd41af1999393ab341c808" category="paragraph">ONTAP 9.10.1 以降では、 MetroCluster IP インターフェイスの IP アドレス、マスク、およびゲートウェイのプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
   <block id="d7fffb0ac95f2fd216c5e3fd04365cca" category="paragraph">これらのプロパティを更新する必要がある場合があります。たとえば、 IP アドレスが重複して検出された場合や、ルータの設定変更によってレイヤ 3 ネットワークでゲートウェイを変更する必要がある場合などです。</block>
   <block id="383d9b07e1ef0cfcfa9ec36fecccfe02" category="paragraph">一度に変更できるインターフェイスは 1 つだけです。他のインターフェイスが更新されて接続が再確立されるまで、そのインターフェイス上のトラフィックは中断されます。</block>
   <block id="8450a359c3efc774857fe0f3189456e0" category="paragraph">MetroCluster IP インターフェイス・プロパティを変更するには 'CLI MetroCluster configurion-settings interface modify' コマンドを使用します</block>
@@ -9975,7 +9805,6 @@
   <block id="2f545dcb650b5848061814c5ce3b4cf4" category="paragraph">次のコマンドは、 IP アドレス、ネットマスク、およびゲートウェイを更新する方法を示しています。</block>
   <block id="c8a08760312508ec804450cb7fad4702" category="list-text">[step2] すべてのインターフェイスですべての接続が機能していることを確認します。 MetroCluster configurion-settings interface show</block>
   <block id="3fc201ecdcbc7e37cc8a9b91bd0c01b3" category="paragraph">次のコマンドは、すべてのインターフェイスのすべての接続が機能していることを確認する方法を示しています。</block>
-  <block id="464f766a72b725b51056bd23b507d8fb" category="list-text">[[step3]] すべての接続が動作していることを確認します : MetroCluster configurion-settings connection show`</block>
   <block id="1a8c6f33d0bdd54f26272fc3c497ec01" category="paragraph">次のコマンドは、すべての接続が機能していることを確認する方法を示しています。</block>
   <block id="c988965fbbe340c601c83f0611367b30" category="list-text">MySQL Community Server をインストールします。</block>
   <block id="19814756461082c5d291432219d95924" category="paragraph">`[root@mcctb~]# yum は mysql-community-server をインストールします</block>
@@ -9988,7 +9817,6 @@
   <block id="20859c72927d81163c0ef8c70e5f5855" category="paragraph">「 [root@mcctb~]# systemctl list-buny-files mariadb.service` 」と入力します</block>
   <block id="088c19240da89dbb9f8682a7168eea93" category="paragraph">新しいノード（ site_B ）の状態が「 Waiting for switchback state * from site_A 」であることを確認します</block>
   <block id="70797c25b23e4d3313107866a946ef86" category="paragraph">速度が異なるリモート ISL ポート（ 10Gbps ISL ポートに接続されている 25Gbps ポートなど）では、スイッチを使用できません。</block>
-  <block id="145dacb3237a86979e113708eea5ccbb" category="list-text">スイッチファブリックごとに 2 つ、計 4 つの IP スイッチが必要です。</block>
   <block id="678c0cc3a8e347e1b6670261a41c4c3e" category="list-text">修復処理によって実行される LIF の自動移行が正常に完了したことを確認します。 MetroCluster check lif show</block>
   <block id="3e0af8ae696d5e7c0a0c4cf08d2caa05" category="list-text">シミュレートされたスイッチバックを実行して、システムが「 MetroCluster switchback -simulate 」状態であることを確認します</block>
   <block id="776259e77c1e67fef13df14be8a5ad8e" category="list-text">両方のクラスタで、関係するシェルフスタック上のディスクを含むすべてのプレックスをオフラインにします。</block>
@@ -10032,7 +9860,6 @@
   <block id="b268877da374fd4b7e106d3ffa6da9f8" category="list-text">Tiebreaker ソフトウェアを使用している場合は、を参照してください <block ref="62330c976dd51c7f2d31efa54ddec6c7" category="inline-link-macro-rx"></block>。</block>
   <block id="7e2317ea641d19001e33fe184824ff0d" category="paragraph">Tiebreaker ソフトウェアを使用する前に、を参照してください <block ref="f62e57388ece8ed3ab39425498977dae" category="inline-link-macro-rx"></block></block>
   <block id="4b8414b2021cbbd4b58cc5b95bc166cd" category="list-text">_Disks and aggregates management _ アグリゲートのミラーリングの詳細については、を参照してください。</block>
-  <block id="81469bbc8b1e22a393e56fdba3d5a1f3" category="list-text">MetroCluster 準拠スイッチを使用する MetroCluster IP 構成では、 ONTAP 9.6 以前へのリバートはサポートされません。</block>
   <block id="6f7582d0e120db40c637399cfa1b6c6b" category="inline-link">CLI を使用したクラスタ管理</block>
   <block id="c467b861736195e319f9323a1f51b76d" category="paragraph">。<block ref="752795714a55b77b4bc7d5d8c99674d1" category="inline-link-rx"></block> 追加情報が含まれています。</block>
   <block id="c4b7332c983d9f374f57570f90ffe107" category="paragraph"><block ref="c4b7332c983d9f374f57570f90ffe107" category="inline-link-macro-rx"></block></block>
@@ -10043,8 +9870,6 @@
   <block id="a9fd24893aed7bda18921eb1da6f8440" category="inline-link-macro">MetroCluster の移行</block>
   <block id="b6f8655d9cab6bf8d32e7b0bdc6c8eef" category="inline-link-macro">MetroCluster のアップグレード、移行、拡張</block>
   <block id="78d0e38065ed90f1fe7de25c50775110" category="paragraph"><block ref="78d0e38065ed90f1fe7de25c50775110" category="inline-link-macro-rx"></block></block>
-  <block id="01fe01722f1775c1b67e7b20a14951de" category="summary">ONTAP 9.9..1 以降では、 IP ルーティング（レイヤ 3 ）バックエンド接続を使用して MetroCluster IP 設定を実装できます。</block>
-  <block id="190cbd15f1cbbd86a76eac6847a93472" category="admonition">ネットアップではネットアップ検証済みのスイッチのみをサポートしていますこれらのスイッチは、ネットアップがテストして販売します。これらはに一覧表示されています <block ref="d4ffdef7e991262a330f44b113eb81ba" category="inline-link-macro-rx"></block> およびインチ <block ref="d708b823ca770dd1bbb2d28ee68bd021" category="inline-link-macro-rx"></block>。</block>
   <block id="c1444ba460cdd9b59c8ecf988ca907c4" category="list-text">ONTAP 9.7 以降では、自動計画外スイッチオーバーがサポートされます。</block>
   <block id="6dc7f3a38acb68038827d6fedc7bbc7a" category="paragraph"><block ref="6dc7f3a38acb68038827d6fedc7bbc7a" category="inline-link-rx"></block></block>
   <block id="5594b012385083b2dd778011df3d6f3d" category="paragraph"><block ref="5594b012385083b2dd778011df3d6f3d" category="inline-link-rx"></block></block>
@@ -10132,9 +9957,6 @@
   <block id="06eff1ae70df860b6c817c9ab3858d3d" category="list-text">に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します<block ref="6d6ef49fcb406c2ba2bda06977913f53" category="inline-link-rx"></block>。</block>
   <block id="76171250896c5dfe6901a6c8c3fb3f68" category="paragraph"><block ref="76171250896c5dfe6901a6c8c3fb3f68" category="inline-link-macro-rx"></block></block>
   <block id="10fb6eda16d44576f048cbbd98a21f49" category="sidebar">MetroCluster のインストールを準備</block>
-  <block id="bef67646bfedc1b249d97a64ef323bcc" category="sidebar">レイヤ 3 ワイドエリアネットワークの使用方法</block>
-  <block id="a0950456b6fe5bfbedbee43b6a7dc213" category="sidebar">MetroCluster 準拠スイッチの使用方法</block>
-  <block id="257dd382287d5979745c22ca0c1ac204" category="sidebar">MetroCluster IP 構成で TDM / xWDM および暗号化機器を使用する方法</block>
   <block id="e42ae5049bd4441f35fc1a5c789393b6" category="sidebar">RcfFileGenerator ツールまたは複数の MetroCluster 設定でポートテーブルを使用する方法</block>
   <block id="b25308b36735da11e4a37c52a93d5b81" category="sidebar">ONTAP で MetroCluster ソフトウェアを設定します</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">概要</block>
@@ -10796,8 +10618,6 @@
   <block id="65bbb6a451cc080e3b7ee47c366c3253" category="paragraph">の「 SVM 設定のレプリケート」を参照してください<block ref="26e370aec20dfe01945665ebaf4ffc1f" category="inline-link-rx"></block> SVM DR 関係の設定の詳細については、を参照してください。</block>
   <block id="d0ed0d8f16085a6601b051dbf42f09e4" category="paragraph"><block ref="d0ed0d8f16085a6601b051dbf42f09e4" category="inline-link-rx"></block></block>
   <block id="1fb135b5dd970a96db5c2b3025ddcbf8" category="list-text">シャットダウンを開始した場合。たとえば、次のような場合です。</block>
-  <block id="0fd2020965353993ca7470eaf762f030" category="paragraph">これらの要件は、 Reference Configuration File （ RCF ；リファレンス構成ファイル）を使用せずに MetroCluster 準拠スイッチを設定する場合のものです。</block>
-  <block id="73c8b60f13f3d62360643fda70255745" category="list-text">MetroCluster ノードに接続されたスイッチは、 MetroCluster 以外のトラフィックを伝送できます。</block>
   <block id="ea95364bcb87fe94517fe5fdd5716eae" category="paragraph">クラスタ管理 LIF</block>
   <block id="194e182d2e1cbd0c241a90d312430762" category="paragraph">HTTP （ SSL ）を使用したクラスタへのセキュアな通信</block>
   <block id="745401930416d41133d5e612be003ead" category="paragraph">SSH を使用してクラスタとの通信を保護します</block>
@@ -11447,9 +11267,6 @@
   <block id="0e0fb7c8f8c90679b6de81eb83cc9c05" category="paragraph">ONTAP 9.7 以降では、 MetroCluster 構成で FlexCache ボリュームがサポートされます。スイッチオーバーまたはスイッチバック処理後の手動廃止の要件を理解しておく必要があります。</block>
   <block id="324411cbb41cb55bc8c2f637443ed820" category="paragraph">ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサポートされます。</block>
   <block id="595a0070423d641189b233c03827a69e" category="paragraph">ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。</block>
-  <block id="8f40f02b2069b8947b976e569e5762e5" category="summary">ONTAP 9.6 以降では、サポート対象の Cisco スイッチを使用した MetroCluster IP 構成で、専用の MetroCluster ISL を使用する代わりに、既存のネットワークを ISL で共有することができます。</block>
-  <block id="137fb6b7668b4dc771dba830f9525b67" category="paragraph">ONTAP 9.6 以降では、サポート対象の Cisco スイッチを使用した MetroCluster IP 構成で、専用の MetroCluster ISL を使用する代わりに、既存のネットワークを ISL で共有することができます。それよりも前のバージョンの ONTAP では専用の ISL が必要</block>
-  <block id="a7730eb29505c2a902b8c2ef5fabb951" category="paragraph">ONTAP 9.6 以降では、一部の共有 ISL ネットワーク構成が MetroCluster IP 構成でサポートされます。</block>
   <block id="22ad9a689b8447af0ecfb5eb5b5495b3" category="list-text">ONTAP メディエーターサービスを ONTAP に追加します。</block>
   <block id="f0ff1470e66c8950946e7e3e5058f8a8" category="paragraph"><block ref="f0ff1470e66c8950946e7e3e5058f8a8" category="inline-link-rx"></block></block>
   <block id="f52969ece4bf2f4994203a22fa76dc44" category="paragraph"><block ref="f52969ece4bf2f4994203a22fa76dc44" category="inline-link-rx"></block></block>
@@ -11804,7 +11621,6 @@
   <block id="b04e99a0adbd90ade4803bbd436b76af" category="list-text">手順 を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://&lt;web_server_ip/path_to_web-accessible_directory&gt;/&lt;ontap_version&gt;\_image.tgz` と入力します</block>
   <block id="dbfa5994b398cd0fb3a814715f0dc252" category="list-text">ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードが保守モードで停止して ' コマンド・プロンプト \*&gt; が表示されるまで ' プロンプトを表示します回答</block>
   <block id="76c06c220bafe4dc7e175b4584717344" category="paragraph"><block ref="76c06c220bafe4dc7e175b4584717344" category="inline-link-macro-rx"></block></block>
-  <block id="b16f070ef0ff70f134e9de232ff4d07d" category="paragraph">MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構成で構成およびケーブル接続されます <block ref="1f208108354e7662d904d86579319d48" category="inline-link-macro-rx"></block>。手順の設置とケーブル接続を行うときは、レイヤ 3 構成に固有の手順を実行する必要があります。</block>
   <block id="2445f74267948c10619896a5e47cd3d6" category="paragraph">の手順を実行します <block ref="0e3caa859006182753aee07c6f57c3cf" category="inline-link-macro-rx"></block>。</block>
   <block id="b0f85a0199d1b83b2b8a32a5f34bdd8d" category="paragraph">既存のスイッチを使用している場合は、に進みます <block ref="4da30401760153ceb5481ac559dbe601" category="inline-link-macro-rx"></block>。</block>
   <block id="f44903a02a813582e3877d0c017bdfcb" category="paragraph"><block ref="f44903a02a813582e3877d0c017bdfcb" category="inline-link-macro-rx"></block></block>
@@ -12136,19 +11952,8 @@
   <block id="0a52730597fb4ffa01fc117d9e71e3a9" category="listing-title">例</block>
   <block id="6870468a3fe6a4b5c829d30e0702c5fd" category="paragraph">これは、アップグレードプロセス時にコントローラが一致しないことが原因で想定される動作であり、エラーメッセージが無視しても問題ありません。</block>
   <block id="237972ceb7096a96a9dafc4e43911024" category="section-title">MetroCluster準拠スイッチのプラットフォーム固有のネットワーク速度とスイッチポートモード</block>
-  <block id="1134e76c47457f3441325208e777cc69" category="paragraph">次の表に、MetroCluster 準拠スイッチのプラットフォーム固有のネットワーク速度とスイッチポートモードを示します。次の表に示すように、スイッチポートモードを設定します。</block>
-  <block id="0ec1914fce58a6a4d1748f3ace018fa1" category="cell">スイッチポートモード</block>
-  <block id="cfd4780e5a733c1327748c9a30e9d03c" category="paragraph">トランクモード</block>
-  <block id="2c74da2e4beb4c522085a84540793b5e" category="paragraph">アクセスモード</block>
   <block id="939d3efe7d4070c6c8be39404639b5db" category="paragraph">Cisco 9336C-FX2（NS224シェルフは接続しない）</block>
-  <block id="d183fa3896220b7f678ea0b9376a4b8b" category="paragraph">ISL×6、40Gbpsまたは100Gbpsを使用</block>
-  <block id="874eb49ff41ba3748fa2b06563329fb2" category="paragraph">ISL×16、10Gbpsを使用</block>
   <block id="b94f047c1e1eaf1f0b0b1b5ef5819d6b" category="paragraph">Cisco 9336C-FX2（NS224シェルフの接続）</block>
-  <block id="74cb45c8e8b33478150237cb0755c4ca" category="paragraph">ネイティブポート（2）</block>
-  <block id="32dd9953382a7753a2f980620effb409" category="paragraph">ISL×4、40Gbpsまたは100Gbpsを使用</block>
-  <block id="eb4cfd99b709d0b0ddc435f063be95cf" category="paragraph">ブレークアウトケーブル（2）</block>
-  <block id="e5df3565fbad5a4849fc6fb6ec79e8d1" category="list-text">BES-53248スイッチで40個または100GbpsのISLポートを使用するには、追加のライセンスが必要です。</block>
-  <block id="394d86b50aa384c22c3eeb7d90023e15" category="list-text">Cisco 9336C-FX2（NS224シェルフを接続）用にRCFファイルを作成する場合は、ISLをネイティブ*または*ブレークアウトモードで設定するように選択する必要があります。</block>
   <block id="731380609e4acd613ed054b92fc261e6" category="list-text">「show fips status」コマンドを使用して、EFOSのバージョンがFIPSに準拠しているか、FIPSに準拠していないかを確認します。次の例では'ip_switch_a_1'はFIPS準拠のEFOSを使用しており'ip_switch_a_2'はFIPS非準拠のEFOSを使用しています</block>
   <block id="0b9982c26f9b690896e158b901c7001c" category="paragraph">*例1 *</block>
   <block id="66fcc909c7d6b29950f9da753e168312" category="paragraph">*例2 *</block>
@@ -12303,7 +12108,6 @@
   <block id="cfe5a553856e4e9131ebeda8844ee3c2" category="list-text">オプション9aを選択して応答します<block ref="7fa3b767c460b54a2be4d49030b349c7" prefix=" " category="inline-code"></block> プロンプトが表示されたら、</block>
   <block id="bc3cbfae3cfe082620539cbe61e53bb4" category="list-text">両方のノードのブートメニューからオプション* 4を選択し、システムをブートします。</block>
   <block id="5bb182767225fa9e1ca2133f4aa4f1df" category="inline-link-macro">Hardware Universe の略。</block>
-  <block id="e04f67144663da34a17311a720ccf0a1" category="list-text">構成のラウンドトリップレイテンシおよび最大距離の要件の詳細については、を参照してください <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block></block>
   <block id="5dae04759c79459bcbe855ce6759cc39" category="list-text">ADP用に設定されたシステムを使用している場合は、オプションを選択します<block ref="3de20f8f6d054d551e879fef0f0fc83c" prefix=" " category="inline-code"></block> ブートメニューから、と入力します<block ref="7fa3b767c460b54a2be4d49030b349c7" prefix=" " category="inline-code"></block> プロンプトが表示されたら、</block>
   <block id="0bab44e07fec8808eebb4c9baedcc312" category="admonition">スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Switch_B_2、Switch_B_2の順序で更新します。または、Switch_A_1とSwitch_B_1を同時に更新し、Switch_A_1とSwitch_B_2を更新します。</block>
   <block id="70743d1dc2a6fb8238c19b7d315abc9f" category="admonition">Virtual Routing and Forwarding（VRF；仮想ルーティング転送）を指定するように求められます。</block>
@@ -12329,27 +12133,14 @@
   <block id="c1902fd1f00ac0b0e269fd37dd64f7e8" category="section-title">サイトA nbsp；AutoSupport 情報</block>
   <block id="a321560b2ae4d0c708a5027ac5562270" category="section-title">サイトB nbsp；AutoSupport 情報</block>
   <block id="87713443a9395f659a438c305d6fa70d" category="section-title">サイトB nbsp；SP情報</block>
-  <block id="a43f4b9d18f498b517f7dd9eede1654d" category="inline-link-macro">NetApp Hardware Universe の略</block>
-  <block id="d5b877d116ca4502862349e4a1fea007" category="summary">でサポートされるスイッチとして表示されるMetroCluster IPスイッチ <block ref="81064abf44a077ab44fc1d50feb7e8e0" category="inline-link-macro-rx"></block> また、ネットアップが提供するのはネットアップ検証済みです。ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、ネットアップでは、検証されていないスイッチについては、サポートサービス、トラブルシューティング、設定を提供していません。</block>
   <block id="4275c1aa69fa12af30bea79f33b6ab8b" category="section-title">ネットアップ検証済みスイッチ</block>
-  <block id="1891f9d47aa8c3949d63aba63cfd538e" category="paragraph">スイッチがネットアップで検証されるのは、次の条件をすべて満たしている場合です。</block>
   <block id="cf8d2c69254b785016eeecea385f1512" category="list-text">スイッチは、MetroCluster IP構成の一部としてネットアップから提供されます</block>
-  <block id="57bc5d4a7e0c60e62b42b542a38a19d8" category="list-text">スイッチの一覧は、を参照してください <block ref="81064abf44a077ab44fc1d50feb7e8e0" category="inline-link-macro-rx"></block> 「MetroCluster over IP接続」の下のサポートされるスイッチとして使用</block>
   <block id="44f5b263d419c190d99a3b681f245dad" category="list-text">このスイッチは、MetroCluster IPコントローラと、一部の構成ではNS224ドライブシェルフへの接続にのみ使用します</block>
-  <block id="643a5bb556beb7d67fd22c0d3de4c759" category="list-text">スイッチは、ネットアップが提供するRCF（リファレンス構成ファイル）を使用して設定します。</block>
-  <block id="579d6ce20a4bdaad6dff3e52bc4e42ba" category="paragraph">上記の条件を満たしていないスイッチは、ネットアップ検証済みのスイッチではなく*使用されています。</block>
   <block id="92bf95b2bb1fdf762ca6c2507b432332" category="section-title">MetroCluster準拠のスイッチ</block>
-  <block id="fb0fc5c459c3f4029ec7b03dd85a909a" category="paragraph">MetroCluster準拠のスイッチはネットアップによる検証は行われていませんが、以下の要件と設定ガイドラインを満たしていれば、MetroCluster IP構成で使用できます。</block>
-  <block id="f2153c30c0089338d3848e4eaa64fc3e" category="admonition">ネットアップでは、検証済みでないMetroCluster準拠スイッチのサポートサービス、トラブルシューティング、設定を提供していません。</block>
   <block id="2e3b6cbd29fbe534f65b62b67e974e1a" category="section-title">MetroCluster準拠スイッチの一般的な要件</block>
   <block id="e167cf704969390451b66b4604d89501" category="list-text">MetroCluster準拠のスイッチで使用できるのは、スイッチレスクラスタインターコネクト専用ポートを提供するプラットフォームのみです。FAS2750やAFF A220などのプラットフォームは、MetroCluster トラフィックとMetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているため使用できません。</block>
   <block id="832bfdec136453c59e06674dc5b1fbfc" category="paragraph">MetroCluster準拠のスイッチをローカルクラスタ接続に使用しないでください。</block>
-  <block id="cef3763dc37c86b326ba9f36674ba2b4" category="list-text">MetroCluster 構成は、 2 つのネットワークに接続する必要があります。MetroCluster インターフェイスを同じネットワークまたはスイッチに接続することはできません。各 MetroCluster ノードは、 2 つのネットワークスイッチに接続する必要があります。</block>
-  <block id="320aeba3423b75436241c00392964782" category="section-title">MetroCluster準拠スイッチのスイッチとケーブル接続の要件</block>
-  <block id="00da554e6014936ea814019f7270b104" category="section-title">MetroCluster準拠スイッチに関する制限事項</block>
-  <block id="68d8047cbf72a612dd739f574baa912c" category="paragraph">ローカルクラスタ接続を必要とする設定または機能をスイッチに接続することはできません。たとえば、次の設定と手順はMetroCluster準拠のスイッチでは使用できません。</block>
   <block id="999a0234ad26235f40e860b0131203f6" category="admonition">値がない場合は、プラットフォームをMetroCluster準拠のスイッチで使用できないことを示しています。</block>
-  <block id="e6e94fa732001e55f7fcf67c01c5f249" category="paragraph">ISL上にMetroCluster トラフィックがあるが、MetroCluster インターフェイスに接続されていないスイッチの設定が必要になる場合があります。この場合、トラフィックはすでに分類されており、適切なキューにマッピングするだけで済みます。次の例では、すべての COS5 トラフィックをクラス RDMA にマッピングし、すべての COS4 トラフィックをクラス iSCSI にマッピングしています。これは、 MetroCluster トラフィックだけでなく、 COS5 トラフィックと COS4 トラフィックの * すべてに影響することに注意してください。MetroCluster トラフィックだけをマッピングする場合は、上記のクラスマップを使用して、アクセスグループを使用してトラフィックを識別する必要があります。</block>
   <block id="421c8863e1f7223f216aacf99393b7dd" category="list-text">注1：このプラットフォームの組み合わせには、ONTAP 9.11.1以降が必要です。</block>
   <block id="60ddbd1babdd945c26fbc431202fea6c" category="inline-link-macro">Hardware Universe</block>
   <block id="6e2ee39d0f9ccdad593782674a048e67" category="inline-link-macro">手順 へのリンク</block>
@@ -12900,7 +12691,6 @@
   <block id="2d27e76da02804de2afe9d209e5cbb1c" category="admonition">ストレージのパフォーマンスと可用性を最適化するために、ミラーアグリゲートでは少なくとも20%の空きスペースを確保することを推奨します。ミラーされていないアグリゲートでは10%が推奨されますが、追加の10%のスペースはファイルシステムで増分変更に対応するために使用できます。増分変更を行うと、ONTAPのcopy-on-write Snapshotベースのアーキテクチャにより、ミラーされたアグリゲートのスペース使用率が向上します。これらのベストプラクティスに従わないと、パフォーマンスに悪影響を及ぼす可能性があります。</block>
   <block id="0e5e2d82a1039e41c19d2248f3b64787" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。</block>
   <block id="6212a1ad66c5ad9d3c50380aa91aab6a" category="list-text">ハードウェア障害なし</block>
-  <block id="8a1d06fd27bf0bfc6535b6a49185e591" category="paragraph">AFF A150</block>
   <block id="36cbaf4511461b23b06f56ad7754e17d" category="paragraph">この手順では、ONTAP 9.13.1以降を実行するシステムで次のコントローラのアップグレードがサポートされます。</block>
   <block id="cfdade9e474e805958704ec0836f18ac" category="cell">交換用コントローラ</block>
   <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link-macro">こちらをご覧ください</block>
@@ -13435,4 +13225,279 @@
   <block id="09e34111ef8649a5302b1889e0c7d303" category="list-text">JRE 8</block>
   <block id="d434765df1b814e459b22676bed43318" category="paragraph">1.21Px</block>
   <block id="b3c0f57dcdb05faa9fbc38832a492a4e" category="admonition">設定の適用中にいくつかの警告メッセージが表示されます。通常、エラーメッセージは予期されません。ただし、SSHを使用してログインすると、次のエラーが表示されることがあります。<block ref="f6ffe33fb36eb714adf6f81147c665f6" prefix=" " category="inline-code"></block></block>
+  <block id="c15b62e6a5ff15a0315735efe0205145" category="doc">MetroCluster IP構成のアドレス、ネットマスク、ゲートウェイを変更します。</block>
+  <block id="907d0a00eecf52dcc4562775faad470a" category="paragraph">ONTAP 9.10.1 以降では、 MetroCluster IP インターフェイスの IP アドレス、マスク、およびゲートウェイのプロパティを変更できます。パラメータは任意に組み合わせて更新できます。</block>
+  <block id="5e1f7c325aa2c4eb9ee527a8279eb798" category="list-text">[[step3]]すべての接続が機能していることを確認します。</block>
+  <block id="cf07fc29a0bf48b43804bd5e97849449" category="summary">MetroCluster準拠のスイッチを使用している場合は、プラットフォーム固有のネットワーク速度とスイッチポートモードの要件を確認しておく必要があります。</block>
+  <block id="b6c12395a961cf95058c6e4d4412ac09" category="paragraph">次の表に、MetroCluster準拠スイッチのネットワーク速度とスイッチポートモードをプラットフォーム別に示します。表に従ってスイッチポートモードを設定する必要があります。</block>
+  <block id="f2ac555a8b496557dba2555170124225" category="image-alt">MCC準拠スイッチのネットワーク速度</block>
+  <block id="8c425f952493015588fb91113b5b2dd8" category="summary">ここでは、すべてのMetroCluster IP構成およびネットワークトポロジでMetroClusterトラフィックを伝送するスイッチ間リンク（ISL）の要件について説明します。</block>
+  <block id="422a6c8c8d23cb29ed822adac0da8cd9" category="paragraph">すべてのMetroCluster IP構成およびネットワークトポロジでMetroClusterトラフィックを伝送するスイッチ間リンク（ISL）には、一定の要件があります。これらの要件は、お客様のスイッチ間でISLを直接接続するか共有するかに関係なく、MetroClusterトラフィックを伝送するすべてのISLに適用されます。</block>
+  <block id="78464639db6e6acf657d9d576a0f2888" category="section-title">MetroCluster ISLの一般的な要件</block>
+  <block id="a5c426f5b72cbfd96a6dec4a6e3046d2" category="paragraph">すべてのMetroCluster IP構成の次の環境ISL：</block>
+  <block id="f2fe3be43c081827bf52c1013416d414" category="list-text">ISLの数は両方のファブリックで同じである必要があります。</block>
+  <block id="baf55d93093b54950152b6be3f9bfec2" category="list-text">1つのファブリックのISLは、速度と長さがすべて同じである必要があります。</block>
+  <block id="4b00dc01ca120693f1539bf736f11069" category="list-text">ISLの速度と長さは、両方のファブリックで同じである必要があります。</block>
+  <block id="ef6ab3e28db1093c7315b30edeb84730" category="list-text">サポートされるファブリック1とファブリック2の距離の最大差は20km（0.2ms）です。</block>
+  <block id="1b6ceb9b8db71407a3be0617e754101e" category="list-text">一方のファブリックのISLのトポロジは同じである必要があります。たとえば、すべてのリンクを直接リンクにするか、WDMを使用する場合はすべてのリンクでWDMを使用する必要があります。</block>
+  <block id="ddf41f2636c98d00a2698837f55a3f74" category="list-text">ISLの速度は10Gbps以上である必要があります。</block>
+  <block id="cb806a9b25dfb1d4470413a3c2dd9944" category="list-text">ファブリックごとに10Gbps ISLポートが少なくとも1つ必要です。</block>
+  <block id="25b13aa97e6e9eb228478bfddbcc84e9" category="paragraph">安定した状態でのMetroCluster構成でのsite_Aとsite_BのMetroCluster IPスイッチ間の次の環境ラウンドトリップトラフィック。</block>
+  <block id="ae36a5fd21eb894eb914590a632f59c9" category="list-text">2 つの MetroCluster サイト間の距離が長くなるとレイテンシが増加します。通常、ラウンドトリップ遅延時間は 100km （ 62 マイル）ごとに 1 ミリ秒程度です。レイテンシは、ネットワーク上のISLリンクの帯域幅、パケットドロップレート、およびジッタに関して、ネットワークのService Level Agreement（SLA；サービスレベルアグリーメント）にも左右されます。低帯域幅、高ジッタ、およびランダムなパケットドロップは、パケット配信を成功させるために、スイッチまたはコントローラモジュール上のTCPエンジンによって異なるリカバリメカニズムをもたらします。このようなリカバリメカニズムによって、全体的なレイテンシが増加することがあり構成のラウンドトリップレイテンシおよび最大距離の要件の詳細については、を参照してください <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block></block>
+  <block id="827d473df1489ff96dfc62d8af802566" category="list-text">。 <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block> 距離（km）を提供します。100kmごとに1ミリ秒を割り当てる必要があります。最大距離は、最初に到達した距離によって定義されます。最大ラウンドトリップ時間（RTT）（ms）または距離（km）です。たとえば、–the _ listsの距離が300km（3ミリ秒）の場合、ISLは300km以下にすることができ、最大Hardware Universe時間は3ミリ秒のいずれか先に達した方を超えることはできません。</block>
+  <block id="22380478e64b8062eb70d91ccdd67ce7" category="list-text">パケット損失は0.01%以下でなければなりません。最大パケット損失は、MetroClusterノード間のパス上のすべてのリンクの損失と、ローカルMetroCluster IPインターフェイス上の損失の合計です。</block>
+  <block id="0b2575167b6e71da84f0682066aa5c0d" category="list-text">サポートされるジッタ値は、ラウンドトリップの場合は3ミリ秒（一方向の場合は1.5ミリ秒）です。</block>
+  <block id="b1bbb8c0e7431a301e05959762cb6be0" category="list-text">ネットワークは、トラフィックのマイクロバーストや急増に関係なく、MetroClusterトラフィックに必要な帯域幅のSLAを割り当て、維持する必要があります。</block>
+  <block id="db5dfb006abd3b92e48ae138fe185ffb" category="list-text">ONTAP 9.7以降を使用している場合は、2つのサイト間の中間ネットワークでMetroCluster IP構成用に4.5Gbps以上の帯域幅が確保されている必要があります。</block>
+  <block id="8feeeb8c24b7a524af9a025841262932" category="section-title">トランシーバとケーブルに関する考慮事項</block>
+  <block id="667735c31f9e3d4e69adccaa68e87206" category="paragraph">MetroCluster ISL では、機器のベンダーがサポートしている SFP または QSFP がサポートされます。NetAppまたは機器ベンダーから提供されたSFPおよびQSFPが、スイッチおよびスイッチのファームウェアでサポートされている必要があります。</block>
+  <block id="887966b0ad45d1598b4a9517835a9477" category="paragraph">コントローラをスイッチおよびローカルクラスタのISLに接続するときは、NetAppとMetroClusterが提供するトランシーバとケーブルを使用する必要があります。</block>
+  <block id="e85cb21e89ca9d04ba904100f2ca54dd" category="section-title">xWDM、TDM、および外部暗号化デバイスの使用</block>
+  <block id="b93bd17cefcbedfcddd97a878fe619ca" category="paragraph">MetroCluster IP構成でxWDM / TDMデバイスまたは暗号化を提供するデバイスを使用する場合は、次の要件を満たす必要があります。</block>
+  <block id="5ccca3c124f21ccc9309774d650ff25a" category="list-text">MetroCluster IPスイッチをxWDM / TDMに接続する場合は、スイッチとファームウェアについてベンダーが認定した外部暗号化デバイスまたはxWDM / TDM機器を使用する必要があります。動作モード（トランキングや暗号化など）に対応している必要があります。</block>
+  <block id="d649419649cb678c33d0b903d521e77d" category="list-text">暗号化を含むエンドツーエンドの全体的な遅延とジッタは、IMTおよびこのマニュアルに記載されている最大値を超えることはできません。</block>
+  <block id="2d4984b69db60670a112b74742b0e904" category="section-title">サポートされるISL数とブレークアウトケーブル数</block>
+  <block id="fb107bb292185991f92a0e25ae8d6a7d" category="paragraph">次の表に、リファレンス構成ファイル（RCF）構成を使用してMetroCluster IPスイッチに設定できる、サポートされるISLの最大数を示します。</block>
+  <block id="44f1305d14d557252a2dc140a921830d" category="cell">ISLの最大数</block>
+  <block id="a3a59d60bdb611e1b4c58bf4c4cf7723" category="paragraph">ISL×4（10Gbpsまたは25Gbpsを使用）</block>
+  <block id="05f775ee7e2e9c0191349d27678ee92a" category="paragraph">ネイティブポート（注1）</block>
+  <block id="7fc50d7658ce6e69450367a1566d2160" category="paragraph">ISL×2、40Gbpsまたは100Gbpsを使用</block>
+  <block id="d92546772d08abd00db8e99ff54c7ecb" category="paragraph">ISL×6、40Gbpsを使用</block>
+  <block id="0274c7930fb2689bb0d5d7900b24b372" category="paragraph">ISL×16（10Gbpsを使用）</block>
+  <block id="cdd7ce1b4fb53a24815dfe597e2d9bf4" category="paragraph">ISL×6、40Gbpsまたは100Gbpsを使用</block>
+  <block id="5f464862c3ad92817ffd0d939008e569" category="paragraph">ISL×16（10を使用）</block>
+  <block id="a47530745311f9d2efa307163eb1ee61" category="paragraph">ネイティブポート（注2）</block>
+  <block id="a86749ca3f0eb199f6cde6d8cc60d442" category="paragraph">ISL×4、40Gbpsまたは100Gbpsを使用</block>
+  <block id="83462a2f17a5fa1e38b557632ec6d366" category="paragraph">ブレークアウトケーブル（注2）</block>
+  <block id="94f92369bb57ec3cd50af356ac87615d" category="paragraph">NVIDIA SN2100</block>
+  <block id="e742bd9fac434ad11cb2ad1f6bf81c22" category="paragraph">ISL×8、10Gbpsまたは25Gbpsを使用</block>
+  <block id="57806988ce5a738c0e2a24b77927841a" category="paragraph">*注1 *：BES-53248スイッチで40Gbpsまたは100GbpsのISLを使用するには、追加のライセンスが必要です。</block>
+  <block id="e2470e32c0e86c6c4a72a4740defccf2" category="paragraph">*注2 *：同じポートがネイティブ速度とブレークアウトモードに使用されます。RCFファイルを作成するときは、ポートを標準の速度モードとブレークアウトモードのどちらで使用するかを選択する必要があります。</block>
+  <block id="210ce8af438dddcd62166408fac706c7" category="list-text">1つのMetroCluster IPスイッチのISLは、すべて同じ速度である必要があります。速度が異なるISLポートを同時に使用することはできません。</block>
+  <block id="0c1686d7a527ea2db8a72392a860f59c" category="list-text">最適なパフォーマンスを実現するには、ネットワークごとに40GbpsのISLを少なくとも1つ使用する必要があります。FAS9000、AFF A700、またはその他の大容量プラットフォームでは、ネットワークごとに1つの10Gbps ISLを使用しないでください。</block>
+  <block id="932fb139d393444f022abae844a0f930" category="admonition">NetAppでは、広帯域幅のISLを多数使用するのではなく、広帯域幅のISLを少数使用することを推奨しています。たとえば、4つの10Gbps ISLではなく、40Gbps ISLを1つ設定することを推奨します。複数のISLを使用する場合は、統計的なロードバランシングが最大スループットに影響する可能性があります。負荷分散が均等でないと、単一ISLのスループットまで低下する可能性があります。</block>
+  <block id="38c2425cd3eb3add7b70e3f33eb88ddb" category="summary">ここでは、MetroCluster構成とネットワークがすべての要件を満たしていることを確認するために必要な情報を示します。</block>
+  <block id="b3afb8520c6389b800eb9ce2c45ab2ba" category="doc">ネットアップが検証したMetroCluster準拠スイッチ</block>
+  <block id="e28e9835ecaf16f4bdf25d7e6e04c512" category="paragraph">バックエンドスイッチを含め、構成で使用するすべてのスイッチが、ネットアップ検証済みまたはMetroCluster準拠のいずれかである必要があります。</block>
+  <block id="d5d85142dbdda4a696e7722b3c96dc4a" category="paragraph">スイッチが次の要件を満たしている場合、ネットアップで検証されます。</block>
+  <block id="c8ca446c1fea2c076d78412221cebd1b" category="list-text">スイッチは、 <block ref="41f66f34b3a905f864500c9319fdff8f" category="inline-link-macro-rx"></block> MetroCluster-over-IP-connections_でサポートされるスイッチとして使用</block>
+  <block id="14bb4f6c6d9e383cc569d9498b83c24e" category="list-text">スイッチは、NetAppが提供するリファレンス構成ファイル（RCF）を使用して設定します。</block>
+  <block id="3f3f7f794ea7fa2f780388bfffd726f0" category="paragraph">これらの要件を満たしていないスイッチは、ネットアップの検証済みスイッチではありません。</block>
+  <block id="6e90f0ca5975aa305331b461c0d17a10" category="paragraph">MetroCluster準拠スイッチはネットアップでは検証されていませんが、一定の要件および構成ガイドラインを満たしていれば、MetroCluster IP構成で使用できます。</block>
+  <block id="81d0b430232d54ef8c3da154a6bb51df" category="admonition">NetAppでは、MetroCluster準拠の検証が行われていないスイッチについては、トラブルシューティングや構成のサポートサービスは提供していません。</block>
+  <block id="e4d0658d40deb1bdd0cba2af1bb7edcc" category="summary">ONTAP 9.6以降では、MetroCluster IP構成で追加のネットワーク設定がサポートされます。</block>
+  <block id="d4e5769f0b30b686cad3f67f0712a4ed" category="paragraph">ONTAP 9.6以降では、MetroCluster IP構成で追加のネットワーク設定がサポートされます。ここでは、サポートされるネットワーク構成の例をいくつか示します。サポートされているトポロジの一部がリストされていません。</block>
+  <block id="f8c144d99faf0be94c6f73117182fe1c" category="paragraph">これらのトポロジでは、に記載されている要件に従ってISLと中間ネットワークが設定されていることを前提としています。 <block ref="3a1583c43d5c26bc5494a0499ae33c72" category="inline-link-macro-rx"></block>。</block>
+  <block id="3f455575634261ee88453f2b32a39574" category="admonition">MetroCluster以外のトラフィックでISLを共有する場合は、MetroClusterに最小限必要な帯域幅が常に確保されていることを確認する必要があります。</block>
+  <block id="714d7f26f344f1a2137ecaafa3977560" category="paragraph">このトポロジでは、 2 つのサイトが直接リンクで接続されます。これらのリンクは、xWDMとTDMデバイスまたはスイッチ間に設定できます。ISLの容量はMetroClusterトラフィック専用ではなく、MetroCluster以外の他のトラフィックと共有されます。</block>
+  <block id="c6cb1b44e79b73322f9f95a6e6a856bf" category="paragraph">このトポロジでは、MetroClusterサイトは直接接続されませんが、MetroClusterとホストトラフィックはネットワークを経由します。
+ネットワークは一連のxWDMおよびTDMとスイッチで構成できますが、直接ISLを使用した共有構成とは異なり、サイト間のリンクは直接接続ではありません。サイト間のインフラによっては、ネットワーク構成を任意に組み合わせて設定できます。</block>
+  <block id="0ebe9ae371e55183b558cb093feb8087" category="section-title">複数のMetroCluster構成で中間ネットワークを共有</block>
+  <block id="5ba8b9c9d6b3d9754ec372dd3472dbd0" category="paragraph">このトポロジでは、 2 つの異なる MetroCluster 構成が同じ中間ネットワークを共有しています。この例では、MetroCluster 1のswitch_A_1とMetroCluster 2のswitch_A_1が同じ中間スイッチに接続されています。</block>
+  <block id="fd42ae0e289ae7349d9cb095b5baedcb" category="admonition">「MetroCluster 1」または「MetroCluster 2」は、どちらも8ノードMetroCluster構成の場合と4ノードMetroCluster構成の場合があります。</block>
+  <block id="445254de7995c8ef37155f67cff1ccd8" category="section-title">NetApp検証済みスイッチを使用するMetroCluster構成とMetroCluster準拠スイッチを使用する構成の組み合わせ</block>
+  <block id="d0f4ebf077d350978a17afd3cf7a8bc3" category="paragraph">2つの異なるMetroCluster構成で同じ中間スイッチを共有します。1つのMetroClusterは共有レイヤ2構成のNetApp検証済みスイッチ（MetroCluster 1）を使用して構成され、もう1つのMetroClusterは、中間スイッチに直接接続されたMetroCluster準拠スイッチ（MetroCluster 2）を使用して構成されます。</block>
+  <block id="15111207d6b0c0cbf958b921f4798172" category="summary">さまざまなスイッチポートの構成について説明します。</block>
+  <block id="698eaadeb5d3fb421bccdcf1b0ab1fef" category="doc">スイッチポートの設定例</block>
+  <block id="39c7e049077f0d9b7a1fa77f6180ea92" category="admonition">次の例では、10進数の値を使用して、環境Ciscoスイッチの表に従っています。スイッチベンダーによっては、DSCPに異なる値が必要になる場合があります。値が正しいことを確認するには、スイッチベンダーに対応する表を参照してください。</block>
+  <block id="35ad26d27261978449b9fa90bdfbbee1" category="cell">DSCP値</block>
+  <block id="937504f318f04eaf0f1d701df4c4d7f3" category="cell">10 進数</block>
+  <block id="92640bd72988395b326c888614f8937a" category="cell">16進</block>
+  <block id="7277de5f2ed6f17c61f1f25594591a82" category="cell">意味</block>
+  <block id="8b7e00eb8a358958722be8ce20193ff2" category="paragraph">101、000</block>
+  <block id="7f6a417be70d8c2743207d53badb5c83" category="paragraph">0x10</block>
+  <block id="aef7a4e1b7e3fe7e4df67684dbffa9e1" category="paragraph">CS2</block>
+  <block id="3a7057801a60578b2ed0bbaf035dfc21" category="paragraph">011、000</block>
+  <block id="b0757d5c3880247054302eee28d9d08c" category="paragraph">0x18</block>
+  <block id="8c4e56414e26520294c3b571e92e58e4" category="paragraph">CS3</block>
+  <block id="7e0cd72ce46464b7b74a6be952e1198d" category="paragraph">100、000</block>
+  <block id="9cb7196b9376491fb16d0db6de086efb" category="paragraph">0x20</block>
+  <block id="7009daf81333670cd06b8bb2b02054cc" category="paragraph">CS4</block>
+  <block id="64759f4346c9c74f5744ed5781753be7" category="paragraph">0x28</block>
+  <block id="1c61feff957ecc2d50e499cbe076094c" category="paragraph">CS5</block>
+  <block id="152ac40eab234174a4df3411ce840abc" category="list-title">MetroClusterインターフェイスを接続するスイッチポート</block>
+  <block id="d3739a6ca5f7881d26cd16ae0246cb66" category="list-text">リモートダイレクトメモリアクセス（RDMA）トラフィックの分類：</block>
+  <block id="1fbc1d9fd1cab89ba481e86cf474c0db" category="list-text">一致：TCPポート10006、送信元、宛先、またはその両方</block>
+  <block id="a829c133d53608ae0e95e4674bf97b6b" category="list-text">オプションマッチ：COS 5</block>
+  <block id="6f8616dc7edb0ec3be10494e52645e33" category="list-text">オプション照合：DSCP 40</block>
+  <block id="d8211541cda259f40aead0607233255f" category="list-text">DSCP 40の設定</block>
+  <block id="f530740ac9e609fc21d073ac7a1005eb" category="list-text">COS 5の設定</block>
+  <block id="905698c568b08ffae010badfede2c3d9" category="list-text">オプション：20Gbpsへのレートシェーピング</block>
+  <block id="6f9086eed365c3a2db1521fa98bb7fad" category="list-text">iSCSIトラフィックの分類：</block>
+  <block id="bfee253ff06448698780744ab1762cba" category="list-text">一致：TCPポート62500、送信元、宛先、またはその両方</block>
+  <block id="b6b4cd52ee0814cd111c7646f3ec71cf" category="list-text">オプションマッチ：COS 4</block>
+  <block id="bc0161255c709f2bfdb09ade9fbc1364" category="list-text">オプション照合:DSCP 32</block>
+  <block id="18b58e1c9302e2acb18218c02c62dab7" category="list-text">DSCP 32の設定</block>
+  <block id="9635157acb849c6a772e37e0f94858d6" category="list-text">COS 4の設定</block>
+  <block id="0e6469e92f0a600d51275ec32be23bb1" category="list-text">L2FlowControl（PAUSE）、RXおよびTX</block>
+  <block id="85a0f387d72a9b66caa12bfd8ac6c340" category="list-text">分類：</block>
+  <block id="e27bd9b5b6530f056100c85e8e3f0077" category="list-text">COS 5またはDSCP 40と一致</block>
+  <block id="e9430458570a06bf61121dd05841e47c" category="list-text">COS 4またはDSCP 32と一致</block>
+  <block id="5874b557eb2d616519503b3a9d5ce19c" category="list-text">出力キューイング</block>
+  <block id="78456c8ab5587f32bc610877d74ef7a7" category="list-text">CoSグループ4の最小設定しきい値は2000、最大しきい値は3000です。</block>
+  <block id="b4b17fa389e749d338c939d59e32db97" category="list-text">CoSグループ5の最小設定しきい値は3500、最大しきい値は6500です。</block>
+  <block id="246d20a235e1c5c1dbb77c8dd872497b" category="admonition">構成のしきい値は環境によって異なります。構成のしきい値は個 々 の環境に基づいて評価する必要があります。</block>
+  <block id="accd310df4e17b2af66b22edc9c1e947" category="list-text">Q4およびQ5でECNが有効</block>
+  <block id="e5d00fe64d05f1fce7d98d430a420841" category="list-text">第4四半期と第5四半期に赤が有効</block>
+  <block id="afeb146185af0336a8e15734f4d8d82b" category="list-title">帯域幅の割り当て（MetroClusterインターフェイスとISLポートを接続するスイッチポート）</block>
+  <block id="4ffad2b7caeb46c571b7de01bf63c497" category="list-text">RDMA、COS 5 / DSCP 40：60%</block>
+  <block id="fddd1eb673a9b9d4b1288a3e624d4702" category="list-text">iSCSI、COS 4 / DSCP 32：40%</block>
+  <block id="74a0d47e246ff885c997c58ac7f5c7ef" category="list-text">MetroCluster構成およびネットワークごとの最小容量要件：10Gbps</block>
+  <block id="e14e93b70d1997123d2de410047c323f" category="admonition">レート制限を使用する場合は、トラフィックを損失なしに*シェーピング*する必要があります。</block>
+  <block id="e53ae17087425b26dcf2c8f30e6a2f79" category="section-title">MetroClusterコントローラを接続するスイッチポートの設定例</block>
+  <block id="1d44ff8a3ea66c300c0fc107ab6d6979" category="paragraph">ここに示すコマンド例は、Cisco NX3232スイッチまたはCisco NX9336スイッチに有効です。コマンドは、スイッチタイプによって異なります。</block>
+  <block id="63459049e091924c73609b9957c4e64f" category="paragraph">例に示されている機能または同等の機能がスイッチで使用できない場合、スイッチは最小要件を満たしておらず、MetroCluster構成の導入に使用することはできません。これは、MetroCluster構成に接続するすべてのスイッチ、およびすべての中間スイッチに当てはまります。</block>
+  <block id="11eba6b520d78c3fbdee86eaa640f55e" category="admonition">次の例では、1つのネットワークの構成しか表示されていません。</block>
+  <block id="416206518e27ed2ec8b8e0876078af35" category="paragraph-title">キホンセツテイ</block>
+  <block id="92960f86c54c971b6a0cf5a9c0ba173f" category="paragraph">各ネットワークに仮想LAN（VLAN）を設定する必要があります。次に、ネットワーク10にVLANを設定する例を示します。</block>
+  <block id="c26fe677a830587ef1c141567a86c86a" category="paragraph">* 例： *</block>
+  <block id="0d2aec46175773fc70efbe5d12535b0a" category="section-title">分類の設定例</block>
+  <block id="b6743577d6311b6a886fd545eecad9ab" category="paragraph">RDMAおよびiSCSIトラフィックを適切なクラスにマッピングするには、アクセスマップとクラスマップを設定する必要があります。</block>
+  <block id="2cb92abbd15a47018d0204e9dfee4122" category="paragraph">次の例では、ポート65200との間のすべてのTCPトラフィックをストレージ（iSCSI）クラスにマッピングします。ポート 10006 を経由するすべての TCP トラフィックを RDMA クラスにマッピングします。これらのポリシーマップは、MetroClusterインターフェイスを接続するスイッチポートで使用されます。</block>
+  <block id="f80f72892df8210cce38857cf663c2ed" category="paragraph">入力ポリシーを設定する必要があります。入力ポリシーは、異なるCOSグループに分類されたトラフィックをマッピングします。この例では、 RDMA トラフィックを COS グループ 5 にマッピングし、 iSCSI トラフィックを COS グループ 4 にマッピングしています。入力ポリシーは、MetroClusterインターフェイスを接続するスイッチポートおよびMetroClusterトラフィックを伝送するISLポートで使用されます。</block>
+  <block id="66a59d5a8e6aaa9cf1a591ec9c2aebb3" category="paragraph">NetAppでは、次の例に示すように、MetroClusterインターフェイスを接続するスイッチポートでトラフィックをシェーピングすることを推奨しています。</block>
+  <block id="fa2cdd1d9c185220534e9a5f6e581f57" category="section-title">ノードポートの設定例</block>
+  <block id="6c19da68939fc2775a2a8c23908971ef" category="paragraph">ノードポートをブレークアウトモードで設定しなければならない場合があります。次の例では、ポート25と26が4つの25Gbpsブレークアウトモードで設定されています。</block>
+  <block id="f9d3b2b553dd7e256aefbf7a7cb80c85" category="paragraph">MetroCluster インターフェイスポート速度の設定が必要になる場合があります。次に、速度を*auto*または40Gbpsモードに設定する例を示します。</block>
+  <block id="a510a743559d6f2f71e9d8bf3b5f0f30" category="paragraph">次の例は、MetroClusterインターフェイスを接続するように設定されたスイッチポートを示しています。VLAN 10のアクセスモードポートで、MTUは9216で、ネイティブ速度で動作しています。対称（送受信）フロー制御（PAUSE）がイネーブルで、MetroCluster入力および出力ポリシーが割り当てられています。</block>
+  <block id="a791c23bf43a913e9bc2dd3fbb04acf3" category="paragraph">25Gbpsポートでは、次の例に示すように、前方誤り訂正（FEC）設定を「off」に設定する必要があります。</block>
+  <block id="c1e9e67d43bd92599acf6de487a61c65" category="section-title">ネットワーク全体でのISLポートの設定例</block>
+  <block id="18b91592ae3775f34f65c991d793f843" category="paragraph">MetroCluster準拠スイッチは、MetroClusterインターフェイスを直接接続するスイッチであっても、中間スイッチとみなされます。MetroCluster準拠スイッチでMetroClusterトラフィックを伝送するISLポートは、中間スイッチのISLポートと同じように設定する必要があります。を参照してください <block ref="d4732e32817c639c5e57cf150621c360" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="a05b3cdfc5cc23ee6b2d90f33be54635" category="admonition">一部のポリシーマップは、MetroClusterインターフェイスを接続するスイッチポートと、MetroClusterトラフィックを伝送するISLで同じです。これらの両方のポート使用に同じポリシーマップを使用できます。</block>
+  <block id="80d1269e99768d5e883ffa70dd8f6aeb" category="summary">要件に応じて、共有レイヤ2またはレイヤ3ネットワークを使用してMetroClusterを導入できます。</block>
+  <block id="1c46b7bbd317f603895892a646ef8b2d" category="doc">共有レイヤ2またはレイヤ3ネットワークにMetroClusterを導入する際の考慮事項</block>
+  <block id="2ff08728ea0124138aa06bf0f8c8ea31" category="paragraph">ONTAP 9.6以降では、サポート対象のCiscoスイッチを使用するMetroCluster IP構成で、専用のMetroCluster ISLを使用する代わりに、スイッチ間リンク（ISL）で既存のネットワークを共有できます。このトポロジは_共有レイヤ2ネットワーク_と呼ばれます。</block>
+  <block id="cc723d7803ba423b47b353cc9dfa54ff" category="paragraph">ONTAP 9.9.1以降では、MetroCluster IP設定をIPルーテッド（レイヤ3）バックエンド接続で実装できます。このトポロジは_共有レイヤ3ネットワーク_と呼ばれます。</block>
+  <block id="80a482ff4ac144c8d8c1e668a348dd67" category="list-text">ネットワーク容量が十分であり、ISLサイズが構成に適していることを確認する必要があります。MetroCluster サイト間でのデータのレプリケーションでは、レイテンシを低く抑えることが重要になります。これらの接続にレイテンシの問題があると、クライアント I/O に影響する可能性があります</block>
+  <block id="37eee3b9ac9781ca0484f54aeef70602" category="list-text">MetroClusterバックエンドスイッチとは、いずれもネットアップが検証したスイッチ、またはMetroClusterに準拠しているスイッチを指します。を参照してください <block ref="16daa185b92984fefaae8aa04a4cd437" category="inline-link-macro-rx"></block> 詳細：</block>
+  <block id="fb51bd6bc8df92b67b0dbb637314bf54" category="section-title">レイヤ2およびレイヤ3ネットワークのISL要件</block>
+  <block id="58137a1ac83de260ca60eccfcb17156d" category="paragraph">次の環境レイヤ2およびレイヤ3ネットワーク：</block>
+  <block id="0993d8fc99c85994b32658ca6ec6793e" category="list-text">MetroClusterスイッチと中間ネットワークスイッチ間で、ISLの速度と数が一致している必要はありません。同様に、中間ネットワークスイッチ間で速度が一致している必要はありません。</block>
+  <block id="e86033c89acfedd6f1712d0fc113d65e" category="paragraph">たとえば、1つの40Gbps ISLを使用してMetroClusterスイッチを中間スイッチに接続し、2つの100Gbps ISLを使用して中間スイッチを相互に接続できます。</block>
+  <block id="8eb2d711b28ba52fd757990156cc9af3" category="list-text">ISLの使用状況、エラー（ドロップ、リンクフラップ、破損など）を監視するには、中間ネットワークでネットワーク監視を設定する必要があります。 そして失敗。</block>
+  <block id="f7b423d1ee713bf3285829978ce48331" category="list-text">MetroClusterエンドツーエンドトラフィックを伝送するすべてのポートで、MTUサイズを9216に設定する必要があります。</block>
+  <block id="f9e9b76449caab6e71a42abee6aba4e7" category="list-text">他のトラフィックには、Class of Service（COS;サービスクラス）5よりも高いプライオリティを設定することはできません。</block>
+  <block id="13b4ddbad8ca7740efa748e6262e919e" category="list-text">エンドツーエンドMetroClusterトラフィックを伝送するすべてのパスで、Explicit Congestion Notification（ECN;明示的輻輳通知）を設定する必要があります。</block>
+  <block id="0b98609b51a21604f1a00a4828047fa4" category="list-text">MetroCluster トラフィックを伝送する ISL は、スイッチ間のネイティブリンクである必要があります。</block>
+  <block id="d68cc50331576837c5a83b1affefcd38" category="paragraph">マルチプロトコルラベルスイッチング（ MPLS ）リンクなどのリンク共有サービスはサポートされません。</block>
+  <block id="b76b15693c2f8c16c80e09ae0fe2b441" category="list-text">レイヤ2 VLANは、ネイティブに複数のサイトにまたがっている必要があります。Virtual Extensible LAN （ VXLAN ）などの VLAN オーバーレイはサポートされていません。</block>
+  <block id="2156b2d970617b3d65eafda966103652" category="list-text">中間スイッチの数に制限はありません。ただし、NetAppでは、スイッチの数を必要な最小数に保つことを推奨しています。</block>
+  <block id="b0dbac2ed11a4ffb9cf551a68744fc3b" category="list-text">MetroClusterスイッチのISLは次のように設定されます。</block>
+  <block id="5e34055a3e0591bb621f4758f8ab5c63" category="list-text">LACPポートチャネルの一部としてのスイッチポートモード「trunk」</block>
+  <block id="a819f04829e8d3d3f22e5c1321e7af0d" category="list-text">MTUサイズは9216</block>
+  <block id="3276e46322c8ba3f79ce3ea27b68265d" category="list-text">ネイティブVLANが設定されていない</block>
+  <block id="c4e0b3187c97c7f37c8ce07e79b76791" category="list-text">サイト間のMetroClusterトラフィックを伝送するVLANのみが許可されます。</block>
+  <block id="b6c4e1e2f2a0c06e8d9a324d954bc763" category="list-text">スイッチのデフォルトVLANは許可されていません。</block>
+  <block id="3f3bba6728c947cfa6f369c605b7118b" category="section-title">レイヤ2ネットワークに関する考慮事項</block>
+  <block id="64dd6d9e6b2c1c66728d029e3b45abd2" category="paragraph">MetroClusterバックエンドスイッチがお客様のネットワークに接続されている。</block>
+  <block id="11ab87f335ed35c8bcf058a70cebc2be" category="image-alt">MCCレイヤ2</block>
+  <block id="6acf5532efb336e0d8001419f26ef951" category="list-text">中間ネットワークは、サイト間で同じVLANを提供する必要があります。これは、RCFファイルに設定されているMetroCluster VLANと一致している必要があります。</block>
+  <block id="ac8a1f1bfd836ba146d1ab2feb59b2fa" category="list-text">RcfFileGeneratorは、将来の使用を想定している場合など、特定のVLAN IDの使用を制限することがあります。一般的に、予約済み VLAN は最大で 100 です。</block>
+  <block id="d4a11c01614c17bddc7d41960498137a" category="paragraph-title">ONTAPでのVLANの設定</block>
+  <block id="2fdb610706dea62a50ca16baa1d63c2a" category="paragraph">VLANはインターフェイスの作成時にのみ指定できます。MetroClusterインターフェイスの作成後にVLAN IDを変更することはできません。他のVLANはインターフェイスの作成時に設定できますが、10～20の範囲、または101～4096の範囲（またはスイッチベンダーがサポートする数のうち小さい方）で設定する必要があります。</block>
+  <block id="5c7b46710dbc52038abeae30dc7410f8" category="admonition">一部のスイッチベンダーでは、特定のVLANの使用を予約する場合があります。</block>
+  <block id="c42b50e941d0ad3822d8ba3c571ef6c4" category="paragraph">次のシステムでは、ONTAP内でVLANを設定する必要はありません。VLANは、スイッチポートの設定によって指定されます。</block>
+  <block id="24eb498f969850d03efc1a22afbc9649" category="list-text">FAS8200 と AFF A300</block>
+  <block id="1bcc0cae878ae9cc7fa87246f0d4540c" category="list-text">FAS9000およびAFF A700</block>
+  <block id="7d60aa55363e89f3edb95d64f7738599" category="list-text">AFF A800、ASA A800、AFF C800、およびASA C800</block>
+  <block id="9726fef0e4dc57d416750f1437b801d2" category="admonition">上記のシステムは、VLAN 100以下を使用して設定できます。ただし、この範囲の一部のVLANは、他の用途や将来の用途に予約されている可能性があります。</block>
+  <block id="d113a6ed852ea26337d713450639ad33" category="paragraph">他のすべてのシステムでは、ONTAPでMetroClusterインターフェイスを作成するときにVLANを設定する必要があります。次の制限事項が適用されます。</block>
+  <block id="69cb699eb5cb6fc6aac153a3486a2d02" category="list-text">デフォルトのVLANは10および20です。</block>
+  <block id="6954b86244a9da40b24d29171fe19dd2" category="list-text">ONTAP 9.7以前を実行している場合は、デフォルトのVLAN 10およびVLAN 20のみを使用できます。</block>
+  <block id="c3a01939286fd058fa14f456bdf7fe55" category="list-text">ONTAP 9.8以降を実行している場合は、デフォルトのVLAN 10および20を使用できます。また、100を超えるVLAN（101以上）も使用できます。</block>
+  <block id="383a9ccc3c329cd46717d48764d2a3a1" category="section-title">レイヤ3ネットワークに関する考慮事項</block>
+  <block id="262180f9a3b542d7e9252ccb29c6e05a" category="paragraph">MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構成で構成およびケーブル接続されます <block ref="311f44367ad647b525912f40849bbd78" category="inline-link-macro-rx"></block>。手順のインストールとケーブル接続を実行する場合は、レイヤ3構成に固有の手順を実行する必要があります。次の環境レイヤ3設定</block>
+  <block id="9754d5ef829b115c83fcfad16e037150" category="list-text">MetroClusterスイッチは、ルータに直接接続することも、介入する1つ以上のスイッチに接続することもできます。</block>
+  <block id="ed94574fa9ed2387bee462bdd7cd3ba5" category="list-text">MetroCluster IPインターフェイスは、ルータに直接接続することも、介在するスイッチの1つに接続することもできます。</block>
+  <block id="f1596f206c54f2be9203577a2eff12b5" category="list-text">VLAN をゲートウェイデバイスに拡張する必要があります。</block>
+  <block id="9b0be62b5e24c67f7d0b3aa7b31b6604" category="list-text">を使用します<block ref="952b62648c6a534516a9c3c7315a7c7d" prefix=" " category="inline-code"></block> MetroCluster IPインターフェイスアドレスにIPゲートウェイアドレスを設定するには、次の手順を実行します。</block>
+  <block id="f6d02847cab7cb4beb1719ebf258e2f2" category="list-text">MetroCluster VLAN の VLAN ID は、各サイトで同じである必要があります。ただし、サブネットは異なる場合があります。</block>
+  <block id="b7b42132f8e93917eac40b208d22bece" category="list-text">次の機能はサポートされません。</block>
+  <block id="e175f2efef635374c81a1849be567459" category="list-text">4ノードMetroCluster構成の更新</block>
+  <block id="737fb92f35cc9bdf093b6e69cc63f06d" category="paragraph">ルータおよびゲートウェイのIPアドレスを設定する場合は、次の要件を満たす必要があります。</block>
+  <block id="a90528fa780e67a14116d1611ce717d2" category="list-text">一方のノードの2つのインターフェイスに同じゲートウェイIPアドレスを設定することはできません。</block>
+  <block id="70bfc0d0b45a011747af6c74384efe16" category="section-title">中間スイッチに必要な設定</block>
+  <block id="447dfac8aa099d425869681811719a30" category="paragraph">MetroClusterトラフィックが中間ネットワークのISLを経由する場合は、中間スイッチの設定によって、MetroClusterサイト間のパス全体でMetroClusterトラフィック（RDMAおよびストレージ）が必要なサービスレベルを満たしていることを確認する必要があります。</block>
+  <block id="6b8d702de4699c80d4f08e3290e0ae78" category="paragraph">次の図に、NetApp検証済みCiscoスイッチを使用する場合の必要な設定の概要を示します。</block>
+  <block id="d64d8900b94544769fb9967383f0fd7c" category="paragraph">次の図は、外部スイッチがBroadcom IPスイッチの場合の共有ネットワークに必要な設定の概要を示しています。</block>
+  <block id="05b4b53d3b59a13fd2e65542e7891e26" category="list-text">。<block ref="f63a844b3a8b746d4843c729ac11c60a" prefix=" " category="inline-code"></block> ポリシーは、MetroCluster IPスイッチに接続する中間スイッチのポートに適用されます。</block>
+  <block id="52ef9029aac6ce5ffcb9c3d6cff86d7f" category="paragraph">。<block ref="f63a844b3a8b746d4843c729ac11c60a" prefix=" " category="inline-code"></block> ポリシーは、着信タグ付きトラフィックを中間スイッチの適切なキューにマッピングします。</block>
+  <block id="15ab0cd88b7fb9a6fd629378a99a2295" category="list-text">A<block ref="f9720e3c5caef8b7a1d232011f766afa" prefix=" " category="inline-code"></block> ポリシーは、中間スイッチ間のISLに接続する中間スイッチのポートに適用されます。</block>
+  <block id="18d81090280ae3c4bb12ecd8a2bed4be" category="paragraph">次に、Cisco Nexus 3232Cおよび9336C-FX2スイッチの例を示します。スイッチのベンダーとモデルに応じて、中間スイッチの構成が適切であることを確認する必要があります。</block>
+  <block id="dbf22513b7658f718a783a9c9ca05c25" category="paragraph-title">中間スイッチISLポートのクラスマップを設定する</block>
+  <block id="2f8cbfda819bd44eb1b6d0b8413c7380" category="paragraph">次に、入力でトラフィックを分類する必要があるか一致させる必要があるかに応じたクラスマップ定義の例を示します。</block>
+  <block id="920163af25aaf3412edc4e2617944413" category="open-title">入力時のトラフィックの分類：</block>
+  <block id="5195f66a2dd1582077857da153dfc3e7" category="open-title">入力のトラフィックを照合します。</block>
+  <block id="fe70aaf6db42e3ca503ed0f831ec3013" category="paragraph-title">中間スイッチのISLポートに入力ポリシーマップを作成します。</block>
+  <block id="ed8f4f6efa89e6154543c4f612bf78ba" category="paragraph">次に、入力でトラフィックを分類する必要があるか照合する必要があるかに応じて、入力ポリシーマップを作成する例を示します。</block>
+  <block id="fd2f21fa2367388327b48baf4eba2d34" category="open-title">入力時にトラフィックを分類します。</block>
+  <block id="116d60d710def294128331f31f4e99fe" category="open-title">入力のトラフィックを照合します。</block>
+  <block id="59b0f4b7ca0808cc39159f8f430b2a40" category="paragraph-title">ISLポートの出力キューイングポリシーを設定する</block>
+  <block id="aff7033715e65e12ff4650459dd9ff39" category="paragraph">次に、出力キューイングポリシーを設定する例を示します。</block>
+  <block id="dfb0c4a1486181d12349fddc19976e09" category="paragraph">これらの設定は、MetroClusterトラフィックを伝送するすべてのスイッチおよびISLに適用する必要があります。</block>
+  <block id="b938eb18ad1590315ab79c5e36f76620" category="paragraph">この例では、Q4とQ5は<block ref="5d143ead1084d921d2b83df6e0907a26" prefix=" " category="inline-code"></block>。構成によっては、次の例に示すように、最小しきい値と最大しきい値の設定が必要になる場合があります。</block>
+  <block id="9cc02e1ad38d785896ce26b51fb60102" category="admonition">最小値と最大値は、スイッチと要件によって異なります。</block>
+  <block id="6cda46b8128670310f45ae18ae21c334" category="paragraph-title">例1：Cisco</block>
+  <block id="df31e88a5390c4402f1d983b088515a0" category="paragraph">構成にCiscoスイッチが含まれている場合は、中間スイッチの最初の入力ポートで分類する必要はありません。次に、次のマップとポリシーを設定します。</block>
+  <block id="51c0b14fe2b02fc7801ff18c8af17a3d" category="list-text"><block ref="c32bdab64a5102128e49f0e258738d79" prefix="" category="inline-code"></block></block>
+  <block id="4498fe5bbba88f97458a16049737b887" category="list-text"><block ref="96565419e14f3fe6879ee17ff6782d2f" prefix="" category="inline-code"></block></block>
+  <block id="b326fb23b2e8262075e282eafc7e2b3d" category="list-text"><block ref="229440853e909add465ca7b5f5413e8b" prefix="" category="inline-code"></block></block>
+  <block id="94256cf7c85ad240f4ba47c6ced26a6c" category="paragraph">ユーザーは、<block ref="229440853e909add465ca7b5f5413e8b" prefix=" " category="inline-code"></block> MetroClusterトラフィックを伝送するISLポートへのポリシーマップ。</block>
+  <block id="0ec5acbb5f8936a859017b5f986d1624" category="paragraph-title">例2：Broadcom</block>
+  <block id="d7b3d145846ddade4db7a38d17e1b38e" category="paragraph">Broadcomスイッチを使用する構成の場合は、中間スイッチの最初の入力ポートで分類する必要があります。次に、次のマップとポリシーを設定します。</block>
+  <block id="01d873f1d9e0aba8247cb464d76ea43f" category="list-text"><block ref="75c2563b7e6183480d77905c311117ee" prefix="" category="inline-code"></block></block>
+  <block id="d964707c5bc946eced7a043ad795f097" category="list-text"><block ref="4e445a7c8509b9986edc65399089887f" prefix="" category="inline-code"></block></block>
+  <block id="56a9521c621b33f42304f5ab63fca1eb" category="list-text"><block ref="8e5d0e16f4ef973f194b24b671764f57" prefix="" category="inline-code"></block></block>
+  <block id="f5d105ae84b71f8c7b3e300d059f40dc" category="list-text"><block ref="7539fea0476c31185bf673fa66164f2d" prefix="" category="inline-code"></block></block>
+  <block id="6e73ee887ad940172c7a88d077bf0772" category="list-text"><block ref="51c0649c1214c3a7cb1b5422c6b9dd5f" prefix="" category="inline-code"></block></block>
+  <block id="9fd450aaf744ef2f0f02e43876522bfe" category="paragraph">割り当て<block ref="67a94f8e22c0892a226d626753340cc4" prefix=" " category="inline-code"></block> Broadcomスイッチに接続する中間スイッチのISLポートへのポリシーマップ</block>
+  <block id="4eaf14eb10c7f173afbdacfeab39777a" category="paragraph">ユーザーは、<block ref="229440853e909add465ca7b5f5413e8b" prefix=" " category="inline-code"></block> MetroClusterトラフィックを伝送しているがBroadcomスイッチを接続していない中間スイッチのISLポートへのポリシーマップ。</block>
+  <block id="5af97d9502169db37645c08f238777a6" category="summary">ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ここでは、MetroCluster準拠スイッチの一般的な要件と制限事項について説明します。</block>
+  <block id="47fffbd3afdf8fa76a079477bd59709f" category="doc">MetroCluster準拠スイッチを使用する場合の要件と制限事項</block>
+  <block id="ed0f2729a4bf35a687f00daa041997c7" category="paragraph">ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、NetAppでは、検証されていないスイッチのトラブルシューティングサービスや設定サポートサービスは提供されていません。MetroCluster準拠スイッチを使用する場合は、一般的な要件と制限事項を確認しておく必要があります。</block>
+  <block id="9948bad86a0ee0273515c6ce814edbfc" category="paragraph">MetroCluster IPインターフェイスを接続するスイッチは、次の一般的な要件を満たしている必要があります。</block>
+  <block id="b67e189b705bbcc9f23d7cfa3f63039e" category="list-text">スイッチでQuality of Service（QoS；サービス品質）とトラフィック分類がサポートされている必要があります。</block>
+  <block id="0abd4d7fe8e048cb4f96973a179b5dee" category="list-text">パスで順序が維持されるように、スイッチでロードバランシングポリシーがサポートされている必要があります。</block>
+  <block id="09e2c61b537dad80acb6a181f4206358" category="list-text">スイッチポートは専用のレートを提供する必要があり、過剰に割り当てられないようにする必要があります。</block>
+  <block id="331dfa751b96c23b76a7e7322f4a12e0" category="list-text">ノードをスイッチに接続するケーブルとトランシーバは、NetAppから提供する必要があります。これらのケーブルは、スイッチベンダーがサポートしている必要があります。光ケーブルを使用している場合は、スイッチのトランシーバがNetAppから提供されていない可能性があります。コントローラのトランシーバと互換性があることを確認する必要があります。</block>
+  <block id="1deb959e67bae44ee05547e71ee4436a" category="list-text">MetroClusterノードを接続するスイッチは、MetroCluster以外のトラフィックを伝送できます。</block>
+  <block id="196918e4613993957d5d65aa2c49625e" category="list-text">スイッチファブリックごとに 2 つ、計 4 つの IP スイッチが必要です。ダイレクタを使用する場合は'各側で1つのダイレクタを使用できますが' MetroCluster IPインタフェースは'そのダイレクタ上の2つの異なる障害ドメインにある2つの異なるブレードに接続する必要があります</block>
+  <block id="d578b667256f73cf0054ce85e9a803c1" category="list-text">1つのノードのMetroClusterインターフェイスは、2つのネットワークスイッチまたはブレードに接続する必要があります。1つのノードのMetroClusterインターフェイスを同じネットワーク、スイッチ、またはブレードに接続することはできません。</block>
+  <block id="dbc6bc08f5767f194c92081755bcebc7" category="list-text">ネットワークは、次のセクションで説明する要件を満たしている必要があります。</block>
+  <block id="3a1583c43d5c26bc5494a0499ae33c72" category="list-text"><block ref="3a1583c43d5c26bc5494a0499ae33c72" category="inline-link-macro-rx"></block></block>
+  <block id="919e8522ca559ecdaf4e3c760661ca3c" category="list-text"><block ref="919e8522ca559ecdaf4e3c760661ca3c" category="inline-link-macro-rx"></block></block>
+  <block id="80e63f439f45f04f3bd1d9233a23c06b" category="list-text">MetroCluster IPトラフィックを伝送するすべてのスイッチで、Maximum Transmission Unit（MTU;最大伝送ユニット）9216を設定する必要があります。</block>
+  <block id="1190064be457a70251f83cf8ed90fbae" category="list-text">ONTAP 9.6以前へのリバートはサポートされていません。</block>
+  <block id="dded0c2f57164482346a6b6658d31507" category="paragraph">両方のサイトのMetroCluster IPインターフェイスを接続するスイッチ間で使用する中間スイッチは、要件を満たし、に記載されているように設定する必要があります。 <block ref="919e8522ca559ecdaf4e3c760661ca3c" category="inline-link-macro-rx"></block>。</block>
+  <block id="6ce75f6758ededfae6e3e174dee1b0ba" category="section-title">MetroCluster準拠スイッチを使用する場合の制限事項</block>
+  <block id="41fd40944ef8fe76d651f6ed528b7847" category="paragraph">ローカルクラスタ接続をスイッチに接続する必要がある設定や機能は使用できません。たとえば、MetroCluster準拠スイッチでは、次の構成や手順を使用できません。</block>
+  <block id="09c51db2a0d87cd77a2ca402ad79db18" category="list-text">ローカルクラスタとMetroClusterトラフィックで物理インターフェイスを共有するプラットフォーム。を参照してください <block ref="286286065c1258176357731fa5aef554" category="inline-link-macro-rx"></block> サポートされている速度の場合。</block>
+  <block id="dc3593c035434198a7961c4f6d12d947" category="summary">MetroCluster構成とネットワークがISLのすべての要件を満たしていることを確認するために必要な情報について説明します。</block>
+  <block id="efd281456c0c33d38a0841ccb8331143" category="doc">ISLの要件の概要</block>
+  <block id="7c4aed3b24a800ab4c4ec111c0a0a428" category="paragraph">MetroCluster IP構成とネットワークがスイッチ間リンク（ISL）の要件をすべて満たしていることを確認する必要があります。一部の要件が該当しない構成もありますが、構成全体の理解を深めるためには、ISLのすべての要件を把握しておく必要があります。</block>
+  <block id="402532c1895565feb3dce23c34cffb5f" category="paragraph">次の表に、このセクションで説明するトピックの概要を示します。</block>
+  <block id="b78a3223503896721cca1303f776159b" category="cell">タイトル</block>
+  <block id="16daa185b92984fefaae8aa04a4cd437" category="cell"><block ref="16daa185b92984fefaae8aa04a4cd437" category="inline-link-macro-rx"></block></block>
+  <block id="5feb584dda6da1d0566cba066fddf124" category="cell">に、スイッチの要件を示します。
+
+環境バックエンドスイッチを含む、MetroCluster構成で使用されるすべてのスイッチ。</block>
+  <block id="a8e05c7ee6fd39022fc67143bc5251ba" category="cell">に、ISLの要件を示します。
+
+ネットワークトポロジ、およびネットアップ検証済みスイッチとMetroCluster準拠スイッチのどちらを使用しているかに関係なく、環境All MetroCluster構成。</block>
+  <block id="6220e2336a0586f7b524ec64a336fe1c" category="inline-link-macro">共有レイヤ2またはレイヤ3ネットワークにMetroClusterを導入する際の考慮事項</block>
+  <block id="466b71f8831d64eada053719fd961798" category="cell"><block ref="466b71f8831d64eada053719fd961798" category="inline-link-macro-rx"></block></block>
+  <block id="f3c54f8b1b081afe141797ddcf3459e0" category="cell">共有レイヤ2またはレイヤ3ネットワークの要件について説明します。
+
+環境：ネットアップ検証済みのスイッチを使用し、直接接続されたISLを使用するMetroCluster構成を除くすべての構成。</block>
+  <block id="a5a4c52ad165d0f2ece1f7aefc7d482c" category="inline-link-macro">MetroCluster準拠スイッチを使用する場合の考慮事項</block>
+  <block id="469660356a0585d894a2477073c83c97" category="cell"><block ref="469660356a0585d894a2477073c83c97" category="inline-link-macro-rx"></block></block>
+  <block id="b7cda7e4a23f216c9f7830dfa3e8bc23" category="cell">MetroCluster準拠スイッチの要件について説明します。
+
+ネットアップ検証済みスイッチを使用していない環境All MetroCluster構成。</block>
+  <block id="c8a876018fbb152e3e9beb9a87f3cd4e" category="cell"><block ref="c8a876018fbb152e3e9beb9a87f3cd4e" category="inline-link-macro-rx"></block></block>
+  <block id="529fcc581410686227b4df2b0fb6b6c2" category="cell">に、さまざまなMetroClusterネットワークトポロジの例を示します。
+
+環境All MetroCluster構成</block>
+  <block id="20f7078fb96bd6060a10b9fed9306941" category="sidebar">MetroCluster準拠スイッチの要件と制限事項</block>
+  <block id="3c24829f69028dca3ac0aa982abad68d" category="sidebar">MetroCluster準拠スイッチのネットワーク速度とスイッチポートモード</block>
 </blocks>

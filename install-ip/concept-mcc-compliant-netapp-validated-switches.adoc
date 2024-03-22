@@ -1,0 +1,34 @@
+---
+permalink: install-ip/mcc-compliant-netapp-validated-switches.html 
+sidebar: sidebar 
+keywords: isls, ip, layer 2, layer 3, shared switch 
+summary: ここでは、MetroCluster構成とネットワークがすべての要件を満たしていることを確認するために必要な情報を示します。 
+---
+= ネットアップが検証したMetroCluster準拠スイッチ
+:allow-uri-read: 
+
+
+バックエンドスイッチを含め、構成で使用するすべてのスイッチが、ネットアップ検証済みまたはMetroCluster準拠のいずれかである必要があります。
+
+
+
+== ネットアップ検証済みスイッチ
+
+スイッチが次の要件を満たしている場合、ネットアップで検証されます。
+
+* スイッチは、MetroCluster IP構成の一部としてネットアップから提供されます
+* スイッチは、 link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] MetroCluster-over-IP-connections_でサポートされるスイッチとして使用
+* このスイッチは、MetroCluster IPコントローラと、一部の構成ではNS224ドライブシェルフへの接続にのみ使用します
+* スイッチは、NetAppが提供するリファレンス構成ファイル（RCF）を使用して設定します。
+
+
+これらの要件を満たしていないスイッチは、ネットアップの検証済みスイッチではありません。
+
+
+
+== MetroCluster準拠のスイッチ
+
+MetroCluster準拠スイッチはネットアップでは検証されていませんが、一定の要件および構成ガイドラインを満たしていれば、MetroCluster IP構成で使用できます。
+
+
+NOTE: NetAppでは、MetroCluster準拠の検証が行われていないスイッチについては、トラブルシューティングや構成のサポートサービスは提供していません。

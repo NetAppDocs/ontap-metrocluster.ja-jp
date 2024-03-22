@@ -1,0 +1,54 @@
+---
+permalink: install-ip/concept-example-network-topologies.html 
+sidebar: sidebar 
+keywords: metrocluster ip, metrocluster-compliant switches, metrocluster-compliant, requirements, compliant, configuration 
+summary: ONTAP 9.6以降では、MetroCluster IP構成で追加のネットワーク設定がサポートされます。 
+---
+= MetroCluster ネットワークトポロジの例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+ONTAP 9.6以降では、MetroCluster IP構成で追加のネットワーク設定がサポートされます。ここでは、サポートされるネットワーク構成の例をいくつか示します。サポートされているトポロジの一部がリストされていません。
+
+これらのトポロジでは、に記載されている要件に従ってISLと中間ネットワークが設定されていることを前提としています。 link:concept-requirements-isls.html["ISL に関する考慮事項"]。
+
+
+NOTE: MetroCluster以外のトラフィックでISLを共有する場合は、MetroClusterに最小限必要な帯域幅が常に確保されていることを確認する必要があります。
+
+
+
+== 直接リンクを使用した共有ネットワーク構成
+
+このトポロジでは、 2 つのサイトが直接リンクで接続されます。これらのリンクは、xWDMとTDMデバイスまたはスイッチ間に設定できます。ISLの容量はMetroClusterトラフィック専用ではなく、MetroCluster以外の他のトラフィックと共有されます。
+
+image::../media/mcc_ip_networking_with_shared_isls.gif[共有 ISL を使用する MCC IP ネットワーク]
+
+
+
+== 中間ネットワークを使用する共有インフラ
+
+このトポロジでは、MetroClusterサイトは直接接続されませんが、MetroClusterとホストトラフィックはネットワークを経由します。
+ネットワークは一連のxWDMおよびTDMとスイッチで構成できますが、直接ISLを使用した共有構成とは異なり、サイト間のリンクは直接接続ではありません。サイト間のインフラによっては、ネットワーク構成を任意に組み合わせて設定できます。
+
+image::../media/mcc_ip_networking_with_intermediate_private_networks.gif[中間プライベートネットワークを使用する MCC IP ネットワーク]
+
+
+
+== 複数のMetroCluster構成で中間ネットワークを共有
+
+このトポロジでは、 2 つの異なる MetroCluster 構成が同じ中間ネットワークを共有しています。この例では、MetroCluster 1のswitch_A_1とMetroCluster 2のswitch_A_1が同じ中間スイッチに接続されています。
+
+
+NOTE: 「MetroCluster 1」または「MetroCluster 2」は、どちらも8ノードMetroCluster構成の場合と4ノードMetroCluster構成の場合があります。
+
+image::../media/mcc_ip_two_mccs_sharing_the_same_shared_network_sx.gif[同じ共有ネットワーク SX を共有する MCC IP 2 MCCS]
+
+
+
+== NetApp検証済みスイッチを使用するMetroCluster構成とMetroCluster準拠スイッチを使用する構成の組み合わせ
+
+2つの異なるMetroCluster構成で同じ中間スイッチを共有します。1つのMetroClusterは共有レイヤ2構成のNetApp検証済みスイッチ（MetroCluster 1）を使用して構成され、もう1つのMetroClusterは、中間スイッチに直接接続されたMetroCluster準拠スイッチ（MetroCluster 2）を使用して構成されます。
+
+image::../media/mcc_ip_unsupported_two_mccs_direct_to_shared_switches.png[MCC IP では、 2 台の MCCS を共有スイッチに直接接続することはできません]

@@ -1,10 +1,10 @@
 ---
-permalink: install-ip/task_modify_ip_netmask_gateway_properties.html 
+permalink: maintain/task-modify-ip-netmask-properties.html 
 sidebar: sidebar 
 keywords: vlan, ip, gateway,netmask, address, network, interface, subnet 
 summary: MetroCluster IP インターフェイス、 IP アドレスとマスク、およびゲートウェイの次のプロパティを変更できます。パラメータは任意に組み合わせて更新できます。 
 ---
-= MetroCluster IP のアドレス、ネットマスク、およびゲートウェイを変更する
+= MetroCluster IP構成のアドレス、ネットマスク、ゲートウェイを変更します。
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -29,25 +29,22 @@ NOTE: これらのコマンドは、特定のポートの特定のノードの�
 == IP アドレス、ネットマスク、およびゲートウェイを変更します
 
 . 単一のノードとインターフェイスの IP アドレス ' ネットマスク ' およびゲートウェイを更新します MetroCluster の設定 - インターフェイスの変更
-
-
++
 次のコマンドは、 IP アドレス、ネットマスク、およびゲートウェイを更新する方法を示しています。
 
++
 [listing]
 ----
 cluster_A::* metrocluster configuration-settings interface modify -cluster-name cluster_A -home-node node_A_1 -home-port e0a-10 -address 192.168.12.101 -gateway 192.168.12.1 -netmask 255.255.254.0
 (metrocluster configuration-settings interface modify)
-
 Warning: This operation will disconnect and reconnect iSCSI and RDMA connections used for DR protection through port “e0a-10”. Partner nodes may need modifications for port “e0a-10” in order to completely establish network connectivity.
 Do you want to continue?" yes
-
 [Job 28] Setting up iSCSI target configuration. (pass2:iscsi13:0:-1:0): xpt_action_default: CCB type 0xe XPT_DEV_ADVINFO not supported
 [Job 28] Establishing iSCSI initiator connections.
 (pass6:iscsi14:0:-1:0): xpt_action_default: CCB type 0xe XPT_DEV_ADVINFO not supported
 (pass8:iscsi15:0:-1:0): xpt_action_default: CCB type 0xe XPT_DEV_ADVINFO not supported
 (pass9:iscsi16:0:-1:0): xpt_action_default: CCB type 0xe XPT_DEV_ADVINFO not supported
 [Job 28] Job succeeded: Interface Modify is successful.
-
 cluster_A::*> metrocluster configuration-settings interface modify -cluster-name cluster_A -home-node node_A_2 -home-port e0a-10 -address 192.168.12.201 -gateway 192.168.12.1 -netmask 255.255.254.0
 (metrocluster configuration-settings interface modify)
 Warning: This operation will disconnect and reconnect iSCSI and RDMA connections used for DR protection through port “e0a-10”. Partner nodes may need modifications for port “e0a-10” in order to completely establish network connectivity.
@@ -55,10 +52,10 @@ Do you want to continue?" yes
 [Job 28] Job succeeded: Interface Modify is successful
 ----
 . [step2] すべてのインターフェイスですべての接続が機能していることを確認します。 MetroCluster configurion-settings interface show
-
-
++
 次のコマンドは、すべてのインターフェイスのすべての接続が機能していることを確認する方法を示しています。
 
++
 [listing]
 ----
 cluster_A::*> metrocluster configuration-settings interface show
@@ -87,11 +84,16 @@ Group Cluster Node    Network Address Netmask         Gateway         State
                       192.168.21.250  255.255.255.0   192.168.21.1    completed
 8 entries were displayed.
 ----
-. [[step3]] すべての接続が動作していることを確認します : MetroCluster configurion-settings connection show`
 
 
+. [[step3]]すべての接続が機能していることを確認します。
++
+「 MetroCluster configurion-settings connection show 」を参照してください
+
++
 次のコマンドは、すべての接続が機能していることを確認する方法を示しています。
 
++
 [listing]
 ----
 cluster_A::*> metrocluster configuration-settings connection show
@@ -126,3 +128,4 @@ Group Cluster Node    Network Address Network Address Partner Type Config State
                  Home Port: e0b-20
                       192.168.20.100  192.168.21.250  DR Auxiliary completed
 ----
+

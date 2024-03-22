@@ -1,0 +1,280 @@
+---
+permalink: install-ip/concept-configure-mcc-compliant-switches.html 
+sidebar: sidebar 
+keywords: metrocluster ip, metrocluster-compliant switches, metrocluster-compliant, requirements, compliant, configuration 
+summary: さまざまなスイッチポートの構成について説明します。 
+---
+= スイッチポートの設定例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+さまざまなスイッチポートの構成について説明します。
+
+
+NOTE: 次の例では、10進数の値を使用して、環境Ciscoスイッチの表に従っています。スイッチベンダーによっては、DSCPに異なる値が必要になる場合があります。値が正しいことを確認するには、スイッチベンダーに対応する表を参照してください。
+
+|===
+
+
+| DSCP値 | 10 進数 | 16進 | 意味 
+
+
+ a| 
+101、000
+ a| 
+16
+ a| 
+0x10
+ a| 
+CS2
+
+
+
+ a| 
+011、000
+ a| 
+24
+ a| 
+0x18
+ a| 
+CS3
+
+
+
+ a| 
+100、000
+ a| 
+32
+ a| 
+0x20
+ a| 
+CS4
+
+
+
+ a| 
+101、000
+ a| 
+40
+ a| 
+0x28
+ a| 
+CS5
+
+|===
+.MetroClusterインターフェイスを接続するスイッチポート
+* リモートダイレクトメモリアクセス（RDMA）トラフィックの分類：
++
+** 一致：TCPポート10006、送信元、宛先、またはその両方
+** オプションマッチ：COS 5
+** オプション照合：DSCP 40
+** DSCP 40の設定
+** COS 5の設定
+** オプション：20Gbpsへのレートシェーピング
+
+
+* iSCSIトラフィックの分類：
++
+** 一致：TCPポート62500、送信元、宛先、またはその両方
+** オプションマッチ：COS 4
+** オプション照合:DSCP 32
+** DSCP 32の設定
+** COS 4の設定
+
+
+* L2FlowControl（PAUSE）、RXおよびTX
+
+
+.ISL ポート数
+* 分類：
++
+** COS 5またはDSCP 40と一致
++
+*** DSCP 40の設定
+*** COS 5の設定
+
+
+** COS 4またはDSCP 32と一致
++
+*** DSCP 32の設定
+*** COS 4の設定
+
+
+
+
+* 出力キューイング
++
+** CoSグループ4の最小設定しきい値は2000、最大しきい値は3000です。
+** CoSグループ5の最小設定しきい値は3500、最大しきい値は6500です。
++
+
+NOTE: 構成のしきい値は環境によって異なります。構成のしきい値は個 々 の環境に基づいて評価する必要があります。
+
+** Q4およびQ5でECNが有効
+** 第4四半期と第5四半期に赤が有効
+
+
+
+
+.帯域幅の割り当て（MetroClusterインターフェイスとISLポートを接続するスイッチポート）
+* RDMA、COS 5 / DSCP 40：60%
+* iSCSI、COS 4 / DSCP 32：40%
+* MetroCluster構成およびネットワークごとの最小容量要件：10Gbps
+
+
+
+NOTE: レート制限を使用する場合は、トラフィックを損失なしに*シェーピング*する必要があります。
+
+
+
+== MetroClusterコントローラを接続するスイッチポートの設定例
+
+ここに示すコマンド例は、Cisco NX3232スイッチまたはCisco NX9336スイッチに有効です。コマンドは、スイッチタイプによって異なります。
+
+例に示されている機能または同等の機能がスイッチで使用できない場合、スイッチは最小要件を満たしておらず、MetroCluster構成の導入に使用することはできません。これは、MetroCluster構成に接続するすべてのスイッチ、およびすべての中間スイッチに当てはまります。
+
+
+NOTE: 次の例では、1つのネットワークの構成しか表示されていません。
+
+.キホンセツテイ
+各ネットワークに仮想LAN（VLAN）を設定する必要があります。次に、ネットワーク10にVLANを設定する例を示します。
+
+* 例： *
+
+[listing]
+----
+# vlan 10
+The load balancing policy should be set so that order is preserved.
+----
+* 例： *
+
+[listing]
+----
+# port-channel load-balance src-dst ip-l4port-vlan
+----
+
+
+== 分類の設定例
+
+RDMAおよびiSCSIトラフィックを適切なクラスにマッピングするには、アクセスマップとクラスマップを設定する必要があります。
+
+次の例では、ポート65200との間のすべてのTCPトラフィックをストレージ（iSCSI）クラスにマッピングします。ポート 10006 を経由するすべての TCP トラフィックを RDMA クラスにマッピングします。これらのポリシーマップは、MetroClusterインターフェイスを接続するスイッチポートで使用されます。
+
+* 例： *
+
+[listing]
+----
+ip access-list storage
+  10 permit tcp any eq 65200 any
+  20 permit tcp any any eq 65200
+ip access-list rdma
+  10 permit tcp any eq 10006 any
+  20 permit tcp any any eq 10006
+
+class-map type qos match-all storage
+  match access-group name storage
+class-map type qos match-all rdma
+match access-group name rdma
+----
+入力ポリシーを設定する必要があります。入力ポリシーは、異なるCOSグループに分類されたトラフィックをマッピングします。この例では、 RDMA トラフィックを COS グループ 5 にマッピングし、 iSCSI トラフィックを COS グループ 4 にマッピングしています。入力ポリシーは、MetroClusterインターフェイスを接続するスイッチポートおよびMetroClusterトラフィックを伝送するISLポートで使用されます。
+
+* 例： *
+
+[listing]
+----
+policy-map type qos MetroClusterIP_Node_Ingress
+class rdma
+  set dscp 40
+  set cos 5
+  set qos-group 5
+class storage
+  set dscp 32
+  set cos 4
+  set qos-group 4
+----
+NetAppでは、次の例に示すように、MetroClusterインターフェイスを接続するスイッチポートでトラフィックをシェーピングすることを推奨しています。
+
+* 例： *
+
+[listing]
+----
+policy-map type queuing MetroClusterIP_Node_Egress
+class type queuing c-out-8q-q7
+  priority level 1
+class type queuing c-out-8q-q6
+  priority level 2
+class type queuing c-out-8q-q5
+  priority level 3
+  shape min 0 gbps max 20 gbps
+class type queuing c-out-8q-q4
+  priority level 4
+class type queuing c-out-8q-q3
+  priority level 5
+class type queuing c-out-8q-q2
+  priority level 6
+class type queuing c-out-8q-q1
+  priority level 7
+class type queuing c-out-8q-q-default
+  bandwidth remaining percent 100
+  random-detect threshold burst-optimized ecn
+----
+
+
+== ノードポートの設定例
+
+ノードポートをブレークアウトモードで設定しなければならない場合があります。次の例では、ポート25と26が4つの25Gbpsブレークアウトモードで設定されています。
+
+* 例： *
+
+[listing]
+----
+interface breakout module 1 port 25-26 map 25g-4x
+----
+MetroCluster インターフェイスポート速度の設定が必要になる場合があります。次に、速度を*auto*または40Gbpsモードに設定する例を示します。
+
+* 例： *
+
+[listing]
+----
+	speed auto
+
+	speed 40000
+----
+次の例は、MetroClusterインターフェイスを接続するように設定されたスイッチポートを示しています。VLAN 10のアクセスモードポートで、MTUは9216で、ネイティブ速度で動作しています。対称（送受信）フロー制御（PAUSE）がイネーブルで、MetroCluster入力および出力ポリシーが割り当てられています。
+
+* 例： *
+
+[listing]
+----
+interface eth1/9
+description MetroCluster-IP Node Port
+speed auto
+switchport access vlan 10
+spanning-tree port type edge
+spanning-tree bpduguard enable
+mtu 9216
+flowcontrol receive on
+flowcontrol send on
+service-policy type qos input MetroClusterIP_Node_Ingress
+service-policy type queuing output MetroClusterIP_Node_Egress
+no shutdown
+----
+25Gbpsポートでは、次の例に示すように、前方誤り訂正（FEC）設定を「off」に設定する必要があります。
+
+* 例： *
+
+[listing]
+----
+fec off
+----
+
+
+== ネットワーク全体でのISLポートの設定例
+
+MetroCluster準拠スイッチは、MetroClusterインターフェイスを直接接続するスイッチであっても、中間スイッチとみなされます。MetroCluster準拠スイッチでMetroClusterトラフィックを伝送するISLポートは、中間スイッチのISLポートと同じように設定する必要があります。を参照してください link:concept-considerations-layer-2-layer-3.html#required-settings-on-intermediate-switches["中間スイッチに必要な設定"] を参照してください。
+
+
+NOTE: 一部のポリシーマップは、MetroClusterインターフェイスを接続するスイッチポートと、MetroClusterトラフィックを伝送するISLで同じです。これらの両方のポート使用に同じポリシーマップを使用できます。

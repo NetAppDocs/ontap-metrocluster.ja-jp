@@ -1,0 +1,56 @@
+---
+permalink: install-ip/concept-requirement-and-limitations-mcc-compliant-switches.html 
+sidebar: sidebar 
+keywords: metrocluster ip, metrocluster-compliant switches, metrocluster-compliant, requirements, compliant, limitations 
+summary: ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ここでは、MetroCluster準拠スイッチの一般的な要件と制限事項について説明します。 
+---
+= MetroCluster準拠スイッチを使用する場合の要件と制限事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、NetAppでは、検証されていないスイッチのトラブルシューティングサービスや設定サポートサービスは提供されていません。MetroCluster準拠スイッチを使用する場合は、一般的な要件と制限事項を確認しておく必要があります。
+
+
+
+== MetroCluster準拠スイッチの一般的な要件
+
+MetroCluster IPインターフェイスを接続するスイッチは、次の一般的な要件を満たしている必要があります。
+
+* スイッチでQuality of Service（QoS；サービス品質）とトラフィック分類がサポートされている必要があります。
+* スイッチで Explicit Congestion Notification （ ECN ；明示的輻輳通知）がサポートされている必要
+* パスで順序が維持されるように、スイッチでロードバランシングポリシーがサポートされている必要があります。
+* スイッチで L2 Flow Control （ L2FC ； L2 フロー制御）がサポートされている必要があります。
+* スイッチポートは専用のレートを提供する必要があり、過剰に割り当てられないようにする必要があります。
+* ノードをスイッチに接続するケーブルとトランシーバは、NetAppから提供する必要があります。これらのケーブルは、スイッチベンダーがサポートしている必要があります。光ケーブルを使用している場合は、スイッチのトランシーバがNetAppから提供されていない可能性があります。コントローラのトランシーバと互換性があることを確認する必要があります。
+* MetroClusterノードを接続するスイッチは、MetroCluster以外のトラフィックを伝送できます。
+* MetroCluster準拠のスイッチで使用できるのは、スイッチレスクラスタインターコネクト専用ポートを提供するプラットフォームのみです。FAS2750やAFF A220などのプラットフォームは、MetroCluster トラフィックとMetroCluster インターコネクトトラフィックが同じネットワークポートを共有しているため使用できません。
+* MetroCluster準拠のスイッチをローカルクラスタ接続に使用しないでください。
+* MetroCluster IP インターフェイスは、要件を満たすように設定できる任意のスイッチポートに接続できます。
+* スイッチファブリックごとに 2 つ、計 4 つの IP スイッチが必要です。ダイレクタを使用する場合は'各側で1つのダイレクタを使用できますが' MetroCluster IPインタフェースは'そのダイレクタ上の2つの異なる障害ドメインにある2つの異なるブレードに接続する必要があります
+* 1つのノードのMetroClusterインターフェイスは、2つのネットワークスイッチまたはブレードに接続する必要があります。1つのノードのMetroClusterインターフェイスを同じネットワーク、スイッチ、またはブレードに接続することはできません。
+* ネットワークは、次のセクションで説明する要件を満たしている必要があります。
++
+** link:concept-requirements-isls.html["ISL に関する考慮事項"]
+** link:concept-considerations-layer-2-layer-3.html["共有レイヤ2またはレイヤ3ネットワークにMetroClusterを導入する際の考慮事項"]
+
+
+* MetroCluster IPトラフィックを伝送するすべてのスイッチで、Maximum Transmission Unit（MTU;最大伝送ユニット）9216を設定する必要があります。
+* ONTAP 9.6以前へのリバートはサポートされていません。
+
+
+両方のサイトのMetroCluster IPインターフェイスを接続するスイッチ間で使用する中間スイッチは、要件を満たし、に記載されているように設定する必要があります。 link:concept-considerations-layer-2-layer-3.html["共有レイヤ2またはレイヤ3ネットワークにMetroClusterを導入する際の考慮事項"]。
+
+
+
+== MetroCluster準拠スイッチを使用する場合の制限事項
+
+ローカルクラスタ接続をスイッチに接続する必要がある設定や機能は使用できません。たとえば、MetroCluster準拠スイッチでは、次の構成や手順を使用できません。
+
+* 8 ノード MetroCluster 構成
+* MetroCluster FC から MetroCluster IP 構成への移行
+* 4 ノード MetroCluster IP 設定の更新
+* ローカルクラスタとMetroClusterトラフィックで物理インターフェイスを共有するプラットフォーム。を参照してください link:concept-network-speeds-and-switchport-modes.html["MetroCluster準拠スイッチのプラットフォーム固有のネットワーク速度とスイッチポートモード"] サポートされている速度の場合。
+
