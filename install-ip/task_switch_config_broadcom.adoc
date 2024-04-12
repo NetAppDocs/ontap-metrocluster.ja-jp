@@ -171,12 +171,12 @@ NOTE: RCF ファイルで Telnet プロトコルが無効になります。SSH �
 (Routing) #configure
 (Routing) (Config)#crypto key generate dsa
 ----
-.. FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ 256 のキーを作成します。有効な値は、 256 、 384 、または 521 です。
+.. FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ521のキーを作成します。有効な値は、 256 、 384 、または 521 です。
 +
 [listing]
 ----
 (Routing) #configure
-(Routing) (Config)#crypto key generate ecdsa 256
+(Routing) (Config)#crypto key generate ecdsa 521
 ----
 .. SSH サーバを有効にします。
 +

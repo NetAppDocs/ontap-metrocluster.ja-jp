@@ -1,5 +1,5 @@
 ---
-permalink: install-fc/task_fb_new_install.html 
+permalink: install-fc/task_install_fc_sas_bridges_shelves.html 
 sidebar: sidebar 
 keywords: install, installing, fc-to-sas, fc, sas, bridges, disk, shelves, atto, fibrebridge 
 summary: 新しいストレージを構成に追加する際には、 ATTO FibreBridge ブリッジおよび SAS ディスクシェルフを設置してケーブル接続します。 
@@ -140,7 +140,7 @@ NOTE: MetroCluster 構成の SAS シェルフでは、 ACP ケーブル接続は
 9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。
 
 .このタスクについて
-ATTO FibreBridge 7500N および 6500N ブリッジとは異なり、 FibreBridge 7600N ブリッジは、すべての IP ポートプロトコルおよびサービスが無効になった状態で出荷されます。
+ATTO FibreBridge 7500Nブリッジとは異なり、FibreBridge 7600Nブリッジは、すべてのIPポートプロトコルおよびサービスが無効になった状態で出荷されます。
 
 ONTAP 9.5 以降では、ブリッジのインバンド管理 _ がサポートされます。これは、 ONTAP CLI からブリッジへの FC 接続を介してブリッジを設定および監視できることを意味します。ブリッジのイーサネットポートを介してブリッジに物理的にアクセスする必要がなく、ブリッジのユーザインターフェイスも必要ありません。
 
@@ -311,9 +311,8 @@ ONTAP 9.5 以降を実行しているシステムでは、インバンド管理�
 --
 サポートされる FC データ速度は、モデルブリッジによって異なります。
 
-*** FibreBridge 7600 ブリッジは、最大 32 、 16 、または 8Gbps をサポートします。
-*** FibreBridge 7500 ブリッジは、最大 16 、 8 、または 4Gbps をサポートします。
-*** FibreBridge 6500 ブリッジは、最大 8 、 4 、または 2Gbps をサポートします。
+*** FibreBridge 7600Nブリッジは、最大32、16、または8Gbpsをサポートします。
+*** FibreBridge 7500Nブリッジは、最大16、8、または4Gbpsをサポートします。
 
 
 
@@ -324,7 +323,7 @@ CLI を使用する場合は、次のコマンドを実行する必要があり�
 'Set FCDataRate_port-number_port_speed_'
 
 --
-.. FibreBridge 7500N / 6500N ブリッジを設定する場合は、ポートが使用する接続モードを ptp に設定します。
+.. FibreBridge 7500Nブリッジを設定する場合は、ポートで使用する接続モードを「ptp」に設定します。
 +
 
 NOTE: FibreBridge 7600N ブリッジを設定する場合、 FCConnMode の設定は不要です。
@@ -459,7 +458,6 @@ link:task_fb_new_install.html["FC-to-SAS ブリッジのインバンド管理"]
 .選択肢
 * <<cabling_fb_7600N_7500N_with_iom12,IOM12 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続>>
 * <<cabling_fb_7600N_7500N_with_iom6_iom3,IOM6 または IOM3 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続>>
-* <<cabling_fb_6500N_with_iom6_iom3,FibreBridge 6500N ブリッジと IOM6 / IOM3 モジュールを使用するディスクシェルフのケーブル接続>>
 
 
 
@@ -548,39 +546,6 @@ image::../media/mcc_cabling_bridge_and_sas_stack_with_7500n_four_stacks.gif[MCC 
 
 
 
-==== FibreBridge 6500N ブリッジと IOM6 / IOM3 モジュールを使用するディスクシェルフのケーブル接続
-
-ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。FibreBridge 6500N ブリッジは QSFP コネクタを使用します。
-
-.このタスクについて
-ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。
-
-FibreBridge 6500N ブリッジでは、 IOM12 を使用するディスクシェルフはサポートされません。
-
-.手順
-. 各スタックのディスクシェルフをデイジーチェーン接続します。
-+
-ディスクシェルフのデイジーチェーン接続の詳細については、使用しているディスクシェルフモデルの Installation and Service Guide を参照してください。
-
-. ディスクシェルフの各スタックで、最初のシェルフの IOM A の四角形のポートを、 FibreBridge A の SAS ポート A にケーブル接続します
-. ディスクシェルフの各スタックで、最後のシェルフの IOM B の丸いポートを、 FibreBridge B の SAS ポート A にケーブル接続します
-+
-各ブリッジには、ディスクシェルフのスタックへのパスが 1 つあります。ブリッジ A は最初のシェルフ経由でスタックの A 側に接続し、ブリッジ B は最後のシェルフ経由でスタックの B 側に接続します。
-
-+
-
-NOTE: ブリッジの SAS ポート B は無効になっています。
-
-+
-次の図は、 1 組のブリッジが 4 台のディスクシェルフからなるスタックにケーブル接続されている状態を示しています。
-
-+
-image::../media/mcc_cabling_bridge_and_sas_stack.gif[MCC ケーブルブリッジおよび SAS スタック]
-
-
-
-
-
 === ブリッジの接続を確認し、ブリッジの FC ポートをケーブル接続します
 
 各ブリッジですべてのディスクドライブが検出されることを確認してから、各ブリッジをローカルの FC スイッチにケーブル接続します。
@@ -620,12 +585,10 @@ IP アドレスを入力したブリッジの ATTO FibreBridge ホームペー�
 「 astargets 」
 
 |===
-
-
++
 出力には、ブリッジが接続されているデバイス（ディスクおよびディスクシェルフ）が表示されます。出力行には行番号が振られているため、デバイスの台数を簡単に把握できます。たとえば、次の出力は、 10 本のディスクが接続されていることを示しています。
 
-[+]
-
++
 [listing]
 ----
 Tgt VendorID ProductID        Type        SerialNumber
@@ -640,7 +603,9 @@ Tgt VendorID ProductID        Type        SerialNumber
   8 NETAPP   X410_S15K6288A15 DISK        3QP1FY0T00009940G8PA
   9 NETAPP   X410_S15K6288A15 DISK        3QP1FXW600009940VERQ
 ----
-+ 注：出力の先頭に「 response truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、同じコマンドを入力すると、すべての出力を確認できます。
++
+
+NOTE: 出力の先頭に「response truncated」というテキストが表示された場合は、Telnetを使用してブリッジに接続し、同じコマンドを入力してすべての出力を確認できます。
 
 . コマンド出力を確認して、ブリッジがスタック内の想定されるすべてのディスクおよびディスクシェルフに接続していることを確認します。
 +

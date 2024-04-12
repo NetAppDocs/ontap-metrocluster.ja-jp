@@ -127,7 +127,6 @@
   <block id="f99aa604031e5049799e73b5c3748a98" category="paragraph"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
   <block id="875a4f63ab16d76d34a88b4b4e8e22b1" category="doc">MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド</block>
   <block id="556bbef84d582c44d275b1d259773581" category="paragraph">MetroCluster システムにブリッジを含むスタック全体をホットアド（無停止で追加）できます。FC スイッチに使用可能なポートが必要です。変更を反映するには、スイッチゾーニングを更新する必要があります。</block>
-  <block id="0bfea2edb24bd8a4a4bbb8cda2a3e201" category="list-text">この手順を使用して、 FibreBridge 7500N / 6500N ブリッジを使用してスタックを追加できます。</block>
   <block id="3bdb5b94e9e047f350ef916e04de48b0" category="list-text">この手順は、推奨されるブリッジ管理インターフェイスである ATTO ExpressNAV GUI と ATTO QuickNAV ユーティリティを使用していることを前提としています。</block>
   <block id="382796d45bd36c3702aa7fdd174e2a3f" category="list-text">ATTO ExpressNAV GUI は、ブリッジの設定および管理、ブリッジファームウェアの更新に使用します。ATTO QuickNAV ユーティリティは、ブリッジのイーサネット管理 1 ポートの設定に使用します。</block>
   <block id="a3d9a1252fb80a064155cc8c80974390" category="inline-xref-macro">その他のブリッジ管理インターフェイス</block>
@@ -208,9 +207,6 @@
   <block id="4816c474b056c83a35173d874218184e" category="list-text">ブリッジの FC ポートを設定します。</block>
   <block id="0ae098ca81f26216088dd67e626f4774" category="list-text">ブリッジ FC ポートのデータ速度を設定します。</block>
   <block id="6f8fa0d15ba986a207f54e5380590b50" category="paragraph">サポートされる FC データ速度は、モデルブリッジによって異なります。</block>
-  <block id="4442c01d444cdf8dfad8eee5a984041f" category="list-text">FibreBridge 7600 ブリッジは、最大 32 、 16 、または 8Gbps をサポートします。</block>
-  <block id="d7c58cd18c76f6cce444274875661cf3" category="list-text">FibreBridge 7500 ブリッジは、最大 16 、 8 、または 4Gbps をサポートします。</block>
-  <block id="794e8b1feb84d0af8dfe68bda71f2312" category="list-text">FibreBridge 6500 ブリッジは、最大 8 、 4 、または 2Gbps をサポートします。</block>
   <block id="0f44b54f212d195c54c4bc124932499b" category="admonition">選択できる FCDataRate の速度は、ブリッジポートを接続するブリッジとスイッチの両方でサポートされる最大速度以下です。ケーブルでの接続距離が SFP およびその他のハードウェアの制限を超えないようにしてください。</block>
   <block id="275af246983023d45ca6dfacf6852105" category="paragraph">CLI を使用する場合は、次のコマンドを実行する必要があります。</block>
   <block id="498cdca1ed56090dbe81c2421b2d09a8" category="list-text">FibreBridge 7500N / 6500N ブリッジを設定する場合は、ポートが使用する接続モードを ptp に設定します。</block>
@@ -330,7 +326,6 @@
   <block id="d67d8ab4f4c10bf22aa353e27879133c" category="paragraph">39</block>
   <block id="03afdbd66e7929b125f8597834fa83a4" category="paragraph">63</block>
   <block id="d8e18a94c6fa97d89aba5bdabe784a13" category="admonition">G620 、 G630 、 G620 -1 、および G-630-1 スイッチでは、追加のブリッジをポート 36~39 にケーブル接続できます。</block>
-  <block id="24938029e2776bfd3dacbae21e93a8b1" category="cell">FibreBridge 6500N ブリッジ、または 1 つの FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N または 7600N を使用する構成</block>
   <block id="f6cb5eb43574b6b08acea142038b5757" category="cell">Brocade G620 、 Brocade G620 -1 、 Brocade G630 、 Brocade G630-1</block>
   <block id="1d28ff844844021e107aa66cfc976e38" category="paragraph">bridge_x_1b</block>
   <block id="ed3fdd8862f782b3adfc86c158c5c6b0" category="paragraph">bridge_x_2b</block>
@@ -487,13 +482,9 @@
   <block id="aebdbdde32f31274fe9fc6e75b482c32" category="list-text">両方のフラッシュイメージが同じバージョンに更新されていることを確認します。</block>
   <block id="1b7c547e0c44744faa2a37c6b0435cc2" category="paragraph">出力には、両方のパーティションで同じバージョンが表示されます。</block>
   <block id="bb7439d72897f5b031319c5576c3cc67" category="list-text">次のブリッジでも手順 5 から 13 を繰り返し、 MetroCluster 構成内のすべてのブリッジを更新します。</block>
-  <block id="58cc4f784b9aded3583b845939a81062" category="section-title">ONTAP 9.3.x 以前を実行している構成での FibreBridge 7500N / 6500N ブリッジのファームウェアの更新</block>
-  <block id="8aa44124bc18ff7af6c04005e961b310" category="paragraph">FibreBridge ブリッジのファームウェアを更新して、最新の機能を実装したり、潜在的な問題を解決したりすることが必要になる場合があります。この手順は、 ONTAP 9.3.x を実行している構成の FibreBridge 7500N 、またはサポート対象のすべてのバージョンの ONTAP の FibreBridge 6500N ブリッジに使用します。</block>
   <block id="8c3f1a5045c47c008de3de6fa5352da3" category="list-text">ATTO FibreBridge Firmware Download ページで、手順の手順 1~3 を実行してブリッジファームウェアファイルをダウンロードします。</block>
   <block id="3083b982cc912e364f9e1bc28cc6915a" category="list-text">各ブリッジでファームウェアを更新するように指示された場合は、 ATTO FibreBridge Firmware のダウンロードページとリリースノートのコピーを作成して参照します。</block>
   <block id="ae87d5531ab43f90dedaa89f103356a1" category="list-text">ブリッジを更新します。</block>
-  <block id="b0d472f0b2dbe5d730a80e2962aec6de" category="list-text">FibreBridge ブリッジにファームウェアをインストールします。</block>
-  <block id="47205d1bbe1b0ebe5f214ffe8a31f30f" category="list-text">ATTO FibreBridge 7500N ブリッジを使用している場合は、 _ATTO FibreBridge 7500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。</block>
   <block id="6eee07f1028e6e37c9b9675c78a3ecab" category="paragraph">ブリッジが再起動します。</block>
   <block id="ed0f0385ac6d639a877dbd50ffe09fc9" category="list-text">同じブリッジで上記の手順を繰り返して、 2 つ目のパーティションを更新します。</block>
   <block id="f716521a03deca3c493b0dbaa94f969c" category="list-text">次のブリッジでも同じ手順を実行し、 MetroCluster 構成内のすべてのブリッジを更新します。</block>
@@ -547,9 +538,6 @@
   <block id="9684ced23869ffd0ef90656a6aa83c1d" category="paragraph">*storage bridge run-cli-bridge_name-name_command firmwareestart *</block>
   <block id="0d70078385b01668ecfcc33dcc7785e4" category="summary">FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 システムは、ファブリックごとに 1 つのイニシエータポートとコントローラごとに 2 つのイニシエータポートを使用して設定できます。</block>
   <block id="8db12a7f598538a4f3273d8beec78fa9" category="doc">2 つのイニシエータポートを使用するシステムのポート割り当て</block>
-  <block id="918697643ecb503ad41bd41cd21ad85c" category="paragraph">FibreBridge 6500N ブリッジまたは一方の FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N / 7600N ブリッジのケーブル接続方法を使用できます。4 つのイニシエータのうち 2 つだけを接続し、スイッチポートに接続されている他の 2 つのイニシエータは空にしておきます。</block>
-  <block id="caf615d7715d92dbf30bfb0d0b1cc4d7" category="paragraph">FibreBridge 6500N ブリッジの設定に対応する正しい RCF ファイルを適用する必要があります。</block>
-  <block id="efce25b9409a6bd708e7c532b13e8176" category="paragraph">ゾーニングを手動で実行する場合は、 FibreBridge 6500N ブリッジまたは一方の FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング方法に従います。このシナリオでは、各ファブリックのゾーンメンバーごとに 2 つではなく 1 つのイニシエータポートが追加されます。</block>
   <block id="a8a2bf560173c2071776e7eb62881e05" category="paragraph">次の表に、 ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当てを示します。</block>
   <block id="dbe4a4387a11d1625ae218ef9f43a996" category="cell">MetroCluster 1 または DR グループ 1</block>
   <block id="967f94774fd0a441a676db03d0d50895" category="cell">Brocade スイッチモデル 6505 、 6510 、 6520 、 7840 、 G620 、 G610 、および DCX 8510-8</block>
@@ -577,8 +565,6 @@
   <block id="85c019b69442635697fc1b5b3f6cfad3" category="inline-xref-macro">SAS ディスクシェルフのホットアドの準備</block>
   <block id="5c96ab4a94ce2c03e50e3170dc50e8be" category="list-text">シェルフをホットアドするには、次のいずれかのシナリオを満たす環境が必要です。</block>
   <block id="dc7e96665a67891a688cad5299c9216d" category="list-text">SAS ディスクシェルフのスタックに FibreBridge 7500N ブリッジが 2 つ接続されている。</block>
-  <block id="eece1d4d900f6ebddf86703e79ecc8e1" category="list-text">SAS ディスクシェルフのスタックに FibreBridge 7500N ブリッジと FibreBridge 6500N ブリッジが 1 つずつ接続されている。</block>
-  <block id="dd1b0f5953e1bb8988271af33d40715c" category="list-text">SAS ディスクシェルフのスタックに FibreBridge 6500N ブリッジが 2 つ接続されている。</block>
   <block id="bbe46ae98258b21267300cd00fda2d33" category="list-text">この手順は、スタック内の最後のディスクシェルフにディスクシェルフをホットアドするためのものです。</block>
   <block id="de765cbcb90d504e6ac736ad12d5610f" category="paragraph">この手順は、スタック内の最後のディスクシェルフが IOM A からブリッジ A に、 IOM B からブリッジ B に接続されていることを前提としています</block>
   <block id="898c5906a76d3bd931a038bfaebc8419" category="list-text">これは無停止の手順です。</block>
@@ -599,10 +585,6 @@
   <block id="5b63e4a9bc611666d00f442d845ec5c6" category="admonition">ディスクドライブとディスクシェルフファームウェアが更新されるまで、アグリゲートまたはボリュームにディスクドライブを追加しないでください。</block>
   <block id="03aa0e95dbfb628416dcdc56332bc6b4" category="paragraph">手順のコマンドは、どちらのコントローラのシステムコンソールでも実行できます。</block>
   <block id="70a0e75e35d9914b9a2f7708da941117" category="list-text">ディスクシェルフを設置してケーブル接続します。</block>
-  <block id="263c15ac5674f01ff68b35e6b6e75bd3" category="paragraph">次の考慮事項に注意してください。</block>
-  <block id="39e6f48b1de9ddbfef92e6f4fcff1ce4" category="list-text">FibreBridge 6500N ブリッジの場合：</block>
-  <block id="29c6af38e68b6b8bb268425f0b790887" category="paragraph">ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合、プルタブを下（コネクタの下側）に向けて SAS ケーブルコネクタを挿入します。</block>
-  <block id="96c7e7c9134d64da1099df040e16e532" category="list-text">FibreBridge 7500N ブリッジの場合：</block>
   <block id="28f13ef1be475bc18398b06c9ee9c0ad" category="paragraph">コネクタをポートに無理に押し込まないでください。Mini-SAS ケーブルは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合、プルタブを上（コネクタの上側）にして SAS ケーブルコネクタを挿入します。</block>
   <block id="d4fa97d509c1914d4c73c7be277a3f4a" category="list-text">ディスクシェルフを設置して電源をオンにし、シェルフ ID を設定します。</block>
   <block id="d14a1bb2bac60ab5e8c6c23c719dc845" category="paragraph">ディスクシェルフの設置の詳細については、使用しているディスクシェルフモデルの『 Installation Guide 』を参照してください。</block>
@@ -822,13 +804,11 @@
   <block id="8f14e45fceea167a5a36dedd4bea2543" category="cell">7.</block>
   <block id="f65c08d82a4d03d0ccfe8c069b7a950f" category="cell">controller_x_4</block>
   <block id="afad1c27cb5fc5d1d792e5ba791ef840" category="section-title">ONTAP 9.0 を実行している 8 ノード MetroCluster 構成で FC-to-SAS ブリッジ接続に使用する Brocade のポート</block>
-  <block id="ae031054e1b7b8ac47164099dbf1db9c" category="paragraph">次の表は、 FibreBridge 7500 ブリッジを使用する場合のブリッジポートの用途です。</block>
   <block id="de8504b73ea228d0ea9bbce69752092e" category="cell">ブリッジ</block>
   <block id="fac64949de3a43257f3c8a97a35449a1" category="cell">ブリッジポート</block>
   <block id="c74d97b01eae257e44aa9d5bade97baf" category="cell">16</block>
   <block id="5f3d7a8eab09d202517da1abc99331dc" category="cell">bridge_x_3b</block>
   <block id="b2f10ca95ea95e075db7adc2d019047e" category="cell">bridge_x_4a</block>
-  <block id="260c4e83cf5b055da9148425e2590b41" category="paragraph">次の表は、 Brocade 6505 、 6510 、または DCX 8510-8 スイッチが設定された FibreBridge 6500 ブリッジを使用する場合のブリッジポートの用途です。</block>
   <block id="f49308486cec24e5559590a8e8ab5f10" category="cell">bridge_x_5a</block>
   <block id="eb5edae8fa155daf7b0c78acbc5c622e" category="cell">bridge_x_5b.</block>
   <block id="2f18a86c8432805a00900af0153918f1" category="cell">bridge_x_6a</block>
@@ -853,32 +833,24 @@
   <block id="a87ff679a2f3e71d9181a67b7542122c" category="cell">4.</block>
   <block id="e4da3b7fbbce2345d7772b0674a318d5" category="cell">5.</block>
   <block id="bb98798a94eabd991690e4d98bb1e93d" category="section-title">ONTAP 9.0 を実行している 4 ノード MetroCluster 構成でブリッジに使用する Brocade のポート</block>
-  <block id="d4c2c7d0b904292d2b869aa1f73bf0e8" category="paragraph">次の表は、 FibreBridge 7500 ブリッジを使用する場合のブリッジポート 17 までの用途です。追加のブリッジをポート 18~23 にケーブル接続できます。</block>
   <block id="814568b4249c0114f7f5acf6d86149fb" category="cell">FibreBridge 7500 ブリッジ</block>
   <block id="4b1342698b69db9277c10ae5d059e837" category="cell">FC_switch_x_1 （ 6510 または DCX 8510-8 ）</block>
   <block id="e49423aa401904cc19d9c93b1dba3f71" category="cell">FC_switch_x_2 （ 6510 または DCX 8510-8 ）</block>
   <block id="8e8e002bc58d3a842d05c1be7b04ba4c" category="cell">FC_switch_x_1 （ 6505 ）</block>
   <block id="7ab09fefe83fcbd6007a5ac115dfefbc" category="cell">FC_switch_x_2 （ 6505 ）</block>
   <block id="5cf1fa7f2c6c9825315b7608236abe2b" category="cell">追加のブリッジをポート 19 およびポート 24~47 を使用してケーブル接続できます</block>
-  <block id="a8e749c2ecbd4bf1e7224f858d4b54e2" category="paragraph">次の表に、 FibreBridge 6500 ブリッジを使用する場合のブリッジポートの用途を示します。</block>
-  <block id="8593f73dec0b8f87b6881450492db44b" category="cell">6500N ブリッジポート</block>
   <block id="c4381a0b6bf2d250fd5afa1d8db80d48" category="cell">追加のブリッジをポート 23 を使用してケーブル接続できます</block>
   <block id="3f0d7bda291f9b3c6f2f35a20a63c52e" category="section-title">ONTAP 9.0 を実行している 4 ノード MetroCluster 構成で ISL に使用する Brocade のポート</block>
   <block id="69862326bc727c309184d534a3f3cff8" category="paragraph">次の表に、使用する ISL ポートを示します。</block>
   <block id="160cef04b33948c7b91144a2fdf46988" category="section-title">ONTAP 9.0 を実行している 2 ノード MetroCluster 構成でコントローラに使用する Brocade のポート</block>
   <block id="7699bf8a4df6f7e15f159269bd8927e4" category="paragraph">ケーブル接続は、スイッチファブリックの各 FC スイッチで同じです。次の表は、 Brocade 6505 、 6510 、および DCX 8510-8 スイッチのケーブル接続を示しています。</block>
   <block id="4d3b4ab0ee0d27226cd4d951952dc8aa" category="section-title">ONTAP 9.0 を実行している 2 ノード MetroCluster 構成でブリッジに使用する Brocade のポート</block>
-  <block id="38eeead869e2de976d69521d9b093eb7" category="paragraph">次の表は、 Brocade 6505 、 6510 、および DCX 8510-8 スイッチで FibreBridge 7500 ブリッジを使用する場合のポート 17 までのブリッジポートを示しています。追加のブリッジをポート 18~23 にケーブル接続できます。</block>
-  <block id="77758a81fbabd65f1a0cbd943aa33610" category="paragraph">次の表は、 Brocade 6505 、 6510 、および DCX 8510-8 スイッチが搭載された FibreBridge 6500 ブリッジを使用する場合のブリッジポートの用途です。</block>
-  <block id="72732277f710e65392cf7492a34e528a" category="cell">FibreBridge 6500 ブリッジ</block>
   <block id="f87cb62014b08eabb93a84e435b02ea9" category="section-title">ONTAP 9.0 を実行している 2 ノード MetroCluster 構成で ISL に使用する Brocade のポート</block>
   <block id="851032b3e8ee16b9eb2ed6098216108e" category="paragraph">次の表は、 Brocade 6505 、 6510 、および DCX 8510-8 スイッチでの ISL ポートの用途を示しています。</block>
   <block id="944ef169ea9b385ec2fc06c60bcdd267" category="section-title">ONTAP 9.0 を実行している 8 ノード MetroCluster 構成でコントローラに使用する Cisco のポート</block>
   <block id="062caca7c0bb29ebff9fcc7a33a75d93" category="paragraph">次の表に、 Cisco 9148 および 9148S スイッチで使用するコントローラポートを示します。</block>
   <block id="7dd0f293a7e09ad1d4ac1014f18a018a" category="section-title">ONTAP 9.0 を実行している 8 ノード MetroCluster 構成で FC-to-SAS ブリッジに使用する Cisco のポート</block>
-  <block id="c1eac127cb565fa4817962e9f30a2046" category="paragraph">次の表に、 Cisco 9148 または 9148S スイッチを使用する FibreBridge 7500 ブリッジを使用する場合のポート 23 までのブリッジポートを示します。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
   <block id="1d8dd340273647eae3a36eff43fc547e" category="paragraph">ポート 25~48 を使用して、同じパターンで追加のブリッジを接続できます。</block>
-  <block id="c55b059fa762d08399351bc6ae5ac539" category="paragraph">次の表に、 Cisco 9148 または 9148S スイッチで FibreBridge 6500 ブリッジを使用する場合のポート 23 までのブリッジポートを示します。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
   <block id="c4739fa521713dbbe264a1366afde348" category="section-title">ONTAP 9.0 を実行している 8 ノード MetroCluster 構成で ISL に使用する Cisco のポート</block>
   <block id="524e7c19dbf542bdc24be3909a68aa5b" category="paragraph">次の表は、 Cisco 9148 および 9148S スイッチで使用する ISL ポートを示しています。</block>
   <block id="84a71a9e63ead8784cd365088a3be8c4" category="cell">ISL ポート数</block>
@@ -886,9 +858,6 @@
   <block id="bf9995231adba64383dd274717591fad" category="section-title">4 ノード MetroCluster 構成でコントローラに使用する Cisco のポート</block>
   <block id="9009bb494f588eb453c941a0f5346de2" category="paragraph">次の表に、 Cisco 9148 、 9148S 、および 9250i スイッチでのコントローラポートの用途を示します。</block>
   <block id="8a960a450c78ddb1326827d52c10a15a" category="section-title">ONTAP 9.0 を実行している 4 ノード MetroCluster 構成で FC-to-SAS ブリッジに使用する Cisco のポート</block>
-  <block id="57cfe04ee8907b137339177ed5bd25a5" category="paragraph">次の表に、 Cisco 9148 、 9148S 、または 9250i スイッチで FibreBridge 7500 ブリッジを使用する場合のポート 14 までのブリッジポートを示します。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
-  <block id="0d86a304bf0c93bbe64ea2e44e5e5870" category="paragraph">次の表は、 Cisco 9148 、 9148S 、または 9250i スイッチで FibreBridge 6500 ブリッジを使用する場合のブリッジポートの用途です。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
-  <block id="56f993fb26dc8cf4262b56765d09c432" category="paragraph">ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
   <block id="6fcd6dc740970bb42bde0c9a37d97275" category="section-title">ONTAP 9.0 を実行している 4 ノード MetroCluster 構成で ISL に使用する Cisco 9148 および 9148S のポート</block>
   <block id="d645920e395fedad7bbbed0eca3fe2e0" category="cell">40</block>
   <block id="f7177163c833dff4b38fc8d2872f1ec6" category="cell">44</block>
@@ -898,25 +867,15 @@
   <block id="4389b93bd76334095ae6f5fdb926d4ee" category="paragraph">ポート 40~48 は 10GbE ポートであり、 MetroCluster 構成では使用されません。</block>
   <block id="fa69aa564bc90d7adecfb54c289d23be" category="section-title">2 ノード MetroCluster 構成でコントローラに使用する Cisco のポート</block>
   <block id="762b426bcd4ea34fc55a0f899cf2086d" category="section-title">ONTAP 9.0 を実行している 2 ノード MetroCluster 構成で FC-to-SAS ブリッジに使用する Cisco のポート</block>
-  <block id="8fe37cc6f907399a491cf6418a4bfa16" category="paragraph">次の表に、 Cisco 9148 、 9148S 、および 9250i スイッチで FibreBridge 7500 ブリッジを使用する場合のポート 14 までのブリッジポートを示します。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
   <block id="ba2044d8a6c35bb667c35d13e7a3277d" category="section-title">ONTAP 9.0 を実行している 2 ノード MetroCluster 構成で ISL に使用する Cisco 9148 または 9148S のポート</block>
   <block id="2bc92937819403549f510c08d8a54058" category="paragraph">次の表は、 Cisco 9148 または 9148S スイッチで使用する ISL ポートを示しています。</block>
   <block id="e936a0e4e03d3d3120e966eca42a0b28" category="section-title">ONTAP 9.0 を実行している 2 ノード MetroCluster 構成で ISL に使用する Cisco 9250i のポート</block>
-  <block id="1abb821f2b965d18052b2448ef4137ed" category="summary">サイトのメンテナンスやサイトを別の場所に再配置するために、データセンターの電源をオフにしてオンにする方法を確認しておく必要があります。</block>
-  <block id="3f7ef4e6486f47719dca790d2a160ae5" category="doc">データセンターの電源のオン / オフを切り替えます</block>
-  <block id="50619d56fd21f33883011467e89403f8" category="paragraph">サイトを再配置して再構成する必要がある場合（たとえば、 4 ノードクラスタを 8 ノードクラスタに拡張する必要がある場合）、これらのタスクを同時に実行することはできません。この手順では、サイトのメンテナンスを実行するため、またはサイトの構成を変更せずにサイトを再配置するために必要な手順のみを説明します。</block>
-  <block id="e42120d29d88cc6c3c023d82236437a8" category="admonition">この手順は、 MetroCluster IP 構成と FC 構成の両方で使用されます。</block>
-  <block id="efe31da79ff42582640c229b718168aa" category="section-title">MetroCluster サイトの電源切断</block>
   <block id="4bfd66c37cd5ce244e0dfdd30c499d83" category="list-text">開始する前に、ミラーされていないアグリゲートがサイトですべてオフラインになっていることを確認します。</block>
   <block id="edc7b16c34c41ad12b6699da441a1e45" category="paragraph">この処理が完了するまでに数分かかることがあります。</block>
   <block id="0829264e645ef456fedfb9d7d6e189a9" category="paragraph">MetroCluster FC 構成では、ミラーされていないアグリゲートがスイッチオーバー後にオンラインになるのは、アグリゲート内のリモートディスクにアクセスできる場合のみです。ISL で障害が発生すると、ミラーされていないリモートディスク内のデータにローカルノードがアクセスできなくなる可能性があります。アグリゲートに障害が発生すると、ローカルノードがリブートされる場合があります。</block>
   <block id="c35cb6405b316f2999613190b9a610f3" category="list-text">スイッチオーバーの完了を監視して確認します。</block>
-  <block id="d3111cbb50ee3236823b8a9fc96146fd" category="paragraph">この手順は、次の構成で必要です。</block>
-  <block id="68d41db03ba61b38417da47f63616c6b" category="list-text">すべての MetroCluster FC 構成。</block>
-  <block id="87da73be0cf8313cf4ae27e67515aaff" category="list-text">ONTAP バージョン 9.6 以降を実行している MetroCluster IP 構成。</block>
   <block id="d728f92d15186acd3ab7bfe69c91c74a" category="paragraph">次のプレックスをオフラインにする必要があります。</block>
   <block id="bb1dbaa590d8d023b92b11955221364e" category="list-text">ディザスタサイトにあるディスクにあるミラーリングされていないプレックス</block>
-  <block id="0780a4c1fe0c3501c0d025f1b600dbdc" category="paragraph">ディザスタサイトのミラーリングされていないプレックスをオフラインにしないと、あとでディザスタサイトの電源をオフにしたときにシステムが停止する可能性があります。</block>
   <block id="db3cf611b9905283227764c513bd7a82" category="list-text">影響を受けるプレックスを特定します。</block>
   <block id="82e30d8124ea7d730cf5faa5719112de" category="paragraph">サバイバーサイトのノードが所有するプレックスは、プール 1 のディスクで構成されます。ディザスタサイトのノードが所有するプレックスは、プール 0 のディスクで構成されます。</block>
   <block id="9256311bcdcb8316f22dcb2897e7395d" category="paragraph">影響を受けるプレックスは、クラスタ A のリモートにあるプレックスです次の表に、ディスクがクラスタ A に対してローカルかリモートかを示します。</block>
@@ -938,38 +897,20 @@
   <block id="1ab71b25242090a89ae72e4a014667b6" category="paragraph">node_B_1 の aggr0/plex0</block>
   <block id="32a38833efcbe07da179dca140dd848a" category="paragraph">node_B_2 の aggr0 / plex0</block>
   <block id="edce01688e98b58b19121c93fc7ff2e1" category="paragraph">node_B_2 の aggr1 / plex0</block>
-  <block id="1f6dc3b671503c8d63a1afa2819b223b" category="admonition">Cluster_A に対してリモートなディスクを含むすべてのプレックスに対してこの手順を実行してください</block>
-  <block id="f380dd26f2cf185b17accd909e743fe1" category="list-text">スイッチタイプに応じて、スイッチポートを永続的にオフラインにします。</block>
-  <block id="a919607ef6e9e47aee6ab7e80893d8c1" category="admonition">この手順は、 MetroCluster FC 構成でのみ必要です。MetroCluster IP 構成または FC バックエンドスイッチを使用するストレッチ MetroCluster 構成の場合は、この手順を省略します。</block>
   <block id="ec101ec8f4300c01b3e83ccb567aa413" category="cell">スイッチのタイプ</block>
   <block id="004bf6c9a40003140292e97330236c53" category="cell">アクション</block>
-  <block id="a4856b5d624fb703341d2b6cb1fd8be3" category="paragraph">Brocade スイッチ</block>
-  <block id="7ed2005e63164c86338f8fb503fec38d" category="paragraph">Cisco スイッチ</block>
-  <block id="763cdd1475f50ea62662f8b936e2c440" category="list-text">サイトの電源をオフにします。</block>
-  <block id="ad36ac8a7c949cb0a7d855a39368e1af" category="paragraph">次の機器の電源は、特定の順序でオフにする必要があります。</block>
   <block id="efb6ec8736b8f7b340b21adf8615fbd9" category="cell">構成タイプ</block>
-  <block id="329805dc23b0f78ee65c229740fe0896" category="cell">電源をオフにする機器</block>
-  <block id="1b2764afd9aaca6231f2d49e8524a66a" category="paragraph">MetroCluster IP 構成</block>
-  <block id="b3894761dbeb99a32f1c40b05d75c5d6" category="paragraph">MetroCluster FC 構成</block>
-  <block id="83815a5585829ebe6e18a93710f2ed57" category="list-text">Atto FibreBridge （存在する場合）</block>
   <block id="e9107e97cd9f561e993f9a9105d0f969" category="section-title">電源がオフになっている MetroCluster サイトの再配置</block>
   <block id="feac0f4e1a7a3880345a6d85bc067870" category="list-text">ハードウェアは、前のサイトと同じ方法でケーブル接続する必要があります。</block>
   <block id="646b1ab7b785db95e65836b91eb5f200" category="list-text">スイッチ間リンク（ ISL ）の速度、長さ、または数が変わった場合は、すべて再設定する必要があります。</block>
-  <block id="3f76e37706c9faa6700da35111115ea4" category="list-text">新しい場所で正しく再接続できるように、すべてのコンポーネントのケーブル接続を慎重に記録してください。</block>
-  <block id="2b855db90885b553c7efa8495875eff8" category="list-text">すべてのハードウェア、ストレージコントローラ、 FC スイッチ / IP スイッチ、 FibreBridge 、およびストレージシェルフを物理的に再配置します。</block>
   <block id="18019c4008d233544383989684359349" category="list-text">ISL ポートを設定し、サイト間接続を確認します。</block>
-  <block id="bfd9b3b5b8b525583b218437100bfdb7" category="list-text">FC スイッチおよび IP スイッチの電源をオンにします。</block>
   <block id="bf2ae036674fadf7b6a170a21c43abfe" category="admonition">他の機器の電源はオンにしないでください。</block>
   <block id="c524ff28ab463ec9b165bc4709db7002" category="list-text">ポートを有効にします。</block>
-  <block id="542e15b008a9b862e26cf580f0b01cf8" category="admonition">この手順は、 MetroCluster FC 構成でのみ必要です。MetroCluster IP 構成の場合は、この手順を省略できます。</block>
   <block id="9f09d6db3803f5975352ce67ba7f717e" category="paragraph">次の表に示す適切なスイッチタイプに従って、ポートを有効にします。</block>
   <block id="ee97be03cb04119af45014d815621ce1" category="cell">コマンドを実行します</block>
-  <block id="70402b2dd117113d5709d3c7ba2f6c45" category="paragraph">Brocade スイッチ</block>
   <block id="28e464b91ab6edf27cbd69513c84c803" category="paragraph">次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。</block>
   <block id="2af4b9b090a7e55fa22cb9e55d504e27" category="paragraph">次の例は、ポート 14 および 15 を有効にします。</block>
-  <block id="8c946acc8fe7903c37ee5e36f1329425" category="paragraph">Cisco スイッチ</block>
   <block id="7d116444c6dbfce20212f1c247ff48fd" category="list-text">スイッチのツールを使用して（使用可能な場合）、サイト間接続を確認します。</block>
-  <block id="867a2618d71bca42427a1b9c72bdbf63" category="admonition">リンクが正しく設定され、安定している場合にのみ、処理を続行してください。</block>
   <block id="12ad932abeaa569fcf61513a7bd887dc" category="list-text">リンクが安定していることがわかった場合は、リンクを再度無効にします。</block>
   <block id="10d03245f20596d5862d16e715e4143e" category="paragraph">次の表に示すように、 Brocade スイッチと Cisco スイッチのどちらを使用しているかに基づいてポートを無効にします。</block>
   <block id="d369d42d622a7a0ff4e0309e0f9210ab" category="paragraph">サバイバーサイトにある両方のスイッチで実行する必要があります。次の例は、 Switch_A_1 のポート 14 と 15 を無効にします。</block>
@@ -978,25 +919,18 @@
   <block id="25e9ffa59cf0bb083482670fce098fb0" category="section-title">MetroCluster 構成の電源をオンにして通常動作に戻します</block>
   <block id="e86d011a6ecc19bb8059b2fa5b959f36" category="paragraph">メンテナンスを完了、またはサイトを移動したら、サイトの電源をオンにして MetroCluster 構成を再確立する必要があります。</block>
   <block id="5b8fc7540adba4e66fd1dc8235e29807" category="list-text">スイッチの電源をオンにします。</block>
-  <block id="ccb8cc8f9fc881b0a95752e9b327ef63" category="paragraph">スイッチの電源は最初にオンにする必要があります。サイトを再配置した場合は、前の手順で電源がオンになっている可能性があります。</block>
   <block id="1e4c63725dc9c35c07a4b7c4f5a82dff" category="list-text">必要に応じて、または再配置中に実行されていない場合は、スイッチ間リンク（ ISL ）を再設定します。</block>
   <block id="21dc076a81ed6f69783e2616c1983762" category="list-text">フェンシングが完了した場合、 ISL を有効にします。</block>
   <block id="dfe7a6104d1ae990704b31d6513dbfd9" category="list-text">ISL を確認します。</block>
   <block id="9219cfc955e6beec81a1b4a216127064" category="list-text">シェルフの電源をオンにし、完全に電源が投入されるまでにはしばらくかかります。</block>
   <block id="01bd20df5dc47e7a524bea9169bdedf5" category="list-text">FibreBridge ブリッジの電源をオンにします。</block>
-  <block id="fa84d23aa5f79b2c2b1873ef1111b2a9" category="admonition">MetroCluster IP 構成の場合は、この手順を省略できます。</block>
   <block id="46d125b114551af83f9b4300716884e4" category="list-text">FC スイッチで、ブリッジを接続しているポートがオンラインになっていることを確認します。</block>
   <block id="4b14478bc266e73c21d8c8e1baefedf8" category="list-text">ブリッジ上のシェルフとディスクが接続されていることを確認します。</block>
   <block id="d55f68c0f2018d8510fbe5ad7686fa13" category="list-text">FC スイッチで ISL を有効にします。</block>
-  <block id="8dbba1f3a045398fb8c2068f3d859597" category="admonition">MetroCluster IP 構成の場合は、この手順を省略してください。</block>
   <block id="874b4480e5736cfb3bb267ac5127e12a" category="paragraph">次の表に示すように、 Brocade スイッチと Cisco スイッチのどちらを使用しているかに基づいてポートを有効にします。</block>
   <block id="4091cccb2a9363be900b49a8123fd953" category="paragraph">次の例は、 Switch_A_1 のポート 14 と 15 を有効にします。</block>
   <block id="3d3f8220d38456693795f57399e3dd66" category="paragraph">次の例は、 Switch_A_1 のポート fc1/14 と fc1/15 を有効にします。</block>
   <block id="d448f82c3dc45aeef9b75bf272bc8ed4" category="list-text">スイッチポートが無効になっていることを確認します。</block>
-  <block id="2164a8908dcd0889f81dd9e8f32fb414" category="list-text">ストレージが認識されていることを確認します。</block>
-  <block id="83a0bb2026f512c960273d4bdc10525f" category="paragraph">MetroCluster が IP 構成か FC 構成かに基づいて、ストレージが認識されているかどうかを判断する方法を選択します。</block>
-  <block id="1f826b7fd7651c127e286e0bbc129b77" category="paragraph">ノードのメンテナンスモードからローカルストレージが認識されていることを確認します。</block>
-  <block id="81927ec637b63156a40899d4c547908f" category="paragraph">サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻します。再同期処理が再開され、 SyncMirror が再確立されます。</block>
   <block id="0483b2aca795ea6933a0ab7502b4e963" category="list-text">MetroCluster 構成を再確立します。</block>
   <block id="cee14a47b638f8dc20d2b5241487a64a" category="inline-link-macro">MetroCluster の管理とディザスタリカバリ</block>
   <block id="6ff0f4ae0937d94fe2645f3e68c399e7" category="summary">FibreBridge 7600N / 7500N ブリッジの追加の FC2 ポートを利用してラック数を減らすためには、システムを停止せずに 6500N ブリッジを交換し、 1 組の FibreBridge 7600N / 7500N ブリッジペアに最大 4 つのストレージスタックを統合することができます。</block>
@@ -1241,14 +1175,10 @@
   <block id="14f265c9ad9a81b21c667b4042fc7575" category="admonition">次の表に、 FC-VI ポートが 2 つあるシステムを示します。AFF A700 システムと FAS9000 システムには、 FC-VI ポートが 4 つ（ a 、 b 、 c 、 d ）あります。AFF A700 または FAS9000 システムを使用している場合、ポートの割り当ては 1 つ上の位置に沿って移動します。たとえば、 FC-VI ポート c と d をスイッチポート 2 に、 HBA ポート a と b をスイッチポート 3 にそれぞれ移動します。</block>
   <block id="3db30a6fa1c05224aef86dc9b48a9085" category="cell">Cisco 9250i *</block>
   <block id="7454ecd5190b690ccf9ee77f2e438c0c" category="section-title">ONTAP 9.1 以降を実行する MetroCluster 構成で FC-to-SAS ブリッジに使用する Cisco のポート</block>
-  <block id="68d960c549d05fc84233ef70c7a67687" category="cell">2 つの FC ポートを使用する FibreBridge 7500</block>
   <block id="89eaf3610015ecc12505a2408ff9fda6" category="paragraph">ポート 17~40 および 57~88 を使用して、同じパターンで追加のブリッジを接続できます。</block>
   <block id="a1d4f21ed73518b99dbbab05134b5c9a" category="paragraph">ポート 33~40 を使用して、同じパターンで 2 つ目の DR グループまたは 2 つ目の MetroCluster 構成の追加のブリッジを接続できます。</block>
   <block id="f656d69f7bbae519056da03a8e9e50d0" category="cell">Cisco 9250i</block>
   <block id="a6bd250708a75e43f157a7b657e654c5" category="paragraph">ポート 25~48 を使用して、同じパターンで 2 つ目の DR グループまたは 2 つ目の MetroCluster 構成の追加のブリッジを接続できます。</block>
-  <block id="ba310a61cda35bab44af31435467361f" category="paragraph">次の表は、 FibreBridge 6500 ブリッジ、または 1 つの FC ポート（ FC1 または FC2 ）を使用する FibreBridge 7500 を使用する場合のブリッジポートの用途です。1 つの FC ポートを使用する FibreBridge 7500 ブリッジの場合、 FC1 または FC2 のいずれかを FC1 と記載されたポートにケーブル接続できます。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
-  <block id="5efa1f2cb5eede18bb7294c80eb0d620" category="cell">FibreBridge 6500 ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500 ブリッジ</block>
-  <block id="a072aae7bbb53167bbaf8606f2c6e2a0" category="cell">FibreBridge 6500 ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500</block>
   <block id="4968e1c4a92e0df27646933918f92be2" category="section-title">ONTAP 9.1 以降を実行している MetroCluster 構成で 8 ノードの ISL に使用する Cisco のポート</block>
   <block id="81cc761cd2e2757421a8e9242e8e12cc" category="paragraph">次の表に、使用する ISL ポートを示します。ISL ポートの用途は、構成内のすべてのスイッチで同じです。</block>
   <block id="10ca333ef19b78048d2fedd61c4432e9" category="paragraph">ISL 1</block>
@@ -1329,7 +1259,6 @@
   <block id="74bca6fe4f2c7fc5e1d9f259f2af6e25" category="paragraph">FibreBridge 7600N ブリッジの設定は、 FibreBridge 7500N ブリッジとまったく同じにする必要があります。</block>
   <block id="0844200ff0a1a64af612e81369c551dd" category="paragraph">1 つの FibreBridge 6500N ブリッジを 1 つの FibreBridge 7600N ブリッジに交換する</block>
   <block id="c1b6154853d79aff3153d0360d8109e3" category="paragraph">FibreBridge 7600N ブリッジの設定は、 FibreBridge 6500N ブリッジとまったく同じにする必要があります。</block>
-  <block id="9f75c353bd4a7cb0ce6fe90b3c498736" category="paragraph"><block ref="9f75c353bd4a7cb0ce6fe90b3c498736" category="inline-link-macro-rx"></block></block>
   <block id="ad9a391d7a61680d45246cf29a54f588" category="paragraph">新しい FibreBridge 7600N ブリッジペアを追加して、新しいストレージを追加します</block>
   <block id="d30f280fa32f9327e8485ff0aa1b5b70" category="summary">既存の FC スイッチレイアウトが ONTAP 9.1 より前に構成されていた場合は、ポートレイアウトを再構成して、最新のリファレンス構成ファイル（ RCF ）を適用する必要があります。この手順は、 MetroCluster FC 構成にのみ適用されます。</block>
   <block id="27e12f4375f6135e191cf9fdfdc8740d" category="doc">ONTAP 9.x より前に設定された FC スイッチレイアウトの再設定</block>
@@ -1488,11 +1417,6 @@
   <block id="f1f4987e078356332cdefd0f5375c7b0" category="paragraph">入力するコマンド</block>
   <block id="69fdaf0b43153d9176ae334b44964e0c" category="list-text">ブリッジがファブリック接続 MetroCluster 構成に含まれている場合は、ブリッジの FC ポートに接続しているすべてのスイッチポートを無効にします。</block>
   <block id="2c38bfd3e1fc55958de34b8ebc994982" category="list-text">ONTAP クラスタのプロンプトで、メンテナンス中のブリッジをヘルスモニタの対象から削除します。</block>
-  <block id="646f7640c0412bb509ebc11ade2117f9" category="list-text">ATTO ブリッジの電源をオフにします。</block>
-  <block id="f374d6cd8c51ec88c39bd91a0405a822" category="cell">使用する方法</block>
-  <block id="5a19c2aa2027af8ccb87bafe6503ea56" category="paragraph">FibreBridge 7600N または 7500N ブリッジ</block>
-  <block id="d315e369fa1477e4884dde927f66cc4c" category="paragraph">ブリッジに接続されている電源ケーブルを取り外します。</block>
-  <block id="8a8591256eac823617f5398950d60602" category="paragraph">FibreBridge 6500N ブリッジ</block>
   <block id="785d24e60ecad3abd011ca5dd1478bbb" category="paragraph">ブリッジの電源スイッチをオフにします。</block>
   <block id="e3129e36caa5d6bf706b1a5b6b5d79c9" category="list-text">古いブリッジに接続されているケーブルを外します。</block>
   <block id="3e6e22b6aa776e503ebf2535dbb1e8c9" category="paragraph">各ケーブルが接続されていたポートをメモしておいてください。</block>
@@ -1503,7 +1427,6 @@
   <block id="eec55e58202443699fac88ad24fd8b3a" category="list-text">ブリッジを電源に接続し、電源をオンにします。</block>
   <block id="e9afc5f7979303fe7ef09110626cc71f" category="paragraph">ブリッジの準備完了を示す LED が点灯し、ブリッジの電源投入時自己診断テストが完了したことを示すまで、 30 秒ほどかかる場合があります。</block>
   <block id="2e1cd1bf07ae59002e6f5025cdd43bb3" category="list-text">bridge_B_1b</block>
-  <block id="f3065ac3252067556040545ba2157a25" category="paragraph">新しいブリッジが FibreBridge 7600N / 7500N の場合は、ブリッジをシェルフスタックの上部または下部に接続するケーブルを交換する必要があります。FibreBridge 6500N ブリッジでは SAS ケーブルを使用していましたが、 FibreBridge 7600N / 7500N ブリッジの接続には Mini-SAS ケーブルが必要です。</block>
   <block id="3b5ef1874490ddb39e2ab56e91c15fd9" category="admonition">ポートを接続する前に、 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。コントローラの場合は、プラットフォームのモデルによって SAS ポートの向きが異なるため、 SAS ケーブルのコネクタの正しい向きもそれに応じて異なります。</block>
   <block id="cf6dbfa4f0192b540abc550aae0f260f" category="list-text">サポートされている Web ブラウザで、ブリッジの IP アドレスをブラウザのアドレスバーに入力します。</block>
   <block id="34edf66bb3dff09e9c2aaf868d030164" category="paragraph">ATTO FibreBridge のホームページに移動し、リンクが表示されます。</block>
@@ -1614,7 +1537,6 @@
   <block id="386e28e9a82ab9437b9e5520ca030545" category="paragraph">ブリッジの CLI コマンドは、 ONTAP インターフェイスの ONTAP インターフェイス「 storage bridge run -cli-name_bridge-name_command_bridge-command-name_` コマンド」から実行できます。</block>
   <block id="f5c160717de61a4450a76be740a98cf2" category="admonition">ブリッジの物理接続を制限することでセキュリティを向上させるために、 IP アクセスを無効にしたインバンド管理の使用を推奨します。</block>
   <block id="8b694c77bd2c858a409806961b43208c" category="paragraph"><block ref="8b694c77bd2c858a409806961b43208c" category="inline-link-macro-rx"></block></block>
-  <block id="a2acb78d8cb4843536ea51de17566d1d" category="paragraph"><block ref="a2acb78d8cb4843536ea51de17566d1d" category="inline-link-macro-rx"></block></block>
   <block id="ad30fa95f18f21e4c8674318a12499f8" category="paragraph"><block ref="ad30fa95f18f21e4c8674318a12499f8" category="inline-link-macro-rx"></block></block>
   <block id="f8ab0ac0bcb20f9074bb5111e4de500b" category="section-title">ONTAP から FibreBridge ブリッジを管理します</block>
   <block id="bbd74b9d635efcc9eced3467fe12b324" category="list-text">「 storage bridge run -cli 」コマンドで該当する FibreBridge コマンドを実行します。</block>
@@ -1641,7 +1563,6 @@
   <block id="919d888b59981070bf71b6214f4ab443" category="paragraph">各スイッチのスイッチポート 8 と 9 が、ブリッジをネットワークに接続します。</block>
   <block id="702f8bfb0583ba76da1d5453b8963e67" category="paragraph">次の例は、 Brocade スイッチのポート 8 と 9 を無効にします。</block>
   <block id="327a9880f8e0dd44a44e0909f4debaf5" category="paragraph">次の例は、 Cisco スイッチのポート 8 と 9 を無効にします。</block>
-  <block id="48e4b75815ecd760177696fc4dd29dda" category="admonition">これは FibreBridge 6500 ブリッジには該当しません。</block>
   <block id="4b09ce830b72db5cca9758e1276d7e12" category="paragraph">次の例は、 4 つの SAS スタックを接続するブリッジのペアを示しています。SAS スタック 2 にターゲットシェルフが収容されています。</block>
   <block id="e64c1d35a465f6a0d896f63a42127c1e" category="image-alt">MCC シェルフの交換用ブリッジ。スタックは 4 つです</block>
   <block id="6b968bde345a1af02381409979c014c6" category="paragraph">SAS ポート B が、ブリッジをターゲットシェルフに接続します。両方のシェルフの SAS ポート B のみを無効にすると、交換用手順の実行中も他の SAS スタックが引き続きデータを提供できます。</block>
@@ -1669,7 +1590,6 @@
   <block id="b469cbf627d068144cf37b08bcb2d349" category="paragraph">次の例は、 Cisco スイッチのスイッチポートを有効にしています。</block>
   <block id="4b3ef5be9c34b8c0d7cd5aa6aa8ff1f9" category="paragraph">* SAS ポート * を無効にした場合</block>
   <block id="afd1a46303765732d70810f6dd9b9dd9" category="paragraph">次の例は、ブリッジから SAS ポート A を有効にし、ポートが有効になったことを確認しています。</block>
-  <block id="a024992ec9deb1644f55dca391af6505" category="admonition">これは ATTO 6500 FibreBridge には該当しません。</block>
   <block id="9c0ceb1f6e71f50cc0c1fd789b320bc9" category="list-text">スイッチポートを無効にしている場合は、ポートが有効でオンラインになっていること、およびすべてのデバイスが正しくログインしていることを確認します。</block>
   <block id="f4d7883da67897475fff75fd8e1b3742" category="admonition">数分経過すると、 ONTAP は新しいディスクが挿入されたことを検出し、新しいディスクごとにメッセージを表示します。</block>
   <block id="61037eafe17df84ef72715d98ed9e6d6" category="list-text">ONTAP によってディスクが検出されたことを確認します。</block>
@@ -1679,7 +1599,6 @@
   <block id="c58436ceeffb789114ef5d94d2e81161" category="summary">9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV \ ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。</block>
   <block id="40fd7b7d6fe8848f1cb5a5e5acf0fd41" category="doc">必要に応じて、 FibreBridge 7600N ブリッジの IP ポートアクセスを有効にする</block>
   <block id="ebda0461d9b282997db74027d2c545a7" category="paragraph">9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。</block>
-  <block id="2db131c02bbb96341da732aef89b4993" category="paragraph">ATTO FibreBridge 7500N および 6500N ブリッジとは異なり、 FibreBridge 7600N ブリッジは、すべての IP ポートプロトコルおよびサービスが無効になった状態で出荷されます。</block>
   <block id="3ab84e59a44526486a6dc2185cd0b1e7" category="paragraph">このタスクは、ブリッジの管理にインバンド管理を使用していない場合に必要です。この場合は、イーサネット管理ポートを介してブリッジを設定する必要があります。</block>
   <block id="a11843c65824a8d5041267708cd15a23" category="list-text">FibreBridge 7600N ブリッジのシリアルポートにシリアルケーブルを接続して、ブリッジのコンソールインターフェイスにアクセスします。</block>
   <block id="337cf0ab25324175a6c09dd141e044d5" category="list-text">コンソールを使用してアクセスサービスを有効にし、設定を保存します。</block>
@@ -4631,7 +4550,6 @@
   <block id="6f5ef944a2d6b5db7b0f5eb7664fbe8d" category="paragraph">B_2</block>
   <block id="be5202b28e5b83beb808b3ac26e9742d" category="paragraph">デフォルトでは、すべてのポートが 16Gbps で動作するように設定されています。ポート速度は次のような理由で変更される可能性があります。</block>
   <block id="ba9c767eb14e474535af6d4b9bee5496" category="list-text">8 Gbps の FC-VI アダプタを使用し、スイッチポート速度を 8Gbps に設定している場合、インターコネクトスイッチポート速度を変更する必要があります。</block>
-  <block id="a0bbe76035aaa0a06b6d98046fa647be" category="list-text">ATTO FibreBridge 6500N に 8 Gbps HBA アダプタを使用している場合は、スイッチポート速度を変更する必要があります。</block>
   <block id="88a9be1491a219d7b5dd0ebd6de75774" category="list-text">ISL が 16Gbps で実行されない場合は、 ISL ポートの速度を変更する必要があります。</block>
   <block id="88c2572b93887e6bb782f75a86e63745" category="list-text">ISL の距離を計算します。</block>
   <block id="0cde63179964e3bf0a8751afc45a15b9" category="paragraph">FC-VI の動作により、この距離を 10 （ LE ）以上の実際の距離の 1.5 倍に設定する必要があります。ISL の距離は次のように計算され、 km 単位に切り上げられます。 1.5 × 実際の距離 = 距離です。</block>
@@ -5144,23 +5062,12 @@
   <block id="f7e3d93b4c145bf696a9e6f193ce4fb7" category="list-text">残りのシェルフスタックについて、 FibreBridge ブリッジの次に使用可能な SAS ポートを使用して同じ手順を繰り返します。 2 番目のスタックにはポート B 、 3 番目のスタックにはポート C 、 4 番目のスタックにはポート D を使用します。</block>
   <block id="9111bd303b0cb06989b91c9e131eb156" category="paragraph">次の図は、 1 組の FibreBridge 7600N / 7500N ブリッジに 4 つのスタックが接続された状態を示しています。</block>
   <block id="6704e0f472546c04c5cdc225c2656ec5" category="image-alt">MCC ケーブルブリッジおよび SAS スタック（ 7500n 4 スタック</block>
-  <block id="1ff786282c561a059275f4f66fbb3c02" category="section-title">FibreBridge 6500N ブリッジと IOM6 / IOM3 モジュールを使用するディスクシェルフのケーブル接続</block>
-  <block id="c9da011f9debc02fdab80f3b849d7f6e" category="paragraph">ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。FibreBridge 6500N ブリッジは QSFP コネクタを使用します。</block>
-  <block id="c05c9c89f29541a2e3cafe9c3845e3e8" category="paragraph">FibreBridge 6500N ブリッジでは、 IOM12 を使用するディスクシェルフはサポートされません。</block>
-  <block id="7c1615c29340c6fd3d248d789343e1d1" category="paragraph">ディスクシェルフのデイジーチェーン接続の詳細については、使用しているディスクシェルフモデルの Installation and Service Guide を参照してください。</block>
-  <block id="0180c8e3cd250ff60d40a92d46bed5f2" category="list-text">ディスクシェルフの各スタックで、最初のシェルフの IOM A の四角形のポートを、 FibreBridge A の SAS ポート A にケーブル接続します</block>
-  <block id="3438a63fec3ca234e9dd8cac149f0aba" category="list-text">ディスクシェルフの各スタックで、最後のシェルフの IOM B の丸いポートを、 FibreBridge B の SAS ポート A にケーブル接続します</block>
-  <block id="812d5019caa5125426f0aef260c3c3e7" category="paragraph">各ブリッジには、ディスクシェルフのスタックへのパスが 1 つあります。ブリッジ A は最初のシェルフ経由でスタックの A 側に接続し、ブリッジ B は最後のシェルフ経由でスタックの B 側に接続します。</block>
-  <block id="091991cc9aad418748a9606ea3888e0f" category="admonition">ブリッジの SAS ポート B は無効になっています。</block>
-  <block id="29e7b923f8725202565ab59fd5d6e538" category="paragraph">次の図は、 1 組のブリッジが 4 台のディスクシェルフからなるスタックにケーブル接続されている状態を示しています。</block>
-  <block id="c44614eb148668338fa95894c5e745ae" category="image-alt">MCC ケーブルブリッジおよび SAS スタック</block>
   <block id="8cbdbb5be51e2a78d7b472e23327b938" category="section-title">ブリッジの接続を確認し、ブリッジの FC ポートをケーブル接続します</block>
   <block id="605157b79e898676481d263489be287d" category="paragraph">各ブリッジですべてのディスクドライブが検出されることを確認してから、各ブリッジをローカルの FC スイッチにケーブル接続します。</block>
   <block id="bf532d59144bc55a10c7ae835f098f56" category="paragraph">IP アドレスを入力したブリッジの ATTO FibreBridge ホームページに移動し、リンクが表示されます。</block>
   <block id="2c289d2564b7ae64ce5ddd32d176f7d8" category="paragraph">ブリッジの ATTO FibreBridge ステータスページが開き、左側にメニューが表示されます。</block>
   <block id="78d586744784b57424fd44e8680647aa" category="list-text">「 * 詳細設定 * 」をクリックします。</block>
   <block id="7584130e58d7e346035eb6eabd58a612" category="list-text">sastargets コマンドを使用して、接続されているデバイスを表示し、 * 送信 * をクリックします。</block>
-  <block id="5c1a7988cfaa2c9a1f21c9b95b652af9" category="admonition">出力の先頭に response truncated というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、同じコマンドを入力すると、すべての出力を確認できます。</block>
   <block id="540e154d4e289b6bfd793dd86036768d" category="list-text">コマンド出力を確認して、ブリッジがスタック内の想定されるすべてのディスクおよびディスクシェルフに接続していることを確認します。</block>
   <block id="6f4a225b29c0975663d0e4b9e1f4547f" category="inline-xref-macro">手順 1.</block>
   <block id="234d9ba6039ff899b95d32b2d5738596" category="list-text">SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します。</block>
@@ -5168,7 +5075,6 @@
   <block id="cbf21b0a1a6cb9d0bb203c817705311a" category="admonition">FibreBridge 7500N ブリッジの 2 つ目の FC ポート接続については、ゾーニングが完了するまでケーブル接続しないでください。</block>
   <block id="6ccf095006c1d816e28e52dc0e9bd0f6" category="paragraph">使用している ONTAP のバージョンに対応したポート割り当てを参照してください。</block>
   <block id="62610238a732474c3b050bbde67a6d1e" category="list-text">パートナーサイトのブリッジに対して同じ手順を繰り返します。</block>
-  <block id="a7961aec4222555642ec51ab8f3cbdb7" category="list-text">イーサネットポートを再度イネーブルにするには、「 unsecurebridge 」コマンドを使用します。</block>
   <block id="92ce9352258f4fd51a93e19057e163df" category="list-text">ONTAP 9.7 以前では、 ATTO FibreBridge で「 ecurebridge 」コマンドを実行すると、パートナークラスタでブリッジステータスが正しく更新されない可能性がありました。この場合は、パートナークラスタから「 ecurebridge 」コマンドを実行します。</block>
   <block id="e3ae9940fbffd31f3b022a7e38fc3a88" category="summary">アレイ LUN を使用する 4 ノードファブリック接続 MetroCluster 構成をセットアップする場合は、 FC-VI ポートと HBA ポートをスイッチポートにケーブル接続する必要があります。</block>
   <block id="fe5772d11639aff667f09bb55dd4726b" category="doc">アレイ LUN を使用する 4 ノードファブリック接続 MetroCluster 構成における FC-VI ポートと HBA ポートのケーブル接続</block>
@@ -5230,7 +5136,6 @@
   <block id="e3ac1a6df2ee9f1157c3a5dec5883f3e" category="section-title">FC-to-SAS ブリッジの要件</block>
   <block id="e53dc72303557c1105d977a8451912b3" category="paragraph">ファブリック接続 MetroCluster FC 構成には、 SAS シェルフのスタックグループごとに FC-to-SAS ブリッジのペアが 1 組必要です。</block>
   <block id="b70216f5078d65c8860a010a7ccdbdd8" category="list-text">FibreBridge 7600N / 7500N ブリッジでは、最大 4 つの SAS スタックがサポートされます。</block>
-  <block id="1d670d96f2ecbfb15c4a81314e20f67d" category="list-text">FibreBridge 6500N ブリッジは 1 つの SAS スタックのみをサポートします。</block>
   <block id="520e16a62f58f9e73a16fda005e8fe2f" category="list-text">各スタックで異なる IOM のモデルを使用できます。</block>
   <block id="8db51e2a7c564cc042e840346cc8e77f" category="paragraph">サポートされる IOM モジュールは、実行している ONTAP のバージョンによって異なります。</block>
   <block id="f7cf5f699a885086887bab11041a8b25" category="section-title">プールとドライブの要件（最小サポート）</block>
@@ -5264,7 +5169,6 @@
   <block id="27c139222e5351fb34d2d62b3d965a28" category="paragraph">ブリッジペアが接続されているスタックグループの番号。</block>
   <block id="fdeaf3d6c981b83dd3df188d27914262" category="list-text">FibreBridge 7600N / 7500N ブリッジでは、スタックグループで最大 4 個のスタックがサポートされます。</block>
   <block id="91c3e629f683c97b0153438356cb808e" category="paragraph">スタックグループに含めることができるストレージシェルフは 10 個までです。</block>
-  <block id="059103bb915e843506300718b93905c4" category="list-text">FibreBridge 6500N ブリッジでは、スタックグループでサポートされるスタックは 1 つだけです。</block>
   <block id="3bedeed3aede72d127ad4893c878fb6b" category="paragraph">1 、 2 など</block>
   <block id="faf844ce6ce8135dec1b710eb9763ba5" category="paragraph">ペア内の場所</block>
   <block id="8d3eb4cb77ea2bbd21bb7417b5cacaca" category="paragraph">ブリッジペア内のブリッジ。ブリッジのペアは、特定のスタックグループに接続します。</block>
@@ -5294,12 +5198,7 @@
   <block id="6ffb8f2c32009a20c314f0eeec771f81" category="cell">Brocade 6510 、 DCX 8510-8</block>
   <block id="a435d7a239e10d99dd0bb66c0966f44d" category="paragraph">次の表に、 Cisco スイッチで使用するコントローラポートを示します。</block>
   <block id="b54c734a5be7921355fc2aa93b69ba59" category="cell">Cisco 9148 または 9148S</block>
-  <block id="f0bd256ae87926dc22cadd49e5bfaf85" category="paragraph">次の表は、 FibreBridge 7500 ブリッジを使用する場合のポート 23 までのブリッジポートを示しています。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
-  <block id="92c57b4343387dab646670955eb22ea3" category="paragraph">次の表に、 FibreBridge 6500 ブリッジを使用する場合のポート 23 までのブリッジポートを示します。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
-  <block id="1d52039f20a1cb4fe8774684260c63d7" category="cell">MetroCluster 8 ノード</block>
   <block id="11278506140805617313d6fd9ed8b0fc" category="cell">Cisco 9148 、 9148S 、または 9250i</block>
-  <block id="84e23d11c4e127e49471824f2e6c9d7c" category="paragraph">次の表は、 FibreBridge 7500 ブリッジを使用する場合のポート 14 までのブリッジポートを示しています。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
-  <block id="a469d4f6876ebd3dc052284b5c5e7509" category="paragraph">次の表に、 FibreBridge 6500 ブリッジを使用する場合のポート 14 までのブリッジポートを示します。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
   <block id="a9376b40838c95dc0e4da39abdfa72b0" category="summary">アレイ LUN を使用する MetroCluster 構成では、スイッチ間リンク（ ISL ）を使用してサイト間で FC スイッチを接続し、スイッチファブリックを形成する必要があります。</block>
   <block id="54ac487d2d6ff680a517207a9eced839" category="doc">アレイ LUN を使用する MetroCluster 構成での ISL のケーブル接続</block>
   <block id="ba35d7d9c18ec17168ae6aa733de311d" category="paragraph">アレイ LUN を使用する MetroCluster 構成では、スイッチ間リンク（ ISL ）を使用してサイト間で FC スイッチを接続し、スイッチファブリックを形成する必要があります。</block>
@@ -5558,7 +5457,6 @@
   <block id="ae39bb80eb3250930bf68b437b7701d9" category="paragraph">次の例は、ポート 0 で圧縮を有効にします。</block>
   <block id="df09a476320acebda6f08f8d250d6e6d" category="paragraph">islShow コマンドを使用すると、暗号化または圧縮が設定され、アクティブになった状態で E_port がオンラインになったことを確認できます。</block>
   <block id="978fbde67977c63ea58137daf2a0c897" category="paragraph">portEncCompShow コマンドを使用すると、アクティブなポートを確認できます。この例では、ポート 0 で暗号化と圧縮が設定され、アクティブになっています。</block>
-  <block id="a303e21b6b9e9b6f6c289e91bb7d5d67" category="paragraph">スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。手順は、 FibreBridge 7500N ブリッジと FibreBridge 6500N ブリッジのどちらを使用しているかによって異なります。</block>
   <block id="f10d463e2d297fe413356e23e7923de9" category="section-title">FC-VI ポートのゾーニング</block>
   <block id="caf28de9f878439a25ca8c39e1e746b5" category="paragraph">MetroCluster の DR グループごとに、コントローラ間のトラフィックに使用する FC-VI 接続のゾーンを 2 つ設定する必要があります。これらのゾーンには、コントローラモジュールの FC-VI ポートに接続する FC スイッチポートが含まれます。これらのゾーンは、 Quality of Service （ QoS ；サービス品質）ゾーンです。</block>
   <block id="c6e4ca0d92238d04023b15c34ba48994" category="paragraph">QoS ゾーンには、通常のゾーンと区別するために、プレフィックス QOSHid_ から始まる名前を使用します。これらの QoS ゾーンは、使用する FibreBridge ブリッジのモデルに関係なく同じです。</block>
@@ -5633,8 +5531,6 @@
   <block id="875f652a8829c477d23566825a41ce2d" category="cell">FC_switch_A_2 と FC_switch_B_2</block>
   <block id="03f62b19d6b9509a69d1224a5fd8e73b" category="paragraph">QOSH2_MC1_FAB_2_FCVI （ 6510 ）</block>
   <block id="0ac598b4b15967045c768da6dff300ad" category="paragraph">QOSH2_MC1_FAB_2_FCVI （ 6520 ）</block>
-  <block id="8924407898770c03b8e8f352362d05df" category="section-title">FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング</block>
-  <block id="ed6cc2e4a5b1eb49bd98a6836c3c16e0" category="paragraph">FibreBridge 6500N ブリッジまたは一方の FC ポートのみを使用する FibreBridge 7500N / 7600N ブリッジを使用する場合は、ブリッジポート用のストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。</block>
   <block id="6b31232cf0b2abdcdf2b178f68104f01" category="paragraph">ここでは、 DR グループ 1 のゾーニング例のみを示しています。2 つ目の DR グループがある構成の場合は、コントローラとブリッジの対応するポートを使用して、同じ方法で 2 つ目の DR グループのゾーニングを設定します。</block>
   <block id="baf9712fec9aa36f25583f754fbdcc36" category="section-title">必要なゾーン</block>
   <block id="8498a500fccebcb4367e73fb3b617503" category="paragraph">FC-to-SAS ブリッジの FC ポートごとにゾーンを 1 つ設定し、各コントローラモジュールのイニシエータとその FC-to-SAS ブリッジの間のトラフィックを許可する必要があります。</block>
@@ -6244,7 +6140,6 @@
   <block id="de10b7ba4ade6acdea8774b5a68bf1ba" category="list-text">ストレージゾーンを作成し、ストレージポートを追加します。</block>
   <block id="fe6733f22485938d023679adc9a877ff" category="admonition">次の手順は、ファブリックごとに 1 つのスイッチだけで実行します。</block>
   <block id="cb2a66d72ad29d5ada076628de3ea506" category="paragraph">ゾーニングは、使用している FC-to-SAS ブリッジのモデルによって異なります。詳細については、ブリッジのモデルに対応するセクションを参照してください。例では Brocade スイッチポートを使用しているため、適宜ポートを調整してください。</block>
-  <block id="50fe2d6c304635caf302b58bd0b6dfee" category="inline-link-macro">FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング</block>
   <block id="2c0db800facff01fe96c6b0dcfc7cbbd" category="paragraph">各ストレージゾーンには、すべてのコントローラの HBA イニシエータポートと、 FC-to-SAS ブリッジを接続するポートが 1 つ含まれます。</block>
   <block id="8dc27f662a0c89aac9333e7a3562312e" category="list-text">ストレージゾーンを作成します。</block>
   <block id="27cbbe86005e8d78108cbb80ed07c81f" category="paragraph">'zone name_STOR-zone-name_vsanId_`</block>
@@ -6953,9 +6848,7 @@
   <block id="5310be1d33aa12f03867b83248d87de0" category="image-alt">MCC IP ハードウェアアーキテクチャ HA ペア</block>
   <block id="20d3ce5dec27f8f374403afd88aa2576" category="section-title">MetroCluster IP およびクラスタインターコネクトネットワークの図</block>
   <block id="57b140d2bdb4a32e43e24402fa90a87d" category="paragraph">ONTAP クラスタには、通常、クラスタ内のノード間のトラフィック用にクラスタインターコネクトネットワークが含まれています。MetroCluster IP 構成では、 MetroCluster サイト間のデータレプリケーショントラフィックにもこのネットワークが使用されます。</block>
-  <block id="decd0c57096fb74885b3c3c62892e9df" category="paragraph">MetroCluster IP 構成の各ノードには、バックエンド IP ネットワークへの接続用に専用の LIF があります。</block>
   <block id="5157984370bbb692d3f2d2a41727e668" category="list-text">2 つの MetroCluster IP インターフェイス</block>
-  <block id="5359dd5f381b734f4af8cff7b671c28f" category="list-text">1 つのクラスタ間 LIF</block>
   <block id="f413ada03786bcba415f9a26d51d3699" category="paragraph">これらのインターフェイスを次の図に示します。ポートの用途は AFF A700 または FAS9000 システムの場合のものです。</block>
   <block id="7fa8c692d2fa9493453528081a86e668" category="image-alt">MCC IP LIF の用途</block>
   <block id="86983ba76f02422a54a19be9cff0fcaa" category="inline-xref-macro">MetroCluster IP 構成に関する考慮事項</block>
@@ -8018,7 +7911,6 @@
   <block id="85f0652173fa7b3fc64c286307b3617a" category="list-text">ミラーされたアグリゲートをスイッチバックします。</block>
   <block id="933883823c7d637ca7f531bf57658b6a" category="list-text">デスティネーションクラスタで次のコマンドを実行して、修復処理が完了していることを確認します。</block>
   <block id="79a916b9b9844039e5758f1c19eaa2ea" category="list-text">ディザスタサイトの各コントローラモジュールに電源を投入します。</block>
-  <block id="9273337a1e299dfc8dfe67a6cfac57c8" category="paragraph">両方のプレックスが存在する場合は、再同期が自動的に開始されます。1 つのプレックスで障害が発生している場合は、そのプレックスを破棄し、次のコマンドを使用してミラーを再作成し、ミラー関係を再確立する必要があります。</block>
   <block id="45f24e4f4da42e071e122e2ae4357bb7" category="paragraph">「 storage aggregate mirror -aggregate &lt;aggregate-name&gt; 」の形式で指定します</block>
   <block id="99d347f5ee9c6d06272a3e8abad4bbfd" category="section-title">スイッチバックに向けたシステムの事前チェック</block>
   <block id="ba6c2df32f41b2c48352bb19b5534193" category="paragraph">システムがすでにスイッチオーバー状態にある場合は、「 -simulate 」オプションを使用して、スイッチバック処理の結果をプレビューできます。</block>
@@ -8631,7 +8523,6 @@
   <block id="4e14469d1b9cb5857e2b83704c8ab8d4" category="list-text"><block ref="d277051460abcb0f3a19fb6f4b09af32" category="inline-xref-macro-rx"></block></block>
   <block id="1098ebf3ac123d908705a49af90988ba" category="inline-xref">IOM6 または IOM3 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続</block>
   <block id="572e966b8fd8a186b019d7c5d26ff32c" category="list-text"><block ref="f3f03af6d08c988efd686559fcd15483" category="inline-xref-macro-rx"></block></block>
-  <block id="6db0710ae16bb03fe4ed9188d32a68ab" category="list-text"><block ref="5ee3dd6cfd52247d8b37207cfaf13e9b" category="inline-xref-macro-rx"></block></block>
   <block id="8bfac37f0565c6922aeced47caf18f6a" category="list-text">[[step1_bridge]] 各ブリッジが接続されているすべてのディスクドライブとディスクシェルフを検出できることを確認します。</block>
   <block id="9dd06574fbddaf5fab3ebc3605d80dae" category="paragraph">「 astargets 」</block>
   <block id="eb443924112f8c71329400ac78de9284" category="paragraph">繰り返します <block ref="2f9ed640880ac5dd95c2cb30edbb02d0" category="inline-xref-macro-rx"></block> 残りの各ブリッジ。</block>
@@ -8991,21 +8882,9 @@
   <block id="aa746e8f9884e017b8a2cf95d83c6f98" category="list-text"><block ref="6a656079a634d1dbb37fdd6960f90ddd" category="inline-link-macro-rx"></block>。</block>
   <block id="287644c0dd9dfb3768d110055e197bde" category="list-text"><block ref="bfaa51242e41c04376a31866ee30c54d" category="inline-link-macro-rx"></block>。</block>
   <block id="7edc9ae22c0cf875e5a35338bef1bdef" category="paragraph"><block ref="07c84706bf0793d59796fc2be1470117" category="inline-link-macro-rx"></block>。</block>
-  <block id="7b3efb5742ffd4881d7f445df634f9a7" category="paragraph">「 set ipdhcp mp1 」は「 set ethernetspeed mp1 1000 」を無効にしました</block>
-  <block id="00e0abfb46aba6832f65f196e0f3044d" category="paragraph">'Set FCDataRate ポート番号ポート速度</block>
-  <block id="bef8395e82221d7acad3540cbcc25f3d" category="paragraph">FibreBridge 7600N ブリッジを設定する場合、 FCConnMode の設定は不要です。CLI を使用する場合は、次のコマンドを実行する必要があります。</block>
-  <block id="acc808880efb90c6f8934d124df0c880" category="paragraph">'et FCConnMode port-number ptc'</block>
   <block id="e56418bb842bd172c1bf2aaff54451fd" category="paragraph">FCPGPortDisable ポート番号</block>
-  <block id="fe3c5c4aadf855704d7af81d0dc642d9" category="paragraph">'ASPortDisable SAS-port</block>
   <block id="b937671578dea012b5d9e0ca996417fc" category="list-text">ブリッジを保護します。</block>
   <block id="cf574293b8ab8a752912f9e7ad222e6b" category="paragraph">「 ecurebridge 」</block>
-  <block id="cccc51b51ddeaf1d070119fe26d9dca4" category="list-text">[[stp1_verify_bridges ]] 各ブリッジが接続先のすべてのディスクドライブとディスクシェルフを検出できることを確認します。</block>
-  <block id="350948e1948da38211704e0e632282d6" category="list-text">「 astargets 」コマンドを使用して、接続されているデバイスを表示し、「 * Submit 」をクリックします。</block>
-  <block id="bb5aca9716acb38283c10f2d735e3acf" category="paragraph">繰り返します <block ref="2814819d643b5a414bd6cc7c03f47bc3" category="inline-xref-macro-rx"></block> 残りの各ブリッジ。</block>
-  <block id="2eb7016fb2e69bc04a0be5e44dbc69dd" category="paragraph"><block ref="2eb7016fb2e69bc04a0be5e44dbc69dd" category="inline-link-macro-rx"></block></block>
-  <block id="5107f3588b77e26edc1af80f693e8509" category="list-text">繰り返します <block ref="2814819d643b5a414bd6cc7c03f47bc3" category="inline-xref-macro-rx"></block>。</block>
-  <block id="5c89ff4fb068c362b464eb4fa8108a16" category="paragraph">「 storage bridge run -cli -bridge bridge-name command savecfigation`</block>
-  <block id="f649a33fa0f1f3fe81f64356049e86f4" category="paragraph">「 storage bridge run -cli -bridge bridge-name command firmwareerestart 」のように表示されます</block>
   <block id="9683bc886e03bf0b6fb2555eb820a5b9" category="paragraph">ブリッジでは、次のような命名規則を使用します。</block>
   <block id="bb2f4cb66d4e9c0b103783ed18a0a7af" category="paragraph">ペア内の 'bridge_site_stack グループ・ロケーション</block>
   <block id="be9e20a5c1946eecb2721766dbc15b77" category="paragraph"><block ref="be9e20a5c1946eecb2721766dbc15b77" category="inline-link-macro-rx"></block></block>
@@ -9035,7 +8914,6 @@
   <block id="331dc41359d84a558b5509cb9fde623e" category="cell">Fabric_1 hh のゾーン</block>
   <block id="4d2d41ee73ba528eda15a914920794c7" category="cell">Fabric_2 hh のゾーン</block>
   <block id="7dc2e1d82f3e11c1d3fa8b2712f6f307" category="paragraph"><block ref="7dc2e1d82f3e11c1d3fa8b2712f6f307" category="inline-link-macro-rx"></block></block>
-  <block id="4e28cc28dc4b1c247e9fc6b5a03ce662" category="paragraph"><block ref="4e28cc28dc4b1c247e9fc6b5a03ce662" category="inline-link-macro-rx"></block></block>
   <block id="89a61a78ea2327ff92f1148721872f22" category="paragraph"><block ref="89a61a78ea2327ff92f1148721872f22" category="inline-link-macro-rx"></block></block>
   <block id="9bb5b14403063a52226996be386c7f39" category="paragraph">zonecreate "QOSH1_FCVI_1" 、 member ； member … ..</block>
   <block id="96298fbd5c72feaf17561a4ac8bcd677" category="paragraph">cfgadd config_name zone ； zone... を使用します</block>
@@ -9045,7 +8923,6 @@
   <block id="81ec4b613ecae165b1957e588d03a221" category="list-text">ポートからライセンスを削除します。</block>
   <block id="c410870763ab138b1bb332e084940bf9" category="paragraph">このタスクの例では、次の命名規則を使用します。</block>
   <block id="201493476a4a8eafce0cb8596c732440" category="paragraph">ONTAP 9.1 以降を使用している場合、 FC スイッチをケーブル接続するときは、指定のポート割り当てを使用していることを確認する必要があります。を参照してください <block ref="fb60c06f4120cd75fc9ac39720fd32d8" category="inline-link-macro-rx"></block></block>
-  <block id="a86ff0af1d79628a912ac6a46ff27030" category="list-text"><block ref="a86ff0af1d79628a912ac6a46ff27030" category="inline-link-macro-rx"></block></block>
   <block id="a03c39da2d1b1ed17db1d6007949ef4e" category="paragraph">「ディスク割り当てシェルフローカルスイッチ名： shelf-name. port -p pool 」のようになります</block>
   <block id="72f3c55c79c5c3713292f0ab302f417d" category="paragraph">「ディスク割り当てシェルフローカルスイッチ名利用可能シェルフ名 -p pool 」</block>
   <block id="42ec1151bc3506b679e500df023c1328" category="paragraph">「ディスク割り当てシェルフシェルフ名 -p pool 」です</block>
@@ -9195,9 +9072,6 @@
   <block id="85977d467dedfc86d900cfc49456f320" category="paragraph">ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。</block>
   <block id="c1fb8df06920f0b1e36ed0e97db05891" category="paragraph">ベストプラクティスとして、コンポーネントの各電源装置（ PSU ）を別々の電源装置に接続することを推奨します。両方の PSU を同じ配電ユニット（ PDU ）に接続している場合、停電が発生すると、サイトが停止してシェルフ全体が使用できなくなる可能性があります。1 本原因の電源回線に障害が発生した場合に、サービスが中断する可能性があるケーブル接続の不一致がないかどうかをテストします。</block>
   <block id="56d23b4bd36ea7e836bbc1283db551b3" category="paragraph">E シリーズストレージアレイ LUN を使用するストレッチ MetroCluster 構成では、ストレージコントローラとストレージアレイを直接接続できます。他のアレイ LUN とは異なり、 FC スイッチは必要ありません。</block>
-  <block id="a0256b5d14d8f8e278ab1f632644ed83" category="paragraph">ポートに接続する前に、電源を投入して 10 秒以上待機します。SAS ケーブルのコネクタは、誤挿入を防ぐキーイングが施されているため、正しい向きで SAS ポートに取り付けるとカチッとはまり、ディスクシェルフの SAS ポートの LNK LED が緑色に点灯します。ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。</block>
-  <block id="2826857d59337300555697a88fd8af6c" category="paragraph">FibreBridge 6500N ブリッジでは、 IOM12 モジュールを使用するディスクシェルフはサポートされません。</block>
-  <block id="bed97cf26e962cfbadd9158043d57ebf" category="paragraph">各ブリッジには、ディスクシェルフのスタックへのパスが 1 つあります。ブリッジ A は最初のシェルフ経由でスタックの A 側に接続し、ブリッジ B は最後のシェルフ経由でスタックの B 側に接続します。</block>
   <block id="632ac78de4a389af16d655089761a651" category="paragraph">この手順では、推奨されるブリッジ管理インターフェイスである ATTO ExpressNAV GUI と ATTO QuickNAV ユーティリティを使用していることを前提としています。</block>
   <block id="132ab6e1ba78a445b535028fd5d74260" category="paragraph">ATTO ExpressNAV GUI は、ブリッジの設定および管理、ブリッジファームウェアの更新に使用します。ATTO QuickNAV ユーティリティは、ブリッジのイーサネット管理 1 ポートの設定に使用します。</block>
   <block id="d08fe7e603a9a3906a2ac376ce5a88c1" category="summary">新しい MetroCluster システムで使用するブリッジの設置を準備する際には、システムが一定の要件を満たしている必要があります。これには、ブリッジのセットアップと設定の要件が含まれます。必要なドキュメント、 ATTO QuickNAV ユーティリティ、ブリッジファームウェアのダウンロードなどがあります。</block>
@@ -9613,7 +9487,6 @@
   <block id="45fcd6873eadf29e5cd4cc3b0c7d3340" category="paragraph">*`no set clibanner`*</block>
   <block id="ff0270664e36de08ce3d4ea34091e33b" category="list-text">スイッチを再起動します *`(IP_switch_A_1 )#reload *`</block>
   <block id="bb618b144b7c6895aa5a8818fa66c1b2" category="list-text">DSA キーの生成（オプション）</block>
-  <block id="d034cc5a3446b99507240baca90266a0" category="list-text">FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ 256 のキーを作成します。有効な値は、 256 、 384 、または 521 です。</block>
   <block id="640245482ba700e57c1029dc983e60c0" category="paragraph">* 次の点に注意してください。 *</block>
   <block id="6a02b7e242bcf6c784d6c8daac02baa6" category="cell">* 手順 *</block>
   <block id="b0bed1183d501e8f5e8cef18312355bd" category="cell">* 現在の EFOS バージョン *</block>
@@ -9832,27 +9705,19 @@
   <block id="a05a5ee5c3ac194989ef258bddaa30d0" category="list-text">ディザスタサイトのディスクにあるミラーされたプレックスを使用してアグリゲートをミラーリングする。オフラインにすると、プレックスにアクセスできなくなります。</block>
   <block id="d4f18ae628e27ab34b26b8a43c48ace9" category="list-text">影響を受けるプレックスをオフラインにします。</block>
   <block id="2a8e88f52bc016e030fb4bcd3be6617a" category="paragraph">「ストレージアグリゲートのプレックスはオフライン」です</block>
-  <block id="9239ccea70d6b0bd2c5d7ed953067b9f" category="list-text">次の例に示すように ' ポートを永続的に無効にするには 'portcfgpersistentdisable_port_` コマンドを使用しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
   <block id="0a2ddd49f9e299b81cf7c5e078debcc7" category="list-text">次の例に示す 'witchshow' コマンドを使用して ' ポートが無効になっていることを確認します</block>
   <block id="a71c1aa8359408f9d2d2ca6505749f51" category="list-text">「 interface 」コマンドを使用して、ポートを永続的に無効にします。次の例は、ポート 14 および 15 を無効にします。</block>
   <block id="b344f211c6ef4a7b6fabe45ee6e74946" category="list-text">次の例に示すように、「 show interface brief 」コマンドを使用して、スイッチポートが無効になっていることを確認します。</block>
   <block id="056b0a2f5b039231afdc0b079e5c0490" category="paragraph">サイトの電源をオフにしたら、メンテナンス作業を開始できます。手順は、 MetroCluster コンポーネントを同じデータセンター内で再配置する場合も、別のデータセンターに再配置する場合も同じです。</block>
-  <block id="bc41076628d5d0bb91f9fb460e04ccbc" category="list-text">ポートを永続的にイネーブルにするには 'portcfgpersistentenable_port number_` コマンドを使用しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
   <block id="1d2dc9ff26f81ff899df7afec43c1cff" category="list-text">スイッチポートが有効になっていることを確認します。「 witchshow 」</block>
   <block id="dd0b0e83e384f79fb372176f7061dccf" category="list-text">「 interface 」コマンドを入力して、ポートをイネーブルにします。</block>
-  <block id="c11fb9d9afe8d36ff83e6aefd247c782" category="list-text">ポートを永続的に無効にするには 'portcfgpersistentdisable_port number_` コマンドを入力します</block>
   <block id="6936ed4cbbd3fdd5e8b27a40bf2f0486" category="list-text">スイッチポートが無効になっていることを確認します。「 witchshow 」</block>
   <block id="be63a45d8d88d62821d9d0c3af1a2336" category="list-text">「 interface 」コマンドを使用して、ポートをディセーブルにします。</block>
   <block id="8b9c414e111d5afbff34d567620625da" category="list-text">スイッチポートが無効になっていることを確認するには、「 show interface brief 」コマンドを使用します。</block>
   <block id="ee0b87400ee6781862e8ee67136924ab" category="paragraph">次の手順のすべてのコマンドは、電源をオンにしたサイトから実行します。</block>
   <block id="950372b89704e14720897b9cc9143854" category="paragraph">Brocade スイッチの場合は「 witchshow 」、 Cisco スイッチの場合は「 How interface brief 」などのコマンドを使用できます。</block>
-  <block id="a0c802a3250ae2fb7360a23c34260ad0" category="paragraph">ATTO コマンドラインインターフェイス（ CLI ）では、「 astargets 」などのコマンドを使用できます。</block>
-  <block id="cb4bda83e4b475d4527a306a175f8dc5" category="list-text">ポートを永続的にイネーブルにするには 'portcfgpersistentenable_port_ コマンドを入力しますサバイバーサイトにある両方のスイッチで実行する必要があります。</block>
   <block id="2202782420c4dafcddf766370d515d92" category="list-text">+ 'witchshow' コマンドを使用して ' スイッチポートが有効になっていることを確認します</block>
   <block id="90249cecea11f452dc769a28231fca6b" category="list-text">ポートをイネーブルにするには 'interface コマンドを使用します</block>
-  <block id="b6929e4968ce2ed48274a887d3709bf9" category="cell">構成</block>
-  <block id="3badf494f1e5507594701f730003f4b3" category="cell">実行する手順</block>
-  <block id="7ed92f84948f4fe94d9e740b0e479a4e" category="paragraph">MetroCluster FC 構成</block>
   <block id="cc65b45d9cd6a58be27baf40866d52dc" category="paragraph">Tiebreaker ソフトウェアの新しいインスタンスをインストールする必要がある場合は、に従います <block ref="41bac20da3e04dcec3e43f3b27170310" category="inline-link-macro-rx"></block>。</block>
   <block id="b935de63e2396f2d2fe997c9028969f7" category="inline-link">MetroCluster Tiebreaker ソフトウェアのインストールおよび設定</block>
   <block id="8510397a0db0873faf52a037f4e5c265" category="paragraph"><block ref="8510397a0db0873faf52a037f4e5c265" category="inline-link-rx"></block></block>
@@ -9918,13 +9783,11 @@
   <block id="05ac71f0be33c2ad0cfeeb90e5f985a7" category="list-text"><block ref="05ac71f0be33c2ad0cfeeb90e5f985a7" category="inline-link-macro-rx"></block></block>
   <block id="a0a108afed95784cbb847a6b3ff2ea68" category="list-text"><block ref="a0a108afed95784cbb847a6b3ff2ea68" category="inline-link-macro-rx"></block></block>
   <block id="24b79d1109d169b3428eb16d56510160" category="list-text">手順 1 を繰り返して構成の健常性を確認します。</block>
-  <block id="cdd098707a5ab09c2aacefd245a22b7d" category="paragraph">ゾーニングの変更や FibreBridge 6500 から FibreBridge 7500 へのアップグレードの実行には、の手順ホットスワップ対応 FibreBridge 6500N ブリッジと FibreBridge 7500N / 7600N ブリッジ _ を使用します<block ref="01d78e686e1360972399f4e6d1d43586" category="inline-link-rx"></block>。</block>
   <block id="46c7885131c64f238f576be014b213f0" category="inline-link">DS460C 、 DS224C 、 DS212C ディスクシェルフを保守します</block>
   <block id="3d46a208f060c32c138a0c945efcbbe0" category="paragraph"><block ref="3d46a208f060c32c138a0c945efcbbe0" category="inline-link-rx"></block></block>
   <block id="0c0a905fe7b3d34fc7c66142e87fa36d" category="inline-link-macro">MetroCluster IP のインストールと設定</block>
   <block id="bd411d4fdabe28e7276d566979ec2b21" category="paragraph">の「 IP スイッチの設定」セクションの手順に従います <block ref="6ca94d3c62e2aa037b337bfb7e2a3c37" category="inline-link-macro-rx"></block></block>
   <block id="60add77cd3913e8299d20186ba7ec1e0" category="list-text">ONTAP 9.6 以降を実行している MetroCluster IP 構成がある場合は、ディザスタサイトのプレックスがオンラインになり、修復処理が自動的に完了するまで待ちます。</block>
-  <block id="a0d9123d4cd00ea9771184e3cc69bc3b" category="paragraph">以前のバージョンの ONTAP を実行している MetroCluster IP 構成では、ディザスタサイトのノードは ONTAP から自動的にブートせず、プレックスはオフラインのままです。MetroCluster FC 構成の場合は、すべてのプレックスがオンラインのままであるため、プレックスをオンラインにする必要はありません。</block>
   <block id="5b12aa7a5c28a3989c442d88ecafd4b3" category="list-text">構成と ONTAP のバージョンに応じて、ディザスタサイト（ cluster_B ）にあるオフラインの影響を受けるプレックスを特定して移動します。</block>
   <block id="8f6bfa9270e9bb535722312b07c97064" category="paragraph"><block ref="8f6bfa9270e9bb535722312b07c97064" category="inline-link-rx"></block></block>
   <block id="56ba5c8d245e7af9f26245ccc8eddba9" category="doc">MetroCluster IP スイッチの RCF ファイルをアップグレードします</block>
@@ -10097,7 +9960,6 @@
   <block id="40a09e232a862af1f1a00bbe4b0defb8" category="sidebar">ストレッチ MetroCluster 構成のシェルフを無停止で交換する</block>
   <block id="6a739570036228dc1447eb1b941f12a0" category="sidebar">ファブリック接続 MetroCluster 構成のシェルフを無停止で交換する</block>
   <block id="d73f3d20e01c0ae11b268d892b9c7514" category="sidebar">MetroCluster 構成のクラスタの名前を変更する</block>
-  <block id="35c80ebe00a0f12bf75ded93997e17cb" category="sidebar">データセンターの電源をオフにしてオンにします</block>
   <block id="87e3fddd4347c3eea1eee68f594f1a43" category="sidebar">MetroCluster IP 構成全体の電源をオフにします</block>
   <block id="98e0abbb33a3ee2f9258bc3cb733233b" category="sidebar">MetroCluster FC 構成全体の電源をオフにします</block>
   <block id="01f252af90871f7cd362d1ce68d6a434" category="sidebar">ONTAP 9.x より前に設定した FC スイッチレイアウトを再設定します</block>
@@ -10797,7 +10659,6 @@
   <block id="888372be024925328ca6e321c9a44891" category="paragraph">「 vsan [vsna#] suspend` 」</block>
   <block id="37e68b1ed6861ebdf386fc5e91c46ae5" category="list-text">使用<block ref="df3a11b0f7b8977a7ee2ae6dd464c6cb" category="inline-link-rx"></block> スイッチタイプのケーブルレイアウトを決定するには、 8 ノード MetroCluster 構成のポート用途を使用します。</block>
   <block id="f2fa326e6e1c8de922a1dcd02e4670eb" category="paragraph">使用する FC スイッチポートは、に記載されている用途と一致する必要があります<block ref="df3a11b0f7b8977a7ee2ae6dd464c6cb" category="inline-link-rx"></block> RCF を使用できるようにするためです。</block>
-  <block id="2f33c0ab177d6cfd4b52b9e6472de2a0" category="paragraph">ゾーニングの変更や FibreBridge 6500 から FibreBridge 7500 へのアップグレードの実行には、の手順ホットスワップ対応 FibreBridge 6500N ブリッジと FibreBridge 7500N / 7600N ブリッジ _ を使用します <block ref="aeb2eb91b4a88826f71d1fbd30b29e7b" category="inline-link-macro-rx"></block>。</block>
   <block id="29c81145f8df4c302d2a5db797d28b64" category="paragraph"><block ref="29c81145f8df4c302d2a5db797d28b64" category="inline-link-rx"></block></block>
   <block id="91683a88a240de71b025c11834d0b99a" category="paragraph">新しいブリッジの各 FC ポート用のストレージゾーンを追加する必要があります。</block>
   <block id="d6e62bec4cfc249fd233d49111852ad5" category="paragraph"><block ref="d6e62bec4cfc249fd233d49111852ad5" category="inline-link-macro-rx"></block></block>
@@ -10835,7 +10696,6 @@
   <block id="4ea1a11c006b334a1497dd9d7789547c" category="paragraph"><block ref="4ea1a11c006b334a1497dd9d7789547c" category="inline-link-macro-rx"></block></block>
   <block id="0b0a37d5ae718d4d68f10c5a752437bb" category="paragraph"><block ref="0b0a37d5ae718d4d68f10c5a752437bb" category="inline-link-macro-rx"></block></block>
   <block id="d7ef6a0ac4569dd5ea389384efc59fe4" category="paragraph"><block ref="d7ef6a0ac4569dd5ea389384efc59fe4" category="inline-link-macro-rx"></block></block>
-  <block id="958de5ee2f25b5fa2715cdd4e27fa14c" category="paragraph"><block ref="958de5ee2f25b5fa2715cdd4e27fa14c" category="inline-link-macro-rx"></block></block>
   <block id="5a02bdff215718b5bc1262fbe8d72e13" category="list-text">必要に応じて、他の管理インターフェイスを使用できます。オプションには、シリアルポートまたは Telnet を使用したブリッジの設定と管理、イーサネット管理 1 ポートの設定、および FTP を使用したブリッジファームウェアの更新があります。これらのいずれかの管理インターフェイスを使用する場合は、の該当する要件をシステムが満たしている必要があります <block ref="7ab0568f22b62ca0e98b3c0cd29a60a1" category="inline-link-macro-rx"></block></block>
   <block id="a61acc05d42e32b02e9c3cd51831eeea" category="paragraph"><block ref="a61acc05d42e32b02e9c3cd51831eeea" category="inline-link-rx"></block></block>
   <block id="7c7dd4e5ef930c322d432df8ad10c821" category="paragraph">この手順では、リンク先に記載されている手順のダウンロード部分のみを実行します。各ブリッジでのファームウェアの更新は、で指示されたときにあとから実行します <block ref="c70dfcd5eb5f2383fdba898332cc4483" category="inline-link-macro-rx"></block> セクション。</block>
@@ -10877,13 +10737,11 @@
   <block id="06e7ec6ae7f944544771022d467d0496" category="paragraph">「 flashimages 」と入力します</block>
   <block id="2ff283b5fcea4bdb853d6b9da8d8948c" category="paragraph"><block ref="2ff283b5fcea4bdb853d6b9da8d8948c" category="inline-link-macro-rx"></block></block>
   <block id="2d0700f1234a9f9dd9937555291170ec" category="paragraph">"`_maintenance-window-in-hours_`" には、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。</block>
-  <block id="e82d508ae669816742bd73c7a3aa7f20" category="list-text">ATTO FibreBridge 6500N ブリッジを使用している場合は、 _ATTO FibreBridge 6500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。</block>
   <block id="8458ea1c3c1ea2053887d2f331da77f4" category="paragraph">* 注意： * ここで個々のブリッジの電源を再投入してください。スタックの両方のブリッジの電源を同時に投入すると、コントローラがドライブにアクセスできなくなり、プレックスや複数のディスクで障害が発生する可能性があります。</block>
   <block id="86b1ef008f18b43ce62a9069606c0c6d" category="list-text">いずれかのコントローラのコンソールで、ブリッジが正常に再起動したことを確認します。</block>
   <block id="7eb8d2db2d90e516a56d7472a56b99bd" category="list-text">いずれかのコントローラのコンソールで、 FibreBridge ファームウェアが更新されていることを確認します。</block>
   <block id="c1e404b965bd033d8d0a2284a04382d6" category="list-text">両方のパーティションが更新されたことを確認します。</block>
   <block id="378d97c929a2501d1e50a01e1e1a5b97" category="paragraph">'run local sysconfig -v</block>
-  <block id="8a55d02eab45d757aa9762d06c09ae5f" category="list-text">次のガイドラインを確認し、の手順を使用して「最上部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="958de5ee2f25b5fa2715cdd4e27fa14c" category="inline-link-macro-rx"></block>：</block>
   <block id="37c8362167e23bbca70c828a9376397b" category="list-text">システムが正しくケーブル接続されていない場合は、ケーブルを取り外し、ケーブル接続を修正してから、正しいケーブルを再接続します。</block>
   <block id="9c70e58ba306d049dc41ed64cf6e8f62" category="paragraph">ゾーニングコマンドの詳細については、の FC スイッチに関するセクションを参照してください <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> または <block ref="c4b7332c983d9f374f57570f90ffe107" category="inline-link-macro-rx"></block>。</block>
   <block id="1a4f45d5a5a5d25d76225f6a14a02044" category="cell">図の色 ( 図にはサイト A のみが表示されます )</block>
@@ -11223,7 +11081,6 @@
   <block id="426ee46ac7dd79d76d63e3c2d8bf8243" category="paragraph">システムが「インストールの準備」のすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。</block>
   <block id="7916572f780670b32d722f9441c26db4" category="list-text">ATTO FibreBridge のシリアルコンソールポートを設定し、ポート速度を 1 、 000 詐欺検出用に設定します。</block>
   <block id="dffac67a0b66f79e4f2ff0361643edd1" category="paragraph"><block ref="dffac67a0b66f79e4f2ff0361643edd1" category="inline-link-rx"></block></block>
-  <block id="6edb2b0baf9ed9e4cde065ac51290bc3" category="paragraph">+ 注：出力の先頭に「 response truncated 」というテキストが表示される場合は、 Telnet を使用してブリッジに接続し、同じコマンドを入力すると、すべての出力を確認できます。</block>
   <block id="9f39b4378a3d44f4f0a500c832ddf6b3" category="list-text">「 unsecurebridge 」コマンドを使用して、イーサネットポートを再度イネーブルにできます。</block>
   <block id="2eef5c9469dc2ce9cbe3c71dabc6f13e" category="paragraph">使用例： site_B</block>
   <block id="b72239aa6dab42301b66b43e2f099b73" category="paragraph">使用例： controller_B_1</block>
@@ -11240,12 +11097,6 @@
   <block id="14a8fc6fe6b58444388acfef6a176529" category="inline-link">構成バックアップの管理</block>
   <block id="6c0e4fd4b7e2ef11d891ac59729c5f3e" category="inline-link">クラスタ管理</block>
   <block id="3d324eced25a10d4e6f55d473d59805b" category="paragraph"><block ref="3d324eced25a10d4e6f55d473d59805b" category="inline-link-rx"></block></block>
-  <block id="e724cb67436f5eec5573e5a3fd4cb036" category="paragraph">ブリッジ CLI コマンド（ storage bridge run -cli-namebridge-name-commandbridge-command-name コマンドなど）は、 ONTAP インターフェイスから実行できます。</block>
-  <block id="d0ee1757d9fccb6a2088a8a3f1aede6a" category="paragraph">システムが「インストールの準備」のすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。</block>
-  <block id="715af57300b5c6806072fa2c866065e6" category="list-text">必要に応じてサービスを無効にするには 'set closePort_service_' を発行し ' 必要に応じてコマンドを繰り返して ' 必要なすべてのサービスを無効にします</block>
-  <block id="74c3270411b35dffcba4c76dadbafc6c" category="paragraph">'set closePort' コマンドは ' 一度に 1 つのサービスを無効にしますサービスは、次のいずれかの方法で指定できます。</block>
-  <block id="53f9010a998452330c318a49a19fdad3" category="paragraph">「 set bridgename bridgename 」を参照してください</block>
-  <block id="d7513c0e570b2f3453caf0550a333d1e" category="list-text">ブリッジへのアクセスを保護し、ブリッジの設定を保存します。システムで実行している ONTAP のバージョンに応じて、次のいずれかのオプションを選択します。</block>
   <block id="8f40c45d93fd99743af14410f5bb6b4f" category="list-text">各スイッチで、 2 つの IPStorage インターフェイス（「 IPStorage1/1 」および「 IPStorage1/2 」）を設定します。</block>
   <block id="0fd0c2fc018d9d95d9e5a42d9c09e57d" category="list-text">[[[[[['['a ']] 構成モードに切り替えます :</block>
   <block id="c8a791ed0c73c0a68f4c09ede0b1a9f3" category="paragraph">`_IPstorage_` パラメータ値は "`IPStorage1/1 `" または "IPStorage1/2 `" です</block>
@@ -11427,7 +11278,6 @@
   <block id="b2d9f80a5c71fe34bed7839914c2fd68" category="paragraph">新しいブリッジのタイプがパートナーブリッジと同じ場合は、パートナーブリッジと同じファームウェアにアップグレードします。新しいブリッジのタイプがパートナーブリッジと異なる場合は、ブリッジと ONTAP のバージョンでサポートされている最新のファームウェアにアップグレードします。MetroCluster Maintenance _ の「 Updating firmware on a FibreBridge bridge 」セクションを参照してください。</block>
   <block id="3240aad2738f70e3ab16c6dadcff4f64" category="list-text">ブリッジファームウェアを更新します。</block>
   <block id="befb8d9c3b9caecfce0121a43afa3ce1" category="admonition">ATTO ファームウェアバージョン 2.95 以降ではブリッジが自動的に再起動するため、この手順は不要です。</block>
-  <block id="0bbb89fa01deac898bd6b44e2d10d4b1" category="paragraph">このタスクは、 FibreBridge 7500N または 6500N ブリッジで使用できます。ONTAP 9.3 以降では、 ONTAP storage bridge firmware update コマンドを使用して、 FibreBridge 7500N ブリッジのブリッジファームウェアを更新できます。</block>
   <block id="c72683789a2c53d80a618207766d5e8e" category="paragraph">サイトのメンテナンスや再配置を開始する前に、サイトとすべての機器の電源をオフにする必要があります。</block>
   <block id="04b973e3b5c8e23139d9de9d11958a32" category="summary">MetroCluster 構成の設定、運用、監視の詳細については、ネットアップの広範なドキュメントを参照してください。</block>
   <block id="9e77fd3a877778fdac1dfea74896fc50" category="paragraph">MetroCluster 構成の設定、運用、監視の詳細については、ネットアップのドキュメントを参照してください。</block>
@@ -11599,12 +11449,10 @@
   <block id="97f70489df0d405722087f0f98dc7c3f" category="paragraph"><block ref="97f70489df0d405722087f0f98dc7c3f" category="inline-link-macro-rx"></block></block>
   <block id="6b85600ee1be273e93253da5e134fb16" category="admonition">ノード障害からの追加情報のリカバリについては、の「正しいリカバリ手順の選択」を参照してください <block ref="e623fd8091406f43d52a7bc3543c2f9f" category="inline-link-macro-rx"></block>。</block>
   <block id="8ef2465c629a51ad799f916321355ab0" category="paragraph"><block ref="8ef2465c629a51ad799f916321355ab0" category="inline-link-macro-rx"></block></block>
-  <block id="c160b6358f7336db6f2a26360400f661" category="list-text">次のガイドラインを確認し、の手順を使用して「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="958de5ee2f25b5fa2715cdd4e27fa14c" category="inline-link-macro-rx"></block>：</block>
   <block id="8b8800e8b5ac43d8ac015a60e243a711" category="admonition">ONTAP 9.8 のリリースでは、 MetroCluster のアップグレードおよび拡張手順はに移動しました <block ref="97f70489df0d405722087f0f98dc7c3f" category="inline-link-macro-rx"></block> および <block ref="a8125364ced10d8a90aedca98aa02032" category="inline-link-macro-rx"></block>。</block>
   <block id="ebe3b07d927344896c24a9e5e5eee917" category="paragraph"><block ref="ebe3b07d927344896c24a9e5e5eee917" category="inline-link-macro-rx"></block></block>
   <block id="5e6d9dff4a682d0558edb1406ac87060" category="paragraph"><block ref="5e6d9dff4a682d0558edb1406ac87060" category="inline-link-macro-rx"></block></block>
   <block id="80063a26d9eb84904fdbb388ac3a5629" category="list-text">の説明に従って、ネゴシエートスイッチオーバー、修復、スイッチバックを実行します<block ref="be2bdafda4a97cad52118e4d9ef914b5" category="inline-link-rx"></block>。</block>
-  <block id="44b7f701c8b22fd32471d911de4c0984" category="paragraph">の手順に従います <block ref="c355f6bb3dca677defb89e8a84e6c55b" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
   <block id="e3d7ead0f01b9fa985ec5c35c22c44f3" category="paragraph"><block ref="e3d7ead0f01b9fa985ec5c35c22c44f3" category="inline-link-macro-rx"></block></block>
   <block id="6405f02626b672ea5ce042f43244f057" category="paragraph"><block ref="6405f02626b672ea5ce042f43244f057" category="inline-link-macro-rx"></block></block>
   <block id="f62e57388ece8ed3ab39425498977dae" category="paragraph"><block ref="f62e57388ece8ed3ab39425498977dae" category="inline-link-macro-rx"></block></block>
@@ -11668,7 +11516,6 @@
   <block id="a2a7d27c6bf1ad121aeada48fc70ca1d" category="list-text">30分待ってから、サイトで次の機器の電源をオンにします。</block>
   <block id="383d92c84e46dd00caa3dbad6de7fe2f" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
   <block id="688f019e2f851b28c81904e0acd0c450" category="paragraph"><block ref="6f99ee259693716af238b16f6b3287d3" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定セクションで、次の手順を実行します。</block>
-  <block id="e3b4bec7cc0382f3d2b420e4d37da974" category="list-text">ストレージコントローラの電源をオンにします。</block>
   <block id="be8e7921b8bc696adb0f989ee98b7e9f" category="list-text">「speed」には「100」または「1000」を指定できます。</block>
   <block id="e44042693910b4bd1a0494893ddc1892" category="doc">SVMが実行されていて、アグリゲートがオンラインになっていることを確認してください</block>
   <block id="0f6663ce923ab095e111674a6a00e20f" category="summary">MetroCluster IP構成からONTAP メディエーターサービスを削除できます。</block>
@@ -11792,8 +11639,6 @@
   <block id="5ac8082d208bbf03d0cce2d606e0f49f" category="paragraph">一致するポートがありません。アップグレード後にクラスタポートを再作成する必要があります。<block ref="2305a256def4f5c38d82352fac177e1d" category="inline-link-macro-rx"></block></block>
   <block id="44489e59a236bf582156026d721d7300" category="list-text">スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。</block>
   <block id="a208547a21e1dc907c538b655cfee7c1" category="admonition">L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。</block>
-  <block id="05cb8d64e2770620783bfd98ba2c571c" category="paragraph">次の手順のすべてのコマンドは、電源をオンのままにするためにサイトから実行します。</block>
-  <block id="714cb8627bb0d04d6b5d032326cab4a3" category="list-text">稼働したままにするサイトから、スイッチオーバーを実行します。</block>
   <block id="e7edce3217788bc841a63851100c9164" category="list-text">ミラーされていないアグリゲートをオフラインにします：「storage aggregate offline</block>
   <block id="eeb4c33e80d1b1f4f321335e6c0a8948" category="list-text">このファブリック内の両方のスイッチで、すべてのVSANを無効にします。</block>
   <block id="f214faa187b0f8585d0284ecf49f3906" category="paragraph">VSANをディセーブルにするには、次の手順 を使用します。</block>
@@ -13514,4 +13359,103 @@
   <block id="4010f2b8e90ddf85f94ac358d78075c1" category="inline-link-macro">System Manager - ONTAP 9.7 以前のバージョンでサービスプロセッサを使用します</block>
   <block id="eaa2669881cbe475b9e0b278420a4005" category="paragraph"><block ref="eaa2669881cbe475b9e0b278420a4005" category="inline-link-macro-rx"></block></block>
   <block id="adf442d82428813618df31b5f35c8c5d" category="list-text">ISLのトポロジは同じである必要があります。たとえば、すべてのリンクを直接リンクにするか、WDMを使用する場合はすべてのリンクでWDMを使用する必要があります。</block>
+  <block id="3ac4da3c19500a46472e39b550233955" category="paragraph">ATTO FibreBridge 7500Nブリッジとは異なり、FibreBridge 7600Nブリッジは、すべてのIPポートプロトコルおよびサービスが無効になった状態で出荷されます。</block>
+  <block id="cf6dca2d67d60a19d4a17cee9ded8839" category="list-text">FibreBridge 7600Nブリッジは、最大32、16、または8Gbpsをサポートします。</block>
+  <block id="eaf41f2c4105da1a7df1e2d6212b3c1f" category="list-text">FibreBridge 7500Nブリッジは、最大16、8、または4Gbpsをサポートします。</block>
+  <block id="0690be6eb1d3773f24e0f2ab2ccaa146" category="list-text">FibreBridge 7500Nブリッジを設定する場合は、ポートで使用する接続モードを「ptp」に設定します。</block>
+  <block id="da76178e1d22c167f6a99e845374ced2" category="admonition">出力の先頭に「response truncated」というテキストが表示された場合は、Telnetを使用してブリッジに接続し、同じコマンドを入力してすべての出力を確認できます。</block>
+  <block id="fe718489f73382a38802fd47209269cf" category="paragraph">スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。</block>
+  <block id="2e6da062f65d036e37e8048eb1168cd1" category="section-title">1つのFCポートを使用するFibreBridge 7500N / 7600Nブリッジのゾーニング</block>
+  <block id="a4ee4d0f79fa6f1bac894cfc957089d6" category="paragraph">2つのFCポートのどちらか一方だけを使用するFibreBridge 7500N / 7600Nブリッジを使用する場合は、ブリッジポートのストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。</block>
+  <block id="7e95951a529361ac1e326cd54359d011" category="paragraph"><block ref="7e95951a529361ac1e326cd54359d011" category="inline-link-macro-rx"></block></block>
+  <block id="4c79922838c9f8d530f20efcd3382822" category="cell">1つのFCポート（FC1またはFC2）のみを使用するFibreBridge 7500N / 7600Nを使用する構成</block>
+  <block id="3a4842c9952a7c657d04e55a3d69b1a4" category="cell">2つのFCポートを使用するFibreBridge 7500N / 7600N</block>
+  <block id="f9805d94598bd6a841fddbff1c6ddc7b" category="paragraph">次の表は、1つのFCポート（FC1またはFC2）を使用するFibreBridge 7500N / 7600Nブリッジのみを使用する場合のブリッジポートの用途です。1つのFCポートを使用するFibreBridge 7500N / 7600Nブリッジの場合は、FC1またはFC2のいずれかをFC1と表示されたポートにケーブル接続できます。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
+  <block id="126b9e3a8501d897a2356aba96828af6" category="cell">1つのFCポートを使用するFibreBridge 7500N / 7600Nブリッジ</block>
+  <block id="69abf6cf7deeba7ace2f747f7661208f" category="cell">1つのFCポートを使用するFibreBridge 7500N / 7600N</block>
+  <block id="1b3c29a52da9672be1cb789bb6d06ae8" category="cell">2つのFCポートを使用するFibreBridge 7500N</block>
+  <block id="0351289236b3260f9d0c35b64f62689c" category="paragraph">FibreBridge 7500N / 7600Nブリッジのケーブル接続には、1つのFCポート（FC1またはFC2）のみを使用します。4 つのイニシエータのうち 2 つだけを接続し、スイッチポートに接続されている他の 2 つのイニシエータは空にしておきます。</block>
+  <block id="4883312b6c36aa2f1d5ce2e2f17638bd" category="paragraph">ゾーニングを手動で実行する場合は、1つのFCポート（FC1またはFC2）を使用するFibreBridge 7500N / 7600Nブリッジのゾーニングに従います。このシナリオでは、各ファブリックのゾーンメンバーごとに 2 つではなく 1 つのイニシエータポートが追加されます。</block>
+  <block id="1e008e69dc731ad28df3d6927462a7f3" category="paragraph">の手順を使用して、ゾーニングを変更したり、FibreBridge 6500NからFibreBridge 7500Nへのアップグレードを実行したりできます。 <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>。</block>
+  <block id="803d845c069720e0ec75ee03ea5a43d4" category="paragraph">次の表に、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポートの用途を示します。</block>
+  <block id="2cd1f3df6c3bbd7c9891d742ad23d04a" category="cell">FibreBridge 7500N / 7600Nブリッジ</block>
+  <block id="81b2aac60df91543fcf4f05563b1f80e" category="paragraph">次の表は、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート17までの用途です。追加のブリッジをポート 18~23 にケーブル接続できます。</block>
+  <block id="85878b4f87459062c8904a27720ba2be" category="paragraph">次の表に、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート23までの用途を示します。ポート 25~48 を使用して、追加のブリッジを接続できます。</block>
+  <block id="6f40fc62599b436af99e9090bcb1fe21" category="paragraph">次の表は、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート14までの用途です。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
+  <block id="836f2645702f9125726ff7335ed42bd5" category="paragraph">次の表は、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート14までの用途です。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
+  <block id="7f921cbd9f23de85fa3d483b640e428b" category="open-title">ノードの電源がオフになっている場合：</block>
+  <block id="5f4eaac69c780a3f8ab154192e4a1a26" category="paragraph">ノードの電源をオンにします</block>
+  <block id="2900f8420dafccee0a2692e48506c6cb" category="open-title">ノードにLOADERプロンプトが表示されている場合：</block>
+  <block id="796bd1c27d5eea106367802d9fd5bd0e" category="paragraph">次のコマンドを実行します。<block ref="ce54ef17bebf280339d340bd40dff593" prefix=" " category="inline-code"></block></block>
+  <block id="4129cca17421055c633ccbc72f65d61f" category="list-text">ノードのブートが完了したら、ルートアグリゲートがミラーされていることを確認します。</block>
+  <block id="f691b46b240bca97e906bfb1366247a7" category="paragraph">両方のプレックスが存在する場合は、再同期が自動的に開始されます。プレックスで障害が発生した場合は、プレックスを削除し、次のコマンドを使用してミラーを再作成し、ミラー関係を再確立します。</block>
+  <block id="9abd59a18f57d6cb4282adb209f8b563" category="list-text">SASディスクシェルフのスタックにFibreBridge 7600Nブリッジが2つ接続されている。</block>
+  <block id="fc35f0bbf60965f7ec34001ad687a3f3" category="list-text">SASディスクシェルフのスタックにFibreBridge 7500NブリッジとFibreBridge 7600Nブリッジが1つずつ接続されている。</block>
+  <block id="3ed94c5d90da7ee057d27e4a111e2d56" category="list-text">ATTOブリッジの電源をオフにし、ブリッジに接続されている電源ケーブルを取り外します。</block>
+  <block id="44f214a5099f49db147696415a075d47" category="list-text">FibreBridge 7500Nを設定する場合は、ポートで使用する接続モードを「ptp」に設定します。</block>
+  <block id="8abe3c7c95f9615fe71d95df61a4b898" category="paragraph">ブリッジをシェルフスタックの上部または下部に接続するケーブルを交換する必要があります。FibreBridge 7600N / 7500Nブリッジの接続にはMini-SASケーブルが必要です。</block>
+  <block id="b889bc5ea39fc308a80e7da9aafcd5bb" category="list-text">FibreBridge 6500Nブリッジは、最大8、4、または2Gbpsをサポートします。</block>
+  <block id="522ee388aaa608b60a7148c3f95473d7" category="paragraph">ATTO FibreBridge 7500Nブリッジとは異なり、FibreBridge 7600Nブリッジは、すべてのIPポートプロトコルおよびサービスが無効になった状態で出荷されます。</block>
+  <block id="453c83b73d0ecbb9f09224937b817815" category="list-text">この手順を使用して、FibreBridge 7600N / 7500Nブリッジを使用してスタックを追加できます。</block>
+  <block id="e05381bfaa686bb26262ce132ba9d898" category="summary">サイトのメンテナンスまたはサイトを別の場所に再配置するために、MetroCluster FC構成の単一サイトの電源をオフにしてオンにする方法を確認しておく必要があります。</block>
+  <block id="81856068a1902936a3d6d361da5c40d9" category="doc">MetroCluster FC構成での単一サイトの電源オフと電源オン</block>
+  <block id="d7816243d769abfab3871457907990d1" category="paragraph">MetroCluster FC構成でサイトのメンテナンスを実施したり、単一サイトを再配置したりする必要がある場合は、サイトの電源をオフにして電源をオンにする方法を確認しておく必要があります。</block>
+  <block id="8d4c5977271a3cb624fe080526afb7fc" category="paragraph">サイトを再配置して再設定する必要がある場合（4ノードクラスタから8ノードクラスタに拡張する必要がある場合など）は、これらのタスクを同時に実行することはできません。この手順では、サイトのメンテナンスを実行するため、またはサイトの構成を変更せずにサイトを再配置するために必要な手順のみを説明します。</block>
+  <block id="56d6288c5f791724a871f0f147e12032" category="section-title">MetroClusterサイトの電源をオフにする</block>
+  <block id="1045051bc489dcbac0eba7b7e828fc16" category="paragraph">次の手順のすべてのコマンドは、電源をオンにしたままのサイトから実行されます。</block>
+  <block id="3992217858a418dc708f7898927dc589" category="list-text">稼働したままにするサイトから、スイッチオーバーを実施します。</block>
+  <block id="de581c55e079c6aae1e67e65189afbfa" category="paragraph">ミラーされていないアグリゲートは、アグリゲート内のリモートディスクにアクセスできる場合にのみ、スイッチオーバー後にオンラインになります。ISLで障害が発生すると、ローカルノードはミラーされていないリモートディスクのデータにアクセスできなくなる可能性があります。アグリゲートに障害が発生すると、ローカルノードがリブートされる場合があります。</block>
+  <block id="8786bed4623fe6698abcaad77521bad9" category="paragraph">ディザスタサイトのミラーされていないプレックスをオフラインにしないと、あとでディザスタサイトの電源をオフにしたときにシステムが停止する可能性があります。</block>
+  <block id="9f3870eb3ed0a7def4c546eeae018089" category="admonition">この手順は、Cluster_Aに対してリモートのディスクを含むすべてのプレックスに対して実行します。</block>
+  <block id="52aff055e8c859748fa5df921f322567" category="list-text">スイッチタイプに応じて、ISLスイッチポートを永続的にオフラインにします。</block>
+  <block id="8e3f5197bd01d7914ee8e8fc65fc56e4" category="paragraph">Brocade FCスイッチ</block>
+  <block id="132fe2b93bc791dd643ed680d1ddaa5e" category="list-text">を使用します<block ref="2e7f851c1bdee09a500a083d356ad425" prefix=" " category="inline-code"></block> 次の例に示すように、ポートを永続的に無効にするコマンドを実行します。サバイバーサイトにある両方のスイッチで実行する必要があります。</block>
+  <block id="06f892e706e2490e96a2a657cd6b479d" category="paragraph">Cisco FCスイッチ</block>
+  <block id="aa4560fdf6eb931e7acf782f301837db" category="list-text">ディザスタサイトの機器の電源をオフにします。</block>
+  <block id="a966334d5468b4c1dcb921af4d8f0060" category="paragraph">次の機器の電源を、記載されている順序でオフにする必要があります。</block>
+  <block id="5129cfd7ac63c37dcae900bb424246fe" category="list-text">ストレージコントローラ-ストレージコントローラは現在、<block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block> プロンプトが表示されたら、電源を完全にオフにする必要があります。</block>
+  <block id="eb5d4a4c0c7b75bc1b90f45b192a7523" category="list-text">ATTO FibreBridge（存在する場合）</block>
+  <block id="0924753fca83f6aa143b6eebad4e37c4" category="list-text">新しい場所で正しく再接続できるように、すべてのコンポーネントのケーブル配線が慎重に記録されていることを確認します。</block>
+  <block id="23b7edc8743ecdff653ecd31b9ba0b49" category="list-text">すべてのハードウェア、ストレージコントローラ、FCスイッチ、FibreBridge、およびストレージシェルフを物理的に再配置します。</block>
+  <block id="99b1e28bd58c72b586b1c8c6740b9731" category="list-text">FCスイッチの電源をオンにします。</block>
+  <block id="1acfa95e8e2514763ed62036ab3fa9ed" category="list-text">を使用します<block ref="aa9509625b9b7a7cbd37e4dfa7a53121" prefix=" " category="inline-code"></block> コマンドを実行して、ポートを永続的に有効にします。サバイバーサイトにある両方のスイッチで実行する必要があります。</block>
+  <block id="ad505825f73570f3e5352620da6fccac" category="admonition">リンクが正しく設定され、安定している場合にのみ続行してください。</block>
+  <block id="e56dd9ab2becce5cc684eaa96fadcf60" category="list-text">を入力します<block ref="9ecdb594b01de9fa2c95aec87e6f82e1" prefix=" " category="inline-code"></block> コマンドを実行して、ポートを永続的に無効にします。</block>
+  <block id="4fe0323b18610fc616e4b8a765b3e593" category="paragraph">最初にスイッチの電源をオンにする必要があります。サイトを再配置した場合は、前の手順で電源がオンになっている可能性があります。</block>
+  <block id="2208c2a5a2ab4f46416b8dc29f446d2b" category="list-text">FCスイッチのISLを無効にします。</block>
+  <block id="971572bd6aba77ed87a414025a289cb9" category="list-text">ストレージコントローラの電源をオンにし、<block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block> プロンプト。コントローラが完全にブートしないようにする必要があります。</block>
+  <block id="b5b517b5bd160188f72a49194aee565c" category="paragraph">自動起動が有効になっている場合は、<block ref="08102569ee3581db669c9d763e14b983" prefix=" " category="inline-code"></block> コントローラの自動ブートを停止します。</block>
+  <block id="235d6d36d1eabe510af7ea0ec5e96c6b" category="paragraph">次のコマンドを使用できます。<block ref="2aa3751083baf48c1e1ddef8df4ddcc3" prefix=" " category="inline-code"></block> ATTO CLIで、次の手順を実行します。</block>
+  <block id="480cf83fd6c463ccef2ed2a9d0dce2c4" category="list-text">を入力します<block ref="bedfcd4488b13f5b7062e121a6a8baa5" prefix=" " category="inline-code"></block> コマンドを使用してポートを永続的に有効にします。サバイバーサイトにある両方のスイッチで実行する必要があります。</block>
+  <block id="9d1a338762e03c980c82e8098eb03744" category="list-text">サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻します。再同期処理が再開され、 SyncMirror が再確立されます。</block>
+  <block id="9f6a23c1abc971d714730192ce961b96" category="paragraph">の手順に従います <block ref="9c0d52e0ce7a57d643217990aba10043" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
+  <block id="92833b015ed412068659d576a7df1599" category="list-text">次のガイドラインを確認し、の手順を使用して「最上部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>：</block>
+  <block id="3753c208918127350b444c3dc052115f" category="list-text">次のガイドラインを確認し、の手順を使用して「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>：</block>
+  <block id="0b4bc6296d77be28e33d3b50e0ea0797" category="paragraph"><block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block></block>
+  <block id="e49bc35e0118f2b5a5904c13e1833761" category="section-title">ONTAP 9.3.x以前を実行している構成でのFibreBridge 7500Nのファームウェアの更新</block>
+  <block id="1a5e839afe7a716dd2640f7fdb69669a" category="paragraph">FibreBridgeブリッジのファームウェアの更新は、最新の機能がインストールされていることを確認したり、考えられる問題を解決したりするために必要になる場合があります。ONTAP 9.3.xを実行している構成のFibreBridge 7500Nには、この手順を使用します。</block>
+  <block id="ef1eae725a44cfeb66559e3d3e94f7ec" category="paragraph">ONTAP 9.3 以降では、 ONTAP storage bridge firmware update コマンドを使用して、 FibreBridge 7500N ブリッジのブリッジファームウェアを更新できます。</block>
+  <block id="05791e70fbe1537753bf5a023b7623eb" category="list-text">FibreBridge 7500Nブリッジにファームウェアをインストールします。</block>
+  <block id="c1a1962dd8879c856d3b821c9622f94c" category="paragraph">ATTO FibreBridge 7500N Installation and Operation Manual _の「Update Firmware」セクションに記載されている手順を参照してください。</block>
+  <block id="24ea961e35f1e60e606fd840735a7b80" category="summary">MetroCluster IP構成でサイトのメンテナンスを実施したり、単一サイトを再配置したりする必要がある場合は、サイトの電源をオフにしてオンにする方法を把握しておく必要があります。</block>
+  <block id="064c811af1591c939040fba47365213b" category="doc">MetroCluster IP構成での単一サイトの電源オフと電源オン</block>
+  <block id="b66411bb5022a5619d62ef25fa47b67f" category="paragraph">ONTAP 9.5以前を実行しているMetroCluster IP構成では、ディザスタサイトのノードはONTAPで自動的にブートせず、プレックスはオフラインのままです。</block>
+  <block id="b13f7000aa5add9a5264da17e3dc4f67" category="list-text">各ノードで次のコマンドを実行して、ノードを停止します。</block>
+  <block id="de48c3af46bd57dad9f2ad02bbb26041" category="paragraph"><block ref="8a921c8973814d1a72edcc98a6686da9" prefix="" category="inline-code"></block></block>
+  <block id="84b0c3d7ab439004e978c709f15fc230" category="paragraph">次の機器の電源を、記載されている順序でオフにする必要があります。</block>
+  <block id="98734a3d5b75c8baf95c27fbc27a15f1" category="list-text">すべてのハードウェア、ストレージコントローラ、IPスイッチ、FibreBridge、およびストレージシェルフを物理的に再配置します。</block>
+  <block id="1cef707d96d59ea52cd45984a36d2f11" category="list-text">IPスイッチの電源をオンにします。</block>
+  <block id="ac8327044a4ce63889944095a1b6aed8" category="list-text">シェルフの電源をオンにし、電源が完全にオンになるまで十分な時間を確保します。</block>
+  <block id="d5061566f9570e151daa3fd59fb31405" category="list-text">メンテナンスモードのノードからローカルストレージが認識されていることを確認します。</block>
+  <block id="7a492d8ba3deac8ecd729c56c1058794" category="paragraph">次の表は、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポートの用途です。</block>
+  <block id="2d5d944d1466716b339b20936cc4b7ec" category="paragraph">次の表は、FibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート17までの用途です。追加のブリッジをポート 18~23 にケーブル接続できます。</block>
+  <block id="f912eaa76cd834cbed98a7201254e72e" category="paragraph">次の表に、Brocade 6505、6510、およびDCX 8510-8スイッチでFibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート17までの用途を示します。追加のブリッジをポート 18~23 にケーブル接続できます。</block>
+  <block id="e75c88d98fec123855e6503ffa20ae16" category="paragraph">次の表は、Cisco 9148または9148Sスイッチを使用するFibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート23までの用途です。</block>
+  <block id="0d792f55f305e85c0f763a05b6d33ae1" category="paragraph">次の表は、Cisco 9148、9148S、または9250iスイッチでFibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート14までの用途です。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
+  <block id="972c5512c843cde59ea3263b1073efea" category="paragraph">次の表は、Cisco 9148、9148S、および9250iスイッチでFibreBridge 7500N / 7600Nブリッジを使用する場合のブリッジポート14までの用途です。ポート 15~32 に同じパターンで追加のブリッジを接続できます。</block>
+  <block id="8bc67669b17eba9ca754ee74dd34564c" category="list-text">FIPS 準拠バージョンの EFOS を使用している場合は、 ECDSA キーを生成します。次の例では、長さ521のキーを作成します。有効な値は、 256 、 384 、または 521 です。</block>
+  <block id="8eb0b3dc24b7128748cd767385d5a9f2" category="paragraph">MetroCluster IP構成の各ノードには、バックエンドIPネットワークに接続するための専用のインターフェイスがあります。</block>
+  <block id="ad1b97f0744b9c154b01cc69afb505d7" category="list-text">2つのローカルクラスタインターフェイス</block>
+  <block id="861e1910edbd7f3e677dab91f10869b0" category="sidebar">単一のMetroClusterサイトの電源オフと電源オン</block>
+  <block id="b54f4d527d126f4e54869800ed0e43ac" category="sidebar">MetroCluster構成全体の電源をオフにする</block>
 </blocks>

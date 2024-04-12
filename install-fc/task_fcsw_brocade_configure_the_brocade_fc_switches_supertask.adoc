@@ -1725,7 +1725,7 @@ Port   Configured    Active   Configured   Active  Speed
 
 == Brocade FC スイッチでゾーニングを設定します
 
-スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。手順は、 FibreBridge 7500N ブリッジと FibreBridge 6500N ブリッジのどちらを使用しているかによって異なります。
+スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。
 
 
 
@@ -1947,9 +1947,9 @@ QOSH2_MC1_FAB_2_FCVI （ 6520 ）
 |===
 
 
-=== FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング
+=== 1つのFCポートを使用するFibreBridge 7500N / 7600Nブリッジのゾーニング
 
-FibreBridge 6500N ブリッジまたは一方の FC ポートのみを使用する FibreBridge 7500N / 7600N ブリッジを使用する場合は、ブリッジポート用のストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。
+2つのFCポートのどちらか一方だけを使用するFibreBridge 7500N / 7600Nブリッジを使用する場合は、ブリッジポートのストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。
 
 ここでは、 DR グループ 1 のゾーニング例のみを示しています。2 つ目の DR グループがある構成の場合は、コントローラとブリッジの対応するポートを使用して、同じ方法で 2 つ目の DR グループのゾーニングを設定します。
 
@@ -1999,7 +1999,6 @@ A または B
 +
 スタックグループに含めることができるストレージシェルフは 10 個までです。
 
-* FibreBridge 6500N ブリッジでは、スタックグループでサポートされるスタックは 1 つだけです。
 
  a| 
 1 、 2 など
@@ -2443,7 +2442,6 @@ A または B
 +
 スタックグループに含めることができるストレージシェルフは 10 個までです。
 
-* FibreBridge 6500N ブリッジでは、スタックグループでサポートされるスタックは 1 つだけです。
 
  a| 
 1 、 2 など
@@ -4294,7 +4292,7 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC2
 
 link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FC-VI ポートのゾーニング"]
 
-link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["FibreBridge 6500N ブリッジまたは 1 つの FC ポートを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング"]
+link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["1つのFCポートを使用するFibreBridge 7500N / 7600Nブリッジのゾーニング"]
 
 link:task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["両方の FC ポートを使用する FibreBridge 7500N ブリッジのゾーニング"]
 

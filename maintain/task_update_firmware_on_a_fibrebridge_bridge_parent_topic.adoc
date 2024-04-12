@@ -258,9 +258,9 @@ flashimages
 
 
 
-== ONTAP 9.3.x 以前を実行している構成での FibreBridge 7500N / 6500N ブリッジのファームウェアの更新
+== ONTAP 9.3.x以前を実行している構成でのFibreBridge 7500Nのファームウェアの更新
 
-FibreBridge ブリッジのファームウェアを更新して、最新の機能を実装したり、潜在的な問題を解決したりすることが必要になる場合があります。この手順は、 ONTAP 9.3.x を実行している構成の FibreBridge 7500N 、またはサポート対象のすべてのバージョンの ONTAP の FibreBridge 6500N ブリッジに使用します。
+FibreBridgeブリッジのファームウェアの更新は、最新の機能がインストールされていることを確認したり、考えられる問題を解決したりするために必要になる場合があります。ONTAP 9.3.xを実行している構成のFibreBridge 7500Nには、この手順を使用します。
 
 .作業を開始する前に
 * MetroCluster 構成が正常に動作している必要があります。
@@ -276,7 +276,7 @@ IMT では、 Storage 解決策フィールドを使用して MetroCluster 解�
 
 
 
-このタスクは、 FibreBridge 7500N または 6500N ブリッジで使用できます。ONTAP 9.3 以降では、 ONTAP storage bridge firmware update コマンドを使用して、 FibreBridge 7500N ブリッジのブリッジファームウェアを更新できます。
+ONTAP 9.3 以降では、 ONTAP storage bridge firmware update コマンドを使用して、 FibreBridge 7500N ブリッジのブリッジファームウェアを更新できます。
 
 link:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html["ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新"]
 
@@ -305,17 +305,15 @@ https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/download
 . 各ブリッジでファームウェアを更新するように指示された場合は、 ATTO FibreBridge Firmware のダウンロードページとリリースノートのコピーを作成して参照します。
 . ブリッジを更新します。
 +
-.. FibreBridge ブリッジにファームウェアをインストールします。
+.. FibreBridge 7500Nブリッジにファームウェアをインストールします。
 +
-*** ATTO FibreBridge 7500N ブリッジを使用している場合は、 _ATTO FibreBridge 7500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。
-*** ATTO FibreBridge 6500N ブリッジを使用している場合は、 _ATTO FibreBridge 6500N Installation and Operation Manual _ の「 Update Firmware 」セクションに記載されている手順を参照してください。
+ATTO FibreBridge 7500N Installation and Operation Manual _の「Update Firmware」セクションに記載されている手順を参照してください。
+
 +
 * 注意： * ここで個々のブリッジの電源を再投入してください。スタックの両方のブリッジの電源を同時に投入すると、コントローラがドライブにアクセスできなくなり、プレックスや複数のディスクで障害が発生する可能性があります。
 
 +
 ブリッジが再起動します。
-
-
 
 .. いずれかのコントローラのコンソールで、ブリッジが正常に再起動したことを確認します。
 +

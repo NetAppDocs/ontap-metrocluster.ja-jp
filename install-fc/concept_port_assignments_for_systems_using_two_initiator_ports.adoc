@@ -13,20 +13,18 @@ summary: FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 システムは�
 [role="lead"]
 FAS8020 、 AFF8020 、 FAS8200 、および AFF A300 システムは、ファブリックごとに 1 つのイニシエータポートとコントローラごとに 2 つのイニシエータポートを使用して設定できます。
 
-FibreBridge 6500N ブリッジまたは一方の FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N / 7600N ブリッジのケーブル接続方法を使用できます。4 つのイニシエータのうち 2 つだけを接続し、スイッチポートに接続されている他の 2 つのイニシエータは空にしておきます。
+FibreBridge 7500N / 7600Nブリッジのケーブル接続には、1つのFCポート（FC1またはFC2）のみを使用します。4 つのイニシエータのうち 2 つだけを接続し、スイッチポートに接続されている他の 2 つのイニシエータは空にしておきます。
 
-FibreBridge 6500N ブリッジの設定に対応する正しい RCF ファイルを適用する必要があります。
+ゾーニングを手動で実行する場合は、1つのFCポート（FC1またはFC2）を使用するFibreBridge 7500N / 7600Nブリッジのゾーニングに従います。このシナリオでは、各ファブリックのゾーンメンバーごとに 2 つではなく 1 つのイニシエータポートが追加されます。
 
-ゾーニングを手動で実行する場合は、 FibreBridge 6500N ブリッジまたは一方の FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N / 7600N ブリッジのゾーニング方法に従います。このシナリオでは、各ファブリックのゾーンメンバーごとに 2 つではなく 1 つのイニシエータポートが追加されます。
-
-ゾーニングの変更や FibreBridge 6500 から FibreBridge 7500 へのアップグレードの実行には、の手順ホットスワップ対応 FibreBridge 6500N ブリッジと FibreBridge 7500N / 7600N ブリッジ _ を使用します https://docs.netapp.com/us-en/ontap-metrocluster/maintain/index.html["MetroCluster のコンポーネントをメンテナンスします"]。
+の手順を使用して、ゾーニングを変更したり、FibreBridge 6500NからFibreBridge 7500Nへのアップグレードを実行したりできます。 link:task_replace_a_sle_fc_to_sas_bridge.html#hot_swap_6500n["FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジのホットスワップ"]。
 
 次の表に、 ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当てを示します。
 
 |===
 
 
-4+| FibreBridge 6500N ブリッジ、または 1 つの FC ポート（ FC1 または FC2 ）のみを使用する FibreBridge 7500N または 7600N を使用する構成 
+4+| 1つのFCポート（FC1またはFC2）のみを使用するFibreBridge 7500N / 7600Nを使用する構成 
 
 
 4+| * MetroCluster 1 または DR グループ 1 * 
