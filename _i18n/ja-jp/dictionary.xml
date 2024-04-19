@@ -947,7 +947,6 @@
   <block id="4a18eaea016103675a5da405a57fbed8" category="paragraph">この手順は、次の条件に該当する場合にも使用できます。</block>
   <block id="49304b5a3e77f6b22f9f39b8cf0e1186" category="list-text">同じ SAS ストレージのスタックに接続されている FibreBridge 6500N ブリッジのペアを交換する。</block>
   <block id="520879137e3e1dd05fc10803bb01fbcd" category="list-text">ペアの一方の FibreBridge 6500N ブリッジを以前に交換済みであり、ストレージスタックに FibreBridge 6500N ブリッジと FibreBridge 7600N / 7500N ブリッジが 1 つずつ設定されている。</block>
-  <block id="73152dad4acad3208bc063c3951344c5" category="paragraph">その場合は、まず以下の手順から始めて、「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします。</block>
   <block id="f9c1933f3b94ffee14ef186b2709352c" category="paragraph">次の図は、 4 つの FibreBridge 6500N ブリッジで 2 つの SAS ストレージスタックを接続する初期構成の例を示しています。</block>
   <block id="3dcba5083263c26dc21f695136013a58" category="image-alt">以前にスタックを統合する</block>
   <block id="dc876c7ff2512b544d84916000f3f0d0" category="list-text">FibreBridge 7600N / 7500N ブリッジの FC1 ポートをスイッチまたはコントローラに接続します。</block>
@@ -13429,8 +13428,6 @@
   <block id="480cf83fd6c463ccef2ed2a9d0dce2c4" category="list-text">を入力します<block ref="bedfcd4488b13f5b7062e121a6a8baa5" prefix=" " category="inline-code"></block> コマンドを使用してポートを永続的に有効にします。サバイバーサイトにある両方のスイッチで実行する必要があります。</block>
   <block id="9d1a338762e03c980c82e8098eb03744" category="list-text">サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻します。再同期処理が再開され、 SyncMirror が再確立されます。</block>
   <block id="9f6a23c1abc971d714730192ce961b96" category="paragraph">の手順に従います <block ref="9c0d52e0ce7a57d643217990aba10043" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
-  <block id="92833b015ed412068659d576a7df1599" category="list-text">次のガイドラインを確認し、の手順を使用して「最上部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>：</block>
-  <block id="3753c208918127350b444c3dc052115f" category="list-text">次のガイドラインを確認し、の手順を使用して「下部」の FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジとホットスワップします <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>：</block>
   <block id="0b4bc6296d77be28e33d3b50e0ea0797" category="paragraph"><block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block></block>
   <block id="e49bc35e0118f2b5a5904c13e1833761" category="section-title">ONTAP 9.3.x以前を実行している構成でのFibreBridge 7500Nのファームウェアの更新</block>
   <block id="1a5e839afe7a716dd2640f7fdb69669a" category="paragraph">FibreBridgeブリッジのファームウェアの更新は、最新の機能がインストールされていることを確認したり、考えられる問題を解決したりするために必要になる場合があります。ONTAP 9.3.xを実行している構成のFibreBridge 7500Nには、この手順を使用します。</block>
@@ -13458,4 +13455,11 @@
   <block id="ad1b97f0744b9c154b01cc69afb505d7" category="list-text">2つのローカルクラスタインターフェイス</block>
   <block id="861e1910edbd7f3e677dab91f10869b0" category="sidebar">単一のMetroClusterサイトの電源オフと電源オン</block>
   <block id="b54f4d527d126f4e54869800ed0e43ac" category="sidebar">MetroCluster構成全体の電源をオフにする</block>
+  <block id="3918b9a89aceefd41e40355d1f97ba48" category="list-text">新しい各ノードをリブートします。</block>
+  <block id="fedca74b48d819e0ff016411f2964078" category="paragraph"><block ref="d690f5fb4faed2f81ce54caed818eaf8" prefix="" category="inline-code"></block></block>
+  <block id="0266a1f477a71d63c95d6ad418f2a596" category="paragraph">の手順を使用して、ゾーニングを変更したり、FibreBridge 6500NからFibreBridge 7500Nへのアップグレードを実行したりできます。 <block ref="7352d8244ff0bfad7d2b5214b0bb9616" category="inline-link-macro-rx"></block>。</block>
+  <block id="72a027f2830c7a189cc919fbbc72c98b" category="paragraph">この場合、下記の手順から始めて、下部のFibreBridge 6500NブリッジをFibreBridge 7600N / 7500Nブリッジとホットスワップします。</block>
+  <block id="5a74832dfdf0bb3064f1c60224b5cf2a" category="list-text">次のガイドラインに従って、の手順を使用して、上部のFibreBridge 6500NブリッジをFibreBridge 7600N / 7500Nブリッジとホットスワップします。 <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>：</block>
+  <block id="ea8d3ee31ee0fcdd012de17493f6fb2c" category="list-text">次のガイドラインに従って、の手順を使用して、下部のFibreBridge 6500NブリッジをFibreBridge 7600N / 7500Nブリッジとホットスワップします。 <block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block>：</block>
+  <block id="16bdceed077292999c9190c699d66beb" category="list-text">すべてのクラスタLIFを変更して自動リバートを再度有効にします。</block>
 </blocks>

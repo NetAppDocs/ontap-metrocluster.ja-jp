@@ -137,6 +137,15 @@ NOTE: スイッチをアップグレードまたはダウングレードする�
 +
 「 * network port show * 」と表示されます
 
++
+.. すべてのクラスタLIFを変更して自動リバートを無効にします。
++
+[source, asciidoc]
+----
+network interface modify -vserver <vserver_name> -lif <lif_name> -auto-revert false
+----
+
+
 . [[existing_step4]]古いスイッチから接続を切断します。
 +
 
@@ -146,12 +155,6 @@ NOTE: 古い構成と新しい構成で同じポートを使用していない�
 次の順序で接続を削除します。
 
 +
-.. すべてのクラスタLIFを変更して自動リバートを無効にします。
-+
-[source, asciidoc]
-----
-net int modify -vserver <vserver_name> -lif <lif_name> -auto-revert false
-----
 .. ローカルクラスタインターフェイスを切断します
 .. ローカルクラスタのISLを切断します
 .. MetroCluster IPインターフェイスを切断します
@@ -228,6 +231,12 @@ NOTE: 管理インターフェイス（使用している場合）を除き、�
 
 NOTE: ネットワークをアップグレードまたはダウングレードする場合は、 2 つ目のネットワークに対してすべての手順を繰り返します。
 
+. すべてのクラスタLIFを変更して自動リバートを再度有効にします。
++
+[source, asciidoc]
+----
+network interface modify -vserver <vserver_name> -lif <lif_name> -auto-revert true
+----
 . 必要に応じて、NS224シェルフを移動します。
 +
 NS224シェルフをMetroCluster IPスイッチに接続しないMetroCluster IP構成を再構成する場合は、該当する手順 を使用してNS224シェルフを追加または移動します。
