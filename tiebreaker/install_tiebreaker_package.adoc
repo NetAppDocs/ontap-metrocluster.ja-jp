@@ -2,29 +2,29 @@
 permalink: tiebreaker/install_tiebreaker_package.html 
 sidebar: sidebar 
 keywords: install, tiebreaker, software, monitor, capabilities, capability, cluster, storage, environment, snmp, notification, event, node, connectivity, issue, site, disaster, system, install, upgrade, upgrading, software, dependencies, dependency, package, ntp, requirements, requirements for tiebreaker, tiebreaker requirements, mysql, mariadb, autostart, database 
-summary: Tiebreaker ソフトウェアは、クラスタストレージ環境に監視機能を提供します。また、ノード接続の問題やサイト障害が発生した場合に SNMP 通知を送信します。 
+summary: MetroCluster構成を監視するには、ホストLinuxオペレーティングシステムでTiebreaker 1.5の新規インストールまたはアップグレードを実行します。 
 ---
-= ソフトウェアパッケージをインストールまたはアップグレードする
+= Tiebreaker 1.5のインストールまたはアップグレード
 :allow-uri-read: 
 
 
 [role="lead"]
-MetroCluster 構成を監視するには、ローカルコンピュータで MetroCluster Tiebreaker ソフトウェアをインストールまたはアップグレードする必要があります。
+MetroCluster構成を監視するには、ホストLinuxオペレーティングシステムでTiebreaker 1.5の新規インストールまたはアップグレードを実行します。
 
 .このタスクについて
-* ストレージシステムで ONTAP 8.3.x 以降が実行されている必要があります。
-* を使用してOpenJDKをインストールしておく必要があります `yum install java-x.x.x-openjdk` コマンドを実行しますTiebreaker 1.4以前を実行しているシステムの場合は、JRE 8を実行します。Tiebreaker 1.5以降を実行しているシステムの場合は、OpenJDK 17、18、または19を実行します。この例の出力はJRE 1.8.0を示しています。（JRE 8）。
+* サポートされているバージョンのONTAPがストレージシステムで実行されている必要があります。を参照してください link:install_prepare.html#software-requirements["ソフトウェア要件"] 詳細については、表を参照してください。
+* を使用してOpenJDKをインストールしておく必要があります `yum install java-x.x.x-openjdk` コマンドを実行しますTiebreaker 1.5以降では、OpenJDK 17、18、または19がサポートされます。
 * MetroCluster Tiebreakerは、Tiebreakerのインストール、テーブルとユーザの作成、ユーザパスワードの設定に必要な管理権限を持つroot以外のユーザとしてインストールできます。
 
 
 .手順
-. MetroCluster Tiebreakerソフトウェアをダウンロードします。この例ではバージョン1.5を使用しています。
+. MetroCluster TiebreakerソフトウェアとMetroCluster_Tiebreaker_RPM_GPGキーをダウンロードします。
 +
-https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]
 
-. をダウンロードします `MetroCluster_Tiebreaker_RPM_GPG` キー：
+NOTE: MetroCluster_Tiebreaker_RPM_GPGキーは、Tiebreaker 1.5のソフトウェアパッケージをNetApp Support Siteからダウンロードするときと同じページからダウンロードできます。
+
 +
-https://mysupport.netapp.com/site/["ネットアップサポートサイト"^]
+https://mysupport.netapp.com/site/products/all/details/metrocluster-tiebreaker/downloads-tab["MetroCluster Tiebreaker（ダウンロード）- NetApp Support Site"^]
 
 . root ユーザとしてホストにログインします。
 . root以外のユーザを作成し、 `mcctbgrp` グループ：
@@ -97,7 +97,7 @@ NOTE: 署名を正常に検証してからインストールを続行する必�
 NOTE: Tiebreakerバージョン1.4からアップグレードする場合は、Tiebreakerバージョン1.5にのみアップグレードできます。以前のバージョンからTiebreaker 1.5へのアップグレードはサポートされていません。
 
 +
-新規インストールを実行するか、既存のインストールをアップグレードするかに応じて、以下から正しい手順 を選択します。
+新規インストールを実行するか、既存のインストールをアップグレードするかに応じて、正しい手順を選択します。
 
 +
 [role="tabbed-block"]
@@ -123,7 +123,6 @@ NOTE: インストール中にプロンプトが表示されたら、以前に�
 +
 [listing]
 ----
-
 Verifying...                          ################################# [100%]
 Preparing...                          ################################# [100%]
 Updating / installing...

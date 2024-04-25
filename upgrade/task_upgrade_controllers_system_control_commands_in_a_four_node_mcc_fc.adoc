@@ -17,10 +17,10 @@ summary: このガイドに記載された自動 MetroCluster スイッチオー
 
 == サポートされるプラットフォームの組み合わせ
 
-* サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください link:concept_choosing_controller_upgrade_mcc.html#metrocluster-fc-controller-upgrades["コントローラのアップグレード手順 を選択します"]。
+* サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください  link:concept_choosing_controller_upgrade_mcc.html#supported-metrocluster-fc-controller-upgrades["コントローラのアップグレード手順 を選択します"]。
 
 
-を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新方法を選択します"] を参照してください。
+を参照してください link:concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新方法を選択します"] を参照してください。
 
 
 
@@ -35,7 +35,7 @@ summary: このガイドに記載された自動 MetroCluster スイッチオー
 +
 https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
-* この手順を使用して、 NSO ベースの自動スイッチオーバーとスイッチバックを使用して、 4 ノード MetroCluster FC 構成のコントローラをアップグレードできます。アグリゲートの再配置（ ARL ）を使用してコントローラをアップグレードする場合は、を参照してください https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-auto-app/["ONTAP 9.8 以降を実行しているコントローラハードウェアをアップグレードするには、「 system controller replace 」コマンドを使用します"]。NSO ベースの自動化された手順を使用することを推奨します。
+* この手順を使用して、 NSO ベースの自動スイッチオーバーとスイッチバックを使用して、 4 ノード MetroCluster FC 構成のコントローラをアップグレードできます。アグリゲートの再配置（ ARL ）を使用してコントローラをアップグレードする場合は、を参照してください link:https://docs.netapp.com/us-en/ontap-systems-upgrade/upgrade-arl-auto-app/["ONTAP 9.8 以降を実行しているコントローラハードウェアをアップグレードするには、「 system controller replace 」コマンドを使用します"]。NSO ベースの自動化された手順を使用することを推奨します。
 * MetroCluster サイトが物理的に 2 つの異なる場所にある場合は、 NSO コントローラの自動アップグレード手順を使用して、両方のサイトのコントローラを順番にアップグレードする必要があります。
 * この NSO ベースのコントローラの自動アップグレード手順を使用すると、 MetroCluster ディザスタリカバリ（ DR ）サイトでコントローラの交換を開始できます。コントローラの交換は一度に 1 つのサイトでしか開始できません。
 * サイト A でコントローラの交換を開始するには、サイト B からコントローラの交換開始コマンドを実行する必要があります交換処理ガイドは、サイト A の両方のノードのコントローラのみを交換する場合に使用します。サイト B のコントローラを交換するには、サイト A からコントローラ交換の開始コマンドを実行する必要がありますコントローラを交換するサイトを示すメッセージが表示されます。
@@ -241,7 +241,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 スイッチオーバーを開始できる MetroCluster Tiebreaker 構成またはその他のサードパーティアプリケーション（たとえば、 ClusterLion ）で既存の構成を監視している場合は、古いコントローラを交換する前に、 Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。
 
 .手順
-. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-34C97A45-0BFF-46DD-B104-2AB2805A983D.html["既存の MetroCluster 設定を削除します"^] Tiebreaker ソフトウェアから。
+. link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#removing-metrocluster-configurations["既存の MetroCluster 設定を削除します"] Tiebreaker ソフトウェアから。
 . スイッチオーバーを開始できるサードパーティ製アプリケーションから既存の MetroCluster 構成を削除します。
 +
 アプリケーションのマニュアルを参照してください。
@@ -400,7 +400,7 @@ https://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステム�
 このタスクは、新しい各コントローラモジュールで実行します。
 
 .手順
-. にアクセスします https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
+. にアクセスします link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
 . ネットアップサポートサイトのソフトウェアダウンロードセクションから該当する ONTAP ソフトウェアをダウンロードし、 Web にアクセスできるディレクトリに image.tgz ファイルを保存します。
 . Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
 +

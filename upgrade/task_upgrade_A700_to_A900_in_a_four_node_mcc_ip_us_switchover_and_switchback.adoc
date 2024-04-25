@@ -638,7 +638,8 @@ NOTE: ネットブート接続として管理ポートおよび IP を使用す�
 「 <filer_addr> 」は、ストレージ・システムの IP アドレスです。`<netmask>` はストレージシステムのネットワークマスクです。「 <gateway>` 」は、ストレージシステムのゲートウェイです。「 <dns_addr> 」は、ネットワーク上のネームサーバの IP アドレスです。このパラメータはオプションです。「 <dns_domain> 」は、 Domain Name Service （ DNS ；ドメインネームサービス）ドメイン名です。このパラメータはオプションです。注：使用しているインターフェイスによっては、他のパラメータが必要になる場合もあります。ファームウェア・プロンプトで「 help ifconfig 」と入力すると、詳細が表示されます。
 
 |===
-. node_B_1 でネットブートを実行します：ネットブート http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`
+. node_B_1でネットブートを実行します。
+`netboot` `\http://<web_server_ip/path_to_web_accessible_directory>/netboot/kernel`
 +
 「 <path_the_web-accessible_directory> 」は、「 <ONTAP_version>\_image.tgz 」をダウンロードした場所に配置する必要があります <<step2-download-software,手順 2>>。
 
@@ -669,7 +670,8 @@ Selection (1-11)?
 +
 新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、正しいイメージがインストールされないことがあります。この問題環境 All ONTAP リリース
 
-. 手順 を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら 'URL:http://<web_server_ip/path_to_web-accessible_directory>/<ontap_version>\_image.tgz` と入力します
+. 手順を続行するかどうかを確認するメッセージが表示されたら、と入力します。 `y`パッケージの入力を求められたら、次のURLを入力します。
+`\http://<web_server_ip/path_to_web-accessible_directory>/<ontap_version>\_image.tgz`
 . 次の手順を実行してコントローラモジュールをリブートします。
 +
 .. 次のプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしますバックアップ構成を今すぐリストアしますか ? {y|n}`

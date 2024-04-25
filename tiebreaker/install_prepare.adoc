@@ -40,7 +40,7 @@ ONTAP 9.12.1以降
  a| 
 1.5
  a| 
-ONTAP 9.13.1以前
+ONTAP 9.8からONTAP 9.14.1へ
  a| 
 * Red Hat Enterprise Linux 8.1から8.7
 
@@ -56,56 +56,7 @@ Red Hat Enterprise Linux 8.1から8.7の場合：
  a| 
 1.4
  a| 
-ONTAP 9.11.1以前
- a| 
-* Red Hat Enterprise Linux 8.1から8.7
-* Red Hat Enterprise Linux 7～7.9
-* CentOS 7～7.9 64ビット
-
- a| 
-CentOSの場合：
-
-* MariaDB 5.5.52.x / MySQL サーバ 5.6x
-* 4GB の RAM
-* JRE 8を開きます
-
-
-Red Hat Enterprise Linux 8.1から8.7の場合：
-
-* MariaDB 10.x（yum install mariaDB-server.x86_64を使用してインストールされるデフォルトのバージョンを使用）
-* JRE 8
-
-
-
- a| 
-1.3
- a| 
-ONTAP 9.10.1以前
- a| 
-* Red Hat Enterprise Linux 8.1から8.7
-* Red Hat Enterprise Linux 7～7.9
-* CentOS 7～7.9 64ビット
-
- a| 
-CentOSの場合：
-
-* MariaDB 5.5.52.x / MySQL サーバ 5.6x
-* 4GB の RAM
-* JRE 8を開きます
-
-
-Red Hat Enterprise Linux 8.1から8.7の場合：
-
-* MariaDB 10.x（「yum install MariaDB -server. x86_64」を使用してインストールされたデフォルトバージョンを使用）
-* JRE 8
-
-
-
-
- a| 
-1.21Px
- a| 
-ONTAP 9.9.1以前
+ONTAP 9.1からONTAP 9.9.1へ
  a| 
 * Red Hat Enterprise Linux 8.1から8.7
 * Red Hat Enterprise Linux 7～7.9
@@ -132,7 +83,7 @@ Red Hat Enterprise Linux 8.1から8.7の場合：
 
 さらに次の要件に注意する必要があります。
 
-* Tiebreaker ソフトウェアは 3 つ目のサイトにインストールします。これにより、スイッチ間リンク（ ISL ）障害（サイト間リンクが停止している）障害とサイト障害をソフトウェアが区別できるようになります。ローカルコンピュータに Tiebreaker ソフトウェアをインストールまたはアップグレードして MetroCluster 構成を監視するには、ホストシステムが特定の要件を満たしている必要があります。
+* Tiebreaker ソフトウェアは 3 つ目のサイトにインストールします。これにより、スイッチ間リンク（ ISL ）障害（サイト間リンクが停止している）障害とサイト障害をソフトウェアが区別できるようになります。TiebreakerソフトウェアをインストールまたはアップグレードしてMetroCluster構成を監視するには、ホストシステムが一定の要件を満たしている必要があります。
 * MetroCluster Tiebreakerソフトウェアとそれに依存するパッケージをインストールするには、「root」権限が必要です。
 * 複数のMetroCluster Tiebreakerモニタとの競合を回避するために、MetroCluster 構成ごとに1つのTiebreakerモニタのみを使用できます。
 * Tiebreakerソフトウェアのネットワークタイムプロトコル（NTP）ソースを選択する場合は、ローカルのNTPソースを使用する必要があります。Tiebreakerソフトウェアが監視するMetroClusterサイトと同じソースをTiebreakerソフトウェアで使用しないでください。
