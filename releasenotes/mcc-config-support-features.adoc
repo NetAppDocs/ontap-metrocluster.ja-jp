@@ -1,0 +1,113 @@
+---
+permalink: releasenotes/mcc-config-support-features.html 
+sidebar: sidebar 
+keywords: metrocluster, configuration, support for ontap features 
+summary:  
+---
+= MetroCluster構成でのONTAP機能のサポートの新機能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[cols="20,65,15"]
+|===
+| MetroCluster構成でサポートされる機能 | 説明 | 最初から利用可能です 
+
+
+ a| 
+ミラーアグリゲートとミラーされていないアグリゲートでのS3オブジェクトストレージのサポート
+ a| 
+MetroCluster IPおよびFC構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲート内のSVMでS3オブジェクトストレージサーバを有効にすることができます。
+
+https://docs.netapp.com/us-en/ontap/s3-config/index.html["S3構成の概要"]
+ a| 
+ONTAP 9.14.1
+
+
+
+ a| 
+MetroClusterクラスタ内のミラーされたアグリゲートとミラーされていないアグリゲートでのS3バケットのプロビジョニングのサポート
+ a| 
+MetroCluster構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成できます。
+
+https://docs.netapp.com/us-en/ontap/s3-config/create-bucket-mcc-task.html["MetroCluster構成のミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成する"]
+ a| 
+ONTAP 9.14.1
+
+
+
+ a| 
+ONTAP Mediator 1.5はMetroCluster IP構成でサポートされます。
+ a| 
+ONTAPメディエーター1.5は、MetroCluster IP構成の監視に使用できます。
+
+https://docs.netapp.com/us-en/ontap/mediator/index.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"]
+ a| 
+ONTAP 9.12.1
+
+
+
+ a| 
+MetroCluster IPおよびMetroClusterファブリック接続構成でのフロントエンドホストプロトコルのIPSecサポート
+ a| 
+フロントエンドホストプロトコル（NFSやiSCSIなど）のIPSecサポートは、MetroCluster IPおよびMetroClusterファブリック接続構成で使用できます。
+
+https://docs.netapp.com/us-en/ontap/networking/configure_ip_security_@ipsec@_over_wire_encryption.html["ワイヤ暗号化を介した IP セキュリティ（ IPsec ）を設定します"]
+ a| 
+ONTAP 9.12.1
+
+
+
+ a| 
+ONTAPメディエーター1.4
+ a| 
+MetroCluster IP構成では、ONTAPメディエーターソフトウェアバージョン1.4がサポートされます。
+
+https://docs.netapp.com/us-en/ontap/mediator/index.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"]
+ a| 
+ONTAP 9.11.1
+
+
+
+ a| 
+整合グループ
+ a| 
+MetroCluster構成では整合グループがサポートされます。
+
+https://docs.netapp.com/us-en/ontap/mediator/index.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"]
+ a| 
+ONTAP 9.11.1
+
+
+
+ a| 
+ONTAPメディエーターはMetroCluster IP構成でサポートされます。
+ a| 
+ONTAPメディエーターサービスは、ステータス情報用に物理的に分離されたリポジトリを提供することで、MetroCluster IP構成で自動計画外スイッチオーバーを実行できるようにします。
+
+https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/task_configuring_the_ontap_mediator_service_from_a_metrocluster_ip_configuration.html["自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定"]
+ a| 
+ONTAP 9.7
+
+
+
+ a| 
+MetroCluster ミラーは FabricPool 構成にあります
+ a| 
+MetroCluster構成でミラーされたFabricPoolをセットアップして、コールドデータを2つの異なる障害ゾーンに階層化できます。
+
+https://docs.netapp.com/us-en/ontap/fabricpool/setup-object-stores-mcc-task.html["MetroCluster 構成での FabricPool 用オブジェクトストアのセットアップ"]
+ a| 
+ONTAP 9.7
+
+
+
+ a| 
+SVM ディザスタリカバリ
+ a| 
+MetroCluster構成のアクティブなStorage Virtual Machine（SVM）は、SnapMirror SVMディザスタリカバリ機能でソースとして使用できます。
+ a| 
+ONTAP 9.5
+
+|===
