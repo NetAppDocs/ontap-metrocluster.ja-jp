@@ -15,6 +15,7 @@ MetroCluster IP スイッチのファームウェアのアップグレードが�
 
 各スイッチでこのタスクを順に実行する必要があります。
 
+[[step_1_fw_upgrade]]
 .手順
 . 構成の健全性を確認します。
 +
@@ -86,7 +87,7 @@ To check if the nodes are ready to do a switchover or switchback operation, run 
 NOTE: スイッチには、 switch_A_1 、 switch_B_1 、 switch_B_2 、 switch_B_2 、 switch_B_2 、スイッチ _B_2 を順番にインストールします。
 
 +
-スイッチタイプがBroadcom、Cisco、NVIDIAのいずれであるかに応じて、MetroCluster IP Installation and Configuration_informationの関連トピックに記載されているスイッチソフトウェアのインストール手順に従います。
+スイッチタイプがBroadcom、Cisco、NVIDIAのいずれであるかに応じて、該当するトピックのスイッチソフトウェアをインストールする手順に従います。
 
 +
 ** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-switch-efos-software["BroadcomスイッチのEFOSソフトウェアをダウンロードしてインストールする"]
@@ -94,8 +95,6 @@ NOTE: スイッチには、 switch_A_1 、 switch_B_1 、 switch_B_2 、 switch_
 ** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-cumulus-software["NVIDIA SN2100スイッチCumulusソフトウェアのダウンロードとインストール"]
 
 
-
-
 . 各スイッチについて、同じ手順を繰り返します。
-. 手順 1 を繰り返して構成の健常性を確認します。
+. 繰り返します <<step_1_fw_upgrade,手順 1.>> 構成の健全性を確認します。
 

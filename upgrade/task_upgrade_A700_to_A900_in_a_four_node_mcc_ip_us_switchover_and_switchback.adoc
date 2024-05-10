@@ -2,7 +2,7 @@
 permalink: upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html 
 sidebar: sidebar 
 keywords: metrocluster, upgrade, controller, ip, configuration, switchover, switchback, workflow, nodes, tiebreaker, verify, bootrage, root, aggregate, disks 
-summary: BYou は、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールのアップグレード中にクライアントに無停止のサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
+summary: MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
 ---
 = スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）
 :allow-uri-read: 
@@ -106,20 +106,22 @@ AFF A900またはFAS9500のMetroCluster 構成では、スロット5と7にあ�
 .手順
 . 新しい RCF ファイルを適用するための IP スイッチを準備します。
 +
-使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"] 内容
+スイッチベンダーに対応するセクションを参照してください。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+** link:../install-ip/task_switch_config_cisco.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html#reset-the-nvidia-ip-sn2100-switch-to-factory-defaults["NVIDIA IPスイッチを工場出荷時のデフォルトにリセット"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
 +
-の手順に従います link:../install-ip/index.html["MetroCluster IP のインストールと設定"] 内容
+スイッチベンダーに対応するセクションを参照してください。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["BroadcomのRCFファイルをダウンロードしてインストールする"]
+** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIAのRCFファイルをダウンロードしてインストールします"]
 
 
 
