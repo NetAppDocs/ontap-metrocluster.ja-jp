@@ -2972,10 +2972,21 @@ node_A_1 SVM 4 snmpv3user     snmp        usm                   10.10.10.13
 ----
 . スイッチのプロンプトで SNMPv3 を設定します。
 +
+[role="tabbed-block"]
+====
+.Brocadeスイッチ
+--
 「 mpconfig -- set snmpv3 」
 
+--
+.Cisco スイッチ
+--
+`snmp-server user <user_name>  auth [md5/sha/sha-256] <auth_password> priv (aes-128) <priv_password>`
+
+--
+====
 +
-RO アクセスが必要な場合、「 User （ ro ）：」のあとに「 snmpv3user 」を指定します（例を参照）。
+ROアクセスが必要な場合は、「User（ro）：」のあとに「snmpv3user」を指定します。次の例ではBrocadeスイッチを使用しています。
 
 +
 [listing]

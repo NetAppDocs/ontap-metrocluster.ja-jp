@@ -55,6 +55,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 NOTE: 4ノードMetroCluster IP構成では、「systems controller replace」コマンドを使用したアグリゲートの再配置（ARL）を使用したアップグレードはサポートされていません。
 
+* システムで有効になっている場合は、 link:../maintain/task-configure-encryption.html#disable-end-to-end-encryption["エンドツーエンドの暗号化を無効にする"] アップグレードを実行する前に、
 * NSOコントローラの自動アップグレード手順 を使用して、両方のサイトのコントローラを順番にアップグレードする必要があります。
 * この NSO ベースのコントローラの自動アップグレード手順を使用すると、 MetroCluster ディザスタリカバリ（ DR ）サイトでコントローラの交換を開始できます。コントローラの交換は一度に 1 つのサイトでしか開始できません。
 * サイト A でコントローラの交換を開始するには、サイト B からコントローラの交換開始コマンドを実行する必要があります交換処理ガイドは、サイト A の両方のノードのコントローラのみを交換する場合に使用します。サイト B のコントローラを交換するには、サイト A からコントローラ交換の開始コマンドを実行する必要がありますコントローラを交換するサイトを示すメッセージが表示されます。
@@ -1145,9 +1146,15 @@ MetroCluster node show
 
 
 
-=== Tiebreaker 監視をリストアしています
+=== Tiebreaker による監視をリストアします
 
 MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。
 
 . の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html["MetroCluster 構成を追加しています"]。
 
+
+
+
+=== エンドツーエンドの暗号化を設定する
+
+ご使用のシステムでサポートされている場合は、MetroCluster IPサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化できます。を参照してください link:../maintain/task-configure-encryption.html["エンドツーエンドの暗号化を設定する"] を参照してください。

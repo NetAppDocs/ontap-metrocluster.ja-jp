@@ -10,9 +10,51 @@ summary:
 :imagesdir: ./media/
 
 
+[role="lead"]
+MetroClusterの新機能について説明します。
+
 [cols="20,65,15"]
 |===
 | MetroCluster構成でサポートされる機能 | 概要 と詳細情報の入手方法 | 最初から利用可能です 
+
+
+ a| 
+エンドツーエンドの暗号化のためのMetroCluster IPサポート
+ a| 
+AFF A400、FAS8300、FAS8700システムでは、MetroCluster IP構成のサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するために、エンドツーエンドの暗号化がサポートされています。
+
+link:../maintain//task-configure-encryption.html["MetroCluster IP構成でのエンドツーエンドの暗号化の設定"]
+ a| 
+ONTAP 9.15.1
+
+
+
+ a| 
+AFF A800およびAFF C800システムでの4ノードMetroCluster IP構成のボリューム制限の拡張
+ a| 
+4ノードMetroCluster IP構成では、AFF A800およびAFF C800システムの次のボリューム制限が拡張されました。
+
+* アグリゲートあたりのFlexVolの最大数が200から625に増加しました。
+* ノードあたりのFlexVolの最大ボリューム数が800から1250に増加しました。
+* ハイアベイラビリティ（HA）ペアあたりのFlexVolの最大数が1600から2500に増加しました。
+
+ a| 
+ONTAP 9.15.1
+
+
+
+ a| 
+AFF A900システムでの4ノードMetroCluster IP構成のボリューム制限の拡張
+ a| 
+4ノードMetroCluster IP構成では、AFF A900システムの次のボリューム制限が引き上げられました。
+
+* アグリゲートあたりのFlexVolの最大数が200から625に増加しました。
+* ノードあたりのFlexVolの最大ボリューム数が800から1250に増加しました。
+* ハイアベイラビリティ（HA）ペアあたりのFlexVolの最大数が1600から2500に増加しました。
+
+ a| 
+ONTAP 9.14.1
+
 
 
  a| 
@@ -53,7 +95,7 @@ ONTAP 9.13.1
  a| 
 環境のシャットダウンにより一方のサイトが正常にシャットダウンすると、MAUSOがトリガーされます。
 
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_considerations_mediator.html#interoperability-of-ontap-mediator-with-other-applications-and-appliances["ONTAP メディエーターと他のアプリケーションおよびアプライアンスとの相互運用性"]
+https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept-ontap-mediator-supports-automatic-unplanned-switchover.html["ONTAP メディエーターでの自動計画外スイッチオーバーのサポート"]
  a| 
 ONTAP 9.13.1
 

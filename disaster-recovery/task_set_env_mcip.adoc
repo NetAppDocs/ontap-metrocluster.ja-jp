@@ -514,6 +514,10 @@ setenv bootarg.mcc.lun_part true
 ----
 
 
+. 元のシステムがエンドツーエンドの暗号化用に設定されていた場合は、交換用ノードのLOADERプロンプトで次のbootargを設定します。
++
+`setenv bootarg.mccip.encryption_enabled 1`
+
 . 元のシステムが ADP 用に設定されていた場合は、交換用ノードの LOADER プロンプトで、元のシステム ID （交換用コントローラモジュールのシステム ID ではなく * ）とノードの DR パートナーのシステム ID を設定します。
 +
 'setenv bootarg.me.local_config_id original-SysID

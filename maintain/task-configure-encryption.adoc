@@ -1,0 +1,260 @@
+---
+permalink: maintain/task-configure-encryption.html 
+sidebar: sidebar 
+keywords: metrocluster, ip, encryption, end-to-end, back-end, aff a400, fas8300, fas8700, encrypt, enable, disable, configure, controllers 
+summary:  
+---
+= MetroCluster IP構成でのエンドツーエンドの暗号化の設定
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.15.1以降では、MetroCluster IP構成のサイト間でNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するようにエンドツーエンドの暗号化を設定できます。
+
+.このタスクについて
+* このタスクを実行するには、クラスタ管理者である必要があります。
+* エンドツーエンドの暗号化を設定する前に、次の手順を実行する必要があります。 link:https://docs.netapp.com/us-en/ontap/encryption-at-rest/configure-external-key-management-concept.html["外部キー管理を設定"^]。
+* MetroCluster IP構成でエンドツーエンドの暗号化を設定するために必要な、サポートされているシステムおよび最小ONTAPリリースを確認します。
++
+|===
+
+
+| 最小ONTAPリリース | サポートされるシステム 
+
+
+ a| 
+ONTAP 9.15.1
+ a| 
+** AFF A400
+** FAS8300
+** FAS8700 の場合
+
+
+|===
+
+
+
+
+== エンドツーエンドの暗号化を実現
+
+エンドツーエンドの暗号化を有効にするには、次の手順を実行します。
+
+.手順
+. MetroCluster 構成の健全性を確認
++
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+[source, cli]
+----
+metrocluster check run
+----
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+----
++
+この処理はバックグラウンドで実行されます。
+
+.. のあとに入力します `metrocluster check run` 処理が完了しました。run：
++
+[source, cli]
+----
+metrocluster check show
+----
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+cluster_A:::*> metrocluster check show
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+clusters            ok
+connections         not-applicable
+volumes             ok
+7 entries were displayed.
+----
+.. 実行中の MetroCluster チェック処理のステータスを確認します。
++
+[source, cli]
+----
+metrocluster operation history show -job-id <id>
+----
+.. ヘルスアラートがないことを確認します。
++
+[source, cli]
+----
+system health alert show
+----
+
+
+. 両方のクラスタで外部キー管理が設定されていることを確認します。
++
+[source, cli]
+----
+security key-manager external show-status
+----
+. DRグループごとにエンドツーエンドの暗号化を有効にします。
++
+[source, cli]
+----
+metrocluster modify -is-encryption-enabled true -dr-group-id <dr_group_id>
+----
++
+* 例 *
+
++
+[listing]
+----
+cluster_A::*> metrocluster modify -is-encryption-enabled true -dr-group-id 1
+Warning: Enabling encryption for a DR Group will secure NVLog and Storage
+         replication data sent between MetroCluster nodes and have an impact on
+         performance. Do you want to continue? {y|n}: y
+[Job 244] Job succeeded: Modify is successful.
+----
++
+構成内のDRグループごとにこの手順を繰り返します。
+
+. エンドツーエンドの暗号化が有効になっていることを確認します。
++
+[source, cli]
+----
+metrocluster node show -fields is-encryption-enabled
+----
++
+* 例 *
+
++
+[listing]
+----
+cluster_A::*> metrocluster node show -fields is-encryption-enabled
+
+dr-group-id cluster    node      configuration-state is-encryption-enabled
+----------- ---------- --------  ------------------- -----------------
+1           cluster_A  node_A_1  configured          true
+1           cluster_A  node_A_2  configured          true
+1           cluster_B  node_B_1  configured          true
+1           cluster_B  node_B_2  configured          true
+4 entries were displayed.
+----
+
+
+
+
+== エンドツーエンドの暗号化を無効にする
+
+エンドツーエンドの暗号化を無効にするには、次の手順を実行します。
+
+.手順
+. MetroCluster 構成の健全性を確認
++
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+[source, cli]
+----
+metrocluster check run
+----
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+
+----
++
+この処理はバックグラウンドで実行されます。
+
+.. のあとに入力します `metrocluster check run` 処理が完了しました。run：
++
+[source, cli]
+----
+metrocluster check show
+----
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+cluster_A:::*> metrocluster check show
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+clusters            ok
+connections         not-applicable
+volumes             ok
+7 entries were displayed.
+----
+.. 実行中の MetroCluster チェック処理のステータスを確認します。
++
+[source, cli]
+----
+metrocluster operation history show -job-id <id>
+----
+.. ヘルスアラートがないことを確認します。
++
+[source, cli]
+----
+system health alert show
+----
+
+
+. 両方のクラスタで外部キー管理が設定されていることを確認します。
++
+[source, cli]
+----
+security key-manager external show-status
+----
+. 各DRグループでエンドツーエンドの暗号化を無効にします。
++
+[source, cli]
+----
+metrocluster modify -is-encryption-enabled false -dr-group-id <dr_group_id>
+----
++
+* 例 *
+
++
+[listing]
+----
+cluster_A::*> metrocluster modify -is-encryption-enabled false -dr-group-id 1
+[Job 244] Job succeeded: Modify is successful.
+----
++
+構成内のDRグループごとにこの手順を繰り返します。
+
+. エンドツーエンドの暗号化が無効になっていることを確認します。
++
+[source, cli]
+----
+metrocluster node show -fields is-encryption-enabled
+----
++
+* 例 *
+
++
+[listing]
+----
+cluster_A::*> metrocluster node show -fields is-encryption-enabled
+
+dr-group-id cluster    node      configuration-state is-encryption-enabled
+----------- ---------- --------  ------------------- -----------------
+1           cluster_A  node_A_1  configured          false
+1           cluster_A  node_A_2  configured          false
+1           cluster_B  node_B_1  configured          false
+1           cluster_B  node_B_2  configured          false
+4 entries were displayed.
+----
+

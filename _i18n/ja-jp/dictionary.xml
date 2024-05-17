@@ -8349,8 +8349,6 @@
   <block id="5da008293f97642c13b8ce99da980ab2" category="inline-link-macro">NVFAIL を使用したデータベースの有効性監視および保護</block>
   <block id="6ab5e4feeee2903bd0495714443b11a6" category="paragraph"><block ref="6ab5e4feeee2903bd0495714443b11a6" category="inline-link-macro-rx"></block></block>
   <block id="6b1a2eef5ea82e265caa75d1009aaae1" category="summary">ハードウェアコンポーネントの交換が必要な場合は、該当するハードウェア交換 / 設置ガイドに従って交換する必要があります。</block>
-  <block id="b3847c80d357e0d5d221ce737320c2b4" category="doc">ハードウェアの交換と新しいコントローラのブート</block>
-  <block id="217c96dcd79e3325e1857aed771a5c40" category="section-title">ディザスタサイトでのハードウェアの交換</block>
   <block id="83a10d9e95eee16293468c7f346cce1e" category="paragraph">ストレージコントローラの電源がオフになっているか、停止したままになっている必要があります（ LOADER プロンプトが表示されている）。</block>
   <block id="b5de74a1fd2187d9589df11fe3f78707" category="list-text">必要に応じてコンポーネントを交換します。</block>
   <block id="f62bcce98f7e25ff88aa77d67a701b6b" category="admonition">この手順では、コンポーネントを交換し、災害発生前とまったく同じようにケーブル接続します。コンポーネントの電源は入れないでください。</block>
@@ -8406,7 +8404,6 @@
   <block id="c4f544053cff7408e816016df0403a9a" category="list-text">システムが AFF A220 、 AFF A400 、 FAS2750 、 FAS8300 、または FAS8700 の場合、 VLAN ID を確認します。</block>
   <block id="a299904397c0c53d0dff20464bb5a6fb" category="paragraph">VLAN ID は、出力の Adapter 列に表示されるアダプタ名に含まれています。</block>
   <block id="53e60741b7dea71b0fc08dfdab30d92c" category="paragraph">この例では、 VLAN ID は 120 および 130 です。</block>
-  <block id="d57d00f698e8ac4eaa665b2d710b970a" category="section-title">サバイバーサイトからの交換用ドライブの分離（ MetroCluster IP 構成）</block>
   <block id="faf1b2de9b3420669edf161ef2d98b43" category="paragraph">MetroCluster iSCSI イニシエータ接続を停止して、サバイバーノードから交換用ドライブをすべて分離する必要があります。</block>
   <block id="8d4967368dfcb4473ecc54d3d92f0b5a" category="list-text">DR グループ内の両方のサバイバーノードで、 iSCSI イニシエータを切断します。</block>
   <block id="cbacd86eb707090bef5d7f9df169adb4" category="paragraph">「 storage iscsi-initiator disconnect -node Survived-node-label * 」のように表示されます</block>
@@ -8430,7 +8427,6 @@
   <block id="f53356be56a38c40b7d04e2826f17e90" category="paragraph">次の例では、新しいローカルシステム ID は 1574774991 です。</block>
   <block id="387cb35c05487df3512626c6e96ac418" category="paragraph">MetroCluster 構成では、コントローラモジュールおよびシャーシコンポーネントの ha-config 状態を「 mcc 」または「 mcc-2n 」に設定して、適切にブートするようにする必要があります。</block>
   <block id="70cfb57c22486ea2d08d331675532dce" category="paragraph">「 ha-config show 」</block>
-  <block id="5dd03e8d039863e563e049be198c3fd3" category="sidebar">リリースノート</block>
   <block id="13c1fe346da53d3c9c58ab0c190eb172" category="sidebar">MetroCluster のデータ保護とディザスタリカバリを理解する</block>
   <block id="f6ded8bde676e251409725df18ef579a" category="sidebar">MetroCluster がデータを保護し、ディザスタリカバリを実現する仕組み</block>
   <block id="9117c89e6f250da2f36e47a459f0d84d" category="sidebar">MetroCluster のコンポーネントをメンテナンスします</block>
@@ -8619,7 +8615,6 @@
   <block id="df5566493ce43130608af35ff9c2f4d8" category="paragraph">'securitylogin create （セキュリティログインの作成</block>
   <block id="34d50950463bd9deb8050c6afe5d8652" category="paragraph">「 securitylogin show 」を参照してください</block>
   <block id="8877f60294cec4f344b4ffc0df4449c3" category="paragraph">「 mpconfig -- set snmpv3 」</block>
-  <block id="f9f9baab7ad1908bd1cdbdf27a3f1041" category="paragraph">RO アクセスが必要な場合、「 User （ ro ）：」のあとに「 snmpv3user 」を指定します（例を参照）。</block>
   <block id="7c36b0e12ce814681762efb6b2ec6cc4" category="paragraph">次の例は、読み取り専用ユーザを設定する方法を示しています。必要に応じて、 RW ユーザを調整できます。</block>
   <block id="046a4dbe28831449e896740fded1c064" category="paragraph">また、未使用のアカウントにパスワードを設定して保護し、 ONTAP リリースで最適な暗号化機能を使用する必要があります。</block>
   <block id="2699745f7ba3417d015d2b62691bd3b8" category="list-text">各 MetroCluster ノードに IP アドレスを指定してスイッチを追加します。</block>
@@ -13546,7 +13541,6 @@
   <block id="54c9cab829044acca6994285d3185409" category="paragraph">MetroCluster構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成できます。</block>
   <block id="ea0c90724ad3d5959704fb91a048c28c" category="inline-link">MetroCluster構成のミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成する</block>
   <block id="7a5d298867b0efc5adf88dfe965f7137" category="paragraph"><block ref="7a5d298867b0efc5adf88dfe965f7137" category="inline-link-rx"></block></block>
-  <block id="cd18beb67ffb0ec95fecaca021fc2541" category="paragraph"><block ref="cd18beb67ffb0ec95fecaca021fc2541" category="inline-link-rx"></block></block>
   <block id="594e1ec3daa27e540baa061f731f028f" category="paragraph">ONTAP 9.12.1</block>
   <block id="6eaae443849a6746c6ace7f4204bd085" category="paragraph">MetroCluster IPおよびMetroClusterファブリック接続構成でのフロントエンドホストプロトコルのIPSecサポート</block>
   <block id="d70d383ef18fafd59eb655545c1017bd" category="paragraph">フロントエンドホストプロトコル（NFSやiSCSIなど）のIPSecサポートは、MetroCluster IPおよびMetroClusterファブリック接続構成で使用できます。</block>
@@ -13579,7 +13573,6 @@
   <block id="b57d94c823165bcbbdd40797c37fc13a" category="paragraph"><block ref="b57d94c823165bcbbdd40797c37fc13a" category="inline-link-rx"></block></block>
   <block id="de19903f1baec8a806f09acbc21c609c" category="paragraph">環境のシャットダウン時にメディエーターアシスト自動計画外スイッチオーバー（MAUSO）がトリガーされる</block>
   <block id="8a6db987355c97228c7eda746c7aab92" category="paragraph">環境のシャットダウンにより一方のサイトが正常にシャットダウンすると、MAUSOがトリガーされます。</block>
-  <block id="0b97e7c3b0f44c35cdd69948234f7fcc" category="paragraph"><block ref="0b97e7c3b0f44c35cdd69948234f7fcc" category="inline-link-rx"></block></block>
   <block id="2baf765df55a69e9c032792bec126f2c" category="paragraph">8ノードMetroCluster IP構成のサポート</block>
   <block id="5e3aa18041f614fb450ca9a1c9ff1a5b" category="paragraph">8ノードMetroCluster IP構成のコントローラとストレージをアップグレードするには、構成を拡張して一時的な12ノード構成にし、古いDRグループを削除します。</block>
   <block id="ee794ce3325c3c2b6f8e58083826be5a" category="paragraph"><block ref="ee794ce3325c3c2b6f8e58083826be5a" category="inline-link-rx"></block></block>
@@ -13651,11 +13644,7 @@
   <block id="be0230807be10234aa034e45c6825280" category="paragraph">AFF A400およびFAS8300</block>
   <block id="0cf4c92a4ea3edbf66b4866978237ff3" category="doc">MetroCluster Tiebreakerのサポートの新機能</block>
   <block id="e90d1c6a70648051cbe5131fdb8a8227" category="paragraph">ONTAP 9データ管理ソフトウェアの各リリースには、ONTAP MetroCluster構成の機能、管理性、パフォーマンスを向上させる新機能と強化された機能が搭載されています。</block>
-  <block id="8c1bba32ed1c0d98d05106a264d07469" category="paragraph">ONTAP 9のすべてのバージョンにおけるハードウェアプラットフォームとスイッチのサポート、既知の問題、制限事項、またはONTAP 9.9.1より前のリリースで導入された機能の詳細については、『<block ref="6e7f74aa9001f0524a965144f528bbc2" category="inline-link-rx"></block>。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。</block>
-  <block id="a4c25ce93017fa1e39ea1f02e454b5dd" category="sidebar">ONTAP機能のサポートの新機能</block>
   <block id="3cc716dba68d44285ae03d4a0e650afb" category="sidebar">MetroCluster機能の新機能</block>
-  <block id="7a9ee1321dd82cefa7736a4643b1d4cb" category="sidebar">MetroCluster IP構成のサポートの新機能</block>
-  <block id="d793294f059b1014ac708a3a85a786cb" category="sidebar">MetroCluster FC構成のサポートの新機能</block>
   <block id="986acab97d190ab2df45c246e97ca539" category="sidebar">ONTAPメディエーターサポートの新機能</block>
   <block id="72b08fce3cdf931f9f180e97f8508090" category="sidebar">MetroCluster Tiebreakerのサポートの新機能</block>
   <block id="9ae85011061f6a07b3199cc6631e205d" category="paragraph">スイッチベンダーに対応するセクションを参照してください。</block>
@@ -13682,7 +13671,6 @@
   <block id="4765407452f01930deae2b9481b69e36" category="paragraph">MetroCluster IP構成でのONTAPメディエーターサービスの初期サポート</block>
   <block id="de09b0e8b75c62ac84c620713e05647b" category="paragraph">共有ストレージスイッチを使用して、MetroCluster FC構成からMetroCluster IP構成に無停止で移行できます。</block>
   <block id="76a27f1dad18a5de567d4849d3e76b69" category="doc">MetroCluster FCプラットフォームとスイッチのサポートの新機能</block>
-  <block id="0f40216c1ad47c12e8ccc087d555570f" category="doc">ONTAP リリースノート</block>
   <block id="2dfc17cf61c3aebedc1a1f7f467baa26" category="paragraph">スイッチタイプがBroadcom、Cisco、NVIDIAのいずれであるかに応じて、該当するトピックのスイッチソフトウェアをインストールする手順に従います。</block>
   <block id="9caf870a1494e70481403791fcece589" category="list-text">繰り返します <block ref="b2da07bc854b8a63875843471604110c" category="inline-xref-macro-rx"></block> 構成の健全性を確認します。</block>
   <block id="67d7197766de9fc9cf6113211650818b" category="sidebar">NetApp MetroCluster構成では、アレイベースのクラスタリングと同期レプリケーションを組み合わせて継続的な可用性を実現し、ミッションクリティカルなすべてのデータをトランザクション単位で即座に複製します。MetroCluster構成は、NetAppハードウェアとONTAPストレージソフトウェアに組み込まれた高可用性とノンストップオペレーションを強化し、ストレージとホスト環境全体の保護を強化します。</block>
@@ -13730,4 +13718,68 @@
   <block id="d5552b01bf48dde88719269e524ddbb9" category="sidebar">ハードウェアがサポートされていることを確認します。</block>
   <block id="3f2b90ec5a9b43745b9c8c9fedf48d8d" category="sidebar">ネットアップのサポートナレッジベース</block>
   <block id="b2cdf9234a2dabbbb6acb6f71e098209" category="sidebar">サポートに関する質問の回答を検索します。</block>
+  <block id="67ed9530c4069b662839f89c94d4a160" category="inline-link-macro">エンドツーエンドの暗号化を無効にする</block>
+  <block id="ade87983ca16ac3bdbf2b32cf6e9b0d5" category="list-text">システムで有効になっている場合は、 <block ref="8a6f29aee2b87dab72caa4c63be583f5" category="inline-link-macro-rx"></block> コントローラのアップグレードを実行する前に、</block>
+  <block id="3d8fb38a661b136fb35b34201d24ef76" category="section-title">エンドツーエンドの暗号化を設定する</block>
+  <block id="df4377d05c61041e2e8ae85ae5db4fad" category="paragraph">ご使用のシステムでサポートされている場合は、MetroCluster IPサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化できます。を参照してください <block ref="ffcb318089fda8d2418bcd406342779d" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="8f883162e124fc09a7ae40b02d457abc" category="list-text">システムで有効になっている場合は、 <block ref="8a6f29aee2b87dab72caa4c63be583f5" category="inline-link-macro-rx"></block> アップグレードを実行する前に、</block>
+  <block id="5aa9df9bfe2a9d3dcb9eaf7420818fac" category="inline-link-macro">エンドツーエンドの暗号化を実現</block>
+  <block id="bd7a871cd772a6f8f044f086ccc3ed68" category="list-text">システムでエンドツーエンドの暗号化がサポートされている場合は、次の操作を実行できます。 <block ref="2fd1db8c2a0ebb290526de8f46b28acd" category="inline-link-macro-rx"></block> 新しいDRグループ。</block>
+  <block id="0088c1e15cccccdb2e3dc23e762335e0" category="list-text">エンドツーエンドの暗号化が有効になっている場合は、次の手順を実行します。 <block ref="8a6f29aee2b87dab72caa4c63be583f5" category="inline-link-macro-rx"></block>。</block>
+  <block id="7b27e86dbf07563fca6c99e2fca83549" category="list-text">新しいノードを追加する前にエンドツーエンドの暗号化を無効にした場合は、の手順に従って再度有効にできます。 <block ref="2fd1db8c2a0ebb290526de8f46b28acd" category="inline-link-macro-rx"></block>。</block>
+  <block id="149bff96621a57d63b9a824d96957df7" category="open-title">Brocadeスイッチ</block>
+  <block id="250f3098aa37d3a08b48b8157db8a62e" category="open-title">Cisco スイッチ</block>
+  <block id="6204028fd0e3ba079ca2fce4bb224e24" category="paragraph"><block ref="010303eb2e404f6eb49cc314fc8aa294" prefix="" category="inline-code"></block></block>
+  <block id="a1032909a057927264a07294a53b91b5" category="paragraph">ROアクセスが必要な場合は、「User（ro）：」のあとに「snmpv3user」を指定します。次の例ではBrocadeスイッチを使用しています。</block>
+  <block id="b4656d073f9b3064260089f7e9a12e66" category="paragraph">ONTAP 9.15.1以降では、MetroCluster IP構成のサイト間でNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するようにエンドツーエンドの暗号化を設定できます。</block>
+  <block id="ddaa39224424042ba35394afbe714a70" category="list-text">このタスクを実行するには、クラスタ管理者である必要があります。</block>
+  <block id="ffe47e3eda7ee0a88fa1a1b82a09899e" category="inline-link-macro">外部キー管理を設定</block>
+  <block id="ca6ec36bc37ffec6b208710049cf5f93" category="list-text">エンドツーエンドの暗号化を設定する前に、次の手順を実行する必要があります。 <block ref="16044a12704308be53c493c61be8d30c" category="inline-link-macro-rx"></block>。</block>
+  <block id="04070a9cbaae869f3877454cee7e3949" category="list-text">MetroCluster IP構成でエンドツーエンドの暗号化を設定するために必要な、サポートされているシステムおよび最小ONTAPリリースを確認します。</block>
+  <block id="59489a60854fece7ae72228144da61ce" category="cell">最小ONTAPリリース</block>
+  <block id="933247e0be7796a309cfa4c95bd34938" category="cell">サポートされるシステム</block>
+  <block id="8cd7d5cbedf290a9b729cc263d9b289c" category="paragraph">ONTAP 9.15.1</block>
+  <block id="e93d47f017ad237de98b35aad9fcb874" category="paragraph">エンドツーエンドの暗号化を有効にするには、次の手順を実行します。</block>
+  <block id="837070b3add2f869a83c272371c71943" category="list-text">のあとに入力します<block ref="c2966f2f3bfc7e81dae5df7c44ce66ea" prefix=" " category="inline-code"></block> 処理が完了しました。run：</block>
+  <block id="cc69fb16e9b5f75fc5721d1ad8277443" category="list-text">両方のクラスタで外部キー管理が設定されていることを確認します。</block>
+  <block id="689610e955be8fb22e796c52df915481" category="list-text">DRグループごとにエンドツーエンドの暗号化を有効にします。</block>
+  <block id="655bf96cae9bcf362fa2b9cb1dc6329b" category="paragraph">構成内のDRグループごとにこの手順を繰り返します。</block>
+  <block id="c5298fbea590442bc5dccc0f0c0a42ce" category="list-text">エンドツーエンドの暗号化が有効になっていることを確認します。</block>
+  <block id="450b20a9e1e9a7c24bdce85480153300" category="paragraph">エンドツーエンドの暗号化を無効にするには、次の手順を実行します。</block>
+  <block id="77b90866eb30c2c119140e82f8c5f4d2" category="list-text">各DRグループでエンドツーエンドの暗号化を無効にします。</block>
+  <block id="882fe58a6392388c2ce927c31a93371f" category="list-text">エンドツーエンドの暗号化が無効になっていることを確認します。</block>
+  <block id="db03999c5b24c225561e85043c8ca2c1" category="paragraph">MetroCluster IPでのNVMeのサポート</block>
+  <block id="0c9f8df361f16ae4ec9468c24acaafae" category="paragraph">NVMe/TCPフロントエンドホストプロトコルは、4ノードMetroCluster IP構成でサポートされます。</block>
+  <block id="21f44b7d67ca22b4dfdc5b37402d6176" category="inline-link-macro">MetroCluster 環境のSAN構成</block>
+  <block id="0523cf29ce37abad9282f80ffd3f533e" category="paragraph"><block ref="0523cf29ce37abad9282f80ffd3f533e" category="inline-link-macro-rx"></block></block>
+  <block id="f09a5dc7d9c973e1f6ab3e9ffa36921c" category="paragraph">NVMe/FCプロトコルは、4ノードMetroCluster IP構成でサポートされます。</block>
+  <block id="581b029a5b5e612bbb2ff34e6b1ff9ad" category="paragraph"><block ref="581b029a5b5e612bbb2ff34e6b1ff9ad" category="inline-link-rx"></block></block>
+  <block id="629ea23148e9d8c2d0f002e89411b05a" category="paragraph">MetroClusterの新機能について説明します。</block>
+  <block id="efd20e2b544e4614b2e657ac6783ec0a" category="paragraph">エンドツーエンドの暗号化のためのMetroCluster IPサポート</block>
+  <block id="4a4b85199291f3e23fc84fb47fb5ca30" category="paragraph">AFF A400、FAS8300、FAS8700システムでは、MetroCluster IP構成のサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するために、エンドツーエンドの暗号化がサポートされています。</block>
+  <block id="a9734ca6d9ffb317f9b6a802b2dbb3aa" category="inline-link-macro">MetroCluster IP構成でのエンドツーエンドの暗号化の設定</block>
+  <block id="c39138b0d883de358017e1fce7fa55a9" category="paragraph"><block ref="c39138b0d883de358017e1fce7fa55a9" category="inline-link-macro-rx"></block></block>
+  <block id="aec0d8caac35e70ca6b42831fa957b4d" category="paragraph">AFF A800およびAFF C800システムでの4ノードMetroCluster IP構成のボリューム制限の拡張</block>
+  <block id="cbd27762af6b4c6335bac75a098542ce" category="paragraph">4ノードMetroCluster IP構成では、AFF A800およびAFF C800システムの次のボリューム制限が拡張されました。</block>
+  <block id="2c18214fb090b3346dccf036f48c7f39" category="list-text">アグリゲートあたりのFlexVolの最大数が200から625に増加しました。</block>
+  <block id="3f35c7e20a8d7d81feeb64eb6d5afa09" category="list-text">ノードあたりのFlexVolの最大ボリューム数が800から1250に増加しました。</block>
+  <block id="b30d9c31e8ee4ad2f0b8474d6a8c7b5d" category="list-text">ハイアベイラビリティ（HA）ペアあたりのFlexVolの最大数が1600から2500に増加しました。</block>
+  <block id="34211e4d6128da1dfdf7db696c0d2aad" category="paragraph">AFF A900システムでの4ノードMetroCluster IP構成のボリューム制限の拡張</block>
+  <block id="84e9aa8f760c1f5f0f19cf4fc3153c4b" category="paragraph">4ノードMetroCluster IP構成では、AFF A900システムの次のボリューム制限が引き上げられました。</block>
+  <block id="69cd959e02d2a7b70720f5426f4f0888" category="list-text">元のシステムがエンドツーエンドの暗号化用に設定されていた場合は、交換用ノードのLOADERプロンプトで次のbootargを設定します。</block>
+  <block id="635e42fd721973aab43465fb05d0c976" category="paragraph"><block ref="62c037d8665e336dd114412a0b756bfc" prefix="" category="inline-code"></block></block>
+  <block id="5a8c7594ee8269dda78a3c94154a49fc" category="doc">ハードウェアの交換と新しいコントローラのブート</block>
+  <block id="81a393ca01b7355292a9de6a418b7506" category="section-title">ディザスタサイトでのハードウェアの交換</block>
+  <block id="341755fab7492718abaee90d7addc0e1" category="section-title">古いコントローラモジュールのシステムIDとVLAN IDの確認</block>
+  <block id="7783c9328f785a62c6d922c7aee5f5bf" category="section-title">サバイバーサイトから交換用ドライブを分離（MetroCluster IP構成）</block>
+  <block id="2b8101509ea4735a4334fe0f417a56e5" category="section-title">新しいコントローラモジュールをネットブート</block>
+  <block id="e766bf7ee3198b936508b04c961bee1c" category="section-title">交換用コントローラモジュールのシステムIDの確認</block>
+  <block id="853b9b549a9a87e8693e5e1457ccc627" category="section-title">元のシステムでエンドツーエンドの暗号化が有効になっているかどうかを確認する</block>
+  <block id="b6f65762cf35ba4ac4c9366142731eb4" category="paragraph">元のシステムでエンドツーエンドの暗号化が設定されているかどうかを確認する必要があります。</block>
+  <block id="f900ea78fef7de22abe3c887295c3554" category="list-text">サバイバーサイトで次のコマンドを実行します。</block>
+  <block id="c1604d057494bf6abab3a40147fecf7c" category="paragraph"><block ref="eea57ee5f23bab30ed50dbeb23a75f4f" prefix="" category="inline-code"></block></block>
+  <block id="bd000f3bd62ff510f9146882628ce226" category="paragraph">暗号化が有効になっている場合は、次の出力が表示されます。</block>
+  <block id="98db7bcad911ca4f97f6c512fd15dba5" category="admonition">を参照してください <block ref="21cf3ec43c40018cebe1c66cf55306b2" category="inline-link-macro-rx"></block> サポートされているシステムの場合。</block>
+  <block id="03e22cbc7470f9e3b1bc635479554ca9" category="sidebar">ONTAP機能のMetroClusterサポートの新機能</block>
+  <block id="89753eb00eabd16383d2c616cc908230" category="sidebar">MetroCluster IPプラットフォームおよびスイッチのサポートの新機能</block>
 </blocks>

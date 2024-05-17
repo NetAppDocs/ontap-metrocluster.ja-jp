@@ -134,7 +134,7 @@ link:http://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステ
 
 
 
-== 古いコントローラモジュールのシステム ID と VLAN ID を確認します
+== 古いコントローラモジュールのシステムIDとVLAN IDの確認
 
 ディザスタサイトですべてのハードウェアを交換したら、交換したコントローラモジュールのシステム ID を確認する必要があります。古いシステム ID は、新しいコントローラモジュールへのディスクの再割り当てを行うときに必要になります。システムが AFF A220 、 AFF A250 、 AFF A400 、 AFF A800 、 FAS2750 、 FAS500f 、 FAS8300 、 FAS8700 の各モデルでは、 MetroCluster IP インターフェイスで使用される VLAN ID も確認する必要があります。
 
@@ -328,7 +328,7 @@ Node_A_2 Node_A_1 HA      enabled  online
 
 
 
-== サバイバーサイトからの交換用ドライブの分離（ MetroCluster IP 構成）
+== サバイバーサイトから交換用ドライブを分離（MetroCluster IP構成）
 
 MetroCluster iSCSI イニシエータ接続を停止して、サバイバーノードから交換用ドライブをすべて分離する必要があります。
 
@@ -367,7 +367,7 @@ site_B::*> storage iscsi-initiator disconnect -node node_B_2 -label *
 
 
 
-== コントローラモジュールでの設定の消去
+== コントローラモジュールの設定をクリアします
 
 [role="lead"]
 MetroCluster 構成で新しいコントローラモジュールを使用する前に、既存の構成をクリアする必要があります。
@@ -407,7 +407,7 @@ wipeconfig
 
 
 
-== 新しいコントローラモジュールのネットブート
+== 新しいコントローラモジュールをネットブート
 
 新しいコントローラモジュールの ONTAP のバージョンが、稼働しているコントローラモジュールのバージョンと異なる場合は、新しいコントローラモジュールをネットブートする必要があります。
 
@@ -483,7 +483,7 @@ The node must be rebooted to start using the newly installed software. Do you wa
 
 
 
-== 交換用コントローラモジュールのシステム ID の確認
+== 交換用コントローラモジュールのシステムIDの確認
 
 ディザスタサイトですべてのハードウェアを交換したら、新たに設置したストレージコントローラモジュールのシステム ID を確認する必要があります。
 
@@ -623,7 +623,7 @@ NOTE: 2 ノード MetroCluster 構成ではこの手順は必要ありません�
 
 
 
-== コンポーネントの ha-config 状態の確認
+== コンポーネントの ha-config 状態を確認
 
 MetroCluster 構成では、コントローラモジュールおよびシャーシコンポーネントの ha-config 状態を「 mcc 」または「 mcc-2n 」に設定して、適切にブートするようにする必要があります。
 
@@ -725,4 +725,33 @@ MetroCluster の IP 設定
 
 |===
 . 交換した他のノードで同じ手順を繰り返します。
+
+
+
+
+== 元のシステムでエンドツーエンドの暗号化が有効になっているかどうかを確認する
+
+元のシステムでエンドツーエンドの暗号化が設定されているかどうかを確認する必要があります。
+
+.ステップ
+. サバイバーサイトで次のコマンドを実行します。
++
+`metrocluster node show -fields is-encryption-enabled`
+
++
+暗号化が有効になっている場合は、次の出力が表示されます。
+
++
+[listing]
+----
+1 cluster_A node_A_1 true
+1 cluster_A node_A_2 true
+1 cluster_B node_B_1 true
+1 cluster_B node_B_2 true
+4 entries were displayed.
+----
++
+
+NOTE: を参照してください link:../install-ip/task-configure-end-to-end-encryption.html["エンドツーエンドの暗号化を設定する"] サポートされているシステムの場合。
+
 
