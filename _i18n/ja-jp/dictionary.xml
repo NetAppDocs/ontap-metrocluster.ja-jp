@@ -7705,8 +7705,6 @@
   <block id="1af99437570e0e0cef3934038e5fad74" category="list-text">サイト B はサバイバーサイトです。</block>
   <block id="f1fffd0b6a8970871d3567e9a497b669" category="list-text">node_B_1 は健全</block>
   <block id="d897e6e000123c95efed2cabbfa229df" category="list-text">node_B_2 は正常</block>
-  <block id="51b67fd3c27836fe854876631b03708d" category="inline-link-macro">交換用コントローラモジュールのシステム ID の確認</block>
-  <block id="ec6baca39edfa454417f6efd043215c9" category="paragraph">古いシステム ID と新しいシステム ID は、で特定されています <block ref="05dda3d9932a412ba342505a3437a308" category="inline-link-macro-rx"></block>。</block>
   <block id="0ce159ef649591974fe60d01c47f9f48" category="cell">ノードの数</block>
   <block id="06fac72061d413d519e1af365dba3018" category="cell">元のシステム ID</block>
   <block id="294f461a8e1ad12f8521a976f9a495e0" category="paragraph">4068741258</block>
@@ -8123,8 +8121,6 @@
   <block id="f62e57c2cd756c745cc8c3dc7899bd5d" category="list-text">元のシステムが ADP 用に設定されていた場合は、交換用ノードの LOADER プロンプトで、元のシステム ID （交換用コントローラモジュールのシステム ID ではなく * ）とノードの DR パートナーのシステム ID を設定します。</block>
   <block id="c980bf2e616d28dd836425b5a356ce9b" category="paragraph">'setenv bootarg.me.local_config_id original-SysID</block>
   <block id="92670efa1844903ee0c7e2a809aaa8af" category="paragraph">'etenv bootarg.MCC.DR_partner DR_PARTNER -SysID</block>
-  <block id="a9daabfd9077566a0e834967642d46ae" category="inline-link-macro">古いコントローラモジュールのシステム ID と VLAN ID を確認します</block>
-  <block id="a425862b94ecb00f4800b22c5dddfa63" category="paragraph"><block ref="a425862b94ecb00f4800b22c5dddfa63" category="inline-link-macro-rx"></block></block>
   <block id="8738db0f33e8971f5ce60fa831912fe3" category="paragraph">次の例は、 node_A_1 のシステム ID を設定するコマンドを示しています。</block>
   <block id="bf344da7325a3258f9334bfb457fdaa2" category="list-text">node_A_1 の古いシステム ID は 4068741258 です。</block>
   <block id="033a40861cdc97bad119d5799567c3af" category="list-text">node_B_1 のシステム ID は 4068741254 です。</block>
@@ -12542,7 +12538,6 @@
   <block id="bc66e40e6d2b679666709d4696a3e3a0" category="cell">Tiebreakerバージョン</block>
   <block id="2ff01ce7887ede183a0dcb4bf579a040" category="cell">CentOS 7-7.9</block>
   <block id="e409cbaf30133c40afd8ba79b71e06ee" category="paragraph">#42;ポート12~15はBrocade 7840スイッチの2番目のMetroClusterまたはDRグループ用に予約されています。</block>
-  <block id="2a8e60d3a0b3d603c27fa9c4562178bf" category="summary">NetApp MetroCluster構成では、アレイベースのクラスタリングと同期レプリケーションを組み合わせて継続的な可用性を実現し、ミッションクリティカルなすべてのデータをトランザクション単位で即座に複製します。</block>
   <block id="99d7ea00899cf98fde6ae4bd7a763fe6" category="list-text">Automatic Unplanned Switchover（AUSO；自動計画外スイッチオーバー）障害ドメインの状態を確認します。</block>
   <block id="914c0f805af7b6a979c9b14a8fca637d" category="admonition">次の例は、環境 ONTAP 9.13.1以降の出力を示しています。ONTAP 9.12.1以前では、AUSO障害ドメインの状態は<block ref="8371e13c4fc64771e634f39be50ec198" prefix=" " category="inline-code"></block>。</block>
   <block id="1d2738c61f2ddb3b312cabca3378259b" category="list-text">必要に応じて、MetroClusterの自動強制スイッチオーバーを設定します。</block>
@@ -13333,7 +13328,6 @@
   <block id="b5b517b5bd160188f72a49194aee565c" category="paragraph">自動起動が有効になっている場合は、<block ref="08102569ee3581db669c9d763e14b983" prefix=" " category="inline-code"></block> コントローラの自動ブートを停止します。</block>
   <block id="235d6d36d1eabe510af7ea0ec5e96c6b" category="paragraph">次のコマンドを使用できます。<block ref="2aa3751083baf48c1e1ddef8df4ddcc3" prefix=" " category="inline-code"></block> ATTO CLIで、次の手順を実行します。</block>
   <block id="480cf83fd6c463ccef2ed2a9d0dce2c4" category="list-text">を入力します<block ref="bedfcd4488b13f5b7062e121a6a8baa5" prefix=" " category="inline-code"></block> コマンドを使用してポートを永続的に有効にします。サバイバーサイトにある両方のスイッチで実行する必要があります。</block>
-  <block id="9d1a338762e03c980c82e8098eb03744" category="list-text">サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻します。再同期処理が再開され、 SyncMirror が再確立されます。</block>
   <block id="9f6a23c1abc971d714730192ce961b96" category="paragraph">の手順に従います <block ref="9c0d52e0ce7a57d643217990aba10043" category="inline-link-macro-rx"></block> MetroCluster 構成に応じて修復処理とスイッチバック処理を実行します。</block>
   <block id="0b4bc6296d77be28e33d3b50e0ea0797" category="paragraph"><block ref="0b4bc6296d77be28e33d3b50e0ea0797" category="inline-link-macro-rx"></block></block>
   <block id="e49bc35e0118f2b5a5904c13e1833761" category="section-title">ONTAP 9.3.x以前を実行している構成でのFibreBridge 7500Nのファームウェアの更新</block>
@@ -13681,43 +13675,26 @@
   <block id="18bd3543357b4fa11f6a58101dfa61a5" category="sidebar">Tiebreaker をインストールします</block>
   <block id="d2875782347edc6066d3025cecc9df38" category="sidebar">メディエーターのインストール（ MetroCluster IP のみ）</block>
   <block id="ade01a5a398372194a42c36e9f5279ac" category="sidebar">メンテナンス</block>
-  <block id="7b8e5f5947a6dadc276f09b5a095667d" category="sidebar">MetroCluster FC 構成での FC スイッチの保守と交換</block>
   <block id="7f5d1cf6b92b5f6a9e5fe290c7d568fa" category="sidebar">IPスイッチ</block>
-  <block id="e9e6a0d40b20996536edcfae7b0ca501" category="sidebar">MetroCluster IP 構成で IP スイッチの保守と交換を行います。</block>
   <block id="5360721f5d15a4a50d1c0ea177551d33" category="sidebar">ATTO ブリッジ</block>
-  <block id="6659ad060d95c49da27c02efe70880ee" category="sidebar">MetroCluster FC 構成で ATTO FC-to-SAS ブリッジをメンテナンスし、交換します。</block>
   <block id="c89a58741e7240ddf3c43ec7dbb21cd7" category="sidebar">ドライブシェルフ</block>
-  <block id="bb2a6473813b98ffe9edacc863bb749e" category="sidebar">ドライブシェルフ MetroCluster FC 構成のホットアドおよび無停止での交換</block>
   <block id="9deb979aa141eacec55a34ce9dfd4cc9" category="sidebar">RCF ファイル</block>
   <block id="277ccac115bb10401c3dbe796a5fd555" category="sidebar">MetroCluster RCF ファイル</block>
-  <block id="f4ff45e882d7ee5ad1b4a9e07301850d" category="sidebar">MetroCluster スイッチ用の RCF ファイルを生成またはダウンロードします。</block>
   <block id="d59048f21fd887ad520398ce677be586" category="sidebar">詳細はこちら。</block>
   <block id="b92dd7cb5813aceca4052255be1046a0" category="sidebar">NetApp MetroCluster 解決策のアーキテクチャと設計 | TR-4705</block>
-  <block id="c8ed4eb56c00a193e2bf85d5a38119ee" category="sidebar">MetroCluster FC 解決策を理解する</block>
   <block id="d821955413ef2ce3b63ac32371a5186e" category="sidebar">MetroCluster IP 解決策のアーキテクチャと設計 | TR-4689</block>
-  <block id="33d6c0f3568f32d65b84533fcc9dcbcb" category="sidebar">MetroCluster IP 解決策を理解する。</block>
   <block id="3d5cf400e4fb829207d0ab81798b6587" category="sidebar">アップグレード、拡張、変換</block>
   <block id="64cd3f6f5347e9d6c92e09aa1c656f87" category="sidebar">ハードウェアのアップグレードと更新</block>
-  <block id="fdc7fb09ec4ebc533362a55d221d305f" category="sidebar">MetroCluster 構成のコントローラをアップグレードします。</block>
   <block id="e912938f380bdbc5125a46cb6974c985" category="sidebar">2 ノード MetroCluster を展開します</block>
-  <block id="c495f5fb55d923c4b5bdcc9031d17504" category="sidebar">MetroCluster 構成にコントローラを追加して、 4 ノードまたは 8 ノード構成を作成します。</block>
   <block id="8b9fb0a48d871747071a5767bb11c3c9" category="sidebar">4 ノード MetroCluster を展開します</block>
-  <block id="f0de1d093d27614c73e83446489eec92" category="sidebar">コントローラを MetroCluster 構成に追加して 8 ノード構成を作成</block>
   <block id="daf3fcb291d6eb9e42a7777197caa458" category="sidebar">MetroCluster FCからMetroCluster IPへの変換</block>
-  <block id="689a3f6927feed4862b6b5b03d4f0018" category="sidebar">既存の MetroCluster IP 構成を MetroCluster IP 構成に移行する。</block>
   <block id="822970998ef8866cd59ed6ba8d63af83" category="sidebar">MetroCluster IP RCF ファイルをアップグレードします</block>
-  <block id="b2899a6511f7a2ac6656022f75581e5a" category="sidebar">MetroCluster IP 構成のスイッチ RCF ファイルをアップグレードします。</block>
   <block id="b7c02f1bc7ffc889ddb9e99702663c56" category="sidebar">ATTO ブリッジファームウェア</block>
   <block id="ddac5beff5f77bf22595caa98bac08f9" category="sidebar">FibreBridge 7600N</block>
-  <block id="7189e471dda7f4816814f7b74c6948d1" category="sidebar">7600 ブリッジのファームウェアをダウンロードします。</block>
   <block id="dcb741f9e6e5d6050aeb3d8fd347e9fd" category="sidebar">FibreBridge 7500N</block>
-  <block id="81defdfe6f2018754b9c90215acaf8c1" category="sidebar">7500ブリッジのファームウェアをダウンロードします。</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">リソースの追加</block>
   <block id="fa0344a10c89a05b4e9232391d5feb01" category="sidebar">NetApp Config Advisor の略</block>
-  <block id="7bde48e6b0d33c17d731b283a4674428" category="sidebar">構成とケーブル接続を検証</block>
-  <block id="d5552b01bf48dde88719269e524ddbb9" category="sidebar">ハードウェアがサポートされていることを確認します。</block>
   <block id="3f2b90ec5a9b43745b9c8c9fedf48d8d" category="sidebar">ネットアップのサポートナレッジベース</block>
-  <block id="b2cdf9234a2dabbbb6acb6f71e098209" category="sidebar">サポートに関する質問の回答を検索します。</block>
   <block id="67ed9530c4069b662839f89c94d4a160" category="inline-link-macro">エンドツーエンドの暗号化を無効にする</block>
   <block id="ade87983ca16ac3bdbf2b32cf6e9b0d5" category="list-text">システムで有効になっている場合は、 <block ref="8a6f29aee2b87dab72caa4c63be583f5" category="inline-link-macro-rx"></block> コントローラのアップグレードを実行する前に、</block>
   <block id="3d8fb38a661b136fb35b34201d24ef76" category="section-title">エンドツーエンドの暗号化を設定する</block>
@@ -13758,7 +13735,6 @@
   <block id="efd20e2b544e4614b2e657ac6783ec0a" category="paragraph">エンドツーエンドの暗号化のためのMetroCluster IPサポート</block>
   <block id="4a4b85199291f3e23fc84fb47fb5ca30" category="paragraph">AFF A400、FAS8300、FAS8700システムでは、MetroCluster IP構成のサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するために、エンドツーエンドの暗号化がサポートされています。</block>
   <block id="a9734ca6d9ffb317f9b6a802b2dbb3aa" category="inline-link-macro">MetroCluster IP構成でのエンドツーエンドの暗号化の設定</block>
-  <block id="c39138b0d883de358017e1fce7fa55a9" category="paragraph"><block ref="c39138b0d883de358017e1fce7fa55a9" category="inline-link-macro-rx"></block></block>
   <block id="aec0d8caac35e70ca6b42831fa957b4d" category="paragraph">AFF A800およびAFF C800システムでの4ノードMetroCluster IP構成のボリューム制限の拡張</block>
   <block id="cbd27762af6b4c6335bac75a098542ce" category="paragraph">4ノードMetroCluster IP構成では、AFF A800およびAFF C800システムの次のボリューム制限が拡張されました。</block>
   <block id="2c18214fb090b3346dccf036f48c7f39" category="list-text">アグリゲートあたりのFlexVolの最大数が200から625に増加しました。</block>
@@ -13782,4 +13758,20 @@
   <block id="98db7bcad911ca4f97f6c512fd15dba5" category="admonition">を参照してください <block ref="21cf3ec43c40018cebe1c66cf55306b2" category="inline-link-macro-rx"></block> サポートされているシステムの場合。</block>
   <block id="03e22cbc7470f9e3b1bc635479554ca9" category="sidebar">ONTAP機能のMetroClusterサポートの新機能</block>
   <block id="89753eb00eabd16383d2c616cc908230" category="sidebar">MetroCluster IPプラットフォームおよびスイッチのサポートの新機能</block>
+  <block id="1a8f5be2d2808b5d69a091661c1fdb57" category="paragraph"><block ref="1a8f5be2d2808b5d69a091661c1fdb57" category="inline-link-macro-rx"></block></block>
+  <block id="d8654b161561461c8ec014d5d660db0d" category="list-text">ストレージが認識されていることを確認します。</block>
+  <block id="8c31a85fbae513d968c02205e8c210d4" category="list-text">サバイバーサイトからストレージが認識されていることを確認します。オフラインのプレックスをオンラインに戻して再同期処理を再開し、SyncMirrorを再確立します。</block>
+  <block id="262891df0c6ebb50acbcb126fb5c8761" category="summary">メンテナンスを実施する場合は、MetroCluster IPインターフェイスポートを停止しなければならないことがあります。</block>
+  <block id="4261a47766ada379b26b2c3a719f75b2" category="doc">オンラインまたはオフラインのMetroCluster IPインターフェイスポート</block>
+  <block id="cb6838ec9d371f50679bbbc58c45370a" category="paragraph">メンテナンスタスクを実行する際に、MetroCluster IPインターフェイスポートをオフラインまたはオンラインにしなければならない場合があります。</block>
+  <block id="c8611b3438fb84a6c442fe7b05f52a15" category="paragraph">MetroCluster IPインターフェイスポートをオフラインまたはオンラインにするには、次の手順を実行します。</block>
+  <block id="3c84f1de018751821bb0b4202f14bf0a" category="list-text">権限レベルを advanced に設定します。</block>
+  <block id="6ca857f7a44a21cfffda914cf9549710" category="paragraph">*出力例*</block>
+  <block id="260ab9e602296cf4759b74ba30cbd850" category="list-text">MetroCluster IPインターフェイスポートをオフラインにします。</block>
+  <block id="fdc6d534c52f6619e898db680403f69b" category="list-text">MetroCluster IPインターフェイスがオフラインであることを確認します。</block>
+  <block id="2d393525a6ebfc702ca856ed72512167" category="list-text">MetroCluster IPインターフェイスポートをオンラインにします。</block>
+  <block id="0ab751f551b18333e82474f5ca9b4122" category="list-text">MetroCluster IPインターフェイスポートがオンラインであることを確認します。</block>
+  <block id="e387b7f8f98fe6ef00364ba0984c08a9" category="paragraph">古いシステム ID と新しいシステム ID は、で特定されています <block ref="ce17cf746f0f051ba197f9e3096bf7f5" category="inline-link-macro-rx"></block>。</block>
+  <block id="124ba57298a92342f8aec06ebcfb6415" category="inline-link-macro">古いコントローラモジュールのシステムIDの確認</block>
+  <block id="3ac27de4b4347c98785ff06870fe7221" category="paragraph"><block ref="3ac27de4b4347c98785ff06870fe7221" category="inline-link-macro-rx"></block></block>
 </blocks>
