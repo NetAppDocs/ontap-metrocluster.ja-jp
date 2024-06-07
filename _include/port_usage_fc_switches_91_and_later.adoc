@@ -3963,7 +3963,7 @@ ISL 4.
 
 == ONTAP 9.4以降を実行するMetroCluster 4ノードおよび8ノード構成でのCisco 9132Tポートの用途
 
-次の表に、Cisco 9132Tスイッチのポート用途を示します。次の表に、2つのDRグループに4台および8台のコントローラモジュールを含む、サポートされる最大構成を示します。
+次の表に、Cisco 9132Tスイッチのポート用途を示します。次の表に、2つのDRグループに4台と8台のコントローラモジュールを含む、サポートされる最大構成を示します。
 
 
 NOTE: 8ノード構成の場合は、RCFは提供されないため、ゾーニングを手動で実行する必要があります。
@@ -3971,392 +3971,18 @@ NOTE: 8ノード構成の場合は、RCFは提供されないため、ゾーニ�
 |===
 
 
-7+| 両方の FC ポート（ FC1 または FC2 ）を使用する FibreBridge 7500N または 7600N を使用する構成 
+4+| Cisco 9132T （ LEM × 1 
 
 
-7+| MetroCluster 1 または DR グループ 1 
+4+| MetroCluster 1 または DR グループ 1 
 
 
-4+|  2+| 4 ノード | 8 ノード 
+3+|  | 4 ノード 
 
 
-2+| コンポーネント | ポート | 接続先 FC スイッチ | 9132T （ LEM x 1 ） | 9132T （ LEM x 2 ） | 9132T （ LEM x 2 ） 
+| 2つのFCポートを使用するFibreBridge 7500N / 7600N | ポート | 接続先 FC スイッチ | 9132T （ LEM x 1 ） 
 
 
- a| 
-controller_x_1
- a| 
-FC-VI ポート a
- a| 
-1.
- a| 
-LEM1-1.
- a| 
-LEM1-1.
- a| 
-LEM1-1.
-
-
-
- a| 
-FC-VI ポート b
- a| 
-2.
- a| 
-LEM1-1.
- a| 
-LEM1-1.
- a| 
-LEM1-1.
-
-
-
- a| 
-FC-VI ポート c
- a| 
-1.
- a| 
-LEM1-2
- a| 
-LEM1-2
- a| 
-LEM1-2
-
-
-
- a| 
-FC-VI ポート d
- a| 
-2.
- a| 
-LEM1-2
- a| 
-LEM1-2
- a| 
-LEM1-2
-
-
-
- a| 
-HBA ポート A
- a| 
-1.
- a| 
-LEM1-5.
- a| 
-LEM1-5.
- a| 
-LEM1-3
-
-
-
- a| 
-HBA ポート b
- a| 
-2.
- a| 
-LEM1-5.
- a| 
-LEM1-5.
- a| 
-LEM1-3
-
-
-
- a| 
-HBA ポート c
- a| 
-1.
- a| 
-LEM1-6.
- a| 
-LEM1-6.
- a| 
-LEM1-4.
-
-
-
- a| 
-HBA ポート d
- a| 
-2.
- a| 
-LEM1-6.
- a| 
-LEM1-6.
- a| 
-LEM1-4.
-
-
-
- a| 
-controller_x_2
- a| 
-FC-VI ポート a
- a| 
-1.
- a| 
-LEM1-7.
- a| 
-LEM1-7.
- a| 
-LEM1-5.
-
-
-
- a| 
-FC-VI ポート b
- a| 
-2.
- a| 
-LEM1-7.
- a| 
-LEM1-7.
- a| 
-LEM1-5.
-
-
-
- a| 
-FC-VI ポート c
- a| 
-1.
- a| 
-LEM1-8
- a| 
-LEM1-8
- a| 
-LEM1-6.
-
-
-
- a| 
-FC-VI ポート d
- a| 
-2.
- a| 
-LEM1-8
- a| 
-LEM1-8
- a| 
-LEM1-6.
-
-
-
- a| 
-HBA ポート A
- a| 
-1.
- a| 
-LEM1-11
- a| 
-LEM1-11
- a| 
-LEM1-7.
-
-
-
- a| 
-HBA ポート b
- a| 
-2.
- a| 
-LEM1-11
- a| 
-LEM1-11
- a| 
-LEM1-7.
-
-
-
- a| 
-HBA ポート c
- a| 
-1.
- a| 
-LEM1-12
- a| 
-LEM1-12
- a| 
-LEM1-8
-
-
-
- a| 
-HBA ポート d
- a| 
-2.
- a| 
-LEM1-12
- a| 
-LEM1-12
- a| 
-LEM1-8
-
-
-
-7+| MetroCluster 2 または DR グループ 2 
-
-
- a| 
-controller_x_3
- a| 
-FC-VI ポート a
- a| 
-1.
-|  |   a| 
-LEM2-1
-
-
-
- a| 
-FC-VI ポート b
- a| 
-2.
-|  |   a| 
-LEM2-1
-
-
-
- a| 
-FC-VI ポート c
- a| 
-1.
-|  |   a| 
-LEM2-2
-
-
-
- a| 
-FC-VI ポート d
- a| 
-2.
-|  |   a| 
-LEM2-2
-
-
-
- a| 
-HBA ポート A
- a| 
-1.
-|  |   a| 
-LEM2-3
-
-
-
- a| 
-HBA ポート b
- a| 
-2.
-|  |   a| 
-LEM2-3
-
-
-
- a| 
-HBA ポート c
- a| 
-1.
-|  |   a| 
-LEM2-4
-
-
-
- a| 
-HBA ポート d
- a| 
-2.
-|  |   a| 
-LEM2-4
-
-
-
- a| 
-controller_x_4
- a| 
-FC-VI 1 ポート a
- a| 
-1.
-|  |   a| 
-LEM2-5
-
-
-
- a| 
-FC-VI 1 ポート b
- a| 
-2.
-|  |   a| 
-LEM2-5
-
-
-
- a| 
-FC-VI-1 ポート c
- a| 
-1.
-|  |   a| 
-LEM2-6
-
-
-
- a| 
-FC-VI 1 ポート d
- a| 
-2.
-|  |   a| 
-LEM2-6
-
-
-
- a| 
-HBA ポート A
- a| 
-1.
-|  |   a| 
-LEM2-7
-
-
-
- a| 
-HBA ポート b
- a| 
-2.
-|  |   a| 
-LEM2-7
-
-
-
- a| 
-HBA ポート c
- a| 
-1.
-|  |   a| 
-LEM2-8
-
-
-
- a| 
-HBA ポート d
- a| 
-2.
-|  |   a| 
-LEM2-8
-
-
-
-7+| MetroCluster 1 または DR グループ 1 
-
-
-4+|  2+| 4 ノード | 8 ノード 
-
-
-2+| 2つのFCポートを使用するFibreBridge 7500N | ポート | 接続先 FC スイッチ | 9132T （ LEM x 1 ） | 9132T （ LEM x 2 ） | 9132T （ LEM x 2 ） 
-
-
- a| 
-スタック 1
  a| 
 bridge_x_1a
  a| 
@@ -4365,10 +3991,6 @@ fc1
 1.
  a| 
 LEM1-13
- a| 
-LEM1-13
- a| 
-LEM1-9
 
 
 
@@ -4378,8 +4000,235 @@ FC2
 2.
  a| 
 LEM1-13
+
+
+
+ a| 
+bridge_x_1b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-14
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-14
+
+|===
+
+NOTE: 1 つの LEM モジュールを持つ 9132T スイッチを使用した場合、 1 つのブリッジスタックのみがサポートされます。
+
+|===
+
+
+4+| Cisco 9132T（LEM×2、4ノードMetroClusterまたはDRグループ×1） 
+
+
+4+| MetroCluster 1 または DR グループ 1 
+
+
+3+|  | 4 ノード 
+
+
+| 2つのFCポートを使用するFibreBridge 7500N / 7600N | ポート | 接続先 FC スイッチ | 9132T （ LEM x 2 ） 
+
+
+ a| 
+bridge_x_1a
+ a| 
+fc1
+ a| 
+1.
  a| 
 LEM1-13
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-13
+
+
+
+ a| 
+bridge_x_1b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-14
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-14
+
+
+
+ a| 
+bridge_x_2a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-15
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-15
+
+
+
+ a| 
+bridge_x_2b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-16
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-16
+
+
+
+ a| 
+bridge_x_3a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM2-1
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM2-1
+
+
+
+ a| 
+bridge_x_3b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM2-2
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM2-2
+
+
+
+ a| 
+bridge_x_ya
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM2-3
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM2-3
+
+
+
+ a| 
+bridge_x_YB
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM2-4
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM2-4
+
+|===
+
+NOTE: 4ノード構成では、LEMを2台搭載した9132TスイッチのポートLEM2-5~LEM2-8に追加のブリッジをケーブル接続できます。
+
+|===
+
+
+4+| Cisco 9132T：4ノードMetroCluster×2、またはDRグループ×2の8ノードMetroCluster×1 
+
+
+4+| MetroCluster 1 または DR グループ 1 
+
+
+| 2つのFCポートを使用するFibreBridge 7500N / 7600N | ポート | 接続先 FC スイッチ | 9132T （ LEM x 2 ） 
+
+
+ a| 
+bridge_x_1a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-9
+
+
+
+ a| 
+FC2
+ a| 
+2.
  a| 
 LEM1-9
 
@@ -4392,10 +4241,6 @@ fc1
  a| 
 1.
  a| 
-LEM1-14
- a| 
-LEM1-14
- a| 
 LEM1-10
 
 
@@ -4405,24 +4250,16 @@ FC2
  a| 
 2.
  a| 
-LEM1-14
- a| 
-LEM1-14
- a| 
 LEM1-10
 
 
 
- a| 
-スタック 2
  a| 
 bridge_x_2a
  a| 
 fc1
  a| 
 1.
-|   a| 
-LEM1-15
  a| 
 LEM1-11
 
@@ -4432,8 +4269,6 @@ LEM1-11
 FC2
  a| 
 2.
-|   a| 
-LEM1-15
  a| 
 LEM1-11
 
@@ -4445,8 +4280,6 @@ bridge_x_2b
 fc1
  a| 
 1.
-|   a| 
-LEM1-16
  a| 
 LEM1-12
 
@@ -4456,23 +4289,23 @@ LEM1-12
 FC2
  a| 
 2.
-|   a| 
-LEM1-16
  a| 
 LEM1-12
 
 
 
- a| 
-スタック 3
+4+| MetroCluster 2 または DR グループ 2 
+
+
+| 2つのFCポートを使用するFibreBridge 7500N / 7600N | ポート | 接続先 FC スイッチ | 9132T （ LEM x 2 ） 
+
+
  a| 
 bridge_x_3a
  a| 
 fc1
  a| 
 1.
-|   a| 
-LEM2-1
  a| 
 LEM2-9
 
@@ -4482,8 +4315,6 @@ LEM2-9
 FC2
  a| 
 2.
-|   a| 
-LEM2-1
  a| 
 LEM2-9
 
@@ -4495,8 +4326,6 @@ bridge_x_3b
 fc1
  a| 
 1.
-|   a| 
-LEM2-2
  a| 
 LEM2-10
 
@@ -4506,23 +4335,17 @@ LEM2-10
 FC2
  a| 
 2.
-|   a| 
-LEM2-2
  a| 
 LEM2-10
 
 
 
  a| 
-スタック y
- a| 
 bridge_x_ya
  a| 
 fc1
  a| 
 1.
-|   a| 
-LEM2-3
  a| 
 LEM2-11
 
@@ -4532,8 +4355,6 @@ LEM2-11
 FC2
  a| 
 2.
-|   a| 
-LEM2-3
  a| 
 LEM2-11
 
@@ -4545,8 +4366,6 @@ bridge_x_YB
 fc1
  a| 
 1.
-|   a| 
-LEM2-4
  a| 
 LEM2-12
 
@@ -4556,20 +4375,13 @@ LEM2-12
 FC2
  a| 
 2.
-|   a| 
-LEM2-4
  a| 
 LEM2-12
 
 |===
-[NOTE]
-====
-* 4ノード構成では、LEMを2台搭載した9132TスイッチのポートLEM2-5~LEM2-8に追加のブリッジをケーブル接続できます。
-* 8ノード構成では、LEM×2を搭載した9132TスイッチのポートLEM2-13~LEM2-16に追加のブリッジをケーブル接続できます。
-* 1 つの LEM モジュールを持つ 9132T スイッチを使用した場合、 1 つのブリッジスタックのみがサポートされます。
 
+NOTE: 8ノード構成では、LEM×2を搭載した9132TスイッチのポートLEM2-13~LEM2-16に追加のブリッジをケーブル接続できます。
 
-====
 
 
 == MetroCluster ONTAP 9.1以降を実行している4ノードおよび8ノード構成のISLでのCisco 9132Tポートの用途
