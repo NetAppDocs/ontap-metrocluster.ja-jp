@@ -216,6 +216,9 @@ node_A_1
 
 
  a| 
+* AFF A70用
+* AFF A90用
+* AFF A1K用
 * AFF A220
 * AFF A250
 * AFF A400
@@ -237,9 +240,48 @@ node_A_1
 必要なアドレスは、「 * Destination Network Address * 」列に表示されている DR パートナーのアドレスです。
 
 +
-次の出力は、 AFF A700 システムと FAS9000 システムを使用した構成で MetroCluster IP インターフェイスがポート e5a および e5b にある場合の IP アドレスを示しています。インターフェイスはプラットフォームのタイプによって異なります。
+コマンドの出力は、プラットフォームのモデルによって異なります。
 
 +
+[role="tabbed-block"]
+====
+.ONTAP 9.15.1以降で導入されたシステム
+--
+ONTAP 9.15.1以降で導入されたシステム（AFF A70、AFF A90、およびAFF A1K）には、HA用とDR用に別 々 のポートがあります。次の出力例を参照してください。
+
+[listing]
+----
+cluster_B::*> metrocluster configuration-settings connection show
+DR                    Source          Destination
+DR                    Source          Destination
+Group Cluster Node    Network Address Network Address Partner Type Config State
+----- ------- ------- --------------- --------------- ------------ ------------
+1     cluster_B
+              node_B_1
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.10    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.13    172.17.26.11    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.10    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.13    172.17.27.11    DR Auxiliary completed
+              node_B_2
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.11    DR Partner   completed
+                 Home Port: e5a
+                      172.17.26.12    172.17.26.10    DR Auxiliary completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.11    DR Partner   completed
+                 Home Port: e5b
+                      172.17.27.12    172.17.27.10    DR Auxiliary completed
+12 entries were displayed.
+----
+--
+.その他すべてのシステム
+--
+次の出力は、 AFF A700 システムと FAS9000 システムを使用した構成で MetroCluster IP インターフェイスがポート e5a および e5b にある場合の IP アドレスを示しています。インターフェイスはプラットフォームタイプによって異なります。
+
 [listing]
 ----
 cluster_B::*> metrocluster configuration-settings connection show
@@ -276,12 +318,14 @@ Group Cluster Node    Network Address Network Address Partner Type Config State
                       172.17.27.12    172.17.27.10    DR Auxiliary completed
 12 entries were displayed.
 ----
+--
+====
 . インターフェイスの VLAN ID またはゲートウェイアドレスを確認する必要がある場合は、サバイバーサイトから VLAN ID を確認します。
 +
 「 MetroCluster configurion-settings interface show 」を参照してください
 
 +
-** プラットフォームモデルで VLAN ID を使用している場合（上記のリストを参照）、およびデフォルトの VLAN ID を使用していない場合は、 VLAN ID が必要です。
+** プラットフォームモデルでVLAN IDを使用している場合（上記のリストを参照）、およびデフォルトのVLAN IDを使用していない場合は、VLAN IDが必要です。
 ** を使用する場合は、ゲートウェイアドレスが必要です link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワーク"]。
 +
 VLAN ID は、出力の * Network Address * 列に含まれています。[*Gateway*] 列には、ゲートウェイ IP アドレスが表示されます。
@@ -306,27 +350,56 @@ Group Cluster Node     Network Address Netmask         Gateway         State
 ----
 
 
-. ディザスタサイトのノードで VLAN ID を使用している場合（上記の一覧を参照）は、各ディザスタサイトのノードの LOADER プロンプトで次の bootarg を設定します。
+. ディザスタサイトの各ノードのLOADERプロンプトで、プラットフォームモデルに応じてbootargの値を設定します。
 +
+[NOTE]
+====
+** インターフェイスがデフォルトのVLANを使用している場合、またはプラットフォームモデルがVLAN IDを使用していない場合（上記のリストを参照）、_vlan-id_は必要ありません。
+** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 広域ネットワーク"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
+
+
+====
++
+[role="tabbed-block"]
+====
+.ONTAP 9.15.1以降で導入されたシステム
 --
+ONTAP 9.15.1以降で導入されたシステムでは、DR用とHA用に別 々 のポートがあるため、_ha-partner-ip-address_の値を* 0 *（ゼロ）に設定する必要があります。
+
+次のbootargを設定します。
+
+[listing]
+----
+setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+
+setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+----
+次のコマンドは、最初のネットワークに VLAN 120 、 2 番目のネットワークに VLAN 130 を使用して node_A_1 の値を設定します。
+
+....
+setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,0,172.17.26.13,172.17.26.12,120
+
+setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,0,172.17.27.13,172.17.27.12,130
+....
+次の例は、 VLAN ID のない node_A_1 のコマンドを示しています。
+
+[listing]
+----
+setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,0,172.17.26.13,172.17.26.12
+
+setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,0,172.17.27.13,172.17.27.12
+----
+--
+.その他すべてのシステム
+--
+次のbootargを設定します。
+
 ....
 setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
 
 setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
 ....
-[NOTE]
-====
-** インターフェイスがデフォルト VLAN を使用している場合、またはプラットフォームモデルが VLAN を必要としない場合（上記のリストを参照）、 _vlan-id_ は必要ありません。
-** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 広域ネットワーク"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
-
-
-====
-** インターフェイスがデフォルト VLAN を使用している場合、またはプラットフォームモデルが VLAN を必要としない場合（上記のリストを参照）、 _vlan-id_ は必要ありません。
-** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 バックエンド接続"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
-+
 次のコマンドは、最初のネットワークに VLAN 120 、 2 番目のネットワークに VLAN 130 を使用して node_A_1 の値を設定します。
-
-
 
 ....
 setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12,120
@@ -335,37 +408,14 @@ setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,
 ....
 次の例は、 VLAN ID のない node_A_1 のコマンドを示しています。
 
-....
+[listing]
+----
 setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
 
 setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
-....
+----
 --
-. ディザスタサイトのノードが VLAN ID を使用するシステムでない場合は、各ディザスタノードの LOADER プロンプトで、「 local_IP/mask 、 gateway 」の形式で次の bootarg を設定します。
-+
-....
-setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address
-
-
-setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address
-....
-+
-[NOTE]
 ====
-** インターフェイスがデフォルト VLAN を使用している場合、またはプラットフォームモデルが VLAN を必要としない場合（上記のリストを参照）、 _vlan-id_ は必要ありません。
-** 構成が使用していない場合 link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワーク"]、 _gateway-ip-address_is * 0 * （ゼロ）の値。
-
-
-====
-+
-次のコマンドは、 node_A_1 の値を設定します。この例では、 _gateway-ip-address_or_vlan-id_values は使用されません。
-
-+
-....
-setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
-
-setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
-....
 . サバイバーサイトから、ディザスタサイトの UUID を収集します。
 +
 MetroCluster node show -fields node-cluster.uuid 、 node-uuid

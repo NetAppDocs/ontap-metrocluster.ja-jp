@@ -15,9 +15,7 @@ summary: 使用するリフレッシュ手順 は、プラットフォームモ�
 
 
 
-=== サポートされるMetroCluster FC機器更改の組み合わせ
-
-image::../media/metrocluster_fc_tech_refresh_914.png[MetroCluster FC機器更改914]
+== サポートされているMetroCluster IP Tech Refreshの組み合わせ
 
 * 新しい負荷を追加する前に、機器更改（Tech Refresh）の手順 を完了する必要があります。
 * MetroCluster構成内のすべてのノードで同じバージョンのONTAPが実行されている必要があります。たとえば、8ノード構成の場合は、8つのすべてのノードで同じバージョンのONTAPを実行する必要があります。
@@ -26,20 +24,61 @@ image::../media/metrocluster_fc_tech_refresh_914.png[MetroCluster FC機器更改
 * を参照してください link:https://hwu.netapp.com["Hardware Universe"^] プラットフォームの制限：
 
 
+.サポートされるAFFとFAS MetroCluster IPの機器更改の組み合わせ
+次の表に、MetroCluster IP構成のAFFシステムまたはFASシステムの更新でサポートされるプラットフォームの組み合わせを示します。
 
 
-=== サポートされているMetroCluster IP Tech Refreshの組み合わせ
+NOTE: AFF A70、AFF A90、およびAFF A1Kシステムには、ONTAP 9.15.1以降が必要です。
 
-image::../media/metrocluster_techref_ip_914.png[MetroCluster IPの機器更改の組み合わせ]
+image::../media/metrocluster_techref_ip.png[MetroCluster IPの機器更改の組み合わせ]
 
 *注1：*この組み合わせにはONTAP 9.13.1以降が必要です。
 
+.サポートされるASA MetroCluster IPの機器更改の組み合わせ
+次の表に、MetroCluster IP構成でASAシステムを更新する際にサポートされるプラットフォームの組み合わせを示します。
+
+image::../media/metrocluster_techref_ip_asa.png[MetroCluster IP ASAの機器更改の組み合わせ]
+
+
+
+== サポートされるMetroCluster FC機器更改の組み合わせ
+
 * 新しい負荷を追加する前に、機器更改（Tech Refresh）の手順 を完了する必要があります。
 * MetroCluster構成内のすべてのノードで同じバージョンのONTAPが実行されている必要があります。たとえば、8ノード構成の場合は、8つのすべてのノードで同じバージョンのONTAPを実行する必要があります。
 * 組み合わせて使用するプラットフォームの「下位」のオブジェクト制限を超えないようにしてください。2つのプラットフォームのオブジェクトの下限を適用します。
 * ターゲットプラットフォームの制限がMetroCluster の制限よりも低い場合は、新しいノードを追加する前に、ターゲットプラットフォームの制限以下になるようにMetroCluster を再設定する必要があります。
 * を参照してください link:https://hwu.netapp.com["Hardware Universe"^] プラットフォームの制限：
 
+
+.サポートされるAFFとFAS MetroCluster FCの機器更改の組み合わせ
+次の表に、MetroCluster FC構成のAFFシステムまたはFASシステムの更新でサポートされるプラットフォームの組み合わせを示します。
+
+image::../media/metrocluster_fc_tech_refresh.png[MetroCluster fc tech refresh]
+
+.サポートされるASA MetroCluster FC機器更改の組み合わせ
+次の表に、MetroCluster FC構成のASAシステムの更新でサポートされるプラットフォームの組み合わせを示します。
+
+[cols="3*"]
+|===
+| ソースMetroCluster FCプラットフォーム | デスティネーションMetroCluster FCプラットフォーム | サポートの有無 
+
+
+.2+| ASA A400 | ASA A400 | はい。 
+
+
+| ASA A900 | いいえ 
+
+
+.2+| ASA A900 | ASA A400 | いいえ 
+
+
+| ASA A900 | はい。 
+|===
+
+
+== 更新手順の選択
+
+次の表から、構成に応じた更新手順を選択します。
 
 [cols="2,1,1,2"]
 |===

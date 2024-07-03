@@ -19,7 +19,6 @@ ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用�
 
 * プラットフォームで ONTAP 9.8 以降が実行されている必要があります。
 * ターゲット（新規）プラットフォームは、元のプラットフォームとは異なるモデルである必要があります。
-* シェルフ内蔵のプラットフォームモデルはサポートされていません。
 * MetroCluster IP構成では、この手順 を使用してアップグレードできるプラットフォームモデルは限られています。
 +
 ** サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster IPアップグレードの表を参照してください link:concept_choosing_controller_upgrade_mcc.html["コントローラのアップグレード手順 を選択します"]。
@@ -39,54 +38,95 @@ ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用�
 +
 このメンテナンス作業以外では、コントローラタイプが異なる MetroCluster 構成を運用することはできません。
 
-* サポートされているファームウェアバージョンが IP スイッチで実行されている必要があります。
+* MetroCluster IPスイッチ（スイッチタイプ、ベンダー、モデル）とファームウェアのバージョンが、アップグレード構成の既存および新しいコントローラでサポートされている必要があります。
++
+サポートされているスイッチとファームウェアのバージョンについては、またはを参照してください link:https://hwu.netapp.com["NetApp Hardware Universe の略"^] link:https://imt.netapp.com/matrix/["IMT"^] 。
+
+* システムで有効になっている場合は link:../maintain/task-configure-encryption.html#disable-end-to-end-encryption["エンドツーエンドの暗号化を無効にする"] 、アップグレードを実行する前に実行します。
 * 新しいプラットフォームのスロット数が元のシステムのスロット数より少ない場合、またはポートのタイプが異なる場合は、新しいシステムにアダプタを追加しなければならないことがあります。
+* 元のプラットフォームのIPアドレス、ネットマスク、ゲートウェイは新しいプラットフォームで再利用します。
+
+
+この手順では、次の名前が使用されています。
+
+* site_A
 +
-詳細については、を参照してください https://hwu.netapp.com/["NetApp Hardware Universe の略"]。
-
-* システムで有効になっている場合は、 link:../maintain/task-configure-encryption.html#disable-end-to-end-encryption["エンドツーエンドの暗号化を無効にする"] コントローラのアップグレードを実行する前に、
-* 元のプラットフォームの IP アドレス、ネットマスク、ゲートウェイを新しいプラットフォームで再利用します。
-* この手順では、次の名前が使用されています。
+** アップグレード前：
 +
-** site_A
+*** node_A_1 - 古い
+*** Node_a_2-old
+
+
+** アップグレード後：
 +
-*** アップグレード前：
+*** node_A_1 - 新規
+*** Node_a_2 - 新規
+
+
+
+
+* site_B
 +
-**** node_A_1 - 古い
-**** Node_a_2-old
-
-
-*** アップグレード後：
+** アップグレード前：
 +
-**** node_A_1 - 新規
-**** Node_a_2 - 新規
+*** node_B_1 - 古い
+*** node_B_2 - 古い
 
 
-
-
-** site_B
+** アップグレード後：
 +
-*** アップグレード前：
+*** node_B_1 - 新規
+*** node_B_2 - 新規
+
+
+
+
+
+
+
+
+== 既存のシステムに必要なbootargを設定します。
+
+AFF A70、AFF A90、またはAFF A1Kシステムにアップグレードする場合は、手順に従ってbootargを設定します `hw.cxgbe.toe_keepalive_disable=1` 。
+
+
+CAUTION: AFF A70、AFF A90、またはAFF A1Kシステムにアップグレードする場合は、アップグレードを実行する前に*このタスクを完了する必要があります*。このタスク*のみ*は、サポート対象システムからAFF A70、AFF A90、またはAFF A1Kシステムへのアップグレードに適用されます。それ以外のアップグレードの場合は、このタスクを省略してに直接進みます <<prepare_so_sb_upgrade,アップグレードを準備>>。
+
+.手順
+. 各サイトで1つのノードを停止し、そのHAパートナーでノードのストレージテイクオーバーを実行できるようにします。
 +
-**** node_B_1 - 古い
-**** node_B_2 - 古い
+`halt  -node <node_name>`
 
-
-*** アップグレード後：
+.  `LOADER`停止したノードのプロンプトで、次のように入力します。
 +
-**** node_B_1 - 新規
-**** node_B_2 - 新規
+`setenv hw.cxgbe.toe_keepalive_disable 1`
+
++
+'aveenv
+
++
+`printenv hw.cxgbe.toe_keepalive_disable`
+
+. ノードをブートします。
++
+「 boot_ontap 」
+
+. ノードがブートしたら、プロンプトでノードのギブバックを実行します。
++
+`storage failover giveback -ofnode <node_name>`
+
+. アップグレードするDRグループの各ノードで、この手順を繰り返します。
 
 
 
 
+== アップグレードを準備
+
+既存の MetroCluster 構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行する必要があります。
 
 
 
-
-
-
-== MetroCluster IP 構成のコントローラをアップグレードするためのワークフロー
+=== MetroCluster IP 構成のコントローラをアップグレードするためのワークフロー
 
 ワークフロー図は、アップグレードタスクを計画する際に役立ちます。
 
@@ -94,13 +134,7 @@ image::../media/workflow_ip_upgrade.png[ワークフロー IP アップグレー
 
 
 
-== アップグレードの準備を行います
-
-既存の MetroCluster 構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行する必要があります。
-
-
-
-=== コントローラをアップグレードする前に MetroCluster スイッチの RCF ファイルを更新しています
+=== コントローラをアップグレードする前に、 MetroCluster スイッチの RCF ファイルを更新してください
 
 古いプラットフォームモデルに応じて、またはスイッチの設定が最小バージョンでない場合、またはバックエンド MetroCluster 接続で使用する VLAN ID を変更する場合は、プラットフォームのアップグレード手順を開始する前にスイッチの RCF ファイルを更新する必要があります。
 
@@ -168,20 +202,22 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 .手順
 . 新しい RCF ファイルを適用するための IP スイッチを準備します。
 +
-使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
+スイッチベンダーに対応するセクションを参照してください。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
 +
-の手順に従います link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
+スイッチベンダーに対応するセクションを参照してください。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html["BroadcomのRCFファイルをダウンロードしてインストールする"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IP RCFファイルのダウンロードとインストール"]
 
 
 
@@ -377,7 +413,7 @@ SAN
 
 
 
-=== 新しいコントローラのネットブート
+=== 新しいコントローラをネットブート
 
 新しいノードを設置したら、ネットブートを実行して、新しいノードが元のノードと同じバージョンの ONTAP を実行するようにする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを配置する必要があります。
 
@@ -388,39 +424,14 @@ SAN
 .. ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 ONTAP-version _image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。
 .. Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
 +
-[cols="1,3"]
-|===
-
-
-| プラットフォームモデル | 作業 
-
-
- a| 
-8000シリーズシステム
- a| 
-「 ____ontap -version _____image.tgz 」ファイルの内容をターゲットディレクトリに展開します。
-
-「 tar -zxvf_ontap - version _____image.tgz 」にあります
-
-
-NOTE: Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。ディレクトリの一覧に、カーネルファイル netboot/ kernel を含むネットブートフォルダが表示される必要があります
-
 ディレクトリの一覧に、カーネルファイルを含むネットブートフォルダが含まれるようにします。
 
-netboot/ カーネル
-
-
-
- a| 
-その他すべてのシステム
- a| 
-ディレクトリの一覧に、カーネルファイルを含むネットブートフォルダが含まれるようにします。
-
++
 `_ontap - version_image.tgz
 
++
 「 _ONTAP-version_image.tgz 」ファイルを抽出する必要はありません。
 
-|===
 .. LOADER プロンプトで、管理 LIF のネットブート接続を設定します。
 +
 |===
@@ -448,25 +459,8 @@ ifconfig e0M -addr= _ip_addr_-mask= _netmask _ -gw= _gateway_`
 |===
 .. ネットブートを実行します。
 +
-|===
-
-
-| プラットフォームモデル | 作業 
-
-
- a| 
-FAS/AFF8000 シリーズシステム
- a| 
-ネットブート http://_web_server_ip/path_to_web-accessible_directory_/netboot/kernel`[]
-
-
-
- a| 
-その他すべてのシステム
- a| 
 netboot\http://_web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz`
 
-|===
 .. ブートメニューからオプション **(7) Install new software first** を選択して、新しいソフトウェアイメージをダウンロードし、ブートデバイスにインストールします。
 +
 次のメッセージは無視してください。
@@ -483,7 +477,7 @@ http://__web_server_ip/path_to_web-accessible_directory/ontap-version___image.tg
 +
 [listing]
 ----
-Do you want to restore the backup configuration now? {y|n} **n**
+Do you want to restore the backup configuration now? {y|n} n
 ----
 .. 次のようなプロンプトが表示されたら '*y*' を入力して再起動します
 +
@@ -497,7 +491,7 @@ The node must be rebooted to start using the newly installed software. Do you wa
 
 
 
-=== コントローラモジュールでの設定の消去
+=== コントローラモジュールの設定をクリアします
 
 [role="lead"]
 MetroCluster 構成で新しいコントローラモジュールを使用する前に、既存の構成をクリアする必要があります。
@@ -537,14 +531,15 @@ wipeconfig
 
 
 
-=== サイトのアップグレード前の MetroCluster の健全性の確認
+=== サイトをアップグレードする前に MetroCluster の健全性を確認
 
 アップグレードを実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。
 
 .手順
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
-.. ノードがマルチパスであるかどうかを確認します。 +`node run -node node_name sysconfig -a`
+.. ノードがマルチパス構成になっているかどうかを確認します。+
+`node run -node <node_name> sysconfig -a`
 +
 このコマンドは、 MetroCluster 構成のノードごとに問題で実行する必要があります。
 
@@ -623,15 +618,20 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 ** MetroCluster interconnect show
 ** 「 MetroCluster configurion-settings connection show 」を参照してください
 ** 'network interface show -role cluster, node-mgmt
-** network port show -node node_name -type physical
-** 'network port vlan show -node -node-name _`
-** 「 network port ifgrp show -node node_name 」 - instance 」を指定します
+** `network port show -node <node_name> -type physical`
+** `network port vlan show -node <node_name>`
+** `network port ifgrp show -node <node_name> -instance`
 ** 「 network port broadcast-domain show 」
 ** 「 network port reachability show-detail` 」と表示されます
 ** network ipspace show
 ** volume show
 ** 「 storage aggregate show
-** 「 system node run -node _node-name_sysconfig -a 」のように入力します
+** `system node run -node <node_name> sysconfig -a`
+** `aggr show -r`
+** 「ディスクショー」
+** `system node run <node-name> disk show`
+** `vol show -fields type`
+** `vol show -fields type , space-guarantee`
 ** 「 vserver fcp initiator show 」のように表示されます
 ** 「 storage disk show 」を参照してください
 ** 「 MetroCluster configurion-settings interface show 」を参照してください
@@ -766,7 +766,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
 
 
 
-=== メディエーターまたは Tiebreaker の監視を削除しています
+=== メディエーターまたは Tiebreaker の監視を削除します
 
 プラットフォームをアップグレードする前に、 MetroCluster 設定を Tiebreaker またはメディエーターユーティリティで監視している場合は、監視を解除する必要があります。
 
@@ -833,7 +833,7 @@ MetroCluster 構成設定のメディエーターが削除されました
 
 
 
-== MetroCluster 設定をスイッチオーバーしています
+== MetroCluster 構成をスイッチオーバーします
 
 site_B のプラットフォームをアップグレードできるように、設定を site_A にスイッチオーバーする必要があります。
 
@@ -875,7 +875,7 @@ MetroCluster node show
 
 
 
-== インターフェイス設定を削除し、古いコントローラをアンインストールします
+== インターフェイス設定を削除し、古いコントローラをアンインストールする
 
 データ LIF を共通ポートに移動して古いコントローラの VLAN やインターフェイスグループを削除し、コントローラを物理的にアンインストールする必要があります。
 
@@ -905,7 +905,8 @@ SAN と NAS を含むすべてのデータ LIF は、スイッチオーバーサ
 +
 プラットフォームモデルのポートの用途については、を参照してください https://hwu.netapp.com/["NetApp Hardware Universe の略"]
 
-.. すべてのデータ LIF で共通のポートをホームポートとして使用するように変更します。 +`network interface modify -vserver _svm -name ____-lif data_-lif LIF_name -home-node _port_id_`
+.. すべてのデータLIFで共通のポートをホームポートとして使用するように変更します。+
+`network interface modify -vserver <svm-name> -lif <data-lif> -home-port <port-id>`
 +
 次の例では、これは「 e0d 」です。
 
@@ -919,9 +920,17 @@ network interface modify -vserver vs0 -lif datalif1 -home-port e0d
 ----
 
 
+. ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。
++
+`broadcast-domain remove-ports -broadcast-domain <broadcast-domain-name> -ports <node-name:port-id>`
+
++
+すべての VLAN ポートと物理ポートについて、この手順を繰り返します。
+
 . クラスタポートをメンバーポートとして使用し、 ifgrp をメンバーポートとして使用している VLAN ポートを削除します。
 +
-.. VLAN ポートを削除します。 +`network port vlan delete -node_node-name __ vlan-name_portid -vlandid_`
+.. VLANポートの削除：+
+`network port vlan delete -node <node_name> -vlan-name <portid-vlandid>`
 +
 例：
 
@@ -932,7 +941,7 @@ network port vlan delete -node node1 -vlan-name e1c-80
 ----
 .. インターフェイスグループから物理ポートを削除します。
 +
-「 network port ifgrp remove-port -node-node_name -ifgrp_interface-group-name __ port_portid_ 」の形式で指定します
+`network port ifgrp remove-port -node <node_name> -ifgrp <interface-group-name> -port <portid>`
 
 +
 例：
@@ -944,11 +953,11 @@ network port ifgrp remove-port -node node1 -ifgrp a1a -port e0d
 ----
 .. ブロードキャストドメインから VLAN ポートとインターフェイスグループポートを削除します。
 +
-'network port broadcast-domain remove-ports -ipspace_ipspace -broadcast-domain_domain-name_ports_nodename ： portname 、 nodename ： portname _ 、
+`network port broadcast-domain remove-ports -ipspace <ipspace> -broadcast-domain <broadcast-domain-name> -ports <nodename:portname,nodename:portnamee>,..`
 
-.. 必要に応じて、他の物理ポートをメンバーとして使用するようにインターフェイスグループポートを変更します。
+.. 必要に応じて、インターフェイスグループポートを変更して他の物理ポートをメンバーとして使用します。
 +
-ifgrp add-port -node node_name -ifgrp _interface -group-name_port_port-id_`
+`ifgrp add-port -node <node_name> -ifgrp <interface-group-name> -port <port-id>`
 
 
 
@@ -968,48 +977,7 @@ printenv
 
 
 
-== 新しいプラットフォームに対応するためのスイッチ RCF の更新
-
-スイッチは、新しいプラットフォームモデルをサポートする構成に更新する必要があります。
-
-.このタスクについて
-このタスクは、現在アップグレード中のコントローラを含むサイトで実行します。この手順の例では、まず site_B をアップグレードします。
-
-site_A のコントローラをアップグレードすると、 site_A のスイッチがアップグレードされます。
-
-.手順
-. 新しい RCF ファイルを適用するための IP スイッチを準備します。
-+
-使用しているスイッチベンダーの手順で次の手順を実行します。
-
-+
-link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]
-
-+
-** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
-
-
-. RCF ファイルをダウンロードしてインストールします。
-+
-使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
-
-+
-** link:../install-ip/task_switch_config_broadcom.html["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCF ファイルのダウンロードとインストール"]
-
-
-
-
-
-
-== 新しいコントローラを設定します
-
-コントローラをラックに設置して設置し、メンテナンスモードで必要なセットアップを実行してから、コントローラをブートし、コントローラの LIF の設定を確認する必要があります。
-
-
-
-=== 新しいコントローラをセットアップする
+=== 新しいコントローラをセットアップ
 
 新しいコントローラをラックに設置してケーブルを接続する必要があります。
 
@@ -1019,21 +987,49 @@ link:../install-ip/concept_considerations_differences.html["MetroCluster IP の�
 ラックスペースは、コントローラモジュールのプラットフォームモデル、スイッチのタイプ、構成内のストレージシェルフ数によって異なります。
 
 . 自身の適切な接地対策を行います
-. コントローラモジュールをラックまたはキャビネットに設置します。
+. AFF 800からAFF A90システムへのアップグレードなど、コントローラモジュールの交換が必要なアップグレードの場合は、コントローラモジュールを交換するときにコントローラモジュールをシャーシから取り外す必要があります。その他のすべてのアップグレードの場合は、に進みます <<ip_upgrades_so_sb_4,手順 4>>。
 +
-https://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステムのドキュメント"^]
+シャーシの前面で、プラスのストッパーになるまで、親指で各ドライブをしっかりと押し込みます。ドライブがシャーシのミッドプレーンにしっかりと装着されていることを確認します。
 
-. の説明に従って、コントローラを IP スイッチにケーブル接続します link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]。
 +
-** link:["IP スイッチのケーブル接続"]
+image::../media/drw_a800_drive_seated.png[は、シャーシからのコントローラモジュールの取り外しを示します。]
 
+. [[ip_upgrades_so_sb_4]]コントローラモジュールを設置します。
++
+
+NOTE: インストール手順は、アップグレードでコントローラモジュールの交換が必要かどうか（AFF 800からAFF A90システムへのアップグレードなど）によって異なります。
+
++
+[role="tabbed-block"]
+====
+.コントローラモジュールの交換
+--
+ディスクとコントローラを同じシャーシに搭載した統合システム（AFF A800システムからAFF A90システムなど）をアップグレードする場合、新しいコントローラを別 々 に設置することはできません。古いコントローラの電源をオフにしたあと、新しいコントローラモジュールとI/Oカードを交換する必要があります（次の図を参照）。
+
+次の図の例は表示用です。コントローラモジュールとI/Oカードはシステムによって異なります。
+
+image::../media/a90_a70_pcm_swap.png[コントローラモジュールのスワップを表示します。]
+
+--
+.その他すべてのアップグレード
+--
+コントローラモジュールをラックまたはキャビネットに設置します。
+
+--
+====
+. の説明に従って、コントローラの電源、シリアルコンソール、および管理接続をケーブル接続します。 link:../install-ip/using_rcf_generator.html["MetroCluster IPスイッチのケーブル接続"]
++
+この時点で古いコントローラから切断されていた他のケーブルは接続しないでください。
+
++
+https://docs.netapp.com/us-en/ontap-systems/index.html["ONTAPハードウェアシステムのドキュメント"^]
 
 . 新しいノードの電源をオンにして、メンテナンスモードでブートします。
 
 
 
 
-=== HBA 構成をリストアしています
+=== HBA 構成をリストア
 
 コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。
 
@@ -1057,28 +1053,28 @@ ucadmin show
  a| 
 CNA FC
  a| 
-ucadmin modify -m fc -t initiator_adapter-name _ `
+`ucadmin modify -m fc -t initiator <adapter-name>`
 
 
 
  a| 
 CNA イーサネット
  a| 
-ucadmin modify -mode cna_adapter-name_`
+`ucadmin modify -mode cna <adapter-name>`
 
 
 
  a| 
 FC ターゲット
  a| 
-fcadmin config -t target_adapter-name_`
+`fcadmin config -t target <adapter-name>`
 
 
 
  a| 
 FC イニシエータ
  a| 
-fcadmin config -t initiator_adapter-name_`
+`fcadmin config -t initiator <adapter-name>`
 
 |===
 . メンテナンスモードを終了します。
@@ -1136,24 +1132,106 @@ fcadmin show`
 +
 「 ha-config modify chassis mccip 」を参照してください
 
+. NS224シェルフまたはストレージスイッチに接続されているイーサネットポートを確認および変更します。
++
+.. NS224シェルフまたはストレージスイッチに接続されているイーサネットポートを確認します。
++
+`storage port show`
+
+.. イーサネットシェルフまたはストレージスイッチに接続されているすべてのイーサネットポート（ストレージとクラスタの共有スイッチを含む）をモードに設定し `storage` ます。
++
+`storage port modify -p <port> -m storage`
+
++
+例：
+
++
+[listing]
+----
+*> storage port modify -p e5b -m storage
+Changing NVMe-oF port e5b to storage mode
+----
++
+
+NOTE: アップグレードを成功させるには、影響を受けるすべてのポートでこの値を設定する必要があります。
+
++
+イーサネットポートに接続されているシェルフのディスクが出力に報告され `sysconfig -v` ます。
+
++
+アップグレード先のシステムのストレージポートについては、を参照して link:https://hwu.netapp.com["NetApp Hardware Universe の略"^] ください。
+
+.. モードが設定されていることを確認し `storage` 、ポートがonline状態であることを確認します。
++
+`storage port show`
+
+
+
+. ノードを停止します
++
+ノードは 'loader>` プロンプトで停止する必要があります
+
+. 各ノードで、システムの日付、時刻、およびタイムゾーンを確認します。「 show date 」
+. 必要に応じて 'UTC または GMT:'set date <mm/dd/yyyy>' で日付を設定します
+. ブート環境プロンプトで次のコマンドを使用して ' 時刻を確認します
+. 必要に応じて、時刻を UTC または GMT:' 設定時刻 <:hh:mm:ss>` で設定します
+. 設定を保存します： saveenv
+. 環境変数 :printenv' を収集します
 
 
 
 
-=== MetroCluster の bootarg IP 変数の設定
+=== 新しいプラットフォームに合わせてスイッチのRCFを更新
+
+スイッチは、新しいプラットフォームモデルをサポートする構成に更新する必要があります。
+
+.このタスクについて
+このタスクは、アップグレード中のコントローラがあるサイトで実行します。この手順の例では、まずsite_Bをアップグレードします。
+
+site_A のコントローラをアップグレードすると、 site_A のスイッチがアップグレードされます。
+
+.手順
+. 新しい RCF ファイルを適用するための IP スイッチを準備します。
++
+使用しているスイッチベンダーの手順で次の手順を実行します。
+
++
+link:../install-ip/concept_considerations_differences.html["MetroCluster IP のインストールと設定"]
+
++
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
+
+
+. RCF ファイルをダウンロードしてインストールします。
++
+スイッチベンダーに対応するセクションを参照してください。
+
++
+** link:../install-ip/task_switch_config_broadcom.html["BroadcomのRCFファイルをダウンロードしてインストールする"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチのRCFファイルのダウンロードとインストール"]
+
+
+
+
+
+
+=== MetroCluster の bootarg IP 変数を設定します
 
 新しいコントローラモジュールには特定の MetroCluster IP bootarg 値を設定する必要があります。これらの値は、古いコントローラモジュールに設定されている値と一致する必要があります。
 
 .このタスクについて
-このタスクでは、のアップグレード手順で前述した UUID とシステム ID を使用します link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html["アップグレード前に情報を収集"]。
+このタスクでは、のアップグレード手順で特定したUUIDとシステムIDを使用し <<gather_info_so_sb,アップグレード前に情報を収集>>ます。
 
 .手順
 . アップグレード対象のノードが AFF A400 、 FAS8300 、 FAS8700 のいずれかのモデルの場合は、 LOADER プロンプトで次の bootarg を設定します。
 +
-'etenvarge.MCC.port_a_ip_config_local-ip-address/local-ip-mask'0 、 ha-partner-ip-address 、 dr-partner-ip-address 、 dr-aux-partnerip-address 、 vlan-id_`
+`setenv bootarg.mcc.port_a_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id>`
 
 +
-「 etenvarge.MCC.port_b_ip_config_local-ip-address/local-ip-mask, 0,ha-partner-ip-address 、 dr-partner-ip-address 、 dr-aux-partnerip-address 、 vlan-id_` 」を指定します
+`setenv bootarg.mcc.port_b_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id>`
 
 +
 
@@ -1197,10 +1275,10 @@ setenv bootarg.mcc.port_b_ip_config 172.17.27.11/23,0,172.17.27.10,172.17.27.12,
 ----
 . アップグレード対象のノードが前の手順でリストされていない場合は、各サバイバーノードの LOADER プロンプトで「 local_IP/mask 」で次の bootargs を設定します。
 +
-'etenvarge.MCC.port_a_ip_config_local-ip-address/local-ip-mask'0 、 ha-partner-ip-address 、 dr-partner ip-address 、 dr-aux-partnerip-address 、 dr-aux-aux-partnerip-address
+`setenv bootarg.mcc.port_a_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address>`
 
 +
-'etenvarge.MCC.port_b_ip_config_local-ip-address/local-ip-mask'0 、 ha-partner-ip-address 、 dr-partner-ip-address 、 dr-aux-partnerip-address 、 dr-aux-aux-partnerip-address
+`setenv bootarg.mcc.port_b_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address>`
 
 +
 次のコマンドは、 node_B_1 について新しい値を設定します。
@@ -1222,19 +1300,19 @@ setenv bootarg.mcc.port_b_ip_config 172.17.27.11/23,0,172.17.27.10,172.17.27.12,
 ----
 . 新しいノードの LOADER プロンプトで、 UUID を設定します。
 +
-「 etenv bootarg.mgwd.partner_uuid_partner -cluster-UUID_` 」と入力します
+`setenv bootarg.mgwd.partner_cluster_uuid <partner-cluster-UUID>`
 
 +
-「 etenv bootarg.mgwd.cluster_ue_local-cluster-UUID_` 」と入力します
+`setenv bootarg.mgwd.cluster_uuid <local-cluster-UUID>`
 
 +
-「 etenv bootarge.MCC.pri_partner_uuid_dr-partner -node-UUID_` 」と入力します
+`setenv bootarg.mcc.pri_partner_uuid <DR-partner-node-UUID>`
 
 +
-'etenv bootarg.mcc.aux_partner_uuid _dr-au-partner -UUID_`
+`setenv bootarg.mcc.aux_partner_uuid <DR-aux-partner-node-UUID>`
 
 +
-「 etenv bootarg.mcc_iscsi.node_uuid _local-node-UUID_` 」と入力します
+`setenv bootarg.mcc_iscsi.node_uuid <local-node-UUID>`
 
 +
 .. node_B_1 で UUID を設定します。
@@ -1265,16 +1343,37 @@ setenv bootarg.mcc_iscsi.node_uuid aa9a7a7a-9a81-11e7-a4e9-00a098908c35
 ----
 
 
-. 元のシステムが ADP 用に設定されていた場合は、交換用ノードの LOADER プロンプトで ADP を有効にします。
+. 稼働しているサイトで次のコマンドを実行して、元のシステムがアドバンストドライブパーティショニング（ADP）用に設定されているかどうかを確認します。
++
+「ディスクショー」
+
++
+ADPが設定されている場合、出力に「container type」列に「shared」と表示されます `disk show` 。「container type」にそれ以外の値が指定されている場合、ADPはシステムで設定されていません。次の出力例は、ADPが設定されたシステムを示しています。
+
++
+[listing]
+----
+::> disk show
+                    Usable               Disk    Container   Container
+Disk                Size       Shelf Bay Type    Type        Name      Owner
+
+Info: This cluster has partitioned disks. To get a complete list of spare disk
+      capacity use "storage aggregate show-spare-disks".
+----------------    ---------- ----- --- ------- ----------- --------- --------
+1.11.0              894.0GB    11    0   SSD      shared     testaggr  node_A_1
+1.11.1              894.0GB    11    1   SSD      shared     testaggr  node_A_1
+1.11.2              894.0GB    11    2   SSD      shared     testaggr  node_A_1
+----
+. 元のシステムでADP用にパーティショニングされたディスクが設定されていた場合は、各交換用ノードのプロンプトで有効にし `LOADER` ます。
 +
 'etenv bootarg.me.adp_enabled true
 
 . 次の変数を設定します。
 +
-「 etenv bootarg.me.local_config_id_original-sys-sys-id_` 」を返します
+`setenv bootarg.mcc.local_config_id <original-sys-id>`
 
 +
-「 etenv bootarge.MCC.DR_PARTNER_DR-partner -sys-id_` 」を選択します
+`setenv bootarg.mcc.dr_partner <dr-partner-sys-id>`
 
 +
 
@@ -1320,7 +1419,7 @@ setenv bootarg.mcc.dr_partner 537403323
 
 
 
-=== ルートアグリゲートディスクの再割り当て中です
+=== ルートアグリゲートディスクを再割り当てします
 
 前の手順で確認したシステム ID を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします。
 
@@ -1338,6 +1437,10 @@ NOTE: コントローラのアップグレードプロセスで再割り当て�
 . メンテナンスモードのプロンプトから node_B_1 で新しいディスクを表示します。
 +
 「ディスクショー - A` 」
+
++
+
+CAUTION: ディスクの再割り当てを実行する前に、ノードのルートアグリゲートに属するpool0とpool1のディスクが出力に表示されていることを確認する必要があり `disk show` ます。次の例では、node_B_1-oldが所有するpool0とpool1のディスクが出力に表示されています。
 
 +
 コマンド出力に、新しいコントローラモジュール（ 1574774970 ）のシステム ID が表示されます。ただし、ルートアグリゲートディスクの所有者は古いシステム ID （ 537403322 ）になります。この例で表示されているのは、 MetroCluster 構成の他のノードが所有するドライブではありません。
@@ -1370,19 +1473,19 @@ prod1-rk18:9.126L27   node_B_1-old(537403322)  Pool0  S0M1PSDW     node_B_1-old(
  a| 
 はい。
  a| 
-「ディスクの再割り当て -s _old-sysid_-d_new-sysid_-r_dr -partner sysid_`
+`disk reassign -s <old-sysid> -d <new-sysid> -r <dr-partner-sysid>`
 
 
 
  a| 
 いいえ
  a| 
-「ディスクの再割り当て -s _old-sysid_-d_new-sysid_`
+`disk reassign -s <old-sysid> -d <new-sysid>`
 
 |===
 . ドライブシェルフのルートアグリゲートディスクを新しいコントローラに再割り当てします。
 +
-「ディスク再割り当て -s old-sysid -d new-sysid 」
+`disk reassign -s <old-sysid> -d <new-sysid>`
 
 +
 次の例は、 ADP 以外の構成でのドライブの再割り当てを示しています。
@@ -1434,7 +1537,7 @@ aggr0_node_B_1           online          raid_dp, aggr         root, nosnap=on,
 
 
 
-=== 新しいコントローラのブート
+=== 新しいコントローラをブートします
 
 新しいコントローラをブートする必要があります。 bootarg 変数が正しいことを確認し、必要に応じて暗号化のリカバリ手順を実行するように注意してください。
 
@@ -1445,16 +1548,16 @@ aggr0_node_B_1           online          raid_dp, aggr         root, nosnap=on,
 
 . 外部キー管理ツールが設定されている場合は、関連する bootargs を設定します。
 +
-'setenv bootarg.kmip.init.ipaddr _ip-address_'
+`setenv bootarg.kmip.init.ipaddr <ip-address>`
 
 +
-'setenv bootarg.kmip.init.netmask _netmask_`
+`setenv bootarg.kmip.init.netmask <netmask>`
 
 +
-'setenv bootarg.kmip.init.gateway _gateway-address_
+`setenv bootarg.kmip.init.gateway <gateway-addres>`
 
 +
-'setenv bootarg.kmip.init.interface _interface-id_
+`setenv bootarg.kmip.init.interface <interface-id>`
 
 . partner-sysid が現在のものかどうかを確認します。
 +
@@ -1464,7 +1567,7 @@ printenv partner-sysid
 partner-sysid が正しくない場合は、次のように設定します。
 
 +
-'setenv partner-sysid_partner-SysID_`
+`setenv partner-sysid <partner-sysID>`
 
 . ONTAP ブートメニューを表示します。
 +
@@ -1522,7 +1625,7 @@ printenv partner-sysid
 partner-sysid が正しくない場合は、次のように設定します。
 
 +
-'setenv partner-sysid_partner-SysID_`
+`setenv partner-sysid <partner-sysID>`
 
 . ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを再度選択します。
 +
@@ -1576,7 +1679,7 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 外部キー管理
  a| 
-「 securitykey manager external restore -vserver _svm_-node __ key -server_host_name | ip_address ： port_-key-id key_id -key tag key_tag_node-name_ 」
+`security key-manager external restore -vserver <SVM> -node <node> -key-server <host_name|IP_address:port> -key-id key_id -key-tag key_tag <node_name>`
 
 詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html["外部キー管理の暗号化キーのリストア"]。
 
@@ -1586,6 +1689,14 @@ partner-sysid が正しくない場合は、次のように設定します。
 .. ブロードキャストドメインを表示します。
 +
 「 network port broadcast-domain show 」
+
+.. 新しくアップグレードしたコントローラのデータポート用に新しいブロードキャストドメインを作成する場合は、そのブロードキャストドメインを削除します。
++
+
+NOTE: 新しいブロードキャストドメインだけを削除します。アップグレードを開始する前に存在していたブロードキャストドメインは削除しないでください。
+
++
+`broadcast-domain delete -broadcast-domain <broadcast_domain_name>`
 
 .. 必要に応じて、ブロードキャストドメインにポートを追加します。
 +
@@ -1607,11 +1718,11 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 
 
 
-=== LIF の設定を確認およびリストアする
+=== LIF の設定を確認してリストア
 
 アップグレード手順の開始時にマッピングされた適切なノードとポートで LIF がホストされていることを確認します。
 
-.この tsak について
+.このタスクについて
 * このタスクは site_B で実行します
 * で作成したポートマッピング計画を確認します link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html["古いノードから新しいノードへのポートのマッピング"]。
 
@@ -1625,7 +1736,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 
 .. ポート設定を無視して LIF が適切に配置されるようにします。
 +
-「 vserver config override command 」 network interface modify -vserver vserver_name __ -home-node _active_port_after_upgrade _ -lif LIF_name -home-node _new_node_name _
+`vserver config override -command "network interface modify -vserver <svm-name> -home-port <active_port_after_upgrade> -lif <lif_name> -home-node <new_node_name>`
 
 +
 vserver config override コマンドで network interface modify コマンドを入力した場合は、 tab autoccomplete 機能を使用することはできません。autoccomplete を使用してネットワーク 'interface modify' を作成してから 'vserver config override' コマンドで囲むことができます
@@ -1638,7 +1749,7 @@ vserver config override コマンドで network interface modify コマンドを
 
 . インターフェイスをホームノードにリバートします。
 +
-「 network interface revert * -vserver_vserver-name に指定します
+`network interface revert * -vserver <svm-name>`
 
 +
 必要に応じて、すべての SVM でこの手順を実行します。
@@ -1647,7 +1758,7 @@ vserver config override コマンドで network interface modify コマンドを
 
 
 
-== MetroCluster 設定を元に戻します
+== MetroCluster 構成をスイッチバックします
 
 このタスクでは、スイッチバック処理を実行し、 MetroCluster 構成が通常運用時の状態に戻ります。site_A のノードはまだアップグレード待ちです。
 
@@ -1716,7 +1827,7 @@ Remote: cluster_A         Configuration state configured
 
 
 
-== MetroCluster 構成の健常性を確認しています
+== MetroCluster 構成の健全性を確認します
 
 コントローラモジュールをアップグレードしたら、 MetroCluster 構成の健全性を確認する必要があります。
 
@@ -1758,7 +1869,7 @@ MetroCluster node show
 
 
 
-== cluster_A のノードをアップグレードします
+== cluster_Aのノードをアップグレードします。
 
 cluster_A についてもアップグレード手順を繰り返す必要があります
 
@@ -1771,7 +1882,7 @@ cluster_A についてもアップグレード手順を繰り返す必要があ�
 
 
 
-== Tiebreaker またはメディエーターの監視をリストアしています
+== Tiebreaker またはメディエーターの監視をリストアします
 
 MetroCluster 構成のアップグレードが完了したら、 Tiebreaker またはメディエーターユーティリティを使用して監視を再開できます。
 
@@ -1806,7 +1917,7 @@ link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metro
 
 
 
-== メンテナンス後にカスタム AutoSupport メッセージを送信する
+== カスタム AutoSupport メッセージをメンテナンス後に送信します
 
 アップグレードの完了後、ケースの自動作成を再開できるように、メンテナンスの終了を通知する AutoSupport メッセージを送信する必要があります。
 

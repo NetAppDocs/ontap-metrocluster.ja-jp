@@ -583,7 +583,7 @@ image::../media/drw_9500_remove_PCM.png[コントローラモジュール]
 .. e5a の接続を e5b に移動します。
 +
 
-NOTE: に記載されているように、クラスタのすべてのノードのスロット 7 は空にする必要があります <<古いノードから新しいノードへのポートのマッピング>> セクション。
+NOTE: の項で説明したように、クラスタのすべてのノードのスロット7を空にする必要があります <<upgrade_a700_a900_ip_map,古いノードから新しいノードへのポートのマッピング>> 。
 
 
 
@@ -821,23 +821,22 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 .手順
 . 新しい RCF ファイルを適用するための IP スイッチを準備します。
 +
-MetroCluster IP のインストールと設定セクションに記載されているスイッチベンダーの手順に従ってください。
+スイッチベンダーに対応するセクションを参照してください。
 
 +
-link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
-
-+
-** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"]
-** link:../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
 +
-使用しているスイッチベンダーに対応する手順については、を参照してください link:../install-ip/index.html["MetroCluster IP のインストールと設定"]。
+スイッチベンダーに対応するセクションを参照してください。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom の RCF ファイルのダウンロードとインストール"]
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["BroadcomのRCFファイルをダウンロードしてインストールする"]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IP RCFファイルのダウンロードとインストール"]
 
 
 
@@ -855,7 +854,7 @@ link:../install-ip/index.html["MetroCluster IP のインストールと設定"]
 新しいコントローラモジュールには特定の MetroCluster IP bootarg 値を設定する必要があります。これらの値は、古いコントローラモジュールに設定されている値と一致する必要があります。
 
 .このタスクについて
-このタスクでは、のアップグレード手順で前述した UUID とシステム ID を使用します link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html#gathering-information-before-the-upgrade["アップグレード前に情報を収集"]。
+このタスクでは、のアップグレード手順で特定したUUIDとシステムIDを使用し <<アップグレード前に情報を収集>>ます。
 
 .手順
 . 「 LOADER> 」プロンプトで、 site_B の新しいノードで次のブート引数を設定します。
@@ -1266,7 +1265,7 @@ https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_create_
 
 .このタスクについて
 * このタスクは site_B で実行します
-* で作成したポートマッピング計画を確認します link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html#mapping-ports-from-the-old-nodes-to-the-new-nodes["古いノードから新しいノードへのポートのマッピング"]。
+* で作成したポートマッピングプランを表示します。 <<upgrade_a700_a900_ip_map,古いノードから新しいノードへのポートのマッピング>>
 
 
 .手順
@@ -1416,7 +1415,7 @@ MetroCluster node show
 site_A でアップグレードタスクを繰り返します
 
 .手順
-. 同じ手順を繰り返して、 site_A のノードをアップグレードします link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html#preparing-for-the-upgrade["アップグレードを準備"]。
+. この手順を繰り返して、site_Aのノードをアップグレードします。 <<upgrade_a700_a900_ip_prepare,アップグレードを準備>>
 +
 タスクを実行すると、サイトおよびノードへのすべてのサンプル参照が反転されます。たとえば、この例で site_A からスイッチオーバーする場合は site_B からスイッチオーバーします
 

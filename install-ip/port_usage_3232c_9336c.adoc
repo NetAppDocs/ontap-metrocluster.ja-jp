@@ -37,25 +37,69 @@ MetroClusterポートグループ（MetroCluster 1、MetroCluster 2、MetroClust
 
 
 
-== AFF A150、ASA A150、FAS2750、AFF A220、FAS500fのケーブル接続 AFF C250、ASA C250、AFF A250、またはASA A250システムからCisco 3232CまたはCisco 9336-FX2Cスイッチへ
+== 構成に適したケーブル接続テーブルを選択
 
-image::../media/mcc_ip_cabling_a150_a220_a250_to_a_cisco_3232c_or_cisco_9336c_switch.png[a150 A220 A250とCisco 3232cまたはCisco 9336cスイッチのMCC IPケーブル接続]
+次の表を使用して、必要なケーブル接続の表を特定します。
+
+[cols="2*"]
+|===
+| システムの状態 | 使用するケーブル接続テーブル 
 
 
+ a| 
+AFF A150、ASA A150、FAS2750、AFF A220
 
-== FAS8200 / AFF A300システムとCisco 3232C / 9336Cスイッチのケーブル接続
+FAS500f、AFF C250、ASA C250、AFF A250、ASA A250
+| <<table_1_cisco_3232c_9336c,Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ1）>> 
 
-image::../media/mcc_ip_cabling_a_aff_a300_or_fas8200_to_a_cisco_3232c_or_cisco_9336c_switch.png[MCC IP ケーブル構成： AFF A300 または fas8200 から Cisco 32c または Cisco 9336c スイッチへの接続]
+
+| FAS8200、AFF A300 | <<table_2_cisco_3232c_9336c,Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ2）>> 
+
+
+| AFF A320 FAS8300、AFF C400、ASA C400、FAS8700 AFF A400、ASA A400 | <<table_3_cisco_3232c_9336c,Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ3）>> 
+
+
+| FAS9000、AFF A700 AFF C800、ASA C800、AFF A800、ASA A800 FAS9500、AFF A900、 ASA A900 | <<table_4_cisco_3232c_9336c,Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ4）>> 
+
+
+| AFF A70 AFF A90 AFF A1K *注：*これらのシステムにはONTAP 9.15.1以降が必要です。 | <<table_5_cisco_3232c_9336c,Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ5）>> 
+|===
+.Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ1）
+プラットフォームポート割り当てを確認して、AFF A150、ASA A150、FAS2750、AFF A220、FAS500f、 AFF C250、ASA C250、AFF A250、またはASA A250システムからCisco 3232Cまたは9336Cスイッチへの接続：
+
+image::../media/mcc_ip_cabling_a150_a220_a250_to_a_cisco_3232c_or_cisco_9336c_switch.png[は、Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当てを示しています。]
+
+.Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ2）
+プラットフォームポート割り当てを確認し、FAS8200またはAFF A300システムをCisco 3232Cまたは9336Cスイッチにケーブル接続します。
+
+image::../media/mcc_ip_cabling_a_aff_a300_or_fas8200_to_a_cisco_3232c_or_cisco_9336c_switch.png[は、Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当てを示しています。]
 
 古いRCFファイルからアップグレードする場合は、「MetroCluster 4」グループのポート（ポート25 / 26および29 / 30）をケーブル接続構成で使用している可能性があります。
 
+.Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ3）
+AFF A320、FAS8300、AFF C400、ASA C400、FAS8700をケーブル接続するためのプラットフォームポート割り当ての確認 AFF A400またはASA A400システムからCisco 3232Cまたは9336Cスイッチへの接続：
 
-
-== AFF A320、FAS8300、AFF C400、ASA C400、AFF A400のケーブル接続 ASA A400、FAS8700、FAS9000、AFF A700、AFF C800、 ASA C800、AFF A800、ASA A800、FAS9500、AFF A900、 またはASA A900システムからCisco 3232CまたはCisco 9336C-FX2スイッチへ
-
-image::../media/mcc_ip_cabling_a320_a400_a700_a800_a900 _cisco_3232C or_9336c_switch.png[A320 a400 A700 A800 a900 Cisco 3232Cまたは9336cスイッチのMCC IPケーブル接続]
+image::../media/mcc_ip_cabling_a320_a400_cisco_3232C_or_9336c_switch.png[は、Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当てを示しています。]
 
 *注1 *：X91440Aアダプタ（40Gbps）を使用している場合は、ポートe4aとe4e、またはe4aとe8aのいずれかを使用します。X91153Aアダプタ（100Gbps）を使用する場合は、ポートe4aとe4b、またはe4aとe8aのいずれかを使用します。
 
 
 NOTE: 「MetroCluster 4」グループのポートを使用するには、ONTAP 9.13.1以降が必要です。
+
+.Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ4）
+FAS9000、AFF A700、AFF C800、ASA C800、AFF A800をケーブル接続するためのプラットフォームポート割り当ての確認 ASA A800、FAS9500、AFF A900、またはASA A900システムからCisco 3232Cまたは9336Cスイッチへの接続：
+
+image::../media/mcc_ip_cabling_fas9000_a700_fas9500_a800_a900_cisco_3232C_or_9336c_switch.png[は、Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当てを示しています。]
+
+*注1 *：X91440Aアダプタ（40Gbps）を使用している場合は、ポートe4aとe4e、またはe4aとe8aのいずれかを使用します。X91153Aアダプタ（100Gbps）を使用する場合は、ポートe4aとe4b、またはe4aとe8aのいずれかを使用します。
+
+
+NOTE: 「MetroCluster 4」グループのポートを使用するには、ONTAP 9.13.1以降が必要です。
+
+.Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当て（グループ5）
+AFF A70、AFF A90、またはAFF A1KシステムをCisco 3232Cまたは9336Cスイッチにケーブル接続するためのプラットフォームポート割り当てを確認します。
+
+
+NOTE: この表に示すシステムには、ONTAP 9.15.1以降が必要です。
+
+image::../media/mcc_ip_cabling_a90_a70_a1k_cisco_3232C_or_9336c_switch.png[は、Cisco 3232CまたはCisco 9336Cプラットフォームのポート割り当てを示しています。]

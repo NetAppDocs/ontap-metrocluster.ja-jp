@@ -398,6 +398,52 @@ NOTE: 複数のスイッチポートにDACオプションを設定する場合�
 
 
 
+== MetroCluster IPインターフェイスのスイッチポート速度の設定
+
+.このタスクについて
+次の手順を使用して、スイッチポート速度を100Gに設定します。
+
+* AFF A70用
+* AFF A90用
+* AFF A1K用
+
+
+.ステップ
+. 速度を設定するには、オプションを指定してRCFファイルを使用し `runCmd` ます。これにより、設定が適用され、設定が保存されます。
++
+次のコマンドは、MetroClusterインターフェイスおよびの速度を設定し `swp7` `swp8`ます。
+
++
+[source, cli]
+----
+sudo python3 SN2100_v2.20 _Switch-A1.py runCmd swp7 speed 100
+----
++
+[source, cli]
+----
+sudo python3 SN2100_v2.20 _Switch-A1.py runCmd swp8 speed 100
+----
++
+* 例 *
+
++
+[listing]
+----
+cumulus@Switch-A-1:mgmt:~$ sudo python3 SN2100_v2.20_Switch-A1.py runCmd swp7 speed 100
+[sudo] password for cumulus: <password>
+    Running cumulus version  : 5.4.0
+    Running RCF file version : v2.20
+    Running command: Setting switchport swp7 to 100G speed
+    runCmd: 'nv set interface swp7 link auto-negotiate off', ret: 0
+    runCmd: 'nv set interface swp7 link speed 100G', ret: 0
+    runCmd: committed, ret: 0
+    Completion: SUCCESS
+cumulus@Switch-A-1:mgmt:~$
+----
+
+
+
+
 == 未使用のISLポートとポートチャネルを無効にする
 
 NetAppでは、不要なヘルスアラートを回避するために、未使用のISLポートとポートチャネルを無効にすることを推奨します
