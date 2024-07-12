@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, refresh, four, node, ip, configuration, add, autosupport 
 summary: MetroCluster IP 構成に 4 つの新しいノードを 2 つ目の DR グループとして追加することができます。これにより、 8 ノード MetroCluster 構成が作成されます。 
 ---
-= MetroCluster IP構成の拡張
+= MetroCluster IP設定を展開します
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -90,9 +90,6 @@ dr_group_2 - 新規
 .サポートされるAFFとFAS MetroCluster IPの拡張の組み合わせ
 次の表に、MetroCluster IP構成でAFFシステムまたはFASシステムを拡張する場合にサポートされるプラットフォームの組み合わせを示します。
 
-
-NOTE: AFF A70、AFF A90、およびAFF A1Kシステムには、ONTAP 9.15.1以降が必要です。
-
 image::../media/8node_comb_ip_aff_fas.png[8ノード構成のプラットフォームの組み合わせ]
 
 * *注1 *：これらの組み合わせには、ONTAP 9.9.1以降（またはプラットフォームでサポートされるONTAP の最小バージョン）が必要です。
@@ -118,7 +115,7 @@ image::../media/8node_comb_ip_asa.png[8ノード構成のプラットフォー�
 +
 .. 次のコマンドを問題に設定します。
 +
-「 system node AutoSupport invoke -node * -type all -message 」 MAINT=10h Upgrading _old-model_to _new-model 」に変更します
+`system node autosupport invoke -node * -type all -message "MAINT=10h Upgrading <old-model> to <new-model>`
 
 +
 この例では、 10 時間のメンテナンス時間を指定しています。プランによっては、さらに時間をかけたい場合もあります。
@@ -136,16 +133,82 @@ image::../media/8node_comb_ip_asa.png[8ノード構成のプラットフォー�
 
 
 
+== 新しいDRグループを追加する際のVLANに関する考慮事項
+
+* MetroCluster IP構成を拡張する場合は、次のVLANに関する考慮事項が適用されます。
++
+特定のプラットフォームでは、MetroCluster IPインターフェイスにVLANが使用されます。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。
+
++
+サポートされている場合は、コマンドのパラメータを使用して、100より大きい別の（デフォルト以外の）VLAN（101 ~ 4095）を指定することもできます `-vlan-id` `metrocluster configuration-settings interface create` 。
+
++
+次のプラットフォームでは、パラメーターは*サポートされていません* `-vlan-id` 。
+
++
+** FAS8200 と AFF A300
+** AFF A320
+** FAS9000およびAFF A700
+** AFF C800、ASA C800、AFF A800、およびASA A800
++
+他のすべてのプラットフォームでは、パラメータがサポートされ `-vlan-id` ます。
+
++
+デフォルトおよび有効なVLAN割り当ては、プラットフォームがパラメータをサポートしているかどうかによって異なり `-vlan-id` ます。
+
++
+[role="tabbed-block"]
+====
+.vlan-vlan-id </code>をサポートするプラットフォーム<code>
+--
+デフォルトVLAN：
+
+*** パラメータを指定しない場合、 `-vlan-id` インターフェイスは「A」ポートにVLAN 10、「B」ポートにVLAN 20で作成されます。
+*** 指定するVLANは、RCFで選択したVLANと一致する必要があります。
+
+
+有効なVLAN範囲：
+
+*** デフォルトVLAN 10および20
+*** VLAN 101以上（101～4095）
+
+
+--
+.vlan-vlan-id </code>をサポートしないプラットフォーム<code>
+--
+デフォルトVLAN：
+
+*** 該当なし。このインターフェイスでは、MetroClusterインターフェイスでVLANを指定する必要はありません。スイッチポートによって、使用されるVLANが定義されます。
+
+
+有効なVLAN範囲：
+
+*** RCFの生成時にすべてのVLANが明示的に除外されていない。VLANが無効な場合は、RCFから警告が表示されます。
+
+
+--
+====
+
+
+
+
+* 4ノードから8ノードのMetroCluster構成に拡張する場合は、両方のDRグループで同じVLANが使用されます。
+* 同じVLANを使用して両方のDRグループを設定できない場合は、パラメータをサポートしていないDRグループをアップグレードして、他のDRグループでサポートされているVLANを使用する必要があり `vlan-id` ます。
+* ONTAPのバージョンによっては、初期設定後に一部のMetroCluster IPインターフェイスプロパティを変更できます。サポートされる機能の詳細については、を参照してください link:../maintain/task-modify-ip-netmask-properties.html["MetroCluster IPインターフェイスのプロパティの変更"] 。
+
+
+
+
 == MetroCluster 構成の健全性の確認
 
-移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります
+拡張を実行する前に、MetroCluster構成の健全性と接続を確認する必要があります。
 
 .手順
 . ONTAP で MetroCluster 構成の動作を確認します。
 +
 .. システムがマルチパスかどうかを確認します。
 +
-'node run -node _node-name_sysconfig -a
+`node run -node <node-name> sysconfig -a`
 
 .. ヘルスアラートがないかどうかを両方のクラスタで確認します。
 +
@@ -334,16 +397,13 @@ MetroCluster 構成設定のメディエーターが削除されました
 
 .手順
 . 新しいコントローラをラックに設置します。
-. MetroCluster のインストールと設定に示すように、新しい MetroCluster IP ノードを IP スイッチにケーブル接続します。 _
+. に示すように、新しいMetroCluster IPノードをIPスイッチにケーブル接続し link:../install-ip/using_rcf_generator.html["IPスイッチのケーブル接続"]ます。
+. 次の手順に従ってMetroCluster IPノードを設定します。
 +
-link:../install-ip/using_rcf_generator.html["IP スイッチのケーブル接続"]
-
-. MetroCluster のインストールと設定について、次のセクションを使用して MetroCluster IP ノードを設定します。 _
-+
-.. link:../install-ip/task_sw_config_gather_info.html["必要な情報の収集"]
-.. link:../install-ip/task_sw_config_restore_defaults.html["コントローラモジュールでのシステムデフォルトのリストア"]
-.. link:../install-ip/task_sw_config_verify_haconfig.html["コンポーネントの ha-config 状態の確認"]
-.. link:../install-ip/task_sw_config_assign_pool0.html#manually-assigning-drives-for-pool-0-ontap-9-4-and-later["プール 0 ドライブの手動割り当て（ ONTAP 9.4 以降）"]
+.. link:../install-ip/task_sw_config_gather_info.html["必要な情報を収集"]
+.. link:../install-ip/task_sw_config_restore_defaults.html["コントローラモジュールのシステムデフォルトの復元"]
+.. link:../install-ip/task_sw_config_verify_haconfig.html["コンポーネントの ha-config 状態を確認"]
+.. link:../install-ip/task_sw_config_assign_pool0.html#manually-assigning-drives-for-pool-0-ontap-9-4-and-later["プール0のドライブを手動で割り当てる（ONTAP 9.4以降）"]
 
 
 . 保守モードから問題 the halt コマンドを実行して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタセットアップを開始します。
@@ -395,7 +455,7 @@ Component           Result
 nodes               ok
 lifs                ok
 config-replication  ok
-aggregates          warning
+aggregates          ok
 clusters            ok
 connections         not-applicable
 volumes             ok
@@ -416,8 +476,9 @@ MetroCluster オペレーション履歴 show -job-id 38`
 スイッチベンダーの手順に従います。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"^]
-** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"^]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
 . スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。
@@ -426,11 +487,12 @@ MetroCluster オペレーション履歴 show -job-id 38`
 NOTE: スイッチを次の順序で更新します。Switch_A_1、Switch_B_1、Switch_A_1、Switch_B_2
 
 +
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
-** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCF ファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IPのRCFファイルをダウンロードしてインストールする"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP RCFファイルのダウンロードとインストール"]
 +
 
-NOTE: L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。
+NOTE: L2共有またはL3ネットワーク構成の場合は、中間スイッチまたはお客様のスイッチのISLポートの調整が必要になることがあります。スイッチポートモードが「access」から「trunk」モードに変わる可能性があります。2つ目のスイッチペア（A_2、B_2）のアップグレードに進むのは、スイッチA_1とB_1間のネットワーク接続が完全に動作していて、ネットワークが正常な場合だけにしてください。
 
 
 
@@ -438,7 +500,7 @@ NOTE: L2共有またはL3ネットワーク構成を使用している場合は�
 
 
 
-== 新しいノードのクラスタへの追加
+== 新しいノードをクラスタに追加
 
 4 つの新しい MetroCluster IP ノードを既存の MetroCluster 構成に追加する必要があります。
 
@@ -526,7 +588,9 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。
 
 .このタスクについて
-例で使用しているホームポートはプラットフォーム固有です。MetroCluster IP ノードプラットフォームに固有の適切なホームポートを使用する必要があります。
+* この例で使用しているホームポートはプラットフォーム固有です。MetroCluster IPノードプラットフォームに固有のホームポートを使用する必要があります。
+* このタスクを実行する前に、の情報を確認してください <<新しいDRグループを追加する際のVLANに関する考慮事項>> 。
+
 
 .手順
 . 新しい MetroCluster IP ノードで、次の手順に従ってクラスタ間 LIF を設定します。
@@ -613,47 +677,16 @@ cluster_A::>
 ----
 . 新しく参加した MetroCluster IP ノードの MetroCluster IP インターフェイスを設定します。
 +
-MetroCluster 構成設定インターフェイス create-cluster-name
-
-+
---
 [NOTE]
 ====
-** 一部のプラットフォームでは、 MetroCluster IP インターフェイスに VLAN が使用されています。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
+** サポートされている場合は、コマンドのパラメータを使用して、100より大きい別の（デフォルト以外の）VLAN（101~4095）を指定できます `-vlan-id` `metrocluster configuration-settings interface create` 。サポートされるプラットフォームの情報については、を参照してください <<新しいDRグループを追加する際のVLANに関する考慮事項>> 。
+** どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。
 
 
 ====
---
 +
-使用するVLANが10/20以上の場合は、次のプラットフォームモデルを既存のMetroCluster 構成に追加できます。他のMetroCluster インターフェイスは設定できないため、これらのプラットフォームを既存の設定に追加することはできません。他のプラットフォームを使用している場合は、ONTAP では必要ないため、VLANの設定は関係ありません。
+MetroCluster 構成設定インターフェイス create-cluster-name
 
-+
-|===
-
-
-| AFF プラットフォーム | FAS プラットフォーム 
-
-
- a| 
-** AFF A220
-** AFF A250
-** AFF A400
-
- a| 
-** FAS2750
-** FAS500f
-** FAS8300
-** FAS8700 の場合
-
-
-|===
-+
---
-
-NOTE: どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。
-
---
 +
 [listing]
 ----
@@ -1028,7 +1061,7 @@ cluster_A::*> metrocluster configure -refresh true
 
 . 新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。
 +
-「 storage aggregate create -aggregate _aggregate-name _ -node_name_diskcount 」 - disks_no-of disks _ -mirror true 」という名前のアグリゲートが作成されます
+`storage aggregate create -aggregate <aggregate-name> -node <node-name> -diskcount <no-of-disks> -mirror true`
 
 +
 
@@ -1135,7 +1168,7 @@ cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
 
 .. MDV ボリュームを 1 つずつ移動します。
 +
-'volume move start -volume_MDV_-destination-aggregate_aggr-on_new-node-vserver_vserver-name_`
+`volume move start -volume <mdv-volume> -destination-aggregate <aggr-on-new-node> -vserver <svm-name>`
 
 +
 次の例は、「 MDV_CRS_d6b0b313ff5611e9837100a098544e51_a 」を「 node_A_1 」のアグリゲート「 node_A_1 」に移動するコマンドと出力を示しています。
@@ -1153,7 +1186,7 @@ Warning: You are about to modify the system volume
 ----
 .. volume show コマンドを使用して、 MDV ボリュームが正常に移動されたことを確認します。
 +
-'volume show_MDV_NAME_`
+`volume show <mdv-name>`
 
 +
 次の出力は、 MDV ボリュームが移動されたことを示しています。
@@ -1189,11 +1222,11 @@ node_A_4-new      false
 ----
 .. 古いノード（ node_A_1 古い）でイプシロンを false に設定します。
 +
-cluster modify -node _old-node--epsilon false *
+`cluster modify -node <old-node> -epsilon false*`
 
 .. 新しいノード（ node_A_1 ）でイプシロンを true に設定します。
 +
-cluster modify -node-new-node--epsilon true
+`cluster modify -node <new-node> -epsilon true`
 
 .. イプシロンが正しいノードに移動されたことを確認します。
 +

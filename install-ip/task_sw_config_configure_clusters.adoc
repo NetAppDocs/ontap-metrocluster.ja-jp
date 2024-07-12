@@ -30,7 +30,7 @@ link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動�
 .手順
 . 自動ドライブ割り当てを無効にします。
 +
-「 storage disk option modify -node node_name -autoassign off
+`storage disk option modify -node <node_name> -autoassign off`
 
 . MetroCluster IP 構成のすべてのノードでこのコマンドを問題に設定する必要があります。
 
@@ -238,7 +238,7 @@ cluster01
 ----
 . 専用ポートのフェイルオーバーグループを作成します。
 +
-「 network interface failover-groups create -vserver_system_svm 」 -failover-group_failover_group_ -targets_physical_or_logical_ports_`
+`network interface failover-groups create -vserver <system_svm> -failover-group <failover_group> -targets <physical_or_logical_ports>`
 
 +
 次の例は、ポート「 e0e 」と「 e0f 」を、システム「 SVMcluster01 」上のフェイルオーバーグループ「 intercluster01 」に割り当てます。
@@ -280,25 +280,19 @@ cluster01
 ----
 . システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
 +
-|===
+[role="tabbed-block"]
+====
+.ONTAP 9.6以降では、次のコマンドを実行します。
+--
+`network interface create -vserver <system_svm> -lif <lif_name> -service-policy default-intercluster -home-node <node_name> -home-port <port_name> -address <port_ip_address> -netmask <netmask_address> -failover-group <failover_group>`
 
+--
+.ONTAP 9.5以前では、次のコマンドを実行します。
+--
+`network interface create -vserver <system_svm> -lif <lif_name> -role intercluster -home-node <node_name> -home-port <port_name> -address <port_ip_address> -netmask <netmask_address> -failover-group <failover_group>`
 
-| ONTAP バージョン | コマンドを実行します 
-
-
- a| 
-9.6 以降
- a| 
-「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -port_IP_address _port_ip_-netmask netmask _ -failover-group _` 」のようになります
-
-
-
- a| 
-9.5 以前
- a| 
-「 network interface create -vserver_system_SVM_lif_lif_name -- ロール intercluster -home-node _node_name のクラスタ間ホームポートポート _port_-address _port_ip_-netmask netmask_--failover-group_failover_group_name 」
-
-|===
+--
+====
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -318,24 +312,19 @@ policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.
 ----
 . クラスタ間 LIF が作成されたことを確認します。
 +
-|===
-
-
-| * ONTAP 9.6 以降： * 
-
-
- a| 
+[role="tabbed-block"]
+====
+.ONTAP 9.6以降では、次のコマンドを実行します。
+--
 「 network interface show -service -policy default -intercluster 」のように表示されます
 
-
-
-| * ONTAP 9.5 以前： * 
-
-
- a| 
+--
+.ONTAP 9.5以前では、次のコマンドを実行します。
+--
 「 network interface show -role intercluster 」の略
 
-|===
+--
+====
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -354,24 +343,19 @@ cluster01
 ----
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
-|===
-
-
-| * ONTAP 9.6 以降： * 
-
-
- a| 
+[role="tabbed-block"]
+====
+.ONTAP 9.6以降では、次のコマンドを実行します。
+--
 「 network interface show -service -policy default -intercluster-failover 」のように入力します
 
-
-
-| * ONTAP 9.5 以前： * 
-
-
- a| 
+--
+.ONTAP 9.5以前では、次のコマンドを実行します。
+--
 「 network interface show -role intercluster-failover 」の略
 
-|===
+--
+====
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -436,24 +420,19 @@ cluster01-02
 ----
 . システム SVM にクラスタ間 LIF を作成します。
 +
-|===
+[role="tabbed-block"]
+====
+.ONTAP 9.6以降では、次のコマンドを実行します。
+--
+`network interface create -vserver <system_svm> -lif <lif_name> -service-policy default-intercluster -home-node <node_name> -home-port <port_name> -address <port_ip_address> -netmask <netmask>`
 
+--
+.ONTAP 9.5以前では、次のコマンドを実行します。
+--
+`network interface create -vserver <system_svm> -lif <lif_name> -role intercluster -home-node <node_name> -home-port <port_name> -address <port_ip_address> -netmask <netmask>`
 
-| * ONTAP 9.6 以降： * 
-
-
- a| 
-「 network interface create -vserver _system_svm _ -lif_lif_name_service-policy default -intercluster -home-node _-home-port _ -address_port_ip_-netmask_`
-
-
-
-| * ONTAP 9.5 以前： * 
-
-
- a| 
-「 network interface create -vserver _system_svm _ -lif LIF_name -role intercluster -home-node _node _-home-port _ -address_port_ip_-netmask netmask _ 」のようになります
-
-|===
+--
+====
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -474,24 +453,19 @@ policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.
 ----
 . クラスタ間 LIF が作成されたことを確認します。
 +
-|===
-
-
-| * ONTAP 9.6 以降： * 
-
-
- a| 
+[role="tabbed-block"]
+====
+.ONTAP 9.6以降では、次のコマンドを実行します。
+--
 「 network interface show -service -policy default -intercluster 」のように表示されます
 
-
-
-| * ONTAP 9.5 以前： * 
-
-
- a| 
+--
+.ONTAP 9.5以前では、次のコマンドを実行します。
+--
 「 network interface show -role intercluster 」の略
 
-|===
+--
+====
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -510,24 +484,19 @@ cluster01
 ----
 . クラスタ間 LIF が冗長構成になっていることを確認します。
 +
-|===
-
-
-| * ONTAP 9.6 以降： * 
-
-
- a| 
+[role="tabbed-block"]
+====
+.ONTAP 9.6以降では、次のコマンドを実行します。
+--
 「 network interface show – service-policy default-intercluster-failover 」と表示されます
 
-
-
-| * ONTAP 9.5 以前： * 
-
-
- a| 
+--
+.ONTAP 9.5以前では、次のコマンドを実行します。
+--
 「 network interface show -role intercluster-failover 」の略
 
-|===
+--
+====
 +
 コマンド構文全体については、マニュアルページを参照してください。
 
@@ -568,7 +537,7 @@ cluster peer create コマンドを使用すると、ローカルクラスタと
 .手順
 . デスティネーションクラスタで、ソースクラスタとのピア関係を作成します。
 +
-cluster peer create -generate-passphrase -offer-expiration_mm/dd/YYYY HH ： MM ： SS|1...7days | 1...168hours_-peer-addrs_peer_lif_ips_-ipspace_ips_`
+`cluster peer create -generate-passphrase -offer-expiration <MM/DD/YYYY HH:MM:SS|1...7days|1...168hours> -peer-addrs <peer_lif_ip_addresses> -ipspace <ipspace>`
 
 +
 「 -generate-passphrase 」と「 -peer-addrs 」の両方を指定した場合、生成されたパスワードを使用できるのは、「 -peer-addrs 」にクラスタ間 LIF が指定されているクラスタだけです。
@@ -594,7 +563,7 @@ Warning: make a note of the passphrase - it cannot be displayed again.
 ----
 . ソースクラスタで、ソースクラスタをデスティネーションクラスタに対して認証します。
 +
-'cluster peer create -peer-addrs_peer_lif_ips_-ipspace_`
+`cluster peer create -peer-addrs <peer_lif_ip_addresses> -ipspace <ipspace>`
 
 +
 コマンド構文全体については、マニュアルページを参照してください。
@@ -711,7 +680,7 @@ cluster_B                  node_B_1      ready for DR group create
 ----
 . DR グループを作成します。
 +
-MetroCluster の構成設定 dr-group create -partner-cluster_partner-cluster-name_local-node-local-node-name-remote-node-remote_node-name_
+`metrocluster configuration-settings dr-group create -partner-cluster <partner_cluster_name> -local-node <local_node_name> -remote-node <remote_node_name>`
 
 +
 このコマンドは 1 回だけ実行します。パートナークラスタで繰り返す必要はありません。コマンドでは、リモートクラスタの名前、および 1 つのローカルノードとパートナークラスタの 1 つのノードの名前を指定します。
@@ -742,49 +711,68 @@ Cluster_A::> metrocluster configuration-settings dr-group create -partner-cluste
 各ノードのストレージと不揮発性キャッシュのレプリケーションに使用する MetroCluster IP インターフェイスを設定する必要があります。その後、 MetroCluster IP インターフェイスを使用して接続を確立します。これにより、ストレージレプリケーション用の iSCSI 接続が作成されます。
 
 .このタスクについて
---
-
-NOTE: MetroCluster の IP アドレスは初期設定後は変更できないため、慎重に選択する必要があります。
-
---
 * ノードごとに 2 つのインターフェイスを作成する必要があります。インターフェイスは、 MetroCluster RCF ファイルで定義されている VLAN に関連付ける必要があります。
+* ONTAPのバージョンによっては、初期設定後に一部のMetroCluster IPインターフェイスプロパティを変更できます。サポートされる機能の詳細については、を参照してください link:../maintain/task-modify-ip-netmask-properties.html["MetroCluster IPインターフェイスのプロパティの変更"] 。
 * すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートをもう一方の VLAN に作成する必要があります。を参照してください link:concept_considerations_mcip.html["MetroCluster IP 構成に関する考慮事項"]。
+* ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 +
---
-[NOTE]
+特定のプラットフォームでは、MetroCluster IPインターフェイスにVLANが使用されます。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。
+
++
+サポートされている場合は、コマンドのパラメータを使用して、100より大きい別の（デフォルト以外の）VLAN（101 ~ 4095）を指定することもできます `-vlan-id` `metrocluster configuration-settings interface create` 。
+
++
+次のプラットフォームでは、パラメーターは*サポートされていません* `-vlan-id` 。
+
++
+** FAS8200 と AFF A300
+** AFF A320
+** FAS9000およびAFF A700
+** AFF C800、ASA C800、AFF A800、およびASA A800
++
+他のすべてのプラットフォームでは、パラメータがサポートされ `-vlan-id` ます。
+
++
+デフォルトおよび有効なVLAN割り当ては、プラットフォームがパラメータをサポートしているかどうかによって異なり `-vlan-id` ます。
+
++
+[role="tabbed-block"]
 ====
-** 一部のプラットフォームでは、 MetroCluster IP インターフェイスに VLAN が使用されています。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。また、 MetroCluster 設定設定インターフェイス create コマンドの「 -vlan-id 」パラメータを使用して、 100 （ 101 ～ 4095 ）より大きい（デフォルト以外の） VLAN を指定することもできます。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
-
-
-====
+.vlan-vlan-id </code>をサポートするプラットフォーム<code>
 --
-+
-使用するVLANが10/20以上の場合は、次のプラットフォームモデルを既存のMetroCluster 構成に追加できます。他のMetroCluster インターフェイスは設定できないため、これらのプラットフォームを既存の設定に追加することはできません。他のプラットフォームを使用している場合は、ONTAP では必要ないため、VLANの設定は関係ありません。
+デフォルトVLAN：
 
-+
-|===
-
-
-| AFF プラットフォーム | FAS プラットフォーム 
+*** パラメータを指定しない場合、 `-vlan-id` インターフェイスは「A」ポートにVLAN 10、「B」ポートにVLAN 20で作成されます。
+*** 指定するVLANは、RCFで選択したVLANと一致する必要があります。
 
 
- a| 
-** AFF A220
-** AFF A250
-** AFF A400
+有効なVLAN範囲：
 
- a| 
-** FAS2750
-** FAS500f
-** FAS8300
-** FAS8700 の場合
+*** デフォルトVLAN 10および20
+*** VLAN 101以上（101～4095）
 
 
-|===
-+
-この例では、次の IP アドレスとサブネットを使用しています。
+--
+.vlan-vlan-id </code>をサポートしないプラットフォーム<code>
+--
+デフォルトVLAN：
 
+*** 該当なし。このインターフェイスでは、MetroClusterインターフェイスでVLANを指定する必要はありません。スイッチポートによって、使用されるVLANが定義されます。
+
+
+有効なVLAN範囲：
+
+*** RCFの生成時にすべてのVLANが明示的に除外されていない。VLANが無効な場合は、RCFから警告が表示されます。
+
+
+--
+====
+
+
+
+
+* MetroCluster IPインターフェイスで使用される物理ポートは、プラットフォームモデルによって異なります。お使いのシステムで使用するポートについては、を参照してください link:../install-ip/using_rcf_generator.html["MetroCluster IP スイッチをケーブル接続します"] 。
+* この例では、次の IP アドレスとサブネットを使用しています。
 +
 |===
 
@@ -871,134 +859,17 @@ MetroCluster IP インターフェイス 2
 10.1.2/24
 
 |===
+* この手順では、次の例を使用します。
 +
-次の表に示すように、 MetroCluster IP インターフェイスで使用される物理ポートはプラットフォームモデルによって異なります。
+AFF A700またはFAS9000システムのポート（e5aおよびe5b）。
 
 +
-|===
-| プラットフォームモデル | MetroCluster の IP ポート | 注 
+AFF A220システムのポート。サポートされているプラットフォームでパラメータを使用する方法を示します。 `-vlan-id`
+
++
+プラットフォームモデルに応じた正しいポートでインターフェイスを設定します。
 
 
- a| 
-AFF A900およびFAS9500
- a| 
-e5b
- a| 
-
-
-
- a| 
-e7b
-
-
-
- a| 
-AFF A800
- a| 
-e0b
- a| 
-
-
-
- a| 
-e1b
-
-
-
- a| 
-AFF A700 および FAS9000
- a| 
-e5
- a| 
-
-
-
- a| 
-e5b
-
-
-
- a| 
-AFF A400
- a| 
-E1A
- a| 
-
-
-
- a| 
-e1b
-
-
-
- a| 
-AFF A320
- a| 
-e0g
- a| 
-
-
-
- a| 
-E0h
-
-
-
- a| 
-AFF A300 および FAS8200
- a| 
-E1A
- a| 
-
-
-
- a| 
-e1b
-
-
-
- a| 
-AFF A220 および FAS2750
- a| 
-e0a
- a| 
-このようなシステムでは、これらの物理ポートがクラスタインターフェイスとしても使用されます。
-
-
-
- a| 
-e0b
-
-
-
- a| 
-AFF A250 および FAS500f
- a| 
-e0c
- a| 
-
-
-
- a| 
-e0d
-
-
-
- a| 
-FAS8300 と FAS8700
- a| 
-E1A
- a| 
-
-
-
- a| 
-e1b
-
-|===
-
-
-この例で使用するポートは、 AFF A700 または FAS9000 システムの場合のものです。
 
 .手順
 . 各ノードでディスクの自動割り当てが有効になっていることを確認します。
@@ -1044,20 +915,9 @@ cluster_B
 ----
 . node_A_1 にインターフェイスを作成します。
 +
---
-[NOTE]
-====
-** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
-** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
-
-
-====
---
-+
 .. 「 node_A_1 」のポート「 e5a 」にインターフェイスを設定します。
 +
-MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5a -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_A_1 」のポート「 e5a 」に IP アドレスが「 10.1.1.1 」のインターフェイスを作成する例を示しています。
@@ -1069,9 +929,19 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 [Job 28] Job succeeded: Interface Create is successful.
 cluster_A::>
 ----
++
+MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。次の例は、 VLAN ID が 120 の AFF A220 システムに対するコマンドを示しています。
+
++
+[listing]
+----
+cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_2 -home-port e0a -address 10.1.1.2 -netmask 255.255.255.0 -vlan-id 120
+[Job 28] Job succeeded: Interface Create is successful.
+cluster_A::>
+----
 .. 「 node_A_1 」のポート「 e5b 」にインターフェイスを設定します。
 +
-MetroCluster の構成設定インターフェイス create -cluster -cluster_name _ -home-node_name _ -home-port e5b -address _IP_address -netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5b -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_A_1 」のポート「 e5b 」に IP アドレスが「 10.1.2.1 」のインターフェイスを作成する例を示しています。
@@ -1091,20 +961,9 @@ NOTE: これらのインターフェイスが存在することを確認する�
 
 . node_A_1 にインターフェイスを作成します。
 +
---
-[NOTE]
-====
-** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
-** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
-
-
-====
---
-+
 .. 「 node_A_2 」のポート「 e5a 」にインターフェイスを設定します。
 +
-MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5a -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_A_2 」のポート「 e5a 」に IP アドレスが「 10.1.1.2 」のインターフェイスを作成する例を示しています。
@@ -1116,19 +975,9 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 [Job 28] Job succeeded: Interface Create is successful.
 cluster_A::>
 ----
-+
-MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。次の例は、 VLAN ID が 120 の AFF A220 システムに対するコマンドを示しています。
-
-+
-[listing]
-----
-cluster_A::> metrocluster configuration-settings interface create -cluster-name cluster_A -home-node node_A_2 -home-port e0a -address 10.1.1.2 -netmask 255.255.255.0 -vlan-id 120
-[Job 28] Job succeeded: Interface Create is successful.
-cluster_A::>
-----
 .. 「 node_A_2 」のポート「 e5b 」にインターフェイスを設定します。
 +
-MetroCluster の構成設定インターフェイス create -cluster -cluster_name _ -home-node_name _ -home-port e5b -address _IP_address -netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5b -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_A_2 」のポート「 e5b 」に IP アドレスが「 10.1.2.2 」のインターフェイスを作成する例を示しています。
@@ -1154,20 +1003,9 @@ cluster_A::>
 
 . 「 node_B_1 」にインターフェイスを作成します。
 +
---
-[NOTE]
-====
-** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
-** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
-
-
-====
---
-+
 .. 「 node_B_1 」のポート「 e5a 」にインターフェイスを設定します。
 +
-MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5a -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_B_1 」のポート「 e5a 」に IP アドレスが「 10.1.1.3 」のインターフェイスを作成する例を示しています。
@@ -1180,7 +1018,7 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 ----
 .. 「 node_B_1 」のポート「 e5b 」にインターフェイスを設定します。
 +
-MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5b -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_B_1 」のポート「 e5b 」に IP アドレスが「 10.1.2.3 」のインターフェイスを作成する例を示しています。
@@ -1195,20 +1033,9 @@ cluster_A::> metrocluster configuration-settings interface create -cluster-name 
 
 . 「 node_B_2 」にインターフェイスを作成
 +
---
-[NOTE]
-====
-** 次の例では、ポートは AFF A700 または FAS9000 システム（ e5a および e5b ）に使用されています。上記の手順に従って、プラットフォームモデルに対応する正しいポートでインターフェイスを設定する必要があります。
-** ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
-** MetroCluster IP インターフェイスの VLAN をサポートするプラットフォームモデルでは、デフォルトの VLAN ID を使用しない場合に -vlan-id パラメータを指定できます。
-
-
-====
---
-+
 .. node_B_2 のポート e5a でインターフェイスを設定します。
 +
-MetroCluster の設定 - settings interface create -cluster-name_cluster-node-name-home_node_name -home-node e5a-address_ip-address_-netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5a -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_B_2 」のポート「 e5a 」に IP アドレスが「 10.1.1.4 」のインターフェイスを作成する例を示しています。
@@ -1221,7 +1048,7 @@ cluster_B::>metrocluster configuration-settings interface create -cluster-name c
 ----
 .. 「 node_B_2 」のポート「 e5b 」にインターフェイスを設定します。
 +
-MetroCluster の構成設定インターフェイス create -cluster -cluster_name _ -home-node_name _ -home-port e5b -address _IP_address -netmask netmask_ `
+`metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5b -address <ip_address> -netmask <netmask>`
 
 +
 次の例は、「 node_B_2 」のポート「 e5b 」に IP アドレスが「 10.1.2.4 」のインターフェイスを作成する例を示しています。
@@ -1295,7 +1122,7 @@ cluster_B
 ----
 . 接続を確立します MetroCluster 設定 - 接続接続接続
 +
-このコマンドの問題実行後に IP アドレスを変更することはできません。
+ONTAP 9.10.1より前のバージョンを実行している場合、このコマンドの実行後にIPアドレスを変更することはできません。
 
 +
 次の例は、 cluster_A が正常に接続されたことを示しています。
@@ -1723,10 +1550,10 @@ cluster_A::>
 ----
 .. リモートドライブ（ 0m ）の所有権を最初のノード（例： node_A_1 ）のプール 1 に割り当てます。
 +
-「 disk assign -disk disk_disk-id 」 -pool 1 -owner_owner-node-name_ 」のようになります
+`disk assign -disk <disk-id> -pool 1 -owner <owner_node_name>`
 
 +
-「 disk-id 」は、「 owner-node-name 」のリモートシェルフ上のドライブを識別する必要があります。
+`disk-id` のリモートシェルフのドライブを特定する必要があります `owner_node_name`。
 
 .. ドライブがプール 1 に割り当てられたことを確認します。
 +
@@ -1820,10 +1647,10 @@ cluster_A::>
 ----
 .. リモートディスク（ 0m ）を選択し、ディスクの所有権を最初のノード（「 node_A_1 」など）のプール 1 に割り当てます。
 +
-「 disk assign -disk disk_disk-id 」 -pool 1 -owner_owner-node-name_ 」のようになります
+`disk assign -disk <disk_id> -pool 1 -owner <owner_node_name>`
 
 +
-「 disk-id 」は、「 owner-node-name 」のリモートシェルフ上のディスクを識別する必要があります。
+には `disk-id` 、のリモートシェルフのディスクを指定する必要があります `owner_node_name`。
 
 +
 ONTAP ディスクの自動割り当て機能により、指定したディスクを含むリモートシェルフのすべてのディスクが割り当てられます。
@@ -1894,7 +1721,7 @@ link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動�
 .手順
 . 自動ドライブ割り当てを有効にします。
 +
-「 storage disk option modify -node node_name -autoassign on
+`storage disk option modify -node <node_name> -autoassign on`
 
 +
 このコマンドは、 MetroCluster IP 構成のすべてのノードで問題設定する必要があります。
@@ -1910,7 +1737,7 @@ link:concept_considerations_drive_assignment.html["ONTAP 9.4 以降での自動�
 .このタスクについて
 デフォルトでは、ルートアグリゲートは RAID-DP タイプのアグリゲートとして作成されます。ルートアグリゲートのタイプは RAID-DP から RAID4 に変更することができます。次のコマンドは、ルートアグリゲートを RAID4 タイプのアグリゲートに変更します。
 
-「 storage aggregate modify – aggregate_name _raidtype raid4 」と表示されます
+`storage aggregate modify –aggregate <aggr_name> -raidtype raid4`
 
 
 NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、アグリゲートの RAID タイプをデフォルトの RAID-DP から RAID4 に変更できます。
@@ -1918,7 +1745,7 @@ NOTE: ADP 以外のシステムでは、ミラーリングの実行前後に、�
 .手順
 . ルートアグリゲートをミラーします。
 +
-「 storage aggregate mirror _aggr_name _ 」のようになります
+`storage aggregate mirror <aggr_name>`
 
 +
 次のコマンドでは、「 controller_A_1 」のルートアグリゲートがミラーされます。
@@ -1959,7 +1786,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/home.html["デ�
 .手順
 . 使用可能なスペアのリストを表示します。
 +
-「 storage disk show -spare -owner node_name 」という名前になります
+`storage disk show -spare -owner <node_name>`
 
 . アグリゲートを作成します。
 +
@@ -2001,7 +1828,7 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 
 . 新しいアグリゲートの RAID グループとドライブを確認します。
 +
-「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
+`storage aggregate show-status -aggregate <aggregate-name>`
 
 
 
@@ -2044,7 +1871,7 @@ NOTE: コマンドMetroCluster configure'を実行する前に'Onboard Key Manag
  a| 
 いずれかのノードのプロンプトで、 MetroCluster を設定します。
 
-MetroCluster configure_node-name_` です
+`metrocluster configure <node_name>`
 
 
 
@@ -2060,7 +1887,7 @@ advanced モードで続行するかどうかを尋ねられたら、「 y 」�
 
 .. MetroCluster に -allow-with-one-aggregate true パラメータを設定します。
 +
-「 MetroCluster configure -allow-with-one-aggregate true_node-name_` 」
+`metrocluster configure -allow-with-one-aggregate true <node_name>`
 
 .. admin 権限レベルに戻ります。
 +
@@ -2159,7 +1986,7 @@ Remote: cluster_A         Configuration state configured
 
 . 不揮発性メモリミラーリングの問題を回避するには、 4 つのノードのそれぞれをリブートします。
 +
-node reboot -node node_name -inhibit-takeover true を指定します
+`node reboot -node <node_name> -inhibit-takeover true`
 
 . 構成を再度確認するには ' 両方のクラスタ上で MetroCluster show コマンドを実行します問題
 
@@ -2210,7 +2037,7 @@ https://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステム�
 
 . 新しいシェルフのすべてのディスクを適切なノードに手動で割り当てます。
 +
-「 disk assign -disk disk_disk-id 」 -owner_owner-node-name_`
+`disk assign -disk <disk_id> -owner <owner_node_name>`
 
 . アグリゲートを作成します。
 +
@@ -2254,7 +2081,7 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 . 新しいアグリゲートの RAID グループとドライブを確認します。
 +
-「 storage aggregate show-status -aggregate _aggregate-name _ 」を参照してください
+`storage aggregate show-status -aggregate <aggregate_name>`
 
 . ミラーされていないアグリゲートの導入を
 +
@@ -2345,7 +2172,7 @@ NOTE: 「 MetroCluster check show 」コマンドは、最新の「 MetroCluster
 ----
 cluster_A::> metrocluster check aggregate show
 
-Last Checked On: 8/5/2014 00:42:58
+
 
 Node                  Aggregate                  Check                      Result
 ---------------       --------------------       ---------------------      ---------
@@ -2384,7 +2211,7 @@ controller_A_2        controller_A_2_aggr0
 +
 [listing]
 ----
-Last Checked On: 9/13/2017 20:47:04
+
 
 Cluster               Check                           Result
 --------------------- ------------------------------- ---------
