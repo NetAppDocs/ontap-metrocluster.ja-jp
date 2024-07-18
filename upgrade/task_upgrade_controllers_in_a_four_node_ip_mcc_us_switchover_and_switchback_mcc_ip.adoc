@@ -889,7 +889,57 @@ MetroCluster node show
 +
 「 boot_ontap 」
 
-. 古いコントローラのすべてのデータ LIF のホームポートを、新旧両方のコントローラモジュールで同じ共通ポートに割り当てます。
+. 古いコントローラのクラスタ間LIFを変更して、HAインターコネクトまたはMetroCluster IP DRインターコネクトに使用するポートとは別のホームポートを新しいコントローラで使用するようにします。
++
+
+NOTE: この手順は、アップグレードを成功させるために必要です。
+
++
+古いコントローラのクラスタ間LIFでは、新しいコントローラのHAインターコネクトまたはMetroCluster IP DRインターコネクトに使用されるポートとは別のホームポートを使用する必要があります。たとえば、AFF A90コントローラにアップグレードすると、HAインターコネクトポートはe1aとe7aになり、MetroCluster IP DRインターコネクトポートはe2bとe3bになります。古いコントローラのインタークラスタLIFがポートe1a、e7a、e2b、またはe3bでホストされている場合は、クラスタ間LIFを移動する必要があります。
+
++
+新しいノードでのポートの分散と割り当てについては、を参照して https://hwu.netapp.com["NetApp Hardware Universe の略"]ください。
+
++
+.. 古いコントローラで、クラスタ間LIFを表示します。
++
+`network interface show  -role intercluster`
+
++
+古いコントローラのクラスタ間LIFが、HAインターコネクトに使用するポートと同じポートを使用するか、新しいコントローラのMetroCluster IP DRインターコネクトに使用するポートと同じポートを使用するかに応じて、次のいずれかの処理を実行します。
+
++
+[cols="2*"]
+|===
+| クラスタ間LIFの状況 | 手順 
+
+
+| 同じホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_2b,サブステップb>> 
+
+
+| 別のホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_3,手順 3>> 
+|===
+.. [[controller_manual_upgrade_prepare_network_ports_2b]]別のホームポートを使用するようにクラスタ間LIFを変更します。
++
+`network interface modify -vserver <vserver> -lif <intercluster_lif> -home-port <port-not-used-for-ha-interconnect-or-mcc-ip-dr-interconnect-on-new-nodes>`
+
+.. すべてのインタークラスタLIFが新しいホームポートにあることを確認します。
++
+`network interface show -role intercluster -is-home  false`
+
++
+すべてのクラスタ間LIFがそれぞれのホームポートにある場合は、コマンド出力が空になります。
+
+.. ホームポートにないLIFがある場合は、次のコマンドを使用してリバートします。
++
+`network interface revert -lif <intercluster_lif>`
+
++
+ホームポートにないインタークラスタLIFごとにコマンドを繰り返します。
+
+
+
+. [[controller_manual_upgrade_prepare_network_ports_3]]古いコントローラのすべてのデータLIFのホームポートを、新旧両方のコントローラモジュールで同じ共通のポートに割り当てます。
 +
 .. LIF を表示します。
 +

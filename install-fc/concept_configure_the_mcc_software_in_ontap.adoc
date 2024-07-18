@@ -1301,7 +1301,7 @@ HA パートナーのプール 1 の DR パートナー
 +
 .. 最初のノードで、各シェルフの半分のディスクをプール 0 に、残りの半分を HA パートナーのプール 0 に割り当てます。
 +
-「 disk assign -disk disk-name-p_pool_-n_number-of -disk 」のようになります
+`disk assign -shelf <shelf-name> -p <pool> -n <number-of-disks>`
 
 +
 ストレージコントローラ Controller_A_1 にシェルフが 4 台あり、各シェルフに SSD が 8 本ある場合は、次のコマンドを問題に設定します。
