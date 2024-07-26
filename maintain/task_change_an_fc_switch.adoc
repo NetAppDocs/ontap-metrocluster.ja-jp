@@ -9,7 +9,7 @@ summary: FCスイッチのベンダーの変更（CiscoからBrocadeへ、また
 
 
 [role="lead"]
-FCスイッチのベンダーをCiscoからBrocadeに（またはその逆に）変更しなければならない場合があります。また、スイッチモデルの変更、またはその両方を行う必要があります。
+FCスイッチのベンダーをCiscoからBrocade（またはその逆）に変更するか、スイッチモデルの変更、またはその両方が必要になる場合があります。
 
 .このタスクについて
 * この手順は、NetApp検証済みスイッチを使用している場合に適用されます。
@@ -53,8 +53,6 @@ Group Cluster Node           State          Mirroring Mode
 ----
 cluster_A::> metrocluster check run
 
-Last Checked On: 10/1/2014 16:03:37
-
 Component           Result
 ------------------- ---------
 nodes               ok
@@ -71,37 +69,24 @@ To check if the nodes are ready to do a switchover or switchback operation, run 
 
 . 設置前に新しいスイッチを設定します。
 +
-の手順に従います link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/task_reset_the_brocade_fc_switch_to_factory_defaults.html["FC スイッチを設定"]。
+の手順に従います link:../install-fc/concept-configure-fc-switches.html["FC スイッチを設定"]。
 
-. 次の順序で接続を外して、古いスイッチから接続を切断します。
+. 次の順序で接続を削除して、古いスイッチから接続を切断します。
 +
-.. ローカルクラスタインターフェイスがスイッチに接続されている場合は、次の手順を実行します。
-+
-... ローカルクラスタインターフェイスを切断します
-... ローカルクラスタのISLを切断します
-
-
-.. MetroCluster FCインターフェイスを切断します。
+.. MetroCluster FCインターフェイスとFCVIインターフェイスを切断します。
+.. ATTO FibreBridgeブリッジを切断します。
 .. MetroCluster ISLを切断します。
 
 
 . 古いスイッチの電源をオフにしてケーブルを外し、古いスイッチを新しいスイッチと物理的に交換します。
 . 次の順序でスイッチをケーブル接続します。
 +
-の手順に従う必要があります。 link:https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/task_rack_the_hardware_components_mcc_fabric_and_ip.html["MetroClusterコンポーネントの設置とケーブル接続"]。
+の手順に従う必要があります link:../install-fc/task_configure_the_mcc_hardware_components_fabric.html["ファブリック接続 MetroCluster 構成のケーブル接続"]。
 
 +
 .. リモートサイトにISLをケーブル接続します。
-.. MetroCluster FCインターフェイスをケーブル接続します。
-.. ローカルクラスタインターフェイスをケーブル接続します。
-+
-ローカルクラスタインターフェイスがスイッチに接続されている場合は、次の手順を実行します。
-
-+
-... ローカルクラスタインターフェイスをケーブル接続します。
-... ローカルクラスタのISLをケーブル接続します。
-
-
+.. ATTO FibreBridgeブリッジをケーブル接続します。
+.. MetroCluster FCインターフェイスとFCVIインターフェイスをケーブル接続します。
 
 
 . スイッチの電源をオンにします。
