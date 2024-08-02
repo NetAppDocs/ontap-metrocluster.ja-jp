@@ -6887,7 +6887,6 @@
   <block id="4d8cac4d4c182ff6fe50e9fb53cc4d82" category="summary">構成をクリーンにするために、コントローラモジュールのデフォルトをリセットおよびリストアする必要があります。</block>
   <block id="88e93acfeced73f4407df4da34dadb16" category="list-text">IP スイッチをラックまたはキャビネットに設置します。</block>
   <block id="1ff31a738d26e47dfa5c26bac0568556" category="summary">各ノードをブートすると、ノードおよびクラスタの基本的な設定を実行するよう求めるプロンプトが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。</block>
-  <block id="da6a152013b01d35131c7e6a0a834b28" category="paragraph">新しいコントローラをネットブートする必要がある場合は、を参照してください <block ref="3b790cf59184cbd534b9cbce1ed9244d" category="inline-link-macro-rx"></block>。</block>
   <block id="6ac62fa13c69ad320702cd9a98f97b12" category="list-text">ローカルサイトの各ノードに電源が入っていない場合は電源を投入し、すべてのノードを完全にブートします。</block>
   <block id="b97ee3821e4a08c69e3c5029696ca2c6" category="list-text">プロンプトに従ってノード管理インターフェイスを設定します。</block>
   <block id="5a09db16e39519f87adda9a1868b72b7" category="list-text">プロンプトに従ってクラスタを作成します。</block>
@@ -8202,8 +8201,6 @@
   <block id="12a839df1b665dc905f649011126b347" category="doc">ディザスタサイトのプール 1 ディスクのディスク所有権の再割り当て（ MetroCluster IP 構成）</block>
   <block id="e15b0161757a3ccf3600819bf65e09fa" category="paragraph">ノードがスイッチオーバーモードであるため、このタスクでは、ディザスタサイトのプール 1 のルートアグリゲートを含むディスクのみを再割り当てします。この時点で古いシステム ID に所有されているのはこれらのディスクだけです。</block>
   <block id="22916732ba49d4a12ff6d80e0cc481a4" category="paragraph">この例で想定している状況は次のとおりです。</block>
-  <block id="20898dec082f98c2108752693993068d" category="inline-link-macro">交換用コントローラモジュールの新しいシステム ID の確認</block>
-  <block id="5e1cb1cee330d4cf39f42acae38f029c" category="paragraph">古いシステム ID と新しいシステム ID は、で特定されています <block ref="47d4637528cdda0f4f546dfe2a3e35e6" category="inline-link-macro-rx"></block>。</block>
   <block id="bee007a62c2d24423af8145fa5ac8988" category="list-text">メンテナンスモードの交換用ノードで、システムに ADP と ONTAP のバージョンが設定されているかどうかに応じて、適切なコマンドを使用してルートアグリゲートディスクを再割り当てします。</block>
   <block id="04a28b895155936f643b8081ddfbb3a4" category="paragraph">プロンプトが表示されたら、再割り当てを続行できます。</block>
   <block id="3f1ca0ba3af1d2e7a950a549093a765c" category="cell">システムでの ADP の使用の有無</block>
@@ -9632,7 +9629,6 @@
   <block id="ffaeaa66271f98acd0156b9dadf03b5b" category="list-text"><block ref="ffaeaa66271f98acd0156b9dadf03b5b" category="inline-link-macro-rx"></block></block>
   <block id="1a031f58441757494134fdebb9c1beb1" category="list-text"><block ref="1a031f58441757494134fdebb9c1beb1" category="inline-link-macro-rx"></block></block>
   <block id="343c2d0dbf210b79686912b38bd4f45d" category="list-text"><block ref="680a4f630b21eab8e23842ce1e77c536" category="inline-link-macro-rx"></block> **</block>
-  <block id="d618e096c793dc69ae5eecca55aed391" category="list-text"><block ref="d618e096c793dc69ae5eecca55aed391" category="inline-link-macro-rx"></block></block>
   <block id="b42bad79baad4f4f943c81fc37bedccd" category="list-text">に示すように、 MetroCluster IP ノードを IP スイッチにケーブル接続します <block ref="657bcb6c51639854c4fdede551507755" category="inline-link-macro-rx"></block>。</block>
   <block id="99dc2e42eb5cbad5dfa0fe00d5193924" category="list-text">の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します<block ref="d80da76762d0e5fadaefb2c12eee2740" category="inline-link-rx"></block></block>
   <block id="9f1e892e838f85f0b4330fcfad0f245a" category="paragraph">の「 SVM の設定のレプリケート」セクションを参照してください <block ref="eedeed859392052ace3070cab5bd7d76" category="inline-link-macro-rx"></block> SVM DR 関係の設定の詳細については、を参照してください。</block>
@@ -11587,8 +11583,6 @@
   <block id="ec8b479c503bdd6824b5e3505ef1d0df" category="paragraph">次の例は、aggr_data_A1アグリゲートをオフラインにします。</block>
   <block id="aa8cd184e817ada870c8b763be695d0b" category="paragraph">次の例は、aggr_data_A1アグリゲートを削除する方法を示しています。</block>
   <block id="d2038b70348bcc50135596de145913db" category="admonition">スイッチを次の順序で更新します。Switch_A_1、Switch_B_1、Switch_A_1、Switch_B_2</block>
-  <block id="c1e630c896fe7378e2dd05cd5272a6ff" category="list-text"><block ref="c1e630c896fe7378e2dd05cd5272a6ff" category="inline-link-macro-rx"></block></block>
-  <block id="e36e202b6cdca1dbc2cdea18cfdd7bdb" category="list-text"><block ref="e36e202b6cdca1dbc2cdea18cfdd7bdb" category="inline-link-macro-rx"></block></block>
   <block id="f6d453c97574893aee9bca0a4faee686" category="paragraph">storage failover modify -node node_name enable false</block>
   <block id="f91adcd268075ddcfabf631a5a33611e" category="list-text">各データアグリゲートをオフラインにしてから削除します。</block>
   <block id="d4fbfd12406441eb6b750cde2dcb9137" category="list-text">サイト間スイッチリンク（ISL）が稼働し、ポートチャネルが動作していることを確認します。</block>
@@ -11757,8 +11751,6 @@
   <block id="7aeedda5f35486a7239b2a68ae68fb9a" category="paragraph">機器のアップグレードの範囲に応じて、コントローラのアップグレード手順 、システムの更新手順 、または拡張手順 を選択します。</block>
   <block id="959c17d1eadff13225c68a5578c6da93" category="paragraph">使用するコントローラアップグレード手順 は、プラットフォームモデルとMetroCluster 構成のタイプによって異なります。</block>
   <block id="789c52582d523f3977d636da81e92dc0" category="list-text">ARL ベースコントローラのアップグレード手順では、アグリゲートの再配置処理を使用して、古い構成からアップグレード後の新しい構成へ、データを無停止で移動します。</block>
-  <block id="310848f15048cc78b3cbee9c61235054" category="paragraph">FCまたはIPの表から現在のプラットフォームを選択してください。現在のプラットフォーム行とターゲットプラットフォーム列の交差部分が空白の場合、アップグレードはサポートされません。</block>
-  <block id="569cf9bf2c0f655af1cc3b1657f11706" category="section-title">サポートされるMetroCluster IPコントローラのアップグレード</block>
   <block id="871aaccc4c0a59b618736750595955e7" category="list-text">注1：このアップグレードでは、手順 を使用します <block ref="f668bd1de55e6e087edcf0e6120e96e3" category="inline-link-macro-rx"></block></block>
   <block id="59710baa552439a5c3866c2907720be7" category="section-title">サポートされるMetroCluster FCコントローラのアップグレード</block>
   <block id="9ae1fbeadb6e0efc4e024384fb8a4f8d" category="inline-link">ナレッジベースの記事</block>
@@ -11956,8 +11948,6 @@
   <block id="8ac6e9edd68ffb00104a32fd0a3ef455" category="list-text">Tiebreakerホストから各ノード管理LIFおよびクラスタ管理LIFへのSSH接続を開き、MetroCluster ソフトウェアへのTiebreakerの接続を確認します。</block>
   <block id="92d17a99a2247a42900b1a4c61e8e7d0" category="paragraph">TiebreakerソフトウェアでSNMPを使用するには、SNMPを設定する必要があります。</block>
   <block id="b108689bc1b65903b90d77f19e30d295" category="list-text">Tiebreaker CLIを使用します<block ref="5ef546c28db0706808d8d451d5a71029" prefix=" " category="inline-code"></block> コマンドを使用してMetroCluster 構成を追加します。</block>
-  <block id="c852f510264f0662076b7dc87a75f8f3" category="paragraph">次に、IPアドレスが10.240.45.66で、トラップメッセージ用のポート番号が162のSNMP V3をサポートするSNMPレシーバの設定例を示します。これで、 Tiebreaker ソフトウェアは、指定した SNMP レシーバにトラップを送信することができます。</block>
-  <block id="6eeb81da538b4f61a034b7c239d160a7" category="admonition">SNMPv1はセキュアではないため、SNMPv3を設定する必要があります。デフォルトのコミュニティストリングが* NOT * PUBLICに設定されていることを確認します。</block>
   <block id="a645efc9b9e1d2189f4d79d85cfaefce" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のコントローラ（AFF A700 / FAS9000からAFF A900 / FAS9500）をアップグレードする（ONTAP 9.10.1以降）</block>
   <block id="6f4c27e539cc3005215fed00a58a0521" category="sidebar">新しいコントローラモジュールのFC-VIポートとHBAポートをFCスイッチにケーブル接続します</block>
   <block id="da3f2d04a7e97d4412b48daacd47915e" category="sidebar">新しいコントローラモジュールのクラスタピアリングのケーブル接続</block>
@@ -12624,10 +12614,6 @@
   <block id="ae236ebe2cd05ce4da7fe73d504f4946" category="list-text">実行中の場合 <block ref="54f4a86aff0fc5aba4d6e37b225734c0" category="inline-link-macro-rx"></block>新しいノードには、古いノードのデータを収容するための十分なストレージに加え、ルートアグリゲート用の十分なディスクとスペアディスクが必要です。</block>
   <block id="30db39dffca5d3a3ab759b48303153b1" category="list-text">削除するDRグループに負荷共有ミラーボリュームが含まれている場合、それらのボリュームを移動することはできません。  別のDRグループにすべての負荷共有ミラーボリュームを再作成し、削除するDRグループ内の負荷共有ミラーボリュームを削除します。</block>
   <block id="0108924065f583138162139c8d2325c4" category="list-text">Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2の手順を一度に1つずつ実行します。</block>
-  <block id="4c73c980356e24dbc4b9bfa823ff3540" category="inline-link-macro">NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット</block>
-  <block id="5ea045545da6545f166122f615c720c2" category="list-text"><block ref="5ea045545da6545f166122f615c720c2" category="inline-link-macro-rx"></block></block>
-  <block id="9d2a9152feb1a65b3472b15d2e557bca" category="inline-link-macro">NVIDIA IPのRCFファイルのダウンロードとインストール</block>
-  <block id="3ebe02a815587b2ddedbada8c501d0ef" category="list-text"><block ref="3ebe02a815587b2ddedbada8c501d0ef" category="inline-link-macro-rx"></block></block>
   <block id="61cdeb097cfdf5250ae69244ebf01a62" category="list-text">xWDM構成を使用する場合は、ISLの設定が必要になることがあります。詳細については、xWDMベンダーのドキュメントを参照してください。</block>
   <block id="91debec19d39d0379223807f0659efab" category="section-title">MetroCluster構成での構成の修復</block>
   <block id="40a0ce393bbc07b8791fe3c093d906bf" category="paragraph">MetroCluster FC構成では、特定の順序で修復処理を実行して、スイッチオーバー後にMetroCluster機能をリストアします。</block>
@@ -13217,7 +13203,6 @@
   <block id="75b44b50a5c15f2121717071fc8e9fc0" category="inline-link-macro">NVIDIA SN2100スイッチCumulusソフトウェアのダウンロードとインストール</block>
   <block id="99534ab88dcf6802b885593070964693" category="list-text"><block ref="99534ab88dcf6802b885593070964693" category="inline-link-macro-rx"></block></block>
   <block id="5b2fc0c613f01db3129e4c4e07ac3dfe" category="list-text"><block ref="5b2fc0c613f01db3129e4c4e07ac3dfe" category="inline-link-macro-rx"></block></block>
-  <block id="b482922c3bf6cd48549cdf23465ffee6" category="list-text"><block ref="b482922c3bf6cd48549cdf23465ffee6" category="inline-link-macro-rx"></block></block>
   <block id="31108c872023e7ac673e45c455e290ec" category="list-text"><block ref="31108c872023e7ac673e45c455e290ec" category="inline-link-macro-rx"></block></block>
   <block id="d28f21bcfe7f0ae76389ce8cf95e1346" category="paragraph">スイッチがリセットされ、RCFファイルを適用する前の既存の管理ネットワーク設定や現在のクレデンシャルなどの初期設定が保持されます。リブート後、同じバージョンまたは別のバージョンのRCFファイルを使用して新しい設定を適用できます。</block>
   <block id="2d0212aab3adea9540211da211dead7b" category="section-title">[[Cumulus-install-option]] Cumulusソフトウェアのダウンロードとインストール</block>
@@ -13381,8 +13366,6 @@
   <block id="368aaabd8ccd78edfaeb1e279944bf6d" category="list-text"><block ref="368aaabd8ccd78edfaeb1e279944bf6d" category="inline-link-macro-rx"></block></block>
   <block id="76dff903c42af8953fcd64558dc34099" category="inline-link-macro">Cisco IP RCFファイルのダウンロードとインストール</block>
   <block id="89fdba60efe33dd9621db371306f12e5" category="list-text"><block ref="89fdba60efe33dd9621db371306f12e5" category="inline-link-macro-rx"></block></block>
-  <block id="8fa6539999f2d3aff134c30600c80e41" category="inline-link-macro">NVIDIAのRCFファイルをダウンロードしてインストールします</block>
-  <block id="2812633e4be142ea6fef81aa2fc3b357" category="list-text"><block ref="2812633e4be142ea6fef81aa2fc3b357" category="inline-link-macro-rx"></block></block>
   <block id="ea9534759740df7ca366f32a3eb8a0ec" category="inline-xref">Cumulusソフトウェアのダウンロードとインストール</block>
   <block id="a6c37e682cfc0729046dd2e498ad461c" category="list-text"><block ref="ef78584b865ab255d612a5aa6725b10d" category="inline-xref-macro-rx"></block></block>
   <block id="4d8d9056b62fc01f5cd3f0898c551fde" category="section-title">プラットフォームのサポート</block>
@@ -13471,7 +13454,6 @@
   <block id="84e9aa8f760c1f5f0f19cf4fc3153c4b" category="paragraph">4ノードMetroCluster IP構成では、AFF A900システムの次のボリューム制限が引き上げられました。</block>
   <block id="69cd959e02d2a7b70720f5426f4f0888" category="list-text">元のシステムがエンドツーエンドの暗号化用に設定されていた場合は、交換用ノードのLOADERプロンプトで次のbootargを設定します。</block>
   <block id="635e42fd721973aab43465fb05d0c976" category="paragraph"><block ref="62c037d8665e336dd114412a0b756bfc" prefix="" category="inline-code"></block></block>
-  <block id="5a8c7594ee8269dda78a3c94154a49fc" category="doc">ハードウェアの交換と新しいコントローラのブート</block>
   <block id="81a393ca01b7355292a9de6a418b7506" category="section-title">ディザスタサイトでのハードウェアの交換</block>
   <block id="341755fab7492718abaee90d7addc0e1" category="section-title">古いコントローラモジュールのシステムIDとVLAN IDの確認</block>
   <block id="7783c9328f785a62c6d922c7aee5f5bf" category="section-title">サバイバーサイトから交換用ドライブを分離（MetroCluster IP構成）</block>
@@ -13498,7 +13480,6 @@
   <block id="fdc6d534c52f6619e898db680403f69b" category="list-text">MetroCluster IPインターフェイスがオフラインであることを確認します。</block>
   <block id="2d393525a6ebfc702ca856ed72512167" category="list-text">MetroCluster IPインターフェイスポートをオンラインにします。</block>
   <block id="0ab751f551b18333e82474f5ca9b4122" category="list-text">MetroCluster IPインターフェイスポートがオンラインであることを確認します。</block>
-  <block id="e387b7f8f98fe6ef00364ba0984c08a9" category="paragraph">古いシステム ID と新しいシステム ID は、で特定されています <block ref="ce17cf746f0f051ba197f9e3096bf7f5" category="inline-link-macro-rx"></block>。</block>
   <block id="124ba57298a92342f8aec06ebcfb6415" category="inline-link-macro">古いコントローラモジュールのシステムIDの確認</block>
   <block id="3ac27de4b4347c98785ff06870fe7221" category="paragraph"><block ref="3ac27de4b4347c98785ff06870fe7221" category="inline-link-macro-rx"></block></block>
   <block id="478093bd7e01c5abe587038bf808af00" category="paragraph">次の表に、Cisco 9132Tスイッチのポート用途を示します。次の表に、2つのDRグループに4台と8台のコントローラモジュールを含む、サポートされる最大構成を示します。</block>
@@ -13515,10 +13496,8 @@
   <block id="c5dcd35af16918a17ee9c3a5c153f0af" category="inline-link">IMT</block>
   <block id="24d65add9a27d74b80e9a9cebdfc8e56" category="paragraph">使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がお使いのバージョンの ONTAP でシェルフの混在がサポートされているかどうかを確認するには、 Interoperability Matrix Tool （ IMT ）を参照してください。<block ref="30796bf173a80af0dc9c120f98ffaed6" category="inline-link-rx"></block></block>
   <block id="8872b0d09737dfd9b6fcafd4e8c2356b" category="list-text"><block ref="8872b0d09737dfd9b6fcafd4e8c2356b" category="inline-link-rx"></block></block>
-  <block id="fe06217dfe728a4663456cded8fa4095" category="list-text"><block ref="fe06217dfe728a4663456cded8fa4095" category="inline-link-macro-rx"></block></block>
   <block id="80d79e74efb3cf7c2ad45e7e1c96223d" category="inline-link-macro">NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット</block>
   <block id="9dce4db3e352a666d92ce25dd5f94a51" category="list-text"><block ref="9dce4db3e352a666d92ce25dd5f94a51" category="inline-link-macro-rx"></block></block>
-  <block id="4f586337d2fd3e18706fce945038a04a" category="list-text"><block ref="4f586337d2fd3e18706fce945038a04a" category="inline-link-macro-rx"></block></block>
   <block id="59908dc1540a829f2e5b2241e8bda0cd" category="inline-link-macro">NVIDIA IP RCFファイルのダウンロードとインストール</block>
   <block id="73f5dfd8823a821a2efabbc978e0229c" category="list-text"><block ref="73f5dfd8823a821a2efabbc978e0229c" category="inline-link-macro-rx"></block></block>
   <block id="c61e96543ff55077f64d8dd03940c2c6" category="list-text">AFF A70用</block>
@@ -13682,16 +13661,13 @@
   <block id="e4d3a0569925dd58f4e2c0c40b889993" category="paragraph">AFF A220、FAS2750</block>
   <block id="fc028e3a959d5040cb2c7b0ceac73cf8" category="paragraph">AFF A300、FAS8200</block>
   <block id="28cf84e4b9c7d19ba37159218fdea6f0" category="section-title">サポートされるコントローラのアップグレード</block>
-  <block id="df9d5dab8402039e8e49491ea2b155f4" category="admonition">4ノードMetroCluster IP構成のコマンドを使用したサポートされるアップグレードについては<block ref="616743bfa4fd61d558c556fe614cb2e9" prefix=" " category="inline-code"></block> 、の表を参照してください。 <block ref="cdc5d26dd7214bbc9da99c730f208713" category="inline-link-macro-rx"></block></block>
   <block id="00422b8712ec5454364e6489bb81ba29" category="list-text">コントローラのアップグレードを実行するときは、古いプラットフォームタイプと新しいプラットフォームタイプ*が一致している必要があります*。</block>
   <block id="ea246a6495df1b87df40d7c322d23942" category="list-text">MetroCluster構成内のすべてのノード（新旧のノード）で同じバージョンのONTAPが実行されている必要があります。</block>
   <block id="5505f24f1b03305d31aacdd035c7f251" category="paragraph-title">サポートされるAFFおよびFAS MetroCluster IPコントローラのアップグレード</block>
-  <block id="fcb21df516134bd5563b8b7bef30f98b" category="paragraph">次の表に、MetroCluster IP構成のAFFシステムまたはFASシステムのアップグレードでサポートされるプラットフォームの組み合わせを示します。</block>
   <block id="7b8670a76cf1dc8cbe357ce34cc11736" category="image-alt">MetroCluster IPアップグレードSO sb AFF FAS</block>
   <block id="ae189029f72cc261fbad1afff41d9552" category="list-text">注3：コントローラのアップグレードが完了するまで、ターゲットプラットフォームに内蔵ドライブを搭載することはできません。内蔵ドライブはアップグレード後に追加できます。</block>
   <block id="39eb8422a5f49fae94f0335febb78701" category="list-text">注4：コントローラモジュールの交換が必要です。</block>
   <block id="2d5d2a9ece12ce430adc9f20c9e9464d" category="paragraph-title">サポートされるASA MetroCluster IPコントローラのアップグレード</block>
-  <block id="1fdcb939cb28cfa6612abe5d949f5cdb" category="paragraph">次の表に、MetroCluster IP構成のASAシステムのアップグレードでサポートされるプラットフォームの組み合わせを示します。</block>
   <block id="6d340f03110b449d466e554ef5a4a7af" category="image-alt">MetroCluster IPアップグレードSO sb ASA FAS</block>
   <block id="9311605dda14c8d475dd817b196dbe33" category="list-text">注1：コントローラのアップグレードは、ONTAP 9.13.1以降を実行しているシステムでサポートされます。</block>
   <block id="e201b3063a835c6ab815286f4d0dc126" category="paragraph-title">サポートされるAFFおよびFAS MetroCluster FCコントローラのアップグレード</block>
@@ -13755,7 +13731,6 @@
   <block id="c5b67774bb32fdf25c42ebcc33f3e43d" category="list-text">アップグレードするDRグループの各ノードで、この手順を繰り返します。</block>
   <block id="6986e6230a992abf2372b5ddb288c1ec" category="list-text"><block ref="6986e6230a992abf2372b5ddb288c1ec" category="inline-link-macro-rx"></block></block>
   <block id="9cf1b9d10ebe2c0f0ae4072a054220a3" category="list-text"><block ref="9cf1b9d10ebe2c0f0ae4072a054220a3" category="inline-link-macro-rx"></block></block>
-  <block id="0bc8e4789fc33f4aefa1d33adc11eb9f" category="list-text"><block ref="0bc8e4789fc33f4aefa1d33adc11eb9f" category="inline-link-macro-rx"></block></block>
   <block id="d71cd39faa20e04542bb87bdbf15456a" category="list-text"><block ref="d71cd39faa20e04542bb87bdbf15456a" category="inline-link-macro-rx"></block></block>
   <block id="a3b6bdcb84b2fd3938bbc199daa24115" category="section-title">新しいコントローラをネットブート</block>
   <block id="1d6634f1d19b7ad582264acf3f3975d4" category="list-text">ノードがマルチパス構成になっているかどうかを確認します。+<block ref="395c8c225a0f5ec95ae5122ac1899d9b" prefix=" " category="inline-code"></block></block>
@@ -13806,7 +13781,6 @@
   <block id="ef53a1465284a8eba202285b88ef0eb2" category="section-title">新しいプラットフォームに合わせてスイッチのRCFを更新</block>
   <block id="8aedcbe06dc4ee85bfbfe46c6a62713c" category="paragraph">このタスクは、アップグレード中のコントローラがあるサイトで実行します。この手順の例では、まずsite_Bをアップグレードします。</block>
   <block id="097b5e4a3935e7904f9e57e130711c8b" category="inline-link-macro">NVIDIA IP SN2100スイッチのRCFファイルのダウンロードとインストール</block>
-  <block id="28e2bd4eabf6ae375e91c35fdc2b3bde" category="list-text"><block ref="28e2bd4eabf6ae375e91c35fdc2b3bde" category="inline-link-macro-rx"></block></block>
   <block id="a0738c0401f656b59d11c3e37bee47f0" category="paragraph">このタスクでは、のアップグレード手順で特定したUUIDとシステムIDを使用し <block ref="a74b37b1135e46e1745610d5ef77ba43" category="inline-xref-macro-rx"></block>ます。</block>
   <block id="080c153c3d5c3f5a7519058826d07cb8" category="paragraph"><block ref="579363eabf2a70eb9e6c8d9b1bca9609" prefix="" category="inline-code"></block></block>
   <block id="ba2a7c5e352255c376b6b0d315a1ffc1" category="paragraph"><block ref="3edfeb45325920fedac6b21b22c6872d" prefix="" category="inline-code"></block></block>
@@ -14039,4 +14013,56 @@
   <block id="5feb826151198d290926a00c8f0166bd" category="paragraph">次の表に、ASAシステムでサポートされるプラットフォームの組み合わせを示します。</block>
   <block id="26f5174a535725c2475715c5b1747824" category="cell">ターゲットMetroCluster IPプラットフォーム</block>
   <block id="315289188a5b2b11bb8fe0c80160e8d4" category="sidebar">MetroCluster構成にノードを追加する前にカスタムAutoSupportメッセージを送信する</block>
+  <block id="dff95cb9e5adc8c22082286195b9c18b" category="list-text"><block ref="dff95cb9e5adc8c22082286195b9c18b" category="inline-link-macro-rx"></block></block>
+  <block id="86e4bcdd91ae737b95a3cf066dd128f7" category="paragraph">古いシステムIDと新しいシステムIDについては、を参照して <block ref="e3858d0d76295d35179b2ac088c574f3" category="inline-link-macro-rx"></block>ください。</block>
+  <block id="f411a218519aacec5088cc5a3d23eb64" category="paragraph">古いシステムIDと新しいシステムIDについては、を参照して <block ref="372daca62ea6308294fd70c00fcc8af2" category="inline-link-macro-rx"></block>ください。</block>
+  <block id="11ceccfd751fe28a61b558ba07583aff" category="section-title">FibreBridge 7600N / 7500Nブリッジでサポートされるディスクとシェルフの数</block>
+  <block id="ff2961229b46cc89dffec4aab67d010d" category="paragraph">次の表に、FibreBridge 7600N / 7500Nブリッジのペアでサポートされるディスクとシェルフの数を示します。</block>
+  <block id="b8cbb75a8c2b1413bcddd7c532ccc064" category="list-text">最初に到達した制限が適用されます。</block>
+  <block id="2a3f0c8b0ca6744889b3ffa76d4b9f5b" category="list-text">DS460Cシェルフを使用する場合は、最大240本のドライブ（シェルフ4台）のみを使用できます。</block>
+  <block id="5ccf1f9193b673f77fa0a023f0c64238" category="list-text">DS212Cシェルフを使用する場合は、最大120本のドライブ（シェルフ10台）しか使用できません。</block>
+  <block id="402fb729f11d0452c518d4172b605b2c" category="paragraph-title">サポートサレルディスクスウ</block>
+  <block id="c75f82dd210bf38bdd42ff246823dd9e" category="paragraph">FibreBridge 7600N / 7500Nブリッジのペアでサポートされるディスク数を確認します。</block>
+  <block id="3baa66bdd3ca9158478ad78d6079db1c" category="cell">ディスク構成</block>
+  <block id="3d0bf05155f3dfd0eeccf9e953d46156" category="cell">ディスクタイプ</block>
+  <block id="eda8b8dec444e51f3afb1c089a183afc" category="cell">ブリッジペアあたりの合計ディスク数</block>
+  <block id="4a761ba24826218f4585e8feddc64d7c" category="cell">すべてのSSD</block>
+  <block id="34df20bab5e85dc75bfc94ef569cced9" category="cell">SSD</block>
+  <block id="b0df25be54449fa53d1180d01ad8bdc5" category="cell">スヘテノHDD</block>
+  <block id="9c2dc227590d4220750b52b21b0aeb99" category="cell">HDD</block>
+  <block id="335f5352088d7d9bf74191e006d8e24c" category="cell">240</block>
+  <block id="de97ed9eb6dc112873264b693e05c88c" category="cell">混在（96本のSSD）</block>
+  <block id="0a09c8844ba8f0936c20bd791130d6b6" category="cell">144</block>
+  <block id="1b48b5dfad482eb966c69b885c217e13" category="cell">混在（72本のSSD）</block>
+  <block id="006f52e9102a8d3be2fe5614f42ba989" category="cell">168</block>
+  <block id="79fa5a72c63f064bf5ae4709ac221926" category="cell">混在（SSD 48本）</block>
+  <block id="58a2fc6ed39fd083f55d4182bf88826d" category="cell">192</block>
+  <block id="1c151db89d2679449be5c45bb7b8d994" category="cell">混在環境（SSD×24）</block>
+  <block id="45fbc6d3e05ebd93369ce542e8f2322d" category="cell">216</block>
+  <block id="c742d6affaef84b501d784319fca6de4" category="paragraph-title">サポートされるシェルフ数</block>
+  <block id="22daa6b9c9c5e98028929434af5223de" category="paragraph">FibreBridge 7600N / 7500Nブリッジのペアでサポートされるシェルフ数を確認します。</block>
+  <block id="ca7ac3a83947da614de147e934674475" category="cell">シェルフの総数</block>
+  <block id="699b4f79215d191584653efebf156e52" category="cell">mixed</block>
+  <block id="04e334293a29a0fcdf98b56004e27edc" category="section-title">MetroCluster準拠スイッチとネットアップ検証済みスイッチの比較</block>
+  <block id="5c5c34d5e7843e9424f3ca2380ae18ea" category="list-text"><block ref="5c5c34d5e7843e9424f3ca2380ae18ea" category="inline-link-macro-rx"></block></block>
+  <block id="a629fe794ff2e51df541a99e4468ebb2" category="paragraph">新しいコントローラをネットブートする必要がある場合は、を参照してください <block ref="a7e3b7fa9390de21e9e66df9d4048c53" category="inline-link-macro-rx"></block>。</block>
+  <block id="910d0f6661c3968f4e7402c808d31b3f" category="list-text"><block ref="910d0f6661c3968f4e7402c808d31b3f" category="inline-link-macro-rx"></block></block>
+  <block id="740c0d0f6d37afa212fad2bd272a4212" category="list-text">Tiebreaker 1.6ではSNMPv3のみがサポートされます。</block>
+  <block id="a98720fe58fe46f2a22c59d172b69fbf" category="list-text">Tiebreaker 1.5および1.4ではSNMPv1とSNMPv3がサポートされますが、NetAppではセキュリティを最適化するためにSNMPv3を設定することを強く推奨します。</block>
+  <block id="c93871f59c253b2d1ca21a1ce2a00ff8" category="paragraph"><block ref="5ef546c28db0706808d8d451d5a71029" prefix=" " category="inline-code"></block>コマンドの応答は、実行しているTiebreakerのバージョンによって異なります。</block>
+  <block id="bb4e2064b1b9dc64a3fb5d4bbdce1c6d" category="paragraph">次に、IPアドレスが192.0.2.255で、トラップメッセージ用のポート番号が162のSNMPv3をサポートするSNMPレシーバの設定例を示します。これで、Tiebreakerソフトウェアは、指定したSNMPレシーバにトラップを送信する準備が整いました。</block>
+  <block id="17a3b20a7dea5f1be315df3d2d4ba571" category="admonition">Tiebreaker 1.6はSNMPv3のみをサポート</block>
+  <block id="837173a04a89631774aea0ce8c3f374d" category="open-title">Tiebreaker 1.5および1.4</block>
+  <block id="b2962497ee34ee0b78461915f42ef154" category="admonition">SNMPv1はセキュアではないため、SNMPv3を設定する必要があります。デフォルトのコミュニティストリングが* NOT * PUBLICに設定されていることを確認します。</block>
+  <block id="b30066626a2a1f5bfd537d010ce36f51" category="paragraph">サポートされるMetroCluster IPコントローラとFCコントローラのアップグレードの組み合わせについて説明します。</block>
+  <block id="8babc09a7497ad4c2756db165bd8cd5c" category="section-title">system controller replaceコマンドを使用したサポートされるMetroCluster IPコントローラのアップグレード</block>
+  <block id="190421b938f84b927163204510df7319" category="paragraph">サポートされるプラットフォームについては、の表を参照して <block ref="cdc5d26dd7214bbc9da99c730f208713" category="inline-link-macro-rx"></block> ください。</block>
+  <block id="8e30d2803b603d7bc1c9f3584b57c881" category="section-title">サポートされているその他すべてのMetroCluster IPコントローラのアップグレード</block>
+  <block id="17c7cb78cf2f2286d3034a3959bc800e" category="paragraph">このセクションのMetroClusterコントローラーのアップグレード表から、お使いの*ソース*プラットフォームを検索してください。*ソース*プラットフォーム行と*ターゲット*プラットフォーム列が空白の場合、アップグレードはサポートされていません。</block>
+  <block id="ece07deebff7293937869fc01fd521f0" category="paragraph">次の表に、MetroCluster IP構成でAFFシステムまたはFASシステムを手動でアップグレードする場合にサポートされるプラットフォームの組み合わせを示します。</block>
+  <block id="8430e377fbc83f194587bd875ac99b4b" category="paragraph">次の表に、MetroCluster IP構成でASAシステムを手動でアップグレードする場合にサポートされるプラットフォームの組み合わせを示します。</block>
+  <block id="13457800bf31e25265b68e75f49b98c7" category="inline-link-macro">[Broadcom IPスイッチを工場出荷時のデフォルトにリセットします。</block>
+  <block id="0f664d89fa7312c24449004d102db687" category="list-text"><block ref="0f664d89fa7312c24449004d102db687" category="inline-link-macro-rx"></block></block>
+  <block id="8a97a528989bc12cbf81ee0102a889dc" category="list-text"><block ref="8a97a528989bc12cbf81ee0102a889dc" category="inline-link-macro-rx"></block></block>
+  <block id="5517f0f4079cbe32b861155b72575d78" category="paragraph">次の表に、「system controller replace」コマンドを使用してMetroCluster IP構成のAFFシステムまたはFASシステムをアップグレードする場合にサポートされるプラットフォームの組み合わせを示します。</block>
 </blocks>

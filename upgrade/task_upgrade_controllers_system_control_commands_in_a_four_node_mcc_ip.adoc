@@ -15,7 +15,9 @@ summary: このガイド付きの自動MetroCluster スイッチオーバー処�
 
 
 
-== サポートされるプラットフォームの組み合わせ
+== system controller replaceコマンドを使用したサポートされるMetroCluster IPコントローラのアップグレード
+
+このセクションのMetroClusterコントローラーのアップグレード表から、お使いの*ソース*プラットフォームを検索してください。*ソース*プラットフォーム行と*ターゲット*プラットフォーム列が空白の場合、アップグレードはサポートされていません。
 
 アップグレードを開始する前に、次の考慮事項を確認して、構成がサポートされていることを確認してください。
 
@@ -33,7 +35,7 @@ summary: このガイド付きの自動MetroCluster スイッチオーバー処�
 
 
 .サポートされるAFFおよびFAS MetroCluster IPコントローラのアップグレード
-次の表に、MetroCluster IP構成のAFFシステムまたはFASシステムのアップグレードでサポートされるプラットフォームの組み合わせを示します。
+次の表に、「system controller replace」コマンドを使用してMetroCluster IP構成のAFFシステムまたはFASシステムをアップグレードする場合にサポートされるプラットフォームの組み合わせを示します。
 
 image::../media/mcc_ip_system_controller_replace_aff_fas.png[MCC IPシステムコントローラによるAFF FASの交換]
 
@@ -812,8 +814,8 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 
 +
 ** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
-** link:../install-ip/task_switch_config_broadcom.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
-** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
+** link:../install-ip/task_switch_config_cisco.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html#reset-the-nvidia-ip-sn2100-switch-to-factory-defaults["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
 . RCF ファイルをダウンロードしてインストールします。
@@ -822,7 +824,7 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 
 +
 ** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["BroadcomのRCFファイルをダウンロードしてインストールする"]
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFファイルのダウンロードとインストール"]
 ** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IP RCFファイルのダウンロードとインストール"]
 
 

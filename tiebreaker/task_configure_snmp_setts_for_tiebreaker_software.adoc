@@ -13,20 +13,48 @@ summary: Tiebreaker ソフトウェアで SNMP を使用するには、 SNMP を
 [role="lead"]
 TiebreakerソフトウェアでSNMPを使用するには、SNMPを設定する必要があります。
 
+.このタスクについて
+* Tiebreaker 1.6ではSNMPv3のみがサポートされます。
+* Tiebreaker 1.5および1.4ではSNMPv1とSNMPv3がサポートされますが、NetAppではセキュリティを最適化するためにSNMPv3を設定することを強く推奨します。
+
+
+.手順
 . Tiebreaker CLIを使用します `snmp config wizard` コマンドを使用してMetroCluster 構成を追加します。
 +
 
 NOTE: 現在サポートされている SNMP トラップホストは 1 つだけです。
 
 +
-次に、IPアドレスが10.240.45.66で、トラップメッセージ用のポート番号が162のSNMP V3をサポートするSNMPレシーバの設定例を示します。これで、 Tiebreaker ソフトウェアは、指定した SNMP レシーバにトラップを送信することができます。
+ `snmp config wizard`コマンドの応答は、実行しているTiebreakerのバージョンによって異なります。
 
 +
+[role="tabbed-block"]
+====
+.Tiebreaker 1.6
+--
+次に、IPアドレスが192.0.2.255で、トラップメッセージ用のポート番号が162のSNMPv3をサポートするSNMPレシーバの設定例を示します。これで、Tiebreakerソフトウェアは、指定したSNMPレシーバにトラップを送信する準備が整いました。
+
+
+NOTE: Tiebreaker 1.6はSNMPv3のみをサポート
+
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> snmp config wizard
+Enter SNMP Host: 192.0.2.255
+Enter SNMP Port: 162
+Enter SNMP V3 Security Name: v3sec
+Enter SNMP V3 Authentication password:
+----
+--
+.Tiebreaker 1.5および1.4
+--
+次に、IPアドレスが192.0.2.255で、トラップメッセージ用のポート番号が162のSNMPv3をサポートするSNMPレシーバの設定例を示します。これで、Tiebreakerソフトウェアは、指定したSNMPレシーバにトラップを送信する準備が整いました。
+
 ....
 
 NetApp MetroCluster Tiebreaker :> snmp config wizard
 Enter SNMP Version[V1/V3]: v3
-Enter SNMP Host: 10.240.45.66
+Enter SNMP Host: 192.0.2.255
 Enter SNMP Port: 162
 Enter SNMP V3 Security Name: v3sec
 Enter SNMP V3 Authentication password:
@@ -34,10 +62,11 @@ Enter SNMP V3 Privacy password:
 Engine ID : 8000031504932eff571825192a6f1193b265e24593
 Successfully added SNMP properties to NetApp MetroCluster Tiebreaker software.
 ....
-+
 
 NOTE: SNMPv1はセキュアではないため、SNMPv3を設定する必要があります。デフォルトのコミュニティストリングが* NOT * PUBLICに設定されていることを確認します。
 
+--
+====
 . SNMP が設定されたことを確認します。
 +
 「 snmp config test 」
@@ -49,7 +78,7 @@ NOTE: SNMPv1はセキュアではないため、SNMPv3を設定する必要が�
 ....
 
 NetApp MetroCluster Tiebreaker :> snmp config test
-Sending SNMP trap to localhost. Version : V1.
+Sending SNMP trap to localhost. Version : V3.
 Successfully sent SNMP trap for event TEST_SNMP_CONFIG
 NetApp MetroCluster Tiebreaker :>
 ....

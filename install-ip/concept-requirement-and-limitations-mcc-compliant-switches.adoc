@@ -15,6 +15,25 @@ ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したス�
 
 
 
+== MetroCluster準拠スイッチとネットアップ検証済みスイッチの比較
+
+スイッチが次の要件を満たしている場合、ネットアップで検証されます。
+
+* スイッチは、MetroCluster IP構成の一部としてネットアップから提供されます
+* スイッチは、 link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] MetroCluster-over-IP-connections_でサポートされるスイッチとして使用
+* このスイッチは、MetroCluster IPコントローラと、一部の構成ではNS224ドライブシェルフへの接続にのみ使用します
+* スイッチは、NetAppが提供するリファレンス構成ファイル（RCF）を使用して設定します。
+
+
+これらの要件を満たしていないスイッチは、ネットアップの検証済みスイッチではありません。
+
+MetroCluster準拠スイッチはネットアップでは検証されていませんが、一定の要件および構成ガイドラインを満たしていれば、MetroCluster IP構成で使用できます。
+
+
+NOTE: NetAppでは、MetroCluster準拠の検証が行われていないスイッチについては、トラブルシューティングや構成のサポートサービスは提供していません。
+
+
+
 == MetroCluster準拠スイッチの一般的な要件
 
 MetroCluster IPインターフェイスを接続するスイッチは、次の一般的な要件を満たしている必要があります。
