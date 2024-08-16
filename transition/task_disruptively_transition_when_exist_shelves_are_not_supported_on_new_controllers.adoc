@@ -25,6 +25,20 @@ ONTAP 9.8 以降では、 2 ノードの MetroCluster FC 構成を無停止で�
 
 
 
+== コンソールログを有効にする
+
+NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
+
+* メンテナンス中はAutoSupportを有効のままにします。
+* メンテナンスの前後にメンテナンスAutoSupportメッセージをトリガーして、メンテナンスアクティビティ中にケースの作成を無効にします。
++
+ナレッジベースの記事を参照してください link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["スケジュールされたメンテナンス時間中にケースの自動作成を停止する方法"^]。
+
+* 任意のCLIセッションのセッションロギングをイネーブルにします。セッションログを有効にする方法については、ナレッジベースの記事の「セッション出力のログ」セクションを参照してください link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["ONTAPシステムへの接続を最適化するためのPuTTYの設定方法"^]。
+
+
+
+
 == 新しいノードでシェルフがサポートされていない場合の移行の要件
 
 移行プロセスを開始する前に、構成が要件を満たしていることを確認する必要があります。

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, refresh, four, node, ip, configuration, add, autosupport 
 summary: ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。 
 ---
-= 4ノードまたは8ノードのMetroCluster IP構成の更新（ONTAP 9.8以降）
+= 4ノードまたは8ノードのMetroCluster IP構成を更新（ONTAP 9.8以降）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -39,6 +39,24 @@ NOTE: 両方のDRグループを更新する場合、最初のDRグループを�
 * ソースプラットフォームとターゲットプラットフォームの下限が適用されます。上位のプラットフォームに移行する場合は、すべてのDRグループの機器更改が完了するまで新しいプラットフォームの制限が適用されません。
 * ソースプラットフォームよりも制限が低いプラットフォームに対して機器更改を実行する場合は、この手順 を実行する前に、ターゲットプラットフォームの制限に合わせて制限を調整し、制限をターゲットプラットフォームの制限以下にする必要があります。
 
+
+
+
+== コンソールログを有効にする
+
+NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
+
+* メンテナンス中はAutoSupportを有効のままにします。
+* メンテナンスの前後にメンテナンスAutoSupportメッセージをトリガーして、メンテナンスアクティビティ中にケースの作成を無効にします。
++
+ナレッジベースの記事を参照してください link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["スケジュールされたメンテナンス時間中にケースの自動作成を停止する方法"^]。
+
+* 任意のCLIセッションのセッションロギングをイネーブルにします。セッションログを有効にする方法については、ナレッジベースの記事の「セッション出力のログ」セクションを参照してください link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["ONTAPシステムへの接続を最適化するためのPuTTYの設定方法"^]。
+
+
+
+
+== 更新手順の実行
 
 .手順
 . 古いノードにデフォルトのブロードキャストドメインが作成されていることを確認します。
