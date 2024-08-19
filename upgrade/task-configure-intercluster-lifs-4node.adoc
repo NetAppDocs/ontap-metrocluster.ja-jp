@@ -1,0 +1,397 @@
+---
+permalink: upgrade/task-configure-intercluster-lifs-4node.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, configure, intercluster, lif, dedicated, ports, shared 
+summary: クラスタ間LIFは、専用ポートまたは共有ポートに設定できます。 
+---
+= クラスタ間 LIF を設定する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+専用ポートと共有ポートにクラスタ間LIFを設定する方法について説明します。
+
+[role="tabbed-block"]
+====
+.専用ポートにクラスタ間 LIF を設定します
+--
+専用ポートにクラスタ間LIFを設定して、レプリケーショントラフィックに使用できる帯域幅を増やすことができます。
+
+.手順
+. クラスタ内のポートの一覧を表示します。
++
+「 network port show 」のように表示されます
+
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 cluster01 内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+----
+. クラスタ間通信専用に使用可能なポートを特定します。
++
+network interface show -fields home-port 、 curr -port
+
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、ポート e0e とポート e0f に LIF が割り当てられていないことを示しています。
+
++
+[listing]
+----
+
+cluster01::> network interface show -fields home-port,curr-port
+vserver lif                  home-port curr-port
+------- -------------------- --------- ---------
+Cluster cluster01-01_clus1   e0a       e0a
+Cluster cluster01-01_clus2   e0b       e0b
+Cluster cluster01-02_clus1   e0a       e0a
+Cluster cluster01-02_clus2   e0b       e0b
+cluster01
+        cluster_mgmt         e0c       e0c
+cluster01
+        cluster01-01_mgmt1   e0c       e0c
+cluster01
+        cluster01-02_mgmt1   e0c       e0c
+----
+. 専用ポートのフェイルオーバーグループを作成します。
++
+`network interface failover-groups create -vserver <system_SVM> -failover-group <failover_group> -targets <physical_or_logical_ports>`
+
++
+次の例は、ポート「 e0e 」と「 e0f 」を、システム SVM 「 cluster01 」上のフェイルオーバーグループ「 intercluster01 」に割り当てます。
+
++
+[listing]
+----
+cluster01::> network interface failover-groups create -vserver cluster01 -failover-group
+intercluster01 -targets
+cluster01-01:e0e,cluster01-01:e0f,cluster01-02:e0e,cluster01-02:e0f
+----
+. フェイルオーバーグループが作成されたことを確認します。
++
+「 network interface failover-groups show 」と表示されます
+
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface failover-groups show
+                                  Failover
+Vserver          Group            Targets
+---------------- ---------------- --------------------------------------------
+Cluster
+                 Cluster
+                                  cluster01-01:e0a, cluster01-01:e0b,
+                                  cluster01-02:e0a, cluster01-02:e0b
+cluster01
+                 Default
+                                  cluster01-01:e0c, cluster01-01:e0d,
+                                  cluster01-02:e0c, cluster01-02:e0d,
+                                  cluster01-01:e0e, cluster01-01:e0f
+                                  cluster01-02:e0e, cluster01-02:e0f
+                 intercluster01
+                                  cluster01-01:e0e, cluster01-01:e0f
+                                  cluster01-02:e0e, cluster01-02:e0f
+----
+. システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
++
+[cols="1,3"]
+|===
+
+
+| ONTAP バージョン | コマンドを実行します 
+
+
+ a| 
+9.6 以降
+ a| 
+`network interface create -vserver <system_SVM> -lif <LIF_name> -service-policy default-intercluster -home-node <node> -home-port <port> -address <port_IP> -netmask <netmask> -failover-group <failover_group>`
+
+
+
+ a| 
+9.5 以前
+ a| 
+`network interface create -vserver system_SVM -lif <LIF_name> -role intercluster -home-node <node> -home-port <port> -address <port_IP> -netmask <netmask> -failover-group <failover_group>`
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、フェイルオーバーグループ「 intercluster01 」にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
+
++
+[listing]
+----
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0e -address 192.168.1.201
+-netmask 255.255.255.0 -failover-group intercluster01
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.168.1.202
+-netmask 255.255.255.0 -failover-group intercluster01
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+|===
+
+
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show -service -policy default -intercluster 」のように表示されます
+
+
+
+| * ONTAP 9.5 以前： * 
+
+
+ a| 
+「 network interface show -role intercluster 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0e     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0f     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+|===
+
+
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show -service -policy default -intercluster-failover 」のように入力します
+
+
+
+| * ONTAP 9.5 以前： * 
+
+
+ a| 
+「 network interface show -role intercluster-failover 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 SVM 「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster –failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0e   local-only      intercluster01
+                            Failover Targets:  cluster01-01:e0e,
+                                               cluster01-01:e0f
+         cluster01_icl02 cluster01-02:e0e   local-only      intercluster01
+                            Failover Targets:  cluster01-02:e0e,
+                                               cluster01-02:e0f
+----
+
+
+--
+.共有データポートにクラスタ間 LIF を設定します
+--
+データネットワークと共有するポートにクラスタ間LIFを設定することで、クラスタ間ネットワークに必要なポート数を減らすことができます。
+
+.手順
+. クラスタ内のポートの一覧を表示します。
++
+「 network port show 」のように表示されます
+
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、 cluster01 内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+----
+. システム SVM にクラスタ間 LIF を作成します。
++
+|===
+
+
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+`network interface create -vserver <system_SVM> -lif <LIF_name> -service-policy default-intercluster -home-node <node> -home-port <port> -address <port_IP> -netmask <netmask>`
+
+
+
+| * ONTAP 9.5 以前： * 
+
+
+ a| 
+`network interface create -vserver <system_SVM> -lif <LIF_name> -role intercluster -home-node <node> -home-port <port> -address <port_IP> -netmask <netmask>`
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、クラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
+
++
+[listing]
+----
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0c -address 192.168.1.201
+-netmask 255.255.255.0
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.168.1.202
+-netmask 255.255.255.0
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+|===
+
+
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show -service -policy default -intercluster 」のように表示されます
+
+
+
+| * ONTAP 9.5 以前： * 
+
+
+ a| 
+「 network interface show -role intercluster 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0c     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0c     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+|===
+
+
+| * ONTAP 9.6 以降： * 
+
+
+ a| 
+「 network interface show – service-policy default-intercluster-failover 」と表示されます
+
+
+
+| * ONTAP 9.5 以前： * 
+
+
+ a| 
+「 network interface show -role intercluster-failover 」の略
+
+|===
++
+コマンド構文全体については、マニュアルページを参照してください。
+
++
+次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster –failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0c   local-only      192.168.1.201/24
+                            Failover Targets: cluster01-01:e0c,
+                                              cluster01-01:e0d
+         cluster01_icl02 cluster01-02:e0c   local-only      192.168.1.201/24
+                            Failover Targets: cluster01-02:e0c,
+                                              cluster01-02:e0d
+----
+
+
+--
+====
