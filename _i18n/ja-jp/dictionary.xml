@@ -10547,13 +10547,8 @@
   <block id="54a9d9c6ebf1a9314ea2b6e91c5456f8" category="paragraph">'set ipaddress mp1_ip-address'</block>
   <block id="73ddd59b62d7cac14fe61d1197513233" category="list-text">コントローラのプロンプトで、ブリッジのステータスを確認します。「 storage bridge show 」</block>
   <block id="4fbce0abe0f7baa2bbb93f9658cfc55b" category="list-text">イーサネットポート MP1 がイネーブルの場合は、次のコマンドを実行します。</block>
-  <block id="9013c925bc3a423f843c073690ed8081" category="list-text">[[step17-reconnect-newbridge]] 新しいブリッジの同じポートに SAS ケーブルと FC ケーブルを再接続します。</block>
-  <block id="6795687b051fe5f1cb692559517648dd" category="list-text">[[step18-verify-backup -each -bridge]] ブリッジが接続されているすべてのディスクドライブとディスクシェルフを各ブリッジで認識できることを確認します。</block>
   <block id="b9da98e99c8057fc3b9a54d9d19ff501" category="inline-xref">手順 18</block>
-  <block id="828e19cfb619dbe3f082c13af71c8804" category="paragraph">繰り返します <block ref="eecb3f0fe03b243e2ecc1f82fe37ecc5" category="inline-xref-macro-rx"></block> 残りの各ブリッジ。</block>
   <block id="9c709df0d0930ada3ab147bf9abe8f06" category="inline-xref">手順 17</block>
-  <block id="78cffeb475b967afce30e7091b0a7aec" category="list-text">SAS ケーブルに緩みがないか確認するか、 SAS ケーブル接続をやり直します <block ref="34712c7e0b7391b53f3aade40f6e2ba2" category="inline-xref-macro-rx"></block>。</block>
-  <block id="daae67946266f0e5177fa51a3f38fec3" category="list-text">繰り返します <block ref="eecb3f0fe03b243e2ecc1f82fe37ecc5" category="inline-xref-macro-rx"></block>。</block>
   <block id="2273b85e84dfebeb5a21bbd359461d0f" category="list-text">ブリッジがファブリック接続 MetroCluster 構成に含まれている場合は、この手順の最初で無効にした FC スイッチポートを再度有効にします。</block>
   <block id="a36f5ac1a4498274515cb489c0748194" category="paragraph">「 run local sysconfig 」を実行します</block>
   <block id="fc1ab446984d76191a3ba6741c4e09aa" category="paragraph">ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。</block>
@@ -14098,4 +14093,14 @@
   <block id="764a523cf339780ca4471f143c5ae04c" category="paragraph"><block ref="d1f7a93b5f0792c01647ca314d5d7e27" prefix="" category="inline-code"></block></block>
   <block id="6e7eea4bc90b7da31497a85ace82eec8" category="paragraph"><block ref="751a8e9d76de229f9092fac6fb23b628" prefix="" category="inline-code"></block></block>
   <block id="f1fe27301697eb21073abfcd231c91ab" category="section-title">更新手順の実行</block>
+  <block id="a713923def413049fcd7bd32d239c3b4" category="list-text">FCケーブルを新しいブリッジの同じポートに接続します。</block>
+  <block id="c09b16f8a5b97a430a942e2624c2ffc8" category="paragraph">新しいブリッジのタイプがパートナーブリッジと同じ場合は、パートナーブリッジと同じファームウェアにアップグレードします。新しいブリッジのタイプがパートナーブリッジと異なる場合は、ブリッジおよびONTAPのバージョンでサポートされている最新のファームウェアにアップグレードします。を参照し <block ref="55e804464be1a7c24451c93244c66ff0" category="inline-link-macro-rx"></block></block>
+  <block id="b5a56495c6cd7b15008b12f44e1c09f9" category="list-text">[step18-reconnect-newbridge]新しいブリッジの同じポートにSASケーブルを再接続します。</block>
+  <block id="1bf1e8417c00edaec85599df5b47ee94" category="list-text">[[step19-verify-backup -each -bridge]] ブリッジが接続されているすべてのディスクドライブとディスクシェルフを各ブリッジで認識できることを確認します。</block>
+  <block id="287bc804244a679c73d0cac4cb0c0b2c" category="inline-xref">ステップ19</block>
+  <block id="c582e7ac4118500a1aaf382ea318eeeb" category="paragraph"><block ref="1c41b1b96665f865995fbed1d8884dfe" category="inline-xref-macro-rx"></block>残りのブリッジについて、この手順を繰り返します。</block>
+  <block id="2788b7f6b6e21bc5a33df0d4aebf4730" category="list-text">SASケーブルに緩みがないかどうかを確認するか、を繰り返してSASケーブル接続を修正します<block ref="4f69a23cfa1cdd17cebbee3d88ffc0e9" category="inline-xref-macro-rx"></block>。</block>
+  <block id="dd59329be100bd10605cd63312522627" category="list-text">繰り返します<block ref="1c41b1b96665f865995fbed1d8884dfe" category="inline-xref-macro-rx"></block>。</block>
+  <block id="0b9029dad5ded8eb8b9621381b59b85b" category="paragraph">MetroCluster FC構成を更新するには、次の手順を実行します。</block>
+  <block id="e80b737c5dcc4e6b9a5a4eecb2dc9582" category="paragraph">MetroCluster IP設定を更新するには、次の手順を実行します。</block>
 </blocks>
