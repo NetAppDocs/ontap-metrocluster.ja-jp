@@ -13,8 +13,14 @@ summary: MetroCluster ハードウェアのメンテナンス作業を行うと�
 [role="lead"]
 MetroCluster ハードウェアのメンテナンス作業を行うときは、必ず正しい手順を選択してください。
 
+.各種のMetroCluster構成のメンテナンス手順
+* MetroCluster IP設定を使用している場合は、の手順を確認してくださいlink:task-modify-ip-netmask-properties.html["MetroCluster IP構成のメンテナンス手順"]。
+* MetroCluster FC構成の場合は、の手順を確認してくださいlink:task_modify_switch_or_bridge_ip_address_for_health_monitoring.html["MetroCluster FC構成のメンテナンス手順"]。
+* 構成に対応するセクションに記載されている手順が見つからない場合は、の手順を確認してくださいlink:task_replace_a_shelf_nondisruptively_in_a_stretch_mcc_configuration.html["すべてのMetroCluster構成のメンテナンス手順"]。
 
-NOTE: ONTAP 9.8 のリリースでは、 MetroCluster のアップグレードおよび拡張手順はに移動しました link:../upgrade/concept_choosing_an_upgrade_method_mcc.html["MetroCluster のアップグレードと拡張"] および link:../transition/concept_choosing_your_transition_procedure_mcc_transition.html["MetroCluster FC から MetroCluster IP に移行します"]。
+
+.その他のすべてのメンテナンス手順
+次の表に、上記の3つのセクションに記載されていないMetroClusterのメンテナンス手順へのリンクを示します。
 
 |===
 
@@ -50,7 +56,7 @@ https://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステム�
  a| 
 アップグレードと拡張
  a| 
-link:../upgrade/concept_choosing_an_upgrade_method_mcc.html["MetroCluster ® のアップグレードと拡張"]
+link:../upgrade/concept_choosing_an_upgrade_method_mcc.html["MetroCluster のアップグレードと拡張"]
 
 
 
@@ -63,28 +69,6 @@ link:../transition/concept_choosing_your_transition_procedure_mcc_transition.htm
 
  a| 
 ドライブシェルフ
- a| 
-FC
- a| 
-シェルフの追加（ブリッジを含むスタックまたは個々のシェルフ）
- a| 
-link:task_hot_add_a_stack_to_exist_7500n_pair.html["既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドする"]
-
-link:task_fb_hot_add_stack_of_shelves_and_bridges.html["MetroCluster システムへの SAS ディスクシェルフとブリッジのスタックのホットアド"]
-
-link:task_fb_hot_add_shelf_prepare_7500n.html["SAS ディスクシェルフのスタックへの SAS ディスクシェルフのホットアド"]
-
-
-
- a| 
-FC
- a| 
-シェルフの取り外し
- a| 
-link:task_hot_remove_storage_from_a_mcc_fc_configuration.html["MetroCluster FC 構成からのストレージのホットリムーブ"]
-
-
-
  a| 
 FC
  a| 
@@ -111,111 +95,5 @@ https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-ds-sas3-service/home.ht
 IOM12 シェルフを IOM6 シェルフのスタックにホットアドします
  a| 
 https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-ds-mix-hotadd/home.html["IOM12 モジュールを搭載したシェルフを IOM6 モジュールを搭載したシェルフのスタックにホットアドします"^]
-
-
-
- a| 
-FC-to-SAS ブリッジ
- a| 
-FC
- a| 
-ブリッジの交換
- a| 
-link:task_replace_a_sle_fc_to_sas_bridge.html["単一の FC-to-SAS ブリッジの交換"]
-
-link:task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html["FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換する"]
-
-link:task_replace_a_sle_fc_to_sas_bridge.html#hot-swapping-a-fibrebridge-7500n-with-a-7600n-bridge["FibreBridge 7500N と 7600N ブリッジのホットスワップ"]
-
-
-
- a| 
-FC
- a| 
-ファームウェアのアップグレード
- a| 
-link:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html["FibreBridge ブリッジのファームウェアを更新しています"]
-
-
-
- a| 
-FC
- a| 
-障害が発生した電源装置モジュールの交換
- a| 
-link:reference_fb_replace_a_power_supply.html["障害が発生した電源装置モジュールのホットリプレース"]
-
-
-
- a| 
-FC スイッチ
- a| 
-FC
- a| 
-スイッチのアップグレード
- a| 
-link:task_upgrade_to_new_brocade_switches.html["新しい Brocade FC スイッチへのアップグレード"]
-
-
-
- a| 
-FC
- a| 
-スイッチの交換
- a| 
-link:task_replace_a_brocade_fc_switch_mcc.html["Brocade FC スイッチの交換（ MetroCluster ）"]
-
-link:task_replace_a_cisco_fc_switch_mcc.html["Cisco FC スイッチの交換"]
-
-
-
- a| 
-FC
- a| 
-ファームウェアのアップグレード
- a| 
-link:task_upgrade_or_downgrad_the_firmware_on_a_brocade_fc_switch_mcc.html["Brocade FC スイッチのファームウェアを更新しています"]
-
-link:task_upgrade_or_downgrad_the_firmware_on_a_cisco_fc_switch_mcc.html["Cisco FC スイッチのファームウェアを更新しています"]
-
-
-
- a| 
-IPスイッチ
- a| 
-IP
- a| 
-スイッチの交換または使用の変更
- a| 
-link:task_replace_an_ip_switch.html["IPスイッチを交換するか、既存のMetroCluster IPスイッチの使用方法を変更します"]
-
-
-
- a| 
-IP
- a| 
-ファームウェアのアップグレード
- a| 
-link:task_upgrade_firmware_on_mcc_ip_switches.html["MetroCluster IP スイッチのファームウェアをアップグレードします"]
-
-
-
- a| 
-IP
- a| 
-RCFファイルのアップグレード
- a| 
-link:task_upgrade_rcf_files_on_mcc_ip_switches.html["MetroCluster IP スイッチの RCF ファイルをアップグレードします"]
-
-link:task_upgrade_rcf_files_on_cisco_ip_switches_with_cleanupfiles.html["CleanUpFilesを使用して、Cisco IPスイッチのRCFファイルをアップグレードします"]
-
-
-
- a| 
-IP
- a| 
-スイッチの名前を変更する
- a| 
-link:task_rename_a_cisco_ip_switch.html["Cisco IP スイッチの名前を変更します"]
 
 |===

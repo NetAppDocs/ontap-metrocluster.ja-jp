@@ -124,94 +124,120 @@ MetroCluster FC ノードに対してコマンドを実行するだけでなく�
 
 * node_A_1 - FC
 * node_B_1 - FC
-+
-.. すべてのクライアントトラフィックを停止します。
-.. いずれかの MetroCluster FC ノード（例： node_A_1 ）で、移行を有効にします。
-+
-... advanced 権限レベル「 set -priv advanced 」を設定します
-... イネーブル移行 : MetroCluster transition enable-transition-mode disruptive
-... admin モードに戻ります。 'set-priv admin'
 
 
-.. ルートアグリゲートのリモートプレックスを削除して、ルートアグリゲートのミラーを解除します。
+.手順
+. すべてのクライアントトラフィックを停止します。
+. いずれかの MetroCluster FC ノード（例： node_A_1 ）で、移行を有効にします。
 +
-... ルートアグリゲートを特定します。「 storage aggregate show -root true 」
-... プール 1 のアグリゲート「 storage aggregate plex show -pool 1 」を表示します
-... ルートアグリゲートのローカルプレックスを削除します。 aggr plex delete aggr-name -plex plex-name
-... ルートアグリゲートのリモートプレックスをオフラインにします。「 aggr plex offline root-aggregate -plex remote-plex-for -root-aggregate
+.. advanced 権限レベル「 set -priv advanced 」を設定します
+.. イネーブル移行 : MetroCluster transition enable-transition-mode disruptive
+.. admin モードに戻ります。 'set-priv admin'
+
+
+. ルートアグリゲートのリモートプレックスを削除して、ルートアグリゲートのミラーを解除します。
++
+.. ルートアグリゲートを特定します。「 storage aggregate show -root true 」
+.. プール 1 のアグリゲート「 storage aggregate plex show -pool 1 」を表示します
+.. ルートアグリゲートのリモートプレックスをオフラインにして削除します。+
+`aggr plex offline <root-aggregate> -plex <remote-plex-for-root-aggregate>`
++
+`aggr plex delete <root-aggregate> -plex <remote-plex-for-root-aggregate>`
+
 +
 例：
 
 +
 [listing]
 ----
- # aggr plex offline aggr0_node_A_1-FC_01 -plex plex4
+ # aggr plex offline aggr0_node_A_1-FC_01 -plex remoteplex4
+----
++
+[listing]
+----
+# aggr plex delete aggr0_node_A_1-FC_01 -plex remoteplex4
 ----
 
 
-.. 各コントローラで次のコマンドを使用して処理を進める前に、メールボックス数、ディスクの自動割り当て、および移行モードを確認します。
+. 各コントローラで次のコマンドを使用して処理を進める前に、メールボックス数、ディスクの自動割り当て、および移行モードを確認します。
 +
-... advanced 権限レベル「 set -priv advanced 」を設定します
-... 各コントローラモジュールに表示されるメールボックスドライブが「 storage failover mailbox-disk show 」の 3 つだけであることを確認します
-... admin モードに戻ります。 'set-priv admin'
-... 移行モードが停止を伴うことを確認します。 MetroCluster transition show
+.. advanced 権限レベル「 set -priv advanced 」を設定します
+.. 各コントローラモジュールに表示されるメールボックスドライブが「 storage failover mailbox-disk show 」の 3 つだけであることを確認します
+.. admin モードに戻ります。 'set-priv admin'
+.. 移行モードが停止を伴うことを確認します。 MetroCluster transition show
 
 
-.. 破損ディスクがないかどうかを確認します
-.. 破損ディスクを取り外すか交換します。
-.. node_A_1 の FC と node_B_1 の FC に対するコマンド「 storage aggregate show 」を使用して、アグリゲートが正常であることを確認します
+. 破損ディスクがないかどうかを確認します
+. 破損ディスクを取り外すか交換します。
+. node_A_1-FCとnode_B_1-FCで次のコマンドを使用して、アグリゲートが正常であることを確認します。
++
+「 storage aggregate show
+
++
+「 storage aggregate plex show 」と表示されます
+
 +
 storage aggregate show コマンドは、ルートアグリゲートがミラーされていないことを示します。
 
-.. VLAN またはインターフェイスグループがないか確認します。「 network port ifgrp show `network port vlan show` 」
+. VLANまたはインターフェイスグループがないかどうかを確認します。
++
+`network port ifgrp show`
+
++
+`network port vlan show`
+
 +
 何も表示されない場合は、次の 2 つの手順をスキップします。
 
-.. VLAN または ifgrp を使用して LIF のリストを表示します。「 network interface show -fields home-port 、 Curr -port 」 network port show -type if-group | vlan
-.. VLAN とインターフェイスグループを削除します。
+. VLANまたはifgrpを使用しているLIFのリストを表示します。
++
+network interface show -fields home-port 、 curr -port
+
++
+`network port show -type if-group | vlan`
+
+. VLAN とインターフェイスグループを削除します。
 +
 この手順は、サフィックスが -mc の SVM を含むすべての SVM のすべての LIF で実行する必要があります。
 
 +
-... VLAN またはインターフェイスグループを使用している LIF を使用可能なポートに移動します。「 network interface modify -vserver vserver-name -lif lif_name -home-port port
-... ホームポートにない LIF を表示します。「 network interface show -is-home false 」
-... すべての LIF をそれぞれのホームポートにリバートします。「 network interface revert -vserver vserver_name -lif lif_name
-... すべての LIF がそれぞれのホームポートにあることを確認します。「 network interface show -is-home false 」
+.. VLAN またはインターフェイスグループを使用している LIF を使用可能なポートに移動します。「 network interface modify -vserver vserver-name -lif lif_name -home-port port
+.. ホームポートにない LIF を表示します。「 network interface show -is-home false 」
+.. すべての LIF をそれぞれのホームポートにリバートします。「 network interface revert -vserver vserver_name -lif lif_name
+.. すべての LIF がそれぞれのホームポートにあることを確認します。「 network interface show -is-home false 」
 +
 出力に LIF が表示されません。
 
-... ブロードキャストドメインから VLAN ポートと ifgrp ポートを削除します。：「 network port broadcast-domain remove-ports -ipspace ipspace-broadcast-domain broadcast-domain-name-ports nodename ： portname 、 nodename ： portname 、 .
-... すべての VLAN ポートと ifgrp ポートがブロードキャストドメインに割り当てられていないことを確認します。「 network port show -type if-group | vlan
-... すべての VLAN を削除します。「 network port vlan delete -node nodename -vlan-name vlan-name 」
-... インターフェイスグループを削除します。「 network port ifgrp delete -node nodename -ifgrp ifgrp_name 」
+.. VLANポートとifgrpポートをブロードキャストドメインから削除します。 `network port broadcast-domain remove-ports -ipspace ipspace -broadcast-domain broadcast-domain-name -ports nodename:portname,nodename:portname,..`
+.. すべての VLAN ポートと ifgrp ポートがブロードキャストドメインに割り当てられていないことを確認します。「 network port show -type if-group | vlan
+.. すべての VLAN を削除します。「 network port vlan delete -node nodename -vlan-name vlan-name 」
+.. インターフェイスグループを削除します。「 network port ifgrp delete -node nodename -ifgrp ifgrp_name 」
 
 
-.. MetroCluster の IP インターフェイスポートとの競合を解決するために、必要に応じて LIF をすべて移動します。
+. MetroCluster の IP インターフェイスポートとの競合を解決するために、必要に応じて LIF をすべて移動します。
 +
 特定された LIF は、の手順 1 に移動する必要があります link:concept_requirements_for_fc_to_ip_transition_2n_mcc_transition.html["MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング"]。
 
 +
-... 目的のポートでホストされている LIF を別のポートに移動します。「 network interface modify -lif lifname -vserver vserver-name -home-port new -homeport ` network interface revert -lif lifname -vserver vservername 」
-... 必要に応じて、デスティネーションポートを適切な IPspace とブロードキャストドメインに移動します。network port broadcast-domain remove-ports -ipspace current-ipspace current-broadcast-domain current-broadcast-domain -ports controller-name ： current-port `network port broadcast-domain add-ports -ipspace new-ipspace-broadcast-domain new-broadcast-domain new-broadcast-domain-ports controller-name ： new-port ’
+.. 目的のポートでホストされている LIF を別のポートに移動します。「 network interface modify -lif lifname -vserver vserver-name -home-port new -homeport ` network interface revert -lif lifname -vserver vservername 」
+.. 必要に応じて、デスティネーションポートを適切な IPspace とブロードキャストドメインに移動します。network port broadcast-domain remove-ports -ipspace current-ipspace current-broadcast-domain current-broadcast-domain -ports controller-name ： current-port `network port broadcast-domain add-ports -ipspace new-ipspace-broadcast-domain new-broadcast-domain new-broadcast-domain-ports controller-name ： new-port ’
 
 
-.. MetroCluster FC コントローラ（ node_A_1 -FC および node_B_1 - FC ）を停止します。「 system node halt
-.. LOADER プロンプトで、 FC コントローラモジュールと IP コントローラモジュールのハードウェアクロックを同期します。
+. MetroCluster FC コントローラ（ node_A_1 -FC および node_B_1 - FC ）を停止します。「 system node halt
+. LOADER プロンプトで、 FC コントローラモジュールと IP コントローラモジュールのハードウェアクロックを同期します。
 +
-... 古い MetroCluster FC ノード（ node_A_1 -FC ）で ' 日付を表示します 'how date
-... 新しい MetroCluster IP コントローラ（ node_A_1 の IP および node_B_1 の IP ）で、元のコントローラに表示される日付を設定します。 'et date mm/dd/yy
-... 新しい MetroCluster IP コントローラ（ node_A_1 の IP および node_B_1 の IP ）で、日付を「日付」で確認します
+.. 古い MetroCluster FC ノード（ node_A_1 -FC ）で ' 日付を表示します 'how date
+.. 新しい MetroCluster IP コントローラ（ node_A_1 の IP および node_B_1 の IP ）で、元のコントローラに表示される日付を設定します。 'et date mm/dd/yy
+.. 新しい MetroCluster IP コントローラ（ node_A_1 の IP および node_B_1 の IP ）で、日付を「日付」で確認します
 
 
-.. MetroCluster FC コントローラモジュール（ node_A_1 の FC と node_B_1 の FC ）、 FC-to-SAS ブリッジ（存在する場合）、 FC スイッチ（存在する場合）、およびそれらのノードに接続されている各ストレージシェルフを停止し、電源をオフにします。
-.. MetroCluster FC コントローラからシェルフを切断し、各クラスタにローカルストレージとして使用するシェルフを文書化します。
+. MetroCluster FC コントローラモジュール（ node_A_1 の FC と node_B_1 の FC ）、 FC-to-SAS ブリッジ（存在する場合）、 FC スイッチ（存在する場合）、およびそれらのノードに接続されている各ストレージシェルフを停止し、電源をオフにします。
+. MetroCluster FC コントローラからシェルフを切断し、各クラスタにローカルストレージとして使用するシェルフを文書化します。
 +
 FC-to-SAS ブリッジまたは FC バックエンドスイッチを使用する構成の場合は、接続を解除して取り外します。
 
-.. MetroCluster FC ノード（ node_A_1 の FC と node_B_1 の FC ）のメンテナンスモードで、ディスクが接続されていないことを確認します。「ディスク show -v 」
-.. MetroCluster FC ノードの電源をオフにして取り外します。
-
-
+. MetroCluster FC ノード（ node_A_1 の FC と node_B_1 の FC ）のメンテナンスモードで、ディスクが接続されていないことを確認します。「ディスク show -v 」
+. MetroCluster FC ノードの電源をオフにして取り外します。
 
 
 この時点で、 MetroCluster FC コントローラが取り外され、シェルフがすべてのコントローラから切断されています。

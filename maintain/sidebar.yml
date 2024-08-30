@@ -2,137 +2,133 @@
 section: maintain
 title: MetroCluster のコンポーネントをメンテナンスします
 entries:
-- title: MetroCluster のメンテナンスタスクの手順の参照先
-  url: "/maintain/concept_where_to_find_procedures_for_mcc_maintenance_tasks.html"
-- title: MetroCluster の障害とリカバリのシナリオ
-  url: "/maintain/reference_mcc_failure_scenarios.html"
-- title: メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します
-  url: "/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html"
-- title: メンテナンスタスクを実行する前にコンソールログを有効にする
-  url: "/maintain/enable-console-logging-before-maintenance.html"
-- title: FC-to-SAS ブリッジのメンテナンス
+- title: MetroClusterのメンテナンスの準備
   entries:
-  - title: MetroCluster 構成での FibreBridge 7600N ブリッジのサポート
-    url: "/maintain/concept_using_fibrebridge_7600n_bridges_in_mcc_configurations.html"
-  - title: MetroCluster 構成での FibreBridge 7500N ブリッジのサポート
-    url: "/maintain/concept_using_fibrebridge_7500n_bridges_in_mcc_configurations.html"
-  - title: 必要に応じて、 FibreBridge 7600N ブリッジの IP ポートアクセスを有効にします
-    url: "/maintain/task_enable_ip_port_access_on_the_fibrebridge_7600n_bridge_guides.html"
-  - title: FibreBridge ブリッジのファームウェアを更新します
-    url: "/maintain/task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html"
-  - title: 単一の FC-to-SAS ブリッジを交換します
-    url: "/maintain/task_replace_a_sle_fc_to_sas_bridge.html"
-  - title: FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換します
-    url: "/maintain/task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html"
-  - title: 他のインターフェイスを使用して FibreBridge ブリッジを設定および管理するための要件
-    url: "/maintain/reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.html"
-  - title: 障害が発生した電源装置モジュールのホットリプレース
-    url: "/maintain/reference_fb_replace_a_power_supply.html"
-  - title: FC-to-SAS ブリッジのインバンド管理
-    url: "/maintain/concept_in_band_management_of_the_fc_to_sas_bridges.html"
-  - title: FibreBridge ブリッジをセキュリティ保護または保護解除します
-    url: "/maintain/task_secur_or_unsecur_a_fibrebridge_bridge.html"
-- title: FC スイッチのメンテナンスと交換
+  - title: メンテナンスタスクを実行する前にコンソールログを有効にする
+    url: "/maintain/enable-console-logging-before-maintenance.html"
+  - title: メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します
+    url: "/maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html"
+  - title: MetroCluster の障害とリカバリのシナリオ
+    url: "/maintain/reference_mcc_failure_scenarios.html"
+  - title: Interoperability Matrix Tool を使用して MetroCluster の情報を検索する方法
+    url: "/maintain/concept_using_the_interoperability_matrix_tool_to_find_mcc_information.html"
+  - title: MetroCluster のメンテナンスタスクの手順の参照先
+    url: "/maintain/concept_where_to_find_procedures_for_mcc_maintenance_tasks.html"
+- title: MetroCluster FC構成のメンテナンス手順
   entries:
-  - title: Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードします
-    url: "/maintain/task_upgrade_or_downgrad_the_firmware_on_a_brocade_fc_switch_mcc.html"
-  - title: Cisco FC スイッチのファームウェアをアップグレードまたはダウングレードする
-    url: "/maintain/task_upgrade_or_downgrad_the_firmware_on_a_cisco_fc_switch_mcc.html"
-  - title: 新しい Brocade FC スイッチにアップグレードします
-    url: "/maintain/task_upgrade_to_new_brocade_switches.html"
-  - title: Brocade FC スイッチを交換
-    url: "/maintain/task_replace_a_brocade_fc_switch_mcc.html"
-  - title: Brocade FC スイッチの名前を変更します
-    url: "/maintain/task_rename_a_brocade_fc_switch.html"
-  - title: Brocade FC スイッチでの暗号化の無効化
-    url: "/maintain/task_disable_encryption_on_brocade_fc_switches.html"
-  - title: Brocade スイッチでの ISL プロパティ、 ISL ポート、 IOD / OOD 設定の変更
-    url: "/maintain/task_change_isl_properties_isl_ports_or_the_iod_ood_configuration_on_a_brocade_switch.html"
-  - title: Cisco FC スイッチを交換
-    url: "/maintain/task_replace_a_cisco_fc_switch_mcc.html"
-  - title: Cisco FC スイッチでの ISL ポートの速度変更
-    url: "/maintain/task_change_speed_of_isl_ports_on_a_cisco_fc_switch.html"
-  - title: Cisco スイッチへの lSL の追加
-    url: "/maintain/task_add_lsls_to_a_cisco_fc_switch.html"
-  - title: FCスイッチのベンダーまたはモデルを変更する
-    url: "/maintain/task_change_an_fc_switch.html"
-- title: IP スイッチのメンテナンスと交換
-  entries:
-  - title: IPスイッチを交換するか、既存のMetroCluster IPスイッチの使用方法を変更します
-    url: "/maintain/task_replace_an_ip_switch.html"
-  - title: オンラインまたはオフラインのMetroCluster IPインターフェイスポート
-    url: "/maintain/task_online_or_offline_the_mcc_ip_interface.html"
-  - title: MetroCluster IP スイッチのファームウェアをアップグレードします
-    url: "/maintain/task_upgrade_firmware_on_mcc_ip_switches.html"
-  - title: MetroCluster IP スイッチの RCF ファイルをアップグレードします
-    url: "/maintain/task_upgrade_rcf_files_on_mcc_ip_switches.html"
-  - title: クリーンアップファイルを使用してCisco IPスイッチのRCFファイルをアップグレードします
-    url: "/maintain/task_upgrade_rcf_files_on_cisco_ip_switches_with_cleanupfiles.html"
-  - title: Cisco IP スイッチの名前を変更します
-    url: "/maintain/task_rename_a_cisco_ip_switch.html"
-  - title: Cisco IPスイッチのISLポートを無停止で追加、削除、変更
-    url: "/maintain/task_add_remove_or_change_isl_ports_nondisruptively.html"
-- title: MetroCluster IPインターフェイスのプロパティの変更
-  url: "/maintain/task-modify-ip-netmask-properties.html"
-- title: 健常性監視用に、スイッチまたはATTOブリッジのIPアドレスを変更します
-  url: "/maintain/task_modify_switch_or_bridge_ip_address_for_health_monitoring.html"
-- title: MetroCluster IP 構成でストレージを識別する方法
-  url: "/maintain/concept_identifying_storage_in_a_mcc_ip_configuration.html"
-- title: 共有ストレージ / MetroCluster スイッチを使用して、 MetroCluster にシェルフを追加します
-  url: "/maintain/task_add_shelves_using_shared_storage.html"
-- title: MetroCluster FC 構成へのストレージのホットアド
-  entries:
-  - title: SAS 光ケーブルを使用して、直接接続型の MetroCluster FC 構成に SAS ディスクシェルフをホットアドします
-    url: "/maintain/task_hot_add_a_sas_disk_shelf_in_a_direct_attached_mcc_configuration_us_sas_optical_cables.html"
-  - title: ブリッジ接続型 MetroCluster FC 構成への SAS ストレージのホットアド
+  - title: 健常性監視用に、スイッチまたはATTOブリッジのIPアドレスを変更します
+    url: "/maintain/task_modify_switch_or_bridge_ip_address_for_health_monitoring.html"
+  - title: FC-to-SAS ブリッジのメンテナンス
     entries:
-    - title: 既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドします
-      url: "/maintain/task_hot_add_a_stack_to_exist_7500n_pair.html"
-    - title: SAS ディスクシェルフとブリッジのスタックを MetroCluster システムにホットアドします
-      url: "/maintain/task_fb_hot_add_stack_of_shelves_and_bridges.html"
-    - title: SAS ディスクシェルフのスタックに SAS ディスクシェルフをホットアドします
+    - title: MetroCluster 構成での FibreBridge 7600N ブリッジのサポート
+      url: "/maintain/concept_using_fibrebridge_7600n_bridges_in_mcc_configurations.html"
+    - title: MetroCluster 構成での FibreBridge 7500N ブリッジのサポート
+      url: "/maintain/concept_using_fibrebridge_7500n_bridges_in_mcc_configurations.html"
+    - title: 必要に応じて、 FibreBridge 7600N ブリッジの IP ポートアクセスを有効にします
+      url: "/maintain/task_enable_ip_port_access_on_the_fibrebridge_7600n_bridge_guides.html"
+    - title: FibreBridge ブリッジのファームウェアを更新します
+      url: "/maintain/task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html"
+    - title: 単一の FC-to-SAS ブリッジを交換します
+      url: "/maintain/task_replace_a_sle_fc_to_sas_bridge.html"
+    - title: FibreBridge 6500N ブリッジのペアを 7600N / 7500N ブリッジに交換します
+      url: "/maintain/task_fb_consolidate_replace_a_pair_of_fibrebridge_6500n_bridges_with_7500n_bridges.html"
+    - title: 他のインターフェイスを使用して FibreBridge ブリッジを設定および管理するための要件
+      url: "/maintain/reference_requirements_for_using_other_interfaces_to_configure_and_manage_fibrebridge_bridges.html"
+    - title: 障害が発生した電源装置モジュールのホットリプレース
+      url: "/maintain/reference_fb_replace_a_power_supply.html"
+    - title: FC-to-SAS ブリッジのインバンド管理
+      url: "/maintain/concept_in_band_management_of_the_fc_to_sas_bridges.html"
+    - title: FibreBridge ブリッジをセキュリティ保護または保護解除します
+      url: "/maintain/task_secur_or_unsecur_a_fibrebridge_bridge.html"
+  - title: FC スイッチのメンテナンスと交換
+    entries:
+    - title: Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードします
+      url: "/maintain/task_upgrade_or_downgrad_the_firmware_on_a_brocade_fc_switch_mcc.html"
+    - title: Cisco FC スイッチのファームウェアをアップグレードまたはダウングレードする
+      url: "/maintain/task_upgrade_or_downgrad_the_firmware_on_a_cisco_fc_switch_mcc.html"
+    - title: 新しい Brocade FC スイッチにアップグレードします
+      url: "/maintain/task_upgrade_to_new_brocade_switches.html"
+    - title: Brocade FC スイッチを交換
+      url: "/maintain/task_replace_a_brocade_fc_switch_mcc.html"
+    - title: Brocade FC スイッチの名前を変更します
+      url: "/maintain/task_rename_a_brocade_fc_switch.html"
+    - title: Brocade FC スイッチでの暗号化の無効化
+      url: "/maintain/task_disable_encryption_on_brocade_fc_switches.html"
+    - title: Brocade スイッチでの ISL プロパティ、 ISL ポート、 IOD / OOD 設定の変更
+      url: "/maintain/task_change_isl_properties_isl_ports_or_the_iod_ood_configuration_on_a_brocade_switch.html"
+    - title: Cisco FC スイッチを交換
+      url: "/maintain/task_replace_a_cisco_fc_switch_mcc.html"
+    - title: Cisco FC スイッチでの ISL ポートの速度変更
+      url: "/maintain/task_change_speed_of_isl_ports_on_a_cisco_fc_switch.html"
+    - title: Cisco スイッチへの lSL の追加
+      url: "/maintain/task_add_lsls_to_a_cisco_fc_switch.html"
+    - title: FCスイッチのベンダーまたはモデルを変更する
+      url: "/maintain/task_change_an_fc_switch.html"
+  - title: ファブリック接続 MetroCluster 構成のシェルフを無停止で交換する
+    url: "/maintain/task_replace_a_shelf_nondisruptively_in_a_mcc_fc_configuration.html"
+  - title: MetroCluster FC 構成へのストレージのホットアド
+    entries:
+    - title: SAS 光ケーブルを使用して、直接接続型の MetroCluster FC 構成に SAS ディスクシェルフをホットアドします
+      url: "/maintain/task_hot_add_a_sas_disk_shelf_in_a_direct_attached_mcc_configuration_us_sas_optical_cables.html"
+    - title: ブリッジ接続型 MetroCluster FC 構成への SAS ストレージのホットアド
       entries:
-      - title: SAS ディスクシェルフのホットアドの準備
-        url: "/maintain/task_fb_hot_add_shelf_prepare_7500n.html"
-      - title: ディスクシェルフをホットアドします
-        url: "/maintain/task_fb_hot_add_a_disk_shelf_install_7500n.html"
-    - title: ブリッジ接続型 MetroCluster 構成の IOM6 ディスクシェルフのスタックへの IOM12 ディスクシェルフのホットアド
-      url: "/maintain/task_hot_add_an_iom12_disk_shelf_to_a_stack_of_iom6_disk_shelves.html"
-- title: MetroCluster FC 構成からのストレージのホットリムーブ
-  url: "/maintain/task_hot_remove_storage_from_a_mcc_fc_configuration.html"
-- title: ストレッチ MetroCluster 構成のシェルフを無停止で交換する
-  url: "/maintain/task_replace_a_shelf_nondisruptively_in_a_stretch_mcc_configuration.html"
-- title: ファブリック接続 MetroCluster 構成のシェルフを無停止で交換する
-  url: "/maintain/task_replace_a_shelf_nondisruptively_in_a_mcc_fc_configuration.html"
-- title: ルートボリュームを新しいデスティネーションに移行するタイミング
-  url: "/maintain/concept_migrating_root_volumes_to_a_new_destination.html"
-- title: MetroCluster IP構成でのエンドツーエンドの暗号化の設定
-  url: "/maintain/task-configure-encryption.html"
-- title: MetroCluster 構成でメタデータボリュームを移動する
-  url: "/maintain/task_move_a_metadata_volume_in_mcc_configurations.html"
-- title: MetroCluster 構成のクラスタの名前を変更する
-  url: "/maintain/task_rename_the_cluster_for_mcc_configuration.html"
-- title: 単一のMetroClusterサイトの電源オフと電源オン
-  entries:
-  - title: MetroCluster IP構成での単一サイトの電源オフと電源オン
-    url: "/maintain/task_power_on_and_power_off_a_data_center.html"
+      - title: 既存の FibreBridge 7500N ブリッジペアに SAS ディスクシェルフのスタックをホットアドします
+        url: "/maintain/task_hot_add_a_stack_to_exist_7500n_pair.html"
+      - title: SAS ディスクシェルフとブリッジのスタックを MetroCluster システムにホットアドします
+        url: "/maintain/task_fb_hot_add_stack_of_shelves_and_bridges.html"
+      - title: SAS ディスクシェルフのスタックに SAS ディスクシェルフをホットアドします
+        entries:
+        - title: SAS ディスクシェルフのホットアドの準備
+          url: "/maintain/task_fb_hot_add_shelf_prepare_7500n.html"
+        - title: ディスクシェルフをホットアドします
+          url: "/maintain/task_fb_hot_add_a_disk_shelf_install_7500n.html"
+      - title: ブリッジ接続型 MetroCluster 構成の IOM6 ディスクシェルフのスタックへの IOM12 ディスクシェルフのホットアド
+        url: "/maintain/task_hot_add_an_iom12_disk_shelf_to_a_stack_of_iom6_disk_shelves.html"
+  - title: MetroCluster FC 構成からのストレージのホットリムーブ
+    url: "/maintain/task_hot_remove_storage_from_a_mcc_fc_configuration.html"
   - title: MetroCluster FC構成での単一サイトの電源オフと電源オン
     url: "/maintain/task-power-on-and-power-off-a-fc-site.html"
-- title: MetroCluster構成全体の電源をオフにする
-  entries:
-  - title: MetroCluster IP 構成全体の電源をオフにします
-    url: "/maintain/task_power_off_an_entire_mcc_ip_configuration.html"
   - title: MetroCluster FC 構成全体の電源をオフにします
     url: "/maintain/task_power_off_an_entire_mcc_fc_configuration.html"
-- title: ONTAP 9.x より前に設定した FC スイッチレイアウトを再設定します
-  url: "/maintain/task_do_not_use_for_9_8_and_later_reconfigure_the_fc_switch_layout_for_ontap_9_1_or_later.html"
-- title: FC スイッチのポート割り当て
+- title: MetroCluster IP構成のメンテナンス手順
   entries:
-  - title: 2 つのイニシエータポートを使用するシステムのポート割り当て
-    url: "/maintain/concept_port_assignments_for_systems_using_two_initiator_ports.html"
-  - title: ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て
-    url: "/maintain/concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.html"
-- title: Interoperability Matrix Tool を使用して MetroCluster の情報を検索する方法
-  url: "/maintain/concept_using_the_interoperability_matrix_tool_to_find_mcc_information.html"
-- title: 追加情報の参照先
-  url: "/maintain/reference_where_to_find_additional_information_mcc_service_guide.html"
+  - title: MetroCluster IPインターフェイスのプロパティの変更
+    url: "/maintain/task-modify-ip-netmask-properties.html"
+  - title: IP スイッチのメンテナンスと交換
+    entries:
+    - title: IPスイッチを交換するか、既存のMetroCluster IPスイッチの使用方法を変更します
+      url: "/maintain/task_replace_an_ip_switch.html"
+    - title: オンラインまたはオフラインのMetroCluster IPインターフェイスポート
+      url: "/maintain/task_online_or_offline_the_mcc_ip_interface.html"
+    - title: MetroCluster IP スイッチのファームウェアをアップグレードします
+      url: "/maintain/task_upgrade_firmware_on_mcc_ip_switches.html"
+    - title: MetroCluster IP スイッチの RCF ファイルをアップグレードします
+      url: "/maintain/task_upgrade_rcf_files_on_mcc_ip_switches.html"
+    - title: クリーンアップファイルを使用してCisco IPスイッチのRCFファイルをアップグレードします
+      url: "/maintain/task_upgrade_rcf_files_on_cisco_ip_switches_with_cleanupfiles.html"
+    - title: Cisco IP スイッチの名前を変更します
+      url: "/maintain/task_rename_a_cisco_ip_switch.html"
+    - title: Cisco IPスイッチのISLポートを無停止で追加、削除、変更
+      url: "/maintain/task_add_remove_or_change_isl_ports_nondisruptively.html"
+  - title: MetroCluster IP 構成でストレージを識別する方法
+    url: "/maintain/concept_identifying_storage_in_a_mcc_ip_configuration.html"
+  - title: 共有ストレージMetroClusterスイッチを使用してMetroCluster IP構成にシェルフを追加する
+    url: "/maintain/task_add_shelves_using_shared_storage.html"
+  - title: MetroCluster IP構成でのエンドツーエンドの暗号化の設定
+    url: "/maintain/task-configure-encryption.html"
+  - title: MetroCluster IP構成での単一サイトの電源オフと電源オン
+    url: "/maintain/task_power_on_and_power_off_a_data_center.html"
+  - title: MetroCluster IP 構成全体の電源をオフにします
+    url: "/maintain/task_power_off_an_entire_mcc_ip_configuration.html"
+- title: すべてのMetroCluster構成のメンテナンス手順
+  entries:
+  - title: ストレッチ MetroCluster 構成のシェルフを無停止で交換する
+    url: "/maintain/task_replace_a_shelf_nondisruptively_in_a_stretch_mcc_configuration.html"
+  - title: ルートボリュームを新しいデスティネーションに移行するタイミング
+    url: "/maintain/concept_migrating_root_volumes_to_a_new_destination.html"
+  - title: MetroCluster 構成でメタデータボリュームを移動する
+    url: "/maintain/task_move_a_metadata_volume_in_mcc_configurations.html"
+  - title: MetroCluster 構成のクラスタの名前を変更する
+    url: "/maintain/task_rename_the_cluster_for_mcc_configuration.html"
+  - title: 追加情報の参照先
+    url: "/maintain/reference_where_to_find_additional_information_mcc_service_guide.html"
