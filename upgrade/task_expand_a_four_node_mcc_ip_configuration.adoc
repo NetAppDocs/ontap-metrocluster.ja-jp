@@ -1063,20 +1063,32 @@ aggr_data_a2
 +
 「 advanced 」の権限が必要です
 
-.. 新しいノードの 1 つで MetroCluster 構成を更新します。
+.. いずれかのノードでMetroCluster設定を更新します。
 +
-MetroCluster 構成
+[cols="30,70"]
+|===
 
-+
-次の例では、両方の DR グループで MetroCluster 構成を更新しています。
 
-+
-[listing]
-----
-cluster_A::*> metrocluster configure -refresh true
+| MetroCluster 構成の内容 | 操作 
 
-[Job 726] Job succeeded: Configure is successful.
-----
+
+ a| 
+複数のデータアグリゲート
+ a| 
+いずれかのノードのプロンプトで、次のコマンドを実行します。
+
+`metrocluster configure <node-name>`
+
+
+
+ a| 
+ミラーされた1つのデータアグリゲートを一方または両方のサイトに配置
+ a| 
+いずれかのノードのプロンプトで、 `-allow-with-one-aggregate true`パラメータを使用してMetroClusterを設定します。
+
+`metrocluster configure -allow-with-one-aggregate true <node-name>`
+
+|===
 .. 新しい各ノードをリブートします。
 +
 `node reboot -node <node_name> -inhibit-takeover true`
@@ -1093,7 +1105,7 @@ cluster_A::*> metrocluster configure -refresh true
 
 +
 
-NOTE: 各サイトに少なくとも 1 つのミラーされたデータアグリゲートを作成する必要があります。MetroCluster IP ノード上のサイトごとに 2 つのミラーされたデータアグリゲートを配置して MDV ボリュームをホストすることを推奨しますが、サイトごとに 1 つのアグリゲートをサポートできます（ただし推奨しません）。MetroCluster の一方のサイトにはミラーされたデータアグリゲートが 1 つあり、もう一方のサイトにはミラーされたデータアグリゲートが複数あることがサポートされます。
+NOTE: ミラーされたデータアグリゲートをサイトごとに少なくとも1つ作成する必要があります。MDVボリュームをホストするために、サイトごとに2つのミラーされたデータアグリゲートをMetroCluster IPノード上に配置することを推奨しますが、サイトごとに1つのアグリゲートがサポートされます（ただし推奨されません）。MetroClusterの一方のサイトにミラーされたデータアグリゲートが1つあり、もう一方のサイトに複数のミラーされたデータアグリゲートがあります。
 
 +
 次の例は、 node_A_1 で新しいアグリゲートを作成します。
@@ -1161,12 +1173,14 @@ Group Cluster Node               State          Mirroring Mode
 
 cluster_A::*>
 ----
-. advanced 権限で、 MDV_CRS ボリュームを古いノードから新しいノードに移動します。
+. MDV_CRSボリュームをadvanced権限モードで移動します。
 +
 .. ボリュームを表示して MDV ボリュームを特定します。
 +
+各サイトにミラーされたデータアグリゲートが 1 つある場合、両方の MDV ボリュームをこの 1 つのアグリゲートに移動します。ミラーされたデータアグリゲートが 2 つ以上ある場合、各 MDV ボリュームを別々のアグリゲートに移動します。
 
-NOTE: 各サイトにミラーされたデータアグリゲートが 1 つある場合、両方の MDV ボリュームをこの 1 つのアグリゲートに移動します。ミラーされたデータアグリゲートが 2 つ以上ある場合、各 MDV ボリュームを別々のアグリゲートに移動します。
++
+4ノードMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループに移動する必要があります。
 
 +
 次に 'volume show 出力の MDV ボリュームの例を示します

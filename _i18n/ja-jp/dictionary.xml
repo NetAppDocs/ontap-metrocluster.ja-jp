@@ -2217,7 +2217,6 @@
   <block id="6c46e592d5f16891d3a16e5f364e031b" category="section-title">新しいノードの追加を完了しています</block>
   <block id="756f29d7bcbe7decf6b979c0706fc9a1" category="paragraph">新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。</block>
   <block id="b24de9180a5deb759a394eebcd1a0305" category="list-text">新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。</block>
-  <block id="aabce8f4cea0092b527adf5c08e57ba7" category="admonition">各サイトに少なくとも 1 つのミラーされたデータアグリゲートを作成する必要があります。MetroCluster IP ノード上のサイトごとに 2 つのミラーされたデータアグリゲートを配置して MDV ボリュームをホストすることを推奨しますが、サイトごとに 1 つのアグリゲートをサポートできます（ただし推奨しません）。MetroCluster の一方のサイトにはミラーされたデータアグリゲートが 1 つあり、もう一方のサイトにはミラーされたデータアグリゲートが複数あることがサポートされます。</block>
   <block id="7062dd7205e5ed0cba84efd4203bc9cc" category="paragraph">次の例は、 node_A_1 で新しいアグリゲートを作成します。</block>
   <block id="f7695325c497f5514c126672cf022583" category="list-text">MetroCluster 構成を更新します。</block>
   <block id="50457dca5a837dbab5a5d65f7d4bcf58" category="paragraph">次の例では、両方の DR グループで MetroCluster 構成を更新しています。</block>
@@ -8958,8 +8957,6 @@
   <block id="2dccf53d6ed326f889d8e764529b9794" category="list-text">ディスクの自動割り当てとパーティショニングを確認します。</block>
   <block id="f65ec829d063a64803356b190c18d5ab" category="paragraph">「 Disk show -pool Pool1 」</block>
   <block id="3f95b2ea711d433e26a8b5eb63bbd17a" category="paragraph">「 storage aggregate mirror -aggregate aggr0_cluster1_01 -new 」という名前のアグリゲートが作成されます</block>
-  <block id="f00a8c2c5126c8a92b929c756950f0f8" category="list-text">新しいノードの 1 つで MetroCluster 構成を更新します。</block>
-  <block id="2ae5190e09d5d39bdc4388104b1ebcd4" category="paragraph">MetroCluster 構成</block>
   <block id="aacab676cefc900d32e2155650f1b66e" category="paragraph">次の例は、「 MDV_CRS_d6b0b313ff5611e9837100a098544e51_a 」を「 node_A_1 」のアグリゲート「 node_A_1 」に移動するコマンドと出力を示しています。</block>
   <block id="cc863d7088764c07fa87ffea3cae245e" category="list-text">現在イプシロンが設定されているノードを特定します。</block>
   <block id="19b075b0ff8fbdf79efbef8787bbf0d7" category="paragraph">cluster show -fields epsilon</block>
@@ -14030,4 +14027,12 @@
   <block id="4ac7d2ae8e04576a892556ab9a493959" category="list-text">VLANポートとifgrpポートをブロードキャストドメインから削除します。<block ref="bd72bbf935a7a9d39c21cf3731500f70" prefix=" " category="inline-code"></block></block>
   <block id="07b3edb46d2774fa411b0f9a1b01bead" category="sidebar">MetroClusterのメンテナンスの準備</block>
   <block id="053564114ce5591908a1b29312289c15" category="sidebar">共有ストレージMetroClusterスイッチを使用してMetroCluster IP構成にシェルフを追加する</block>
+  <block id="59a029b0a65d8928b8afd42fd7a5bfe2" category="admonition">ミラーされたデータアグリゲートをサイトごとに少なくとも1つ作成する必要があります。MDVボリュームをホストするために、サイトごとに2つのミラーされたデータアグリゲートをMetroCluster IPノード上に配置することを推奨しますが、サイトごとに1つのアグリゲートがサポートされます（ただし推奨されません）。MetroClusterの一方のサイトにミラーされたデータアグリゲートが1つあり、もう一方のサイトに複数のミラーされたデータアグリゲートがあります。</block>
+  <block id="478e4322f0111cf3e7bdad12bea24701" category="list-text">いずれかのノードでMetroCluster設定を更新します。</block>
+  <block id="4ad402ea3fb0bcfdc921fd3083047f45" category="paragraph">いずれかのノードのプロンプトで、次のコマンドを実行します。</block>
+  <block id="28d0a71b806dfc9c57cc495498c72954" category="paragraph">ミラーされた1つのデータアグリゲートを一方または両方のサイトに配置</block>
+  <block id="d419812c67afb77388be54f4cb41eb86" category="paragraph">いずれかのノードのプロンプトで、<block ref="d972f8bbe9b04d39b8b96b699cf921e9" prefix=" " category="inline-code"></block>パラメータを使用してMetroClusterを設定します。</block>
+  <block id="3635681631407e08104ac78c0039ed70" category="paragraph"><block ref="0825cd88596408a485ffc279f70b9da9" prefix="" category="inline-code"></block></block>
+  <block id="753303bac17f77fab4f01ca22a7ff80e" category="list-text">MDV_CRSボリュームをadvanced権限モードで移動します。</block>
+  <block id="4e934a5efc9ac0d78daef92737cd79bf" category="paragraph">4ノードMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループに移動する必要があります。</block>
 </blocks>
