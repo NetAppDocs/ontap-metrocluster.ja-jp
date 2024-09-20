@@ -9168,7 +9168,6 @@
   <block id="b067ff15634ee127c0e9368bdd50693d" category="paragraph">「ディスク assign_disk-id_-p 0 -s _local-node-sysid_ 」</block>
   <block id="1a731b6b2711f5533b67a659f8e5e7c3" category="list-text">に進みます <block ref="5b0b3430fd5af0e5a4020af54ce263e7" category="inline-link-macro-rx"></block>。</block>
   <block id="f8dc7177731310562718d80a3440fa9d" category="paragraph">MetroCluster の構成設定メディエーターの追加 mediator-address_ip-address-bmediator-host_`</block>
-  <block id="d0dddd5779102f5b72e8edf336fef717" category="list-text">コントローラモジュールとシャーシの HA 状態を表示します。</block>
   <block id="f753a91b4868b4d2d7ad06fa15958542" category="paragraph">「 storage failover modify -mode ha -node _localhost_` 」です</block>
   <block id="e40d6a178d9137d254eca9144fcc5d3c" category="paragraph"><block ref="e40d6a178d9137d254eca9144fcc5d3c" category="inline-link-macro-rx"></block></block>
   <block id="eda5874a95d7087883feb5817a56dbc4" category="paragraph"><block ref="eda5874a95d7087883feb5817a56dbc4" category="inline-link-macro-rx"></block></block>
@@ -9561,7 +9560,6 @@
   <block id="e42ae5049bd4441f35fc1a5c789393b6" category="sidebar">RcfFileGenerator ツールまたは複数の MetroCluster 設定でポートテーブルを使用する方法</block>
   <block id="b25308b36735da11e4a37c52a93d5b81" category="sidebar">ONTAP で MetroCluster ソフトウェアを設定します</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">概要</block>
-  <block id="2e513789c4a513cc3bc3dbb07880d342" category="sidebar">8 ノード構成の設定方法</block>
   <block id="41aa5998b40e00d8eb4f7bb40bb2bc22" category="sidebar">必要な情報を収集</block>
   <block id="4497ab40f5579cccfc00e6aed35cdae9" category="sidebar">コンポーネントの ha-config 状態を確認</block>
   <block id="aa9c71b40476a8ccda9213b9a9416d55" category="sidebar">クラスタを MetroCluster 構成に設定</block>
@@ -10817,10 +10815,6 @@
   <block id="04be3a6c5ee416a84b497452ccd41ffd" category="list-text">ONTAP 9.4 以降では、 ADP 用に設定されたコントローラモジュールがサポートされます。</block>
   <block id="c94a009c5a39824e241500e9f7d49cad" category="summary">ONTAP 9.5 以降では、 ONTAP で仮想 IP （ VIP ）と Border Gateway Protocol （ BGP ）を使用してレイヤ 3 接続がサポートされます。</block>
   <block id="7dec0067013edb1b7d2d18b5bc21f4a8" category="paragraph">ONTAP 9.5 以降では、 ONTAP で仮想 IP （ VIP ）と Border Gateway Protocol （ BGP ）を使用してレイヤ 3 接続がサポートされます。VIP と BGP を組み合わせることで、フロントエンドネットワークでの冗長性とバックエンド MetroCluster の冗長性が確保され、レイヤ 3 ディザスタリカバリ解決策が実現します。</block>
-  <block id="b09496e62afe76db185677ab92dd3695" category="paragraph">工場出荷時に事前設定されていない MetroCluster IP 設定では、コントローラおよびシャーシコンポーネントの ha-config 状態が「 mccip 」に設定されていることを確認し、適切にブートする必要があります。工場出荷状態のシステムでは事前に設定されているため、検証は不要です。</block>
-  <block id="c1420c708cdb03e8e6259f7cb1285a08" category="paragraph">コントローラモジュールとシャーシには、「 mccip 」という値が表示されます。</block>
-  <block id="717daacc38ffb11ae03c79a7871ba94a" category="list-text">表示されたコントローラのシステム状態が「 mccip 」でない場合は、コントローラの HA 状態を設定します。</block>
-  <block id="1be7c4ddc79016b4335125e64b368241" category="list-text">表示されたシャーシのシステム状態が「 mccip 」でない場合は、シャーシの HA 状態を設定します。</block>
   <block id="9bdf1ed180b1b862f7cea11085897aca" category="paragraph">○（ ONTAP 9.4 以降）</block>
   <block id="a27983e963a18385eebdc3381062e49b" category="paragraph">○（ ONTAP 9.8 以降）</block>
   <block id="098fadefd1319cbc560b7d741aa7210e" category="paragraph">○（ ONTAP 9.7 以降）</block>
@@ -14035,4 +14029,19 @@
   <block id="3635681631407e08104ac78c0039ed70" category="paragraph"><block ref="0825cd88596408a485ffc279f70b9da9" prefix="" category="inline-code"></block></block>
   <block id="753303bac17f77fab4f01ca22a7ff80e" category="list-text">MDV_CRSボリュームをadvanced権限モードで移動します。</block>
   <block id="4e934a5efc9ac0d78daef92737cd79bf" category="paragraph">4ノードMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループに移動する必要があります。</block>
+  <block id="dbe62ccc612e92f8dc68e42a4661fecb" category="paragraph">コントローラモジュールとシャーシのHA状態が正しくない場合は、ノードを再初期化しないとMetroClusterを設定できません。この手順を使用して設定を修正し、次のいずれかの手順を使用してシステムを初期化する必要があります。</block>
+  <block id="a86b0de4e0b4c477962412e4fb878fa1" category="list-text">MetroCluster IP構成では、の手順に従います<block ref="46904e83320ab310261c288a6a607871" category="inline-link-macro-rx"></block>。</block>
+  <block id="73fa02989b9da1f069817272869a683b" category="inline-link-macro">システムをデフォルトに戻し、コントローラモジュールでHBAタイプを設定する</block>
+  <block id="20e47a9aa4ad4f6197046707d54204fc" category="list-text">MetroCluster FC構成では、の手順に従います<block ref="61b5232c30227f4608eee40560fc97c5" category="inline-link-macro-rx"></block>。</block>
+  <block id="db298781944827895a870278a91cf51d" category="paragraph">システムがメンテナンスモードであることを確認します。</block>
+  <block id="8043a3bf6cce640e7454f2cd339995d4" category="cell">MetroCluster構成タイプ</block>
+  <block id="b2044c373529567844418af6b99b9c47" category="cell">すべてのコンポーネントのHA状態</block>
+  <block id="3ec28b19df1922ba15c732a6c9ce26e7" category="paragraph">8ノードまたは4ノードのMetroCluster FC構成</block>
+  <block id="02c92aa95863fe523d726679c13e1c11" category="paragraph">8ノードまたは4ノードのMetroCluster IP構成</block>
+  <block id="8d1f63834a0230ca4c300e584f887131" category="list-text">表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールで構成に応じた正しいHA状態を設定します。</block>
+  <block id="46be68db9978eb3b9ac4054e394c92ce" category="list-text">表示されたシャーシのシステム状態が正しくない場合は、シャーシの構成に応じた正しいHA状態を設定します。</block>
+  <block id="330acb0fa4964235e5dabc85b0488f57" category="list-text">この手順をすべて繰り返して、MetroCluster構成の各ノードのHA状態を確認します。</block>
+  <block id="84afb0fe12dfc2a5fa1e2e978393b33c" category="paragraph">ストレージシステムをMetroCluster FC構成で構成する場合は、コントローラモジュールおよびシャーシのコンポーネントのハイアベイラビリティ（HA）状態がmccまたはmcc-2nであることを確認して、これらのコンポーネントが適切にブートするようにする必要があります。工場出荷状態のシステムではこの値を事前に設定しておく必要がありますが、作業を進める前に設定を確認しておく必要があります。</block>
+  <block id="cbc29e9b371b7013e6625c2fa3c7ec20" category="paragraph">MetroCluster IP構成では、コントローラとシャーシのコンポーネントのha-configの状態が「mccip」に設定され、適切にブートされるようにする必要があります。工場出荷状態のシステムではこの値を事前に設定しておく必要がありますが、作業を進める前に設定を確認しておく必要があります。</block>
+  <block id="b6eb7f38a057c8f63ffc29f23e6be071" category="sidebar">8ノオトコウセイノコウセイホウホウ</block>
 </blocks>
