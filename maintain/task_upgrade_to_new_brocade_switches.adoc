@@ -53,12 +53,9 @@ image::../media/brocade_upgr_to_g620_fab_1_down.gif[Brocade Upgr から G620 fab
 +
 image::../media/brocade_upgr_to_g620_replaced_a_1.gif[Brocade Upgr から G620 に変更され、 1 が交換されました]
 
-.. 新しいスイッチを無効にします。
+.. 両方のスイッチで次のコマンドを実行して、新しいスイッチを無効にします。
 +
 'witchcfgpersistentdisable
-
-+
-コマンドは、スイッチファブリック内の両方のスイッチを無効にします。
 
 +
 [listing]
@@ -79,8 +76,13 @@ image::../media/brocade_upgr_to_g620_replaced_b_1.gif[Brocade Upgr から G620 �
 
 
 . 新しいスイッチに電源を投入し、起動するのを待ちます。
-. 新しいスイッチ用の RCF ファイルをダウンロードします。
-. ダウンロードページの指示に従って、ファブリック内の両方の新しいスイッチに RCF ファイルを適用します。
+. 次のいずれかの手順を使用してBrocade FCスイッチを設定します。
++
+link:../install-fc/task_reset_the_brocade_fc_switch_to_factory_defaults.html["RCF ファイルを使用して Brocade FC スイッチを設定します"]
+
++
+link:../install-fc/task_fcsw_brocade_configure_the_brocade_fc_switches_supertask.html["Brocade FC スイッチを手動で設定"]
+
 . スイッチの設定を保存します。
 +
 cfgsave

@@ -356,15 +356,12 @@
   <block id="e485e2a29b3e88e7af57a872271ec004" category="list-text">無効なスイッチのケーブルを外してスイッチを取り外します。</block>
   <block id="6ab8d2ea7c4ab8de2d0240533675a5ba" category="list-text">新しいスイッチをラックに設置します。</block>
   <block id="9db38090d74d3c900ffdd688465bb5e8" category="image-alt">Brocade Upgr から G620 に変更され、 1 が交換されました</block>
-  <block id="7b78e18dcd3185c34c9f26454f6f184a" category="paragraph">コマンドは、スイッチファブリック内の両方のスイッチを無効にします。</block>
   <block id="d0ec9e05561bfe12c0306959eddf56c8" category="list-text">推奨されるポート割り当てを使用して、新しいスイッチをケーブル接続します。</block>
   <block id="9eecb7c801dc57fbe6e2bb323f2ab061" category="inline-xref-macro">ONTAP 9.1 以降を使用している場合の FC スイッチのポート割り当て</block>
   <block id="98865fdc5c9769318f840c5f626b7ec2" category="list-text">パートナーの MetroCluster サイトで上記の手順を繰り返して、 1 つ目のスイッチファブリック内の 2 つ目のスイッチを交換します。</block>
   <block id="5a5070abc66ad4ba93c9599236c17675" category="paragraph">ファブリック 1 の両方のスイッチが交換されている。</block>
   <block id="9359b4d4c7ebe7a35b725df2addeaf7b" category="image-alt">Brocade Upgr から G620 に変更しました。 b 1</block>
   <block id="0fd8560791ae174b08c82bd0ee74f32e" category="list-text">新しいスイッチに電源を投入し、起動するのを待ちます。</block>
-  <block id="54f59ef2ee1220bd27c7e59f620f7e4a" category="list-text">新しいスイッチ用の RCF ファイルをダウンロードします。</block>
-  <block id="b71b5bca0bcdc72655be357f3c8b1c42" category="list-text">ダウンロードページの指示に従って、ファブリック内の両方の新しいスイッチに RCF ファイルを適用します。</block>
   <block id="44a651ee20f59b8ff5887857d2eb80dc" category="list-text">スイッチの設定を保存します。</block>
   <block id="8baaacde06cbd685134e16e9023a6e85" category="list-text">設定が安定するまで 10 分待ちます。</block>
   <block id="988edc2ba6758912d98b8516f37618ee" category="list-text">いずれかの MetroCluster ノードで次のコマンドを入力して、ディスクへの接続を確認します。</block>
@@ -2175,9 +2172,7 @@
   <block id="4d2a12dbb40eebfdeb323911fc06c5ce" category="list-text">新しいコントローラをラックに設置します。</block>
   <block id="ef8a86bee8843988ee84e3ebf370fee9" category="inline-link-macro">IP スイッチのケーブル接続</block>
   <block id="49bbf1feafd5bd1fce43e87c0b9dbd0b" category="inline-link-macro">必要な情報の収集</block>
-  <block id="1cbfeb82dbc642ca3cfc8e2db84c469c" category="list-text"><block ref="1cbfeb82dbc642ca3cfc8e2db84c469c" category="inline-link-macro-rx"></block></block>
   <block id="89ec261ce88167cf44741974c5031e50" category="inline-link-macro">コントローラモジュールでのシステムデフォルトのリストア</block>
-  <block id="251fa3a6289ecafe7b95d67056605968" category="list-text"><block ref="251fa3a6289ecafe7b95d67056605968" category="inline-link-macro-rx"></block></block>
   <block id="9db419369e9211f992a02b77873b9294" category="inline-link-macro">プール 0 ドライブの手動割り当て（ ONTAP 9.4 以降）</block>
   <block id="d93785c679dd9ecbbe55df9329146a8d" category="list-text">保守モードから問題 the halt コマンドを実行して保守モードを終了し、 boot_ontap コマンドを問題してシステムをブートしてクラスタセットアップを開始します。</block>
   <block id="ccaa4e34c729aaba9db9c5a44c41381f" category="paragraph">このとき、クラスタウィザードやノードウィザードを実行しないでください。</block>
@@ -4442,7 +4437,6 @@
   <block id="a63e8da5ab0d323dfa2d8c1590db4fed" category="paragraph">ONTAP のバージョンに応じて、システム SVM やデータ SVM ではなく、ノード SVM に BGP ピアリング LIF を設定する必要があります。9.8 では、 BGP LIF がクラスタ（システム） SVM 内で認識され、ノード SVM が存在しなくなります。</block>
   <block id="d82838a19649e1da12902c98b4ee5149" category="paragraph">各データ SVM には、 LIF の移行や MetroCluster のフェイルオーバーが発生したときにリターンデータパスを使用できるように、考えられるすべてのファーストホップゲートウェイアドレス（通常は BGP ルータピアリングの IP アドレス）を設定する必要があります。</block>
   <block id="5f88fc6eb6dcc7e2d28378195f6e0208" category="paragraph">BGP LIF はクラスタ間 LIF と同様にノード固有で、各ノードは一意の設定を持ちます。 DR サイトのノードにレプリケートする必要はありません。</block>
-  <block id="e3bb1ae61b6d4dc1b02fdb23cab46189" category="paragraph">v0a （ v0b など）が設定されており、 LIF の移行またはフェイルオーバーが成功するように接続を継続的に検証します（停止後にのみ構成の破損が表示される L2 とは異なります）。</block>
   <block id="b9654173e237320a0dc69e69fd436e4f" category="paragraph">アーキテクチャに大きな違いは、クライアントがデータ SVM の VIP と同じ IP サブネットを共有しなくなることです。適切なエンタープライズクラスの復元力と冗長性機能（たとえば、 VRRP/HSRP ）をイネーブルにした L3 ルータは、 VIP が正しく動作するために、ストレージとクライアント間のパス上に配置する必要があります。</block>
   <block id="298fef8c148afa4bfa7475e494967b57" category="paragraph">BGP の信頼性の高い更新プロセスにより、 LIF の移行がわずかに高速化され、一部のクライアントの中断が少なくなるため、円滑な移行が可能になります</block>
   <block id="53c5da85c9b955107fabdb0323fc0619" category="paragraph">ネットワークまたはスイッチの一部の動作を LACP よりも高速に検出するように BGP を設定できます（設定されている場合）。</block>
@@ -6698,7 +6692,6 @@
   <block id="86983ba76f02422a54a19be9cff0fcaa" category="inline-xref-macro">MetroCluster IP 構成に関する考慮事項</block>
   <block id="671efdba76635acb6680428e6178d845" category="image-alt">MCC IP ハードウェアアーキテクチャでクラスタピアリングネットワークを構築</block>
   <block id="dc4f0f08d29c6f89700794f3a34384f2" category="paragraph"><block ref="dc4f0f08d29c6f89700794f3a34384f2" category="inline-link-macro-rx"></block></block>
-  <block id="23b070f17dffe8e66479102b1681ffad" category="doc">MetroCluster 設定で仮想 IP およびボーダーゲートウェイプロトコルを使用する</block>
   <block id="31c38f64e60770065e856442e98e7930" category="section-title">ONTAP の制限事項</block>
   <block id="d1a4fac9e86db09ae269d00dbc37e4d4" category="section-title">このレイヤ 3 解決策を MetroCluster 設定で使用する場合の注意事項</block>
   <block id="426935cb277802e33f3b6af9b3badb1a" category="summary">クラスタインターコネクトおよびバックエンド MetroCluster IP 接続用に Cisco IP スイッチを設定する必要があります。</block>
@@ -9215,8 +9208,6 @@
   <block id="ad9ebc2907a38b9af9ba1c13b826403a" category="paragraph">「 vserver config override 」コマンド内で「 network interface modify 」コマンドを入力する場合、 Tab autoccomplete 機能は使用できません。autoccomplete を使用して「 network interface modify 」を作成し、「 vserver config override 」コマンドで囲むことができます。</block>
   <block id="ac95cad470acdacec0fa69881c030cfb" category="list-text">同じ手順を繰り返して、 cluster_A のノードをアップグレードします <block ref="355740dbae62093c04ee9cfd151fed4a" category="inline-link-macro-rx"></block>。</block>
   <block id="4852598a3e684943b3bfcba06307b21d" category="list-text">次のセクションを使用して、 MetroCluster IP ノードを設定します。</block>
-  <block id="87389a8ef852aa6f8fecae947cf8fd86" category="list-text"><block ref="87389a8ef852aa6f8fecae947cf8fd86" category="inline-link-macro-rx"></block></block>
-  <block id="42aa3219583515464abe8c61ef6c61d3" category="list-text"><block ref="42aa3219583515464abe8c61ef6c61d3" category="inline-link-macro-rx"></block></block>
   <block id="1356b65b4f6b8c9d44f63f1a27688ae1" category="list-text">既存の設定を消去します。「 write erase 」</block>
   <block id="367b53240482fbcdbee9063ed854bf15" category="list-text">スイッチソフトウェアをリロードします</block>
   <block id="e0bfe71bd782e6d91af553d237abef6d" category="paragraph">システムがリブートし、設定ウィザードが表示されます。起動中に、 Abort Auto Provisioning （自動プロビジョニングの中止）というプロンプトが表示され、通常のセットアップを続行する場合（ yes/no ） [n] 、「 yes 」と入力して続行します。</block>
@@ -10813,7 +10804,6 @@
   <block id="8bcabb3e778663882c95082b775c75b8" category="summary">ONTAP 9.4 以降の MetroCluster IP 構成では、 ADP （アドバンストドライブパーティショニング）を使用した AFF システムの新規設置がサポートされます。</block>
   <block id="b8f6677db24add5f2af4be56aa22ea68" category="list-text">ONTAP 9.5 以降では、 FAS システムへの MetroCluster IP の新規インストールがサポートされます。</block>
   <block id="04be3a6c5ee416a84b497452ccd41ffd" category="list-text">ONTAP 9.4 以降では、 ADP 用に設定されたコントローラモジュールがサポートされます。</block>
-  <block id="c94a009c5a39824e241500e9f7d49cad" category="summary">ONTAP 9.5 以降では、 ONTAP で仮想 IP （ VIP ）と Border Gateway Protocol （ BGP ）を使用してレイヤ 3 接続がサポートされます。</block>
   <block id="7dec0067013edb1b7d2d18b5bc21f4a8" category="paragraph">ONTAP 9.5 以降では、 ONTAP で仮想 IP （ VIP ）と Border Gateway Protocol （ BGP ）を使用してレイヤ 3 接続がサポートされます。VIP と BGP を組み合わせることで、フロントエンドネットワークでの冗長性とバックエンド MetroCluster の冗長性が確保され、レイヤ 3 ディザスタリカバリ解決策が実現します。</block>
   <block id="9bdf1ed180b1b862f7cea11085897aca" category="paragraph">○（ ONTAP 9.4 以降）</block>
   <block id="a27983e963a18385eebdc3381062e49b" category="paragraph">○（ ONTAP 9.8 以降）</block>
@@ -10987,7 +10977,6 @@
   <block id="943a908bae2e5cad97a1e4ca8bc9285c" category="paragraph">'aggregate online_plex name_`</block>
   <block id="5cf4f09c879b5351ee5ea2aa9136f228" category="paragraph">'aggregate status -r &lt; アグリゲート名 &gt;`</block>
   <block id="41d3daf78b9924040f76f4e2cb27a68d" category="admonition">ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' に置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします</block>
-  <block id="a0c9a11807b32c8820a3f0a43340ed14" category="list-text">新しいスイッチを無効にします。</block>
   <block id="189dcabe783d4f7f34d39c30c43d1896" category="paragraph">advanced モードで続けるかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプトが表示されます（ * &gt; ）。</block>
   <block id="2b114f6498e5132b0cbcc04ccda11d53" category="list-text">MetroCluster のインストールと設定の手順に記載されているすべての要件とケーブル接続を満たしている必要があります。</block>
   <block id="80a501c7c310f786642caeb4ba98a43d" category="paragraph">特定された LIF は、の手順 1 に移動する必要があります <block ref="f19930c3c7cb7f705cf91593411955ab" category="inline-link-macro-rx"></block>。</block>
@@ -14030,7 +14019,6 @@
   <block id="753303bac17f77fab4f01ca22a7ff80e" category="list-text">MDV_CRSボリュームをadvanced権限モードで移動します。</block>
   <block id="4e934a5efc9ac0d78daef92737cd79bf" category="paragraph">4ノードMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループに移動する必要があります。</block>
   <block id="dbe62ccc612e92f8dc68e42a4661fecb" category="paragraph">コントローラモジュールとシャーシのHA状態が正しくない場合は、ノードを再初期化しないとMetroClusterを設定できません。この手順を使用して設定を修正し、次のいずれかの手順を使用してシステムを初期化する必要があります。</block>
-  <block id="a86b0de4e0b4c477962412e4fb878fa1" category="list-text">MetroCluster IP構成では、の手順に従います<block ref="46904e83320ab310261c288a6a607871" category="inline-link-macro-rx"></block>。</block>
   <block id="73fa02989b9da1f069817272869a683b" category="inline-link-macro">システムをデフォルトに戻し、コントローラモジュールでHBAタイプを設定する</block>
   <block id="20e47a9aa4ad4f6197046707d54204fc" category="list-text">MetroCluster FC構成では、の手順に従います<block ref="61b5232c30227f4608eee40560fc97c5" category="inline-link-macro-rx"></block>。</block>
   <block id="db298781944827895a870278a91cf51d" category="paragraph">システムがメンテナンスモードであることを確認します。</block>
@@ -14044,4 +14032,9 @@
   <block id="84afb0fe12dfc2a5fa1e2e978393b33c" category="paragraph">ストレージシステムをMetroCluster FC構成で構成する場合は、コントローラモジュールおよびシャーシのコンポーネントのハイアベイラビリティ（HA）状態がmccまたはmcc-2nであることを確認して、これらのコンポーネントが適切にブートするようにする必要があります。工場出荷状態のシステムではこの値を事前に設定しておく必要がありますが、作業を進める前に設定を確認しておく必要があります。</block>
   <block id="cbc29e9b371b7013e6625c2fa3c7ec20" category="paragraph">MetroCluster IP構成では、コントローラとシャーシのコンポーネントのha-configの状態が「mccip」に設定され、適切にブートされるようにする必要があります。工場出荷状態のシステムではこの値を事前に設定しておく必要がありますが、作業を進める前に設定を確認しておく必要があります。</block>
   <block id="b6eb7f38a057c8f63ffc29f23e6be071" category="sidebar">8ノオトコウセイノコウセイホウホウ</block>
+  <block id="37887b7927053bae8056fe215242ac04" category="list-text">MetroCluster IP構成では、の手順に従います<block ref="e39e92837d61810422f20d9c0acf650b" category="inline-link-macro-rx"></block>。</block>
+  <block id="654458233d1a8772886f997ae2b46c7c" category="paragraph">v0a（v0bなど）が存在することで接続が継続的に検証され、LIFの移行やフェイルオーバーが正常に実行されます（L2では、破損した構成がシステム停止後にしか認識されません）。</block>
+  <block id="705abb444ac66e0442a9ae4646471061" category="list-text">両方のスイッチで次のコマンドを実行して、新しいスイッチを無効にします。</block>
+  <block id="f67761c61087dd0914ed518ef2c5f8e3" category="list-text">次のいずれかの手順を使用してBrocade FCスイッチを設定します。</block>
+  <block id="4aa62d2d0cdae8fdaf47d41d558bac24" category="list-text"><block ref="4aa62d2d0cdae8fdaf47d41d558bac24" category="inline-link-macro-rx"></block></block>
 </blocks>
