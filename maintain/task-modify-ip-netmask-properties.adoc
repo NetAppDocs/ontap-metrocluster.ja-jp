@@ -1,7 +1,7 @@
 ---
 permalink: maintain/task-modify-ip-netmask-properties.html 
 sidebar: sidebar 
-keywords: vlan, ip, gateway,netmask, address, network, interface, subnet 
+keywords: vlan, ip, gateway,netmask, address, network, interface, subnet,metrocluster, layer 3, edit, net mask, configuration, configure,cli, system, manager 
 summary: MetroCluster IP インターフェイス、 IP アドレスとマスク、およびゲートウェイの次のプロパティを変更できます。パラメータは任意に組み合わせて更新できます。 
 ---
 = MetroCluster IPインターフェイスのプロパティの変更
@@ -15,21 +15,35 @@ ONTAP 9.10.1 以降では、 MetroCluster IP インターフェイスの IP ア�
 
 これらのプロパティを更新する必要がある場合があります。たとえば、 IP アドレスが重複して検出された場合や、ルータの設定変更によってレイヤ 3 ネットワークでゲートウェイを変更する必要がある場合などです。
 
+
+
+== IP アドレス、ネットマスク、およびゲートウェイを変更します
+
+実行する手順は、ONTAP System ManagerとCLIのどちらを使用しているかによって異なります。
+
+[role="tabbed-block"]
+====
+.System Manager
+--
+System Managerを使用して、IPアドレス、ネットマスク、およびゲートウェイのプロパティを変更します。
+
+.ステップ
+各ノードおよびインターフェイスのIPアドレス、ネットマスク、およびゲートウェイを更新します。
+
+--
+.CLI
+--
+CLIを使用して、IPアドレス、ネットマスク、およびゲートウェイのプロパティを変更します。
+
 .このタスクについて
 * 一度に変更できるインターフェイスは 1 つだけです。他のインターフェイスが更新されて接続が再確立されるまで、そのインターフェイス上のトラフィックは中断されます。
 * MetroCluster IP インターフェイス・プロパティを変更するには 'CLI MetroCluster configurion-settings interface modify' コマンドを使用します
 +
 
-NOTE: これらのコマンドは、特定のポートの特定のノードの設定を変更します。ネットワーク接続全体をリストアするには、他のポートでも同様のコマンドを実行する必要があります。同様に、ネットワークスイッチも構成を更新する必要があります。たとえば、ゲートウェイが更新されている場合は、 HA ペアの両方のノードが同じであるため変更することを推奨します。さらに、それらのノードに接続されたスイッチでも、ゲートウェイを更新する必要があります。
+NOTE: これらのコマンドは、特定のノードの特定のポートの設定を変更します。ネットワーク接続を完全に復元するには、他のポートでも同様のコマンドが必要です。同様に、ネットワークスイッチも設定を更新する必要があります。たとえば、ゲートウェイが更新された場合、HAペアの両方のノードで同じであるため、ゲートウェイを変更するのが理想的です。これらのノードに接続されているスイッチも、ゲートウェイを更新する必要があります。
 
 * 、、およびの各コマンドを使用して `metrocluster configuration-settings interface show` `metrocluster connection check` `metrocluster connection show` 、すべてのインターフェイスですべての接続が機能していることを確認します。
 
-
-
-
-== IP アドレス、ネットマスク、およびゲートウェイを変更します
-
-MetroCluster IPインターフェイスのIPアドレス、ネットマスク、およびゲートウェイを変更するには、次の手順を実行します。
 
 .手順
 . 単一のノードとインターフェイスの IP アドレス ' ネットマスク ' およびゲートウェイを更新します MetroCluster の設定 - インターフェイスの変更
@@ -133,3 +147,6 @@ Group Cluster Node    Network Address Network Address Partner Type Config State
                       192.168.20.100  192.168.21.250  DR Auxiliary completed
 ----
 
+
+--
+====

@@ -1,0 +1,128 @@
+---
+permalink: maintain/verify-health-mcc-config.html 
+sidebar: sidebar 
+keywords: metrocluster, ip, fc, verify, health, troubleshoot, cli, system manager, error, event, problem, maintenance, fix, correction, check 
+summary: MetroClusterコンポーネントが正常であることを確認する方法について説明します。 
+---
+= MetroCluster構成の健全性の確認
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroClusterコンポーネントが正常であることを確認する方法について説明します。
+
+.このタスクについて
+* MetroCluster IP構成およびFC構成では、CLIを使用して健全性チェックコマンドを実行し、MetroClusterコンポーネントの状態を確認できます。
+* ONTAP 9 .8以降を実行するMetroCluster IP構成では、ONTAP System Managerを使用して健全性チェックアラートの監視とトラブルシューティングを行うこともできます。
+
+
+.手順
+CLIとSystem Managerのどちらを使用しているかに応じて、MetroCluster構成の健全性を確認します。
+
+[role="tabbed-block"]
+====
+.CLI
+--
+CLIを使用してMetroCluster構成の健全性を確認するには、次の手順を実行します。
+
+.手順
+. MetroCluster コンポーネントが正常であることを確認します。
++
+[source, cli]
+----
+metrocluster check run
+----
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+----
++
+この処理はバックグラウンドで実行されます。
+
+. 処理が完了したら、 `metrocluster check run`結果を表示します。
++
+[source, cli]
+----
+metrocluster check show
+----
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+cluster_A:::*> metrocluster check show
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+clusters            ok
+connections         not-applicable
+volumes             ok
+7 entries were displayed.
+----
+. 実行中の MetroCluster チェック処理のステータスを確認します。
++
+[source, cli]
+----
+metrocluster operation history show -job-id <id>
+----
+. ヘルスアラートがないことを確認します。
++
+[source, cli]
+----
+system health alert show
+----
+
+
+--
+.ONTAPシステムマネージャ（MetroCluster IPのみ）
+--
+ONTAP 9 .8以降では、System ManagerによってMetroCluster IP構成の健常性が監視され、発生する可能性のある問題を特定して修正できます。
+
+System Managerは、MetroCluster IP構成の健全性を定期的にチェックします。ダッシュボードのMetroClusterセクションを表示すると、通常は「MetroCluster systems are healthy」というメッセージが表示されます。
+
+ただし、問題が発生すると、イベントの数がメッセージに表示されます。このメッセージをクリックすると、次のコンポーネントの健全性チェックの結果を確認できます。
+
+* ノード
+* ネットワークインターフェイス
+* ティア（ストレージ）
+* クラスタ
+* 接続
+* ボリューム
+* 設定のレプリケーション
+
+
+[ ステータス * ] 列は問題のあるコンポーネントを示し、 [ 詳細 * ] 列は問題の解決方法を示します。
+
+.手順
+. System Manager で、 * Dashboard * を選択します。
+. 「* MetroCluster *」セクションのメッセージを表示します。
++
+.. メッセージにMetroCluster構成が正常であり、クラスタとONTAPメディエーターの間の接続（チェックマークが表示されている）が正常であることが示されていれば、問題は解決しません。
+.. メッセージにイベント数が表示されている場合、または接続がダウンしている場合（「X」が表示されている場合）は、次の手順に進みます。
+
+
+. イベント数を示すメッセージをクリックします。
++
+MetroCluster健全性レポートが表示されます。
+
+. レポートに表示される問題のトラブルシューティングを、 *Details* 列の推奨事項を使用して行います。
+. すべての問題を修正したら、 * MetroCluster の正常性を確認 * をクリックします。
++
+
+NOTE: MetroClusterヘルスチェックは大量のリソースを使用するため、チェックを実行する前にすべてのトラブルシューティングタスクを実行する必要があります。
+
++
+MetroCluster健全性チェックはバックグラウンドで実行されます。タスクが完了するまで待つ間に、他のタスクを処理することができます。
+
+
+
+--
+====

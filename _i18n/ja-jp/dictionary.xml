@@ -8762,7 +8762,6 @@
   <block id="fb936fa23d866b3d364f6eb5c606725a" category="list-text">MetroCluster 構成への新しい ONTAP メディエーター接続を確立します。</block>
   <block id="2df82e698bfc14af74dd0684edfa8af0" category="paragraph">MetroCluster の構成設定メディエーターの追加メディエーターのアドレス IP-addressof mediator-host`</block>
   <block id="1645e08f0bfdf72de9dd9cf2ec8208de" category="admonition">メディエーターの admin ユーザアカウントのユーザ名とパスワードを入力するように求められます。</block>
-  <block id="80e98c813fb4e1db7539339fdcc19d00" category="list-text">自動スイッチオーバー機能が有効になっていることを確認します。</block>
   <block id="241c04bf46a427ee9559a37db9cfc64c" category="list-text">メディエーターの仮想ディスクを表示します。</block>
   <block id="549e9ae28a978e7598586f13c962b013" category="paragraph">「 storage disk show -container-type mediator 」のように表示されます</block>
   <block id="e0a63c2d875daa748729bbc9b043b578" category="list-text">権限モードを advanced に設定します。</block>
@@ -9414,7 +9413,6 @@
   <block id="d7fffb0ac95f2fd216c5e3fd04365cca" category="paragraph">これらのプロパティを更新する必要がある場合があります。たとえば、 IP アドレスが重複して検出された場合や、ルータの設定変更によってレイヤ 3 ネットワークでゲートウェイを変更する必要がある場合などです。</block>
   <block id="383d9b07e1ef0cfcfa9ec36fecccfe02" category="paragraph">一度に変更できるインターフェイスは 1 つだけです。他のインターフェイスが更新されて接続が再確立されるまで、そのインターフェイス上のトラフィックは中断されます。</block>
   <block id="8450a359c3efc774857fe0f3189456e0" category="paragraph">MetroCluster IP インターフェイス・プロパティを変更するには 'CLI MetroCluster configurion-settings interface modify' コマンドを使用します</block>
-  <block id="6a644f6158922e284b18d4232a152b9f" category="admonition">これらのコマンドは、特定のポートの特定のノードの設定を変更します。ネットワーク接続全体をリストアするには、他のポートでも同様のコマンドを実行する必要があります。同様に、ネットワークスイッチも構成を更新する必要があります。たとえば、ゲートウェイが更新されている場合は、 HA ペアの両方のノードが同じであるため変更することを推奨します。さらに、それらのノードに接続されたスイッチでも、ゲートウェイを更新する必要があります。</block>
   <block id="700215bf58e5cc6edce60155aeb7c44a" category="section-title">IP アドレス、ネットマスク、およびゲートウェイを変更します</block>
   <block id="2747f7ff86cce509295bfb4ba2b1c4fa" category="list-text">単一のノードとインターフェイスの IP アドレス ' ネットマスク ' およびゲートウェイを更新します MetroCluster の設定 - インターフェイスの変更</block>
   <block id="2f545dcb650b5848061814c5ce3b4cf4" category="paragraph">次のコマンドは、 IP アドレス、ネットマスク、およびゲートウェイを更新する方法を示しています。</block>
@@ -12393,10 +12391,8 @@
   <block id="a7f55356cc47030db5528f30a58edfb2" category="list-text">Tiebreakerソフトウェアをインストールまたはアップグレードします。</block>
   <block id="aad71198aa2c8b35c39182535fa9f425" category="paragraph">Tiebreaker 1.6を新規にインストールする場合は、次の手順を実行します。</block>
   <block id="73bcbbea382be16f93642da3ea4e23a7" category="list-text">で次のコマンドを実行します。<block ref="e9af9a0ef1d120bf3a16357375ed6d36" prefix=" " category="inline-code"></block> インストールを開始するようにプロンプトを表示します。</block>
-  <block id="30c295d71ca99219187fc6466ee21568" category="open-title">Tiebreaker 1.5から1.6へのアップグレード</block>
   <block id="8be93a7c27b9b66803ef47f46f3d4a36" category="paragraph">Tiebreaker 1.5ソフトウェアのバージョンをTiebreaker 1.6にアップグレードするには、次の手順を実行します。</block>
   <block id="b9a8b4d6a676fac167bcd49bac74376b" category="list-text">で次のコマンドを実行します。<block ref="e9af9a0ef1d120bf3a16357375ed6d36" prefix=" " category="inline-code"></block> ソフトウェアのアップグレードを求めるプロンプトを表示します。</block>
-  <block id="cf316c5c67469aab7dcc16eed2309753" category="open-title">Tiebreaker 1.4から1.6へのアップグレード</block>
   <block id="b6afd444ae977b739cc436bd2a8b5c0b" category="paragraph">Tiebreaker 1.4ソフトウェアのバージョンをTiebreaker 1.6にアップグレードするには、次の手順に従います。</block>
   <block id="67449e50a32d34759e501e37496d3308" category="doc">Tiebreakerのインストールワークフロー</block>
   <block id="a6812db2442ae325a9ccd39373bbd9dd" category="paragraph-title">このワークフローについて</block>
@@ -12419,7 +12415,6 @@
   <block id="4a558332080902b1daf6c9eb900f075a" category="summary">Tiebreakerのインストール手順は、インストールするTiebreakerのバージョンによって異なります。</block>
   <block id="686cbe9ae98dac9e3c34fe747bedda27" category="doc">インストール手順の選択</block>
   <block id="de537937e28d6ff9bfed73c24f238620" category="paragraph">Tiebreaker 1.6</block>
-  <block id="3d0eb4e198ae6fd77a45e8e5eeab8df8" category="paragraph"><block ref="3d0eb4e198ae6fd77a45e8e5eeab8df8" category="inline-link-macro-rx"></block></block>
   <block id="92c6c9c27fa6ff626915d050a03cd801" category="doc">Tiebreakerモニタが実行されているホストをアップグレードする</block>
   <block id="bb6cdee210874ecf03d44e914a8ca0e2" category="paragraph">Tiebreakerモニタを実行しているホストのアップグレードが必要になる場合があります。</block>
   <block id="5d7ada76e0c335aff8880d70d7058de7" category="list-text">Tiebreakerソフトウェアをアンインストールします。</block>
@@ -12430,7 +12425,6 @@
   <block id="be7c560a571a01eeb644e3be4ae88e59" category="list-text">インストールの容易さの向上</block>
   <block id="6106648cc4773cdde37c48ca810022c0" category="cell">Red Hat 7-7.9</block>
   <block id="7d04b9af5dfbfc78c7040183f68afdc4" category="cell">Red Hat 8.1-8.7</block>
-  <block id="33ef1f5aa9b12ecd01c340c91d8f9150" category="cell">Red Hat 8.8-9.2</block>
   <block id="003d136e5089a4f9ae0f1df3f6fc37fa" category="cell">Rocky Linux 9.0</block>
   <block id="9d0101bb262cf2b07ff8dcfa1f6cf004" category="list-text">管理者パスワードと、HTTP、FTP、SFTP、またはTrivial File Transfer Protocol（TFTP）サーバへのアクセスが必要です。</block>
   <block id="c422062a1c7b3d9ed9b2282378699dc7" category="paragraph"><block ref="c422062a1c7b3d9ed9b2282378699dc7" category="inline-link-macro-rx"></block></block>
@@ -13778,7 +13772,6 @@
   <block id="b0e1fb1b9093a23db84f9fe9ec414a05" category="paragraph">MetroCluster IP構成の各スイッチにRCFファイルを生成してインストールする必要があります。</block>
   <block id="5f6300d6cef757d6670c2170d0ee50fb" category="list-text">MetroCluster IP用のCisco RCFファイルを生成します。</block>
   <block id="f0af72ee7b95606742238881f6d3d746" category="list-text">、、およびの各コマンドを使用して<block ref="0dea99cd92a8ce54e8bf65bd553a3e89" prefix=" " category="inline-code"></block><block ref="05f7f2ea3536c78a494ee9ec91b6fef9" prefix=" " category="inline-code"></block><block ref="1fb1e9c05efc96eb745333b035ce6d59" prefix=" " category="inline-code"></block> 、すべてのインターフェイスですべての接続が機能していることを確認します。</block>
-  <block id="696ca372052e4e85401e9ef266b57375" category="paragraph">MetroCluster IPインターフェイスのIPアドレス、ネットマスク、およびゲートウェイを変更するには、次の手順を実行します。</block>
   <block id="164748ab1cab79cb53ebb8d067fb41df" category="paragraph"><block ref="3b73cc9aa0167fa80aa8a786a4871e88" prefix="" category="inline-code"></block></block>
   <block id="8c8de216c09126479bba8f0a636ceac7" category="paragraph"><block ref="34b1158d44c89ca8031563bdf424ba84" prefix="" category="inline-code"></block></block>
   <block id="711aa9967b438e020ee72c9773739e5d" category="paragraph"><block ref="c7462aa9b4e3acfeadac46864ab81636" prefix="" category="inline-code"></block></block>
@@ -14037,4 +14030,243 @@
   <block id="705abb444ac66e0442a9ae4646471061" category="list-text">両方のスイッチで次のコマンドを実行して、新しいスイッチを無効にします。</block>
   <block id="f67761c61087dd0914ed518ef2c5f8e3" category="list-text">次のいずれかの手順を使用してBrocade FCスイッチを設定します。</block>
   <block id="4aa62d2d0cdae8fdaf47d41d558bac24" category="list-text"><block ref="4aa62d2d0cdae8fdaf47d41d558bac24" category="inline-link-macro-rx"></block></block>
+  <block id="bfa00e3106960b2480f83fadff713a4f" category="paragraph">1.6P1</block>
+  <block id="6bfcd5ea08a80cd94155fdf88dcf6123" category="paragraph">次の表に、Tiebreakerの各バージョンでサポートされるオペレーティングシステムを示します。</block>
+  <block id="1b768ce691e5eb1aa740065a1f672bfa" category="cell">TiebreakerノOS</block>
+  <block id="540490e777cd8d6d9e7c6fc96ae66c78" category="paragraph">Rocky Linux 9.4</block>
+  <block id="5462f235f897a01fa661bab622beabc8" category="paragraph">Rocky Linux 8.10</block>
+  <block id="a19c888b1dfc0d7cae495bcb3d337fc0" category="paragraph">Red Hat 9.4</block>
+  <block id="3e6f4ea6825b1c15c5caa424f32e8e56" category="paragraph">Red Hat 9.3</block>
+  <block id="990892a05d2ae7871bb10520e7d92e70" category="paragraph">Red Hat 9.2</block>
+  <block id="b846d756ce474e84306c1784e17929a2" category="paragraph">Red Hat 9.1</block>
+  <block id="a9a9af4fc514b12a09fbdb4e9dc69b3e" category="paragraph">Red Hat 9.0</block>
+  <block id="7f1240813348dba5070feb8fcbcd1ef6" category="paragraph">Red Hat 8.11-9.0</block>
+  <block id="dfb323b8bbf2e9913deb2acdece0c7f4" category="paragraph">Red Hat 8.10</block>
+  <block id="df0cfaadf30e71fdaa61f84b52c44994" category="paragraph">Red Hat 8.9</block>
+  <block id="04dca81afefd0df779a73a7d71167788" category="paragraph">Red Hat 8.8</block>
+  <block id="38a72bda83bf45017fe822ff4eba9612" category="summary">ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。これには、2つのクラスタのセットアップ、ピアリング、および設定が含まれます。</block>
+  <block id="36f25b89c535d52dd7602dc98235602e" category="doc">MetroCluster IPサイトの設定</block>
+  <block id="28899ffbbfaa5ea10173ff0ea7d1a3c4" category="paragraph">ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。この作業には、2つのクラスタのセットアップ、クラスタピアリングの実行、およびクラスタの設定が含まれます。</block>
+  <block id="ab5b4f0eeffd1a9db4154301438d854e" category="paragraph">次の手順を実行します。</block>
+  <block id="db2d063a7c49bffea6360ca914ed7b80" category="inline-link-macro">MetroCluster IPサイトのセットアップ</block>
+  <block id="6752a5e24c893d34589e26378fa69a36" category="list-text"><block ref="6752a5e24c893d34589e26378fa69a36" category="inline-link-macro-rx"></block></block>
+  <block id="666700b42fe1d56ec812d1016bf00474" category="inline-link-macro">MetroCluster IPピアリングをセットアップする</block>
+  <block id="432b1852c060822f86f6a936e2d5a657" category="list-text"><block ref="432b1852c060822f86f6a936e2d5a657" category="inline-link-macro-rx"></block></block>
+  <block id="11de751fc3a61ece2c4369c7f228d262" category="section-title">クラスタ間の接続を設定</block>
+  <block id="4f98dcf943b7a3cd7ed4f88ca8839b1b" category="list-text">いずれかのサイトで System Manager にログインし、 * Dashboard * を選択します。</block>
+  <block id="d3ab8079aafa01dd2443858e1958cde3" category="paragraph">「 * MetroCluster * 」セクションの図は、 MetroCluster サイト用にセットアップしてピアリングした 2 つのクラスタを示しています。作業中のクラスタ（ローカルクラスタ）が左側に表示されます。</block>
+  <block id="4dbd519ea68e9fdd1535b92dd4afd5fb" category="list-text">MetroCluster の設定 * をクリックします。このウィンドウで、次の手順を実行します。</block>
+  <block id="1786426d5d80efd6c5165d556166c28b" category="list-text">MetroCluster構成の各クラスタのノードが表示されています。ドロップダウンリストを使用して、リモートクラスタのノードとディザスタリカバリパートナーとなるローカルクラスタ内のノードを選択します。</block>
+  <block id="5b4f1da4fd53e0370a93b132cee09135" category="inline-link-macro">ONTAPメディエーターサービスの設定</block>
+  <block id="79929ab5271f1ea472573389b4d83491" category="list-text">ONTAPメディエーターサービスを設定する場合は、チェックボックスをクリックします。を参照して <block ref="5f1311c68626dc6800182a56591c319d" category="inline-link-macro-rx"></block></block>
+  <block id="2e04b49bb4e33ec691ac2f426d41203d" category="list-text">両方のクラスタに暗号化を有効にするライセンスがある場合は、 * Encryption * セクションが表示されます。</block>
+  <block id="12d02fba21726eafac4f9ce09b0d1801" category="paragraph">暗号化を有効にするには、パスフレーズを入力します。</block>
+  <block id="39391d3e9d1021130d7922046a90931b" category="list-text">MetroClusterを共有レイヤ3ネットワークで設定する場合は、このチェックボックスをオンにします。</block>
+  <block id="efe042b7cd567da6e7a1991e57562f95" category="admonition">ノードに接続するHAパートナーノードとネットワークスイッチの構成が一致している必要があります。</block>
+  <block id="3ff0da84e96e24c0f2119aa4d9252fc8" category="list-text">保存 * をクリックして、 MetroCluster サイトを設定します。</block>
+  <block id="a84590effe20f7cfc7a37800f946342b" category="paragraph">ダッシュボード * の * MetroCluster * セクションでは、 2 つのクラスタ間のリンクにチェックマークが表示され、正常な接続を示しています。</block>
+  <block id="0a2cb077aceb828b74111b3c72d0875f" category="summary">ONTAP 9 8以降では、MetroCluster IPサイトの処理をSystem Managerで管理できます。この作業には、2つのクラスタをセットアップし、クラスタピアリングを実行する必要があります。</block>
+  <block id="2fecebbfac11150535911d877966c9e3" category="paragraph">ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。2つのクラスタをセットアップしたら、クラスタ間のピアリングをセットアップします。</block>
+  <block id="8301378659a3e958b3ed8bee628d4fed" category="paragraph">2つのクラスタをセットアップする。手順を参照してください<block ref="6752a5e24c893d34589e26378fa69a36" category="inline-link-macro-rx"></block>。</block>
+  <block id="fd52b08a1d5c4aa668d8747cad70b430" category="paragraph">このプロセスの一部の手順は、各クラスタの地理的なサイトに配置された異なるシステム管理者によって実行されます。このプロセスを説明するために、クラスタを「サイトAクラスタ」および「サイトBクラスタ」と呼びます。</block>
+  <block id="800f6bec4d7bccca8986aece418ad1de" category="section-title">サイトAからピアリングプロセスを実行</block>
+  <block id="91e08e596d03b4598a0cb6e18b3b7323" category="paragraph">このプロセスは、サイトAのシステム管理者が実行します。</block>
+  <block id="1b22a2a59202338d982fba5bbb33fa30" category="list-text">サイトAのクラスタにログインします。</block>
+  <block id="37d02710ca9beb5be0727430fb2162b8" category="list-text">System Manager で、左側のナビゲーション列から「 * Dashboard * 」を選択してクラスタの概要を表示します。</block>
+  <block id="400cef5b08c0727ecc8dc2c820f4cc03" category="paragraph">ダッシュボードには、このクラスタ（サイトA）の詳細が表示されます。「 * MetroCluster * 」セクションの左側には、サイト A のクラスタが表示されています。</block>
+  <block id="6107d832d713643417cdcb1247850b8d" category="list-text">[Attach Partner Cluster] をクリックします。</block>
+  <block id="1ad364a11b40005802e1f84d90d041cf" category="list-text">サイトAのクラスタのノードとサイトBのクラスタのノードとの通信に使用するネットワークインターフェイスの詳細を入力します。</block>
+  <block id="e2aa96095bb2f8cb065ca1dbb1797062" category="list-text">[ 保存して続行 ] をクリックします。</block>
+  <block id="0fb2a7e128a2eac45533dd8f9ae55f5e" category="list-text">[パートナークラスタの接続]*ウィンドウで、*[パスフレーズがありません]*を選択します。これにより、パスフレーズを生成できます。</block>
+  <block id="c049d3b7f45a9d71a026303b72bd3c89" category="list-text">生成されたパスフレーズをコピーし、サイトBのシステム管理者と共有します。</block>
+  <block id="4a553bf9ebe9a32a6743c78be912cfbc" category="list-text">[ 閉じる（ Close ） ] を選択します。</block>
+  <block id="b05890405a4f635e4f56b65031e75631" category="section-title">サイトBからピアリングプロセスを実行</block>
+  <block id="0b4aea80df80bf888adc9518474f6947" category="paragraph">このプロセスは、サイトBのシステム管理者が実行します。</block>
+  <block id="dd50214e47fa588d26e3c92a3d198338" category="list-text">サイトBのクラスタにログインします。</block>
+  <block id="734cc1d7de8d108a27e917887214636f" category="list-text">System Manager で、 * Dashboard * を選択してクラスタの概要を表示します。</block>
+  <block id="1f10efcab03c53da22ba08cb6bbc8598" category="paragraph">ダッシュボードには、このクラスタ（サイトB）の詳細が表示されます。MetroClusterセクションでは、左側にサイトBのクラスタが表示されています。</block>
+  <block id="b7c19af97bcc09d6c21203f84e692348" category="list-text">[Attach Partner Cluster] をクリックしてピアリングプロセスを開始します。</block>
+  <block id="8ca83d09916f639dd29a3ed4f3b639b4" category="list-text">サイトBのクラスタのノードとサイトAのクラスタのノードとの通信に使用するネットワークインターフェイスの詳細を入力します。</block>
+  <block id="bfee858eb2d3fe3045afebb6acac2a29" category="list-text">[パートナークラスタの接続]*ウィンドウで、*[パスフレーズを使用]*を選択します。これにより、サイトAのシステム管理者から受け取ったパスフレーズを入力できます。</block>
+  <block id="3dada8e82959cb16ca8382065e3028f9" category="list-text">ピア * を選択してピアリングプロセスを完了します。</block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">次の手順</block>
+  <block id="1d5ce8d0636fdf8fd5bc5cb4e8a960df" category="paragraph">ピアリングプロセスが正常に完了したら、クラスタを設定します。を参照して <block ref="f4b8cb4c8ba1cae03984184387785b0f" category="inline-link-macro-rx"></block></block>
+  <block id="6860105c09c16d5d7eaa1e78fed2b5e5" category="summary">ONTAP 9 8以降では、System Managerを使用してMetroCluster IPサイトをセットアップできます。</block>
+  <block id="466f762f177e526457605fb9ac8c08f3" category="paragraph">MetroClusterサイトは2つのクラスタで構成されます。通常、クラスタは地理的に異なる場所に配置されます。</block>
+  <block id="b0d3ebac943d2ae6f9252023ec4372af" category="inline-link">セットアップガイド</block>
+  <block id="ad7d040781ae344cb798e4643b544189" category="list-text">システムに付属のに従って、システムの設置とケーブル接続が完了している必要があります<block ref="fe37fd3178daac666b0ecf82dc69d67e" category="inline-link-rx"></block>。</block>
+  <block id="3521850b1984afef04220756150edd6f" category="list-text">クラスタ内通信用に、各クラスタの各ノードにクラスタネットワークインターフェイスが設定されている必要があります。</block>
+  <block id="333626d7eac89dbbbfc0adb558126fa5" category="section-title">ノード管理IPアドレスを割り当てる</block>
+  <block id="b6aad8c4ffa5342dbf2d86461d5eacd0" category="section-title">Windowsシステム</block>
+  <block id="5239b38f72ba4e5cf31c91f53e96fbed" category="paragraph">Windowsコンピュータをコントローラと同じサブネットに接続する必要があります。これにより、システムにノード管理IPアドレスが自動的に割り当てられます。</block>
+  <block id="3ce0ea9ab77c17a59c6c5bc699f28c5f" category="list-text">Windowsシステムで*[ネットワーク]*ドライブを開き、ノードを検出します。</block>
+  <block id="19695fc87bb0fcfd896be28e7208553d" category="list-text">ノードをダブルクリックしてクラスタセットアップウィザードを起動します。</block>
+  <block id="4df67b430c2c93a881bdfcb608ac9d64" category="section-title">その他のシステム</block>
+  <block id="088e15bd429f3ce14d70d95c30e1e122" category="paragraph">クラスタのいずれかのノードのノード管理IPアドレスを設定する必要があります。そのノード管理IPアドレスを使用してクラスタ セットアップ ウィザードを起動できます。</block>
+  <block id="35993a777fd55e9b8652d85b9bcdb437" category="inline-link-macro">第1ノードでのクラスタの作成</block>
+  <block id="f6d314ce096e8231f7a5bc9785329bcb" category="paragraph">ノード管理IPアドレスの割り当てについては、を参照してください<block ref="6a6a97d50b361c85b6a1efd6b8465455" category="inline-link-macro-rx"></block>。</block>
+  <block id="01aefac0a86b676c1949a51d6e866a82" category="section-title">クラスタの初期化と設定</block>
+  <block id="49fad8a8e436dfc1d8668e654044de3c" category="paragraph">クラスタを初期化するには、クラスタの管理パスワードを設定し、クラスタ管理ネットワークとノード管理ネットワークを設定します。また、ホスト名を解決するためのドメインネームサーバ（DNS）や時刻を同期するためのNTPサーバなどのサービスを設定することもできます。</block>
+  <block id="cc1405b96b23f7d6e3c371baa8cee9fd" category="list-text">Webブラウザで、設定したノード管理IPアドレスを入力します。<block ref="c3d870229fd69ece8d3d772339d7351c" category="inline-link-rx"></block></block>
+  <block id="b4ab57535e2494a9072f367bc0cc66ac" category="paragraph">クラスタの残りのノードはSystem Managerで自動的に検出されます。</block>
+  <block id="b32feae1add7ad238c11b701aebd6a4d" category="list-text">Initialize Storage System* （ストレージシステムの初期化）ウィンドウで、次の手順を実行します。</block>
+  <block id="0723981d0cd8540448ade0ad0c2bce4f" category="list-text">クラスタ管理ネットワークの設定データを入力します。</block>
+  <block id="d9e5bca04bba2210fd7133286123d23b" category="list-text">すべてのノードのノード管理IPアドレスを入力します。</block>
+  <block id="89b17fac13461899552af00e761c444f" category="list-text">DNS の詳細を指定します。</block>
+  <block id="f2cf1382fae972d1f657f56bdf1ccd2f" category="list-text">[* その他 * （ * Other * ） ] セクションで、 [ タイムサービス（ NTP ）を使用（ Use time service （ NTP ） * ] というラベルの付いたチェックボックスを選択してタイムサーバを追加します。</block>
+  <block id="d385f8f7be7049af17b707b814da972d" category="paragraph">Submit * をクリックすると、クラスタが作成および構成されるまで待機します。その後、検証プロセスが実行されます。</block>
+  <block id="e66cf0363da426ff5fc40b5dff923ee7" category="paragraph-title">次の手順</block>
+  <block id="fb0527aaad3b8834bb5bd8b9aaac2d14" category="paragraph">両方のクラスタのセットアップ、初期化、および設定が完了したら、[Set up MetroCluster IP peering]の手順を実行します。</block>
+  <block id="5a8cb11351ec1c2ae0f6ece191a675b3" category="section-title">新しいクラスタでのONTAPの設定に関するビデオ</block>
+  <block id="de87e59d2852e752153034440b599942" category="summary">System Managerを使用して、メディエーターを管理するタスクを実行できます。</block>
+  <block id="4a75c782083d91f8442fa0793b7cfbf5" category="doc">System Managerを使用したONTAPメディエーターの管理</block>
+  <block id="a92f4998e6033fa7b4c91230afa4eb31" category="paragraph">System Managerを使用して、ONTAPメディエーターを管理するタスクを実行できます。</block>
+  <block id="58d9a382438a6ccf3362b70996f2217e" category="paragraph-title">タスクについて</block>
+  <block id="06d19fcd882f22629288f03ed5b7cdbf" category="paragraph">ONTAP 9 .8以降では、System Managerを4ノードのMetroCluster IP構成を管理するためのシンプルなインターフェイスとして使用できます。これには、3番目の場所にインストールされたONTAPメディエーターも含まれます。</block>
+  <block id="7cd65d7812b2b9ccfca9369428e81afc" category="paragraph">ONTAP 9 .14.1以降では、System Managerを使用して8ノードMetroCluster IPサイトに対してもこれらの処理を実行できます。System Managerでは8ノードシステムをセットアップまたは拡張することはできませんが、8ノードMetroCluster IPシステムがすでにセットアップされている場合はこれらの処理を実行できます。</block>
+  <block id="cf5d5c60759eb97116f97dba2f94928f" category="paragraph">ONTAPメディエーターを管理するには、次のタスクを実行します。</block>
+  <block id="34c30a40821bf0600cbb66a443eaa256" category="cell">このタスクを実行します。</block>
+  <block id="ed48cbb0bf6ff16f983dee37b0fa56db" category="cell">対処方法</block>
+  <block id="fbdb3c4696d4af3abdd40a7c4d39dff1" category="paragraph">Mediatorサービスの設定</block>
+  <block id="5887ba6bb1083b1733f935c989ce8798" category="paragraph">MetroClusterサイトの両方のクラスタが稼働し、ピア関係が確立されている必要があります。</block>
+  <block id="e41b8f6d50b100db120f723ab2d80b55" category="list-text">ONTAP 9.8 の System Manager で、 * Cluster &gt; Settings * を選択します。</block>
+  <block id="5ad3e303fff11348579be9fa7186a3bf" category="inline-image-macro">アクションアイコン</block>
+  <block id="91137d8840d5756932cbbe95191ebef9" category="list-text">[Mediator]*セクションで、をクリックします<block ref="7d54718dbc3f6ea214f7c0852ad5f778" category="inline-image-macro-rx" type="image"></block>。</block>
+  <block id="08e18262fd4a21acec4d96a4a34ce874" category="list-text">Configure Mediator* （メディエーターの設定）ウィンドウで、 * Add+* （追加 + * ）をクリックします。</block>
+  <block id="7106fd9d66839587984098b5b110af62" category="list-text">ONTAPメディエーターの設定の詳細を入力します。</block>
+  <block id="4454fd0f209c519ab968807065d1d63d" category="paragraph">System ManagerでONTAPメディエーターを設定する際には、次の情報を入力できます。</block>
+  <block id="2396a51918b19da4a570bb6eeefaf733" category="list-text">メディエーターのIPアドレス。</block>
+  <block id="bf3c0dfedfed52264992478ab75c11ab" category="list-text">ユーザ名。</block>
+  <block id="818e503323563216b4a9556e8c414a99" category="list-text">パスワード。</block>
+  <block id="db76a646cbffaec942b46f13ae610cdf" category="paragraph">Mediator-Assisted Automatic Switchover（MAUSO；メディエーターアシスト自動スイッチオーバー）の有効化または無効化</block>
+  <block id="8a9b7c6da233afe1b94f2908370636ae" category="list-text">System Manager で、 * ダッシュボード * をクリックします。</block>
+  <block id="33ba5213ca4a1cf4e94a02d0ba4e50a8" category="list-text">MetroClusterセクションまでスクロールします。</block>
+  <block id="9b5ce2fc82e55a2629051893f8d8d4ff" category="inline-image-macro">メニューアイコン</block>
+  <block id="8048f4b95111b36ae736e0db22032afc" category="list-text">MetroClusterサイト名の横にあるをクリックします <block ref="fc003bdefc684d1fa6047f466b3a4572" category="inline-image-macro-rx" type="image"></block> 。</block>
+  <block id="5451b90704453cd0f976a20853b71515" category="list-text">[有効化]*または*[無効化]*を選択します。</block>
+  <block id="e7d8532df0bf3db8251352a8238be289" category="list-text">管理者のユーザ名とパスワードを入力し、*[有効化]*または*[無効化]*をクリックします。</block>
+  <block id="1f48f2b275c8a8c7c346ee84a099bf8d" category="admonition">Mediatorが到達可能で、両方のサイトが「通常」モードになっていれば、Mediatorを有効または無効にできます。MetroClusterシステムが正常な状態であれば、MAUSOが有効または無効になっていてもメディエーターにアクセスできます。</block>
+  <block id="7f4fa61d4e9b9b925c8fb71469e17d9d" category="paragraph">MetroCluster構成からメディエーターを削除する</block>
+  <block id="90e2fb7737ff30cfb4976eadc47866a4" category="list-text">[メディエーターの削除]*を選択します。</block>
+  <block id="08c3fe5d52a59ab36d7b3b7acab670d1" category="list-text">管理者のユーザ名とパスワードを入力し、*[削除]*をクリックします。</block>
+  <block id="7f4010553b429e7c90d3b1f0da9fa64b" category="paragraph">Mediatorの健全性を確認する</block>
+  <block id="88696f657e6e364490e66c4462936660" category="inline-link-macro">MetroCluster構成の健全性の確認</block>
+  <block id="b01e706bfb46755bbdbe42d170a1b23a" category="paragraph">のSystem Manager固有の手順を実行します<block ref="1dc6f14de17f840d44d583754a4c8527" category="inline-link-macro-rx"></block>。</block>
+  <block id="d643e31d547d643afdddd05a8a4f7112" category="paragraph">スイッチオーバーとスイッチバックの実行</block>
+  <block id="95232b2668851dd7e6d065abeee1ed20" category="inline-link-macro">System Mangerを使用してスイッチオーバーとスイッチバックを実行する（MetroCluster IP構成のみ）</block>
+  <block id="94728a8f449ff84b5ac878653ab4ad67" category="paragraph">の手順を実行します<block ref="5b3a204b8bc535419d3d88f0ef6f3046" category="inline-link-macro-rx"></block>。</block>
+  <block id="a4d7653998b91da503a24fc71e65ad4f" category="list-text">自動スイッチオーバー機能が有効になっていることを確認します。</block>
+  <block id="b03614d885f56be6dafeebbbaa010a5f" category="paragraph">実行する手順は、ONTAP System ManagerとCLIのどちらを使用しているかによって異なります。</block>
+  <block id="26ed02718973e705cd69ee6e109400e0" category="open-title">System Manager</block>
+  <block id="a8f22e0a130b300278ead25d693a43d5" category="paragraph">System Managerを使用して、IPアドレス、ネットマスク、およびゲートウェイのプロパティを変更します。</block>
+  <block id="7cdf282c18fa11c6df4d9d55af90d450" category="paragraph">各ノードおよびインターフェイスのIPアドレス、ネットマスク、およびゲートウェイを更新します。</block>
+  <block id="91af5705f16502125e8b2187e64202c0" category="open-title">CLI</block>
+  <block id="f9a65892b48ad466104ac3eb33403881" category="paragraph">CLIを使用して、IPアドレス、ネットマスク、およびゲートウェイのプロパティを変更します。</block>
+  <block id="0efcd0c9061820674001fdd91f087bf1" category="admonition">これらのコマンドは、特定のノードの特定のポートの設定を変更します。ネットワーク接続を完全に復元するには、他のポートでも同様のコマンドが必要です。同様に、ネットワークスイッチも設定を更新する必要があります。たとえば、ゲートウェイが更新された場合、HAペアの両方のノードで同じであるため、ゲートウェイを変更するのが理想的です。これらのノードに接続されているスイッチも、ゲートウェイを更新する必要があります。</block>
+  <block id="1e7bea8d62062fd522d5f5c2523a3c72" category="summary">MetroClusterコンポーネントが正常であることを確認する方法について説明します。</block>
+  <block id="f505230c63d40beb8fbcb47fba267ed7" category="list-text">MetroCluster IP構成およびFC構成では、CLIを使用して健全性チェックコマンドを実行し、MetroClusterコンポーネントの状態を確認できます。</block>
+  <block id="8b0de0e20dd0b02520681f56e79ebae0" category="list-text">ONTAP 9 .8以降を実行するMetroCluster IP構成では、ONTAP System Managerを使用して健全性チェックアラートの監視とトラブルシューティングを行うこともできます。</block>
+  <block id="1583d2d97747ba72311f2e67c5e8cbb4" category="paragraph">CLIとSystem Managerのどちらを使用しているかに応じて、MetroCluster構成の健全性を確認します。</block>
+  <block id="37dcbbe313fadb76f239174825a5a989" category="paragraph">CLIを使用してMetroCluster構成の健全性を確認するには、次の手順を実行します。</block>
+  <block id="c4a17569a8bf29b7e14beddf0509bffc" category="list-text">処理が完了したら、<block ref="c2966f2f3bfc7e81dae5df7c44ce66ea" prefix=" " category="inline-code"></block>結果を表示します。</block>
+  <block id="207b1edaa970369e13d7a443fcd16244" category="open-title">ONTAPシステムマネージャ（MetroCluster IPのみ）</block>
+  <block id="a2c21bc044f933ab565d513bcc14eb44" category="paragraph">ONTAP 9 .8以降では、System ManagerによってMetroCluster IP構成の健常性が監視され、発生する可能性のある問題を特定して修正できます。</block>
+  <block id="d679b550fc7e920c8d317b30292d5b72" category="paragraph">System Managerは、MetroCluster IP構成の健全性を定期的にチェックします。ダッシュボードのMetroClusterセクションを表示すると、通常は「MetroCluster systems are healthy」というメッセージが表示されます。</block>
+  <block id="744b05e9d4a2bf5cfaf4233e162b7287" category="paragraph">ただし、問題が発生すると、イベントの数がメッセージに表示されます。このメッセージをクリックすると、次のコンポーネントの健全性チェックの結果を確認できます。</block>
+  <block id="fbebc6739678d32573bdcc8e7d9712a2" category="list-text">ネットワークインターフェイス</block>
+  <block id="9db57734568bdbbb6cb1f1ae0e91c96e" category="list-text">ティア（ストレージ）</block>
+  <block id="249694a485fc5d3289c38986b4f8e887" category="list-text">クラスタ</block>
+  <block id="c2cc7082a89c1ad6631a2f66af5f00c0" category="list-text">接続</block>
+  <block id="bd7a9717d29c5ddcab1bc175eda1e298" category="list-text">ボリューム</block>
+  <block id="21094294c878b9478fc6a4481429dd3b" category="list-text">設定のレプリケーション</block>
+  <block id="b06582224c79e1b61467fdec14da2228" category="paragraph">[ ステータス * ] 列は問題のあるコンポーネントを示し、 [ 詳細 * ] 列は問題の解決方法を示します。</block>
+  <block id="1d1e5cd96b3e552f9fc410fb90447401" category="list-text">System Manager で、 * Dashboard * を選択します。</block>
+  <block id="68c5b182341ec0270d2cfc783a5cb3a8" category="list-text">「* MetroCluster *」セクションのメッセージを表示します。</block>
+  <block id="2e957c43738afa0268a948e2ddbfc90a" category="list-text">メッセージにMetroCluster構成が正常であり、クラスタとONTAPメディエーターの間の接続（チェックマークが表示されている）が正常であることが示されていれば、問題は解決しません。</block>
+  <block id="5ead04b6add34a12036cdfd7b3076e12" category="list-text">メッセージにイベント数が表示されている場合、または接続がダウンしている場合（「X」が表示されている場合）は、次の手順に進みます。</block>
+  <block id="5eade9ac1d44db33dfd4a3c509a9f1db" category="list-text">イベント数を示すメッセージをクリックします。</block>
+  <block id="2c0ee5124aa4e5392364a27cc1881b73" category="paragraph">MetroCluster健全性レポートが表示されます。</block>
+  <block id="0d5b953768363f4a9dfdd80e2f7c966b" category="list-text">レポートに表示される問題のトラブルシューティングを、 *Details* 列の推奨事項を使用して行います。</block>
+  <block id="b9a9a239553d33237233de0bfd8f65f6" category="list-text">すべての問題を修正したら、 * MetroCluster の正常性を確認 * をクリックします。</block>
+  <block id="e4fd105ae14d31c18bec3c48cfbb91dd" category="admonition">MetroClusterヘルスチェックは大量のリソースを使用するため、チェックを実行する前にすべてのトラブルシューティングタスクを実行する必要があります。</block>
+  <block id="aafba8024f058e44bbc108aceb7544c0" category="paragraph">MetroCluster健全性チェックはバックグラウンドで実行されます。タスクが完了するまで待つ間に、他のタスクを処理することができます。</block>
+  <block id="f3f0554af4f46e3b78864e3ee8cf634d" category="paragraph">メンテナンスを実施したり、問題からリカバリしたりするために、あるMetroCluster IPサイトから別のサイトに制御を切り替えることができます。</block>
+  <block id="e332e690f18abf1e6fbf15bb2839f91f" category="admonition">スイッチオーバーとスイッチバックの手順は、MetroCluster IP構成でのみサポートされます。</block>
+  <block id="476bb76a6bf7614cd646479d690f0355" category="section-title">スイッチオーバーとスイッチバックの概要</block>
+  <block id="4e487442ec743c75d773efc8d7eb4975" category="paragraph">スイッチオーバーには次の2つのタイプがあります。</block>
+  <block id="7d22a9492e26d8b6f7e62e754b8038bc" category="list-text">* 計画的スイッチオーバー *</block>
+  <block id="122a8d927b5f2bfbd5c05e151d100ecf" category="paragraph">このスイッチオーバーは、システム管理者がSystem Managerを使用して開始します。計画的スイッチオーバーでは、ローカルクラスタのシステム管理者が制御を切り替えることで、リモートクラスタのデータサービスがローカルクラスタで処理されるようになります。これにより、リモートクラスタの場所にあるシステム管理者がリモートクラスタでメンテナンスを実行できるようになります。</block>
+  <block id="e8fac69a545ec9a20c2f066fd2d5c64c" category="list-text">* 計画外スイッチオーバー *</block>
+  <block id="7ee58ef1472684aca1fe0fe874b6d592" category="paragraph">MetroClusterクラスタが停止した場合やクラスタ間の接続が停止した場合、ONTAPによってスイッチオーバーが自動的に開始されるため、停止したクラスタのデータ処理が実行中のクラスタで処理されます。</block>
+  <block id="97ea4ec8c53cbd7aa2f77e41af35214d" category="paragraph">一方のクラスタのステータスをONTAPが判断できない場合は、稼働しているサイトのシステム管理者がスイッチオーバーを開始して、もう一方のサイトのデータ処理を制御します。</block>
+  <block id="b04fc1c1a947340b6295bca4e15296fa" category="paragraph">どのタイプのスイッチオーバー手順の場合も、 _switchback プロセスを使用してデータサービス機能がクラスタに返されます。</block>
+  <block id="3a6a5031743305019642718d6b386a76" category="paragraph">ONTAP 9 .7および9.8では、スイッチオーバーとスイッチバックのさまざまなプロセスを実行します。</block>
+  <block id="e6930e280c751418022003bf9fa97d63" category="inline-xref">ONTAP 9 .7のSystem Managerを使用してスイッチオーバーとスイッチバックを実行</block>
+  <block id="fbb89290a9f0639df9fd99dd91afccee" category="list-text"><block ref="256c277ba57abb095e4dc34a115bfd87" category="inline-xref-macro-rx"></block></block>
+  <block id="90984242656b59b4ec4bc8b2dc652b47" category="inline-xref">ONTAP 9 .8のSystem Managerを使用してスイッチオーバーとスイッチバックを実行</block>
+  <block id="7bf20936df7319e027dcb25cf3be240e" category="list-text"><block ref="b26721d6058aa62e04e032c9956f0274" category="inline-xref-macro-rx"></block></block>
+  <block id="84e994bcb8ec0880899d43da827eb4f8" category="list-text">ONTAP 9.7でSystem Managerにログインします。</block>
+  <block id="ef676a956a1111a97c4b6d5a5313ec0c" category="list-text">*（クラシックバージョンに戻る）*をクリックします。</block>
+  <block id="c6b17260f6c04748cb3b263e07841d9c" category="list-text">[設定]&gt;[ MetroCluster ]*をクリックします。</block>
+  <block id="9512c15d06f8ebc094a9ff5468e46042" category="paragraph">ネゴシエートスイッチオーバーが可能かどうかが検証されます。</block>
+  <block id="1184e7d21efeb90e1213fb76b1a8ab92" category="list-text">検証プロセスが完了したら、次のいずれかの手順を実行します。</block>
+  <block id="d70c82e05495e05abc2021dc54100a96" category="list-text">検証に失敗し、サイトBが稼働している場合、エラーが発生しています。たとえば、サブシステムに問題があるか、NVRAMミラーリングが同期されていないことが考えられます。</block>
+  <block id="158ad5b32c8309811884b5700c04c866" category="list-text">エラーの原因となっている問題を修正し、*[閉じる]*をクリックして、手順2からやり直します。</block>
+  <block id="2da490367d961d43e4786cecfbde3d6b" category="inline-link-macro">計画外スイッチオーバーの実行</block>
+  <block id="37950e07940a13e856cb50dc1a9291b9" category="list-text">サイトBのノードを停止し、*[閉じる]*をクリックして、の手順を実行します <block ref="fb6c16196bc2d21511884d5617718b51" category="inline-link-macro-rx"></block>。</block>
+  <block id="47cb9ca4992d157c03e7725803af8e2a" category="list-text">検証が失敗し、サイトBが停止している場合は、接続に問題がある可能性があります。サイトBが停止していることを確認し、の手順を実行します<block ref="fb6c16196bc2d21511884d5617718b51" category="inline-link-macro-rx"></block>。</block>
+  <block id="f40d6676f14af4f7006dc55f7866a8cc" category="list-text">[サイトBからサイトAへのスイッチオーバー]*をクリックしてスイッチオーバープロセスを開始します。</block>
+  <block id="3fa63b2ebfe34a52015afed9c4be0676" category="list-text">[新しいエクスペリエンスに切り替える]*をクリックします。</block>
+  <block id="a0bbb21498df4682785de3ad118d2112" category="section-title">計画的スイッチオーバーを実行（ONTAP 9 8）</block>
+  <block id="7032cb0fb8b2c734e0b3330b170287a8" category="list-text">ONTAP 9.8でSystem Managerにログインします。</block>
+  <block id="d86b98757fa72a3091b65699a17b3724" category="list-text">「 * ダッシュボード * 」を選択します。「 * MetroCluster * 」セクションには、 2 つのクラスタが接続されています。</block>
+  <block id="b7833a52299d966f41b82417259c5239" category="inline-image-macro">ケバブアイコン</block>
+  <block id="6b466076a02d34c371b188caa9b5a5ea" category="list-text">ローカルクラスタ（左側に表示）で、をクリック <block ref="2f6e127087f9ef4b927e204474c5d0b2" category="inline-image-macro-rx" type="image"></block>し、*[リモートデータサービスをローカルサイトにスイッチオーバーする]*を選択します。</block>
+  <block id="aa0bfd6a3a3db9e5b0409213f48708d9" category="paragraph">スイッチオーバー要求が検証されると、リモートサイトからローカルサイトに制御が移されます。ローカルサイトが両方のクラスタに対してデータサービス要求を実行します。</block>
+  <block id="3c8328130d9ea4793e2bc9f3551b90e0" category="paragraph">リモートクラスタはリブートしますが、ストレージコンポーネントはアクティブではなく、クラスタはデータ要求を処理しません。計画的なメンテナンスのために利用できるようになりました。</block>
+  <block id="6f83354e8ce958bae1f9ffca3c39c278" category="admonition">スイッチバックを実行するまでリモートクラスタをデータサービスに使用しないでください。</block>
+  <block id="defaf88320e88f259a284fdbcd5986c2" category="section-title">計画外スイッチオーバーの実行（ONTAP 9 8）</block>
+  <block id="ef7ccb5f4ce99dc2e349e8c6c47a3d17" category="paragraph">計画外スイッチオーバーは、ONTAPによって自動的に開始される場合があります。ONTAPでスイッチバックが必要かどうかを判断できない場合は、実行中のMetroClusterサイトのシステム管理者が次の手順でスイッチオーバーを開始します。</block>
+  <block id="612770839809215b203a58fa260be49e" category="list-text">「 * ダッシュボード * 」を選択します。</block>
+  <block id="940768454917470cad252dfa341a9bae" category="paragraph">MetroCluster *セクションでは、2つのクラスタ間の接続に「X」が表示されます。これは、接続を検出できず、接続またはクラスタのいずれかが停止していることを意味します。</block>
+  <block id="0b85c3b32c8fd95dfef8906dc740c0b2" category="paragraph">スイッチオーバーがエラーで失敗した場合は、エラーメッセージの[詳細を表示]リンクをクリックして、計画外スイッチオーバーを確認します。</block>
+  <block id="b2a8c150e46a4d6da48aa21c7035a5ec" category="paragraph">クラスタを再度オンラインにするには、クラスタを修復する必要があります。</block>
+  <block id="dacd599c11508c590c3afe8309bc777e" category="admonition">オンラインになったリモートクラスタは、スイッチバックを実行するまでデータサービスに使用しないでください。</block>
+  <block id="b7066bce35bcdc9bde30393cfe83bbdd" category="section-title">スイッチバックを実行します（ONTAP 9 8）。</block>
+  <block id="83d20468f433e569baf2f41de2670745" category="paragraph">計画的なメンテナンスや災害が原因でリモートクラスタが停止していた場合は、リモートクラスタが稼働中で、スイッチバックを待機している必要があります。</block>
+  <block id="a91ed0fc67b86b9a97667032dc887550" category="list-text">ローカルクラスタで、ONTAP 9からSystem Managerにログインします。8.</block>
+  <block id="e722eda52729a565e292380da3b9cd9e" category="paragraph">「 * MetroCluster * 」セクションには、 2 つのクラスタが表示されます。</block>
+  <block id="3964a12029e4869f90c22d4b7b86e4d7" category="list-text">ローカルクラスタ（左側に表示）でをクリックし <block ref="2f6e127087f9ef4b927e204474c5d0b2" category="inline-image-macro-rx" type="image"></block>、*[Take back control]*を選択します。</block>
+  <block id="9650db837519c6f15dca6f446f677c65" category="paragraph">データは_healed_firstで、両方のクラスタ間でデータが同期およびミラーリングされていることを確認します。</block>
+  <block id="76cc37c77093b53852f92d0bedaab777" category="list-text">データの修復が完了したら、をクリックし <block ref="2f6e127087f9ef4b927e204474c5d0b2" category="inline-image-macro-rx" type="image"></block>、*[スイッチバックの開始]*を選択します。</block>
+  <block id="99ce5ee29ba72294092dc372ec9cdde8" category="paragraph">スイッチバックが完了すると、両方のクラスタがアクティブになり、データ要求を処理します。さらに、データがミラーリングされ、クラスタ間で同期されています。</block>
+  <block id="1634280924da564c571e77a82a5ca015" category="paragraph">Tiebreaker 1.6以降</block>
+  <block id="10090a98eb5a0c97ffdfee7c207fcda3" category="inline-link-macro">Tiebreaker 1.6以降のインストール</block>
+  <block id="01edf779844a94aabbe0472729e9db87" category="paragraph"><block ref="01edf779844a94aabbe0472729e9db87" category="inline-link-macro-rx"></block></block>
+  <block id="96e17598e0060c107f4db8b804505693" category="inline-link-macro">Rocky Linux製品ドキュメント</block>
+  <block id="98f9ad5cd8db49b652b4f699146c5868" category="list-text"><block ref="98f9ad5cd8db49b652b4f699146c5868" category="inline-link-macro-rx"></block></block>
+  <block id="95bf514988fe6b2ae6d2c4683d39fc01" category="paragraph">ホストLinuxオペレーティングシステムでTiebreaker 1.6またはTiebreaker 1.6P1への新規インストールまたはアップグレードを実行して、MetroCluster構成を監視します。</block>
+  <block id="a83518fbb29b384795513d23f16fd04e" category="section-title">Tiebreaker 1.6P1のインストールまたはアップグレード</block>
+  <block id="d09d293bdd140120cf0307019e78b0cd" category="paragraph">Tiebreaker 1.6P1をインストールするか、Tiebreaker 1.6、1.5、または1.4からTiebreaker 1.6P1にアップグレードできます。</block>
+  <block id="05a80bec4c4faf7292bd76d0ea9f6892" category="list-text">MetroCluster Tiebreaker 1.6P1ソフトウェアをダウンロードします。</block>
+  <block id="1363760bda4dfedc53bb20d35c4168e0" category="open-title">Tiebreaker 1.6P1をインストール</block>
+  <block id="0497a99a53a8d060e80a9df590a19dc2" category="paragraph">Tiebreaker 1.6P1を新規にインストールする場合は、次の手順を実行します。</block>
+  <block id="0c1fd6dcabaf349cd3a6aa337ab277da" category="open-title">1.6から1.6P1へのアップグレード</block>
+  <block id="ac34f0a5488c43ea34fb716ad2b99542" category="paragraph">Tiebreaker 1.6ソフトウェアのバージョンをTiebreaker 1.6P1にアップグレードするには、次の手順に従います。</block>
+  <block id="c9c37d73e375ec3a682ea8da2ddda245" category="admonition">1.6からTiebreaker 1.6P1にアップグレードしたら、既存のモニタを削除し、MetroCluster設定を監視用に再度追加します。</block>
+  <block id="5fd58ebc01ff0738d8e9d5d32822a902" category="list-text">の手順に従って、MetroCluster構成を削除し、再度追加し<block ref="eb6675758f8fdd2ff1cefe24d56fcfaa" category="inline-link-macro-rx"></block>ます。</block>
+  <block id="aeaf036ca6e5c33b5742d712e2156fbb" category="open-title">1.5から1.6P1へのアップグレード</block>
+  <block id="bbda4afc2f394a21e70bf3c4c7453f1d" category="paragraph">Tiebreaker 1.5ソフトウェアのバージョンをTiebreaker 1.6P1にアップグレードするには、次の手順に従います。</block>
+  <block id="e9465edd6afc2f3bafbc90e1474f330a" category="open-title">1.4から1.6P1へのアップグレード</block>
+  <block id="507339937a8a4d04acddad9a85364c30" category="paragraph">Tiebreaker 1.4ソフトウェアのバージョンをTiebreaker 1.6P1にアップグレードするには、次の手順に従います。</block>
+  <block id="0981d7670ea8cbff51e1b8ebf522d26f" category="section-title">Tiebreaker 1.6のインストールまたはアップグレード</block>
+  <block id="a04a5cbd4bb79cf4f0cf1dc258588888" category="paragraph">Tiebreaker 1.6をインストールするか、Tiebreaker 1.5または1.4からTiebreaker 1.6にアップグレードできます。</block>
+  <block id="0f9ed37231c3e05c40c3439b54c05a31" category="open-title">1.5から1.6へのアップグレード</block>
+  <block id="6377e594d18868747f42ff493652c09e" category="open-title">1.4から1.6にアップグレード</block>
+  <block id="27a3d314127445dc4a7f93184b84d65e" category="sidebar">MetroClusterクラスタでのONTAPのアップグレード</block>
+  <block id="4e04b2ebfeef2f344cfa9299a14a7f15" category="sidebar">MetroClusterによるデータ保護</block>
+  <block id="eb2ce2e6e8dd207e0722c727b11bf523" category="sidebar">CLIを使用したMetroClusterソフトウェアの設定</block>
+  <block id="ae58261cc60a8a566f51001fa9647cc8" category="sidebar">System Managerを使用したMetroClusterソフトウェアの設定</block>
+  <block id="7dbb00295563db0482d1cd647c85ce79" category="sidebar">システムマネージャを使用したONTAPメディエーターの管理</block>
+  <block id="08df7de62062ac541a6aa573389a0bff" category="sidebar">MetroCluster構成の健全性の確認</block>
 </blocks>

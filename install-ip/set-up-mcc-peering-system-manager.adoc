@@ -1,0 +1,66 @@
+---
+sidebar: sidebar 
+permalink: install-ip/set-up-mcc-peering-system-manager.html 
+keywords: metrocluster, peer, peering, pair, pairing, configuration, config, mcc, HA 
+summary: ONTAP 9 8以降では、MetroCluster IPサイトの処理をSystem Managerで管理できます。この作業には、2つのクラスタをセットアップし、クラスタピアリングを実行する必要があります。 
+---
+= MetroCluster IPピアリングをセットアップする
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。2つのクラスタをセットアップしたら、クラスタ間のピアリングをセットアップします。
+
+.作業を開始する前に
+2つのクラスタをセットアップする。手順を参照してくださいlink:set-up-mcc-site-system-manager.html["MetroCluster IPサイトのセットアップ"]。
+
+このプロセスの一部の手順は、各クラスタの地理的なサイトに配置された異なるシステム管理者によって実行されます。このプロセスを説明するために、クラスタを「サイトAクラスタ」および「サイトBクラスタ」と呼びます。
+
+
+
+== サイトAからピアリングプロセスを実行
+
+このプロセスは、サイトAのシステム管理者が実行します。
+
+.手順
+. サイトAのクラスタにログインします。
+. System Manager で、左側のナビゲーション列から「 * Dashboard * 」を選択してクラスタの概要を表示します。
++
+ダッシュボードには、このクラスタ（サイトA）の詳細が表示されます。「 * MetroCluster * 」セクションの左側には、サイト A のクラスタが表示されています。
+
+. [Attach Partner Cluster] をクリックします。
+. サイトAのクラスタのノードとサイトBのクラスタのノードとの通信に使用するネットワークインターフェイスの詳細を入力します。
+. [ 保存して続行 ] をクリックします。
+. [パートナークラスタの接続]*ウィンドウで、*[パスフレーズがありません]*を選択します。これにより、パスフレーズを生成できます。
+. 生成されたパスフレーズをコピーし、サイトBのシステム管理者と共有します。
+. [ 閉じる（ Close ） ] を選択します。
+
+
+
+
+== サイトBからピアリングプロセスを実行
+
+このプロセスは、サイトBのシステム管理者が実行します。
+
+.手順
+. サイトBのクラスタにログインします。
+. System Manager で、 * Dashboard * を選択してクラスタの概要を表示します。
++
+ダッシュボードには、このクラスタ（サイトB）の詳細が表示されます。MetroClusterセクションでは、左側にサイトBのクラスタが表示されています。
+
+. [Attach Partner Cluster] をクリックしてピアリングプロセスを開始します。
+. サイトBのクラスタのノードとサイトAのクラスタのノードとの通信に使用するネットワークインターフェイスの詳細を入力します。
+. [ 保存して続行 ] をクリックします。
+. [パートナークラスタの接続]*ウィンドウで、*[パスフレーズを使用]*を選択します。これにより、サイトAのシステム管理者から受け取ったパスフレーズを入力できます。
+. ピア * を選択してピアリングプロセスを完了します。
+
+
+.次の手順
+ピアリングプロセスが正常に完了したら、クラスタを設定します。を参照して link:configure-mcc-site-system-manager.html["MetroCluster IPサイトの設定"]

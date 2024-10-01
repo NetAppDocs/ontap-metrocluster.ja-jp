@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: install-ip/configure-mcc-site-system-manager.html 
+keywords: metrocluster, configuration, config, mcc, HA, cluster 
+summary: ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。これには、2つのクラスタのセットアップ、ピアリング、および設定が含まれます。 
+---
+= MetroCluster IPサイトの設定
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。この作業には、2つのクラスタのセットアップ、クラスタピアリングの実行、およびクラスタの設定が含まれます。
+
+.作業を開始する前に
+次の手順を実行します。
+
+* link:set-up-mcc-site-system-manager.html["MetroCluster IPサイトのセットアップ"]
+* link:set-up-mcc-peering-system-manager.html["MetroCluster IPピアリングをセットアップする"]
+
+
+
+
+== クラスタ間の接続を設定
+
+.手順
+. いずれかのサイトで System Manager にログインし、 * Dashboard * を選択します。
++
+「 * MetroCluster * 」セクションの図は、 MetroCluster サイト用にセットアップしてピアリングした 2 つのクラスタを示しています。作業中のクラスタ（ローカルクラスタ）が左側に表示されます。
+
+. MetroCluster の設定 * をクリックします。このウィンドウで、次の手順を実行します。
++
+.. MetroCluster構成の各クラスタのノードが表示されています。ドロップダウンリストを使用して、リモートクラスタのノードとディザスタリカバリパートナーとなるローカルクラスタ内のノードを選択します。
+.. ONTAPメディエーターサービスを設定する場合は、チェックボックスをクリックします。を参照して link:./task-sm-mediator.html["ONTAPメディエーターサービスの設定"]
+.. 両方のクラスタに暗号化を有効にするライセンスがある場合は、 * Encryption * セクションが表示されます。
++
+暗号化を有効にするには、パスフレーズを入力します。
+
+.. MetroClusterを共有レイヤ3ネットワークで設定する場合は、このチェックボックスをオンにします。
++
+
+NOTE: ノードに接続するHAパートナーノードとネットワークスイッチの構成が一致している必要があります。
+
+
+
+. 保存 * をクリックして、 MetroCluster サイトを設定します。
++
+ダッシュボード * の * MetroCluster * セクションでは、 2 つのクラスタ間のリンクにチェックマークが表示され、正常な接続を示しています。
+
+

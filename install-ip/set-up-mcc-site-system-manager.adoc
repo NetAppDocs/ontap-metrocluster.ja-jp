@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: install-ip/set-up-mcc-site-system-manager.html 
+keywords: system manager, metrocluster, set up, setup, start, initialize, cluster, config, nodes 
+summary: ONTAP 9 8以降では、System Managerを使用してMetroCluster IPサイトをセットアップできます。 
+---
+= MetroCluster IPサイトのセットアップ
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9 8以降では、System Managerを使用してMetroCluster IPサイトをセットアップできます。
+
+MetroClusterサイトは2つのクラスタで構成されます。通常、クラスタは地理的に異なる場所に配置されます。
+
+.作業を開始する前に
+* システムに付属のに従って、システムの設置とケーブル接続が完了している必要があります https://docs.netapp.com/us-en/ontap-systems/index.html["セットアップガイド"^]。
+* クラスタ内通信用に、各クラスタの各ノードにクラスタネットワークインターフェイスが設定されている必要があります。
+
+
+
+
+== ノード管理IPアドレスを割り当てる
+
+
+
+=== Windowsシステム
+
+Windowsコンピュータをコントローラと同じサブネットに接続する必要があります。これにより、システムにノード管理IPアドレスが自動的に割り当てられます。
+
+.手順
+. Windowsシステムで*[ネットワーク]*ドライブを開き、ノードを検出します。
+. ノードをダブルクリックしてクラスタセットアップウィザードを起動します。
+
+
+
+
+=== その他のシステム
+
+クラスタのいずれかのノードのノード管理IPアドレスを設定する必要があります。そのノード管理IPアドレスを使用してクラスタ セットアップ ウィザードを起動できます。
+
+ノード管理IPアドレスの割り当てについては、を参照してくださいlink:https://docs.netapp.com/us-en/ontap/software_setup/task_create_the_cluster_on_the_first_node.html["第1ノードでのクラスタの作成"^]。
+
+
+
+== クラスタの初期化と設定
+
+クラスタを初期化するには、クラスタの管理パスワードを設定し、クラスタ管理ネットワークとノード管理ネットワークを設定します。また、ホスト名を解決するためのドメインネームサーバ（DNS）や時刻を同期するためのNTPサーバなどのサービスを設定することもできます。
+
+.手順
+. Webブラウザで、設定したノード管理IPアドレスを入力します。"https://node-management-IP"[]
++
+クラスタの残りのノードはSystem Managerで自動的に検出されます。
+
+. Initialize Storage System* （ストレージシステムの初期化）ウィンドウで、次の手順を実行します。
++
+.. クラスタ管理ネットワークの設定データを入力します。
+.. すべてのノードのノード管理IPアドレスを入力します。
+.. DNS の詳細を指定します。
+.. [* その他 * （ * Other * ） ] セクションで、 [ タイムサービス（ NTP ）を使用（ Use time service （ NTP ） * ] というラベルの付いたチェックボックスを選択してタイムサーバを追加します。
+
+
+
+
+Submit * をクリックすると、クラスタが作成および構成されるまで待機します。その後、検証プロセスが実行されます。
+
+.次の手順
+両方のクラスタのセットアップ、初期化、および設定が完了したら、[Set up MetroCluster IP peering]の手順を実行します。
+
+
+
+== 新しいクラスタでのONTAPの設定に関するビデオ
+
+video::PiX41bospbQ[youtube,width=848,height=480]
