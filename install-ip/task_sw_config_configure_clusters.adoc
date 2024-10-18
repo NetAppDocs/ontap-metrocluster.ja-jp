@@ -712,6 +712,9 @@ Cluster_A::> metrocluster configuration-settings dr-group create -partner-cluste
 
 各ノードのストレージと不揮発性キャッシュのレプリケーションに使用する MetroCluster IP インターフェイスを設定する必要があります。その後、 MetroCluster IP インターフェイスを使用して接続を確立します。これにより、ストレージレプリケーション用の iSCSI 接続が作成されます。
 
+
+NOTE: MetroCluster IPおよび接続されているスイッチポートは、MetroCluster IPインターフェイスを作成するまでオンラインになりません。
+
 .このタスクについて
 * ノードごとに 2 つのインターフェイスを作成する必要があります。インターフェイスは、 MetroCluster RCF ファイルで定義されている VLAN に関連付ける必要があります。
 * ONTAPのバージョンによっては、初期設定後に一部のMetroCluster IPインターフェイスプロパティを変更できます。サポートされる機能の詳細については、を参照してください link:../maintain/task-modify-ip-netmask-properties.html["MetroCluster IPインターフェイスのプロパティの変更"] 。
