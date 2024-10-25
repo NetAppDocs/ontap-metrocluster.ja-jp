@@ -645,6 +645,14 @@ NOTE: 「 MetroCluster configure 」と「 MetroCluster configure -refresh true 
 
 NOTE: ミラーされたデータアグリゲートを複数使用することを推奨します。ミラーされたアグリゲートが1つしかない場合、メタデータボリュームは別 々 のアグリゲートではなく同じアグリゲートに配置されるため、保護レベルは低くなります。
 
+. 新しい各ノードをリブートします。
++
+`node reboot -node <node_name> -inhibit-takeover true`
+
++
+
+NOTE: ノードを特定の順序でリブートする必要はありませんが、1つのノードが完全にブートしてすべての接続が確立されるまで待ってから、次のノードをリブートしてください。
+
 . ノードが対応する DR グループに追加されたことを確認します。
 +
 MetroCluster node show
