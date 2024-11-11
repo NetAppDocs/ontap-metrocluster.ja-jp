@@ -21,6 +21,28 @@ ONTAP MetroCluster構成に影響する既知の問題、制限事項、およ�
 
 
  a| 
+MetroCluster構成の移行におけるSVMデータ移動のサポート
+ a| 
+ONTAPでは、MetroCluster以外のHAペアからMetroCluster構成へのSVMの移行、またはMetroCluster構成からMetroCluster以外のHAペアへのSVMの移行がサポートされます。MetroCluster構成間でSVMを移行することはできません。
+
+link:https://docs.netapp.com/us-en/ontap/svm-migrate/index.html["SVMのデータ移動"^]
+ a| 
+ONTAP 9 .16.1
+
+
+
+ a| 
+BGPピアグループのMD5認証サポート
+ a| 
+ONTAPはBGPピアグループでMD5認証をサポートして、BGPセッションを保護します。MD5がイネーブルの場合、BGPセッションは許可されたピア間でのみ確立および処理されるため、許可されていないアクターによるセッションの中断を防ぐことができます。
+
+link:https://docs.netapp.com/us-en/ontap/networking/configure_virtual_ip_@vip@_lifs.html["仮想IP（VIP）LIFの設定"^]
+ a| 
+ONTAP 9 .16.1
+
+
+
+ a| 
 MetroCluster IPでのNVMeのサポート
  a| 
 NVMe/TCPフロントエンドホストプロトコルは、4ノードMetroCluster IP構成でサポートされます。
