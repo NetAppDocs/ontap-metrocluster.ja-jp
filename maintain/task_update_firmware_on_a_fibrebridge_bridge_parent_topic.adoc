@@ -122,7 +122,7 @@ Enter the password:
 
 . ファームウェアのアップグレードが完了したことを確認します。
 +
-「 job show -name 」 _job-name_"" 」を参照してください
+`job show -name "<job_name>"`
 
 +
 次の例は、「system bridge firmware update」ジョブがまだ実行中であることを示しています。
@@ -188,7 +188,7 @@ Ready.
 *** ONTAP 9.5 以降を実行している場合はインバンド管理がサポートされるため、クラスタプロンプトからコマンドを実行できます。
 
 
-.. コマンドを実行します `system bridge run-cli -name _bridge-name_ -command FlashImages`。
+.. コマンドを実行します `system bridge run-cli -name <bridge_name> -command FlashImages`。
 +
 
 NOTE: 次の例では、プライマリフラッシュイメージに新しいファームウェアイメージが表示され、セカンダリフラッシュイメージに古いイメージが表示されています。
@@ -294,121 +294,4 @@ flashimages
  Ready.
 ----
 . 次のブリッジでも手順 5 から 13 を繰り返し、 MetroCluster 構成内のすべてのブリッジを更新します。
-
-
-
-
-== ONTAP 9.3.x以前を実行している構成でのFibreBridge 7500Nのファームウェアの更新
-
-FibreBridgeブリッジのファームウェアの更新は、最新の機能がインストールされていることを確認したり、考えられる問題を解決したりするために必要になる場合があります。ONTAP 9.3.xを実行している構成のFibreBridge 7500Nには、この手順を使用します。
-
-.作業を開始する前に
-* MetroCluster 構成が正常に動作している必要があります。
-* MetroCluster 構成内のすべての FibreBridge ブリッジが稼働している必要があります。
-* すべてのストレージパスが使用可能である必要があります。
-* 管理パスワードと FTP サーバまたは SCP サーバへのアクセスが必要です。
-* サポートされているファームウェアバージョンを使用している必要があります。
-+
-https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"^]
-
-+
-IMT では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。
-
-
-
-ONTAP 9.3 以降では、 ONTAP storage bridge firmware update コマンドを使用して、 FibreBridge 7500N ブリッジのブリッジファームウェアを更新できます。
-
-link:task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html["ONTAP 9.4 以降を実行している構成での FibreBridge 7600N / 7500N ブリッジのファームウェアの更新"]
-
-このタスクは、 MetroCluster 構成内の各 FibreBridge ブリッジで実行し、すべてのブリッジで同じファームウェアバージョンが実行されるようにする必要があります。
-
-
-NOTE: これはシステムの停止を伴わない手順であり、完了までに約 30 分かかります。
-
-.手順
-. メンテナンスの開始を通知する AutoSupport メッセージを起動します。
-+
-'system node AutoSupport invoke -node * -type all -message MAINT=_maintenance-window-in-hours_`
-
-+
-"`_maintenance-window-in-hours_`" には、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
-
-+
-「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
-
-. ATTO FibreBridge のページに移動し、ブリッジに適したファームウェアを選択します。
-+
-https://mysupport.netapp.com/site/products/all/details/atto-fibrebridge/downloads-tab["ATTO FibreBridge ファームウェアのダウンロードページ"^]
-
-. 「注意 / 必ずお読みください」と「エンドユーザ契約」を確認し、チェックボックスをクリックして同意してください。
-. ATTO FibreBridge Firmware Download ページで、手順の手順 1~3 を実行してブリッジファームウェアファイルをダウンロードします。
-. 各ブリッジでファームウェアを更新するように指示された場合は、 ATTO FibreBridge Firmware のダウンロードページとリリースノートのコピーを作成して参照します。
-. ブリッジを更新します。
-+
-.. FibreBridge 7500Nブリッジにファームウェアをインストールします。
-+
-ATTO FibreBridge 7500N Installation and Operation Manual _の「Update Firmware」セクションに記載されている手順を参照してください。
-
-+
-* 注意： * ここで個々のブリッジの電源を再投入してください。スタックの両方のブリッジの電源を同時に投入すると、コントローラがドライブにアクセスできなくなり、プレックスや複数のディスクで障害が発生する可能性があります。
-
-+
-ブリッジが再起動します。
-
-.. いずれかのコントローラのコンソールで、ブリッジが正常に再起動したことを確認します。
-+
-「 sysconfig 」を使用できます
-
-+
-システムは、マルチパスハイアベイラビリティ（両方のコントローラがブリッジ経由で各スタックのディスクシェルフにアクセス可能）用にケーブル接続されている必要があります。
-
-+
-[listing]
-----
-cluster_A::> node run -node cluster_A-01 -command sysconfig
-NetApp Release 9.1P7: Sun Aug 13 22:33:49 PDT 2017
-System ID: 1234567890 (cluster_A-01); partner ID: 0123456789 (cluster_A-02)
-System Serial Number: 200012345678 (cluster_A-01)
-System Rev: A4
-System Storage Configuration: Quad-Path HA
-----
-.. いずれかのコントローラのコンソールで、 FibreBridge ファームウェアが更新されていることを確認します。
-+
-storage bridge show -fields fw-version 、 symbolic -name
-
-+
-[listing]
-----
-cluster_A::> storage bridge show -fields fw-version,symbolic-name
- name              fw-version        symbolic-name
- ----------------- ----------------- -------------
- ATTO_10.0.0.1     1.63 071C 51.01   bridge_A_1a
- ATTO_10.0.0.2     1.63 071C 51.01   bridge_A_1b
- ATTO_10.0.1.1     1.63 071C 51.01   bridge_B_1a
- ATTO_10.0.1.2     1.63 071C 51.01   bridge_B_1b
- 4 entries were displayed.
-----
-.. 同じブリッジで上記の手順を繰り返して、 2 つ目のパーティションを更新します。
-.. 両方のパーティションが更新されたことを確認します。
-+
-「 flashimages 」と入力します
-
-+
-出力には、両方のパーティションで同じバージョンが表示されます。
-
-+
-[listing]
-----
-Ready.
-flashimages
-4
-;Type         Version
-;=====================================================
-Primary    2.80 003T
-Secondary    2.80 003T
-Ready.
-----
-
-
-. 次のブリッジでも同じ手順を実行し、 MetroCluster 構成内のすべてのブリッジを更新します。
 
