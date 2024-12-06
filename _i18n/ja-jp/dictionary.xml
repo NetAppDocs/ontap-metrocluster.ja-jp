@@ -7007,7 +7007,6 @@
   <block id="777915564b2f2870366331ca85d7d9a9" category="paragraph">X1116A</block>
   <block id="c4ea0eec15aeb871f4ff708460f06623" category="paragraph">e1A 、 e1b</block>
   <block id="d30fc67c2a1cee6e54e9714145270705" category="paragraph">オンボードポート</block>
-  <block id="f1044ba6bab78a278fa587f690217ea7" category="paragraph">スロット 0</block>
   <block id="b05a1e68af8885ea43084ad2698d8a02" category="paragraph">e0g 、 e0h</block>
   <block id="29ba4cceab75148bfed3dc347fde6a29" category="paragraph">4 ノード MetroCluster IP 構成では、各サイトに次の最小構成が必要です。</block>
   <block id="eef29324db217b9ec771d620247c685b" category="section-title">AFF A800 内蔵ドライブの場所に関する考慮事項</block>
@@ -8830,7 +8829,6 @@
   <block id="0a61a44a1765390d027f85da70024fd8" category="list-text">構成を再度確認するには ' 両方のクラスタ上で MetroCluster show コマンドを実行します問題</block>
   <block id="43a86ca9910ac10add49d293714b50f6" category="section-title">8 ノード構成での 2 つ目の DR グループの設定</block>
   <block id="e4aa649e735d4adbdb401bf82feea340" category="paragraph">MetroCluster modify -enable -ミラー されていない -aggr-deployment true</block>
-  <block id="29d368b17fa8f6a4c00f53e0b1b0ddcd" category="paragraph">「 disk assign -disk disk_disk-id 」 -owner_owner-node-name_`</block>
   <block id="af6415b8e23291050b1c66bd2a86ffaf" category="paragraph">チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。</block>
   <block id="def4f4e87a159ca662e15a890598d539" category="paragraph">また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。</block>
   <block id="24ee0b1ca6a6bb24b7f88b8b0f675d6a" category="paragraph">上の図は、必要なケーブル接続の一般的な例です。FC-VI ポートはコントローラモジュールによって異なります。</block>
@@ -14266,4 +14264,9 @@
   <block id="7e8efc833fbde0ff722d85e00415edec" category="list-text">からスイッチファームウェアをダウンロードし<block ref="7b0bfad9e7dd6186ed0f14c867034109" category="inline-link-macro-rx"></block>ます。</block>
   <block id="e6d64e0eb5e781bce7f755d1457a9170" category="paragraph"><block ref="b2f8990b0f3f5de2520bc483556b14eb" prefix="" category="inline-code"></block></block>
   <block id="b0782c02cc2d2b20315a3f6a825b3fbe" category="list-text">コマンドを実行します<block ref="2586ba33015a99bfc10dda523f819039" prefix=" " category="inline-code"></block>。</block>
+  <block id="a32cead873928387fe22f14cfa816430" category="admonition">オンボードポートはコントローラハードウェア（スロット0）に組み込まれており、交換できないため、アダプタに必要なスロットは使用できません。</block>
+  <block id="ca024a4ac8a10799527aecc96451c4ce" category="paragraph">スロット1 /オンボードポートには適用されません。</block>
+  <block id="ad084693a846cdc2cf77ad2bb2e7382a" category="paragraph"><block ref="1c61f86d2f111f8c80a5d8ff728df70d" prefix="" category="inline-code"></block></block>
+  <block id="5f9a9e91fc7e98f1998a1dcee4eab83f" category="paragraph">ミラーされていないシェルフのドライブだけがアグリゲートに追加されていることを確認します。</block>
+  <block id="6f1eb898d916ac10201421006f5406e2" category="admonition">コマンドのパラメータを使用して、アグリゲートに使用するディスクを指定することもできます<block ref="2ee4c97cd7e2dff2e12ae3225818c09b" prefix=" " category="inline-code"></block>。</block>
 </blocks>
