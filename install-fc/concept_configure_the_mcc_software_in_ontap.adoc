@@ -3029,10 +3029,19 @@ Fabric OS 9.0.1以降では、Brocadeスイッチでのヘルス監視でSNMPv2�
 [NOTE]
 ====
 * ブリッジとノード管理 LIF は、他のソースからの干渉を避けるために専用のネットワークに配置する必要があります。
-* 健全性監視に専用のネットワークを使用する場合は、各ノードのノード管理 LIF を専用のネットワークに配置する必要があります。
+* 健全性監視に専用のネットワークを使用する場合は、各ノードのノード管理LIFをその専用のネットワーク内に配置する必要があります。
 
 
 ====
+NetAppでは、MetroCluster FC構成のコンポーネントを監視するための次のツールのみがサポートされます。
+
+* Brocade Network Advisor （ BNA ）
+* Brocade SANnav
+* Active IQ Config Advisor
+* NetAppヘルスモニタリング（ONTAP）
+* MetroClusterデータコレクタ（MC_DC）
+
+
 
 
 ==== 健常性監視用の MetroCluster FC スイッチの設定

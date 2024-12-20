@@ -1,0 +1,52 @@
+---
+permalink: manage/switchover-limitations.html 
+sidebar: sidebar 
+keywords: switchover, perform, heal, operation, restore, metrocluster, functionality, fc, configuration, ip, limitations, 
+summary: スイッチオーバー中は、一部の処理を実行しないでください。 
+---
+= MetroCluster構成がスイッチオーバー状態の場合の制限事項
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+システムがスイッチオーバー中のときは、一部の処理を実行しないでください。システムがスイッチオーバー中の場合の制限された処理について説明します。
+
+
+
+== スイッチオーバー時の制限された処理
+
+システムがスイッチオーバー状態の場合、次の処理はサポートされません。
+
+* アグリゲートおよびボリュームの作成または削除
+* SVMの作成または削除
+* LIFの作成または削除
+* ディスクの追加または削除（リカバリ手順の一環として交換する場合のみ）
+* SnapMirror SVM DRに対する設定変更の実行
+* 既存のブロードキャストドメインの変更または新しいブロードキャストドメインの作成
+* ネットワークサブネットの変更
+
+
+
+
+== スイッチオーバー時のハードウェアの交換
+
+システムがスイッチオーバー中の場合は、次の手順に従ってコントローラハードウェアを交換します。
+
+* スイッチオーバー中でないサイトで同じタイプのコントローラを交換する必要がある場合は、の手順に従ってくださいlink:../disaster-recovery/task_recover_from_a_multi_controller_and_or_storage_failure.html["マルチコントローラまたはストレージの障害からリカバリする"]。
++
+** サバイバーサイトでノードのスイッチオーバー中にコントローラモジュールとシャーシを交換する必要がある場合は、両方のコントローラをシャットダウンしてから、の手順を実行しますlink:../disaster-recovery/task_recover_from_a_multi_controller_and_or_storage_failure.html["マルチコントローラまたはストレージの障害からリカバリする"]。
+
+
+* コントローラを別のタイプのコントローラに交換する必要がある場合は、の構成に応じた手順に従ってくださいlink:../upgrade/concept_choosing_controller_upgrade_mcc.html["コントローラのアップグレード手順 を選択します"]。
++
+** コントローラ障害が原因でシステムのスイッチオーバーが発生した場合やスイッチオーバー中にコントローラ障害が発生した場合は、まずコントローラハードウェアを交換し、スイッチバックを実行してからコントローラのアップグレードを実行する必要があります。
++
+... コントローラハードウェアを交換してスイッチバックを実行するには、次の手順に従います。link:../disaster-recovery/task_recover_from_a_multi_controller_and_or_storage_failure.html["マルチコントローラまたはストレージの障害からリカバリする"]
+... ハードウェアを交換したら、の手順に従ってコントローラのアップグレードを実行しますlink:../upgrade/concept_choosing_controller_upgrade_mcc.html["コントローラのアップグレード手順 を選択します"]。
+
+
+
+
+

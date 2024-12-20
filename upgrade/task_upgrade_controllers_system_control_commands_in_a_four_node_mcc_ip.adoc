@@ -362,7 +362,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 
 === 古いコントローラのネットワーク構成を準備
 
-新しいコントローラでネットワークが正常に再開されるようにするには、 LIF を共通ポートに移動して、古いコントローラのネットワーク設定を削除する必要があります。
+ネットワークが新しいコントローラで正常に再開されるようにするには、LIFの配置が正しいことを確認し、古いコントローラのネットワーク設定を削除します。
 
 .このタスクについて
 * このタスクは、古いノードごとに実行する必要があります。
@@ -426,6 +426,10 @@ NOTE: この手順は、アップグレードを成功させるために必要�
 
 . [[controller_replace_upgrade_prepare_network_ports_3]]古いコントローラのすべてのデータLIFのホームポートを、新旧両方のコントローラモジュールで同じ共通のポートに割り当てます。
 +
+
+CAUTION: 新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<<upgrades_assisted_without_matching_ports,手順 4>>。
+
++
 .. LIF を表示します。
 +
 「 network interface show 」を参照してください
@@ -457,7 +461,7 @@ network interface modify -vserver vs0 -lif datalif1 -home-port e0d
 ----
 
 
-. ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。
+. [[upgrades_assisted_without_matching_ports]]ブロードキャストドメインを変更して、削除が必要なVLANと物理ポートを削除します。
 +
 `broadcast-domain remove-ports -broadcast-domain <broadcast-domain-name>-ports <node-name:port-id>`
 
@@ -1323,12 +1327,68 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-32DA96C3-9B04-4401-92B8-EAF323C3C863.html["外部キー管理の暗号化キーのリストア"^]。
 
 |===
-. 処理を再開する前に、 MetroCluster が正しく設定されていることを確認してください。ノードのステータスを確認します。
+. MetroClusterが正しく設定されていることを確認します。ノードのステータスを確認します。
 +
 MetroCluster node show
 
 +
 新しいノード（ site_B ）の状態が「 Waiting for switchback state * from site_A 」であることを確認します
+
+
+
+
+
+=== LIF の設定を確認してリストア
+
+自動スイッチバック処理を開始する前に、LIFが適切なノードでホストされていることを確認してください。
+
+.このタスクについて
+* このタスクは site_B で実行します
+
+
+
+CAUTION: スイッチバックを実行する前に、新しいノードでデータLIFの場所が正しいことを確認する必要があります。構成をスイッチバックすると、ONTAPはLIFで使用されているホームポートでトラフィックの再開を試みます。スイッチポートおよびVLANへのホームポート接続が正しくないと、I/O障害が発生する可能性があります。
+
+.手順
+. スイッチバックの前に、LIFが適切なノードとポートでホストされていることを確認します。
++
+.. advanced 権限レベルに切り替えます。
++
+「 advanced 」の権限が必要です
+
+.. LIFを表示し、各データLIFが正しいホームポートを使用していることを確認します。
++
+「 network interface show 」を参照してください
+
+.. 正しいホームポートを使用していないLIFを変更します。
++
+`network interface modify -vserver <svm-name> -lif <data-lif> -home-port <port-id>`
+
++
+コマンドからエラーが返された場合は、ポート設定を上書きできます。
+
++
+`vserver config override -command "network interface modify -vserver <svm-name> -home-port <active_port_after_upgrade> -lif <lif_name> -home-node <new_node_name>"`
+
++
+vserver config override コマンドで network interface modify コマンドを入力した場合は、 tab autoccomplete 機能を使用することはできません。autoccomplete を使用してネットワーク 'interface modify' を作成してから 'vserver config override' コマンドで囲むことができます
+
+.. すべてのデータLIFが正しいホームポートにあることを確認します。
++
+「 network interface show 」を参照してください
+
+.. admin 権限レベルに戻ります。
++
+「特権管理者」
+
+
+
+. インターフェイスをホームノードにリバートします。
++
+`network interface revert * -vserver <svm-name>`
+
++
+必要に応じて、すべての SVM でこの手順を実行します。
 
 . 処理を再開します。
 +

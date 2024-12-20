@@ -31,34 +31,41 @@ aggr_b2    227.1GB   227.1GB    0% online       0 node_B_2   raid_dp,
                                                                    mirrored,
                                                                    normal
 ----
-. サバイバークラスタにある同期先のすべての SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元の SVM が稼働していることを確認します。
+. サバイバークラスタの同期先のすべてのSVMが休止状態であることを確認します（動作状態が「`stopped`」と表示されています）。
++
+`vserver show -subtype sync-destination`
+
++
+[listing]
+----
+node_B_1::> vserver show -subtype sync-destination
+                                 Admin    Operational  Root
+Vserver       Type    Subtype    State    State        Volume    Aggregate
+-----------   ------- ---------- -------- ----------   --------  ----------
+...
+cluster_A-vs1a-mc data sync-destination
+                               running    stopped    vs1a_vol   aggr_b2
+
+----
++
+MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。
+
+. ディザスタクラスタの同期元SVMが稼働していることを確認します。
 +
 「 vserver show -subtype sync-source 」のようになります
 
 +
 [listing]
 ----
-node_B_1::> vserver show -subtype sync-source
-                               Admin      Root                       Name    Name
-Vserver     Type    Subtype    State      Volume     Aggregate       Service Mapping
------------ ------- ---------- ---------- ---------- ----------      ------- -------
+node_A_1::> vserver show -subtype sync-source
+                                  Admin    Operational  Root
+Vserver        Type    Subtype    State    State        Volume     Aggregate
+-----------    ------- ---------- -------- ----------   --------   ----------
 ...
-vs1a        data    sync-source
-                               running    vs1a_vol   node_B_2        file    file
-                                                                     aggr_b2
+vs1a           data    sync-source
+                                  running  running    vs1a_vol  aggr_b2
 
-node_A_1::> vserver show -subtype sync-destination
-                               Admin      Root                         Name    Name
-Vserver            Type    Subtype    State      Volume     Aggregate  Service Mapping
------------        ------- ---------- ---------- ---------- ---------- ------- -------
-...
-cluster_A-vs1a-mc  data    sync-destination
-                                      stopped    vs1a_vol   sosb_      file    file
-                                                                       aggr_b2
 ----
-+
-MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。
-
 . MetroCluster operation show コマンドを使用して、スイッチバック操作が成功したことを確認します。
 +
 |===

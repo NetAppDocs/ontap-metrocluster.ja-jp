@@ -2421,7 +2421,6 @@
   <block id="5426384928a13db30fcee7b4f5c3da08" category="list-text">処理が完了したら、ノードがスイッチオーバー状態であることを確認します。</block>
   <block id="058e49cbd0c1f29381ec01c701554a62" category="list-text">MetroCluster ノードのステータスを確認します。</block>
   <block id="982f6eba58d95bda2318d44b2dcea2e3" category="paragraph">コントローラのアップグレード中は、ネゴシエートスイッチオーバー後のアグリゲートの自動修復が無効になります。</block>
-  <block id="0486f17c3c2c0ba93636ea2cc6f050dd" category="paragraph">データ LIF を共通ポートに移動して古いコントローラの VLAN やインターフェイスグループを削除し、コントローラを物理的にアンインストールする必要があります。</block>
   <block id="895a79b8b51d133ae9c32d8cb48b9eb7" category="list-text">以下の手順は、古いコントローラ（ node_B_1 古い、 node_B_2 ）で実行します。</block>
   <block id="4339dfdd37f410724931874e2a95e452" category="list-text">古いノードをブートして、ノードにログインします。</block>
   <block id="0be3d44fabdd20b3537c941fe3904d2a" category="list-text">LIF を表示します。</block>
@@ -4837,7 +4836,6 @@
   <block id="22352eb03ff7e6b8795e4f237f27d8d1" category="paragraph">この手順は、推奨されるブリッジ管理インターフェイスである ATTO ExpressNAV GUI と ATTO QuickNAV ユーティリティを使用していることを前提としています。</block>
   <block id="b6b0aa1e441ae0f9c94362e6f0aae763" category="paragraph">シリアルポートや Telnet を使用してブリッジの設定と管理、イーサネット管理 1 ポートの設定を行ったり、 FTP を使用してブリッジファームウェアを更新するなど、必要に応じて他の管理インターフェイスも使用できます。</block>
   <block id="76545d4e8668be942098ed242d25351a" category="image-alt">ワークフローブリッジのインストールと設定</block>
-  <block id="6f47fdb0056f04198e0f13d4914a9c42" category="section-title">設置の準備</block>
   <block id="b9af642f4c94393d1d86928e1df7b939" category="paragraph">新しい MetroCluster システムで使用するブリッジの設置を準備する際には、システムが一定の要件を満たしていることを確認する必要があります。これには、ブリッジのセットアップや構成の要件と、必要なドキュメント、 ATTO QuickNAV ユーティリティ、ブリッジファームウェアのダウンロードなどがあります。</block>
   <block id="58eb0a3f95df2104f4ac005bbd51d244" category="list-text">システムキャビネットに付属していない場合は、システムをラックに設置しておく必要があります。</block>
   <block id="f824444af694573f23438938a9e1aa1e" category="list-text">サポートされているハードウェアモデルとソフトウェアバージョンを使用している必要があります。</block>
@@ -4873,13 +4871,11 @@
   <block id="981db1aa49a6ebb733f68a8d0f82b483" category="paragraph">* ONTAP 9.4 以前 *</block>
   <block id="432636e8eef96bb91e359b5d1c50f5aa" category="paragraph">'aveConfiguration'</block>
   <block id="59583139c0c6a4bb9d3bdaee0a866cfa" category="paragraph">「 FirmwareRestart 」と入力します</block>
-  <block id="9e67b76e63359167fbde69e351c8b8b0" category="section-title">ディスクシェルフとブリッジのケーブル接続</block>
   <block id="dddcbe39d238e711998c52c432aeaa31" category="paragraph">ディスクシェルフのケーブル接続には、正しい FC-to-SAS ブリッジを使用する必要があります。</block>
   <block id="c53ab245e3b357260ea30380dfbae527" category="section-title">IOM12 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続</block>
   <block id="fcf216ba8187b4017a22716585d4a6fa" category="paragraph">ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。</block>
   <block id="3745e1eacc753de05da3d0afc4e15cea" category="paragraph">ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。</block>
   <block id="95a5b0b928eb5c6139f9cd2a021f72a6" category="list-text">各スタックのディスクシェルフをデイジーチェーン接続します。</block>
-  <block id="779c08e01ec265d0aff357c180fceb48" category="list-text">スタック内の論理的な最初のシェルフから順番に、 IOM A のポート 3 を次のシェルフの IOM A のポート 1 に接続し、スタック内の IOM A をそれぞれ接続します。</block>
   <block id="dd2732570ab5d206b7d405c05f7d2831" category="list-text">IOM B について、同じ手順を繰り返します</block>
   <block id="3e57f4f14607c1133fa7931d611d438f" category="list-text">各スタックについて、同じ手順を繰り返します。</block>
   <block id="46fee005531651ebcbae735c06b5ef74" category="list-text">ディスクシェルフの電源をオンにし、シェルフ ID を設定します。</block>
@@ -4903,7 +4899,6 @@
   <block id="f7e3d93b4c145bf696a9e6f193ce4fb7" category="list-text">残りのシェルフスタックについて、 FibreBridge ブリッジの次に使用可能な SAS ポートを使用して同じ手順を繰り返します。 2 番目のスタックにはポート B 、 3 番目のスタックにはポート C 、 4 番目のスタックにはポート D を使用します。</block>
   <block id="9111bd303b0cb06989b91c9e131eb156" category="paragraph">次の図は、 1 組の FibreBridge 7600N / 7500N ブリッジに 4 つのスタックが接続された状態を示しています。</block>
   <block id="6704e0f472546c04c5cdc225c2656ec5" category="image-alt">MCC ケーブルブリッジおよび SAS スタック（ 7500n 4 スタック</block>
-  <block id="8cbdbb5be51e2a78d7b472e23327b938" category="section-title">ブリッジの接続を確認し、ブリッジの FC ポートをケーブル接続します</block>
   <block id="605157b79e898676481d263489be287d" category="paragraph">各ブリッジですべてのディスクドライブが検出されることを確認してから、各ブリッジをローカルの FC スイッチにケーブル接続します。</block>
   <block id="bf532d59144bc55a10c7ae835f098f56" category="paragraph">IP アドレスを入力したブリッジの ATTO FibreBridge ホームページに移動し、リンクが表示されます。</block>
   <block id="2c289d2564b7ae64ce5ddd32d176f7d8" category="paragraph">ブリッジの ATTO FibreBridge ステータスページが開き、左側にメニューが表示されます。</block>
@@ -7378,13 +7373,7 @@
   <block id="ec7770ca503ad90a46ee5c3850ef8ae5" category="list-text">短い距離には SAS 銅線ケーブルを使用できます。</block>
   <block id="e510f66049d1338325f0a62dd3ffc0f4" category="list-text">長い距離には SAS 光ケーブルを使用できます。</block>
   <block id="6262d156e479edd8f826ba586e43575b" category="admonition">E シリーズアレイ LUN を使用するシステムでは、ストレージコントローラを E シリーズストレージアレイに直接接続できます。その他のアレイ LUN を使用する場合は、 FC スイッチを介して接続する必要があります。</block>
-  <block id="4b82b05e56bc303e7e70ebb815ebfc6c" category="summary">2 ノードブリッジ接続 MetroCluster 構成では、ブリッジをコントローラモジュールにケーブル接続する必要があります。</block>
-  <block id="468824e6d6059f37612b1e891b27c464" category="doc">2 ノードブリッジ接続 MetroCluster 構成における FC-to-SAS ブリッジとコントローラモジュールのケーブル接続</block>
-  <block id="337d79852891a37d41285c9101c3fff4" category="paragraph">次のコマンドを実行します。</block>
   <block id="1d1fa4befa7e2188095e2cc64c17fc9e" category="list-text">SAS ケーブルに緩みがないか確認するか、ディスクシェルフからブリッジへの SAS ケーブル接続をやり直します。</block>
-  <block id="4422c879aa9ea654583488de1d4d4e82" category="list-text">ブリッジの FC ポート 1 を cluster_A のコントローラモジュールの FC ポートにケーブル接続します</block>
-  <block id="db0e7a22facf5e7460258a2022b5e9d5" category="list-text">ブリッジの FC ポート 2 を cluster_B のコントローラモジュールの FC ポートにケーブル接続します</block>
-  <block id="67d7a49e616a0e579f0506ada050a36b" category="image-alt">クラスタピアリングネットワーク</block>
   <block id="2d5ce426423eeeead4f35769cd8b1b27" category="inline-xref">手順 3</block>
   <block id="9edea398610f8b9e7bf8eb4d72f75daa" category="summary">ディザスタリカバリグループ（ DR ）グループ内のすべてのノードから MetroCluster 構成を削除できます。MetroCluster 構成を削除したあと、すべてのディスク接続とインターコネクトをサポートされる状態に調整する必要があります。MetroCluster 構成を削除する必要がある場合は、テクニカルサポートにお問い合わせください。</block>
   <block id="9a220a3f22f8641906ad7cfa0dd3502b" category="paragraph">ディザスタリカバリ（ DR ）グループ内のすべてのノードから MetroCluster 構成を削除することができます。MetroCluster 構成を削除したあと、すべてのディスク接続とインターコネクトをサポートされる状態に調整する必要があります。MetroCluster 構成を削除する必要がある場合は、テクニカルサポートにお問い合わせください。</block>
@@ -8287,7 +8276,6 @@
   <block id="b4e24055c6990c249536cf83d67a87f0" category="paragraph">「 setethernetspeed mp1 1000」</block>
   <block id="d239a1837adf4e352883e5bb91938a87" category="paragraph">'set bridgename _bridgename_bridge_name'</block>
   <block id="0d77538b2ad1e8b5f624512685596cda" category="list-text">ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。</block>
-  <block id="63f92d601e0f07d76d9c59bbdcfeed47" category="paragraph">'Set FCDataRate_port-number_port_speed_'</block>
   <block id="0d75f039d58b1a4c51a1e6fa7f5db62a" category="paragraph">'et FCConnMode_port-number_ptc'</block>
   <block id="e0a5f23db1ea016ca393b0dc436ce2f7" category="list-text">2 番目のポートを使用しない場合は、ポートを無効にする必要があります。</block>
   <block id="a21a379f45bf979b7778722f7375ec61" category="paragraph">FCPGortDisable_port-number_`</block>
@@ -8299,15 +8287,10 @@
   <block id="c1cfcf486927345ca5a36825e44e61a8" category="paragraph">「 info 」のようになります</block>
   <block id="29431d66f3109c0b5ee445b6502a5c33" category="list-text">イーサネットポート MP1 がイネーブルの場合、次のコマンドを実行します。</block>
   <block id="ce912b7c813332cfeb20e9cdecbe7dd1" category="paragraph">「 Set EthernetPort mp1 disabled 」です</block>
-  <block id="98e83072472ff49bb361fe30e4df171e" category="paragraph"><block ref="98e83072472ff49bb361fe30e4df171e" category="inline-link-macro-rx"></block></block>
   <block id="6ef697f11922be2e4de0971f7d70997f" category="list-title">選択肢</block>
-  <block id="4e14469d1b9cb5857e2b83704c8ab8d4" category="list-text"><block ref="d277051460abcb0f3a19fb6f4b09af32" category="inline-xref-macro-rx"></block></block>
-  <block id="1098ebf3ac123d908705a49af90988ba" category="inline-xref">IOM6 または IOM3 モジュールを使用した FibreBridge 7600N / 7500N ブリッジとディスクシェルフのケーブル接続</block>
-  <block id="572e966b8fd8a186b019d7c5d26ff32c" category="list-text"><block ref="f3f03af6d08c988efd686559fcd15483" category="inline-xref-macro-rx"></block></block>
   <block id="8bfac37f0565c6922aeced47caf18f6a" category="list-text">[[step1_bridge]] 各ブリッジが接続されているすべてのディスクドライブとディスクシェルフを検出できることを確認します。</block>
   <block id="9dd06574fbddaf5fab3ebc3605d80dae" category="paragraph">「 astargets 」</block>
   <block id="eb443924112f8c71329400ac78de9284" category="paragraph">繰り返します <block ref="2f9ed640880ac5dd95c2cb30edbb02d0" category="inline-xref-macro-rx"></block> 残りの各ブリッジ。</block>
-  <block id="0aeba4fd83ea38faeb00ddbf389be6ad" category="paragraph"><block ref="48f604bdf2d3bf06f58ee9f10e668948" category="inline-xref-macro-rx"></block></block>
   <block id="2c0892c11c37aec07e0a746c4c7fbe0d" category="list-text">繰り返します <block ref="2f9ed640880ac5dd95c2cb30edbb02d0" category="inline-xref-macro-rx"></block>。</block>
   <block id="896822419043c00441403336af7e4108" category="paragraph">'cluster_a&gt; storage bridge run-cli -bridge bridge_A_1 コマンド securebridge `</block>
   <block id="347f47cb38d61664308e2cc323981b92" category="paragraph">'cluster_a&gt; storage bridge run-cli -bridge bridge_A_1 コマンド unsecurebridge</block>
@@ -8837,9 +8820,6 @@
   <block id="85977d467dedfc86d900cfc49456f320" category="paragraph">ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。</block>
   <block id="c1fb8df06920f0b1e36ed0e97db05891" category="paragraph">ベストプラクティスとして、コンポーネントの各電源装置（ PSU ）を別々の電源装置に接続することを推奨します。両方の PSU を同じ配電ユニット（ PDU ）に接続している場合、停電が発生すると、サイトが停止してシェルフ全体が使用できなくなる可能性があります。1 本原因の電源回線に障害が発生した場合に、サービスが中断する可能性があるケーブル接続の不一致がないかどうかをテストします。</block>
   <block id="56d23b4bd36ea7e836bbc1283db551b3" category="paragraph">E シリーズストレージアレイ LUN を使用するストレッチ MetroCluster 構成では、ストレージコントローラとストレージアレイを直接接続できます。他のアレイ LUN とは異なり、 FC スイッチは必要ありません。</block>
-  <block id="632ac78de4a389af16d655089761a651" category="paragraph">この手順では、推奨されるブリッジ管理インターフェイスである ATTO ExpressNAV GUI と ATTO QuickNAV ユーティリティを使用していることを前提としています。</block>
-  <block id="132ab6e1ba78a445b535028fd5d74260" category="paragraph">ATTO ExpressNAV GUI は、ブリッジの設定および管理、ブリッジファームウェアの更新に使用します。ATTO QuickNAV ユーティリティは、ブリッジのイーサネット管理 1 ポートの設定に使用します。</block>
-  <block id="d08fe7e603a9a3906a2ac376ce5a88c1" category="summary">新しい MetroCluster システムで使用するブリッジの設置を準備する際には、システムが一定の要件を満たしている必要があります。これには、ブリッジのセットアップと設定の要件が含まれます。必要なドキュメント、 ATTO QuickNAV ユーティリティ、ブリッジファームウェアのダウンロードなどがあります。</block>
   <block id="fff420db73f86f193b0309d5cb8fae2f" category="paragraph">System Manager をダウンロードしてインストールしておきます。System Manager は、ネットアップサポートサイトから入手できます。</block>
   <block id="5ddac338fa0803205a82e38309aa44f9" category="list-text">テイクオーバーの発生後に障害ノードまたはパートナーノードのタイムゾーン設定を変更することはできません。</block>
   <block id="3abb76413b81aeec2b1531b8193b98d1" category="paragraph">アレイ LUN を使用するストレッチ MetroCluster 構成では、コントローラの FC-VI ポートどうしを接続する必要があります。コントローラと E シリーズストレージアレイの間では直接接続がサポートされます。その他のすべての LUN 構成アレイでは、構成内の FC スイッチを使用する必要があります。</block>
@@ -8849,17 +8829,12 @@
   <block id="eb4c2154e73813f8ea66d1960d562b2e" category="paragraph">この手順の残りの部分は、 FC-VI ポートの接続を除いて、 E シリーズアレイ LUN を使用しない、アレイ LUN を使用する MetroCluster 構成のセットアップのためのものです。これには、ファブリック接続構成でアレイ LUN を使用するのと同じ FC スイッチが必要です。</block>
   <block id="f42de1b08d2be30deb3f92505955941e" category="paragraph">IP 管理ではなくブリッジのインバンド管理を使用する場合は、イーサネットポートと IP を設定する手順をスキップできます。</block>
   <block id="f0b56d16950bab81d00cfeaf82d6183a" category="paragraph">初期設定にはシリアル接続が使用されます。その後、 ONTAP と FC ポートを使用してインバンド管理を行い、ブリッジの監視と管理を行うことができます。</block>
-  <block id="3a23706b743b24f9521e22417f1d30d0" category="paragraph">入力した IP アドレスのブリッジリンクの ATTO FibreBridge ホームページに移動します。</block>
-  <block id="6a711c2982ba094c44be794ffb3bf1a2" category="list-text">リンクをクリックし、ブリッジを設定するときに指定したユーザ名とパスワードを入力します。</block>
   <block id="3fff43b275954b2824b3aee6836ae256" category="paragraph">「 astargets 」コマンドの出力には、ブリッジに接続されているデバイス（ディスクおよびディスクシェルフ）が表示されます。出力行には行番号が振られているため、デバイスの台数を簡単に把握できます。</block>
-  <block id="4948cb8b3eded5b39ec6d64f06687462" category="list-text">コマンド出力を確認して、ブリッジがスタック内の想定されるすべてのディスクおよびディスクシェルフに接続していることを確認します。</block>
-  <block id="48dda5bb7b1f8b58b068fa47d9879c67" category="paragraph">コントローラモジュールに複数の FC アダプタが設定されている場合は、両方のブリッジポートを同じアダプタに接続しないでください。単一点障害を避けるために、 FC ポート 1 をアダプタ A 、 FC ポート 2 をアダプタ B に分散させる必要があります。</block>
   <block id="9c99fef0430bb16c4a28d231ae5f8299" category="paragraph">ネイティブディスクおよびアレイ LUN を使用するストレッチ MetroCluster 構成では、 FC-to-SAS ブリッジまたは SAS 光ケーブルのいずれかを使用して ONTAP システムをディスクシェルフに接続する必要があります。また、 ONTAP システムにアレイ LUN を接続するためには、 FC スイッチを使用する必要があります。</block>
   <block id="f1ab023e5e9e9bdeb7a934c85edec3d1" category="paragraph">ONTAP システムをネイティブディスクとアレイ LUN の両方に接続するには、 HBA ポートが 8 個以上必要です。</block>
   <block id="920da881cae411ea78d6cb953a970a64" category="paragraph">ディスクとアレイ LUN を使用する 2 ノードストレッチ MetroCluster 構成の次の例では、 HBA ポート 0a~0d をアレイ LUN との接続に使用します。HBA ポート 1a~1d を使用してネイティブディスクに接続されています。</block>
   <block id="cd05172187157436bfb2ba5bf1f04694" category="paragraph">次の図は、ネイティブディスクを SAS 光ケーブルで ONTAP システムに接続した 2 ノードストレッチ MetroCluster 構成の例です。</block>
   <block id="ea8debab29aa9d3caee7fdbdd472b388" category="paragraph">次の図は、ネイティブディスクを FC-to-SAS ブリッジで ONTAP システムに接続した 2 ノードストレッチ MetroCluster 構成の例です。</block>
-  <block id="d970522a2c535f4a798076f2c36b8af8" category="paragraph">これらのディスクシェルフのケーブル接続には、正しい FC-to-SAS ブリッジを使用する必要があります。</block>
   <block id="f889df12ea9fb88367e834a6ea3528cf" category="list-text">MetroCluster modify -auto-switchover failure-domain auto-disabled コマンドを実行して、両方のクラスタで自動スイッチオーバーを無効にする必要があります。</block>
   <block id="a2b91b36fe2f171ecdfe2293a4dedbcb" category="paragraph">上の図は、一般的なケーブル接続を示しています。FC-VI ポートはコントローラモジュールによって異なります。</block>
   <block id="f6c4685383c21cd45ac1dd62ff0d2357" category="list-text">オンボードポート 0e と 0f は、 FC-VI モードで設定します。</block>
@@ -10271,13 +10246,8 @@
   <block id="4ae8d24c72dd765a4920ac53c2dafe90" category="paragraph">ONTAP 9.4 以前</block>
   <block id="361772e9851772534036695f2c569190" category="paragraph">ポーリング間隔に応じて、すべてのデータが反映されるまで 15 分程度かかる場合があります。ONTAP ヘルスモニタは、「 Status 」列の値が「 ok 」で、ワールドワイド名（ WWN ）などのその他の情報が表示されていれば、ブリッジに接続して監視できます。</block>
   <block id="c0aba19592ccfed38799730fe622ca35" category="list-text">より詳細な結果を表示します。</block>
-  <block id="a977177241046fa392e812a609420ace" category="list-text">[[step1-verify]] ブリッジが接続されているすべてのディスクドライブとディスクシェルフを各ブリッジで検出できることを確認します。</block>
-  <block id="13174ed6300232fa48d1a5b59eb7e2f4" category="list-text">次のコマンドを実行してから '*Submit*:+'sastargets' をクリックします</block>
-  <block id="3d40cc4f5f094dc369c0eb1e445aecea" category="admonition">出力の先頭に「 `text response truncated 」と表示される場合は、 Telnet を使用してブリッジに接続し、同じコマンドを実行すると、すべての出力を確認できます。</block>
   <block id="065575055836b7cada67fa8852ea3ef7" category="paragraph">繰り返します <block ref="760439458840ee59fb7794af4bb5b199" category="inline-xref-macro-rx"></block> 残りの各ブリッジ。</block>
-  <block id="4c86d491f2865662ab58a2679a13b3ab" category="paragraph"><block ref="4c86d491f2865662ab58a2679a13b3ab" category="inline-link-macro-rx"></block></block>
   <block id="fa5d02c46c643a9eedee519211b4d9d4" category="list-text">繰り返します <block ref="760439458840ee59fb7794af4bb5b199" category="inline-xref-macro-rx"></block> 残りの各ブリッジ。</block>
-  <block id="b29b8c83f7d8c55b39ae87067330f426" category="list-text">[step3-cable-mebrider] - 各ブリッジをコントローラモジュールにケーブル接続します。</block>
   <block id="13044932159e150c28f3e3cabd33ea68" category="list-text">繰り返します <block ref="92a9f0aaafd1755c239f3740bca9b5f0" category="inline-xref-macro-rx"></block> 他のブリッジについて、すべてのブリッジがケーブル接続されるまで。</block>
   <block id="663ca2bb9d69f00e40b12629c141073d" category="paragraph"><block ref="663ca2bb9d69f00e40b12629c141073d" category="inline-link-rx"></block></block>
   <block id="95052b14282825e23d588959737ad63b" category="paragraph"><block ref="95052b14282825e23d588959737ad63b" category="inline-link-macro-rx"></block></block>
@@ -10886,7 +10856,6 @@
   <block id="2eb016ab0f18b2ada34df66ecade6e4b" category="list-text">メンテナンスモードを終了して LOADER プロンプトを表示します。</block>
   <block id="64c598a52dd8cdadea545647c7d064a6" category="summary">MetroCluster の構成と運用の詳細については、ネットアップの広範なドキュメントを参照してください。</block>
   <block id="04d9ec83167120e239825f4726f351cc" category="paragraph">Active IQ Unified Manager のドキュメント<block ref="1cf4a9f6324bfcec73ee8652129ceb47" category="inline-link-rx"></block></block>
-  <block id="7b173496e8f6041144abc83f7e17506f" category="list-text">サバイバークラスタにある同期先のすべての SVM が休止状態（管理状態が「 stopped 」と表示されている）であり、ディザスタクラスタにある同期元の SVM が稼働していることを確認します。</block>
   <block id="90755aace4dbf79660e4f610c3481e12" category="paragraph">MetroCluster 構成の同期先アグリゲートの名前には、識別しやすいように「 -mc 」というサフィックスが自動的に付加されます。</block>
   <block id="a06ba402461ed4d507397d322c6630a2" category="list-text">ONTAP 9.5 以降では、ディザスタサイトのノードがブートしたままの場合、ローカルプレックスとリモートプレックスの両方がオンラインのままになります。</block>
   <block id="9c02f16bec605fc43993ca0ced188f41" category="paragraph">ONTAP 9.5 以降の MetroCluster IP 構成では、ネゴシエートスイッチオーバー処理の実行中に自動的に修復が実行されます。ONTAP 9.6 以降では、計画外スイッチオーバー後の自動修復がサポートされます。これにより 'MetroCluster heal-' コマンドを問題する必要がなくなります</block>
@@ -12105,7 +12074,6 @@
   <block id="cbabd53b8268cb963ad7b2c67de0b634" category="paragraph">MetroCluster は FC ノードインターフェイスでのみ報告されるため、クライアントには FC ノード経由のパスのみが表示されます。これは、の出力で確認できます。<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> および<block ref="2fbf63deae0938cf669e6ca451f1eb2c" prefix=" " category="inline-code"></block> コマンド</block>
   <block id="7162464dfaefdef75b18029dcb1bb1f1" category="list-text">ホストのSCSIバスを再スキャンして、新しく追加したパスを検出します。<block ref="9e65638d5d13acb691c4bec2ede5a483" prefix=" " category="inline-code"></block></block>
   <block id="9b3bd2afae038f8967e9373560a3b6d2" category="list-text">クライアントのSCSIバスを再スキャンします。<block ref="06653a48f6165608045bd55ec32d95fb" prefix=" " category="inline-code"></block></block>
-  <block id="77139d079fd912afd88e4ca7f5623393" category="paragraph">コントローラモジュールにクアッドポートFCアダプタが設定されている場合は、ストレージスタックが同じASICの2つのFCポートに接続されていないことを確認します。ポート a とポート b で同じ ASIC を、ポート c とポート d で同じ ASIC をそれぞれ共有します。シェルフのスタックをポート A とポート B に接続しないでください代わりに、ポート a とポート c を使用するか、ポート b とポート d を使用して、 ASIC に障害が発生した場合の単一点障害を回避します。</block>
   <block id="9df52fd51f68e1f0a1c54d87fbcf2d9f" category="paragraph">Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。Tiebreakerソフトウェアは3番目のサイトのLinuxホストに配置され、クラスタ内の各パートナーでISL障害（サイト間リンクが停止した場合）とサイト障害を区別できます。</block>
   <block id="776aa0db93dc60ccb39a1a2bac58edd0" category="paragraph">Tiebreakerソフトウェアでは、最大15個のMetroCluster構成を同時に監視できます。MetroCluster IP構成、MetroCluster FC構成、ストレッチMetroCluster構成の組み合わせがサポートされます。</block>
   <block id="2c6d3f6cb9e7e0273e71c2ee07e103ef" category="paragraph">Tiebreakerソフトウェアをインストールまたはアップグレードする前に、ホストのLinuxオペレーティングシステムに応じて、MySQLサーバまたはMariaDBサーバをインストールする必要があります。</block>
@@ -13626,7 +13594,6 @@
   <block id="fb0d5feb3def76f90b6408f32f99f4b7" category="list-text">新しくアップグレードしたコントローラのデータポート用に新しいブロードキャストドメインを作成する場合は、そのブロードキャストドメインを削除します。</block>
   <block id="3ab5e50e5fd6dc477690730212c6785f" category="admonition">新しいブロードキャストドメインだけを削除します。アップグレードを開始する前に存在していたブロードキャストドメインは削除しないでください。</block>
   <block id="8cb8d05546274856c8c2cb56b7cd62ac" category="paragraph"><block ref="7bbb7f17a19e67be5ebaaa8410749ad2" prefix="" category="inline-code"></block></block>
-  <block id="c46b37082c4b8a5ecb54ed082719f5fa" category="paragraph"><block ref="6ed2488c75aad6332e02665ab7c30031" prefix="" category="inline-code"></block></block>
   <block id="a51de836d51a26774e16aa7066519185" category="paragraph"><block ref="6a6db1083e2f8c53b07cc196dec3cafb" prefix="" category="inline-code"></block></block>
   <block id="641cba091515001a3bb48d030bddd608" category="section-title">cluster_Aのノードをアップグレードします。</block>
   <block id="2ce39beb4bd7e0662d271e0be20e56c4" category="paragraph">アップグレードを開始する前に、次の考慮事項を確認して、構成がサポートされていることを確認してください。</block>
@@ -14270,4 +14237,94 @@
   <block id="5f9a9e91fc7e98f1998a1dcee4eab83f" category="paragraph">ミラーされていないシェルフのドライブだけがアグリゲートに追加されていることを確認します。</block>
   <block id="6f1eb898d916ac10201421006f5406e2" category="admonition">コマンドのパラメータを使用して、アグリゲートに使用するディスクを指定することもできます<block ref="2ee4c97cd7e2dff2e12ae3225818c09b" prefix=" " category="inline-code"></block>。</block>
   <block id="668c968f31daa1f3b0b86ddf4b09543e" category="list-text">LIFを作成する前にサブネットオブジェクトを作成する必要があります。ONTAPにはブロードキャストドメインが関連付けられているため、サブネットオブジェクトを使用してデスティネーションクラスタのフェイルオーバーターゲットを決定できます。</block>
+  <block id="6d42a1c65d48ed3ec77f037a50004258" category="list-text">健全性監視に専用のネットワークを使用する場合は、各ノードのノード管理LIFをその専用のネットワーク内に配置する必要があります。</block>
+  <block id="b729f80ba307f8a8e8ea6189b1ed6313" category="paragraph">NetAppでは、MetroCluster FC構成のコンポーネントを監視するための次のツールのみがサポートされます。</block>
+  <block id="f60d1385c75cfef525be8497e2137ee8" category="list-text">Brocade Network Advisor （ BNA ）</block>
+  <block id="138e272b0320fc1ffcdc8dee378b177b" category="list-text">Brocade SANnav</block>
+  <block id="865e9b4ef52f3b0d3050c8b3c14eb660" category="list-text">Active IQ Config Advisor</block>
+  <block id="5ed4e53c285d1a7046c38f429a94ef7b" category="list-text">NetAppヘルスモニタリング（ONTAP）</block>
+  <block id="fb4d5d69523a984853a5295db93de123" category="list-text">MetroClusterデータコレクタ（MC_DC）</block>
+  <block id="0d48c29aadd238b08bcb06f357acd9d8" category="section-title">インストールの準備</block>
+  <block id="e30f0ace1e7e67755e7318eeab1b0204" category="section-title">FC-to-SASブリッジおよびSASシェルフの設置</block>
+  <block id="0dc04f427f83d4c5afa311fe8042eddc" category="list-text">FibreBridge 7600Nブリッジのシリアルポートにシリアルケーブルを接続して、ブリッジのコンソールインターフェイスにアクセスします。</block>
+  <block id="2323990b6fbb7b7ee5ee14dbdb21eaf0" category="section-title">FC-to-SASブリッジを設定</block>
+  <block id="ff48ad0dc104d3885573fa0f45161299" category="paragraph"><block ref="77d54c8e2e9adc9e2bc031facbe82b7c" prefix="" category="inline-code"></block></block>
+  <block id="a21e2af264b592c03f6b1f88af93dd36" category="paragraph"><block ref="a32ef1a4f91191b408d6aa3ceeed03a8" prefix="" category="inline-code"></block></block>
+  <block id="49cc2eac13c61da60904b157e05ec5dc" category="paragraph"><block ref="e9580cd86794b774ad27b65b0a805b73" prefix="" category="inline-code"></block></block>
+  <block id="b2c196d04c27ee6d1c55877714d8d6f9" category="section-title">ディスクシェルフをブリッジにケーブル接続</block>
+  <block id="4273704f66fca16606c90100e4c57808" category="inline-xref">FibreBridge 7600N / 7500NブリッジをIOM12モジュールを使用してディスクシェルフとケーブル接続</block>
+  <block id="242108261e892329ec8e41357fad0678" category="list-text"><block ref="57fecdddd64dc6d4f5e9d97874ea43bc" category="inline-xref-macro-rx"></block></block>
+  <block id="e3136c071e40d473a2ed2f7295c2ead2" category="inline-xref">FibreBridge 7600N / 7500NブリッジをIOM6またはIOM3モジュールを使用してディスクシェルフとケーブル接続</block>
+  <block id="e88d980772f7b12fbca752322a5e5307" category="list-text"><block ref="e59f261da41fd9be2eaf7f1b955dc162" category="inline-xref-macro-rx"></block></block>
+  <block id="e42bb9af7fd1e3b1641a18782a424fb0" category="list-text">スタック内の論理的に最初のシェルフから、IOM Aのポート3を次のシェルフのIOM Aのポート1に接続し、スタック内の各IOM Aを接続します。</block>
+  <block id="df728bff4207a1d17e007189ab445eaa" category="section-title">FibreBridge 7600N / 7500NブリッジをIOM6またはIOM3モジュールを使用してシェルフとケーブル接続</block>
+  <block id="8a6b192e89e003168a9dec4c4b9059a7" category="section-title">ブリッジの接続を確認し、ブリッジのFCポートをケーブル接続する</block>
+  <block id="1127370baf663b49c7993f8a6ab9f41e" category="paragraph"><block ref="eba7ba40406886cad3add195d043cd08" category="inline-xref-macro-rx"></block></block>
+  <block id="d277bf5cc4237c95ff26e4f98eefaf07" category="paragraph">新しいストレージを構成に追加する際に、ATTO FibreBridgeブリッジとSASディスクシェルフを設置してケーブル接続します。</block>
+  <block id="760e34100c7db8b067f655d415a342c1" category="paragraph">インバンド管理を使用する場合は、ONTAP CLIからブリッジへのFC接続を使用してブリッジを管理および監視できます。ブリッジのイーサネットポートを介してブリッジに物理的にアクセスする必要がないため、ブリッジのセキュリティの脆弱性が軽減されます。</block>
+  <block id="74f6533c5153d90867b32b519b275c65" category="list-text">ONTAP 9.5よりも前のバージョンでは、アウトオブバンドのSNMP管理のみがサポートされていました。</block>
+  <block id="967c96558959e91e943843e6263ec970" category="paragraph">ブリッジCLIコマンドは、ONTAPインターフェイスでONTAP interfaceコマンドを使用して実行でき<block ref="52f6597c8dcf79b6137c2435b9c9efcb" prefix=" " category="inline-code"></block>ます。</block>
+  <block id="d22ab9487f4f57c6ecf56a0875e0c070" category="paragraph">新しいMetroClusterシステムで使用するブリッジの設置準備を行うときは、システムが一定の要件を満たしていることを確認する必要があります。これには、ブリッジのセットアップや設定の要件と、必要なドキュメント、 ATTO QuickNAV ユーティリティ、ブリッジファームウェアのダウンロードなどがあります。</block>
+  <block id="9d46de9346ca8af89ab03ed382fc9ab1" category="paragraph">で<block ref="a5900d751cd970c3de875b616ebb9e28" category="inline-link-rx"></block>、*[Storage Solution]*フィールドを使用してMetroClusterソリューションを選択できます。コンポーネントエクスプローラ*を使用してコンポーネントとONTAPバージョンを選択し、検索を絞り込むことができます。[Show Results]*を選択すると、条件に一致するサポートされている構成のリストを表示できます。</block>
+  <block id="1654c802242a5762f6e28996b1f5e854" category="list-text">各FCコントローラで、1つのFCポートを1つのブリッジに接続できる必要があります。</block>
+  <block id="4178aa1558026aafc5b0376eacf267e6" category="list-text">SASケーブルの取り扱い方法、およびディスクシェルフの設置とケーブル接続に関する考慮事項とベストプラクティスを理解しておく必要があります。</block>
+  <block id="e0661cfc6d44d7098774766995e5913c" category="list-text">50ミクロンのマルチモード光ファイバケーブルを使用するディスクシェルフ、FCコントローラ、およびバックアップテープデバイスの最大距離に関するシステム接続要件も、FibreBridgeブリッジに適用されます。</block>
+  <block id="7bcf16804afe2d3ed86d658c4f355f74" category="paragraph"><block ref="eece6350c77c4c173bc5eac22d38a3d8" prefix="" category="inline-code"></block></block>
+  <block id="8f94293e801572ab9458b1e91111b45b" category="list-text">スタック内の論理的に最初のシェルフから、IOM Aのポート3をに接続し、スタック内の各IOM Aを接続するまで次のシェルフのIOM Aのポート1に接続します。</block>
+  <block id="a73aaf062bae9a1d7a52d1bdd78a1927" category="section-title">ブリッジの接続を確認し、FC-to-SASブリッジをコントローラのFCポートにケーブル接続します。</block>
+  <block id="40eba83ddff63a60c0f3132156cbb034" category="paragraph">2ノードブリッジ接続MetroCluster構成では、ブリッジをコントローラのFCポートにケーブル接続する必要があります。</block>
+  <block id="3ce46fc9a15b5c37d69e1d5ae43448c1" category="list-text">[[step1-verify-detect]]各ブリッジで、ブリッジが接続されているすべてのディスクドライブおよびディスクシェルフが検出されることを確認します。</block>
+  <block id="78d9123f52b553c11386801c7e6ee30c" category="list-text">コマンド出力で、ブリッジがスタック内の正しいディスクおよびディスクシェルフに接続されていることを確認します。</block>
+  <block id="84be3f4668a661e6d6ab8a9c8e8b7640" category="list-text">[[step3-cable-each-bridge]各ブリッジをコントローラのFCポートにケーブル接続します。</block>
+  <block id="1832e58c6444b28a1738bf5e7d5f4bad" category="list-text">ブリッジのFCポート1をcluster_AのコントローラのFCポートにケーブル接続します。</block>
+  <block id="147fb5a8c36cf6f6239310bbf3fbd96d" category="list-text">ブリッジのFCポート2をcluster_Bのコントローラ上のFCポートにケーブル接続します。</block>
+  <block id="620ef8e255d79ca87184c0f6bd5b96c6" category="list-text">コントローラにクアッドポートFCアダプタが設定されている場合は、ストレージスタックの両端にあるブリッジが同じASICの2つのFCポートに接続されていないことを確認してください。例：</block>
+  <block id="7def08188c3514b9c48ff9e90fc4b0e8" category="list-text">ポートaとポートbは同じASICを共有します。</block>
+  <block id="02ab53167e774ae8d9d95cd3bfbfc09a" category="list-text">ポートcとポートdは同じASICを共有します。</block>
+  <block id="00476bfdbf527b84c0b7fbcbde326f75" category="paragraph">この例では、FC_bridge_A_1をポートAに接続し、FC_bridge_A2をポートCに接続します。</block>
+  <block id="db25c93b70e2d449bc0eacd997bc5392" category="list-text">コントローラに複数のFCアダプタが設定されている場合は、ストレージスタックのどちらかの端にあるブリッジを同じアダプタにケーブル接続しないでください。</block>
+  <block id="860a61ba6dae3941046ced6d468fe4e9" category="paragraph">このシナリオでは、FC_bridge_A_1をオンボードのFCポートに接続し、FC_bridge_A_2を拡張スロットのアダプタのFCポートに接続します。</block>
+  <block id="fdd11dfe0e9d69317902be2abf4845cf" category="inline-image-macro">クラスタピアリングネットワークの図</block>
+  <block id="56571215fb83a5614f4f1ed3deb7e93c" category="paragraph"><block ref="56571215fb83a5614f4f1ed3deb7e93c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c451d21d9b1e4faa6b241f172e690c0b" category="paragraph"><block ref="deceade8c0d17544f65a6ede664b23e2" prefix="" category="inline-code"></block></block>
+  <block id="be4fd0012ddc006ea303591c9df6f76d" category="paragraph"><block ref="39b06b9a26b49c3db6d9409a6abaa9d8" prefix="" category="inline-code"></block></block>
+  <block id="9e1d9b9e8b88355df08194559af6865a" category="summary">スイッチオーバー中は、一部の処理を実行しないでください。</block>
+  <block id="fa33dcb38c0cd6e15dd757f1ef3072ee" category="doc">MetroCluster構成がスイッチオーバー状態の場合の制限事項</block>
+  <block id="5722cde27dfa05f795a5466b6d0859c9" category="paragraph">システムがスイッチオーバー中のときは、一部の処理を実行しないでください。システムがスイッチオーバー中の場合の制限された処理について説明します。</block>
+  <block id="b72a4837907e7fef0771c42da901c811" category="section-title">スイッチオーバー時の制限された処理</block>
+  <block id="1b5f91752d52b3bac4319cf07ea0efb8" category="paragraph">システムがスイッチオーバー状態の場合、次の処理はサポートされません。</block>
+  <block id="272c8dfc8e0821088d85ed5d0fe037a8" category="list-text">アグリゲートおよびボリュームの作成または削除</block>
+  <block id="d825dd35fde2fe33a56ef95c52f545a0" category="list-text">SVMの作成または削除</block>
+  <block id="8c120d60e412429a6f43b748c02dc233" category="list-text">LIFの作成または削除</block>
+  <block id="9cc6607cba1650bc799439425f9b085e" category="list-text">ディスクの追加または削除（リカバリ手順の一環として交換する場合のみ）</block>
+  <block id="8fe0d36b4759e6e40b887b096584644e" category="list-text">SnapMirror SVM DRに対する設定変更の実行</block>
+  <block id="d6509169a6409458c70d9934cd8159d0" category="list-text">既存のブロードキャストドメインの変更または新しいブロードキャストドメインの作成</block>
+  <block id="0e4fc6663e95531e1c48cb8fcdc5fc7c" category="list-text">ネットワークサブネットの変更</block>
+  <block id="be2a1f6ebcf2096180a7211fc2d40f49" category="section-title">スイッチオーバー時のハードウェアの交換</block>
+  <block id="1bf38e1e76b1ffa01784928faef533bd" category="paragraph">システムがスイッチオーバー中の場合は、次の手順に従ってコントローラハードウェアを交換します。</block>
+  <block id="35ee9e73034b599a0e2236f1e215fb3d" category="list-text">スイッチオーバー中でないサイトで同じタイプのコントローラを交換する必要がある場合は、の手順に従ってください<block ref="9b067f6cfdd46edd11b6f92353f05956" category="inline-link-macro-rx"></block>。</block>
+  <block id="787b5b0c67b18976c91dc3f6628778e0" category="list-text">サバイバーサイトでノードのスイッチオーバー中にコントローラモジュールとシャーシを交換する必要がある場合は、両方のコントローラをシャットダウンしてから、の手順を実行します<block ref="9b067f6cfdd46edd11b6f92353f05956" category="inline-link-macro-rx"></block>。</block>
+  <block id="49ad2bb3d2de07281d3d8fd2e16644ed" category="list-text">コントローラを別のタイプのコントローラに交換する必要がある場合は、の構成に応じた手順に従ってください<block ref="1bee30f9c5932b39ca60631e46d351c4" category="inline-link-macro-rx"></block>。</block>
+  <block id="e9e319505f06fc728bd8dcb2a9b67412" category="list-text">コントローラ障害が原因でシステムのスイッチオーバーが発生した場合やスイッチオーバー中にコントローラ障害が発生した場合は、まずコントローラハードウェアを交換し、スイッチバックを実行してからコントローラのアップグレードを実行する必要があります。</block>
+  <block id="d54ffc167bc880d77acd9d1b6d020080" category="list-text">コントローラハードウェアを交換してスイッチバックを実行するには、次の手順に従います。<block ref="9b067f6cfdd46edd11b6f92353f05956" category="inline-link-macro-rx"></block></block>
+  <block id="f63242f4292325b063838517abc2c1a1" category="list-text">ハードウェアを交換したら、の手順に従ってコントローラのアップグレードを実行します<block ref="1bee30f9c5932b39ca60631e46d351c4" category="inline-link-macro-rx"></block>。</block>
+  <block id="1dc725a140606a258f54d59d9ad3d9bd" category="list-text">サバイバークラスタの同期先のすべてのSVMが休止状態であることを確認します（動作状態が「`stopped`」と表示されています）。</block>
+  <block id="5dfed22feb54647dbd9e9ae827290f6b" category="paragraph"><block ref="67611e9f528c6078257c414670af6b52" prefix="" category="inline-code"></block></block>
+  <block id="1225fe0de146a130add7eeefae9e0925" category="list-text">ディザスタクラスタの同期元SVMが稼働していることを確認します。</block>
+  <block id="ad29c49a8377862a59f9aae0ab4431cd" category="paragraph">LIFの配置が正しいことを確認その後、古いコントローラのVLANとインターフェイスグループを削除し、コントローラを物理的に取り外します。</block>
+  <block id="253982549e381b6f58f66b3e289a0a83" category="admonition">新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<block ref="45cc57eb3654a2ae89efabc6fb9d271a" category="inline-xref-macro-rx"></block>。</block>
+  <block id="ba20cbe478ea7b912f1d044734df2884" category="list-text">[[upgrades_manual_without_matching_ports]]ブロードキャストドメインを変更して、削除が必要なVLANと物理ポートを削除します。</block>
+  <block id="ae359c5763df3f6130f697d17d090551" category="admonition">スイッチバックを実行する前に、新しいノードでデータLIFの場所が正しいことを確認する必要があります。構成をスイッチバックすると、ONTAPはLIFで使用されているホームポートでトラフィックの再開を試みます。スイッチポートおよびVLANへのホームポート接続が正しくないと、I/O障害が発生する可能性があります。</block>
+  <block id="1c780702501fd89538731057505e0a04" category="list-text">スイッチバックの前に、LIFが適切なノードとポートでホストされていることを確認します。</block>
+  <block id="bc12d3bc2a2c1526b655930b56efc183" category="list-text">LIFを表示し、各データLIFが正しいホームポートを使用していることを確認します。</block>
+  <block id="b98ffe19185977668c0712d9626bb6b1" category="list-text">正しいホームポートを使用していないLIFを変更します。</block>
+  <block id="823bc5ae6e724dd8994efcc4dbeb49d2" category="paragraph">コマンドからエラーが返された場合は、ポート設定を上書きできます。</block>
+  <block id="ec14487a214982a1ea6572636724761f" category="paragraph"><block ref="afdc229346561af3e5aba3a6d67eea09" prefix="" category="inline-code"></block></block>
+  <block id="c9ba655979127851f6a6f01489815e47" category="list-text">すべてのデータLIFが正しいホームポートにあることを確認します。</block>
+  <block id="fd7b222b3cb6aff1e0aef0b1e7a16998" category="paragraph">ネットワークが新しいコントローラで正常に再開されるようにするには、LIFの配置が正しいことを確認し、古いコントローラのネットワーク設定を削除します。</block>
+  <block id="ef1038ce81a2c9d70181057dd381a59a" category="admonition">新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<block ref="186451ebe57c46550834233237ebac90" category="inline-xref-macro-rx"></block>。</block>
+  <block id="3432abc562d1049e115fc0bcb6f569ab" category="list-text">[[upgrades_assisted_without_matching_ports]]ブロードキャストドメインを変更して、削除が必要なVLANと物理ポートを削除します。</block>
+  <block id="07bfa9093a8ef293dfd6099e38fde255" category="list-text">MetroClusterが正しく設定されていることを確認します。ノードのステータスを確認します。</block>
+  <block id="d64694bac02c7b4eea890e175a53a0c7" category="paragraph">自動スイッチバック処理を開始する前に、LIFが適切なノードでホストされていることを確認してください。</block>
+  <block id="db85d3fd5e7d7beaa319d4ebe299145b" category="sidebar">システムがスイッチオーバー状態の場合の制限事項</block>
 </blocks>

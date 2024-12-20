@@ -891,7 +891,7 @@ MetroCluster node show
 
 == インターフェイス設定を削除し、古いコントローラをアンインストールする
 
-データ LIF を共通ポートに移動して古いコントローラの VLAN やインターフェイスグループを削除し、コントローラを物理的にアンインストールする必要があります。
+LIFの配置が正しいことを確認その後、古いコントローラのVLANとインターフェイスグループを削除し、コントローラを物理的に取り外します。
 
 .このタスクについて
 * 以下の手順は、古いコントローラ（ node_B_1 古い、 node_B_2 ）で実行します。
@@ -955,6 +955,10 @@ NOTE: この手順は、アップグレードを成功させるために必要�
 
 . [[controller_manual_upgrade_prepare_network_ports_3]]古いコントローラのすべてのデータLIFのホームポートを、新旧両方のコントローラモジュールで同じ共通のポートに割り当てます。
 +
+
+CAUTION: 新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<<upgrades_manual_without_matching_ports,手順 4>>。
+
++
 .. LIF を表示します。
 +
 「 network interface show 」を参照してください
@@ -984,7 +988,7 @@ network interface modify -vserver vs0 -lif datalif1 -home-port e0d
 ----
 
 
-. ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。
+. [[upgrades_manual_without_matching_ports]]ブロードキャストドメインを変更して、削除が必要なVLANと物理ポートを削除します。
 +
 `broadcast-domain remove-ports -broadcast-domain <broadcast-domain-name> -ports <node-name:port-id>`
 
@@ -1791,19 +1795,36 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 * で作成したポートマッピング計画を確認します link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html["古いノードから新しいノードへのポートのマッピング"]。
 
 
+
+CAUTION: スイッチバックを実行する前に、新しいノードでデータLIFの場所が正しいことを確認する必要があります。構成をスイッチバックすると、ONTAPはLIFで使用されているホームポートでトラフィックの再開を試みます。スイッチポートおよびVLANへのホームポート接続が正しくないと、I/O障害が発生する可能性があります。
+
 .手順
-. スイッチバックの前に、 LIF が適切なノードとポートにホストされていることを確認します。
+. スイッチバックの前に、LIFが適切なノードとポートでホストされていることを確認します。
 +
 .. advanced 権限レベルに切り替えます。
 +
 「 advanced 」の権限が必要です
 
-.. ポート設定を無視して LIF が適切に配置されるようにします。
+.. LIFを表示し、各データLIFが正しいホームポートを使用していることを確認します。
 +
-`vserver config override -command "network interface modify -vserver <svm-name> -home-port <active_port_after_upgrade> -lif <lif_name> -home-node <new_node_name>`
+「 network interface show 」を参照してください
+
+.. 正しいホームポートを使用していないLIFを変更します。
++
+`network interface modify -vserver <svm-name> -lif <data-lif> -home-port <port-id>`
+
++
+コマンドからエラーが返された場合は、ポート設定を上書きできます。
+
++
+`vserver config override -command "network interface modify -vserver <svm-name> -home-port <active_port_after_upgrade> -lif <lif_name> -home-node <new_node_name>"`
 
 +
 vserver config override コマンドで network interface modify コマンドを入力した場合は、 tab autoccomplete 機能を使用することはできません。autoccomplete を使用してネットワーク 'interface modify' を作成してから 'vserver config override' コマンドで囲むことができます
+
+.. すべてのデータLIFが正しいホームポートにあることを確認します。
++
+「 network interface show 」を参照してください
 
 .. admin 権限レベルに戻ります。
 +
