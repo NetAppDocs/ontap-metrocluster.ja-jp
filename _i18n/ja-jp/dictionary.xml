@@ -2432,15 +2432,6 @@
   <block id="5b56c16675df5128ad1509d1d30f5292" category="list-text">表示されたコントローラまたはシャーシのシステム状態が正しくない場合は、 HA 状態を設定します。</block>
   <block id="7e658f7d65797e8810c06b822120b6e2" category="section-title">MetroCluster の bootarg IP 変数の設定</block>
   <block id="78a0010898f446d1e157f43c3797a937" category="paragraph">新しいコントローラモジュールには特定の MetroCluster IP bootarg 値を設定する必要があります。これらの値は、古いコントローラモジュールに設定されている値と一致する必要があります。</block>
-  <block id="ae33f232a65af78b38ef0d615f9b4685" category="list-text">アップグレード対象のノードが AFF A400 、 FAS8300 、 FAS8700 のいずれかのモデルの場合は、 LOADER プロンプトで次の bootarg を設定します。</block>
-  <block id="b776a192613301675eb8a9978b122c2e" category="admonition">インターフェイスがデフォルトの VLAN を使用している場合、 vlan-id は不要です。</block>
-  <block id="f15ac8125bcf03a0a837e92a4cc50161" category="paragraph">次のコマンドは、最初のネットワークに VLAN 120 を、 2 番目のネットワークに VLAN 130 を使用して、 node_B_1 の新しい値を設定します。</block>
-  <block id="e74024ee9d7f8e95f3e626a5c873a315" category="paragraph">次のコマンドは、最初のネットワークに VLAN 120 を、 2 番目のネットワークに VLAN 130 を使用して、 node_B_2 の値を設定します。</block>
-  <block id="44f9e07ea9ebd3af9d897a1fd22a2893" category="paragraph">次の例は、デフォルトの VLAN を使用している場合の node_B_1 に対するコマンドを示しています。</block>
-  <block id="39587765d8074fb3d6e4963abb2b1998" category="paragraph">次の例は、デフォルトの VLAN を使用している場合の node_B_2 に対するコマンドを示しています。</block>
-  <block id="d81eefa1c7e616946da2c21d8091ff22" category="list-text">アップグレード対象のノードが前の手順でリストされていない場合は、各サバイバーノードの LOADER プロンプトで「 local_IP/mask 」で次の bootargs を設定します。</block>
-  <block id="ad660c4b2e3b57b6c520334fa6e9e973" category="paragraph">次のコマンドは、 node_B_1 について新しい値を設定します。</block>
-  <block id="e99a6d6afe39a84ad08205e484b19f40" category="paragraph">次のコマンドは、 node_B_2 の値を設定します。</block>
   <block id="b6eb4854ed8abef4df5eb8ee192a6d06" category="list-text">新しいノードの LOADER プロンプトで、 UUID を設定します。</block>
   <block id="00c5b9f86e4207bff2752e5e997174e9" category="list-text">node_B_2 の UUID を設定します。 new ：</block>
   <block id="0a808a76cce459f2fa26c4f9df6973d3" category="paragraph">次の例は、 node_B_2 の UUID を設定するコマンドを示しています。</block>
@@ -11835,17 +11826,6 @@
   <block id="8351b67dee4e0c692cf4f28e83b54b0a" category="paragraph">自動化処理によってスイッチオーバー処理が開始されます。これらの処理が完了すると、処理は* paused for user intervention *で一時停止します。これにより、を使用して、コントローラをラックに設置し、パートナーコントローラをブートし、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます<block ref="5fb641c5977b93de82b81e36db0454cf" prefix=" " category="inline-code"></block> さっき集まった。</block>
   <block id="956cd19055bcda776c4aa38d849f5270" category="paragraph">ディレクトリの一覧に、カーネルファイル ONTAP-version image.tgz のネットブートフォルダが含まれている必要があります</block>
   <block id="d58685908c79a70d5ff1a6db6c223402" category="paragraph">image.tgz ファイルを展開する必要はありません。</block>
-  <block id="f3b7262f888ca591450dde27d2e71aaf" category="paragraph">次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_1の値を設定します。</block>
-  <block id="65197a1036db006851c7578b94728a50" category="paragraph">次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用してnode_B_2の値を設定します。</block>
-  <block id="bf8bfdf49f6f753bf2394e6dce1882b0" category="list-text">node_B_1のUUIDを設定します。</block>
-  <block id="5eac2f82a290cf5f7626a80d0e2c07aa" category="paragraph">次の例は、node_B_1のUUIDを設定するコマンドを示しています。</block>
-  <block id="f2925ea98441cdf274d96211ca1ada37" category="list-text">node_B_2のUUIDを設定します。</block>
-  <block id="812568fdfa215d28245c0e27f1e6f5ce" category="paragraph">次の例は、node_B_2のUUIDを設定するコマンドを示しています。</block>
-  <block id="384df789341519934d49ceef6f3f8c5e" category="admonition">。<block ref="12f728ceb5fc82e860ec81c090369ca5" prefix=" " category="inline-code"></block> 変数には、*元の*コントローラモジュールnode_B_1のシステムIDを設定する必要があります。</block>
-  <block id="1e9e20507e30afe8b79feaf697336037" category="list-text">node_B_1の変数を設定します。</block>
-  <block id="96a30b5e5305a12e0752b81f173e6fc6" category="paragraph">次の例は、node_B_1の値を設定するコマンドを示しています。</block>
-  <block id="ed8d1dfb2569c85ee7b108aa3e6a5466" category="list-text">node_B_2の変数を設定します。</block>
-  <block id="bacd790164cac2c217ca06a37ce78e9c" category="paragraph">次の例は、node_B_2の値を設定するコマンドを示しています。</block>
   <block id="ca0df34f59e377032b2f4b42096b5055" category="admonition">MetroCluster IPシステムにアドバンストディスクパーティショニングが設定されている場合は、を実行してDRパートナーシステムIDを含める必要があります<block ref="1d9572d24113365244a97e4cb81d5a77" prefix=" " category="inline-code"></block> コマンドを実行します</block>
   <block id="3d76ebef670d0f7bd3eab697fb186812" category="paragraph">オプション"`6`"の後のいずれかの再起動中に、確認プロンプトが表示されます<block ref="adeeb123a02ab1bcf79fc4bdffdd3b9f" prefix=" " category="inline-code"></block> 表示されます。入力するコマンド<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>。</block>
   <block id="16de7447f84bfaba1c8cf72b93fbf6ee" category="paragraph"><block ref="16de7447f84bfaba1c8cf72b93fbf6ee" category="inline-link-macro-rx"></block></block>
@@ -13567,11 +13547,8 @@
   <block id="ef53a1465284a8eba202285b88ef0eb2" category="section-title">新しいプラットフォームに合わせてスイッチのRCFを更新</block>
   <block id="8aedcbe06dc4ee85bfbfe46c6a62713c" category="paragraph">このタスクは、アップグレード中のコントローラがあるサイトで実行します。この手順の例では、まずsite_Bをアップグレードします。</block>
   <block id="097b5e4a3935e7904f9e57e130711c8b" category="inline-link-macro">NVIDIA IP SN2100スイッチのRCFファイルのダウンロードとインストール</block>
-  <block id="a0738c0401f656b59d11c3e37bee47f0" category="paragraph">このタスクでは、のアップグレード手順で特定したUUIDとシステムIDを使用し <block ref="a74b37b1135e46e1745610d5ef77ba43" category="inline-xref-macro-rx"></block>ます。</block>
   <block id="080c153c3d5c3f5a7519058826d07cb8" category="paragraph"><block ref="579363eabf2a70eb9e6c8d9b1bca9609" prefix="" category="inline-code"></block></block>
   <block id="ba2a7c5e352255c376b6b0d315a1ffc1" category="paragraph"><block ref="3edfeb45325920fedac6b21b22c6872d" prefix="" category="inline-code"></block></block>
-  <block id="862fde34d3847472911a47c752a908d7" category="paragraph"><block ref="89ed4000c8f8ef2820e346fa5400a05a" prefix="" category="inline-code"></block></block>
-  <block id="d45e24cad9f9369e3d68aa5fb105c745" category="paragraph"><block ref="bf4900d508399da9f73f695794148642" prefix="" category="inline-code"></block></block>
   <block id="53eeb8487a1b47736074a390cc992c92" category="paragraph"><block ref="cce414ec64a9c4e23a2e870045abf8dc" prefix="" category="inline-code"></block></block>
   <block id="88e5cedcd18951b04046ff208ab8ff3a" category="paragraph"><block ref="38241bd430968bdc944f07594d46f2ea" prefix="" category="inline-code"></block></block>
   <block id="39531e530d83708f9ed5390dc12c1a07" category="paragraph"><block ref="1a08db264211390895870fb4d46031c2" prefix="" category="inline-code"></block></block>
@@ -13626,9 +13603,6 @@
   <block id="58d7ca4c8c3e89d8d921fc52e28adc1c" category="list-text">新しいノードの電源をオンにし、プロンプトが表示されたらCtrl+Cキーを押してプロンプトを表示し<block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block> ます。</block>
   <block id="b18f9742d77912f838f8a0bc859bbf11" category="list-text"><block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block>プロンプトで、管理LIFのネットブート接続を設定します。</block>
   <block id="7c9dbc13c4af0588948dc0974ad07931" category="paragraph">コマンドの実行後、ノードがプロンプトで停止するまで待ちます<block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block> 。</block>
-  <block id="1eeedf4cd6f5dec243d5f4e1418fc445" category="paragraph">このタスクでは、のアップグレード手順で特定したUUIDとシステムIDを使用し <block ref="9c150672da580a5dceed21dfb73c4b76" category="inline-xref-macro-rx"></block>ます。</block>
-  <block id="fee55a9e6e115fa7d775bb57b8cb4b87" category="paragraph">次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_1の値を設定します。</block>
-  <block id="2046d129795b588ef0d8a2657f550cbc" category="paragraph">次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_2の値を設定します。</block>
   <block id="6efdcf657072c6d286d4dff5b0919f19" category="list-text">元のシステムがADP用に設定されていた場合は、交換用ノードの各<block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block> プロンプトでADPを有効にします。</block>
   <block id="2a881aa88a35b35de21b4af29f7c41a7" category="paragraph">古いシステムIDはで特定しました <block ref="315917271da740413467f609180e49f8" category="inline-xref-macro-rx"></block>。</block>
   <block id="b2d1a6a95156d238b86f82d812e29748" category="admonition">ディスクの再割り当てを実行する前に、ノードのルートアグリゲートに属するpool0とpool1のディスクが出力に表示されていることを確認する必要があり<block ref="63328c72194085e2f8ff497b866f6d24" prefix=" " category="inline-code"></block> ます。次の例では、node_B_1-oldが所有するpool0とpool1のディスクが出力に表示されています。</block>
@@ -14327,4 +14301,30 @@
   <block id="07bfa9093a8ef293dfd6099e38fde255" category="list-text">MetroClusterが正しく設定されていることを確認します。ノードのステータスを確認します。</block>
   <block id="d64694bac02c7b4eea890e175a53a0c7" category="paragraph">自動スイッチバック処理を開始する前に、LIFが適切なノードでホストされていることを確認してください。</block>
   <block id="db85d3fd5e7d7beaa319d4ebe299145b" category="sidebar">システムがスイッチオーバー状態の場合の制限事項</block>
+  <block id="e2b04aa38f9463877227eab80f2afa55" category="list-text">のアップグレード手順で前述したUUIDとシステムIDが必要です<block ref="a74b37b1135e46e1745610d5ef77ba43" category="inline-xref-macro-rx"></block>。</block>
+  <block id="1ee9e9c6e0682332b92cf414d56216e5" category="list-text">プラットフォームモデルに応じて、パラメータを使用してVLAN IDを指定できます<block ref="6790c40b1680557da1f80536ae186301" prefix=" " category="inline-code"></block>。次のプラットフォームでは、パラメータはサポートされません<block ref="6790c40b1680557da1f80536ae186301" prefix=" " category="inline-code"></block>。</block>
+  <block id="2c17b709cf340ae9f4b202df67582f0d" category="list-text">AFF C800、ASA C800、AFF A800、およびASA A800</block>
+  <block id="9a7bf3cb6e6fcf5bc8021ad8b24c709d" category="list-text">設定するMetroClusterのbootargの値は、新しいシステムで共有のクラスタ/ HAポートを使用するか、共有のMetroCluster / HAポートを使用するかによって異なります。</block>
+  <block id="01c711ec30c5984ab759c03d8ae83dbc" category="paragraph">次の表に示すシステムでは、*共有MetroCluster / HAポート*を使用しています。</block>
+  <block id="72b13aee8e15cbc1635a37e0cc999b15" category="paragraph">それ以外のシステムでは*共有クラスタ/ HAポート*を使用します。</block>
+  <block id="b4a6f2e0f896be0b4aa0ce4693340515" category="cell">共有MetroCluster / HAポートを使用するAFFシステムとASAシステム</block>
+  <block id="a92298a0da357308bf3f327f1d13f333" category="cell">キヨウユウMetroCluster / HAホオトヲシヨウスルFASシステム</block>
+  <block id="8f7306dd779bf45e84d3417319068f67" category="list-text">AFF A250、ASA A250向け</block>
+  <block id="58588e3dc50a2798e7501fa654fd258f" category="list-text">AFF C400、ASA C400向け</block>
+  <block id="3620dab5844cf978130a9d0a58017f2a" category="list-text">AFF A400、ASA A400向け</block>
+  <block id="9d4b0febc0f20a3a06297c23c3559983" category="list-text">AFF C800、ASA C800向け</block>
+  <block id="9576d309dc6946e2591793a503a98da6" category="list-text">AFF A900、ASA A900向け</block>
+  <block id="1891901e07a2b1183ae0bdb153f73f5b" category="paragraph">実行する手順は、新しいプラットフォームモデルで使用するポートによって異なります。</block>
+  <block id="194a07d9daae191baeeb97eb547e1768" category="open-title">共有クラスタ/ HAポートを使用するシステム</block>
+  <block id="66e20f51e3a078b6cbc064932bff53cc" category="list-text">次のbootargを設定します。</block>
+  <block id="365c4529a692b9621626b7a16d6f1fcf" category="paragraph"><block ref="44edf5bc5c9ded025ac5ca02d1f1dc5b" prefix="" category="inline-code"></block></block>
+  <block id="b53e7075a1894b2cbd85248fb5a648ef" category="paragraph"><block ref="057e6af1be749fa6fb8d9dd6a88adc62" prefix="" category="inline-code"></block></block>
+  <block id="945d0ede3512e9e4eaadb1711c02216c" category="admonition">インターフェイスがデフォルトのVLAN IDを使用している場合、<block ref="883efb435dfcdbab29a2ff69d0287888" prefix=" " category="inline-code"></block>パラメータは必要ありません。</block>
+  <block id="b07af26bfbb0ba81d6796450189f5cf8" category="paragraph">次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_1-newの値を設定します。</block>
+  <block id="a06bd9649be55565fd74562b1ee1756e" category="paragraph">次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_2-newの値を設定します。</block>
+  <block id="a1909236f08f260f2b52aebf539344be" category="paragraph">次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_1-newの値を設定します。</block>
+  <block id="a0436481bda3531d4a5eda5dac0e5608" category="paragraph">次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_2-newの値を設定します。</block>
+  <block id="1a5991cd222add52b1f5aa51350d470e" category="list-title">共有MetroCluster / HAポートを使用するシステム</block>
+  <block id="f4c0383379a5ae93d0b5e4c4f8586e47" category="open-title">共有クラスタ/ HAポートを使用するシステム</block>
+  <block id="fce1683696c48d3d34e98e19d634ae19" category="open-title">共有MetroCluster / HAポートを使用するシステム</block>
 </blocks>

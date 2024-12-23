@@ -1291,10 +1291,124 @@ link:../install-ip/concept_considerations_differences.html["MetroCluster IP の�
 新しいコントローラモジュールには特定の MetroCluster IP bootarg 値を設定する必要があります。これらの値は、古いコントローラモジュールに設定されている値と一致する必要があります。
 
 .このタスクについて
-このタスクでは、のアップグレード手順で特定したUUIDとシステムIDを使用し <<gather_info_so_sb,アップグレード前に情報を収集>>ます。
+* のアップグレード手順で前述したUUIDとシステムIDが必要です<<gather_info_so_sb,アップグレード前に情報を収集>>。
+* プラットフォームモデルに応じて、パラメータを使用してVLAN IDを指定できます `-vlan-id`。次のプラットフォームでは、パラメータはサポートされません `-vlan-id`。
++
+** FAS8200 と AFF A300
+** AFF A320
+** FAS9000およびAFF A700
+** AFF C800、ASA C800、AFF A800、およびASA A800
++
+他のすべてのプラットフォームでは、パラメータがサポートされ `-vlan-id` ます。
+
+
+
+* 設定するMetroClusterのbootargの値は、新しいシステムで共有のクラスタ/ HAポートを使用するか、共有のMetroCluster / HAポートを使用するかによって異なります。
++
+次の表に示すシステムでは、*共有MetroCluster / HAポート*を使用しています。
+
++
+それ以外のシステムでは*共有クラスタ/ HAポート*を使用します。
+
++
+[cols="2*"]
+|===
+| 共有MetroCluster / HAポートを使用するAFFシステムとASAシステム | キヨウユウMetroCluster / HAホオトヲシヨウスルFASシステム 
+
+
+ a| 
+** AFF A150、ASA A150向け
+** AFF A220
+** AFF C250、ASA C250向け
+** AFF A250、ASA A250向け
+** AFF A300
+** AFF A320
+** AFF C400、ASA C400向け
+** AFF A400、ASA A400向け
+** AFF A700
+** AFF C800、ASA C800向け
+** AFF A800、ASA A800向け
+** AFF A900、ASA A900向け
+
+ a| 
+** FAS2750
+** FAS500f
+** FAS8200
+** FAS8300
+** FAS8700 の場合
+** FAS9000
+** FAS9500
+
+
+|===
+
 
 .手順
-. アップグレード対象のノードが AFF A400 、 FAS8300 、 FAS8700 のいずれかのモデルの場合は、 LOADER プロンプトで次の bootarg を設定します。
+. 「 LOADER> 」プロンプトで、 site_B の新しいノードで次のブート引数を設定します。
++
+実行する手順は、新しいプラットフォームモデルで使用するポートによって異なります。
+
++
+[role="tabbed-block"]
+====
+.共有クラスタ/ HAポートを使用するシステム
+--
+.. 次のbootargを設定します。
++
+`setenv bootarg.mcc.port_a_ip_config <local-IP-address/local-IP-mask,0,0,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id>`
+
++
+`setenv bootarg.mcc.port_b_ip_config <local-IP-address/local-IP-mask,0,0,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id>`
+
++
+
+NOTE: インターフェイスがデフォルトのVLAN IDを使用している場合、 `vlan-id`パラメータは必要ありません。
+
++
+次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_1-newの値を設定します。
+
++
+[listing]
+----
+setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,0,172.17.26.13,172.17.26.12,120
+setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,0,172.17.27.13,172.17.27.12,130
+----
++
+次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_2-newの値を設定します。
+
++
+[listing]
+----
+setenv bootarg.mcc.port_a_ip_config 172.17.26.11/23,0,0,172.17.26.12,172.17.26.13,120
+setenv bootarg.mcc.port_b_ip_config 172.17.27.11/23,0,0,172.17.27.12,172.17.27.13,130
+----
++
+次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_1-newの値を設定します。
+
++
+[listing]
+----
+setenv bootarg.mcc.port_a_ip_config
+172.17.26.10/23,0,0,172.17.26.13,172.17.26.12
+setenv bootarg.mcc.port_b_ip_config
+172.17.27.10/23,0,0,172.17.27.13,172.17.27.12
+----
++
+次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_2-newの値を設定します。
+
++
+[listing]
+----
+setenv bootarg.mcc.port_a_ip_config
+172.17.26.11/23,0,0,172.17.26.12,172.17.26.13
+setenv bootarg.mcc.port_b_ip_config
+172.17.27.11/23,0,0,172.17.27.12,172.17.27.13
+----
+
+
+--
+.共有MetroCluster / HAポートを使用するシステム
+.. 次のbootargを設定します。
 +
 `setenv bootarg.mcc.port_a_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id>`
 
@@ -1303,10 +1417,10 @@ link:../install-ip/concept_considerations_differences.html["MetroCluster IP の�
 
 +
 
-NOTE: インターフェイスがデフォルトの VLAN を使用している場合、 vlan-id は不要です。
+NOTE: インターフェイスがデフォルトのVLAN IDを使用している場合、 `vlan-id`パラメータは必要ありません。
 
 +
-次のコマンドは、最初のネットワークに VLAN 120 を、 2 番目のネットワークに VLAN 130 を使用して、 node_B_1 の新しい値を設定します。
+次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_1-newの値を設定します。
 
 +
 [listing]
@@ -1315,7 +1429,7 @@ setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,
 setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12,130
 ----
 +
-次のコマンドは、最初のネットワークに VLAN 120 を、 2 番目のネットワークに VLAN 130 を使用して、 node_B_2 の値を設定します。
+次の例は、1つ目のネットワークにVLAN 120、2つ目のネットワークにVLAN 130を使用して、node_B_2-newの値を設定します。
 
 +
 [listing]
@@ -1324,48 +1438,33 @@ setenv bootarg.mcc.port_a_ip_config 172.17.26.11/23,0,172.17.26.10,172.17.26.12,
 setenv bootarg.mcc.port_b_ip_config 172.17.27.11/23,0,172.17.27.10,172.17.27.12,172.17.27.13,130
 ----
 +
-次の例は、デフォルトの VLAN を使用している場合の node_B_1 に対するコマンドを示しています。
+次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_1-newの値を設定します。
 
 +
 [listing]
 ----
-setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
-setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
+setenv bootarg.mcc.port_a_ip_config
+172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
+setenv bootarg.mcc.port_b_ip_config
+172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
 ----
 +
-次の例は、デフォルトの VLAN を使用している場合の node_B_2 に対するコマンドを示しています。
+次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_2-newの値を設定します。
 
 +
 [listing]
 ----
-setenv bootarg.mcc.port_a_ip_config 172.17.26.11/23,0,172.17.26.10,172.17.26.12,172.17.26.13
-setenv bootarg.mcc.port_b_ip_config 172.17.27.11/23,0,172.17.27.10,172.17.27.12,172.17.27.13
+setenv bootarg.mcc.port_a_ip_config
+172.17.26.11/23,0,172.17.26.10,172.17.26.12,172.17.26.13
+setenv bootarg.mcc.port_b_ip_config
+172.17.27.11/23,0,172.17.27.10,172.17.27.12,172.17.27.13
 ----
-. アップグレード対象のノードが前の手順でリストされていない場合は、各サバイバーノードの LOADER プロンプトで「 local_IP/mask 」で次の bootargs を設定します。
-+
-`setenv bootarg.mcc.port_a_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address>`
 
-+
-`setenv bootarg.mcc.port_b_ip_config <local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address>`
 
-+
-次のコマンドは、 node_B_1 について新しい値を設定します。
+--
 
-+
-[listing]
-----
-setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,172.17.26.11,172.17.26.13,172.17.26.12
-setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,172.17.27.11,172.17.27.13,172.17.27.12
-----
-+
-次のコマンドは、 node_B_2 の値を設定します。
-
-+
-[listing]
-----
-setenv bootarg.mcc.port_a_ip_config 172.17.26.11/23,0,172.17.26.10,172.17.26.12,172.17.26.13
-setenv bootarg.mcc.port_b_ip_config 172.17.27.11/23,0,172.17.27.10,172.17.27.12,172.17.27.13
-----
+--
+====
 . 新しいノードの LOADER プロンプトで、 UUID を設定します。
 +
 `setenv bootarg.mgwd.partner_cluster_uuid <partner-cluster-UUID>`
