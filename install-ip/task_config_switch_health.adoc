@@ -38,15 +38,17 @@ IMPORTANT: コマンドでは、認証プロトコルとプライバシープロ
 [listing]
 ----
 (IP_switch_1)# config
-(IP_switch_1) (Config)# snmp-server user <user_name> network-admin [auth-md5/auth-sha/noauth] "<auth_password>" [priv-aes128/priv-des] "<priv_password>"
+(IP_switch_1) (Config)# snmp-server user <user_name> network-admin auth-sha priv-aes128
 ----
 +
-認証パスワードとプライバシーパスワードは、次の例に示すように引用符で囲む必要があります。
+プロンプトが表示されたら、認証パスワードを入力します。
 
 +
 [listing]
 ----
-snmp-server user admin1 network-admin auth-md5 "password" priv-des "password"
+#snmp-server user admin1 network-admin auth-sha priv-aes128
+
+Enter Authentication Password:
 ----
 
 
