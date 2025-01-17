@@ -2929,7 +2929,6 @@
   <block id="26335ad95c44f5e233c28d27ab09f461" category="doc">FC から IP への無停止での移行に関する要件</block>
   <block id="ab15e3a0446aa2c30baef0a6d039dff1" category="list-text">既存のプラットフォームと新しいプラットフォームの組み合わせは、移行対象としてサポートされている必要があります。</block>
   <block id="c5ca83d0e723113560fb2c95b33b532b" category="inline-xref-macro">無停止移行でサポートされるプラットフォーム</block>
-  <block id="1c80ea06ae866b6e42e9d266e0cb8906" category="list-text">スイッチクラスタ構成をサポートしている。</block>
   <block id="1799408ec992ed3e5561f7b04ccef0fe" category="paragraph">たとえば、 AFF8060 コントローラモジュールで構成される MetroCluster FC 構成から、 AFF A400 コントローラモジュールで構成される IP 構成への移行がサポートされます。</block>
   <block id="2380f44f4dcec1f84b76f71d467c0c65" category="doc">MetroCluster FC から MetroCluster IP 構成への無停止での移行（ ONTAP 9.8 以降）</block>
   <block id="e420954c9496e6eb99455a2aac546e3f" category="inline-xref-macro">移行する手順を選択します</block>
@@ -3093,7 +3092,6 @@
   <block id="ee6ed7097775dc1dd54c183bab7fabca" category="list-text">MetroCluster FC はスイッチレスクラスタであるため、新しいスイッチが必要です。</block>
   <block id="f6ee19cc42b9955140e50bd5845ab941" category="list-text">MetroCluster FC はスイッチクラスタですが、 MetroCluster IP 構成では既存の IP スイッチはサポートされません。</block>
   <block id="f2e4f8254f9371aba3bca00c7ae823a3" category="list-text">MetroCluster IP 設定に別のスイッチを使用する。</block>
-  <block id="4ee1b040d263e389d67330e3d505f6c5" category="paragraph">プラットフォームモデルとスイッチのサポートについては、 NetApp Hardware Universe を参照してください。</block>
   <block id="2a4236cf8b7e41561ac336d36bcbb970" category="inline-link-macro">MetroCluster の管理</block>
   <block id="13b07c992fe0293fccd52c0935d98849" category="paragraph"><block ref="13b07c992fe0293fccd52c0935d98849" category="inline-link-macro-rx"></block></block>
   <block id="46307856034c0d19deb4348b4c6fdf64" category="summary">MetroCluster ノードを FC から IP に移行したあと、 iSCSI ホスト接続を新しいノードに移動しなければならない場合があります。</block>
@@ -11771,8 +11769,6 @@
   <block id="65cc666ecd4a5bdf3c624b12e425c91f" category="admonition">設定を変更するには、コントローラをリブートする必要があります。</block>
   <block id="57d89ae0fa9051439d76f5f61398fa16" category="list-text">両方向でハイアベイラビリティ（HA）テイクオーバーを実行してコントローラをリブートします。</block>
   <block id="ee587f5bd979b8f81d1cbf341f0b2470" category="list-text">8ノード構成の場合は、から始まる手順 全体を繰り返す必要があります <block ref="e821f1828723ededc57f2e891aea4a6a" category="inline-link-macro-rx"></block> （FC DRグループごとに）をクリックします。</block>
-  <block id="bb6c47f32358fe5242b175ac608f7d32" category="list-text">8ノード構成の場合は、すべてのノードでONTAP 9.13.1以降が実行されている必要があります。</block>
-  <block id="d8e49cb116ea5302a217647ce0506ea6" category="list-text">4ノード構成の場合は、すべてのノードでONTAP 9.8以降が実行されている必要があります。</block>
   <block id="b8c86c478bbb73c53f5440966b9fb7d1" category="list-text">組み合わせて使用するプラットフォームの「下位」のオブジェクト制限を超えないようにしてください。2つのプラットフォームのオブジェクトの下限を適用します。</block>
   <block id="c5c0eb8cddac9e2347091241dce72719" category="list-text">ターゲットプラットフォームの制限がMetroCluster の制限よりも低い場合は、新しいノードを追加する前に、ターゲットプラットフォームの制限以下になるようにMetroCluster を再設定する必要があります。</block>
   <block id="dc63943b5b97ad0f10f23219d6f93cd4" category="list-text">各クラスタの移行したIPノードのクラスタピアのIPアドレスを変更します。</block>
@@ -14327,4 +14323,16 @@
   <block id="f4c0383379a5ae93d0b5e4c4f8586e47" category="open-title">共有クラスタ/ HAポートを使用するシステム</block>
   <block id="fce1683696c48d3d34e98e19d634ae19" category="open-title">共有MetroCluster / HAポートを使用するシステム</block>
   <block id="eabf799ca909dc7fa9808c3abb476773" category="paragraph">プロンプトが表示されたら、認証パスワードを入力します。</block>
+  <block id="8c62b33499e87d946c3be674c109e802" category="inline-link-macro">8ノードMetroCluster IP構成に拡張</block>
+  <block id="d3f54bf5e1d7bcb93c8d615f71713d7f" category="paragraph">共有ストレージMetroClusterスイッチを使用している場合は、4ノードのMetroCluster IP構成にのみ移行できます。共有ストレージMetroClusterスイッチを使用した8ノードMetroCluster IP構成への移行はサポートされていません。4ノードMetroCluster IP構成への移行が完了したら、移行<block ref="6dee49609367b51155e32a3a9526bace" category="inline-link-macro-rx"></block>を実行できます。</block>
+  <block id="2e6fac9e7be327118126470b28ac80e9" category="paragraph">プラットフォームモデルおよびスイッチのサポートについては、を参照してください<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block>。</block>
+  <block id="e77208401ec89552ec5e85789d235879" category="paragraph">移行プロセスを開始する前に、構成が要件を満たしていることを確認します。</block>
+  <block id="1229d62fc62771990d4aca35e86babbb" category="paragraph">FCからIPへの移行は、次の要件を満たしている構成であれば、無停止で実行できます。</block>
+  <block id="c93eb5b603c598e0771b611b95a1f13a" category="list-text">8ノード構成の場合は、すべてのノードでONTAP 9.13.1以降が実行されています。</block>
+  <block id="fbe14351123598a8a64fee33aa1a2a2b" category="list-text">4ノード構成の場合は、すべてのノードでONTAP 9.8以降が実行されています。</block>
+  <block id="d7b625bf0290f633deca10fab483feb9" category="list-text">既存のプラットフォームと新しいプラットフォームの組み合わせが移行対象としてサポートされます。</block>
+  <block id="449f221b85b0830ccbe6f932311166dc" category="list-text">ご使用の構成では、スイッチクラスタ構成がサポートされます。</block>
+  <block id="ec4312d0db3bce928129e7e5c3a58d73" category="paragraph"><block ref="ec4312d0db3bce928129e7e5c3a58d73" category="inline-link-rx"></block></block>
+  <block id="c42a1c17fcba2c3f1c614f6d301144e6" category="paragraph">共有ストレージMetroClusterスイッチを使用している場合は、4ノードのMetroCluster IP構成にのみ移行できます。共有ストレージMetroClusterスイッチを使用した8ノードMetroCluster IP構成への移行はサポートされていません。4ノードMetroCluster IP構成への移行が完了したら、移行<block ref="6dee49609367b51155e32a3a9526bace" category="inline-link-macro-rx"></block>を実行できます。</block>
+  <block id="fb9168c2e293c1ba8ecd781a9f35d00f" category="list-text">ご使用の構成はすべての要件を満たしており、次の_ MetroClusterインストールおよび構成手順の説明に従ってケーブル接続されています。</block>
 </blocks>

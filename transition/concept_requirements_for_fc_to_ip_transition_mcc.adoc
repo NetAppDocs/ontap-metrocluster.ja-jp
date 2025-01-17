@@ -11,19 +11,28 @@ summary: 移行プロセスを開始する前に、構成が要件を満たし�
 
 
 [role="lead"]
-移行プロセスを開始する前に、構成が要件を満たしていることを確認する必要があります。
+移行プロセスを開始する前に、構成が要件を満たしていることを確認します。
 
-* 8ノード構成の場合は、すべてのノードでONTAP 9.13.1以降が実行されている必要があります。
-* 4ノード構成の場合は、すべてのノードでONTAP 9.8以降が実行されている必要があります。
-* 既存のプラットフォームと新しいプラットフォームの組み合わせは、移行対象としてサポートされている必要があります。
+FCからIPへの移行は、次の要件を満たしている構成であれば、無停止で実行できます。
+
+* 8ノード構成の場合は、すべてのノードでONTAP 9.13.1以降が実行されています。
+* 4ノード構成の場合は、すべてのノードでONTAP 9.8以降が実行されています。
+* 既存のプラットフォームと新しいプラットフォームの組み合わせが移行対象としてサポートされます。
 +
 link:concept_choosing_your_transition_procedure_mcc_transition.html["無停止移行でサポートされるプラットフォーム"]
 
-* スイッチクラスタ構成をサポートしている。
+* ご使用の構成では、スイッチクラスタ構成がサポートされます。
 +
-https://hwu.netapp.com["NetApp Hardware Universe の略"]
+https://hwu.netapp.com["Hardware Universe"^]
 
-* MetroCluster のインストールと設定の手順に記載されているすべての要件とケーブル接続を満たしている必要があります。
+
+
+[CAUTION]
+====
+共有ストレージMetroClusterスイッチを使用している場合は、4ノードのMetroCluster IP構成にのみ移行できます。共有ストレージMetroClusterスイッチを使用した8ノードMetroCluster IP構成への移行はサポートされていません。4ノードMetroCluster IP構成への移行が完了したら、移行link:../upgrade/task_expand_a_four_node_mcc_ip_configuration.html["8ノードMetroCluster IP構成に拡張"]を実行できます。
+
+====
+* ご使用の構成はすべての要件を満たしており、次の_ MetroClusterインストールおよび構成手順の説明に従ってケーブル接続されています。
 +
 link:../install-fc/index.html["ファブリック接続 MetroCluster のインストールと設定"]
 
