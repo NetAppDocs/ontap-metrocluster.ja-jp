@@ -1,0 +1,78 @@
+---
+permalink: upgrade/upgrade-mcc-ip-system-controller-replace-complete-upgrade.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: ネットワークに到達できるかどうかを確認し、監視設定をリストアすることで、コントローラの自動アップグレードプロセスを完了します。 
+---
+= MetroCluster IPコントローラのアップグレードの完了
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットワークに到達できるかどうかを確認し、監視設定をリストアすることで、コントローラの自動アップグレードプロセスを完了します。
+
+
+
+== ネットワークの到達可能性の確認
+
+自動処理では、検証システムのチェックが実行されたあと一時停止するため、ネットワークの到達可能性を確認できます。検証が完了すると、リソースの再取得フェーズが開始され、自動化処理によってサイト A でスイッチバックが実行され、アップグレード後のチェックで一時停止されます。自動処理を再開すると、アップグレード後のチェックが実行され、エラーが検出されない場合はアップグレードが完了としてマークされます。
+
+.手順
+. コンソールメッセージに従って、ネットワークの到達可能性を確認します。
+. 検証が完了したら、処理を再開します。
++
+「システムコントローラの交換が再開」
+
+. 自動化処理が実行されます `heal-aggregate`、 `heal-root-aggregate`、サイトAでのスイッチバック処理、およびアップグレード後のチェックが実行されます。処理が一時停止した場合は、コンソールメッセージに従って SAN LIF のステータスを手動で確認し、ネットワーク設定を確認します。
+. 検証が完了したら、処理を再開します。
++
+「システムコントローラの交換が再開」
+
+. アップグレード後チェックのステータスを確認します。
++
+「 system controller replace show 」と表示されます
+
++
+アップグレード後のチェックでエラーが報告されなかった場合、アップグレードは完了しています。
+
+. コントローラのアップグレードが完了したら、サイト B でログインし、交換したコントローラが正しく設定されていることを確認します。
+
+
+
+
+== cluster_Aのノードをアップグレードします。
+
+アップグレード手順を繰り返して、サイトAのcluster_Aのノードをアップグレードする必要があります。
+
+.手順
+. cluster_Aのノードをアップグレードするために、上記の手順を繰り返しlink:upgrade-mcc-ip-system-controller-replace-supported-platforms.html["アップグレードを準備"]ます。
++
+タスクを実行する際に、例で示しているクラスタとノードの参照先がすべて逆になります。
+
+
+
+
+
+== ONTAP メディエーターを再設定します
+
+アップグレードを開始する前に自動的に削除されたONTAP メディエーターを手動で設定します。
+
+. の手順を使用します link:../install-ip/task_configuring_the_ontap_mediator_service_from_a_metrocluster_ip_configuration.html["MetroCluster IP 構成から ONTAP メディエーターサービスを設定します"]。
+
+
+
+
+== Tiebreaker による監視をリストアします
+
+MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。
+
+. の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html["MetroCluster 構成を追加"]。
+
+
+
+
+== エンドツーエンドの暗号化を設定する
+
+ご使用のシステムでサポートされている場合は、MetroCluster IPサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化できます。を参照してください link:../maintain/task-configure-encryption.html["エンドツーエンドの暗号化を設定する"] を参照してください。

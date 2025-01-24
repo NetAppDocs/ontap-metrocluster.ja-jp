@@ -1,0 +1,77 @@
+---
+permalink: upgrade/upgrade-mcc-ip-system-controller-replace-requirements.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: コントローラのアップグレードを実行する前に、システムがすべての要件を満たしていることを確認してください。 
+---
+= このMetroCluster IPアップグレード手順を使用するための要件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コントローラのアップグレードを実行する前に、システムがすべての要件を満たしていることを確認してください。
+
+* この手順は、コントローラのアップグレードにのみ使用できます。
++
+ストレージシェルフやスイッチなど、構成内の他のコンポーネントは同時にアップグレードできません。
+
+* MetroCluster IPスイッチ（スイッチタイプ、ベンダー、モデル）とファームウェアバージョンがアップグレード構成の既存および新しいコントローラでサポートされている必要があります。
++
+サポートされているスイッチとファームウェアのバージョンについては、またはを参照してください link:https://hwu.netapp.com["Hardware Universe"^] link:https://imt.netapp.com/matrix/["IMT"^] 。
+
+* MetroCluster IPシステムが両方のサイトで同じバージョンのONTAPを実行している必要があります。
+* 新しいシステムよりも多くのスロットまたはポートがあるシステムからアップグレードする場合は、新しいシステムに十分なスロットとポートがあることを確認する必要があります。
++
+アップグレードを開始する前に、を参照しlink:https://hwu.netapp.com["Hardware Universe"^]て、新しいシステムのスロットとポートの数を確認してください。
+
+* この手順 を使用して、NSOベースの自動スイッチオーバーとスイッチバックを使用して4ノードMetroCluster IP構成のコントローラをアップグレードできます。
++
+
+NOTE: 4ノードMetroCluster IP構成では、「systems controller replace」コマンドを使用したアグリゲートの再配置（ARL）を使用したアップグレードはサポートされていません。
+
+* システムで有効になっている場合は link:../maintain/task-configure-encryption.html#disable-end-to-end-encryption["エンドツーエンドの暗号化を無効にする"] 、アップグレードを実行する前に実行します。
+* NSOコントローラの自動アップグレード手順 を使用して、両方のサイトのコントローラを順番にアップグレードする必要があります。
+* この NSO ベースのコントローラの自動アップグレード手順を使用すると、 MetroCluster ディザスタリカバリ（ DR ）サイトでコントローラの交換を開始できます。コントローラの交換は一度に 1 つのサイトでしか開始できません。
+* サイト A でコントローラの交換を開始するには、サイト B からコントローラの交換開始コマンドを実行する必要があります交換処理ガイドは、サイト A の両方のノードのコントローラのみを交換する場合に使用します。サイト B のコントローラを交換するには、サイト A からコントローラ交換の開始コマンドを実行する必要がありますコントローラを交換するサイトを示すメッセージが表示されます。
+
+
+この手順では、次の名前が使用されています。
+
+* site_A で cluster_A
++
+** アップグレード前：
++
+*** node_A_1 - 古い
+*** Node_a_2-old
+
+
+** アップグレード後：
++
+*** node_A_1 - 新規
+*** Node_a_2 - 新規
+
+
+
+
+* site_B （ site_B
++
+** アップグレード前：
++
+*** node_B_1 - 古い
+*** node_B_2 - 古い
+
+
+** アップグレード後：
++
+*** node_B_1 - 新規
+*** node_B_2 - 新規
+
+
+
+
+
+
+.次の手順
+link:upgrade-mcc-ip-system-controller-replace-console-logging.html["コンソールログを有効にする"]です。

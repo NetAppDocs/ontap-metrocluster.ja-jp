@@ -1,0 +1,725 @@
+---
+permalink: upgrade/upgrade-mcc-ip-prepare-system.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: 既存の MetroCluster 構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行する必要があります。 
+---
+= MetroCluster IPシステムのアップグレードを準備
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+既存のMetroCluster構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行します。
+
+
+
+== コントローラをアップグレードする前にMetroClusterスイッチRCFを更新する
+
+プラットフォームの新旧モデルによっては、コントローラをアップグレードする前にMetroCluster Switch Reference Configuration File（RCF；スイッチリファレンス構成ファイル）の更新が必要になる場合があります。
+
+.このタスクについて
+この作業は、次の状況で実行します。
+
+* スイッチのRCF設定が最小バージョンになっていません。
+* バックエンドMetroCluster接続で使用するVLAN IDを変更する必要があります。
+
+
+.作業を開始する前に
+コントローラをアップグレードする前にRCFの更新が必要かどうかを確認します。
+
+* スイッチにサポートされる最小バージョンのRCFが設定されていない場合は、コントローラをアップグレードする前にRCFを更新する必要があります。
++
+|===
+
+
+| スイッチモデル | 必要なRCFバージョン 
+
+
+ a| 
+Cisco 3132Q-V の設定
+ a| 
+1.7 以降
+
+
+
+ a| 
+Cisco 3232C
+ a| 
+1.7 以降
+
+
+
+ a| 
+Broadcom BES-53248 の場合
+ a| 
+1.3 以降
+
+
+
+ a| 
+NVIDIA SN2100
+ a| 
+2.0以降
+
+|===
+* 使用している古いプラットフォームモデルと新しいプラットフォームモデルの両方が次のリストにある場合は、コントローラをアップグレードする前にVLAN IDを更新する必要は*ありません*。
++
+** FAS8200またはAFF A300
+** AFF A320
+** FAS9000またはAFF A700
+** AFF A800、AFF C800、ASA A800、またはASA C800
++
+使用している古いプラットフォームモデルと新しいプラットフォームモデルのいずれかが上記に記載されていない場合は、MetroClusterインターフェイスでサポートされているVLAN IDが使用されていることを確認する必要があります。MetroClusterインターフェイスでサポートされるVLAN IDは、10、20、または101～4096の範囲です。
+
++
+[CAUTION]
+====
+*** VLAN IDが10、20、101~4096の範囲にない場合は、コントローラをアップグレードする前にスイッチのRCFをアップグレードする必要があります。
+*** ローカルクラスタ接続には任意のVLANを使用できます。指定した範囲内にある必要はありません。
+*** アップグレード先の新しいRCFでVLAN 10、20、または101~4096の範囲のVLANを使用する必要があります。ローカルクラスタのVLANは、必要な場合以外は変更しないでください。
+
+
+====
+
+
+
+
+.手順
+. IPスイッチで新しいRCFを適用できるように準備します。
++
+スイッチベンダーに対応するセクションを参照してください。
+
++
+
+NOTE: スイッチはswitch_A_1、switch_B_1、switch_A_2、switch_B_2の順に更新する必要があります。
+
++
+** link:../install-ip/task_switch_config_broadcom.html#resetting-the-broadcom-ip-switch-to-factory-defaults["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+** link:../install-ip/task_switch_config_cisco.html#resetting-the-cisco-ip-switch-to-factory-defaults["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+** link:../install-ip/task_switch_config_nvidia.html#reset-the-nvidia-ip-sn2100-switch-to-factory-defaults["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
+
+
+. RCFをダウンロードしてインストールします。
++
+スイッチベンダーに対応するセクションを参照してください。
+
++
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom RCFのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IP RCFのダウンロードとインストール"]
+
+
+
+
+
+
+== 古いノードから新しいノードへのポートのマッピング
+
+node_A_1-oldの物理ポートがnode_A_1-newの物理ポートに正しくマッピングされていることを確認する必要があります。これにより、アップグレード後にnode_A_1-newがクラスタ内の他のノードおよびネットワークと通信できるようになります。
+
+.このタスクについて
+アップグレードプロセス中に新しいノードが最初にブートすると、交換する古いノードの最新の設定が再生されます。node_A_1-newをブートすると、ONTAPはnode_A_1-oldと同じポートでLIFをホストしようとします。そのため、ポートとLIFの設定は、アップグレード時に古いノードの設定と互換性があるように調整する必要があります。アップグレードの手順では、クラスタLIF、管理LIF、およびデータLIFの設定が正しいことを確認するために、古いノードと新しいノードの両方で手順を実行します。
+
+次の表に、新しいノードのポート要件に関連する設定変更の例を示します。
+
+|===
+
+
+3+| クラスタインターコネクトの物理ポート 
+
+
+| 古いコントローラ | 新しいコントローラ | 必要なアクション 
+
+
+ a| 
+e0a 、 e0b
+ a| 
+e3a 、 e3b
+ a| 
+一致するポートがありません。アップグレード後に、クラスタポートを再作成する必要があります。
+
+
+
+ a| 
+e0c 、 e0d
+ a| 
+e0a 、 e0b 、 e0c 、 e0d
+ a| 
+e0cとe0dは同じポートです。設定を変更する必要はありませんが、アップグレード後に使用可能なクラスタポートにクラスタLIFを分散させることができます。
+
+|===
+.手順
+. 新しいコントローラで使用できる物理ポートとポートでホストできる LIF を確認します。
++
+コントローラのポートの用途は、プラットフォームモジュール、およびMetroCluster IP構成で使用するスイッチによって異なります。新しいプラットフォームで使用するポートをから収集できますlink:https://hwu.netapp.com["Hardware Universe"^]。
+
+. ポートの使用状況を計画し、次の表に新しいノードごとに参考情報を記入します。
++
+この表は、アップグレード手順を実行するときに参照します。
+
++
+|===
+
+
+|  3+| node_A_1 - 古い 3+| node_A_1 - 新規 
+
+
+| LIF | ポート | IPspace | ブロードキャストドメイン | ポート | IPspace | ブロードキャストドメイン 
+
+
+ a| 
+クラスタ 1
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 2
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 3
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ 4
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+ノード管理
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ管理
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 1
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 2.
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 3
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+データ 4.
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+SAN
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+
+
+ a| 
+クラスタ間ポート
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+ a| 
+
+|===
+
+
+
+
+== 新しいコントローラをネットブート
+
+新しいノードを設置したら、ネットブートを実行して、新しいノードが元のノードと同じバージョンの ONTAP を実行するようにする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを配置する必要があります。
+
+.手順
+. 新しいコントローラをネットブートします。
++
+.. にアクセスします link:https://mysupport.netapp.com/site/["ネットアップサポートサイト"^] システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。
+.. ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 ONTAP-version _image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。
+.. Web にアクセスできるディレクトリに移動し、必要なファイルが利用可能であることを確認します。
++
+ディレクトリの一覧に、カーネルファイルを含むネットブートフォルダが含まれるようにします。
+
++
+`_ontap - version_image.tgz
+
++
+ファイルを抽出する必要はありません `_ontap-version_image.tgz`。
+
+..  `LOADER`プロンプトで、管理LIFのネットブート接続を設定します。
++
+|===
+
+
+| IP アドレス | 作業 
+
+
+ a| 
+DHCP
+ a| 
+自動接続を設定します。
+
+ifconfig e0M -auto
+
+
+
+ a| 
+静的
+ a| 
+手動接続を設定します。
+
+ifconfig e0M -addr= _ip_addr_-mask= _netmask _ -gw= _gateway_`
+
+|===
+.. ネットブートを実行します。
++
+netboot\http://_web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz`
+
+.. ブートメニューからオプション **(7) Install new software first** を選択して、新しいソフトウェアイメージをダウンロードし、ブートデバイスにインストールします。
++
+次のメッセージは無視してください。
+
++
+「この手順は、 HA ペアでの無停止アップグレードではサポートされていません」というメッセージが表示されます。IT 環境：ソフトウェアの無停止アップグレード。コントローラのアップグレードは対象外。
+
+.. 手順を続行するかどうかを確認するメッセージが表示されたら 'y' と入力し ' パッケージの入力を求められたら ' イメージ・ファイルの URL を入力します
++
+http://__web_server_ip/path_to_web-accessible_directory/ontap-version___image.tgz`
+
+.. 必要に応じてユーザ名とパスワードを入力するか、 Enter キーを押して続行します。
+.. 次のようなプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしてください
++
+[listing]
+----
+Do you want to restore the backup configuration now? {y|n} n
+----
+.. 次のようなプロンプトが表示されたら '*y*' を入力して再起動します
++
+[listing]
+----
+The node must be rebooted to start using the newly installed software. Do you want to reboot now? {y|n}
+----
+
+
+
+
+
+
+== コントローラモジュールの設定をクリアします
+
+MetroCluster 構成で新しいコントローラモジュールを使用する前に、既存の構成をクリアする必要があります。
+
+.手順
+. 必要に応じて、ノードを停止してプロンプトを表示し `LOADER`ます。
++
+「 halt 」
+
+.  `LOADER`プロンプトで、環境変数をデフォルト値に設定します。
++
+「デフォルト設定」
+
+. 環境を保存します。
++
+'aveenv
+
+.  `LOADER`プロンプトでブートメニューを起動します。
++
+「 boot_ontap menu
+
+. ブートメニューのプロンプトで、設定を消去します。
++
+wipeconfig
+
++
+確認プロンプトに「 yes 」と応答します。
+
++
+ノードがリブートし、もう一度ブートメニューが表示されます。
+
+. ブートメニューでオプション * 5 * を選択し、システムをメンテナンスモードでブートします。
++
+確認プロンプトに「 yes 」と応答します。
+
+
+
+
+
+== サイトをアップグレードする前に MetroCluster の健全性を確認
+
+アップグレードを実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。
+
+.手順
+. ONTAP で MetroCluster 構成の動作を確認します。
++
+.. ノードがマルチパス構成になっているかどうかを確認します。+
+`node run -node <node_name> sysconfig -a`
++
+MetroCluster構成の各ノードに対してこのコマンドを実行します。
+
+.. 「 storage disk show -broken 」の構成に破損ディスクがないことを確認してください
++
+MetroCluster構成の各ノードでこのコマンドを実行します。
+
+.. ヘルスアラートがないかどうかを確認します。
++
+「 system health alert show 」というメッセージが表示されます
+
++
+このコマンドは各クラスタで実行します。
+
+.. クラスタのライセンスを確認します。
++
+「 system license show 」を参照してください
+
++
+このコマンドは各クラスタで実行します。
+
+.. ノードに接続されているデバイスを確認します。
++
+「 network device-discovery show 」のように表示されます
+
++
+このコマンドは各クラスタで実行します。
+
+.. 両方のサイトでタイムゾーンと時間が正しく設定されていることを確認します。
++
+cluster date show
+
++
+このコマンドは各クラスタで実行します。時間とタイムゾーンを設定するには、コマンドを使用し `cluster date`ます。
+
+
+
+. MetroCluster 構成の運用モードを確認し、 MetroCluster チェックを実行
++
+.. MetroCluster の構成と動作モードが「 normal 」であることを確認します。 + MetroCluster show
+.. 想定されるすべてのノードが表示されることを確認します。 + MetroCluster node show `
+.. 次のコマンドを問題に設定します。
++
+「 MetroCluster check run 」のようになります
+
+.. MetroCluster チェックの結果を表示します。
++
+MetroCluster チェックショー
+
+
+
+. Config Advisor ツールを使用して MetroCluster のケーブル接続を確認します。
++
+.. Config Advisor をダウンロードして実行します。
++
+https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネットアップのダウンロード： Config Advisor"]
+
+.. Config Advisor の実行後、ツールの出力を確認し、推奨される方法で検出された問題に対処します。
+
+
+
+
+
+
+== アップグレード前に情報を収集
+
+アップグレードの開始前に各ノードについて情報を収集し、必要に応じてネットワークブロードキャストドメインを調整し、 VLAN やインターフェイスグループを削除して、暗号化情報を収集する必要があります。
+
+.手順
+. 各ノードの物理的なケーブル接続をメモし、必要に応じてケーブルにラベルを付けて新しいノードを正しくケーブル接続できるようにします。
+. 各ノードのインターコネクト、ポート、LIFの情報を収集します。
++
+ノードごとに次のコマンドの出力を収集します。
+
++
+** MetroCluster interconnect show
+** 「 MetroCluster configurion-settings connection show 」を参照してください
+** 'network interface show -role cluster, node-mgmt
+** `network port show -node <node_name> -type physical`
+** `network port vlan show -node <node_name>`
+** `network port ifgrp show -node <node_name> -instance`
+** 「 network port broadcast-domain show 」
+** 「 network port reachability show-detail` 」と表示されます
+** network ipspace show
+** volume show
+** 「 storage aggregate show
+** `system node run -node <node_name> sysconfig -a`
+** `aggr show -r`
+** 「ディスクショー」
+** `system node run <node-name> disk show`
+** `vol show -fields type`
+** `vol show -fields type , space-guarantee`
+** 「 vserver fcp initiator show 」のように表示されます
+** 「 storage disk show 」を参照してください
+** 「 MetroCluster configurion-settings interface show 」を参照してください
+
+
+. site_B （プラットフォームを現在アップグレード中のサイト）の UUID を収集します。
++
+MetroCluster node show -fields node-cluster.uuid 、 node-uuid
+
++
+アップグレードが成功するためには、これらの値がsite_Bの新しいコントローラモジュールで正しく設定されている必要があります。アップグレードプロセスの後半でコマンドにコピーできるように、値をファイルにコピーします。
+
++
+次の例は、 UUID を指定したコマンドの出力を示しています。
+
++
+[listing]
+----
+cluster_B::> metrocluster node show -fields node-cluster-uuid, node-uuid
+  (metrocluster node show)
+dr-group-id cluster     node   node-uuid                            node-cluster-uuid
+----------- --------- -------- ------------------------------------ ------------------------------
+1           cluster_A node_A_1 f03cb63c-9a7e-11e7-b68b-00a098908039 ee7db9d5-9a82-11e7-b68b-00a098908039
+1           cluster_A node_A_2 aa9a7a7a-9a81-11e7-a4e9-00a098908c35 ee7db9d5-9a82-11e7-b68b-00a098908039
+1           cluster_B node_B_1 f37b240b-9ac1-11e7-9b42-00a098c9e55d 07958819-9ac6-11e7-9b42-00a098c9e55d
+1           cluster_B node_B_2 bf8e3f8f-9ac4-11e7-bd4e-00a098ca379f 07958819-9ac6-11e7-9b42-00a098c9e55d
+4 entries were displayed.
+cluster_B::*
+----
++
+NetAppでは、次のような表にUUIDを記録することを推奨しています。
+
++
+|===
+
+
+| クラスタまたはノード | UUID 
+
+
+ a| 
+cluster_B
+ a| 
+07958819 - 9ac6-11e7-9b42 - 00a098c9e55d
+
+
+
+ a| 
+node_B_1
+ a| 
+f37b240b-9ac1-11e7-9b42 -00a098c9e55d
+
+
+
+ a| 
+node_B_2
+ a| 
+bf8e3f8f-9ac4-117-bd4e-00a098c379f です
+
+
+
+ a| 
+cluster_A
+ a| 
+ee7db9d5-9a82-11e7-b68b-00a098908039
+
+
+
+ a| 
+node_A_1
+ a| 
+f03cb63c-9a7e-11e7-b68b-00a098908039
+
+
+
+ a| 
+Node_a_2
+ a| 
+aa9a7a7a1-9a81-11e7-a4e9-00a098908c35
+
+|===
+. MetroCluster ノードが SAN 構成になっている場合は、関連情報を収集します。
++
+次のコマンドの出力を収集します。
+
++
+** 「 fcp adapter show -instance 」のように表示されます
+** 「 fcp interface show -instance 」の略
+** 「 iscsi interface show 」と表示されます
+** ucadmin show
+
+
+. ルートボリュームが暗号化されている場合は、キー管理ツールに使用するパスフレーズを収集して保存します。
++
+「 securitykey-manager backup show 」を参照してください
+
+. MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。
++
+詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-1677AE0A-FEF7-45FA-8616-885AA3283BCF.html["オンボードキー管理情報の手動でのバックアップ"]。
+
++
+.. オンボード・キー・マネージャが構成されている場合： +'securitykey-manager onboard show-backup
++
+パスフレーズは、アップグレード手順の後半で必要になります。
+
+.. Enterprise Key Management （ KMIP ）が設定されている場合は、次のコマンドを問題で実行します。
++
+「 securitykey manager external show -instance 」 'ecurity key manager key query 」を参照してください
+
+
+
+. 既存のノードのシステム ID を収集します。
++
+「 MetroCluster node show -fields node-systemid 、 ha-partner-systemid 、 dr-partner-systemid 、 dr-auxiliary-systemid 」を指定します
+
++
+次の出力は、再割り当てされたドライブを示しています。
+
++
+[listing]
+----
+::> metrocluster node show -fields node-systemid,ha-partner-systemid,dr-partner-systemid,dr-auxiliary-systemid
+
+dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-systemid dr-auxiliary-systemid
+----------- ----------- -------- ------------- ------------------- ------------------- ---------------------
+1           cluster_A node_A_1   537403324     537403323           537403321           537403322
+1           cluster_A node_A_2   537403323     537403324           537403322           537403321
+1           cluster_B node_B_1   537403322     537403321           537403323           537403324
+1           cluster_B node_B_2   537403321     537403322           537403324           537403323
+4 entries were displayed.
+----
+
+
+
+
+== メディエーターまたは Tiebreaker の監視を削除します
+
+プラットフォームをアップグレードする前に、 MetroCluster 設定を Tiebreaker またはメディエーターユーティリティで監視している場合は、監視を解除する必要があります。
+
+.手順
+. 次のコマンドの出力を収集します。
++
+「 storage iscsi-initiator show 」のように表示されます
+
+. Tiebreaker 、メディエーター、またはスイッチオーバーを開始できるその他のソフトウェアから既存の MetroCluster 構成を削除します。
++
+|===
+
+
+| 使用するポート | 使用する手順 
+
+
+ a| 
+Tiebreaker
+ a| 
+link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#removing-metrocluster-configurations["MetroCluster 設定の削除"]
+
+
+
+ a| 
+メディエーター
+ a| 
+ONTAP プロンプトで次のコマンドを問題に設定します。
+
+MetroCluster 構成設定のメディエーターが削除されました
+
+
+
+ a| 
+サードパーティ製アプリケーション
+ a| 
+製品マニュアルを参照してください。
+
+|===
+
+
+
+
+== カスタム AutoSupport メッセージをメンテナンス前に送信する
+
+メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
+
+.このタスクについて
+このタスクは MetroCluster サイトごとに実行する必要があります。
+
+.手順
+. クラスタにログインします。
+. メンテナンスの開始を通知する AutoSupport メッセージを起動します。
++
+「 system node AutoSupport invoke -node * -type all -message MAINT=__ maintenance-window-in-hours __ 」というメッセージが表示されます
+
++
+「 maintenance-window-in-hours 」パラメータには、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
+
++
+「 system node AutoSupport invoke -node * -type all -message MAINT= end 」というメッセージが表示されます
+
+. 同じ手順をパートナーサイトでも実行します。
+
+
+.次の手順
+link:upgrade-mcc-ip-manual-switchover.html["MetroCluster 構成をスイッチオーバーします"]です。

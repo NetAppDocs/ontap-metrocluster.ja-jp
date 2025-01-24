@@ -1,0 +1,166 @@
+---
+permalink: upgrade/upgrade-mcc-ip-system-controller-replace-restore-hba-set-ha.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: コントローラモジュールでHBAカードを設定し、コントローラとシャーシのHAの状態を確認および設定します。 
+---
+= HBA構成をリストアし、MetroCluster IPコントローラとシャーシのHA状態を設定
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コントローラモジュールでHBAカードを設定し、コントローラとシャーシのHAの状態を確認および設定します。
+
+
+
+== HBA 構成をリストア
+
+コントローラモジュールでのHBAカードの有無と設定に応じて、サイトに合わせてHBAカードを正しく設定する必要があります。
+
+.手順
+. メンテナンスモードで、システムのHBAを設定します。
++
+.. ucadmin show と入力し、各ポートの現在の設定を確認します
+.. 必要に応じてポートの設定を更新します。
+
+
++
+|===
+
+
+| HBA のタイプと目的のモード | 使用するコマンド 
+
+
+ a| 
+CNA FC
+ a| 
+`ucadmin modify -m fc -t initiator <adapter-name>`
+
+
+
+ a| 
+CNA イーサネット
+ a| 
+`ucadmin modify -mode cna <adapter-name>`
+
+
+
+ a| 
+FC ターゲット
+ a| 
+`fcadmin config -t target <adapter-name>`
+
+
+
+ a| 
+FC イニシエータ
+ a| 
+`fcadmin config -t initiator <adapter-name>`
+
+|===
+. メンテナンスモードを終了します。
++
+「 halt 」
+
++
+コマンドの実行後、ノードがプロンプトで停止するまで待ちます `LOADER` 。
+
+. ノードをブートしてメンテナンスモードに戻り、設定の変更を適用します。
++
+「 boot_ontap maint 」を使用してください
+
+. 変更を確認します。
++
+|===
+
+
+| HBA のタイプ | 使用するコマンド 
+
+
+ a| 
+CNA
+ a| 
+ucadmin show
+
+
+
+ a| 
+FC
+ a| 
+fcadmin show`
+
+|===
+
+
+
+
+== 新しいコントローラとシャーシで HA 状態を設定
+
+コントローラとシャーシの HA 状態を確認し、必要に応じてシステム構成に合わせて更新する必要があります。
+
+.手順
+. メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。
++
+「 ha-config show 」
+
++
+すべてのコンポーネントの HA 状態は「 mccip 」である必要があります。
+
+. 表示されたコントローラまたはシャーシのシステム状態が正しくない場合は、 HA 状態を設定します。
++
+「 ha-config modify controller mccip 」を参照してください
+
++
+「 ha-config modify chassis mccip 」を参照してください
+
+. NS224シェルフまたはストレージスイッチに接続されているイーサネットポートを確認および変更します。
++
+.. NS224シェルフまたはストレージスイッチに接続されているイーサネットポートを確認します。
++
+`storage port show`
+
+.. イーサネットシェルフまたはストレージスイッチに接続されているすべてのイーサネットポート（ストレージとクラスタの共有スイッチを含む）をモードに設定し `storage` ます。
++
+`storage port modify -p <port> -m storage`
+
++
+例：
+
++
+[listing]
+----
+*> storage port modify -p e5b -m storage
+Changing NVMe-oF port e5b to storage mode
+----
++
+
+NOTE: アップグレードを成功させるには、影響を受けるすべてのポートでこの値を設定する必要があります。
+
++
+イーサネットポートに接続されているシェルフのディスクが出力に報告され `sysconfig -v` ます。
+
++
+アップグレード先のシステムのストレージポートについては、を参照して link:https://hwu.netapp.com["Hardware Universe"^] ください。
+
+.. モードが設定されていることを確認し `storage` 、ポートがonline状態であることを確認します。
++
+`storage port show`
+
+
+
+. ノードを停止します
++
+ノードは 'loader>` プロンプトで停止する必要があります
+
+. 各ノードで、システムの日付、時刻、およびタイムゾーンを確認します。「 show date 」
+. 必要に応じて 'UTC または GMT:'set date <mm/dd/yyyy>' で日付を設定します
+. ブート環境プロンプトで次のコマンドを使用して ' 時刻を確認します
+. 必要に応じて、時刻を UTC または GMT:' 設定時刻 <:hh:mm:ss>` で設定します
+. 設定を保存します： saveenv
+. 環境変数 :printenv' を収集します
+
+
+.次の手順
+link:upgrade-mcc-ip-system-controller-replace-apply-rcf-set-bootarg.html["スイッチのRCFファイルを更新し、MetroCluster IPのbootarg値を設定する"]です。

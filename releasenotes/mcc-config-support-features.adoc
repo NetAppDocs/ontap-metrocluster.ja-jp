@@ -23,7 +23,12 @@ ONTAP MetroCluster構成に影響する既知の問題、制限事項、およ�
  a| 
 MetroCluster構成の移行におけるSVMデータ移動のサポート
  a| 
-ONTAPでは、MetroCluster以外のHAペアからMetroCluster構成へのSVMの移行、またはMetroCluster構成からMetroCluster以外のHAペアへのSVMの移行がサポートされます。MetroCluster構成間でSVMを移行することはできません。
+ONTAPでサポートされるMetroCluster SVMの移行は次のとおりです。
+
+* MetroCluster以外のHAペアとMetroCluster IP構成間でのSVMの移行
+* 2つのMetroCluster IP構成間でのSVMの移行
+* MetroCluster FC構成とMetroCluster IP構成間でのSVMの移行
+
 
 link:https://docs.netapp.com/us-en/ontap/svm-migrate/index.html["SVMのデータ移動"^]
  a| 
@@ -58,7 +63,7 @@ ONTAP 9.15.1
  a| 
 MetroCluster IPおよびFC構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲート内のSVMでS3オブジェクトストレージサーバを有効にすることができます。
 
-https://docs.netapp.com/us-en/ontap/s3-config/index.html["S3構成の概要"]
+https://docs.netapp.com/us-en/ontap/s3-config/index.html["S3構成の概要"^]
  a| 
 ONTAP 9.14.1
 
@@ -69,7 +74,7 @@ MetroClusterクラスタ内のミラーされたアグリゲートとミラー�
  a| 
 MetroCluster構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成できます。
 
-https://docs.netapp.com/us-en/ontap/s3-config/create-bucket-mcc-task.html["MetroCluster構成のミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成する"]
+https://docs.netapp.com/us-en/ontap/s3-config/create-bucket-mcc-task.html["MetroCluster構成のミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成する"^]
  a| 
 ONTAP 9.12.1
 
@@ -91,7 +96,7 @@ MetroCluster IPおよびMetroClusterファブリック接続構成でのフロ�
  a| 
 フロントエンドホストプロトコル（NFSやiSCSIなど）のIPSecサポートは、MetroCluster IPおよびMetroClusterファブリック接続構成で使用できます。
 
-https://docs.netapp.com/us-en/ontap/networking/configure_ip_security_@ipsec@_over_wire_encryption.html["ワイヤ暗号化を介した IP セキュリティ（ IPsec ）を設定します"]
+https://docs.netapp.com/us-en/ontap/networking/configure_ip_security_@ipsec@_over_wire_encryption.html["ワイヤ暗号化を介した IP セキュリティ（ IPsec ）を設定します"^]
  a| 
 ONTAP 9.11.1
 
@@ -111,7 +116,7 @@ MetroCluster ミラーは FabricPool 構成にあります
  a| 
 MetroCluster構成でミラーされたFabricPoolをセットアップして、コールドデータを2つの異なる障害ゾーンに階層化できます。
 
-https://docs.netapp.com/us-en/ontap/fabricpool/setup-object-stores-mcc-task.html["MetroCluster 構成での FabricPool 用オブジェクトストアのセットアップ"]
+https://docs.netapp.com/us-en/ontap/fabricpool/setup-object-stores-mcc-task.html["MetroCluster 構成での FabricPool 用オブジェクトストアのセットアップ"^]
  a| 
 ONTAP 9.7
 

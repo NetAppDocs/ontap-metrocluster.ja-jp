@@ -1,0 +1,27 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-console-logging.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc, console, logging 
+summary: コントローラのアップグレードを実行する前に、デバイスのコンソールログを有効にしてください。 
+---
+= MetroCluster IPコントローラのアップグレード前にコンソールログを有効にする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コントローラのアップグレードを実行する前に、デバイスのコンソールログを有効にしてください。
+
+NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
+
+* メンテナンス中はAutoSupportを有効のままにします。
+* メンテナンスの前後にメンテナンスAutoSupportメッセージをトリガーして、メンテナンスアクティビティ中にケースの作成を無効にします。
++
+ナレッジベースの記事を参照してください link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["スケジュールされたメンテナンス時間中にケースの自動作成を停止する方法"^]。
+
+* 任意のCLIセッションのセッションロギングをイネーブルにします。セッションログを有効にする方法については、ナレッジベースの記事の「セッション出力のログ」セクションを参照してください link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["ONTAPシステムへの接続を最適化するためのPuTTYの設定方法"^]。
+
+
+.次の手順
+の情報を参照しlink:upgrade-mcc-ip-manual-set-bootarg.html["必要なbootargを設定する（9.15.1以降で導入されたシステムにアップグレードする場合）"]て、既存のシステムに必要なbootargを設定する必要があるかどうかを確認します。

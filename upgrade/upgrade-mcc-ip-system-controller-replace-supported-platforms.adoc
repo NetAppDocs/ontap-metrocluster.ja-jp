@@ -1,0 +1,50 @@
+---
+permalink: upgrade/upgrade-mcc-ip-system-controller-replace-supported-platforms.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: MetroCluster IPコントローラのアップグレードを開始する前に、アップグレードの組み合わせがサポートされていることを確認する必要があります。 
+---
+= system controller replaceコマンドを使用したサポートされるMetroCluster IPコントローラのアップグレード
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IPコントローラのアップグレードを開始する前に、アップグレードの組み合わせがサポートされていることを確認する必要があります。
+
+このセクションのMetroClusterコントローラーのアップグレード表から、お使いの*ソース*プラットフォームを検索してください。*ソース*プラットフォーム行と*ターゲット*プラットフォーム列が空白の場合、アップグレードはサポートされていません。
+
+アップグレードを開始する前に、次の考慮事項を確認して、構成がサポートされていることを確認してください。
+
+* お使いのプラットフォームがリストに表示されない場合は、サポートされているコントローラのアップグレードの組み合わせはありません。
+* コントローラのアップグレードを実行するときは、古いプラットフォームタイプと新しいプラットフォームタイプ*が一致している必要があります*。
++
+** FASシステムをFASシステムにアップグレードしたり、AFF AシリーズをAFF Aシリーズにアップグレードしたりすることができます。
+** FASシステムをAFF Aシリーズにアップグレードしたり、AFF AシリーズをAFF Cシリーズにアップグレードしたりすることはできません。
++
+たとえば、アップグレードするプラットフォームがFAS8200の場合は、FAS9000にアップグレードできます。FAS8200システムをAFF A700システムにアップグレードすることはできません。
+
+
+
+* MetroCluster構成内のすべてのノード（新旧のノード）で同じバージョンのONTAPが実行されている必要があります。ご使用の組み合わせでサポートされるONTAPの最小バージョンについては、を参照してlink:https://hwu.netapp.com["Hardware Universe"^]ください。
+
+
+.サポートされるAFFおよびFAS MetroCluster IPコントローラのアップグレード
+次の表に、「system controller replace」コマンドを使用してMetroCluster IP構成のAFFシステムまたはFASシステムをアップグレードする場合にサポートされるプラットフォームの組み合わせを示します。
+
+image:../media/mccip_assisted_controller_upgrade_comb.png["に、system controller replaceコマンドを使用したMetroCluster IPのアップグレードでサポートされるプラットフォームの組み合わせを示します。"]
+
+* 注1：コントローラのアップグレードは、ONTAP 9.13.1以降を実行しているシステムでサポートされます。
+* 注2：コントローラのアップグレードが完了するまで、ターゲットプラットフォームに内蔵ドライブを搭載することはできません。内蔵ドライブはアップグレード後に追加できます。
+* 注3：コントローラモジュールの交換が必要です。
+* 注4：古いコントローラを外付けSASシェルフに変換するには、IOMモジュールが必要です。サポートされているIOMモジュールについては、を参照してくださいlink:https://hwu.netapp.com/["Hardware Universe"^]。
+
+
+.サポートされるASA MetroCluster IPコントローラのアップグレード
+ASAシステムでコマンドを使用したコントローラのアップグレード `system controller replace` はサポートされていません。
+
+その他の手順については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新の方法を選択"]。
+
+.次の手順
+を確認します link:upgrade-mcc-ip-system-controller-replace-requirements.html["このアップグレード手順を使用するための要件"]。

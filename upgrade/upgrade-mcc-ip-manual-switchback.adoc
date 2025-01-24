@@ -1,0 +1,80 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-switchback.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: スイッチバック処理を実行してMetroCluster構成を通常動作に戻します。site_Aのノードはまだアップグレード待ちです。 
+---
+= MetroCluster IP構成をスイッチバックします。
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチバック処理を実行してMetroCluster構成を通常動作に戻します。site_Aのノードはまだアップグレード待ちです。
+
+image::../media/mcc_upgrade_cluster_a_switchback.png[MCC アップグレードクラスタ A のスイッチバック]
+
+.手順
+. site_B の MetroCluster node show コマンドを問題し ' 出力を確認します
++
+.. 新しいノードが正しく表示されることを確認します。
+.. 新しいノードの状態が「 Waiting for switchback 」であることを確認します。
+
+
+. アクティブなクラスタ（アップグレードを実行していないクラスタ）の任意のノードから必要なコマンドを実行して、修復とスイッチバックを実行します。
++
+.. データアグリゲートを修復します。 + MetroCluster heal aggregates `
+.. ルートアグリゲートを修復します。
++
+MetroCluster はルートを修復します
+
+.. クラスタをスイッチバックします。
++
+MetroCluster スイッチバック
+
+
+
+. スイッチバック処理の進捗を確認します。
++
+「 MetroCluster show 」
+
++
+出力に「 waiting-for-switchback 」と表示されたら、スイッチバック処理はまだ進行中です。
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                switchover
+                          AUSO Failure Domain -
+Remote: cluster_A         Configuration state configured
+                          Mode                waiting-for-switchback
+                          AUSO Failure Domain -
+----
++
+出力に normal と表示された場合、スイッチバック処理は完了しています。
+
++
+[listing]
+----
+cluster_B::> metrocluster show
+Cluster                   Entry Name          State
+------------------------- ------------------- -----------
+ Local: cluster_B         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain -
+Remote: cluster_A         Configuration state configured
+                          Mode                normal
+                          AUSO Failure Domain -
+----
++
+スイッチバックが完了するまでに時間がかかる場合は、「 MetroCluster config-replication resync-status show 」コマンドを使用することで、進行中のベースラインのステータスを確認できます。このコマンドは、 advanced 権限レベルで実行します。
+
+
+
+.次の手順
+link:upgrade-mcc-ip-manual-complete-upgrade.html["アップグレードを完了します"]です。

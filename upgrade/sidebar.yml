@@ -14,20 +14,82 @@ entries:
     url: "/upgrade/concept_choosing_expansion_method_mcc.html"
 - title: "「system controller replace」コマンドを使用したスイッチオーバーとスイッチバックを使用して、4ノードMetroCluster
     IPのコントローラをアップグレードする（ONTAP 9.13.1以降）"
-  url: "/upgrade/task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_ip.html"
+  entries:
+  - title: アップグレードワークフロー
+    url: "/upgrade/upgrade-mcc-ip-system-controller-replace.html"
+  - title: アップグレードを準備
+    entries:
+    - title: system controller replaceコマンドを使用したサポートされるMetroCluster IPコントローラのアップグレード
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-supported-platforms.html"
+    - title: このアップグレード手順を使用するための要件
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-requirements.html"
+    - title: コンソールログを有効にする
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-console-logging.html"
+    - title: 必要なbootargを設定します（ONTAP 9.15.1以降で導入されたシステムにアップグレードする場合）。
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-set-bootarg.html"
+    - title: システムのアップグレードを準備
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-prechecks.html"
+  - title: コントローラのアップグレード
+    entries:
+    - title: 古いコントローラのネットワーク構成を準備
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-prepare-network-configuration.html"
+    - title: 新しいコントローラをセットアップしてネットブートする
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-setup-new-controllers.html"
+    - title: HBA構成をリストアしてHAの状態を設定
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-restore-hba-set-ha.html"
+    - title: スイッチのRCFファイルを更新し、MetroCluster IPのbootarg値を設定する
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-apply-rcf-set-bootarg.html"
+    - title: ルートアグリゲートディスクを再割り当てします
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-reassign-root-agg.html"
+    - title: 新しいコントローラをブートしてLIF設定をリストア
+      url: "/upgrade/upgrade-mcc-ip-system-controller-replace-boot-new-controllers.html"
+  - title: アップグレードを完了します
+    url: "/upgrade/upgrade-mcc-ip-system-controller-replace-complete-upgrade.html"
+- title: スイッチオーバーとスイッチバックを使用したMetroCluster IPのコントローラのアップグレード（ONTAP 9.8以降）
+  entries:
+  - title: アップグレードワークフロー
+    url: "/upgrade/upgrade-mcc-ip-manual.html"
+  - title: アップグレードを準備
+    entries:
+    - title: このアップグレード手順を使用するための要件
+      url: "/upgrade/upgrade-mcc-ip-manual-requirements.html"
+    - title: コンソールログを有効にする
+      url: "/upgrade/upgrade-mcc-ip-manual-console-logging.html"
+    - title: 必要なbootargを設定します（ONTAP 9.15.1以降で導入されたシステムにアップグレードする場合）。
+      url: "/upgrade/upgrade-mcc-ip-manual-set-bootarg.html"
+    - title: システムのアップグレードを準備
+      url: "/upgrade/upgrade-mcc-ip-prepare-system.html"
+  - title: コントローラのアップグレード
+    entries:
+    - title: MetroCluster 構成をスイッチオーバーします
+      url: "/upgrade/upgrade-mcc-ip-manual-switchover.html"
+    - title: インターフェイス設定を削除し、古いコントローラをアンインストールする
+      url: "/upgrade/upgrade-mcc-ip-manual-uninstall-controllers.html"
+    - title: 新しいコントローラをセットアップ
+      url: "/upgrade/upgrade-mcc-ip-manual-setup-controllers.html"
+    - title: HBA構成をリストアしてHAの状態を設定
+      url: "/upgrade/upgrade-mcc-ip-manual-hba-set-ha.html"
+    - title: スイッチのRCFファイルを更新し、MetroCluster IPのbootarg値を設定する
+      url: "/upgrade/upgrade-mcc-ip-manual-apply-rcf-set-bootarg.html"
+    - title: ルートアグリゲートディスクを再割り当てします
+      url: "/upgrade/upgrade-mcc-ip-manual-reassign-root-agg.html"
+    - title: 新しいコントローラをブートしてLIF設定をリストア
+      url: "/upgrade/upgrade-mcc-ip-manual-boot-new-controllers.html"
+    - title: 構成をスイッチバックします。
+      url: "/upgrade/upgrade-mcc-ip-manual-switchback.html"
+  - title: アップグレードを完了します
+    url: "/upgrade/upgrade-mcc-ip-manual-complete-upgrade.html"
+- title: スイッチオーバーとスイッチバックを使用してMetroCluster IPのコントローラ（AFF A700からAFF A900、FAS9000からFAS9500）をアップグレードする（ONTAP
+    9.10.1以降）
+  url: "/upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html"
 - title: スイッチオーバーとスイッチバックを使用して、MetroCluster FCのコントローラをアップグレードします
   url: "/upgrade/task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html"
-- title: スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のコントローラ（AFF A700 / FAS9000からAFF A900
-    / FAS9500）をアップグレードする（ONTAP 9.10.1以降）
+- title: スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のコントローラ（AFF A700からAFF A900、FAS9000からFAS9500）をアップグレードする（ONTAP
+    9.10.1以降）
   url: "/upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_fc_us_switchover_and_switchback.html"
 - title: "「system controller replace」コマンドを使用してスイッチオーバーとスイッチバックを行うことで、4ノードのMetroCluster
     FCのコントローラをアップグレードします（ONTAP 9.10.1以降）。"
   url: "/upgrade/task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html"
-- title: スイッチオーバーとスイッチバックを使用したMetroCluster IPのコントローラのアップグレード（ONTAP 9.8以降）
-  url: "/upgrade/task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback_mcc_ip.html"
-- title: スイッチオーバーとスイッチバックを使用してMetroCluster IPのコントローラ（AFF A700 / FAS9000からAFF A900
-    / FAS9500）をアップグレードする（ONTAP 9.10.1以降）
-  url: "/upgrade/task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html"
 - title: 4 ノード MetroCluster FC 構成を更新
   url: "/upgrade/task_refresh_4n_mcc_fc.html"
 - title: 4ノードまたは8ノードのMetroCluster IP構成を更新（ONTAP 9.8以降）

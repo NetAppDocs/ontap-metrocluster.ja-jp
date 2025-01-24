@@ -1,0 +1,29 @@
+---
+permalink: upgrade/upgrade-mcc-ip-system-controller-replace.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: このガイド付きの自動MetroCluster スイッチオーバー処理を使用すると、4ノードMetroCluster IP構成のコントローラの無停止アップグレードを実行できます。 
+---
+= system controller replaceコマンドを使用したMetroCluster IPコントローラのアップグレードワークフロー（ONTAP 9.13.1以降）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+このガイド付きの自動MetroClusterスイッチオーバー処理を使用すると、ONTAP 9.13.1以降を実行している4ノードMetroCluster IP構成でコントローラの無停止アップグレードを実行できます。この手順で他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。
+
+.このワークフローについて
+このワークフローを使用して、コマンドでスイッチオーバーとスイッチバックを使用して、ONTAP 9.13.1以降を実行するMetroCluster IPコントローラをアップグレードできます `system controller replace`。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1つ"]link:upgrade-mcc-ip-system-controller-replace-supported-platforms.html["アップグレードを準備"]
+[role="quick-margin-para"]
+サポートされているアップグレードの組み合わせと要件を確認し、必要な手順を実行してシステムをコントローラのアップグレードに備えます。コントローラの自動アップグレードプロセスでは、まず一連の事前確認が行われてから、設定情報を収集して既存の監視ソフトウェアを削除します。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["2 つ"]link:upgrade-mcc-ip-system-controller-replace-prepare-network-configuration.html["コントローラのアップグレード"]
+[role="quick-margin-para"]
+自動化処理によってスイッチオーバー処理が開始されます。これらの処理が完了すると処理が一時停止し、古いコントローラのネットワーク設定を準備し、新しいコントローラをラックに設置し、ルートアグリゲートディスクを再割り当てし、新しいコントローラをブートできるようになります。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["3つ"]link:upgrade-mcc-ip-system-controller-replace-complete-upgrade.html["アップグレードを完了します"]
+[role="quick-margin-para"]
+ネットワークに到達できるかどうかを確認し、2つ目のサイトでアップグレードタスクを繰り返して、監視設定をリストアすることで、コントローラの自動アップグレードを完了します。

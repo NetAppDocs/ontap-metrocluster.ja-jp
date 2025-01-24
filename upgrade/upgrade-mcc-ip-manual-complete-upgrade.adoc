@@ -1,0 +1,125 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-complete-upgrade.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc, complete 
+summary: コントローラモジュールをアップグレードしたら、必要なタスクを実行してコントローラのアップグレードを完了します。 
+---
+= MetroCluster IPコントローラのアップグレードの完了
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コントローラモジュールをアップグレードしたら、必要なタスクを実行してコントローラのアップグレードを完了します。
+
+
+
+== MetroCluster 構成の健全性を確認します
+
+コントローラモジュールをアップグレードしたら、 MetroCluster 構成の健全性を確認する必要があります。
+
+.このタスクについて
+このタスクは、MetroCluster構成の任意のノードで実行できます。
+
+.手順
+. MetroCluster 構成の動作を確認します。
++
+.. MetroCluster 構成と動作モードが正常であることを確認します。 + MetroCluster show `
+.. MetroCluster チェックを実行します + MetroCluster チェックを実行します
+.. MetroCluster チェックの結果を表示します。
++
+MetroCluster チェックショー
+
+
+
+. MetroCluster の接続およびステータスを確認します。
++
+.. MetroCluster IP 接続を確認します。
++
+「 storage iscsi-initiator show 」のように表示されます
+
+.. ノードが動作していることを確認します。
++
+MetroCluster node show
+
+.. MetroCluster IP インターフェイスが動作していることを確認します。
++
+「 MetroCluster configurion-settings interface show 」を参照してください
+
+.. ローカルフェイルオーバーが有効になっていることを確認します。
++
+「 storage failover show 」をクリックします
+
+
+
+
+
+
+
+== cluster_Aのノードをアップグレードします。
+
+アップグレード手順を繰り返して、サイトAのcluster_Aのノードをアップグレードする必要があります。
+
+.手順
+. cluster_Aのノードをアップグレードするために、上記の手順を繰り返しlink:upgrade-mcc-ip-manual-requirements.html["アップグレードを準備"]ます。
++
+タスクを実行すると、これらの例ではクラスタとノードをすべて逆に参照しています。たとえば、この例で cluster_A からスイッチオーバーすると、 cluster_B からスイッチオーバーされます
+
+
+
+
+
+== Tiebreaker またはメディエーターの監視をリストアします
+
+MetroCluster 構成のアップグレードが完了したら、 Tiebreaker またはメディエーターユーティリティを使用して監視を再開できます。
+
+.手順
+. 必要に応じて、構成に応じて手順を使用してリストアを監視します。
++
+|===
+| 使用するポート | この手順を使用します 
+
+
+ a| 
+Tiebreaker
+ a| 
+link:../tiebreaker/concept_configuring_the_tiebreaker_software.html#adding-metrocluster-configurations["MetroCluster 構成を追加"]です。
+
+
+
+ a| 
+メディエーター
+ a| 
+link:../install-ip/concept_mediator_requirements.html["MetroCluster IP 構成から ONTAP メディエーターサービスを設定します"]です。
+
+
+
+ a| 
+サードパーティ製アプリケーション
+ a| 
+製品マニュアルを参照してください。
+
+|===
+
+
+
+
+== カスタム AutoSupport メッセージをメンテナンス後に送信します
+
+アップグレードの完了後、ケースの自動作成を再開できるように、メンテナンスの終了を通知する AutoSupport メッセージを送信する必要があります。
+
+.手順
+. サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。
++
+.. 次のコマンドを問題で実行します。 + 「 system node AutoSupport invoke -node * -type all -message MAINT= end 」
+.. パートナークラスタに対してこのコマンドを繰り返します。
+
+
+
+
+
+
+== エンドツーエンドの暗号化を設定する
+
+ご使用のシステムでサポートされている場合は、MetroCluster IPサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化できます。を参照してください link:../maintain/task-configure-encryption.html["エンドツーエンドの暗号化を設定する"] を参照してください。

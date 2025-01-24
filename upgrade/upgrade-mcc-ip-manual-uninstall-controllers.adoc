@@ -1,0 +1,167 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-uninstall-controllers.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: データLIFを共通のポートに移動し、古いコントローラのVLANとインターフェイスグループを削除してから、コントローラを物理的にアンインストールします。 
+---
+= インターフェイス設定を削除し、古いMetroCluster IPコントローラをアンインストールする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+LIFの配置が正しいことを確認その後、古いコントローラのVLANとインターフェイスグループを削除し、コントローラを物理的に取り外します。
+
+.このタスクについて
+* これらの手順は古いコントローラ（node_B_1-old、node_B_2-old）で実行します。
+* この手順で使用するには、で収集した情報が必要link:upgrade-mcc-ip-prepare-system.html#map-ports-from-the-old-nodes-to-the-new-nodes["古いノードから新しいノードへのポートのマッピング"]です。
+
+
+.手順
+. 古いノードをブートして、ノードにログインします。
++
+「 boot_ontap 」
+
+. 古いコントローラのクラスタ間LIFを変更して、HAインターコネクトまたはMetroCluster IP DRインターコネクトに使用するポートとは別のホームポートを新しいコントローラで使用するようにします。
++
+
+NOTE: この手順は、アップグレードを成功させるために必要です。
+
++
+古いコントローラのクラスタ間LIFでは、新しいコントローラのHAインターコネクトまたはMetroCluster IP DRインターコネクトに使用されるポートとは別のホームポートを使用する必要があります。たとえば、AFF A90コントローラにアップグレードすると、HAインターコネクトポートはe1aとe7aになり、MetroCluster IP DRインターコネクトポートはe2bとe3bになります。古いコントローラのインタークラスタLIFがポートe1a、e7a、e2b、またはe3bでホストされている場合は、クラスタ間LIFを移動する必要があります。
+
++
+新しいノードでのポートの分散と割り当てについては、を参照して https://hwu.netapp.com["Hardware Universe"]ください。
+
++
+.. 古いコントローラで、クラスタ間LIFを表示します。
++
+`network interface show  -role intercluster`
+
++
+古いコントローラのクラスタ間LIFが、HAインターコネクトに使用するポートと同じポートを使用するか、新しいコントローラのMetroCluster IP DRインターコネクトに使用するポートと同じポートを使用するかに応じて、次のいずれかの処理を実行します。
+
++
+[cols="2*"]
+|===
+| クラスタ間LIFの状況 | 手順 
+
+
+| 同じホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_2b,サブステップb>> 
+
+
+| 別のホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_3,手順 3>> 
+|===
+.. [[controller_manual_upgrade_prepare_network_ports_2b]]別のホームポートを使用するようにクラスタ間LIFを変更します。
++
+`network interface modify -vserver <vserver> -lif <intercluster_lif> -home-port <port-not-used-for-ha-interconnect-or-mcc-ip-dr-interconnect-on-new-nodes>`
+
+.. すべてのインタークラスタLIFが新しいホームポートにあることを確認します。
++
+`network interface show -role intercluster -is-home  false`
+
++
+すべてのクラスタ間LIFがそれぞれのホームポートにある場合は、コマンド出力が空になります。
+
+.. ホームポートにないLIFをリバートします。
++
+`network interface revert -lif <intercluster_lif>`
+
++
+ホームポートにないクラスタ間LIFごとにコマンドを繰り返します。
+
+
+
+. [[controller_manual_upgrade_prepare_network_ports_3]]古いコントローラのすべてのデータLIFのホームポートを、新旧両方のコントローラモジュールで同じ共通のポートに割り当てます。
++
+
+CAUTION: 新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<<upgrades_manual_without_matching_ports,手順 4>>。
+
++
+.. LIF を表示します。
++
+「 network interface show 」を参照してください
+
++
+SANとNASを含むすべてのデータLIFはスイッチオーバーサイト（cluster_A）で稼働しているため、管理状態はupで動作状態はdownです。
+
+.. の出力を確認して、クラスタポートとして使用されていない新旧両方のコントローラで同じ共通の物理ネットワークポートを特定します。
++
+たとえば、 e0d は古いコントローラの物理ポートで、新しいコントローラにも存在します。e0d は、クラスタポート、または新しいコントローラ上で使用されません。
+
++
+プラットフォームモデルのポートの用途については、を参照してください。 https://hwu.netapp.com/["Hardware Universe"]
+
+.. すべてのデータLIFで共通のポートをホームポートとして使用するように変更します。+
+`network interface modify -vserver <svm-name> -lif <data-lif> -home-port <port-id>`
++
+次の例では、これは「 e0d 」です。
+
++
+例：
+
++
+[listing]
+----
+network interface modify -vserver vs0 -lif datalif1 -home-port e0d
+----
+
+
+. [[upgrades_manual_without_matching_ports]]ブロードキャストドメインを変更して、削除が必要なVLANと物理ポートを削除します。
++
+`broadcast-domain remove-ports -broadcast-domain <broadcast-domain-name> -ports <node-name:port-id>`
+
++
+すべての VLAN ポートと物理ポートについて、この手順を繰り返します。
+
+. クラスタポートをメンバーポートとして使用し、インターフェイスグループをメンバーポートとして使用している VLAN ポートをすべて削除します。
++
+.. VLANポートの削除：+
+`network port vlan delete -node <node_name> -vlan-name <portid-vlandid>`
++
+例：
+
++
+[listing]
+----
+network port vlan delete -node node1 -vlan-name e1c-80
+----
+.. インターフェイスグループから物理ポートを削除します。
++
+`network port ifgrp remove-port -node <node_name> -ifgrp <interface-group-name> -port <portid>`
+
++
+例：
+
++
+[listing]
+----
+network port ifgrp remove-port -node node1 -ifgrp a1a -port e0d
+----
+.. ブロードキャストドメインからVLANポートとインターフェイスグループポートを削除します。
++
+`network port broadcast-domain remove-ports -ipspace <ipspace> -broadcast-domain <broadcast-domain-name> -ports <nodename:portname,nodename:portnamee>,..`
+
+.. 必要に応じて、インターフェイスグループポートを変更して他の物理ポートをメンバーとして使用します。
++
+`ifgrp add-port -node <node_name> -ifgrp <interface-group-name> -port <port-id>`
+
+
+
+. ノードを停止してプロンプトを表示し `LOADER`ます。
++
+「 halt -inhibit-takeover true 」と入力します
+
+. site_Bの古いコントローラ（node_B_1-oldとnode_B_2-old）のシリアルコンソールに接続し、プロンプトが表示されていることを確認します `LOADER`。
+. bootarg の値を収集します。
++
+printenv
+
+. node_B_1-oldとnode_B_2-oldのストレージ接続とネットワーク接続を切断します。新しいノードに再接続できるように、ケーブルにラベルを付けます。
+. node_B_1 から古いおよび node_B_2 から電源ケーブルを外します。
+. node_B_1 古いコントローラと node_B_2 の古いコントローラをラックから取り外します。
+
+
+.次の手順
+link:upgrade-mcc-ip-manual-setup-controllers.html["新しいコントローラをセットアップ"]です。

@@ -1,0 +1,92 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-requirements.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc, requirements 
+summary: コントローラのアップグレードを実行する前に、システムがすべての要件を満たしていることを確認してください。 
+---
+= このMetroCluster IPアップグレード手順を使用するための要件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+コントローラのアップグレードを実行する前に、システムがすべての要件を満たしていることを確認してください。
+
+
+
+== この手順 でサポートされているプラットフォーム
+
+* プラットフォームで ONTAP 9.8 以降が実行されている必要があります。
+* ターゲット（新規）プラットフォームは、元のプラットフォームとは異なるモデルである必要があります。
+* MetroCluster IP構成では、この手順 を使用してアップグレードできるプラットフォームモデルは限られています。
++
+** サポートされるプラットフォームのアップグレードの組み合わせについては、のMetroCluster IPアップグレードの表を参照してくださいlink:concept_choosing_controller_upgrade_mcc.html["コントローラのアップグレード手順 を選択します"]。
++
+を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_controller_upgrade_mcc.html#choosing-a-procedure-that-uses-the-switchover-and-switchback-process["アップグレードまたは更新方法を選択します"] を参照してください。
+
+
+
+
+
+
+
+== 要件
+
+* この手順環境コントローラモジュールは MetroCluster IP 構成です。
+* 構成内のすべてのコントローラは、同じメンテナンス期間にアップグレードする必要があります。
++
+このメンテナンス作業以外では、コントローラタイプが異なる MetroCluster 構成を運用することはできません。
+
+* MetroCluster IPシステムが両方のサイトで同じバージョンのONTAPを実行している必要があります。
+* MetroCluster IPスイッチ（スイッチタイプ、ベンダー、モデル）とファームウェアのバージョンが、アップグレード構成の既存および新しいコントローラでサポートされている必要があります。
++
+サポートされているスイッチとファームウェアのバージョンについては、またはを参照してください link:https://hwu.netapp.com["Hardware Universe"^] link:https://imt.netapp.com/matrix/["IMT"^] 。
+
+* 新しいシステムよりも多くのスロットまたはポートがあるシステムからアップグレードする場合は、新しいシステムに十分なスロットとポートがあることを確認する必要があります。
++
+アップグレードを開始する前に、を参照しlink:https://hwu.netapp.com["Hardware Universe"^]て、新しいシステムのスロットとポートの数を確認してください。
+
+* システムで有効になっている場合はlink:../maintain/task-configure-encryption.html#disable-end-to-end-encryption["エンドツーエンドの暗号化を無効にする"]、アップグレードを実行する前に実行します。
+* 新しいプラットフォームのスロット数が元のシステムのスロット数より少ない場合、またはポートのタイプが異なる場合は、新しいシステムにアダプタを追加しなければならないことがあります。
+* 元のプラットフォームのIPアドレス、ネットマスク、ゲートウェイは新しいプラットフォームで再利用します。
+
+
+この手順では、次の名前が使用されています。
+
+* site_A で cluster_A
++
+** アップグレード前：
++
+*** node_A_1 - 古い
+*** Node_a_2-old
+
+
+** アップグレード後：
++
+*** node_A_1 - 新規
+*** Node_a_2 - 新規
+
+
+
+
+* site_B （ site_B
++
+** アップグレード前：
++
+*** node_B_1 - 古い
+*** node_B_2 - 古い
+
+
+** アップグレード後：
++
+*** node_B_1 - 新規
+*** node_B_2 - 新規
+
+
+
+
+
+
+.次の手順
+link:upgrade-mcc-ip-manual-console-logging.html["コンソールログを有効にする"]です。

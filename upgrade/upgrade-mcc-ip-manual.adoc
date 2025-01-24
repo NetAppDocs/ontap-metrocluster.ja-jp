@@ -1,0 +1,29 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。 
+---
+= スイッチオーバーとスイッチバックを使用したMetroCluster IPコントローラのアップグレードのワークフロー（ONTAP 9.8以降）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.8 以降では、 MetroCluster スイッチオーバー処理を使用して、パートナークラスタのコントローラモジュールをアップグレードする際にクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。
+
+.このワークフローについて
+このワークフローを使用して、ONTAP 9.8以降を実行しているシステムでスイッチオーバーとスイッチバックを使用してMetroCluster IPコントローラをアップグレードできます。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1つ"]link:upgrade-mcc-ip-manual-requirements.html["アップグレードを準備"]
+[role="quick-margin-para"]
+サポートされているアップグレードの組み合わせと要件を確認し、必要な手順を実行してシステムをコントローラのアップグレードに備えます。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["2 つ"]link:upgrade-mcc-ip-manual-switchover.html["コントローラのアップグレード"]
+[role="quick-margin-para"]
+スイッチバックを実行する前に、MetroCluster構成をスイッチオーバーして、古いコントローラから構成を削除し、新しいコントローラをラックに設置し、ルートアグリゲートディスクを再割り当てし、新しいコントローラをブートします。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["3つ"]link:upgrade-mcc-ip-manual-complete-upgrade.html["アップグレードを完了します"]
+[role="quick-margin-para"]
+2番目のサイトでアップグレードタスクを繰り返し、監視設定をリストアすることで、コントローラのアップグレードを完了します。

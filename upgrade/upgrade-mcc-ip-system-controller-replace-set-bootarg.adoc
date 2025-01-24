@@ -1,0 +1,113 @@
+---
+permalink: upgrade/upgrade-mcc-ip-system-controller-replace-set-bootarg.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: ONTAP 9.15.1以降で導入されたシステムをアップグレードする場合は、アップグレードを開始する前にbootargを設定する必要があります。 
+---
+= 必要なbootargの設定（ONTAP 9.15.1以降で導入されたシステムへのMetroCluster IPのアップグレードの場合）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP 9.15.1以降で導入されたシステムをアップグレードする場合は、アップグレードを開始する前にbootargを設定する必要があります。
+
+
+
+== 手順1：古いコントローラで設定する必要があるbootargを特定する
+
+サポートされている次のシステムへのアップグレードでは、コントローラのアップグレードを実行する前に、古いコントローラでbootargを設定する必要があります。
+
+* AFF A70、AFF A90、AFF A1K
+* FAS70、FAS90
+* AFF C80用
+* AFF A50、AFF A20、AFF A30
+* AFF C30、AFF C60
+
+
+
+CAUTION: 上記のいずれかのシステムにアップグレードする場合は、アップグレードを実行する前に*既存のシステムで必要なbootargを設定する必要があります。それ以外のアップグレードの場合は、このタスクを省略してに直接進みます link:upgrade-mcc-ip-system-controller-replace-prechecks.html["システムのアップグレードを準備"]。
+
+ONTAP 9.15.1以降で導入されたシステムをアップグレードする場合、ほとんどの場合、古いコントローラでbootargを設定する必要があり `hw.cxgbe.toe_keepalive_disable`ます。ただし、一部のアップグレードパスでは、代わりにbootargを設定する必要があり `bootarg.siw.interop_enabled`ます。
+
+次の表を参照して、それぞれのアップグレードの組み合わせに設定する必要があるbootargを特定してください。
+
+[cols="2*"]
+|===
+| アップグレード対象 | bootargの設定 
+
+
+| AFF A250からAFF A30へ | `bootarg.siw.interop_enabled` 
+
+
+| AFF C250からAFF C30へ | `bootarg.siw.interop_enabled` 
+
+
+| AFF A150からAFF A20へ | `bootarg.siw.interop_enabled` 
+
+
+| AFF A220からAFF A20へ | `bootarg.siw.interop_enabled` 
+
+
+| AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、またはAFF C60システムへのその他のサポートされるアップグレード | `hw.cxgbe.toe_keepalive_disable` 
+|===
+
+
+== 手順2：古いコントローラで必要なbootargを設定する
+
+このタスクは、AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、またはAFF C60システムにアップグレードする場合にのみ*必要です。
+
+.手順
+. 各サイトで1つのノードを停止し、そのHAパートナーでノードのストレージテイクオーバーを実行できるようにします。
++
+`halt  -node <node_name>`
+
+. アップグレードの組み合わせに必要なbootargを設定します。の表を使用して、設定する必要があるbootargを決めておき<<upgrade_paths_bootarg_assisted,設定が必要なbootargを特定する>>ます。
++
+[role="tabbed-block"]
+====
+.hw.cxgbe.toe_keepalive_disable
+--
+..  `LOADER`停止したノードのプロンプトで、次のように入力します。
++
+`setenv hw.cxgbe.toe_keepalive_disable 1`
+
++
+'aveenv
+
++
+`printenv hw.cxgbe.toe_keepalive_disable`
+
+
+
+--
+.bootarg.siw.interop_enabled
+--
+..  `LOADER`停止したノードのプロンプトで、次のように入力します。
++
+`setenv bootarg.siw.interop_enabled 1`
+
++
+'aveenv
+
++
+`printenv bootarg.siw.interop_enabled`
+
+
+
+--
+====
+. ノードをブートします。
++
+「 boot_ontap 」
+
+. ノードがブートしたら、プロンプトでノードのギブバックを実行します。
++
+`storage failover giveback -ofnode <node_name>`
+
+. アップグレードするDRグループの各ノードで、この手順を繰り返します。
+
+
+.次のステップ
+link:upgrade-mcc-ip-system-controller-replace-prechecks.html["システムのアップグレードを準備"]です。

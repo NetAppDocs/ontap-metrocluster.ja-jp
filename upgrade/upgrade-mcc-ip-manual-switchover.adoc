@@ -1,0 +1,57 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-switchover.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: site_Bのプラットフォームをアップグレードできるように、site_Aに構成をスイッチオーバーします。 
+---
+= MetroCluster IP構成のスイッチオーバー
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+site_Bのプラットフォームをアップグレードできるように、site_Aに構成をスイッチオーバーします。
+
+.このタスクについて
+このタスクは site_A で実行する必要があります
+
+このタスクの完了後、次の作業を行います。
+
+* cluster_Aはアクティブで、両方のサイトにデータを提供しています。
+* cluster_Bは非アクティブになり、アップグレードプロセスを開始できる状態になります。
+
+
+image::../media/mcc_upgrade_cluster_a_in_switchover.png[cluster_Aのアップグレード準備が完了しており、cluster_Bがスイッチオーバー中であることを示します。]
+
+.手順
+. site_B のノードをアップグレードできるように、 MetroCluster 構成を site_A にスイッチオーバーします。
++
+.. cluster_A で次のコマンドを問題します。
++
+MetroCluster switche-controller-replacement true
+
++
+この処理が完了するまでに数分かかることがあります。
+
+.. スイッチオーバー処理を監視します。
++
+「 MetroCluster operation show 」を参照してください
+
+.. 処理が完了したら、ノードがスイッチオーバー状態であることを確認します。
++
+「 MetroCluster show 」
+
+.. MetroCluster ノードのステータスを確認します。
++
+MetroCluster node show
+
++
+コントローラのアップグレード中は、ネゴシエートスイッチオーバー後のアグリゲートの自動修復が無効になります。
+
+
+
+
+
+.次の手順
+link:upgrade-mcc-ip-manual-uninstall-controllers.html["インターフェイス設定を削除し、古いコントローラをアンインストールする"]です。

@@ -1,0 +1,131 @@
+---
+permalink: upgrade/upgrade-mcc-ip-manual-reassign-root-agg.html 
+sidebar: sidebar 
+keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
+summary: 前の手順で確認したシステムIDを使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします。 
+---
+= ルートアグリゲートディスクを新しいMetroCluster IPコントローラモジュールに再割り当て
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+前の手順で確認したシステムIDを使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします。
+
+.このタスクについて
+古いシステムIDはで特定しました link:upgrade-mcc-ip-prepare-system.html#gather-information-before-the-upgrade["アップグレード前に情報を収集"]。
+
+この手順はメンテナンスモードで実行します。
+
+
+NOTE: コントローラのアップグレードプロセスで再割り当てが必要なディスクは、ルートアグリゲートディスクだけです。データアグリゲートのディスク所有権は、スイッチオーバー/スイッチバック処理の一環として処理されます。
+
+.手順
+. システムをメンテナンスモードでブートします。
++
+「 boot_ontap maint 」を使用してください
+
+. メンテナンスモードのプロンプトから node_B_1 で新しいディスクを表示します。
++
+「ディスクショー - A` 」
+
++
+
+CAUTION: ディスクの再割り当てを続行する前に、ノードのルートアグリゲートに属するpool0とpool1のディスクが出力に表示されていることを確認し `disk show`ます。次の例では、node_B_1-oldが所有するpool0とpool1のディスクが出力に表示されています。
+
++
+コマンド出力には、新しいコントローラモジュールのシステムID（1574774970）が表示されます。ただし、古いシステムID（537403322）はルートアグリゲートディスクをまだ所有しています。この例には、MetroCluster構成の他のノードが所有するドライブは表示されていません。
+
++
+[listing]
+----
+*> disk show -a
+Local System ID: 1574774970
+DISK                  OWNER                 POOL   SERIAL NUMBER   HOME                  DR HOME
+------------          ---------             -----  -------------   -------------         -------------
+prod3-rk18:9.126L44   node_B_1-old(537403322)  Pool1  PZHYN0MD     node_B_1-old(537403322)  node_B_1-old(537403322)
+prod4-rk18:9.126L49   node_B_1-old(537403322)  Pool1  PPG3J5HA     node_B_1-old(537403322)  node_B_1-old(537403322)
+prod4-rk18:8.126L21   node_B_1-old(537403322)  Pool1  PZHTDSZD     node_B_1-old(537403322)  node_B_1-old(537403322)
+prod2-rk18:8.126L2    node_B_1-old(537403322)  Pool0  S0M1J2CF     node_B_1-old(537403322)  node_B_1-old(537403322)
+prod2-rk18:8.126L3    node_B_1-old(537403322)  Pool0  S0M0CQM5     node_B_1-old(537403322)  node_B_1-old(537403322)
+prod1-rk18:9.126L27   node_B_1-old(537403322)  Pool0  S0M1PSDW     node_B_1-old(537403322)  node_B_1-old(537403322)
+.
+.
+.
+----
+. ドライブシェルフのルートアグリゲートディスクを新しいコントローラに再割り当てします。
++
+|===
+
+
+| ADP を使用する環境 | 使用するコマンド 
+
+
+ a| 
+はい。
+ a| 
+`disk reassign -s <old-sysid> -d <new-sysid> -r <dr-partner-sysid>`
+
+
+
+ a| 
+いいえ
+ a| 
+`disk reassign -s <old-sysid> -d <new-sysid>`
+
+|===
+. ドライブシェルフのルートアグリゲートディスクを新しいコントローラに再割り当てします。
++
+`disk reassign -s <old-sysid> -d <new-sysid>`
+
++
+次の例は、 ADP 以外の構成でのドライブの再割り当てを示しています。
+
++
+[listing]
+----
+*> disk reassign -s 537403322 -d 1574774970
+Partner node must not be in Takeover mode during disk reassignment from maintenance mode.
+Serious problems could result!!
+Do not proceed with reassignment if the partner is in takeover mode. Abort reassignment (y/n)? n
+
+After the node becomes operational, you must perform a takeover and giveback of the HA partner node to ensure disk reassignment is successful.
+Do you want to continue (y/n)? y
+Disk ownership will be updated on all disks previously belonging to Filer with sysid 537403322.
+Do you want to continue (y/n)? y
+----
+. ルートアグリゲートのディスクが正しく再割り当てされたことを確認します。
++
+「ディスクショー」
+
++
+「ストレージ・アグリゲートのステータス」
+
++
+[listing]
+----
+
+*> disk show
+Local System ID: 537097247
+
+  DISK                    OWNER                    POOL   SERIAL NUMBER   HOME                     DR HOME
+------------              -------------            -----  -------------   -------------            -------------
+prod03-rk18:8.126L18 node_B_1-new(537097247)  Pool1  PZHYN0MD        node_B_1-new(537097247)   node_B_1-new(537097247)
+prod04-rk18:9.126L49 node_B_1-new(537097247)  Pool1  PPG3J5HA        node_B_1-new(537097247)   node_B_1-new(537097247)
+prod04-rk18:8.126L21 node_B_1-new(537097247)  Pool1  PZHTDSZD        node_B_1-new(537097247)   node_B_1-new(537097247)
+prod02-rk18:8.126L2  node_B_1-new(537097247)  Pool0  S0M1J2CF        node_B_1-new(537097247)   node_B_1-new(537097247)
+prod02-rk18:9.126L29 node_B_1-new(537097247)  Pool0  S0M0CQM5        node_B_1-new(537097247)   node_B_1-new(537097247)
+prod01-rk18:8.126L1  node_B_1-new(537097247)  Pool0  S0M1PSDW        node_B_1-new(537097247)   node_B_1-new(537097247)
+::>
+::> aggr status
+           Aggr          State           Status                Options
+aggr0_node_B_1           online          raid_dp, aggr         root, nosnap=on,
+                                         mirrored              mirror_resync_priority=high(fixed)
+                                         fast zeroed
+                                         64-bit
+----
+
+
+.次の手順
+link:upgrade-mcc-ip-manual-boot-new-controllers.html["新しいコントローラをブートしてLIF設定をリストア"]です。
