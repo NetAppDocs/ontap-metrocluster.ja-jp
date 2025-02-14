@@ -230,6 +230,44 @@ node_A_1
 
 
 |===
+* 設定するMetroClusterのbootargの値は、新しいシステムで共有のクラスタ/ HAポートを使用するか、共有のMetroCluster / HAポートを使用するかによって異なります。次の情報を使用して、システムのポートを確認します。
++
+次の表に示すシステムでは、*共有MetroCluster / HAポート*を使用しています。
+
++
+それ以外のシステムでは*共有クラスタ/ HAポート*を使用します。
+
++
+[cols="2*"]
+|===
+| 共有MetroCluster / HAポートを使用するAFFシステムとASAシステム | キヨウユウMetroCluster / HAホオトヲシヨウスルFASシステム 
+
+
+ a| 
+** AFF A150、ASA A150向け
+** AFF A220
+** AFF C250、ASA C250向け
+** AFF A250、ASA A250向け
+** AFF A300
+** AFF A320
+** AFF C400、ASA C400向け
+** AFF A400、ASA A400向け
+** AFF A700
+** AFF C800、ASA C800向け
+** AFF A800、ASA A800向け
+** AFF A900、ASA A900向け
+
+ a| 
+** FAS2750
+** FAS500f
+** FAS8200
+** FAS8300
+** FAS8700 の場合
+** FAS9000
+** FAS9500
+
+
+|===
 
 
 .手順
@@ -241,15 +279,13 @@ node_A_1
 必要なアドレスは、「 * Destination Network Address * 」列に表示されている DR パートナーのアドレスです。
 
 +
-コマンドの出力は、プラットフォームのモデルによって異なります。
+コマンド出力は、プラットフォームモデルで共有クラスタ/ HAポートを使用するか共有MetroCluster / HAポートを使用するかによって異なります。
 
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.15.1以降で導入されたシステム
+.共有クラスタ/ HAポートを使用するシステム
 --
-ONTAP 9.15.1以降で導入されたシステム（AFF A70、AFF A90、およびAFF A1K）には、HA用とDR用に別 々 のポートがあります。次の出力例を参照してください。
-
 [listing]
 ----
 cluster_B::*> metrocluster configuration-settings connection show
@@ -279,7 +315,7 @@ Group Cluster Node    Network Address Network Address Partner Type Config State
 12 entries were displayed.
 ----
 --
-.その他すべてのシステム
+.共有MetroCluster / HAポートを使用するシステム
 --
 次の出力は、 AFF A700 システムと FAS9000 システムを使用した構成で MetroCluster IP インターフェイスがポート e5a および e5b にある場合の IP アドレスを示しています。インターフェイスはプラットフォームタイプによって異なります。
 
@@ -351,7 +387,7 @@ Group Cluster Node     Network Address Netmask         Gateway         State
 ----
 
 
-. ディザスタサイトの各ノードのLOADERプロンプトで、プラットフォームモデルに応じてbootargの値を設定します。
+.  `LOADER`プラットフォームモデルで共有のクラスタ/ HAポートを使用するか共有のMetroCluster / HAポートを使用するかに応じて、ディザスタサイトの各ノードのプロンプトでbootargの値を設定します。
 +
 [NOTE]
 ====
@@ -363,17 +399,15 @@ Group Cluster Node     Network Address Netmask         Gateway         State
 +
 [role="tabbed-block"]
 ====
-.ONTAP 9.15.1以降で導入されたシステム
+.共有クラスタ/ HAポートを使用するシステム
 --
-ONTAP 9.15.1以降で導入されたシステムでは、DR用とHA用に別 々 のポートがあるため、_ha-partner-ip-address_の値を* 0 *（ゼロ）に設定する必要があります。
-
 次のbootargを設定します。
 
 [listing]
 ----
-setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,0,0,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
 
-setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,0,0,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
 ----
 次のコマンドは、最初のネットワークに VLAN 120 、 2 番目のネットワークに VLAN 130 を使用して node_A_1 の値を設定します。
 
@@ -391,14 +425,14 @@ setenv bootarg.mcc.port_a_ip_config 172.17.26.10/23,0,0,172.17.26.13,172.17.26.1
 setenv bootarg.mcc.port_b_ip_config 172.17.27.10/23,0,0,172.17.27.13,172.17.27.12
 ----
 --
-.その他すべてのシステム
+.共有MetroCluster / HAポートを使用するシステム
 --
 次のbootargを設定します。
 
 ....
-setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+setenv bootarg.mcc.port_a_ip_config local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
 
-setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,gateway-IP-address,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
+setenv bootarg.mcc.port_b_ip_config local-IP-address/local-IP-mask,0,HA-partner-IP-address,DR-partner-IP-address,DR-aux-partnerIP-address,vlan-id
 ....
 次のコマンドは、最初のネットワークに VLAN 120 、 2 番目のネットワークに VLAN 130 を使用して node_A_1 の値を設定します。
 
