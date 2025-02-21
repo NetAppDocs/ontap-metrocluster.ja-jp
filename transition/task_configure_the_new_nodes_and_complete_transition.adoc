@@ -29,6 +29,10 @@ MetroCluster IP 接続を実装し、 MetroCluster 構成を更新し、移行�
 
 . MetroCluster IP インターフェイスを作成します（ node_A_1 の IP 、 node_B_2 の IP 、 node_B_1 の IP 、 node_B_2 の IP 、 node_B_2 の IP ） - コントローラごとに 2 つのインターフェイスを作成します。合計 8 つのインターフェイスが必要です。
 +
+
+CAUTION: MetroCluster IPインターフェイスを作成するときは、同じ範囲のシステム自動生成インターフェイスIPアドレスとの競合を避けるため、169.254.17.xまたは169.254.18.xのIPアドレスを使用しないでください。
+
++
 `metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <controller_name> -home-port <port_name> -address <ip_address> -netmask <netmask_address> -vlan-id <vlan_id>`
 
 +

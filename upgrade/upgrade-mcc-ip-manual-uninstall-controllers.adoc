@@ -23,6 +23,51 @@ LIFの配置が正しいことを確認その後、古いコントローラのVL
 +
 「 boot_ontap 」
 
+. アップグレード先のシステムが次の表に記載されていない場合は、MetroCluster IPインターフェイスでサポートされているIPアドレスが使用されていることを確認してください。
++
+|===
+
+
+| AFFおよびASAシステム | FASシステム 
+
+
+ a| 
+** AFF A150、ASA A150向け
+** AFF A220
+** AFF C250、ASA C250向け
+** AFF A250、ASA A250向け
+** AFF A300
+** AFF A320
+** AFF C400、ASA C400向け
+** AFF A400、ASA A400向け
+** AFF A700
+** AFF C800、ASA C800向け
+** AFF A800、ASA A800向け
+** AFF A900、ASA A900向け
+
+ a| 
+** FAS2750
+** FAS500f
+** FAS8200
+** FAS8300
+** FAS8700 の場合
+** FAS9000
+** FAS9500
+
+
+|===
++
+.. 古いコントローラのMetroClusterインターフェイスのIPアドレスを確認します。
++
+「 MetroCluster configurion-settings interface show 」を参照してください
+
+.. MetroClusterインターフェイスで169.254.17.xまたは169.254.18.xのIPアドレスが使用されている場合は、アップグレードを開始する前に、を参照しlink:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/How_to_modify_the_properties_of_a_MetroCluster_IP_interface["記事「MetroCluster IPインターフェイスのプロパティを変更する方法」"^]てインターフェイスのIPアドレスを変更してください。
++
+
+CAUTION: この表に記載されていないシステムへのアップグレードは、MetroClusterインターフェイスが169.254.17.xまたは169.254.18.xのIPアドレスで設定されている場合はサポートされません。
+
+
+
 . 古いコントローラのクラスタ間LIFを変更して、HAインターコネクトまたはMetroCluster IP DRインターコネクトに使用するポートとは別のホームポートを新しいコントローラで使用するようにします。
 +
 
@@ -51,7 +96,7 @@ NOTE: この手順は、アップグレードを成功させるために必要�
 | 同じホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_2b,サブステップb>> 
 
 
-| 別のホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_3,手順 3>> 
+| 別のホームポートを使用する | <<controller_manual_upgrade_prepare_network_ports_3,手順 4>> 
 |===
 .. [[controller_manual_upgrade_prepare_network_ports_2b]]別のホームポートを使用するようにクラスタ間LIFを変更します。
 +
@@ -76,7 +121,7 @@ NOTE: この手順は、アップグレードを成功させるために必要�
 . [[controller_manual_upgrade_prepare_network_ports_3]]古いコントローラのすべてのデータLIFのホームポートを、新旧両方のコントローラモジュールで同じ共通のポートに割り当てます。
 +
 
-CAUTION: 新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<<upgrades_manual_without_matching_ports,手順 4>>。
+CAUTION: 新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<<upgrades_manual_without_matching_ports,手順 5>>。
 
 +
 .. LIF を表示します。

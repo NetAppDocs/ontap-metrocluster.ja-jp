@@ -717,7 +717,6 @@ NOTE: MetroCluster IPおよび接続されているスイッチポートは、Me
 
 .このタスクについて
 * ノードごとに 2 つのインターフェイスを作成する必要があります。インターフェイスは、 MetroCluster RCF ファイルで定義されている VLAN に関連付ける必要があります。
-* ONTAPのバージョンによっては、初期設定後に一部のMetroCluster IPインターフェイスプロパティを変更できます。サポートされる機能の詳細については、を参照してください link:../maintain/task-modify-ip-netmask-properties.html["MetroCluster IPインターフェイスのプロパティの変更"] 。
 * すべての MetroCluster IP インターフェイス「 A 」ポートを同じ VLAN に作成し、すべての MetroCluster IP インターフェイス「 B 」ポートをもう一方の VLAN に作成する必要があります。を参照してください link:concept_considerations_mcip.html["MetroCluster IP 構成に関する考慮事項"]。
 * ONTAP 9.9..1 以降では、レイヤ 3 設定を使用している場合、 MetroCluster IP インターフェイスを作成するときに -gateway パラメータも指定する必要があります。を参照してください link:../install-ip/concept_considerations_layer_3.html["レイヤ 3 ワイドエリアネットワークに関する考慮事項"]。
 +
@@ -921,6 +920,10 @@ cluster_B
 . node_A_1 にインターフェイスを作成します。
 +
 .. 「 node_A_1 」のポート「 e5a 」にインターフェイスを設定します。
++
+
+CAUTION: MetroCluster IPインターフェイスを作成するときは、同じ範囲のシステム自動生成インターフェイスIPアドレスとの競合を避けるため、169.254.17.xまたは169.254.18.xのIPアドレスを使用しないでください。
+
 +
 `metrocluster configuration-settings interface create -cluster-name <cluster_name> -home-node <node_name> -home-port e5a -address <ip_address> -netmask <netmask>`
 
