@@ -3021,6 +3021,9 @@ Priv Protocol [DES(1)/noPriv(2)/AES128(3)/AES256(4)]): (2..2) [3]
 
 MetroCluster 構成のコンポーネントを監視するには、いくつかの特別な設定手順を実行する必要があります。
 
+
+NOTE: セキュリティを強化するために、NetAppでは、スイッチのヘルスを監視するようにSNMPv2またはSNMPv3を設定することを推奨します。
+
 .このタスクについて
 これらのタスクは、 FC-to-SAS ブリッジを使用するシステムにのみ適用されます。
 
@@ -3049,7 +3052,7 @@ NetAppでは、MetroCluster FC構成のコンポーネントを監視するた�
 ファブリック接続 MetroCluster 構成の FC スイッチを監視するには、いくつかの設定手順を追加で実行する必要があります。
 
 
-NOTE: ONTAP 9.8 以降では 'storage switch コマンドは 'system switch' に置き換えられています次の手順は「 storage switch 」コマンドを示していますが、 ONTAP 9.8 以降を実行している場合は「 system switch 」コマンドを使用することを推奨します。
+NOTE: ONTAP 9.8以降では `storage switch`、コマンドがに置き換えられ `system switch fibre-channel`ました。以降の手順ではコマンドを使用し `storage switch`ますが、ONTAP 9.8以降を実行している場合はコマンドを使用 `system switch fibre-channel`することを推奨します。
 
 .手順
 . 各 MetroCluster ノードに IP アドレスを指定してスイッチを追加します。
