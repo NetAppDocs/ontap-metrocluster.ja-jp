@@ -466,18 +466,9 @@
   <block id="aebdbdde32f31274fe9fc6e75b482c32" category="list-text">両方のフラッシュイメージが同じバージョンに更新されていることを確認します。</block>
   <block id="1b7c547e0c44744faa2a37c6b0435cc2" category="paragraph">出力には、両方のパーティションで同じバージョンが表示されます。</block>
   <block id="bb7439d72897f5b031319c5576c3cc67" category="list-text">次のブリッジでも手順 5 から 13 を繰り返し、 MetroCluster 構成内のすべてのブリッジを更新します。</block>
-  <block id="89ddd460f27ddf4dacfc453eddcd2ecb" category="summary">ISL の品質を向上させるために、スイッチの ISL ポートの速度を変更しなければならない場合があります。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。</block>
-  <block id="30c3b951201788d25b66c685dcd79fd0" category="doc">Cisco FC スイッチでの ISL ポートの速度変更</block>
   <block id="81cb74811132f21a42025036363e5af8" category="paragraph">ISL 接続を確保するためには、両方のスイッチですべての手順を実行する必要があります。</block>
-  <block id="866cada809bef010c2994bedea815659" category="list-text">ファブリック内の両方のスイッチで、速度を変更する ISL の ISL ポートを無効にします。</block>
-  <block id="3c595fcd34c5fc9805912b055f7f5203" category="paragraph">'*FC_switch_A_1#config t*</block>
-  <block id="53e97e8405f4a684269ecbe1412c46c1" category="paragraph">1 行に 1 つずつ設定コマンドを入力します。すべての設定コマンドを入力したら、 Ctrl+Z キーを押して終了します。</block>
   <block id="a60e468ca4246b442f30c733d507bb4b" category="list-text">ファブリック内の両方のスイッチで、 ISL ポートの速度を変更します。</block>
-  <block id="a469e3145e2f36a1540af79d9519e45b" category="admonition">ポートの速度は 16 = 16 、 000Gbps 、 8 = 8 、 000Gbps 、 4 = 4 、 000Gbps です。</block>
-  <block id="21719ecdb94ad4662618cad46e3fb543" category="paragraph">使用しているスイッチの ISL ポートが _Fabric-attached MetroCluster Installation and Configuration Guide _ に記載されていることを確認します。</block>
   <block id="e94b889ef4d4456639810f5c4d896aa7" category="list-text">ファブリック内の両方のスイッチで、すべての ISL ポートを有効にします（有効になっていない場合）。</block>
-  <block id="d79fafd1f79b18f46b5fdc4eba3a3a7a" category="list-text">両方のスイッチ間に ISL が確立されたことを確認します。</block>
-  <block id="ccbbe54d32019572b537370d771a1004" category="paragraph">'*show topology isl*</block>
   <block id="a3bf857f81a4bba7e1f5e22c53499add" category="list-text">2 つ目のスイッチファブリックに対して手順を繰り返します。</block>
   <block id="6397abfc307e631ca1c862e2d899a88a" category="summary">ISL ポートの追加、削除、または変更が必要になる場合があります。専用の ISL ポートを共有 ISL ポートに変換したり、スイッチの ISL ポートの速度を変更したりできます。ISL の距離が長い場合、品質を向上させるために速度を下げなければならないことがあります。また、ハードウェアを追加またはアップグレードする場合は、システムのアップグレードに合わせて ISL ポートの速度を上げ、 Cisco IP スイッチに ISL を追加することがあります。</block>
   <block id="f078a67a2f40dd76bea8cfd45ac3fd50" category="paragraph">次の手順では、スイッチポート Eth1/24/1 に接続されている 10Gb ISL を、スイッチポート 17 と 18 に接続されている 2 つの 100Gb ISL に交換します。</block>
@@ -1133,15 +1124,7 @@
   <block id="68e2e6c811fcf4ea79df3b84f45653bf" category="list-text">ボリューム移動処理の状態を確認します。</block>
   <block id="65f0e26a54f850e9452d3fcd37d23171" category="paragraph">'*volume move show -volume vol_constituent_name*</block>
   <block id="6016a2b341113bf496b719905398ecd2" category="doc">著作権</block>
-  <block id="bd19bf00e1fbfd96fcc2339c755e0467" category="summary">追加または高速のコントローラや高速のスイッチなどのハードウェアを追加またはアップグレードする場合は、スイッチへの ISL の追加が必要になることがあります。</block>
-  <block id="a6237977252c00c91d0b5db5336baec2" category="doc">Cisco スイッチへの lSL の追加</block>
   <block id="de71f5ad868db8c978c7f3225fdfdf6a" category="list-text">ファブリック内の両方のスイッチで、追加する ISL の ISL ポートを無効にします。</block>
-  <block id="2853dcfcc60d2e6dc08e90bf6acb95f6" category="paragraph">'*FC_switch_A_1#config t*</block>
-  <block id="5cd2ac3c7ee0ee9b3836b2cdeb2a3924" category="paragraph">1 行に 1 つずつ設定コマンドを入力します。すべての設定コマンドを入力したら、 Ctrl+Z キーを押して終了します。</block>
-  <block id="e72fe1ad6bd48d2d759bab610449f53c" category="list-text">ISL ポートとして追加するポートに SFP を挿入し、インストールおよび設定ガイドの _ に従ってポートをケーブル接続します。</block>
-  <block id="02f19ced711a6a7d0bf2f837384b28a6" category="paragraph">ポートを追加するスイッチについて、インストールおよび設定ガイドにこれらのポートが記載されていることを確認してください。</block>
-  <block id="9f753983c9b33e720e4ef00de71d5f0d" category="list-text">インストールおよび設定ガイドの _ に従って ISL ポートを設定します。</block>
-  <block id="6e9af0fa4284c99ebba7edb2cb79c46a" category="paragraph">1 行に 1 つずつ設定コマンドを入力します。Ctrl+Z キーを押して終了します</block>
   <block id="5ed8f44307454ec26dcecaa85949ef5b" category="list-text">2 つ目のファブリックで手順を繰り返します。</block>
   <block id="e1af59c4560e3899befd23783e6a3c93" category="summary">FibreBridge 7600N ブリッジは、 ONTAP 9.5 以降で、 FibreBridge 7500N / 6500N ブリッジを交換する場合、または MetroCluster 構成に新しいストレージを追加する場合にサポートされます。ゾーニング要件とブリッジの FC ポートの使用に関する制限事項は、 FibreBridge 7500N ブリッジと同じです。</block>
   <block id="0a0b2f8493bfc4e7fb3cb00d79943c6b" category="doc">MetroCluster 構成での FibreBridge 7600N ブリッジのサポート</block>
@@ -9387,13 +9370,10 @@
   <block id="5b12aa7a5c28a3989c442d88ecafd4b3" category="list-text">構成と ONTAP のバージョンに応じて、ディザスタサイト（ cluster_B ）にあるオフラインの影響を受けるプレックスを特定して移動します。</block>
   <block id="8f6bfa9270e9bb535722312b07c97064" category="paragraph"><block ref="8f6bfa9270e9bb535722312b07c97064" category="inline-link-rx"></block></block>
   <block id="56ba5c8d245e7af9f26245ccc8eddba9" category="doc">MetroCluster IP スイッチの RCF ファイルをアップグレードします</block>
-  <block id="bdff20b545d5f7f451d6cc86cddcd9d5" category="list-text">RCF ファイルのバージョンを確認するには、スイッチから次のコマンドを使用します。</block>
   <block id="cb1e716ab831d1ef2a5741deabd44bd7" category="cell">スイッチ</block>
   <block id="196859a46785802c1b55cf0cc9501818" category="paragraph">`(IP_switch_A_1) # show clibanner`</block>
   <block id="4b7e6b18c6a39aa5ac2a1c68aebcc388" category="paragraph">Cisco スイッチ</block>
   <block id="9b3b2c674f3b4b1f564ace7400510bbc" category="paragraph">ip_switch _A_1# には、 banner motd が表示されます</block>
-  <block id="e36320198d71e90e7fbc80a9b47b9394" category="paragraph">いずれかのスイッチについて、 RCF ファイルのバージョンを示す行を出力から探します。たとえば、次の出力は Cisco スイッチを使用したもので、 RCF ファイルのバージョンが「 v1.80 」であることを示しています。</block>
-  <block id="c7534d571d84fdfe4912d24b4f1f30bf" category="list-text">特定の ONTAP バージョン、スイッチ、およびプラットフォームでサポートされているファイルを確認するには、 RcfFileGenerator を使用します。現在使用している設定またはにアップグレードする設定用の RCF ファイルを生成できる場合は、そのファイルがサポートされます。</block>
   <block id="282bc05e82ec2895ab48f3f9377e06d3" category="list-text">スイッチファームウェアがサポートされていることを確認するには、次のマニュアルを参照してください。</block>
   <block id="bde0605fb74695c23ddd122685cfc65e" category="section-title">RCF ファイルをアップグレードします</block>
   <block id="1a9778326fd00d0e011a777089b2bc6a" category="list-text">実行中の MetroCluster チェック処理のステータスを確認します。</block>
@@ -12143,9 +12123,6 @@
   <block id="9ef6aecb7d030435d81fe80cacca477e" category="list-text">パーティショニングとディスク割り当ては、MetroClusterサイトの初期設定時に自動的に実行されます。</block>
   <block id="82d98fe86a7b6dbc49abc0913b83f2ac" category="paragraph">ADPは、システムの初期設定時に自動的に実行されます。</block>
   <block id="2d183ed725bd043df73111a219fb4c10" category="list-text">すべてのMetroClusterコンポーネントがサポートされている必要があります。</block>
-  <block id="a6ab1915ab3c895c47d4e04f54324428" category="paragraph">MetroCluster IP スイッチ上の RCF ファイルのアップグレードが必要になる場合があります。たとえば、スイッチで実行しているRCFファイルのバージョンが、ONTAPのバージョン、スイッチのファームウェアのバージョン、またはその両方でサポートされていない場合などです。</block>
-  <block id="3c895cdeb8d2489a220d797e54ab8b6f" category="section-title">RCFファイルがサポートされていることの確認</block>
-  <block id="aa71e3dcbe0cdabbe4cce28385ab2fd6" category="paragraph">ONTAPまたはスイッチファームウェアのバージョンを変更する場合は、そのバージョンでサポートされるRCFファイルがあることを確認する必要があります。RCF ジェネレータを使用すると、正しい RCF ファイルが生成されます。</block>
   <block id="9f4a5b5c7a3f862c1d0ff77f72d3eea0" category="paragraph">ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求められます。</block>
   <block id="c471c44c2f26c78f9327863d90427cb7" category="admonition">ONTAPメディエーターが停止している場合は、<block ref="1eafb93bfc40f298e60cf17e8a8c598c" prefix=" " category="inline-code"></block> ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求めるプロンプトが引き続き表示され、ONTAPメディエーターサービスがMetroCluster構成から削除されます。</block>
   <block id="646d7d5f93b4a6d7bbbc65acf5ac1077" category="inline-link">ONTAPハードウェアシステムのドキュメント</block>
@@ -13619,9 +13596,7 @@
   <block id="221a3239afd85b15c0a082e006cc9d76" category="summary">メンテナンスタスクを実行する前に、デバイスのコンソールログを有効にしてください。</block>
   <block id="377bd72f596f8fb4cb973eb33ab1c3c3" category="doc">メンテナンスタスクを実行する前にコンソールログを有効にする</block>
   <block id="60fda9f0d4f66fd0b517637868752be0" category="paragraph">NetAppでは、メンテナンス手順を実行する前に、使用しているデバイスでコンソールログを有効にし、次の操作を実行することを強く推奨しています。</block>
-  <block id="1ba38a7c71055c7f849086255d5169f3" category="list-text">ISL接続を確保するには、両方のスイッチですべての手順を実行します。</block>
   <block id="d83f1e34f43df0bbaa3ee4017c09e1b4" category="list-text"><block ref="88e4990ce21c0256eb827c7e19fa0648" category="inline-link-macro-rx"></block> このタスクを実行する前に。</block>
-  <block id="403a10bd737423e3cac1fc37dacbdcd3" category="list-text">ISL接続を確保するために、両方のスイッチですべての手順を実行します。</block>
   <block id="66673dfafcae9371f075b879dc217aa9" category="paragraph">MetroCluster IPインターフェイスポートをオンラインまたはオフラインにするには、次の手順を実行します。</block>
   <block id="423cc95dedd4ee68f0dd8126c7d0dc86" category="paragraph">構成に対して次のタスクを確認し、実行したことを確認します。</block>
   <block id="577c57afc12db82055cff4fa1ef601e7" category="list-text">ファームウェアファイルを用意しておきます。</block>
@@ -14083,10 +14058,6 @@
   <block id="1ee9e9c6e0682332b92cf414d56216e5" category="list-text">プラットフォームモデルに応じて、パラメータを使用してVLAN IDを指定できます<block ref="6790c40b1680557da1f80536ae186301" prefix=" " category="inline-code"></block>。次のプラットフォームでは、パラメータはサポートされません<block ref="6790c40b1680557da1f80536ae186301" prefix=" " category="inline-code"></block>。</block>
   <block id="2c17b709cf340ae9f4b202df67582f0d" category="list-text">AFF C800、ASA C800、AFF A800、およびASA A800</block>
   <block id="9a7bf3cb6e6fcf5bc8021ad8b24c709d" category="list-text">設定するMetroClusterのbootargの値は、新しいシステムで共有のクラスタ/ HAポートを使用するか、共有のMetroCluster / HAポートを使用するかによって異なります。</block>
-  <block id="01c711ec30c5984ab759c03d8ae83dbc" category="paragraph">次の表に示すシステムでは、*共有MetroCluster / HAポート*を使用しています。</block>
-  <block id="72b13aee8e15cbc1635a37e0cc999b15" category="paragraph">それ以外のシステムでは*共有クラスタ/ HAポート*を使用します。</block>
-  <block id="b4a6f2e0f896be0b4aa0ce4693340515" category="cell">共有MetroCluster / HAポートを使用するAFFシステムとASAシステム</block>
-  <block id="a92298a0da357308bf3f327f1d13f333" category="cell">キヨウユウMetroCluster / HAホオトヲシヨウスルFASシステム</block>
   <block id="8f7306dd779bf45e84d3417319068f67" category="list-text">AFF A250、ASA A250向け</block>
   <block id="58588e3dc50a2798e7501fa654fd258f" category="list-text">AFF C400、ASA C400向け</block>
   <block id="3620dab5844cf978130a9d0a58017f2a" category="list-text">AFF A400、ASA A400向け</block>
@@ -14567,7 +14538,6 @@
   <block id="d1d3effcd2e3b543a6d69f1de82ab93f" category="paragraph">次の表に、1×LEMと1つの4ノードMetroClusterまたはDRグループを備えたCisco 9132Tスイッチのポート用途を示します。</block>
   <block id="59bea19cbabb48065c7357317b97432c" category="paragraph">次の表に、2つのLEMと1つの4ノードMetroClusterまたはDRグループを備えたCisco 9132Tスイッチのポート用途を示します。</block>
   <block id="71b8d98cdcca6f6c9703e8e704b1bc15" category="paragraph">次の表に、4ノードMetroClusterを2つ、またはDRグループを2つ含む8ノードMetroClusterを1つ使用したCisco 9132Tスイッチのポート用途を示します。</block>
-  <block id="401f98cd1747471e0821c98c1d0564ff" category="paragraph">+他のすべてのシステムは*共有クラスタ/ HAポート*を使用します。</block>
   <block id="9fc6290b0188dfeebf0e0bc3aa659923" category="list-text">設定するMetroClusterのbootargの値は、新しいシステムで共有のクラスタ/ HAポートを使用するか、共有のMetroCluster / HAポートを使用するかによって異なります。次の情報を使用して、システムのポートを確認します。</block>
   <block id="9e6ae12e9968c12ca89b65cbfc98c1a6" category="paragraph">コマンド出力は、プラットフォームモデルで共有クラスタ/ HAポートを使用するか共有MetroCluster / HAポートを使用するかによって異なります。</block>
   <block id="f4c0383379a5ae93d0b5e4c4f8586e47" category="open-title">共有クラスタ/ HAポートを使用するシステム</block>
@@ -14598,13 +14568,11 @@
   <block id="2441e03051d41aa2f6f9d9e39c577a3e" category="section-title">スイッチバックの実行（ONTAP 9.8以降）</block>
   <block id="2a6e3f78c9b73af2855a7bc5191bf5b1" category="list-text">ローカルクラスタで、ONTAP 9.8以降のSystem Managerにログインします。</block>
   <block id="22049fef22b0ddad50caf9ded819a4f1" category="paragraph"><block ref="22049fef22b0ddad50caf9ded819a4f1" category="inline-link-macro-rx"></block></block>
-  <block id="a6a86c7d4711a3d450ec4121102de402" category="list-text">アップグレード先のシステムが次の表に記載されていない場合は、MetroCluster IPインターフェイスでサポートされているIPアドレスが使用されていることを確認してください。</block>
   <block id="8210c1e569b4a7f0d685a838881f7f66" category="cell">AFFおよびASAシステム</block>
   <block id="d5d4923aa83e46af2152de920946ba41" category="cell">FASシステム</block>
   <block id="fa8ce860967d0ec751385e3e150d223a" category="list-text">古いコントローラのMetroClusterインターフェイスのIPアドレスを確認します。</block>
   <block id="09542928ac9f09905359ce0cdc32a079" category="inline-link-macro">記事「MetroCluster IPインターフェイスのプロパティを変更する方法」</block>
   <block id="f80e9f0a9fba665f77ab307a250b7fd3" category="list-text">MetroClusterインターフェイスで169.254.17.xまたは169.254.18.xのIPアドレスが使用されている場合は、アップグレードを開始する前に、を参照し<block ref="d1c038803b45479df32bbfd628b2e8b5" category="inline-link-macro-rx"></block>てインターフェイスのIPアドレスを変更してください。</block>
-  <block id="400bb3d32423e6384fb4cfe6867b0ccc" category="admonition">この表に記載されていないシステムへのアップグレードは、MetroClusterインターフェイスが169.254.17.xまたは169.254.18.xのIPアドレスで設定されている場合はサポートされません。</block>
   <block id="e7997597817a3facf42bc030e3a35309" category="cell"><block ref="92a96fa95be44bd76fa573ac0e371c6f" category="inline-xref-macro-rx"></block></block>
   <block id="6165ea79c58238b8f7f4d2edcab21f29" category="admonition">新旧のコントローラに共通のポートがない場合は、データLIFを変更する必要はありません。この手順を省略して、に直接進みます<block ref="19d16029d22befc9cf5c2bffaac61331" category="inline-xref-macro-rx"></block>。</block>
   <block id="abcdb4b4b1872daf29ecc9031115f937" category="paragraph">SANとNASを含むすべてのデータLIFはスイッチオーバーサイト（cluster_A）で稼働しているため、管理状態はupで動作状態はdownです。</block>
@@ -14643,4 +14611,73 @@
   <block id="1925007e066bed6950af241a5bb2641e" category="list-text">システムコンソールからディスクドライブファームウェアを最新バージョンに更新します。+<block ref="da6a6b7cd3f4972b2a5426b567597f96" prefix=" " category="inline-code"></block></block>
   <block id="0dfe9ec4ea6b3d29900dd8df5b21179e" category="list-text">Active IQ Config Advisorを実行します。</block>
   <block id="c4d48c87201e87b08fdc19bd686fd707" category="list-text">複数のディスクシェルフをホットアドする場合は、ホットアドするディスクシェルフごとに上記の手順を繰り返します。</block>
+  <block id="5fe059efbf355f70430f354b19571fc3" category="open-title">共有クラスタ/ HAポート</block>
+  <block id="7c8b5a5d3c0fc199728d7336238824b0" category="paragraph">次の表に示すシステムは、共有クラスタ/ HAポートを使用します。</block>
+  <block id="f8f6ba2d572ef729148f2d89d8ff810a" category="list-text">AFF A30用</block>
+  <block id="bab1b59b0a2ad746796448276777fdbd" category="list-text">AFF C30</block>
+  <block id="7a1f08f539146079eaeae8f4a563cce2" category="list-text">AFF C60</block>
+  <block id="017db3debbf4b1ed577798b78fd96b66" category="list-text">FAS70</block>
+  <block id="649e9f4912bcf4af7efe489c6866eb1d" category="list-text">FAS90</block>
+  <block id="e5c17292b927d6196fc40c54d712ac26" category="open-title">共有MetroCluster / HAポート</block>
+  <block id="050f8b121af1c77b0d9da988edad7d47" category="paragraph">次の表に示すシステムは、共有MetroCluster / HAポートを使用します。</block>
+  <block id="390d12d84818f7c716a940532ce50205" category="section-title">25Gbps接続を使用するシステムの前方エラー修正の設定</block>
+  <block id="63c0e07285d0bc5e3f178d40a2cc138a" category="paragraph">25Gbps接続を使用するシステムの場合は、RCFの適用後に前方誤り訂正（FEC）パラメータを手動でoffに設定します。この設定はRCFでは適用されません。</block>
+  <block id="2b06467580858574b4de36094cbe0f09" category="list-text">このタスクは、25Gbps接続を使用するプラットフォームにのみ該当します。を参照してください <block ref="9778b8e12bd12224da54abd0721799c9" category="inline-link-macro-rx"></block>。</block>
+  <block id="cf176f6e59c0efd3aa8a1d07663e5a99" category="list-text">各スイッチポートは個別に更新する必要があります。コマンドで複数のポートまたはポート範囲を指定することはできません。</block>
+  <block id="a756347fcced8a90ebe1a3f908f44775" category="list-text">25Gbps接続を使用する最初のスイッチポートのパラメータをoffに設定し<block ref="68e129acd99d4b65789a3c9e07fcbfc0" prefix=" " category="inline-code"></block>ます。</block>
+  <block id="c74173a1567bd19c3837172c99113a4e" category="paragraph"><block ref="1c9e50455fa99a855bbafb050c6ba1b5" prefix="" category="inline-code"></block></block>
+  <block id="1e0a72eef9348c35673f119115449f0e" category="list-text">コントローラモジュールに接続されている25Gbpsスイッチポートごとに、この手順を繰り返します。</block>
+  <block id="b21ae041ed0e5d2ef9aa406e906a4523" category="paragraph">NetAppでは、不要なヘルスアラートを回避するために、未使用のISLポートとポートチャネルを無効にすることを推奨します各ポートまたはポートチャネルを個別にディセーブルにする必要があります。コマンドで複数のポートまたはポート範囲を指定することはできません。</block>
+  <block id="a91958c89b083b7c1a304b4ab6d373b7" category="summary">Cisco FCスイッチでは、スイッチ間リンク（ISL）の追加、ISL速度の変更、In-Order Delivery（IOD；インオーダー配信）またはOut-of-Order Delivery（OOD；アウトオブオーダー配信）の設定を行うことができます。</block>
+  <block id="c9225e4e350cd9d9fe3a38da85b0536e" category="doc">Cisco FCスイッチのISLプロパティとIOD / OOD設定の変更</block>
+  <block id="337b5d15a9edec82de3f2f7329a42550" category="section-title">Cisco FCスイッチへのISLの追加</block>
+  <block id="0b3736750926237891eb6c12411b51e8" category="paragraph">ハードウェアを追加またはアップグレードする場合（高速なコントローラや高速なスイッチを追加またはアップグレードする場合など）は、スイッチへのISLの追加が必要になることがあります。</block>
+  <block id="e5198e8f84dbcc2351ff644eef3918f5" category="paragraph">ファブリック内の両方のスイッチで次の手順を実行して、ISL接続を確認します。</block>
+  <block id="2501a812babbfc76897b6c713f0e09d8" category="paragraph"><block ref="084d52e6652401a693230b55f1e7ccfc" prefix="" category="inline-code"></block></block>
+  <block id="24137179282647bd5bf799b5c9f444e8" category="paragraph">1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押します。</block>
+  <block id="3e2bff28c4d5a6902deb1da7418b5633" category="list-text">ISLポートとして追加するポートにSFPを挿入し、に従ってケーブル接続し<block ref="e771511c0206e82d9e035f5f51bd9261" category="inline-link-macro-rx"></block>ます。</block>
+  <block id="5a4cc4195ef40bb04c8f05db04504ca4" category="paragraph">これらのポートが、追加先のスイッチモデルのケーブル接続ドキュメントに記載されていることを確認します。</block>
+  <block id="bd823b9a4f2bded3e52b9ff6d0255318" category="list-text">の手順に従って、ISLポートを設定します<block ref="e5672860f046da2596ebb8703ae94ba4" category="inline-link-macro-rx"></block>。</block>
+  <block id="98714de8ac0f228ff45b434fcb7d89fa" category="paragraph"><block ref="a35badd5d667a1ad392acb2670119390" prefix="" category="inline-code"></block></block>
+  <block id="5e86bcc5d9fe6a28b01c182d6535501b" category="paragraph">1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押して終了します。</block>
+  <block id="7bf2b8aa2965c469cbed666283cc688a" category="list-text">両方のスイッチ間に ISL が確立されたことを確認します。</block>
+  <block id="735f5f934e3776fdadb038d27c6c8c8f" category="paragraph"><block ref="2b81923b7cbaf73bd4adfab23db890e3" prefix="" category="inline-code"></block></block>
+  <block id="96ba5659c42c8abdd694919d9383f29b" category="section-title">Cisco FCスイッチでISLポートの速度を変更する</block>
+  <block id="a75f0012d38fb3b2e0a0fefdf030079c" category="paragraph">スイッチのISLポートの速度を変更して、ISLの品質を向上させることができます。たとえば、距離が長いISLの速度を下げることができます。</block>
+  <block id="e90de5e523869f526cdba04fee0f25a7" category="list-text">ファブリック内の両方のスイッチで、速度を変更するISLのISLポートを無効にします。</block>
+  <block id="7b746326ba036c54b13006e2edbd06c3" category="admonition">ポートの速度は16 = 16、000Gbps、8 = 8、000Gbps、4 = 4、000Gbpsです。</block>
+  <block id="73dd2fadef4a732de76f6c50f6d5a164" category="inline-link-macro">ファブリック接続MetroCluster構成をインストールする</block>
+  <block id="4e72bc8b7b9232777cec9124cdcf38e6" category="paragraph">スイッチのISLポートがに表示されていることを確認します<block ref="a0d2080afba0f53144cd7a8949b63e7f" category="inline-link-macro-rx"></block>。</block>
+  <block id="aaeb982f0ec8d00f37aadad52615e727" category="section-title">フレームのIODまたはOODを保証するようにVSANを再設定する</block>
+  <block id="21acc3a14a019ef2634f56e73c781f1d" category="paragraph">標準の IOD 設定を推奨します。OODは、必要な場合にのみ再設定してください。</block>
+  <block id="f9dd74d50e6d4e8c6ec0191ce2905da9" category="section-title">IODの再設定</block>
+  <block id="cb39dfe5f68bcd5edd296b6fdc8de53a" category="paragraph">フレームのIODを再設定するには、次の手順を実行します。</block>
+  <block id="4f375b24a0d5774a1f8b8fb169ffd561" category="paragraph"><block ref="aa4366e67ba9c1780e754fa8dc23d135" prefix="" category="inline-code"></block></block>
+  <block id="853c6fb07fb64c752f80dd74a122ddd1" category="paragraph"><block ref="4e988219ece70ad722f6d97e866c6f20" prefix="" category="inline-code"></block></block>
+  <block id="b76d6746168e22522c19327d1971ea3c" category="paragraph">FC_switch_A_1でフレームのIODを設定するコマンドは次のとおりです。</block>
+  <block id="a108ae2a3d92ce4d59636979b61ebeb8" category="paragraph">FC_switch_B_1でフレームのIODを設定するコマンドは次のとおりです。</block>
+  <block id="79fb406afe400b547ae1b57a2b1cd1c8" category="section-title">OODの再設定</block>
+  <block id="d55dddb22fef3c45c8e1b3b1db03b98a" category="paragraph">フレームのOODを再設定するには、次の手順を実行します。</block>
+  <block id="fbb1911474a5cabe61d1dafab91eb1b7" category="paragraph"><block ref="6a7129a1a8fafc695808b8f7ce3b6296" prefix="" category="inline-code"></block></block>
+  <block id="ff049fa50dad139a4c89167b72cabb9f" category="paragraph">FC_switch_A_1でフレームのOODを設定するコマンドは次のとおりです。</block>
+  <block id="e8fa834f1f574b3a7727a4445e5c9457" category="paragraph">FC_switch_B_1でフレームのOODを設定するコマンドは次のとおりです。</block>
+  <block id="21daa05855e2dfd058474b417b918f85" category="inline-link-macro">ONTAPソフトウェアでのフレームのIODまたはOODの設定について</block>
+  <block id="9297e3a651ea4ae16b4ad5bebebd2d89" category="paragraph"><block ref="4bccef683c79c68508e9369e74e9379b" category="inline-link-macro-rx"></block>です。</block>
+  <block id="01c59b552b3cfa63d40f5f7a1882a0e3" category="doc">BrocadeスイッチのISLプロパティ、ISLポート、またはIOD / OOD設定を変更する</block>
+  <block id="cd973e88c2cc2bfeeee999660f342900" category="section-title">RCFのサポート状況の確認</block>
+  <block id="978f47a3dee30dd1d7757c24a1c6cf0c" category="paragraph">ONTAPまたはスイッチファームウェアのバージョンを変更する場合は、そのバージョンでサポートされるリファレンス構成ファイル（RCF）があることを確認する必要があります。このツールを使用する<block ref="46a459674905c476821f71bc8486a4ba" category="inline-link-macro-rx"></block>と、構成に応じた正しいRCFが生成されます。</block>
+  <block id="4f7c3897327570dec3984f1aab62a690" category="list-text">スイッチから次のコマンドを使用して、RCFのバージョンを確認します。</block>
+  <block id="6cce5d78fc7baf999a2f91945cec4681" category="paragraph">NVIDIA SN2100スイッチ</block>
+  <block id="350f96a9ce42f36a9a9f5b4c8b9d84d4" category="paragraph"><block ref="deaca175ac9500a5b1b1280356cacbae" prefix="" category="inline-code"></block></block>
+  <block id="6402d49dd52ac4a97e3a5b5df13a2b01" category="paragraph">コマンド出力で、RCFバージョンを示す行を確認します。たとえば、Ciscoスイッチからの次の出力は、RCFバージョンが「v1.80」であることを示しています。</block>
+  <block id="372302cd9a52d50f8bbec355aa5caad3" category="list-text">特定のONTAPバージョン、スイッチ、およびプラットフォームでサポートされているファイルを確認するには、を使用し<block ref="3d323bfcd2e7c90d6e420b3bfd1a01ed" category="inline-link-macro-rx"></block>ます。既存の構成またはにアップグレードする構成に対してRCFを生成できる場合は、そのRCFがサポートされます。</block>
+  <block id="5892dc73aeb0908038bb8e9380fb53c4" category="section-title">スイッチのファームウェアをアップグレードします。</block>
+  <block id="28abab10271202d2140cfed5d173dff5" category="paragraph">MetroCluster IPスイッチのリファレンス構成ファイル（RCF）のアップグレードが必要になる場合があります。たとえば、スイッチで実行しているRCFのバージョンが、ONTAPのバージョン、スイッチのファームウェアのバージョン、またはその両方でサポートされていない場合などです。</block>
+  <block id="463c4e9c177d926f8a70723419e27185" category="inline-link-macro">RCFのサポート状況の確認</block>
+  <block id="31e4a45ff8bf040780bcaeea92eaf273" category="list-text">RCFをアップグレードする前に、を<block ref="0cb16fc2594f35c2b9b081a93af72ead" category="inline-link-macro-rx"></block>参照してください。</block>
+  <block id="72d26e3e5a2756a67ae4a487db269cd2" category="list-text">この手順を実行すると、RCFファイルをアップグレードするスイッチでトラフィックが中断されます。トラフィックは、新しいRCFファイルが適用されると再開されます。</block>
+  <block id="085e87b6ec813d01dd3f597186e26f1e" category="list-text">アップグレードするシステムで*共有クラスタ/ HAポート*を使用している場合は、MetroCluster IPインターフェイスでサポートされているIPアドレスが使用されていることを確認します。</block>
+  <block id="11f90eb1d0dccabe5ea84d5795fc2ef7" category="paragraph">次の情報を使用して、新しいシステムで共有クラスタ/ HAポートが使用されているかどうかを確認します。</block>
+  <block id="fb1ce5d087cc4c4bd39c43bc3af7058b" category="admonition">MetroClusterインターフェイスに169.254.17.xまたは169.254.18.xのIPアドレスが設定されている場合、*共有クラスタ/ HAポート*を使用するシステムへのアップグレードはサポートされません。</block>
+  <block id="25b129509e36ff88d2beb94d08667a62" category="sidebar">Cisco FCスイッチのISLプロパティまたはIOD / OOD設定の変更</block>
 </blocks>

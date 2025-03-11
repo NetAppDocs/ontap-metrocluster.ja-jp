@@ -1,0 +1,288 @@
+---
+permalink: maintain/task-change-isl-properties-iod-ood-ciso-fc.html 
+sidebar: sidebar 
+keywords: metrocluster, maintain, service, change, isl, properties, isl, ports, iod, ood,configuration, cisco, switch 
+summary: Cisco FCスイッチでは、スイッチ間リンク（ISL）の追加、ISL速度の変更、In-Order Delivery（IOD；インオーダー配信）またはOut-of-Order Delivery（OOD；アウトオブオーダー配信）の設定を行うことができます。 
+---
+= Cisco FCスイッチのISLプロパティとIOD / OOD設定の変更
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cisco FCスイッチでは、スイッチ間リンク（ISL）の追加、ISL速度の変更、In-Order Delivery（IOD；インオーダー配信）またはOut-of-Order Delivery（OOD；アウトオブオーダー配信）の設定を行うことができます。
+
+
+
+== Cisco FCスイッチへのISLの追加
+
+ハードウェアを追加またはアップグレードする場合（高速なコントローラや高速なスイッチを追加またはアップグレードする場合など）は、スイッチへのISLの追加が必要になることがあります。
+
+.このタスクについて
+ファブリック内の両方のスイッチで次の手順を実行して、ISL接続を確認します。
+
+.手順
+. ファブリック内の両方のスイッチで、追加する ISL の ISL ポートを無効にします。
++
+`FC_switch_A_1#config t`
+
++
+1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押します。
+
++
+[listing]
+----
+
+	FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# shut
+	FC_switch_A_1(config)# end
+----
+. ISLポートとして追加するポートにSFPを挿入し、に従ってケーブル接続しlink:../install-fc/task_configure_the_mcc_hardware_components_fabric.html["ファブリック接続 MetroCluster 構成をケーブル接続"]ます。
++
+これらのポートが、追加先のスイッチモデルのケーブル接続ドキュメントに記載されていることを確認します。
+
+. の手順に従って、ISLポートを設定しますlink:../install-fc/task_cable_the_isl_between_the_mcc_sites_fabric_config.html["MetroCluster サイト間での ISL のケーブル接続"]。
+. ファブリック内の両方のスイッチで、すべての ISL ポートを有効にします（有効になっていない場合）。
++
+`FC_switch_A_1# config t`
+
++
+1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1# interface fc1/36
+	FC_switch_A_1(config-if)# no shut
+	FC_switch_A_1(config)# end
+----
+. 両方のスイッチ間に ISL が確立されたことを確認します。
++
+`show topology isl`
+
+. 2 つ目のファブリックで手順を繰り返します。
++
+[listing]
+----
+--------------------------------------------------------------------------------
+	__________Local_________ _________Remote_________ VSAN Cost I/F  PC    I/F  Band
+	 PC Domain SwName   Port  Port   SwName Domain PC          Stat Stat Speed width
+	--------------------------------------------------------------------------------
+	  1   0x11 cisco9 fc1/36  fc1/36 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/40  fc1/40 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/44  fc1/44 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/48  fc1/48 cisco9 0xbc    1    1   15 up   up    16g   64g
+----
+
+
+
+
+== Cisco FCスイッチでISLポートの速度を変更する
+
+スイッチのISLポートの速度を変更して、ISLの品質を向上させることができます。たとえば、距離が長いISLの速度を下げることができます。
+
+.このタスクについて
+ファブリック内の両方のスイッチで次の手順を実行して、ISL接続を確認します。
+
+.手順
+. ファブリック内の両方のスイッチで、速度を変更するISLのISLポートを無効にします。
++
+`FC_switch_A_1# config t`
+
++
+1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# shut
+	FC_switch_A_1(config)# end
+----
+. ファブリック内の両方のスイッチで、 ISL ポートの速度を変更します。
++
+`FC_switch_A_1# config t`
+
++
+1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# switchport speed 16000
+----
++
+
+NOTE: ポートの速度は16 = 16、000Gbps、8 = 8、000Gbps、4 = 4、000Gbpsです。
+
++
+スイッチのISLポートがに表示されていることを確認しますlink:../install-fc/index.html["ファブリック接続MetroCluster構成をインストールする"]。
+
+. ファブリック内の両方のスイッチで、すべての ISL ポートを有効にします（有効になっていない場合）。
++
+`FC_switch_A_1# config t`
+
++
+1行に1つずつ、次のコンフィギュレーションコマンドを入力します。すべてのコンフィギュレーションコマンドを入力したら、Ctrl+Zキーを押して終了します。
+
++
+[listing]
+----
+
+ FC_switch_A_1(config)# interface fc1/36
+	FC_switch_A_1(config-if)# no shut
+	FC_switch_A_1(config)# end
+----
+. 両方のスイッチ間に ISL が確立されたことを確認します。
++
+`show topology isl`
+
++
+[listing]
+----
+--------------------------------------------------------------------------------
+	__________Local_________ _________Remote_________ VSAN Cost I/F  PC    I/F  Band
+	 PC Domain SwName   Port  Port   SwName Domain PC          Stat Stat Speed width
+	--------------------------------------------------------------------------------
+	  1   0x11 cisco9 fc1/36  fc1/36 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/40  fc1/40 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/44  fc1/44 cisco9 0xbc    1    1   15 up   up    16g   64g
+	  1   0x11 cisco9 fc1/48  fc1/48 cisco9 0xbc    1    1   15 up   up    16g   64g
+----
+. 2 つ目のスイッチファブリックに対して手順を繰り返します。
+
+
+
+
+== フレームのIODまたはOODを保証するようにVSANを再設定する
+
+標準の IOD 設定を推奨します。OODは、必要な場合にのみ再設定してください。
+
+
+
+=== IODの再設定
+
+フレームのIODを再設定するには、次の手順を実行します。
+
+.手順
+. コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+. VSAN の交換のインオーダー保証を有効にします。
++
+`in-order-guarantee vsan <vsan-ID>`
+
++
+
+IMPORTANT: FC-VI VSAN （ FCVI_1_10 および FCVI_2_30 ）については、フレームと交換のインオーダー保証を VSAN 10 でのみ有効にする必要があります。
+
++
+.. VSAN のロードバランシングを有効にします。
++
+`vsan <vsan-ID> loadbalancing src-dst-id`
+
+.. 構成モードを終了します。
++
+「 end 」と入力します
+
+.. running-config を startup-config にコピーします。
++
+'copy running-config startup-config
+
++
+FC_switch_A_1でフレームのIODを設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# config t
+FC_switch_A_1(config)# in-order-guarantee vsan 10
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1でフレームのIODを設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# config t
+FC_switch_B_1(config)# in-order-guarantee vsan 10
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_B_1(config-vsan-db)# end
+FC_switch_B_1# copy running-config startup-config
+----
+
+
+
+
+
+
+=== OODの再設定
+
+フレームのOODを再設定するには、次の手順を実行します。
+
+.手順
+. コンフィギュレーションモードを開始します。
++
+「 conf t`
+
+. VSAN の交換のインオーダー保証を無効にします。
++
+`no in-order-guarantee vsan <vsan-ID>`
+
+. VSAN のロードバランシングを有効にします。
++
+`vsan <vsan-ID> loadbalancing src-dst-id`
+
+. 構成モードを終了します。
++
+「 end 」と入力します
+
+. running-config を startup-config にコピーします。
++
+'copy running-config startup-config
+
++
+FC_switch_A_1でフレームのOODを設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_A_1# config t
+FC_switch_A_1(config)# no in-order-guarantee vsan 10
+FC_switch_A_1(config)# vsan database
+FC_switch_A_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_A_1(config-vsan-db)# end
+FC_switch_A_1# copy running-config startup-config
+----
++
+FC_switch_B_1でフレームのOODを設定するコマンドは次のとおりです。
+
++
+[listing]
+----
+FC_switch_B_1# config t
+FC_switch_B_1(config)# no in-order-guarantee vsan 10
+FC_switch_B_1(config)# vsan database
+FC_switch_B_1(config-vsan-db)# vsan 10 loadbalancing src-dst-id
+FC_switch_B_1(config-vsan-db)# end
+FC_switch_B_1# copy running-config startup-config
+----
++
+
+NOTE: コントローラモジュールに ONTAP を設定する場合は、 MetroCluster 構成の各コントローラモジュールで OOD を明示的に設定する必要があります。
+
++
+link:../install-fc/concept_configure_the_mcc_software_in_ontap.html#configuring-in-order-delivery-or-out-of-order-delivery-of-frames-on-ontap-software["ONTAPソフトウェアでのフレームのIODまたはOODの設定について"]です。
+
+

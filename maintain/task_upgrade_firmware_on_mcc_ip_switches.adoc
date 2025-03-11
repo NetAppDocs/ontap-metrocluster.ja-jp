@@ -13,6 +13,62 @@ summary: MetroCluster IP スイッチでのファームウェアのアップグ�
 [role="lead"]
 MetroCluster IP スイッチのファームウェアのアップグレードが必要になる場合があります。
 
+
+
+== RCFのサポート状況の確認
+
+ONTAPまたはスイッチファームウェアのバージョンを変更する場合は、そのバージョンでサポートされるリファレンス構成ファイル（RCF）があることを確認する必要があります。このツールを使用するlink:https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["RcfFileGenerator の順にクリックします"^]と、構成に応じた正しいRCFが生成されます。
+
+.手順
+. スイッチから次のコマンドを使用して、RCFのバージョンを確認します。
++
+[cols="30,70"]
+|===
+
+
+| スイッチ | 問題コマンド 
+
+
+ a| 
+Broadcomスイッチ
+ a| 
+`(IP_switch_A_1) # show clibanner`
+
+
+
+ a| 
+Cisco スイッチ
+ a| 
+ip_switch _A_1# には、 banner motd が表示されます
+
+
+
+ a| 
+NVIDIA SN2100スイッチ
+ a| 
+`cumulus@mcc1:mgmt:~$ nv config find message`
+
+|===
++
+コマンド出力で、RCFバージョンを示す行を確認します。たとえば、Ciscoスイッチからの次の出力は、RCFバージョンが「v1.80」であることを示しています。
+
++
+....
+Filename : NX3232_v1.80_Switch-A2.txt
+....
+. 特定のONTAPバージョン、スイッチ、およびプラットフォームでサポートされているファイルを確認するには、を使用しlink:https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"^]ます。既存の構成またはにアップグレードする構成に対してRCFを生成できる場合は、そのRCFがサポートされます。
+. スイッチファームウェアがサポートされていることを確認するには、次のマニュアルを参照してください。
++
+** https://hwu.netapp.com["Hardware Universe"]
+** https://imt.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"^]
+
+
+
+
+
+
+== スイッチのファームウェアをアップグレードします。
+
 .このタスクについて
 各スイッチでこのタスクを順に実行する必要があります。
 
