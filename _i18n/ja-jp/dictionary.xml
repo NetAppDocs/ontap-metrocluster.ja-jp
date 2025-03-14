@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <blocks>
   <block id="e5fe800fef736c2c8af1453a59683d3c" category="summary">Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードするには、 Brocade 固有のコマンドを使用してスイッチを無効にし、ファームウェアの変更を実行および確認し、スイッチをリブートして再度有効にする必要があります。</block>
-  <block id="1ab0f1fa27ba43bfea0e9de2529316c8" category="doc">Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードする</block>
   <block id="168f20b249437abf8c684700d798efa2" category="list-text">ファームウェアファイルが必要です。</block>
   <block id="db6e0c8057b108f77da141b83e047b8d" category="paragraph">ファームウェアのアップグレードまたはダウングレード中はスイッチファブリックが無効になり、 MetroCluster 構成は 2 つ目のファブリックを使用して運用を継続します。</block>
   <block id="6751765455c440079966f9a59475b0bc" category="paragraph">各スイッチファブリックでこのタスクを順に実行し、すべてのスイッチで同じファームウェアバージョンが実行されるようにする必要があります。</block>
@@ -6695,7 +6694,6 @@
   <block id="652f10975e44b79de998287113035fac" category="section-title">ONTAP メディエーターのファイアウォール要件</block>
   <block id="671e00f956495c99ae5aae5896e8542a" category="paragraph">ONTAP メディエーターは、複数のポートを使用して特定のサービスと通信します。</block>
   <block id="5946d090ccc9cc4eb9c55cf3e9e8d35a" category="paragraph">31784/TCP</block>
-  <block id="39af2fc562277654190ca9b83e431189" category="paragraph">ONTAP クラスタ管理インターフェイス</block>
   <block id="47c5e6a166f9432ff96681fa2a62c791" category="paragraph">ONTAP メディエーター Web サーバ</block>
   <block id="8cf15eeaee2b3382338ecab30027c48b" category="paragraph">REST API （ HTTPS ）</block>
   <block id="5395ab3ceab5345ee4a1117e436bec89" category="paragraph">3260 TCP</block>
@@ -8348,7 +8346,6 @@
   <block id="6e9ffd16aec825895cde46ff6fe91ad0" category="list-text">FlexCache のもう一方の端（ vs2 の origin_1 ）は、 site_A に配置されています（ MetroCluster 構成ではありません）。</block>
   <block id="da1d8a158d031df0c087914bc717f807" category="list-text">各クラスタに同じ名前の IPspace が必要です。</block>
   <block id="9f437bd3f304cff4e9dd7b48cc5a9500" category="paragraph">これは、デフォルト IPspace か管理者が作成した IPspace です。この IPspace は、 FabricPool オブジェクトストア設定のセットアップに使用されます。</block>
-  <block id="eadb8b792e9f449e89ae54e27988217b" category="list-text">選択した IPspace について、各クラスタで外部のオブジェクトストアにアクセスできるクラスタ間 LIF が定義されている必要があります</block>
   <block id="17ac4e298c56ff01c8eed4b136996add" category="paragraph"><block ref="168c33302730d6ed47dbebd9e3cc10f4" category="inline-xref-macro-rx"></block></block>
   <block id="1a9f35018f9b17cd6039fe4f382f7ac3" category="paragraph"><block ref="99673e08557418afa49aba4fc6daa754" category="inline-xref-macro-rx"></block></block>
   <block id="deb6ad94e3290cf46ee751b9b7f664bb" category="list-text">MetroCluster 構成での LIF のレプリケーションの要件を理解しておく必要があります。また、レプリケートされた LIF がパートナークラスタにどのように配置されるかを把握し、 LIF のレプリケーションまたは LIF の配置に失敗した場合に発生する問題について確認しておく必要があります。</block>
@@ -11501,7 +11498,6 @@
   <block id="690f8ff3b8b65da4f1bc779fb507da9d" category="sidebar">MetroCluster Tiebreakerイベントログファイル</block>
   <block id="fd8a65566a0bac859d93882f20cc0c7d" category="paragraph"><block ref="fd8a65566a0bac859d93882f20cc0c7d" category="inline-link-macro-rx"></block></block>
   <block id="43119522ff803c1f1fa88bdbaffe20b7" category="admonition">iSCSIポートは、MetroCluster IP構成でのみ必要です。</block>
-  <block id="4026cb63b92cdc28e17e39a79de589f7" category="paragraph">ONTAP クラスタ（データLIFまたはデータ管理LIF）</block>
   <block id="fd9b3eaeebb236fdcf40b5456ccc900e" category="admonition">AFF A900システムとFAS9500システムでは、8つのISLがサポートされています。Brocade 6510、G620、G620 -1、G630、G630-1、およびG720スイッチ。</block>
   <block id="81d4bf20c117cfe06c727511dd63382b" category="paragraph">6510、G620、G620 -1、G630、G630-1、G720</block>
   <block id="64cdec386f8cc50c2a2ec9316633b629" category="paragraph">を実行する前に<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block>、HAモードおよびDRミラーリングが有効になっていないため、この想定動作に関連するエラーメッセージが表示される場合があります。HAモードとDRミラーリングは、あとでコマンドを実行するときに有効にします<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> をクリックして構成を実装してください。</block>
@@ -14680,4 +14676,31 @@
   <block id="11f90eb1d0dccabe5ea84d5795fc2ef7" category="paragraph">次の情報を使用して、新しいシステムで共有クラスタ/ HAポートが使用されているかどうかを確認します。</block>
   <block id="fb1ce5d087cc4c4bd39c43bc3af7058b" category="admonition">MetroClusterインターフェイスに169.254.17.xまたは169.254.18.xのIPアドレスが設定されている場合、*共有クラスタ/ HAポート*を使用するシステムへのアップグレードはサポートされません。</block>
   <block id="25b129509e36ff88d2beb94d08667a62" category="sidebar">Cisco FCスイッチのISLプロパティまたはIOD / OOD設定の変更</block>
+  <block id="8b578a27fe20d5a32a06b05afeaa5b16" category="list-text">選択したIPspaceについて、外部のオブジェクトストアにアクセスできるクラスタ間LIFが各クラスタで定義されている必要があります。</block>
+  <block id="d98545518df18c073a4a75d72759ddfe" category="list-text">ソースまたはデスティネーションがMetroClusterクラスタの場合、FabricPoolでSVMの移行はサポートされません。</block>
+  <block id="de60962ea114e8e20b41343aa7431cbf" category="inline-link-macro">SVMデータモビリティの詳細</block>
+  <block id="cb692d9778a8fa1464d6b442ab90722f" category="paragraph"><block ref="53c488ccbc80272b509e45a126fd033b" category="inline-link-macro-rx"></block>です。</block>
+  <block id="b4911e786bbd878f489a84835fcee570" category="list-text">ONTAPメディエーターではIPv6はサポートされていません。</block>
+  <block id="d247a27201590148c4ea6bf493729fd1" category="list-text">22/TCPポートは通常の動作には必要ありませんが、メンテナンスのために一時的に有効にし、メンテナンスセッションの終了後に無効にすることができます。</block>
+  <block id="02674a4ef33e11c879283629996c8ff8" category="cell">方向</block>
+  <block id="c5df47f9068f6d11f238ec77908abf18" category="paragraph">22 / TCP</block>
+  <block id="6c7e3200049198face0d2648e9d1a27d" category="paragraph">インバウンド</block>
+  <block id="58dc7db50a2e11a9de9e6cc092c59d4d" category="paragraph">ONTAPメディエーター</block>
+  <block id="348d25e332990b97eda5823a9561cd76" category="paragraph">SSH / ONTAPメディエーターの管理</block>
+  <block id="abd4328c725637aabedbd02d3b7ffd40" category="paragraph">双方向</block>
+  <block id="7df18ff4393ac59f9af7b68478828591" category="inline-link-macro">BrocadeファブリックOSソフトウェアアップグレードガイド（9.2.x）</block>
+  <block id="81095da37e6499e1af51ce2d0316b8c1" category="paragraph">Fabric OS V 9.2.x以降にアップグレードする場合は、Brocade TruFOS証明書をインストールする必要があります。詳細については、を参照してください。<block ref="0c25af31b20d46ca79e55fb8f6beb4c9" category="inline-link-macro-rx"></block></block>
+  <block id="b2fe7ec3c609e490e177268be9c6a2c7" category="open-title">FC-to-SASブリッジの削除</block>
+  <block id="1c5eaf0274c09872a2287c430ed75a60" category="list-text">ブリッジを特定します。</block>
+  <block id="4d100b8e119ce2e8a98e720e612260d2" category="paragraph"><block ref="5c2aa4362fb9d40ad679411e69f26e74" prefix="" category="inline-code"></block></block>
+  <block id="679425df5c12f3f894799666283b2fcd" category="list-text">ブリッジを削除します。</block>
+  <block id="ee90b235e787cdea487ac811b405275d" category="paragraph"><block ref="6ecfba135a48bcb7f43c03b5132edab0" prefix="" category="inline-code"></block></block>
+  <block id="2d3a681bfca3f3afa13da28bbcb3d157" category="list-text">ブリッジが削除されたことを確認します。</block>
+  <block id="457c5fa19fe4bf31989022bf10e2133b" category="paragraph">次の例は、ブリッジを削除したことを示しています。</block>
+  <block id="9a752ae21c1569c1e94c2b3c0c4ec816" category="open-title">FCスイッチを削除する</block>
+  <block id="07c2ed77d8d4a66a9da7bc64642f43ac" category="list-text">スイッチを特定します。</block>
+  <block id="6ac0707c59f9a8bac7c112671ebed890" category="paragraph"><block ref="2fb4e63397068939776b11238421ef0d" prefix="" category="inline-code"></block></block>
+  <block id="a7bb11a2d517e74f775b8aefe3c16638" category="list-text">スイッチを取り外します。</block>
+  <block id="027e94eee8bf21f30bcb532977a993c1" category="paragraph"><block ref="4f1415de9c82b1c8c8506139320b0115" prefix="" category="inline-code"></block></block>
+  <block id="fdb1649f24689923739f1476888a8957" category="list-text">スイッチが取り外されたことを確認します。</block>
 </blocks>

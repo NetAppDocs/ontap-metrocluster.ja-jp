@@ -233,9 +233,118 @@ network interface show -fields home-port 、 curr -port
 
 . MetroCluster FC コントローラモジュール（ node_A_1 の FC と node_B_1 の FC ）、 FC-to-SAS ブリッジ（存在する場合）、 FC スイッチ（存在する場合）、およびそれらのノードに接続されている各ストレージシェルフを停止し、電源をオフにします。
 . MetroCluster FC コントローラからシェルフを切断し、各クラスタにローカルストレージとして使用するシェルフを文書化します。
+. FC-to-SAS ブリッジまたは FC バックエンドスイッチを使用する構成の場合は、接続を解除して取り外します。
 +
-FC-to-SAS ブリッジまたは FC バックエンドスイッチを使用する構成の場合は、接続を解除して取り外します。
+[role="tabbed-block"]
+====
+.FC-to-SASブリッジの削除
+--
+.. ブリッジを特定します。
++
+`system bridge show`
 
+.. ブリッジを削除します。
++
+`system bridge remove -name <bridge_name>`
+
+.. ブリッジが削除されたことを確認します。
++
+`system bridge show`
+
+
+
+次の例は、ブリッジを削除したことを示しています。
+
+.例
+[%collapsible]
+=====
+[listing]
+----
+cluster1::> system bridge remove -name ATTO_10.226.197.16
+cluster1::> system bridge show
+                                                                Is        Monitor
+    Bridge     Symbolic Name Vendor  Model     Bridge WWN       Monitored Status
+    ---------- ------------- ------- --------- ---------------- --------- -------
+    ATTO_FibreBridge6500N_1
+               Bridge Number 16
+                             Atto    FibreBridge 6500N
+                                               2000001086603824 false     -
+    ATTO_FibreBridge6500N_2
+               Not Set       Atto    FibreBridge 6500N
+                                               20000010866037e8 false     -
+    ATTO_FibreBridge6500N_3
+               Not Set       Atto    FibreBridge 6500N
+                                               2000001086609e0e false     -
+    ATTO_FibreBridge6500N_4
+               Not Set       Atto    FibreBridge 6500N
+                                               2000001086609c06 false     -
+    4 entries were displayed.
+----
+=====
+--
+.FCスイッチを削除する
+--
+.. スイッチを特定します。
++
+`system switch fibre-channel show`
+
+.. スイッチを取り外します。
++
+`system switch fibre-channel remove -switch-name <switch_name>`
+
+.. スイッチが取り外されたことを確認します。
++
+`system switch fibre-channel show`
+
+
+
+.例
+[%collapsible]
+=====
+[listing]
+----
+cluster1::> system switch fibre-channel show
+                Symbolic                                     Is        Monitor
+    Switch      Name     Vendor  Model      Switch WWN       Monitored Status
+    ----------- -------- ------- ---------- ---------------- --------- -------
+    Cisco_10.226.197.34
+                mcc-cisco-8Gb-fab-4
+                         Cisco   DS-C9148-16P-K9
+                                            2000547fee78f088 true      ok
+    mcc-cisco-8Gb-fab-1
+                mcc-cisco-8Gb-fab-1
+                         Cisco   -          -                false     -
+    mcc-cisco-8Gb-fab-2
+                mcc-cisco-8Gb-fab-2
+                         Cisco   -          -                false     -
+    mcc-cisco-8Gb-fab-3
+                mcc-cisco-8Gb-fab-3
+                         Cisco   -          -                false     -
+    4 entries were displayed.
+cluster1::> system switch fibre-channel remove -switch-name Cisco_10.226.197.34
+cluster1::> system switch fibre-channel show
+                Symbolic                                     Is        Monitor
+    Switch      Name     Vendor  Model      Switch WWN       Monitored Status
+    ----------- -------- ------- ---------- ---------------- --------- -------
+    mcc-cisco-8Gb-fab-4
+                mcc-cisco-8Gb-fab-4
+                         Cisco
+                                 -          -                false     -
+    mcc-cisco-8Gb-fab-1
+                mcc-cisco-8Gb-fab-1
+                         Cisco   -          -                false     -
+    mcc-cisco-8Gb-fab-2
+                mcc-cisco-8Gb-fab-2
+                         Cisco   -          -                false     -
+    mcc-cisco-8Gb-fab-3
+                mcc-cisco-8Gb-fab-3
+                         Cisco   -          -                false     -
+    4 entries were displayed
+cluster1::>
+----
+=====
+--
+====
 . MetroCluster FC ノード（ node_A_1 の FC と node_B_1 の FC ）のメンテナンスモードで、ディスクが接続されていないことを確認します。「ディスク show -v 」
 . MetroCluster FC ノードの電源をオフにして取り外します。
 
