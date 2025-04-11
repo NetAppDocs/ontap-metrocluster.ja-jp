@@ -1,0 +1,66 @@
+---
+permalink: install-ip/task-synchronize-the-system-time-us-ntp.html 
+sidebar: sidebar 
+keywords: metrocluster, fabric, installation, synchronize, system, time, ntp 
+summary: ノードとそのクライアントの間で時刻を同期するには、クラスタごとに独自のネットワークタイムプロトコル（ NTP ）サーバが必要です。 
+---
+= NTP を使用してシステム時刻を同期します
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ノードとそのクライアントの間で時刻を同期するには、クラスタごとに独自の Network Time Protocol （ NTP ；ネットワークタイムプロトコル）サーバが必要です。
+
+.このタスクについて
+* テイクオーバーの発生後に障害ノードまたはパートナーノードのタイムゾーン設定を変更することはできません。
+* MetroCluster IP構成のクラスタごとに、そのMetroClusterサイトのノードとIPスイッチで使用する独自のNTPサーバをそれぞれ用意する必要があります。
+* MetroCluster TiebreakerまたはONTAPメディエーターを使用する場合は、独自のNTPサーバも必要です。
+* この手順では、MetroCluster IPクラスタのセットアップ後にNTPを設定する方法を示します。System Managerを使用してクラスタを設定した場合は、クラスタセットアップの一環としてNTPサーバをすでに設定しておく必要があります。詳細は、を参照してください link:../install-ip/set-up-mcc-site-system-manager.html["MetroCluster IPサイトのセットアップ"] 。
+
+
+ONTAPのバージョンに応じて、System Manager UIの*[クラスタ]*タブまたは*[インサイト]*タブでNTPを設定できます。
+
+[role="tabbed-block"]
+====
+.クラスタ
+--
+System Managerでは、ONTAPのバージョンに応じて*[クラスタ]*タブから次の2つのオプションを使用してNTPを設定できます。
+
+.ONTAP 9.8以降：
+次の手順に従って、ONTAP 9.8以降の*[クラスタ]*タブからNTPを同期します。
+
+.手順
+. [クラスタ]>[概要]*に移動します。
+. 次に、オプションを選択しimage:icon-more-kebab-blue-bg.jpg["その他"]て*[編集]*を選択します。
+. [クラスタの詳細の編集]*ウィンドウで、[NTPサーバ]の下の*+追加*オプションを選択します。
+. タイムサーバの名前と場所を追加し、IPアドレスを指定します。
+. 次に、*[保存]*を選択します。
+. タイムサーバを追加する場合は、この手順を繰り返します。
+
+
+.ONTAP 9.11.1以降：
+次の手順に従って、ONTAP 9.11.1以降の*[クラスタ]タブの*[インサイト]*ウィンドウからNTPを同期します。
+
+.手順
+. [クラスタ]>[概要]*に移動します。
+. ページの* Insights *ウィンドウまで下にスクロールし、* Too few NTP servers are configured（設定されているNTPサーバが少なすぎる）*を探して* Fix it（修正）*を選択します。
+. タイムサーバのIPアドレスを指定し、*[保存]*を選択します。
+. タイムサーバを追加する場合は、上記の手順を繰り返します。
+
+
+--
+.分析
+--
+ONTAP 9.11.1以降では、System Managerの*[Insights]*タブを使用してNTPを設定することもできます。
+
+.手順
+. System Manager UIの*[Insights]*タブに移動します。
+. 下にスクロールして*[Too few NTP servers are configured]*を選択し、*[Fix it]*を選択します。
+. タイムサーバのIPアドレスを指定し、*[保存]*を選択します。
+. タイムサーバを追加する場合は、上記の手順を繰り返します。
+
+
+--
+====

@@ -24,6 +24,7 @@ ONTAP 9.15.1以降で導入されたシステムでコントローラをアッ�
 * AFF C80用
 * AFF A50、AFF A20、AFF A30
 * AFF C30、AFF C60
+* FAS50
 
 
 
@@ -50,13 +51,13 @@ ONTAP 9.15.1以降で導入されたシステムをアップグレードする�
 | AFF A220からAFF A20へ | `bootarg.siw.interop_enabled` 
 
 
-| AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、またはAFF C60システムへのその他のサポートされるアップグレード | `hw.cxgbe.toe_keepalive_disable` 
+| AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、AFF C60、FAS50システムへのその他のサポートされるアップグレード | `hw.cxgbe.toe_keepalive_disable` 
 |===
 
 
 == 手順2：古いコントローラで必要なbootargを設定する
 
-このタスクは、AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、またはAFF C60システムにアップグレードする場合にのみ*必要です。
+このタスクは、AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、AFF C60、またはFAS50システムにアップグレードする場合にのみ*必要です。
 
 .手順
 . 各サイトで1つのノードを停止し、そのHAパートナーでノードのストレージテイクオーバーを実行できるようにします。

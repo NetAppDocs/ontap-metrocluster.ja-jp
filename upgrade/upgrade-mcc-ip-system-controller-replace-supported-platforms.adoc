@@ -30,10 +30,17 @@ MetroCluster IPコントローラのアップグレードを開始する前に�
 * MetroCluster構成内のすべてのノード（新旧のノード）で同じバージョンのONTAPが実行されている必要があります。ご使用の組み合わせでサポートされるONTAPの最小バージョンについては、を参照してlink:https://hwu.netapp.com["Hardware Universe"^]ください。
 
 
-.サポートされるAFFおよびFAS MetroCluster IPコントローラのアップグレード
-次の表に、「system controller replace」コマンドを使用してMetroCluster IP構成のAFFシステムまたはFASシステムをアップグレードする場合にサポートされるプラットフォームの組み合わせを示します。
 
-image:../media/mccip_assisted_controller_upgrade_comb.png["に、system controller replaceコマンドを使用したMetroCluster IPのアップグレードでサポートされるプラットフォームの組み合わせを示します。"]
+
+== サポートされるAFFおよびFAS MetroCluster IPコントローラのアップグレード
+
+次の表に、「system controller replace」コマンドを使用してMetroCluster IP構成のAFFまたはFASシステムをアップグレードする場合にサポートされるプラットフォームの組み合わせを2つのグループに分けて示します。
+
+* *グループ1 *は、AFF A150 FAS8700、AFF AFF C400 A20、FAS2750 AFF A400、AFF A220、FAS500f、AFF C250、AFF A250、FAS50、AFF A300 C30、AFF A320 A30、FAS8200、AFF、AFF、FAS8300システムへのアップグレードの組み合わせを示しています。
+* *グループ2 *は、AFF C60、AFF A50、FAS70、FAS9000、AFF A700、AFF A90、AFF A900、AFF、FAS9500、AFF C800、AFF A800 C80、FAS90、AFF A70、およびAFF A1Kシステムへのアップグレードの組み合わせを示しています。
+
+
+次の注意事項は両方のグループに適用されます。
 
 * 注1：コントローラのアップグレードは、ONTAP 9.13.1以降を実行しているシステムでサポートされます。
 * 注2：コントローラのアップグレードが完了するまで、ターゲットプラットフォームに内蔵ドライブを搭載することはできません。内蔵ドライブはアップグレード後に追加できます。
@@ -41,7 +48,27 @@ image:../media/mccip_assisted_controller_upgrade_comb.png["に、system controll
 * 注4：古いコントローラを外付けSASシェルフに変換するには、IOMモジュールが必要です。サポートされているIOMモジュールについては、を参照してくださいlink:https://hwu.netapp.com/["Hardware Universe"^]。
 
 
-.サポートされるASA MetroCluster IPコントローラのアップグレード
+[role="tabbed-block"]
+====
+.AFFとFASの組み合わせグループ1
+--
+AFF A150 FAS8700、AFF AFF C400 A20、FAS2750 AFF A400、AFF A220、AFF、AFF C250、AFF A250、FAS50、FAS500f C30、AFF A320 A30、FAS8200、AFF A300、AFF、FAS8300システムへのアップグレードでサポートされる組み合わせを確認します。
+
+image:../media/assisted-group-1.png[""]
+
+--
+.AFFとFASの組み合わせグループ2
+--
+C60、AFF A50、FAS70、、AFF A700、AFF A70、AFF C800、AFF、AFF A90、FAS9000、AFF、AFF A900、AFF A800 C80、FAS90、FAS9500、およびAFF A1Kシステムへのアップグレードでサポートされる組み合わせを確認します。
+
+image:../media/assisted-group-2.png[""]
+
+--
+====
+
+
+== サポートされるASA MetroCluster IPコントローラのアップグレード
+
 ASAシステムでコマンドを使用したコントローラのアップグレード `system controller replace` はサポートされていません。
 
 その他の手順については、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新の方法を選択"]。

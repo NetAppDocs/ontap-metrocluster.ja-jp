@@ -40,7 +40,7 @@ NOTE: ポート13と14は、40Gbpsと100Gbpsをサポートするネイティブ
 
 次の表を使用して、必要なケーブル接続の表を特定します。
 
-[cols="2*"]
+[cols="25,75"]
 |===
 | システムの状態 | 使用するケーブル接続テーブル 
 
@@ -59,7 +59,13 @@ AFF A250、ASA A250向け
 | AFF A20用 | <<table_2_nvidia_sn2100,NVIDIA SN2100プラットフォームのポート割り当て（グループ2）>> 
 
 
-| AFF C30、AFF A30 AFF C60 | <<table_3_nvidia_sn2100,NVIDIA SN2100プラットフォームのポート割り当て（グループ3）>> 
+| AFF C30、AFF A30 FAS50 AFF C60  a| 
+次の表は、25G（グループ3a）と100G（グループ3b）のどちらのイーサネットカードを使用しているかによって異なります。
+
+* <<table_3a_nvidia_sn2100,NVIDIA SN2100プラットフォームのポート割り当て（グループ3a-25G）>>
+* <<table_3b_nvidia_sn2100,NVIDIA SN2100プラットフォームのポート割り当て（グループ3b-100G）>>
+
+
 
 
 | FAS8300 AFF C400、ASA C400 AFF A400、ASA A400 FAS8700 FAS9000、AFF A700 | <<table_4_nvidia_sn2100,NVIDIA SN2100プラットフォームのポート割り当て（グループ4）>> 
@@ -83,13 +89,25 @@ image::../media/mcc-ip-cabling-aff-asa-a150-fas500f-a25-c250-MSN2100.png[はNVID
 プラットフォームポートの割り当てを確認して、AFF A20システムをNVIDIA SN2100スイッチにケーブル接続します。
 
 [#table_2_nvidia_sn2100]
-image::../media/mccip-cabling-aff-a20-nvidia-sn2100.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]
+image::../media/mccip-cabling-nvidia-a20-updated.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]
 
-.NVIDIA SN2100プラットフォームのポート割り当て（グループ3）
-プラットフォームポートの割り当てを確認し、AFF C30、AFF A30、またはAFF C60システムをNVIDIA SN2100スイッチにケーブル接続します。
+.NVIDIA SN2100プラットフォームのポート割り当て（グループ3a）
+プラットフォームポート割り当てを確認し、4ポートの25Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをNVIDIA SN2100スイッチにケーブル接続します。
 
-[#table_3_nvidia_sn2100]
-image::../media/mccip-cabling-aff-a30-c30-c60-nvidia-sn2100.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]
+
+NOTE: この構成では、ローカルクラスタとHAインターフェイスを接続するために、スロット4に4ポートの25Gイーサネットカードが必要です。
+
+[#table_3a_nvidia_sn2100]
+image::../media/mccip-cabling-nvidia-a30-c30-fas50-c60-25G.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]
+
+.NVIDIA SN2100プラットフォームのポート割り当て（グループ3b）
+プラットフォームポート割り当てを確認し、2ポート100Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをNVIDIA SN2100スイッチにケーブル接続します。
+
+
+NOTE: この構成では、ローカルクラスタとHAインターフェイスを接続するために、スロット4に2ポートの100Gイーサネットカードが必要です。
+
+[#table_3b_nvidia_sn2100]
+image::../media/mccip-cabling-nvidia-a30-c30-fas50-c60-100G.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]
 
 .NVIDIA SN2100プラットフォームのポート割り当て（グループ4）
 FAS8300、AFF C400、ASA C400、AFF A400、ASA A400をケーブル接続するためのプラットフォームポート割り当てを確認します。 FAS8700、FAS9000、またはAFF A700システムからNVIDIA SN2100スイッチへの接続：
@@ -114,4 +132,4 @@ image::../media/mcc_ip_cabling_fas8300_aff_asa_a800_a900_fas9500_MSN2100.png[は
 .NVIDIA SN2100プラットフォームのポート割り当て（グループ7）
 プラットフォームポート割り当てを確認し、FAS70、AFF A70、AFF C80、FAS90、AFF A90、またはAFF A1KシステムをNVIDIA SN2100スイッチにケーブル接続します。
 
-image::../media/mccip-cabling-fas90-fas70-aff-a70--a90-c80-a1k-nvidia-sn2100-updated.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]
+image::../media/mccip-cabling-nvidia-a70-c80-fas90-fas70-a1k.png[はNVIDIA SN2100プラットフォームのポート割り当てを示しています]

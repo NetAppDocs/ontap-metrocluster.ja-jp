@@ -46,7 +46,7 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 
 次の表を使用して、必要なケーブル接続の表を特定します。
 
-[cols="2*"]
+[cols="25,75"]
 |===
 | システムの状態 | 使用するケーブル接続テーブル 
 
@@ -63,16 +63,19 @@ AFF A220
 | FAS500f AFF C250、ASA C250 AFF A250、ASA A250 | <<table_2_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ2）>> 
 
 
-| AFF A20 AFF C30、AFF A30 AFF C60 | <<table_3_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ3）>> 
+| AFF A20用 | <<table_3_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ3）>> 
 
 
-| FAS8200、AFF A300 | <<table_4_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ4）>> 
+| AFF C30、AFF A30 FAS50 AFF C60 | <<table_4_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ4）>> 
 
 
-| AFF A320 | <<table_5_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ5）>> 
+| FAS8200、AFF A300 | <<table_5_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ5）>> 
 
 
-| FAS8300 AFF C400、ASA C400 AFF A400、ASA A400 FAS8700 | <<table_6_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ6）>> 
+| AFF A320 | <<table_6_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ6）>> 
+
+
+| FAS8300 AFF C400、ASA C400 AFF A400、ASA A400 FAS8700 | <<table_7_bes_53248,Broadcom BES-53248プラットフォームのポート割り当て（グループ7）>> 
 |===
 .Broadcom BES-53248プラットフォームのポート割り当て（グループ1）
 プラットフォームポート割り当てを確認し、AFF A150、ASA A150、FAS2750、またはAFF A220システムをBroadcom BES-53248スイッチにケーブル接続します。
@@ -93,14 +96,29 @@ image::../media/mcc_ip_cabling_a_aff_asa_c250_a250_fas500f_to_a_broadcom_bes_532
 
 
 .Broadcom BES-53248プラットフォームのポート割り当て（グループ3）
-プラットフォームポート割り当てを確認し、AFF A20、AFF C30、AFF A30、またはAFF C60システムをBroadcom BES-53248スイッチにケーブル接続します。
+プラットフォームポートの割り当てを確認し、AFF A20システムをBroadcom BES-53248スイッチにケーブル接続します。
 
-image:../media/mcc-ip-cabling-aff-a20-a30-c30-c60-to-a-broadcom-bes-53248-switch.png["Broadcom BES-53248プラットフォームのポート割り当てを表示"]
+image:../media/mccip-cabling-bes-a20-updated.png["Broadcom BES-53248プラットフォームのポート割り当てを表示"]
 
 * *注1 *：これらのポートを使用するには、追加ライセンスが必要です。
 
 
 .Broadcom BES-53248プラットフォームのポート割り当て（グループ4）
+プラットフォームポートの割り当てを確認し、4ポートの25Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをBroadcom BES-53248スイッチにケーブル接続します。
+
+[NOTE]
+====
+* この構成では、ローカルクラスタとHAインターフェイスを接続するために、スロット4に4ポートの25Gイーサネットカードが必要です。
+* この構成では、25Gbpsのネットワーク速度をサポートするために、コントローラのカードにQSFP / SFP+アダプタが必要です。
+
+
+====
+image:../media/mccip-cabling-bes-a30-c30-fas50-c60-25G.png["Broadcom BES-53248プラットフォームのポート割り当てを表示"]
+
+* *注1 *：これらのポートを使用するには、追加ライセンスが必要です。
+
+
+.Broadcom BES-53248プラットフォームのポート割り当て（グループ5）
 プラットフォームポート割り当てを確認し、FAS8200またはAFF A300システムをBroadcom BES-53248スイッチにケーブル接続します。
 
 image::../media/mcc-ip-cabling-a-aff-a300-or-fas8200-to-a-broadcom-bes-53248-switch-9161.png[Broadcom BES-53248プラットフォームのポート割り当てを表示]
@@ -108,7 +126,7 @@ image::../media/mcc-ip-cabling-a-aff-a300-or-fas8200-to-a-broadcom-bes-53248-swi
 * *注1 *：これらのポートを使用するには、追加ライセンスが必要です。
 
 
-.Broadcom BES-53248プラットフォームのポート割り当て（グループ5）
+.Broadcom BES-53248プラットフォームのポート割り当て（グループ6）
 プラットフォームポートの割り当てを確認し、AFF A320システムをBroadcom BES-53248スイッチにケーブル接続します。
 
 image::../media/mcc-ip-cabling-a-aff-a320-to-a-broadcom-bes-53248-switch.png[Broadcom BES-53248プラットフォームのポート割り当てを表示]
@@ -120,7 +138,7 @@ image::../media/mcc-ip-cabling-a-aff-a320-to-a-broadcom-bes-53248-switch.png[Bro
 
 
 
-.Broadcom BES-53248プラットフォームのポート割り当て（グループ6）
+.Broadcom BES-53248プラットフォームのポート割り当て（グループ7）
 FAS8300、AFF C400、ASA C400、AFF A400、ASA A400をケーブル接続するためのプラットフォームポート割り当てを確認します。 またはFAS8700システムからBroadcom BES-53248スイッチへの接続：
 
 image::../media/mcc-ip-cabling-a-fas8300-a400-c400-or-fas8700-to-a-broadcom-bes-53248-switch.png[Broadcom BES-53248プラットフォームのポート割り当てを表示]
