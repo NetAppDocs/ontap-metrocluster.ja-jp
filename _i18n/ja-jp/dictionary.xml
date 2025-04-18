@@ -13209,14 +13209,12 @@
   <block id="cb2b71f7328cfbc51d68290fdef5e64a" category="inline-link-macro">エンドツーエンドの暗号化を無効にする</block>
   <block id="2843a33605079ab99cc2f26a41a2bcbb" category="list-text">システムで有効になっている場合は <block ref="7a9d12e6dbd7c75c145032be8c2b8549" category="inline-link-macro-rx"></block> 、アップグレードを実行する前に実行します。</block>
   <block id="973338f6a10e6b7ac7c39f19d7b492b2" category="list-text">元のプラットフォームのIPアドレス、ネットマスク、ゲートウェイは新しいプラットフォームで再利用します。</block>
-  <block id="77cd2bc0bfe264cad96e3619cb8678b1" category="list-text">各サイトで1つのノードを停止し、そのHAパートナーでノードのストレージテイクオーバーを実行できるようにします。</block>
   <block id="8b0fde7ba026b4e4de5c975b52e10b78" category="paragraph"><block ref="fc0e5e4abc6e1b590b3364b384105526" prefix="" category="inline-code"></block></block>
   <block id="807f12cb6d4e38b470996608263f29ac" category="list-text"><block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block>停止したノードのプロンプトで、次のように入力します。</block>
   <block id="80ce63b6e2ae11a72a38bf7e4ef35369" category="paragraph"><block ref="924cd73da4c8e153eb2de352d5e9a0e1" prefix="" category="inline-code"></block></block>
   <block id="a0fd3a832d10febc3517df104c662c1d" category="paragraph"><block ref="c3e347fd62df99318c1112b24c25c070" prefix="" category="inline-code"></block></block>
   <block id="7fea19d34419d662a854d37c6044222a" category="list-text">ノードがブートしたら、プロンプトでノードのギブバックを実行します。</block>
   <block id="9fd57da49ac1975b29677831c2286586" category="paragraph"><block ref="fb72d634bc57a858bd0751f5c6335d6e" prefix="" category="inline-code"></block></block>
-  <block id="c5b67774bb32fdf25c42ebcc33f3e43d" category="list-text">アップグレードするDRグループの各ノードで、この手順を繰り返します。</block>
   <block id="6986e6230a992abf2372b5ddb288c1ec" category="list-text"><block ref="6986e6230a992abf2372b5ddb288c1ec" category="inline-link-macro-rx"></block></block>
   <block id="9cf1b9d10ebe2c0f0ae4072a054220a3" category="list-text"><block ref="9cf1b9d10ebe2c0f0ae4072a054220a3" category="inline-link-macro-rx"></block></block>
   <block id="d71cd39faa20e04542bb87bdbf15456a" category="list-text"><block ref="d71cd39faa20e04542bb87bdbf15456a" category="inline-link-macro-rx"></block></block>
@@ -14136,7 +14134,6 @@
   <block id="3d8c3985ef8f7b9c50308a5dfab923c4" category="paragraph"><block ref="f85c62a3a981a8b83a61b1dc7959165b" category="inline-link-macro-rx"></block>です。</block>
   <block id="ed1dd620ec6ed4baac7e1208e4a9d25d" category="summary">ONTAP 9.15.1以降で導入されたシステムをアップグレードする場合は、コントローラのアップグレードに進む前にbootargを設定する必要があります。</block>
   <block id="496db1855de52190cc06d85f972a650b" category="doc">必要なbootargの設定（ONTAP 9.15.1以降で導入されたシステムへのMetroCluster IPのアップグレードの場合）</block>
-  <block id="46e4bb8c59f161cfa278e9cc00ce227a" category="paragraph">ONTAP 9.15.1以降で導入されたシステムでコントローラをアップグレードする場合は、アップグレードを開始する前にbootargを設定する必要があります。</block>
   <block id="59b020257dd689cba5d5780a512943fd" category="section-title">手順1：古いコントローラで設定する必要があるbootargを特定する</block>
   <block id="6e9eadf85899a23a56a99cb9a6df7652" category="paragraph">サポートされている次のシステムへのアップグレードでは、コントローラのアップグレードを実行する前に、古いコントローラでbootargを設定する必要があります。</block>
   <block id="724bf3ae18d86521a5b9d77a13fcfddb" category="list-text">AFF C80用</block>
@@ -14777,4 +14774,10 @@
   <block id="c21a199bc091a4db6d90366971734cf9" category="paragraph"><block ref="c21a199bc091a4db6d90366971734cf9" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4d4e0d3e34b6b8a05aa28d2f8e68fab4" category="paragraph"><block ref="4d4e0d3e34b6b8a05aa28d2f8e68fab4" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e94f3a81af196da788fa0f158f9d57fc" category="sidebar">Active IQ Unified ManagerとSystem Managerを使用して詳細な設定と監視を行う方法</block>
+  <block id="5c1f1ec5000a0efcdda7a9cf624dafe7" category="paragraph">ONTAP 9.15.1以降で導入されたシステムでコントローラをアップグレードする場合、アップグレードを開始する前に古いコントローラでbootargを設定する必要があります。</block>
+  <block id="d7aa339b18c7637dfafa2ace54386b6c" category="admonition">アップグレードを開始する前に、両方のサイトの古いノードで必要なbootargをすべて設定する必要があります。</block>
+  <block id="ac37738788377720cfa00ec2fd76c841" category="list-text">両方のサイトで一方のノードを停止し、そのHAパートナーでノードのストレージテイクオーバーを実行できるようにします。</block>
+  <block id="0fd6026f96835994e1e5d178235825d6" category="list-text">アップグレードするDRグループまたはDRグループ内のすべてのノードで、この手順を繰り返します。</block>
+  <block id="29a7afcbdc44731ef5db6482e263bc76" category="paragraph">ONTAP 9.15.1以降で導入されたシステムをアップグレードする場合、アップグレードを開始する前に古いコントローラでbootargを設定する必要があります。</block>
+  <block id="ffb8d6643ebe516c638a6ca5b500299d" category="list-text">アップグレードするDRグループ内の4つのノードすべてに対して、この手順を繰り返します。</block>
 </blocks>
