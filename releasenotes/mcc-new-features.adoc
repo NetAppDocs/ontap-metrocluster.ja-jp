@@ -11,7 +11,9 @@ summary:
 
 
 [role="lead"]
-MetroClusterの新機能について説明します。
+ONTAP 9データ管理ソフトウェアの各リリースには、ONTAP MetroCluster構成の機能、管理性、パフォーマンスを向上させる新機能と強化された機能が搭載されています。
+
+ONTAP MetroCluster構成に影響する既知の問題、制限事項、およびアップグレードに関する注意事項の詳細については、『 https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9 リリースノート"^]。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。
 
 [cols="20,65,15"]
 |===
@@ -24,6 +26,33 @@ MetroClusterの新機能について説明します。
 ファームウェアパッケージのダウンロードにサーバでクレデンシャルが必要な場合は、FibreBridgeブリッジのファームウェアをクレデンシャルを使用して更新できます。
 
 link:../maintain/task_update_firmware_on_a_fibrebridge_bridge_parent_topic.html["FibreBridge ブリッジのファームウェアを更新します"]
+ a| 
+ONTAP 9 .16.1
+
+
+
+ a| 
+MetroCluster構成の移行におけるSVMデータ移動のサポート
+ a| 
+ONTAPでサポートされるMetroCluster SVMの移行は次のとおりです。
+
+* MetroCluster以外のHAペアとMetroCluster IP構成間でのSVMの移行
+* 2つのMetroCluster IP構成間でのSVMの移行
+* MetroCluster FC構成とMetroCluster IP構成間でのSVMの移行
+
+
+link:https://docs.netapp.com/us-en/ontap/svm-migrate/index.html["SVMのデータ移動"^]
+ a| 
+ONTAP 9 .16.1
+
+
+
+ a| 
+BGPピアグループのMD5認証サポート
+ a| 
+ONTAPはBGPピアグループでMD5認証をサポートして、BGPセッションを保護します。MD5がイネーブルの場合、BGPセッションは許可されたピア間でのみ確立および処理されるため、許可されていないアクターによるセッションの中断を防ぐことができます。
+
+link:https://docs.netapp.com/us-en/ontap/networking/configure_virtual_ip_@vip@_lifs.html["仮想IP（VIP）LIFの設定"^]
  a| 
 ONTAP 9 .16.1
 
@@ -55,6 +84,17 @@ ONTAP 9.15.1
 
 
  a| 
+MetroCluster IPでのNVMeのサポート
+ a| 
+NVMe/TCPフロントエンドホストプロトコルは、4ノードMetroCluster IP構成でサポートされます。
+
+link:https://docs.netapp.com/us-en/ontap/san-admin/san-config-mcc-concept.html["MetroCluster 環境のSAN構成"^]
+ a| 
+ONTAP 9.15.1
+
+
+
+ a| 
 AFF A900システムでの4ノードMetroCluster IP構成のボリューム制限の拡張
  a| 
 4ノードMetroCluster IP構成では、AFF A900システムの次のボリューム制限が引き上げられました。
@@ -63,6 +103,28 @@ AFF A900システムでの4ノードMetroCluster IP構成のボリューム制�
 * ノードあたりのFlexVolの最大ボリューム数が800から1250に増加しました。
 * ハイアベイラビリティ（HA）ペアあたりのFlexVolの最大数が1600から2500に増加しました。
 
+ a| 
+ONTAP 9.14.1
+
+
+
+ a| 
+ミラーアグリゲートとミラーされていないアグリゲートでのS3オブジェクトストレージのサポート
+ a| 
+MetroCluster IPおよびFC構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲート内のSVMでS3オブジェクトストレージサーバを有効にすることができます。
+
+https://docs.netapp.com/us-en/ontap/s3-config/ontap-version-support-s3-concept.html#s3-support-with-metrocluster["MetroClusterによるS3のサポート"^]
+ a| 
+ONTAP 9.14.1
+
+
+
+ a| 
+MetroClusterクラスタ内のミラーされたアグリゲートとミラーされていないアグリゲートでのS3バケットのプロビジョニングのサポート
+ a| 
+MetroCluster構成では、ミラーされたアグリゲートまたはミラーされていないアグリゲートにバケットを作成できます。
+
+link:https://docs.netapp.com/us-en/ontap/s3-config/create-bucket-mcc-task.html#process-to-create-buckets["MetroCluster構成のミラーされたアグリゲートまたはミラーされていないアグリゲートにONTAP S3バケットを作成する"^]
  a| 
 ONTAP 9.14.1
 
@@ -117,7 +179,7 @@ ONTAP 9.13.1
  a| 
 8ノードMetroCluster IP構成のコントローラとストレージをアップグレードするには、構成を拡張して一時的な12ノード構成にし、古いDRグループを削除します。
 
-https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/task_refresh_4n_mcc_ip.html["4 ノード MetroCluster IP 設定の更新"]
+https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/task_refresh_4n_mcc_ip.html["4 ノード MetroCluster IP 構成を更新"]
  a| 
 ONTAP 9.13.1
 
@@ -128,7 +190,7 @@ MetroCluster IP構成から共有ストレージMetroClusterスイッチ構成�
  a| 
 MetroCluster IP構成を共有ストレージMetroClusterスイッチ構成に変換できます。
 
-https://docs.netapp.com/us-en/ontap-metrocluster/maintain/task_replace_an_ip_switch.html["IP スイッチの交換"]
+https://docs.netapp.com/us-en/ontap-metrocluster/maintain/task_replace_an_ip_switch.html["IP スイッチを交換します"]
  a| 
 ONTAP 9.13.1
 
@@ -150,14 +212,36 @@ MetroCluster IP構成のミラーされていないアグリゲート上のSVM�
  a| 
 MetroCluster IP構成のミラーされていないアグリゲート上のSVMで、ONTAP Simple Storage Service（S3）オブジェクトストレージサーバを有効にすることができます。
 
-https://docs.netapp.com/us-en/ontap/s3-config/index.html#s3-configuration-with-system-manager-and-the-ontap-cli["System ManagerおよびONTAP CLIを使用したS3の設定"]
+https://docs.netapp.com/us-en/ontap/s3-config/ontap-version-support-s3-concept.html#s3-support-with-metrocluster["MetroClusterによるS3のサポート"^]
  a| 
 ONTAP 9.12.1
 
 
 
  a| 
-MetroCluster FC構成からAFF A250 / FAS500f MetroCluster IP構成への移行
+MetroCluster IPでのNVMeのサポート
+ a| 
+NVMe/FCプロトコルは、4ノードMetroCluster IP構成でサポートされます。
+
+link:https://docs.netapp.com/us-en/ontap/san-admin/san-config-mcc-concept.html["MetroCluster 環境のSAN構成"^]
+ a| 
+ONTAP 9.12.1
+
+
+
+ a| 
+MetroCluster IPおよびMetroClusterファブリック接続構成でのフロントエンドホストプロトコルのIPSecサポート
+ a| 
+フロントエンドホストプロトコル（NFSやiSCSIなど）のIPSecサポートは、MetroCluster IPおよびMetroClusterファブリック接続構成で使用できます。
+
+https://docs.netapp.com/us-en/ontap/networking/configure_ip_security_@ipsec@_over_wire_encryption.html["ワイヤ暗号化を介した IP セキュリティ（ IPsec ）を設定します"^]
+ a| 
+ONTAP 9.12.1
+
+
+
+ a| 
+MetroCluster FC構成からAFF A250またはFAS500f MetroCluster IP構成への移行
  a| 
 MetroCluster FC構成からAFF A250またはFAS500f MetroCluster IP構成に移行できます。
 
@@ -168,11 +252,22 @@ ONTAP 9.11.1
 
 
  a| 
+整合グループ
+ a| 
+MetroCluster構成では整合グループがサポートされます。
+
+https://docs.netapp.com/us-en/ontap/consistency-groups/index.html#multi-admin-verification-support-for-consistency-groups["MetroCluster構成の整合グループ"^]
+ a| 
+ONTAP 9.11.1
+
+
+
+ a| 
 MetroCluster FC構成でのノードのコントローラアップグレードの簡易化
  a| 
 スイッチオーバーとスイッチバックを使用するアップグレードプロセスのアップグレード手順が簡易化されました。
 
-https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html["スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成のコントローラをアップグレードする"]
+https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/task_upgrade_controllers_in_a_four_node_fc_mcc_us_switchover_and_switchback_mcc_fc_4n_cu.html["スイッチオーバーとスイッチバックを使用して、 MetroCluster FC 構成のコントローラをアップグレードします"]
  a| 
 ONTAP 9.10.1
 
@@ -190,111 +285,12 @@ ONTAP 9.9.1
 
 
  a| 
-8ノードクラスタのサポート
+8ノードMetroCluster構成のサポート
  a| 
-永続的な8ノードクラスタは、IPおよびファブリック接続構成でサポートされます。
+永続的な8ノードクラスタは、IPおよびファブリック接続MetroCluster構成でサポートされます。
 
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster コンポーネントの設置とケーブル接続"]
+https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster コンポーネントを設置してケーブルを配線します"]
  a| 
 ONTAP 9.9.1
-
-
-
- a| 
-System ManagerによるIP MetroCluster処理の管理インターフェイスの簡易化
- a| 
-System Managerを使用して、IP MetroClusterサイトのセットアップ、サイトのペアリング、クラスタの設定など、IP MetroClusterの処理を管理できます。
-
-https://docs.netapp.com/us-en/ontap/concept_metrocluster_manage_nodes.html["MetroCluster サイトを管理する"]
- a| 
-ONTAP 9.8
-
-
-
- a| 
-System ManagerでのIP MetroClusterのスイッチオーバーとスイッチバック
- a| 
-System Managerを使用して、IP MetroCluster構成に対して計画的または計画外のスイッチオーバーおよびスイッチバックのすべての手順を実行できます。
-
-https://docs.netapp.com/us-en/ontap/task_metrocluster_switchover_switchback.html["MetroCluster のスイッチオーバーとスイッチバック"]
- a| 
-ONTAP 9.8
-
-
-
- a| 
-MetroCluster FC から MetroCluster IP 構成への移行
- a| 
-既存の4ノードMetroCluster FC構成から新しいMetroCluster IP構成へのワークロードとデータの移行がサポートされます。
-
-https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_an_upgrade_method_mcc.html["MetroCluster 構成をアップグレード、更新、または拡張します"]
-
-https://docs.netapp.com/us-en/ontap-metrocluster/transition/concept_choosing_your_transition_procedure_mcc_transition.html["MetroCluster FC から MetroCluster IP に移行します"]
- a| 
-ONTAP 9.8
-
-
-
- a| 
-新しいアップグレード手順と更新手順
- a| 
-4ノードMetroClusterのFC / IP構成では、ハードウェアのアップグレードまたは更新がサポートされます。
-
-https://docs.netapp.com/us-en/ontap-metrocluster/upgrade/concept_choosing_an_upgrade_method_mcc.html["MetroCluster 構成をアップグレード、更新、または拡張します"]
-
-https://docs.netapp.com/us-en/ontap-metrocluster/transition/concept_choosing_your_transition_procedure_mcc_transition.html["MetroCluster FC から MetroCluster IP に移行します"]
- a| 
-ONTAP 9.8
-
-
-
- a| 
-ミラーされてないアグリゲート
- a| 
-ミラーされていないアグリゲートはMetroCluster IP構成でサポートされます。
-
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/considerations_unmirrored_aggrs.html["ミラーされていないアグリゲートに関する考慮事項"]
- a| 
-ONTAP 9.8
-
-
-
- a| 
-MetroCluster準拠スイッチ
- a| 
-MetroCluster IP構成では、NetApp仕様に準拠していれば、NetAppで検証されていないスイッチをサポートできます。
-
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_considerations_mc_compliant_switches.html["MetroCluster 準拠スイッチの使用に関する考慮事項"]
- a| 
-ONTAP 9.7
-
-
-
- a| 
-プライベートレイヤ2ネットワーク共有
- a| 
-サポート対象のCiscoスイッチを使用するMetroCluster IP構成では、専用のMetroCluster ISLを使用するのではなく、既存のネットワークをISLで共有できます。それよりも前のバージョンの ONTAP では専用の ISL が必要
-
-MetroCluster IPスイッチはMetroCluster構成専用であり、共有することはできません。共有スイッチに接続できるのは、 MetroCluster IP スイッチの MetroCluster ISL ポートだけです。
-
-[CAUTION]
-====
-共有ネットワークを使用する場合は、共有ネットワークの MetroCluster ネットワーク要件を満たす必要があります。
-
-====
-https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/index.html["MetroCluster IP のインストールと設定"]
- a| 
-ONTAP 9.6
-
-
-
- a| 
-MetroCluster のスイッチオーバーとスイッチバック
- a| 
-1つのクラスタサイトで別のクラスタサイトのタスクをテイクオーバーすることができます。メンテナンス時や災害からのリカバリ時に便利な機能です。
-
-https://docs.netapp.com/us-en/ontap-metrocluster/manage/index.html["MetroCluster のスイッチオーバーとスイッチバック"]
- a| 
-ONTAP 9.6
 
 |===
