@@ -1,0 +1,263 @@
+---
+permalink: install-ip/task-configure-log-collection-mccip.html 
+sidebar: sidebar 
+keywords: ip, switch, connection, configuring, configure, log, collection, snmp, debugging 
+summary: ヘルス監視にSNMPv3を使用するようにIPスイッチを設定できます。 
+---
+= MetroCluster IPスイッチでログ収集を構成する
+:allow-uri-read: 
+
+
+[role="lead"]
+MetroCluster IP 構成では、デバッグの目的でスイッチ ログを収集するようにログ収集を設定できます。
+
+
+CAUTION: BroadcomおよびCiscoスイッチでは、ログ収集を行うクラスタごとに新しいユーザーが必要です。例えば、MetroCluster 1、MetroCluster 2、MetroCluster 3、MetroCluster 4のそれぞれについて、スイッチ上で個別のユーザーを設定する必要があります。同一ユーザーに対して複数のSSHキーを設定することはサポートされていません。
+
+.このタスクについて
+イーサネットスイッチヘルスモニタ（CSHM）は、クラスタネットワークスイッチとストレージネットワークスイッチの動作の健全性を確認し、デバッグ用にスイッチのログを収集します。この手順では、収集を設定し、詳細な*サポート*ログを要求し、AutoSupportによって収集される*定期的*データの1時間ごとの収集を有効にするプロセスをガイドします。
+
+*注：* FIPSモードを有効にする場合は、次の手順を実行する必要があります。
+
+[NOTE]
+====
+. ベンダーの指示に従って、スイッチでSSHキーを再生成します。
+. を使用したONTAPでのSSHキーの再生成 `debug system regenerate-systemshell-key-pair`
+.  `system switch ethernet log setup-password`コマンドを使用してログ収集セットアップルーチンを再実行します。
+
+
+====
+
+
+== 作業を開始する前に
+
+* ユーザはスイッチコマンドにアクセスできる必要があります `show` 。これらが使用できない場合は、新しいユーザを作成し、必要な権限をユーザに付与します。
+* スイッチのヘルスモニタが有効になっている必要があります。これを確かめるためには、  `Is Monitored:`フィールドが*true*に設定されている場合は、  `system switch ethernet show`指示。
+* BroadcomおよびCiscoスイッチを使用したログ収集の場合：
++
+** ユーザにはネットワーク管理Privilegesが必要です。
+** ログ収集を有効にして、クラスタセットアップごとにスイッチに新しいユーザを作成する必要があります。これらのスイッチは、同じユーザに対して複数のSSHキーをサポートしません。追加のログ収集設定を実行すると、そのユーザの既存のSSHキーが上書きされます。
+
+
+* NVIDIAスイッチを使用したログ収集をサポートするには、 `cl-support`パスワードを入力せずにコマンドを実行できる_user_forログ収集を許可する必要があります。この使用を許可するには、次のコマンドを実行します。
++
+`echo '_<user>_ ALL = NOPASSWD: /usr/cumulus/bin/cl-support' | sudo EDITOR='tee -a' visudo -f /etc/sudoers.d/cumulus`
+
+
+
+
+
+== 手順
+
+[role="tabbed-block"]
+====
+.ONTAP 9.15.1以降
+--
+. ログ収集を設定するには、スイッチごとに次のコマンドを実行します。ログ収集用のスイッチ名、ユーザ名、およびパスワードの入力を求められます。
++
+*注意:* ユーザー指定プロンプトに「y」と答える場合は、ユーザーが以下の必要な権限を持っていることを確認してください。 <<作業を開始する前に>> 。
+
++
+[source, cli]
+----
+system switch ethernet log setup-password
+----
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+*cs1*
+*cs2*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *cs1*
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *cs2*
+
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+----
+
+
+
+NOTE: CL 5.11.1 の場合、ユーザー *cumulus* を作成し、次のプロンプトに *y* と応答します: ログ収集に admin 以外のユーザーを指定しますか? {y|n}: *y*
+
+. [[step2]]定期的なログ収集を有効にする:
++
+[source, cli]
+----
+system switch ethernet log modify -device <switch-name> -periodic-enabled true
+----
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log modify -device cs1 -periodic-enabled true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+*cs1*: Periodic log collection has been scheduled to run every hour.
+
+cluster1::*> *system switch ethernet log modify -device cs2 -periodic-enabled true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+*cs2*: Periodic log collection has been scheduled to run every hour.
+
+cluster1::*> *system switch ethernet log show*
+                                          Periodic    Periodic    Support
+Switch                                    Log Enabled Log State   Log State
+
+cs1                                       true        scheduled   never-run
+cs2                                       true        scheduled   never-run
+2 entries were displayed.
+----
+. サポートログ収集のリクエスト：
++
+[source, cli]
+----
+system switch ethernet log collect-support-log -device <switch-name>
+----
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log collect-support-log -device cs1*
+
+*cs1*: Waiting for the next Ethernet switch polling cycle to begin support collection.
+
+cluster1::*> *system switch ethernet log collect-support-log -device cs2*
+
+*cs2*: Waiting for the next Ethernet switch polling cycle to begin support collection.
+
+cluster1::*> *system switch ethernet log show
+                                          Periodic    Periodic    Support
+Switch                                    Log Enabled Log State   Log State
+
+cs1                                       false       halted      initiated
+cs2                                       true        scheduled   initiated
+2 entries were displayed.
+----
+. イネーブルメント、ステータスメッセージ、前回のタイムスタンプと定期収集のファイル名、要求ステータス、ステータスメッセージ、前回のタイムスタンプとサポート収集のファイル名など、ログ収集のすべての詳細を表示するには、次のコマンドを使用します。
++
+[source, cli]
+----
+system switch ethernet log show -instance
+----
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log show -instance*
+
+                    Switch Name: cs1
+           Periodic Log Enabled: true
+            Periodic Log Status: Periodic log collection has been scheduled to run every hour.
+    Last Periodic Log Timestamp: 3/11/2024 11:02:59
+          Periodic Log Filename: cluster1:/mroot/etc/log/shm-cluster-info.tgz
+          Support Log Requested: false
+             Support Log Status: Successfully gathered support logs - see filename for their location.
+     Last Support Log Timestamp: 3/11/2024 11:14:20
+           Support Log Filename: cluster1:/mroot/etc/log/shm-cluster-log.tgz
+
+                    Switch Name: cs2
+           Periodic Log Enabled: false
+            Periodic Log Status: Periodic collection has been halted.
+    Last Periodic Log Timestamp: 3/11/2024 11:05:18
+          Periodic Log Filename: cluster1:/mroot/etc/log/shm-cluster-info.tgz
+          Support Log Requested: false
+             Support Log Status: Successfully gathered support logs - see filename for their location.
+     Last Support Log Timestamp: 3/11/2024 11:18:54
+           Support Log Filename: cluster1:/mroot/etc/log/shm-cluster-log.tgz
+2 entries were displayed.
+----
+
+
+--
+.ONTAP 9.14.1以前
+--
+. ログ収集を設定するには、スイッチごとに次のコマンドを実行します。ログ収集用のスイッチ名、ユーザ名、およびパスワードの入力を求められます。
++
+*注：*ユーザー指定プロンプトに応答する場合は `y`、で説明されているように、ユーザーに必要な権限があることを確認してください<<作業を開始する前に>>。
+
++
+[source, cli]
+----
+system switch ethernet log setup-password
+----
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+*cs1*
+*cs2*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *cs1*
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *cs2*
+
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+----
+
+
+
+NOTE: CL 5.11.1 の場合、ユーザー *cumulus* を作成し、次のプロンプトに *y* と応答します: ログ収集に admin 以外のユーザーを指定しますか? {y|n}: *y*
+
+. [[step2]] サポートログの収集を要求し、定期的な収集を有効にするには、次のコマンドを実行します。これにより、詳細なログと1時間ごとのデータ収集の両方のタイプのログ収集が開始されます。 `Support` `Periodic`
++
+[source, cli]
+----
+system switch ethernet log modify -device <switch-name> -log-request true
+----
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+
+cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+----
++
+10分待ってから、ログ収集が完了したことを確認します。
+
++
+[source, cli]
+----
+system switch ethernet log show
+----
+
+
+--
+====
+
+CAUTION: ログ収集機能によってエラーステータスが報告された場合（の出力に表示され `system switch ethernet log show`ます）、詳細については、を参照してください link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-cshm/log-collection-troubleshoot.html["ログ収集のトラブルシューティング"^] 。

@@ -2,24 +2,24 @@
 permalink: install-ip/task_configuring_the_ontap_mediator_service_from_a_metrocluster_ip_configuration.html 
 sidebar: sidebar 
 keywords: metrocluster, mediator, configure 
-summary: MetroCluster IP 構成で ONTAP メディエーターサービスを使用するには、 ONTAP ノードで設定する必要があります。 
+summary: MetroCluster IP 構成で使用するには、ONTAP ノードで ONTAP Mediator を構成する必要があります。 
 ---
-= MetroCluster IP 構成から ONTAP メディエーターサービスを設定します
+= MetroCluster IP構成からONTAPメディエーターを構成する
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-MetroCluster IP 構成で ONTAP メディエーターサービスを使用するには、 ONTAP ノードで設定する必要があります。
+MetroCluster IP 構成で使用するには、ONTAP ノードで ONTAP Mediator を構成する必要があります。
 
 .作業を開始する前に
-* 両方の MetroCluster サイトからアクセスできるネットワークの場所に ONTAP メディエーターがインストールされている必要があります。
+* ONTAP Mediator は、両方の MetroCluster サイトからアクセスできるネットワークの場所に正常にインストールされている必要があります。
 +
-link:https://docs.netapp.com/us-en/ontap/mediator/index.html["ONTAP メディエーターサービスをインストールまたはアップグレードします"^]
+link:https://docs.netapp.com/us-en/ontap/mediator/index.html["ONTAPメディエーターをインストールまたはアップグレードする"^]
 
-* ONTAP メディエーターサービスを実行するホストの IP アドレスが必要です。
-* ONTAP メディエーターサービスのユーザ名とパスワードが必要です。
+* ONTAP Mediator を実行しているホストの IP アドレスが必要です。
+* ONTAP Mediator のユーザー名とパスワードが必要です。
 * MetroCluster IP 構成のすべてのノードがオンラインになっている必要があります。
 
 
@@ -29,11 +29,11 @@ CAUTION: ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動�
 .このタスクについて
 * このタスクでは、自動計画外スイッチオーバーをデフォルトで有効にします。
 * このタスクは、 MetroCluster IP 構成の任意のノードの ONTAP インターフェイスで実行できます。
-* ONTAP メディエーターサービスは、 1 つのインストールにつき最大 5 つの MetroCluster IP 構成で設定できます。
+* ONTAP Mediator の 1 つのインストールで、最大 5 つの MetroCluster IP 構成を設定できます。
 
 
 .手順
-. ONTAP メディエーターサービスを ONTAP に追加します。
+. ONTAP に ONTAP Mediator を追加します。
 +
 MetroCluster の構成設定メディエーターの追加 mediator-address_ip-address-bmediator-host_`
 

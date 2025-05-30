@@ -1,0 +1,57 @@
+---
+permalink: install-ip/manage-monitor.html 
+sidebar: sidebar 
+keywords: ip, switch, connection, manage, broadcom, snmp, health, monitoring 
+summary: ほとんどの場合、イーサネットスイッチはONTAPによって自動的に検出され、CSHMによって監視されます。スイッチに適用されるリファレンス構成ファイル（RCF）では、特にCisco検出プロトコル（CDP）やリンク層検出プロトコル（LLDP）が有効になります。 
+---
+= MetroCluster IP構成におけるイーサネットスイッチの監視を管理する
+:allow-uri-read: 
+
+
+[role="lead"]
+ほとんどの場合、イーサネットスイッチはONTAPによって自動的に検出され、CSHMによって監視されます。スイッチに適用されるリファレンス構成ファイル（RCF）では、特にCisco検出プロトコル（CDP）やリンク層検出プロトコル（LLDP）が有効になります。ただし、検出されなかったスイッチを手動で追加したり、使用されなくなったスイッチを削除したりしなければならない場合があります。また、メンテナンス中など、スイッチを構成内に残したまま、アクティブな監視を停止することもできます。
+
+
+
+== ONTAPで監視できるようにスイッチエントリを作成します。
+
+.このタスクについて
+指定したイーサネットスイッチの監視を手動で設定してイネーブルにするには、コマンドを使用し `system switch ethernet create`ます。これは、ONTAPでスイッチが自動的に追加されない場合、または以前にスイッチを削除してから再度追加する場合に役立ちます。
+
+[source, cli]
+----
+system switch ethernet create -device DeviceName -address 1.2.3.4 -snmp-version SNMPv2c -community-or-username cshm1! -model NX3132V -type cluster-network
+----
+典型的な例としては、IPアドレスが1.2.3.4、SNMPv2cクレデンシャルが*cshm1!*に設定された[DeviceName]という名前のスイッチを追加します。ストレージスイッチを設定する場合は、の代わりにを `-type cluster-network`使用し `-type storage-network`ます。
+
+
+
+== スイッチを削除せずに監視を無効にする
+
+特定のスイッチの監視を一時停止または停止し、今後の監視用に残しておく場合は、パラメータを削除するのではなく変更します `is-monitoring-enabled-admim`。
+
+例：
+
+[source, cli]
+----
+system switch ethernet modify -device DeviceName -is-monitoring-enabled-admin false
+----
+これにより、新しいアラートを生成したり再検出したりすることなく、スイッチの詳細と設定を保持できます。
+
+
+
+== 不要になったスイッチを削除
+
+切断されたスイッチまたは不要になったスイッチを削除する場合に使用し `system switch ethernet delete`ます。
+
+[source, cli]
+----
+system switch ethernet delete -device DeviceName
+----
+デフォルトでは、このコマンドが成功するのは、ONTAPがCDPまたはLLDPを介して現在スイッチを検出していない場合だけです。検出されたスイッチを削除するには、パラメータを使用し `-force`ます。
+
+[source, cli]
+----
+system switch ethernet delete -device DeviceName -force
+----
+を使用している場合、 `-force`ONTAPがスイッチを再度検出すると、スイッチが自動的に再追加されることがあります。

@@ -1,0 +1,61 @@
+---
+permalink: install-ip/task-monitor-verify-mccip.html 
+sidebar: sidebar 
+keywords: ip, switch, connection, configuring, configure, health, monitoring 
+summary: ヘルス監視にSNMPv3を使用するようにIPスイッチを設定できます。 
+---
+= MetroCluster IP構成におけるイーサネットスイッチの監視を確認する
+:allow-uri-read: 
+
+
+[role="lead"]
+イーサネットスイッチヘルスモニタ（CSHM）は、検出したスイッチの監視を自動的に試みます。ただし、スイッチが正しく設定されていないと、監視が自動的に行われないことがあります。ヘルスモニタが使用中のスイッチを監視するように適切に設定されていることを確認してください。
+
+
+
+== 接続されているイーサネットスイッチの監視を確認する
+
+.このタスクについて
+接続されたイーサネットスイッチが監視されていることを確認するには、次のコマンドを実行します。
+
+[source, cli]
+----
+system switch ethernet show
+----
+列に「* other *」と表示されているか、 `IS Monitored`フィールドに「* false *」と表示されている場合 `Model`、ONTAPはスイッチを監視できません。通常、値* other *は、ONTAPがヘルスモニタでそのスイッチをサポートしていないことを示します。
+
+ `IS Monitored`フィールドに指定された理由により、フィールドは* false *に設定されます `Reason`。
+
+[NOTE]
+====
+コマンド出力にスイッチが表示されない場合は、ONTAPで検出されていない可能性があります。スイッチが正しくケーブル接続されていることを確認します。必要に応じて、スイッチを手動で追加できます。詳細については、を参照してください link:manage-monitor.html["イーサネットスイッチの監視を管理します。"] 。
+
+====
+
+
+== ファームウェアとRCFのバージョンが最新であることを確認する
+
+スイッチがサポートされている最新のファームウェアを実行しており、互換性があるリファレンス構成ファイル（RCF）が適用されていることを確認してください。詳細については、を参照してhttps://mysupport.netapp.com/site/downloads["ネットアップサポートのダウンロードページ"^]ください。
+
+デフォルトでは、ヘルスモニタはコミュニティストリング* cshm1！*を含むSNMPv2cを監視に使用しますが、SNMPv3も設定できます。
+
+デフォルトのSNMPv2cコミュニティストリングを変更する必要がある場合は、スイッチに適切なSNMPv2cコミュニティストリングが設定されていることを確認してください。
+
+[source, cli]
+----
+system switch ethernet modify -device SwitchA -snmp-version SNMPv2c -community-or-username newCommunity!
+----
+
+NOTE: SNMPv3を使用するための設定の詳細については、を参照してくださいlink:config-snmpv3.html["オプション：SNMPv3を設定する"]。
+
+
+
+== 管理ネットワーク接続の確認
+
+スイッチの管理ポートが管理ネットワークに接続されていることを確認します。
+
+ONTAPでSNMPクエリとログ収集を実行するには、適切な管理ポート接続が必要です。
+
+.関連情報
+* link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-cshm/monitor-troubleshoot.html["アラートのトラブルシューティング"^]
+

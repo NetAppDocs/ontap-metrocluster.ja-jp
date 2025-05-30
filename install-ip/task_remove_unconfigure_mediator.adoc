@@ -1,23 +1,23 @@
 ---
 permalink: install-ip/task_remove_unconfigure_mediator.html 
 sidebar: sidebar 
-keywords: ontap, mediator, service, assist, remove, unconfigure, requirements, mediator requirements 
-summary: MetroCluster IP構成からONTAP メディエーターサービスを削除できます。 
+keywords: ontap, mediator, assist, remove, unconfigure, requirements, mediator requirements 
+summary: MetroCluster IP 構成から ONTAP メディエーターを削除できます。 
 ---
-= MetroCluster IP設定からONTAP メディエーターサービスの設定を解除します
+= MetroCluster IP構成からONTAPメディエーターの構成を解除します
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-ONTAP メディエーターサービスの設定をMetroCluster IP設定から解除できます。
+MetroCluster IP 構成から ONTAP Mediator の構成を解除できます。
 
 .作業を開始する前に
-両方のMetroCluster サイトからアクセスできるネットワークの場所にONTAP メディエーターがインストールされて設定されている必要があります。
+両方の MetroCluster サイトからアクセスできるネットワークの場所に ONTAP Mediator を正常にインストールして構成しておく必要があります。
 
 .手順
-. 次のコマンドを使用して、ONTAP メディエーターサービスの設定を解除します。
+. 次のコマンドを使用して、ONTAP Mediator の構成を解除します。
 +
 MetroCluster 構成設定のメディエーターが削除されました
 
@@ -26,7 +26,7 @@ ONTAPメディエーターの管理者ユーザアカウントのユーザ名と
 
 +
 
-NOTE: ONTAPメディエーターが停止している場合は、 `metrocluster configuration-settings mediator remove` ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求めるプロンプトが引き続き表示され、ONTAPメディエーターサービスがMetroCluster構成から削除されます。
+NOTE: ONTAPメディエーターがダウンしている場合は、  `metrocluster configuration-settings mediator remove`コマンドを実行すると、引き続き ONTAP Mediator 管理者ユーザー アカウントのユーザー名とパスワードの入力が求められ、MetroCluster 構成から ONTAP Mediator が削除されます。
 
 +
 .. 次のコマンドを使用して、破損ディスクがないかどうかを確認します。
@@ -42,7 +42,7 @@ There are no entries matching your query.
 ....
 
 
-. 両方のクラスタで次のコマンドを実行して、ONTAP メディエーターサービスがMetroCluster 構成から削除されたことを確認します。
+. 両方のクラスタで次のコマンドを実行して、ONTAP Mediator が MetroCluster 構成から削除されていることを確認します。
 +
 .. `metrocluster configuration-settings mediator show`
 +

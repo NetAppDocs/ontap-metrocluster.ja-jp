@@ -77,9 +77,23 @@ entries:
       - title: Cisco 9336C スイッチに MACsec 暗号化を設定します
         url: "/install-ip/task_switch_config_cisco_macsec.html"
     - title: NVIDIA IPスイッチを設定します
-      url: "/install-ip/task_switch_config_nvidia.html"
-    - title: 健全性監視用のMetroCluster IPスイッチの設定
-      url: "/install-ip/task_config_switch_health.html"
+      entries:
+      - title: NVIDIA SN2100スイッチを設定します
+        url: "/install-ip/task_switch_config_nvidia.html"
+      - title: CSHMファイルをインストールする
+        url: "/install-ip/task-nvidia-health-monitoring.html"
+  - title: MetroCluster IPスイッチの健全性を監視する
+    entries:
+    - title: MetroCluster IP構成におけるスイッチヘルスモニタリングについて学習します
+      url: "/install-ip/configure-cshm-mccip.html"
+    - title: MetroCluster IPスイッチでSNMPv3を構成する
+      url: "/install-ip/config-snmpv3.html"
+    - title: MetroCluster IPスイッチでのログ収集を構成する
+      url: "/install-ip/task-configure-log-collection-mccip.html"
+    - title: イーサネットスイッチの監視を管理する
+      url: "/install-ip/manage-monitor.html"
+    - title: イーサネットスイッチの監視を確認する
+      url: "/install-ip/task-monitor-verify-mccip.html"
 - title: ONTAP で MetroCluster ソフトウェアを設定します
   entries:
   - title: CLIを使用したMetroClusterソフトウェアの設定
@@ -118,19 +132,19 @@ entries:
       url: "/install-ip/set-up-mcc-peering-system-manager.html"
     - title: MetroCluster IPサイトの設定
       url: "/install-ip/configure-mcc-site-system-manager.html"
-- title: 自動計画外スイッチオーバーのための ONTAP メディエーターサービスを設定します
+- title: 計画外の自動スイッチオーバー用に ONTAP Mediator を構成する
   entries:
-  - title: ONTAP メディエーターサービスをインストールする準備をします
+  - title: ONTAPメディエーターのインストール準備
     url: "/install-ip/concept_mediator_requirements.html"
-  - title: MetroCluster IP 構成での ONTAP メディエーターサービスの設定
+  - title: MetroCluster IP構成からのONTAPメディエーターの構成
     url: "/install-ip/task_configuring_the_ontap_mediator_service_from_a_metrocluster_ip_configuration.html"
-  - title: MetroCluster IP設定からONTAP メディエーターサービスの設定を解除します
+  - title: MetroCluster IP構成からONTAPメディエーターの構成を解除します
     url: "/install-ip/task_remove_unconfigure_mediator.html"
   - title: MetroCluster 構成を別の ONTAP メディエーターインスタンスに接続します
     url: "/install-ip/task_connecting_mcc_to_different_mediator_instance.html"
-  - title: ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
+  - title: ONTAPメディエーターが計画外の自動スイッチオーバーをサポートする仕組み
     url: "/install-ip/concept-ontap-mediator-supports-automatic-unplanned-switchover.html"
-  - title: システムマネージャを使用したONTAPメディエーターの管理
+  - title: System Manger で ONTAP Mediator を管理する
     url: "/install-ip/task-sm-mediator.html"
 - title: MetroCluster 構成をテストする
   url: "/install-ip/task_test_the_mcc_configuration.html"

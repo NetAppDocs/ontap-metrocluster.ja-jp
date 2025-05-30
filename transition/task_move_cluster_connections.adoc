@@ -64,21 +64,42 @@ e0b 、 e0d
 | スイッチモデル | MetroCluster IP ノードモデル | スイッチポート | に接続します 
 
 
-.2+| Cisco 3132Q-V、3232C、または9336C-FX2 .2+| 任意  a| 
-5.
+| Cisco 3132Q-V の設定  a| 
+任意
+ a| 
+5、6
  a| 
 FCノード上のローカルクラスタインターフェイス
 
 
 
  a| 
-6.
+Cisco 3232C、または9336C-FX2
+ a| 
+任意
+ a| 
+5、6、または13、14
+
+*注意:* スイッチ ポート 13 および 14 は、2 つの速度モードを選択した場合にのみ使用できます。
  a| 
 FCノード上のローカルクラスタインターフェイス
 
 
 
-.6+| Broadcom BES-53248 の場合  a| 
+ a| 
+Cisco 9336C-FX2 共有
+ a| 
+任意
+ a| 
+3、4、または11、12
+
+*注意:* スイッチ ポート 11 および 12 は、2 つの速度モードを選択した場合にのみ使用できます。
+ a| 
+FCノード上のローカルクラスタインターフェイス
+
+
+
+.3+| Broadcom BES-53248 の場合  a| 
 FAS500f/A250
  a| 
 1 ~ 6
@@ -100,6 +121,19 @@ FCノード上のローカルクラスタインターフェイス
 FAS8300 / A400 / FAS8700
  a| 
 1 ~ 6
+ a| 
+FCノード上のローカルクラスタインターフェイス
+
+
+
+ a| 
+NVIDIA SN2100
+ a| 
+任意
+ a| 
+5、6、または11、12
+
+*注意:* スイッチ ポート 11 および 12 は、2 つの速度モードを選択した場合にのみ使用できます。
  a| 
 FCノード上のローカルクラスタインターフェイス
 
@@ -271,20 +305,23 @@ link:../install-ip/concept_considerations_differences.html["MetroCluster IP の�
 MetroCluster IP ノードでサポートされる最新のファームウェアを使用する必要があります。
 
 +
-*** link:../install-ip/task_switch_config_broadcom.html["Broadcom スイッチの EFOS ソフトウェアのダウンロードとインストール"]
-*** link:../install-ip/task_switch_config_cisco.html["Cisco スイッチの NX-OS ソフトウェアのダウンロードとインストール"]
+*** link:../install-ip/task_switch_config_broadcom.html["BroadcomスイッチのEFOSソフトウェアをダウンロードしてインストールする"]
+*** link:../install-ip/task_switch_config_cisco.html["CiscoスイッチのNX-OSソフトウェアのダウンロードとインストール"]
+*** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-cumulus-software["NVIDIA Cumulusソフトウェアをダウンロードしてインストールする"]
 
 
 .. 新しい RCF ファイルを適用するための IP スイッチを準備します。
 +
-*** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセット"] **
-*** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを工場出荷時のデフォルトにリセットする"]
+*** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを工場出荷時のデフォルトにリセットします"]
+*** link:../install-ip/task_switch_config_cisco.html["Cisco IPスイッチを工場出荷時のデフォルトにリセットする"]
+*** link:../install-ip/task_switch_config_nvidia.html#reset-the-nvidia-ip-sn2100-switch-to-factory-defaults["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
 .. 使用しているスイッチベンダーに応じて、 IP RCF ファイルをダウンロードしてインストールします。
 +
-*** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP の RCF ファイルをダウンロードしてインストールします"]
+*** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP RCF ファイルのダウンロードとインストール"]
 *** link:../install-ip/task_switch_config_cisco.html["Cisco IP RCF ファイルのダウンロードとインストール"]
+*** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA RCFファイルをダウンロードしてインストールする"]
 
 
 

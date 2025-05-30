@@ -1,0 +1,24 @@
+---
+permalink: install-ip/configure-cshm-mccip.html 
+sidebar: sidebar 
+keywords: ip, switch, connection, configuring, configure, snmp, health, monitoring 
+summary: ヘルス監視にSNMPv3を使用するようにIPスイッチを設定できます。 
+---
+= MetroCluster IP構成におけるスイッチヘルスモニタリングの概要
+:allow-uri-read: 
+
+
+[role="lead"]
+イーサネットスイッチヘルスモニタ（CSHM）は、クラスタネットワークスイッチとストレージネットワークスイッチの動作の健全性を確認し、デバッグ用にスイッチのログを収集します。
+
+
+
+== MetroCluster IP構成でCSHMを構成する際の重要な注意事項
+
+このセクションでは、Cisco、Broadcom、NVIDIA SN2100スイッチでSNMPv3とログ収集を設定するための一般的な手順について説明します。MetroCluster構成でサポートされているスイッチファームウェアバージョンに応じた手順に従う必要があります。link:https://hwu.netapp.com/["Hardware Universe"^]サポートされているファームウェアのバージョンを確認します。
+
+MetroCluster 構成では、ローカル クラスタ スイッチに対してのみヘルス モニタリングを構成します。
+
+BroadcomおよびCiscoスイッチでログ収集を行う場合、ログ収集が有効になっているクラスタごとに、スイッチ上に新しいユーザーを作成する必要があります。MetroCluster構成では、MetroCluster 1、MetroCluster 2、MetroCluster 3、およびMetroCluster 4のそれぞれについて、スイッチ上に個別のユーザーを設定する必要があります。これらのスイッチは、同じユーザに対して複数のSSHキーをサポートしません。追加のログ収集設定を実行すると、そのユーザの既存のSSHキーが上書きされます。
+
+CSHM を設定する前に、不要な ISL アラートを回避するために、使用されていない ISL を無効にする必要があります。

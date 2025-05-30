@@ -122,7 +122,17 @@ NOTE: オンボードポートはコントローラハードウェア（スロ�
 | プラットフォームモデル | 必要なギガビットイーサネットアダプタ | アダプタに必要なスロット | ポート 
 
 
-| AFF A900、ASA A900、およびFAS9500 | X91146A | スロット 5 、スロット 7 | e5b 、 e7b 
+ a| 
+AFF A900、ASA A900、およびFAS9500
+ a| 
+X91146A
+ a| 
+スロット 5 、スロット 7
+ a| 
+e5b 、 e7b
+
+*注:* ポートe5aとe7aはクラスタ間LIFにのみ使用できます。これらのポートをデータLIFに使用することはできません。
+
 
 
  a| 
@@ -284,7 +294,10 @@ link:concept_considerations_drive_assignment.html["MetroCluster IP構成での�
 
 サポートされる最小構成では、各サイトに少なくとも 1 台のシェルフが必要です。
 
-MetroCluster 構成では、 RAID-DP と RAID 4 がサポートされます。
+MetroCluster 構成は、RAID-DP、RAID4、および RAID-TEC をサポートします。
+
+
+NOTE: ONTAP 9.4以降のMetroCluster IP構成では、自動ディスク割り当てとアドバンストドライブパーティショニングを使用した新規インストールがサポートされます。詳細については、を参照してください link:../install-ip/concept_considerations_drive_assignment.html["自動ドライブ割り当てとADPシステムに関する考慮事項"] 。
 
 
 

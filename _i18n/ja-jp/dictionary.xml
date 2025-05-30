@@ -2270,7 +2270,6 @@
   <block id="31be3c42fe24fde34f7b5b0f0fa6c7b2" category="list-text">想定されるすべてのノードが表示されることを確認します。</block>
   <block id="b8f4d9367862f5c87fb645221621118e" category="list-text">必要に応じて、構成に応じて手順を使用してリストアを監視します。</block>
   <block id="ed7a4b5d0c8cfc6aae771a5fca62c9d8" category="cell">この手順を使用します</block>
-  <block id="be2b988a9bd1cbe3fb5a48e44bcd446d" category="inline-link-macro">MetroCluster IP 構成での ONTAP メディエーターサービスの設定</block>
   <block id="71552d252d208c0142b1ed2ce8951b06" category="summary">既存のコントローラモジュールと新しいコントローラモジュールの電源をオンにして LOADER プロンプトを表示します。</block>
   <block id="ee7374ec7fd19ba02336ce3e2359f57e" category="doc">両方のコントローラモジュールの電源投入と LOADER プロンプトの表示</block>
   <block id="fe99e3f55f6f4b47e223767bb8009489" category="list-text">構成に対応した手順で、コントローラモジュールの電源をオンにしてブートプロセスを中断します。</block>
@@ -2850,7 +2849,6 @@
   <block id="3c53e5775877727336cb67e854c78a79" category="list-text">新しい IP スイッチを設置してラックに設置します。</block>
   <block id="bc4f214d80008718500b069cac10f107" category="list-text">必要に応じて、スイッチのファームウェアをサポートされているバージョンにアップデートします。</block>
   <block id="0031dbc1afe1c2ec91d4c02136da5eb6" category="list-text">RCF ジェネレータツールを使用してスイッチベンダーとプラットフォームモデルに応じた RCF ファイルを作成し、その後ファイルでスイッチを更新します。</block>
-  <block id="97a377942f4f2e5cbecdba36cbfb77ea" category="inline-link-macro">Broadcom IP の RCF ファイルをダウンロードしてインストールします</block>
   <block id="26335ad95c44f5e233c28d27ab09f461" category="doc">FC から IP への無停止での移行に関する要件</block>
   <block id="ab15e3a0446aa2c30baef0a6d039dff1" category="list-text">既存のプラットフォームと新しいプラットフォームの組み合わせは、移行対象としてサポートされている必要があります。</block>
   <block id="c5ca83d0e723113560fb2c95b33b532b" category="inline-xref-macro">無停止移行でサポートされるプラットフォーム</block>
@@ -2894,7 +2892,6 @@
   <block id="f41e50bab2cb24fbe619e365ab4a650c" category="list-text">必要に応じて、コントローラの名前を移行時に変更できます。コントローラの名前を変更するには、「 system node rename -node &lt;old-name&gt; -newname &lt;new-name&gt; 」コマンドを使用します</block>
   <block id="9d5dedaa21b8b6a9a7e44d2adc53aac3" category="paragraph">名前変更処理が完了するまでに数分かかることがあります。system show -fields node コマンドを使用して他の手順を続行する前に、名前の変更が各ノードに伝播されていることを確認します。</block>
   <block id="d5c7b5758935e090373e3105cfac7ea4" category="list-text">必要に応じて監視サービスを設定します。</block>
-  <block id="6d83b3cc0c5c986a38aa0e7f75c60a63" category="inline-link-macro">自動計画外スイッチオーバーのための ONTAP メディエーターサービスの設定</block>
   <block id="9cc3a2a2e8c24fe291907c539aa19b26" category="paragraph">移行が完了したら、メンテナンスの終了を通知する AutoSupport メッセージを送信してケースの自動作成を再開します。</block>
   <block id="41b8790769bbfee8f1ded6ca87dc546a" category="list-text">問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT=end 」</block>
   <block id="52f72ede6203ab699b41d971d336eaed" category="summary">新しいノードを追加したら、移行手順を完了して、 MetroCluster IP ノードを設定する必要があります。</block>
@@ -6653,7 +6650,6 @@
   <block id="574f9a8da95ec242c137072cf107f07d" category="list-text">スイッチがリロードされるまで待ってから、スイッチにログインします。</block>
   <block id="abcf8ee1041922b5a789f2316fa6df7b" category="paragraph">デフォルトのユーザは「 admin 」で、パスワードは設定されていません。次のようなプロンプトが表示されます。</block>
   <block id="3f0f3a6fe3831ca46e275019ef0c0976" category="paragraph">次の例は、ポートが稼働しており、正しいアドレスが割り当てられていることを示しています。</block>
-  <block id="f279cda33d8658b285d1ba4a42773651" category="list-text">必要に応じて、 SSH サーバを設定します。</block>
   <block id="f0630dda98a33b3b99be916ac28603b0" category="admonition">RCF ファイルで Telnet プロトコルが無効になります。SSH サーバを設定しない場合は、シリアルポート接続を使用してブリッジにアクセスする必要があります。</block>
   <block id="4cbd2061568d423e0fdf461dfa55b473" category="list-text">RSA キーを生成します。</block>
   <block id="2adc88e53d20b1a61cccff951117e58f" category="list-text">SSH サーバを有効にします。</block>
@@ -6668,7 +6664,6 @@
   <block id="2ac5b29f2d20bbfbdc32651d31618463" category="summary">8 ノード構成は、 2 つの DR グループで構成されます。このセクションのタスクを使用して、最初の DR グループを設定します。</block>
   <block id="146d142d8ea797f93d593a6fe9556787" category="doc">8 ノード構成の処理</block>
   <block id="dd42913fad72868b65fced98cfecfcd6" category="paragraph">次に、のタスクを実行します <block ref="3e70f7d1f526cf6dd7a89a97c88d0cc8" category="inline-link-macro-rx"></block></block>
-  <block id="927ed696d98572bdb5039cbffcfdb480" category="section-title">MetroCluster 構成でメディエーターを使用するためのネットワーク要件</block>
   <block id="1a03f6720968dfb968df6cc034114444" category="list-text">MTU</block>
   <block id="6b55a3ff2ffe6275beb9e73d58d08007" category="paragraph">MTU サイズは 1400 以上にする必要があります。</block>
   <block id="64ddceb2cbf941d1fc93373ce9219a1f" category="list-text">パケット損失</block>
@@ -6681,8 +6676,6 @@
   <block id="5395ab3ceab5345ee4a1117e436bec89" category="paragraph">3260 TCP</block>
   <block id="1c44912242a1c1688be9805f25a62dbd" category="paragraph">ONTAP メディエーターの iSCSI ターゲット</block>
   <block id="a3993ea912c0ecd6926aed69b72fd59a" category="paragraph">メールボックス用の iSCSI データ接続</block>
-  <block id="63639615515d028231f302c56bab6ad7" category="section-title">MetroCluster 構成での ONTAP メディエーターのアップグレードに関するガイドライン</block>
-  <block id="2eb1029cd264d9f182cfb37b0492ad43" category="paragraph">ONTAP メディエーターをアップグレードする場合は、 Linux のバージョン要件を満たし、アップグレードのガイドラインに従う必要があります。</block>
   <block id="80f0fa63ac735fb302ee06c9c1c515ae" category="list-text">MetroCluster 9.7 以降を実行する ONTAP IP 構成では、すべてのメディエーターのバージョンがサポートされます。</block>
   <block id="fe8f2bed933b5baccdaadbe566f09126" category="section-title">アップグレード後</block>
   <block id="4d8cac4d4c182ff6fe50e9fb53cc4d82" category="summary">構成をクリーンにするために、コントローラモジュールのデフォルトをリセットおよびリストアする必要があります。</block>
@@ -6698,8 +6691,6 @@
   <block id="c8a47a2f93307e796690ebd7d82f5573" category="paragraph">この時点では MetroCluster IP インターフェイスは設定されておらず、コマンド出力に表示されません。</block>
   <block id="76c896ac6b7a90ae2d17c2b3934e8219" category="paragraph">次の例は、 node_A_1 の 2 つのクラスタポートを示しています。</block>
   <block id="cdf29de4c8a5a778670e597ff53bb862" category="list-text">パートナークラスタで同じ手順を繰り返します。</block>
-  <block id="d7bc3e4699ceee82586454b661f07889" category="list-text">ONTAP メディエーターサービスと MetroCluster Tiebreaker ソフトウェアの両方を同じ MetroCluster 構成で使用することはできません。</block>
-  <block id="965fd53f15f7bf99e2336c9a442ebb53" category="list-text">ONTAP メディエーターサービスでは、最大 5 つの MetroCluster 構成を同時にサポートできます。</block>
   <block id="73333563890b10eb0a0e6a525715ce08" category="paragraph">プロンプトに「 yes 」と応答すると、コマンドが発行されたサイトがパートナーサイトを切り替えます。</block>
   <block id="6f7aa8ee1d3b803f22c9a8f304a8d92c" category="paragraph">ONTAP 9.5 以降を実行しているシステムでは、ネゴシエートスイッチオーバー後に自動的に修復が実行されるため、修復の手順は必要ありません。ONTAP 9.6 以降を実行するシステムでは、計画外のスイッチオーバー後にも自動的に修復が実行されます。</block>
   <block id="7bf01dfda199e49dbeb5eb6dd646e3ef" category="paragraph">この手順は、次の構成で必要です。</block>
@@ -6855,11 +6846,9 @@
   <block id="e60d9e6a9fb9bfbe61031a7440923aa7" category="paragraph"><block ref="e60d9e6a9fb9bfbe61031a7440923aa7" category="inline-link-rx"></block></block>
   <block id="89e65a2d93c278fd151107cff24c1e27" category="section-title">MetroCluster Tiebreaker または ONTAP メディエーターソフトウェアの設定</block>
   <block id="860e1e683db2fc2e67aeec00dc74b357" category="paragraph">MetroCluster 構成の両方のクラスタにネットワークで接続された Linux ホストが必要です。具体的な要件については、 MetroCluster Tiebreaker または ONTAP メディエーターのドキュメントを参照してください。</block>
-  <block id="ffd76385e89b64e24fcfe106dc5b4533" category="paragraph">Tiebreaker または ONTAP メディエーターの既存のインスタンスに接続する場合は、 Tiebreaker またはメディエーターサービスのユーザ名、パスワード、および IP アドレスが必要です。</block>
   <block id="9d4b44162692abd2769e8e0a1c1f0155" category="paragraph">ONTAP メディエーターの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。</block>
   <block id="9a044a9c813dcf5d075c67eae7c4ec7c" category="paragraph">MetroCluster Tiebreaker ソフトウェアと ONTAP メディエーターの両方を同じ MetroCluster 構成で使用することはできません。</block>
   <block id="9cb623298dd6b51e66fbc2bbb1086057" category="inline-xref-macro">ONTAP メディエーターまたは MetroCluster Tiebreaker を使用する場合の考慮事項</block>
-  <block id="8e57e18da9d7e1ec40a754e3453835ac" category="list-text">ONTAP メディエーターサービスまたは Tiebreaker ソフトウェアを設定します。</block>
   <block id="f36114c708cdf027cb87470b60b2bf8d" category="summary">MetroCluster IP 構成を計画する際には、必要なサポート対象のハードウェアコンポーネントとソフトウェアコンポーネントを把握しておく必要があります。また、内容を正しく理解するためには、このドキュメントで使用しているコンポーネントの命名規則も確認しておく必要があります。</block>
   <block id="138070c8ec80f4ea916e550a8882b671" category="doc">必要な MetroCluster IP コンポーネントと命名規則</block>
   <block id="fed8598d34d2dd09e02d810def0e98ef" category="paragraph">ハードウェアとソフトウェアは、 MetroCluster IP 構成でサポートされている必要があります。</block>
@@ -7059,14 +7048,9 @@
   <block id="c209703458c468cdf952f490276996a0" category="summary">MetroCluster 構成の各ノードは、ノードレベルの設定や 2 つのサイトへのノードの設定を含めて、 ONTAP で設定する必要があります。また、 2 つのサイト間に MetroCluster 関係を実装する必要があります。</block>
   <block id="ef6b52b87a839f50cbfacc69d34de0af" category="image-alt">ワークフロー MCC IP ：ノードおよびクラスタ構成ソフトウェアの概要</block>
   <block id="ff63653e290a8e5b339966cb9855555f" category="summary">MetroCluster 構成を削除したあと、すべてのディスク接続とインターコネクトをサポートされる状態に調整する必要があります。MetroCluster 構成を削除する必要がある場合は、テクニカルサポートにお問い合わせください。</block>
-  <block id="c3294642ebc4a24320ba23b1a71d691f" category="summary">MetroCluster IP 構成で ONTAP メディエーターサービスを使用するには、 ONTAP ノードで設定する必要があります。</block>
-  <block id="e1e93a7a154af533c59fc4dcfb6cd4d3" category="list-text">両方の MetroCluster サイトからアクセスできるネットワークの場所に ONTAP メディエーターがインストールされている必要があります。</block>
-  <block id="7e2df0de08c4c32c4dc448510aced1c2" category="list-text">ONTAP メディエーターサービスを実行するホストの IP アドレスが必要です。</block>
-  <block id="76fa3c63020c0f7cc5ffedb4c90cbdcb" category="list-text">ONTAP メディエーターサービスのユーザ名とパスワードが必要です。</block>
   <block id="a21b356af516769ddf9586489a22e6f8" category="list-text">MetroCluster IP 構成のすべてのノードがオンラインになっている必要があります。</block>
   <block id="5213788f29292b96ef1a650e5fce6938" category="list-text">このタスクでは、自動計画外スイッチオーバーをデフォルトで有効にします。</block>
   <block id="ada003c5d7b06ea1b392045334928823" category="list-text">このタスクは、 MetroCluster IP 構成の任意のノードの ONTAP インターフェイスで実行できます。</block>
-  <block id="8011c86f99772e8ed45b9d5da11cfad0" category="list-text">ONTAP メディエーターサービスは、 1 つのインストールにつき最大 5 つの MetroCluster IP 構成で設定できます。</block>
   <block id="5c0eb063c7de9ced4fcf06367dc8cf49" category="list-text">メディエーターが実行されたことを確認します。</block>
   <block id="0117afe22c63962c403e6d0f8df5d7b4" category="paragraph">これらのリンクを使用して CSV ファイルをダウンロードし、サイト固有の情報を表に入力できます。</block>
   <block id="8b35f29360a9d2b60ae33f98eff4cbf9" category="inline-link-macro">MetroCluster IP セットアップワークシート site_A</block>
@@ -7107,7 +7091,6 @@
   <block id="0a5c3ac0f47ed8e3d45c2e4219d97b00" category="paragraph">MetroCluster 構成に応じて、異なる状況で自動スイッチオーバーが実行されます。</block>
   <block id="aaa4db48fe39708ddc84c0b74e004845" category="list-text">* AUSO 機能を使用した MetroCluster FC 構成（ MetroCluster IP 構成には含まれません） *</block>
   <block id="54b00572b4fb9c96346da414c5a1780b" category="paragraph">これらの構成では、コントローラの障害が発生した場合にストレージ（および存在する場合はブリッジ）が動作していれば AUSO が開始されます。</block>
-  <block id="f25509e4a4010e30eda740d9ef693bf9" category="list-text">* ONTAP メディエーターサービスを使用した MetroCluster IP 構成（ ONTAP 9.7 以降） *</block>
   <block id="8a15f9f5afd6ffb27ec4a9af854624f7" category="paragraph">これらの構成では、前述の AUSO と同じ状況に加え、サイト全体（コントローラ、ストレージ、スイッチ）の障害が発生した場合に MAUSO が開始されます。</block>
   <block id="e5edd8dd9b2717b8f0d5e2c5e9c4563d" category="list-text">* アクティブモードで Tiebreaker ソフトウェアを使用した MetroCluster IP または FC 構成 *</block>
   <block id="d252bbe03c515e14d80ddc7cae716a23" category="paragraph">これらの構成では、サイト全体の障害が発生した場合に Tiebreaker で計画外スイッチオーバーが開始されます。</block>
@@ -7730,10 +7713,6 @@
   <block id="d40a957fa3e93ed5d5f356b1d7f5672b" category="paragraph">次の例は、ルートアグリゲートがミラーされたことを示しています。</block>
   <block id="e9c063d9bb3c8e2aec36505fc1d417d7" category="list-text">他のルートアグリゲートについても、上記の手順を繰り返します。</block>
   <block id="ad135407afbeef1d508888cf6fde2d7a" category="paragraph">ステータスがミラーリングされていないルートアグリゲートはミラーリングする必要があります。</block>
-  <block id="ac156973f0c5652ffc5768a0a0cb6e91" category="section-title">ONTAP メディエーターサービスの再設定（ MetroCluster IP 構成）</block>
-  <block id="2e987e1db02c7e6de720b2d7a135fffa" category="paragraph">ONTAP メディエーターサービスが設定された MetroCluster IP 構成がある場合は、メディエーターとの関連付けを削除して再設定する必要があります。</block>
-  <block id="96b411dfba94dc262934c26a2e256ab9" category="list-text">ONTAP メディエーターサービスの IP アドレスとユーザ名およびパスワードが必要です。</block>
-  <block id="fe396bc9ed401ba34109f9d641f9bfcc" category="list-text">ONTAP メディエーターサービスが Linux ホストで設定されて動作している必要があります。</block>
   <block id="65dced407d70b84632e5546dc4c5a806" category="list-text">既存の ONTAP メディエーター設定を削除します。</block>
   <block id="7f7ac805a7906e442304efa8e7dedb87" category="paragraph">MetroCluster 構成設定のメディエーターが削除されました</block>
   <block id="19b5c269cad57490a0fce25bc6b54d85" category="list-text">ONTAP メディエーター設定を再設定します。</block>
@@ -7741,7 +7720,6 @@
   <block id="838f9a3aa0c54c620c1dab5cccc98ca5" category="paragraph">「 system health alert show 」というメッセージが表示されます</block>
   <block id="efd3c43e2ecab0f8cda4a72f049c7c27" category="list-text">「 -simulate 」パラメータを指定して、スイッチオーバー操作を実行します。</block>
   <block id="4844b6a2b007af265e80282e7822ba27" category="paragraph">MetroCluster switchover -simulate</block>
-  <block id="a9db7bbf9222d08712b683e237d0e9c6" category="list-text">ONTAP メディエーターサービスを使用した MetroCluster IP 構成の場合は、メディエーターサービスが稼働していることを確認します。</block>
   <block id="e7dd8552505ef5a78c36791abf769764" category="list-text">メディエーターディスクがシステムから認識されていることを確認します。</block>
   <block id="f9954f099782de6889367e8b36f704d8" category="paragraph">「 storage failover mailbox-disk show 」をクリックします</block>
   <block id="b0e33d9e8081b3bc1757198d90404342" category="paragraph">次の例は、メールボックスディスクが認識されていることを示しています。</block>
@@ -8075,7 +8053,6 @@
   <block id="0e1d41be551b6f86ae2030be358827f1" category="paragraph">古いコントローラモジュールによって所有されていたディスクは、引き続きこれらのシステム ID に所有されています。</block>
   <block id="1315b8e97bb6745adcb67f2fc72c2557" category="paragraph">この 2 ノード MetroCluster 構成の例では、次の古いシステム ID が取得されます。</block>
   <block id="3e549b591bbba6cbf6756b33b34f68fe" category="paragraph">古いコントローラモジュールによって所有されていたディスクは、引き続きこのシステム ID に所有されています。</block>
-  <block id="e3e61f7dd475a76c42d1d59900653255" category="list-text">ONTAP メディエーターサービスを使用した MetroCluster IP 構成の場合は、 ONTAP メディエーターサービスの IP アドレスを取得します。</block>
   <block id="659363869c399765c0ca11454433fd36" category="paragraph">「 storage iscsi-initiator show -node * -label mediator 」という名前のストレージがあります</block>
   <block id="c4f544053cff7408e816016df0403a9a" category="list-text">システムが AFF A220 、 AFF A400 、 FAS2750 、 FAS8300 、または FAS8700 の場合、 VLAN ID を確認します。</block>
   <block id="a299904397c0c53d0dff20464bb5a6fb" category="paragraph">VLAN ID は、出力の Adapter 列に表示されるアダプタ名に含まれています。</block>
@@ -8452,7 +8429,6 @@
   <block id="4cd1110435955b3b14ac2d145c6baae1" category="paragraph">各 MetroCluster サイトは、パートナーサイトのピアとして設定されます。ここでは、ピア関係を設定し、それらの関係に共有ポートと専用ポートのどちらを使用するかを決定する際に理解しておく必要がある前提条件とガイドラインを示します。</block>
   <block id="f515fca759b029639b19b471d7a2c1ed" category="inline-link">MetroCluster IP 解決策のアーキテクチャおよび設計、 TR-4689</block>
   <block id="8d4727f84fc5ba727eb23a4ce93c87c2" category="list-text">MetroCluster IP の構成と運用の技術概要</block>
-  <block id="dd6ee1233d0e34b47648ba9732a67411" category="list-text">MetroCluster IP 構成のベストプラクティス</block>
   <block id="8aec6a2bcfb78af1fffa4f2c52dfe49d" category="paragraph">Active IQ デジタルアドバイザのドキュメント</block>
   <block id="cab785737f7e01bc6cf334a3297e22c3" category="cell">Cisco 9250i 注： Cisco 9250i スイッチは、 8 ノード MetroCluster 構成ではサポートされません。</block>
   <block id="affc2dad5d0c570ef33673937b9be675" category="list-text">の手順に従います <block ref="3165f1b1a2826f5bf149f919c95e9838" category="inline-link-macro-rx"></block> トランキングと QoS ゾーンをイネーブルにするには、を参照してください。</block>
@@ -8937,7 +8913,6 @@
   <block id="9e34b94d21bb51333906ea137daeaca8" category="paragraph">を参照してください <block ref="1b129d9b24cc52917a4f49025dd7cea7" category="inline-link-macro-rx"></block> MetroCluster 構成を監視する方法と自動スイッチオーバーを開始する方法の違いを理解するために、</block>
   <block id="64977ab6a02737ff27944bb4e643f9a9" category="paragraph">Tiebreaker またはメディエーターをインストールおよび設定するには、次のリンクを使用します。</block>
   <block id="416e335daad496ad8619dd5e0873c083" category="inline-link-macro">MetroCluster Tiebreaker ソフトウェアをインストールして設定します。</block>
-  <block id="4eb00e76349103bb49f834540fdce720" category="inline-link-macro">自動計画外スイッチオーバーのための ONTAP メディエーターサービスを設定します</block>
   <block id="4d60f545ef2535cd524505ef40a30ea5" category="section-title">NetApp MetroCluster Tiebreaker ソフトウェアで障害を検出する方法</block>
   <block id="52f712c2fbff067a3f9ecef9e0c00853" category="paragraph">ミラーされていないアグリゲートが構成に含まれている場合、スイッチオーバー処理に関連するアクセスの問題に注意する必要があります。</block>
   <block id="e75c9eee295de619cf15c1b4cc16afdf" category="paragraph">設定レプリケーションサービス（ CRS ）メタデータボリュームとデータ SVM ルートボリュームは、ミラーされたアグリゲートに配置する必要があります。これらのボリュームをミラーされていないアグリゲートに移動することはできません。ミラーされていないアグリゲートに配置されている場合、ネゴシエートスイッチオーバー処理とスイッチバック処理が拒否されます。MetroCluster チェックコマンドを使用すると、この場合に警告が表示されます。</block>
@@ -9009,7 +8984,6 @@
   <block id="ee7e48631bbfc8e832cadee5bbbc03a9" category="paragraph">各シェルフでディスクを 1 つ指定して、自動割り当てを「開始」する必要があります。</block>
   <block id="123e6c3d9c94f11e38d58164f434bdf4" category="paragraph">ONTAP ディスクの自動割り当て機能により、指定したディスクを含むリモートシェルフのすべてのディスクが割り当てられます。</block>
   <block id="81b4294a2f342064d8a63544ff17f60d" category="list-text">ディスクの自動割り当てが開始されるまで少なくとも 60 秒待ってから、シェルフのリモートディスクがプール 1 に自動的に割り当てられたことを確認します。</block>
-  <block id="fb2c0ebeb18b9e1080333a65b192bdc3" category="list-text">ONTAP メディエーターの既存のインスタンスを使用している場合は、 ONTAP メディエーターサービスを ONTAP に追加します。</block>
   <block id="6852fcac58b417258b30784060002d89" category="list-text">MetroCluster ポートグループ（ MetroCluster 1 、 MetroCluster 2 など）を追跡します。この情報は、この構成手順で後述するように、 RcfFileGenerator ツールを使用する場合に必要になります。</block>
   <block id="3ff849ca07e8d8a0986114f9a8f37362" category="paragraph">必要に応じて、サイト間で実行される WAN ISL ポートに MACsec 暗号化を設定できます。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。</block>
   <block id="b3b4314c99a828808ed95dc975e51425" category="admonition">MACsec 暗号化は、 WAN ISL ポートにのみ適用できます。</block>
@@ -9305,10 +9279,6 @@
   <block id="5594b012385083b2dd778011df3d6f3d" category="paragraph"><block ref="5594b012385083b2dd778011df3d6f3d" category="inline-link-rx"></block></block>
   <block id="9a0dfb0af7717632c4b3bc7de1ff2fff" category="paragraph"><block ref="9a0dfb0af7717632c4b3bc7de1ff2fff" category="inline-link-rx"></block></block>
   <block id="8891488ccf0af3b6c4a946824e6f0cdc" category="admonition">現在サポートされている SNMP トラップホストは 1 つだけです。</block>
-  <block id="680a4f630b21eab8e23842ce1e77c536" category="list-text"><block ref="680a4f630b21eab8e23842ce1e77c536" category="inline-link-macro-rx"></block></block>
-  <block id="fe829dd203a0238e92149d6e50fe01a3" category="list-text"><block ref="fe829dd203a0238e92149d6e50fe01a3" category="inline-link-macro-rx"></block></block>
-  <block id="87c6a5076eda134fab631a4899bd23d4" category="list-text"><block ref="87c6a5076eda134fab631a4899bd23d4" category="inline-link-macro-rx"></block></block>
-  <block id="9b2c056caaa39d420a60a6eafd686719" category="list-text"><block ref="9b2c056caaa39d420a60a6eafd686719" category="inline-link-macro-rx"></block></block>
   <block id="4ab496c462bc9a729fe703221c683545" category="paragraph"><block ref="4ab496c462bc9a729fe703221c683545" category="inline-link-macro-rx"></block></block>
   <block id="1ba2ae150e1cee5c2dbe25aa1a0e18b0" category="paragraph">プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</block>
   <block id="9cf18883abd310f0e24341194095b229" category="list-text">ルート暗号化を使用する場合は、使用している ONTAP のバージョンに応じて、キー管理設定のブートメニューオプションまたは問題 the boot menu コマンドを選択します。</block>
@@ -9355,13 +9325,8 @@
   <block id="1a9778326fd00d0e011a777089b2bc6a" category="list-text">実行中の MetroCluster チェック処理のステータスを確認します。</block>
   <block id="fbd55aa6c7d3ee9ec90836dfa01b62d2" category="paragraph">MetroCluster オペレーション履歴 show -job-id 38`</block>
   <block id="c58c2c8b494a438765beae02806faf3a" category="paragraph">スイッチベンダーの手順に従います。</block>
-  <block id="b1ef007668b1430e7bb2daaf954e2579" category="paragraph">使用しているスイッチベンダーに対応する手順については、を参照してください <block ref="14be4efa102104b75024e48b7a0a89f8" category="inline-link-macro-rx"></block></block>
-  <block id="9ce923539fb1123fe118101d429941ae" category="list-text"><block ref="9ce923539fb1123fe118101d429941ae" category="inline-link-macro-rx"></block></block>
   <block id="6a12946cbb81d960abd7b608085f126a" category="inline-link-macro">Tiebreaker ソフトウェアのインストールと設定</block>
   <block id="e71402603f50c2282d8c7bcc53d63e72" category="paragraph"><block ref="e71402603f50c2282d8c7bcc53d63e72" category="inline-link-macro-rx"></block></block>
-  <block id="ffaeaa66271f98acd0156b9dadf03b5b" category="list-text"><block ref="ffaeaa66271f98acd0156b9dadf03b5b" category="inline-link-macro-rx"></block></block>
-  <block id="1a031f58441757494134fdebb9c1beb1" category="list-text"><block ref="1a031f58441757494134fdebb9c1beb1" category="inline-link-macro-rx"></block></block>
-  <block id="343c2d0dbf210b79686912b38bd4f45d" category="list-text"><block ref="680a4f630b21eab8e23842ce1e77c536" category="inline-link-macro-rx"></block> **</block>
   <block id="b42bad79baad4f4f943c81fc37bedccd" category="list-text">に示すように、 MetroCluster IP ノードを IP スイッチにケーブル接続します <block ref="657bcb6c51639854c4fdede551507755" category="inline-link-macro-rx"></block>。</block>
   <block id="99dc2e42eb5cbad5dfa0fe00d5193924" category="list-text">の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します<block ref="d80da76762d0e5fadaefb2c12eee2740" category="inline-link-rx"></block></block>
   <block id="9f1e892e838f85f0b4330fcfad0f245a" category="paragraph">の「 SVM の設定のレプリケート」セクションを参照してください <block ref="eedeed859392052ace3070cab5bd7d76" category="inline-link-macro-rx"></block> SVM DR 関係の設定の詳細については、を参照してください。</block>
@@ -9375,9 +9340,6 @@
   <block id="4497ab40f5579cccfc00e6aed35cdae9" category="sidebar">コンポーネントの ha-config 状態を確認</block>
   <block id="aa9c71b40476a8ccda9213b9a9416d55" category="sidebar">クラスタを MetroCluster 構成に設定</block>
   <block id="899561732a5d01981ad7459377a19442" category="sidebar">MetroCluster Tiebreaker または ONTAP メディエーターソフトウェアを設定します</block>
-  <block id="a9ff5216cd4c113510a74e308ff5a81d" category="sidebar">ONTAP メディエーターサービスをインストールする準備をします</block>
-  <block id="71a38375f76a7ed87f8e28fa9645d356" category="sidebar">ONTAP メディエーターサービスをインストールまたはアップグレードします</block>
-  <block id="4a013e1601591220c48257d9b4f85901" category="sidebar">MetroCluster IP 構成から ONTAP メディエーターサービスを設定します</block>
   <block id="f49bd82ec28b5ed1e86bb99d8be7e44e" category="sidebar">MetroCluster 構成を別の ONTAP メディエーターインスタンスに接続します</block>
   <block id="2497da01927dd78867fe48a11bd87f93" category="sidebar">MetroCluster 構成をテストします</block>
   <block id="38484792ce18e1ac90df07df1cbe4040" category="sidebar">Tiebreaker ソフトウェアをインストールします</block>
@@ -9571,7 +9533,6 @@
   <block id="58a2e0468310e7617d4e119676028f57" category="sidebar">MetroCluster 構成の上にデータアグリゲートを作成し、実装し、確認を行います</block>
   <block id="625658dcf56e073788050ba3b314f569" category="sidebar">ディスクとアレイ LUN の両方を使用する MetroCluster 構成を実装します</block>
   <block id="8b3aeec8c25c17c966b0b882195c6050" category="sidebar">NTP を使用してシステム時刻を同期します</block>
-  <block id="8b0f66b1cb7f0a192803547cc01ef5c4" category="list-text">ONTAP メディエーターは、 MetroCluster サイトとは別の場所にある Linux ホストにインストールする必要があります。</block>
   <block id="d80db6731d8005aabd1dad8b4bd740b7" category="paragraph">インストール中に最大 96 本のドライブを自動的にパーティショニングできます。初期インストール後にドライブを追加することができます。</block>
   <block id="1585a90fdb49dfda6655494b11d96dcd" category="paragraph">第 1 クォータ：ベイ 0~11</block>
   <block id="dbaf1635e32fb5c1cc5e8aca3a390c3e" category="paragraph">たとえば、 24 ドライブシェルフに 12 本のドライブを取り付ける場合は、ベイ 0~5 および 18~23 にドライブを取り付けます。</block>
@@ -10585,11 +10546,9 @@
   <block id="52b86a073bf9ac18b54bb7fb93dbeb18" category="doc">新しいコントローラモジュールの FC-VI ポートおよび HBA ポートを FC スイッチにケーブル接続します</block>
   <block id="cd6c42f22b0649cda62803cd1b11f14a" category="doc">新しいコントローラモジュールのクラスタピアリングのケーブル接続</block>
   <block id="b1d3a32a00e7d497fcf31c70542c202e" category="summary">MetroCluster Tiebreaker ソフトウェアまたは ONTAP 9.7 以降の ONTAP メディエーターは、第 3 のサイトにダウンロードしてインストールできます。</block>
-  <block id="156878e33ba2293bd900b486f895c7ae" category="paragraph"><block ref="156878e33ba2293bd900b486f895c7ae" category="inline-link-macro-rx"></block></block>
   <block id="0e0fb7c8f8c90679b6de81eb83cc9c05" category="paragraph">ONTAP 9.7 以降では、 MetroCluster 構成で FlexCache ボリュームがサポートされます。スイッチオーバーまたはスイッチバック処理後の手動廃止の要件を理解しておく必要があります。</block>
   <block id="324411cbb41cb55bc8c2f637443ed820" category="paragraph">ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサポートされます。</block>
   <block id="595a0070423d641189b233c03827a69e" category="paragraph">ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。</block>
-  <block id="22ad9a689b8447af0ecfb5eb5b5495b3" category="list-text">ONTAP メディエーターサービスを ONTAP に追加します。</block>
   <block id="f0ff1470e66c8950946e7e3e5058f8a8" category="paragraph"><block ref="f0ff1470e66c8950946e7e3e5058f8a8" category="inline-link-rx"></block></block>
   <block id="f52969ece4bf2f4994203a22fa76dc44" category="paragraph"><block ref="f52969ece4bf2f4994203a22fa76dc44" category="inline-link-rx"></block></block>
   <block id="7ea45478f88955067c811efc5ed26534" category="paragraph"><block ref="7ea45478f88955067c811efc5ed26534" category="inline-link-rx"></block></block>
@@ -10617,7 +10576,6 @@
   <block id="c7892ebbb139886662c6f2fc8c450710" category="cell">件名</block>
   <block id="fa06f628b32f0d1ba3fc7ece00862b96" category="paragraph"><block ref="fa06f628b32f0d1ba3fc7ece00862b96" category="inline-link-rx"></block></block>
   <block id="9f6ef9d803a6a101c30a47069149abd6" category="list-text">EFOS バージョン 3.7.x.x 以降では、 FIPS に準拠していないバージョンと FIPS に準拠したバージョンが提供されています。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
-  <block id="c92c490b97a94b8ad700c26b41c33c18" category="summary">ONTAP 9.7 以降では、 ONTAP メディエーターサービスを使用してステータス情報用のリポジトリを物理的に切り離すことで、 MetroCluster IP 構成で自動計画外スイッチオーバーを実行できます。</block>
   <block id="e90535a051902416d901e147c4c59930" category="summary">このマニュアルでは、 MetroCluster Tiebreaker ソフトウェアをインストールおよび設定する方法について説明します。</block>
   <block id="884324de7d536976016cc7e2b34b0da9" category="paragraph">この情報は、 MetroCluster Tiebreaker ソフトウェアをインストールする際に使用します。</block>
   <block id="26a1b5abfaa8d36a512417a3da776baf" category="summary">MetroCluster の設定と処理の詳細については、を参照してください。</block>
@@ -10778,7 +10736,6 @@
   <block id="679c1dc70b523e1092eb2a7b3129711d" category="paragraph">ポートとブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、変更を加えます。</block>
   <block id="dd29cf7134047c7a311edc4776b9021e" category="paragraph">2 ノード MetroCluster FC 構成の場合は、を参照してください <block ref="ef88855c7d052c0aa5ce46e187d01954" category="inline-link-macro-rx"></block>。</block>
   <block id="2912e0eba45e116506958546503977b9" category="paragraph"><block ref="2912e0eba45e116506958546503977b9" category="inline-link-macro-rx"></block></block>
-  <block id="0297e6ce2162b2f01b03b57027b0de3f" category="paragraph">MetroCluster IP インストールおよび設定については、使用しているスイッチベンダーのセクションに記載されている手順を実行してください。</block>
   <block id="7efa6fc838c006d396e42638b4ff25d1" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block></block>
   <block id="bc77bf857b365d445270101e2d7ce03f" category="list-text">MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster FC 構成で使用されます。</block>
   <block id="58f51e86971b6d1d53b59f46792a926c" category="list-text">MetroCluster IP ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster IP 構成で使用されます。</block>
@@ -10877,9 +10834,6 @@
   <block id="df181c6434803cd5a18218c45eca6655" category="list-text">fec を off に設定します</block>
   <block id="344fc0c43530ccad90a38944b632b1e4" category="list-text">構成モードを終了します : exit</block>
   <block id="9c0c1022f821ad4ee9fd20c2731bc6f1" category="list-text">トラブルシューティングに役立てるため、各 MetroCluster DR グループ内の各 SAS ディスクシェルフには、シェルフ ID を一意にすることを強く推奨します。</block>
-  <block id="70fef59fffa5df67d10b024d11f37399" category="paragraph"><block ref="70fef59fffa5df67d10b024d11f37399" category="inline-link-macro-rx"></block></block>
-  <block id="c5cd3d887ef507cadc249c592410542a" category="list-text">Linux のバージョンを更新する場合は、最新の ONTAP メディエーターサービスをインストールする前にアップグレードしてください。</block>
-  <block id="5981ded82c976bff5c9a73686842655a" category="list-text">メディエーターサービスは、以前のバージョンから現在のバージョンにアップグレードすることができます。</block>
   <block id="6bec966647e1b9c8a03ddd277c8fe864" category="inline-link-macro">パーツの返品と交換</block>
   <block id="844f223d5d27d9ea92473e2d258ee969" category="list-text">部品の交換後、障害のある部品は、キットに付属する RMA 指示書に従ってネットアップに返却してください。を参照してください <block ref="af64d870205b209887217377e716cd40" category="inline-link-macro-rx"></block> 詳細については、を参照してください。</block>
   <block id="861ef6676813cbc81369ee701ae73269" category="paragraph">サードパーティのファイアウォールを使用している場合は、次の手順を実行します。</block>
@@ -10912,7 +10866,6 @@
   <block id="255e6fa1222b0f5f7521f1965844c1bf" category="paragraph">レイヤ 3 解決策を計画する際は、次のガイドラインと図を確認してください。ONTAP での VIP および BGP の実装の詳細については、を参照してください <block ref="245303d2c60ac1935683ed89eb13f165" category="inline-link-macro-rx"></block>。</block>
   <block id="bc08b638ff7480a2fa85e0dcdee0d692" category="paragraph"><block ref="bc08b638ff7480a2fa85e0dcdee0d692" category="inline-link-macro-rx"></block></block>
   <block id="26ae7bdd1d6fb8c4886e6fde8d12601c" category="list-text">レイテンシ</block>
-  <block id="9e9a93655547f7858baef5194a909e2c" category="cell">Cisco 3132Q-V、3232C、または9336C-FX2</block>
   <block id="a825d9b135e0604b1a8244aa950f4952" category="paragraph">FCノード上のローカルクラスタインターフェイス</block>
   <block id="32e69a0f5d950aefcb7cefee34c73d19" category="paragraph">FAS500f/A250</block>
   <block id="22c9730efa04ff77f4d689d1554cb1af" category="paragraph">FAS8200 / A300</block>
@@ -10947,14 +10900,8 @@
   <block id="63e64e288714d32cded7a6ed8dfec32c" category="list-text">MetroCluster FCスイッチ（2ノードストレッチ構成でない場合に使用）</block>
   <block id="a2a7d27c6bf1ad121aeada48fc70ca1d" category="list-text">30分待ってから、サイトで次の機器の電源をオンにします。</block>
   <block id="383d92c84e46dd00caa3dbad6de7fe2f" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
-  <block id="688f019e2f851b28c81904e0acd0c450" category="paragraph"><block ref="6f99ee259693716af238b16f6b3287d3" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定セクションで、次の手順を実行します。</block>
   <block id="be8e7921b8bc696adb0f989ee98b7e9f" category="list-text">「speed」には「100」または「1000」を指定できます。</block>
   <block id="e44042693910b4bd1a0494893ddc1892" category="doc">SVMが実行されていて、アグリゲートがオンラインになっていることを確認してください</block>
-  <block id="0f6663ce923ab095e111674a6a00e20f" category="summary">MetroCluster IP構成からONTAP メディエーターサービスを削除できます。</block>
-  <block id="dbef88bf7072abf7cb1500b76c098158" category="doc">MetroCluster IP設定からONTAP メディエーターサービスの設定を解除します</block>
-  <block id="b265dc310dca1d74417a4715e46c4168" category="paragraph">ONTAP メディエーターサービスの設定をMetroCluster IP設定から解除できます。</block>
-  <block id="db31f506e34352cf979355688abceeac" category="paragraph">両方のMetroCluster サイトからアクセスできるネットワークの場所にONTAP メディエーターがインストールされて設定されている必要があります。</block>
-  <block id="c8dd54fd6141594c239adba6bd3401ff" category="list-text">次のコマンドを使用して、ONTAP メディエーターサービスの設定を解除します。</block>
   <block id="0c87e171b9e1156bebc0a65b722d174d" category="list-text">次のコマンドを使用して、破損ディスクがないかどうかを確認します。</block>
   <block id="27bf55792722dd4b16925981ef8953b4" category="paragraph">「disk show -broken」</block>
   <block id="938f1047c15f00fdd0cbfc8e4cfa15e1" category="paragraph">* 例 *</block>
@@ -11094,14 +11041,11 @@
   <block id="b88bf0c809fffc695990879900c60d29" category="paragraph">ご使用の環境が特定の要件を満たしている必要があり</block>
   <block id="a624bf1cb8ea6541888d2e3bfed29f37" category="paragraph">1つのディザスタリカバリグループ（DRグループ）に次の要件が適用されます。の詳細を確認してください <block ref="0244a225d1215475caa277f136d50b4a" category="inline-link-macro-rx"></block>。</block>
   <block id="9f6204fe619ab6c1e9a1fcd03de81cb5" category="paragraph">ONTAP メディエーターと各サイトの間の接続には、2つの異なる障害ドメインが必要です。</block>
-  <block id="5030719f4c55271135b32bdf9c634c88" category="paragraph">ONTAP メディエーターサービスをMetroCluster 構成にインストールするには、それらの構成がいくつかのネットワーク要件を満たしている必要があります。</block>
   <block id="ceeccb67c4ca8801e51075063d898307" category="paragraph">最大レイテンシは75ms（RTT）未満</block>
   <block id="2c66766b3cbb0e01db3809a4370c911e" category="paragraph">ジッターは5ミリ秒以下である必要があります。</block>
   <block id="192e68ef3df9e07712be5cfbedf63575" category="paragraph">Internet Control Message Protocol（ICMP）とTCPトラフィックの両方で、パケット損失は0.01%未満でなければなりません。</block>
-  <block id="918d95987e6cf19fe89998499e6e9348" category="paragraph">メディエーターサービスと1つのDRグループの間のリンクに20MBps以上の帯域幅が必要です。</block>
   <block id="4f1f2bb1718b231428cfd539cdbe7657" category="list-text">独立した接続性</block>
   <block id="d4fda9bf787c3a38a379763f5d621600" category="paragraph">各サイトとONTAP メディエーターは個別に接続する必要があります。一方のサイトで障害が発生しても、影響を受けない他の2つのサイト間のIP接続は中断しないでください。</block>
-  <block id="f743e29bd73cf3b477b5b3c15fcf6ec1" category="section-title">MetroCluster 構成でのONTAP メディエーターのホストの要件</block>
   <block id="fec21bcdc858f42f1c942fd943d09de4" category="paragraph">構成が複数のホスト要件を満たしていることを確認する必要があります。</block>
   <block id="aecf60a0046b893cbed6332405eb3aa3" category="list-text">ONTAP メディエーターは、2つのONTAP クラスタから物理的に分離された外部サイトにインストールする必要があります。</block>
   <block id="6f044e53b0f973c21b9f45e9f29dd890" category="list-text">ONTAP メディエーターでサポートされるMetroCluster 構成は最大5つです。</block>
@@ -11218,7 +11162,6 @@
   <block id="578f0ca9e0f2b8dc5eca3447de5f13b7" category="paragraph">に進みます <block ref="3ea650e98c5c617b3f8d234e7fcf7e38" category="inline-xref-macro-rx"></block></block>
   <block id="c9e7a6f18b5625d689b9621860dc8f89" category="admonition">使用した交換用コントローラの NVRAM の内容を消去しなかった場合は、パニック状態が発生して「 PANIC ： NVRAM contents are invalid... 」というメッセージが表示されることがあります この場合は、を繰り返します <block ref="25689aeb5a175ff3bbdb354620fd37b8" category="inline-xref-macro-rx"></block> システムをブートして ONTAP プロンプトを表示します。次に、が必要です <block ref="98b89efafafc6baeefb50e35f16eee3c" category="inline-xref-macro-rx"></block></block>
   <block id="39297c491b5456e17752798ab9be67b0" category="paragraph">このアップグレードを実行するときは、MetroCluster スイッチでRCFファイルを更新する必要があります。次の表に、AFF A900/FAS9500 MetroCluster IP構成でサポートされるVLAN範囲を示します。</block>
-  <block id="d267ad4b716836a6875d9be23fc81c21" category="paragraph"><block ref="bacc4dbebf17d22c9a0361ded0994067" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定セクションで、次の手順を実行します。</block>
   <block id="d07bebb0e23926af3c78f855a3108b26" category="admonition">MetroCluster check runとMetroCluster check showを実行すると'次のようなエラーメッセージが表示されます</block>
   <block id="0a52730597fb4ffa01fc117d9e71e3a9" category="listing-title">例</block>
   <block id="6870468a3fe6a4b5c829d30e0702c5fd" category="paragraph">これは、アップグレードプロセス時にコントローラが一致しないことが原因で想定される動作であり、エラーメッセージが無視しても問題ありません。</block>
@@ -11335,7 +11278,6 @@
   <block id="dda33fc9a3cc083db08123f7d7e692a8" category="inline-link-macro">MetroCluster 自動強制スイッチオーバーを使用する場合のリスクと制限事項</block>
   <block id="a6e62874574d6ae8ffc9dc6ea98c08e7" category="paragraph">サイト障害検出時のスイッチオーバーは、MetroCluster の自動強制スイッチオーバー機能を有効にすると自動的に実行されます。この機能は、MetroCluster IP自動スイッチオーバー機能を補完するために使用できます。</block>
   <block id="80f6a6e12e6ca0304707e7a67581f248" category="paragraph">Broadcomスイッチ</block>
-  <block id="530dbe55cb10e603b69b517d0cb2f4bc" category="list-text">両方のクラスタで次のコマンドを実行して、ONTAP メディエーターサービスがMetroCluster 構成から削除されたことを確認します。</block>
   <block id="49b7410e94a7ca7d1c674a14241ebe49" category="list-text"><block ref="7200673afad174d0ff258c801fbb9def" prefix="" category="inline-code"></block></block>
   <block id="f85af53e3d7c278ec6cd756cf3365359" category="list-text">スペアなし</block>
   <block id="385f02022cf6cb2f3cfc0aa026b7c3d7" category="list-text">構成に一致するオプションを選択し、cluster_Aの正しいコマンドを問題 します。</block>
@@ -11477,7 +11419,6 @@
   <block id="fd9b3eaeebb236fdcf40b5456ccc900e" category="admonition">AFF A900システムとFAS9500システムでは、8つのISLがサポートされています。Brocade 6510、G620、G620 -1、G630、G630-1、およびG720スイッチ。</block>
   <block id="81d4bf20c117cfe06c727511dd63382b" category="paragraph">6510、G620、G620 -1、G630、G630-1、G720</block>
   <block id="64cdec386f8cc50c2a2ec9316633b629" category="paragraph">を実行する前に<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block>、HAモードおよびDRミラーリングが有効になっていないため、この想定動作に関連するエラーメッセージが表示される場合があります。HAモードとDRミラーリングは、あとでコマンドを実行するときに有効にします<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> をクリックして構成を実装してください。</block>
-  <block id="929a405a00082b7cddc01ac6b47159f6" category="list-text">MetroCluster は、データアグリゲートが1つであるか複数であるかに応じて設定します。</block>
   <block id="5ffd33f8dea25274cffabd9b7ab1c36e" category="paragraph">と応答する必要があります<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block> advancedモードで続けるかどうかを尋ねられたら、advancedモードのプロンプト（*）が表示されます。</block>
   <block id="1fd3081a4bf2b2b1ccafeb89c824a5d2" category="admonition">ミラーされたデータアグリゲートを複数使用することを推奨します。ミラーされたアグリゲートが1つしかない場合、メタデータボリュームは別 々 のアグリゲートではなく同じアグリゲートに配置されるため、保護レベルは低くなります。</block>
   <block id="3a02d8d4d0c731efe2550cb0db8b9626" category="inline-link-macro">MetroCluster のインストール中のコントローラモジュールの障害のシナリオ</block>
@@ -11666,7 +11607,6 @@
   <block id="9d278f0716d4f0b8bdeaa91150592096" category="list-text">自動化処理が実行されます<block ref="f62e58c376725d0e22a9e8040934124c" prefix=" " category="inline-code"></block>、<block ref="f71080a9d0eed0afac5e99d0ac5f5781" prefix=" " category="inline-code"></block>、サイトAでのスイッチバック処理、およびアップグレード後のチェックが実行されます。処理が一時停止した場合は、コンソールメッセージに従って SAN LIF のステータスを手動で確認し、ネットワーク設定を確認します。</block>
   <block id="7058a4e91dbbbe7dcf2fde3987421db0" category="section-title">ONTAP メディエーターを再設定します</block>
   <block id="37a1beb7755a7b8722d2585dbc965263" category="paragraph">アップグレードを開始する前に自動的に削除されたONTAP メディエーターを手動で設定します。</block>
-  <block id="72912b568eb3bd0af2dc6a3ba324a1c9" category="list-text">の手順を使用します <block ref="f90e9d8e118936cdbb24903820a79eb3" category="inline-link-macro-rx"></block>。</block>
   <block id="eae1d6e5dc6115799413390aecfa0c7c" category="paragraph">自動化処理によってスイッチオーバーが開始され、<block ref="4bc031ebd90e06c679bed249595b6c90" prefix=" " category="inline-code"></block>および<block ref="a233091efff166ee24ee5a89d344dcdf" prefix=" " category="inline-code"></block> 操作：これらの処理が完了すると、処理は* paused for user intervention *で一時停止します。これにより、を使用して、コントローラをラックに設置し、パートナーコントローラをブートし、ルートアグリゲートディスクをフラッシュバックアップから新しいコントローラモジュールに再割り当てできます<block ref="5fb641c5977b93de82b81e36db0454cf" prefix=" " category="inline-code"></block> さっき集まった。</block>
   <block id="3d296dee09f5acd9721e7bd1f885a1ff" category="doc">MetroCluster IP構成の拡張</block>
   <block id="f7ebd0c3919ed1a579352a95f757a9e6" category="paragraph">ONTAP のバージョンに応じて、4つの新しいノードを新しいDRグループとして追加することでMetroCluster IP構成を拡張できます。</block>
@@ -11701,7 +11641,6 @@
   <block id="e50b66bedcb52077182d77c650db0ca0" category="paragraph">古いDRグループを削除すると、次の図のような設定が表示されます。</block>
   <block id="47468b9007c8d1b64ee8a7229933b739" category="image-title">8ノード構成</block>
   <block id="e73093705babe6125a16df08eedb00cc" category="image-alt">MCC DRグループC5</block>
-  <block id="68f99a795ff5a89f522232c02dc3bdef" category="paragraph"><block ref="ded257afb157d474a6461a3bc1b48d84" category="inline-link-macro-rx"></block> MetroCluster IP のインストールと設定 _ 。</block>
   <block id="d64734f1819a8d6339e74ffe37dc5430" category="paragraph">お使いのプラットフォームがリストに表示されない場合は、サポートされているコントローラのアップグレードの組み合わせはありません。</block>
   <block id="183ffd679adb1c9e843df285f2b91466" category="list-text">注2：コントローラのアップグレードは、ONTAP 9.13.1以降を実行しているシステムでサポートされます。</block>
   <block id="5abae7190ce598d45fe390e44304cde0" category="paragraph">9.13.1以降</block>
@@ -11876,7 +11815,6 @@
   <block id="2d27e76da02804de2afe9d209e5cbb1c" category="admonition">ストレージのパフォーマンスと可用性を最適化するために、ミラーアグリゲートでは少なくとも20%の空きスペースを確保することを推奨します。ミラーされていないアグリゲートでは10%が推奨されますが、追加の10%のスペースはファイルシステムで増分変更に対応するために使用できます。増分変更を行うと、ONTAPのcopy-on-write Snapshotベースのアーキテクチャにより、ミラーされたアグリゲートのスペース使用率が向上します。これらのベストプラクティスに従わないと、パフォーマンスに悪影響を及ぼす可能性があります。</block>
   <block id="0e5e2d82a1039e41c19d2248f3b64787" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。</block>
   <block id="6212a1ad66c5ad9d3c50380aa91aab6a" category="list-text">ハードウェア障害なし</block>
-  <block id="050dafe962829ef847f34f7607e36eb3" category="list-text"><block ref="050dafe962829ef847f34f7607e36eb3" category="inline-link-macro-rx"></block></block>
   <block id="2af958a8143c65676390b5e251abe90a" category="list-text">を確認します<block ref="a78608714add699f555f2a66df0ee249" prefix=" " category="inline-code"></block> パッケージがLinuxホストにインストールされている。これにより、<block ref="b0c94f1494e22d963244e235719a2582" prefix=" " category="inline-code"></block> 新しくマッピングされたLUNのLinuxホストをを使用して再スキャンするとエラーが発生する<block ref="685ca42026debec2f3691cc5faae67d5" prefix=" " category="inline-code"></block> コマンドを実行します</block>
   <block id="1f52bd2314f9805b0a0098b0f56a0dc4" category="paragraph">そのためには、ノードのリブートが必要になる場合があります。</block>
   <block id="ab85fd4f549c390675df901a8ef3f78e" category="list-text">すべてのSAN SVMについて、IPノードにFC LIF /インターフェイスを作成します。必要に応じて、新しく作成したFC LIFのWWPNがFC SANスイッチにログインしていることを確認します。</block>
@@ -12091,7 +12029,6 @@
   <block id="82d98fe86a7b6dbc49abc0913b83f2ac" category="paragraph">ADPは、システムの初期設定時に自動的に実行されます。</block>
   <block id="2d183ed725bd043df73111a219fb4c10" category="list-text">すべてのMetroClusterコンポーネントがサポートされている必要があります。</block>
   <block id="9f4a5b5c7a3f862c1d0ff77f72d3eea0" category="paragraph">ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求められます。</block>
-  <block id="c471c44c2f26c78f9327863d90427cb7" category="admonition">ONTAPメディエーターが停止している場合は、<block ref="1eafb93bfc40f298e60cf17e8a8c598c" prefix=" " category="inline-code"></block> ONTAPメディエーターの管理者ユーザアカウントのユーザ名とパスワードの入力を求めるプロンプトが引き続き表示され、ONTAPメディエーターサービスがMetroCluster構成から削除されます。</block>
   <block id="646d7d5f93b4a6d7bbbc65acf5ac1077" category="inline-link">ONTAPハードウェアシステムのドキュメント</block>
   <block id="a6060d4587fc5fc5f841d3287d08316c" category="paragraph"><block ref="a6060d4587fc5fc5f841d3287d08316c" category="inline-link-rx"></block></block>
   <block id="777cc85682fbb64f0c41aa09dccf0ca4" category="paragraph"><block ref="777cc85682fbb64f0c41aa09dccf0ca4" category="inline-link-rx"></block></block>
@@ -12170,7 +12107,6 @@
   <block id="6106648cc4773cdde37c48ca810022c0" category="cell">Red Hat 7-7.9</block>
   <block id="7d04b9af5dfbfc78c7040183f68afdc4" category="cell">Red Hat 8.1-8.7</block>
   <block id="003d136e5089a4f9ae0f1df3f6fc37fa" category="cell">Rocky Linux 9.0</block>
-  <block id="9d0101bb262cf2b07ff8dcfa1f6cf004" category="list-text">管理者パスワードと、HTTP、FTP、SFTP、またはTrivial File Transfer Protocol（TFTP）サーバへのアクセスが必要です。</block>
   <block id="c422062a1c7b3d9ed9b2282378699dc7" category="paragraph"><block ref="c422062a1c7b3d9ed9b2282378699dc7" category="inline-link-macro-rx"></block></block>
   <block id="f54824b249675e35c90a450877126d13" category="inline-link-macro">Brocade FCスイッチの手動設定</block>
   <block id="94d0fc55d9356d3d18534836cae75c1d" category="doc">FCスイッチの設定の概要</block>
@@ -12178,33 +12114,7 @@
   <block id="02d80d458a48a16bd927a203d6bb2c73" category="list-text">ゾーニング設定を確認します。</block>
   <block id="62c870995fe52ce6aa5f9fc71ef4da98" category="paragraph"><block ref="ed3badb92af3298762df5a811de2da80" prefix="" category="inline-code"></block></block>
   <block id="79787dbf023f957de1bd4970858b26be" category="summary">ヘルス監視にSNMPv3を使用するようにIPスイッチを設定できます。</block>
-  <block id="3a4aa5b142f66d14a43abf77cc49c599" category="doc">健全性監視用のMetroCluster IPスイッチの設定</block>
   <block id="877caefa8e802eac248e66b46636c94b" category="paragraph">MetroCluster IP構成では、IPスイッチのヘルスを監視するようにSNMPv3を設定できます。</block>
-  <block id="b3d73929ddf74bb4c7d3cac6eeda8684" category="section-title">手順1：MetroCluster IPスイッチでSNMPv3ユーザを設定する</block>
-  <block id="038fbd2fc792b1165c5e88791a09113a" category="paragraph">次の手順に従って、MetroCluster IPスイッチでSNMPv3ユーザを設定します。</block>
-  <block id="f1407eaef69e4aa9948574be11c0a49b" category="admonition">コマンドでは、認証プロトコルとプライバシープロトコルの両方を使用する必要があります。プライバシーなしの認証の使用はサポートされていません。</block>
-  <block id="165237cf57452c2427f247f1c6589434" category="open-title">BroadcomIPスイツチ</block>
-  <block id="8d09188a2cfea4cc57e0f38750b68c97" category="list-text">「network-admin」ユーザグループが存在しない場合は、作成します。</block>
-  <block id="0f3a15963e4657a9c97ab6b3db322d27" category="paragraph"><block ref="173ceda524dbc87af297f813b0f50cd8" prefix="" category="inline-code"></block></block>
-  <block id="ec714ba3bea7bae033524709c8ddb144" category="list-text">「network-admin」グループが作成されたことを確認します。</block>
-  <block id="a24bdf92e7d1dc2d2e5714305a56e0eb" category="paragraph"><block ref="77aa57f376fe73c9581fb729ddeb38eb" prefix="" category="inline-code"></block></block>
-  <block id="6697365f2e46593a5513af21ee61a084" category="list-text">Broadcom IPスイッチでSNMPv3ユーザを設定します。</block>
-  <block id="9253168d7e5e9b3b8152a8ff1870743f" category="open-title">Cisco IPスイッチ</block>
-  <block id="4a2ec710ab28d8f45e2fdabacdc2dfc6" category="list-text">次のコマンドを実行して、Cisco IPスイッチでSNMPv3ユーザを設定します。</block>
-  <block id="a8b5c32b456efe8e0fcb23cd218c6b6c" category="list-text">スイッチにSNMPv3ユーザが設定されていることを確認します。</block>
-  <block id="dcc1c100b3f25557081f2e0b39235331" category="paragraph"><block ref="b74f60eeed5179550ade1e96ba13e2f9" prefix="" category="inline-code"></block></block>
-  <block id="82551d68c685b978ef7462fc2759040f" category="paragraph">次の出力例は、ユーザが<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> SNMPv3用に設定されています。</block>
-  <block id="54095e9794a9fd93e475a7911543f88e" category="section-title">手順2：ONTAPでSNMPv3ユーザを設定する</block>
-  <block id="584b7eab2aafafcbe01855419f896b21" category="paragraph">次の手順に従って、ONTAPでSNMPv3ユーザを設定します。</block>
-  <block id="1bff762b431027892d402682570d40ac" category="list-text">ONTAPでSNMPv3ユーザを設定します。</block>
-  <block id="ddc11f6ac980cbb07f08bef9febcc0e7" category="paragraph"><block ref="d122104842549610cab7a5c1c6e791ab" prefix="" category="inline-code"></block></block>
-  <block id="c74135dc000c228de7018358eaf099e5" category="list-text">新しいSNMPv3ユーザを使用してスイッチを監視するようにスイッチヘルスモニタを設定します。</block>
-  <block id="19acda7cb8d15af8dcf62dcf74bcbe00" category="paragraph"><block ref="536a54b756351ba8978169ff37fc419d" prefix="" category="inline-code"></block></block>
-  <block id="102bc61adb74b49384536c35a485dea4" category="list-text">新しく作成したSNMPv3ユーザで監視するデバイスのシリアル番号が正しいことを確認します。</block>
-  <block id="189afc0f727c57bbef41f18728ebe44a" category="list-text">スイッチヘルスモニタのポーリング期間を表示します。</block>
-  <block id="4e8c2092c0a2bb40fde077763873c66c" category="paragraph"><block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix="" category="inline-code"></block></block>
-  <block id="b9035c5f27542cbf7fb14fced8e330ba" category="list-text">ポーリング期間が経過したら、次のコマンドを実行します。</block>
-  <block id="20c4c39b07a94d810605541c0137f531" category="paragraph"><block ref="9214d4fe696fff6386a131ecee126bc4" prefix="" category="inline-code"></block></block>
   <block id="e389e5759cd93883cfbee1a000ab0c47" category="list-text">この手順は、MetroClusterファブリック構成内の各Brocade FCスイッチで実行する必要があります。</block>
   <block id="9dc72cfc812a43dbca6ba4e6357b2b04" category="paragraph">ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください <block ref="df5e6373f54c9330727709bb1055a079" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="e6f19b92e0e69fc5d74e94088b442a26" category="inline-link-macro">4ノードまたは8ノードのMetroCluster IP構成の更新</block>
@@ -12272,7 +12182,6 @@
   <block id="62dab2247ca5697a261fd865abf3712d" category="paragraph">第4クォータ：ベイ36~47</block>
   <block id="c81d9f1aaf4df29053805f321b5b089d" category="section-title">AFF A150、ASA A150、およびAFF A220システムでのADPとディスク割り当て</block>
   <block id="6a0fb9ba6a0c02751fb5fc909455894f" category="section-title">AFF C400、AFF A400、ASA C400、およびASA A400システムでのADPとディスク割り当て</block>
-  <block id="fd659a09a0244eaf6b3f61e3ca61a14d" category="paragraph">ONTAPメディエーターは、MetroCluster IPノードに関する状態情報を格納するためのメールボックスLUNを提供します。これらの LUN は ONTAP メディエーターと一緒に配置され、 MetroCluster サイトとは物理的に分離された Linux ホストで実行されます。MetroCluster IPノードでは、メールボックス情報を使用してディザスタリカバリ（DR）パートナーの状態を監視し、災害発生時にMediator-Assisted Unplanned Switchover（MAUSO；メディエーターアシスト計画外スイッチオーバー）を実装できます。</block>
   <block id="30340ec1ae42c7ca90b5fdd7fab0a4a3" category="paragraph">スイッチオーバーが必要なサイト障害がノードで検出されると、スイッチオーバーに該当する状況であることを確認したうえでスイッチオーバーが実行されます。デフォルトでは、次のシナリオでMAUSOが開始されます。</block>
   <block id="44c6a8e31f1720ca268816c13cea4bb0" category="list-text">サイト災害が発生した場合。サイトディザスタとは、同じサイトで_all_nodesの障害です。</block>
   <block id="b33abe56d950c95329c1ac6ab46d5bdc" category="paragraph">次のシャットダウンシナリオでは、MAUSOは_not_initiatedです。</block>
@@ -12835,7 +12744,6 @@
   <block id="3fb697436dcc4f2ae2cdd29dc91fd043" category="paragraph">MetroCluster構成では整合グループがサポートされます。</block>
   <block id="47d81ac708cab22da7ea952550b6f757" category="summary">ONTAP メディエーターには、リリースごとに新しい機能が追加されています。  最新情報をご紹介します。</block>
   <block id="3261bd656e2112e78b0313c87c039420" category="doc">ONTAPメディエーターサポートの新機能</block>
-  <block id="9d01d502466559c8d4ff8682b3e00d92" category="paragraph">各リリースでは、ONTAP メディエーターの機能が新たに拡張されています。  最新情報をご紹介します。</block>
   <block id="e8467e9b509c4924668c01eb7ab2adde" category="cell">ONTAPバージョン</block>
   <block id="63b6c1d0d10ce89604932c62d9b6f4d7" category="doc">MetroClusterの機能の新機能</block>
   <block id="3100460fa3d7ba2ea001abefda93f3bc" category="cell">概要 と詳細情報の入手方法</block>
@@ -12897,10 +12805,8 @@
   <block id="4d8d9056b62fc01f5cd3f0898c551fde" category="section-title">プラットフォームのサポート</block>
   <block id="9b6c50e7cbf80c446a0078ceb63104d0" category="section-title">スイッチのサポート</block>
   <block id="9342c35c4399c8e6faf7c07d8bae26c5" category="paragraph">ONTAP MetroCluster構成に影響する既知の問題、制限事項、およびアップグレードに関する注意事項の詳細については、『<block ref="6e7f74aa9001f0524a965144f528bbc2" category="inline-link-rx"></block>。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。</block>
-  <block id="542203888545c733d7713856ba607788" category="paragraph">MetroCluster構成でのONTAPメディエーターのインストールまたはアップグレードの詳細については、 <block ref="98d8e0da2148573045cbd111c9373b18" category="inline-link-macro-rx"></block>。</block>
   <block id="ab67c4c2b9b0f6070e68d79d3a0b6c63" category="cell">ONTAPメディエーター機能</block>
   <block id="5793a46a4020e2b9d210afaa14008d67" category="paragraph">環境がシャットダウンした場合は、Mediator-Assisted Automatic Unplanned Switchover（MAUSO；メディエーターアシスト自動計画外スイッチオーバー）がサポートされます。</block>
-  <block id="4765407452f01930deae2b9481b69e36" category="paragraph">MetroCluster IP構成でのONTAPメディエーターサービスの初期サポート</block>
   <block id="de09b0e8b75c62ac84c620713e05647b" category="paragraph">共有ストレージスイッチを使用して、MetroCluster FC構成からMetroCluster IP構成に無停止で移行できます。</block>
   <block id="76a27f1dad18a5de567d4849d3e76b69" category="doc">MetroCluster FCプラットフォームとスイッチのサポートの新機能</block>
   <block id="2dfc17cf61c3aebedc1a1f7f467baa26" category="paragraph">スイッチタイプがBroadcom、Cisco、NVIDIAのいずれであるかに応じて、該当するトピックのスイッチソフトウェアをインストールする手順に従います。</block>
@@ -13010,7 +12916,6 @@
   <block id="a786547181c9c8f446791420d2be691f" category="paragraph">使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がを参照してください<block ref="f93341e63c1888be05256ff042174623" category="inline-link-rx"></block> 使用している ONTAP のバージョンがシェルフの混在をサポートしているかどうかを確認します。</block>
   <block id="27211cf5d485f8491ca9b566aefe2d6d" category="paragraph">ONTAP 9.4以降のMetroCluster IP構成では、自動ディスク割り当てとアドバンストドライブパーティショニングを使用した新規インストールがサポートされます。</block>
   <block id="e528d26e96f91b34e70a35c4661d620d" category="list-text">AFFおよびASAシステムでMetroCluster IP構成でADPを使用するには、ONTAP 9.4以降が必要です。</block>
-  <block id="bacc4dbebf17d22c9a0361ded0994067" category="paragraph"><block ref="bacc4dbebf17d22c9a0361ded0994067" category="inline-link-macro-rx"></block></block>
   <block id="bc8be72fdc9d6054f356bb2b7f80fd12" category="inline-link">NetApp Interoperability Matrix を参照してください</block>
   <block id="769db6797bc8c70f9ceb0ea238fcfef2" category="list-text"><block ref="769db6797bc8c70f9ceb0ea238fcfef2" category="inline-link-rx"></block></block>
   <block id="c9dd6bad4c7d561872f2e2d498a990bf" category="inline-link-macro">Interoperability Matrix Tool （ IMT ）</block>
@@ -13567,8 +13472,6 @@
   <block id="d3ab8079aafa01dd2443858e1958cde3" category="paragraph">「 * MetroCluster * 」セクションの図は、 MetroCluster サイト用にセットアップしてピアリングした 2 つのクラスタを示しています。作業中のクラスタ（ローカルクラスタ）が左側に表示されます。</block>
   <block id="4dbd519ea68e9fdd1535b92dd4afd5fb" category="list-text">MetroCluster の設定 * をクリックします。このウィンドウで、次の手順を実行します。</block>
   <block id="1786426d5d80efd6c5165d556166c28b" category="list-text">MetroCluster構成の各クラスタのノードが表示されています。ドロップダウンリストを使用して、リモートクラスタのノードとディザスタリカバリパートナーとなるローカルクラスタ内のノードを選択します。</block>
-  <block id="5b4f1da4fd53e0370a93b132cee09135" category="inline-link-macro">ONTAPメディエーターサービスの設定</block>
-  <block id="79929ab5271f1ea472573389b4d83491" category="list-text">ONTAPメディエーターサービスを設定する場合は、チェックボックスをクリックします。を参照して <block ref="5f1311c68626dc6800182a56591c319d" category="inline-link-macro-rx"></block></block>
   <block id="2e04b49bb4e33ec691ac2f426d41203d" category="list-text">両方のクラスタに暗号化を有効にするライセンスがある場合は、 * Encryption * セクションが表示されます。</block>
   <block id="12d02fba21726eafac4f9ce09b0d1801" category="paragraph">暗号化を有効にするには、パスフレーズを入力します。</block>
   <block id="39391d3e9d1021130d7922046a90931b" category="list-text">MetroClusterを共有レイヤ3ネットワークで設定する場合は、このチェックボックスをオンにします。</block>
@@ -13627,24 +13530,16 @@
   <block id="d385f8f7be7049af17b707b814da972d" category="paragraph">Submit * をクリックすると、クラスタが作成および構成されるまで待機します。その後、検証プロセスが実行されます。</block>
   <block id="e66cf0363da426ff5fc40b5dff923ee7" category="paragraph-title">次の手順</block>
   <block id="5a8cb11351ec1c2ae0f6ece191a675b3" category="section-title">新しいクラスタでのONTAPの設定に関するビデオ</block>
-  <block id="de87e59d2852e752153034440b599942" category="summary">System Managerを使用して、メディエーターを管理するタスクを実行できます。</block>
-  <block id="4a75c782083d91f8442fa0793b7cfbf5" category="doc">System Managerを使用したONTAPメディエーターの管理</block>
-  <block id="a92f4998e6033fa7b4c91230afa4eb31" category="paragraph">System Managerを使用して、ONTAPメディエーターを管理するタスクを実行できます。</block>
   <block id="58d9a382438a6ccf3362b70996f2217e" category="paragraph-title">タスクについて</block>
   <block id="06d19fcd882f22629288f03ed5b7cdbf" category="paragraph">ONTAP 9 .8以降では、System Managerを4ノードのMetroCluster IP構成を管理するためのシンプルなインターフェイスとして使用できます。これには、3番目の場所にインストールされたONTAPメディエーターも含まれます。</block>
   <block id="7cd65d7812b2b9ccfca9369428e81afc" category="paragraph">ONTAP 9 .14.1以降では、System Managerを使用して8ノードMetroCluster IPサイトに対してもこれらの処理を実行できます。System Managerでは8ノードシステムをセットアップまたは拡張することはできませんが、8ノードMetroCluster IPシステムがすでにセットアップされている場合はこれらの処理を実行できます。</block>
-  <block id="cf5d5c60759eb97116f97dba2f94928f" category="paragraph">ONTAPメディエーターを管理するには、次のタスクを実行します。</block>
   <block id="34c30a40821bf0600cbb66a443eaa256" category="cell">このタスクを実行します。</block>
   <block id="ed48cbb0bf6ff16f983dee37b0fa56db" category="cell">対処方法</block>
-  <block id="fbdb3c4696d4af3abdd40a7c4d39dff1" category="paragraph">Mediatorサービスの設定</block>
   <block id="5887ba6bb1083b1733f935c989ce8798" category="paragraph">MetroClusterサイトの両方のクラスタが稼働し、ピア関係が確立されている必要があります。</block>
   <block id="e41b8f6d50b100db120f723ab2d80b55" category="list-text">ONTAP 9.8 の System Manager で、 * Cluster &gt; Settings * を選択します。</block>
   <block id="5ad3e303fff11348579be9fa7186a3bf" category="inline-image-macro">アクションアイコン</block>
   <block id="91137d8840d5756932cbbe95191ebef9" category="list-text">[Mediator]*セクションで、をクリックします<block ref="7d54718dbc3f6ea214f7c0852ad5f778" category="inline-image-macro-rx" type="image"></block>。</block>
   <block id="08e18262fd4a21acec4d96a4a34ce874" category="list-text">Configure Mediator* （メディエーターの設定）ウィンドウで、 * Add+* （追加 + * ）をクリックします。</block>
-  <block id="7106fd9d66839587984098b5b110af62" category="list-text">ONTAPメディエーターの設定の詳細を入力します。</block>
-  <block id="4454fd0f209c519ab968807065d1d63d" category="paragraph">System ManagerでONTAPメディエーターを設定する際には、次の情報を入力できます。</block>
-  <block id="2396a51918b19da4a570bb6eeefaf733" category="list-text">メディエーターのIPアドレス。</block>
   <block id="bf3c0dfedfed52264992478ab75c11ab" category="list-text">ユーザ名。</block>
   <block id="818e503323563216b4a9556e8c414a99" category="list-text">パスワード。</block>
   <block id="db76a646cbffaec942b46f13ae610cdf" category="paragraph">Mediator-Assisted Automatic Switchover（MAUSO；メディエーターアシスト自動スイッチオーバー）の有効化または無効化</block>
@@ -13654,11 +13549,8 @@
   <block id="8048f4b95111b36ae736e0db22032afc" category="list-text">MetroClusterサイト名の横にあるをクリックします <block ref="fc003bdefc684d1fa6047f466b3a4572" category="inline-image-macro-rx" type="image"></block> 。</block>
   <block id="5451b90704453cd0f976a20853b71515" category="list-text">[有効化]*または*[無効化]*を選択します。</block>
   <block id="e7d8532df0bf3db8251352a8238be289" category="list-text">管理者のユーザ名とパスワードを入力し、*[有効化]*または*[無効化]*をクリックします。</block>
-  <block id="1f48f2b275c8a8c7c346ee84a099bf8d" category="admonition">Mediatorが到達可能で、両方のサイトが「通常」モードになっていれば、Mediatorを有効または無効にできます。MetroClusterシステムが正常な状態であれば、MAUSOが有効または無効になっていてもメディエーターにアクセスできます。</block>
-  <block id="7f4fa61d4e9b9b925c8fb71469e17d9d" category="paragraph">MetroCluster構成からメディエーターを削除する</block>
   <block id="90e2fb7737ff30cfb4976eadc47866a4" category="list-text">[メディエーターの削除]*を選択します。</block>
   <block id="08c3fe5d52a59ab36d7b3b7acab670d1" category="list-text">管理者のユーザ名とパスワードを入力し、*[削除]*をクリックします。</block>
-  <block id="7f4010553b429e7c90d3b1f0da9fa64b" category="paragraph">Mediatorの健全性を確認する</block>
   <block id="88696f657e6e364490e66c4462936660" category="inline-link-macro">MetroCluster構成の健全性の確認</block>
   <block id="b01e706bfb46755bbdbe42d170a1b23a" category="paragraph">のSystem Manager固有の手順を実行します<block ref="1dc6f14de17f840d44d583754a4c8527" category="inline-link-macro-rx"></block>。</block>
   <block id="d643e31d547d643afdddd05a8a4f7112" category="paragraph">スイッチオーバーとスイッチバックの実行</block>
@@ -13759,7 +13651,6 @@
   <block id="4e04b2ebfeef2f344cfa9299a14a7f15" category="sidebar">MetroClusterによるデータ保護</block>
   <block id="eb2ce2e6e8dd207e0722c727b11bf523" category="sidebar">CLIを使用したMetroClusterソフトウェアの設定</block>
   <block id="ae58261cc60a8a566f51001fa9647cc8" category="sidebar">System Managerを使用したMetroClusterソフトウェアの設定</block>
-  <block id="7dbb00295563db0482d1cd647c85ce79" category="sidebar">システムマネージャを使用したONTAPメディエーターの管理</block>
   <block id="08df7de62062ac541a6aa573389a0bff" category="sidebar">MetroCluster構成の健全性の確認</block>
   <block id="bcaee96b0ab793907da56767503991e2" category="admonition">MetroCluster IPおよび接続されているスイッチポートは、MetroCluster IPインターフェイスを作成するまでオンラインになりません。</block>
   <block id="6db27f68adde7b6578b513891108402f" category="paragraph">BES-53248</block>
@@ -13926,7 +13817,6 @@
   <block id="a1909236f08f260f2b52aebf539344be" category="paragraph">次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_1-newの値を設定します。</block>
   <block id="a0436481bda3531d4a5eda5dac0e5608" category="paragraph">次の例は、すべてのMetroCluster IP DR接続にデフォルトのVLANを使用してnode_B_2-newの値を設定します。</block>
   <block id="1a5991cd222add52b1f5aa51350d470e" category="list-title">共有MetroCluster / HAポートを使用するシステム</block>
-  <block id="eabf799ca909dc7fa9808c3abb476773" category="paragraph">プロンプトが表示されたら、認証パスワードを入力します。</block>
   <block id="8c62b33499e87d946c3be674c109e802" category="inline-link-macro">8ノードMetroCluster IP構成に拡張</block>
   <block id="d3f54bf5e1d7bcb93c8d615f71713d7f" category="paragraph">共有ストレージMetroClusterスイッチを使用している場合は、4ノードのMetroCluster IP構成にのみ移行できます。共有ストレージMetroClusterスイッチを使用した8ノードMetroCluster IP構成への移行はサポートされていません。4ノードMetroCluster IP構成への移行が完了したら、移行<block ref="6dee49609367b51155e32a3a9526bace" category="inline-link-macro-rx"></block>を実行できます。</block>
   <block id="2e6fac9e7be327118126470b28ac80e9" category="paragraph">プラットフォームモデルおよびスイッチのサポートについては、を参照してください<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block>。</block>
@@ -14045,7 +13935,6 @@
   <block id="c0d421f4948fca7693af31b81667650d" category="list-text">cluster_Aのノードをアップグレードするために、上記の手順を繰り返し<block ref="fdc81b8422a2d3a4dc8579b364ffd7ac" category="inline-link-macro-rx"></block>ます。</block>
   <block id="9708813a6edf75a072848cc8c19d1d0b" category="inline-link-macro">MetroCluster 構成を追加</block>
   <block id="1452de87b0c5b157dc8a7594223b5265" category="paragraph"><block ref="9b8797650089db2aa56d22b65e4ec45b" category="inline-link-macro-rx"></block>です。</block>
-  <block id="448025dd8ef817882b16f81c3c2c401f" category="paragraph"><block ref="65a4078ac1b82a84ce7a38a387b8b31c" category="inline-link-macro-rx"></block>です。</block>
   <block id="337d2ccc4953efb0209e4bf2012ca1be" category="summary">コントローラのアップグレードを実行する前に、デバイスのコンソールログを有効にしてください。</block>
   <block id="ec75a12b665b34d0cdc8d12746fc8cfa" category="doc">MetroCluster IPコントローラのアップグレード前にコンソールログを有効にする</block>
   <block id="f31a964269837fa383f7baad3584db47" category="inline-link-macro">必要なbootargを設定する（9.15.1以降で導入されたシステムにアップグレードする場合）</block>
@@ -14235,8 +14124,6 @@
   <block id="c458b5225672f84c61d5b9931863ae60" category="paragraph">コントローラのアップグレードの準備として、新旧のプラットフォームモデルによっては、スイッチリファレンス構成ファイル（RCF）のアップグレードが必要になる場合があります。その後、システムの事前確認を実行し、設定情報を収集し、既存の監視ソフトウェアを削除します。</block>
   <block id="0c21b75966b293902f32e19c44cfee40" category="list-text">スイッチのRCF設定が最小バージョンになっていません。</block>
   <block id="cbde96365d4f8077bc47cc3245bf5730" category="section-title">システムの事前確認を実行</block>
-  <block id="b5fe45c4891c6d19896e92fee5883a19" category="inline-link-macro">ONTAPメディエーターサービスを再設定する</block>
-  <block id="be523ee24c95ff3261d845514671c9b1" category="paragraph">ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、手動で行う必要があり<block ref="059689c27028be05419054623185eb12" category="inline-link-macro-rx"></block>ます。</block>
   <block id="2592dc8685229c73a77e91741c837a63" category="paragraph">詳細については、を参照してください<block ref="8d2708bcc3f1eaf7281ec3a4227ab734" category="inline-link-rx"></block>。</block>
   <block id="0db7751284ee845ba2b1c67a8d8704db" category="section-title">Tiebreakerまたはその他の監視ソフトウェアから既存の構成を削除する</block>
   <block id="0cd4dc9ba4eb47708afdb2049d98c13a" category="paragraph">アップグレードを開始する前に、Tiebreakerまたはその他の監視ソフトウェアから既存の設定を削除してください。</block>
@@ -14294,8 +14181,6 @@
   <block id="17c2940e7b2cfcc2faa4d1ef00e56d9e" category="sidebar">構成をスイッチバックします。</block>
   <block id="11174a5afd588b4b0362df983b5f76c6" category="sidebar">スイッチオーバーとスイッチバックを使用してMetroCluster IPのコントローラ（AFF A700からAFF A900、FAS9000からFAS9500）をアップグレードする（ONTAP 9.10.1以降）</block>
   <block id="9154ca816ab69e291b499f5a2579f66c" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のコントローラ（AFF A700からAFF A900、FAS9000からFAS9500）をアップグレードする（ONTAP 9.10.1以降）</block>
-  <block id="cb037476ec4486d51b86d5dbeede8008" category="inline-link-macro">ログ収集の設定</block>
-  <block id="661221d64894eb71f90ac5ef75331837" category="paragraph">必要に応じて、手順~を実行し<block ref="d3ee677e2efae042d4f3199a44815074" category="inline-link-macro-rx"></block>ます。</block>
   <block id="3931310703263c726d52a1768504781f" category="list-text">のBrocadeの手順に従って、新しいスイッチを設定し<block ref="8891b6de7b2070c584bdeb67b522b51b" category="inline-link-macro-rx"></block>ます。</block>
   <block id="a01a953cf57a4a3591be7c4dd9dd14fa" category="list-text">ISL暗号化を有効にするには、を参照してください<block ref="fb6e086ddbfd6d800d2c601996554df4" category="inline-link-macro-rx"></block>。</block>
   <block id="180e0613653267779e5c48b1089eec2b" category="paragraph">イニシエータポート、FC-VIポート、またはISLの接続に使用されていないポートを再設定して、ストレージポートとして機能させることができます。ただし、サポートされているRCFを使用している場合は、それに応じてゾーニングを変更する必要があります。</block>
@@ -14359,7 +14244,6 @@
   <block id="70de6eed617bf2598c428ab602bacd20" category="section-title">計画外スイッチオーバーの実行（ONTAP 9.8以降）</block>
   <block id="2441e03051d41aa2f6f9d9e39c577a3e" category="section-title">スイッチバックの実行（ONTAP 9.8以降）</block>
   <block id="2a6e3f78c9b73af2855a7bc5191bf5b1" category="list-text">ローカルクラスタで、ONTAP 9.8以降のSystem Managerにログインします。</block>
-  <block id="22049fef22b0ddad50caf9ded819a4f1" category="paragraph"><block ref="22049fef22b0ddad50caf9ded819a4f1" category="inline-link-macro-rx"></block></block>
   <block id="8210c1e569b4a7f0d685a838881f7f66" category="cell">AFFおよびASAシステム</block>
   <block id="d5d4923aa83e46af2152de920946ba41" category="cell">FASシステム</block>
   <block id="fa8ce860967d0ec751385e3e150d223a" category="list-text">古いコントローラのMetroClusterインターフェイスのIPアドレスを確認します。</block>
@@ -14699,7 +14583,6 @@
   <block id="b33459fffe46ec3b9d80f18bbf0ca86f" category="paragraph"><block ref="b33459fffe46ec3b9d80f18bbf0ca86f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9e37fc850a66f0dca0578ede62cb8799" category="paragraph">C60、AFF A50、FAS70、、AFF A700、AFF A70、AFF C800、AFF、AFF A90、FAS9000、AFF、AFF A900、AFF A800 C80、FAS90、FAS9500、およびAFF A1Kシステムへのアップグレードでサポートされる組み合わせを確認します。</block>
   <block id="de3a07c0dc84d4fdfe71adee21062ff1" category="inline-image-macro">に、グループ2プラットフォームでサポートされるアップグレードの組み合わせを示します。</block>
-  <block id="f1b4dd0636035b92daabcb6740a8afb2" category="paragraph"><block ref="f1b4dd0636035b92daabcb6740a8afb2" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9f6b95a9493d80d4878ea6a3d8899475" category="paragraph">次の表に、MetroCluster IP構成のAFFシステムまたはFASシステムの更新でサポートされるプラットフォームの組み合わせを示します。テーブルは次の2つのグループに分割されます。</block>
   <block id="76677d2a7baa40ca594e96f3789575f2" category="list-text">*グループ1 *は、、AFF A20、FAS2750、AFF A220、AFF A150、FAS500f、AFF C250、FAS8200、FAS50、AFF C400 C30、AFF A30、AFF A250、AFF A300、AFF A400、FAS8700、AFF、AFF A320、FAS8300システムの組み合わせを示しています。</block>
   <block id="507731d894d9ee976f7066af87b9f8dd" category="list-text">*グループ2 *は、AFF C60、AFF A50、FAS70、FAS9000、AFF A700、AFF A70、AFF C800、AFF、FAS9500、AFF A900、AFF A800 C80、FAS90、AFF A90、およびAFF A1Kシステムの組み合わせを示しています。</block>
@@ -14718,8 +14601,6 @@
   <block id="5667d434150380e4826a9c5749e3611d" category="cell">AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、AFF C60、FAS50システムへのその他のサポートされるアップグレード</block>
   <block id="1f33c4b21d6c848bec5712e27807c50a" category="paragraph">このタスクは、AFF A70、AFF A90、AFF A1K、FAS70、FAS90、AFF C80、AFF A50、AFF A20、AFF A30、AFF C30、AFF C60、またはFAS50システムにアップグレードする場合にのみ*必要です。</block>
   <block id="63856cfb46890240aad0d97a958b298b" category="paragraph">次の表に、「system controller replace」コマンドを使用してMetroCluster IP構成のAFFまたはFASシステムをアップグレードする場合にサポートされるプラットフォームの組み合わせを2つのグループに分けて示します。</block>
-  <block id="c21a199bc091a4db6d90366971734cf9" category="paragraph"><block ref="c21a199bc091a4db6d90366971734cf9" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="4d4e0d3e34b6b8a05aa28d2f8e68fab4" category="paragraph"><block ref="4d4e0d3e34b6b8a05aa28d2f8e68fab4" category="inline-image-macro-rx" type="image"></block></block>
   <block id="e94f3a81af196da788fa0f158f9d57fc" category="sidebar">Active IQ Unified ManagerとSystem Managerを使用して詳細な設定と監視を行う方法</block>
   <block id="5c1f1ec5000a0efcdda7a9cf624dafe7" category="paragraph">ONTAP 9.15.1以降で導入されたシステムでコントローラをアップグレードする場合、アップグレードを開始する前に古いコントローラでbootargを設定する必要があります。</block>
   <block id="d7aa339b18c7637dfafa2ace54386b6c" category="admonition">アップグレードを開始する前に、両方のサイトの古いノードで必要なbootargをすべて設定する必要があります。</block>
@@ -14752,4 +14633,267 @@
   <block id="47c5dc57c727f22af1ac884b3169ca06" category="paragraph">8ノードMetroCluster構成のサポート</block>
   <block id="61c5b898fb73fa93fc5e839741da576e" category="paragraph">永続的な8ノードクラスタは、IPおよびファブリック接続MetroCluster構成でサポートされます。</block>
   <block id="0f58a32a1bffeb9bb247bbf5ce1a2f3f" category="paragraph"><block ref="0f58a32a1bffeb9bb247bbf5ce1a2f3f" category="inline-link-rx"></block></block>
+  <block id="62e327d2b6ddff400e7d504d270e8f37" category="paragraph"><block ref="62e327d2b6ddff400e7d504d270e8f37" category="inline-link-macro-rx"></block></block>
+  <block id="97c5969afb75d5f5fcf94bd41d9aa879" category="list-text">MetroCluster IP 構成のベスト プラクティス。</block>
+  <block id="f14613b83e9dfb7ecf4d15a3e8d4ce71" category="section-title">ONTAP Mediator（MetroCluster IP構成）の再構成</block>
+  <block id="16b859a14f691774ca3d8870b4291e5a" category="paragraph">ONTAP Mediator を使用して設定された MetroCluster IP 構成がある場合は、ONTAP Mediator との関連付けを削除して再設定する必要があります。</block>
+  <block id="d9378f13dfa9cc55384c198d6ed26792" category="list-text">ONTAP Mediator の IP アドレス、ユーザー名、パスワードが必要です。</block>
+  <block id="4909f94e68644f4b8929d502b5ecffad" category="list-text">ONTAP Mediator が Linux ホスト上で設定され、動作している必要があります。</block>
+  <block id="5a48f707e19c36416ef6eff0f5d83d11" category="list-text">ONTAP Mediator を使用した MetroCluster IP 構成の場合は、ONTAP Mediator が起動して動作していることを確認します。</block>
+  <block id="7f35eaed1f76b042a28d0b2d509e2d06" category="list-text">ONTAP Mediator を使用した MetroCluster IP 構成の場合は、ONTAP Mediator の IP アドレスを取得します。</block>
+  <block id="39c789871bbddfdfff37230e0c6aa461" category="admonition">EngineID の場合は、*ENTER* を押してデフォルト値を割り当てます。</block>
+  <block id="0fc80f14ab8b45ef10e0e44892619d77" category="doc">ONTAPメディエーターが計画外の自動スイッチオーバーをサポートする仕組み</block>
+  <block id="1d3879377158a3eb01f004df2464ce87" category="paragraph">ONTAP Mediatorは、MetroCluster IPノードの状態情報を保存するためのメールボックスLUNを提供します。これらのLUNは、MetroClusterサイトとは物理的に分離されたLinuxホスト上で実行されるONTAP Mediatorと同じ場所に配置されます。MetroClusterIPノードは、メールボックス情報を使用してディザスタリカバリ（DR）パートナーの状態を監視し、災害発生時にMediator-assisted Unplanned Switchover（MAUSO）を実装できます。</block>
+  <block id="2d65375dfa4df44be16a94af9f9abf58" category="list-text">*ONTAP Mediator を使用した MetroCluster IP 構成 (ONTAP 9.7 以降)*</block>
+  <block id="b87375524e9177103b13d71483ba0693" category="summary">ONTAP 9.7 以降、ONTAP Mediator は、ステータス情報用の物理的に別のリポジトリを提供することで、MetroCluster IP 構成による計画外の自動スイッチオーバーの実行を支援できます。</block>
+  <block id="dfcddace895e6d15eaa29a365e239546" category="doc">ONTAPメディエーターのインストール準備</block>
+  <block id="a02702c70aea42098864f08e7416a2d3" category="list-text">Linux バージョンを更新する予定がある場合は、最新バージョンの ONTAP Mediator をインストールする前に更新してください。</block>
+  <block id="c53d5657445f71b92e34d86103a86f85" category="list-text">ONTAP Mediator と MetroCluster Tiebreaker ソフトウェアの両方を同じ MetroCluster 構成で使用しないでください。</block>
+  <block id="059b37c83fb6387899a2deb16d02458f" category="list-text">ONTAP Mediator は、MetroCluster サイトとは別の場所にある Linux ホストにインストールする必要があります。</block>
+  <block id="857725e43c3ed86c03193f33f6382417" category="list-text">ONTAP Mediator は、最大 5 つの MetroCluster 構成を同時にサポートできます。</block>
+  <block id="c9ffad835642fcae631d9df1be00fc38" category="section-title">MetroCluster構成でONTAP Mediatorを使用するためのネットワーク要件</block>
+  <block id="4f7415d27a43620353acfcd34858e996" category="paragraph">MetroCluster 構成に ONTAP Mediator をインストールするには、構成がいくつかのネットワーク要件を満たしていることを確認する必要があります。</block>
+  <block id="f96926f4c01d2573af8b25445cc69961" category="paragraph">ONTAP Mediator と 1 つの DR グループ間のリンクには、少なくとも 20 Mbps の帯域幅が必要です。</block>
+  <block id="3e7704befa86eb1c7abc5636dc751c2d" category="section-title">MetroCluster構成におけるONTAP Mediatorのホスト要件</block>
+  <block id="25b9f376929fe7dbe0cb4b7eaa33fd68" category="section-title">MetroCluster構成でONTAP Mediatorをアップグレードするためのガイドライン</block>
+  <block id="df091e4083ea919fc3a0a8939d1edf09" category="paragraph">ONTAP Mediator をアップグレードする場合は、Linux バージョンの要件を満たし、アップグレードのガイドラインに従う必要があります。</block>
+  <block id="2a3e7adab0cb4c934f05558fd4b11142" category="list-text">ONTAP Mediator は、直前のバージョンから現在のバージョンにアップグレードできます。</block>
+  <block id="931e10d7f833f6006078c296b8f49e42" category="inline-link-macro">ONTAPメディエーターをインストールまたはアップグレードする</block>
+  <block id="e4fc8483908a1fd217bb07557b043e20" category="paragraph"><block ref="e4fc8483908a1fd217bb07557b043e20" category="inline-link-macro-rx"></block></block>
+  <block id="c2f5dea80e3ceaa485bfe3b7ffaf114f" category="paragraph">*注:* ポートe5aとe7aはクラスタ間LIFにのみ使用できます。これらのポートをデータLIFに使用することはできません。</block>
+  <block id="dfcad5a3f6729276e992c858459078cf" category="paragraph">MetroCluster 構成は、RAID-DP、RAID4、および RAID-TEC をサポートします。</block>
+  <block id="c452f245605b541913c8927f2fb39f4b" category="inline-link-macro">自動ドライブ割り当てとADPシステムに関する考慮事項</block>
+  <block id="9648215f493ab7d57f334a1db39291f3" category="admonition">ONTAP 9.4以降のMetroCluster IP構成では、自動ディスク割り当てとアドバンストドライブパーティショニングを使用した新規インストールがサポートされます。詳細については、を参照してください <block ref="b265df9824eecc73bbbf36d6341665a3" category="inline-link-macro-rx"></block> 。</block>
+  <block id="cbeca2fa89a3ea8f375e96b634c42759" category="doc">MetroCluster IPスイッチでSNMPv3を構成する</block>
+  <block id="630f606ab1d9cdb74f5fddde24450385" category="paragraph">このタスクは、スイッチ上でSNMPv3を設定するための一般的な手順を示しています。記載されているスイッチファームウェアバージョンの一部は、MetroCluster IP構成ではサポートされない可能性があります。</block>
+  <block id="578f5e3d8693dd5b8f97c29bf9aec80b" category="paragraph">MetroCluster IP構成でサポートされているスイッチファームウェアバージョンに応じた手順に従う必要があります。 <block ref="9c839fcdfb8699a63c787254d7b1ae03" category="inline-link-macro-rx"></block>サポートされているファームウェアのバージョンを確認します。</block>
+  <block id="1451684986f1c945fdb4e4f2a8b904be" category="list-text">SNMPv3は、ONTAP 9.12.1以降でのみサポートされます。</block>
+  <block id="e43f0bacec59589637fec825db76ae04" category="list-text">ONTAP 9.13.1P12、9.14.1P9、9.15.1P5、9.16.1 以降のバージョンでは、次の 2 つの問題が修正されています。</block>
+  <block id="b0dd8ee150ec6ec9cbd4e76f7441983f" category="inline-link-macro">CiscoスイッチのONTAPヘルスモニタリングでは、モニタリングをSNMPv3に切り替えた後でもSNMPv2トラフィックが引き続き表示されることがあります。</block>
+  <block id="f51d6ba5c14f0f9f7e1e94040870b36a" category="list-text"><block ref="f51d6ba5c14f0f9f7e1e94040870b36a" category="inline-link-macro-rx"></block></block>
+  <block id="703ad3e359e69f75421f8e8fdf1c4374" category="inline-link-macro">SNMP障害発生時にスイッチファンと電源の誤検知アラートを通知</block>
+  <block id="972989a7e914db02b9462470b520ed9e" category="list-text"><block ref="972989a7e914db02b9462470b520ed9e" category="inline-link-macro-rx"></block></block>
+  <block id="5fb3828593766d454e79a0dcf52fed9d" category="paragraph">Broadcom *、Cisco *、および* NVIDIA *スイッチでSNMPv3ユーザ名を設定するには、次のコマンドを使用します。</block>
+  <block id="77f3beca20fcd78f77236507e8d9b4af" category="open-title">Broadcomスイッチ</block>
+  <block id="89fe808c6ef5fe301085b5abe4406d35" category="paragraph">Broadcom BES-53248スイッチでSNMPv3ユーザ名network-operatorを設定します。</block>
+  <block id="c59df2c71925eefec8dc03aa685125c8" category="list-text">認証なし*の場合：</block>
+  <block id="4c58055d9b16c25c354c591188cb27ae" category="list-text">MD5/SHA認証の場合*：</block>
+  <block id="b00500f501ccb5c8ab2313d810b6ff29" category="list-text">AES/DES暗号化を使用した* MD5/SHA認証の場合*：</block>
+  <block id="ce23d8cb44ce288570eb2dcc49f1f2f7" category="paragraph">次のコマンドは、ONTAP側でSNMPv3ユーザ名を設定します。</block>
+  <block id="760c6e9b6b587e6f977e0e7116b69f45" category="paragraph">次のコマンドは、CSHMでSNMPv3ユーザ名を確立します。</block>
+  <block id="d3280214c17ea96ca13a6e79765d0b3c" category="list-text">認証と暗号化を使用するようにスイッチのSNMPv3ユーザを設定します。</block>
+  <block id="8379e83fc1ad68bfb1ad877f1b7fda6b" category="list-text">ONTAP 側でSNMPv3ユーザをセットアップします。</block>
+  <block id="6b9f542dd155c40aa5e4484b5ff61711" category="list-text">新しいSNMPv3ユーザで監視するようにCSHMを設定します。</block>
+  <block id="f1d85c8d2abe8fba947527035ed0f381" category="list-text">CSHM ポーリング期間を待った後、イーサネット スイッチのシリアル番号が入力されていることを確認します。</block>
+  <block id="0fdfed50bdfb7a964741d7f6016dd332" category="paragraph">Cisco 9336C-FX2スイッチでSNMPv3ユーザ名SNMPv3_userを設定します。</block>
+  <block id="d4d693d9dd779d0daf149c2e448b60b2" category="list-text">新しく作成したSNMPv3ユーザで照会するシリアル番号が、CSHMポーリング期間の完了後に前の手順で説明したものと同じであることを確認します。</block>
+  <block id="05918726f836c344025fecbcf0275f1b" category="open-title">NVIDIA - CL 5.4.0</block>
+  <block id="c19095c0c8945d1d4e4e73ec7a11354c" category="paragraph">CLI 5.4.0 を実行している NVIDIA SN2100 スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します。</block>
+  <block id="cd12738ab621b27db86ca1b02e9d118c" category="open-title">NVIDIA - CL 5.11.0</block>
+  <block id="1d478fc1ce1613a790d5d77707c188f6" category="paragraph">CLI 5.11.0 を実行している NVIDIA SN2100 スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します。</block>
+  <block id="8ec049d1fe155ff0c4df415c3d4691e2" category="doc">MetroCluster IP構成におけるスイッチヘルスモニタリングの概要</block>
+  <block id="8ae4eeaa7baed19106cc30ea02483c5e" category="paragraph">イーサネットスイッチヘルスモニタ（CSHM）は、クラスタネットワークスイッチとストレージネットワークスイッチの動作の健全性を確認し、デバッグ用にスイッチのログを収集します。</block>
+  <block id="4ae61f4d1ec2f0efafd8ee4274e49ccf" category="section-title">MetroCluster IP構成でCSHMを構成する際の重要な注意事項</block>
+  <block id="b38569be2d36a20e8902840c1ea976fe" category="paragraph">このセクションでは、Cisco、Broadcom、NVIDIA SN2100スイッチでSNMPv3とログ収集を設定するための一般的な手順について説明します。MetroCluster構成でサポートされているスイッチファームウェアバージョンに応じた手順に従う必要があります。<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>サポートされているファームウェアのバージョンを確認します。</block>
+  <block id="f75a60c3cd68bf003c2bb72becccc57d" category="paragraph">MetroCluster 構成では、ローカル クラスタ スイッチに対してのみヘルス モニタリングを構成します。</block>
+  <block id="84a426c437e5bc752203a8e9a402890b" category="paragraph">BroadcomおよびCiscoスイッチでログ収集を行う場合、ログ収集が有効になっているクラスタごとに、スイッチ上に新しいユーザーを作成する必要があります。MetroCluster構成では、MetroCluster 1、MetroCluster 2、MetroCluster 3、およびMetroCluster 4のそれぞれについて、スイッチ上に個別のユーザーを設定する必要があります。これらのスイッチは、同じユーザに対して複数のSSHキーをサポートしません。追加のログ収集設定を実行すると、そのユーザの既存のSSHキーが上書きされます。</block>
+  <block id="feed060dbea766c7d4e1b26f14b08e82" category="paragraph">CSHM を設定する前に、不要な ISL アラートを回避するために、使用されていない ISL を無効にする必要があります。</block>
+  <block id="61ef80ea8d9e92d0a652bb75148884d3" category="inline-link-macro">ONTAPメディエーターの設定</block>
+  <block id="05381b1a498b05222c00536e559ed905" category="list-text">ONTAP Mediator を設定する場合は、チェックボックスをクリックします。を参照して <block ref="c84fb84e87e58e2bf063235733828347" category="inline-link-macro-rx"></block></block>
+  <block id="ca1ebe89fe0d391a3c3924e2b6fa0066" category="summary">ほとんどの場合、イーサネットスイッチはONTAPによって自動的に検出され、CSHMによって監視されます。スイッチに適用されるリファレンス構成ファイル（RCF）では、特にCisco検出プロトコル（CDP）やリンク層検出プロトコル（LLDP）が有効になります。</block>
+  <block id="ea9baff86b324b08aa0d9f60e5d09833" category="doc">MetroCluster IP構成におけるイーサネットスイッチの監視を管理する</block>
+  <block id="a1c2fc220383716c158399e227f0b34f" category="paragraph">ほとんどの場合、イーサネットスイッチはONTAPによって自動的に検出され、CSHMによって監視されます。スイッチに適用されるリファレンス構成ファイル（RCF）では、特にCisco検出プロトコル（CDP）やリンク層検出プロトコル（LLDP）が有効になります。ただし、検出されなかったスイッチを手動で追加したり、使用されなくなったスイッチを削除したりしなければならない場合があります。また、メンテナンス中など、スイッチを構成内に残したまま、アクティブな監視を停止することもできます。</block>
+  <block id="2b77bb88cf2794536ac9c658ce053c6b" category="section-title">ONTAPで監視できるようにスイッチエントリを作成します。</block>
+  <block id="4aa02798c2feea1f87e6fb5301e10d30" category="paragraph">指定したイーサネットスイッチの監視を手動で設定してイネーブルにするには、コマンドを使用し<block ref="e59cde6e921a1b23eb9bf8c1c9068aca" prefix=" " category="inline-code"></block>ます。これは、ONTAPでスイッチが自動的に追加されない場合、または以前にスイッチを削除してから再度追加する場合に役立ちます。</block>
+  <block id="82b694a75e07a035b8cd3b7aae86fdb8" category="paragraph">典型的な例としては、IPアドレスが1.2.3.4、SNMPv2cクレデンシャルが*cshm1!*に設定された[DeviceName]という名前のスイッチを追加します。ストレージスイッチを設定する場合は、の代わりにを<block ref="0f3e90baa25250f9896e5ad67dd9d1f6" prefix=" " category="inline-code"></block>使用し<block ref="0fa5a8d20ad4f199ce4bb17e333f0a4a" prefix=" " category="inline-code"></block>ます。</block>
+  <block id="9e2f728fd093bf40641895bd7ab81ffc" category="section-title">スイッチを削除せずに監視を無効にする</block>
+  <block id="71ea82a6a71bd6b5e0857ef4469e6824" category="paragraph">特定のスイッチの監視を一時停止または停止し、今後の監視用に残しておく場合は、パラメータを削除するのではなく変更します<block ref="a95032ab49a61ccce65cbef4bf991ebd" prefix=" " category="inline-code"></block>。</block>
+  <block id="254dbd09c58880fcc321f2394e42803d" category="paragraph">これにより、新しいアラートを生成したり再検出したりすることなく、スイッチの詳細と設定を保持できます。</block>
+  <block id="5c87ebc68b8545e621c4293650f66e8e" category="section-title">不要になったスイッチを削除</block>
+  <block id="c68359f3f21922e686e683f2b1fb2d69" category="paragraph">切断されたスイッチまたは不要になったスイッチを削除する場合に使用し<block ref="72fd318795f4bf274ff150d0a09106e1" prefix=" " category="inline-code"></block>ます。</block>
+  <block id="0dcda35c85e27aa3498fa4ab30cb7dae" category="paragraph">デフォルトでは、このコマンドが成功するのは、ONTAPがCDPまたはLLDPを介して現在スイッチを検出していない場合だけです。検出されたスイッチを削除するには、パラメータを使用し<block ref="02e554f8f135bc49b80e8fc45a341757" prefix=" " category="inline-code"></block>ます。</block>
+  <block id="6625e054d05a0ea2ca1ae3049f75717e" category="paragraph">を使用している場合、<block ref="02e554f8f135bc49b80e8fc45a341757" prefix=" " category="inline-code"></block>ONTAPがスイッチを再度検出すると、スイッチが自動的に再追加されることがあります。</block>
+  <block id="4e4facc560c88d40d47ce2b1369d5552" category="doc">MetroCluster IPスイッチでログ収集を構成する</block>
+  <block id="d5a5c9619599da12d87af6daeab1ece6" category="paragraph">MetroCluster IP 構成では、デバッグの目的でスイッチ ログを収集するようにログ収集を設定できます。</block>
+  <block id="7c51c84110459cf460a444094be133c4" category="admonition">BroadcomおよびCiscoスイッチでは、ログ収集を行うクラスタごとに新しいユーザーが必要です。例えば、MetroCluster 1、MetroCluster 2、MetroCluster 3、MetroCluster 4のそれぞれについて、スイッチ上で個別のユーザーを設定する必要があります。同一ユーザーに対して複数のSSHキーを設定することはサポートされていません。</block>
+  <block id="8ac20e3719b6b58e94e5a4385e87b52e" category="paragraph">イーサネットスイッチヘルスモニタ（CSHM）は、クラスタネットワークスイッチとストレージネットワークスイッチの動作の健全性を確認し、デバッグ用にスイッチのログを収集します。この手順では、収集を設定し、詳細な*サポート*ログを要求し、AutoSupportによって収集される*定期的*データの1時間ごとの収集を有効にするプロセスをガイドします。</block>
+  <block id="2ded3ff3862adfc6f54d2a2f3ebf1147" category="paragraph">*注：* FIPSモードを有効にする場合は、次の手順を実行する必要があります。</block>
+  <block id="81f0d5b127adfd87f50ce10bc85e1e65" category="list-text">ベンダーの指示に従って、スイッチでSSHキーを再生成します。</block>
+  <block id="a60a00967db7342947b326a8f7618f52" category="list-text">を使用したONTAPでのSSHキーの再生成<block ref="c079360670e0f4f9441a54ac1d262788" prefix=" " category="inline-code"></block></block>
+  <block id="fe85427bc017f31f0f2b913e65e8d888" category="list-text"><block ref="36ac3c1f3bae8142b5d110fb906ba03e" prefix=" " category="inline-code"></block>コマンドを使用してログ収集セットアップルーチンを再実行します。</block>
+  <block id="ca243f374acfb56a77236e0d30935f7f" category="list-text">ユーザはスイッチコマンドにアクセスできる必要があります<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> 。これらが使用できない場合は、新しいユーザを作成し、必要な権限をユーザに付与します。</block>
+  <block id="8d36506446d5ad8477c75d9150e6528f" category="list-text">スイッチのヘルスモニタが有効になっている必要があります。これを確かめるためには、 <block ref="83bb5774e6e4dc96959b12bfa4334f18" prefix=" " category="inline-code"></block>フィールドが*true*に設定されている場合は、 <block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block>指示。</block>
+  <block id="40b03f9635c63b20aade0ff8145eafb8" category="list-text">BroadcomおよびCiscoスイッチを使用したログ収集の場合：</block>
+  <block id="89f1dd995a5c07ea1e13abc5993d9d59" category="list-text">ユーザにはネットワーク管理Privilegesが必要です。</block>
+  <block id="60f743043272b873831b17c5e7290445" category="list-text">ログ収集を有効にして、クラスタセットアップごとにスイッチに新しいユーザを作成する必要があります。これらのスイッチは、同じユーザに対して複数のSSHキーをサポートしません。追加のログ収集設定を実行すると、そのユーザの既存のSSHキーが上書きされます。</block>
+  <block id="c1433b541d8d99faed86a93460cb0bad" category="list-text">NVIDIAスイッチを使用したログ収集をサポートするには、<block ref="c85737d6a0d20328583b59ea7320a5ef" prefix=" " category="inline-code"></block>パスワードを入力せずにコマンドを実行できる_user_forログ収集を許可する必要があります。この使用を許可するには、次のコマンドを実行します。</block>
+  <block id="a0379ee208b1ca86b0ce11e60c0e73eb" category="paragraph"><block ref="83e3f80a08612b0113ac48e3b9a3432e" prefix="" category="inline-code"></block></block>
+  <block id="4b96de8aec25594d2021f91d86aa38cb" category="open-title">ONTAP 9.15.1以降</block>
+  <block id="09a5c8e72e479c23dfcdb0045312203a" category="list-text">ログ収集を設定するには、スイッチごとに次のコマンドを実行します。ログ収集用のスイッチ名、ユーザ名、およびパスワードの入力を求められます。</block>
+  <block id="8922abf783ebcd2485e871d83f810001" category="paragraph">*注意:* ユーザー指定プロンプトに「y」と答える場合は、ユーザーが以下の必要な権限を持っていることを確認してください。 <block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block> 。</block>
+  <block id="0af41f793380f36203c150e88680ae0d" category="admonition">CL 5.11.1 の場合、ユーザー *cumulus* を作成し、次のプロンプトに *y* と応答します: ログ収集に admin 以外のユーザーを指定しますか? {y|n}: *y*</block>
+  <block id="9516895d06a737348108b47f990aebff" category="list-text">[[step2]]定期的なログ収集を有効にする:</block>
+  <block id="679c69dadfb9ebf6a73c6cb1e48f610e" category="list-text">サポートログ収集のリクエスト：</block>
+  <block id="9c7ca9d82e20f27a701fcb23071651ef" category="list-text">イネーブルメント、ステータスメッセージ、前回のタイムスタンプと定期収集のファイル名、要求ステータス、ステータスメッセージ、前回のタイムスタンプとサポート収集のファイル名など、ログ収集のすべての詳細を表示するには、次のコマンドを使用します。</block>
+  <block id="098a6be90d7d0f41999537981c29585d" category="open-title">ONTAP 9.14.1以前</block>
+  <block id="921a23933bb7a508423ca6a0ad00bfd3" category="paragraph">*注：*ユーザー指定プロンプトに応答する場合は<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>、で説明されているように、ユーザーに必要な権限があることを確認してください<block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block>。</block>
+  <block id="86433b1c6cd2dfe18ff408f3c045d2d1" category="list-text">[[step2]] サポートログの収集を要求し、定期的な収集を有効にするには、次のコマンドを実行します。これにより、詳細なログと1時間ごとのデータ収集の両方のタイプのログ収集が開始されます。<block ref="db5eb84117d06047c97c9a0191b5fffe" prefix=" " category="inline-code"></block><block ref="cdcc32a064503184053bd2018d1c0e7e" prefix=" " category="inline-code"></block></block>
+  <block id="aae263170b5a7f23d3045f8a2b09091f" category="paragraph">10分待ってから、ログ収集が完了したことを確認します。</block>
+  <block id="da28641e557d1527788801659dc81fd5" category="inline-link-macro">ログ収集のトラブルシューティング</block>
+  <block id="b55b60679cb3be6b758030b014704077" category="admonition">ログ収集機能によってエラーステータスが報告された場合（の出力に表示され<block ref="88354d538ba5d4e1746193ec5949ab4b" prefix=" " category="inline-code"></block>ます）、詳細については、を参照してください <block ref="59a5019a80938ff66a962755304e5efc" category="inline-link-macro-rx"></block> 。</block>
+  <block id="0d967557c644a46919d28917c9e20c81" category="doc">MetroCluster IP構成におけるイーサネットスイッチの監視を確認する</block>
+  <block id="7d446387be9f1d7a1583327a693c81a1" category="paragraph">イーサネットスイッチヘルスモニタ（CSHM）は、検出したスイッチの監視を自動的に試みます。ただし、スイッチが正しく設定されていないと、監視が自動的に行われないことがあります。ヘルスモニタが使用中のスイッチを監視するように適切に設定されていることを確認してください。</block>
+  <block id="25784bbce13fd0c509a0fd1c5f248f3d" category="section-title">接続されているイーサネットスイッチの監視を確認する</block>
+  <block id="570122e6553f3a17e7188a6ca23d70d9" category="paragraph">接続されたイーサネットスイッチが監視されていることを確認するには、次のコマンドを実行します。</block>
+  <block id="7eaabdc7d2364e9a43feeb5cf07593dc" category="paragraph">列に「* other *」と表示されているか、<block ref="7a19db03ac26c54be196969b77d657a6" prefix=" " category="inline-code"></block>フィールドに「* false *」と表示されている場合<block ref="a559b87068921eec05086ce5485e9784" prefix=" " category="inline-code"></block>、ONTAPはスイッチを監視できません。通常、値* other *は、ONTAPがヘルスモニタでそのスイッチをサポートしていないことを示します。</block>
+  <block id="8d86e89da688f620dafbc70269059388" category="paragraph"><block ref="7a19db03ac26c54be196969b77d657a6" prefix=" " category="inline-code"></block>フィールドに指定された理由により、フィールドは* false *に設定されます<block ref="fffcb4d1e12c96b2f571f77ad25878b8" prefix=" " category="inline-code"></block>。</block>
+  <block id="f9f5c952edf43434e02a625f00102b19" category="inline-link-macro">イーサネットスイッチの監視を管理します。</block>
+  <block id="f6ec6bfa57123a9616038a55e7f332a5" category="paragraph">コマンド出力にスイッチが表示されない場合は、ONTAPで検出されていない可能性があります。スイッチが正しくケーブル接続されていることを確認します。必要に応じて、スイッチを手動で追加できます。詳細については、を参照してください <block ref="ee7db2a0a5f0654c3c81941bc38adb11" category="inline-link-macro-rx"></block> 。</block>
+  <block id="ed7061b9b8f8c50684797c64a5576941" category="section-title">ファームウェアとRCFのバージョンが最新であることを確認する</block>
+  <block id="43558d02214bf83729998ce237b6cdea" category="inline-link">ネットアップサポートのダウンロードページ</block>
+  <block id="9be0ccf5f4aae992d69ea7f079f6d048" category="paragraph">スイッチがサポートされている最新のファームウェアを実行しており、互換性があるリファレンス構成ファイル（RCF）が適用されていることを確認してください。詳細については、を参照して<block ref="49046ae6b122d9765935bb9b378618a5" category="inline-link-rx"></block>ください。</block>
+  <block id="14bb00b56dfdaad98ccaf9d2ff1c1eb5" category="paragraph">デフォルトでは、ヘルスモニタはコミュニティストリング* cshm1！*を含むSNMPv2cを監視に使用しますが、SNMPv3も設定できます。</block>
+  <block id="35011d870229aa144aa6a66350d2279e" category="paragraph">デフォルトのSNMPv2cコミュニティストリングを変更する必要がある場合は、スイッチに適切なSNMPv2cコミュニティストリングが設定されていることを確認してください。</block>
+  <block id="2ae26c52de113e0592fc26619e9e73d1" category="inline-link-macro">オプション：SNMPv3を設定する</block>
+  <block id="3d8bd273ce46782520a3a188e037f316" category="admonition">SNMPv3を使用するための設定の詳細については、を参照してください<block ref="ec5440e4cc2d261dc76dac84e641c0ab" category="inline-link-macro-rx"></block>。</block>
+  <block id="f97512ee27e4fc37982423d301b8b2cd" category="section-title">管理ネットワーク接続の確認</block>
+  <block id="4c3dc933dd2f14499a5b966f0d0f1242" category="paragraph">スイッチの管理ポートが管理ネットワークに接続されていることを確認します。</block>
+  <block id="7be780b96e93a50316d019e9c7358c89" category="paragraph">ONTAPでSNMPクエリとログ収集を実行するには、適切な管理ポート接続が必要です。</block>
+  <block id="6e86085a8f5bd83a0c4b0ef8d4280d0c" category="inline-link-macro">アラートのトラブルシューティング</block>
+  <block id="b51f053f94d5176ca18b8272d64010f0" category="list-text"><block ref="b51f053f94d5176ca18b8272d64010f0" category="inline-link-macro-rx"></block></block>
+  <block id="c2f363b557f11042735dbadbfbd534d3" category="summary">この手順を使用して、NVIDIA SN2100クラスタスイッチのクラスタスイッチヘルスモニタ用の構成ファイルをインストールできます。</block>
+  <block id="1972298f5ec1d5e6b5fe96dd4ba6f4d3" category="doc">イーサネットスイッチヘルスモニタ構成ファイルのインストール</block>
+  <block id="5e702c967ba07c588e80787874b7d19d" category="paragraph">NVIDIA イーサネット スイッチでイーサネット スイッチのヘルス モニタリングを構成するには、次の手順に従います。</block>
+  <block id="4d6e856387f9dc1d4c04534d7e8abc6b" category="paragraph">これらの手順は、NVIDIA X190006-PEおよびX190006-PIスイッチが正しく検出されない場合に適用されます。これは、実行することで確認できます。 <block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block>お使いのモデルに*OTHER*が表示されているかどうかを確認してください。NVIDIAスイッチのモデルを確認するには、コマンドで部品番号を検索してください。 <block ref="eca133854d2cdb8697246596d25a5eb3" prefix=" " category="inline-code"></block> NVIDIA CL 5.8以前または<block ref="28b95eb6cef78e03af3129f8108edf3e" prefix=" " category="inline-code"></block>それ以降のバージョンの場合。</block>
+  <block id="d63c11f73a289e709f02f89a7fd9bc50" category="paragraph">以下のONTAPリリースでNVIDIA CL 5.11.xを使用する際に、ヘルスモニタリングとログ収集を意図したとおりに動作させたい場合にも、これらの手順を実行することをお勧めします。これらの手順を実行しなくてもヘルスモニタリングとログ収集は機能する可能性がありますが、実行することですべてが正しく動作することが保証されます。</block>
+  <block id="22ade9a0f286817cb6e7960fb4e222fa" category="list-text">9.10.1P20、9.11.1P18、9.12.1P16、9.13.1P8、9.14.1、9.15.1以降のパッチリリース</block>
+  <block id="294206f940bbd4f3ec7f79996b76c616" category="list-text">ONTAP クラスタが起動し、実行中であることを確認します。</block>
+  <block id="486e5bfc1a37635afcdd9af389c406cc" category="list-text">CSHM で利用可能なすべての機能を使用するには、スイッチで SSH を有効にします。</block>
+  <block id="0a7c753e8699d579b1dd4105b9e6b566" category="list-text">すべてのノードでディレクトリをクリアし<block ref="8be5dd683a73b3d7c1a85aa778b3c099" prefix=" " category="inline-code"></block>ます。</block>
+  <block id="ccbc1b6fe0fb2c14a182936d44b7998a" category="list-text">ノードシェルに切り替えます。</block>
+  <block id="fbae52a4debd6c92af11b0063f9a23d8" category="paragraph"><block ref="ce0584b63a66ddeac8919682fc93ce1a" prefix="" category="inline-code"></block></block>
+  <block id="efe7a477280f5bfdffb85faa6e94d148" category="list-text">advanced権限に切り替えます。</block>
+  <block id="04f8c8c881d9c66c4b51ab93a42ab746" category="paragraph"><block ref="37c965129cc09840500d7671b0accef3" prefix="" category="inline-code"></block></block>
+  <block id="771d6c6c56d83746eaa82bd62e11363c" category="list-text">ディレクトリ内の構成ファイルを一覧表示します<block ref="e4b3e6938bc5f3e3c811cf46ae8b7d53" prefix=" " category="inline-code"></block>。ディレクトリが存在し、構成ファイルが含まれている場合は、ファイル名がリストされます。</block>
+  <block id="6e89d35fb8a737baae7064c5ba2d6485" category="paragraph"><block ref="47f0187f585158fcdf3257a96c5d4bab" prefix="" category="inline-code"></block></block>
+  <block id="cefefc2081d40fa592f23faffcb8f1e0" category="list-text">接続されているスイッチモデルに対応する構成ファイルをすべて削除します。</block>
+  <block id="90842b83190886e90bf2403d6e93be1b" category="paragraph">不明な場合は、上記のサポートされているモデルのすべての構成ファイルを削除してから、それらの同じモデルの最新の構成ファイルをダウンロードしてインストールしてください。</block>
+  <block id="ff9495347e1ccb9f937f04b4bbdd58bb" category="paragraph"><block ref="529be1cf6940ca38f1fda287a22c9fda" prefix="" category="inline-code"></block></block>
+  <block id="77dab6429e3fe4aca5fa3d7f0cd46d71" category="list-text">削除した構成ファイルがディレクトリに存在しないことを確認します。</block>
+  <block id="0cfea6e2910f570cd17c24fb74c90378" category="inline-link">NVIDIAイーサネットスイッチ</block>
+  <block id="363c0c7cf08dfd2752b66f1fc2506a0a" category="list-text">対応するONTAPリリースバージョンに基づいて、イーサネットスイッチヘルスモニタ構成のzipファイルをダウンロードします。このファイルは、ページから入手でき<block ref="308b26f7678235b6ac179b42eaa22162" category="inline-link-rx"></block> ます。</block>
+  <block id="68de66680b1bf357acb893d8dfe0f0bc" category="list-text">NVIDIA SN2100ソフトウェアのダウンロードページで、* Nvidia CSHMファイル*を選択します。</block>
+  <block id="6b98b47c20b7ca9e9919fa3a77bf7814" category="list-text">[注意/必ずお読みください]ページで、同意するチェックボックスをオンにします。</block>
+  <block id="c36caaf00f9a67804cb39871b93b4fb1" category="list-text">[End User License Agreement]ページで、同意するチェックボックスを選択し、*[Accept &amp; Continue]*をクリックします。</block>
+  <block id="e5e0b87b73538c14eb1223ba2685b479" category="list-text">Nvidia CSHM File - Download（Nvidia CSHMファイル-ダウンロード）ページで、適切な設定ファイルを選択します。次のファイルを使用できます。</block>
+  <block id="76bde9294ef84452f21b2745228ae290" category="list-text">MSN2100-CB2FC-v1.4.zip</block>
+  <block id="85c07a49f236d7b33a2e8b48d076ed48" category="list-text">MSN2100-CB2RC-v1.4.zip</block>
+  <block id="ae5e87300b042b85bdd2853f386265e7" category="list-text">X190006-PE-v1.4.zip</block>
+  <block id="ab58ebe2dd50e3692c204585184a34f7" category="list-text">X190006-PI-v1.4.zip</block>
+  <block id="9fc9e8ea7a5cdfe68b4528fb16936bf1" category="open-title">ONTAP 9.11.1~9.14.1</block>
+  <block id="c3a1ef8a44fcace6af948f51ef4d8258" category="list-text">MSN2100-CB2FC_PRIOR_R9.15.1-v1.4.zip</block>
+  <block id="11ef8d241b319efa4a76430a0c6a78dd" category="list-text">MSN2100-CB2RC_PRIOR_R9.15.1-v1.4.zip</block>
+  <block id="0179c8f8dd0b9cba4199d46bd95ddd3b" category="list-text">X190006-PE_PRIOR_9.15.1-v1.4.zip</block>
+  <block id="3dd005cf004a39e1cb3e400094afa4c6" category="list-text">X190006-PI_PRIOR_9.15.1-v1.4.zip</block>
+  <block id="3e5315d19591c6790a6c062127cf9a8e" category="list-text">[[step2]]該当するzipファイルを内部Webサーバにアップロードします。</block>
+  <block id="e319ecf1cb942a0710da7d0d525af1db" category="list-text">クラスタ内のいずれかのONTAPシステムからadvancedモード設定にアクセスします。</block>
+  <block id="4072831dc74599297a173c0e1d86b538" category="list-text">switch health monitor configureコマンドを実行します。</block>
+  <block id="bdfd509ce621aa984c1f0a9cdf92ae88" category="list-text">使用しているONTAPのバージョンに応じて、コマンド出力の末尾が次のテキストになっていることを確認します。</block>
+  <block id="ff62e28086747c31b6e4bbd897aaaf54" category="paragraph">イーサネットスイッチヘルスモニタに構成ファイルがインストールされました。</block>
+  <block id="3f54ec95c3fc7563a38988f9c2a7a823" category="paragraph">SHMは設定ファイルをインストールしました。</block>
+  <block id="74d14036e96594d67869316b84c6d566" category="paragraph">CSHMダウンロードパッケージが正常に処理されました。</block>
+  <block id="89c6b3e5f896b8d329ae4e4fe91cc812" category="paragraph">エラーが発生した場合は、NetAppサポートにお問い合わせください。</block>
+  <block id="a6fd16052b19595c024aa4e5bcb0b366" category="list-text">[[step6]]を実行すると検出されたイーサネットスイッチヘルスモニタのポーリング間隔が最大2倍になるまで待って<block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix=" " category="inline-code"></block>から、次の手順を完了します。</block>
+  <block id="c947c5faccdddd0a9a87be7895f50511" category="list-text">ONTAPシステムでコマンドを実行し<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block> 、監視対象フィールドが* True *に設定され、シリアル番号フィールドに* Unknown *が表示されていないクラスタスイッチが検出されていることを確認します。</block>
+  <block id="d57382f230671f8cd52f47dc80838934" category="admonition">構成ファイルを適用してもモデルに*その他*が表示される場合は、NetAppサポートにお問い合わせください。</block>
+  <block id="58a19c530e54f6364edd838f35b1830e" category="inline-link-macro">スイッチヘルス監視の設定</block>
+  <block id="d47e3b820b4e0ef60cfed3bd03049a46" category="paragraph"><block ref="402ba92b413c133107b7e0b0a0255bc4" category="inline-link-macro-rx"></block>です。</block>
+  <block id="39bebc7717e889c1a699f7a132be15d1" category="summary">System Manager を使用すると、Mediator を管理するタスクを実行できます。</block>
+  <block id="10a30b2f347ad83646f6f7b416a1789f" category="doc">System Manager で ONTAP Mediator を管理する</block>
+  <block id="b8766a9191a865e2bcc649bcb60af9b0" category="paragraph">System Manager を使用して、ONTAP Mediator を管理するタスクを実行できます。</block>
+  <block id="cdd299b559468613a4234f4cea959b86" category="paragraph">ONTAP Mediator を管理するには、次のタスクを実行します。</block>
+  <block id="eabb1e5dafa14c5ff70166177793fa24" category="list-text">ONTAP Mediator の設定詳細を入力します。</block>
+  <block id="4a0ceb9a29f3d3bad1a2492ea1f4d0ed" category="paragraph">System Manager を使用して ONTAP Mediator を設定するときに、次の詳細を入力できます。</block>
+  <block id="74b8f2c7983019e930256dabc972809b" category="list-text">ONTAP Mediator の IP アドレス。</block>
+  <block id="13473e928a938c8e314f2ac9fe84874b" category="admonition">ONTAP Mediator にアクセスでき、両サイトが「通常」モードの場合、ONTAP Mediator を有効または無効にすることができます。MAUSOが有効または無効であっても、MetroCluster システムが正常な場合は ONTAP Mediator にアクセスできます。</block>
+  <block id="f4cd744e1baeaad2982194e397a1fb70" category="paragraph">MetroCluster構成からONTAPメディエーターを削除します</block>
+  <block id="4714b05ec8f683c0cb2e0b88e87b6126" category="paragraph">ONTAPメディエーターの健全性を確認する</block>
+  <block id="0d17bee62349f3938bc17d61ce23f7e3" category="summary">MetroCluster IP 構成で使用するには、ONTAP ノードで ONTAP Mediator を構成する必要があります。</block>
+  <block id="1870c8477ec97f68d37924256a5873cc" category="doc">MetroCluster IP構成からONTAPメディエーターを構成する</block>
+  <block id="c9c78db1df5763fa1ed9a33d8364ecd6" category="list-text">ONTAP Mediator は、両方の MetroCluster サイトからアクセスできるネットワークの場所に正常にインストールされている必要があります。</block>
+  <block id="f3a4ed516d3573c05bec448b098ee829" category="list-text">ONTAP Mediator を実行しているホストの IP アドレスが必要です。</block>
+  <block id="81526f6b8e9033c7824d444ad8950ae4" category="list-text">ONTAP Mediator のユーザー名とパスワードが必要です。</block>
+  <block id="c69fdc77c5b94d40ff8bd9d1129290c3" category="list-text">ONTAP Mediator の 1 つのインストールで、最大 5 つの MetroCluster IP 構成を設定できます。</block>
+  <block id="5954e0574dae3d22be232db113f0f328" category="list-text">ONTAP に ONTAP Mediator を追加します。</block>
+  <block id="fffcc6d8d0cf061a4a3bb3e984bed6a4" category="summary">MetroCluster IP 構成から ONTAP メディエーターを削除できます。</block>
+  <block id="7f0eed44b544654d8519a5ce7f8a8e69" category="doc">MetroCluster IP構成からONTAPメディエーターの構成を解除します</block>
+  <block id="0ca0841611aff3d2fa5059343e27e7fa" category="paragraph">MetroCluster IP 構成から ONTAP Mediator の構成を解除できます。</block>
+  <block id="b1819878894f9631db397400afc8a1f3" category="paragraph">両方の MetroCluster サイトからアクセスできるネットワークの場所に ONTAP Mediator を正常にインストールして構成しておく必要があります。</block>
+  <block id="856c17a21ae1d7e96d1d4e67f8404cd2" category="list-text">次のコマンドを使用して、ONTAP Mediator の構成を解除します。</block>
+  <block id="a568c1157fa9b77a182f5a050b86df43" category="admonition">ONTAPメディエーターがダウンしている場合は、 <block ref="1eafb93bfc40f298e60cf17e8a8c598c" prefix=" " category="inline-code"></block>コマンドを実行すると、引き続き ONTAP Mediator 管理者ユーザー アカウントのユーザー名とパスワードの入力が求められ、MetroCluster 構成から ONTAP Mediator が削除されます。</block>
+  <block id="66e992bd34634b96ff376561bcfc2e28" category="list-text">両方のクラスタで次のコマンドを実行して、ONTAP Mediator が MetroCluster 構成から削除されていることを確認します。</block>
+  <block id="d7815b39229175e9cef8440d269e9083" category="paragraph">既存の Tiebreaker または ONTAP Mediator インスタンスに接続する場合は、Tiebreaker または Mediator のユーザー名、パスワード、および IP アドレスが必要です。</block>
+  <block id="cb9e9645bca58c43f581c94e79f865c6" category="inline-link-macro">計画外の自動スイッチオーバー用に ONTAP Mediator を構成する</block>
+  <block id="ef4d5dbb54aab5ddc81d5a09c43fd638" category="paragraph"><block ref="ef4d5dbb54aab5ddc81d5a09c43fd638" category="inline-link-macro-rx"></block></block>
+  <block id="ec27e6e598b1a296a852caf789607b06" category="list-text">ONTAP Mediator または Tiebreaker ソフトウェアを構成します。</block>
+  <block id="277ce71d2845b1d818a8dfb7a570dee5" category="list-text">ONTAP Mediator の既存のインスタンスを使用している場合は、ONTAP Mediator を ONTAP に追加します。</block>
+  <block id="28dbef8bf8bfa7a533967cae561dd5e4" category="list-text">SSH サーバーを構成します。</block>
+  <block id="70231bf92659b36f9fbf0d3c7eebc754" category="list-text">ログ収集やその他の外部ツールを使用するには、SSH サーバーを構成する必要があります。</block>
+  <block id="21f1152f9e753501bbaf5dee2e85bff5" category="paragraph">この例では、nxos.7.0.3.I4.6.bin ファイルと EPLD イメージが SFTP サーバ 10.10.99.99 からローカル ブートフラッシュにコピーされます。</block>
+  <block id="3e59b0e11242ccaa0aa06829a5a285e1" category="list-text">EPLD イメージをアップグレードし、スイッチを再起動します。</block>
+  <block id="f3bf0508f81cb16d8f1183a5babd44ab" category="list-text">[[step8] スイッチのリブート後に再度ログインし、新しいバージョンの EPLD が正常にロードされたことを確認します。</block>
+  <block id="5658313bc2d771ddd3aa8b49a8989c97" category="paragraph"><block ref="d74cfd95066d6ba37eb0991341ab588b" prefix="" category="inline-code"></block></block>
+  <block id="088e2dfc579975f8f02f060463f1c6b6" category="paragraph"><block ref="b57db2992c51195e5ea40f358db2287c" category="inline-link-macro-rx"></block> _MetroCluster IP のインストールと構成_ セクション。</block>
+  <block id="11e389769edd0ffd96bc52520e736666" category="paragraph">ネットワーク内の両方のスイッチの名前を変更する場合は、各スイッチで同じコマンドを使用します。</block>
+  <block id="daf179095240111942b292cddbac4271" category="list-text">管理者パスワードと、HTTP、FTP、または TFTP (Trivial File Transfer Protocol) サーバーへのアクセスが必要です。</block>
+  <block id="dfd2868dd5a4b44891e23870faf6ecda" category="list-text"><block ref="dfd2868dd5a4b44891e23870faf6ecda" category="inline-link-macro-rx"></block></block>
+  <block id="54485326fb6c0b4a273ca75c003d6a9d" category="paragraph">ONTAP Mediatorはリリースごとに新しい機能強化が提供されます。新機能は以下のとおりです。</block>
+  <block id="0294813eff3958ef43f353e390bb4729" category="paragraph">MetroCluster構成でのONTAP Mediatorのインストールまたはアップグレードの詳細については、 <block ref="f7ab7b3d6222d761ab5a933510823b89" category="inline-link-macro-rx"></block> 。</block>
+  <block id="3114aeea55539bf595af1665b8572d3a" category="paragraph"><block ref="3114aeea55539bf595af1665b8572d3a" category="inline-link-rx"></block></block>
+  <block id="f818e428c62e3fad315884b1e49da0dc" category="paragraph">MetroCluster IP構成におけるONTAP Mediatorの初期サポート</block>
+  <block id="8fa6539999f2d3aff134c30600c80e41" category="inline-link-macro">NVIDIA RCFファイルをダウンロードしてインストールする</block>
+  <block id="132de37afb8814bbaa7f373ed2768fe7" category="list-text"><block ref="132de37afb8814bbaa7f373ed2768fe7" category="inline-link-macro-rx"></block></block>
+  <block id="4d543daf001aece3c0f679d1c47e50c7" category="list-text">両方のクラスタに単一のデータ アグリゲートがあるか複数のデータ アグリゲートがあるかに応じて MetroCluster を構成します。</block>
+  <block id="4bb0a0fe5f7512432807833d24660b3c" category="paragraph">両方のクラスター上の複数のデータ集約</block>
+  <block id="cea15dc4611e6036f3dd9fe7aea7cfc4" category="paragraph">両方のクラスタにミラーリングされた単一のデータ集約</block>
+  <block id="04afdd621fe01bc52800f10af27a7c2a" category="list-text"><block ref="2812633e4be142ea6fef81aa2fc3b357" category="inline-link-macro-rx"></block>]</block>
+  <block id="1fec7b2b0af82b649786a3fafea0cceb" category="paragraph">5、6</block>
+  <block id="f4206dbe8a14ad08108f277413f07552" category="paragraph">Cisco 3232C、または9336C-FX2</block>
+  <block id="dd03025041053e9c69b290436fd5dc5d" category="paragraph">5、6、または13、14</block>
+  <block id="4a1b19255812edcb60c6c44b6d7a5e9a" category="paragraph">*注意:* スイッチ ポート 13 および 14 は、2 つの速度モードを選択した場合にのみ使用できます。</block>
+  <block id="e4ecc909d465ec5014d76b60d5fb3593" category="paragraph">Cisco 9336C-FX2 共有</block>
+  <block id="c12aeba3053f31f9a1d1d57376477e54" category="paragraph">3、4、または11、12</block>
+  <block id="f8997e771791c9a981180a00129637ec" category="paragraph">*注意:* スイッチ ポート 11 および 12 は、2 つの速度モードを選択した場合にのみ使用できます。</block>
+  <block id="319106ed9ce9f52242209111123407d6" category="paragraph">5、6、または11、12</block>
+  <block id="b8466cace8606dd997df70d225fbe406" category="list-text"><block ref="b8466cace8606dd997df70d225fbe406" category="inline-link-macro-rx"></block></block>
+  <block id="636e793526fcef1247efd0dcb03d56f1" category="list-text"><block ref="636e793526fcef1247efd0dcb03d56f1" category="inline-link-macro-rx"></block></block>
+  <block id="657069a60f3b73194611d9d1908eb00a" category="inline-link-macro">NVIDIA Cumulusソフトウェアをダウンロードしてインストールする</block>
+  <block id="27ee4e40c5f3eb2ea060786d1154f3e6" category="list-text"><block ref="27ee4e40c5f3eb2ea060786d1154f3e6" category="inline-link-macro-rx"></block></block>
+  <block id="3edf268443c9814e0eed5e843a649be0" category="inline-link-macro">Broadcom IP RCF ファイルのダウンロードとインストール</block>
+  <block id="73c8065362066c84bd91ee876292e355" category="list-text"><block ref="73c8065362066c84bd91ee876292e355" category="inline-link-macro-rx"></block></block>
+  <block id="9c3901db21e5ef4b43840d754abbff35" category="inline-link-macro">Cisco IP RCF ファイルのダウンロードとインストール</block>
+  <block id="59f9ba6f0e3ac7d7d39f19d4f7446462" category="list-text"><block ref="59f9ba6f0e3ac7d7d39f19d4f7446462" category="inline-link-macro-rx"></block></block>
+  <block id="2812633e4be142ea6fef81aa2fc3b357" category="list-text"><block ref="2812633e4be142ea6fef81aa2fc3b357" category="inline-link-macro-rx"></block></block>
+  <block id="647ce27315841f29cbbfa6476808aa3a" category="paragraph"><block ref="647ce27315841f29cbbfa6476808aa3a" category="inline-link-macro-rx"></block></block>
+  <block id="36cd648a4936aded88f52937ad165653" category="paragraph"><block ref="36cd648a4936aded88f52937ad165653" category="inline-link-macro-rx"></block></block>
+  <block id="999478e5c5f08d315895f0b8ce0c4f9e" category="paragraph"><block ref="999478e5c5f08d315895f0b8ce0c4f9e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8dd25dc01f672f7f9138b09d96be9fc9" category="paragraph"><block ref="eb2e2a96b50d4592c6a439044f60d9a8" category="inline-link-macro-rx"></block> _MetroCluster IP のインストールと構成_ を参照してください。</block>
+  <block id="467d42fef84e236db1f47c3587c7d61b" category="paragraph"><block ref="647ce27315841f29cbbfa6476808aa3a" category="inline-link-macro-rx"></block> _MetroCluster IP のインストールと構成_ セクション。</block>
+  <block id="3e85cb460e24d971aa2fdfb16bdd62f2" category="paragraph"><block ref="647ce27315841f29cbbfa6476808aa3a" category="inline-link-macro-rx"></block>です。</block>
+  <block id="8c4be7f96d2a221be5676296eb0ed2f9" category="list-text">の手順を使用します<block ref="b57db2992c51195e5ea40f358db2287c" category="inline-link-macro-rx"></block>。</block>
+  <block id="3a87d2978f2a15ce761167e415fd6848" category="inline-link-macro">ONTAPメディエーターを再構成する</block>
+  <block id="3f8e81dc1fd352800762ed073cd5264a" category="paragraph">ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、手動で行う必要があり<block ref="45ecea135b28343f3e201d1ca7699d4b" category="inline-link-macro-rx"></block>ます。</block>
+  <block id="90700c1e50cb21bc8204f5e8e63ff08f" category="inline-image-macro">AFFとFASのアップグレードの組み合わせグループ1を示します</block>
+  <block id="2b3092608ec3c36288b967b8d2e51cd0" category="paragraph"><block ref="2b3092608ec3c36288b967b8d2e51cd0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c86a11671a0682bdfafd478847f74282" category="inline-image-macro">AFFとFASのアップグレードの組み合わせグループ2を示します</block>
+  <block id="51cfa502e93acea429147cf299cd152c" category="paragraph"><block ref="51cfa502e93acea429147cf299cd152c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7ffbff14d15222d12cd1d90edd7e729d" category="sidebar">NVIDIA SN2100スイッチを設定します</block>
+  <block id="96a5ba855b4ee3dba60ecf722a706b29" category="sidebar">CSHMファイルをインストールする</block>
+  <block id="eb4b6887e705dad904287c0e3641b25e" category="sidebar">MetroCluster IPスイッチの健全性を監視する</block>
+  <block id="114ebfe3afc4e1772fb2a3ff9760e42e" category="sidebar">MetroCluster IP構成におけるスイッチヘルスモニタリングについて学習します</block>
+  <block id="0eaedccc418ca7fe214ff0e2f2fb9d4f" category="sidebar">MetroCluster IPスイッチでのログ収集を構成する</block>
+  <block id="fa19a8bee183bfbc767660e140eae8dc" category="sidebar">イーサネットスイッチの監視を管理する</block>
+  <block id="eb781ca5db4579a64062bcf161d91cbe" category="sidebar">イーサネットスイッチの監視を確認する</block>
+  <block id="3ef38a7332e8a3a92f8540dfdb80708d" category="sidebar">MetroCluster IP構成からのONTAPメディエーターの構成</block>
+  <block id="84e085c408a358fe4e512066e45c3837" category="sidebar">System Manger で ONTAP Mediator を管理する</block>
 </blocks>

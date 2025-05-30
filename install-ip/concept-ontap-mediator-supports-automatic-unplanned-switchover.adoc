@@ -1,17 +1,17 @@
 ---
 permalink: install-ip/concept-ontap-mediator-supports-automatic-unplanned-switchover.html 
 sidebar: sidebar 
-keywords: ontap, mediator, service, assist, metrocluster, ip, configuration, perform, automatic, unplan, switchover, physical, repository, status, information, configuring, configure, install, configuring, configure, forced 
+keywords: ontap, mediator, assist, metrocluster, ip, configuration, perform, automatic, unplan, switchover, physical, repository, status, information, configuring, configure, install, configuring, configure, forced 
 summary:  
 ---
-= ONTAP メディエーターでの自動計画外スイッチオーバーのサポート
+= ONTAPメディエーターが計画外の自動スイッチオーバーをサポートする仕組み
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-ONTAPメディエーターは、MetroCluster IPノードに関する状態情報を格納するためのメールボックスLUNを提供します。これらの LUN は ONTAP メディエーターと一緒に配置され、 MetroCluster サイトとは物理的に分離された Linux ホストで実行されます。MetroCluster IPノードでは、メールボックス情報を使用してディザスタリカバリ（DR）パートナーの状態を監視し、災害発生時にMediator-Assisted Unplanned Switchover（MAUSO；メディエーターアシスト計画外スイッチオーバー）を実装できます。
+ONTAP Mediatorは、MetroCluster IPノードの状態情報を保存するためのメールボックスLUNを提供します。これらのLUNは、MetroClusterサイトとは物理的に分離されたLinuxホスト上で実行されるONTAP Mediatorと同じ場所に配置されます。MetroClusterIPノードは、メールボックス情報を使用してディザスタリカバリ（DR）パートナーの状態を監視し、災害発生時にMediator-assisted Unplanned Switchover（MAUSO）を実装できます。
 
 
 NOTE: MetroCluster FC 構成では、 MAUSO はサポートされません。

@@ -2,23 +2,23 @@
 permalink: install-ip/task-sm-mediator.html 
 sidebar: sidebar 
 keywords: system manager, mediator, metrocluster, mcc, 8-node, ip, configure, remove, mauso, mediator-assisted automatic switchover, switchover, switchback, health 
-summary: System Managerを使用して、メディエーターを管理するタスクを実行できます。 
+summary: System Manager を使用すると、Mediator を管理するタスクを実行できます。 
 ---
-= System Managerを使用したONTAPメディエーターの管理
+= System Manager で ONTAP Mediator を管理する
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-System Managerを使用して、ONTAPメディエーターを管理するタスクを実行できます。
+System Manager を使用して、ONTAP Mediator を管理するタスクを実行できます。
 
 .タスクについて
 ONTAP 9 .8以降では、System Managerを4ノードのMetroCluster IP構成を管理するためのシンプルなインターフェイスとして使用できます。これには、3番目の場所にインストールされたONTAPメディエーターも含まれます。
 
 ONTAP 9 .14.1以降では、System Managerを使用して8ノードMetroCluster IPサイトに対してもこれらの処理を実行できます。System Managerでは8ノードシステムをセットアップまたは拡張することはできませんが、8ノードMetroCluster IPシステムがすでにセットアップされている場合はこれらの処理を実行できます。
 
-ONTAPメディエーターを管理するには、次のタスクを実行します。
+ONTAP Mediator を管理するには、次のタスクを実行します。
 
 [cols="30,70"]
 |===
@@ -28,7 +28,7 @@ ONTAPメディエーターを管理するには、次のタスクを実行しま
 
 
  a| 
-Mediatorサービスの設定
+ONTAPメディエーターの設定
  a| 
 MetroClusterサイトの両方のクラスタが稼働し、ピア関係が確立されている必要があります。
 
@@ -36,12 +36,12 @@ MetroClusterサイトの両方のクラスタが稼働し、ピア関係が確�
 . ONTAP 9.8 の System Manager で、 * Cluster > Settings * を選択します。
 . [Mediator]*セクションで、をクリックしますimage:icon_gear.gif["アクションアイコン"]。
 . Configure Mediator* （メディエーターの設定）ウィンドウで、 * Add+* （追加 + * ）をクリックします。
-. ONTAPメディエーターの設定の詳細を入力します。
+. ONTAP Mediator の設定詳細を入力します。
 +
-System ManagerでONTAPメディエーターを設定する際には、次の情報を入力できます。
+System Manager を使用して ONTAP Mediator を設定するときに、次の詳細を入力できます。
 
 +
-** メディエーターのIPアドレス。
+** ONTAP Mediator の IP アドレス。
 ** ユーザ名。
 ** パスワード。
 
@@ -61,14 +61,14 @@ Mediator-Assisted Automatic Switchover（MAUSO；メディエーターアシス�
 . 管理者のユーザ名とパスワードを入力し、*[有効化]*または*[無効化]*をクリックします。
 +
 
-NOTE: Mediatorが到達可能で、両方のサイトが「通常」モードになっていれば、Mediatorを有効または無効にできます。MetroClusterシステムが正常な状態であれば、MAUSOが有効または無効になっていてもメディエーターにアクセスできます。
+NOTE: ONTAP Mediator にアクセスでき、両サイトが「通常」モードの場合、ONTAP Mediator を有効または無効にすることができます。MAUSOが有効または無効であっても、MetroCluster システムが正常な場合は ONTAP Mediator にアクセスできます。
 
 
 
 
 
  a| 
-MetroCluster構成からメディエーターを削除する
+MetroCluster構成からONTAPメディエーターを削除します
  a| 
 .手順
 . System Manager で、 * ダッシュボード * をクリックします。
@@ -81,7 +81,7 @@ MetroCluster構成からメディエーターを削除する
 
 
  a| 
-Mediatorの健全性を確認する
+ONTAPメディエーターの健全性を確認する
  a| 
 のSystem Manager固有の手順を実行しますlink:../maintain/verify-health-mcc-config.html["MetroCluster構成の健全性の確認"]。
 
