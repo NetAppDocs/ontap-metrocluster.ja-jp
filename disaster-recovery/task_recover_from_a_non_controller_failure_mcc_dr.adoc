@@ -186,11 +186,34 @@ mcc1A::> metrocluster operation show
 ====
 . ノードのブートが完了したら、ルートアグリゲートがミラーされていることを確認します。
 +
-両方のプレックスが存在する場合は、再同期が自動的に開始されます。プレックスで障害が発生した場合は、プレックスを削除し、次のコマンドを使用してミラーを再作成し、ミラー関係を再確立します。
+[role="tabbed-block"]
+====
+.プレックスに障害が発生した場合:
+--
+.. 障害が発生したプレックスを破棄します。
++
+`storage aggregate plex delete -aggregate <aggregate_name> -plex <plex_name>`
 
+.. ミラーを再作成してミラー関係を再確立します。
 +
 「 storage aggregate mirror -aggregate <aggregate-name> 」の形式で指定します
 
+
+
+--
+.プレックスがオフラインの場合:
+--
+プレックスをオンラインにする:
+
+`storage aggregate plex online -aggregate <aggregate_name> -plex <plex_name>`
+
+--
+.両方のプレックスが存在する場合:
+--
+再同期が自動的に開始されます
+
+--
+====
 . スイッチバック処理をシミュレートします。
 +
 .. どちらかのサバイバーノードのプロンプトで、 advanced 権限レベルに切り替えます。
