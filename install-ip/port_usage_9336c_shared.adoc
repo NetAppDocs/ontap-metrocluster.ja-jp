@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cabling, cable, component, link, site, management, network, networks, hardware, component, shared, switch, cluster, connection, management, data, configuring, configure 
 summary: MetroCluster IP 構成で使用するポートは、スイッチのモデルとプラットフォームのタイプによって異なります。 
 ---
-= NS224ストレージを接続するCisco 9336C-FX2スイッチのプラットフォームポート割り当て
+= NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -15,10 +15,20 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 
 構成テーブルを使用する前に、次の考慮事項を確認してください。
 
-* NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合は、最大2つのMetroCluster構成またはDRグループのみを使用できます。少なくとも1つのMetroCluster構成またはDRグループでスイッチ接続NS224シェルフがサポートされている必要があります。スイッチ接続NS224シェルフをサポートしないプラットフォームは、2つ目のMetroCluster構成または2つ目のDRグループとしてのみ接続できます。
+* このセクションの表は、少なくとも 1 つの MetroCluster 構成または DR グループが NS224 シェルフを MetroCluster スイッチに接続している場合の 36 ポート Cisco 9336C-FX2 スイッチ用です。
++
+NS224ストレージに接続していない36ポートのCisco 9336C-FX2スイッチをお持ちの場合は、 link:port_usage_3232c_9336c.html["Cisco 3232C または 36 ポート Cisco 9336C-FX2 スイッチのプラットフォーム ポート割り当て"] 。
+
++
+12ポートのCisco 9336C-FX2スイッチをお持ちの場合は、 link:port-usage-9336c-fx-2-12-port.html["12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て"] 。
+
 +
 
-CAUTION: これらの表は、少なくとも1つのMetroCluster構成またはDRグループでNS224シェルフをMetroClusterスイッチに接続している場合にのみ使用します。専用のストレージスイッチを使用してNS224シェルフを接続する場合は、の表に従ってスイッチをケーブル接続しますlink:port_usage_3232c_9336c.html["Cisco 3232CまたはCisco 9336C-FX2スイッチのプラットフォームポート割り当て"]。
+NOTE: 12 ポートの Cisco 9336C-FX2 スイッチは、NS224 シェルフを MetroCluster スイッチに接続することをサポートしていません。
+
+* Cisco 9336C-FX2 スイッチを NS224 ストレージに接続してケーブル接続する場合、MetroCluster 構成または DR グループは最大 2 つまでしか作成できません。少なくとも 1 つの MetroCluster 構成または DR グループで NS224 シェルフを MetroCluster スイッチに接続する必要があります。スイッチ接続された NS224 シェルフを接続していないプラットフォームは、2 番目の MetroCluster 構成または 2 番目の DR グループとしてのみ接続できます。
++
+2つ目のMetroClusterまたはDRグループがNS224シェルフをMetroClusterスイッチに接続しない場合は、 <<tables_not_connecting_ns224,スイッチ接続NS224シェルフに接続しないコントローラの配線表>> 。
 
 * RcfFileGeneratorでは、最初のプラットフォームが選択されている場合にのみ、対象となるプラットフォームが表示されます。
 * 1つの8ノードまたは2つの4ノードMetroCluster構成を接続するには、ONTAP 9.14.1以降が必要です。

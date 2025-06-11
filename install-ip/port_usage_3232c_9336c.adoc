@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cabling, cable, component, link, site, management, network, networks, hardware, component, switch, cluster, connection, management, data, configuring, configure 
 summary: MetroCluster IP 構成で使用するポートは、スイッチのモデルとプラットフォームのタイプによって異なります。 
 ---
-= Cisco 3232CまたはCisco 9336C-FX2スイッチのプラットフォームポート割り当て
+= Cisco 3232C または 36 ポート Cisco 9336C-FX2 スイッチのプラットフォーム ポート割り当て
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -15,8 +15,15 @@ MetroCluster IP 構成で使用するポートは、スイッチのモデルと�
 
 構成テーブルを使用する前に、次の考慮事項を確認してください。
 
+* このセクションの表は、NS224 ストレージに接続されていない Cisco 3232C スイッチまたは 36 ポート Cisco 9336C-FX2 スイッチ用です。
++
+12ポートのCisco 9336C-FX2スイッチをお持ちの場合は、 link:port-usage-9336c-fx-2-12-port.html["12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て"] 。
+
++
+36ポートのCisco 9336C-FX2スイッチがあり、少なくとも1つのMetroCluster構成またはDRグループがNS224シェルフをMetroClusterスイッチに接続している場合は、 link:port_usage_9336c_shared.html["NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て"] 。
+
 * 次の表は、サイト A で使用するポートを示していますサイト B でも同じケーブル接続が使用されます
-* 速度が異なるポート（ 100Gbps ポートと 40Gbps ポートなど）をスイッチに設定することはできません。
+* 異なる速度のポート (たとえば、100 Gbps ポートと 40 Gbps ポートの混在) を持つスイッチを構成することはできません。
 * スイッチを使用して 1 つの MetroCluster を設定する場合は、 * MetroCluster 1 * ポートグループを使用します。
 +
 MetroClusterポートグループ（MetroCluster 1、MetroCluster 2、MetroCluster 3、またはMetroCluster 4）を追跡します。RcfFileGenerator ツールを使用する場合は、この設定手順で後述するように、このツールが必要になります。
@@ -31,12 +38,6 @@ MetroClusterポートグループ（MetroCluster 1、MetroCluster 2、MetroClust
 
 
 NOTE: RCFファイルのバージョンは、ファイルの生成に使用されるRCFfilegeneratorツールのバージョンとは異なります。たとえば、RCFファイルジェネレータv1.6cを使用してバージョン2.00のRCFファイルを生成できます。
-
-
-
-== 2 つの MetroCluster 構成とスイッチのケーブル接続
-
-複数のMetroCluster 構成をCisco 3132Q-Vスイッチにケーブル接続する場合は、該当する表に従って各MetroCluster をケーブル接続する必要があります。たとえば、FAS2750とAFF A700を同じCisco 3132Q-Vスイッチにケーブル接続する場合などです。次に、表1の「MetroCluster 1」に従ってFAS2750をケーブル接続し、表2の「MetroCluster 2」または「MetroCluster 3」に従ってAFF A700をケーブル接続します。FAS2750とAFF A700の両方を「MetroCluster 1」として物理的にケーブル接続することはできません。
 
 
 
