@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, controllers, switchover, switchback, fc, configuration, net, boot, root, aggregate, system, commands, mcc 
 summary: このガイドに記載された自動 MetroCluster スイッチオーバー処理を使用して、 4 ノード MetroCluster FC 構成のコントローラを無停止でアップグレードできます。 
 ---
-= 4 ノード MetroCluster FC 構成でのコントローラのアップグレード。スイッチオーバーとスイッチバックに「 system controller replace 」コマンドを使用（ ONTAP 9.10.1 以降）
+= 「system controller replace」コマンドを使用したスイッチオーバーとスイッチバックを使用した4ノードMetroCluster FC構成のコントローラのアップグレード（ONTAP 9.10.1以降）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -20,7 +20,7 @@ summary: このガイドに記載された自動 MetroCluster スイッチオー
 * サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください  link:concept_choosing_controller_upgrade_mcc.html#supported-metrocluster-fc-controller-upgrades["コントローラのアップグレード手順 を選択します"]。
 
 
-を参照してください link:concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新方法を選択します"] を参照してください。
+その他の手順については、を参照してくださいlink:concept_choosing_an_upgrade_method_mcc.html["アップグレードまたは更新の方法を選択"]。
 
 
 
@@ -93,23 +93,32 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
-== アップグレードの準備を行います
+== アップグレードを準備
 
 コントローラのアップグレードを準備するには、システムの事前確認を実行し、構成情報を収集する必要があります。
 
 アップグレードのどの段階でも、サイト A から「 system controller replace show 」または「 system controller replace show -details 」コマンドを実行してステータスを確認できます。コマンドから何も出力されない場合は、数分待ってからコマンドを再実行してください。
 
 .手順
-. サイト A からコントローラの自動交換用手順を開始して、サイト B のコントローラを交換します。
+. サイト B のコントローラーを交換するには、サイト A から次のコマンドを実行します。
 +
 'System controller replace start' （システムコントローラの交換開始
 
 +
-自動処理によって事前確認が実行されます。問題が見つからなかった場合は処理が一時停止するため、構成に関連する情報を手動で収集できます。
+[NOTE]
+====
+** 一方のサイトでコントローラーを交換した後に、もう一方のサイトで同じ手順を繰り返すと、各サイトのノード間の不一致によりエラーが発生します。これは、両サイトで異なるプラットフォームモデルが存在する場合に想定される動作です。
++
+不一致エラーのみが返された場合は、  `-skip-metrocluster-check true`オプション `system controller replace start` MetroCluster チェックをスキップするコマンド。
+
+
+
+====
++
+自動操作によりチェックが実行されます。問題が見つからなかった場合は処理が一時停止するため、構成に関連する情報を手動で収集できます。
 
 +
-
-NOTE: 現在のソースシステムと互換性のあるすべてのターゲットシステムが表示されます。ソースコントローラを、異なるバージョンの ONTAP または互換性のないプラットフォームのコントローラと交換した場合、自動処理が停止し、新しいノードがブートされたあとにエラーが報告されます。クラスタを正常な状態に戻すには、手動のリカバリ手順に従う必要があります。
+現在のソースシステムと互換性のあるすべてのターゲットシステムが表示されます。ソースコントローラを異なるONTAPバージョンまたは互換性のないプラットフォームのコントローラに交換した場合、新しいノードの起動後に自動化処理が停止し、エラーが報告されます。クラスタを正常な状態に戻すには、手動リカバリ手順に従ってください。
 
 +
 「 system controller replace start 」コマンドで、次の事前確認エラーが報告されることがあります。
@@ -264,7 +273,7 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 
 
 
-== 古いコントローラの交換と新しいコントローラのブート
+== 古いコントローラを交換して新しいコントローラをブート
 
 情報を収集して処理を再開すると、スイッチオーバー処理が自動化されます。
 
@@ -276,13 +285,13 @@ dr-group-id cluster    node          node-systemid dr-partner-systemid
 
 
 
-=== 古いコントローラのネットワーク構成を準備しています
+=== 古いコントローラのネットワーク構成を準備
 
 新しいコントローラでネットワークが正常に再開されるようにするには、 LIF を共通ポートに移動して、古いコントローラのネットワーク設定を削除する必要があります。
 
 .このタスクについて
 * このタスクは、古いノードごとに実行する必要があります。
-* で収集した情報を使用します <<アップグレードの準備を行います>>。
+* で収集した情報を使用します <<アップグレードを準備>>。
 
 
 .手順
@@ -377,7 +386,7 @@ halt -inhibit-takeover true -node node_name `
 
 
 
-=== 新しいコントローラをセットアップする
+=== 新しいコントローラをセットアップ
 
 新しいコントローラをラックに設置してケーブルを接続する必要があります。
 
@@ -407,7 +416,7 @@ https://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステム�
 
 
 
-=== 新しいコントローラのネットブート
+=== 新しいコントローラをネットブート
 
 新しいノードを設置したら、ネットブートを実行して、新しいノードが元のノードと同じバージョンの ONTAP を実行するようにする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを配置する必要があります。
 
@@ -475,7 +484,7 @@ The node must be rebooted to start using the newly installed software. Do you wa
 
 
 
-=== コントローラモジュールでの設定の消去
+=== コントローラモジュールの設定をクリアします
 
 MetroCluster 構成で新しいコントローラモジュールを使用する前に、既存の構成をクリアする必要があります。
 
@@ -514,7 +523,7 @@ wipeconfig
 
 
 
-=== HBA 構成をリストアしています
+=== HBA 構成をリストア
 
 コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。
 
@@ -595,14 +604,14 @@ fcadmin show`
 
 
 
-=== ルートアグリゲートディスクの再割り当て中です
+=== ルートアグリゲートディスクを再割り当てします
 
 前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします
 
 .このタスクについて
 このタスクはメンテナンスモードで実行します。
 
-古いシステム ID は、で識別されています link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html#gathering-information-before-the-upgrade["アップグレード前に情報を収集"]。
+古いシステムIDはで特定しました link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_fc.html#gather-information-before-the-upgrade["アップグレード前に情報を収集"]。
 
 この手順の例では、次のシステム ID を持つコントローラを使用します。
 
@@ -710,7 +719,7 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 
 
 
-=== 新しいコントローラのブート
+=== 新しいコントローラをブートします
 
 コントローラのフラッシュイメージを更新するには、ブートメニューからコントローラをリブートする必要があります。暗号化が設定されている場合は、追加の手順が必要です。
 
@@ -836,7 +845,7 @@ partner-sysid が正しくない場合は、次のように設定します。
 
 .. 必要に応じて、ブロードキャストドメインにポートを追加します。
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html["ブロードキャストドメインのポートの追加と削除"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58A3-46C9-BF0C-BA1D1D1475F9.html["ブロードキャストドメインのポートを追加または削除します"^]
 
 .. インタークラスタLIFをホストする物理ポートを対応するブロードキャストドメインに追加します。
 .. 新しい物理ポートをホームポートとして使用するようにクラスタ間 LIF を変更します。
@@ -845,17 +854,17 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-003BDFCD-58
 クラスタピアリングの再設定が必要になる場合があります。
 
 +
-link:../install-fc/concept_configure_the_mcc_software_in_ontap.html#peering-the-clusters["クラスタピア関係を作成"]
+link:../install-fc/concept_configure_the_mcc_software_in_ontap.html#peering-the-clusters["クラスタピア関係を作成します。"]
 
 .. 必要に応じて、 VLAN とインターフェイスグループを再作成します。
 +
 VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html["VLAN を作成する"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-8929FCE2-5888-4051-B8C0-E27CAF3F2A63.html["VLANを作成します。"^]
 
 +
-https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html["物理ポートを組み合わせたインターフェイスグループの作成"^]
+https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EAB7-430A-A773-4E3420EE2AA1.html["物理ポートを組み合わせてインターフェイスグループを作成"^]
 
 .. パートナークラスタが到達可能であり、パートナークラスタで設定が再同期されたことを確認します。
 +
@@ -876,7 +885,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
  a| 
 「セキュリティキーマネージャオンボード同期」
 
-詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html["オンボードキー管理の暗号化キーのリストア"^]。
+詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-E4AB2ED4-9227-4974-A311-13036EB43A3D.html["オンボードキー管理暗号化キーのリストア"^]。
 
 
 
@@ -930,9 +939,22 @@ MetroCluster node show
 
 
 
+== cluster_Aのノードをアップグレードします。
+
+アップグレード手順を繰り返して、サイトAのcluster_Aのノードをアップグレードする必要があります。
+
+.手順
+. cluster_Aのノードをアップグレードするために、上記の手順を繰り返し<<fc_controller_replace_prepare,アップグレードを準備>>ます。
++
+手順を繰り返すと、クラスターとノードへのすべての例の参照が逆になります。
+
+
+
+
+
 === Tiebreaker 監視をリストアしています
 
 MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。
 
-. の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html["MetroCluster 構成を追加しています"]。
+. の手順を使用します http://docs.netapp.com/ontap-9/topic/com.netapp.doc.hw-metrocluster-tiebreaker/GUID-7259BCA4-104C-49C6-BAD0-1068CA2A3DA5.html["MetroCluster 構成を追加"]。
 

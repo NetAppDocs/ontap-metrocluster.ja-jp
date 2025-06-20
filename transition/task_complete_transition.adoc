@@ -15,7 +15,7 @@ summary: 移行に向けた構成を準備するには、既存の MetroCluster 
 
 . MetroCluster の IP 設定を確認します。
 +
-この手順は各クラスタで実行する必要があります。
+この手順は、各クラスターで高度な権限モードで実行する必要があります。
 
 +
 次の例は、 cluster_A の出力を示しています
@@ -25,7 +25,7 @@ summary: 移行に向けた構成を準備するには、既存の MetroCluster 
 cluster_A::> cluster show
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
-node_A_1-IP          true    true          true
+node_A_1-IP          true    true          false
 node_A_2-IP          true    true          false
 2 entries were displayed.
 
@@ -39,7 +39,7 @@ cluster_A::>
 cluster_B::> cluster show
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
-node_B_1-IP          true    true          true
+node_B_1-IP          true    true          false
 node_B_2-IP          true    true          false
 2 entries were displayed.
 

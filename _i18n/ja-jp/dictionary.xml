@@ -1627,7 +1627,6 @@
   <block id="073faa4c73cacc88495fc9350385c303" category="list-text">この手順では次のワークフローを使用します。</block>
   <block id="b9c0eaf4a16701cf889abe8268023f52" category="image-alt">ワークフロー MCC 2~4 ノードの拡張概要</block>
   <block id="96b370eac5aa139852f6e8fd4b6aaf01" category="summary">MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
-  <block id="3f28886cbb43f1c7c0c4f4d35ecafdde" category="doc">スイッチオーバーとスイッチバックを使用して MetroCluster FC 構成のコントローラをアップグレードする</block>
   <block id="b33f40e27c2c4b0024c1160808166b4d" category="list-text">この手順は、コントローラのアップグレードにのみ使用できます。</block>
   <block id="9b7868adf853e7eebe0da1408c6ccd24" category="paragraph">ストレージシェルフやスイッチなど、構成内の他のコンポーネントは同時にアップグレードできません。</block>
   <block id="0658afd7b63854a03c773da7890b79c4" category="list-text">ONTAP 9.3 以降では 2 ノード構成がサポートされます。</block>
@@ -1660,7 +1659,6 @@
   <block id="1a79a6f65ccd83c6b745bba021e17537" category="list-text">node_B_2 - 新規</block>
   <block id="a6a2bfa5b0368feae00b3711d6fe107d" category="section-title">アップグレードの準備を行います</block>
   <block id="39636ee3d838e1ad79f4b6b17f397cb2" category="paragraph">既存の MetroCluster 構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行する必要があります。</block>
-  <block id="e53a7c24d7a4423f5e6dc1e0489f4650" category="paragraph">アップグレードを実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。</block>
   <block id="542da501ed6fd2c5eec24de28539644a" category="paragraph">このコマンドは、 MetroCluster 構成のノードごとに問題で実行する必要があります。</block>
   <block id="05773fb8201f74749fc7fddd4cdad50f" category="paragraph">このコマンドは、 MetroCluster 構成の各ノードで問題を実行する必要があります。</block>
   <block id="872b35f8fd9135eedd74d22d1a0c40db" category="paragraph">このコマンドは、各クラスタで問題を実行する必要があります。</block>
@@ -1746,7 +1744,6 @@
   <block id="4f2a0c0685e8129ff9ccf99a0212fda8" category="list-text">サポートケースが自動で生成されないようにするには、メンテナンスが進行中であることを示す AutoSupport メッセージを送信します。</block>
   <block id="22a619e2119eac132eeee61c7997aae7" category="paragraph">「メンテナンス時間」では、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。</block>
   <block id="84e33342856c02e8a00ad96f47bd4d9f" category="list-text">パートナークラスタに対してこのコマンドを繰り返します。</block>
-  <block id="89e7124fca5c192493e832d03a3de9d2" category="section-title">MetroCluster 設定をスイッチオーバーしています</block>
   <block id="332d6b9e68571fab560335a786aee2d6" category="paragraph">site_B のプラットフォームをアップグレードできるように、設定を site_A にスイッチオーバーする必要があります。</block>
   <block id="2ed2f89a99daa3452e8fc315262c95f5" category="paragraph">このタスクは site_A で実行する必要があります</block>
   <block id="11f455c88de297768de186a1110cfdf6" category="paragraph">このタスクを完了すると、 cluster_A はアクティブになり、両方のサイトでデータを提供します。cluster_B は非アクティブで、次の図に示すようにアップグレードプロセスを開始できます。</block>
@@ -1755,7 +1752,6 @@
   <block id="a169e8347f5fcb162ab3b35a2bfe8bb2" category="list-text">データアグリゲートを修復します。</block>
   <block id="fd56eef3a229dc89f4583f9f02a2f52e" category="list-text">正常なクラスタで MetroCluster operation show コマンドを実行して、修復操作が完了したことを確認します。</block>
   <block id="33e64bb1016dec9153a09112c1918728" category="list-text">ルートアグリゲートを修復します。</block>
-  <block id="5e744c4240b735a2a086be5884b09ed3" category="section-title">古いコントローラのネットワーク構成を準備しています</block>
   <block id="f02f75fbbe89500c3766deab4ccf2d4d" category="paragraph">新しいコントローラでネットワークが正常に再開されるようにするには、 LIF を共通ポートに移動して、古いコントローラのネットワーク設定を削除する必要があります。</block>
   <block id="dd3d39a72e683fc82c6e4dd4c8f79169" category="list-text">このタスクは、古いノードごとに実行する必要があります。</block>
   <block id="222865f12c5217fc8874b26cdd58fd1e" category="list-text">古いノードをブートし、ノードにログインします。</block>
@@ -1770,14 +1766,12 @@
   <block id="846a67f7610ea48d1f27cb5f81030c71" category="paragraph">すべての VLAN ポートと物理ポートについて、この手順を繰り返します。</block>
   <block id="accd214a61f142828c1572a8d975d7b3" category="list-text">クラスタポートをメンバーポートとして使用し、 ifgrp をメンバーポートとして使用している VLAN ポートを削除します。</block>
   <block id="30ee2c11e0c555918a60d26e605302e8" category="paragraph">この手順は両方のノードで実行する必要があります。</block>
-  <block id="9c72ecff6f02b2c92e12130effa540d4" category="section-title">古いプラットフォームを削除しています</block>
   <block id="fb7af1863497df9dda3e65ea0159d317" category="paragraph">古いコントローラを構成から削除しておく必要があります。</block>
   <block id="6c8ff53e27cab2a88cabead47af570d0" category="paragraph">このタスクは site_B で実行します</block>
   <block id="01ce1f1f81d9590f4d39efb56969c18e" category="list-text">site_B の古いコントローラのシリアルコンソール（ node_B_1 古いコントローラと node_B_2 古いコントローラ）に接続し、 LOADER プロンプトが表示されていることを確認します。</block>
   <block id="5b720ae65bf7d21d6a225f04b05193ed" category="list-text">node_B_1 古いと node_B_2 のストレージ接続とネットワーク接続を切断し、新しいノードに再接続できるようにケーブルにラベルを付けます。</block>
   <block id="179dbbeb7c6a0fa6264cc8d28907ccfe" category="list-text">node_B_1 から古いおよび node_B_2 から電源ケーブルを外します。</block>
   <block id="0f8df768c820d4ea7a6ff9e730270f41" category="list-text">node_B_1 古いコントローラと node_B_2 の古いコントローラをラックから取り外します。</block>
-  <block id="3cfa77e26dd6c256a6f41b6a62be5341" category="section-title">新しいコントローラを設定します</block>
   <block id="4a9f94a6bfc29e6a892ce5bcc1a54ee2" category="paragraph">コントローラをラックに設置して設置し、メンテナンスモードで必要なセットアップを実行してから、コントローラをブートし、コントローラの LIF の設定を確認する必要があります。</block>
   <block id="7e7fa25a4f3d72e0aeb3841f8bab2d05" category="section-title">新しいコントローラをセットアップする</block>
   <block id="86008a0b4a5488741f7256f8ff1f242e" category="paragraph">新しいコントローラをラックに設置してケーブルを接続する必要があります。</block>
@@ -1788,7 +1782,6 @@
   <block id="c128b2ab68429454a80c551ee2dde909" category="list-text">コントローラの電源、シリアルコンソール、および管理接続を、 MetroCluster インストールおよび設定ガイド _ の説明に従ってケーブル接続します。</block>
   <block id="af0193fb968af44ba857457d276dbbff" category="paragraph">この時点で古いコントローラから切断されていた他のケーブルは接続しないでください。</block>
   <block id="160d469f0d322af20c918ade628d8dd9" category="list-text">新しいノードに電源を投入し、 LOADER プロンプトを表示するよう求められたら Ctrl+C キーを押します。</block>
-  <block id="1494e61022d43a77210d5dc678a3a88d" category="section-title">新しいコントローラのネットブート</block>
   <block id="edc643a9505fab515a007a1aa3dc38cc" category="paragraph">新しいノードを設置したら、ネットブートを実行して、新しいノードが元のノードと同じバージョンの ONTAP を実行するようにする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを配置する必要があります。</block>
   <block id="9fedaeee9e87c87e46105dc0f2af2cae" category="paragraph">このタスクは、新しい各コントローラモジュールで実行します。</block>
   <block id="b766f72a6d760e806b313f201b12c31b" category="list-text">ネットアップサポートサイトのソフトウェアダウンロードセクションから該当する ONTAP ソフトウェアをダウンロードし、 Web にアクセスできるディレクトリに image.tgz ファイルを保存します。</block>
@@ -1808,7 +1801,6 @@
   <block id="94b4038bc962a8ff7acafad652850e68" category="list-text">手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたらイメージファイルの URL 「 ¥ http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz` 」を入力します</block>
   <block id="f59d590a38cf457fb44a857365a2aec4" category="list-text">次のようなプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしてください</block>
   <block id="4c311f4de89068c42d4731e90025eefc" category="list-text">次のようなプロンプトが表示されたら 'y' と入力して再起動します</block>
-  <block id="8154d55f73ab64571f60299356015117" category="section-title">HBA 構成をリストアしています</block>
   <block id="a8635badf0c3725452ad27dcb306f849" category="paragraph">コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。</block>
   <block id="8afdaf07ff0e43cdf1c5459d3d9ff0e6" category="list-text">メンテナンスモードで、システム内の HBA の設定を行います。</block>
   <block id="3d18b9cf776b5c427daf082dba906596" category="list-text">必要に応じてポートの設定を更新します。</block>
@@ -1827,7 +1819,6 @@
   <block id="059f24f8c2a01e5ecc7ae13169039c24" category="cell">HBA のタイプ</block>
   <block id="68b3177cae966fde225c197ecb4fd253" category="paragraph">CNA</block>
   <block id="694429499062fa756d61dfdb6d5f0786" category="paragraph">fcadmin show`</block>
-  <block id="b4c1503dedd04ac2f19bda6b60200205" category="section-title">新しいコントローラとシャーシで HA 状態を設定</block>
   <block id="68f4cfb521940b7d319f1fa0c86e6659" category="paragraph">コントローラとシャーシの HA 状態を確認し、必要に応じてシステム構成に合わせて更新する必要があります。</block>
   <block id="fe8b2cbe27aeee8cf3fd12fd4f19075c" category="cell">MetroCluster 構成の内容</block>
   <block id="7a0cb0e9d6bfae35a7d862f122269833" category="cell">HA の状態</block>
@@ -1839,7 +1830,6 @@
   <block id="53e320e1e582bcca8faa776f20233dfe" category="cell">問題コマンド</block>
   <block id="300233ef3d84cd921394fe55131c308e" category="paragraph">* 2 ノード *</block>
   <block id="f10e792e265696d1a9b0ff8b7216adce" category="paragraph">* 4 ノードまたは 8 ノード *</block>
-  <block id="e97c2d73dc1c54dfe8c4452dcb629eb7" category="section-title">ルートアグリゲートディスクの再割り当て中です</block>
   <block id="57564146ad523d55130a77527db0c457" category="paragraph">前の手順で確認したシステム ID を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします</block>
   <block id="656b3430f6aeb54a5747ced587d5f2ef" category="paragraph">このタスクはメンテナンスモードで実行します。</block>
   <block id="ad3d8189e8e55c3028771da773eed75a" category="paragraph">この手順の例では、次のシステム ID を持つコントローラを使用します。</block>
@@ -1857,7 +1847,6 @@
   <block id="591e50b47782b75bd730ace525401a46" category="list-text">すべてのディスクが想定どおりに再割り当てされていることを確認します。</block>
   <block id="400779b1fb33958b56a5d711fd6576f5" category="list-text">アグリゲートのステータスを表示します。</block>
   <block id="a45adb2cc03a7b6b2f8aad0f0a988893" category="list-text">パートナーノードで上記の手順を繰り返します（ node_B_2 - 新規）。</block>
-  <block id="7a6002540ecd362954aac55e62be8b2d" category="section-title">新しいコントローラのブート</block>
   <block id="f2e258fab466f759085e8337708390d7" category="paragraph">コントローラのフラッシュイメージを更新するには、ブートメニューからコントローラをリブートする必要があります。暗号化が設定されている場合は、追加の手順が必要です。</block>
   <block id="558c0a7f72f16f49bd860bfff6928871" category="paragraph">このタスクはすべての新しいコントローラで実行する必要があります。</block>
   <block id="d74abfb55f46e179952b0f9d29ab5c58" category="list-text">ノードを停止します。</block>
@@ -1879,13 +1868,11 @@
   <block id="ba9306a784ea50cffb5495b1554f7cb4" category="list-text">すべてのポートがブロードキャストドメインに属していることを確認します。</block>
   <block id="7891ca9ce66a6010c0a0c81f73c751a7" category="list-text">必要に応じて、ブロードキャストドメインにポートを追加します。</block>
   <block id="af2cff7842d78b021641e08a464843b0" category="inline-link">ブロードキャストドメインのポートの追加と削除</block>
-  <block id="c65b5a40a33c87dbddaf6f6ae7b632bb" category="paragraph"><block ref="c65b5a40a33c87dbddaf6f6ae7b632bb" category="inline-link-rx"></block></block>
   <block id="f1c8805fb744649f7072db9469a4b4ce" category="list-text">インタークラスタ LIF をホストする物理ポートを対応するブロードキャストドメインに追加します。</block>
   <block id="2ebcfc4e6e9e59e780050b367202dd4c" category="list-text">新しい物理ポートをホームポートとして使用するようにクラスタ間 LIF を変更します。</block>
   <block id="f953e6cfed541804735d21b7602e3be7" category="list-text">クラスタ間 LIF が起動したら、クラスタピアのステータスを確認し、必要に応じてクラスタピアリングを再確立します。</block>
   <block id="f19333f1035e0715716b1478e3988a40" category="paragraph">クラスタピアリングの再設定が必要になる場合があります。</block>
   <block id="f87203706f5c3a616adcf28c15f5c6a6" category="inline-link-macro">クラスタピア関係を作成</block>
-  <block id="8a538153882e92cc056162106b1709ea" category="paragraph"><block ref="8a538153882e92cc056162106b1709ea" category="inline-link-macro-rx"></block></block>
   <block id="3a55d609c352263354400d0d692b7107" category="list-text">必要に応じて、 VLAN とインターフェイスグループを再作成します。</block>
   <block id="01c8a680f5810522a1ede00d0a15d7a0" category="paragraph">VLAN およびインターフェイスグループのメンバーシップは、古いノードと異なる場合があります。</block>
   <block id="d9c67b11fb081a3a5fd6ab259edb40ca" category="inline-link">VLAN を作成する</block>
@@ -1901,7 +1888,6 @@
   <block id="24f91f070271318621e83fbab3117da8" category="list-text">スイッチバックの前に、 LIF が適切なノードとポートにホストされていることを確認します。</block>
   <block id="c0ba3201f16158e00581af8a4e633953" category="list-text">インターフェイスをホームノードにリバートします。</block>
   <block id="79db05c6325341be1f197094f1f39dfe" category="paragraph">必要に応じて、すべての SVM でこの手順を実行します。</block>
-  <block id="101eb63fc89b71f07d6fd64ec364e567" category="section-title">MetroCluster 設定を元に戻します</block>
   <block id="dca37c43ff68fc6fc781f9dccaf1eb93" category="paragraph">新しいコントローラを設定したら、 MetroCluster 構成をスイッチバックして構成を通常動作に戻します。</block>
   <block id="1d3a92008f392950faeb257ca2a9e106" category="paragraph">このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。site_A のノードはまだアップグレード待ちです。</block>
   <block id="11d18258d14c6b6638680b58c7d402a0" category="image-alt">MCC アップグレードクラスタ A のスイッチバック</block>
@@ -1912,13 +1898,10 @@
   <block id="867c64f0b04ea0a720229d699e306466" category="paragraph">出力に「 waiting-for-switchback 」と表示されたら、スイッチバック処理はまだ進行中です。</block>
   <block id="4e13d70ad15aa48ae9a770aa54dd268d" category="paragraph">出力に「 normal 」と表示された場合、スイッチバック処理は完了しています。</block>
   <block id="4e744856add58c0bc300801dfd73d288" category="paragraph">スイッチバックが完了するまでに時間がかかる場合は、「 MetroCluster config-replication resync-status show 」コマンドを使用することで、進行中のベースラインのステータスを確認できます。このコマンドは、 advanced 権限レベルで実行します。</block>
-  <block id="2d5e8e0b0617d8e83a29861c69918b2c" category="section-title">MetroCluster 構成の健常性を確認しています</block>
   <block id="033ac696c5afc4de42fea770a0d17cd5" category="paragraph">コントローラモジュールをアップグレードしたら、 MetroCluster 構成の健全性を確認する必要があります。</block>
   <block id="5f7ba0a24f19494561e556afe3a5c074" category="paragraph">このタスクは、 MetroCluster 構成の任意のノードで実行できます。</block>
   <block id="bb8721e2ff2df30ad696bfea212b7dad" category="list-text">MetroCluster 構成の動作を確認します。</block>
-  <block id="f181d34cde32a783c686d54cd89b5f4f" category="section-title">cluster_A のノードをアップグレードします</block>
   <block id="0c3130a0855ad337dbe1f4a605eaacf9" category="paragraph">cluster_A についてもアップグレード手順を繰り返す必要があります</block>
-  <block id="491f4a55b5ac3a5330d799d5311315e8" category="paragraph">タスクを実行すると、これらの例ではクラスタとノードをすべて逆に参照しています。たとえば、この例で cluster_A からスイッチオーバーすると、 cluster_B からスイッチオーバーされます</block>
   <block id="d60c50580eca8ffa48386ace1436021b" category="section-title">メンテナンス後にカスタム AutoSupport メッセージを送信する</block>
   <block id="a00b322f5fbb0ab63d64eb15f5fd23e9" category="paragraph">アップグレードの完了後、ケースの自動作成を再開できるように、メンテナンスの終了を通知する AutoSupport メッセージを送信する必要があります。</block>
   <block id="9553eead12b025935c7e52654c9fb212" category="list-text">サポートケースの自動生成を再開するには、メンテナンスが完了したことを示す AutoSupport メッセージを送信します。</block>
@@ -3393,10 +3376,6 @@
   <block id="79d590c415dfacbfdb5faabe59aa51b1" category="paragraph">初期スイッチ（ファブリック接続構成の場合：）</block>
   <block id="1bbaa38a5e85ee37eb6f052871599d1b" category="paragraph">MetroCluster IP スイッチ：</block>
   <block id="cb66ac900bd3c2fa6ceac440c69f6cf8" category="paragraph">初期スイッチ（ファブリック接続構成の場合）：</block>
-  <block id="68ca4c8699281e1858977752c796cd45" category="paragraph">MetroCluster FC 構成のクラスタインターフェイスを IP スイッチに移動する必要があります。</block>
-  <block id="faa907fa21172fe5049a9e06b580a22f" category="paragraph">MetroCluster FC ノードのクラスタ接続を IP スイッチに移動する必要があります。手順は、既存の IP スイッチを使用するか、新しい IP スイッチを使用するかによって異なります。</block>
-  <block id="a4508902f6a0e0fe2638bb2698abffe9" category="paragraph">このタスクは両方の MetroCluster サイトで実行する必要があります。</block>
-  <block id="9a6a031361d5fc2d07e0496f2d3f35aa" category="paragraph">次のタスクでは、コントローラモジュールがクラスタ接続に 2 つのポートを使用していることを前提としています。一部のコントローラモジュールモデルでは、クラスタ接続に 4 つ以上のポートを使用します。この場合、この例では、ポートは 2 つのグループに分割され、 2 つのグループ間でポートが交互に使用されます</block>
   <block id="e3690631412410cb5e14d123997d91cb" category="paragraph">次の表に、このタスクで使用するポートの例を示します。</block>
   <block id="aa1ccf5a59fb4b87223a8ad637a79f6e" category="cell">コントローラモジュール上のクラスタ接続の数</block>
   <block id="db3466b88d5f757d29e9341b7952b4e9" category="cell">ポートをグループ化します</block>
@@ -3412,8 +3391,6 @@
   <block id="dcf4881a93cea43ae1634b2f0f7939ac" category="cell">スイッチポート</block>
   <block id="5cf0603a9cc38118a92d6f62afbc27ad" category="cell">に接続します</block>
   <block id="ed36a1ef76a59ee3f15180e0441188ad" category="cell">任意</block>
-  <block id="41add71327ff82aa85f0074583131e05" category="section-title">新しい IP スイッチを使用する場合にローカルクラスタ接続を移動する</block>
-  <block id="f96b1e8d8ce6fb44d55bd62523f1fffd" category="paragraph">新しい IP スイッチを使用している場合は、既存の MetroCluster FC ノードのクラスタ接続を新しいスイッチに物理的に移動する必要があります。</block>
   <block id="971a965432d70710e6faba87f3271008" category="list-text">MetroCluster FC ノードグループ A のクラスタ接続を新しい IP スイッチに移動します。</block>
   <block id="158a9eaed207074e679175ceadae600d" category="list-text">スイッチからすべてのグループ A ポートを切断します。 MetroCluster FC 構成がスイッチレスクラスタの場合は、パートナーノードからポートを切断します。</block>
   <block id="dd6ad065820d004f2add01d31b8a8ddc" category="list-text">グループ A のポートを node_A_1 の FC と FC_switch_A_2 の FC から切断します。</block>
@@ -3421,8 +3398,6 @@
   <block id="28e1b92081a0233d120e8fe4d0750051" category="list-text">FC_switch_A_2 のグループ A のポートを switch_A_1 の FC ノードのスイッチポートに接続します</block>
   <block id="d674fde4628671c3e1078935d12e7997" category="paragraph">この処理が完了するまでに数分かかることがあります。</block>
   <block id="8b823623a0b9f814903822d0b4e22769" category="list-text">両方のノード（ node_A_1 -FC および node_B_2 ）で上記の手順を実行して、クラスタインターフェイスのグループ B ポートを移動します。</block>
-  <block id="cf55ede06abe62887dc32793cdfd9bbd" category="section-title">既存の IP スイッチを再利用する場合にローカルクラスタ接続を移動する</block>
-  <block id="2eff4e6f516a51fa071f0dd51ef97adf" category="paragraph">既存の IP スイッチを再利用する場合は、ファームウェアを更新し、正しい Reference Configure Files （ RCF ；リファレンス構成ファイル）でスイッチを再設定し、接続を正しいポートに一度に 1 つずつ移動する必要があります。</block>
   <block id="30b06baa6c7c1619d917876c364f7745" category="paragraph">このタスクを実行する必要があるのは、 FC ノードが既存の IP スイッチに接続されており、スイッチを再利用する場合のみです。</block>
   <block id="355050c57a45e185e0c77d3cafe8995d" category="list-text">switch_A_1 IP に接続されているローカルクラスタ接続を切断します</block>
   <block id="eaab124dfff7034db019e452d97087c0" category="list-text">グループ A のポートを既存の IP スイッチから切断します。</block>
@@ -3438,8 +3413,6 @@
   <block id="afdaa41b5df1e3c7f106953ec438e3be" category="list-text">ローカルクラスタの ISL ポートを再接続します。</block>
   <block id="e470656b8036e7f5882de8fbc378732c" category="list-text">スイッチ B_1_IP およびスイッチ B_2_IP について、 site_B で上記の手順を繰り返します。</block>
   <block id="2855c2152991ed77e103e3f82c9f9ee2" category="list-text">サイト間でリモート ISL を接続します。</block>
-  <block id="05ab5de1b64b7ffa583c25e602a5a02e" category="section-title">クラスタ接続が移動され、クラスタが正常に動作していることを確認しています</block>
-  <block id="0e3c3cc7ec01dfea5815eb2e529e3dad" category="paragraph">適切な接続があり、構成で移行プロセスを実行する準備ができていることを確認するには、クラスタ接続が正しく移動され、クラスタスイッチが認識され、クラスタが正常であることを確認する必要があります。</block>
   <block id="ec1db698ac5a047f7cb7cbb554180668" category="paragraph">この手順は各スイッチで実行する必要があります。</block>
   <block id="f5c4e8875a7725a7e200e3c8dac7cbc7" category="paragraph">この例は、 Switch-A-3-IP でノードが検出されていることを確認する方法を示しています。</block>
   <block id="e8baecf182348ff524129d2cd089003a" category="paragraph">この例は、 Switch-A-4-IP でノードが検出されていることを確認する方法を示しています。</block>
@@ -9013,7 +8986,6 @@
   <block id="662d33ac7104caf3274f5065dd2768ba" category="list-text">partner-sysid が正しいことを確認します。</block>
   <block id="9deac6774fee62e9b27bd1c0ab01281e" category="paragraph">「 vserver config override command 」 network interface modify -vserver vserver_name __ -home-node _active_port_after_upgrade _ -lif LIF_name -home-node _new_node_name _</block>
   <block id="ad9ebc2907a38b9af9ba1c13b826403a" category="paragraph">「 vserver config override 」コマンド内で「 network interface modify 」コマンドを入力する場合、 Tab autoccomplete 機能は使用できません。autoccomplete を使用して「 network interface modify 」を作成し、「 vserver config override 」コマンドで囲むことができます。</block>
-  <block id="ac95cad470acdacec0fa69881c030cfb" category="list-text">同じ手順を繰り返して、 cluster_A のノードをアップグレードします <block ref="355740dbae62093c04ee9cfd151fed4a" category="inline-link-macro-rx"></block>。</block>
   <block id="4852598a3e684943b3bfcba06307b21d" category="list-text">次のセクションを使用して、 MetroCluster IP ノードを設定します。</block>
   <block id="1356b65b4f6b8c9d44f63f1a27688ae1" category="list-text">既存の設定を消去します。「 write erase 」</block>
   <block id="367b53240482fbcdbee9063ed854bf15" category="list-text">スイッチソフトウェアをリロードします</block>
@@ -9133,7 +9105,6 @@
   <block id="6479a6c19128ccb1ed55ac097ef1e1e7" category="list-text">** RcfFileGenerator** ツールで生成されたケーブルレイアウトを使用して、シェルフを適切なポートにケーブル接続します。</block>
   <block id="3dc0d5b9eac0c50a790964bb3a643fa3" category="paragraph">新しいシェルフが正しくケーブル接続されると、 ONTAP はそのシェルフをネットワーク上で自動的に検出します。</block>
   <block id="f18720a1eb7d7bace925c2a97a20075f" category="list-text">にアクセスします<block ref="3725c06f412bedb14ffd610de312875d" category="inline-link-rx"></block> システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。</block>
-  <block id="f49f60b6304797900db897e855566402" category="inline-link-macro">4 ノード MetroCluster FC 構成でのコントローラのアップグレード。スイッチオーバーとスイッチバックに「 system controller replace 」コマンドを使用（ ONTAP 9.10.1 以降）</block>
   <block id="c305ce21377f146200c5e9ef13536599" category="summary">このガイドに記載された自動 MetroCluster スイッチオーバー処理を使用して、 4 ノード MetroCluster FC 構成のコントローラを無停止でアップグレードできます。</block>
   <block id="66c25daffc009801ab74d25814bedafb" category="paragraph">このガイドに記載された自動 MetroCluster スイッチオーバー処理を使用して、 4 ノード MetroCluster FC 構成のコントローラを無停止でアップグレードできます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
   <block id="6cd89c0a24f678f7acedd8c76ccac487" category="list-text">この手順環境コントローラモジュールは、 4 ノード MetroCluster FC 構成です。</block>
@@ -9146,10 +9117,7 @@
   <block id="7399fd0657c56a93aa88aad61e36136e" category="list-text">サイト A でコントローラの交換を開始するには、サイト B からコントローラの交換開始コマンドを実行する必要があります交換処理ガイドは、サイト A の両方のノードのコントローラのみを交換する場合に使用します。サイト B のコントローラを交換するには、サイト A からコントローラ交換の開始コマンドを実行する必要がありますコントローラを交換するサイトを示すメッセージが表示されます。</block>
   <block id="60b2b0f6400af78e603c06413100168c" category="paragraph">コントローラのアップグレードを準備するには、システムの事前確認を実行し、構成情報を収集する必要があります。</block>
   <block id="73ad115378efdb25c08af588822361c8" category="paragraph">アップグレードのどの段階でも、サイト A から「 system controller replace show 」または「 system controller replace show -details 」コマンドを実行してステータスを確認できます。コマンドから何も出力されない場合は、数分待ってからコマンドを再実行してください。</block>
-  <block id="0b31bcfeca87d4774cd67b62b4046694" category="list-text">サイト A からコントローラの自動交換用手順を開始して、サイト B のコントローラを交換します。</block>
   <block id="9ba5ebf2ab22ccd4b9b8065d168c7b7b" category="paragraph">'System controller replace start' （システムコントローラの交換開始</block>
-  <block id="74bf6e65171bf6ee65dc9487114a8bfa" category="paragraph">自動処理によって事前確認が実行されます。問題が見つからなかった場合は処理が一時停止するため、構成に関連する情報を手動で収集できます。</block>
-  <block id="bc966781e77c2e4acdbeca5c5d81d3a6" category="admonition">現在のソースシステムと互換性のあるすべてのターゲットシステムが表示されます。ソースコントローラを、異なるバージョンの ONTAP または互換性のないプラットフォームのコントローラと交換した場合、自動処理が停止し、新しいノードがブートされたあとにエラーが報告されます。クラスタを正常な状態に戻すには、手動のリカバリ手順に従う必要があります。</block>
   <block id="ea7b87ede287b27be45723feb0a2e4d0" category="paragraph">「 system controller replace start 」コマンドで、次の事前確認エラーが報告されることがあります。</block>
   <block id="9319c19c2a50b74bb162c257218ac3e9" category="paragraph">アグリゲートのミラーされていないか、別のアグリゲート問題が原因で、このエラーが発生していないかどうかを確認してくださいすべてのミラーアグリゲートが正常で、デグレードまたはミラーデグレードでないことを確認します。このエラーの原因がミラーされていないアグリゲートのみである場合は、「 system controller replace start 」コマンドで「 -skip-metrocluster-check true 」オプションを選択することで、このエラーを無視できます。リモートストレージにアクセスできる場合、ミラーされていないアグリゲートはスイッチオーバー後にオンラインになります。リモートストレージリンクに障害が発生すると、ミラーされていないアグリゲートがオンラインになりません。</block>
   <block id="f5095e87ada35bc113e0f036c8e69f97" category="list-text">サイト B にログインし、「 system controller replace show 」または「 system controller replace show -details 」コマンドのコンソールメッセージに表示されるコマンドに従って、設定情報を手動で収集します。</block>
@@ -9162,15 +9130,12 @@
   <block id="e62705f78105356bbf7fa312e78e684a" category="list-text">設定情報の収集が完了したら、処理を再開します。</block>
   <block id="d6fd449bc639f92f27b747fd5b40361d" category="paragraph">「システムコントローラの交換が再開」</block>
   <block id="7080e7642990f343422154f3680f5f54" category="paragraph">スイッチオーバーを開始できる MetroCluster Tiebreaker 構成またはその他のサードパーティアプリケーション（たとえば、 ClusterLion ）で既存の構成を監視している場合は、古いコントローラを交換する前に、 Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。</block>
-  <block id="2cd5138ffea77134b2eaf87275680e03" category="section-title">古いコントローラの交換と新しいコントローラのブート</block>
   <block id="f7a00e5a4faa1093e067a4074671fd4f" category="paragraph">情報を収集して処理を再開すると、スイッチオーバー処理が自動化されます。</block>
-  <block id="134c86cd6759685fca4e3083cca3c8dd" category="list-text">で収集した情報を使用します <block ref="d24bc3082c34acd97b0b951a86de3913" category="inline-xref-macro-rx"></block>。</block>
   <block id="790ffccea2ff9cd7b795660c9047f0af" category="paragraph">プラットフォームモデルのポートの用途については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
   <block id="28c7702130266714c425efb099b41082" category="list-text">ブロードキャストドメインを変更して、削除する必要がある VLAN と物理ポートを削除します。</block>
   <block id="4446a830a9fbc0b2d0c78c432aa57d3e" category="list-text">クラスタポートをメンバーポートとして使用し、インターフェイスグループをメンバーポートとして使用している VLAN ポートをすべて削除します。</block>
   <block id="76947da623011473e258bcef85f2724d" category="paragraph">を参照してください <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="664faa773b897771d732ec0de99d505a" category="paragraph">前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします</block>
-  <block id="34c4e01a7077e9106112da52b0cc894e" category="paragraph">古いシステム ID は、で識別されています <block ref="c251a9631962af6f05d9aa0aeb7678df" category="inline-link-macro-rx"></block>。</block>
   <block id="bfb74093c695212150621f6bdf9a4d2e" category="paragraph">VLAN とインターフェイスグループを再設定できます。必要に応じて、「 system controller replace resume 」コマンドを使用して処理を再開する前に、クラスタ LIF とブロードキャストドメインのポートを手動で変更します。</block>
   <block id="045153dd32979a83552dc18f97eb10d7" category="list-text">ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを選択します。</block>
   <block id="15f46bcb6931f7562d903b4ad6dd6724" category="cell">選択するブートメニューオプション</block>
@@ -9184,7 +9149,6 @@
   <block id="b2fbbb37e4812fbedc4b441b34476a16" category="paragraph">詳細については、を参照してください<block ref="138ed8681446ad4f209cce6021ead7cf" category="inline-link-rx"></block>。</block>
   <block id="f15497fde7585731affbb2484431a8a8" category="list-text">処理を再開する前に、 MetroCluster が正しく設定されていることを確認してください。ノードのステータスを確認します。</block>
   <block id="3b70100fce1839004dba40191f90a2c9" category="list-text">処理を再開します。</block>
-  <block id="4475fe40cbdeb04db8c9562cf8b91ab1" category="section-title">アップグレードを完了します</block>
   <block id="cddd37c26961b651e776113f46191ca7" category="paragraph">自動処理では、検証システムのチェックが実行されたあと一時停止するため、ネットワークの到達可能性を確認できます。検証が完了すると、リソースの再取得フェーズが開始され、自動化処理によってサイト A でスイッチバックが実行され、アップグレード後のチェックで一時停止されます。自動処理を再開すると、アップグレード後のチェックが実行され、エラーが検出されない場合はアップグレードが完了としてマークされます。</block>
   <block id="ade29ab679ccb0c0ffae494ab79cb975" category="list-text">コンソールメッセージに従って、ネットワークの到達可能性を確認します。</block>
   <block id="325cfe0fbca444947dffe8b494e6621b" category="list-text">検証が完了したら、処理を再開します。</block>
@@ -10604,7 +10568,6 @@
   <block id="e230d4e771549b231a7eda2894a670a5" category="list-text">ブートメニューからオプション "6`" を実行します</block>
   <block id="4c3c853efc0864d6f85e88e17a282dba" category="admonition">オプション "6`" を選択すると ' 完了前にノードが 2 回再起動されます</block>
   <block id="2a4c3faed5b4f37080aceb516872d752" category="paragraph">キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります</block>
-  <block id="decbfc8b8a7a71731aab8ff640f90638" category="list-text">の手順を使用します<block ref="8a40a48df09f86826787416776d41780" category="inline-link-rx"></block>。</block>
   <block id="56bf84e32d22ab8fb694fbc5332432dc" category="paragraph">FC スイッチを手動で設定した場合は、ゾーニングが新しいコントローラモジュールからのイニシエータ接続に対応していることを確認する必要があります。のゾーニングに関するセクションを参照してください <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block>。</block>
   <block id="dedcc0638aa1bf3276ae388ea4613c81" category="summary">ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。</block>
   <block id="75aa8d2f84e0be26d2847e91f37f74e2" category="list-text">サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。</block>
@@ -10806,7 +10769,6 @@
   <block id="806422c50772a82e317db68491ffe3e4" category="paragraph">いずれかのノードがテイクオーバーモードの場合は、ギブバックを実行します。</block>
   <block id="411fd118744e7bc163c41845c9fedb88" category="paragraph">「 storage failover giveback 」を参照してください</block>
   <block id="c9616da62905adb15396b653b4d8475b" category="paragraph">クラスタピアリングの再設定が必要になる場合があります。</block>
-  <block id="b196fb7a2e0b15c158585ec325406b3c" category="list-text">の手順を使用します<block ref="abdcb9b507d42a49d77fa45291426271" category="inline-link-rx"></block> MetroCluster Tiebreaker インストールおよび設定 _ 。</block>
   <block id="6feea37f7c9ba85a19752c43872c3438" category="inline-link-macro">メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します</block>
   <block id="c53469c0e05ec04d4c7bf601859fd9fb" category="admonition">メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。<block ref="a0ba112c9c0ab9c29c24131f966b9b69" category="inline-link-macro-rx"></block></block>
   <block id="5713f2c18fca6cff15f3222aca93a2a6" category="summary">Tiebreaker またはメディエーター監視ソフトウェアを使用する構成では、メンテナンスの前にソフトウェアが設定されていない必要があります</block>
@@ -10838,7 +10800,6 @@
   <block id="8b8101ed71d5bd32d2f9d4de05e470c1" category="list-text">ポート 31784 および 3260 でアクセスを許可するように設定されている必要があります。</block>
   <block id="cc1e6f116b4b45ffde821f0aef59e030" category="paragraph">Red Hat または CentOS のデフォルトのファイアウォールを使用している場合は、メディエーターのインストール時に自動的に設定されます。</block>
   <block id="a6bcf63661955f7af02bb69a2cd4d604" category="section-title">既存構成へのシェルフの追加</block>
-  <block id="6257739eb87a755c28bf814ad261df2d" category="section-title">MetroCluster FC ノードでクラスタ接続を移動します</block>
   <block id="9d8f122e284d64a31d50c5040fe4f338" category="section-title">移動する接続</block>
   <block id="508763c5ecfa3096ab25520f14c971f5" category="paragraph">で説明したポートを使用します <block ref="10769c5348734bed7e40370eea435ab1" category="inline-xref-macro-rx"></block>。</block>
   <block id="dd23316b696cd08f3479c6e2d7baadc0" category="inline-link">AFF または FAS システムのインストール手順</block>
@@ -11594,7 +11555,6 @@
   <block id="55a7a35f233fa5c7dc761790158ed06d" category="list-text">この手順 を使用して、NSOベースの自動スイッチオーバーとスイッチバックを使用して4ノードMetroCluster IP構成のコントローラをアップグレードできます。</block>
   <block id="77eb4e36d322d7ab218107d7c498326a" category="list-text">NSOコントローラの自動アップグレード手順 を使用して、両方のサイトのコントローラを順番にアップグレードする必要があります。</block>
   <block id="3cc4806cb19cbb655dbea9a73d4aab85" category="paragraph"><block ref="4baef16133ebdeaa64de2abee5aaa778" prefix="" category="inline-code"></block></block>
-  <block id="ad84135061ac4d026b0f6b6b0b90c976" category="list-text">を実行しない場合<block ref="4baef16133ebdeaa64de2abee5aaa778" prefix=" " category="inline-code"></block> コマンドを実行すると、コントローラのアップグレード手順 では、MetroCluster IPシステムのデフォルト手順 としてNSOベースの自動スイッチオーバーとスイッチバックが選択されます。</block>
   <block id="c37cd78225bfd28b27aba6fdb4ffdb05" category="paragraph">このタスクは、既存のMetroCluster IP設定で実行します。</block>
   <block id="41658c9a662bf36d1d1079b0d7e61f18" category="paragraph">。<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> コマンド出力には、MetroCluster インターフェイスIP、システムID、およびシステムUUIDを含む3つのテーブルが表示されます。この情報は、手順 の後半の工程で新しいノードのブート時にbootargを設定する際に必要になります。</block>
   <block id="103e238a461bced8a19653fadfc6b06f" category="paragraph">この4ノードMetroCluster IP構成の例では、次の古いシステムIDが取得されます。</block>
@@ -12579,7 +12539,6 @@
   <block id="453251ed281496384c5feb5900cc31ba" category="paragraph">サポートされるプラットフォームのアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください  <block ref="9595cfad5a4deb04d4a443245fae3f76" category="inline-link-macro-rx"></block>。</block>
   <block id="3929d13da5d4b97eff76f8a6ec8c5501" category="list-text">にアクセスします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。</block>
   <block id="94416aa661a92cc8d67b1bd6459ef472" category="list-text">サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください  <block ref="9595cfad5a4deb04d4a443245fae3f76" category="inline-link-macro-rx"></block>。</block>
-  <block id="636a367cc04fb36c02707f67c1a70771" category="paragraph">を参照してください <block ref="ff174d1e305f5f579b29dcdb0a617c23" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="332fe4e638c485c04f214b0a13747f6d" category="list-text">この手順を使用して、 NSO ベースの自動スイッチオーバーとスイッチバックを使用して、 4 ノード MetroCluster FC 構成のコントローラをアップグレードできます。アグリゲートの再配置（ ARL ）を使用してコントローラをアップグレードする場合は、を参照してください <block ref="0fe967effd4f0eaf84576f897dbfd368" category="inline-link-macro-rx"></block>。NSO ベースの自動化された手順を使用することを推奨します。</block>
   <block id="75132a926df50e23a26bd72dde0371b7" category="list-text"><block ref="46f4c9c8d582aa241b60c75ea3bcb2c9" category="inline-link-macro-rx"></block> Tiebreaker ソフトウェアから。</block>
   <block id="0b22fb8d0feec85055f45c8c4a298766" category="list-text">手順を続行するかどうかを確認するメッセージが表示されたら、と入力します。<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>パッケージの入力を求められたら、次のURLを入力します。</block>
@@ -12712,7 +12671,6 @@
   <block id="1fc1c42abe6e66843d72990324979a36" category="paragraph">G620-1、G630-1</block>
   <block id="b611d537ec3462ead9e641968d17d570" category="paragraph">G630</block>
   <block id="7dd2a92fd3f41a5334edf46f95d77e71" category="paragraph">ONTAP 9.6</block>
-  <block id="2429e1917793f4046beb8fe2642382e4" category="doc">MetroCluster IPプラットフォームサポートの新機能</block>
   <block id="7616cb7bf661fe6377270c352ec2ff82" category="cell">MetroCluster IP構成でサポートされるプラットフォーム</block>
   <block id="8a1d06fd27bf0bfc6535b6a49185e591" category="paragraph">AFF A150</block>
   <block id="f3975a91159eff9969dbd4feb2dec392" category="paragraph">ONTAP 9.12.1P1</block>
@@ -12998,7 +12956,6 @@
   <block id="04dfa0b1df6387b5be0fe6bbff1286f7" category="paragraph">次のコマンドは、MetroClusterインターフェイスおよびの速度を設定し<block ref="e9c5c6daf1a059d5e7448ef86c2b728e" prefix=" " category="inline-code"></block><block ref="aeef091266f2ea49353e0048626a93bf" prefix=" " category="inline-code"></block>ます。</block>
   <block id="9ec3477ddf53d3e8d6d42a2fb56d2dff" category="list-text">に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用し <block ref="bbee29d44b7926be9c2be6dc914059f5" category="inline-link-macro-rx"></block>ます。</block>
   <block id="65bd6763ac7ddd88c7008054cb6bc624" category="admonition">ONTAPソフトウェアからOODを変更するには、次の手順を実行します。 <block ref="b0ca457fe34ed30c44119bccf9b89d7d" category="inline-link-macro-rx"></block></block>
-  <block id="7b195fd8d412843052bdca8035a73b9b" category="paragraph">MetroCluster IPプラットフォームのサポートの新機能について説明します。</block>
   <block id="5fa70989a3e04b27c407da750f3d94fe" category="paragraph">AFF A70、AFF A90、AFF A1K</block>
   <block id="09165c2d4ac9e01ef347c57ffcbe1ce5" category="paragraph">ASA A150、ASA A250、ASA A400、ASA A800、ASA A900、 ASA C250、ASA C400、ASA C800</block>
   <block id="2f709669cbfb385626cf55d7c80120be" category="paragraph">ASA AFF A220 、 ASA AFF A250 、 ASA AFF A400 、 ASA AFF A700 、 ASA AFF A800</block>
@@ -13886,7 +13843,6 @@
   <block id="fd62dc6a841ff0a9f6159888bf7d8458" category="inline-image-macro">は、ASAがサポートするMetroCluster IPコントローラアップグレードプラットフォームの組み合わせを示しています</block>
   <block id="d7aa961bff867be5607fff47afcc1269" category="paragraph"><block ref="d7aa961bff867be5607fff47afcc1269" category="inline-image-macro-rx" type="image"></block></block>
   <block id="48b9a403e4a45281e156e3aab3850410" category="list-text">MetroCluster構成内のすべてのノードで同じバージョンのONTAPが実行されている必要があります。たとえば、8ノード構成の場合は、8つのすべてのノードで同じバージョンのONTAPを実行する必要があります。ご使用の組み合わせでサポートされるONTAPの最小バージョンについては、を参照して<block ref="b733b3de6818a363ac85112743571bca" category="inline-link-macro-rx"></block>ください。</block>
-  <block id="b994a29eaf12e18a7cce3c9305a59fad" category="paragraph">一致するポートがありません。アップグレード後に、クラスタポートを再作成します。<block ref="2305a256def4f5c38d82352fac177e1d" category="inline-link-macro-rx"></block></block>
   <block id="31234814056be4e15bcffbd10fa0cd65" category="summary">新しいプラットフォーム用のスイッチRCFファイルを更新し、コントローラモジュールでMetroCluster IP bootargの値を設定します。</block>
   <block id="572d3ffeed6df6220869d4a086c5f363" category="doc">スイッチのRCFを更新し、MetroCluster IPのbootarg値を設定</block>
   <block id="5787d7fabbad5b870fc2724fd3a9ecef" category="paragraph">新しいプラットフォーム用のスイッチリファレンス構成ファイル（RCF）を更新し、コントローラモジュールでMetroCluster IP bootargの値を設定します。</block>
@@ -14108,14 +14064,12 @@
   <block id="4653682314828cb5425dae789da06002" category="section-title">ネットワークの到達可能性の確認</block>
   <block id="2f7033d68b421f3c87221d29b6075017" category="paragraph">アップグレード後のチェックでエラーが報告されなかった場合、アップグレードは完了しています。</block>
   <block id="37c813460b2b0635d69e528d1110fffc" category="list-text">cluster_Aのノードをアップグレードするために、上記の手順を繰り返し<block ref="2e9e222a79bc86deb25c4111d82b6614" category="inline-link-macro-rx"></block>ます。</block>
-  <block id="e21d56847dfd42d679e8b2e0c0314d6e" category="paragraph">タスクを実行する際に、例で示しているクラスタとノードの参照先がすべて逆になります。</block>
   <block id="6055a0810b2c2df62e85dfcb8b447c2e" category="list-text">の手順を使用します<block ref="9dc3875c163144dba4e47010e217fce8" category="inline-link-rx"></block>。</block>
   <block id="83162cb24e71760f89d5962835905ed0" category="doc">MetroCluster IPのアップグレード前にコンソールログを有効にする</block>
   <block id="bab0338cc638de785269282fe0b4df1e" category="paragraph">の情報を参照し<block ref="e0071a426543185e159ab522bd36850e" category="inline-link-macro-rx"></block>て、既存のシステムに必要なbootargを設定する必要があるかどうかを確認します。</block>
   <block id="cb990f25bc5eb8215bf8eb74c16807f3" category="summary">コントローラのアップグレードを準備するには、システムの事前確認を実行して設定情報を収集します。</block>
   <block id="c458b5225672f84c61d5b9931863ae60" category="paragraph">コントローラのアップグレードの準備として、新旧のプラットフォームモデルによっては、スイッチリファレンス構成ファイル（RCF）のアップグレードが必要になる場合があります。その後、システムの事前確認を実行し、設定情報を収集し、既存の監視ソフトウェアを削除します。</block>
   <block id="0c21b75966b293902f32e19c44cfee40" category="list-text">スイッチのRCF設定が最小バージョンになっていません。</block>
-  <block id="cbde96365d4f8077bc47cc3245bf5730" category="section-title">システムの事前確認を実行</block>
   <block id="2592dc8685229c73a77e91741c837a63" category="paragraph">詳細については、を参照してください<block ref="8d2708bcc3f1eaf7281ec3a4227ab734" category="inline-link-rx"></block>。</block>
   <block id="0db7751284ee845ba2b1c67a8d8704db" category="section-title">Tiebreakerまたはその他の監視ソフトウェアから既存の構成を削除する</block>
   <block id="0cd4dc9ba4eb47708afdb2049d98c13a" category="paragraph">アップグレードを開始する前に、Tiebreakerまたはその他の監視ソフトウェアから既存の設定を削除してください。</block>
@@ -14863,8 +14817,6 @@
   <block id="467d42fef84e236db1f47c3587c7d61b" category="paragraph"><block ref="647ce27315841f29cbbfa6476808aa3a" category="inline-link-macro-rx"></block> _MetroCluster IP のインストールと構成_ セクション。</block>
   <block id="3e85cb460e24d971aa2fdfb16bdd62f2" category="paragraph"><block ref="647ce27315841f29cbbfa6476808aa3a" category="inline-link-macro-rx"></block>です。</block>
   <block id="8c4be7f96d2a221be5676296eb0ed2f9" category="list-text">の手順を使用します<block ref="b57db2992c51195e5ea40f358db2287c" category="inline-link-macro-rx"></block>。</block>
-  <block id="3a87d2978f2a15ce761167e415fd6848" category="inline-link-macro">ONTAPメディエーターを再構成する</block>
-  <block id="3f8e81dc1fd352800762ed073cd5264a" category="paragraph">ONTAP メディエーターがインストールされている場合は、事前確認の開始前に自動的に検出されて削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレードが完了したとき、または事前確認が失敗した場合、またはアップグレードの続行を中止した場合は、手動で行う必要があり<block ref="45ecea135b28343f3e201d1ca7699d4b" category="inline-link-macro-rx"></block>ます。</block>
   <block id="90700c1e50cb21bc8204f5e8e63ff08f" category="inline-image-macro">AFFとFASのアップグレードの組み合わせグループ1を示します</block>
   <block id="2b3092608ec3c36288b967b8d2e51cd0" category="paragraph"><block ref="2b3092608ec3c36288b967b8d2e51cd0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c86a11671a0682bdfafd478847f74282" category="inline-image-macro">AFFとFASのアップグレードの組み合わせグループ2を示します</block>
@@ -14972,4 +14924,48 @@
   <block id="d44a3adbc7ddf926ace3174c29e594fe" category="paragraph">*注:* スイッチ ポート 11 および 12 を使用するには、2 つの速度モードを選択する必要があります。</block>
   <block id="22e6a6026dec5bb5059565b00cc3631c" category="paragraph">移行、更新、8ノードのインストール、および4ノードの拡張手順中に、MetroCluster構成に新しいプラットフォームモデルを追加する場合があります。これらの手順のどの段階でも、既存のMetroCluster構成に*共有クラスタ/HAポート*を使用するプラットフォームが含まれている場合、ONTAPバージョンをONTAP 9.15.1P11またはONTAP 9.16.1P4以降にアップグレードしない限り、*共有MetroCluster/HAポート*を使用するプラットフォームを構成に追加することはできません。</block>
   <block id="29c802ab86e25c329e4ce82ab207d848" category="sidebar">12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
+  <block id="a65cd2f2d334d9927f9c0f2a89dbb2d0" category="paragraph">MetroCluster IP プラットフォームとスイッチ サポートの新機能について説明します。</block>
+  <block id="cf42f488bd58e2f8f8819f7c720b93a1" category="paragraph">この手順は、各クラスターで高度な権限モードで実行する必要があります。</block>
+  <block id="c836d30393b0f25c968423f5df80b134" category="paragraph">MetroCluster FC 構成のクラスタ インターフェイスを IP スイッチに移動します。</block>
+  <block id="036d42aa7c6025107d4154a4eae998ad" category="section-title">ステップ1: MetroCluster FCノード上のクラスタ接続を移動する</block>
+  <block id="97a06e86dcad9f5f1a204e4e18aa5587" category="paragraph">MetroCluster FCノード上のクラスタ接続をIPスイッチに移動します。手順は、既存のIPスイッチを使用するか、新しいIPスイッチを使用するかによって異なります。</block>
+  <block id="47b7fa620271bc0d65be97aba9478061" category="list-text">このタスクは両方の MetroCluster サイトで実行します。</block>
+  <block id="4668bf30f5f14b9dd79deeee4cfbb82e" category="paragraph">以下のタスクでは、コントローラモジュールがクラスタ接続に2つのポートを使用していることを前提としています。一部のコントローラモジュールモデルでは、クラスタ接続に4つ以上のポートを使用します。この例では、ポートは2つのグループに分割され、2つのグループ間でポートが交互に使用されます。</block>
+  <block id="d43283bd7e2e0dd9fa9a70ef441a163c" category="paragraph">Cisco 9336C-FX2（12ポート）</block>
+  <block id="f555518160d0f4ec7334c3fd0cfa3e7a" category="section-title">新しいIPスイッチを使用するときにローカルクラスタ接続を移動する</block>
+  <block id="8557ed3cfd8b031a64a0203ce8cde201" category="paragraph">新しい IP スイッチを使用している場合は、既存の MetroCluster FC ノードのクラスタ接続を新しいスイッチに物理的に移動します。</block>
+  <block id="e753dda2048534c92b6edc39dabe8c5b" category="section-title">既存のIPスイッチを再利用するときにローカルクラスタ接続を移動する</block>
+  <block id="2cbb62835ce48b7e189acff1c7d6d1b8" category="paragraph">既存の IP スイッチを再利用する場合は、ファームウェアを更新し、正しい参照構成ファイル (RCF) を使用してスイッチを再構成し、接続をスイッチごとに正しいポートに移動します。</block>
+  <block id="a25f5594b1ed1bf3a7c6a87384e601fd" category="section-title">ステップ2: クラスター接続が移動され、クラスターが正常であることを確認する</block>
+  <block id="4281f25941f74ed8eb6fd4a91fdb0244" category="paragraph">適切な接続が確保され、構成が移行プロセスを続行する準備ができていることを確認するには、クラスター接続が正しく移動され、クラスター スイッチが認識され、クラスターが正常であることを確認します。</block>
+  <block id="e5f42a416489ba426aa3b5e5a99528be" category="admonition">最初のサイトでコントローラをアップグレードした後、2番目のサイトをアップグレードする前に、 <block ref="c2966f2f3bfc7e81dae5df7c44ce66ea" prefix=" " category="inline-code"></block>に続く<block ref="da68e7539bf844a8366ded5d17b246d7" prefix=" " category="inline-code"></block>エラーを返します<block ref="74c687e9cfa94f775ac8c7b51ec31cd9" prefix=" " category="inline-code"></block>フィールド。このエラーは、各サイトのノード間でNVRAMのサイズが一致していないことを示しています。これは、両サイトで異なるプラットフォームモデルが存在する場合に想定される動作です。DRグループ内のすべてのノードでコントローラーのアップグレードが完了するまで、このエラーは無視できます。</block>
+  <block id="a787053687877f10051bad9d8a2c320b" category="paragraph">アップグレードを実行する前に、MetroCluster 構成の健全性と接続性を確認します。</block>
+  <block id="ac471314e8ba72086a54a227b4a6abe8" category="paragraph">一致するポートがありません。アップグレード後に、クラスタポートを再作成します。<block ref="c40693a26d31adda8e50d2bd3c959775" category="inline-link-macro-rx"></block></block>
+  <block id="02f80d1409d40adabdcd4b00959239b0" category="inline-link-macro">MetroCluster 構成を削除</block>
+  <block id="c4a00ba197c84f92cac51496436d38e3" category="paragraph"><block ref="c4a00ba197c84f92cac51496436d38e3" category="inline-link-macro-rx"></block></block>
+  <block id="9950d05faf2c2104ac64b2891c5a8822" category="section-title">古いプラットフォームを削除する</block>
+  <block id="d723056ef76e64c3b3faae704eb71dd4" category="paragraph">古いシステムIDはで特定しました <block ref="6b24ae8f1e4581fe7e87c8c4194af177" category="inline-link-macro-rx"></block>。</block>
+  <block id="75a193e4d11dd894af19600ff20d5c03" category="paragraph"><block ref="75a193e4d11dd894af19600ff20d5c03" category="inline-link-rx"></block></block>
+  <block id="a8c155984c849e4f60c4f4b7fa09827a" category="paragraph"><block ref="a8c155984c849e4f60c4f4b7fa09827a" category="inline-link-macro-rx"></block></block>
+  <block id="8758d509fe3fbac15620de0ba380f93d" category="list-text">cluster_Aのノードをアップグレードするために、上記の手順を繰り返し<block ref="0e6ccb461a8e4072917a7db8187a2ba6" category="inline-link-macro-rx"></block>ます。</block>
+  <block id="d6841746fb065917e2837a0dda6d27b5" category="paragraph">手順を繰り返すと、クラスターとノードへの参照がすべて逆になります。例えば、cluster_Aからのスイッチオーバーの例は、cluster_Bからのスイッチオーバーになります。</block>
+  <block id="cbc2197d8e356cefd5c16b0e6b12733b" category="list-text">以下の手順で<block ref="903dcdb9cff1ed237b5a384a8899e234" category="inline-link-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ を参照してください。</block>
+  <block id="86c26e1621d0bd8e2c4210c81fd2b539" category="doc">「system controller replace」コマンドを使用したスイッチオーバーとスイッチバックを使用した4ノードMetroCluster FC構成のコントローラのアップグレード（ONTAP 9.10.1以降）</block>
+  <block id="eeda2a8f0828294ad51fab60acf4c866" category="paragraph">その他の手順については、を参照してください<block ref="8cbfebe03d7025df7187c11c17a18941" category="inline-link-macro-rx"></block>。</block>
+  <block id="7767fca1c0d3e02d34e1f2ec3fef20ef" category="list-text">サイト B のコントローラーを交換するには、サイト A から次のコマンドを実行します。</block>
+  <block id="00799101d1f09c8fafcefe8296b49d8f" category="list-text">一方のサイトでコントローラーを交換した後に、もう一方のサイトで同じ手順を繰り返すと、各サイトのノード間の不一致によりエラーが発生します。これは、両サイトで異なるプラットフォームモデルが存在する場合に想定される動作です。</block>
+  <block id="a97ec5b5308c51ab2e1d07f3ac6b07f8" category="paragraph">不一致エラーのみが返された場合は、 <block ref="bf0b9d28548e0e53fb793faa9566bdc3" prefix=" " category="inline-code"></block>オプション<block ref="2b4e2bfd3f993678e0b6870d28304a76" prefix=" " category="inline-code"></block> MetroCluster チェックをスキップするコマンド。</block>
+  <block id="7530b73de7ae0c3f4a36c9d811a5cb93" category="paragraph">自動操作によりチェックが実行されます。問題が見つからなかった場合は処理が一時停止するため、構成に関連する情報を手動で収集できます。</block>
+  <block id="9de208a34e24280ae2b31dec32ba42d3" category="paragraph">現在のソースシステムと互換性のあるすべてのターゲットシステムが表示されます。ソースコントローラを異なるONTAPバージョンまたは互換性のないプラットフォームのコントローラに交換した場合、新しいノードの起動後に自動化処理が停止し、エラーが報告されます。クラスタを正常な状態に戻すには、手動リカバリ手順に従ってください。</block>
+  <block id="05c698302b9abd36f7cf0a1dc90a86d3" category="section-title">古いコントローラを交換して新しいコントローラをブート</block>
+  <block id="cf26e00f9d9d62aac6ab045ca55c7c29" category="list-text">で収集した情報を使用します <block ref="4349c160b4ba85d15c9d1b99e7fab03e" category="inline-xref-macro-rx"></block>。</block>
+  <block id="85712ea7206c9c772aaa7768f1e0353a" category="paragraph">古いシステムIDはで特定しました <block ref="c90ff01403a996149cb5d17c8951ce45" category="inline-link-macro-rx"></block>。</block>
+  <block id="0915ed822e1ba9e1cdfa24d003dfbeb4" category="inline-xref">アップグレードを準備</block>
+  <block id="7425accfdceff5df29eb1bcc069522b4" category="list-text">cluster_Aのノードをアップグレードするために、上記の手順を繰り返し<block ref="4c03382d918a1ade2291b20c09997610" category="inline-xref-macro-rx"></block>ます。</block>
+  <block id="fe0329da478f91bf09739c8563bb23f0" category="paragraph">手順を繰り返すと、クラスターとノードへのすべての例の参照が逆になります。</block>
+  <block id="8641ecafe3cb9cda290c67fe2e7975a5" category="section-title">コントローラー交換操作を開始する</block>
+  <block id="7ac2bd5992f95f4f0bfc51ae90968d8c" category="paragraph">自動コントローラー交換操作を開始すると、一連の事前チェックが実行され、その後一時停止して、構成関連情報を手動で収集できるようになります。</block>
+  <block id="b5fe45c4891c6d19896e92fee5883a19" category="inline-link-macro">ONTAPメディエーターサービスを再設定する</block>
+  <block id="6b28386c147e051088cbc4ae11351a61" category="paragraph">MetroClusterのチェックを開始する前に、ONTAPメディエーターがインストールされている場合は自動的に検出され、削除されます。削除を確認するには、ユーザ名とパスワードの入力を求められます。アップグレード完了時に事前チェックが失敗した場合、またはアップグレードを続行しないことを選択した場合は、手動で削除する必要があります。 <block ref="059689c27028be05419054623185eb12" category="inline-link-macro-rx"></block> 。</block>
+  <block id="574eaa9b58d677670f6f75d0941c1eba" category="list-text">使用しない場合は<block ref="880d39d0efc2f0e9e812ea98923bdc40" prefix=" " category="inline-code"></block>コマンドにパラメータを指定すると、コントローラのアップグレード手順では、MetroCluster IP システムのデフォルトの手順として NSO ベースの自動スイッチオーバーとスイッチバックが選択されます。</block>
 </blocks>
