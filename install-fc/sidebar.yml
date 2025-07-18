@@ -10,10 +10,6 @@ entries:
     url: "/install-fc/concept_considerations_differences.html"
   - title: クラスタピアリング
     url: "/install-fc/concept_considerations_peering.html"
-  - title: ネイティブディスクシェルフまたはアレイ LUN を使用する MetroCluster 構成に関する考慮事項
-    url: "/install-fc/concept_considerations_array_luns.html"
-  - title: 7-Mode から ONTAP に移行する際の考慮事項
-    url: "/install-fc/concept_considerations_7mt.html"
   - title: ISL に関する考慮事項
     url: "/install-fc/concept_considerations_isls_mcfc.html"
   - title: ファブリック接続 MetroCluster 構成で TDM / WDM 機器を使用する場合の考慮事項
@@ -24,8 +20,6 @@ entries:
     url: "/install-fc/concept_considerations_unmirrored_aggrs.html"
   - title: MetroCluster サイトでのファイアウォールの使用状況
     url: "/install-fc/concept_considerations_firewalls.html"
-- title: 構成に適したインストール手順を選択します
-  url: "/install-fc/concept_choosing_the_correct_installation_procedure_for_your_configuration_mcc_install.html"
 - title: ファブリック接続 MetroCluster 構成をケーブル接続
   entries:
   - title: 概要
@@ -104,118 +98,14 @@ entries:
       url: "/install-fc/task_fcsw_cisco_configure_a_cisco_switch_supertask.html"
   - title: FC-to-SAS ブリッジおよび SAS ディスクシェルフを設置
     url: "/install-fc/task_install_fc_sas_bridges_shelves.html"
-- title: 移行中に Brocade 6510 FC ファブリックを共有するためのハードウェアを構成します
-  entries:
-  - title: 概要
-    url: "/install-fc/task_fmc_mcc_transition_configure_the_mcc_hardware_for_share_a_7_mode_brocade_6510_fc_fabric_dure_transition.html"
-  - title: Brocade ライセンス要件を確認します
-    url: "/install-fc/concept_fcsw_brocade_reviewing_brocade_license_requirements.html"
-  - title: ラックにハードウェアコンポーネントを配置
-    url: "/install-fc/task_rack_the_hardware_components_mcc_fabric_and_ip.html"
-  - title: 新しい MetroCluster コントローラを既存の FC ファブリックにケーブル接続します
-    url: "/install-fc/task_fmc_mcc_transition_cable_the_new_mcc_controllers_to_the_exist_fc_fabrics.html"
-  - title: 7-Mode と clustered MetroCluster の間で共有するようにスイッチファブリックを設定します
-    entries:
-    - title: 一方のスイッチファブリックを無効にします
-      url: "/install-fc/task_fmc_mcc_transition_disable_one_of_the_switch_fabrics.html"
-    - title: TI ゾーニングを削除して IOD を設定します
-      url: "/install-fc/task_fmc_mcc_transition_configure_zone_and_qos.html"
-    - title: ISL が同じポートグループにあることを確認し、ゾーニングを設定します
-      url: "/install-fc/task_fmc_mcc_transition_ensure_isls_are_in_the_same_port_group_and_configure_zon.html"
-    - title: スイッチファブリックを再度有効にし、処理を確認します
-      url: "/install-fc/task_fmc_mcc_transition_reenable_the_switch_fabric_and_verify_operation.html"
 - title: ONTAP で MetroCluster ソフトウェアを設定します
   url: "/install-fc/concept_configure_the_mcc_software_in_ontap.html"
 - title: MetroCluster 設定で仮想 IP およびボーダーゲートウェイプロトコルを使用する場合の考慮事項
   url: "/install-fc/concept_considerations_for_using_virtual_ip_and_border_gateway_protocol_with_a_mcc_configuration.html"
 - title: MetroCluster 構成をテストします
   url: "/install-fc/task_test_the_mcc_configuration.html"
-- title: MetroCluster 構成を削除する際の考慮事項
+- title: MetroCluster 構成を削除
   url: "/install-fc/concept_considerations_when_removing_mcc_configurations.html"
-- title: アレイ LUN を使用する MetroCluster 構成を計画してインストール
-  entries:
-  - title: アレイ LUN を使用する MetroCluster 構成を計画
-    url: "/install-fc/concept_planning_for_a_mcc_configuration_with_array_luns.html"
-  - title: アレイ LUN を使用する MetroCluster 構成がサポートされます
-    url: "/install-fc/reference_supported_mcc_configuration_with_array_luns.html"
-  - title: アレイ LUN を使用する MetroCluster 構成の要件
-    url: "/install-fc/reference_requirements_for_a_mcc_configuration_with_array_luns_reference.html"
-  - title: アレイ LUN を使用する構成で MetroCluster コンポーネントを設置してケーブル接続します
-    entries:
-    - title: アレイ LUN を使用する MetroCluster 構成で、ハードウェアコンポーネントをラックに搭載します
-      url: "/install-fc/task_rack_the_hardware_components_in_a_mcc_configuration_with_array_luns.html"
-    - title: ONTAP システムで使用するストレージアレイを準備します
-      url: "/install-fc/task_prepare_a_storage_array_for_use_with_ontap_systems.html"
-    - title: アレイ LUN を使用する MetroCluster 構成に必要なスイッチポート
-      url: "/install-fc/concept_switch_ports_required_for_a_eight_node_mcc_configuration_with_array_luns.html"
-    - title: アレイ LUN を使用する MetroCluster 構成で、 FC-VI ポートと HBA ポートをケーブル接続します
-      entries:
-      - title: アレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成で、 FC-VI ポートと HBA ポートをケーブル接続します
-        url: "/install-fc/task_cable_the_fc_vi_and_hba_ports_to_switches_in_a_two_node_fabric_attached_mcc_configuration_with_array_luns.html"
-      - title: アレイ LUN を使用する 4 ノードファブリック接続 MetroCluster 構成で、 FC-VI ポートと HBA ポートをケーブル接続します
-        url: "/install-fc/task_cable_the_fc_vi_and_hba_ports_to_switches_in_a_four_node_fabric_attached_mcc_configuration_with_array_luns.html"
-      - title: アレイ LUN を使用する 8 ノードファブリック接続 MetroCluster 構成で、 FC-VI ポートと HBA ポートをケーブル接続します
-        url: "/install-fc/task_cable_the_fc_vi_and_hba_ports_to_switches_in_an_eight_node_fabric_attached_mcc_configuration_with_array_luns.html"
-    - title: アレイ LUN を使用する MetroCluster 構成で ISL をケーブル接続します
-      url: "/install-fc/task_cable_the_isls_in_a_mcc_configuration_with_array_luns.html"
-    - title: 8 ノード / 4 ノード構成でクラスタインターコネクトをケーブル接続
-      url: "/install-fc/task_cable_the_cluster_interconnect_in_four_node_configurations.html"
-    - title: クラスタピアリングを接続
-      url: "/install-fc/task_cable_the_cluster_peering_connections.html"
-    - title: 必要に応じて、 HA インターコネクトをケーブル接続します
-      url: "/install-fc/task_cable_the_ha_interconnect.html"
-    - title: 管理接続とデータ接続をケーブル接続
-      url: "/install-fc/task_cable_the_management_and_data_connections.html"
-    - title: MetroCluster 構成でストレージアレイを FC スイッチにケーブル接続します
-      entries:
-      - title: 概要
-        url: "/install-fc/task_cable_storage_arrays_to_fc_switches_in_a_mcc_configuration.html"
-      - title: 2 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例
-        url: "/install-fc/reference_example_of_cabling_array_luns_to_fc_switches_in_a_two_node_mcc_configuration.html"
-      - title: 4 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例
-        url: "/install-fc/reference_example_of_cabling_array_luns_to_fc_switches_in_a_four_node_mcc_configuration.html"
-      - title: 8 ノード MetroCluster 構成におけるストレージアレイポートと FC スイッチのケーブル接続の例
-        url: "/install-fc/reference_example_of_cabling_array_luns_to_fc_switches_in_an_eight_node_mcc_configuration.html"
-  - title: アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニング
-    entries:
-    - title: アレイ LUN を使用する MetroCluster 構成におけるスイッチゾーニングの要件
-      url: "/install-fc/reference_requirements_for_switch_zoning_in_a_mcc_configuration_with_array_luns.html"
-    - title: アレイ LUN を使用する 2 ノード MetroCluster 構成におけるスイッチゾーニングの例
-      url: "/install-fc/concept_example_of_switch_zoning_in_a_two_node_mcc_configuration_with_array_luns.html"
-    - title: アレイ LUN を使用する 4 ノード MetroCluster 構成におけるスイッチゾーニングの例
-      url: "/install-fc/concept_example_of_switch_zoning_in_a_four_node_mcc_configuration_with_array_luns.html"
-    - title: アレイ LUN を使用する 8 ノード MetroCluster 構成におけるスイッチゾーニング例
-      url: "/install-fc/concept_example_of_switch_zoning_in_an_eight_node_mcc_configuration_with_array_luns.html"
-  - title: アレイ LUN を使用する MetroCluster 構成で ONTAP をセットアップする
-    entries:
-    - title: メンテナンスモードでコンポーネントの HA 状態を確認および設定する
-      url: "/install-fc/task_verify_the_ha_state_of_components_is_mcc_or_mcc_2n_in_maintenance_mode.html"
-    - title: アレイ LUN のみを使用するシステムでの ONTAP の設定
-      url: "/install-fc/task_configure_ontap_on_a_system_that_uses_only_array_luns.html"
-    - title: クラスタをセットアップする
-      url: "/install-fc/concept_setting_up_the_cluster.html"
-    - title: MetroCluster 構成でアレイ LUN を使用するためのライセンスをインストールします
-      url: "/install-fc/task_install_the_license_for_us_array_luns_in_a_mcc_configuration.html"
-    - title: FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
-      url: "/install-fc/task_configure_fc_vi_ports_on_a_x1132a_r6_quad_port_card.html"
-    - title: アレイ LUN の所有権を割り当てます
-      url: "/install-fc/task_assign_ownership_of_array_luns.html"
-    - title: クラスタをピアリング
-      url: "/install-fc/task_peer_the_clusters_mcc_with_array_luns.html"
-    - title: ルートアグリゲートをミラーします。
-      url: "/install-fc/task_mirror_the_root_aggregates_mcc_with_array_luns.html"
-    - title: MetroCluster 構成の上にデータアグリゲートを作成し、実装し、確認を行います
-      url: "/install-fc/task_create_data_aggregates_and_implement_the_configuration_mcc_with_array_luns.html"
-  - title: ディスクとアレイ LUN の両方を使用する MetroCluster 構成を実装します
-    entries:
-    - title: 概要
-      url: "/install-fc/concept_implementing_a_mcc_configuration_with_both_disks_and_array_luns.html"
-    - title: ディスクとアレイ LUN を使用する MetroCluster 構成を実装する際の考慮事項
-      url: "/install-fc/concept_considerations_for_implementing_a_mcc_configuration_with_disks_and_array_luns.html"
-    - title: ディスクとアレイ LUN を使用する 2 ノードファブリック接続 MetroCluster 構成の例
-      url: "/install-fc/reference_example_of_a_two_node_fabric_attached_mcc_configuration_with_disks_and_array_luns.html"
-    - title: ディスクとアレイ LUN を使用する 4 ノード MetroCluster 構成の例
-      url: "/install-fc/concept_example_of_a_four_node_mcc_configuration_with_disks_and_array_luns.html"
 - title: Active IQ Unified Manager と ONTAP System Manager を使用して設定と監視を強化する方法
   entries:
   - title: Active IQ Unified ManagerとSystem Managerを使用して詳細な設定と監視を行う方法
