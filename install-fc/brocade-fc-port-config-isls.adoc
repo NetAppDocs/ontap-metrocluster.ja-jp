@@ -1,0 +1,162 @@
+---
+permalink: install-fc/brocade-fc-port-config-isls.html 
+sidebar: sidebar 
+keywords: ONTAP, FAS, FC, Brocade, metrocluster 
+summary: 以下の表は、Brocadeスイッチでのポート用途です。 
+---
+= MetroCluster FC構成におけるISLのBrocadeポートの使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Brocade FC スイッチを ISL にケーブル接続するために必要なポート割り当てについて説明します。
+
+[NOTE]
+====
+* AFF A900およびFAS9500システムは8つのISLをサポートします。BrocadeBrocade 、G620、G620-1、G630、G630-1、G720、およびG730スイッチでは8つのISLがサポートされます
+* Brocade 6520 スイッチは 8 つの ISL をサポートしますが、 AFF A900およびFAS9500システムはサポートしません。
+
+
+====
+[cols="2a,2a,2a,2a,2a,2a,2a"]
+|===
+| *ISLポート* | *6505、G610、G710 ポート* | *6520ポート* | *7810ポート* | *7840（10Gbps）ポート* | *7840（40Gbps）ポート* | *6510、G620、G620-1、G630、G630-1、G720、G730 ポート* 
+
+
+ a| 
+ISL 、ポート 1
+ a| 
+20
+ a| 
+22
+ a| 
+ge2
+ a| 
+ge2
+ a| 
+ge0
+ a| 
+40
+
+
+
+ a| 
+ISL 、ポート 2
+ a| 
+21
+ a| 
+23
+ a| 
+ge3
+ a| 
+ge3
+ a| 
+ge1
+ a| 
+41.
+
+
+
+ a| 
+ISL 、ポート 3
+ a| 
+22
+ a| 
+46
+ a| 
+ge4
+ a| 
+ge10
+ a| 
+N/A
+ a| 
+42
+
+
+
+ a| 
+ISL 、ポート 4
+ a| 
+23
+ a| 
+47
+ a| 
+ge5
+ a| 
+ge11
+ a| 
+N/A
+ a| 
+43
+
+
+
+ a| 
+ISL 、ポート 5
+ a| 
+N/A
+ a| 
+70
+ a| 
+ge6
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+44
+
+
+
+ a| 
+ISL 、ポート 6
+ a| 
+N/A
+ a| 
+71.
+ a| 
+ge7
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+45
+
+
+
+ a| 
+ISL 、ポート 7
+ a| 
+N/A
+ a| 
+94
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+46
+
+
+
+ a| 
+ISL ポート 8
+ a| 
+N/A
+ a| 
+95
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+47
+
+|===

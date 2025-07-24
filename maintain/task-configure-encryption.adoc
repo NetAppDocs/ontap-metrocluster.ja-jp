@@ -11,17 +11,27 @@ summary:
 
 
 [role="lead"]
-ONTAP 9.15.1以降では、MetroCluster IP構成のサイト間でNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するようにエンドツーエンドの暗号化を設定できます。
+ONTAP 9.15.1 以降では、サポートされているシステムでエンドツーエンドの暗号化を設定して、 MetroCluster IP 構成内のサイト間の NVlog やストレージ レプリケーション データなどのバックエンド トラフィックを暗号化できます。
 
 .このタスクについて
 * このタスクを実行するには、クラスタ管理者である必要があります。
 * エンドツーエンドの暗号化を設定する前に、次の手順を実行する必要があります。 link:https://docs.netapp.com/us-en/ontap/encryption-at-rest/configure-external-key-management-concept.html["外部キー管理を設定"^]。
 * MetroCluster IP構成でエンドツーエンドの暗号化を設定するために必要な、サポートされているシステムおよび最小ONTAPリリースを確認します。
 +
+[cols="2*"]
 |===
-
-
 | 最小ONTAPリリース | サポートされるシステム 
+
+
+ a| 
+ONTAP 9.17.1
+ a| 
+** AFF A800、AFF C800
+** AFF A20、 AFF A30、 AFF C30、 AFF A50、 AFF C60
+** AFF A70、 AFF A90、 AFF A1K、 AFF C80
+** FAS50、FAS70、FAS90
+
+
 
 
  a| 

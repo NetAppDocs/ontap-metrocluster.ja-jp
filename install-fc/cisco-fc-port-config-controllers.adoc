@@ -1,0 +1,868 @@
+---
+permalink: install-fc/cisco-fc-port-config-controllers.html 
+sidebar: sidebar 
+keywords: ONTAP, FC, Cisco, metrocluster, switch, cabling, controllers, port, 
+summary: Cisco 9124V、9148S、9148V、9250i、および 9396S FC スイッチをコントローラにケーブル接続する方法を学びます。 
+---
+= MetroCluster FC構成におけるコントローラのCiscoポートの使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cisco 9124V、9148S、9148V、9250i、および 9396S FC スイッチをコントローラにケーブル接続するために必要なポート割り当てについて説明します。
+
+次の表に、 2 つの DR グループに 8 つのコントローラモジュールを配置した場合のサポートされる最大構成を示します。それよりも小規模な構成の場合、余分なコントローラモジュールの行は無視してください。
+
+[NOTE]
+====
+* Cisco 9132Tについては、 link:cisco-9132t-fc-port-config-controllers.html["MetroCluster FC構成におけるコントローラのCisco 9132Tポートの使用"] 。
+* Cisco 9124V および 9250i スイッチは、8 ノードMetroCluster構成ではサポートされません。
+
+
+====
+
+
+== MetroCluster 1またはDRグループ1
+
+次の表は、 Ciscoスイッチ (9132T を除く) 上のMetroCluster 1 または DR グループ 1 でサポートされているコントローラ構成を示しています。
+
+[cols="2a,2a,2a,2a,2a,2a,2a,2a"]
+|===
+| * コンポーネント * | * ポート * | * FC スイッチに接続 * | *9124Vポート* | *9148Sポート* | *9148Vポート* | *9250i ポート* | *9396Sポート* 
+
+
+ a| 
+controller_x_1
+ a| 
+FC-VI ポート a
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+
+
+
+ a| 
+FC-VI ポート b
+ a| 
+2.
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+ a| 
+1.
+
+
+
+ a| 
+FC-VI ポート c
+ a| 
+1.
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+
+
+
+ a| 
+FC-VI ポート d
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+ a| 
+2.
+
+
+
+ a| 
+FC-VI-2 ポート A
+ a| 
+1.
+ a| 
+3.
+ a| 
+N/A
+ a| 
+3.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート b
+ a| 
+2.
+ a| 
+3.
+ a| 
+N/A
+ a| 
+3.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート c
+ a| 
+1.
+ a| 
+4.
+ a| 
+N/A
+ a| 
+4.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート d
+ a| 
+2.
+ a| 
+4.
+ a| 
+N/A
+ a| 
+4.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+HBA ポート A
+ a| 
+1.
+ a| 
+13
+ a| 
+3.
+ a| 
+13
+ a| 
+3.
+ a| 
+3.
+
+
+
+ a| 
+HBA ポート b
+ a| 
+2.
+ a| 
+13
+ a| 
+3.
+ a| 
+13
+ a| 
+3.
+ a| 
+3.
+
+
+
+ a| 
+HBA ポート c
+ a| 
+1.
+ a| 
+14
+ a| 
+4.
+ a| 
+14
+ a| 
+4.
+ a| 
+4.
+
+
+
+ a| 
+HBA ポート d
+ a| 
+2.
+ a| 
+14
+ a| 
+4.
+ a| 
+14
+ a| 
+4.
+ a| 
+4.
+
+
+
+ a| 
+controller_x_2
+ a| 
+FC-VI ポート a
+ a| 
+1.
+ a| 
+5.
+ a| 
+5.
+ a| 
+5.
+ a| 
+5.
+ a| 
+5.
+
+
+
+ a| 
+FC-VI ポート b
+ a| 
+2.
+ a| 
+5.
+ a| 
+5.
+ a| 
+5.
+ a| 
+5.
+ a| 
+5.
+
+
+
+ a| 
+FC-VI ポート c
+ a| 
+1.
+ a| 
+6.
+ a| 
+6.
+ a| 
+6.
+ a| 
+6.
+ a| 
+6.
+
+
+
+ a| 
+FC-VI ポート d
+ a| 
+2.
+ a| 
+6.
+ a| 
+6.
+ a| 
+6.
+ a| 
+6.
+ a| 
+6.
+
+
+
+ a| 
+FC-VI-2 ポート A
+ a| 
+1.
+ a| 
+7.
+ a| 
+N/A
+ a| 
+7.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート b
+ a| 
+2.
+ a| 
+7.
+ a| 
+N/A
+ a| 
+7.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート c
+ a| 
+1.
+ a| 
+8.
+ a| 
+N/A
+ a| 
+8.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート d
+ a| 
+2.
+ a| 
+8.
+ a| 
+N/A
+ a| 
+8.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+HBA ポート A
+ a| 
+1.
+ a| 
+15
+ a| 
+7.
+ a| 
+15
+ a| 
+7.
+ a| 
+7.
+
+
+
+ a| 
+HBA ポート b
+ a| 
+2.
+ a| 
+15
+ a| 
+7.
+ a| 
+15
+ a| 
+7.
+ a| 
+7.
+
+
+
+ a| 
+HBA ポート c
+ a| 
+1.
+ a| 
+16
+ a| 
+8.
+ a| 
+16
+ a| 
+8.
+ a| 
+8.
+
+
+
+ a| 
+HBA ポート d
+ a| 
+2.
+ a| 
+16
+ a| 
+8.
+ a| 
+16
+ a| 
+8.
+ a| 
+8.
+
+|===
+
+
+== MetroCluster 2またはDRグループ2
+
+次の表は、 Ciscoスイッチ (9132T を除く) 上のMetroCluster 2 または DR グループ 2 でサポートされているコントローラ構成を示しています。
+
+[cols="2a,2a,2a,2a,2a,2a,2a,2a"]
+|===
+| * コンポーネント * | * ポート * | * FC スイッチに接続 * | *9124Vポート* | *9148Sポート* | *9148Vポート* | *9250i ポート* | *9396Sポート* 
+
+
+ a| 
+controller_x_3
+ a| 
+FC-VI ポート a
+ a| 
+1.
+ a| 
+N/A
+ a| 
+25
+ a| 
+25
+ a| 
+N/A
+ a| 
+49
+
+
+
+ a| 
+FC-VI ポート b
+ a| 
+2.
+ a| 
+N/A
+ a| 
+25
+ a| 
+25
+ a| 
+N/A
+ a| 
+49
+
+
+
+ a| 
+FC-VI ポート c
+ a| 
+1.
+ a| 
+N/A
+ a| 
+26
+ a| 
+26
+ a| 
+N/A
+ a| 
+50
+
+
+
+ a| 
+FC-VI ポート d
+ a| 
+2.
+ a| 
+N/A
+ a| 
+26
+ a| 
+26
+ a| 
+N/A
+ a| 
+50
+
+
+
+ a| 
+FC-VI-2 ポート A
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+27
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート b
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+27
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート c
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+28
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート d
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+28
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+HBA ポート A
+ a| 
+1.
+ a| 
+N/A
+ a| 
+27
+ a| 
+37
+ a| 
+N/A
+ a| 
+51
+
+
+
+ a| 
+HBA ポート b
+ a| 
+2.
+ a| 
+N/A
+ a| 
+27
+ a| 
+37
+ a| 
+N/A
+ a| 
+51
+
+
+
+ a| 
+HBA ポート c
+ a| 
+1.
+ a| 
+N/A
+ a| 
+28
+ a| 
+38
+ a| 
+N/A
+ a| 
+52
+
+
+
+ a| 
+HBA ポート d
+ a| 
+2.
+ a| 
+N/A
+ a| 
+28
+ a| 
+38
+ a| 
+N/A
+ a| 
+52
+
+
+
+ a| 
+controller_x_4
+ a| 
+FC-VI ポート a
+ a| 
+1.
+ a| 
+N/A
+ a| 
+29
+ a| 
+29
+ a| 
+N/A
+ a| 
+53
+
+
+
+ a| 
+FC-VI ポート b
+ a| 
+2.
+ a| 
+N/A
+ a| 
+29
+ a| 
+29
+ a| 
+N/A
+ a| 
+53
+
+
+
+ a| 
+FC-VI ポート c
+ a| 
+1.
+ a| 
+N/A
+ a| 
+30
+ a| 
+30
+ a| 
+N/A
+ a| 
+54
+
+
+
+ a| 
+FC-VI ポート d
+ a| 
+2.
+ a| 
+N/A
+ a| 
+30
+ a| 
+30
+ a| 
+N/A
+ a| 
+54
+
+
+
+ a| 
+FC-VI-2 ポート A
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+31.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート b
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+31.
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート c
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+32
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+FC-VI-2 ポート d
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+32
+ a| 
+N/A
+ a| 
+N/A
+
+
+
+ a| 
+HBA ポート A
+ a| 
+1.
+ a| 
+N/A
+ a| 
+31.
+ a| 
+39
+ a| 
+N/A
+ a| 
+55
+
+
+
+ a| 
+HBA ポート b
+ a| 
+2.
+ a| 
+N/A
+ a| 
+31.
+ a| 
+39
+ a| 
+N/A
+ a| 
+55
+
+
+
+ a| 
+HBA ポート c
+ a| 
+1.
+ a| 
+N/A
+ a| 
+32
+ a| 
+40
+ a| 
+N/A
+ a| 
+56
+
+
+
+ a| 
+HBA ポート d
+ a| 
+1.
+ a| 
+N/A
+ a| 
+32
+ a| 
+40
+ a| 
+N/A
+ a| 
+56
+
+|===

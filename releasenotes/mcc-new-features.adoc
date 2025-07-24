@@ -21,6 +21,51 @@ ONTAP MetroCluster構成に影響する既知の問題、制限事項、およ�
 
 
  a| 
+エンドツーエンドの暗号化のためのMetroCluster IPサポート
+ a| 
+次のシステムでは、 MetroCluster IP 構成のサイト間の NVlog やストレージ レプリケーション データなどのバックエンド トラフィックを暗号化するためのエンドツーエンドの暗号化がサポートされています。
+
+* AFF A800、AFF C800
+* AFF A20、 AFF A30、 AFF C30、 AFF A50、 AFF C60
+* AFF A70、AFF A90、AFF A1K、AFF C80
+* FAS50、FAS70、FAS90
+
+
+link:../maintain/task-configure-encryption.html["MetroCluster IP構成でのエンドツーエンドの暗号化の設定"]
+ a| 
+ONTAP 9.17.1
+
+
+
+ a| 
+MetroCluster IP構成の変更を制限する
+ a| 
+ONTAP 9.17.1 には、4 ノードMetroCluster IP 構成の次の制限の更新が含まれています。
+
+* AFF C800、 AFF A800、 AFF A900、 AFF A90、およびAFF A1Kシステムには、次の更新された制限があります。
++
+** ノードあたりのFlexVol volume制限: 1250
+** SVM の制限: クラスターあたり 64 SVM
+** LIF数: クラスタあたり256個のLIF
+
+
+* AFF A400、 AFF C400、 ASA A400、 ASA C400、 AFF C80、 AFF A70、およびAFF A50 システムには、次の更新された制限があります。
++
+** アグリゲートあたりのFlexVol volume制限（単一または複数）: 625
+** ノードあたりのFlexVol volume制限: 1250
+** 高可用性（HA）ペアあたりのFlexVol volume制限：2500
+** MetroClusterクラスタあたりのFlexVol volume制限: 5000
+** SVM の制限: クラスターあたり 64 SVM
+** LIF数: クラスタあたり256個のLIF
+
+
+
+ a| 
+ONTAP 9.17.1
+
+
+
+ a| 
 クレデンシャルを使用したFibreBridgeファームウェアの更新
  a| 
 ファームウェアパッケージのダウンロードにサーバでクレデンシャルが必要な場合は、FibreBridgeブリッジのファームウェアをクレデンシャルを使用して更新できます。
@@ -76,7 +121,7 @@ AFF A800およびAFF C800システムでの4ノードMetroCluster IP構成のボ
 
 * アグリゲートあたりのFlexVolの最大数が200から625に増加しました。
 * ノードあたりのFlexVolの最大ボリューム数が800から1250に増加しました。
-* ハイアベイラビリティ（HA）ペアあたりのFlexVolの最大数が1600から2500に増加しました。
+* HA ペアあたりのFlexVolボリュームの最大数が 1600 から 2500 に増加しました。
 
  a| 
 ONTAP 9.15.1
@@ -101,7 +146,7 @@ AFF A900システムでの4ノードMetroCluster IP構成のボリューム制�
 
 * アグリゲートあたりのFlexVolの最大数が200から625に増加しました。
 * ノードあたりのFlexVolの最大ボリューム数が800から1250に増加しました。
-* ハイアベイラビリティ（HA）ペアあたりのFlexVolの最大数が1600から2500に増加しました。
+* HA ペアあたりのFlexVolボリュームの最大数が 1600 から 2500 に増加しました。
 
  a| 
 ONTAP 9.14.1

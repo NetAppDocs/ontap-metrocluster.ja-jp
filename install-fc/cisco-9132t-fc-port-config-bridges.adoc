@@ -1,0 +1,276 @@
+---
+permalink: install-fc/cisco-9132t-fc-port-config-bridges.html 
+sidebar: sidebar 
+keywords: ONTAP, FAS, FC, Cisco, metrocluster 
+summary: 両方の FC ポートを使用してCisco 9132T FC スイッチを FC-to-SAS ブリッジにケーブル接続するために必要なポート割り当てについて説明します。 
+---
+= MetroCluster FC構成におけるFC-SASブリッジ用のCisco 9132Tポートの使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+両方の FC ポートを使用してCisco 9132T FC スイッチを FC-to-SAS ブリッジにケーブル接続するために必要なポート割り当てについて説明します。
+
+
+NOTE: 1xLEM モジュールを搭載したCisco 9132T スイッチを使用する場合、1 つのブリッジ スタックのみがサポートされます。
+
+
+
+== MetroCluster 1またはDRグループ1
+
+次の表は、 Cisco 9132TスイッチのFCポート（FC1とFC2）の両方を使用するFibreBridge 7500Nまたは7600Nブリッジにおいて、 MetroCluster 1またはDRグループ1でサポートされるシェルフ構成を示しています。この構成表を使用する際は、以下の点にご注意ください。
+
+* 4 ノード構成では、2xLEM を搭載したCisco 9132T スイッチのポート LEM2-1 ～ LEM2-8 に追加のブリッジをケーブル接続できます。
+
+
+[cols="2a,2a,2a,2a,2a,2a,2a"]
+|===
+2+| * コンポーネント * | * ポート * | *FC_switch に接続します...* | *9132T 1x LEM（4ノード）* | *9132T 2x LEM（4ノード）* | *9132T 2x LEM（8ノード）* 
+
+
+ a| 
+スタック 1
+ a| 
+bridge_x_1a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-13
+ a| 
+LEM1-13
+ a| 
+LEM1-9
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-13
+ a| 
+LEM1-13
+ a| 
+LEM1-9
+
+
+
+ a| 
+bridge_x_1b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+LEM1-14
+ a| 
+LEM1-14
+ a| 
+LEM1-10
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+LEM1-14
+ a| 
+LEM1-14
+ a| 
+LEM1-10
+
+
+
+ a| 
+スタック 2
+ a| 
+bridge_x_2a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+N/A
+ a| 
+LEM1-15
+ a| 
+LEM1-11
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+N/A
+ a| 
+LEM1-15
+ a| 
+LEM1-11
+
+
+
+ a| 
+bridge_x_2b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+N/A
+ a| 
+LEM1-16
+ a| 
+LEM1-12
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+N/A
+ a| 
+LEM1-16
+ a| 
+LEM1-12
+
+|===
+
+
+== MetroCluster 2またはDRグループ2
+
+次の表は、 Cisco 9132Tスイッチの両方のFCポート（FC1とFC2）を使用するFibreBridge 7500Nまたは7600Nブリッジについて、 MetroCluster 2またはDRグループ2でサポートされるシェルフ構成を示しています。この構成表を使用する際は、以下の点にご注意ください。
+
+* 8 ノード構成では、2 つの LEM を搭載したCisco 9132T スイッチのポート LEM2-13 ～ LEM2-16 に追加のブリッジをケーブル接続できます。
+
+
+[cols="2a,2a,2a,2a,2a,2a,2a"]
+|===
+2+| * コンポーネント * | * ポート * | *FC_switch に接続します...* | *9132T 1x LEM（4ノード）* | *9132T 2x LEM（4ノード）* | *9132T 2x LEM（8ノード）* 
+
+
+ a| 
+スタック 1
+ a| 
+bridge_x_1a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-9
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-9
+
+
+
+ a| 
+bridge_x_1b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-10
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-10
+
+
+
+ a| 
+スタック 2
+ a| 
+bridge_x_2a
+ a| 
+fc1
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-11
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-11
+
+
+
+ a| 
+bridge_x_2b
+ a| 
+fc1
+ a| 
+1.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-12
+
+
+
+ a| 
+FC2
+ a| 
+2.
+ a| 
+N/A
+ a| 
+N/A
+ a| 
+LEM1-12
+
+|===
