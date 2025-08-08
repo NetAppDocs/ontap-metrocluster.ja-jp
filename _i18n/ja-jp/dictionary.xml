@@ -3904,12 +3904,6 @@
   <block id="61d9f0c89471c699baa33489429948d3" category="paragraph">「 MetroCluster heal-phase root-aggregates 」</block>
   <block id="9882806b7649430a79eebb285ee2c9db" category="paragraph">ホームノードにスイッチバックする</block>
   <block id="1a6e48b2a6235c74edaba37deae7d383" category="paragraph">MetroCluster スイッチバック</block>
-  <block id="50071fa4dffba54414cb029edf92fda7" category="inline-link">AFF A250 システムのインストールとセットアップの手順</block>
-  <block id="c6e12fd8762dda76edc5ba6b825ddecf" category="inline-link">AFF A400 システムの設置とセットアップの手順を参照してください</block>
-  <block id="fbcb2c612c48f470efbe69d0fd49c86f" category="inline-link">AFF A700 システムの設置とセットアップの手順</block>
-  <block id="dae1434e283524bee3110823c8eb7212" category="inline-link">FAS500f システム『 Installation and Setup Instructions 』</block>
-  <block id="17c51203389620d9b55c13dc235671d7" category="inline-link">FAS8300 および FAS8700 システム設置とセットアップの手順</block>
-  <block id="5b27ace88aa53454b9361105e5e76a96" category="inline-link">FAS9000 システム『 Installation and Setup Instructions 』</block>
   <block id="853e6bb3641c0d71f39b6809c0ac2110" category="paragraph">9.4.1 より前のバージョンの ONTAP では、 LUN をミラーされていないアグリゲートに配置しないでください。ミラーされていないアグリゲートに LUN を設定すると、スイッチオーバー処理が 120 秒を超え、データを利用できなくなる可能性があります。</block>
   <block id="34d132e3658aa87feb2e47721dda240d" category="paragraph">MetroCluster サイトでファイアウォールを使用している場合は、必要な特定のポートへのアクセスを確保する必要があります。</block>
   <block id="aac81a2650bf57b6eaecf75479ff0465" category="paragraph">次の表は、 2 つの MetroCluster サイト間に配置された外部ファイアウォールでの TCP/UDP ポートの使用状況を示しています。</block>
@@ -5978,7 +5972,6 @@
   <block id="31c38f64e60770065e856442e98e7930" category="section-title">ONTAP の制限事項</block>
   <block id="d1a4fac9e86db09ae269d00dbc37e4d4" category="section-title">このレイヤ 3 解決策を MetroCluster 設定で使用する場合の注意事項</block>
   <block id="426935cb277802e33f3b6af9b3badb1a" category="summary">クラスタインターコネクトおよびバックエンド MetroCluster IP 接続用に Cisco IP スイッチを設定する必要があります。</block>
-  <block id="e0dd6c69ebcc82355424ad704fd214bc" category="doc">Cisco IP スイッチの設定</block>
   <block id="25b0b0b05ef5856124710e04fa70e4cc" category="paragraph">この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。</block>
   <block id="d6277f5e26898dc86dc30030ec4ddcbc" category="paragraph">次の例は、スイッチを設定する際のプロンプトとシステム応答を示しています。山括弧（「 &lt;&lt;&lt;`) 」）は、情報を入力する場所を示します。</block>
   <block id="5665eebcad1fd2793ab1d6c659f54eb6" category="paragraph">次の一連のプロンプトで、スイッチ名、管理アドレス、ゲートウェイなどの基本情報を入力し、 SSH with RSA を選択します。</block>
@@ -6048,7 +6041,6 @@
   <block id="36459777ccad4388b153a5c6dd47cecf" category="paragraph">次の例は、スイッチ IP_switch_A_1 のインターフェイス Ethernet1/25/1 に対するコマンドを示しています。</block>
   <block id="86290de1e3dc18d66aadd1f00e3ca1b1" category="list-text">MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。</block>
   <block id="fd58981b5f874672e01e04edf91b9262" category="summary">クラスタインターコネクトおよびバックエンド MetroCluster IP 接続用に Broadcom IP スイッチを設定する必要があります。</block>
-  <block id="85a0d4656a0546275569f1e7ff91dc7f" category="doc">Broadcom IP スイッチの設定</block>
   <block id="7e1b69484a310996db5f7ad71d667d8d" category="paragraph">新しいバージョンのスイッチソフトウェアと RCF をインストールする前に、 Broadcom スイッチの設定を消去し、基本的な設定を完了する必要があります。</block>
   <block id="cf8c4cbc63a2e42b70c4b4beddd2e366" category="list-text">シリアルコンソールを使用してスイッチに接続する必要があります。</block>
   <block id="55b0c310e4703cc82f05f8c44c9d0d39" category="list-text">このタスクでは、管理ネットワークの設定をリセットします。</block>
@@ -6155,7 +6147,6 @@
   <block id="927220faf715f335c59c7c344c29fee5" category="list-text">手順の手順に従ってシェルフを追加します。</block>
   <block id="35c50a09a26e56387485279edaeb468a" category="list-text">新しいシェルフのすべてのディスクを、ミラーされていないアグリゲートまたはアグリゲートを所有するノードに手動で割り当てます。</block>
   <block id="fea810a7a02c4d40cd3c6c1a77cb926d" category="summary">MetroCluster ノードを別の ONTAP メディエーターインスタンスに接続する場合は、 ONTAP ソフトウェアでメディエーター接続の設定を解除して設定し直す必要があります。</block>
-  <block id="329d785801ff55185f4e6f85d622dc8d" category="doc">MetroCluster 構成を別の ONTAP メディエーターインスタンスに接続する</block>
   <block id="8e764b71ee02a7e2a9c3dc39f6afd918" category="paragraph">新しい ONTAP メディエーターインスタンスのユーザ名、パスワード、および IP アドレスが必要です。</block>
   <block id="6ccbd89687d25491ffdc9faf61b6e86b" category="paragraph">これらのコマンドは、 MetroCluster 構成の任意のノードから実行できます。</block>
   <block id="7a56c93af328a3c1fa4e3fccdc177cb5" category="summary">工場出荷時に事前設定されていない MetroCluster IP 構成では、コントローラおよびシャーシのコンポーネントの ha-config 状態が mccip に設定されていることを確認し、適切にブートする必要があります。工場出荷状態のシステムでは事前に設定されているため、検証は不要です。</block>
@@ -6242,7 +6233,6 @@
   <block id="5526d75deed345c5b83d6ead8ab0bdad" category="paragraph">同じ手順を繰り返して、 2 つ目の DR グループのノードを設定します。</block>
   <block id="ccc25c1a9a6f63d4acf6c9390b850b64" category="section-title">ONTAP 設定を完了しています</block>
   <block id="938a9f49acfde2902a8737d1aadbf6a1" category="paragraph">MetroCluster 構成の設定、有効化、確認が完了したら、必要に応じて SVM 、ネットワークインターフェイス、およびその他の ONTAP 機能を追加してクラスタの設定を完了します。</block>
-  <block id="89e65a2d93c278fd151107cff24c1e27" category="section-title">MetroCluster Tiebreaker または ONTAP メディエーターソフトウェアの設定</block>
   <block id="860e1e683db2fc2e67aeec00dc74b357" category="paragraph">MetroCluster 構成の両方のクラスタにネットワークで接続された Linux ホストが必要です。具体的な要件については、 MetroCluster Tiebreaker または ONTAP メディエーターのドキュメントを参照してください。</block>
   <block id="9d4b44162692abd2769e8e0a1c1f0155" category="paragraph">ONTAP メディエーターの新しいインスタンスをインストールする必要がある場合は、指示に従ってソフトウェアをインストールおよび設定します。</block>
   <block id="9a044a9c813dcf5d075c67eae7c4ec7c" category="paragraph">MetroCluster Tiebreaker ソフトウェアと ONTAP メディエーターの両方を同じ MetroCluster 構成で使用することはできません。</block>
@@ -6457,7 +6447,6 @@
   <block id="18d0853d5e7ac8e89859a9c8915979f9" category="inline-link-macro">Tiebreaker のドキュメント</block>
   <block id="d64686a28c0d36cbee46631e4a401400" category="doc">IP スイッチを設定しています</block>
   <block id="a735c149377d586b0e9640f66438ba41" category="summary">クラスタピアリング、管理、データ接続に使用するコントローラモジュールのポートをケーブル接続する必要があります。</block>
-  <block id="c0eaee5f6423afe56bcfe7d71fa2dee6" category="doc">コントローラピアリングポート、データポート、および管理ポートのケーブル接続</block>
   <block id="c57a7dcc596f78ac23d59a9297d99a56" category="list-text">スイッチを使用して 1 つの MetroCluster を設定する場合は、 * MetroCluster 1 * ポートグループを使用します。</block>
   <block id="240c641ec7d44f443373981bb513fa5c" category="list-text">また、 RcfFileGenerator for MetroCluster IP では、各スイッチのポートごとのケーブル配線の概要についても説明します。</block>
   <block id="9ae436c3a98ee403124b8482b69c2296" category="section-title">2 つの MetroCluster 構成とスイッチのケーブル接続</block>
@@ -9730,16 +9719,10 @@
   <block id="324411cbb41cb55bc8c2f637443ed820" category="paragraph">ONTAP 9.6 以降では、 MetroCluster 構成で FlexGroup ボリュームがサポートされます。</block>
   <block id="595a0070423d641189b233c03827a69e" category="paragraph">ONTAP 9.5 以降では、 MetroCluster 構成のアクティブな Storage Virtual Machine （ SVM ）を SnapMirror SVM ディザスタリカバリ機能でソースとして使用できます。デスティネーション SVM は、 MetroCluster 構成外の第 3 のクラスタに配置する必要があります。</block>
   <block id="f0ff1470e66c8950946e7e3e5058f8a8" category="paragraph"><block ref="f0ff1470e66c8950946e7e3e5058f8a8" category="inline-link-rx"></block></block>
-  <block id="f52969ece4bf2f4994203a22fa76dc44" category="paragraph"><block ref="f52969ece4bf2f4994203a22fa76dc44" category="inline-link-rx"></block></block>
   <block id="7ea45478f88955067c811efc5ed26534" category="paragraph"><block ref="7ea45478f88955067c811efc5ed26534" category="inline-link-rx"></block></block>
   <block id="6e98605d5be86db5d5f31490616d5183" category="paragraph"><block ref="6e98605d5be86db5d5f31490616d5183" category="inline-link-rx"></block></block>
-  <block id="77a9b05fd96a67f550fc6cdcefce3046" category="paragraph"><block ref="77a9b05fd96a67f550fc6cdcefce3046" category="inline-link-rx"></block></block>
-  <block id="394d011b74b97782aa2e15ef0ed88926" category="paragraph"><block ref="394d011b74b97782aa2e15ef0ed88926" category="inline-link-rx"></block></block>
   <block id="a96f4d64e0b98b2505872c32a2606fd7" category="paragraph"><block ref="a96f4d64e0b98b2505872c32a2606fd7" category="inline-link-rx"></block></block>
-  <block id="7bebcf59d26c04c23d661a46438c650b" category="paragraph"><block ref="7bebcf59d26c04c23d661a46438c650b" category="inline-link-rx"></block></block>
   <block id="82e108cc36753d860e8d5fe7dbb36781" category="paragraph"><block ref="82e108cc36753d860e8d5fe7dbb36781" category="inline-link-rx"></block></block>
-  <block id="7943ea12bc74a508f6f28277851d9e5e" category="paragraph"><block ref="7943ea12bc74a508f6f28277851d9e5e" category="inline-link-rx"></block></block>
-  <block id="eb737ed666dd88bebf10d994bb6b0a10" category="paragraph"><block ref="eb737ed666dd88bebf10d994bb6b0a10" category="inline-link-rx"></block></block>
   <block id="8bcabb3e778663882c95082b775c75b8" category="summary">ONTAP 9.4 以降の MetroCluster IP 構成では、 ADP （アドバンストドライブパーティショニング）を使用した AFF システムの新規設置がサポートされます。</block>
   <block id="b8f6677db24add5f2af4be56aa22ea68" category="list-text">ONTAP 9.5 以降では、 FAS システムへの MetroCluster IP の新規インストールがサポートされます。</block>
   <block id="04be3a6c5ee416a84b497452ccd41ffd" category="list-text">ONTAP 9.4 以降では、 ADP 用に設定されたコントローラモジュールがサポートされます。</block>
@@ -10356,7 +10339,6 @@
   <block id="29011b2c4a1fcc691d4080c12a975cd2" category="inline-link-macro">Linux iSCSIホストをMetroCluster FCノードからMetroCluster IPノードに移動しています。</block>
   <block id="15c49ac51668072fdf92e5d8db0ec9ff" category="list-text">MetroCluster ノードのFCからIPへの移行が完了したあと、iSCSIホスト接続を新しいノードに移動しなければならない場合があります。を参照してください <block ref="e3ab265f03332ea44056fafa567b430d" category="inline-link-macro-rx"></block></block>
   <block id="e52e46b2e9a285a92c4fb276c84c544e" category="summary">クラスタインターコネクトおよびバックエンドMetroCluster のIP接続用にNVIDIA IPスイッチを設定する必要があります。</block>
-  <block id="12dfda519b07b8627c017865df4388a6" category="doc">NVIDIA IP SN2100スイッチを設定します</block>
   <block id="056bd4ccfa99eecc32b7151072832cb7" category="paragraph">クラスタインターコネクトおよびバックエンドMetroCluster IP接続用にNVIDIA SN2100 IPスイッチを設定する必要があります。</block>
   <block id="7c3ceaca0865f6c6621d894d5c1f5274" category="paragraph">スイッチを工場出荷時のデフォルト設定にリセットするには、次のいずれかの方法を選択します。</block>
   <block id="61168c45da9c3d852ce200a8e6fe5441" category="inline-xref">RCFファイルオプションを使用してスイッチをリセットします</block>
@@ -10661,7 +10643,6 @@
   <block id="e9dccef9d910d2d69e48e8c2885d0e39" category="inline-link-macro">MySQLを攻撃者から保護する</block>
   <block id="529e037a8731bcfd360d39247cd9009f" category="paragraph"><block ref="529e037a8731bcfd360d39247cd9009f" category="inline-link-macro-rx"></block></block>
   <block id="6c64c3998d1974786fb6c7319be77e44" category="inline-link-macro">MariaDBの保護</block>
-  <block id="85909cec38d8e32308f892163433f22f" category="paragraph"><block ref="85909cec38d8e32308f892163433f22f" category="inline-link-macro-rx"></block></block>
   <block id="c212b56e6344256b819057aa0ff26e93" category="list-text">Vaultインストールを保護します</block>
   <block id="adfa274b93101556376a5c1c110a25b1" category="inline-link-macro">生産性の強化</block>
   <block id="3de794741da4d53ee89d2cfb65848ddb" category="paragraph"><block ref="3de794741da4d53ee89d2cfb65848ddb" category="inline-link-macro-rx"></block></block>
@@ -11005,7 +10986,6 @@
   <block id="88ab4db9318fd99a5973f7836c0a8ee2" category="section-title">ベースラインホストセキュリティの推奨事項</block>
   <block id="f6167fc25dca4237241452d4c50ff80f" category="list-text">ホストを保護する場合は、ユーザの介入なしにホストがブートできることを確認する必要があります。ユーザの操作が必要な場合、ホストが予期せずリブートしたときにTiebreaker機能を使用できないことがあります。この場合、Tiebreaker機能は手動操作後、ホストが完全にブートされた場合にのみ使用できます。</block>
   <block id="0c1569b269fb49dcb3a19e461599f8b2" category="inline-link-macro">保存データ暗号化の詳細</block>
-  <block id="d037eff76ce863bc8073ee65a4d7aa0f" category="list-text">保存データの暗号化がサポートされます。 <block ref="b9ec4fd69d69350fd85a6abd4005da82" category="inline-link-macro-rx"></block></block>
   <block id="8fdb4169cdca0d0e1f02d4b06965140f" category="inline-link-macro">MySQL Enterprise Transparent Data Encryption（TDE）の詳細</block>
   <block id="8d9f6f71afbbb7fa07ef3e65a4faa015" category="paragraph"><block ref="8d9f6f71afbbb7fa07ef3e65a4faa015" category="inline-link-macro-rx"></block></block>
   <block id="287230691bdd80a939d056f48b82a01a" category="admonition">暗号化設定は、Tiebreakerソフトウェアをインストールする前に有効にする必要があります。</block>
@@ -11250,8 +11230,6 @@
   <block id="cb75dafe5098e84554cfafc5f3f7cb18" category="list-text">Tiebreakerソフトウェアを再インストールします。</block>
   <block id="aa27f1e0fd685e0f4cde8697742ae6ac" category="paragraph">の手順に従ってTiebreakerの新規インストールを実行します。 <block ref="34a05079494730e6ed0177e3b3032a6d" category="inline-link-macro-rx"></block>。</block>
   <block id="be7c560a571a01eeb644e3be4ae88e59" category="list-text">インストールの容易さの向上</block>
-  <block id="6106648cc4773cdde37c48ca810022c0" category="cell">Red Hat 7-7.9</block>
-  <block id="7d04b9af5dfbfc78c7040183f68afdc4" category="cell">Red Hat 8.1-8.7</block>
   <block id="003d136e5089a4f9ae0f1df3f6fc37fa" category="cell">Rocky Linux 9.0</block>
   <block id="c422062a1c7b3d9ed9b2282378699dc7" category="paragraph"><block ref="c422062a1c7b3d9ed9b2282378699dc7" category="inline-link-macro-rx"></block></block>
   <block id="94d0fc55d9356d3d18534836cae75c1d" category="doc">FCスイッチの設定の概要</block>
@@ -11576,7 +11554,6 @@
   <block id="9fd450aaf744ef2f0f02e43876522bfe" category="paragraph">割り当て<block ref="67a94f8e22c0892a226d626753340cc4" prefix=" " category="inline-code"></block> Broadcomスイッチに接続する中間スイッチのISLポートへのポリシーマップ</block>
   <block id="4eaf14eb10c7f173afbdacfeab39777a" category="paragraph">ユーザーは、<block ref="229440853e909add465ca7b5f5413e8b" prefix=" " category="inline-code"></block> MetroClusterトラフィックを伝送しているがBroadcomスイッチを接続していない中間スイッチのISLポートへのポリシーマップ。</block>
   <block id="5af97d9502169db37645c08f238777a6" category="summary">ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ここでは、MetroCluster準拠スイッチの一般的な要件と制限事項について説明します。</block>
-  <block id="47fffbd3afdf8fa76a079477bd59709f" category="doc">MetroCluster準拠スイッチを使用する場合の要件と制限事項</block>
   <block id="ed0f2729a4bf35a687f00daa041997c7" category="paragraph">ONTAP 9.7以降では、MetroCluster IP構成でMetroClusterに準拠したスイッチを使用できます。ネットアップ検証は実施されていないが、ネットアップの仕様に準拠しているスイッチです。ただし、NetAppでは、検証されていないスイッチのトラブルシューティングサービスや設定サポートサービスは提供されていません。MetroCluster準拠スイッチを使用する場合は、一般的な要件と制限事項を確認しておく必要があります。</block>
   <block id="9948bad86a0ee0273515c6ce814edbfc" category="paragraph">MetroCluster IPインターフェイスを接続するスイッチは、次の一般的な要件を満たしている必要があります。</block>
   <block id="b67e189b705bbcc9f23d7cfa3f63039e" category="list-text">スイッチでQuality of Service（QoS；サービス品質）とトラフィック分類がサポートされている必要があります。</block>
@@ -12576,15 +12553,6 @@
   <block id="1b768ce691e5eb1aa740065a1f672bfa" category="cell">TiebreakerノOS</block>
   <block id="540490e777cd8d6d9e7c6fc96ae66c78" category="paragraph">Rocky Linux 9.4</block>
   <block id="5462f235f897a01fa661bab622beabc8" category="paragraph">Rocky Linux 8.10</block>
-  <block id="a19c888b1dfc0d7cae495bcb3d337fc0" category="paragraph">Red Hat 9.4</block>
-  <block id="3e6f4ea6825b1c15c5caa424f32e8e56" category="paragraph">Red Hat 9.3</block>
-  <block id="990892a05d2ae7871bb10520e7d92e70" category="paragraph">Red Hat 9.2</block>
-  <block id="b846d756ce474e84306c1784e17929a2" category="paragraph">Red Hat 9.1</block>
-  <block id="a9a9af4fc514b12a09fbdb4e9dc69b3e" category="paragraph">Red Hat 9.0</block>
-  <block id="7f1240813348dba5070feb8fcbcd1ef6" category="paragraph">Red Hat 8.11-9.0</block>
-  <block id="dfb323b8bbf2e9913deb2acdece0c7f4" category="paragraph">Red Hat 8.10</block>
-  <block id="df0cfaadf30e71fdaa61f84b52c44994" category="paragraph">Red Hat 8.9</block>
-  <block id="04dca81afefd0df779a73a7d71167788" category="paragraph">Red Hat 8.8</block>
   <block id="38a72bda83bf45017fe822ff4eba9612" category="summary">ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。これには、2つのクラスタのセットアップ、ピアリング、および設定が含まれます。</block>
   <block id="36f25b89c535d52dd7602dc98235602e" category="doc">MetroCluster IPサイトの設定</block>
   <block id="28899ffbbfaa5ea10173ff0ea7d1a3c4" category="paragraph">ONTAP 9 .8以降では、MetroCluster IPの設定処理をSystem Managerで管理できます。この作業には、2つのクラスタのセットアップ、クラスタピアリングの実行、およびクラスタの設定が含まれます。</block>
@@ -13844,7 +13812,6 @@
   <block id="6e86085a8f5bd83a0c4b0ef8d4280d0c" category="inline-link-macro">アラートのトラブルシューティング</block>
   <block id="b51f053f94d5176ca18b8272d64010f0" category="list-text"><block ref="b51f053f94d5176ca18b8272d64010f0" category="inline-link-macro-rx"></block></block>
   <block id="c2f363b557f11042735dbadbfbd534d3" category="summary">この手順を使用して、NVIDIA SN2100クラスタスイッチのクラスタスイッチヘルスモニタ用の構成ファイルをインストールできます。</block>
-  <block id="1972298f5ec1d5e6b5fe96dd4ba6f4d3" category="doc">イーサネットスイッチヘルスモニタ構成ファイルのインストール</block>
   <block id="5e702c967ba07c588e80787874b7d19d" category="paragraph">NVIDIA イーサネット スイッチでイーサネット スイッチのヘルス モニタリングを構成するには、次の手順に従います。</block>
   <block id="4d6e856387f9dc1d4c04534d7e8abc6b" category="paragraph">これらの手順は、NVIDIA X190006-PEおよびX190006-PIスイッチが正しく検出されない場合に適用されます。これは、実行することで確認できます。 <block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block>お使いのモデルに*OTHER*が表示されているかどうかを確認してください。NVIDIAスイッチのモデルを確認するには、コマンドで部品番号を検索してください。 <block ref="eca133854d2cdb8697246596d25a5eb3" prefix=" " category="inline-code"></block> NVIDIA CL 5.8以前または<block ref="28b95eb6cef78e03af3129f8108edf3e" prefix=" " category="inline-code"></block>それ以降のバージョンの場合。</block>
   <block id="d63c11f73a289e709f02f89a7fd9bc50" category="paragraph">以下のONTAPリリースでNVIDIA CL 5.11.xを使用する際に、ヘルスモニタリングとログ収集を意図したとおりに動作させたい場合にも、これらの手順を実行することをお勧めします。これらの手順を実行しなくてもヘルスモニタリングとログ収集は機能する可能性がありますが、実行することですべてが正しく動作することが保証されます。</block>
@@ -13891,7 +13858,6 @@
   <block id="58a19c530e54f6364edd838f35b1830e" category="inline-link-macro">スイッチヘルス監視の設定</block>
   <block id="d47e3b820b4e0ef60cfed3bd03049a46" category="paragraph"><block ref="402ba92b413c133107b7e0b0a0255bc4" category="inline-link-macro-rx"></block>です。</block>
   <block id="39bebc7717e889c1a699f7a132be15d1" category="summary">System Manager を使用すると、Mediator を管理するタスクを実行できます。</block>
-  <block id="10a30b2f347ad83646f6f7b416a1789f" category="doc">System Manager で ONTAP Mediator を管理する</block>
   <block id="b8766a9191a865e2bcc649bcb60af9b0" category="paragraph">System Manager を使用して、ONTAP Mediator を管理するタスクを実行できます。</block>
   <block id="cdd299b559468613a4234f4cea959b86" category="paragraph">ONTAP Mediator を管理するには、次のタスクを実行します。</block>
   <block id="eabb1e5dafa14c5ff70166177793fa24" category="list-text">ONTAP Mediator の設定詳細を入力します。</block>
@@ -14259,7 +14225,6 @@
   <block id="61d8da56c7dfb983f6fc2c5209926e54" category="inline-link-macro">MetroCluster FC構成におけるFC-SASブリッジ用のCisco 9132tポートの使用</block>
   <block id="740edfedde29aa500e1b2c6e62b6bfa9" category="admonition">Cisco 9132Tについては、 <block ref="1102c4869b2ac52eccc6ed033152f390" category="inline-link-macro-rx"></block> 。</block>
   <block id="0563604beb831d28c2a03632b3eb45a9" category="paragraph">以下の表は、FibreBridge 7500Nまたは7600NブリッジとCiscoスイッチ（9132Tを除く）の両方のFCポート（FC1とFC2）を使用した、 MetroCluster 1またはDRグループ1でサポートされるシェルフ構成を示しています。この構成表を使用する際は、以下の点にご注意ください。</block>
-  <block id="27a0870b0eadade107d795b8343f3cea" category="list-text">Cisco 9124V および 9148V スイッチでは、追加のMetroCluster 1 または DR グループ 1 ブリッジをポート 21 ～ 24 にケーブル接続できます。</block>
   <block id="8b4f66daec6bb64dee84e9f3bff2c36b" category="list-text">Cisco 9250i スイッチでは、追加のMetroCluster 1 または DR グループ 1 ブリッジをポート 17 ～ 40 にケーブル接続できます。</block>
   <block id="8380580c6c773450839151b10655f779" category="list-text">Cisco 9396S スイッチでは、追加のMetroCluster 1 または DR グループ 1 ブリッジをポート 17 ～ 32 にケーブル接続できます。</block>
   <block id="d8d9c726ed1dbaaa319dbaeb5cc221d9" category="cell">*9124Vポート*</block>
@@ -14268,14 +14233,11 @@
   <block id="83344f2c2be4f7d65b6210b16a0513a1" category="cell">*9250i ポート*</block>
   <block id="bc820fd7c4489b456648d614cd582363" category="cell">*9396Sポート*</block>
   <block id="cc110b0d32f154624d6a8701b256148e" category="paragraph">以下の表は、FibreBridge 7500Nまたは7600NとCiscoスイッチ（9132Tを除く）の両方のFCポート（FC1とFC2）を使用した、 MetroCluster 2またはDRグループ2でサポートされるシェルフ構成を示しています。ケーブル接続表を使用する際は、以下の点にご注意ください。</block>
-  <block id="2fa8b10602ef83d3db5802e430a7b823" category="list-text">Cisco 9124Vおよび9250iスイッチは、8ノードのMetroCluster構成ではサポートされていません。</block>
-  <block id="1ff52bd220af0ed442fe60501dd9a4dd" category="list-text">Cisco 9148V スイッチでは、追加のMetroCluster 2 (DR グループ 2) ブリッジをポート 45 ～ 48 にケーブル接続できます。</block>
   <block id="4ad78f3c5a5f97a5e8272e4c4bc26d50" category="list-text">Cisco 9396S スイッチでは、追加のMetroCluster 2 (DR グループ 2) ブリッジをポート 65 ～ 80 にケーブル接続できます。</block>
   <block id="83445047ad163ad67b87b846a01587b9" category="paragraph">以下の表は、 Ciscoスイッチ（9132Tを除く）上の1つのFCポート（FC1またはFC2）を使用するFibreBridge 7500Nまたは7600Nブリッジについて、 MetroCluster 1またはDRグループ1でサポートされるシェルフ構成を示しています。リファレンス構成ファイル（RCF）はFibreBridgeブリッジ上の1つのFCポートをサポートしていないため、バックエンドのファイバチャネルスイッチを手動で設定する必要があります。</block>
   <block id="386cc47615db5ce48b5c404c6eea225c" category="paragraph">ケーブルテーブルを使用するときは、次の点に注意してください。</block>
   <block id="bc777ffe08cd674bdc3359a52b9fb780" category="paragraph">以下の表は、 Ciscoスイッチ（9132Tを除く）上の1つのFCポート（FC1またはFC2）を使用するFibreBridge 7500Nまたは7600Nブリッジについて、 MetroCluster 2またはDRグループ2でサポートされるシェルフ構成を示しています。この構成表を使用する際は、以下の点にご注意ください。</block>
   <block id="1e146fea5111ab418168eb4c45ec07b3" category="list-text">Cisco 9124V および 9250i スイッチは、8 ノードMetroCluster構成ではサポートされていません。</block>
-  <block id="e0ef9d346792785ec9cd13ea2bec5466" category="list-text">Cisco 9148V スイッチでは、追加のMetroCluster 2 または DR グループ 2 ブリッジをポート 45 ～ 48 にケーブル接続できます。</block>
   <block id="62ca2163e57a9e289cffdf64df962520" category="list-text">Cisco 9396S スイッチでは、追加のMetroCluster 2 または DR グループ 2 ブリッジをポート 65 ～ 80 にケーブル接続できます。</block>
   <block id="534943aa74fec8ca87b27eadb1b21265" category="summary">Cisco 9124V、9148S、9148V、9250i、および 9396S FC スイッチをコントローラにケーブル接続する方法を学びます。</block>
   <block id="1e9316dece6d131851d2c13d7fbd2589" category="doc">MetroCluster FC構成におけるコントローラのCiscoポートの使用</block>
@@ -14361,4 +14323,78 @@
   <block id="b422edb1dc6d4a214adab9c76d2349ad" category="paragraph"><block ref="b422edb1dc6d4a214adab9c76d2349ad" category="inline-image-macro-rx" type="image"></block></block>
   <block id="d75d3909245f6be3f0b1d65e8247b183" category="paragraph"><block ref="d75d3909245f6be3f0b1d65e8247b183" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4c9562556794c6d64ce9c73693133ac9" category="paragraph"><block ref="4c9562556794c6d64ce9c73693133ac9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="798a9759457492658d53527d57355221" category="paragraph">Red Hat Enterprise Linux (RHEL) 9.5</block>
+  <block id="b225d9c59432e8a8fb3706648e471b89" category="paragraph">RHEL 9.4</block>
+  <block id="5a4423695d5636fb42d9142a09b58340" category="paragraph">RHEL 9.3</block>
+  <block id="c87e38c84927fcd003b4fdc775e74821" category="paragraph">RHEL 9.2</block>
+  <block id="7634c90e743798b216d4cc2f1dd7eaa0" category="paragraph">RHEL 9.1</block>
+  <block id="10589d446fc419a4e9df55b253195dd9" category="paragraph">RHEL 9.0</block>
+  <block id="e501bf27a31a7cd05dab0de975ea7407" category="paragraph">RHEL 8.11～9.0</block>
+  <block id="c48cc40f38f8bc361e9a53b83a812d48" category="paragraph">RHEL 8.10</block>
+  <block id="9ca217a808fa091455fd04ec20df21d9" category="paragraph">RHEL 8.9</block>
+  <block id="bd5893e98d53053996565ec48fc2b6bb" category="paragraph">RHEL 8.8</block>
+  <block id="84f770462160a31f1ba2c884f8e0555a" category="paragraph">RHEL 8.1～8.7</block>
+  <block id="c87ad80aa9b7535cd96adb63053df8e1" category="paragraph">RHEL 7～7.9</block>
+  <block id="8aa7a546946c5216ef6f7e346a69e1cd" category="list-text">Cisco 9124V および 9250i スイッチは、8 ノードMetroCluster構成ではサポートされません。</block>
+  <block id="146abb7706950bf3054ea3b94f4da40f" category="doc">MetroCluster IP構成でさらに詳細な構成と監視を行うには、Active IQ Unified ManagerとONTAP System Managerを使用します。</block>
+  <block id="aea22b5efcf4554ce4a5146b1d0a6491" category="doc">MetroCluster IPスイッチの構成例</block>
+  <block id="d4cfcb7ec7961c0fd8a4604944203d01" category="doc">共有レイヤー2またはレイヤー3ネットワークにMetroCluster IP構成を導入するための要件</block>
+  <block id="e298e39648374a4391dccee04c624b21" category="doc">MetroCluster IP構成ネットワークトポロジの例</block>
+  <block id="51fe6e5a5459107a19c58c3f06e3c756" category="doc">MetroCluster準拠スイッチのONTAPプラットフォーム固有のネットワーク速度とスイッチポートモード</block>
+  <block id="b68fbbbff0362cb61c56d54001278a62" category="doc">ONTAPメディエーターがMetroCluster IP構成で計画外の自動スイッチオーバーをサポートする仕組み</block>
+  <block id="de12131483b433ac8506b7d654027975" category="doc">MetroCluster準拠スイッチの要件と制限</block>
+  <block id="dbbd0d3a920fcce3e934fa0740097c19" category="doc">MetroCluster IP構成におけるスイッチ間リンク（ISL）の要件</block>
+  <block id="e7a6b008ef2ebf568f593e71d5f62762" category="doc">MetroCluster IP構成でONTAPノードとクラスタを設定する</block>
+  <block id="c6929b82d09d520230d3410f013a4beb" category="doc">ONTAP MetroCluster構成のサポートマトリックス</block>
+  <block id="26e7329446b9653c1afcd63d2340cfbf" category="doc">自動ドライブ割り当てとADPシステムに関するMetroCluster IPの考慮事項</block>
+  <block id="a2e3b015ada3007372f3890d911b3685" category="doc">MetroCluster IP構成のファイアウォール ポート要件</block>
+  <block id="1bcaecfd01f4e5a2ce59bf09e79ab95f" category="doc">MetroCluster IP構成で仮想IPとボーダーゲートウェイプロトコルを使用する方法について学習します。</block>
+  <block id="75ab17da123365d00f2ec499305169d8" category="doc">リモート ストレージとMetroCluster IP 構成について学習します</block>
+  <block id="1d4d3b05fa1ffe4d168028cb764f168a" category="doc">MetroCluster IP構成におけるクラスタピアリングの要件</block>
+  <block id="a6fa9144699b7827d36eaf11a183930c" category="doc">MetroCluster IP構成でのONTAP操作の要件と考慮事項</block>
+  <block id="3ad5bf8bede2de85749104cd1c558a70" category="doc">MetroCluster IP構成にONTAP Mediatorをインストールする準備</block>
+  <block id="5f41d8cf5282355fa3aefb7176c3f60e" category="paragraph">クラスタ管理およびノード管理LIF</block>
+  <block id="adcf0c2ac79e72965c57c716ea214337" category="paragraph">ノード管理LIF</block>
+  <block id="5450af98b7b980559b29b88b2f4d9081" category="doc">MetroCluster IP構成におけるハードウェアコンポーネントの相互接続について学習します。</block>
+  <block id="e35a81d68844a7f93fe7fbde3c4d71b9" category="doc">必要なMetroCluster IP 構成コンポーネントと命名規則</block>
+  <block id="028572c8152de9abdd6ce9b7fec1fec7" category="doc">MetroCluster IPスイッチの健全性を監視するためにSNMPv3を構成する</block>
+  <block id="63ede7390ebddcb1a19c634b663be885" category="doc">ONTAP System Managerを使用してMetroCluster IPサイトを構成する</block>
+  <block id="d5df0ed1fddd51c59b0d672a06332803" category="doc">MetroCluster IP インストールワークフロー</block>
+  <block id="efea1e79a08808b857314cb52744fd91" category="doc">MetroCluster IP 構成におけるNetApp認定およびMetroCluster準拠のスイッチ</block>
+  <block id="81f48308d9009b082bbfb2492185ce99" category="doc">MetroCluster IP構成のスイッチ間リンク要件</block>
+  <block id="f0668925279d53112795bb2ac4afc864" category="doc">MetroCluster IP構成における12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
+  <block id="27399dcd320ca6d758e2655c39a8e386" category="doc">MetroCluster IP構成におけるCisco 3132Q-Vスイッチのプラットフォームポート割り当て</block>
+  <block id="60f2042ee9b23bda52c2e2a535331331" category="doc">MetroCluster IP 構成におけるCisco 3232C または 36 ポートCisco 9336C スイッチのプラットフォーム ポート割り当て</block>
+  <block id="0f1e80279fa5e850716c918391c80377" category="doc">MetroCluster IP構成でNS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
+  <block id="e4c70a9015773e7bbf7ec65d1e61fdd4" category="doc">MetroCluster IP構成におけるBroadcom対応BES-53248 IPスイッチのプラットフォームポート割り当て</block>
+  <block id="dbe2e4d199c297c30d26156121b218b7" category="doc">MetroCluster IP構成におけるNVIDIA対応SN2100 IPスイッチのプラットフォームポート割り当て</block>
+  <block id="48d2b86e5ac14fbcf8457bec5a32528c" category="doc">MetroCluster IP に関する追加情報の入手先</block>
+  <block id="72456fb865518b277c5bd9ff404c6c1e" category="doc">ONTAP System ManagerでMetroCluster IPピアリングを設定する</block>
+  <block id="535fa0516d99c874e893ea2540a883dc" category="doc">ONTAP System Managerを使用してMetroCluster IPサイトをセットアップする</block>
+  <block id="79d7b5a3dc6fd6411bb1e291b0258a63" category="doc">NVIDIA SN2100 MetroCluster IPスイッチ用のイーサネットスイッチヘルスモニター構成ファイルをインストールします。</block>
+  <block id="d002b21a9bb49ec04f8c827e7da7610c" category="doc">MetroCluster IP構成でSystem Managerを使用してONTAP Mediatorを管理する</block>
+  <block id="bf6de3ccb8c1b2675fa3ccbeade06fac" category="doc">MetroCluster IP構成でNTPを使用してシステム時刻を同期する</block>
+  <block id="d741ad2153b77425c5d8d691d6d553ea" category="doc">MetroCluster IP構成でONTAPコントローラモジュールポートをケーブル接続する</block>
+  <block id="358982e624f101a2eb4b93748e7a0e09" category="doc">MetroCluster IP構成用のONTAPメディエーターを設定する</block>
+  <block id="8b222cb67a6546eeac14eae6981290b4" category="doc">MetroCluster IP構成を別のONTAPメディエーターインスタンスに接続する</block>
+  <block id="892bb01932a428e88328c749e507f0f1" category="doc">MetroCluster IP構成ハードウェアコンポーネントをラックに収納する</block>
+  <block id="ec6e72d1c4bb7dccdc62b6caf35c95f7" category="inline-link-macro">ONTAPハードウェア システムのドキュメント</block>
+  <block id="88ed37ac250ee3beac8ec4fa33e61947" category="paragraph">_インストールとセットアップ_の手順に従って、プラットフォームモデルの_ハードウェアのインストール_を実行してください。<block ref="b47a46dde65b6bc6493c260104f2cc8b" category="inline-link-macro-rx"></block> 。</block>
+  <block id="1e081ec0ca51d9b688cc6a1f9ee68bb3" category="doc">MetroCluster IP構成からONTAPメディエーターを削除する</block>
+  <block id="7bc9181dba7c0dfc8183916770110ea4" category="doc">MetroCluster IP構成でプール0にドライブを手動で割り当てる</block>
+  <block id="fbbeae672f07ddb0455e7a97fd37d0a5" category="doc">MetroCluster IP構成でONTAPクラスタを構成する</block>
+  <block id="bad53acae4762678f018dfab43337e54" category="doc">MetroCluster IP構成用にMetroCluster TiebreakerまたはONTAP Mediatorを設定する</block>
+  <block id="f6fde6b6a8ce6e2cab09a84313608ce8" category="doc">ONTAP標準クラスタとMetroCluster構成の比較</block>
+  <block id="fb0099fb742a3391412388bd9c4f1162" category="doc">MetroCluster IP構成に必要な情報を収集します</block>
+  <block id="e45bfa5ec7a407ec06cb5bfe23f8f7da" category="doc">MetroCluster IP 構成のクラスタ構成ファイルをバックアップする</block>
+  <block id="a1bf5f42e538d33da7e9a54c7485046b" category="doc">MetroCluster IP構成を設定する前に、コントローラモジュールのシステムデフォルトを復元します。</block>
+  <block id="2a84cc9d50c6126c589d195dfabdaaa2" category="doc">MetroCluster IP構成でONTAPノードを設定する</block>
+  <block id="ab58575dfc3a4cf3868291f7e29fd682" category="doc">MetroCluster IP構成のコントローラとシャーシコンポーネントのHA構成状態を確認します。</block>
+  <block id="0dd4375e97dbbfc0461527e6636a4e50" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用に Broadcom IP スイッチを構成する</block>
+  <block id="2305966fe63ba176ab9feddd6e84701f" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用にCisco IP スイッチを構成する</block>
+  <block id="9edb945b46e8338b6c604c62787c3031" category="doc">MetroCluster IPサイト内のCisco 9336CスイッチでMACsec暗号化を構成する</block>
+  <block id="e0e912999bb427a16c869c97ad908030" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用にNVIDIA IP SN2100 スイッチを構成する</block>
+  <block id="25849b8ea5119a6ccbe0ef06d8e35773" category="doc">MetroCluster IP構成のONTAPノードスイッチオーバーをテストします</block>
+  <block id="7282d891d20cd1520e021b2ba6c78e20" category="list-text">保存データの暗号化がサポートされています。<block ref="6774dcdb02085dead82047685ca775f1" category="inline-link-macro-rx"></block></block>
+  <block id="f42ec02236cb8b0134435967892ad733" category="paragraph"><block ref="f42ec02236cb8b0134435967892ad733" category="inline-link-macro-rx"></block></block>
 </blocks>
