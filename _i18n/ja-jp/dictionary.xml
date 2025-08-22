@@ -4256,7 +4256,6 @@
   <block id="532b4c3808bc2575632f374f483ca98b" category="list-text">スイッチのポートから ISL ケーブルを外します。</block>
   <block id="f66f2933c2717a1cacefad1ec4730aec" category="list-text">すべてのポートについて、ポートの設定を default に設定します。</block>
   <block id="4461eb2aa0e7be56b07bfd03b50adda3" category="paragraph">この手順はポートごとに実行する必要があります。</block>
-  <block id="1711fdcc6944bbeddd35a626101f4b4d" category="list-text">スイッチが Dynamic Port On Demand （ PoD ；動的ポートオンデマンド）方式を使用していることを確認します。</block>
   <block id="2f3d07c01cbdac4d395d3a14b661150c" category="admonition">バージョン 8.0 より前の Brocade Fabric OS では、次のコマンドを admin として実行し、バージョン 8.0 以降では root として実行します。</block>
   <block id="d63c14f8f4da1b2f3355284117aa43d6" category="list-text">Brocade によって root ユーザが無効にされている場合は、有効にします。</block>
   <block id="564a95e2696af68aa1c3a4953ecd1ce9" category="cell">サイト A</block>
@@ -4594,7 +4593,6 @@
   <block id="b1398f0ec1ab6f110b2b054dcbd970f4" category="list-text">Advanced Performance Tuning （ APT ；高度なパフォーマンスチューニング）ポリシーを 3 に設定します。</block>
   <block id="9157f6f9ad659d140aac1994cee26e61" category="paragraph">「 aptpolicy 3 」</block>
   <block id="53989b83805e7661f392318f958a6584" category="admonition">コントローラモジュールに ONTAP を設定する場合は、 MetroCluster 構成の各コントローラモジュールで OOD を明示的に設定する必要があります。</block>
-  <block id="8e6415ee4068075bb4d9b0908c9e0ba1" category="list-text">スイッチが動的ポートライセンス方式を使用していることを確認します。</block>
   <block id="39c3f713772acf06f906fa354070ccae" category="admonition">バージョン 8.0 より前の Brocade FabricOS では、次のコマンドを admin として実行し、バージョン 8.0 以降では root として実行します。</block>
   <block id="bb455cc655a37d9370a7b572be5c356a" category="list-text">root ユーザを有効にします。</block>
   <block id="9982799dc107b44357ff54b7e3b835e7" category="paragraph">Brocade によって root ユーザがすでに無効にされている場合は、次の例に示すように root ユーザを有効にします。</block>
@@ -7609,7 +7607,6 @@
   <block id="df5566493ce43130608af35ff9c2f4d8" category="paragraph">'securitylogin create （セキュリティログインの作成</block>
   <block id="34d50950463bd9deb8050c6afe5d8652" category="paragraph">「 securitylogin show 」を参照してください</block>
   <block id="8877f60294cec4f344b4ffc0df4449c3" category="paragraph">「 mpconfig -- set snmpv3 」</block>
-  <block id="7c36b0e12ce814681762efb6b2ec6cc4" category="paragraph">次の例は、読み取り専用ユーザを設定する方法を示しています。必要に応じて、 RW ユーザを調整できます。</block>
   <block id="046a4dbe28831449e896740fded1c064" category="paragraph">また、未使用のアカウントにパスワードを設定して保護し、 ONTAP リリースで最適な暗号化機能を使用する必要があります。</block>
   <block id="2699745f7ba3417d015d2b62691bd3b8" category="list-text">各 MetroCluster ノードに IP アドレスを指定してスイッチを追加します。</block>
   <block id="6efb794ecca356d1adc84930ec9dbd7a" category="paragraph">「 storage switch add -address ipaddress 」と入力します</block>
@@ -10920,8 +10917,6 @@
   <block id="21a858f81918f7707fbcd7bef86f8797" category="paragraph">コマンドを実行します<block ref="c53664d593e772e240ea0e6fdcfc79e1" prefix=" " category="inline-code"></block>。</block>
   <block id="afff4aa2c1e899c46d499fb894d82ada" category="open-title">Fabric OS 9.0以降の場合</block>
   <block id="39219ac241ea7f4ccb98564b8a02b92c" category="paragraph">コマンドを実行します<block ref="ee9cf2be6d80be01f66c5272dabe9164" prefix=" " category="inline-code"></block>。</block>
-  <block id="6662b782a3a75b8e31dda70ebe53c4f0" category="paragraph">コマンドを実行します<block ref="c3d759c84d82a17cd2fc31c0bbd2be02" prefix=" " category="inline-code"></block>。</block>
-  <block id="1fb30ffcb217df70eb8b61a9c76f518f" category="paragraph">コマンドを実行します<block ref="f7fd6058274b87da3f8cba419f53bb7e" prefix=" " category="inline-code"></block>。</block>
   <block id="3c8938b87b13dff113f84a2814ddff39" category="paragraph"><block ref="f7fd6058274b87da3f8cba419f53bb7e" prefix="" category="inline-code"></block></block>
   <block id="1ad5a70ead9bdd722df6000495e21c24" category="list-text">Fabric OS 8.2.x以前を実行している場合は、ライセンス方式をdynamicに変更する必要があります。</block>
   <block id="7fafa568d6f3c9a0ee98323f64b1c01c" category="admonition">Fabric OS 9.0以降では、ライセンス方式はデフォルトで動的です。静的ライセンス方式はサポートされていません。</block>
@@ -10950,7 +10945,6 @@
   <block id="7dd57dad7ab33a64ea80d69dc576695f" category="list-text">MetroCluster IP構成では、NS224シェルフまたは専用のストレージスイッチにすでに直接接続されている場合があります。</block>
   <block id="2d27e76da02804de2afe9d209e5cbb1c" category="admonition">ストレージのパフォーマンスと可用性を最適化するために、ミラーアグリゲートでは少なくとも20%の空きスペースを確保することを推奨します。ミラーされていないアグリゲートでは10%が推奨されますが、追加の10%のスペースはファイルシステムで増分変更に対応するために使用できます。増分変更を行うと、ONTAPのcopy-on-write Snapshotベースのアーキテクチャにより、ミラーされたアグリゲートのスペース使用率が向上します。これらのベストプラクティスに従わないと、パフォーマンスに悪影響を及ぼす可能性があります。</block>
   <block id="0e5e2d82a1039e41c19d2248f3b64787" category="admonition">どちらのクラスタからも MetroCluster IP インターフェイスを設定できます。</block>
-  <block id="6212a1ad66c5ad9d3c50380aa91aab6a" category="list-text">ハードウェア障害なし</block>
   <block id="2af958a8143c65676390b5e251abe90a" category="list-text">を確認します<block ref="a78608714add699f555f2a66df0ee249" prefix=" " category="inline-code"></block> パッケージがLinuxホストにインストールされている。これにより、<block ref="b0c94f1494e22d963244e235719a2582" prefix=" " category="inline-code"></block> 新しくマッピングされたLUNのLinuxホストをを使用して再スキャンするとエラーが発生する<block ref="685ca42026debec2f3691cc5faae67d5" prefix=" " category="inline-code"></block> コマンドを実行します</block>
   <block id="1f52bd2314f9805b0a0098b0f56a0dc4" category="paragraph">そのためには、ノードのリブートが必要になる場合があります。</block>
   <block id="ab85fd4f549c390675df901a8ef3f78e" category="list-text">すべてのSAN SVMについて、IPノードにFC LIF /インターフェイスを作成します。必要に応じて、新しく作成したFC LIFのWWPNがFC SANスイッチにログインしていることを確認します。</block>
@@ -11956,10 +11950,8 @@
   <block id="bd7a871cd772a6f8f044f086ccc3ed68" category="list-text">システムでエンドツーエンドの暗号化がサポートされている場合は、次の操作を実行できます。 <block ref="2fd1db8c2a0ebb290526de8f46b28acd" category="inline-link-macro-rx"></block> 新しいDRグループ。</block>
   <block id="0088c1e15cccccdb2e3dc23e762335e0" category="list-text">エンドツーエンドの暗号化が有効になっている場合は、次の手順を実行します。 <block ref="8a6f29aee2b87dab72caa4c63be583f5" category="inline-link-macro-rx"></block>。</block>
   <block id="7b27e86dbf07563fca6c99e2fca83549" category="list-text">新しいノードを追加する前にエンドツーエンドの暗号化を無効にした場合は、の手順に従って再度有効にできます。 <block ref="2fd1db8c2a0ebb290526de8f46b28acd" category="inline-link-macro-rx"></block>。</block>
-  <block id="149bff96621a57d63b9a824d96957df7" category="open-title">Brocadeスイッチ</block>
   <block id="250f3098aa37d3a08b48b8157db8a62e" category="open-title">Cisco スイッチ</block>
   <block id="6204028fd0e3ba079ca2fce4bb224e24" category="paragraph"><block ref="010303eb2e404f6eb49cc314fc8aa294" prefix="" category="inline-code"></block></block>
-  <block id="a1032909a057927264a07294a53b91b5" category="paragraph">ROアクセスが必要な場合は、「User（ro）：」のあとに「snmpv3user」を指定します。次の例ではBrocadeスイッチを使用しています。</block>
   <block id="ddaa39224424042ba35394afbe714a70" category="list-text">このタスクを実行するには、クラスタ管理者である必要があります。</block>
   <block id="ffe47e3eda7ee0a88fa1a1b82a09899e" category="inline-link-macro">外部キー管理を設定</block>
   <block id="ca6ec36bc37ffec6b208710049cf5f93" category="list-text">エンドツーエンドの暗号化を設定する前に、次の手順を実行する必要があります。 <block ref="16044a12704308be53c493c61be8d30c" category="inline-link-macro-rx"></block>。</block>
@@ -14397,4 +14389,15 @@
   <block id="25849b8ea5119a6ccbe0ef06d8e35773" category="doc">MetroCluster IP構成のONTAPノードスイッチオーバーをテストします</block>
   <block id="7282d891d20cd1520e021b2ba6c78e20" category="list-text">保存データの暗号化がサポートされています。<block ref="6774dcdb02085dead82047685ca775f1" category="inline-link-macro-rx"></block></block>
   <block id="f42ec02236cb8b0134435967892ad733" category="paragraph"><block ref="f42ec02236cb8b0134435967892ad733" category="inline-link-macro-rx"></block></block>
+  <block id="929f699475d2ee16cffb5df619460281" category="list-text">ハードウェア障害（停電など）がない</block>
+  <block id="8e7bac68088266dc4f6ea54160a86aa8" category="open-title">Brocadeスイッチ (FOS 9.0 以降)</block>
+  <block id="bbf1d4b45eed310475529b62acce8abc" category="paragraph"><block ref="5c14098cbb5e352eab3dbedad51645c3" prefix="" category="inline-code"></block></block>
+  <block id="fb9a60f6eec8993cd6b4f12e486c000c" category="open-title">Brocadeスイッチ (FOS 8.x 以前)</block>
+  <block id="c713289c1b13431b23b477490f615275" category="paragraph">この例では、読み取り専用ユーザーを構成する方法を示します。必要に応じて RW ユーザーを調整できます。  RO アクセスが必要な場合は、「User (ro):」の後に「snmpv3user」を指定します。</block>
+  <block id="da9939718fb44905950716c648f7501d" category="list-text">FOS 9.0 より前のバージョンを実行している場合は、スイッチが動的ポートオンデマンド (POD) ライセンス方式を使用していることを確認します。</block>
+  <block id="2fc05e860677e088c66d18d9fe3bb918" category="paragraph"><block ref="c3d759c84d82a17cd2fc31c0bbd2be02" prefix="" category="inline-code"></block></block>
+  <block id="56df97178d6ee4000ee0e436cc180453" category="list-text">FOS 9.0 より前のバージョンを実行している場合は、スイッチが動的ポート オン デマンド (POD) 方式を使用していることを確認します。</block>
+  <block id="6eb6a2663a1f73cd3119f3cb6f287206" category="paragraph"><block ref="c3d759c84d82a17cd2fc31c0bbd2be02" prefix="" category="inline-code"></block> 。</block>
+  <block id="5667ca92a697e03bc95d429bfe20fda5" category="inline-link">システムスイッチイーサネットヘルスモニターの設定</block>
+  <block id="a7692359e6ab53408219d1f4fbab4614" category="paragraph">参照<block ref="e8f3e733a7456e37aaeb3c329fac3e94" category="inline-link-rx"></block>詳細についてはコマンドを参照してください。</block>
 </blocks>

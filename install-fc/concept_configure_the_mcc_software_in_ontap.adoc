@@ -2982,21 +2982,17 @@ node_A_1 SVM 4 snmpv3user     snmp        usm                   10.10.10.13
 +
 [role="tabbed-block"]
 ====
-.Brocadeスイッチ
+.Brocadeスイッチ (FOS 9.0 以降)
+--
+`snmpconfig --add snmpv3 -index <index> -user <user_name> -groupname <rw/ro> -auth_proto <auth_protocol> -auth_passwd <auth_password> -priv_proto <priv_protocol> -priv_passwd <priv_password>`
+
+--
+.Brocadeスイッチ (FOS 8.x 以前)
 --
 「 mpconfig -- set snmpv3 」
 
---
-.Cisco スイッチ
---
-`snmp-server user <user_name>  auth [md5/sha/sha-256] <auth_password> priv (aes-128) <priv_password>`
+この例では、読み取り専用ユーザーを構成する方法を示します。必要に応じて RW ユーザーを調整できます。  RO アクセスが必要な場合は、「User (ro):」の後に「snmpv3user」を指定します。
 
---
-====
-+
-ROアクセスが必要な場合は、「User（ro）：」のあとに「snmpv3user」を指定します。次の例ではBrocadeスイッチを使用しています。
-
-+
 [listing]
 ----
 Switch-A1:admin> snmpconfig --set snmpv3
@@ -3010,11 +3006,16 @@ User (ro): [snmpuser2] snmpv3user
 Auth Protocol [MD5(1)/SHA(2)/noAuth(3)]: (1..3) [2]
 Priv Protocol [DES(1)/noPriv(2)/AES128(3)/AES256(4)]): (2..2) [3]
 ----
-+
-次の例は、読み取り専用ユーザを設定する方法を示しています。必要に応じて、 RW ユーザを調整できます。
+--
+.Cisco スイッチ
+--
+`snmp-server user <user_name>  auth [md5/sha/sha-256] <auth_password> priv (aes-128) <priv_password>`
 
+--
+====
 +
-また、未使用のアカウントにパスワードを設定して保護し、 ONTAP リリースで最適な暗号化機能を使用する必要があります。
+
+NOTE: また、未使用のアカウントにパスワードを設定して保護し、 ONTAP リリースで最適な暗号化機能を使用する必要があります。
 
 . 必要に応じて、残りのスイッチユーザに暗号化とパスワードを設定します。
 

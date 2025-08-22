@@ -479,23 +479,16 @@ https://docs.netapp.com/us-en/ontap-metrocluster/install-fc/concept_configure_th
 
 
 
-. スイッチが動的ポートライセンス方式を使用していることを確認します。
+. FOS 9.0 より前のバージョンを実行している場合は、スイッチが動的ポートオンデマンド (POD) ライセンス方式を使用していることを確認します。
++
+
+NOTE: Fabric OS 9.0以降では、ライセンス方式はデフォルトで動的です。静的ライセンス方式はサポートされていません。
+
 +
 .. ライセンスコマンドを実行します。
 +
-[role="tabbed-block"]
-====
-.Fabric OS 8.2.x以前の場合
---
-コマンドを実行します `licenseport --show`。
+`licenseport --show`
 
---
-.Fabric OS 9.0以降の場合
---
-コマンドを実行します `license --show -port`。
-
---
-====
 +
 [listing]
 ----
@@ -541,10 +534,6 @@ FC_switch_A_1:admin> licenseport --method dynamic
 The POD method has been changed to dynamic.
 Please reboot the switch now for this change to take effect
 ----
-+
-
-NOTE: Fabric OS 9.0以降では、ライセンス方式はデフォルトで動的です。静的ライセンス方式はサポートされていません。
-
 
 
 . ONTAP でスイッチの健常性を監視できるように、 T11-FC-ZONE-SERVER-MIB のトラップを有効にします。
