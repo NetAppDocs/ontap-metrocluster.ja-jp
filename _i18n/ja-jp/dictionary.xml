@@ -2428,26 +2428,17 @@
   <block id="ac5b83bcd716e4f73dc30fdc6a4c5c55" category="paragraph">クラスタピアリングには、各コントローラモジュールの少なくとも 2 つのポートを使用します。</block>
   <block id="0fb6c3d63792ef7dc83798e7407f80e4" category="paragraph">ポートおよびネットワーク接続の推奨される最小帯域幅は 1GbE です。</block>
   <block id="5206bcb346755220c00fbc45647faca6" category="list-text">クラスタピアリングに使用する少なくとも 2 つのポートを特定してケーブル接続し、そのポートがパートナークラスタとネットワーク接続されていることを確認します。</block>
-  <block id="cba784dbb6dad30cadc1fcb2d1b5ee81" category="paragraph"><block ref="cba784dbb6dad30cadc1fcb2d1b5ee81" category="inline-link-rx"></block></block>
   <block id="19df577c80891b37cfa2f1b29c518f6e" category="paragraph">8 ノード構成では、 8 つのノードが 2 つの 4 ノード DR グループとして編成されています。</block>
-  <block id="e66e23247af7503f663027daef188754" category="paragraph">DR グループを 1 つ削除することで、 4 つのノードが構成に残ります。</block>
-  <block id="1c08e40b56822a43e7877e2eb26a97fd" category="section-title">各クラスタから DR グループノードを削除します</block>
   <block id="50c188ed93e1182ae7f08e39dbbb2ec5" category="list-text">この手順は両方のクラスタで実行する必要があります。</block>
   <block id="f2bf546b53e3f6cc54f274876ab2cb36" category="list-text">「 MetroCluster remove-dr-group 」コマンドは、 ONTAP 9.8 以降でのみサポートされます。</block>
-  <block id="cdfb112bdd5ad036d9715bddf30e7912" category="list-text">DR グループがない場合は、削除する準備をします。</block>
   <block id="95e7c6b72cfdf5397dbe8a6653bdc7c1" category="list-text">すべてのデータボリュームを別の DR グループに移動します。</block>
-  <block id="92cccd899142da5e06923ac8991bc5fc" category="list-text">次の例に示すように、 DR グループ内のすべてのデータアグリゲートを削除します。</block>
   <block id="73f68d9b46d6064cae47a18da8004723" category="admonition">ルートアグリゲートは削除されません。</block>
-  <block id="0eb68bef79fda0557a1bd86cd43b0afa" category="paragraph">ノード管理 LIF とクラスタ間 LIF は移行されません。</block>
   <block id="85d38d4ee3b9248e142229cf9e215620" category="list-text">必要に応じて、別の DR グループ内のノードにイプシロンを移動します。</block>
   <block id="aac7ac3bfa9117ebc1368d396b746e00" category="list-text">DR グループを特定して削除します。</block>
   <block id="c31e08573cdaea3b8de26a9f74105469" category="paragraph">次の例は、 cluster_A の DR グループ構成を削除します</block>
-  <block id="4ed5c490b4a22cb265bc48e25109096a" category="list-text">MetroCluster IP 構成の場合は、古い DR グループのノード上の MetroCluster 接続を削除します。</block>
-  <block id="a64d27abe280b12e33befc92f146357d" category="paragraph">これらのコマンドはいずれかのクラスタから実行し、両方のクラスタにまたがる DR グループ全体に適用できます。</block>
   <block id="8d3c998ce16ecd4cdc06e3ddd8c757e6" category="list-text">古い DR グループからノードを分離</block>
   <block id="b30c893d5895266607a2a417b5123132" category="paragraph">この手順は各クラスタで実行する必要があります。</block>
   <block id="ff6434ad658fa9ed7826817a3f9f0dff" category="paragraph">古い DR グループ内のもう一方のローカルノードに対して、この手順を繰り返します。</block>
-  <block id="47b7f94ac9af47dcafeea8d4a5f0d377" category="list-text">新しい DR グループでクラスタ HA を再度有効にします。</block>
   <block id="8917e80351843363583600f118c2fa84" category="list-text">古いコントローラモジュールとストレージシェルフを停止、電源オフ、および取り外します。</block>
   <block id="88360ff6d6d5e3d5d618e2ab14b30049" category="summary">Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を追加または変更したり、 Tiebreaker ソフトウェアから削除したりできます。</block>
   <block id="84b5999a36db8b18180d5b58bd61c503" category="doc">Tiebreaker ソフトウェアを設定します</block>
@@ -4456,7 +4447,6 @@
   <block id="89a000b961d78cc03e60a01f6562e2c8" category="section-title">空きのあるシェルフでのドライブの配置場所に関する考慮事項</block>
   <block id="93d2c0db4f12f10c56f582f82171c52b" category="paragraph">収容数が半分（ 24 ドライブシェルフに 12 本のドライブ）のシェルフを使用している場合にドライブの自動割り当てを正しく行うには、スロット 0~5 および 18~23 にドライブを配置する必要があります。</block>
   <block id="7bf8ecae55a24d61a71e36a03be28010" category="paragraph">シェルフに空きがある構成では、シェルフの 4 つの部分にドライブを均等に配置する必要があります。</block>
-  <block id="2ad434ab593fd445c83cdbf1d5d00216" category="section-title">IOM12 モジュールと IOM 6 モジュールをスタック内に混在させる</block>
   <block id="2577b62ff20a44feeb798ea94e578a0b" category="section-title">ブリッジの命名規則</block>
   <block id="3c140973dafbe403da4d648de7fb7d10" category="paragraph">ブリッジでは、次の名前の例を使用します。 bridge_site_B 、スタックグループペア内での指定</block>
   <block id="c7b1954faa9797acca58b04da6fc79bb" category="cell">名前の各部分</block>
@@ -8104,19 +8094,15 @@
   <block id="43de0767f9174a53083becb427ee5902" category="paragraph">'setenv partner-sysid_SysID_OF_new_controller_</block>
   <block id="89f1ff2375d86ec697867899f17d2149" category="paragraph">'setenv partner-sysid_SysID_OF_existing_controller_</block>
   <block id="25898a6422d7ded47f2936026a1df6c1" category="list-text">削除する DR グループにある MDV_AUD メタデータボリュームをすべて削除してください。</block>
-  <block id="29771e568737c4148ab90cda182257df" category="list-text">すべてのデータ LIF を別の DR グループのホームノードに移行する。+`network interface show -home-node _old_node_name</block>
   <block id="6922b002b7c8c168a04ce8ef0feeaaff" category="paragraph">「 network interface modify -vserver _svm -name _ -lif data -lif lif _ -home-port_port -id_ 」と入力します</block>
   <block id="4ed819934d8eb4ecfa162dc35324fc32" category="list-text">クラスタ管理 LIF を別の DR グループのホームノードに移行する。</block>
   <block id="91f41d8c6028070fa5f4cd7a2c56f7be" category="paragraph">network interface show -role cluster-mgmt-`</block>
   <block id="b32745668eaff06c12feb45539c339e0" category="list-text">削除する適切な DR グループを特定します。</block>
   <block id="0373e81430a1cc22dafabd61d4a3cd0e" category="list-text">DR グループノードを削除します。 +dr-dr MetroCluster -group-dr -group-id 1'</block>
   <block id="d172777a2cbbb0c3ec9b70dc45780c5f" category="list-text">接続を切断します。</block>
-  <block id="08a665929056fef6a8490b5b0b04f474" category="paragraph">MetroCluster 構成設定接続 disconnect_dr -group-id_`</block>
   <block id="e18600ad5da962c033022e8657b0fab3" category="list-text">古い DR グループのノード上の MetroCluster インターフェイスを削除します。</block>
   <block id="eb5c2cb295b7a9fd5ee2ed559f176f9e" category="paragraph">MetroCluster 構成設定インタフェースは削除されます</block>
   <block id="deba5df0dea3cbba9463f219100e5ba4" category="list-text">古い DR グループの構成を削除します。+ MetroCluster 構成設定 DR-group delete</block>
-  <block id="cdab15f9840a783bfc35d8f8baa514e9" category="list-text">ノードを削除します :+`cluster unjoin -node -node_name _`</block>
-  <block id="06b28530123c83dfb519d35b8e3e11f5" category="list-text">admin 特権レベルを設定します。 +'set -privilege admin'</block>
   <block id="d82e4b6cc46afb567474f7178afb5796" category="list-text">スイッチオーバー、修復、スイッチバック</block>
   <block id="70a6af377eaf4da39eb5c40bd123522b" category="list-text">強制スイッチオーバー</block>
   <block id="0ece35432200ec94e379aeb1ce68db94" category="list-text">複数のコントローラまたはストレージの障害からのリカバリ</block>
@@ -8436,7 +8422,6 @@
   <block id="776259e77c1e67fef13df14be8a5ad8e" category="list-text">両方のクラスタで、関係するシェルフスタック上のディスクを含むすべてのプレックスをオフラインにします。</block>
   <block id="b88127542a36dbd88f1d9b0eb0e66dc0" category="paragraph">ONTAP は現在、 AES-128 暗号化をサポートしています。</block>
   <block id="ffdcbc12bcb9d9c0dfcda96a2a729863" category="list-text">ブロードキャストドメインから VLAN ポートとインターフェイスグループポートを削除します。</block>
-  <block id="ed2e5c7ebbd6b2c749bdb92415d9787c" category="list-text">ストレージフェイルオーバーを無効にします。</block>
   <block id="8c0de6fd10d37074888575e8bb234409" category="list-text">EFOS 3.x.x から EFOS 3.x.x 以降にアップグレードするときは、スイッチが EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）を実行している必要があります。それよりも前のリリースを実行している場合は、まずスイッチを EFOS 3.4.4.6 （または 3.4.x.x 以降のリリース）にアップグレードしてから、スイッチを EFOS 3.x.x 以降にアップグレードします。</block>
   <block id="3e500c172d59004ad7f8a56f2af9021e" category="list-text">EFOS 3.x.x と 3.7.x.x 以降の設定は異なります。EFOS バージョンを 3.4.x.x から 3.7.x.x 以降、またはその逆に変更する場合は、スイッチを工場出荷時のデフォルトにリセットする必要があり、対応する EFOS バージョンの RCF ファイルが適用される（再適用される）必要があります。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
   <block id="40613ace69e06cacd37d3181d20fb498" category="cell">3.7.x.x 以降の非 FIPS 準拠</block>
@@ -10043,9 +10028,7 @@
   <block id="03b9eedf57c55a2eb9b4feaa990c85f6" category="list-text">RcfFileGenerator for MetroCluster IPを使用して、設定用のRCFファイルを生成します。</block>
   <block id="52ad3b024ecc6eae02e8415cef1140ba" category="summary">バックエンドMetroCluster IP接続を提供するようにIPスイッチを設定する必要があります。</block>
   <block id="9e93b10c56fcff9e0d1564e5ad629c03" category="doc">スイッチを設定します</block>
-  <block id="8c6cfac074d0567f4c5a941062f42343" category="paragraph">この手順は ONTAP 9.8 以降でサポートされています。ONTAP 9.7以前を実行しているシステムについては、技術情報アーティクルを参照してください</block>
   <block id="d5d6932337b2af2eda1bd96fd5aa3832" category="inline-link-macro">MetroCluster 構成からDRグループを削除する方法</block>
-  <block id="44fa5f61d97cbf15ad67ee9c5aedc1c6" category="paragraph"><block ref="44fa5f61d97cbf15ad67ee9c5aedc1c6" category="inline-link-macro-rx"></block></block>
   <block id="240e83062f934da5c217268779ad19cc" category="inline-link-macro">既存のFAS8020またはAFF8020ノードでFCVI接続にポート1cと1dを使用する場合は、コントローラをアップグレードします。</block>
   <block id="7d52f2b0abe5122410e02b6a1f5063c2" category="admonition">元のプラットフォームまたは新しいプラットフォームがFAS8020またはAFF8020システムでは、FC-VIモードのポート1cと1dを使用する場合は、ナレッジベースの記事を参照してください <block ref="932e72f00053653311064be7a28a435b" category="inline-link-macro-rx"></block></block>
   <block id="0304fb1b1795f11d66da6052c99f1cca" category="list-text">両方のサイトでライセンスが一致している必要があります。から新しいライセンスを取得できます <block ref="3bd7a72b5bb22d07b50aba30cd6fdbe6" category="inline-link-macro-rx"></block>。</block>
@@ -10292,7 +10275,6 @@
   <block id="ec8b479c503bdd6824b5e3505ef1d0df" category="paragraph">次の例は、aggr_data_A1アグリゲートをオフラインにします。</block>
   <block id="aa8cd184e817ada870c8b763be695d0b" category="paragraph">次の例は、aggr_data_A1アグリゲートを削除する方法を示しています。</block>
   <block id="d2038b70348bcc50135596de145913db" category="admonition">スイッチを次の順序で更新します。Switch_A_1、Switch_B_1、Switch_A_1、Switch_B_2</block>
-  <block id="f6d453c97574893aee9bca0a4faee686" category="paragraph">storage failover modify -node node_name enable false</block>
   <block id="f91adcd268075ddcfabf631a5a33611e" category="list-text">各データアグリゲートをオフラインにしてから削除します。</block>
   <block id="d4fbfd12406441eb6b750cde2dcb9137" category="list-text">サイト間スイッチリンク（ISL）が稼働し、ポートチャネルが動作していることを確認します。</block>
   <block id="0e199c470dcfb3a63ccc62156cd2085f" category="paragraph">次の例では、ISLポート「Eth1/15」から「eth1/20」がリモートサイトリンクの「Po10」として設定され、「eth1/7」から「eth1/8」がローカルクラスタISLの「Po1」として設定されています。「Eth1/15」から「Eth1/20」、「Eth1/7」から「Eth1/8」、「Po10」、および「Po1」の状態は「up」にする必要があります。</block>
@@ -10404,9 +10386,6 @@
   <block id="a417bfe3b0e85c20658fe71357feb3ef" category="paragraph">コマンド構文全体については、マニュアルページを参照してください。次の例は、クラスタ間 LIF cluster01_icl01 と cluster01_icl02 を作成します。</block>
   <block id="0074a60c2f111fa09e324bfc6f086bfd" category="paragraph">次のコマンドを実行します。<block ref="08fd4296d1145ee217b3ba481add0899" prefix=" " category="inline-code"></block></block>
   <block id="bb084c29063404b6611bde28d4ed57d3" category="paragraph">次のコマンドを実行します。<block ref="4686e63f75ecbb5593b9aac27ab89dd7" prefix=" " category="inline-code"></block></block>
-  <block id="3c01c02ef0bb0d39aaf5f9cbc5c8ea4b" category="paragraph"><block ref="6b5ac3bb2bcffd222567cf972f8a2548" prefix="" category="inline-code"></block></block>
-  <block id="f7967c2b46538ede39d7960526ce1fa4" category="list-text">データLIFをオンラインに戻します。<block ref="c5b63f9c60f25a11e5c1cde65fb540f1" prefix=" " category="inline-code"></block></block>
-  <block id="f677111a20e676139c4a865021fafa0d" category="paragraph"><block ref="850d7b5cf3d569632a8982fc791023b0" prefix="" category="inline-code"></block></block>
   <block id="00b7088169fa7f91ce7c54fd96b41d7b" category="list-text">インタークラスタLIFをホストする物理ポートを対応するブロードキャストドメインに追加します。</block>
   <block id="e64aaeac172dbd7d324ded015d3b620f" category="list-text">パートナークラスタが到達可能であり、パートナークラスタで設定が再同期されたことを確認します。</block>
   <block id="e3c9aa07778be11d3bb374e3a6486e23" category="paragraph"><block ref="982b6fd5e36acd031c5af800a9951ed1" prefix="" category="inline-code"></block></block>
@@ -10533,7 +10512,6 @@
   <block id="6a9c67444d70fbe1484e9983092ffff8" category="admonition">の手順を必ず実行してください <block ref="b6e3e97b1b6ab70165db8088036aef95" category="inline-link-macro-rx"></block> 各コントローラ（交換用コントローラを含む）で、以前の設定が削除されたことを確認します。</block>
   <block id="779a44ac931df50e9ba3ac26bbca035e" category="list-text">状況に応じて<block ref="3b3242ced99842a6c2c16f489b78e773" prefix=" " category="inline-code"></block> コマンドが正常に完了し、コントローラモジュールが故障しました。前の表を使用して、正しいリカバリ手順 を特定してください。</block>
   <block id="57c5f3148ec34d732973b7f905f1ca84" category="section-title">MetroCluster FC-to-IP移行時のコントローラモジュールの障害のシナリオ</block>
-  <block id="b79001d76282bba800ccc9b5187d2ad4" category="list-text">データLIFをオフラインにします。<block ref="58d060d8bc95409e743c7b8e95e72710" prefix=" " category="inline-code"></block></block>
   <block id="467f07382f2568a4248a6dee67437d64" category="paragraph"><block ref="467f07382f2568a4248a6dee67437d64" category="inline-link-macro-rx"></block></block>
   <block id="d570f5d821344a6838aaa260987eafc8" category="inline-link-macro">ハイアベイラビリティペアの管理</block>
   <block id="519460f530eb0c6817aeafcaef72fd69" category="paragraph">4 ノード MetroCluster 構成の場合、障害が発生したコンポーネントによっては、障害ノードの自動テイクオーバーまたはネゴシエートテイクオーバーが行われる可能性があります。データ・リカバリについては、を参照してください <block ref="098c4bee7c591ea5429ed6be6c4ddd42" category="inline-link-macro-rx"></block> 。</block>
@@ -11200,7 +11178,6 @@
   <block id="9dc72cfc812a43dbca6ba4e6357b2b04" category="paragraph">ONTAP 9.13.1以降では、8ノードMetroCluster構成を一時的に拡張してコントローラとストレージを更新できます。を参照してください <block ref="df5e6373f54c9330727709bb1055a079" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="e6f19b92e0e69fc5d74e94088b442a26" category="inline-link-macro">4ノードまたは8ノードのMetroCluster IP構成の更新</block>
   <block id="ae236ebe2cd05ce4da7fe73d504f4946" category="list-text">実行中の場合 <block ref="54f4a86aff0fc5aba4d6e37b225734c0" category="inline-link-macro-rx"></block>新しいノードには、古いノードのデータを収容するための十分なストレージに加え、ルートアグリゲート用の十分なディスクとスペアディスクが必要です。</block>
-  <block id="30db39dffca5d3a3ab759b48303153b1" category="list-text">削除するDRグループに負荷共有ミラーボリュームが含まれている場合、それらのボリュームを移動することはできません。  別のDRグループにすべての負荷共有ミラーボリュームを再作成し、削除するDRグループ内の負荷共有ミラーボリュームを削除します。</block>
   <block id="0108924065f583138162139c8d2325c4" category="list-text">Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2の手順を一度に1つずつ実行します。</block>
   <block id="61cdeb097cfdf5250ae69244ebf01a62" category="list-text">xWDM構成を使用する場合は、ISLの設定が必要になることがあります。詳細については、xWDMベンダーのドキュメントを参照してください。</block>
   <block id="91debec19d39d0379223807f0659efab" category="section-title">MetroCluster構成での構成の修復</block>
@@ -11975,13 +11952,11 @@
   <block id="0ab751f551b18333e82474f5ca9b4122" category="list-text">MetroCluster IPインターフェイスポートがオンラインであることを確認します。</block>
   <block id="124ba57298a92342f8aec06ebcfb6415" category="inline-link-macro">古いコントローラモジュールのシステムIDの確認</block>
   <block id="3ac27de4b4347c98785ff06870fe7221" category="paragraph"><block ref="3ac27de4b4347c98785ff06870fe7221" category="inline-link-macro-rx"></block></block>
-  <block id="a786547181c9c8f446791420d2be691f" category="paragraph">使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がを参照してください<block ref="f93341e63c1888be05256ff042174623" category="inline-link-rx"></block> 使用している ONTAP のバージョンがシェルフの混在をサポートしているかどうかを確認します。</block>
   <block id="27211cf5d485f8491ca9b566aefe2d6d" category="paragraph">ONTAP 9.4以降のMetroCluster IP構成では、自動ディスク割り当てとアドバンストドライブパーティショニングを使用した新規インストールがサポートされます。</block>
   <block id="e528d26e96f91b34e70a35c4661d620d" category="list-text">AFFおよびASAシステムでMetroCluster IP構成でADPを使用するには、ONTAP 9.4以降が必要です。</block>
   <block id="bc8be72fdc9d6054f356bb2b7f80fd12" category="inline-link">NetApp Interoperability Matrix を参照してください</block>
   <block id="769db6797bc8c70f9ceb0ea238fcfef2" category="list-text"><block ref="769db6797bc8c70f9ceb0ea238fcfef2" category="inline-link-rx"></block></block>
   <block id="c5dcd35af16918a17ee9c3a5c153f0af" category="inline-link">IMT</block>
-  <block id="24d65add9a27d74b80e9a9cebdfc8e56" category="paragraph">使用している ONTAP のバージョンでシェルフの混在がサポートされている必要がお使いのバージョンの ONTAP でシェルフの混在がサポートされているかどうかを確認するには、 Interoperability Matrix Tool （ IMT ）を参照してください。<block ref="30796bf173a80af0dc9c120f98ffaed6" category="inline-link-rx"></block></block>
   <block id="80d79e74efb3cf7c2ad45e7e1c96223d" category="inline-link-macro">NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット</block>
   <block id="9dce4db3e352a666d92ce25dd5f94a51" category="list-text"><block ref="9dce4db3e352a666d92ce25dd5f94a51" category="inline-link-macro-rx"></block></block>
   <block id="59908dc1540a829f2e5b2241e8bda0cd" category="inline-link-macro">NVIDIA IP RCFファイルのダウンロードとインストール</block>
@@ -13974,7 +13949,6 @@
   <block id="c82f2ff1cbd6e1d62e65daba43978db4" category="paragraph">Cisco 9336C-FX2 共有（36ポート）</block>
   <block id="d44a3adbc7ddf926ace3174c29e594fe" category="paragraph">*注:* スイッチ ポート 11 および 12 を使用するには、2 つの速度モードを選択する必要があります。</block>
   <block id="22e6a6026dec5bb5059565b00cc3631c" category="paragraph">移行、更新、8ノードのインストール、および4ノードの拡張手順中に、MetroCluster構成に新しいプラットフォームモデルを追加する場合があります。これらの手順のどの段階でも、既存のMetroCluster構成に*共有クラスタ/HAポート*を使用するプラットフォームが含まれている場合、ONTAPバージョンをONTAP 9.15.1P11またはONTAP 9.16.1P4以降にアップグレードしない限り、*共有MetroCluster/HAポート*を使用するプラットフォームを構成に追加することはできません。</block>
-  <block id="29c802ab86e25c329e4ce82ab207d848" category="sidebar">12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
   <block id="a65cd2f2d334d9927f9c0f2a89dbb2d0" category="paragraph">MetroCluster IP プラットフォームとスイッチ サポートの新機能について説明します。</block>
   <block id="cf42f488bd58e2f8f8819f7c720b93a1" category="paragraph">この手順は、各クラスターで高度な権限モードで実行する必要があります。</block>
   <block id="c836d30393b0f25c968423f5df80b134" category="paragraph">MetroCluster FC 構成のクラスタ インターフェイスを IP スイッチに移動します。</block>
@@ -14373,4 +14347,56 @@
   <block id="ada21e32b58b8c3670abec0c9bd43b39" category="paragraph">アップグレードの組み合わせに必要な bootarg を決定したら、手順に従って古いコントローラーで bootarg を設定します。このタスクは、影響を受けるアップグレードに対してのみ必要です。</block>
   <block id="5c60cc2ba2a9eb0236f0d3ba52d42179" category="admonition">アップグレードを開始する前に、両方のサイトのすべての古いノードで bootarg を設定する必要があります。</block>
   <block id="51e9ae39fa32c368d27f8e565c6a0512" category="cell">AFF A70、 AFF A90、 AFF A1K、FAS70、FAS90、 AFF C80、 AFF A50、 AFF A30、 AFF C30、 AFF C60、またはFAS50システムへのその他すべてのサポートされているアップグレード</block>
+  <block id="9f0a4554064856ae78dbf1c08bc876ce" category="doc">MetroCluster構成からDRグループを削除する</block>
+  <block id="2f5075fd2401e26a07990d72f3087874" category="paragraph">ONTAP 9.8 以降では、8 ノードMetroCluster構成からディザスタ リカバリ (DR) グループを削除して、4 ノードMetroCluster構成を作成できます。</block>
+  <block id="73ac4183b96cb40ebb14a9dc72a13298" category="admonition">これらの手順は、移行およびシステム更新のワークフロー中に使用します。</block>
+  <block id="a17f6afa75b317e25d154b29624badd3" category="section-title">各クラスタからDRグループノードを削除します</block>
+  <block id="b928a73ca232c9fc08d935ad673557de" category="paragraph">この手順は、 ONTAP 9.8 以降でサポートされています。  ONTAP 9.7 以前を実行しているシステムの場合は、次のナレッジベースの記事を参照してください。<block ref="806d9b447def65eba3e3e2e790c033b4" category="inline-link-macro-rx"></block> 。</block>
+  <block id="622b8cea53ef096337834121912a63f3" category="paragraph">DR グループを削除すると、構成内に 4 つのノードが残ります。</block>
+  <block id="c1e5c91114c66e4b9a57d82fcc652acd" category="list-text">まだ DR グループを削除していない場合は、削除する準備をします。</block>
+  <block id="8ab89d8f614450ad9b0a76ce08cf67b8" category="list-text">削除する DR グループに負荷共有ミラー ボリュームがある場合は、別の DR グループにすべての負荷共有ミラー ボリュームを再作成し、削除する DR グループからそれらを削除します。</block>
+  <block id="a59820a1c3cb9db44ad34809c30b9b83" category="list-text">削除する DR グループ内のすべてのデータ集約を削除します。</block>
+  <block id="18fa955273f3f4dcd76a502f9692c60d" category="list-text">NFS および CIFS (SMB) に使用するすべての NAS データ LIF を別の DR グループ内のホーム ノードに移行します。+ <block ref="7317cdd2b96cce163d969aceb2ba0c1d" prefix=" " category="inline-code"></block></block>
+  <block id="8e0e33777ea372d5fe416dcfc835ca44" category="paragraph"><block ref="8eceacf63a83bbfbc3898284abfafa5f" prefix="" category="inline-code"></block></block>
+  <block id="2b3b2e728783f7895871de7434a53e12" category="list-text">データ LIF を別の DR グループ内の新しいホーム ノードに移動します。<block ref="80e0d406ea5fcb2ea137507fb844b0fb" prefix=" " category="inline-code"></block></block>
+  <block id="a91858ed54f0d68645cd08be7b25782c" category="paragraph"><block ref="e5bd5c510f2d91722adf52ff19bb0ab9" prefix="" category="inline-code"></block></block>
+  <block id="d92e3b22372c2adfe757906a8734d8f4" category="list-text">ノード管理LIFとクラスタ間LIFは移行されません。必要に応じて、DR グループのノードに新しいノード管理 LIF とクラスタ間 LIF を作成します。</block>
+  <block id="6a16ef52c4b06b07d8c8d1060e0d49d8" category="list-text">ブロック アクセス (SAN) に使用される FCP インターフェイスをノード間で移行または移動することはできません。必要に応じて新しい FCP インターフェイスを作成します。</block>
+  <block id="e4abc9f15e37b97db879c5cf483a2d4b" category="list-text">ホーム ノードとホーム ポートを更新する前に、iSCSI SAN LIF を停止する必要があります。</block>
+  <block id="8f13be73804a56335a7ee2724f13e633" category="list-text">古い DR グループのノードでストレージ フェイルオーバーを無効にします。</block>
+  <block id="696370864f4b1ce13a84661501b202e5" category="paragraph"><block ref="8c709b243402dd4272dff4833554f25c" prefix="" category="inline-code"></block></block>
+  <block id="05b39754e7e99ec7d60818c2d3ef5bba" category="list-text">MetroCluster IP 構成の場合は、次の手順を実行して、ルート アグリゲートのリモート プレックスを削除し、古い DR グループのノード上のディスク所有権を削除します。</block>
+  <block id="fd413373865c0b35424cdf1d99f3c10f" category="paragraph">これらの手順は、各サイトの HA ペアの両方のノードに対して実行する必要があります。</block>
+  <block id="84822d6e81d1f35f15b06141981b397f" category="list-text">削除する DR グループ内のノード上のルート アグリゲートのリモート プレックスを表示します。</block>
+  <block id="0bd15b64439187d8dac987c630d7df6d" category="paragraph"><block ref="1bb66b043b34f4120f55cc168b2da3dc" prefix="" category="inline-code"></block></block>
+  <block id="eab2196a69a6fdade5e5bf5d4f300856" category="list-text">リモート プレックスを削除します。</block>
+  <block id="7e159c5d7c595db32d7b3fef9000ac19" category="paragraph"><block ref="9f7f42d9161c2d3ca3716315c375f827" prefix="" category="inline-code"></block></block>
+  <block id="fe068f70e1fc61243b2a0632bd6f34cb" category="list-text">DR グループ内のノードが所有するリモート ディスクを識別します。</block>
+  <block id="15ce741616536c482daa7a0532c76ca8" category="paragraph">使用するコマンドは、パーティション/共有ディスクを使用しているか、ディスク全体を使用しているかによって異なります。</block>
+  <block id="176b8742a87f8e897cb6ea9548977e72" category="admonition">カンマ区切りのリストを使用してください<block ref="0953dae02add83b063cc8af7a6dbbff8" prefix=" " category="inline-code"></block>削除する DR グループ内のノード名を指定するフィールド。</block>
+  <block id="4bb92469cfa95bb7785c0e8c0cdc02eb" category="open-title">パーティション/共有ディスク:</block>
+  <block id="0279e95982eb46292810910c2a4325ef" category="list-text">リモート ディスクを表示します。</block>
+  <block id="3c1f3ce500e52cec2b93fb29390a174e" category="paragraph"><block ref="749c9bcb383ea88a6558e404e0fa8cb5" prefix="" category="inline-code"></block></block>
+  <block id="52bb09b18cdb1e6dd2fb3324062c1c47" category="open-title">ディスク全体:</block>
+  <block id="0d1726dab779821975a9ad578a9f0677" category="paragraph"><block ref="6e0d34e5eb1c8ece221755c754743354" prefix="" category="inline-code"></block></block>
+  <block id="3e9c37ca50692bcf4d950da60ba31dd1" category="list-text">ディスクの自動割り当てを無効にする:</block>
+  <block id="b2bd91ffa581589b010f7b0cee5b040a" category="paragraph"><block ref="c24efecdd42a886db73de2bcc158cbdc" prefix="" category="inline-code"></block></block>
+  <block id="b06a58f7c6886b9c75c2b66e25e3b03c" category="list-text">削除する各 DR グループ ノード上の pool1 ディスクの所有権を削除します。削除する各ノードに対してこれらの手順を実行します。</block>
+  <block id="e352d5e820576fb81acd295d2fa6b382" category="list-text">ノードシェルに移動します。</block>
+  <block id="48b6c5e6c91f5afdf4db95fdce26e45f" category="paragraph"><block ref="1bdb752f72609d817a6beb669061c8b6" prefix="" category="inline-code"></block></block>
+  <block id="0d5dee87e76c9a9f9127dd55f7b1e2eb" category="list-text">pool1 ディスクを識別します。</block>
+  <block id="7cb1b8282d7b16c1d998b3403dc7a91f" category="paragraph"><block ref="978a127cc866f54e1830776b846eb9b8" prefix="" category="inline-code"></block></block>
+  <block id="c0b861216beaceb3d375fd9c6df6e6c3" category="paragraph">ノードが所有するプール 0 およびプール 1 スペア ディスクを含むすべてのスペア ディスクが表示されます。</block>
+  <block id="6e07f225393b79b609cb8fc3d86279bf" category="list-text">各プール1スペアディスクのディスク所有権を削除します。</block>
+  <block id="8d0b8b84becd485c7891597b01240458" category="paragraph"><block ref="a2548e43cec4e94df11e259aa9a83a68" prefix="" category="inline-code"></block></block>
+  <block id="c218a756cd011fd52e8951a24e6900e7" category="paragraph">パーティション化されたディスクの場合は、パーティションの所有権を削除してから、コンテナ ディスクの所有権を削除します。</block>
+  <block id="096ee0b68ed0c4989612306aa1e3fbb5" category="list-text">MetroCluster IP 構成の場合は、古い DR グループのノード上のMetroCluster接続を削除します。</block>
+  <block id="bac7003f0be2f7c1ffe91ec5e8146e9e" category="paragraph">これらのコマンドはどちらのクラスターからも発行でき、両方のクラスターにまたがる DR グループ全体に適用されます。</block>
+  <block id="d30c3b2671a8fe1038b0b3608133c703" category="paragraph"><block ref="6864950bb23886bbe435bbce576bc0d6" prefix="" category="inline-code"></block></block>
+  <block id="b1bd9ffb7ba04ba41a6ed8fd479dceb1" category="admonition">この手順は、DR グループの各ノードで繰り返す必要があります。</block>
+  <block id="d321eb0a25003ddc996afe17a7149d6f" category="paragraph">各クラスターでこの手順を実行します。</block>
+  <block id="5dd0fc60033d456ae0a90e5edc267878" category="list-text">ノードを切断: +<block ref="1f9e5247574dddf29bedc560cf209d11" prefix=" " category="inline-code"></block></block>
+  <block id="e1bde148bbf0582fd279d9a3c915b31a" category="list-text">権限レベルをadminに設定します。</block>
+  <block id="5465fc7f055cf03040fda6f777f9a2da" category="list-text">新しい DR グループでクラスター HA が有効になっていることを確認します。必要に応じて、クラスター HA を再度有効にします。</block>
+  <block id="4e7f0491b8337902ce9619e04977796b" category="sidebar">NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
 </blocks>
