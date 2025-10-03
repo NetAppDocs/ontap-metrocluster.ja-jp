@@ -30,7 +30,7 @@ summary: 4 つの新しいコントローラモジュールとストレージシ
 
 次の例では、新しいコントローラモジュールに対応するストレージを提供するために、各サイトにストレージシェルフが 2 台追加されています。
 
-image::../media/transition_2n_4_new_ip_nodes_and_shelves.png[移行 2n 4 つの新しい IP ノードおよびシェルフ]
+image::../media/transition_2n_4_new_ip_nodes_and_shelves.png[移行のための新しい IP ノードとシェルフの配線]
 
 .手順
 . 必要に応じて、新しいコントローラモジュールとストレージシェルフの配置を計画します。
@@ -588,7 +588,7 @@ vserver config override -command 「 network interface revert -lif lifname _ -vs
 * node_B_2 - IP
 
 
-image::../media/transition_2n_booting_a_2_and_b_2.png[2 および b 2 をブートする移行 2n]
+image::../media/transition_2n_booting_a_2_and_b_2.png[移行中に新しい IP ノードを起動する]
 
 .手順
 . ブート・オプション「 9C 」を使用して、新しいノードをブートします。
@@ -802,7 +802,8 @@ node_A_1-IP
              Data: interface_reachable
              ICMP: interface_reachable true       true            true
 node_A_2-IP
-           cluster_B                   node_B_1-IP
+
+image::../media/transition_2n_booting_a_2_and_b_2.png["Booting new IP nodes during transition"]
              Data: interface_reachable
              ICMP: interface_reachable true       true            true
                                        node_B_2-IP

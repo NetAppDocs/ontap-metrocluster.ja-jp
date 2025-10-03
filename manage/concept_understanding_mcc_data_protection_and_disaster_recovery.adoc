@@ -33,7 +33,7 @@ MetroCluster 構成での HA ペアの仕組みを理解する必要がありま
 
 次の図は、 MetroCluster FC 構成を示しています。HA 機能は、 HA インターコネクトがクラスタスイッチで確立されている点を除いて、 MetroCluster IP 構成と同じです。
 
-image::../media/mcc_hw_architecture_local_ha.gif[MCC ハードウェアアーキテクチャローカル HA]
+image::../media/mcc_hw_architecture_local_ha.gif[MetroCluster構成におけるローカルHA]
 
 .関連情報
 link:https://docs.netapp.com/us-en/ontap/high-availability/index.html["ハイアベイラビリティ構成"^]
@@ -83,11 +83,11 @@ NOTE: MetroCluster 構成のデスティネーション SVM の名前には、�
 
 
 
-image::../media/mcc_mirroring_of_svms.gif[SVM の MCC ミラーリング]
+image::../media/mcc_mirroring_of_svms.gif[SVMのMetroClusterミラーリング]
 
 スイッチオーバーでは、サバイバークラスタ上のリモートプレックスがオンラインになり、セカンダリ SVM がデータの提供を開始します。
 
-image::../media/mcc_svms_after_switchover.gif[スイッチオーバー後に SVM を MCC]
+image::../media/mcc_svms_after_switchover.gif[スイッチオーバー後のMetroCluster SVM]
 
 スイッチオーバー後にリモートプレックスを使用できるかどうかは、 MetroCluster の構成タイプによって異なります。
 
@@ -163,7 +163,7 @@ NOTE: スイッチオーバー後に、ミラーされていないアグリゲ�
 
 IMPORTANT: ハイブリッドアグリゲートを使用している場合、ソリッドステートディスク（ SSD ）レイヤがいっぱいになったことが原因で SyncMirror プレックスに障害が発生すると、パフォーマンスが低下する可能性があります。
 
-image::../media/mcc_mirroring_of_pools.gif[プールの MCC ミラーリング]
+image::../media/mcc_mirroring_of_pools.gif[ストレージプールのMetroClusterミラーリング]
 
 
 
@@ -185,9 +185,9 @@ MetroCluster 構成に含まれない HA ペアでは、各ストレージコン
 
 
  a| 
-image:../media/mcc_nvram_quartering.gif[""]
+image:../media/mcc_nvram_quartering.gif["MetroCluster構成における不揮発性キャッシュのクォータリング"]
  a| 
-image:../media/mcc_nvram_split_in_non_mcc_ha_pair.gif[""]
+image:../media/mcc_nvram_split_in_non_mcc_ha_pair.gif["非MetroCluster HAペアにおける不揮発性キャッシュの分割"]
 
 |===
 不揮発性キャッシュには次の情報が格納されます。
@@ -212,7 +212,7 @@ DR 補助パートナーは、ローカルノードの DR パートナーの HA 
 
 たとえば、ノード（ node_A_1 ）のローカルキャッシュは、 MetroCluster サイトでローカルおよびリモートの両方でミラーされます。次の図では、 node_A_1 のローカルキャッシュが、 HA パートナー（ node_B_2 ）と DR パートナー（ node_B_1 ）にミラーされています。
 
-image::../media/mcc_nvram_mirroring_example.gif[MCC NVRAM のミラーリングの例]
+image::../media/mcc_nvram_mirroring_example.gif[MetroCluster NVRAMミラーリングの例]
 
 
 
@@ -222,7 +222,7 @@ image::../media/mcc_nvram_mirroring_example.gif[MCC NVRAM のミラーリング�
 
 たとえば、 node_B_1 で障害が発生し、 node_B_2 によってテイクオーバーされたとします。node_A_1 のローカルキャッシュを node_B_1 にミラーできなくなります。ミラーリング先が DR 補助パートナー node_B_2 に切り替わります。
 
-image::../media/mcc_nvram_mirroring_example_dynamic_dr_aux.gif[MCC NVRAM ミラーリングの例：ダイナミック DR 補助]
+image::../media/mcc_nvram_mirroring_example_dynamic_dr_aux.gif[DR補助機能を備えたMetroCluster NVRAMミラーリング]
 
 
 
@@ -557,7 +557,7 @@ MetroCluster 構成内の元のディスク所有者の ID
 |===
 次の図と表は、物理的には cluster_B に配置されている node_A_1 のディスクプール 1 のディスクについて、所有権が変化する例を示しています
 
-image::../media/mcc_disk_ownership.gif[MCC ディスクの所有権]
+image::../media/mcc_disk_ownership.gif[MetroClusterディスクの所有権]
 
 |===
 
@@ -839,7 +839,7 @@ ONTAP 9.5 以降の MetroCluster IP 構成では、ネゴシエートスイッ�
 
 ONTAP 9.4 以前を実行する MetroCluster IP 構成では、引き続き手動で修復コマンドを実行する必要があります。
 
-image::../media/mcc_so_sb_with_autoheal.gif[自動修復機能を備えた MCC sb]
+image::../media/mcc_so_sb_with_autoheal.gif[自動修復機能を備えたMetroCluster のスイッチオーバーとスイッチバック]
 
 
 
@@ -865,7 +865,7 @@ MetroCluster operation show コマンドを使用すると ' 災害サイト・�
 
 
 
-image::../media/mcc_uso_with_autoheal.gif[自動修復機能を備えた MCC ソ]
+image::../media/mcc_uso_with_autoheal.gif[MetroCluster の自動修復機能による予定外のスイッチオーバー]
 
 
 

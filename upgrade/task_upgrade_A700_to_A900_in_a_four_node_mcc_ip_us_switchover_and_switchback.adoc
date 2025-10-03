@@ -78,7 +78,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 ワークフロー図は、アップグレードタスクを計画する際に役立ちます。
 
-image::../media/workflow_ip_upgrade.png[ワークフロー IP アップグレード]
+image::../media/workflow_ip_upgrade.png[MetroCluster IP構成におけるコントローラのアップグレードのワークフロー]
 
 
 
@@ -438,7 +438,7 @@ site_B のプラットフォームをアップグレードできるように、�
 
 このタスクを完了すると、 site_A がアクティブになり、両方のサイトにデータが提供されます。site_B は非アクティブで、アップグレードプロセスを開始する準備ができています。
 
-image::../media/mcc_upgrade_cluster_a_in_switchover_A900.png[MCC アップグレードクラスタ A をスイッチオーバー A900 でアップグレードします]
+image::../media/mcc_upgrade_cluster_a_in_switchover_A900.png[Site_B は非アクティブで、 MetroClusterスイッチオーバー後にアップグレードの準備ができています]
 
 .手順
 . site_B のノードをアップグレードできるように、 MetroCluster 構成を site_A にスイッチオーバーします。
@@ -493,7 +493,7 @@ MetroCluster node show
 +
 .. カムハンドルのオレンジ色のボタンを下にスライドさせてロックを解除します。
 +
-image::../media/drw_9500_remove_PCM.png[コントローラモジュール]
+image::../media/drw_9500_remove_PCM.png[コントローラモジュールをシャーシから取り外す：ロックを解除してスライドさせる]
 
 +
 |===
@@ -524,7 +524,7 @@ image::../media/drw_9500_remove_PCM.png[コントローラモジュール]
 .. カムラッチを下に回転させて水平にします。NVS がシャーシから外れ、数インチ移動します。
 .. NVS をシャーシから取り外すには、モジュール前面の両側にあるプルタブを引いてください。
 +
-image::../media/drw_a900_move-remove_NVRAM_module.png[モジュールを取り外します]
+image::../media/drw_a900_move-remove_NVRAM_module.png[シャーシからNVRAMモジュールを取り外す：ロックを解除してタブを引きます]
 
 +
 |===
@@ -559,7 +559,7 @@ image::../media/drw_a900_move-remove_NVRAM_module.png[モジュールを取り�
 . NVS をスロット 6 のシャーシ開口部の端に合わせます。
 . NVS をスロットにそっと挿入し、文字と数字が記載された I/O カムラッチを上に押して NVS を所定の位置にロックします。
 +
-image::../media/drw_a900_move-remove_NVRAM_module.png[モジュールを取り外します]
+image::../media/drw_a900_move-remove_NVRAM_module.png[NVRAMモジュールをシャーシに取り付ける：位置を合わせてロックする]
 
 +
 |===
@@ -583,7 +583,7 @@ image::../media/drw_a900_move-remove_NVRAM_module.png[モジュールを取り�
 . コントローラモジュールをシャーシに挿入し、ミッドプレーンまでしっかりと押し込んで完全に装着します。コントローラモジュールが完全に装着されると、ロックラッチが上がります。注意：コネクタの破損を防ぐため、コントローラモジュールをシャーシに挿入する際に力を入れすぎないように注意してください。
 . 管理ポートとコンソールポートをコントローラモジュールにケーブル接続します。
 +
-image::../media/drw_9500_remove_PCM.png[コントローラモジュール]
+image::../media/drw_9500_remove_PCM.png[コントローラモジュールをシャーシに取り付ける：位置合わせ、固定、ケーブル接続]
 
 +
 |===
@@ -1320,7 +1320,7 @@ vserver config override コマンドで network interface modify コマンドを
 
 このタスクでは、スイッチバック処理を実行し、 MetroCluster 構成が通常運用時の状態に戻ります。site_A のノードはまだアップグレード待ちです。
 
-image::../media/mcc_upgrade_cluster_a_switchback_A900.png[MCC アップグレードクラスタ A スイッチバック A900]
+image::../media/mcc_upgrade_cluster_a_switchback_A900.png[MetroClusterスイッチバック後のアップグレードを待機中の Site_A]
 
 .手順
 . site_B の MetroCluster node show コマンドを問題し ' 出力を確認します

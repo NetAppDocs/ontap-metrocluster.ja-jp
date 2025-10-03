@@ -23,15 +23,15 @@ summary: 無停止移行を成功させるには、特定のワークフロー�
 
 移行プロセスは、正常な 4 ノード MetroCluster FC 構成から始まります。
 
-image::../media/transition_dr_group_1_fc_nodes.png[移行 DR グループ 1 の FC ノード]
+image::../media/transition_dr_group_1_fc_nodes.png[DRグループ1のFCノードの移行]
 
 新しい MetroCluster IP ノードは 2 つ目の DR グループとして追加されます。
 
-image::../media/transition_dr_groups_fc_and_ip.png[移行 DR グループ FC および IP]
+image::../media/transition_dr_groups_fc_and_ip.png[FCノードとIPノードの両方が存在する移行DRグループ]
 
 データが古い DR グループから新しい DR グループに転送され、古いノードとそのストレージが構成から削除されて運用が停止されます。プロセスは、 4 ノード MetroCluster の IP 構成で終了します。
 
-image::../media/transition_dr_group_2_ip.png[DR グループ 2 の IP を移行します]
+image::../media/transition_dr_group_2_ip.png[DRグループ2のIPノードの移行]
 
 
 
@@ -39,26 +39,26 @@ image::../media/transition_dr_group_2_ip.png[DR グループ 2 の IP を移行�
 
 移行プロセスは、正常な8ノードMetroCluster FC構成から始まります。
 
-image::../media/mcc_dr_group_c1.png[mcc DRグループc1]
+image::../media/mcc_dr_group_c1.png[移行前の8ノードMetroCluster FC構成]
 
 新しいMetroCluster IPノードが3つ目のDRグループとして追加されます。
 
-image::../media/mcc_dr_group_c2.png[MCC DRグループC2]
+image::../media/mcc_dr_group_c2.png[3 番目の DR グループとして IP ノードが追加された 8 ノード構成]
 
 データがDR_GROUP_1-FCからDR_GROUP_1-IPに転送され、古いノードとそのストレージが構成から削除されて運用が停止されます。
 
 
 NOTE: 8ノードFC構成から4ノードIP構成に移行する場合は、dr_group_1-FCおよびdr_group_2-FCのすべてのデータを新しいIP DRグループ（dr_group_1-IP）に移行する必要があります。その後、両方のFC DRグループの運用を停止できます。FC DRグループを削除すると、4ノードのMetroCluster IP構成でプロセスが終了します。
 
-image::../media/mcc_dr_group_c8.png[MCC DRグループC8]
+image::../media/mcc_dr_group_c8.png[最初の DR グループ移行後の 8 ノード構成]
 
 残りのMetroCluster IPノードを既存のMetroCluster 構成に追加します。同じ手順を繰り返して、dr_group_2-FCノードからdr_group_2-IPノードにデータを転送します。
 
-image::../media/mcc_dr_group_c7.png[MCC DRグループC7]
+image::../media/mcc_dr_group_c7.png[残りのIPノードを追加した8ノード構成]
 
 dr_group_2-FCを削除すると、8ノードのMetroCluster IP構成でプロセスが終了します。
 
-image::../media/mcc_dr_group_c6.png[MCC DRグループC6]
+image::../media/mcc_dr_group_c6.png[移行後の8ノードMetroCluster IP構成]
 
 
 
@@ -66,4 +66,4 @@ image::../media/mcc_dr_group_c6.png[MCC DRグループC6]
 
 MetroCluster 構成を移行するには、次のワークフローを使用します。
 
-image::../media/workflow_4n_transition_nondisruptive.png[ワークフロー 4n による無停止の移行]
+image::../media/workflow_4n_transition_nondisruptive.png[中断のない4ノード移行のワークフロー]

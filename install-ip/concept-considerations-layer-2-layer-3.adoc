@@ -60,7 +60,7 @@ ONTAP 9.9.1以降では、MetroCluster IP設定をIPルーテッド（レイヤ3
 
 MetroClusterバックエンドスイッチがお客様のネットワークに接続されている。
 
-image::../media/MCC_layer2.png[MCCレイヤ2]
+image::../media/MCC_layer2.png[MetroClusterレイヤー 2 ネットワーク構成]
 
 お客様側で用意する中間スイッチは、次の要件を満たしている必要があります。
 
@@ -101,7 +101,7 @@ NOTE: 上記のシステムは、VLAN 100以下を使用して設定できます
 
 MetroCluster バックエンドスイッチは、ルータに直接接続するか（次の簡単な例を参照）、または他の介在するスイッチを介してルーティングされた IP ネットワークに接続されます。
 
-image::../media/mcc_layer3_backend.png[MCC レイヤ 3 バックエンド]
+image::../media/mcc_layer3_backend.png[MetroClusterレイヤー 3 バックエンド ネットワーク構成]
 
 MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構成で構成およびケーブル接続されます link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_parts_of_an_ip_mcc_configuration_mcc_ip.html["MetroCluster ハードウェアコンポーネントを設定します"]。手順のインストールとケーブル接続を実行する場合は、レイヤ3構成に固有の手順を実行する必要があります。次の環境レイヤ3設定
 
@@ -138,11 +138,11 @@ MetroClusterトラフィックが中間ネットワークのISLを経由する�
 
 次の図に、NetApp検証済みCiscoスイッチを使用する場合の必要な設定の概要を示します。
 
-image::../media/switch_traffic_with_cisco_switches.png[Cisco スイッチでトラフィックを切り替えます]
+image::../media/switch_traffic_with_cisco_switches.png[MetroClusterトラフィックにNetApp認定のCiscoスイッチを使用する場合に必要な設定]
 
 次の図は、外部スイッチがBroadcom IPスイッチの場合の共有ネットワークに必要な設定の概要を示しています。
 
-image::../media/switch_traffic_with_broadcom_switches.png[Broadcom スイッチでトラフィックを切り替えます]
+image::../media/switch_traffic_with_broadcom_switches.png[Broadcom IPスイッチを使用する場合の共有ネットワークに必要な設定]
 
 この例では、 MetroCluster トラフィックに対して次のポリシーとマップが作成されます。
 

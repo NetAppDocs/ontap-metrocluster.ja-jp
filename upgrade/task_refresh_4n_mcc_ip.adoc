@@ -18,12 +18,16 @@ ONTAP 9.13.1以降では、8ノードMetroCluster IP構成のコントローラ�
 ONTAP 9.8以降では、4ノードMetroCluster IP構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な8ノード構成にしてから、古いDRグループを削除します。
 
 .重要な情報
-移行、更新、および拡張手順中に、MetroCluster構成に新しいプラットフォームモデルを追加する場合があります。これらの手順のどの段階でも、既存のMetroCluster構成に*共有クラスタ/HAポート*を使用するプラットフォームが含まれている場合、ONTAPバージョンをONTAP 9.15.1P11またはONTAP 9.16.1P4以降にアップグレードしない限り、*共有MetroCluster/HAポート*を使用するプラットフォームを構成に追加することはできません。
+次のガイダンスは、新しいプラットフォーム モデル ( ONTAP 9.15.1 以降でリリースされたプラットフォーム) を含む既存のMetroCluster構成に古いプラットフォーム モデル ( ONTAP 9.15.1 より前にリリースされたプラットフォーム) を追加する必要がある、まれなシナリオを対象としています。
 
-この手順を使用する前に、次の表の情報をよく確認してください。既存のプラットフォームが最初の列にリストされており、構成に追加するプラットフォームが2番目の列にリストされている場合、この手順を実行するには、構成内のすべてのノードでONTAP 9.15.1P11またはONTAP 9.16.1P4以降が実行されている必要があります。
+既存のMetroCluster構成に、*共有クラスタ/HA ポート* を使用するプラットフォーム ( ONTAP 9.15.1 以降でリリースされたプラットフォーム) が含まれている場合、構成内のすべてのノードをONTAP 9.15.1P11 またはONTAP 9.16.1P4 以降にアップグレードせずに、*共有MetroCluster/HA ポート* を使用するプラットフォーム ( ONTAP 9.15.1 より前にリリースされたプラットフォーム) を追加することはできません。
 
+[CAUTION]
+====
+*共有/ MetroCluster HA ポート* を使用する古いプラットフォーム モデルを、*共有クラスタ/HA ポート* を使用する新しいプラットフォーム モデルを含むMetroClusterに追加することはまれなシナリオであり、ほとんどの組み合わせは影響を受けません。
 
-CAUTION: 既存のプラットフォームと構成に追加するプラットフォームの両方で、ONTAP 9.15.1P11 または ONTAP 9.16.1P4 以降が実行されている必要があります。
+====
+次の表を使用して、組み合わせが影響を受けるかどうかを確認してください。既存のプラットフォームが最初の列にリストされ、構成に追加するプラットフォームが 2 番目の列にリストされている場合、新しい DR グループを追加するには、構成内のすべてのノードでONTAP 9.15.1P11 またはONTAP 9.16.1P4 以降が実行されている必要があります。
 
 [cols="20,20,20,20,20"]
 |===
@@ -85,10 +89,11 @@ CAUTION: 既存のプラットフォームと構成に追加するプラット�
 * IPスイッチもアップグレードする場合は、このリフレッシュ手順 を実行する前にスイッチをアップグレードする必要があります。
 * この手順 では、1つの4ノードDRグループを更新するために必要な手順について説明します。8ノード構成（DRグループが2つ）の場合は、一方または両方のDRグループを更新できます。
 +
-両方のDRグループを更新する場合は、一度に1つのDRグループを更新する必要があります。
-
-* 「古いノード」とは、置き換えるノードを意味します。
-* 8ノード構成では、ソースとターゲットの8ノードMetroCluster プラットフォームの組み合わせがサポートされている必要があります。
+....
+ Refresh DR groups one at a time.
+* References to "old nodes" mean the nodes that you intend to replace.
+* For eight-node configurations, the source and target eight-node MetroCluster platform combination must be supported.
+....
 +
 
 NOTE: 両方のDRグループを更新する場合、最初のDRグループを更新したあとにプラットフォームの組み合わせがサポートされないことがあります。サポートされる8ノード構成にするには、両方のDRグループを更新する必要があります。
@@ -132,19 +137,19 @@ MetroCluster IP設定を更新するには、次の手順を実行します。
 この段階では、次の図に示すように 4 ノード構成が表示されます。
 
 +
-image::../media/mcc_dr_group_a.png[MCC DR グループ A]
+image::../media/mcc_dr_group_a.png[拡張前のMetroCluster IP 4ノード構成]
 
 +
 次の図のような8ノード構成が表示されます。
 
 +
-image::../media/mcc_dr_groups_8_node.gif[MCC DR グループ 8 ノード]
+image::../media/mcc_dr_groups_8_node.gif[拡張後の 8 つのノードを持つMetroCluster IP 構成]
 
 . サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。
 +
 .. 次のコマンドを問題で実行します。 + 「 system node AutoSupport invoke -node * -type all -message 」 MAINT=10h Upgrading _old-model_To _new-model 」 _`
 +
-次の例は、 10 時間のメンテナンス時間を指定します。プランによっては、さらに時間をかけたい場合もあります。
+次の例では、メンテナンス時間を10時間にしています。計画に応じて追加の時間を確保してください。
 
 +
 この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。
@@ -212,11 +217,11 @@ MetroCluster 構成設定のメディエーターが削除されました
 
 +
 .8ノードの一時的な構成
-image::../media/mcc_dr_group_b.png[MCC DR グループ b]
+image::../media/mcc_dr_group_b.png[拡張およびCRSボリューム移行後のMetroCluster構成]
 
 +
 .一時的な12ノード構成
-image::../media/mcc_dr_group_c4.png[MCC DRグループC4]
+image::../media/mcc_dr_group_c4.png[一時的な12ノードのMetroCluster構成]
 
 . 両方のクラスタで次のコマンドを実行して、テイクオーバーが可能で、ノードが接続されていることを確認します。
 +
@@ -352,17 +357,17 @@ cluster_B::>
 
 
 . の手順に従います link:concept_removing_a_disaster_recovery_group.html["ディザスタリカバリグループを削除しています"] をクリックして、古いDRグループを削除します。
-. 8ノード構成で両方のDRグループを更新する場合は、各DRグループに対して手順 全体を繰り返す必要があります。
+. 8 ノード構成で両方の DR グループを更新する必要がある場合は、各 DR グループに対して手順全体を繰り返します。
 +
 古いDRグループを削除すると、次の図のような設定が表示されます。
 
 +
 .4 ノード構成
-image::../media/mcc_dr_group_d.png[MCC DR グループ d]
+image::../media/mcc_dr_group_d.png[古いDRグループを削除した後のMetroCluster構成]
 
 +
 .8ノード構成
-image::../media/mcc_dr_group_c5.png[MCC DRグループC5]
+image::../media/mcc_dr_group_c5.png[最終的な8ノードMetroCluster構成]
 
 . MetroCluster 構成の運用モードを確認し、 MetroCluster チェックを実行
 +

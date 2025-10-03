@@ -29,7 +29,7 @@ MetroCluster IP 構成での MetroCluster IP アドレスとインターフェ�
 
 MetroCluster IP 構成では、 HA ペア間および DR パートナー間でのストレージと不揮発性キャッシュのレプリケーションが、 MetroCluster IP ファブリック内の広帯域の専用リンクを使用して行われます。ストレージのレプリケーションには iSCSI 接続が使用されます。IP スイッチは、ローカルクラスタ内のすべてのクラスタ内トラフィックにも使用されます。MetroCluster トラフィックは、別の IP サブネットと VLAN を使用することでクラスタ内トラフィックから分離されます。MetroCluster IP ファブリックは、クラスタピアリングネットワークとは別のものです。
 
-image::../media/mcc_ip_ip_subnets.gif[MCC IP サブネット]
+image::../media/mcc_ip_ip_subnets.gif[MetroCluster IPサブネットとVLANの分離]
 
 MetroCluster IP 構成では、バックエンド MetroCluster IP ファブリック用に予約された IP アドレスが各ノードに 2 つ必要です。予約された IP アドレスは、初期設定時に MetroCluster IP の論理インターフェイス（ LIF ）に割り当てられます。この IP アドレスの要件は次のとおりです。
 

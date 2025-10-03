@@ -422,14 +422,14 @@ SVM を SnapMirror ディザスタリカバリで使用する場合は、次の�
 次の図は、安定した状態における SVM ディザスタリカバリの動作を示しています。
 
 +
-image::../media/svm_dr_normal_behavior.gif[SVM DR は正常な動作です]
+image::../media/svm_dr_normal_behavior.gif[定常状態動作中のSVM災害復旧]
 
 * SVM DR 関係のソースが同期元の SVM の場合、ソースの SVM DR 関係情報が MetroCluster パートナーにレプリケートされます。
 +
 これにより、次の図に示すように、スイッチオーバー後も SVM DR の更新を続行できます。
 
 +
-image::../media/svm_dr_image_2.gif[SVM DR イメージ 2.]
+image::../media/svm_dr_image_2.gif[スイッチオーバー後のSVM災害復旧]
 
 * スイッチオーバーおよびスイッチバックの実行中に、 SVM DR のデスティネーションへのレプリケーションが失敗することがあります。
 +
@@ -447,7 +447,7 @@ image::../media/svm_dr_image_2.gif[SVM DR イメージ 2.]
 
 再同期中は、次の図に示すように、ソース SVM （ cluster_A ）が一時的にデスティネーション SVM として機能します。
 
-image::../media/svm_dr_resynchronization.gif[SVM DR 再同期化]
+image::../media/svm_dr_resynchronization.gif[SVM災害復旧の再同期]
 
 
 
