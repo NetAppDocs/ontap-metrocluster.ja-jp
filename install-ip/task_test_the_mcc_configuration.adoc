@@ -20,7 +20,7 @@ summary: 障害シナリオをテストして、 MetroCluster 構成が正しく
 ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。
 
 .このタスクについて
-このテストでは、クラスタを 2 つ目のデータセンターに切り替えてデータの可用性に影響がないことを検証します。ただし、 Microsoft Server Message Block （ SMB ；サーバメッセージブロック）プロトコルおよび Solaris Fibre Channel プロトコルは除きます。
+このテストでは、クラスターを 2 番目のデータ センターに切り替えても、データの可用性が影響を受けないこと (SMB およびファイバ チャネル プロトコルを除く) を検証します。
 
 このテストには約 30 分かかります。
 
@@ -100,8 +100,6 @@ Remote: cluster_B               not-reachable          -
 +
 [listing]
 ----
-cluster_A::>  metrocluster operation show
-
 cluster_A::> metrocluster operation show
   Operation: switchover
       State: successful
@@ -175,7 +173,7 @@ Group Cluster Node               State          Mirroring Mode
               node_A_1         configured     enabled   heal roots completed
       cluster_B
               node_B_2         unreachable    -         switched over
-42 entries were displayed.metrocluster operation show
+42 entries were displayed.
 ----
 +
 何らかの理由で自動修復操作が失敗した場合は、 ONTAP 9.5 より前のバージョンの ONTAP の場合と同様に、 MetroCluster heal` コマンドを手動で問題する必要があります。修復のステータスを監視し、障害の原因を判別するには、 MetroCluster operation show および MetroCluster operation history show -instance コマンドを使用します。

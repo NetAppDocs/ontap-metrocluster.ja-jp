@@ -4203,7 +4203,6 @@
   <block id="7e756142ca24020ffa4d2170bdd9c135" category="paragraph">障害シナリオをテストして、 MetroCluster 構成が正しく動作していることを確認できます。</block>
   <block id="397065d1ea76a7267c1165f18aff1479" category="section-title">ネゴシエートスイッチオーバーを検証中</block>
   <block id="03daa0db748f01eb3873a439b3ee1ab5" category="paragraph">ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。</block>
-  <block id="3b84985a3046a49bcea85f56e3a28bac" category="paragraph">このテストでは、クラスタを 2 つ目のデータセンターに切り替えてデータの可用性に影響がないことを検証します。ただし、 Microsoft Server Message Block （ SMB ；サーバメッセージブロック）プロトコルおよび Solaris Fibre Channel プロトコルは除きます。</block>
   <block id="224eed3317652f7fd4510c7cd1f9c926" category="paragraph">このテストには約 30 分かかります。</block>
   <block id="962f0cdcd4aeaa5d7a845c907458b869" category="paragraph">この手順の想定される結果は次のとおりです。</block>
   <block id="1faa3b4e66d97f34777f91b4ea9930d9" category="list-text">MetroCluster switchover コマンドは ' 警告プロンプトを表示します</block>
@@ -5721,7 +5720,6 @@
   <block id="5b40bcb2b8f219e462b2be259c9f9ca0" category="paragraph">9.8 より前のバージョンの ONTAP を実行しているシステムでは、 MetroCluster 構成の FC-to-SAS ブリッジを監視するには、いくつかの特別な設定手順を実行する必要があります。</block>
   <block id="2e520a1b682a16f2dd769ccc659bb91f" category="paragraph">「 storage bridge add -address 0.0.0.0 -managed by in-band-name bridge-name 」と入力します</block>
   <block id="619f93caa0c27ba9b6068c4c105a7868" category="paragraph">「 storage bridge add -address bridge-ip-address -name bridge-name</block>
-  <block id="2e012ade7bab556f0392337c78739376" category="paragraph">次の例は、正常な 4 ノード MetroCluster 構成の MetroCluster check cluster show コマンドの出力を示しています。この出力は、必要に応じてネゴシエートスイッチオーバーを実行できる状態であることを示しています。</block>
   <block id="f6593cf23130819e409398933f0aaaf0" category="section-title">ローカル HA の処理を検証しています</block>
   <block id="1fc888e4b44a770160a429e97648d3ee" category="paragraph">4 ノード MetroCluster 構成の場合、 MetroCluster 構成のローカル HA ペアの処理を検証する必要があります。2 ノード構成の場合は不要です。</block>
   <block id="225a700989ad161efc2f148c77ec5bf3" category="paragraph">2 ノード MetroCluster 構成ではローカル HA ペアは構成されないため、このタスクは適用されません。</block>
@@ -7171,8 +7169,6 @@
   <block id="f697b3488e8c346fc3a6e11a2ee8761b" category="list-text">MetroCluster FC ノードをブートします。</block>
   <block id="dc883740b10089cb91865f7c96fc5ac5" category="paragraph">これらの手順を両方の MetroCluster FC ノードで実行する必要があります。</block>
   <block id="f433c39c3c339b913b2223e31d633f9d" category="list-text">メンテナンスモードに戻ります。</block>
-  <block id="b89bea07847accf12561ace475459c4d" category="list-text">ノードをメンテナンスでブートします。</block>
-  <block id="fd02d447099008ddc827133dc034246f" category="paragraph">「 ode ： boot_ontap maint 」となっています</block>
   <block id="77036813f81882d81f97721da98db74b" category="list-text">ノードを停止します :+`halt</block>
   <block id="6b94bbc1027af03d0236cf3e340aaee9" category="list-text">ノードがブートしたら、ノードのステータスを確認します。</block>
   <block id="0161fa0543afb66faaedd2d30421113b" category="inline-link-macro">MetroCluster IP 構成でのスイッチバックの準備</block>
@@ -11764,8 +11760,6 @@
   <block id="daf3fcb291d6eb9e42a7777197caa458" category="sidebar">MetroCluster FCからMetroCluster IPへの変換</block>
   <block id="822970998ef8866cd59ed6ba8d63af83" category="sidebar">MetroCluster IP RCF ファイルをアップグレードします</block>
   <block id="b7c02f1bc7ffc889ddb9e99702663c56" category="sidebar">ATTO ブリッジファームウェア</block>
-  <block id="ddac5beff5f77bf22595caa98bac08f9" category="sidebar">FibreBridge 7600N</block>
-  <block id="dcb741f9e6e5d6050aeb3d8fd347e9fd" category="sidebar">FibreBridge 7500N</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">リソースの追加</block>
   <block id="fa0344a10c89a05b4e9232391d5feb01" category="sidebar">NetApp Config Advisor の略</block>
   <block id="3f2b90ec5a9b43745b9c8c9fedf48d8d" category="sidebar">ネットアップのサポートナレッジベース</block>
@@ -13815,7 +13809,6 @@
   <block id="912e887f8c2036c3f03ac7df63957dfd" category="paragraph">9336C-FX2 (36ポート)</block>
   <block id="5f972a786e3a36fb039bc945267e120a" category="paragraph">3132Q-V</block>
   <block id="f403fff2bbc7f3e506dae47b9dff52fc" category="paragraph">3232C</block>
-  <block id="addb9e70976c2f94b8ccfc3736a31888" category="paragraph-title">重要な情報</block>
   <block id="38c9e66a6eb25313e0ea3390ba7ee1fc" category="cell">既存の MetroCluster に以下が含まれている場合...</block>
   <block id="afe6ad7caef50aaad15afb83c6f40ca0" category="cell">追加するプラットフォームは...</block>
   <block id="12f30f47d5034530ccaa816ade9953fc" category="paragraph">*共有クラスター/HA ポート* を使用する AFF システム:</block>
@@ -14423,4 +14416,11 @@
   <block id="55eb6bfcca1bd3820b0fdab3d788f833" category="image-alt">NVRAMモジュールをシャーシに取り付ける：位置を合わせてロックする</block>
   <block id="40a8cc8505d7467bde3321410a6e4017" category="image-alt">コントローラモジュールをシャーシに取り付ける：位置合わせ、固定、ケーブル接続</block>
   <block id="ede06bff35d481aeb275fc59e8e85067" category="image-alt">MetroClusterスイッチバック後のアップグレードを待機中の Site_A</block>
+  <block id="cee412eec19a9c7ecf8848f3e299f815" category="list-text">ノードをメンテナンス モードで起動します。</block>
+  <block id="a9efd65de6ec4fcf881629fcb763598c" category="paragraph">このテストでは、クラスターを 2 番目のデータ センターに切り替えても、データの可用性が影響を受けないこと (SMB およびファイバ チャネル プロトコルを除く) を検証します。</block>
+  <block id="85d885cec8ed47ee2262192224675e42" category="paragraph-title">古いプラットフォームモデルを追加する場合の重要な情報</block>
+  <block id="5176f2410e7713f8043052235a3684ca" category="inline-link-macro">必要なブート引数を設定する</block>
+  <block id="101589f08b3d384effc16cfe928ff010" category="admonition">*コントローラーをアップグレードするたびに、この手順を記載どおりに実行する必要があります。*新しいプラットフォームがリリースされると、従う必要のある新しい手順や変更された手順が発生する可能性があります。たとえば、 ONTAP 9.15.1以降で導入されたプラットフォームにアップグレードする場合は、 <block ref="c06c0a0b6c863a89cb5464010bbb6325" category="inline-link-macro-rx"></block> アップグレードを成功させるには、その他の追加手順を実行します。</block>
+  <block id="362bfa10bf4c8597f25d4428db1f1ff6" category="admonition">*コントローラーをアップグレードするたびに、この手順を記載どおりに実行する必要があります。*新しいプラットフォームがリリースされると、従う必要のある新しい手順や変更された手順が発生する可能性があります。たとえば、 ONTAP 9.15.1以降で導入されたプラットフォームにアップグレードする場合は、 <block ref="cecfc2493a1700137e5c8906925909ad" category="inline-link-macro-rx"></block> アップグレードを成功させるには、その他の追加手順を実行します。</block>
+  <block id="8fe05c00237e990eab631a7b042cf93c" category="sidebar">ATTO FibreBridgeファームウェアのダウンロード</block>
 </blocks>
