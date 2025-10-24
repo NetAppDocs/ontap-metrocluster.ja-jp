@@ -11156,13 +11156,11 @@
   <block id="b6c12395a961cf95058c6e4d4412ac09" category="paragraph">次の表に、MetroCluster準拠スイッチのネットワーク速度とスイッチポートモードをプラットフォーム別に示します。表に従ってスイッチポートモードを設定する必要があります。</block>
   <block id="8c425f952493015588fb91113b5b2dd8" category="summary">ここでは、すべてのMetroCluster IP構成およびネットワークトポロジでMetroClusterトラフィックを伝送するスイッチ間リンク（ISL）の要件について説明します。</block>
   <block id="422a6c8c8d23cb29ed822adac0da8cd9" category="paragraph">すべてのMetroCluster IP構成およびネットワークトポロジでMetroClusterトラフィックを伝送するスイッチ間リンク（ISL）には、一定の要件があります。これらの要件は、お客様のスイッチ間でISLを直接接続するか共有するかに関係なく、MetroClusterトラフィックを伝送するすべてのISLに適用されます。</block>
-  <block id="78464639db6e6acf657d9d576a0f2888" category="section-title">MetroCluster ISLの一般的な要件</block>
   <block id="a5c426f5b72cbfd96a6dec4a6e3046d2" category="paragraph">すべてのMetroCluster IP構成の次の環境ISL：</block>
   <block id="f2fe3be43c081827bf52c1013416d414" category="list-text">ISLの数は両方のファブリックで同じである必要があります。</block>
   <block id="baf55d93093b54950152b6be3f9bfec2" category="list-text">1つのファブリックのISLは、速度と長さがすべて同じである必要があります。</block>
   <block id="4b00dc01ca120693f1539bf736f11069" category="list-text">ISLの速度と長さは、両方のファブリックで同じである必要があります。</block>
   <block id="ef6ab3e28db1093c7315b30edeb84730" category="list-text">サポートされるファブリック1とファブリック2の距離の最大差は20km（0.2ms）です。</block>
-  <block id="ddf41f2636c98d00a2698837f55a3f74" category="list-text">ISLの速度は10Gbps以上である必要があります。</block>
   <block id="cb806a9b25dfb1d4470413a3c2dd9944" category="list-text">ファブリックごとに10Gbps ISLポートが少なくとも1つ必要です。</block>
   <block id="25b13aa97e6e9eb228478bfddbcc84e9" category="paragraph">安定した状態でのMetroCluster構成でのsite_Aとsite_BのMetroCluster IPスイッチ間の次の環境ラウンドトリップトラフィック。</block>
   <block id="ae36a5fd21eb894eb914590a632f59c9" category="list-text">2 つの MetroCluster サイト間の距離が長くなるとレイテンシが増加します。通常、ラウンドトリップ遅延時間は 100km （ 62 マイル）ごとに 1 ミリ秒程度です。レイテンシは、ネットワーク上のISLリンクの帯域幅、パケットドロップレート、およびジッタに関して、ネットワークのService Level Agreement（SLA；サービスレベルアグリーメント）にも左右されます。低帯域幅、高ジッタ、およびランダムなパケットドロップは、パケット配信を成功させるために、スイッチまたはコントローラモジュール上のTCPエンジンによって異なるリカバリメカニズムをもたらします。このようなリカバリメカニズムによって、全体的なレイテンシが増加することがあり構成のラウンドトリップレイテンシおよび最大距離の要件の詳細については、を参照してください <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block></block>
@@ -14423,4 +14421,8 @@
   <block id="101589f08b3d384effc16cfe928ff010" category="admonition">*コントローラーをアップグレードするたびに、この手順を記載どおりに実行する必要があります。*新しいプラットフォームがリリースされると、従う必要のある新しい手順や変更された手順が発生する可能性があります。たとえば、 ONTAP 9.15.1以降で導入されたプラットフォームにアップグレードする場合は、 <block ref="c06c0a0b6c863a89cb5464010bbb6325" category="inline-link-macro-rx"></block> アップグレードを成功させるには、その他の追加手順を実行します。</block>
   <block id="362bfa10bf4c8597f25d4428db1f1ff6" category="admonition">*コントローラーをアップグレードするたびに、この手順を記載どおりに実行する必要があります。*新しいプラットフォームがリリースされると、従う必要のある新しい手順や変更された手順が発生する可能性があります。たとえば、 ONTAP 9.15.1以降で導入されたプラットフォームにアップグレードする場合は、 <block ref="cecfc2493a1700137e5c8906925909ad" category="inline-link-macro-rx"></block> アップグレードを成功させるには、その他の追加手順を実行します。</block>
   <block id="8fe05c00237e990eab631a7b042cf93c" category="sidebar">ATTO FibreBridgeファームウェアのダウンロード</block>
+  <block id="4500ea599da00d6db7bf0ffa4e13554f" category="section-title">MetroCluster ISL要件</block>
+  <block id="1e2cb5bcdb8947c91d9b70a1c5ee21c0" category="list-text">必要な最小 ISL 速度はプラットフォーム モデルによって異なります。</block>
+  <block id="fe25d0e834bbf213fee0bc910f4a7054" category="list-text">AFF A1KおよびAFF A90システムでは、ISL 速度は少なくとも 100 Gbps である必要があります。異なる ISL 速度を使用するには、Feature Product Variance Request (FPVR) が必要です。FPVR を提出するには、営業チームにお問い合わせください。</block>
+  <block id="9260215cd28aa0daaf49857a4307ca43" category="list-text">その他のすべてのプラットフォームでは、ISL 速度は少なくとも 10Gbps である必要があります。</block>
 </blocks>
