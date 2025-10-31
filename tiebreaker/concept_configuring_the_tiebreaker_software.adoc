@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: installation, tiebreaker, software, add, modify, metrocluster, configuration, remove, configuring, configure, launch, cli, add, command, modify, removing 
 summary: Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を追加または変更したり、 Tiebreaker ソフトウェアから削除したりできます。 
 ---
-= Tiebreaker ソフトウェアを設定します
+= MetroCluster Tiebreakerソフトウェアを構成する
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -15,7 +15,7 @@ Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構�
 
 
 
-== Tiebreaker ソフトウェアの CLI を起動します
+== TiebreakerソフトウェアCLIを起動する
 
 Tiebreakerソフトウェアをインストールしたら、CLIを起動してソフトウェアを設定する必要があります。
 
@@ -28,7 +28,7 @@ NetApp-metrocluster-Tiebreaker software-cli
 
 
 
-== MetroCluster 構成を追加しています
+== MetroCluster 構成を追加
 
 NetApp MetroCluster Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を 1 つずつ追加できます。
 
@@ -78,6 +78,39 @@ Are you sure you want to enable automatic switchover capability for monitor "8pa
 
 .関連情報
 link:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html["MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項"]
+
+
+
+== 証明書をインポートする
+
+Tiebreaker 1.6 以降でシームレスな監視を有効にするには、サーバの Secure Sockets Layer (SSL) 証明書、中間証明書 (存在する場合)、およびルート証明書をONTAPから Java 仮想マシン (JVM) のキー ストアにインポートする必要があります。
+
+.このタスクについて
+* このタスクは、Tiebreaker 1.6 以降で必須です。
+* このタスクは、 MetroCluster構成を Tiebreaker に正常に追加した後、または証明書の有効期限が切れた後に実行します。
+
+
+.ステップ
+. インポートする必要がある証明書 (SSL サーバー、中間、またはルート) ごとに次のコマンドを実行します。
++
+`/opt/netapp/java/bin/keytool -import -trustcacerts -file <certificate_file_name> -keystore "/opt/netapp/java/lib/security/cacerts" -alias <certificate>`
+
++
+** その `<certificate_file_name>` 値には、インポートする証明書のファイル名を指定します。
+** その `-alias <certificate>` 値は、証明書を JVM にインポートした後に証明書を保存する名前を指定します。
++
+次の例は、ファイル名のルート証明書をインポートする方法を示しています。 `root.crt` ファイル名のSSLサーバー証明書 `ssl_cert.crt`:
+
++
+[listing]
+----
+/opt/netapp/java/bin/keytool -import -trustcacerts -file root.crt -keystore "/opt/netapp/java/lib/security/cacerts" -alias root
+
+/opt/netapp/java/bin/keytool -import -trustcacerts -file ssl_cert.crt -keystore "/opt/netapp/java/lib/security/cacerts" -alias ssl_cert
+----
+
+
+
 
 
 
@@ -180,7 +213,7 @@ update-mccb-password
 |===
 
 
-== MetroCluster 構成を削除しています
+== MetroCluster 構成を削除
 
 MetroCluster 構成を監視する必要がなくなった場合は、 Tiebreaker ソフトウェアで監視している MetroCluster 設定を削除できます。
 

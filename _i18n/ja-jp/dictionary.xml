@@ -2411,8 +2411,6 @@
   <block id="ff6434ad658fa9ed7826817a3f9f0dff" category="paragraph">古い DR グループ内のもう一方のローカルノードに対して、この手順を繰り返します。</block>
   <block id="8917e80351843363583600f118c2fa84" category="list-text">古いコントローラモジュールとストレージシェルフを停止、電源オフ、および取り外します。</block>
   <block id="88360ff6d6d5e3d5d618e2ab14b30049" category="summary">Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を追加または変更したり、 Tiebreaker ソフトウェアから削除したりできます。</block>
-  <block id="84b5999a36db8b18180d5b58bd61c503" category="doc">Tiebreaker ソフトウェアを設定します</block>
-  <block id="1f160d9eb389f42ea44f6394967f985f" category="section-title">Tiebreaker ソフトウェアの CLI を起動します</block>
   <block id="cd3614b020be0845e7a33285fe90290c" category="paragraph">NetApp MetroCluster Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を 1 つずつ追加できます。</block>
   <block id="e7ccea983819dc5e04e8b68f81f8a388" category="paragraph">ONTAP 環境に MetroCluster 構成をインストールし、ソフトウェアで設定を有効にしておく必要があります。</block>
   <block id="f0bf65c9ebf2ae0ce4c6c368cb9675d2" category="list-text">Tiebreaker コマンドラインインターフェイス（ CLI ）の monitor add コマンドを使用して、 MetroCluster の設定を追加します。</block>
@@ -2712,7 +2710,6 @@
   <block id="6410f0d1620d7d4196d6077993f01436" category="list-text">MetroCluster チェック「 MetroCluster check run 」を実行します</block>
   <block id="405d6a60969fe89f9bb73650236f1000" category="list-text">MetroCluster チェックの結果を表示します。「 MetroCluster check show 」</block>
   <block id="822be451b556a7c02b3348482df40b17" category="list-text">スイッチにヘルスアラートがないかどうかを確認します（ある場合）：「 storage switch show 」</block>
-  <block id="99121f5c6ebd942309c1151523466608" category="paragraph"><block ref="99121f5c6ebd942309c1151523466608" category="inline-link-macro-rx"></block></block>
   <block id="4ea1c1dde743edfd6ad32e1b314bc50b" category="summary">MetroCluster IP 設定に新しい IP スイッチを使用する場合は、カスタム RCF ファイルでスイッチを設定する必要があります。</block>
   <block id="8410fa3c644dd4944c83d54534146970" category="doc">新しい IP スイッチへの RCF の生成と適用</block>
   <block id="a912eb9ea94a61a941a8ab99a7048c7c" category="paragraph">このタスクは、新しいスイッチを使用する場合に必要です。</block>
@@ -8764,7 +8761,6 @@
   <block id="3536088a256cc132e9bb50bb6b37d844" category="section-title">site_A でノードをアップグレードします</block>
   <block id="be30a56e6d2717e49b1a24ec4b5435b9" category="paragraph">site_A でアップグレードタスクを繰り返します</block>
   <block id="98c99ee34c8774fa11a9a533fe708618" category="paragraph">タスクを実行すると、サイトおよびノードへのすべてのサンプル参照が反転されます。たとえば、この例で site_A からスイッチオーバーする場合は site_B からスイッチオーバーします</block>
-  <block id="0c429b26fd1db8d4b7bb104d284c1cea" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
   <block id="8a51355d335889c9ddb7276ab9a129ab" category="paragraph">MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。</block>
   <block id="b93e6d7c2789cd393ddbb5ccdfac4676" category="paragraph">ストレージシェルフやスイッチなど、構成内の他のコンポーネントも同時にアップグレードすることはできません。</block>
   <block id="0dc490dd8b5efdca7b88c08cca2f094e" category="list-text">ONTAP 9.10.1 以降では、 4 ノードと 8 ノードの構成がサポートされます。</block>
@@ -9614,7 +9610,6 @@
   <block id="56bf84e32d22ab8fb694fbc5332432dc" category="paragraph">FC スイッチを手動で設定した場合は、ゾーニングが新しいコントローラモジュールからのイニシエータ接続に対応していることを確認する必要があります。のゾーニングに関するセクションを参照してください <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block>。</block>
   <block id="dedcc0638aa1bf3276ae388ea4613c81" category="summary">ONTAP 9.8 以降では、 4 ノード MetroCluster IP 構成のコントローラとストレージをアップグレードできます。そのためには、構成を拡張して一時的な 8 ノード構成にし、古いディザスタリカバリ（ DR ）グループを削除します。</block>
   <block id="75aa8d2f84e0be26d2847e91f37f74e2" category="list-text">サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。</block>
-  <block id="f0c5b568bbaab2490082e4d2aaf08123" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定</block>
   <block id="7965e118387157e57593becb6ae60117" category="list-text">の手順を使用します <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> 新しいストレージシステム、ディスクシェルフ、および FC-to-SAS ブリッジをラックに設置するため。</block>
   <block id="bd583895c72d99233af8746d9463ab07" category="list-text">の手順を使用します <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> 8 ノード MetroCluster 構成のポート用途を使用して、スイッチタイプに対応したケーブルレイアウトを作成します。</block>
   <block id="7215f927afe2ef194199487494b76dd7" category="paragraph">リファレンス構成ファイル（ RCF ）を使用できるようにするためには、 FC スイッチポートの用途が手順に記載されている用途と同じである必要があります。</block>
@@ -9738,7 +9733,6 @@
   <block id="679c1dc70b523e1092eb2a7b3129711d" category="paragraph">ポートとブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、変更を加えます。</block>
   <block id="dd29cf7134047c7a311edc4776b9021e" category="paragraph">2 ノード MetroCluster FC 構成の場合は、を参照してください <block ref="ef88855c7d052c0aa5ce46e187d01954" category="inline-link-macro-rx"></block>。</block>
   <block id="2912e0eba45e116506958546503977b9" category="paragraph"><block ref="2912e0eba45e116506958546503977b9" category="inline-link-macro-rx"></block></block>
-  <block id="7efa6fc838c006d396e42638b4ff25d1" category="paragraph"><block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block></block>
   <block id="bc77bf857b365d445270101e2d7ce03f" category="list-text">MetroCluster FC ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster FC 構成で使用されます。</block>
   <block id="58f51e86971b6d1d53b59f46792a926c" category="list-text">MetroCluster IP ワークフローでは、スイッチオーバー、修復、スイッチバックの手順は MetroCluster IP 構成で使用されます。</block>
   <block id="be841ef50614c5c74b8d6a685c367458" category="cell">ネゴシエートスイッチオーバーで使用するワークフロー</block>
@@ -9881,9 +9875,6 @@
   <block id="c988e8ca5d6e6bb62b67254721e13586" category="paragraph">「no MACsec keychain keychain -name policy policy-name」</block>
   <block id="8d0f34f00997c62960ad51adbe64457d" category="list-text"><block ref="8d0f34f00997c62960ad51adbe64457d" category="inline-link-rx"></block></block>
   <block id="d84d4239724af43bfdc3b74836c335fe" category="paragraph">設定が完了すると、v0a（v0bなど）が接続を継続的に検証し、LIFの移行またはフェイルオーバーが成功するかどうかを（停止したあとにのみ構成の分断が認識されるL2とは異なります）チェックします。</block>
-  <block id="222561f9cba21343a81a9b2ee1890d68" category="paragraph"><block ref="222561f9cba21343a81a9b2ee1890d68" category="inline-link-macro-rx"></block></block>
-  <block id="81fe00b955881476878ae80a1ff92b24" category="list-text">の手順を使用します。 <block ref="7efa6fc838c006d396e42638b4ff25d1" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker のインストールと設定セクションで、次の手順を実行します。</block>
-  <block id="61324fd73aeb16a8318bff07556941ad" category="paragraph"><block ref="222561f9cba21343a81a9b2ee1890d68" category="inline-link-macro-rx"></block> MetroCluster Tiebreaker インストールおよび設定コンテンツで、を参照してください</block>
   <block id="1fe9ee738ca0e6e9e3aeec4c7902cb67" category="paragraph">次の図は、 MetroCluster 構成を示しています。メンテナンスのためにcluster_Bの電源がオフになっています。</block>
   <block id="04609bc4c74d3a1d83089f636a27a4b0" category="paragraph">ONTAP 9.11.1以降では、次の図に示すように、MetroCluster 構成内の両方のサイトを、FAS またはAFF デスティネーションクラスタを使用したSVM DR関係のソースにすることができます。</block>
   <block id="66a9b9ac77fa7e18f707ae56e903dd9c" category="inline-image-macro">SVM DRの新しいトポロジ</block>
@@ -11515,7 +11506,6 @@
   <block id="3929d13da5d4b97eff76f8a6ec8c5501" category="list-text">にアクセスします <block ref="a42716fdd3c80ae75cadfb8024b65de0" category="inline-link-macro-rx"></block> システムのネットブートの実行に使用するファイルをダウンロードするには、次の手順を実行します。</block>
   <block id="94416aa661a92cc8d67b1bd6459ef472" category="list-text">サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください  <block ref="9595cfad5a4deb04d4a443245fae3f76" category="inline-link-macro-rx"></block>。</block>
   <block id="332fe4e638c485c04f214b0a13747f6d" category="list-text">この手順を使用して、 NSO ベースの自動スイッチオーバーとスイッチバックを使用して、 4 ノード MetroCluster FC 構成のコントローラをアップグレードできます。アグリゲートの再配置（ ARL ）を使用してコントローラをアップグレードする場合は、を参照してください <block ref="0fe967effd4f0eaf84576f897dbfd368" category="inline-link-macro-rx"></block>。NSO ベースの自動化された手順を使用することを推奨します。</block>
-  <block id="75132a926df50e23a26bd72dde0371b7" category="list-text"><block ref="46f4c9c8d582aa241b60c75ea3bcb2c9" category="inline-link-macro-rx"></block> Tiebreaker ソフトウェアから。</block>
   <block id="0b22fb8d0feec85055f45c8c4a298766" category="list-text">手順を続行するかどうかを確認するメッセージが表示されたら、と入力します。<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>パッケージの入力を求められたら、次のURLを入力します。</block>
   <block id="84ea00dba7c6a1cf0426e58385307e4f" category="paragraph"><block ref="5b9047ebb0d87499d679fd69fbda42cf" prefix="" category="inline-code"></block></block>
   <block id="b57c06e6dad65cb8a7fb01050706349f" category="paragraph">ONTAPシステムマネージャを使用して、Webブラウザでクラスタ管理IPアドレス（\https://172.17.12.153).</block>
@@ -12823,7 +12813,6 @@
   <block id="92f5715a55706897a1d8dd41533ea2ad" category="paragraph">アップグレード手順を繰り返して、サイトAのcluster_Aのノードをアップグレードする必要があります。</block>
   <block id="c0d421f4948fca7693af31b81667650d" category="list-text">cluster_Aのノードをアップグレードするために、上記の手順を繰り返し<block ref="fdc81b8422a2d3a4dc8579b364ffd7ac" category="inline-link-macro-rx"></block>ます。</block>
   <block id="9708813a6edf75a072848cc8c19d1d0b" category="inline-link-macro">MetroCluster 構成を追加</block>
-  <block id="1452de87b0c5b157dc8a7594223b5265" category="paragraph"><block ref="9b8797650089db2aa56d22b65e4ec45b" category="inline-link-macro-rx"></block>です。</block>
   <block id="337d2ccc4953efb0209e4bf2012ca1be" category="summary">コントローラのアップグレードを実行する前に、デバイスのコンソールログを有効にしてください。</block>
   <block id="ec75a12b665b34d0cdc8d12746fc8cfa" category="doc">MetroCluster IPコントローラのアップグレード前にコンソールログを有効にする</block>
   <block id="f31a964269837fa383f7baad3584db47" category="inline-link-macro">必要なbootargを設定する（9.15.1以降で導入されたシステムにアップグレードする場合）</block>
@@ -13836,7 +13825,6 @@
   <block id="a787053687877f10051bad9d8a2c320b" category="paragraph">アップグレードを実行する前に、MetroCluster 構成の健全性と接続性を確認します。</block>
   <block id="ac471314e8ba72086a54a227b4a6abe8" category="paragraph">一致するポートがありません。アップグレード後に、クラスタポートを再作成します。<block ref="c40693a26d31adda8e50d2bd3c959775" category="inline-link-macro-rx"></block></block>
   <block id="02f80d1409d40adabdcd4b00959239b0" category="inline-link-macro">MetroCluster 構成を削除</block>
-  <block id="c4a00ba197c84f92cac51496436d38e3" category="paragraph"><block ref="c4a00ba197c84f92cac51496436d38e3" category="inline-link-macro-rx"></block></block>
   <block id="9950d05faf2c2104ac64b2891c5a8822" category="section-title">古いプラットフォームを削除する</block>
   <block id="d723056ef76e64c3b3faae704eb71dd4" category="paragraph">古いシステムIDはで特定しました <block ref="6b24ae8f1e4581fe7e87c8c4194af177" category="inline-link-macro-rx"></block>。</block>
   <block id="75a193e4d11dd894af19600ff20d5c03" category="paragraph"><block ref="75a193e4d11dd894af19600ff20d5c03" category="inline-link-rx"></block></block>
@@ -14425,4 +14413,25 @@
   <block id="1e2cb5bcdb8947c91d9b70a1c5ee21c0" category="list-text">必要な最小 ISL 速度はプラットフォーム モデルによって異なります。</block>
   <block id="fe25d0e834bbf213fee0bc910f4a7054" category="list-text">AFF A1KおよびAFF A90システムでは、ISL 速度は少なくとも 100 Gbps である必要があります。異なる ISL 速度を使用するには、Feature Product Variance Request (FPVR) が必要です。FPVR を提出するには、営業チームにお問い合わせください。</block>
   <block id="9260215cd28aa0daaf49857a4307ca43" category="list-text">その他のすべてのプラットフォームでは、ISL 速度は少なくとも 10Gbps である必要があります。</block>
+  <block id="d1de43c2b2a882d5549ca6caea0cd796" category="paragraph"><block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
+  <block id="e91d78e049c73a532e8c4014365c7f0d" category="doc">MetroCluster Tiebreakerソフトウェアを構成する</block>
+  <block id="2369e844c90397a4181ffafd2f64be4a" category="section-title">TiebreakerソフトウェアCLIを起動する</block>
+  <block id="157265493f45de2399bb80a595184137" category="section-title">証明書をインポートする</block>
+  <block id="d300dfa20523cd7fb435a3f19eeaa42c" category="paragraph">Tiebreaker 1.6 以降でシームレスな監視を有効にするには、サーバの Secure Sockets Layer (SSL) 証明書、中間証明書 (存在する場合)、およびルート証明書をONTAPから Java 仮想マシン (JVM) のキー ストアにインポートする必要があります。</block>
+  <block id="0516bb5d84f5cf404394a670c34b9a44" category="list-text">このタスクは、Tiebreaker 1.6 以降で必須です。</block>
+  <block id="f6484eb9f6332a380224c51c4ff965b5" category="list-text">このタスクは、 MetroCluster構成を Tiebreaker に正常に追加した後、または証明書の有効期限が切れた後に実行します。</block>
+  <block id="637b609978ba2d910c8867550742b9e9" category="list-text">インポートする必要がある証明書 (SSL サーバー、中間、またはルート) ごとに次のコマンドを実行します。</block>
+  <block id="31a3f75f34ce843c2ab3b773d9072924" category="paragraph"><block ref="599a2d70deb4d0bbc781269687e6189f" prefix="" category="inline-code"></block></block>
+  <block id="ffcde617fee5d26e3005c8a089c3ecd6" category="list-text">その<block ref="b8b954588c74798aed8b6a1a5c867bec" prefix=" " category="inline-code"></block> 値には、インポートする証明書のファイル名を指定します。</block>
+  <block id="eb2fdb57a4efd845d6aeb1d9d0f9042f" category="list-text">その<block ref="1f4e0d0417f12bfdf15fa538de9f9f9a" prefix=" " category="inline-code"></block> 値は、証明書を JVM にインポートした後に証明書を保存する名前を指定します。</block>
+  <block id="61946575308b3d651099211c764d921e" category="paragraph">次の例は、ファイル名のルート証明書をインポートする方法を示しています。<block ref="a62f7df2640c2a527e31c848f274ea05" prefix=" " category="inline-code"></block> ファイル名のSSLサーバー証明書<block ref="ca11bb462642b431904085550b5375b6" prefix=" " category="inline-code"></block>:</block>
+  <block id="7efb1ea0d372ab5c16aca840df49ca79" category="paragraph"><block ref="7efb1ea0d372ab5c16aca840df49ca79" category="inline-link-macro-rx"></block></block>
+  <block id="5659c81fbc5304275ab0c57df4fa5e4d" category="paragraph"><block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block></block>
+  <block id="a212e7395bb60258b12e96d4b25f0a25" category="paragraph"><block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ を参照してください。</block>
+  <block id="67431d9e5972e3763ce39925ca6172fe" category="paragraph"><block ref="67431d9e5972e3763ce39925ca6172fe" category="inline-link-macro-rx"></block></block>
+  <block id="34e872e7651a932e20637ef1b9ef55f0" category="list-text">次の手順を使用します。 <block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
+  <block id="c8e5fb4095abed5cb973a724e5e4cca7" category="paragraph"><block ref="67431d9e5972e3763ce39925ca6172fe" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成コンテンツ_</block>
+  <block id="50579aa28b2b0ac01c180e6e07119273" category="paragraph"><block ref="50579aa28b2b0ac01c180e6e07119273" category="inline-link-macro-rx"></block></block>
+  <block id="9a1a464601bee502d12616aa9be06bb3" category="list-text"><block ref="d77847ddf2a5535e4974575f39191ae2" category="inline-link-macro-rx"></block> Tiebreaker ソフトウェアから。</block>
+  <block id="ba13dd5c52c50f7bb5ef919e4d340c98" category="paragraph"><block ref="83029083d25b0153769c6039afb8beb5" category="inline-link-macro-rx"></block>。</block>
 </blocks>
