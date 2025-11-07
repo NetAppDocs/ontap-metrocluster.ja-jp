@@ -15,9 +15,9 @@ summary: ONTAP 9.13.1以降では、既存の8ノードMetroCluster FC構成か�
 
 ONTAP 9.13.1以降では、MetroClusterとドライブシェルフが同じIPスイッチに接続されたMetroCluster IP構成（共有ストレージスイッチ構成）でこの手順がサポートされます。
 
-ONTAP 9.13.1以降では、既存の8ノードMetroCluster FC構成から新しいMetroCluster IP構成に、ワークロードとデータを無停止で移行できます。
+ONTAP 9.13.1 以降では、既存の 8 ノードMetroCluster FC 構成から新しい 8 ノードMetroCluster IP 構成へのワークロードとデータの無停止移行を実行できます。この手順を使用して、1 つの 4 ノード FC DR グループを移行し、空の FC DR グループを削除してから、2 番目の FC DR グループに対して手順を繰り返します。 
 
-ONTAP 9.8以降では、既存の4ノードMetroCluster FC構成から新しいMetroCluster IP構成に、ワークロードとデータを無停止で移行できます。
+ONTAP 9.8 以降では、既存の 4 ノードMetroCluster FC 構成から新しい 4 ノードMetroCluster IP 構成へのワークロードとデータの無停止移行を実行できます。移行が完了したら、必要に応じて 8 ノードのMetroCluster IP 構成に拡張できます。見るlink:../upgrade/task_expand_a_four_node_mcc_ip_configuration.html["MetroCluster IP設定を展開します"]。
 
 * この手順は無停止で実行されます。
 +
@@ -28,6 +28,10 @@ MetroCluster 構成では、処理中もデータの提供を継続できます�
 2 ノード MetroCluster FC 構成の場合は、を参照してください link:concept_choosing_your_transition_procedure_mcc_transition.html["移行する手順を選択します"]。
 
 * この手順 では、1つの4ノードFC DRグループを移行するために必要な手順について説明します。8ノード構成（2つのFC DRグループ）の場合は、FC DRグループごとに手順 全体を繰り返す必要があります。
++
+
+NOTE: この手順の一環として DR グループを追加または削除する場合は、別の DR グループを追加または削除する前に、DR グループの削除または追加が成功したことを確認する必要があります。
+
 * すべての要件を満たし、手順のすべての手順に従う必要があります。
 
 

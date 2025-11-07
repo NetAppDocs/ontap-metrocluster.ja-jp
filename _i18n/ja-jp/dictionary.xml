@@ -2734,7 +2734,6 @@
   <block id="1a6ef31c02bc656e4fbac4327c5198d9" category="cell">システムを停止するか、システムを停止</block>
   <block id="5a2ebfb8baa378cfcfcba58bbb1380c2" category="cell">要件</block>
   <block id="b8910962b1d031cc1eb8e8ad588c4c48" category="paragraph">無停止</block>
-  <block id="b1967383562a98a66ed0eff3ea640595" category="paragraph">新しいプラットフォームでは、新しいストレージシェルフがサポートされます。</block>
   <block id="5c85f685c62c106f7c5565f5f9efa724" category="paragraph">2 ノード</block>
   <block id="fb36a3d5cdf2e3b5ecef9b3c9fbab504" category="paragraph">システムの停止を伴う</block>
   <block id="8377dec7f2f76b3e412145b87daa08da" category="paragraph">新しいストレージシェルフは、元のプラットフォームと新しいプラットフォームの両方でサポートされます。</block>
@@ -10547,7 +10546,6 @@
   <block id="7bfd4ffe50f69a1805344bce9b252c81" category="section-title">移行プロセスのワークフロー</block>
   <block id="feb6447b54e85b35757c82bf8e07abf7" category="summary">ONTAP 9.13.1以降では、既存の8ノードMetroCluster FC構成から新しいMetroCluster IP構成に、ワークロードとデータを無停止で移行できます。</block>
   <block id="3d24a5eddf097cddc7e369398b35f959" category="paragraph">既存のMetroCluster FC構成から新しいMetroCluster IP構成へ、ワークロードやデータを無停止で移行できます。</block>
-  <block id="31c4d6a80fe871ada10a219d5727c166" category="paragraph">ONTAP 9.8以降では、既存の4ノードMetroCluster FC構成から新しいMetroCluster IP構成に、ワークロードとデータを無停止で移行できます。</block>
   <block id="1bf2c57ed29fc24c2ccb26dcba0c45be" category="list-text">この手順 は、4ノードおよび8ノードのMetroCluster FC構成にのみ適用されます。</block>
   <block id="99e6dcb4734e7eef8858b52e3c36d08c" category="list-text">この手順 では、1つの4ノードFC DRグループを移行するために必要な手順について説明します。8ノード構成（2つのFC DRグループ）の場合は、FC DRグループごとに手順 全体を繰り返す必要があります。</block>
   <block id="7085ef0783c3069c714c62b941d51195" category="summary">このガイド付きの自動MetroCluster スイッチオーバー処理を使用すると、4ノードMetroCluster IP構成のコントローラの無停止アップグレードを実行できます。</block>
@@ -13635,7 +13633,6 @@
   <block id="74d14036e96594d67869316b84c6d566" category="paragraph">CSHMダウンロードパッケージが正常に処理されました。</block>
   <block id="89c6b3e5f896b8d329ae4e4fe91cc812" category="paragraph">エラーが発生した場合は、NetAppサポートにお問い合わせください。</block>
   <block id="a6fd16052b19595c024aa4e5bcb0b366" category="list-text">[[step6]]を実行すると検出されたイーサネットスイッチヘルスモニタのポーリング間隔が最大2倍になるまで待って<block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix=" " category="inline-code"></block>から、次の手順を完了します。</block>
-  <block id="c947c5faccdddd0a9a87be7895f50511" category="list-text">ONTAPシステムでコマンドを実行し<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block> 、監視対象フィールドが* True *に設定され、シリアル番号フィールドに* Unknown *が表示されていないクラスタスイッチが検出されていることを確認します。</block>
   <block id="d57382f230671f8cd52f47dc80838934" category="admonition">構成ファイルを適用してもモデルに*その他*が表示される場合は、NetAppサポートにお問い合わせください。</block>
   <block id="58a19c530e54f6364edd838f35b1830e" category="inline-link-macro">スイッチヘルス監視の設定</block>
   <block id="d47e3b820b4e0ef60cfed3bd03049a46" category="paragraph"><block ref="402ba92b413c133107b7e0b0a0255bc4" category="inline-link-macro-rx"></block>です。</block>
@@ -14434,4 +14431,17 @@
   <block id="50579aa28b2b0ac01c180e6e07119273" category="paragraph"><block ref="50579aa28b2b0ac01c180e6e07119273" category="inline-link-macro-rx"></block></block>
   <block id="9a1a464601bee502d12616aa9be06bb3" category="list-text"><block ref="d77847ddf2a5535e4974575f39191ae2" category="inline-link-macro-rx"></block> Tiebreaker ソフトウェアから。</block>
   <block id="ba13dd5c52c50f7bb5ef919e4d340c98" category="paragraph"><block ref="83029083d25b0153769c6039afb8beb5" category="inline-link-macro-rx"></block>。</block>
+  <block id="62633c6c7bc1e478b0c226fc706ce7d1" category="list-text">コマンドを実行する<block ref="350d65f100fdbc8d411ce22a179f4b29" prefix=" " category="inline-code"></block>ONTAPシステムで、監視対象フィールドが *True* に設定され、シリアル番号フィールドに *Unknown* が表示されていない状態でクラスタ スイッチが検出されていることを確認します。</block>
+  <block id="f53c5f8d2c3b0e3b1854e0c8f280aac0" category="list-text">Tiebreaker ソフトウェアを再起動します。</block>
+  <block id="3b879e464448b1abbc76cb49a3e48f67" category="paragraph"><block ref="5c46787eed9475e8e2a2351216605e90" prefix="" category="inline-code"></block></block>
+  <block id="f4c717f63bbf7bf7a91d2fde6f9051f1" category="paragraph">新しいプラットフォームには新しいストレージ シェルフが必要です。移行が完了すると、古いコントローラー、シェルフ、ディスクはクラスターから削除されます。</block>
+  <block id="0c6fc3d80e5d75918b6f2d338a395bfe" category="paragraph">*注:* この手順では、次の FC から IP への移行がサポートされます。</block>
+  <block id="b9a67b79bf8805e04026764220f5644c" category="list-text">4ノードMetroCluster FC構成から4ノードMetroCluster IP構成へ</block>
+  <block id="b5c21ffa00510d1334f85119eb48a645" category="list-text">8ノードのMetroCluster FC構成から8ノードのMetroCluster IP構成へ</block>
+  <block id="7a2504e84fd0f2574207d002a4e82d9a" category="paragraph">ONTAP 9.13.1 以降では、既存の 8 ノードMetroCluster FC 構成から新しい 8 ノードMetroCluster IP 構成へのワークロードとデータの無停止移行を実行できます。この手順を使用して、1 つの 4 ノード FC DR グループを移行し、空の FC DR グループを削除してから、2 番目の FC DR グループに対して手順を繰り返します。 </block>
+  <block id="e59a63f4705f92f189efd0bae23c593c" category="paragraph">ONTAP 9.8 以降では、既存の 4 ノードMetroCluster FC 構成から新しい 4 ノードMetroCluster IP 構成へのワークロードとデータの無停止移行を実行できます。移行が完了したら、必要に応じて 8 ノードのMetroCluster IP 構成に拡張できます。見る<block ref="3a5645d9f79878fa2875b4b5fe2e8c9e" category="inline-link-macro-rx"></block>。</block>
+  <block id="584e8e12c74fdc178c6cb5a7049fb874" category="admonition">この手順の一環として DR グループを追加または削除する場合は、別の DR グループを追加または削除する前に、DR グループの削除または追加が成功したことを確認する必要があります。</block>
+  <block id="d134f3e8bbc2dfac90ce02f2d628c649" category="list-text">オンボード キー マネージャーを使用している場合は、新しいノードを追加したクラスターから次の手順を実行します。</block>
+  <block id="87f7e23221d5cdfbe745a1b00fcf1068" category="list-text">キー マネージャーの構成を同期します。</block>
+  <block id="65ce095af1b3ce283b41ed1ff6456ed9" category="list-text">プロンプトが表示されたら、オンボード キー マネージャーのパスフレーズを入力します。</block>
 </blocks>

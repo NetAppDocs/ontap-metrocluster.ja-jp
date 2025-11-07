@@ -90,7 +90,7 @@ Tiebreaker 1.6 以降でシームレスな監視を有効にするには、サ�
 * このタスクは、 MetroCluster構成を Tiebreaker に正常に追加した後、または証明書の有効期限が切れた後に実行します。
 
 
-.ステップ
+.手順
 . インポートする必要がある証明書 (SSL サーバー、中間、またはルート) ごとに次のコマンドを実行します。
 +
 `/opt/netapp/java/bin/keytool -import -trustcacerts -file <certificate_file_name> -keystore "/opt/netapp/java/lib/security/cacerts" -alias <certificate>`
@@ -109,6 +109,10 @@ Tiebreaker 1.6 以降でシームレスな監視を有効にするには、サ�
 /opt/netapp/java/bin/keytool -import -trustcacerts -file ssl_cert.crt -keystore "/opt/netapp/java/lib/security/cacerts" -alias ssl_cert
 ----
 
+
+. Tiebreaker ソフトウェアを再起動します。
++
+`systemctl restart netapp-metrocluster-tiebreaker-software`
 
 
 
