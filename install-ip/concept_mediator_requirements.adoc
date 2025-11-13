@@ -21,9 +21,9 @@ summary: ONTAP 9.7 以降、ONTAP Mediator は、ステータス情報用の物�
 +
 ONTAP メディエーターと各サイトの間の接続には、2つの異なる障害ドメインが必要です。
 
-* ONTAP Mediator は、最大 5 つの MetroCluster 構成を同時にサポートできます。
 * ONTAP 9.7 以降では、自動計画外スイッチオーバーがサポートされます。
-* ONTAPメディエーターではIPv6はサポートされていません。
+* ONTAP 9.18.1 およびONTAP Mediator 1.11 以降では、1 つのONTAP Mediator インスタンスで最大 10 個のMetroCluster構成を同時に管理できます。以前のリリースでは、 ONTAP Mediator は最大 5 つのMetroCluster構成を同時にサポートできました。
+* ONTAP 9.18.1 以降では、 MetroCluster IP 構成のONTAP Mediator 1.11 以降で IPv6 がサポートされます。
 
 
 
@@ -64,7 +64,6 @@ ONTAP Mediator と 1 つの DR グループ間のリンクには、少なくと�
 構成が複数のホスト要件を満たしていることを確認する必要があります。
 
 * ONTAP メディエーターは、2つのONTAP クラスタから物理的に分離された外部サイトにインストールする必要があります。
-* ONTAP メディエーターでサポートされるMetroCluster 構成は最大5つです。
 * ONTAP メディエーターでは、ホストオペレーティングシステムの最小要件であるCPUおよびメモリ（RAM）は必要ありません。
 * ホストオペレーティングシステムの最小要件に加えて、使用可能なディスクスペースが少なくとも30GB必要です。
 +
