@@ -240,6 +240,10 @@ NOTE: ネットワークをアップグレードまたはダウングレード�
 ----
 network interface modify -vserver <vserver_name> -lif <lif_name> -auto-revert true
 ----
+. 現在ホーム ポートにないすべてのクラスタ LIF をホーム ポートに戻します。
++
+`network interface revert -vserver * -lif *`
+
 . 必要に応じて、NS224シェルフを移動します。
 +
 NS224シェルフをMetroCluster IPスイッチに接続しないMetroCluster IP構成を再構成する場合は、該当する手順 を使用してNS224シェルフを追加または移動します。
