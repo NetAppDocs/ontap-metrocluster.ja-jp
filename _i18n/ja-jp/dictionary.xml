@@ -1708,7 +1708,6 @@
   <block id="58680ae2aa956ad9b6c8f5bd2e4a4191" category="paragraph">netboot\http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz`</block>
   <block id="9a8c20fab9267090fe0211c579b8d259" category="list-text">ブートメニューからオプション * （ 7 ） Install new software first * を選択し、新しいソフトウェアイメージをダウンロードしてブートデバイスにインストールします。</block>
   <block id="94b4038bc962a8ff7acafad652850e68" category="list-text">手順を続行するかどうかを確認するメッセージが表示されたら、「 y 」と入力し、パッケージの入力を求められたらイメージファイルの URL 「 ¥ http://web_server_ip/path_to_web-accessible_directory/ontap-version_image.tgz` 」を入力します</block>
-  <block id="f59d590a38cf457fb44a857365a2aec4" category="list-text">次のようなプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしてください</block>
   <block id="4c311f4de89068c42d4731e90025eefc" category="list-text">次のようなプロンプトが表示されたら 'y' と入力して再起動します</block>
   <block id="a8635badf0c3725452ad27dcb306f849" category="paragraph">コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。</block>
   <block id="8afdaf07ff0e43cdf1c5459d3d9ff0e6" category="list-text">メンテナンスモードで、システム内の HBA の設定を行います。</block>
@@ -8702,8 +8701,6 @@
   <block id="2653300b079109b65a613fd185414faa" category="list-text">起動メニューから ' オプション (7) Install new software first.`` を選択します このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。注意 : 次のメッセージは無視してください : この手順は 'HA ペアでの無停止アップグレードではサポートされていません 環境の無停止の ONTAP ソフトウェアアップグレード。コントローラのアップグレードは含まれません。</block>
   <block id="f7462137da4e89b12e82937bb5da165f" category="paragraph">新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、正しいイメージがインストールされないことがあります。この問題環境 All ONTAP リリース</block>
   <block id="7b3f6c26774d36cd594edf297f0f8f57" category="list-text">次の手順を実行してコントローラモジュールをリブートします。</block>
-  <block id="61ee95ecb870c833ca0f73515cef5bce" category="list-text">次のプロンプトが表示されたら 'n' を入力してバックアップ・リカバリをスキップしますバックアップ構成を今すぐリストアしますか ? {y|n}`</block>
-  <block id="d7672ee0e4d46e194ae0b844a3cf32ad" category="list-text">次のプロンプトが表示されたら 'y と入力して再起動します ' 新しくインストールしたソフトウェアの使用を開始するには ' ノードを再起動する必要があります今すぐリブートしますか？{y|n}`` コントローラモジュールは再フォーマットされたために再起動しますが、ブートメニューで停止します。そして、設定データを復元する必要があります。</block>
   <block id="963f89f538a2fcd5d086c865807c540a" category="list-text">プロンプトで「 wipeconfig 」コマンドを実行して、ブートメディアの以前の設定をクリアします。</block>
   <block id="c9c4b352c210e485b70af0c63a95e7fa" category="list-text">次のメッセージが表示されたら、回答は「 yes 」を選択します。これにより、クラスタメンバーシップを含む重要なシステム構成が削除されます。警告：テイクオーバーされた HA ノードでは実行しないでください。続行してもよろしいですか ?:`</block>
   <block id="d9942055ef69c8d0b4c6c187ca017527" category="list-text">ノードがリブートして「 wipeconfig 」を終了し、ブートメニューで停止します。</block>
@@ -8811,7 +8808,6 @@
   <block id="3e740d926a40d82c2fcc72ee1fb84e5b" category="list-text">ノード 1 でネットブートを実行します<block ref="489fdc1c448bf7fbb7b53d2ad099b1ec" category="inline-link-rx"></block>「 &lt;path_the_web-accessible_directory&gt; 」は、「 &lt;ONTAP_version&gt;_image.tgz 」をダウンロードした場所を指します <block ref="28cd24b5ecf937229eb419cc55587b9d" category="inline-xref-macro-rx"></block>。</block>
   <block id="188edb9f514b65304cf0a3564a7bc692" category="list-text">起動メニューからオプション（ 7 ） Install new software first （新しいソフトウェアを最初にインストール）を選択します。このメニューオプションを選択すると、新しい ONTAP イメージがブートデバイスにダウンロードおよびインストールされます。</block>
   <block id="81ff6a54875aaf720a2c324484bc2178" category="admonition">次のメッセージは無視してください： This 手順 is not supported for Non-Disruptive Upgrade on an HA pair. 環境の無停止の ONTAP ソフトウェアアップグレード。コントローラのアップグレードは含まれません。新しいノードを希望するイメージに更新する場合は、必ずネットブートを使用してください。別の方法で新しいコントローラにイメージをインストールした場合、間違ったイメージがインストールされることがあります。この問題環境 All ONTAP リリース</block>
-  <block id="e127fec27e4f62227f578ce3dd283c35" category="list-text">次のプロンプトが表示されたら 'y' と入力して再起動します ' 新しくインストールしたソフトウェアの使用を開始するには ' ノードを再起動する必要があります今すぐリブートしますか？{y|n}`</block>
   <block id="504d065328326a8677a260e4447bea63" category="paragraph">コントローラモジュールはリブートしますが、ブートメニューで停止します。これは、ブートデバイスが再フォーマットされたことにより、構成データのリストアが必要なためです。</block>
   <block id="f02a9a7436db38c9278de96d8940fedc" category="list-text">次のメッセージが表示されたら、回答は「 yes 」を選択します。これにより、クラスタメンバーシップを含む重要なシステム構成が削除されます。警告：テイクオーバーされた HA ノードでは実行しないでください。続行してもよろしいですか ?:`</block>
   <block id="e3dcb6e98d703b4041ac7a4b6d40412e" category="list-text">ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードがメンテナンス・モードで停止し ' コマンド・プロンプト *&gt;` が表示されるまで ' プロンプトを表示します回答</block>
@@ -14483,4 +14479,9 @@
   <block id="4154034eef64dfe94bce158c1c207659" category="doc">MetroCluster IP に対するONTAP Mediator サポートの新機能</block>
   <block id="f0dceba3fe3c3556e6c20da7fc8c7520" category="paragraph">ONTAP Mediator サポートの新しいMetroCluster IP 機能と拡張機能について説明します。</block>
   <block id="25deb3b52bcb888e53232afb4a495c12" category="sidebar">MetroCluster IP に対するONTAP Mediator サポートの新機能</block>
+  <block id="a01beec0f6ce0a2dd45c8f1d5aa3e76c" category="list-text">入力<block ref="7b8b965ad4bca0e41ab51de7b31363a1" prefix=" " category="inline-code"></block> 次のようなプロンプトが表示されたら、バックアップの回復をスキップします。</block>
+  <block id="a3a51b9a15e7e6561d57fb2b986eca21" category="admonition">新しくインストールされたソフトウェアを使用するには、ノードを再起動する必要があります。</block>
+  <block id="7043cc5b7b924f62a8af6f3d2e706c77" category="list-text">入力<block ref="7b8b965ad4bca0e41ab51de7b31363a1" prefix=" " category="inline-code"></block> 次のプロンプトが表示されたら、バックアップの回復をスキップします。</block>
+  <block id="78531eca4abf30d4c07d610d913a17b4" category="list-text">入力<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block> 次のプロンプトが表示されたら再起動してください。</block>
+  <block id="6b5a6f62b70ef753e19336e7f4298c82" category="paragraph"><block ref="dc1cb730bc2868b03f1ab6ee685b8beb" prefix="" category="inline-code"></block></block>
 </blocks>
