@@ -11091,9 +11091,6 @@
   <block id="462b36259caf681453d6d7b142217c3d" category="paragraph"><block ref="419f67b8b89585d3be41af97b158dd9e" prefix="" category="inline-code"></block></block>
   <block id="6a62571ce4203a1671da10509f3013e0" category="cell">AFF A900、ASA A900、およびFAS9500</block>
   <block id="d7b1c9d4f2a52b2d3648ce28baa0dd5c" category="paragraph">AFF A800、AFF C800、ASA A800、およびASA C800</block>
-  <block id="2bba389392c3b789eaa9d1c8c6fc87d2" category="paragraph">FAS8300、AFF A400、ASA A400、ASA C400、AFF C400</block>
-  <block id="2adc2b7878fdb2191078a23343a8729e" category="paragraph">FAS2750、AFF A150、ASA A150、およびAFF A220</block>
-  <block id="58783907a3fbb2ae3dd67c785764d060" category="paragraph">FAS500f、AFF A250、ASA A250、ASA C250、およびAFF C250</block>
   <block id="689365c2d6e4fb2ffa83031a799cb8a1" category="inline-link-macro">手動リカバリの実行</block>
   <block id="b6933415b566c13842c75e7153f5e0bd" category="paragraph">ONTAP 9.7 以降では、 MetroCluster IP 構成で ONTAP Mediator-Assisted Automatic Unplanned Switchover （ MAUSO ；メディエーターアシスト自動計画外スイッチオーバー）を使用するか、 MetroCluster Tiebreaker ソフトウェアを使用できます。MAUSOまたはTiebreakerソフトウェアを使用する必要はありませんが、これらのサービスのどちらも使用しない場合は、 <block ref="ffc76c5e8798538fa424ea31c8f712bb" category="inline-link-macro-rx"></block> 災害が発生した場合。</block>
   <block id="b65bf2d95ccaa5163ee3e519ccc4f46c" category="inline-link-macro">ONTAPメディエーターでの自動計画外スイッチオーバーのサポート</block>
@@ -11770,7 +11767,6 @@
   <block id="f09a5dc7d9c973e1f6ab3e9ffa36921c" category="paragraph">NVMe/FCプロトコルは、4ノードMetroCluster IP構成でサポートされます。</block>
   <block id="581b029a5b5e612bbb2ff34e6b1ff9ad" category="paragraph"><block ref="581b029a5b5e612bbb2ff34e6b1ff9ad" category="inline-link-rx"></block></block>
   <block id="efd20e2b544e4614b2e657ac6783ec0a" category="paragraph">エンドツーエンドの暗号化のためのMetroCluster IPサポート</block>
-  <block id="4a4b85199291f3e23fc84fb47fb5ca30" category="paragraph">AFF A400、FAS8300、FAS8700システムでは、MetroCluster IP構成のサイト間のNVLOGやストレージレプリケーションデータなどのバックエンドトラフィックを暗号化するために、エンドツーエンドの暗号化がサポートされています。</block>
   <block id="a9734ca6d9ffb317f9b6a802b2dbb3aa" category="inline-link-macro">MetroCluster IP構成でのエンドツーエンドの暗号化の設定</block>
   <block id="aec0d8caac35e70ca6b42831fa957b4d" category="paragraph">AFF A800およびAFF C800システムでの4ノードMetroCluster IP構成のボリューム制限の拡張</block>
   <block id="cbd27762af6b4c6335bac75a098542ce" category="paragraph">4ノードMetroCluster IP構成では、AFF A800およびAFF C800システムの次のボリューム制限が拡張されました。</block>
@@ -12500,8 +12496,6 @@
   <block id="76cc37c77093b53852f92d0bedaab777" category="list-text">データの修復が完了したら、をクリックし <block ref="2f6e127087f9ef4b927e204474c5d0b2" category="inline-image-macro-rx" type="image"></block>、*[スイッチバックの開始]*を選択します。</block>
   <block id="99ce5ee29ba72294092dc372ec9cdde8" category="paragraph">スイッチバックが完了すると、両方のクラスタがアクティブになり、データ要求を処理します。さらに、データがミラーリングされ、クラスタ間で同期されています。</block>
   <block id="1634280924da564c571e77a82a5ca015" category="paragraph">Tiebreaker 1.6以降</block>
-  <block id="10090a98eb5a0c97ffdfee7c207fcda3" category="inline-link-macro">Tiebreaker 1.6以降のインストール</block>
-  <block id="01edf779844a94aabbe0472729e9db87" category="paragraph"><block ref="01edf779844a94aabbe0472729e9db87" category="inline-link-macro-rx"></block></block>
   <block id="96e17598e0060c107f4db8b804505693" category="inline-link-macro">Rocky Linux製品ドキュメント</block>
   <block id="98f9ad5cd8db49b652b4f699146c5868" category="list-text"><block ref="98f9ad5cd8db49b652b4f699146c5868" category="inline-link-macro-rx"></block></block>
   <block id="95bf514988fe6b2ae6d2c4683d39fc01" category="paragraph">ホストLinuxオペレーティングシステムでTiebreaker 1.6またはTiebreaker 1.6P1への新規インストールまたはアップグレードを実行して、MetroCluster構成を監視します。</block>
@@ -12719,8 +12713,6 @@
   <block id="d31a1f5cad351cb7b22068350f8211d3" category="section-title">AFF A70、AFF A90、AFF C80システムでのADPとディスク割り当て</block>
   <block id="18d6e0751db8b96d97053bf7cd9ad014" category="paragraph">内部パーティションは4つのグループ（クォータ）に均等に分割されます。各クォータが自動的に別々のプールに割り当てられます。外付けシェルフのドライブはシェルフ単位で自動的に割り当てられ、各シェルフのすべてのドライブがMetroCluster構成の4つのノードのいずれかに割り当てられます。</block>
   <block id="18ee6168fcb42f4cbb19836787e6aa0c" category="section-title">FAS9000、FAS9500、FAS70、およびFAS90システムでのディスク割り当て</block>
-  <block id="2d1fe013e868579afa18af7cb56220c2" category="paragraph">AFF A70、FAS70</block>
-  <block id="03e4e34912e74f99bcc188842b2088d2" category="paragraph">AFF A90、AFF A1K、FAS90、AFF C80</block>
   <block id="cc6089132b9a5e4af29a76834480cc1a" category="paragraph">AFF A50用</block>
   <block id="b4f15258765c83a1223f6ad33f797dbd" category="paragraph">X60134A</block>
   <block id="9d9de1698f7e401c78687204de906ee5" category="paragraph">AFF A20用</block>
@@ -14072,7 +14064,6 @@
   <block id="45fc6e02d529201467decbef1f3eacab" category="paragraph">参照<block ref="9c839fcdfb8699a63c787254d7b1ae03" category="inline-link-macro-rx"></block>詳細についてはこちらをご覧ください。</block>
   <block id="567a833b899417b8be640e2472fc9c60" category="paragraph">資格情報を使用したFibreBridgeファームウェアのアップデート</block>
   <block id="5a870516b9d31d269ea6a8afce2ec1e6" category="paragraph">サーバーがファームウェア パッケージをダウンロードするために資格情報を必要とする場合は、資格情報を使用して FibreBridge ブリッジのファームウェアを更新できます。</block>
-  <block id="798a9759457492658d53527d57355221" category="paragraph">Red Hat Enterprise Linux (RHEL) 9.5</block>
   <block id="b225d9c59432e8a8fb3706648e471b89" category="paragraph">RHEL 9.4</block>
   <block id="5a4423695d5636fb42d9142a09b58340" category="paragraph">RHEL 9.3</block>
   <block id="c87e38c84927fcd003b4fdc775e74821" category="paragraph">RHEL 9.2</block>
@@ -14391,7 +14382,6 @@
   <block id="1e2cb5bcdb8947c91d9b70a1c5ee21c0" category="list-text">必要な最小 ISL 速度はプラットフォーム モデルによって異なります。</block>
   <block id="fe25d0e834bbf213fee0bc910f4a7054" category="list-text">AFF A1KおよびAFF A90システムでは、ISL 速度は少なくとも 100 Gbps である必要があります。異なる ISL 速度を使用するには、Feature Product Variance Request (FPVR) が必要です。FPVR を提出するには、営業チームにお問い合わせください。</block>
   <block id="9260215cd28aa0daaf49857a4307ca43" category="list-text">その他のすべてのプラットフォームでは、ISL 速度は少なくとも 10Gbps である必要があります。</block>
-  <block id="d1de43c2b2a882d5549ca6caea0cd796" category="paragraph"><block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
   <block id="e91d78e049c73a532e8c4014365c7f0d" category="doc">MetroCluster Tiebreakerソフトウェアを構成する</block>
   <block id="2369e844c90397a4181ffafd2f64be4a" category="section-title">TiebreakerソフトウェアCLIを起動する</block>
   <block id="157265493f45de2399bb80a595184137" category="section-title">証明書をインポートする</block>
@@ -14404,14 +14394,10 @@
   <block id="eb2fdb57a4efd845d6aeb1d9d0f9042f" category="list-text">その<block ref="1f4e0d0417f12bfdf15fa538de9f9f9a" prefix=" " category="inline-code"></block> 値は、証明書を JVM にインポートした後に証明書を保存する名前を指定します。</block>
   <block id="61946575308b3d651099211c764d921e" category="paragraph">次の例は、ファイル名のルート証明書をインポートする方法を示しています。<block ref="a62f7df2640c2a527e31c848f274ea05" prefix=" " category="inline-code"></block> ファイル名のSSLサーバー証明書<block ref="ca11bb462642b431904085550b5375b6" prefix=" " category="inline-code"></block>:</block>
   <block id="7efb1ea0d372ab5c16aca840df49ca79" category="paragraph"><block ref="7efb1ea0d372ab5c16aca840df49ca79" category="inline-link-macro-rx"></block></block>
-  <block id="5659c81fbc5304275ab0c57df4fa5e4d" category="paragraph"><block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block></block>
-  <block id="a212e7395bb60258b12e96d4b25f0a25" category="paragraph"><block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ を参照してください。</block>
   <block id="67431d9e5972e3763ce39925ca6172fe" category="paragraph"><block ref="67431d9e5972e3763ce39925ca6172fe" category="inline-link-macro-rx"></block></block>
-  <block id="34e872e7651a932e20637ef1b9ef55f0" category="list-text">次の手順を使用します。 <block ref="5659c81fbc5304275ab0c57df4fa5e4d" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
   <block id="c8e5fb4095abed5cb973a724e5e4cca7" category="paragraph"><block ref="67431d9e5972e3763ce39925ca6172fe" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成コンテンツ_</block>
   <block id="50579aa28b2b0ac01c180e6e07119273" category="paragraph"><block ref="50579aa28b2b0ac01c180e6e07119273" category="inline-link-macro-rx"></block></block>
   <block id="9a1a464601bee502d12616aa9be06bb3" category="list-text"><block ref="d77847ddf2a5535e4974575f39191ae2" category="inline-link-macro-rx"></block> Tiebreaker ソフトウェアから。</block>
-  <block id="ba13dd5c52c50f7bb5ef919e4d340c98" category="paragraph"><block ref="83029083d25b0153769c6039afb8beb5" category="inline-link-macro-rx"></block>。</block>
   <block id="62633c6c7bc1e478b0c226fc706ce7d1" category="list-text">コマンドを実行する<block ref="350d65f100fdbc8d411ce22a179f4b29" prefix=" " category="inline-code"></block>ONTAPシステムで、監視対象フィールドが *True* に設定され、シリアル番号フィールドに *Unknown* が表示されていない状態でクラスタ スイッチが検出されていることを確認します。</block>
   <block id="f53c5f8d2c3b0e3b1854e0c8f280aac0" category="list-text">Tiebreaker ソフトウェアを再起動します。</block>
   <block id="3b879e464448b1abbc76cb49a3e48f67" category="paragraph"><block ref="5c46787eed9475e8e2a2351216605e90" prefix="" category="inline-code"></block></block>
@@ -14484,4 +14470,61 @@
   <block id="7043cc5b7b924f62a8af6f3d2e706c77" category="list-text">入力<block ref="7b8b965ad4bca0e41ab51de7b31363a1" prefix=" " category="inline-code"></block> 次のプロンプトが表示されたら、バックアップの回復をスキップします。</block>
   <block id="78531eca4abf30d4c07d610d913a17b4" category="list-text">入力<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block> 次のプロンプトが表示されたら再起動してください。</block>
   <block id="6b5a6f62b70ef753e19336e7f4298c82" category="paragraph"><block ref="dc1cb730bc2868b03f1ab6ee685b8beb" prefix="" category="inline-code"></block></block>
+  <block id="c9996a1b1fe92047dfbcfbef9989c233" category="list-text">AFF C400用</block>
+  <block id="7fd3cdaaba74a0b0ef3d707a8545df7c" category="paragraph">1.7</block>
+  <block id="2a81eb3b4a7f22fb1fdb159561b71f3f" category="list-text">バグ修正</block>
+  <block id="11574a03547d555cf191ab6e9136f88f" category="list-text">CLIを使用したスイッチオーバーシミュレーションのサポートを追加</block>
+  <block id="6fbe6a8c71d451ebdda6d9faf413cda1" category="paragraph">Red Hat Enterprise Linux (RHEL) 9.6</block>
+  <block id="92a9848c1fb5697892193dd4ff6e8f2d" category="paragraph">RHEL 9.5</block>
+  <block id="a1c30b24be11ecf2a6d8debac1870fde" category="paragraph">MetroCluster IP 構成に必要な、サポートされているハードウェアおよびソフトウェア コンポーネントを特定します。ドキュメントの例でコンポーネントに使用されている命名規則を確認します。</block>
+  <block id="bf76ee4501fdd9fae56487ad105f9cd0" category="paragraph">FAS8300、 AFF A400、 ASA A400、 ASA C400、 AFF C400</block>
+  <block id="00327edd9d8765d46ab56e3b0980903e" category="paragraph">FAS2750、 AFF A150、 ASA A150、 AFF A220</block>
+  <block id="f96110c8f7346ebfb781d05634cd4049" category="paragraph">FAS500f、 AFF A250、 ASA A250、 ASA C250、 AFF C250</block>
+  <block id="87c712f745ecf87eb856cfed663b2a15" category="paragraph">AFF A70、FAS70、 AFF C80</block>
+  <block id="d805011ad8efc8ec2fc078873f4643a6" category="paragraph">AFF A90、 AFF A1K、FAS90</block>
+  <block id="d67e92f6cf688c69bd6f477c433e7d63" category="paragraph"><block ref="c1e5bf8480750ae5cad48df028e9ef8f" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
+  <block id="3a5736e3efeba2abba824451060f0e8c" category="paragraph">AFF A400、 AFF C400、 FAS8300、およびFAS8700システムでは、エンドツーエンドの暗号化がサポートされており、 MetroCluster IP 構成のサイト間の NVlog やストレージ レプリケーション データなどのバックエンド トラフィックを暗号化します。</block>
+  <block id="3b2e338cb9699827ddcf4059b9343104" category="list-text">手順と予想されるコマンド出力は、実行している Tiebreaker のバージョンによって異なります。</block>
+  <block id="845ecf6124e1ae7663abd58c5c290bf4" category="open-title">タイブレーカー 1.5 以前</block>
+  <block id="c235e2a63587607e546ce23e3aa3f429" category="paragraph"><block ref="340f3772c8514ee6adeb9334c1090b2b" prefix="" category="inline-code"></block></block>
+  <block id="7b1c9a2f5a83c33057ec6c4c00ca9f66" category="list-text">不足している証明書を、Tiebreakerのバージョンに応じた手順でインポートします。<block ref="92b9649dc166097f560c612aa552fd41" category="inline-xref-macro-rx"></block> 。</block>
+  <block id="b4409eb500913b49e5983d79343adf86" category="list-text">Tiebreaker 1.7 以降では、スイッチオーバー シミュレーションを実行して、証明書をインポートする必要があるかどうかを確認できます。スイッチオーバー シミュレーションが失敗した場合は、 ONTAPから Java 仮想マシン (JVM) のキー ストアに証明書をインポートする必要があります。</block>
+  <block id="af6be912cb9928f2a8b149136fcb95cf" category="open-title">タイブレーカー 1.7 以降</block>
+  <block id="eb49a1138d5a52d43b58b3e179697e3f" category="list-text">切り替えシミュレーションを実行して、証明書をインポートする必要があるかどうかを確認します。</block>
+  <block id="42d13f8ba94aec1bc59d5a90679693bc" category="list-text">タイブレーカーの監視ステータスを確認します。<block ref="7f09554f3b428339c3f534ff2c033739" prefix=" " category="inline-code"></block></block>
+  <block id="bb95eb1081a895c8cb78bdaee7da9ef6" category="list-text">切り替えシミュレーションをトリガーします。</block>
+  <block id="947062c10bc54a7d20d50f8bbaa0c13a" category="paragraph"><block ref="eca495e6e12f12898ee3f847cb6c0c9b" prefix="" category="inline-code"></block></block>
+  <block id="5bdaf09274dc521b698ce17fb52deaf8" category="paragraph">JVM に証明書をインポートする必要がある場合、コマンドは次の出力を返します。</block>
+  <block id="8fc6098280042a868aba93d428eae4b8" category="list-text">切り替えシミュレーション チェックを再度実行します。</block>
+  <block id="78eca7e4ec98898015905b1e4548a383" category="open-title">タイブレーカー 1.6 または 1.6P1</block>
+  <block id="28aca2b572a275aebd465d2d2fd4cdef" category="list-text">ONTAPからすべての証明書をインポートします。インポートする必要がある証明書 (SSL サーバー、中間、またはルート) ごとに次のコマンドを実行します。</block>
+  <block id="4588af49e6444b900fecf33e5b46364a" category="section-title">タイブレーカーオブザーバーモードを無効にする</block>
+  <block id="0d93de7458c000c3fdfec7afd50e0442" category="paragraph">Tiebreaker ソフトウェアのオブザーバー モードを無効にすると、サイト障害が検出された後、自動的にスイッチオーバーが開始されます。</block>
+  <block id="a1f8c8c62c04c20068aa93f576fa9690" category="admonition">Tiebreaker 1.6以降では、<block ref="cd3bf079d0da00fdccce85e2519add01" prefix=" " category="inline-code"></block>指示。参照<block ref="c18ee48110dfc5f3e03244ba138d0938" category="inline-link-macro-rx"></block>。</block>
+  <block id="c00e147177076015256c9df010c971c2" category="list-text">オブザーバーモードを無効にする:</block>
+  <block id="eedc07636a5991cd4eb9800d304a16ba" category="paragraph">Tiebreaker 1.7</block>
+  <block id="071aedff010617c733bba1a48a1df49f" category="inline-link-macro">Tiebreaker 1.7のインストール</block>
+  <block id="8788535e7eb158e8970021610d3ed9da" category="paragraph"><block ref="8788535e7eb158e8970021610d3ed9da" category="inline-link-macro-rx"></block></block>
+  <block id="3d24188ac7751bfbb22d07dce3299f1e" category="inline-link-macro">Tiebreaker 1.6または1.6P1をインストールする</block>
+  <block id="87ad7c1746b46707f06848b1618643ce" category="paragraph"><block ref="87ad7c1746b46707f06848b1618643ce" category="inline-link-macro-rx"></block></block>
+  <block id="800d94b1914e36803b31fcf9895abae5" category="summary">Tiebreaker 1.7 以降では、スイッチオーバーをシミュレートして Tiebreaker の動作を検証できます。</block>
+  <block id="e4ed18ab6d3d5544045db1a3e751e965" category="doc">MetroCluster Tiebreakerを使用してスイッチオーバーをシミュレートする</block>
+  <block id="7093ecc93a73f513ca55a9e8f3afdde6" category="paragraph">Tiebreaker 1.7 以降では、スイッチオーバーをシミュレートしてMetroCluster Tiebreaker スイッチオーバー機能をテストできます。</block>
+  <block id="79eb78d821b3ee6435ad7e4923386085" category="list-text">その<block ref="2182cff8b3f98462b1b1b9f67a9e98d6" prefix=" " category="inline-code"></block>コマンドはTiebreaker 1.7以降でのみサポートされます。</block>
+  <block id="efd72f1f13c88a25047ed85c76b50038" category="list-text">切り替えシミュレーションを実行します。</block>
+  <block id="028ce40e56d402dfb0df4f094a41fde6" category="paragraph">このコマンドは、操作が成功すると次の出力を返します。</block>
+  <block id="8e70b918f55470877368261e9be2a7c6" category="doc">MetroCluster Tiebreaker 1.7 をインストールする</block>
+  <block id="f1d3e8cbaa3f907f1f1d9c23342040db" category="paragraph">MetroCluster構成を監視するには、Linux ホストに Tiebreaker 1.7 をインストールするか、アップグレードします。</block>
+  <block id="5a59d868721cb5e9a140856077e385d9" category="list-text">Tiebreaker 1.6P1 からのみ Tiebreaker 1.7 にアップグレードできます。参照<block ref="87ad7c1746b46707f06848b1618643ce" category="inline-link-macro-rx"></block>。</block>
+  <block id="d3304a80fc4dc1ea2d716877d36eadac" category="list-text">MetroCluster Tiebreaker 1.7ソフトウェアをダウンロードします。</block>
+  <block id="ad73fbe1d3c75ebdc29af85c6946f907" category="list-text">アップグレードする場合は、実行している Tiebreaker のバージョンを確認してください。</block>
+  <block id="0684c921e825a58cdb4b10dbcfd5597b" category="paragraph">次の例はタイブレーカー1.6P1を示しています</block>
+  <block id="119069080fcdc97e5697bcdf7709ee2e" category="paragraph">Tiebreaker 1.7を新規にインストールする場合は、次の手順を実行します。</block>
+  <block id="5f423725fb28e9d5d9b02b9c16b5a368" category="open-title">1.6P1を1.7にアップグレード</block>
+  <block id="a7fd6df6d65c00fc1df7543b6a663ef0" category="paragraph">Tiebreaker 1.6P1 ソフトウェア バージョンを Tiebreaker 1.7 にアップグレードするには、次の手順に従います。</block>
+  <block id="f496457a4e5f70370a95812c3bd8a7a1" category="admonition">証明書の不足によりアップグレードがエラーで失敗する場合は、<block ref="683f110921efb534660320b85a54a9a9" category="inline-link-macro-rx"></block> 。証明書をインポートしたら、再度アップグレードを試みることができます。</block>
+  <block id="c1e5bf8480750ae5cad48df028e9ef8f" category="paragraph"><block ref="c1e5bf8480750ae5cad48df028e9ef8f" category="inline-link-macro-rx"></block></block>
+  <block id="cd12f62ca79514b05b68e5de4836ba52" category="paragraph"><block ref="c1e5bf8480750ae5cad48df028e9ef8f" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ を参照してください。</block>
+  <block id="a72abbb5319ccc5e06e530d32ebda9a2" category="list-text">次の手順を使用します。 <block ref="c1e5bf8480750ae5cad48df028e9ef8f" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
+  <block id="cbefd3f7361c94b64426b0cea58a0328" category="paragraph"><block ref="fea9123e6c4e9558906e90d28dff7dce" category="inline-link-macro-rx"></block>。</block>
 </blocks>

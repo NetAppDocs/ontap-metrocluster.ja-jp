@@ -1,0 +1,72 @@
+---
+permalink: tiebreaker/switchover-simulation.html 
+sidebar: sidebar 
+keywords: metrocluster, configuration, operation, netapp, documentation, additional, information, miscellaneous, guide, tiebreaker, switchover, simulation 
+summary: Tiebreaker 1.7 以降では、スイッチオーバーをシミュレートして Tiebreaker の動作を検証できます。 
+---
+= MetroCluster Tiebreakerを使用してスイッチオーバーをシミュレートする
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tiebreaker 1.7 以降では、スイッチオーバーをシミュレートしてMetroCluster Tiebreaker スイッチオーバー機能をテストできます。
+
+.このタスクについて
+* その `monitor switchover-simulate`コマンドはTiebreaker 1.7以降でのみサポートされます。
+
+
+.手順
+. タイブレーカーの監視ステータスを確認します。
+`monitor show -status`
++
+.例
+[%collapsible]
+====
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> monitor show -status
+MetroCluster: A700
+    Disaster: false
+    Monitor State: Normal
+    Observer Mode: false
+    Silent Period: 5
+    Override Vetoes: false
+    Cluster: ClusterA_siteA(UUID:713e5ab2-b4e8-11f0-91aa-00a098ef36a2)
+        Reachable: true
+        Intersite Connectivity Available: true
+            Node: node_A1(UUID:9f6cecbf-b4e4-11f0-9d0f-00a098ef36a2)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+            Node: node_A2(UUID:2719bb56-b4e7-11f0-996c-00a09897caa3)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+    Cluster: ClusterB_siteB(UUID:72839591-b4e8-11f0-b688-00a09897cb73)
+        Reachable: true
+        Intersite Connectivity Available: true
+            Node: node_B1(UUID:abfeab89-b4e4-11f0-a077-00a09897cb73)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+            Node: node_B2(UUID:31e395bf-b4e7-11f0-bf99-00a09897cb2f)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+----
+====
+. 切り替えシミュレーションを実行します。
++
+`monitor switchover-simulate -monitor-name <monitor_name> -cluster <cluster_name>`
+
++
+このコマンドは、操作が成功すると次の出力を返します。
+
++
+[listing]
+----
+Successfully triggered Switchover Simulation. Please check the status of the Switchover Simulation on the ONTAP cluster using command "metrocluster operation history show"
+----
+

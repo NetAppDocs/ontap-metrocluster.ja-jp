@@ -32,8 +32,16 @@ NetApp-metrocluster-Tiebreaker software-cli
 
 NetApp MetroCluster Tiebreaker ソフトウェアをインストールしたら、 MetroCluster 構成を 1 つずつ追加できます。
 
-ONTAP 環境に MetroCluster 構成をインストールし、ソフトウェアで設定を有効にしておく必要があります。
+.このタスクについて
+* ONTAP 環境に MetroCluster 構成をインストールし、ソフトウェアで設定を有効にしておく必要があります。
+* 手順と予想されるコマンド出力は、実行している Tiebreaker のバージョンによって異なります。
 
+
+[role="tabbed-block"]
+====
+.タイブレーカー 1.5 以前
+--
+.手順
 . Tiebreaker コマンドラインインターフェイス（ CLI ）の monitor add コマンドを使用して、 MetroCluster の設定を追加します。
 +
 ホスト名を使用する場合は、完全修飾ドメイン名（ FQDN ）を指定する必要があります。
@@ -42,19 +50,23 @@ ONTAP 環境に MetroCluster 構成をインストールし、ソフトウェア
 次の例は、 cluster_A の構成を示しています。
 
 +
+.例
+[%collapsible]
+=====
 [listing]
 ----
 
 NetApp MetroCluster Tiebreaker :> monitor add wizard
-Enter monitor Name: cluster_A
-Enter Cluster IP Address: 10.222.196.130
+Enter monitor Name: <monitor_name>
+Enter Cluster IP Address: <cluster_ip_value>
 Enter Cluster Username: admin
 Enter Cluster Password:
-Enter Peer Cluster IP Address: 10.222.196.40
+Enter Cluster IP Address: <peer_cluster_ip_value>
 Enter Peer Cluster Username: admin
 Enter Peer Cluster Password:
 Successfully added monitor to NetApp MetroCluster Tiebreaker software.
 ----
+=====
 . Tiebreaker CLI の monitor show-status コマンドを使用して、 MetroCluster 構成が正しく追加されたことを確認します。
 +
 [listing]
@@ -64,7 +76,7 @@ NetApp MetroCluster Tiebreaker :> monitor show -status
 ----
 . Tiebreaker ソフトウェアのオブザーバーモードを無効にして、サイト障害を検出したあとにスイッチオーバーを自動的に開始するようにします。
 +
-monitor modify monitor-name monitor_name -observer -mode false
+`monitor modify -monitor-name <monitor_name> -observer-mode false`
 
 +
 [listing]
@@ -76,6 +88,82 @@ Are you sure you want to enable automatic switchover capability for monitor "8pa
 ----
 
 
+--
+.Tiebreaker 1.6以降
+--
+.手順
+. Tiebreaker コマンドラインインターフェイス（ CLI ）の monitor add コマンドを使用して、 MetroCluster の設定を追加します。
++
+ホスト名を使用する場合は、完全修飾ドメイン名（ FQDN ）を指定する必要があります。
+
++
+次の例は、 cluster_A の構成を示しています。
+
++
+.例
+[%collapsible]
+=====
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> monitor add wizard
+Enter Monitor Name: cluster_A
+Enter Cluster IP Address: <cluster_ip_value>
+Enter Cluster Username: admin
+Enter Cluster Password:
+Enter Peer Cluster IP Address: <peer_cluster_ip_value>
+Enter Peer Cluster Username: admin
+Enter Peer Cluster Password:
+
+ NOTE: Before enabling automatic switchover capability, make sure to review the 'risks and limitations' as described in the MetroCluster Tiebreaker Installation and Configuration Guide.
+
+Do you want to enable automatic switchover capability for monitor(Y/N): y
+Successfully added monitor to NetApp MetroCluster Tiebreaker software.
+Verifying SSL certificate chain from cluster_A...
+
+===============================================
+Warning missing SSL certificates
+===============================================
+
+Cluster: cluster_A
+
+IP Address: <cluster_ip_value>
+
+Result:
+
+The MetroCluster Tiebreaker is unable to verify the SSL certificate chain.
+
+Recommended Actions:
+
+Run the following command to identify missing certificates:
+
+monitor switchover-simulate
+
+Import any missing certificates as indicated by the command output.
+
+For detailed instructions, please refer to the MetroCluster Tiebreaker documentation, or contact NetApp Support for assistance.
+
+Note:
+
+Missing certificates will prevent the MetroCluster Tiebreaker from issuing a switchover request in the event of a site failure.
+
+================================================================================================================================
+Verifying SSL certificate chain from cluster_B...
+
+SSL certificate chain is valid
+----
+=====
+. Tiebreaker CLI の monitor show-status コマンドを使用して、 MetroCluster 構成が正しく追加されたことを確認します。
++
+[listing]
+----
+
+NetApp MetroCluster Tiebreaker :> monitor show -status
+----
+. 不足している証明書を、Tiebreakerのバージョンに応じた手順でインポートします。<<import-certificates-tb17,証明書をインポートする>> 。
+
+
+--
+====
 .関連情報
 link:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html["MetroCluster Tiebreaker をアクティブモードで使用する場合のリスクと制限事項"]
 
@@ -88,10 +176,151 @@ Tiebreaker 1.6 以降でシームレスな監視を有効にするには、サ�
 .このタスクについて
 * このタスクは、Tiebreaker 1.6 以降で必須です。
 * このタスクは、 MetroCluster構成を Tiebreaker に正常に追加した後、または証明書の有効期限が切れた後に実行します。
+* Tiebreaker 1.7 以降では、スイッチオーバー シミュレーションを実行して、証明書をインポートする必要があるかどうかを確認できます。スイッチオーバー シミュレーションが失敗した場合は、 ONTAPから Java 仮想マシン (JVM) のキー ストアに証明書をインポートする必要があります。
 
 
+[role="tabbed-block"]
+====
+.タイブレーカー 1.7 以降
+--
 .手順
+. 切り替えシミュレーションを実行して、証明書をインポートする必要があるかどうかを確認します。
++
+.. タイブレーカーの監視ステータスを確認します。
+`monitor show -status`
++
+.例
+[%collapsible]
+=====
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> monitor show -status
+MetroCluster: A700
+    Disaster: false
+    Monitor State: Normal
+    Observer Mode: false
+    Silent Period: 5
+    Override Vetoes: false
+    Cluster: ClusterA_siteA(UUID:713e5ab2-b4e8-11f0-91aa-00a098ef36a2)
+        Reachable: true
+        Intersite Connectivity Available: true
+            Node: node_A1(UUID:9f6cecbf-b4e4-11f0-9d0f-00a098ef36a2)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+            Node: node_A2(UUID:2719bb56-b4e7-11f0-996c-00a09897caa3)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+    Cluster: ClusterB_siteB(UUID:72839591-b4e8-11f0-b688-00a09897cb73)
+        Reachable: true
+        Intersite Connectivity Available: true
+            Node: node_B1(UUID:abfeab89-b4e4-11f0-a077-00a09897cb73)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+            Node: node_B2(UUID:31e395bf-b4e7-11f0-bf99-00a09897cb2f)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+----
+=====
+.. 切り替えシミュレーションをトリガーします。
++
+`monitor switchover-simulate -monitor-name <monitor_name> -cluster <cluster_name>`
+
++
+JVM に証明書をインポートする必要がある場合、コマンドは次の出力を返します。
+
++
+[listing]
+----
+Failed to trigger Switchover Simulation. Please check Metrocluster Tiebreaker logs for further information or contact NetApp support.
+----
+
+
 . インポートする必要がある証明書 (SSL サーバー、中間、またはルート) ごとに次のコマンドを実行します。
++
+`/opt/netapp/java/bin/keytool -import -trustcacerts -file <certificate_file_name> -keystore "/opt/netapp/java/lib/security/cacerts" -alias <certificate>`
+
++
+** その `<certificate_file_name>` 値には、インポートする証明書のファイル名を指定します。
+** その `-alias <certificate>` 値は、証明書を JVM にインポートした後に証明書を保存する名前を指定します。
++
+次の例は、ファイル名のルート証明書をインポートする方法を示しています。 `root.crt` ファイル名のSSLサーバー証明書 `ssl_cert.crt`:
+
++
+[listing]
+----
+/opt/netapp/java/bin/keytool -import -trustcacerts -file root.crt -keystore "/opt/netapp/java/lib/security/cacerts" -alias root
+
+/opt/netapp/java/bin/keytool -import -trustcacerts -file ssl_cert.crt -keystore "/opt/netapp/java/lib/security/cacerts" -alias ssl_cert
+----
+
+
+. Tiebreaker ソフトウェアを再起動します。
++
+`systemctl restart netapp-metrocluster-tiebreaker-software`
+
+. 切り替えシミュレーション チェックを再度実行します。
++
+.. タイブレーカーの監視ステータスを確認します。
+`monitor show -status`
++
+.例
+[%collapsible]
+=====
+[listing]
+----
+NetApp MetroCluster Tiebreaker :> monitor show -status
+MetroCluster: A700
+    Disaster: false
+    Monitor State: Normal
+    Observer Mode: false
+    Silent Period: 5
+    Override Vetoes: false
+    Cluster: ClusterA_siteA(UUID:713e5ab2-b4e8-11f0-91aa-00a098ef36a2)
+        Reachable: true
+        Intersite Connectivity Available: true
+            Node: node_A1(UUID:9f6cecbf-b4e4-11f0-9d0f-00a098ef36a2)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+            Node: node_A2(UUID:2719bb56-b4e7-11f0-996c-00a09897caa3)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+    Cluster: ClusterB_siteB(UUID:72839591-b4e8-11f0-b688-00a09897cb73)
+        Reachable: true
+        Intersite Connectivity Available: true
+            Node: node_B1(UUID:abfeab89-b4e4-11f0-a077-00a09897cb73)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+            Node: node_B2(UUID:31e395bf-b4e7-11f0-bf99-00a09897cb2f)
+                Reachable: true
+                Intersite Connectivity Available: true
+                State: normal
+----
+=====
+.. 切り替えシミュレーションをトリガーします。
++
+`monitor switchover-simulate -monitor-name <monitor_name> -cluster <cluster_name>`
+
++
+[listing]
+----
+Successfully triggered Switchover Simulation. Please check the status of the Switchover Simulation on the ONTAP cluster using command "metrocluster operation history show"
+----
+
+
+
+
+--
+.タイブレーカー 1.6 または 1.6P1
+--
+.手順
+. ONTAPからすべての証明書をインポートします。インポートする必要がある証明書 (SSL サーバー、中間、またはルート) ごとに次のコマンドを実行します。
 +
 `/opt/netapp/java/bin/keytool -import -trustcacerts -file <certificate_file_name> -keystore "/opt/netapp/java/lib/security/cacerts" -alias <certificate>`
 
@@ -116,6 +345,8 @@ Tiebreaker 1.6 以降でシームレスな監視を有効にするには、サ�
 
 
 
+--
+====
 
 
 == MetroCluster Tiebreaker 構成を変更するためのコマンド
