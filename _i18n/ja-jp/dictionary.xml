@@ -4192,8 +4192,6 @@
   <block id="59a45a7f051ccc97450bfc85a22e3683" category="inline-xref-macro">クラスタピアリングの設定に関する考慮事項</block>
   <block id="63ffe4f1eeb56d0485132cbf234244c7" category="inline-xref-macro">クラスタピアリングのケーブル接続</block>
   <block id="c95d70c32e5010f3058d5fdd6c2ed694" category="inline-xref-macro">クラスタをピアリング</block>
-  <block id="1a9dbc3089b2c22ecdefe28bf423258a" category="inline-link">ソフトウェアのセットアップ</block>
-  <block id="49fd6eac557fd3205a3431ae072641b8" category="paragraph"><block ref="49fd6eac557fd3205a3431ae072641b8" category="inline-link-rx"></block></block>
   <block id="feda56ed0396074f051138ea4466f982" category="doc">MetroCluster 構成をテストする</block>
   <block id="7e756142ca24020ffa4d2170bdd9c135" category="paragraph">障害シナリオをテストして、 MetroCluster 構成が正しく動作していることを確認できます。</block>
   <block id="397065d1ea76a7267c1165f18aff1479" category="section-title">ネゴシエートスイッチオーバーを検証中</block>
@@ -4396,7 +4394,6 @@
   <block id="8d3eb4cb77ea2bbd21bb7417b5cacaca" category="paragraph">ブリッジペア内のブリッジ。ブリッジのペアは、特定のスタックグループに接続します。</block>
   <block id="f7957f4fad1ef92794a3f4763851bc70" category="paragraph">a または b</block>
   <block id="23d8ab4e8486ac34b4198e32edee8347" category="doc">メンテナンスモードでコンポーネントの HA 状態を確認および設定する</block>
-  <block id="5c6c610b9df037c3c93893e9123552e5" category="paragraph">このタスクは、工場出荷状態のシステムでは必要ありません。</block>
   <block id="01418c86fa72d40961ea4cb3a1aab570" category="paragraph">HA の正しい状態は、 MetroCluster 構成によって異なります。</block>
   <block id="1dc892f064f17754668ca94a72688e30" category="cell">MetroCluster 構成のコントローラの数</block>
   <block id="66ac0ed81d2dea0f198f439df41bf358" category="cell">すべてのコンポーネントの HA の状態</block>
@@ -5477,20 +5474,17 @@
   <block id="66231f606270c78979b74f7dafd00360" category="cell">情報のタイプ</block>
   <block id="f8d0e53dace25d0c35a6408f7cc4b99f" category="cell">値を入力します</block>
   <block id="0dbae4d42c7a0db53e2eb32adee12892" category="paragraph">クラスタ名</block>
-  <block id="a67eabd25a14e4d0c90e1d8b28411988" category="paragraph">このガイドで使用している例： site_A</block>
   <block id="7cedb7d06868d413eb213570c0f1602d" category="paragraph">DNS ドメイン</block>
   <block id="355740384e2ef657024921082276e16b" category="paragraph">DNS ネームサーバ</block>
   <block id="ce5bf551379459c1c61d2a204061c455" category="paragraph">場所</block>
   <block id="33ccba682d8aacdfad3cf694806f090e" category="paragraph">管理者パスワード</block>
   <block id="e551203e288e2980a529e7b79dac7f20" category="section-title">ノード情報：サイト A</block>
   <block id="af0e7b523338f1f736bf918304b175fe" category="paragraph">クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。</block>
-  <block id="1ccec885efe14190b68ea60168729b15" category="paragraph">このガイドで使用している例： controller_A_2</block>
   <block id="457b5e1bf03afbd29fcfeafe25b17b46" category="section-title">クラスタピアリング用の LIF およびポート：サイト A</block>
   <block id="b83f62c1b8d28ab60dfdf3f2be00e6bd" category="paragraph">クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。</block>
   <block id="2e00b3f890ab085173dcb5fc224c2328" category="cell">クラスタ間 LIF の IP アドレス</block>
   <block id="ed6b2bfd70683c956ef895a8afafbd6a" category="paragraph">ノード 1 IC LIF 1</block>
   <block id="9c509c0ae30757edc1a1a8060d70ffd2" category="paragraph">ノード 1 IC LIF 2</block>
-  <block id="2dbf0641a33d566e3e841975208de0ae" category="paragraph">2 ノード MetroCluster 構成（サイトごとに 1 つのノード）には、ノード 2 IC LIF 2 が必要です。</block>
   <block id="c47b6a945e2832f5bd7220689b319220" category="section-title">タイムサーバ情報：サイト A</block>
   <block id="70371f8efd2b8ae536be80520d74c423" category="paragraph">時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。</block>
   <block id="85cabef5a0ee43a130abed28ee18d27f" category="paragraph">NTP サーバ 1</block>
@@ -5516,10 +5510,7 @@
   <block id="7943526b8cee7f099dbecfda7ab6075b" category="section-title">スイッチ情報：サイト B （スイッチクラスタ）</block>
   <block id="f8d79c79841817997fa985a802f8fe91" category="paragraph">システムをケーブル接続するときは、各クラスタスイッチのホスト名と管理 IP アドレスが必要です。この情報は、 2 ノードスイッチレスクラスタ構成または 2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は必要ありません。</block>
   <block id="a5902c9bf3ac2ea1b8435d858c7d3a94" category="section-title">クラスタ作成情報：サイト B</block>
-  <block id="9de6a3d21baa3d2477fcc28e8859e959" category="paragraph">このガイドで使用している例： site_B</block>
   <block id="8072672014690af266505818a59ad49a" category="section-title">ノード情報：サイト B</block>
-  <block id="f841368b0e6e89de1f7f957dad84a039" category="paragraph">このガイドで使用している例： controller_B_1</block>
-  <block id="7f92c2e38c8b2f1d9d424f284d8b974e" category="paragraph">このガイドで使用している例： controller_B_2</block>
   <block id="6f126fa7932b6b060d8301f099d74d18" category="section-title">クラスタピアリング用の LIF およびポート：サイト B</block>
   <block id="2ddeb191957d309760a14e2f4353284d" category="paragraph">ノード 2 IC LIF 1</block>
   <block id="782e54b0ba0da8311c22531d4ba4ee23" category="paragraph">ノード 2 IC LIF 2</block>
@@ -5596,8 +5587,6 @@
   <block id="6000e2c75843867ed6ce64823481e000" category="paragraph">ディスクシェルフ 6 （ shelf_B_4_4 ）</block>
   <block id="e9bbaf304559b73edee9fc8ff30c1f60" category="paragraph">ディスクシェルフ 7 （ shelf_A_4_2 ）</block>
   <block id="f00cb83aeac0f163b4df0421aac97b3a" category="paragraph">ディスクシェルフ 8 （ shelf_A_4_4 ）</block>
-  <block id="0d02db028459671974f0cd5ab64607ed" category="list-text">必要に応じて、「 disk assign 」コマンドを使用して、接続されているディスクシェルフ上のディスクを適切なプールに明示的に割り当てます。</block>
-  <block id="8768bb4842d961c867a1ac749cb45725" category="paragraph">ワイルドカードを使用すると、 1 回のコマンドで 1 つのディスクシェルフのすべてのディスクを割り当てることができます。「 storage show disk --x 」コマンドを使用すると、各ディスクのディスクシェルフ ID とベイを識別できます。</block>
   <block id="a5092c70d4454b55202bf686e38812b2" category="list-text">ブートメニューを表示します：「 boot_ontap menu</block>
   <block id="e5f374e3852711b34445ebd3a6bf5fe0" category="section-title">保守モードでの 2 ノード構成のディスク割り当ての検証</block>
   <block id="174108f7eb5e5dd61b76f590b4908c39" category="paragraph">システムを ONTAP で完全にブートする前に、システムをメンテナンスモードでブートして、ノードのディスク割り当てを確認することもできます。ディスクは、両方のサイトが独自のディスクシェルフを所有してデータを提供し、各ノードおよび各プールのミラーディスク数が等しい、完全に対称な構成を形成するように割り当てられている必要があります。</block>
@@ -5610,13 +5599,6 @@
   <block id="e96a233d9250e8790677316f6087a23a" category="paragraph">ノードと同じサイトにあるディスクシェルフはプール 0 に割り当て、パートナーサイトにあるディスクシェルフはプール 1 に割り当てます。各プールに同じ数のシェルフを割り当てる必要があります。</block>
   <block id="bba60b82ea71bd9c36c054cd48c56d3e" category="paragraph">ストレージコントローラ node_A_1 にシェルフが 4 台ある場合は、次のコマンドを問題できます。</block>
   <block id="29ea6346f3800a546ab4c572eb053f47" category="paragraph">ストレージコントローラ node_B_1 にシェルフが 4 台ある場合は、次のコマンドを問題に設定します。</block>
-  <block id="1d256cd4005056aea7773d889c3d6827" category="paragraph">MetroCluster 構成でストレージシステムを構成する場合は、それらのコンポーネントが適切にブートするように、コントローラモジュールおよびシャーシコンポーネントのハイアベイラビリティ（ HA ）状態が mcc または mcc-2n であることを確認する必要があります。</block>
-  <block id="52d6900f00a9806f77cb3a2c8f52cd66" category="paragraph">ha-config modify controller mcc</block>
-  <block id="35b229745aacd4fd8cb650c9ec363a36" category="paragraph">ha-config modify controller mcc-2n</block>
-  <block id="d68e680c0ad920bf3b70363718aa8c5b" category="paragraph">ha-config modify controller mccip</block>
-  <block id="529252ae610752213411fe31905fb1bd" category="paragraph">ha-config modify chassis mcc</block>
-  <block id="6f949e06526d6c6a8f1c9ab8bb85fcea" category="paragraph">ha-config modify chassis mcc-2n</block>
-  <block id="e2f29383f427c1bb29ab03d5c0b0ea17" category="paragraph">ha-config modify chassis mccip</block>
   <block id="49263ce76ed7dd5239c1a66ac12d2d4e" category="section-title">ONTAP をセットアップしています</block>
   <block id="a9e993f3d21d2cbe38c03108e316d551" category="paragraph">各コントローラモジュールに ONTAP をセットアップする必要があります。</block>
   <block id="54c72213164ddf62947d8c886cbf1580" category="inline-link">新しいコントローラモジュールのネットブート</block>
@@ -5626,13 +5608,11 @@
   <block id="2dafecd33d1bcc030e5a4330614efcc0" category="paragraph">サービスプロセッサが設定されていないことを確認してください。</block>
   <block id="3d97e23b9e037dc67358be022977af8f" category="paragraph">このタスクは、ネットアップの標準のストレージを使用した 2 ノード MetroCluster 構成が対象です。</block>
   <block id="f82209ba761a7a3841706c46b4b7c662" category="paragraph">このタスクは、 MetroCluster 構成の両方のクラスタで実行する必要があります。</block>
-  <block id="1b8e8c7488b5a9cb01bbce47b4cbfd12" category="paragraph">ONTAP のセットアップに関するその他の一般的な情報については、『ソフトウェア・セットアップ・ガイド』を参照してください</block>
   <block id="65ed7b3de2c8dfe1b7246d59c4b26a4f" category="list-text">最初のノードの電源をオンにします。</block>
   <block id="53f541e3adb858602815a998339e0b0c" category="admonition">この手順はディザスタリカバリ（ DR ）サイトのノードでも実行する必要があります。</block>
   <block id="4931c10e912b9e2bedd73db57677efb5" category="paragraph">ノードがブートし、コンソールでクラスタセットアップウィザードが起動されて、 AutoSupport が自動的に有効になることを示すメッセージが表示されます。</block>
   <block id="1435c38c8fe8e51a1914281a05a6371a" category="list-text">ノードをシングルノードクラスタとして使用するかどうかを選択します。</block>
   <block id="67aabab9f492ee92f6763017f38bfe8c" category="list-text">Enter キーを押してシステムのデフォルト値をそのまま使用するか 'no' と入力してから Enter キーを押して ' 独自の値を入力します</block>
-  <block id="aca85a1555dedfa21c22fb9087fd8fbb" category="list-text">プロンプトに従ってクラスタセットアップウィザードを最後まで実行します。デフォルト値を使用する場合は Enter キーを押し、自分で値を設定する場合は値を入力してから Enter キーを押します。</block>
   <block id="3d8c78e8c17d5d102cbfaf13c48da37d" category="paragraph">デフォルト値は、プラットフォームとネットワークの構成に基づいて自動的に決定されます。</block>
   <block id="11fec51b6a709a671a0bad7bd4d6055a" category="paragraph">管理 SVM やノード SVM に対する設定に変更が必要になった場合は、 cluster setup コマンドを使用してクラスタセットアップウィザードにアクセスできます。</block>
   <block id="6ba05c3635c2380101c6d1694ffb9f1b" category="section-title">8 ノード / 4 ノード MetroCluster 構成での ONTAP のセットアップ</block>
@@ -5644,7 +5624,6 @@
   <block id="8de6d8ea3f7806bbd46e1924769d5f95" category="paragraph">次の例は、 cluster_A の出力を示しています。</block>
   <block id="db0013ead6feda0925dab5a74c8650a1" category="list-text">2 ノードスイッチレスクラスタ（クラスタインターコネクトスイッチのないクラスタ）を作成する場合は、 switchless-cluster ネットワークモードを有効にします。</block>
   <block id="f94c0b2723507c24f643c398936ddbaa" category="paragraph">advanced モードで続行するかどうかを確認するプロンプトが表示されたら、「 y 」と入力します。advanced モードのプロンプトが表示されます（ * &gt; ）。</block>
-  <block id="54ae43b8b32e733a05527e814b7d8de1" category="list-text">switchless-cluster モードを有効にします。「 network options switchless-cluster modify -enabled true 」</block>
   <block id="14f809e80015cc5e4cca6e9ac5bb0e1d" category="list-text">最初のブート後にシステムコンソールに表示される情報に従って、 System Setup ツールを起動します。</block>
   <block id="a1f9b3aabd3dc01bacdfe7bc09462c04" category="list-text">System Setup ツールを使用して各ノードを設定し、クラスタを作成します。ただし、アグリゲートは作成しないでください。</block>
   <block id="c67b6fe4fa472bf0e23c71468611a210" category="admonition">後続のタスクでミラーされたアグリゲートを作成します。</block>
@@ -5653,8 +5632,6 @@
   <block id="e32e02e229abe8f6d37ea0b72c24d309" category="paragraph">「 network interface show -role intercluster 」の略</block>
   <block id="3f03d09659bbfe5952ff31a77d57eca7" category="paragraph">「 network interface show -service -policy default -intercluster-failover 」のように入力します</block>
   <block id="a79109432485cb634f66654d4bce4833" category="paragraph">「 network interface show -role intercluster-failover 」の略</block>
-  <block id="ce2034e3e322f8406cf6ca46f905c9fb" category="paragraph">「 network interface create -vserver system_svm -lif lif_name -policy default -intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です</block>
-  <block id="5234664df25823d24e2779ea23a2aea1" category="paragraph">「 network interface create -vserver system_svm -lif lif_name -role intercluster -home-node node -home-port port -address port_ip -netmask netmask 」です</block>
   <block id="af38ecaa21f292a282a9ff2da5fa8c28" category="paragraph">「 network interface show – service-policy default-intercluster-failover 」と表示されます</block>
   <block id="58ba31c3d84fdbdc2be198ae5852fa82" category="paragraph">MetroCluster クラスタ間にクラスタピア関係を作成する必要があります。</block>
   <block id="1d8f4251a8e86e2424aff140993d62ef" category="paragraph">cluster peer create コマンドを使用すると、ローカルクラスタとリモートクラスタ間のピア関係を作成できます。ピア関係が作成されたら、リモートクラスタで cluster peer create を実行して、ローカルクラスタに対してピア関係を認証できます。</block>
@@ -5663,9 +5640,7 @@
   <block id="2e83a01e66f87dc352c50f14622012a8" category="paragraph">次の例は、リモートクラスタを指定せずにクラスタピア関係を作成します。</block>
   <block id="bcdaeafa0f75b830572a5c8a4537c3a1" category="paragraph">次の例は、クラスタ間 LIF の IP アドレス 192.140.112.101 および 192.140.112.102 でローカルクラスタをリモートクラスタに対して認証します。</block>
   <block id="ad76b677fdf50b4f7db6e17db05c59f5" category="paragraph">プロンプトが表示されたら、ピア関係のパスフレーズを入力します。</block>
-  <block id="a159211d3c11db71dc6ba0af4f65258e" category="list-text">クラスタピア関係が作成されたことを確認します。「 cluster peer show -instance</block>
   <block id="0bb2829377a3f68bab45133d5b6d85ba" category="section-title">クラスタピア関係の作成（ ONTAP 9.2 以前）</block>
-  <block id="38ec41a2df2c968e5e4f7d0369bd7ff3" category="paragraph">cluster peer create コマンドを使用して、ローカルクラスタとリモートクラスタ間のピア関係の要求を開始できます。ローカルクラスタからピア関係を要求したら、リモートクラスタで cluster peer create を実行して関係を承認できます。</block>
   <block id="3fc89b244c2361236c5544d7869ef51c" category="list-text">ピア関係にあるクラスタ内の各ノードでクラスタ間 LIF を作成しておく必要があります。</block>
   <block id="4e02786929a5f5611ccc65c33cc94713" category="list-text">クラスタ管理者は、各クラスタが他のクラスタに対して自身を認証する際に使用するパスフレーズに同意しておく必要があります。</block>
   <block id="3efa0b52c6d7c08eec14f64cc84a7a1a" category="paragraph">次の例は、クラスタ間 LIF の IP アドレス 192.168.2.201 および 192.168.2.202 で、リモートクラスタとのクラスタピア関係を作成します。</block>
@@ -5673,14 +5648,11 @@
   <block id="da5ca6ae1de018f91fb173975dfb47fa" category="inline-link">論理ストレージ管理</block>
   <block id="c990f2f1519c6cbe8981cd3b660b7278" category="paragraph"><block ref="c990f2f1519c6cbe8981cd3b660b7278" category="inline-link-rx"></block></block>
   <block id="095878b2b9ceb6ee18550854864bc080" category="list-text">storage aggregate create -mirror true コマンドを使用して、アグリゲートを作成します。</block>
-  <block id="184f9da9dc438e19cd9cecb2175ad4c5" category="paragraph">クラスタ管理インターフェイスでクラスタにログインした場合、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートを作成するには、 -node パラメータを使用するか、そのノードが所有するドライブを指定します。</block>
-  <block id="d9bd86ef926208fe90e170b165fc17ad" category="admonition">使用可能なドライブ数が限られている最小サポート構成では、 force-small-aggregate オプションを使用して、 3 ディスクの RAID-DP アグリゲートを作成できるように設定する必要があります。</block>
   <block id="ef2f43e3af3c4fa749e73a7911ab793f" category="list-text">RPM の異なるドライブが許可されるかどうか</block>
   <block id="dcf4701604c34addcef13b54ec69afb0" category="paragraph">これらのオプションの詳細については 'storage aggregate create のマニュアルページを参照してください</block>
   <block id="f901b4e06f91cf4fe5b1e0d1cc53e888" category="list-text">これらのオプションの詳細については、 storage aggregate create のマニュアルページを参照してください。</block>
   <block id="cd7c123576d74dffad372d35977b2234" category="list-text">ルート以外のミラーされたデータアグリゲートが各クラスタに少なくとも 2 つ必要です。</block>
   <block id="a15ff2e13d2d5de2d8e756fdca682ed8" category="paragraph">その他のデータアグリゲートはミラーされていてもいなくてもかまいません。</block>
-  <block id="a09517d85950406142abe0b5f1a98a2e" category="paragraph">これは、 storage aggregate show コマンドを使用して確認できます。</block>
   <block id="64e689059c4305b4895291911b1041c7" category="list-text">次の形式で MetroCluster を設定します。</block>
   <block id="be8958e515095147a6dd8614b428fe8d" category="cell">MetroCluster 構成の内容</block>
   <block id="9792a4eebc59c44369f1f98f9d27237a" category="cell">操作</block>
@@ -5688,24 +5660,20 @@
   <block id="eb4d985f7e803275c39a27eca837d150" category="paragraph">ミラーされた 1 つのデータアグリゲート</block>
   <block id="ea00fbc3649d5a240ebf0ffe4ebe4dc5" category="paragraph">advanced モードで続行するかどうかを尋ねられたら、「 y 」と入力して応答する必要があります。 advanced モードのプロンプト（ * &gt; ）が表示されます。</block>
   <block id="c1720ee15ca6b853bdb55d81deac3213" category="paragraph">次のコマンドは、 controller_A_1 を含む DR グループ内のすべてのノードの MetroCluster 構成を有効にします。</block>
-  <block id="2a89c3d80528b6491c00ce0f75c43860" category="paragraph">Fibre Channel （ FC ）スイッチの設定に応じて、フレームの In-Order Delivery （ IOD ；インオーダー配信）または Out-of-Order Delivery （ OOD ；アウトオブオーダー配信）のいずれかを設定する必要があります。FC スイッチが IOD に設定されている場合は、 ONTAP ソフトウェアを IOD に設定する必要があります。同様に、 FC スイッチが OOD に設定されている場合は、 ONTAP を OOD に設定する必要があります。</block>
   <block id="8698590793be75e8ed64cdf02f1947bb" category="list-text">ONTAP でのフレームの処理方法として IOD または OOD のいずれかを設定します。</block>
   <block id="56c4cc733f4aa42d513f8ae8dc7be89b" category="list-text">ONTAP では、デフォルトではフレームの IOD が有効になっています。設定の詳細を確認するには、次の手順を</block>
   <block id="a10883945c82dd773336721614913845" category="list-text">フレームの OOD を設定するには、各ノードで次の手順を実行する必要があります。</block>
   <block id="7ded485b7ebcebc3bd6f05399892bc0d" category="section-title">MetroCluster 構成での SNMPv3 の設定</block>
   <block id="aad314edd91dd520fd86444157d56f66" category="paragraph">認証プロトコルとプライバシープロトコルは、スイッチと ONTAP システムで同じである必要があります。</block>
-  <block id="b2ac2c4a8a523e04a6c0ddb23069d5cf" category="paragraph">ONTAP では現在、 AES-128 と AES-256 の暗号化がサポートされています。</block>
   <block id="eaddf5b42a6f6933693578764fd14443" category="list-text">サイトで必要に応じて、次のプロンプトに応答します。</block>
   <block id="d863cf819b2af0201c67ca4c7cc83422" category="admonition">同じユーザ名を IP アドレスが異なる別のスイッチに追加できます。</block>
   <block id="3d2ecf60715230e7ccab6bd09d3a0c06" category="list-text">残りのスイッチの SNMP ユーザを作成します。</block>
   <block id="b58991fa047aec8a63989a0edcc31ef5" category="paragraph">次の例は、 IP アドレス 10.10.10.11 のスイッチのユーザ名を作成する方法を示しています。</block>
-  <block id="766c26974a4c90ad9b490830ebb9d74a" category="paragraph">次の例は、読み取り専用ユーザを設定する方法を示しています。必要に応じて、 RW ユーザを調整できます。また、未使用のアカウントにパスワードを設定して保護し、 ONTAP リリースで最適な暗号化機能を使用する必要があります。</block>
   <block id="b650107d3033a6cbfd9eec73b7b79ab2" category="list-text">必要に応じて、残りのスイッチユーザに暗号化とパスワードを設定します。</block>
   <block id="b8faea2432f5d49678ba72e9e265fe05" category="section-title">健常性監視用の MetroCluster コンポーネントの設定</block>
   <block id="19db8c18601831a8ea2a7591d6f878f0" category="paragraph">MetroCluster 構成のコンポーネントを監視するには、いくつかの特別な設定手順を実行する必要があります。</block>
   <block id="48b362592ae748a2b4676d1e63b57fca" category="paragraph">これらのタスクは、 FC-to-SAS ブリッジを使用するシステムにのみ適用されます。</block>
   <block id="ea7f8a0fa7f1d7f464025ba86a6284cd" category="list-text">ブリッジとノード管理 LIF は、他のソースからの干渉を避けるために専用のネットワークに配置する必要があります。</block>
-  <block id="7271fe2deb2377f6fe3e360239e1a3ff" category="list-text">健全性監視に専用のネットワークを使用する場合は、各ノードのノード管理 LIF を専用のネットワークに配置する必要があります。</block>
   <block id="6d8346a61b76a8b57a9dd1d8b8188d3f" category="paragraph">ファブリック接続 MetroCluster 構成の FC スイッチを監視するには、いくつかの設定手順を追加で実行する必要があります。</block>
   <block id="04759fd0dd941282c27fc50325811bf9" category="paragraph">このコマンドは、 MetroCluster 構成の 4 つのスイッチすべてに対して繰り返す必要があります。</block>
   <block id="8fd1b65238476048c10111f6e529a033" category="paragraph">次の例は、 IP アドレスが 10.10.10.10 のスイッチを追加するコマンドを示しています。</block>
@@ -5713,8 +5681,6 @@
   <block id="50e478be3ad6133f3ef6186d04be268e" category="paragraph">次の例は、 MetroCluster FC スイッチが設定されたことを検証するコマンドを示しています。</block>
   <block id="2cb2270e802d872bc52174cef7168741" category="paragraph">スイッチの World Wide Name （ WWN ；ワールドワイド名）が表示される場合は、 ONTAP ヘルスモニタを使用して FC スイッチに接続し、監視できます。</block>
   <block id="5b40bcb2b8f219e462b2be259c9f9ca0" category="paragraph">9.8 より前のバージョンの ONTAP を実行しているシステムでは、 MetroCluster 構成の FC-to-SAS ブリッジを監視するには、いくつかの特別な設定手順を実行する必要があります。</block>
-  <block id="2e520a1b682a16f2dd769ccc659bb91f" category="paragraph">「 storage bridge add -address 0.0.0.0 -managed by in-band-name bridge-name 」と入力します</block>
-  <block id="619f93caa0c27ba9b6068c4c105a7868" category="paragraph">「 storage bridge add -address bridge-ip-address -name bridge-name</block>
   <block id="f6593cf23130819e409398933f0aaaf0" category="section-title">ローカル HA の処理を検証しています</block>
   <block id="1fc888e4b44a770160a429e97648d3ee" category="paragraph">4 ノード MetroCluster 構成の場合、 MetroCluster 構成のローカル HA ペアの処理を検証する必要があります。2 ノード構成の場合は不要です。</block>
   <block id="225a700989ad161efc2f148c77ec5bf3" category="paragraph">2 ノード MetroCluster 構成ではローカル HA ペアは構成されないため、このタスクは適用されません。</block>
@@ -6479,7 +6445,6 @@
   <block id="c0733073fff8f3c7ab3cd47d2775efb1" category="section-title">コンポーネントの HA 状態の確認</block>
   <block id="2b376aac1e7dcf4390e11b46a4e6e913" category="list-text">メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。</block>
   <block id="4c286a4533c555f62039858a256b6e7f" category="paragraph">2 ノード MetroCluster 構成では、各クラスタでノードをブートし、クラスタセットアップウィザードを終了し、「 cluster setup 」コマンドを使用してノードをシングルノードクラスタに構成する必要があります。</block>
-  <block id="08f652038f1a179808212e2f8e4590e3" category="list-text">クラスタセットアップウィザードが完了したら、次のコマンドを入力して、クラスタがアクティブで、第 1 ノードが正常に機能していることを確認します。</block>
   <block id="4dfeab60c8ad724190124edabecd3b7d" category="paragraph">cluster peer create コマンドを使用すると、ローカルクラスタとリモートクラスタ間にピア関係を作成できます。ピア関係が作成されたら ' リモート・クラスタ上で cluster peer create を実行して ' ローカル・クラスタに対してピア関係を認証できます</block>
   <block id="965b05a3d739eab6edf60d6853507f9e" category="list-text">デスティネーションクラスタで、ソースクラスタとのピア関係を作成します。</block>
   <block id="78abe113367466b65798a91ad0d23cdb" category="paragraph">「 -generate-passphrase 」と「 -peer-addrs 」の両方を指定した場合、生成されたパスワードを使用できるのは、「 -peer-addrs 」にクラスタ間 LIF が指定されているクラスタだけです。</block>
@@ -7551,7 +7516,6 @@
   <block id="8d4727f84fc5ba727eb23a4ce93c87c2" category="list-text">MetroCluster IP の構成と運用の技術概要</block>
   <block id="8aec6a2bcfb78af1fffa4f2c52dfe49d" category="paragraph">Active IQ デジタルアドバイザのドキュメント</block>
   <block id="25e406bace0d04355538052e51cb9463" category="admonition">この設定に必要なすべてのコンポーネントがにあることを確認します<block ref="ae0acc7a1cf35a69eb7b42685c902841" category="inline-link-rx"></block>。サポートされている構成については、 Interoperability Matrix Tool の注意事項のセクションを参照してください。</block>
-  <block id="b4d7baf41cc0c5cafe8cdf28d3c7d4a9" category="paragraph">このガイドで使用している例： controller_A_1</block>
   <block id="30cb34cdda07b18f5f18a14a97f5b6c6" category="paragraph">2 ノード MetroCluster 構成（サイトごとに 1 つのノード）を使用している場合は不要</block>
   <block id="289895aab699c5956a58644cc2118b0c" category="section-title">サイト B の IP ネットワーク情報ワークシート</block>
   <block id="a37745234c75ebfc8f4dda76bb86a379" category="cell">ターゲットディレクトリに version_image.tgzfile の内容を展開します。 tar -zxvf ONTAP-version _image.tgz 注： Windows で内容を展開する場合は、 7-Zip または WinRAR を使用してネットブートイメージを展開します。ディレクトリの一覧に、カーネルファイル netboot/ kernel を含むネットブートフォルダが表示される必要があります</block>
@@ -7644,20 +7608,8 @@
   <block id="520e3be654124586a91040d1f3f6ad99" category="paragraph">portCfgEncrypt -- 12 を有効にします</block>
   <block id="81ec4b613ecae165b1957e588d03a221" category="list-text">ポートからライセンスを削除します。</block>
   <block id="c410870763ab138b1bb332e084940bf9" category="paragraph">このタスクの例では、次の命名規則を使用します。</block>
-  <block id="a03c39da2d1b1ed17db1d6007949ef4e" category="paragraph">「ディスク割り当てシェルフローカルスイッチ名： shelf-name. port -p pool 」のようになります</block>
-  <block id="72f3c55c79c5c3713292f0ab302f417d" category="paragraph">「ディスク割り当てシェルフローカルスイッチ名利用可能シェルフ名 -p pool 」</block>
-  <block id="42ec1151bc3506b679e500df023c1328" category="paragraph">「ディスク割り当てシェルフシェルフ名 -p pool 」です</block>
-  <block id="de5e78d1adbb2b4fcd10925ec03863f6" category="paragraph">「 disk assign -disk disk-name -p pool -n number-of disks 」を参照してください</block>
-  <block id="e45fb1f6a3be35cf34e0645a5dba1b2b" category="list-text">保守モードを終了します :+`halt`</block>
-  <block id="d85cfd1622f01917e3e145291df3c635" category="paragraph">「 Disk assign -shelf disk_shelf_name -p pool 」という名前です</block>
   <block id="6713a57dac43fec925dae196654210ba" category="paragraph"><block ref="6713a57dac43fec925dae196654210ba" category="inline-link-macro-rx"></block></block>
   <block id="180b8063135f5150a5856ecf0f5f28ef" category="paragraph"><block ref="180b8063135f5150a5856ecf0f5f28ef" category="inline-link-macro-rx"></block></block>
-  <block id="e06bf301ea32fa4d6464e6e0c1c31818" category="paragraph">「 network interface failover-groups create -vserver system_svm -failover-group failover_group -targets physical_or_logical_ports 」というように指定します</block>
-  <block id="a2a790f1b66195c582363f3ddaad4198" category="paragraph">cluster peer create-generate-passphrase -offer-expiration MM/DD/YYYY HH ： MM ： SS | 1 ... 7days | 1 ... 168 hours addrs peer-peer-peer-peer_lif_ips-ipspace ipes</block>
-  <block id="33f2ae7558982e7313c9f99b4a9180d8" category="paragraph">「 storage aggregate show-status -aggregate aggregate-name 」の形式で表示されます</block>
-  <block id="87a0372b66bbde5d80a11c1c7ebc30db" category="list-text">allow-with-one-aggregate true パラメータを使用して MetroCluster を設定します。</block>
-  <block id="794714ece855897a8f048ab85dcccd86" category="paragraph">MetroCluster configure -allow-with-one-aggregate true node-name ●</block>
-  <block id="00d8a967aae192561db3b04fc12aaf7a" category="paragraph">MetroCluster インターコネクトアダプタ modify -node node name -is-ood-enabled true</block>
   <block id="f507f320d40c8a1840acd2dba0476fce" category="paragraph">「システム構成のバックアップ設定は URL-of-destination 」を変更します</block>
   <block id="22811c5f1e2d772ad5aef6aa78286f3b" category="paragraph"><block ref="22811c5f1e2d772ad5aef6aa78286f3b" category="inline-link-macro-rx"></block></block>
   <block id="05b1987240de2b0227bb9f6af346a70e" category="paragraph">MetroCluster 構成外のクラスタへの FlexCache 関係では、スイッチオーバー中に関連するクラスタが切断モードになっている場合、スイッチオーバー後に常にピアリングを手動で再設定する必要があります。</block>
@@ -9514,21 +9466,6 @@
   <block id="426ee46ac7dd79d76d63e3c2d8bf8243" category="paragraph">システムが「インストールの準備」のすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。</block>
   <block id="7916572f780670b32d722f9441c26db4" category="list-text">ATTO FibreBridge のシリアルコンソールポートを設定し、ポート速度を 1 、 000 詐欺検出用に設定します。</block>
   <block id="9f39b4378a3d44f4f0a500c832ddf6b3" category="list-text">「 unsecurebridge 」コマンドを使用して、イーサネットポートを再度イネーブルにできます。</block>
-  <block id="2eef5c9469dc2ce9cbe3c71dabc6f13e" category="paragraph">使用例： site_B</block>
-  <block id="b72239aa6dab42301b66b43e2f099b73" category="paragraph">使用例： controller_B_1</block>
-  <block id="5a824bb09d91d3c1fd4e6c54c0023c1b" category="paragraph">使用例： controller_B_2</block>
-  <block id="240381aac72e018a5c9749db4ada23d1" category="paragraph">次の例では、ポート「 e0e 」および「 e0f 」をシステム SVMcluster01 上のフェイルオーバーグループ intercluster01 に割り当てます。</block>
-  <block id="45affadac35f4e36d8abb4cc94eb9e6e" category="paragraph">次の例は、フェイルオーバーグループ intercluster01 にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。</block>
-  <block id="91ea7a38a1266389c4424c356e68d0f1" category="paragraph">+ 次の例は、 SVM 「 e0e 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0f 」ポートにフェイルオーバーされることを示しています。</block>
-  <block id="29c7a215dd6ee71543010039c946511e" category="paragraph">次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。</block>
-  <block id="f351a65c74a8a4f1061627e2b4aa5026" category="paragraph">storage aggregate modify – aggregate aggr_name -raidtype raid4</block>
-  <block id="be99b27fc7d6edf127381655525e4155" category="list-text">アグリゲート名は、 MetroCluster 構成を計画する際に決定した命名規則に従う必要があります。を参照してください<block ref="46a180d322a34c1f2719942dadd3e4fb" category="inline-link-rx"></block>。</block>
-  <block id="0a2884dde8bcccd27a62adc735d32316" category="admonition">ミラーされた単一のデータアグリゲートを使用する場合は、の手順 1 を参照してください <block ref="38d510a4fa3d22240b8943da6055e4df" category="inline-link-macro-rx"></block> 手順については、を参照し</block>
-  <block id="8c5e3ad1d44826cc667d071df3606d74" category="paragraph">コントローラとシャーシの ha-config の状態が「 mcc 」である必要があります。</block>
-  <block id="721af9da2b28dbf4cf6b943cba7d482c" category="paragraph">RO アクセスを必要とする場合は、 "`User(ro):"" の後に、 "`snmpv3user`" を次の例のように指定します。</block>
-  <block id="14a8fc6fe6b58444388acfef6a176529" category="inline-link">構成バックアップの管理</block>
-  <block id="6c0e4fd4b7e2ef11d891ac59729c5f3e" category="inline-link">クラスタ管理</block>
-  <block id="3d324eced25a10d4e6f55d473d59805b" category="paragraph"><block ref="3d324eced25a10d4e6f55d473d59805b" category="inline-link-rx"></block></block>
   <block id="8f40c45d93fd99743af14410f5bb6b4f" category="list-text">各スイッチで、 2 つの IPStorage インターフェイス（「 IPStorage1/1 」および「 IPStorage1/2 」）を設定します。</block>
   <block id="0fd0c2fc018d9d95d9e5a42d9c09e57d" category="list-text">[[[[[['['a ']] 構成モードに切り替えます :</block>
   <block id="c8a791ed0c73c0a68f4c09ede0b1a9f3" category="paragraph">`_IPstorage_` パラメータ値は "`IPStorage1/1 `" または "IPStorage1/2 `" です</block>
@@ -9764,8 +9701,6 @@
   <block id="e2090ebbf2ac14963bfb6c9602cbc750" category="paragraph">この手順で使用している例： site_A</block>
   <block id="49ed603bb0e65ebf6cbe5de7d5a6e0c6" category="paragraph">この手順で使用している例： controller_A_1</block>
   <block id="4e0ca507efddc63c28aeb3319df00d5d" category="paragraph">この手順で使用している例： controller_A_2</block>
-  <block id="d483490d3082f02c6057abcd983c34e6" category="list-text">のネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します<block ref="218502de673c582fbc556024d0b3de54" category="inline-link-rx"></block></block>
-  <block id="f1573b913aebef18602249e23e196f67" category="paragraph"><block ref="09965663397032e7c8c3dcc98b9deca2" category="inline-link-rx"></block> 追加情報が含まれます。</block>
   <block id="3b60cd7b393721dca2be281ca53a4351" category="paragraph">ONTAP 9.2 以降では、次の場合に ISL を共有できます。</block>
   <block id="8adae693d3240e468a2042cfca460ce7" category="inline-link">NetApp MetroCluster 解決策のアーキテクチャと設計、 TR-4705</block>
   <block id="2afcc48289d48527e519adacbd3a8bce" category="paragraph"><block ref="2afcc48289d48527e519adacbd3a8bce" category="inline-link-rx"></block></block>
@@ -10278,10 +10213,6 @@
   <block id="66dfac56c9206023b345746e3fd92eae" category="section-title">[[Download-And-install]] NVIDIA RCFファイルをダウンロードしてインストールします</block>
   <block id="3f710cadb0123c693533da68aaf5b596" category="paragraph-title">次に何をするか</block>
   <block id="0fcee5126250d77f3f33a330fd9c5a17" category="paragraph">ISL ポートとして追加するポートに SFP を挿入します。これらのポートがに表示されていることを確認します <block ref="5488151483f7e2bfe24758bbbb4d6f40" category="inline-link-macro-rx"></block> をクリックします。</block>
-  <block id="4b18b6ffcae5c35c0fd047b621fdb59e" category="section-title">サイトA nbsp；AutoSupport情報</block>
-  <block id="ed68524d33cb83b7bc35eb3921cd5e50" category="section-title">サイトA nbsp；SP情報</block>
-  <block id="75cb9d2c8e6c492546bef17abe8e5a69" category="section-title">サイトB nbsp；AutoSupport情報</block>
-  <block id="336d72b5902fa5007c0f1b27db5d4cb7" category="section-title">サイトB nbsp；SP情報</block>
   <block id="0ab984d91ab0a037bdf692bf0e73c349" category="paragraph-title">重要</block>
   <block id="c6e21fae72937c189cf8456f90c8f3a5" category="section-title">サイトA nbsp；AutoSupport 情報</block>
   <block id="9416a5cc051e7f0bc3db126192f4a9c8" category="section-title">サイトA nbsp；SP情報</block>
@@ -11581,8 +11512,6 @@
   <block id="00395061ba5a721f2a906e4ac75f9fde" category="inline-link-macro">MetroCluster 構成で FabricPool のオブジェクトストアを設定する</block>
   <block id="e0e300856a5e4a2a419fdf0d5fb20e62" category="admonition">アグリゲートを設定する前に、の説明に従ってオブジェクトストアを設定する必要があります。 <block ref="bf6f1feb5dfb0381998cf99478ab26ea" category="inline-link-macro-rx"></block>。</block>
   <block id="39998026607048d04a8bc09fac18fa8f" category="paragraph">ONTAP 9.11.1以降、 <block ref="7a1a77fa3bd3a175233cd6cdfe493836" category="inline-link-macro-rx"></block> MetroCluster 構成でサポートされます。</block>
-  <block id="664f9c52f93e2fbf6e801148b0f573ad" category="inline-link-macro">HAペアの管理</block>
-  <block id="fc0b22bb38f11521c03de86c56643d5d" category="paragraph"><block ref="fc0b22bb38f11521c03de86c56643d5d" category="inline-link-macro-rx"></block></block>
   <block id="0f87578f11104e3d1178b1b6a73f5684" category="paragraph"><block ref="0f87578f11104e3d1178b1b6a73f5684" category="inline-link-macro-rx"></block></block>
   <block id="3973235e869d719328cf4b37e59562e5" category="paragraph"><block ref="3973235e869d719328cf4b37e59562e5" category="inline-link-macro-rx"></block></block>
   <block id="c5d34bb560e327e8975a1da2f0e0c0fe" category="cell"><block ref="c5d34bb560e327e8975a1da2f0e0c0fe" category="inline-link-macro-rx"></block></block>
@@ -14229,7 +14158,6 @@
   <block id="6a322d79cc829cae0de4701dc672ffca" category="image-alt">各スイッチのデュアル ISL 構成の FCIP ポートを示す図</block>
   <block id="d0c92c7c34253959ed1ec5127a53af0a" category="image-alt">FCからSASへのブリッジのインストールと構成のワークフロー</block>
   <block id="74a4dfe29ccc8cc96b410e9b0a5d1c1b" category="image-alt">複数の SAS3 スタックを備えた FibreBridge 用のMetroClusterケーブル配線</block>
-  <block id="91808658b22ba7487b8c09753a426fbe" category="image-alt">ONTAPにおける高レベルのノードおよびクラスタ構成のワークフロー</block>
   <block id="42ceaa81d7a1ae07decd6672f9c77b45" category="image-alt">MetroClusterレイヤー 2 ネットワーク構成</block>
   <block id="9abaaa939f8a0df07de4dc260378e835" category="image-alt">MetroClusterレイヤー 3 バックエンド ネットワーク構成</block>
   <block id="623fd1b20a7dbd0dcbc1a35f2641d584" category="image-alt">MetroClusterトラフィックにNetApp認定のCiscoスイッチを使用する場合に必要な設定</block>
@@ -14531,4 +14459,14 @@
   <block id="3e72f6e14914c8788932c9e928d6b32b" category="list-text">注4：古いコントローラを外付けSASシェルフに変換するには、IOMモジュールが必要です。サポートされているIOMモジュールについては、<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="ba0ea850ad143cf2644fe04fa6c67417" category="list-text">注 5：ONTAP 9.18.1GA 以降が必要です。</block>
   <block id="c57a703687b0f21729f368950b7a5618" category="paragraph"><block ref="c57a703687b0f21729f368950b7a5618" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="ae5ea867d279a95654ecca471767e6af" category="list-text">システムに複数のドライブ タイプがある場合（異機種混在ストレージ）、正しいドライブ タイプが選択されていることを確認する方法を理解しておく必要があります。</block>
+  <block id="5ff5ba1e734a1c6acf560244a4167653" category="list-text">アグリゲート名は、MetroClusterサイト全体で一意である必要があります。つまり、サイト A とサイト B に同じ名前を持つ 2 つの異なるデータ アグリゲートを持つことはできません。</block>
+  <block id="c4feaf0c81d09c76b61f0eca4a4fda38" category="admonition">最適なストレージ パフォーマンスと可用性を確保するには、ミラー化されたアグリゲートに少なくとも 20% の空き領域を確保することをお勧めします。ミラーリングされていないアグリゲートの場合、推奨値は 10% ですが、追加の 10% のスペースは、増分変更を吸収するためにファイル システムによって使用できます。増分変更により、ONTAPのcopy-on-write Snapshotベースのアーキテクチャにより、ミラー化されたアグリゲートのスペース使用率が増加します。これらのベスト プラクティスに従わないと、パフォーマンスに悪影響が出る可能性があります。</block>
+  <block id="ca62b4409e0debbfd43445111440710d" category="paragraph">クラスタ管理インターフェイスでクラスタにログインしている場合は、クラスタ内の任意のノードにアグリゲートを作成できます。特定のノードにアグリゲートが作成されていることを確認するには、<block ref="13f7dbdfe17d26284f31a4eac8e056e8" prefix=" " category="inline-code"></block>パラメータを使用するか、そのノードが所有するドライブを指定します。</block>
+  <block id="0c9650faa23cd2f874557f75db0b04f3" category="doc">ONTAP で MetroCluster FC ソフトウェアを設定する</block>
+  <block id="4f967023ad75f6a54cb36abaf26a7048" category="paragraph">ONTAP の MetroCluster FC 構成で各ノードをセットアップする必要があります。これには、ノード レベルの構成と、2 つのサイトへのノードの構成が含まれます。また、2 つのサイト間の MetroCluster 関係を実装する必要があります。</block>
+  <block id="445fc242bee9ea016b8ec73c9a312fcb" category="paragraph">この手順で使用される例：site_B</block>
+  <block id="55417ec59fd4af1a5afffacb42333c5a" category="paragraph">この手順で使用される例：controller_B_1</block>
+  <block id="1acb751c22e164e9d61c762caf509e82" category="paragraph">この手順で使用される例：controller_B_2</block>
+  <block id="eccb3ce2fe6ad5d172a57438aae17dae" category="doc">各MetroCluster FCノードでミラーリングされたデータ アグリゲートを作成します</block>
 </blocks>
