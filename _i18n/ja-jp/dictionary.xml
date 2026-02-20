@@ -11069,7 +11069,6 @@
   <block id="baf55d93093b54950152b6be3f9bfec2" category="list-text">1つのファブリックのISLは、速度と長さがすべて同じである必要があります。</block>
   <block id="4b00dc01ca120693f1539bf736f11069" category="list-text">ISLの速度と長さは、両方のファブリックで同じである必要があります。</block>
   <block id="ef6ab3e28db1093c7315b30edeb84730" category="list-text">サポートされるファブリック1とファブリック2の距離の最大差は20km（0.2ms）です。</block>
-  <block id="cb806a9b25dfb1d4470413a3c2dd9944" category="list-text">ファブリックごとに10Gbps ISLポートが少なくとも1つ必要です。</block>
   <block id="25b13aa97e6e9eb228478bfddbcc84e9" category="paragraph">安定した状態でのMetroCluster構成でのsite_Aとsite_BのMetroCluster IPスイッチ間の次の環境ラウンドトリップトラフィック。</block>
   <block id="ae36a5fd21eb894eb914590a632f59c9" category="list-text">2 つの MetroCluster サイト間の距離が長くなるとレイテンシが増加します。通常、ラウンドトリップ遅延時間は 100km （ 62 マイル）ごとに 1 ミリ秒程度です。レイテンシは、ネットワーク上のISLリンクの帯域幅、パケットドロップレート、およびジッタに関して、ネットワークのService Level Agreement（SLA；サービスレベルアグリーメント）にも左右されます。低帯域幅、高ジッタ、およびランダムなパケットドロップは、パケット配信を成功させるために、スイッチまたはコントローラモジュール上のTCPエンジンによって異なるリカバリメカニズムをもたらします。このようなリカバリメカニズムによって、全体的なレイテンシが増加することがあり構成のラウンドトリップレイテンシおよび最大距離の要件の詳細については、を参照してください <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block></block>
   <block id="827d473df1489ff96dfc62d8af802566" category="list-text">。 <block ref="44be38b301d3bfae89cdec57afffd9be" category="inline-link-macro-rx"></block> 距離（km）を提供します。100kmごとに1ミリ秒を割り当てる必要があります。最大距離は、最初に到達した距離によって定義されます。最大ラウンドトリップ時間（RTT）（ms）または距離（km）です。たとえば、–the _ listsの距離が300km（3ミリ秒）の場合、ISLは300km以下にすることができ、最大Hardware Universe時間は3ミリ秒のいずれか先に達した方を超えることはできません。</block>
@@ -14431,7 +14430,6 @@
   <block id="a72abbb5319ccc5e06e530d32ebda9a2" category="list-text">次の手順を使用します。 <block ref="c1e5bf8480750ae5cad48df028e9ef8f" category="inline-link-macro-rx"></block> _MetroCluster Tiebreaker のインストールと構成_ セクション。</block>
   <block id="cbefd3f7361c94b64426b0cea58a0328" category="paragraph"><block ref="fea9123e6c4e9558906e90d28dff7dce" category="inline-link-macro-rx"></block>。</block>
   <block id="7c6d58b5ff7d328112a439ee0ef9df40" category="paragraph">MetroCluster Tiebreaker 1.7 以降では、スイッチオーバーをシミュレートして、Tiebreaker のスイッチオーバー機能をテストできます。</block>
-  <block id="e4e3590eb665c0a0f5d5b3467636e5a7" category="list-text">ONTAP 9.18.1 以降、 MetroCluster IP バックエンド ポート速度が 100G のプラットフォームでは、最小 ISL リンク速度が 100Gbps である必要があります。異なる ISL 速度を使用するには、Feature Variance Request (FPVR) が必要です。FPVR を提出するには、 NetApp の営業チームにお問い合わせください。</block>
   <block id="deaa86cf36be952b15db4ccf35d9a39d" category="list-text">その他のすべてのプラットフォームでは、サポートされる最小 ISL リンク速度は 10 Gbps です。</block>
   <block id="e8c32d7ccca6662808649d7c3e536c38" category="list-text">メンテナンス モードのノードからローカル ストレージとリモート ストレージが表示されていることを確認します：</block>
   <block id="613654d6d797f748d730bca666bd5f45" category="list-text">新しいファームウェアバージョンがソリューションと互換性があることを確認してください。詳細については、<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>をご覧ください。</block>
@@ -14468,4 +14466,7 @@
   <block id="e5287e41bb7b528f560b85847eb683be" category="paragraph">36ポートCisco 9336C-FX2スイッチをお持ちで、NS224ストレージをスイッチに接続する予定がない場合は、<block ref="5e1610ecd3627713f0895c655a667651" category="inline-link-macro-rx"></block>の表を使用してください。</block>
   <block id="096faa4efe64cfbabf158d3e14db33d7" category="list-text">NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。MetroCluster構成またはDRグループの1つがNS224シェルフをサポートしていないシステムの場合、2番目のMetroCluster構成またはDRグループとしてのみ接続できます。</block>
   <block id="b68398936049bd282794c33831e2aea9" category="paragraph">MetroCluster IP 構成で<block ref="616743bfa4fd61d558c556fe614cb2e9" prefix=" " category="inline-code"></block>コマンドを使用した AFF A70 から AFF A90 および FAS70 から FAS90 へのシステムアップグレードのサポート。</block>
+  <block id="2cc15add30dea4377769b3b77d052707" category="list-text">ONTAP 9.18.1以降、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームでは、最小ISLリンク速度が100Gbps必要です。異なるISL速度を使用するには、Feature Product Variance Request（FPVR）が必要です。FPVRを提出するには、NetApp営業チームにお問い合わせください。</block>
+  <block id="2691309e1710cb6a0083f4722ac33e8d" category="admonition">現在 100Gbps ISL 要件を満たしていないプラットフォームでの ONTAP 9.18.1 以降へのアップグレードはブロックされず、続行できます。ただし、NetApp は、期待されるパフォーマンスと可用性のレベルを維持するために、お客様が 100Gbps ISL 接続に移行することを強く推奨します。</block>
+  <block id="2424b4c07e55bece1d1a95007a6782a8" category="list-text">ファブリックごとに少なくとも 1 つの 10Gbps ISL ポートが必要です。</block>
 </blocks>
