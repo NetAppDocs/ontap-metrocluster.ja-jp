@@ -1,0 +1,42 @@
+---
+permalink: install-ip/update-mediator-timeout.html 
+sidebar: sidebar 
+keywords: ontap, metrocluster, mediator, timeout, settings, change, update, default, value 
+summary:  
+---
+= MetroCluster IP構成でデフォルトのONTAPメディエーターメールボックスのタイムアウトを増やす
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IP ノードは、iSCSI セッションを使用して ONTAP Mediator メールボックスディスクにアクセスできます。デフォルトの接続タイムアウトは 10 秒で、5 秒後に 1 回の再試行が含まれます。ONTAP のバージョンと環境によっては、Mediator 支援による計画外のスイッチオーバー（MAUSO）の中断を回避するために、メールボックスのタイムアウトを最大 60 秒まで増やすことができます。
+
+NetAppでは、ネットワーク冗長プロトコル（HSRPやVRRPなど）、ループ回避プロトコル（STPなど）を使用している場合、または環境内のネットワーク遅延がデフォルトのタイムアウトである10秒を超える場合は、デフォルトのメールボックス接続タイムアウトを増やすことを推奨します。
+
+.作業を開始する前に
+停止期間、つまりMetroCluster IPノードをONTAP Mediatorに再接続するのにかかる時間を評価する必要があります。10秒以上かかる場合は、MetroCluster IPノードの再接続にかかる時間よりも数秒長くタイムアウト値を設定する必要があります。
+
+各サイトから接続が独立して維持され、一方のサイトでの停止が存続サイトからONTAP Mediatorへの接続に影響しない場合は、デフォルト値の10秒で十分であり、メールボックスタイムアウトを変更する必要はありません。
+
+.このタスクについて
+* 次のONTAPバージョンでは、ONTAPメディエーターメールボックスのタイムアウトの増加がサポートされています：
++
+** ONTAP 9.18.1GA以降
+** ONTAP 9.17.1P3以降のONTAP 9.17.1のパッチリリース
+** ONTAP 9.16.1P10以降のONTAP 9.16.1のパッチリリース
+** ONTAP 9.15.1P16以降のONTAP 9.15.1のパッチリリース
+
+
+* メールボックスのタイムアウトを増やすことは、すべてのバージョンのONTAP Mediatorでサポートされています。
+* タイムアウト値のサポート範囲は 10 ～ 60 秒です。範囲外の値を指定した場合、ONTAP は自動的にデフォルト値の 10 秒に戻ります。
+* MetroClusterノードがONTAP Mediatorに再接続するのに10秒以上かかる場合は、タイムアウト値をノードが接続するのにかかる時間よりも数秒長く設定する必要があります。
+
+
+.ステップ
+. デフォルトの ONTAP Mediator メールボックスのタイムアウトを増やすには、link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/How_to_Increase_Mediator_Mailbox_Timeout_for_environments_where_network_latency_exceeds_10_seconds["NetApp ナレッジベースの記事：ネットワーク遅延が 10 秒を超える環境で Mediator メールボックスのタイムアウトを増やす方法"^]を参照してください。
+
+
+.関連情報
+link:concept-ontap-mediator-supports-automatic-unplanned-switchover.html["ONTAP Mediator が MetroCluster IP 構成で計画外の自動切り替えをサポートする方法の詳細については、こちらをご覧ください。"]

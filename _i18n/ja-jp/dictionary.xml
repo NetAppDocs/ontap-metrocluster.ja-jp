@@ -10521,7 +10521,6 @@
   <block id="338b3842cbe6f0ae991509f38e7d0cca" category="list-text">新しい負荷を追加する前に、機器更改（Tech Refresh）の手順 を完了する必要があります。</block>
   <block id="c38f34e2c50bf5ed2113077f8269019c" category="list-text">ターゲットプラットフォームの制限がMetroCluster の制限よりも低い場合は、新しいノードを追加する前に、ターゲットプラットフォームの制限以下になるようにMetroCluster を再設定する必要があります。</block>
   <block id="49782ec67fb4809f5d138aa07412fd9d" category="list-text">この表の組み合わせは、通常または永続的な8ノード構成にのみ該当します。</block>
-  <block id="ea95591996a43e78cc0b5f96cb4d8f1c" category="list-text">この表に記載されているプラットフォームの組み合わせは、移行手順または更新手順を使用する場合は適用されません*。</block>
   <block id="08d29117f113494cf7bd34ddc0d0a7e0" category="doc">IPスイッチを交換するか、既存のMetroCluster IPスイッチの使用方法を変更します</block>
   <block id="2454620eb6c11598ab9b657181cc0f55" category="paragraph">障害が発生したスイッチの交換、スイッチのアップグレードまたはダウングレード、既存のMetroCluster IPスイッチの使用の変更が必要になる場合があります。</block>
   <block id="057120c40cd4c9c1a072526b368d97f4" category="paragraph">この手順 では、次の変換がサポートされています。</block>
@@ -13670,7 +13669,6 @@
   <block id="67f1cdced842853dcaa748f1574de4a2" category="inline-link-macro">12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
   <block id="38f841f1e9d996375153a7c10a011d16" category="paragraph">12ポートのCisco 9336C-FX2スイッチをお持ちの場合は、 <block ref="ce9e67085330d921aaa0fff0495dc70b" category="inline-link-macro-rx"></block> 。</block>
   <block id="674e97a0c22c1388979c98f80b98f4b5" category="inline-xref">スイッチ接続NS224シェルフに接続しないコントローラの配線表</block>
-  <block id="93a0ba86005851fcdd55129adf1c0b46" category="paragraph">2つ目のMetroClusterまたはDRグループがNS224シェルフをMetroClusterスイッチに接続しない場合は、 <block ref="b9dbe6880b7454d3bcbbe8f7d7793db4" category="inline-xref-macro-rx"></block> 。</block>
   <block id="b3e24b8d0d23855e43550444290c1574" category="list-text">MetroClusterポートグループ（MetroCluster 1、MetroCluster 2など）を記録しておいてください。この設定手順の後半で説明するRcfFileGeneratorツールを使用する際に、この情報が必要になります。</block>
   <block id="b8b3268e24f1bc7df35cfea685b9683b" category="paragraph">複数のMetroCluster構成をスイッチにケーブル接続する場合は、各MetroClusterを適切な表に従ってケーブル接続します。例えば、FAS2750とAFF A700を同じスイッチにケーブル接続する場合、FAS2750は表1の「MetroCluster 1」に従ってケーブル接続し、AFF A700は表2の「MetroCluster 2」または「MetroCluster 3」に従ってケーブル接続します。FAS2750とAFF A700の両方を「MetroCluster 1」として物理的にケーブル接続することはできません。</block>
   <block id="663e9f366c9d01f8e5aae5c69a84c421" category="paragraph">8ノード構成の場合も、上記と同じ方法を使用します。2つ目のMetroClusterの代わりに、追加の4ノードDRグループをケーブル接続します。</block>
@@ -14464,9 +14462,38 @@
   <block id="eccb3ce2fe6ad5d172a57438aae17dae" category="doc">各MetroCluster FCノードでミラーリングされたデータ アグリゲートを作成します</block>
   <block id="b5fd13a9bac03ffc7e9ccde70adc8242" category="doc">MetroCluster IP構成のONTAP Mediatorインストール要件</block>
   <block id="e5287e41bb7b528f560b85847eb683be" category="paragraph">36ポートCisco 9336C-FX2スイッチをお持ちで、NS224ストレージをスイッチに接続する予定がない場合は、<block ref="5e1610ecd3627713f0895c655a667651" category="inline-link-macro-rx"></block>の表を使用してください。</block>
-  <block id="096faa4efe64cfbabf158d3e14db33d7" category="list-text">NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。MetroCluster構成またはDRグループの1つがNS224シェルフをサポートしていないシステムの場合、2番目のMetroCluster構成またはDRグループとしてのみ接続できます。</block>
   <block id="b68398936049bd282794c33831e2aea9" category="paragraph">MetroCluster IP 構成で<block ref="616743bfa4fd61d558c556fe614cb2e9" prefix=" " category="inline-code"></block>コマンドを使用した AFF A70 から AFF A90 および FAS70 から FAS90 へのシステムアップグレードのサポート。</block>
   <block id="2cc15add30dea4377769b3b77d052707" category="list-text">ONTAP 9.18.1以降、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームでは、最小ISLリンク速度が100Gbps必要です。異なるISL速度を使用するには、Feature Product Variance Request（FPVR）が必要です。FPVRを提出するには、NetApp営業チームにお問い合わせください。</block>
   <block id="2691309e1710cb6a0083f4722ac33e8d" category="admonition">現在 100Gbps ISL 要件を満たしていないプラットフォームでの ONTAP 9.18.1 以降へのアップグレードはブロックされず、続行できます。ただし、NetApp は、期待されるパフォーマンスと可用性のレベルを維持するために、お客様が 100Gbps ISL 接続に移行することを強く推奨します。</block>
   <block id="2424b4c07e55bece1d1a95007a6782a8" category="list-text">ファブリックごとに少なくとも 1 つの 10Gbps ISL ポートが必要です。</block>
+  <block id="925adb23a78386992d24bff6e6e1b4e2" category="list-text">NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。</block>
+  <block id="13baaedd5f262910c30e90b130030634" category="paragraph">MetroCluster構成またはDRグループのいずれかでNS224シェルフがMetroClusterスイッチに接続されていない場合は、<block ref="b9dbe6880b7454d3bcbbe8f7d7793db4" category="inline-xref-macro-rx"></block>に従ってください。</block>
+  <block id="2b4028f1ab41ecd91ee89bedc51fffa6" category="list-text">スイッチ接続NS224ストレージをサポートしていない通常のMetroCluster構成を拡張し、スイッチ接続NS224ストレージを備えたMetroCluster構成を追加する場合は、次の情報を確認してください：</block>
+  <block id="3db561d9980a9a0ff52dc6f6b5be80fb" category="list-text"><block ref="46a459674905c476821f71bc8486a4ba" category="inline-link-macro-rx"></block>ツールでは、最初にスイッチ接続NS224ストレージをサポートするプラットフォームを選択し、次にスイッチ接続NS224ストレージをサポートしないプラットフォームを選択する必要があります。</block>
+  <block id="88ecaca9811ed8ee2d07d6be6c37393b" category="paragraph">つまり、新しい構成のRCFを生成するときに、RcfFileGeneratorツールで次の順序でプラットフォームを選択する必要がある場合があります：</block>
+  <block id="e1560ebf4cdefb3656321c70615b070a" category="list-text">*2 番目のドロップダウンフィールド* から、スイッチ接続 NS224 ストレージをサポートするプラットフォームを選択します。</block>
+  <block id="6671def4e7da861590fb38e5fc66314e" category="list-text">*最初のドロップダウンフィールド*から、スイッチ接続NS224ストレージをサポートしていないプラットフォームを選択します。</block>
+  <block id="ddbce4d78273fadb6714307de4be2067" category="doc">MetroCluster IP構成でデフォルトのONTAPメディエーターメールボックスのタイムアウトを増やす</block>
+  <block id="2782611b81a323af0ab55dcdc0bed9b0" category="paragraph">MetroCluster IP ノードは、iSCSI セッションを使用して ONTAP Mediator メールボックスディスクにアクセスできます。デフォルトの接続タイムアウトは 10 秒で、5 秒後に 1 回の再試行が含まれます。ONTAP のバージョンと環境によっては、Mediator 支援による計画外のスイッチオーバー（MAUSO）の中断を回避するために、メールボックスのタイムアウトを最大 60 秒まで増やすことができます。</block>
+  <block id="dc2661dcef8886857b7dbbc6bea4baa5" category="paragraph">NetAppでは、ネットワーク冗長プロトコル（HSRPやVRRPなど）、ループ回避プロトコル（STPなど）を使用している場合、または環境内のネットワーク遅延がデフォルトのタイムアウトである10秒を超える場合は、デフォルトのメールボックス接続タイムアウトを増やすことを推奨します。</block>
+  <block id="5989de7ef1290d3b1851ce9197407a9a" category="paragraph">停止期間、つまりMetroCluster IPノードをONTAP Mediatorに再接続するのにかかる時間を評価する必要があります。10秒以上かかる場合は、MetroCluster IPノードの再接続にかかる時間よりも数秒長くタイムアウト値を設定する必要があります。</block>
+  <block id="96da1e735aedafb1dcf6dc852a630b69" category="paragraph">各サイトから接続が独立して維持され、一方のサイトでの停止が存続サイトからONTAP Mediatorへの接続に影響しない場合は、デフォルト値の10秒で十分であり、メールボックスタイムアウトを変更する必要はありません。</block>
+  <block id="d7960d10ef798af16bf54c0dcc02e80b" category="list-text">次のONTAPバージョンでは、ONTAPメディエーターメールボックスのタイムアウトの増加がサポートされています：</block>
+  <block id="123f02f9538b2fc159c78abd1e853311" category="list-text">ONTAP 9.18.1GA以降</block>
+  <block id="a49f67215d7a6a3f09571abddad1d41c" category="list-text">ONTAP 9.17.1P3以降のONTAP 9.17.1のパッチリリース</block>
+  <block id="6b33f2be2b796fc142d718a21fd6a8ff" category="list-text">ONTAP 9.16.1P10以降のONTAP 9.16.1のパッチリリース</block>
+  <block id="9fe94930ff0a57045423e79a5e25449a" category="list-text">ONTAP 9.15.1P16以降のONTAP 9.15.1のパッチリリース</block>
+  <block id="4d04adddbc72295aa68205bbc8f6786c" category="list-text">メールボックスのタイムアウトを増やすことは、すべてのバージョンのONTAP Mediatorでサポートされています。</block>
+  <block id="24603857f2efae5cf55e16b55938b6b5" category="list-text">タイムアウト値のサポート範囲は 10 ～ 60 秒です。範囲外の値を指定した場合、ONTAP は自動的にデフォルト値の 10 秒に戻ります。</block>
+  <block id="e4cb371c390096f714ceed8442047927" category="list-text">MetroClusterノードがONTAP Mediatorに再接続するのに10秒以上かかる場合は、タイムアウト値をノードが接続するのにかかる時間よりも数秒長く設定する必要があります。</block>
+  <block id="a55d539df04c511897b2f380e0ac7016" category="inline-link-macro">NetApp ナレッジベースの記事：ネットワーク遅延が 10 秒を超える環境で Mediator メールボックスのタイムアウトを増やす方法</block>
+  <block id="19bdf8ebd14921517ed1d7a25d8a75ea" category="list-text">デフォルトの ONTAP Mediator メールボックスのタイムアウトを増やすには、<block ref="62f56fc028db49a6a2d1454ab4af167a" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="9fc7fb3687729fad941f1ef4dbe24e25" category="inline-link-macro">ONTAP Mediator が MetroCluster IP 構成で計画外の自動切り替えをサポートする方法の詳細については、こちらをご覧ください。</block>
+  <block id="36cd1be7aa7565ea1576f3aac82e7ad3" category="paragraph"><block ref="36cd1be7aa7565ea1576f3aac82e7ad3" category="inline-link-macro-rx"></block></block>
+  <block id="f8a1c16bdd95a9caf5d835623891bbb2" category="list-text">移行手順または更新手順を使用している場合、この表のプラットフォームの組み合わせは適用*されません*。</block>
+  <block id="28e3056e4a107de00bb911453b54b512" category="list-text">partner-sysid が正しいかどうかを確認します。</block>
+  <block id="a7c6b23966d68e108e7f06035568671e" category="paragraph"><block ref="c2cec781ec7263394dd955380787b572" category="inline-link-macro-rx"></block>の手順を使用します。</block>
+  <block id="33e1bc7f8120f8d7e792eda1953f5c0d" category="list-text">partner-sysid が正しいことを確認します：</block>
+  <block id="d9e511ce59427a6a6f5e2d82b3caa85c" category="list-text">クラスタ間 LIF が起動したら、クラスタピアのステータスを確認し、必要に応じてクラスタピアリングを再確立します。</block>
+  <block id="9aadb95a414b8c0423f92f9ec9df69d8" category="sidebar">デフォルトの ONTAP Mediator メールボックスタイムアウトを増やす</block>
 </blocks>
