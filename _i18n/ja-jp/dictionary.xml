@@ -11149,7 +11149,6 @@
   <block id="f530740ac9e609fc21d073ac7a1005eb" category="list-text">COS 5の設定</block>
   <block id="905698c568b08ffae010badfede2c3d9" category="list-text">オプション：20Gbpsへのレートシェーピング</block>
   <block id="6f9086eed365c3a2db1521fa98bb7fad" category="list-text">iSCSIトラフィックの分類：</block>
-  <block id="bfee253ff06448698780744ab1762cba" category="list-text">一致：TCPポート62500、送信元、宛先、またはその両方</block>
   <block id="b6b4cd52ee0814cd111c7646f3ec71cf" category="list-text">オプションマッチ：COS 4</block>
   <block id="bc0161255c709f2bfdb09ade9fbc1364" category="list-text">オプション照合:DSCP 32</block>
   <block id="18b58e1c9302e2acb18218c02c62dab7" category="list-text">DSCP 32の設定</block>
@@ -14475,7 +14474,6 @@
   <block id="6671def4e7da861590fb38e5fc66314e" category="list-text">*最初のドロップダウンフィールド*から、スイッチ接続NS224ストレージをサポートしていないプラットフォームを選択します。</block>
   <block id="ddbce4d78273fadb6714307de4be2067" category="doc">MetroCluster IP構成でデフォルトのONTAPメディエーターメールボックスのタイムアウトを増やす</block>
   <block id="2782611b81a323af0ab55dcdc0bed9b0" category="paragraph">MetroCluster IP ノードは、iSCSI セッションを使用して ONTAP Mediator メールボックスディスクにアクセスできます。デフォルトの接続タイムアウトは 10 秒で、5 秒後に 1 回の再試行が含まれます。ONTAP のバージョンと環境によっては、Mediator 支援による計画外のスイッチオーバー（MAUSO）の中断を回避するために、メールボックスのタイムアウトを最大 60 秒まで増やすことができます。</block>
-  <block id="dc2661dcef8886857b7dbbc6bea4baa5" category="paragraph">NetAppでは、ネットワーク冗長プロトコル（HSRPやVRRPなど）、ループ回避プロトコル（STPなど）を使用している場合、または環境内のネットワーク遅延がデフォルトのタイムアウトである10秒を超える場合は、デフォルトのメールボックス接続タイムアウトを増やすことを推奨します。</block>
   <block id="5989de7ef1290d3b1851ce9197407a9a" category="paragraph">停止期間、つまりMetroCluster IPノードをONTAP Mediatorに再接続するのにかかる時間を評価する必要があります。10秒以上かかる場合は、MetroCluster IPノードの再接続にかかる時間よりも数秒長くタイムアウト値を設定する必要があります。</block>
   <block id="96da1e735aedafb1dcf6dc852a630b69" category="paragraph">各サイトから接続が独立して維持され、一方のサイトでの停止が存続サイトからONTAP Mediatorへの接続に影響しない場合は、デフォルト値の10秒で十分であり、メールボックスタイムアウトを変更する必要はありません。</block>
   <block id="d7960d10ef798af16bf54c0dcc02e80b" category="list-text">次のONTAPバージョンでは、ONTAPメディエーターメールボックスのタイムアウトの増加がサポートされています：</block>
@@ -14496,4 +14494,8 @@
   <block id="33e1bc7f8120f8d7e792eda1953f5c0d" category="list-text">partner-sysid が正しいことを確認します：</block>
   <block id="d9e511ce59427a6a6f5e2d82b3caa85c" category="list-text">クラスタ間 LIF が起動したら、クラスタピアのステータスを確認し、必要に応じてクラスタピアリングを再確立します。</block>
   <block id="9aadb95a414b8c0423f92f9ec9df69d8" category="sidebar">デフォルトの ONTAP Mediator メールボックスタイムアウトを増やす</block>
+  <block id="27a4277d57a9c4676312c7a5013a9b75" category="list-text">一致：TCP ポート 65200、送信元、宛先、またはその両方</block>
+  <block id="e2bba64dd4e20eb5cd27b969fbf8dbce" category="paragraph">NetAppでは、次のいずれかが環境に当てはまる場合は、デフォルトのメールボックス接続タイムアウトを増やすことを推奨しています：</block>
+  <block id="d57bb94baa67d066f16fc9fc5b6def7e" category="list-text">ネットワーク冗長プロトコル（HSRP や VRRP など）またはループ回避プロトコル（STP など）を使用しています。</block>
+  <block id="29c1e5df7e26dbc34a0230732d8e3a0c" category="list-text">ネットワークの再収束時間（たとえば、ルーティング プロトコルが安定するか、再選択後に HSRP/VRRP がアクティブになる）は、デフォルトのタイムアウトの10秒を超える場合があります。</block>
 </blocks>
