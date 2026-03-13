@@ -640,16 +640,13 @@
   <block id="cdb3ffc955b34e17efd898def0d320a2" category="list-text">MetroCluster チェックを実行します。</block>
   <block id="d0ea3e97351e29ab748322bd6e653120" category="paragraph">「 * MetroCluster check run * 」のようになります</block>
   <block id="f323ad60392fa7c75997f3419493d6c3" category="summary">メンテナンスや再配置を開始する前に、 MetroCluster IP 構成全体とすべての機器の電源をオフにする必要があります。</block>
-  <block id="5c79413a4833df0080080fe8fe2e7c15" category="doc">MetroCluster IP 構成全体の電源をオフにします</block>
   <block id="5a862a97aa2605f3cbb2987eba34c9a9" category="list-text">MetroCluster の構成と運用モードが正常な状態であることを確認します。+`* MetroCluster show*`</block>
   <block id="33e5d783a7a408bca6f492d5b41c67ce" category="list-text">次のコマンドを実行します :+`*MetroCluster interconnect show*`</block>
   <block id="7795bdbe14dd71c83b1053288d7744df" category="list-text">次のコマンドを実行します :+`* network interface show *`</block>
   <block id="5127f26b0a13d7da193f0d35dc16f4a0" category="list-text">次のコマンドを実行します :+`* network device-discovery show *`</block>
   <block id="32f7947faaa0b39c98413d31ab51eae6" category="list-text">次のコマンドを実行します。 +`* MetroCluster configurion-settings interface show *`</block>
   <block id="37458c869049da196f1df7bf07fb1855" category="list-text">必要に応じて、 AUSO 障害ドメインをに変更して AUSO を無効にします</block>
-  <block id="b31a46a4ba6004f2ed3fd6632565a448" category="admonition">MetroCluster IP 構成では、 ONTAP メディエーターが設定されていないかぎり、 AUSO 障害ドメインはすでに「 auso-disabled 」に設定されています。</block>
   <block id="baf620aab7b9758c307a3f0ac247ab7f" category="list-text">ノードを停止します。</block>
-  <block id="f30bf82bc8eafa66c54fa40dcf42ea44" category="paragraph">*halt *`</block>
   <block id="c74361f8919e393c4955920ffabda5b7" category="list-text">MetroCluster IP スイッチ</block>
   <block id="6c007491e186c6d6762c4c70985ea0d0" category="summary">この Brocade 固有の手順を使用して、障害が発生したスイッチを交換する必要があります。</block>
   <block id="84452876be406f671586db5dd2e7d620" category="doc">Brocade FC スイッチの交換</block>
@@ -11063,7 +11060,6 @@
   <block id="b6c12395a961cf95058c6e4d4412ac09" category="paragraph">次の表に、MetroCluster準拠スイッチのネットワーク速度とスイッチポートモードをプラットフォーム別に示します。表に従ってスイッチポートモードを設定する必要があります。</block>
   <block id="8c425f952493015588fb91113b5b2dd8" category="summary">ここでは、すべてのMetroCluster IP構成およびネットワークトポロジでMetroClusterトラフィックを伝送するスイッチ間リンク（ISL）の要件について説明します。</block>
   <block id="422a6c8c8d23cb29ed822adac0da8cd9" category="paragraph">すべてのMetroCluster IP構成およびネットワークトポロジでMetroClusterトラフィックを伝送するスイッチ間リンク（ISL）には、一定の要件があります。これらの要件は、お客様のスイッチ間でISLを直接接続するか共有するかに関係なく、MetroClusterトラフィックを伝送するすべてのISLに適用されます。</block>
-  <block id="a5c426f5b72cbfd96a6dec4a6e3046d2" category="paragraph">すべてのMetroCluster IP構成の次の環境ISL：</block>
   <block id="f2fe3be43c081827bf52c1013416d414" category="list-text">ISLの数は両方のファブリックで同じである必要があります。</block>
   <block id="baf55d93093b54950152b6be3f9bfec2" category="list-text">1つのファブリックのISLは、速度と長さがすべて同じである必要があります。</block>
   <block id="4b00dc01ca120693f1539bf736f11069" category="list-text">ISLの速度と長さは、両方のファブリックで同じである必要があります。</block>
@@ -11074,7 +11070,6 @@
   <block id="22380478e64b8062eb70d91ccdd67ce7" category="list-text">パケット損失は0.01%以下でなければなりません。最大パケット損失は、MetroClusterノード間のパス上のすべてのリンクの損失と、ローカルMetroCluster IPインターフェイス上の損失の合計です。</block>
   <block id="0b2575167b6e71da84f0682066aa5c0d" category="list-text">サポートされるジッタ値は、ラウンドトリップの場合は3ミリ秒（一方向の場合は1.5ミリ秒）です。</block>
   <block id="b1bbb8c0e7431a301e05959762cb6be0" category="list-text">ネットワークは、トラフィックのマイクロバーストや急増に関係なく、MetroClusterトラフィックに必要な帯域幅のSLAを割り当て、維持する必要があります。</block>
-  <block id="db5dfb006abd3b92e48ae138fe185ffb" category="list-text">ONTAP 9.7以降を使用している場合は、2つのサイト間の中間ネットワークでMetroCluster IP構成用に4.5Gbps以上の帯域幅が確保されている必要があります。</block>
   <block id="8feeeb8c24b7a524af9a025841262932" category="section-title">トランシーバとケーブルに関する考慮事項</block>
   <block id="667735c31f9e3d4e69adccaa68e87206" category="paragraph">MetroCluster ISL では、機器のベンダーがサポートしている SFP または QSFP がサポートされます。NetAppまたは機器ベンダーから提供されたSFPおよびQSFPが、スイッチおよびスイッチのファームウェアでサポートされている必要があります。</block>
   <block id="887966b0ad45d1598b4a9517835a9477" category="paragraph">コントローラをスイッチおよびローカルクラスタのISLに接続するときは、NetAppとMetroClusterが提供するトランシーバとケーブルを使用する必要があります。</block>
@@ -14462,7 +14457,6 @@
   <block id="b5fd13a9bac03ffc7e9ccde70adc8242" category="doc">MetroCluster IP構成のONTAP Mediatorインストール要件</block>
   <block id="e5287e41bb7b528f560b85847eb683be" category="paragraph">36ポートCisco 9336C-FX2スイッチをお持ちで、NS224ストレージをスイッチに接続する予定がない場合は、<block ref="5e1610ecd3627713f0895c655a667651" category="inline-link-macro-rx"></block>の表を使用してください。</block>
   <block id="b68398936049bd282794c33831e2aea9" category="paragraph">MetroCluster IP 構成で<block ref="616743bfa4fd61d558c556fe614cb2e9" prefix=" " category="inline-code"></block>コマンドを使用した AFF A70 から AFF A90 および FAS70 から FAS90 へのシステムアップグレードのサポート。</block>
-  <block id="2cc15add30dea4377769b3b77d052707" category="list-text">ONTAP 9.18.1以降、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームでは、最小ISLリンク速度が100Gbps必要です。異なるISL速度を使用するには、Feature Product Variance Request（FPVR）が必要です。FPVRを提出するには、NetApp営業チームにお問い合わせください。</block>
   <block id="2691309e1710cb6a0083f4722ac33e8d" category="admonition">現在 100Gbps ISL 要件を満たしていないプラットフォームでの ONTAP 9.18.1 以降へのアップグレードはブロックされず、続行できます。ただし、NetApp は、期待されるパフォーマンスと可用性のレベルを維持するために、お客様が 100Gbps ISL 接続に移行することを強く推奨します。</block>
   <block id="2424b4c07e55bece1d1a95007a6782a8" category="list-text">ファブリックごとに少なくとも 1 つの 10Gbps ISL ポートが必要です。</block>
   <block id="925adb23a78386992d24bff6e6e1b4e2" category="list-text">NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。</block>
@@ -14498,4 +14492,10 @@
   <block id="e2bba64dd4e20eb5cd27b969fbf8dbce" category="paragraph">NetAppでは、次のいずれかが環境に当てはまる場合は、デフォルトのメールボックス接続タイムアウトを増やすことを推奨しています：</block>
   <block id="d57bb94baa67d066f16fc9fc5b6def7e" category="list-text">ネットワーク冗長プロトコル（HSRP や VRRP など）またはループ回避プロトコル（STP など）を使用しています。</block>
   <block id="29c1e5df7e26dbc34a0230732d8e3a0c" category="list-text">ネットワークの再収束時間（たとえば、ルーティング プロトコルが安定するか、再選択後に HSRP/VRRP がアクティブになる）は、デフォルトのタイムアウトの10秒を超える場合があります。</block>
+  <block id="fdee122f655bcc29473b91ef1ae580b7" category="paragraph">これらの要件は、すべてのMetroCluster IP構成のISLに適用されます：</block>
+  <block id="c3dce11df95ca3b74ddf51996b7b87e2" category="list-text">ONTAP 9.18.1以降、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームでは、最小ISLリンク速度として100Gbpsが必要です。異なるISL速度を使用するには、Feature Policy Variance Request（FPVR）が必要です。FPVRを提出するには、NetApp営業チームにお問い合わせください。</block>
+  <block id="3f6fd3cf871a70252cd684eb0d12b602" category="paragraph">メンテナンスまたは移転を開始する前に、MetroCluster IP 構成全体とすべての機器の電源をオフにします。</block>
+  <block id="a79e1c21f0beaf2ed51b7aec418f4f70" category="list-text">両方のサイトからMetroCluster構成を確認します。</block>
+  <block id="108a4ad72df5c318a77dad90928d8770" category="admonition">MetroCluster IP構成では、構成でONTAP Mediatorを使用していない限り、AUSO障害ドメインはすでに「auso-disabled」に設定されています。</block>
+  <block id="6ba9661e38afca32fe30fec08ca5c4ab" category="list-text">両方のサイトでノードを停止します：</block>
 </blocks>

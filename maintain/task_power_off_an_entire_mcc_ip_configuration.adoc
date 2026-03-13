@@ -11,12 +11,12 @@ summary: メンテナンスや再配置を開始する前に、 MetroCluster IP 
 
 
 [role="lead"]
-メンテナンスや再配置を開始する前に、 MetroCluster IP 構成全体とすべての機器の電源をオフにする必要があります。
+メンテナンスまたは移転を開始する前に、MetroCluster IP 構成全体とすべての機器の電源をオフにします。
 
 
 NOTE: ONTAP 9.8 以降では '*storage switch *' コマンドは '*system switch*' に置き換えられています以下の手順は '*storage switch *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system switch *' コマンドを使用することをお勧めします
 
-. MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。
+. 両方のサイトからMetroCluster構成を確認します。
 +
 .. MetroCluster の構成と運用モードが正常な状態であることを確認します。+`* MetroCluster show*`
 .. 次のコマンドを実行します :+`*MetroCluster interconnect show*`
@@ -42,7 +42,7 @@ cluster_A_site_A::*>metrocluster modify -auto-switchover-failure-domain auso-dis
 ----
 +
 
-NOTE: MetroCluster IP 構成では、 ONTAP メディエーターが設定されていないかぎり、 AUSO 障害ドメインはすでに「 auso-disabled 」に設定されています。
+NOTE: MetroCluster IP構成では、構成でONTAP Mediatorを使用していない限り、AUSO障害ドメインはすでに「auso-disabled」に設定されています。
 
 . コマンドを使用して、変更を確認します
 +
@@ -59,14 +59,12 @@ NOTE: MetroCluster IP 構成では、 ONTAP メディエーターが設定され
         End Time: 4/25/2020 20:20:36
           Errors: -
 ----
-. ノードを停止します。
-+
-*halt *`
-
+. 両方のサイトでノードを停止します：
 +
 [listing]
 ----
-system node halt -node node1_SiteA -inhibit-takeover true -ignore-quorum-warnings true
+cluster_A::*>system node halt -node * -inhibit-takeover true -ignore-quorum-warnings true
+cluster_B::*>system node halt -node * -inhibit-takeover true -ignore-quorum-warnings true
 ----
 . サイトで次の機器の電源をオフにします。
 +
