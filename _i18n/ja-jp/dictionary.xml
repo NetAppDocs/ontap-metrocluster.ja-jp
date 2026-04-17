@@ -1983,7 +1983,6 @@
   <block id="98aac6693f8a0dda166a1ba85d8167f6" category="list-text">すべてのクラスタ LIF が動作していることを確認します。</block>
   <block id="91271938ac44f690cd5a064a6a92425f" category="paragraph">各クラスタ LIF で、 Is Home には true 、 Status Admin/Oper には up/up と表示されるはずです</block>
   <block id="e74ba48b87be882bffe68906351b713a" category="list-text">すべてのクラスタ LIF で自動リバートが有効になっていることを確認します。</block>
-  <block id="0bc247e1fb33acc5636986c990aa1e9a" category="section-title">監視アプリケーションから構成を削除します</block>
   <block id="ae81bff40f90f640ae14eb37aaf345ea" category="paragraph">ONTAP Tiebreaker ソフトウェア、 MetroCluster メディエーター、またはスイッチオーバーを開始できるその他の他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、アップグレードの前に、監視ソフトウェアから MetroCluster 構成を削除する必要があります。</block>
   <block id="dbdccf881e62a812392682de3b418def" category="list-text">Tiebreaker 、メディエーター、またはスイッチオーバーを開始できるその他のソフトウェアから既存の MetroCluster 構成を削除します。</block>
   <block id="3cf98495d2d0556357fd3275c2ff1c80" category="cell">使用する手順</block>
@@ -2034,7 +2033,6 @@
   <block id="900a1c5621c4209a92d13274e1b23272" category="list-text">ルートアグリゲートをミラーします。</block>
   <block id="2494cf3ea6304f13d911614b50a2449f" category="admonition">この手順は MetroCluster IP ノードごとに実行する必要があります。</block>
   <block id="4fbb06a55d361d0cd8cf430f9a799e67" category="list-text">ルートアグリゲートがミラーされたことを確認します。</block>
-  <block id="6c46e592d5f16891d3a16e5f364e031b" category="section-title">新しいノードの追加を完了しています</block>
   <block id="756f29d7bcbe7decf6b979c0706fc9a1" category="paragraph">新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。</block>
   <block id="b24de9180a5deb759a394eebcd1a0305" category="list-text">新しい MetroCluster ノードのそれぞれで、ミラーされたデータアグリゲートを作成します。</block>
   <block id="7062dd7205e5ed0cba84efd4203bc9cc" category="paragraph">次の例は、 node_A_1 で新しいアグリゲートを作成します。</block>
@@ -12544,10 +12542,6 @@
   <block id="be4fd0012ddc006ea303591c9df6f76d" category="paragraph"><block ref="39b06b9a26b49c3db6d9409a6abaa9d8" prefix="" category="inline-code"></block></block>
   <block id="9e1d9b9e8b88355df08194559af6865a" category="summary">スイッチオーバー中は、一部の処理を実行しないでください。</block>
   <block id="fa33dcb38c0cd6e15dd757f1ef3072ee" category="doc">MetroCluster構成がスイッチオーバー状態の場合の制限事項</block>
-  <block id="5722cde27dfa05f795a5466b6d0859c9" category="paragraph">システムがスイッチオーバー中のときは、一部の処理を実行しないでください。システムがスイッチオーバー中の場合の制限された処理について説明します。</block>
-  <block id="b72a4837907e7fef0771c42da901c811" category="section-title">スイッチオーバー時の制限された処理</block>
-  <block id="1b5f91752d52b3bac4319cf07ea0efb8" category="paragraph">システムがスイッチオーバー状態の場合、次の処理はサポートされません。</block>
-  <block id="272c8dfc8e0821088d85ed5d0fe037a8" category="list-text">アグリゲートおよびボリュームの作成または削除</block>
   <block id="d825dd35fde2fe33a56ef95c52f545a0" category="list-text">SVMの作成または削除</block>
   <block id="8c120d60e412429a6f43b748c02dc233" category="list-text">LIFの作成または削除</block>
   <block id="9cc6607cba1650bc799439425f9b085e" category="list-text">ディスクの追加または削除（リカバリ手順の一環として交換する場合のみ）</block>
@@ -13435,7 +13429,6 @@
   <block id="4e4facc560c88d40d47ce2b1369d5552" category="doc">MetroCluster IPスイッチでログ収集を構成する</block>
   <block id="d5a5c9619599da12d87af6daeab1ece6" category="paragraph">MetroCluster IP 構成では、デバッグの目的でスイッチ ログを収集するようにログ収集を設定できます。</block>
   <block id="7c51c84110459cf460a444094be133c4" category="admonition">BroadcomおよびCiscoスイッチでは、ログ収集を行うクラスタごとに新しいユーザーが必要です。例えば、MetroCluster 1、MetroCluster 2、MetroCluster 3、MetroCluster 4のそれぞれについて、スイッチ上で個別のユーザーを設定する必要があります。同一ユーザーに対して複数のSSHキーを設定することはサポートされていません。</block>
-  <block id="8ac20e3719b6b58e94e5a4385e87b52e" category="paragraph">イーサネットスイッチヘルスモニタ（CSHM）は、クラスタネットワークスイッチとストレージネットワークスイッチの動作の健全性を確認し、デバッグ用にスイッチのログを収集します。この手順では、収集を設定し、詳細な*サポート*ログを要求し、AutoSupportによって収集される*定期的*データの1時間ごとの収集を有効にするプロセスをガイドします。</block>
   <block id="2ded3ff3862adfc6f54d2a2f3ebf1147" category="paragraph">*注：* FIPSモードを有効にする場合は、次の手順を実行する必要があります。</block>
   <block id="81f0d5b127adfd87f50ce10bc85e1e65" category="list-text">ベンダーの指示に従って、スイッチでSSHキーを再生成します。</block>
   <block id="a60a00967db7342947b326a8f7618f52" category="list-text">を使用したONTAPでのSSHキーの再生成<block ref="c079360670e0f4f9441a54ac1d262788" prefix=" " category="inline-code"></block></block>
@@ -14499,4 +14492,15 @@
   <block id="108a4ad72df5c318a77dad90928d8770" category="admonition">MetroCluster IP構成では、構成でONTAP Mediatorを使用していない限り、AUSO障害ドメインはすでに「auso-disabled」に設定されています。</block>
   <block id="6ba9661e38afca32fe30fec08ca5c4ab" category="list-text">両方のサイトでノードを停止します：</block>
   <block id="f759ce596ef74c921d7bddaf277a11c8" category="paragraph">*注：* 25 GbE の速度を実現するには、MAM1Q00A-QSA28 トランシーバーアダプタが必要です。</block>
+  <block id="316fa55db721e45107647fc0de79704f" category="paragraph">イーサネットスイッチヘルスモニター（CSHM）は、ネットワークスイッチの動作状態を正常に保ち、デバッグ目的でスイッチログを収集する役割を担います。この手順では、収集の設定、詳細な *サポート* ログの要求、および AutoSupport によって収集される *定期* データの時間ごとの収集の有効化のプロセスについて説明します。</block>
+  <block id="4526d2820ba573572df0eafdc557014c" category="paragraph">システムが切り替え中の場合、NetAppでは特定の操作は避けることをお勧めします。</block>
+  <block id="6efa43350457e5d9dbe5d6c555eb32f9" category="paragraph">システムが切り替え中の場合、以下の操作は推奨されません。NetAppサポートの指示に従ってのみ実行してください：</block>
+  <block id="9ea78d85c08becd89d5d23daef8687fa" category="list-text">アグリゲートの作成または削除</block>
+  <block id="56f10876ae2bed5f3da63c125772429f" category="list-text">ボリュームの作成または削除（暗号化ボリュームを含む）</block>
+  <block id="6e05136dba32fad75bd64f601602c77e" category="section-title">監視アプリケーションから設定を削除します</block>
+  <block id="a8b426026583d79d39676c969bdc3456" category="section-title">新しいコントローラモジュールを準備する</block>
+  <block id="af8fde2f19f4ba506d9bb950533f5776" category="list-text">メンテナンスモードから、haltコマンドを発行してメンテナンスモードを終了します：</block>
+  <block id="b8bbebbdaa85ea395d4339565372cafe" category="list-text">システムを起動し、クラスタ設定画面に進みます：</block>
+  <block id="e219586e70791b35867f7d4dc343163f" category="section-title">クラスタ間LIFを設定し、MetroClusterインターフェイスを作成して、ルートアグリゲートをミラーリングします</block>
+  <block id="8780af330d271744603135da4ae91fd9" category="section-title">新しいノードの追加完了</block>
 </blocks>
