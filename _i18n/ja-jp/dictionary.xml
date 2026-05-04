@@ -2010,9 +2010,7 @@
   <block id="6449a68d295414acaf212ddfd7df25b2" category="paragraph">クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。</block>
   <block id="7e339e8333d1f898a647bba5b4b5fa97" category="paragraph">例で使用しているホームポートはプラットフォーム固有です。MetroCluster IP ノードプラットフォームに固有の適切なホームポートを使用する必要があります。</block>
   <block id="829d4191df7c54d790fdacd9ec2801cb" category="inline-link-macro">専用ポートでのクラスタ間 LIF の設定</block>
-  <block id="44b54e3f59f7ff51b8cfe9cee771a6cb" category="paragraph"><block ref="44b54e3f59f7ff51b8cfe9cee771a6cb" category="inline-link-macro-rx"></block></block>
   <block id="3bad2dd7623ea523622748f7e327cfb7" category="inline-link-macro">共有データポートでのクラスタ間 LIF の設定</block>
-  <block id="1df5a38c69ea48ecae85e79f89802ccf" category="paragraph"><block ref="1df5a38c69ea48ecae85e79f89802ccf" category="inline-link-macro-rx"></block></block>
   <block id="cfc028b6f781fc21dc57c74b42ab571a" category="list-text">各サイトで、クラスタピアリングが設定されていることを確認します。</block>
   <block id="1b42dddb15ef6b96e34b2ef43c0cf5cb" category="paragraph">次の例は、 cluster_A のクラスタピアリング設定を示しています。</block>
   <block id="98e5525102d7a3d5d0b986c1c09c028e" category="paragraph">次の例は、 cluster_B でのクラスタピアリング設定を示しています。</block>
@@ -2400,7 +2398,6 @@
   <block id="85d38d4ee3b9248e142229cf9e215620" category="list-text">必要に応じて、別の DR グループ内のノードにイプシロンを移動します。</block>
   <block id="aac7ac3bfa9117ebc1368d396b746e00" category="list-text">DR グループを特定して削除します。</block>
   <block id="c31e08573cdaea3b8de26a9f74105469" category="paragraph">次の例は、 cluster_A の DR グループ構成を削除します</block>
-  <block id="8d3c998ce16ecd4cdc06e3ddd8c757e6" category="list-text">古い DR グループからノードを分離</block>
   <block id="b30c893d5895266607a2a417b5123132" category="paragraph">この手順は各クラスタで実行する必要があります。</block>
   <block id="ff6434ad658fa9ed7826817a3f9f0dff" category="paragraph">古い DR グループ内のもう一方のローカルノードに対して、この手順を繰り返します。</block>
   <block id="8917e80351843363583600f118c2fa84" category="list-text">古いコントローラモジュールとストレージシェルフを停止、電源オフ、および取り外します。</block>
@@ -2499,7 +2496,6 @@
   <block id="90057e5e4627dddcd3c317f85b5cdf1c" category="paragraph">CLI のコマンドプロンプトは、 NetApp MetroCluster Tiebreaker ：： &gt; で表されます。</block>
   <block id="eaa918da98f1c1c51821025d29a35cf3" category="paragraph">マニュアルページは、 CLI のプロンプトで該当するコマンド名を入力すると表示されます。</block>
   <block id="9fb038c9fc985f95a364fbc284e66009" category="summary">Tiebreaker ソフトウェアで SNMP を使用するには、 SNMP を設定する必要があります。</block>
-  <block id="42c78bfa01522453fc42980157ef4a55" category="doc">Tiebreaker ソフトウェアの SNMP 設定</block>
   <block id="c4aa541ec1b33e5e76d09363d75995f8" category="paragraph">次の例は、 Tiebreaker ソフトウェアがイベント test_snmp_config の SNMP トラップを送信できることを示しています。</block>
   <block id="a386c9fa441b3fe3c6e80b9d41240b0a" category="summary">MetroCluster Tiebreaker ソフトウェアはリカバリプロセスを自動化します。ユーザは MetroCluster 設定のステータスを監視し、ネットアップカスタマーサポートに送信される SNMP イベントとトラップを評価し、監視処理のステータスを表示できます。</block>
   <block id="c01a785ae5fde9a2ca584e4698cbfda1" category="doc">MetroCluster 設定を監視する</block>
@@ -9512,7 +9508,6 @@
   <block id="6abf8fcf1209a0e61a34ee20748a726e" category="paragraph">各コントローラのクラスタポートを、手順 b で特定したクラスタネットワークスイッチのポートに接続します</block>
   <block id="a8307b4c5fa271005a1338d5b405ca1f" category="paragraph">ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。</block>
   <block id="a4aa69385ab0a1b92a7a5635cdb2f2b2" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block>。</block>
-  <block id="1cab2231671234cf1e23b1ca0a52ef3e" category="list-text">新しい MetroCluster IP ノードで、次の手順に従ってクラスタ間 LIF を設定します。</block>
   <block id="bc13f269b8fcdbac7ef84f083e616363" category="paragraph">MetroCluster の設定と接続の詳細については、次のトピックを参照してください。</block>
   <block id="c09c91c40853cc803259a2c27d8fa946" category="paragraph">システム ID 変更プロンプトに「 y 」と入力します。2 回目のリブートメッセージが表示されるまで待ちます。</block>
   <block id="f1318dc614d34488bcb6f8bef3e32bff" category="paragraph">オプション "11`"</block>
@@ -10816,7 +10811,6 @@
   <block id="c833c589f902c8c0ddc3bdb645a85fe9" category="list-text">新しいノードで、ログインとホストとの接続を確認します。</block>
   <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">結果</block>
   <block id="4e7233ab8e56169d5783c1e27cf80e62" category="paragraph">このタスクが完了すると、（古いノードと新しいノードの）すべてのiSCSIインターフェイスが認識され、それらのすべてのインターフェイスにログインします。</block>
-  <block id="1ea11cf2a7632efb274bdc8804c13cc8" category="paragraph">LUNとボリュームは、古いノードで物理的にホストされたままです。LUNは古いノードインターフェイスでのみ報告されるため、ホストには古いノード経由のパスのみが表示されます。これを確認するには、<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> および<block ref="2fbf63deae0938cf669e6ca451f1eb2c" prefix=" " category="inline-code"></block> ホスト上のコマンドとコマンド出力を確認します。</block>
   <block id="85ef9de042295f197ffebdafe8989eba" category="section-title">手順2：新しいノードをレポートノードとして追加する</block>
   <block id="63caeb58f676a0ef9b76df2d7cb19636" category="paragraph">新しいノードへの接続をセットアップしたら、新しいノードをレポートノードとして追加します。</block>
   <block id="491bf790c89cc65e6e44bc71af9a4016" category="list-text">新しいノードで、SVM上のLUNのレポートノードのリストを表示します。</block>
@@ -14029,7 +14023,6 @@
   <block id="9edb945b46e8338b6c604c62787c3031" category="doc">MetroCluster IPサイト内のCisco 9336CスイッチでMACsec暗号化を構成する</block>
   <block id="e0e912999bb427a16c869c97ad908030" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用にNVIDIA IP SN2100 スイッチを構成する</block>
   <block id="25849b8ea5119a6ccbe0ef06d8e35773" category="doc">MetroCluster IP構成のONTAPノードスイッチオーバーをテストします</block>
-  <block id="7282d891d20cd1520e021b2ba6c78e20" category="list-text">保存データの暗号化がサポートされています。<block ref="6774dcdb02085dead82047685ca775f1" category="inline-link-macro-rx"></block></block>
   <block id="f42ec02236cb8b0134435967892ad733" category="paragraph"><block ref="f42ec02236cb8b0134435967892ad733" category="inline-link-macro-rx"></block></block>
   <block id="929f699475d2ee16cffb5df619460281" category="list-text">ハードウェア障害（停電など）がない</block>
   <block id="8e7bac68088266dc4f6ea54160a86aa8" category="open-title">Brocadeスイッチ (FOS 9.0 以降)</block>
@@ -14062,7 +14055,6 @@
   <block id="5c60cc2ba2a9eb0236f0d3ba52d42179" category="admonition">アップグレードを開始する前に、両方のサイトのすべての古いノードで bootarg を設定する必要があります。</block>
   <block id="9f0a4554064856ae78dbf1c08bc876ce" category="doc">MetroCluster構成からDRグループを削除する</block>
   <block id="2f5075fd2401e26a07990d72f3087874" category="paragraph">ONTAP 9.8 以降では、8 ノードMetroCluster構成からディザスタ リカバリ (DR) グループを削除して、4 ノードMetroCluster構成を作成できます。</block>
-  <block id="73ac4183b96cb40ebb14a9dc72a13298" category="admonition">これらの手順は、移行およびシステム更新のワークフロー中に使用します。</block>
   <block id="a17f6afa75b317e25d154b29624badd3" category="section-title">各クラスタからDRグループノードを削除します</block>
   <block id="b928a73ca232c9fc08d935ad673557de" category="paragraph">この手順は、 ONTAP 9.8 以降でサポートされています。  ONTAP 9.7 以前を実行しているシステムの場合は、次のナレッジベースの記事を参照してください。<block ref="806d9b447def65eba3e3e2e790c033b4" category="inline-link-macro-rx"></block> 。</block>
   <block id="622b8cea53ef096337834121912a63f3" category="paragraph">DR グループを削除すると、構成内に 4 つのノードが残ります。</block>
@@ -14094,21 +14086,15 @@
   <block id="0d1726dab779821975a9ad578a9f0677" category="paragraph"><block ref="6e0d34e5eb1c8ece221755c754743354" prefix="" category="inline-code"></block></block>
   <block id="3e9c37ca50692bcf4d950da60ba31dd1" category="list-text">ディスクの自動割り当てを無効にする:</block>
   <block id="b2bd91ffa581589b010f7b0cee5b040a" category="paragraph"><block ref="c24efecdd42a886db73de2bcc158cbdc" prefix="" category="inline-code"></block></block>
-  <block id="b06a58f7c6886b9c75c2b66e25e3b03c" category="list-text">削除する各 DR グループ ノード上の pool1 ディスクの所有権を削除します。削除する各ノードに対してこれらの手順を実行します。</block>
   <block id="e352d5e820576fb81acd295d2fa6b382" category="list-text">ノードシェルに移動します。</block>
   <block id="48b6c5e6c91f5afdf4db95fdce26e45f" category="paragraph"><block ref="1bdb752f72609d817a6beb669061c8b6" prefix="" category="inline-code"></block></block>
   <block id="0d5dee87e76c9a9f9127dd55f7b1e2eb" category="list-text">pool1 ディスクを識別します。</block>
-  <block id="7cb1b8282d7b16c1d998b3403dc7a91f" category="paragraph"><block ref="978a127cc866f54e1830776b846eb9b8" prefix="" category="inline-code"></block></block>
-  <block id="c0b861216beaceb3d375fd9c6df6e6c3" category="paragraph">ノードが所有するプール 0 およびプール 1 スペア ディスクを含むすべてのスペア ディスクが表示されます。</block>
-  <block id="6e07f225393b79b609cb8fc3d86279bf" category="list-text">各プール1スペアディスクのディスク所有権を削除します。</block>
   <block id="8d0b8b84becd485c7891597b01240458" category="paragraph"><block ref="a2548e43cec4e94df11e259aa9a83a68" prefix="" category="inline-code"></block></block>
-  <block id="c218a756cd011fd52e8951a24e6900e7" category="paragraph">パーティション化されたディスクの場合は、パーティションの所有権を削除してから、コンテナ ディスクの所有権を削除します。</block>
   <block id="096ee0b68ed0c4989612306aa1e3fbb5" category="list-text">MetroCluster IP 構成の場合は、古い DR グループのノード上のMetroCluster接続を削除します。</block>
   <block id="bac7003f0be2f7c1ffe91ec5e8146e9e" category="paragraph">これらのコマンドはどちらのクラスターからも発行でき、両方のクラスターにまたがる DR グループ全体に適用されます。</block>
   <block id="d30c3b2671a8fe1038b0b3608133c703" category="paragraph"><block ref="6864950bb23886bbe435bbce576bc0d6" prefix="" category="inline-code"></block></block>
   <block id="b1bd9ffb7ba04ba41a6ed8fd479dceb1" category="admonition">この手順は、DR グループの各ノードで繰り返す必要があります。</block>
   <block id="d321eb0a25003ddc996afe17a7149d6f" category="paragraph">各クラスターでこの手順を実行します。</block>
-  <block id="5dd0fc60033d456ae0a90e5edc267878" category="list-text">ノードを切断: +<block ref="1f9e5247574dddf29bedc560cf209d11" prefix=" " category="inline-code"></block></block>
   <block id="e1bde148bbf0582fd279d9a3c915b31a" category="list-text">権限レベルをadminに設定します。</block>
   <block id="5465fc7f055cf03040fda6f777f9a2da" category="list-text">新しい DR グループでクラスター HA が有効になっていることを確認します。必要に応じて、クラスター HA を再度有効にします。</block>
   <block id="4e7f0491b8337902ce9619e04977796b" category="sidebar">NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
@@ -14501,6 +14487,59 @@
   <block id="a8b426026583d79d39676c969bdc3456" category="section-title">新しいコントローラモジュールを準備する</block>
   <block id="af8fde2f19f4ba506d9bb950533f5776" category="list-text">メンテナンスモードから、haltコマンドを発行してメンテナンスモードを終了します：</block>
   <block id="b8bbebbdaa85ea395d4339565372cafe" category="list-text">システムを起動し、クラスタ設定画面に進みます：</block>
-  <block id="e219586e70791b35867f7d4dc343163f" category="section-title">クラスタ間LIFを設定し、MetroClusterインターフェイスを作成して、ルートアグリゲートをミラーリングします</block>
   <block id="8780af330d271744603135da4ae91fd9" category="section-title">新しいノードの追加完了</block>
+  <block id="6b8f0c36cfacfde9cb8a41e51e4c81aa" category="inline-link-macro">MetroCluster TiebreakerソフトウェアのSNMP設定を構成します</block>
+  <block id="7bf55c5fb72bee187d6fbd1aa1b52790" category="paragraph"><block ref="7bf55c5fb72bee187d6fbd1aa1b52790" category="inline-link-macro-rx"></block></block>
+  <block id="071e512a3f8baeb67c6344599c7eb921" category="summary">Tiebreakerソフトウェアをインストールした後、MetroCluster構成を追加し、SNMP設定を構成して、MetroCluster環境の監視を開始できます。</block>
+  <block id="ccb1f1ef7412b7b92081ada14f0f9db5" category="doc">MetroCluster Tiebreaker 構成ワークフロー</block>
+  <block id="7d0a98150fc3a74e40b6948115b0cb2f" category="paragraph">このワークフローを使用すると、インストール後にTiebreakerソフトウェアを設定できます。</block>
+  <block id="e36aed9ded69ff87b19d6bb819cce039" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="eb6675758f8fdd2ff1cefe24d56fcfaa" category="inline-link-macro-rx"></block></block>
+  <block id="356be90438cd5eb2724b8988a8659fc1" category="paragraph">MetroCluster構成をTiebreakerソフトウェアに追加し、証明書をインポートして、監視設定を構成します。</block>
+  <block id="3180fdb1327897c4b572cfd63ad3287f" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="7bf55c5fb72bee187d6fbd1aa1b52790" category="inline-link-macro-rx"></block></block>
+  <block id="d71cf09eabd542ab0900df15ddfed77d" category="paragraph">TiebreakerソフトウェアがSNMP通知をMetroClusterイベントに送信できるようにSNMP設定を構成します。</block>
+  <block id="5ec21259b0f96f7761ff6f6c6a0f3a21" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="8a1df91cee28227d892ff9dbf426d562" category="inline-link-macro-rx"></block></block>
+  <block id="e0b80638817e39eec16542c32d7be7f3" category="paragraph">Tiebreaker ソフトウェアを使用して MetroCluster 構成のステータスを監視し、SNMP イベントを表示して、AutoSupport 設定を管理します。</block>
+  <block id="d148f1ad635aa8bba1d560a19f39e9c0" category="paragraph"><block ref="d148f1ad635aa8bba1d560a19f39e9c0" category="inline-link-macro-rx"></block></block>
+  <block id="6d304da29d5362806ed14a9478ee710f" category="doc">MetroCluster Tiebreaker のインストールワークフロー</block>
+  <block id="cc5fe7dfbf76f9b49127063316fe1a3e" category="paragraph"><block ref="cc5fe7dfbf76f9b49127063316fe1a3e" category="inline-link-macro-rx"></block></block>
+  <block id="cc996a6e668ea1b5bbb2717ede5321fa" category="paragraph"><block ref="cc996a6e668ea1b5bbb2717ede5321fa" category="inline-link-macro-rx"></block></block>
+  <block id="3ffaf6ce899559f482f4bb420ea443ef" category="list-text">Tiebreaker 1.5以降をインストールまたはアップグレードする場合は、<block ref="01db536e3338a6daa44368053b8b78a4" category="inline-link-macro-rx"></block>。</block>
+  <block id="31b54abaff4839e37a34d702915846b9" category="list-text">Tiebreaker 1.4 をインストールまたはアップグレードする場合は、<block ref="9dcf67482ee019fdc9b8d7c3a46fafac" category="inline-link-macro-rx"></block>。</block>
+  <block id="49a7406e081bdf74959aab879c657d6c" category="list-text">保存データの暗号化がサポートされています。<block ref="a6804cfe939b096e631ab157a40f3379" category="inline-link-macro-rx"></block></block>
+  <block id="68bdfb46514e0728dbff34acccbb2662" category="paragraph"><block ref="f36d28ac2ac51e4db0586db797c4bd01" category="inline-link-macro-rx"></block>Tiebreakerをインストールまたはアップグレードします。</block>
+  <block id="8a1df91cee28227d892ff9dbf426d562" category="paragraph"><block ref="8a1df91cee28227d892ff9dbf426d562" category="inline-link-macro-rx"></block></block>
+  <block id="35860767e06b0ad32b8ba4267eeaf1b9" category="paragraph"><block ref="cb84c2ef67b9bc01f68cbcfb918d693b" category="inline-link-macro-rx"></block>。</block>
+  <block id="aebaf14d8b9d9e9427ab47eeb2e1e295" category="inline-link-macro">証明書をインポートする</block>
+  <block id="d126dbe84a959f82881ba6731ce2bec3" category="admonition">Tiebreaker 1.6以降をインストールしたら、シームレスな監視を有効にするために<block ref="02577fcac3f49d205cfa1eec1ab9843c" category="inline-link-macro-rx"></block>する必要があります。</block>
+  <block id="392c82005848837c4cc355e9f1b13bfb" category="inline-link-macro">MetroCluster Tiebreaker ソフトウェアを設定します</block>
+  <block id="97bb590be95e1f1db541f920acbb994a" category="paragraph">Tiebreaker のインストールまたはアップグレードが正常に完了したら、<block ref="658332fcfd4694e5d76e386a8de8de38" category="inline-link-macro-rx"></block>MetroCluster 設定を追加し、必要な証明書をインポートします。</block>
+  <block id="edd800061dc2e789e3e179a21cbcf379" category="admonition">Tiebreaker 1.7 をインストールしたら、シームレスな監視を有効にするために<block ref="02577fcac3f49d205cfa1eec1ab9843c" category="inline-link-macro-rx"></block>必要があります。</block>
+  <block id="411dfa6bc53c22308a41a3f1849b5c3a" category="paragraph">LUNとボリュームは、依然として古いノード上に物理的にホストされています。LUNは旧ノードのインターフェース上でのみ報告されるため、ホストには旧ノードを経由するパスのみが表示されます。これを確認するには、ホスト上で<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block>および<block ref="2fbf63deae0938cf669e6ca451f1eb2c" prefix=" " category="inline-code"></block>コマンドを実行し、コマンドの出力結果を調べます。</block>
+  <block id="4c6905218c60e9aba240b57185a6f46b" category="admonition">これらの手順は、移行およびシステム更新のワークフロー中に使用します。これらのワークフローの一環として、既にこの手順の一部を完了している可能性があります。</block>
+  <block id="492957bdbf0cd7894f5858e41044c478" category="inline-xref">古いDRグループノードを削除する</block>
+  <block id="b7af971647e68ad51fd5a20bad1e6458" category="paragraph">MetroCluster FC 構成では、<block ref="b02d7688693fa9d994c3ae281001ab71" category="inline-xref-macro-rx"></block>の手順に進みます。</block>
+  <block id="0bad080da4800b87d224c4b5e3f84547" category="paragraph"><block ref="50467096167ff97fd9486951e1e9979c" prefix="" category="inline-code"></block></block>
+  <block id="c1a4fc9238eb637c34dca8db88b9fe37" category="list-text">削除対象となる各DRグループノード上のpool1ディスクの所有権を削除します。削除する各ノードに対して、以下の手順を実行してください。このステップで使用される例では、node_A_1が削除されます。</block>
+  <block id="05537b68d0389b1f6ccc2e32a5418922" category="paragraph">ノードが所有するPool1ディスクを含む、すべてのディスクが表示されます。以下の例は、ディスク0n.4とそのパーティションがPool1に割り当てられている場合の出力の一部を示しています。出力は設定によって異なります。</block>
+  <block id="2a2a9b43676bdea631d12ed38f7e6c6e" category="paragraph"><block ref="42b1180257ad3e7be7a63d69d6b6d877" prefix="" category="inline-code"></block></block>
+  <block id="91db9162e74bb79491dc2e196929e7dd" category="list-text">各pool1ディスクのディスク所有権を削除します。</block>
+  <block id="1475defb8bf95f4738845a11de25c3bb" category="paragraph">構成にパーティション化されたディスクが含まれている場合は、まず各パーティション化されたディスクの所有権を削除し、次にコンテナディスクの所有権を削除します：</block>
+  <block id="02009efab927bd190d6bd3722cfa6a91" category="paragraph">次の例では、コンテナディスク<block ref="1ae065558b31a1b0b795087dc4d41043" prefix=" " category="inline-code"></block>の所有権が削除される前に、パーティション化されたディスクの所有権が削除されます：</block>
+  <block id="abe9c75c8aa9d46e2336de54158fd10c" category="list-text">[[fc_step_7_remove_nodes]]古い DR グループのノードを削除します。</block>
+  <block id="70f599b650c36e21a80cab61cd9ecf45" category="list-text">ノードを削除します：+<block ref="21f6d71d6277ab0be8efedef46f43c07" prefix=" " category="inline-code"></block></block>
+  <block id="f3497351aae46692e603fedb2f2cd146" category="inline-link-macro">ONTAPコマンド リファレンス</block>
+  <block id="9491dc48713e5872479d1b7bf34a84fa" category="paragraph">この手順で使用されるコマンドの詳細については、<block ref="bc2602c5a66493ba7d85e8bd5d0e7f9b" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="14b060b1c467e443d4c5b658b3150160" category="section-title">クラスタピアリング用のクラスタ間LIFを設定</block>
+  <block id="2242b077fb2b5a060d17c9679aaef769" category="paragraph">コマンド構文の詳細については、<block ref="8495ebe9433e51f4aaa13c1ac17aa802" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="85b4f850daa6b7fa27cc663d6eecac9e" category="paragraph">次の例では、SVM「cluster01」上のフェイルオーバーグループ「intercluster01」にポート「e0e」と「e0f」を割り当てます：</block>
+  <block id="a2579751113db8b9e2ce7d7b2bd214ef" category="paragraph">次の例は、ポート「e0e」上のクラスタ間LIF「cluster01_icl01」と「cluster01_icl02」がポート「e0f」にフェイルオーバーすることを示しています。</block>
+  <block id="a4780c06a89c299119583f29f32ac093" category="paragraph">次のような出力が表示されます。</block>
+  <block id="f7427954f1195031f90353c13d3b432b" category="section-title">MetroClusterインターフェイスを作成し、ルートアグリゲートをミラーリングします</block>
+  <block id="0055afe3ada5efef7c05be5feef45afb" category="paragraph">新しいMetroCluster IPノードにMetroClusterインターフェイスを作成し、ルートアグリゲートをミラーリングする必要があります。</block>
+  <block id="10425d754fad724e278bdbf3629399eb" category="list-text">各サイトで、新しいインタークラスター LIF をピア関係に追加します。</block>
+  <block id="46702793a1903475dfe4870360e4c44e" category="paragraph">cluster_A から、以下のコマンドを実行します：</block>
+  <block id="197b76ace6dacb5968f922ce0200427b" category="paragraph"><block ref="d129eb59b8b7f8a39ae3ed6833c64f51" prefix="" category="inline-code"></block></block>
+  <block id="c42f4f6a3afab85eadf7182136f86159" category="paragraph">cluster_B から、次のコマンドを実行します：</block>
+  <block id="29bf21eb413a03bb7bc5f794a7cf8c1a" category="paragraph"><block ref="cffe1374633319381a16ddd247851dc5" prefix="" category="inline-code"></block></block>
+  <block id="aa9e0907bac12bc372803051430c32c6" category="sidebar">タイブレーカー構成ワークフロー</block>
 </blocks>

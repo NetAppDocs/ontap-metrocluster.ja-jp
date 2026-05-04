@@ -704,9 +704,284 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 
 
 
-== クラスタ間LIFを設定し、MetroClusterインターフェイスを作成して、ルートアグリゲートをミラーリングします
+== クラスタピアリング用のクラスタ間LIFを設定
 
-クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。
+MetroCluster パートナークラスタ間の通信に使用するポートにクラスタ間 LIF を作成する必要があります。専用のポートを使用することも、データトラフィック用を兼ねたポートを使用することもできます。
+
+[role="tabbed-block"]
+====
+.専用ポートにクラスタ間 LIF を設定します
+--
+専用ポートにクラスタ間 LIF を設定できます。通常は、レプリケーショントラフィックに使用できる帯域幅が増加します。
+
+.手順
+. クラスタ内のポートの一覧を表示します。
++
+「 network port show 」のように表示されます
+
++
+コマンド構文の詳細については、link:https://docs.netapp.com/us-en/ontap-cli["ONTAPコマンド リファレンス"^]を参照してください。
+
++
+次の例は、「 cluster01 」内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+       e0e       Default      Default          up     1500   auto/1000
+       e0f       Default      Default          up     1500   auto/1000
+----
+. クラスタ間通信専用に使用可能なポートを特定します。
++
+network interface show -fields home-port 、 curr -port
+
++
+コマンド構文の詳細については、link:https://docs.netapp.com/us-en/ontap-cli["ONTAPコマンド リファレンス"^]を参照してください。
+
++
+次の例は、ポート e0e とポート e0f に LIF が割り当てられていないことを示しています。
+
++
+[listing]
+----
+
+cluster01::> network interface show -fields home-port,curr-port
+vserver lif                  home-port curr-port
+------- -------------------- --------- ---------
+Cluster cluster01-01_clus1   e0a       e0a
+Cluster cluster01-01_clus2   e0b       e0b
+Cluster cluster01-02_clus1   e0a       e0a
+Cluster cluster01-02_clus2   e0b       e0b
+cluster01
+        cluster_mgmt         e0c       e0c
+cluster01
+        cluster01-01_mgmt1   e0c       e0c
+cluster01
+        cluster01-02_mgmt1   e0c       e0c
+----
+. 専用ポートのフェイルオーバーグループを作成します。
++
+`network interface failover-groups create -vserver <system_svm> -failover-group <failover_group> -targets <physical_or_logical_ports>`
+
++
+次の例では、SVM「cluster01」上のフェイルオーバーグループ「intercluster01」にポート「e0e」と「e0f」を割り当てます：
+
++
+[listing]
+----
+cluster01::> network interface failover-groups create -vserver cluster01 -failover-group
+intercluster01 -targets
+cluster01-01:e0e,cluster01-01:e0f,cluster01-02:e0e,cluster01-02:e0f
+----
+. フェイルオーバーグループが作成されたことを確認します。
++
+「 network interface failover-groups show 」と表示されます
+
++
+コマンド構文の詳細については、link:https://docs.netapp.com/us-en/ontap-cli["ONTAPコマンド リファレンス"^]を参照してください。
+
++
+[listing]
+----
+cluster01::> network interface failover-groups show
+                                  Failover
+Vserver          Group            Targets
+---------------- ---------------- --------------------------------------------
+Cluster
+                 Cluster
+                                  cluster01-01:e0a, cluster01-01:e0b,
+                                  cluster01-02:e0a, cluster01-02:e0b
+cluster01
+                 Default
+                                  cluster01-01:e0c, cluster01-01:e0d,
+                                  cluster01-02:e0c, cluster01-02:e0d,
+                                  cluster01-01:e0e, cluster01-01:e0f
+                                  cluster01-02:e0e, cluster01-02:e0f
+                 intercluster01
+                                  cluster01-01:e0e, cluster01-01:e0f
+                                  cluster01-02:e0e, cluster01-02:e0f
+----
+. システム SVM にクラスタ間 LIF を作成して、フェイルオーバーグループに割り当てます。
++
+`network interface create -vserver <system_svm> -lif <lif_name> -service-policy default-intercluster -home-node <node_name> -home-port <port_name> -address <port_ip_address> -netmask <netmask_address> -failover-group <failover_group>`
+
++
+次の例は、フェイルオーバーグループ「 intercluster01 」にクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
+
++
+[listing]
+----
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0e -address 192.168.1.201
+-netmask 255.255.255.0 -failover-group intercluster01
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0e -address 192.168.1.202
+-netmask 255.255.255.0 -failover-group intercluster01
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+「 network interface show -service -policy default -intercluster 」のように表示されます
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0e     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0e     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+「 network interface show -service -policy default -intercluster-failover 」のように入力します
+
++
+次の例は、ポート「e0e」上のクラスタ間LIF「cluster01_icl01」と「cluster01_icl02」がポート「e0f」にフェイルオーバーすることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster -failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0e   local-only      intercluster01
+                            Failover Targets:  cluster01-01:e0e,
+                                               cluster01-01:e0f
+         cluster01_icl02 cluster01-02:e0e   local-only      intercluster01
+                            Failover Targets:  cluster01-02:e0e,
+                                               cluster01-02:e0f
+----
+
+
+--
+.共有データポートにクラスタ間 LIF を設定します
+--
+データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。
+
+.手順
+. クラスタ内のポートの一覧を表示します。
++
+「 network port show 」のように表示されます
+
++
+コマンド構文の詳細については、link:https://docs.netapp.com/us-en/ontap-cli["ONTAPコマンド リファレンス"^]を参照してください。
+
++
+次の例は、「 cluster01 」内のネットワークポートを示しています。
+
++
+[listing]
+----
+
+cluster01::> network port show
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+cluster01-01
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+cluster01-02
+       e0a       Cluster      Cluster          up     1500   auto/1000
+       e0b       Cluster      Cluster          up     1500   auto/1000
+       e0c       Default      Default          up     1500   auto/1000
+       e0d       Default      Default          up     1500   auto/1000
+----
+. システム SVM にクラスタ間 LIF を作成します。
++
+`network interface create -vserver <system_svm> -lif <lif_name> -service-policy default-intercluster -home-node <node_name> -home-port <port_name> -address <port_ip_address> -netmask <netmask>`
+
++
+次の例は、クラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」を作成します。
+
++
+[listing]
+----
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl01 -service-
+policy default-intercluster -home-node cluster01-01 -home-port e0c -address 192.168.1.201
+-netmask 255.255.255.0
+
+cluster01::> network interface create -vserver cluster01 -lif cluster01_icl02 -service-
+policy default-intercluster -home-node cluster01-02 -home-port e0c -address 192.168.1.202
+-netmask 255.255.255.0
+----
+. クラスタ間 LIF が作成されたことを確認します。
++
+「 network interface show -service -policy default -intercluster 」のように表示されます
+
++
+次のような出力が表示されます。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+cluster01
+            cluster01_icl01
+                       up/up      192.168.1.201/24   cluster01-01  e0c     true
+            cluster01_icl02
+                       up/up      192.168.1.202/24   cluster01-02  e0c     true
+----
+. クラスタ間 LIF が冗長構成になっていることを確認します。
++
+「 network interface show -service -policy default -intercluster-failover 」のように入力します
+
++
+次の例は、「 e0c 」ポート上のクラスタ間 LIF 「 cluster01_icl01 」と「 cluster01_icl02 」が「 e0d 」ポートにフェイルオーバーされることを示しています。
+
++
+[listing]
+----
+cluster01::> network interface show -service-policy default-intercluster -failover
+         Logical         Home                  Failover        Failover
+Vserver  Interface       Node:Port             Policy          Group
+-------- --------------- --------------------- --------------- --------
+cluster01
+         cluster01_icl01 cluster01-01:e0c   local-only         Default
+                            Failover Targets: cluster01-01:e0c,
+                                              cluster01-01:e0d
+         cluster01_icl02 cluster01-02:e0c   local-only         Default
+                            Failover Targets: cluster01-02:e0c,
+                                              cluster01-02:e0d
+----
+
+
+--
+====
+
+
+== MetroClusterインターフェイスを作成し、ルートアグリゲートをミラーリングします
+
+新しいMetroCluster IPノードにMetroClusterインターフェイスを作成し、ルートアグリゲートをミラーリングする必要があります。
 
 .このタスクについて
 * この例で使用しているホームポートはプラットフォーム固有です。MetroCluster IPノードプラットフォームに固有のホームポートを使用する必要があります。
@@ -714,12 +989,18 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 
 
 .手順
-. 新しい MetroCluster IP ノードで、次の手順に従ってクラスタ間 LIF を設定します。
+. 各サイトで、新しいインタークラスター LIF をピア関係に追加します。
 +
-link:../install-ip/task_sw_config_configure_clusters.html#peering-the-clusters["専用ポートでのクラスタ間 LIF の設定"]
+cluster_A から、以下のコマンドを実行します：
 
 +
-link:../install-ip/task_sw_config_configure_clusters.html#peering-the-clusters["共有データポートでのクラスタ間 LIF の設定"]
+`cluster peer modify -cluster cluster_B -peer-addrs <node_B_1-old IC port_ip_address>,<node_B_2-old IC port_ip_address>,<node_B_1-new IC port_ip_address>,<node_B_2-new IC port_ip_address>`
+
++
+cluster_B から、次のコマンドを実行します：
+
++
+`cluster peer modify -cluster cluster_A -peer-addrs <node_A_1-old IC port_ip_address>,<node_A_2-old IC port_ip_address>,<node_A_1-new IC port_ip_address>,<node_A_2-new IC port_ip_address>`
 
 . 各サイトで、クラスタピアリングが設定されていることを確認します。
 +
@@ -735,6 +1016,7 @@ cluster_A:> cluster peer show
 Peer Cluster Name         Cluster Serial Number Availability   Authentication
 ------------------------- --------------------- -------------- --------------
 cluster_B                 1-80-000011           Available      ok
+cluster_A::>
 ----
 +
 次の例は、 cluster_B でのクラスタピアリング設定を示しています。
