@@ -42,6 +42,21 @@ There are no entries matching your query.
 ....
 
 
+. HTTPS を使用して通信を行う ONTAP Mediator を使用している場合は、ONTAP Mediator を削除した後に CA 証明書を削除します：
++
+.. インストールされているCA証明書を表示します：
++
+`security certificate show -common-name ONTAPMediatorCA`
+
+.. インストール済みのルート証明書と中間証明書を削除します：
++
+`security certificate delete -vserver cluster-A -common-name ONTAPMediatorCA -cert-name <root_certificate_name> -type server-ca -ca "ONTAP Mediator CA"`
+
++
+`security certificate delete -vserver cluster-A -common-name ONTAPMediatorCA -cert-name <intermediate_certificate_name> -type server-ca -ca "ONTAP Mediator CA"`
+
+
+
 . 両方のクラスタで次のコマンドを実行して、ONTAP MediatorがMetroCluster構成から削除されたことを確認します：
 +
 .. `metrocluster configuration-settings mediator show`
@@ -52,15 +67,6 @@ There are no entries matching your query.
 [listing]
 ----
 This table is currently empty.
-----
-.. 「 storage iscsi-initiator show -label mediator 」という名前のストレージがあります
-+
-* 例 *
-
-+
-[listing]
-----
-There are no entries matching your query.
 ----
 
 
