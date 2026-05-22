@@ -2,37 +2,33 @@
 permalink: install-ip/task_switch_config_cisco_macsec.html 
 sidebar: sidebar 
 keywords: cisco, MACsec encryption 
-summary: サイト間で実行される WAN ISL ポートにのみ MACsec 暗号化を設定する必要があります。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。 
+summary: 必要に応じて、サイト間を走るWAN ISLポートでのみMACsec暗号化を設定してください。MACsec暗号化を使用する場合は、適切なRCFファイルを適用した後に設定を行ってください。 
 ---
-= MetroCluster IPサイト内のCisco 9336CスイッチでMACsec暗号化を構成する
+= MetroCluster IPサイトのCisco 9336Cスイッチ上でMACsec暗号化を設定する（オプション）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: You can configure MACsec encryption on the WAN ISL ports that run between the sites. You must configure MACsec after applying the correct RCF file.
 
 
+[role="lead"]
+必要に応じて、サイト間を走るWAN ISLポートでMACsec暗号化を設定できます。MACsec暗号化を使用する場合は、適切なRCFファイルを適用した後で設定を行う必要があります。
 
-NOTE: MACsec 暗号化は、 WAN ISL ポートにのみ適用できます。
-
-
-
-== Cisco 9336C スイッチに MACsec 暗号化を設定します
-
-サイト間で実行される WAN ISL ポートにのみ MACsec 暗号化を設定する必要があります。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。
-
+[NOTE]
+====
+* MACsec暗号化は、サイト間で実行されるWAN ISLポートにのみ適用できます。
+* Cisco 9336Cスイッチを設定する際、MACsec暗号化の設定はオプションです。
 
 
-=== MACsec のライセンス要件
+====
+
+
+== MACsec のライセンス要件
 
 MACsec にはセキュリティライセンスが必要です。Cisco NX-OS ライセンス方式の詳細およびライセンスの取得方法と適用方法については、を参照してください https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/licensing/guide/b_Cisco_NX-OS_Licensing_Guide/b_Cisco_NX-OS_Licensing_Guide_chapter_01.html["『 Cisco NX-OS Licensing Guide 』"^]
 
 
 
-=== MetroCluster IP構成でCisco MACsec暗号化WAN ISLを有効にします
+== MetroCluster IP構成でCisco MACsec暗号化WAN ISLを有効にします
 
 MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化をイネーブルにできます。
 
@@ -69,7 +65,7 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 
 
-=== MACsecキーチェーンとキーを設定します
+== MACsecキーチェーンとキーを設定します
 
 MACsec キーチェーンまたはキーをコンフィギュレーションに作成できます。
 
@@ -172,7 +168,7 @@ IP_switch_A_1(config-macseckeychain-macseckey)# show key chain 1
 
 
 
-=== MACsecポリシーを設定します
+== MACsecポリシーを設定します
 
 .手順
 . グローバルコンフィギュレーションモードを開始します。
@@ -296,7 +292,7 @@ IP_switch_A_1(config-macsec-policy)# show macsec policy
 
 
 
-=== インターフェイス上でCisco MACsec暗号化をイネーブルにします
+== インターフェイス上でCisco MACsec暗号化をイネーブルにします
 
 . グローバルコンフィギュレーションモードを開始します。
 +
@@ -341,7 +337,7 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 
 
-=== MetroCluster IP構成でCisco MACsec暗号化WAN ISLをディセーブルにします
+== MetroCluster IP構成でCisco MACsec暗号化WAN ISLをディセーブルにします
 
 MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化を無効にする必要がある場合があります。
 
@@ -402,7 +398,7 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 
 
-=== MACsec 構成の確認
+== MACsec 構成の確認
 
 .手順
 . コンフィギュレーション内の 2 番目のスイッチで上記の手順 * すべて * を繰り返して、 MACsec セッションを確立します。

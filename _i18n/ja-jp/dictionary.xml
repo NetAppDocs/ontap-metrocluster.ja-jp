@@ -5829,7 +5829,6 @@
   <block id="fed227599b689943135c765d47b6045a" category="paragraph">NX3232_v1.80_Switch-B2.txt</block>
   <block id="516e7c19b1a750a903f4fd9e3624c57a" category="list-text">RCF ファイルをスイッチにコピーします。</block>
   <block id="1f80196ab142297bfad1ce7658281aa4" category="section-title">Cisco 9336C スイッチでの MACsec 暗号化の設定</block>
-  <block id="c2cd808fc4b0d9e71ea89cc518cef164" category="paragraph">サイト間で実行される WAN ISL ポートにのみ MACsec 暗号化を設定する必要があります。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。</block>
   <block id="2450cd43f02dcf045350e5a9b43f76b1" category="section-title">MACsec のライセンス要件</block>
   <block id="0418d9f007ef5e24de29d631a49631c2" category="inline-link">『 Cisco NX-OS Licensing Guide 』</block>
   <block id="a6a500da48c304e30ba664f892a08e51" category="paragraph">MACsec にはセキュリティライセンスが必要です。Cisco NX-OS ライセンス方式の詳細およびライセンスの取得方法と適用方法については、を参照してください<block ref="5721226d95f0bc641d405db29f1943d9" category="inline-link-rx"></block></block>
@@ -8017,7 +8016,6 @@
   <block id="b81ee4c855b35f971c50421790bc7928" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_1 のプール 1 に自動的に割り当てられます</block>
   <block id="41d172bd600e8fe0dc5103788a6f78c1" category="list-text">site_A-shelf_2 のすべてのディスクが node_B_2 のプール 1 に自動的に割り当てられます</block>
   <block id="84a335bc70808c0497de1c62a99aaf43" category="sidebar">基本設定を行います</block>
-  <block id="175313fe612a432e5a51082817a697f1" category="sidebar">Cisco 9336C スイッチに MACsec 暗号化を設定します</block>
   <block id="d0a21ff59a32489a592aeb50ea891e1c" category="list-text">構成に破損ディスクがないことを確認します。</block>
   <block id="9c2ea476b2663febaae7e92749da7877" category="paragraph">「 storage disk show -broken 」</block>
   <block id="23a6830e0b1f38beb4090d86d31d8532" category="list-text">両方のサイトでタイムゾーンと時間が正しく設定されていることを確認します。</block>
@@ -11959,7 +11957,6 @@
   <block id="601779c42f052b558b7ac9443d399420" category="list-text">プラットフォームモデルでVLAN IDがサポートされている場合（を参照）、およびデフォルトのVLAN IDを使用していない場合は、VLAN IDを確認する必要があり <block ref="05a2d2a273433dceaaaa95abd8b74c34" category="inline-xref-macro-rx"></block>ます。</block>
   <block id="99d8e07cf22b54bf1c4fe9ecde3bd413" category="list-text">インターフェイスがデフォルトのVLANを使用している場合、またはプラットフォームモデルがVLAN IDを使用していない場合（を参照 <block ref="05a2d2a273433dceaaaa95abd8b74c34" category="inline-xref-macro-rx"></block>）、_vlan-id_は必要ありません。</block>
   <block id="26c0375297253dbcc942fe30cefa7b4b" category="paragraph">VLANはインターフェイスの作成時にのみ指定できます。デフォルトのVLAN 10および20、または101～4096（またはスイッチベンダーがサポートする番号のいずれか小さい方の番号）の範囲内のVLANを設定できます。MetroClusterインターフェイスの作成後にVLAN IDを変更することはできません。</block>
-  <block id="3faee78823aa7a1dc8ffca46972f6fb2" category="image-alt">に、MetroCluster準拠スイッチのプラットフォーム固有のネットワーク速度とスイッチポートモードを示します。</block>
   <block id="c189be7568f7fe77db4a889353024935" category="admonition">RCFファイルのバージョンは、ファイルの生成に使用されるRCFfilegeneratorツールのバージョンとは異なります。たとえば、RCFファイルジェネレータv1.6cを使用してバージョン2.00のRCFファイルを生成できます。</block>
   <block id="a796207f93572cbc190249400ba34b9b" category="paragraph"><block ref="08689ca588d2fd5d0e0a12366a8cd0a6" prefix="" category="inline-code"></block></block>
   <block id="fc902c4c5eb117926b80fc3a1066d5f9" category="paragraph"><block ref="31e96f11307c41bb11d8a37f3c919979" prefix="" category="inline-code"></block></block>
@@ -13112,8 +13109,6 @@
   <block id="84b4abdd3b2327d529014e09c966c735" category="doc">Active IQ Unified ManagerおよびONTAPシステムマネージャを使用して詳細な設定と監視を行う</block>
   <block id="8f331b9c0fe948d4d36e636ae3c61443" category="summary">ノードとそのクライアントの間で時刻を同期するには、クラスタごとに独自のネットワークタイムプロトコル（ NTP ）サーバが必要です。</block>
   <block id="3053e08077bad755ce68edce5863f6eb" category="paragraph">ノードとそのクライアントの間で時刻を同期するには、クラスタごとに独自の Network Time Protocol （ NTP ；ネットワークタイムプロトコル）サーバが必要です。</block>
-  <block id="eff6a3df3a68a6652b79b0a81ba75dda" category="list-text">AFF A30、AFF C30、AFF C60、およびFAS50のシステムで25Gbpsのネットワーク速度をサポートするには、コントローラのカードにQSFP-SFP+アダプタが必要です。</block>
-  <block id="8f8d75e3465f8e6ca35857c6cf19f63e" category="paragraph"><block ref="8f8d75e3465f8e6ca35857c6cf19f63e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f7bbc76208ab5ade611be3b207fc4964" category="paragraph">内部パーティションは4つのグループ（クォータ）に均等に分割されます。各クォータが自動的に別々のプールに割り当てられます。外付けシェルフのドライブが4つのグループ（クォータ）に均等に分割されます。各クォータシェルフは自動的に別 々 のプールに割り当てられます。</block>
   <block id="951ecdd1fc2eee9520c3a6959e6b80fd" category="section-title">FAS50システムでのディスク割り当て</block>
   <block id="eac1566268bcf590649d38dfbbc071d8" category="paragraph">AFF A30、AFF C30、AFF C60、FAS50</block>
@@ -13992,7 +13987,6 @@
   <block id="ab58575dfc3a4cf3868291f7e29fd682" category="doc">MetroCluster IP構成のコントローラとシャーシコンポーネントのHA構成状態を確認します。</block>
   <block id="0dd4375e97dbbfc0461527e6636a4e50" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用に Broadcom IP スイッチを構成する</block>
   <block id="2305966fe63ba176ab9feddd6e84701f" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用にCisco IP スイッチを構成する</block>
-  <block id="9edb945b46e8338b6c604c62787c3031" category="doc">MetroCluster IPサイト内のCisco 9336CスイッチでMACsec暗号化を構成する</block>
   <block id="e0e912999bb427a16c869c97ad908030" category="doc">クラスタ相互接続とバックエンドMetroCluster IP 接続用にNVIDIA IP SN2100 スイッチを構成する</block>
   <block id="25849b8ea5119a6ccbe0ef06d8e35773" category="doc">MetroCluster IP構成のONTAPノードスイッチオーバーをテストします</block>
   <block id="f42ec02236cb8b0134435967892ad733" category="paragraph"><block ref="f42ec02236cb8b0134435967892ad733" category="inline-link-macro-rx"></block></block>
@@ -14567,4 +14561,29 @@
   <block id="ab84d029506bbf94968a8439506e5c7f" category="paragraph"><block ref="386c9422b8a78bb2663b14ec5cff7d1e" category="inline-link-macro-rx"></block>。</block>
   <block id="ea7f38fbe84ac28be0f7c90cca730a69" category="paragraph">ONTAP 9.19.1</block>
   <block id="65e78b09746a9ca4025a1c248d42a1bb" category="list-text">システムから HTTP サーバにアクセスできることを確認します。</block>
+  <block id="b91a26ac8a9beeea2dbb082ebcc79563" category="list-text">AFF A30、AFF C30、AFF C60、およびFAS50システムでは、25Gbpsのネットワーク速度をサポートするために、コントローラ上のカードにQSFP-to-SFPアダプタが必要です。</block>
+  <block id="68ce146fd9ae3ad96c5895b1c1869059" category="cell">ネットワーク速度（Gbps）</block>
+  <block id="0ec1914fce58a6a4d1748f3ace018fa1" category="cell">スイッチ ポート モード</block>
+  <block id="9903737bdb8c33503d4677b804a93bb3" category="paragraph">100Gbpsを使用したチャンク アップロード署名要求がサポートされるようになりました。</block>
+  <block id="95059acbec372eb955f1645409c0b72a" category="paragraph">FAS9000またはAFF A700からPCMをアップグレードする場合は40Gbps</block>
+  <block id="4c75fbf9fcb941c4555168045960e7ff" category="paragraph">トランクモード</block>
+  <block id="e0d8a184e851ebead0da8ef2d160d077" category="paragraph">AFF C800用</block>
+  <block id="fd395a2e4925de0736e72f97908d353b" category="paragraph">ASA C800</block>
+  <block id="dffbd09beb5f8e9746ed2e56e4ff77c5" category="paragraph">ASA A800</block>
+  <block id="538b0a5f377e4a7e386a3066041545ed" category="paragraph">40Gbpsまたは100Gbps</block>
+  <block id="5ab83f35784f154d55ea7ab58c8e503b" category="paragraph">アクセス モード</block>
+  <block id="3dd0fd41a169501d96e8394596995cea" category="paragraph">40Gbpsを使用したチャンク アップロード署名要求がサポートされるようになりました。</block>
+  <block id="8be061f2ffd8e5438d395c1e9844b4ff" category="paragraph">ASA C400</block>
+  <block id="1ceb5497eb752c50389a2c579cff9567" category="paragraph">25Gbpsを使用したチャンク アップロード署名要求がサポートされるようになりました。</block>
+  <block id="5c4d47ba596f06f53b9aa793345127dd" category="paragraph">AFF C250用</block>
+  <block id="efb7d807a9229170619783564ab9a186" category="paragraph">ASA C250</block>
+  <block id="58bdeb56c4a59fe27bedb60d1f1b8b90" category="paragraph">ASA A250</block>
+  <block id="0814a528a6e09bdfa454da4598d03b6a" category="paragraph">ASA A150</block>
+  <block id="2731fea24095aa687c94c583e42e365a" category="paragraph">25Gbpsまたは100Gbps</block>
+  <block id="d9bafc03fd0d1ef7bcb8fe6362c07354" category="summary">必要に応じて、サイト間を走るWAN ISLポートでのみMACsec暗号化を設定してください。MACsec暗号化を使用する場合は、適切なRCFファイルを適用した後に設定を行ってください。</block>
+  <block id="0876f65fb1fd364053810f3b546f4ae5" category="doc">MetroCluster IPサイトのCisco 9336Cスイッチ上でMACsec暗号化を設定する（オプション）</block>
+  <block id="800b8e21fdc6520b5affd604f6034398" category="paragraph">必要に応じて、サイト間を走るWAN ISLポートでMACsec暗号化を設定できます。MACsec暗号化を使用する場合は、適切なRCFファイルを適用した後で設定を行う必要があります。</block>
+  <block id="3b1fc3e7f78026e75788d28bc49ca81d" category="list-text">MACsec暗号化は、サイト間で実行されるWAN ISLポートにのみ適用できます。</block>
+  <block id="68bddd16e24ef3e862d1cb8ff822ad2a" category="list-text">Cisco 9336Cスイッチを設定する際、MACsec暗号化の設定はオプションです。</block>
+  <block id="95c3b415a470d1839fa2fedd54783abb" category="sidebar">Cisco 9336Cスイッチで MACsec 暗号化を設定する（オプション）</block>
 </blocks>
