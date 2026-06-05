@@ -329,18 +329,99 @@ aa9a7a7a1-9a81-11e7-a4e9-00a098908c35
 ** ucadmin show
 
 
-. ルート・ボリュームが暗号化されている場合は 'key-manager に使用するパスフレーズを収集して保存しますつまり 'security key-manager backup show
-. MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。追加情報の場合は、を参照してください https://docs.netapp.com/us-en/ontap/encryption-at-rest/backup-key-management-information-manual-task.html["オンボードキー管理情報の手動でのバックアップ"^]。
+. MetroClusterノードが管理SVM（クラスタ）用の外部キーマネージャで構成されている場合は、キーサーバ情報を安全な場所にコピーします。オンボードキーマネージャが設定されている場合は、バックアップ情報とパスフレーズを安全な場所にコピーします。
 +
-.. Onboard Key Manager が設定されている場合： security key-manager onboard show-backup + アップグレード手順であとでパスフレーズが必要になります。
-.. Enterprise Key Management （ KMIP ）が設定されている場合は、次のコマンドを問題で実行します。
+[role="tabbed-block"]
+====
+.オンボード キー マネージャ
+--
+.. オンボードキーマネージャのバックアップを表示するには、次のコマンドを実行します：
 +
-....
-security key-manager external show -instance
-security key-manager key query
-....
+「 securitykey manager onboard show-backup 」を参照してください
+
++
+アップグレード手順の後半では、最新のOnboard Key Managerのパスフレーズも必要になります。
+
++
+詳細については、を参照してください https://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-1677AE0A-FEF7-45FA-8616-885AA3283BCF.html["オンボードキー管理情報の手動でのバックアップ"]。
 
 
+
+--
+.外部キー管理ツール
+--
+後ほど手順の中でキーマネージャの設定を復元する際に必要となる、外部キー管理情報を収集してください。
+
+.. 管理SVMの名前（クラスタ）を表示します。
++
+`vserver show -type admin`
+
++
+この例では、管理SVMの名前はcluster_Bです：
+
++
+[listing]
+----
+cluster_B::*> vserver show -type admin
+                               Admin      Operational Root
+Vserver     Type    Subtype    State      State       Volume     Aggregate
+----------- ------- ---------- ---------- ----------- ---------- ----------
+cluster_B
+            admin   -          -          -           -          -
+----
+.. 管理SVM（クラスタ）に設定されている外部キーマネージャに関連付けられているプライマリキーサーバのアドレスとポート番号を取得します：
++
+[NOTE]
+====
+*** 管理SVMには最大4つのプライマリキーサーバを設定できますが、この手順の後半でキー管理設定をリストアするために必要なのは、プライマリキーサーバの1つのポート番号とアドレスだけです。
+*** 選択したプライマリキーサーバーに関連付けられたユーザー名とパスワードがある場合は、復旧プロセスにもその情報が必要になります。
+
+
+====
++
+`security key-manager external show -instance -vserver <admin_svm_name>`
+
++
+[listing]
+----
+cluster_B::> security key-manager external show -instance -vserver cluster_B
+
+                  Vserver: cluster_B
+       Client Certificate: NTAPKM_C
+   Server CA Certificates: NTAPKM_I, NTAPKM_R
+       Primary Key Server: 172.18.27.34:12014
+                  Timeout: 25
+                 Username:
+              Policy name: -
+    Secondary Key Servers: -
+    Create/Remove Timeout: 10
+
+----
+.. ONTAP 9.16.1以降を実行している場合は、admin SVMのキーストアUUIDを取得します。
++
+`security key-manager show-key-store -vserver <admin_svm_name> -fields uuid`
+
++
+[listing]
+----
+cluster_B::*>  security key-manager show-key-store -vserver cluster_B -fields uuid
+vserver         uuid
+--------------- ------------------------------------
+cluster_B        f281aa55-d635-11f0-93bc-005056bb68f2
+
+cluster_B::*
+----
+.. 収集した情報は、後の手順で使用するため、安全な場所に保存してください。これで、以下の情報が揃ったはずです：
++
+*** 管理SVMのプライマリキーサーバの1つのポート番号とアドレス
+*** 選択したプライマリキーサーバーに関連付けられているユーザー名とパスワード（関連付けられている場合）
+*** 管理 SVM のキーストア UUID （ ONTAP 9.16.1 以降で必須）
+
+
+
+
+--
+====
 . 既存のノードのシステム ID を収集します。 MetroCluster node show -fields node-systemid 、 ha-partner-systemid 、 dr-partner-systemid 、 dr-auxiliary-systemid
 +
 次の出力は、再割り当てされたドライブを示しています。
@@ -1161,7 +1242,7 @@ partner-sysid が正しくない場合は、次のように設定します。
 +
 「 boot_ontap menu
 
-. ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを選択します。
+. MetroClusterシステムの管理SVMがキーマネージャで設定されている場合は、キー管理設定に適したブートメニューオプションを選択してください。
 +
 |===
 
@@ -1172,14 +1253,28 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 オンボードキー管理
  a| 
-オプション 10 を選択し、画面の指示に従って、キー管理ツールの構成をリカバリまたはリストアするために必要な入力を指定します
+オプション 10
+
+プロンプトに従って、キーマネージャ構成をリカバリおよびリストアするために次の入力を指定します。
+
+** オンボードキーマネージャのバックアップとパスフレーズ
+
 
 
 
  a| 
 外部キー管理
  a| 
-オプション 11 を選択し、画面の指示に従って、キー管理ツールの設定をリカバリまたはリストアするために必要な入力を指定します
+オプションは 11 です
+
+プロンプトに従って、キーマネージャ構成をリカバリおよびリストアするために次の入力を指定します。
+
+** 管理SVMのプライマリキーサーバの1つのポート番号とアドレス
+** 選択したプライマリキーサーバーに関連付けられている場合は、ユーザー名とパスワード
+** 管理 SVM のキーストア UUID （ ONTAP 9.16.1 以降で必須）
+
+
+*注：*管理SVMには最大4つのプライマリキーサーバを設定できますが、リカバリプロセス中に指定できるのは1つのプライマリキーサーバの情報のみです。
 
 |===
 . ブート・メニューから '(6) Update flash from backup config' を選択します
@@ -1212,7 +1307,7 @@ partner-sysid が正しくない場合は、次のように設定します。
 +
 'setenv partner-sysid_partner-SysID_`
 
-. ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを選択します。
+. ルートボリューム暗号化を使用する場合は、キー管理設定のためにブートメニューオプションを再度選択してください。
 +
 |===
 
@@ -1223,14 +1318,28 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 オンボードキー管理
  a| 
-オプション 10 を選択し、画面の指示に従って、キー管理ツールの構成をリカバリまたはリストアするために必要な入力を指定します
+オプション 10
+
+プロンプトに従って、キーマネージャ構成をリカバリおよびリストアするために次の入力を指定します。
+
+** オンボードキーマネージャのバックアップとパスフレーズ
+
 
 
 
  a| 
 外部キー管理
  a| 
-オプション 11 を選択し、画面の指示に従って、キー管理ツールの設定をリカバリまたはリストアするために必要な入力を指定します
+オプションは 11 です
+
+プロンプトに従って、キーマネージャ構成をリカバリおよびリストアするために次の入力を指定します。
+
+** 管理SVMのプライマリキーサーバの1つのポート番号とアドレス
+** 選択したプライマリキーサーバーに関連付けられている場合は、ユーザー名とパスワード
+** 管理 SVM のキーストア UUID （ ONTAP 9.16.1 以降で必須）
+
+
+*注：*管理SVMには最大4つのプライマリキーサーバを設定できますが、リカバリプロセス中に指定できるのは1つのプライマリキーサーバの情報のみです。
 
 |===
 +
@@ -1260,7 +1369,7 @@ partner-sysid が正しくない場合は、次のように設定します。
  a| 
 外部キー管理
  a| 
-「 securitykey manager external restore -vserver _svm_-node __ key -server_host_name | ip_address ： port_-key-id key_id -key tag key_tag_node-name_ 」
+`security key-manager external restore -vserver <admin-svm> -key-server <host_name|IP_address:port>`
 
 詳細については、を参照してください https://docs.netapp.com/us-en/ontap/encryption-at-rest/restore-external-encryption-keys-93-later-task.html["外部キー管理の暗号化キーのリストア"^]。
 

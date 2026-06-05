@@ -1635,11 +1635,6 @@
   <block id="5d71f5f1513a5a67bb10323070ec1983" category="list-text">「 fcp interface show -instance 」の略</block>
   <block id="2fdab4f50b91e9173d8fd09c9243b0c3" category="list-text">「 iscsi interface show 」と表示されます</block>
   <block id="5344ecb990fb0b0e60a7b979eeca26cd" category="list-text">ucadmin show</block>
-  <block id="8b1a6434b118fdab6cffd5eef984796d" category="list-text">ルートボリュームが暗号化されている場合は、 key-manager に使用するパスフレーズを収集して保存します。</block>
-  <block id="0c41288b073bc8667b15931457adf7c0" category="list-text">MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。</block>
-  <block id="db8057baa0e3040863709dc299c0a2b6" category="inline-link">オンボードキー管理情報の手動でのバックアップ</block>
-  <block id="353024e475a7604e40871e8aa07253b1" category="paragraph">追加情報の場合は、を参照してください<block ref="17c328b6561af0ba38f0debcfa14ec48" category="inline-link-rx"></block>。</block>
-  <block id="b9284138ad08224a8431291e2a54805d" category="paragraph">パスフレーズは、あとでアップグレード手順で必要になります。</block>
   <block id="0680bb5259d11fc9085b95eff42515e4" category="section-title">Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します</block>
   <block id="996ae2958095991e77250398220eb3d5" category="paragraph">スイッチオーバーを開始できる MetroCluster Tiebreaker 構成や他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、移行の前に Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。</block>
   <block id="8db7c34118d5425403025b6210cacb71" category="list-text">Tiebreaker ソフトウェアから既存の MetroCluster 設定を削除します。</block>
@@ -2216,7 +2211,6 @@
   <block id="7ceccece33628eb60e24f0bbce323e85" category="paragraph">f03cb63c-9a7e-11e7-b68b-00a098908039</block>
   <block id="287479c19201793bc9fad832c5e65ee3" category="paragraph">Node_a_2</block>
   <block id="83eb9244384a0bbfba085187f05dfe78" category="paragraph">aa9a7a7a1-9a81-11e7-a4e9-00a098908c35</block>
-  <block id="6127871d3f874c72ca0ba6835dd78bce" category="list-text">Enterprise Key Management （ KMIP ）が設定されている場合は、次のコマンドを問題で実行します。</block>
   <block id="fb46345d4cd3f7e829969de1d6aa05e7" category="list-text">既存のノードのシステム ID を収集します。</block>
   <block id="6f439aaac5a6f2528f54f717e0c55a39" category="paragraph">次の出力は、再割り当てされたドライブを示しています。</block>
   <block id="8721fdb505c6c36bb5be2e19130e698c" category="paragraph">プラットフォームをアップグレードする前に、 MetroCluster 設定を Tiebreaker またはメディエーターユーティリティで監視している場合は、監視を解除する必要があります。</block>
@@ -7846,9 +7840,6 @@
   <block id="76ca0a669d54e112624a4faa696217a7" category="paragraph">このコマンドは、各クラスタで問題を実行する必要があります。時刻とタイムゾーンを設定するには 'cluster date コマンドを使用します</block>
   <block id="11296fd304884401545d64cadeb2cb58" category="list-text">MetroCluster の構成と動作モードが「 normal 」であることを確認します。 + MetroCluster show</block>
   <block id="58dfd7290fdd7167fe8b6aba631a611f" category="list-text">想定されるすべてのノードが表示されることを確認します。 + MetroCluster node show `</block>
-  <block id="934c2fba3eda4a063dd4bc3693527e81" category="paragraph">「 securitykey-manager backup show 」を参照してください</block>
-  <block id="5dd8e2bcd1fdeaf6207d2362484a454c" category="list-text">オンボード・キー・マネージャが構成されている場合： +'securitykey-manager onboard show-backup</block>
-  <block id="009130140f2855cf19e7630eb5284573" category="paragraph">「 securitykey manager external show -instance 」 'ecurity key manager key query 」を参照してください</block>
   <block id="0f08c117fa6e12343d030b7741d1d666" category="paragraph">「 maintenance-window-in-hours 」パラメータには、メンテナンス時間の長さを最大 72 時間指定します。この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。</block>
   <block id="84662b9fedef1d258fb8d10005e76090" category="list-text">cluster_A で次のコマンドを問題します。</block>
   <block id="10e690310a4775deb6bc703a3d667b8c" category="paragraph">MetroCluster switche-controller-replacement true</block>
@@ -7888,7 +7879,6 @@
   <block id="814a61c853e0924925006646c354415b" category="list-text">起動メニューから「 (6) Update flash from backup config 」を選択します。</block>
   <block id="54e8ddb7f828b5837090d07ce05e08c3" category="admonition">オプション 6 を指定すると、完了前にノードが 2 回リブートされます</block>
   <block id="f3201d3871f5963f615afc28ccf4d91a" category="paragraph">システム ID 変更プロンプトに「 y 」と入力します。2 回目のリブートメッセージが表示されるまで待ちます。</block>
-  <block id="d477a37d10aff8dfb1c93b1fa5e33de8" category="paragraph">「 securitykey manager external restore -vserver _svm_-node __ key -server_host_name | ip_address ： port_-key-id key_id -key tag key_tag_node-name_ 」</block>
   <block id="dd90e8a9a6ec169f911d6de53840e5b0" category="list-text">ポート設定を無視して LIF が適切に配置されるようにします。</block>
   <block id="fd6749a20a942d2125b164a12dde1996" category="paragraph">「 vserver config override command 」 network interface modify -vserver vserver_name __ -home-node _active_port_after_upgrade _ -lif LIF_name -home-node _new_node_name _</block>
   <block id="99f4b5df4f6dc50627e069f95f4b85eb" category="paragraph">「 network interface revert * -vserver_vserver-name に指定します</block>
@@ -8019,10 +8009,7 @@
   <block id="d0a21ff59a32489a592aeb50ea891e1c" category="list-text">構成に破損ディスクがないことを確認します。</block>
   <block id="9c2ea476b2663febaae7e92749da7877" category="paragraph">「 storage disk show -broken 」</block>
   <block id="23a6830e0b1f38beb4090d86d31d8532" category="list-text">両方のサイトでタイムゾーンと時間が正しく設定されていることを確認します。</block>
-  <block id="696b64bc323bdd13e4a324fd384d294c" category="list-text">オンボードキーマネージャが設定されている場合：</block>
   <block id="c497a6b930105164567b744840c21e94" category="paragraph">「 securitykey manager onboard show-backup 」を参照してください</block>
-  <block id="1b8b021695a2698fadae5c009b0b6295" category="paragraph">「 securitykey-manager external show -instance 」</block>
-  <block id="2a4a9d693caa859153f77cf2204d30cc" category="paragraph">「セキュリティキーマネージャのキークエリ」</block>
   <block id="996bebf7afd4ff3c1c2c76a361bb12a0" category="list-text">データアグリゲートを修復します。</block>
   <block id="b784ced918e2a1928ccd95f5122fb01c" category="paragraph">MetroCluster は ' データ・アグリゲートを修復します</block>
   <block id="64a2c948ff5f5a4a19945315df55d3f1" category="list-text">で収集した情報を使用します <block ref="1ed1cd4ef8bd2fcdaf4ac61e442842fa" category="inline-link-macro-rx"></block>。</block>
@@ -8175,7 +8162,6 @@
   <block id="01fcad9722b76bf721bf3e62d6025311" category="list-text">バックアップキーやその他の情報を取得するコマンドを表示します。</block>
   <block id="8005ab9a73c38cc367636a0ec9e8fa35" category="paragraph">「 system controller replace show 」と表示されます</block>
   <block id="a0e8bd8a19cc4080f31b71bf720b5cea" category="paragraph">パートナークラスタから 'how コマンドの下に一覧表示されているコマンドを実行します</block>
-  <block id="f6ab51154cdfc097564bafa164ac20be" category="paragraph">追加情報の場合は、を参照してください<block ref="9c5418b86e38fd117e0f48c25b2c7372" category="inline-link-rx"></block>。</block>
   <block id="e62705f78105356bbf7fa312e78e684a" category="list-text">設定情報の収集が完了したら、処理を再開します。</block>
   <block id="d6fd449bc639f92f27b747fd5b40361d" category="paragraph">「システムコントローラの交換が再開」</block>
   <block id="7080e7642990f343422154f3680f5f54" category="paragraph">スイッチオーバーを開始できる MetroCluster Tiebreaker 構成またはその他のサードパーティアプリケーション（たとえば、 ClusterLion ）で既存の構成を監視している場合は、古いコントローラを交換する前に、 Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。</block>
@@ -8186,11 +8172,9 @@
   <block id="76947da623011473e258bcef85f2724d" category="paragraph">を参照してください <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block> を参照してください。</block>
   <block id="664faa773b897771d732ec0de99d505a" category="paragraph">前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします</block>
   <block id="bfb74093c695212150621f6bdf9a4d2e" category="paragraph">VLAN とインターフェイスグループを再設定できます。必要に応じて、「 system controller replace resume 」コマンドを使用して処理を再開する前に、クラスタ LIF とブロードキャストドメインのポートを手動で変更します。</block>
-  <block id="045153dd32979a83552dc18f97eb10d7" category="list-text">ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを選択します。</block>
   <block id="15f46bcb6931f7562d903b4ad6dd6724" category="cell">選択するブートメニューオプション</block>
   <block id="178098baf7cc420884cc556dea26c7ca" category="paragraph">オプション 10</block>
   <block id="6f5ca753326737c7593f401e5c5d7859" category="paragraph">オプションは 11 です</block>
-  <block id="628ec0782add3a1eca1d1b88c88303f8" category="list-text">ルート暗号化を使用する場合は、キー管理設定のブートメニューオプションを再度選択します。</block>
   <block id="1a483f94c29c1132f258efc379367329" category="paragraph"><block ref="1a483f94c29c1132f258efc379367329" category="inline-link-rx"></block></block>
   <block id="4bffe29d6d1104677dcfeb9e99ac549e" category="paragraph"><block ref="4bffe29d6d1104677dcfeb9e99ac549e" category="inline-link-rx"></block></block>
   <block id="7b79bd2b52b89f70edfedac8da540bb3" category="paragraph"><block ref="7b79bd2b52b89f70edfedac8da540bb3" category="inline-link-rx"></block></block>
@@ -8288,10 +8272,7 @@
   <block id="9a0dfb0af7717632c4b3bc7de1ff2fff" category="paragraph"><block ref="9a0dfb0af7717632c4b3bc7de1ff2fff" category="inline-link-rx"></block></block>
   <block id="8891488ccf0af3b6c4a946824e6f0cdc" category="admonition">現在サポートされている SNMP トラップホストは 1 つだけです。</block>
   <block id="4ab496c462bc9a729fe703221c683545" category="paragraph"><block ref="4ab496c462bc9a729fe703221c683545" category="inline-link-macro-rx"></block></block>
-  <block id="1ba2ae150e1cee5c2dbe25aa1a0e18b0" category="paragraph">プロンプトに従って、キー管理ツールの構成をリカバリおよびリストアするために必要な入力を指定します。</block>
-  <block id="9cf18883abd310f0e24341194095b229" category="list-text">ルート暗号化を使用する場合は、使用している ONTAP のバージョンに応じて、キー管理設定のブートメニューオプションまたは問題 the boot menu コマンドを選択します。</block>
   <block id="716a92112769d0f62895dc8c3a9fe47f" category="list-text">ONTAP 9.8 以降では、ブート・メニュー・オプションを選択します。</block>
-  <block id="2d9e786c47fe4bbb5d2cec20e0f373eb" category="list-text">ルート暗号問題化を使用する場合は、使用している ONTAP のバージョンに応じて、キー管理設定に対してブートメニューオプションを選択するか、ブートメニューコマンドを再度実行します。</block>
   <block id="1739256103cb7d112712a588fb2f6506" category="inline-link-macro">ONTAP をセットアップします</block>
   <block id="fa60d55773bc424e586a8c4898b4bc9f" category="inline-link-macro">ディスクとアグリゲートの管理</block>
   <block id="a722c96220981ad0bb2bcff8ce41fc72" category="inline-link">CLI によるデータ保護</block>
@@ -8569,9 +8550,6 @@
   <block id="9c1a38eb049be04bc1fa9147e20650b3" category="list-text">ノードごとに次のコマンドの出力を収集します。</block>
   <block id="7a712cf65b51315015ead79fa1c04bb4" category="list-text">site_B （プラットフォームが現在アップグレード中のサイト）の UUID を収集します。 MetroCluster node show -fields node-cluster.uuid 、 node-uuid</block>
   <block id="fd86e8b040cc38b3481aa4ca1a66fdc3" category="paragraph">アップグレードを正常に実行するには、新しい site_B のコントローラモジュールでこれらの値を正確に設定する必要があります。あとでアップグレードプロセスの適切なコマンドに値をコピーできるように、ファイルに値をコピーします。+ 次の例は、 UUID を指定したコマンドの出力を示しています。</block>
-  <block id="17d958aeb34005de78d5f16c3fb8d4d0" category="list-text">ルート・ボリュームが暗号化されている場合は 'key-manager に使用するパスフレーズを収集して保存しますつまり 'security key-manager backup show</block>
-  <block id="4e6bb29fad09442b6758473a381112e2" category="list-text">MetroCluster ノードがボリュームまたはアグリゲートに暗号化を使用している場合は、キーとパスフレーズに関する情報をコピーします。追加情報の場合は、を参照してください<block ref="0abbdd13a8c045ec09bd7c54eb2d0bef" category="inline-link-rx"></block>。</block>
-  <block id="bebcf28331e2ef1173754b217ce3b9d4" category="list-text">Onboard Key Manager が設定されている場合： security key-manager onboard show-backup + アップグレード手順であとでパスフレーズが必要になります。</block>
   <block id="10a7f52b07c24ded6796ce7b186bcafe" category="list-text">既存のノードのシステム ID を収集します。 MetroCluster node show -fields node-systemid 、 ha-partner-systemid 、 dr-partner-systemid 、 dr-auxiliary-systemid</block>
   <block id="1cefe6fb0bd3a21a29c31cc3652723ce" category="section-title">メディエーターまたは Tiebreaker の監視を削除します</block>
   <block id="2c8c38da3af9290bc8367a776b867b51" category="section-title">カスタム AutoSupport メッセージをメンテナンス前に送信する</block>
@@ -8667,8 +8645,6 @@
   <block id="02e8a6935997050f797cf96450dbce29" category="list-text">メンテナンスモードのプロンプトから node_B_1 - A900 のディスクを表示します。</block>
   <block id="5199ebe33b0d6ce55d2b8445fe9d6980" category="list-text">ルートアグリゲートのディスクが正しく再割り当てされていることを確認します。 old-remove</block>
   <block id="77ea5d16a16f95bff985aa89f73f5ed3" category="section-title">新しいコントローラをブートします</block>
-  <block id="77eb63f0ebfdd7e3f0339c99d94d75d8" category="paragraph">オプション 10 を選択し、画面の指示に従って、キー管理ツールの構成をリカバリまたはリストアするために必要な入力を指定します</block>
-  <block id="f1c846bcc7483d91b8753952833cfe0b" category="paragraph">オプション 11 を選択し、画面の指示に従って、キー管理ツールの設定をリカバリまたはリストアするために必要な入力を指定します</block>
   <block id="4164f680d252cb689f614cf976bcc203" category="list-text">ブート・メニューから '(6) Update flash from backup config' を選択します</block>
   <block id="a90679f6ecce7659e21997990155707f" category="list-text">自動ブートを中断して、コントローラを LOADER で停止します。</block>
   <block id="91eea79b3297ad2732fd614ffc48335c" category="admonition">各ノードで、に設定された bootargs を確認します <block ref="c3652d8371e8759d3786637bc5f1c8bc" category="inline-link-macro-rx"></block> 正しくない値があれば修正します。bootarg の値を確認したあとに次の手順にのみ移動してください。</block>
@@ -8712,7 +8688,6 @@
   <block id="a0efecab010293ebd247221cd9cca871" category="list-text">Node_a_2-A700 ： 537407030</block>
   <block id="c5c663e6628e19ffabcbcb01ecaa23e3" category="list-text">Node_B_1-A700 ： 0537407114</block>
   <block id="447b7bdefc8e750f8d7dab18bb9172ea" category="list-text">node_B_2 - A700 ： 537035354</block>
-  <block id="50d704bfae735cf9f8824da705413abc" category="paragraph">追加情報の場合は、を参照してください<block ref="0abbdd13a8c045ec09bd7c54eb2d0bef" category="inline-link-rx"></block>。</block>
   <block id="fbb702216c9d47455a0b8dbde9a6a6ca" category="paragraph">構成から古いコントローラを削除する必要があります。</block>
   <block id="594c103f2c6e04c3d8ab059f031e0c1a" category="inline-image-macro">コントローラ</block>
   <block id="5370787e20e547791ddb1e14849b2cd9" category="paragraph"><block ref="5370787e20e547791ddb1e14849b2cd9" category="inline-image-macro-rx" type="image"></block></block>
@@ -8757,12 +8732,9 @@
   <block id="b4886ce49c161e4611a0f92229f5ca00" category="list-text">すべてのディスクが期待どおりに再割り当てされていることを確認します</block>
   <block id="315d002f039b19ee1ed5b40bb772bde1" category="list-text">アグリゲートのステータスを表示します。「 aggr status 」を選択します</block>
   <block id="b62c51c801aebbaf695e6746676c0668" category="list-text">パートナーノード（ node_B_2 - A900 ）に対して上記の手順を繰り返します。</block>
-  <block id="a0a7d863d75d1083974d54de25a20b2b" category="list-text">ルート暗号化を使用問題する場合は、キー管理設定の boot menu コマンドを使用します。</block>
-  <block id="efe5387363cb0a162d3144e7be598e40" category="paragraph">オプション 11 を選択し、画面の指示に従って、キー管理ツールの設定をリカバリまたはリストアするために必要な入力を指定します</block>
   <block id="f4874a68e6d7f49851ee24731ec354c8" category="list-text">partner-sysid が正しいことをダブルチェックします :printenv partner-sysid</block>
   <block id="a011695a667d4d881a8eb17cebc6796a" category="paragraph">partner-sysid が正しくない場合は、「 setenv partner-sysid_partner-SysID_` 」と設定します</block>
   <block id="ecb784a0d718480cf2373a1c93d92d6b" category="list-text">ルート暗号化を使用問題する場合は、キー管理設定に対して boot menu コマンドを再度実行します。</block>
-  <block id="2a6e010933dcb7b2124653ec9e7aa06f" category="paragraph">オプション 11 を選択し、画面の指示に従って、キー管理ツールの設定をリカバリまたはリストアするために必要な入力を指定します</block>
   <block id="e6e35a3f4ac372a4d2b484e43408358d" category="paragraph">ノードが完全にブートするまで、ブートメニュープロンプトで「 recover_xxxxxxxx_keymanager 」コマンドを何度も問題に接続する必要がある場合があります。</block>
   <block id="4dbc5bd19b9fd833f99647d4bbc60473" category="list-text">ノード「 boot_ontap 」をブートします</block>
   <block id="3bfc27192d723c105da2c9242eca6d00" category="inline-link-macro">ブロードキャストドメインのポートを追加または削除します</block>
@@ -9498,8 +9470,6 @@
   <block id="a4aa69385ab0a1b92a7a5635cdb2f2b2" category="paragraph"><block ref="903819e2154a41f8227f7c0192db71f6" category="inline-link-macro-rx"></block>。</block>
   <block id="bc13f269b8fcdbac7ef84f083e616363" category="paragraph">MetroCluster の設定と接続の詳細については、次のトピックを参照してください。</block>
   <block id="c09c91c40853cc803259a2c27d8fa946" category="paragraph">システム ID 変更プロンプトに「 y 」と入力します。2 回目のリブートメッセージが表示されるまで待ちます。</block>
-  <block id="f1318dc614d34488bcb6f8bef3e32bff" category="paragraph">オプション "11`"</block>
-  <block id="37ef00a03e6b4bacbc26b2ee369f838f" category="paragraph">キー・マネージャの設定に応じて '10 またはオプション 11 を選択し ' 最初のブート・メニュー・プロンプトでオプション 6 を選択して 'Recovery 手順を実行しますノードを完全にブートするには ' オプション "1" によって続行されるリカバリ手順 ( 通常のブート ) を繰り返す必要がある場合があります</block>
   <block id="9dc1904e0c3ace141704b477cd9b345d" category="inline-link-macro">Network Management の略</block>
   <block id="84c335ab98bb834a85c89e20e223e638" category="paragraph">プラットフォームのデフォルトのポートロールのリストについては、を参照してください<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block></block>
   <block id="4b921a602b7b9dfd3ef2bf07ef52ad90" category="paragraph">次の例では、ポート「 e0a 」、「 e0b 」、「 e0c 」、および「 e0d 」をクラスタポートに変更する必要があります。</block>
@@ -9510,7 +9480,6 @@
   <block id="06dd50ba0fbb8fe8e1275ce3a8f1780c" category="paragraph">SAN と NAS を含むすべてのデータ LIF は ' スイッチオーバーサイト（ cluster_A ）で稼働しているため ' 管理上の "" および運用上の "" ダウン "" になります</block>
   <block id="e5d9bbeb62634011317a03db540cbd41" category="paragraph">たとえば、「 e0d 」は古いコントローラ上の物理ポートであり、新しいコントローラ上にも存在します。「 e0d 」は、クラスタポートとしても、新しいコントローラ上でも使用されません。</block>
   <block id="8e2361467ff0169a4533484be16883d8" category="paragraph">次の例では、これは「 e0d 」です。</block>
-  <block id="cc5eb1ddd782b52c5fabe965793bc6f4" category="paragraph">オプション "10 `"</block>
   <block id="ebfd098b07a4e0eedf482c0b87be6e89" category="list-text">自動ブートが有効になっている場合は、 Ctrl+C を押して自動ブートを中断します</block>
   <block id="e230d4e771549b231a7eda2894a670a5" category="list-text">ブートメニューからオプション "6`" を実行します</block>
   <block id="4c3c853efc0864d6f85e88e17a282dba" category="admonition">オプション "6`" を選択すると ' 完了前にノードが 2 回再起動されます</block>
@@ -11903,7 +11872,6 @@
   <block id="32c64742b195a65781738c8b44e4a352" category="paragraph"><block ref="6292300caa922eb09cdd1732fcc043df" prefix="" category="inline-code"></block></block>
   <block id="00c407fe45f64374369a1722aa8f9a72" category="paragraph"><block ref="1c8d45cfa7c093e5e83aa2b0c6f041ba" prefix="" category="inline-code"></block></block>
   <block id="81c0cfa4d81a326f65d742ed4d1ee46b" category="paragraph"><block ref="ab36db401b8d98490b7c51ef5a618243" prefix="" category="inline-code"></block></block>
-  <block id="fdf8e4fe9b3e05181cd8befb0c17897f" category="paragraph"><block ref="a8dfa60f338d6757ce57f0b05c861249" prefix="" category="inline-code"></block></block>
   <block id="fb0d5feb3def76f90b6408f32f99f4b7" category="list-text">新しくアップグレードしたコントローラのデータポート用に新しいブロードキャストドメインを作成する場合は、そのブロードキャストドメインを削除します。</block>
   <block id="8cb8d05546274856c8c2cb56b7cd62ac" category="paragraph"><block ref="7bbb7f17a19e67be5ebaaa8410749ad2" prefix="" category="inline-code"></block></block>
   <block id="a51de836d51a26774e16aa7066519185" category="paragraph"><block ref="6a6db1083e2f8c53b07cc196dec3cafb" prefix="" category="inline-code"></block></block>
@@ -11931,7 +11899,6 @@
   <block id="b18f9742d77912f838f8a0bc859bbf11" category="list-text"><block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block>プロンプトで、管理LIFのネットブート接続を設定します。</block>
   <block id="7c9dbc13c4af0588948dc0974ad07931" category="paragraph">コマンドの実行後、ノードがプロンプトで停止するまで待ちます<block ref="82b8350d28f0a14e36de1958b3be9205" prefix=" " category="inline-code"></block> 。</block>
   <block id="c200b51f243e6499b1e4aff027683496" category="paragraph"><block ref="4ce4e1d2d83eceacd4a0a0cf1bad8e14" prefix="" category="inline-code"></block></block>
-  <block id="c848af1101f629db69baafb2b08b9915" category="paragraph"><block ref="ce889b95687da5aee0c3d9ec48e819b4" prefix="" category="inline-code"></block></block>
   <block id="2d425665af37b9989f89179649650990" category="section-title">アップグレードを完了します</block>
   <block id="7bf9d1ef7aeb37de6171f77014cb7475" category="paragraph">特定のプラットフォームでは、MetroCluster IPインターフェイスにVLANが使用されます。デフォルトでは、 2 つのポートでそれぞれ 10 と 20 の異なる VLAN が使用されます。</block>
   <block id="b676a1207e184308799f51c46b2c49b4" category="paragraph">+サポートされている場合は、コマンドのパラメータを使用して、100より大きい別の（デフォルト以外の）VLAN（101 ~ 4095）を指定することもできます<block ref="6790c40b1680557da1f80536ae186301" prefix=" " category="inline-code"></block><block ref="f2986433c79fe84ff207e72d4ed9fd6f" prefix=" " category="inline-code"></block> 。</block>
@@ -12829,10 +12796,8 @@
   <block id="2bd6f53f70717822994364eab0bf6cbb" category="paragraph">アップグレードが成功するためには、これらの値がsite_Bの新しいコントローラモジュールで正しく設定されている必要があります。アップグレードプロセスの後半でコマンドにコピーできるように、値をファイルにコピーします。</block>
   <block id="ed2b77aa370645814dafbf5dd8aef15f" category="paragraph">NetAppでは、次のような表にUUIDを記録することを推奨しています。</block>
   <block id="6bfdd861df764d52de7823dd5958fab3" category="paragraph">次のコマンドの出力を収集します。</block>
-  <block id="f3f4fd8fb847fe1a5ad11aacd71b5fad" category="list-text">ルートボリュームが暗号化されている場合は、キー管理ツールに使用するパスフレーズを収集して保存します。</block>
   <block id="3c3a3838848890665c5d4969e896b405" category="inline-link">オンボードキー管理情報の手動でのバックアップ</block>
   <block id="a99b2b056456bd0991317c897eb6b8b6" category="paragraph">詳細については、を参照してください<block ref="3c8480dc65ec7d91021d4d612b6bf420" category="inline-link-rx"></block>。</block>
-  <block id="a1f17dd5bd9c97697b58a9f90f8bfe7d" category="paragraph">パスフレーズは、アップグレード手順の後半で必要になります。</block>
   <block id="e6790e163decf815ae94c9137d60eb13" category="paragraph"><block ref="766cba2090a16f1ed1bcf4bf4dada91b" category="inline-link-macro-rx"></block>です。</block>
   <block id="b52a41eb513dc979f4cf2a4a13686ecd" category="summary">新しいプラットフォーム用のスイッチRCFを更新し、コントローラモジュールでMetroCluster IP bootargの値を設定します。</block>
   <block id="bad868fbc306571d732100a7612b6381" category="list-text">のアップグレード手順で前述したUUIDとシステムIDが必要です<block ref="aacd1fc1f619acd6603cbd45ee223ad9" category="inline-link-macro-rx"></block>。</block>
@@ -12858,7 +12823,6 @@
   <block id="cb990f25bc5eb8215bf8eb74c16807f3" category="summary">コントローラのアップグレードを準備するには、システムの事前確認を実行して設定情報を収集します。</block>
   <block id="c458b5225672f84c61d5b9931863ae60" category="paragraph">コントローラのアップグレードの準備として、新旧のプラットフォームモデルによっては、スイッチリファレンス構成ファイル（RCF）のアップグレードが必要になる場合があります。その後、システムの事前確認を実行し、設定情報を収集し、既存の監視ソフトウェアを削除します。</block>
   <block id="0c21b75966b293902f32e19c44cfee40" category="list-text">スイッチのRCF設定が最小バージョンになっていません。</block>
-  <block id="2592dc8685229c73a77e91741c837a63" category="paragraph">詳細については、を参照してください<block ref="8d2708bcc3f1eaf7281ec3a4227ab734" category="inline-link-rx"></block>。</block>
   <block id="0db7751284ee845ba2b1c67a8d8704db" category="section-title">Tiebreakerまたはその他の監視ソフトウェアから既存の構成を削除する</block>
   <block id="0cd4dc9ba4eb47708afdb2049d98c13a" category="paragraph">アップグレードを開始する前に、Tiebreakerまたはその他の監視ソフトウェアから既存の設定を削除してください。</block>
   <block id="63176d27bda1b994565a28492ed02e97" category="paragraph"><block ref="209008f8360496ff2e8d9d6e8b8625cb" category="inline-link-macro-rx"></block>です。</block>
@@ -14561,7 +14525,6 @@
   <block id="ab84d029506bbf94968a8439506e5c7f" category="paragraph"><block ref="386c9422b8a78bb2663b14ec5cff7d1e" category="inline-link-macro-rx"></block>。</block>
   <block id="ea7f38fbe84ac28be0f7c90cca730a69" category="paragraph">ONTAP 9.19.1</block>
   <block id="65e78b09746a9ca4025a1c248d42a1bb" category="list-text">システムから HTTP サーバにアクセスできることを確認します。</block>
-  <block id="b91a26ac8a9beeea2dbb082ebcc79563" category="list-text">AFF A30、AFF C30、AFF C60、およびFAS50システムでは、25Gbpsのネットワーク速度をサポートするために、コントローラ上のカードにQSFP-to-SFPアダプタが必要です。</block>
   <block id="68ce146fd9ae3ad96c5895b1c1869059" category="cell">ネットワーク速度（Gbps）</block>
   <block id="0ec1914fce58a6a4d1748f3ace018fa1" category="cell">スイッチ ポート モード</block>
   <block id="9903737bdb8c33503d4677b804a93bb3" category="paragraph">100Gbpsを使用したチャンク アップロード署名要求がサポートされるようになりました。</block>
@@ -14586,4 +14549,34 @@
   <block id="3b1fc3e7f78026e75788d28bc49ca81d" category="list-text">MACsec暗号化は、サイト間で実行されるWAN ISLポートにのみ適用できます。</block>
   <block id="68bddd16e24ef3e862d1cb8ff822ad2a" category="list-text">Cisco 9336Cスイッチを設定する際、MACsec暗号化の設定はオプションです。</block>
   <block id="95c3b415a470d1839fa2fedd54783abb" category="sidebar">Cisco 9336Cスイッチで MACsec 暗号化を設定する（オプション）</block>
+  <block id="4b0a97a6b0bdcb156b3f67e9848a9112" category="list-text">AFF A30、AFF C30、AFF C60、および FAS50 システムでは、25Gbps のネットワーク速度をサポートするために、コントローラ上のカードに QSFP-to-SFP+ アダプタが必要です。</block>
+  <block id="c6281cb9e12957678935280493ecbf9b" category="list-text">MetroClusterノードが管理SVM（クラスタ）用の外部キーマネージャで構成されている場合は、キーサーバ情報を安全な場所にコピーします。オンボードキーマネージャが設定されている場合は、バックアップ情報とパスフレーズを安全な場所にコピーします。</block>
+  <block id="a32dd2ca79d8d8a0056821cb37fed7f4" category="open-title">オンボード キー マネージャ</block>
+  <block id="02d53c29cf140abcd193b9c1723fdf54" category="list-text">オンボードキーマネージャのバックアップを表示するには、次のコマンドを実行します：</block>
+  <block id="f230e34fbade37cb7e2748f14b011a55" category="paragraph">アップグレード手順の後半では、最新のOnboard Key Managerのパスフレーズも必要になります。</block>
+  <block id="e147253c0010bdd5968cb9b4b9ddf7dc" category="open-title">外部キー管理ツール</block>
+  <block id="27c1c525fcac8be97773845c4153016f" category="paragraph">後ほど手順の中でキーマネージャの設定を復元する際に必要となる、外部キー管理情報を収集してください。</block>
+  <block id="27fd7163d866930d288c0f5e2344ad6f" category="list-text">管理SVMの名前（クラスタ）を表示します。</block>
+  <block id="04e9e74e2055e2de638ade039733bad9" category="paragraph"><block ref="2f710df81fb8b58c1792ebb010c82902" prefix="" category="inline-code"></block></block>
+  <block id="c8bc490435fa03382fb48cab3f4fb2ef" category="paragraph">この例では、管理SVMの名前はcluster_Bです：</block>
+  <block id="5a9ce7a88c085f9363a2b74570d95da4" category="list-text">管理SVM（クラスタ）に設定されている外部キーマネージャに関連付けられているプライマリキーサーバのアドレスとポート番号を取得します：</block>
+  <block id="fc545d3a1dcf807591f5390fe6c19c38" category="list-text">管理SVMには最大4つのプライマリキーサーバを設定できますが、この手順の後半でキー管理設定をリストアするために必要なのは、プライマリキーサーバの1つのポート番号とアドレスだけです。</block>
+  <block id="99a70d62e06533053186703c4fa1612a" category="list-text">選択したプライマリキーサーバーに関連付けられたユーザー名とパスワードがある場合は、復旧プロセスにもその情報が必要になります。</block>
+  <block id="710b0b4bdec68210bf595836065945d1" category="paragraph"><block ref="e25e9ed12a510a32b3dd7ba5e30c99bd" prefix="" category="inline-code"></block></block>
+  <block id="950c88730c61d3aaba629ef95167a4d0" category="list-text">ONTAP 9.16.1以降を実行している場合は、admin SVMのキーストアUUIDを取得します。</block>
+  <block id="8fa8e4c1d8f1eddf4b3ed33d3f762581" category="paragraph"><block ref="aca7cb102916cf251ebebf80d39fb590" prefix="" category="inline-code"></block></block>
+  <block id="fbb82e5f47d565d7d6f73034eaf2db90" category="list-text">収集した情報は、後の手順で使用するため、安全な場所に保存してください。これで、以下の情報が揃ったはずです：</block>
+  <block id="84613aa0a239d9f90644829a81e8a1c1" category="list-text">管理SVMのプライマリキーサーバの1つのポート番号とアドレス</block>
+  <block id="75d00576e854524567e7012ae7dba6d1" category="list-text">選択したプライマリキーサーバーに関連付けられているユーザー名とパスワード（関連付けられている場合）</block>
+  <block id="53fc62bfc038a4e8f537285cac249b99" category="list-text">管理 SVM のキーストア UUID （ ONTAP 9.16.1 以降で必須）</block>
+  <block id="fc96c3a221edb7e2daa363e45683eee9" category="list-text">MetroClusterシステムの管理SVMがキーマネージャで設定されている場合は、キー管理設定に適したブートメニューオプションを選択してください。</block>
+  <block id="8cfe2cd4decf0bb731981d68dc28786e" category="paragraph">プロンプトに従って、キーマネージャ構成をリカバリおよびリストアするために次の入力を指定します。</block>
+  <block id="1037f0f4833f6675008fa17acab37754" category="list-text">オンボードキーマネージャのバックアップとパスフレーズ</block>
+  <block id="a1689d086474886da6e670c56be9b271" category="list-text">選択したプライマリキーサーバーに関連付けられている場合は、ユーザー名とパスワード</block>
+  <block id="e50b141f57c3a9e77277ff3473436277" category="paragraph">*注：*管理SVMには最大4つのプライマリキーサーバを設定できますが、リカバリプロセス中に指定できるのは1つのプライマリキーサーバの情報のみです。</block>
+  <block id="13c770359b6f10114b42ba39fdc8a43a" category="paragraph"><block ref="9a1bb06317d9933868db18de7bf4db37" prefix="" category="inline-code"></block></block>
+  <block id="b46ce2316c689c599dffa14540ae053b" category="list-text">ルートボリューム暗号化を使用する場合は、キー管理設定のためにブートメニューオプションを再度選択してください。</block>
+  <block id="caf6332dea07cf4b950c8d71d7e45e42" category="list-text">ルートボリューム暗号化を使用する場合、使用している ONTAP のバージョンに応じて、ブートメニューオプションを選択するか、ブートメニューコマンドを再度実行してキー管理の設定を行ってください。</block>
+  <block id="b0fbf352a8f099c3b53b0641730683b8" category="paragraph">キーマネージャの種類に応じて、最初の起動メニューのプロンプトでオプション「`10`」またはオプション「`11`」を選択してから、オプション<block ref="1679091c5a880faf6fb5e6087eb1b2dc" prefix=" " category="inline-code"></block>を選択してリカバリ手順を実行します。ノードを完全に起動するには、オプション「`1`」（通常起動）に続けてリカバリ手順を繰り返す必要がある場合があります。</block>
+  <block id="ded8f2620d58acfd69775bc49e48b168" category="list-text">管理SVMで暗号化が有効になっている場合は、キー管理構成に応じた適切なコマンドを使用してキーをリストアします。</block>
 </blocks>
