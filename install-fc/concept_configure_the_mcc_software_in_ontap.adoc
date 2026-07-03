@@ -2901,14 +2901,21 @@ mcc4-b2      mlx4_0          IB      Up     false     192.0.2.10  	ib2b
 
 
 
-=== MetroCluster 構成での SNMPv3 の設定
+=== MetroCluster FC構成でのSNMPv3の設定
 
 .作業を開始する前に
 認証プロトコルとプライバシープロトコルは、スイッチと ONTAP システムで同じである必要があります。
 
 .このタスクについて
-ONTAP は現在、 AES-128 暗号化をサポートしています。
+ONTAPは現在、プライバシー保護（暗号化）にはAES-128、認証にはSHA-256をサポートしています。
 
+[CAUTION]
+====
+* Fabric OS 10.x以降では、BrocadeはSNMP認証にSHA-512のみをサポートしています。ONTAPは現在、SHA-512をサポートしておらず、サポートはSHA‑256に限定されています。
+* MetroCluster FC スイッチで Fabric OS 10.x 以降が実行されている場合、SNMP を設定することはできず、これらのスイッチを ONTAP ヘルスモニタリングに追加することもできません。スイッチのファームウェアをダウングレードする場合は、link:../maintain/task_upgrade_or_downgrad_the_firmware_on_a_brocade_fc_switch_mcc.html["Brocade FC スイッチのファームウェアをアップグレードまたはダウングレードします"] の手順に従ってください。
+
+
+====
 .手順
 . コントローラのプロンプトで各スイッチの SNMP ユーザを作成します。
 +
@@ -2983,7 +2990,7 @@ node_A_1 SVM 4 snmpv3user     snmp        usm                   10.10.10.13
 +
 [role="tabbed-block"]
 ====
-.Brocadeスイッチ (FOS 9.0 以降)
+.Brocadeスイッチ（FOS 9.x）
 --
 `snmpconfig --add snmpv3 -index <index> -user <user_name> -groupname <rw/ro> -auth_proto <auth_protocol> -auth_passwd <auth_password> -priv_proto <priv_protocol> -priv_passwd <priv_password>`
 
@@ -3033,7 +3040,7 @@ NOTE: セキュリティを強化するために、NetAppでは、スイッチ�
 .このタスクについて
 これらのタスクは、 FC-to-SAS ブリッジを使用するシステムにのみ適用されます。
 
-Fabric OS 9.0.1以降では、Brocadeスイッチでのヘルス監視でSNMPv2はサポートされていません。代わりにSNMPv3を使用する必要があります。SNMPv3を使用している場合は、次のセクションに進む前に、ONTAPでSNMPv3を設定する必要があります。詳細については、を参照してください <<MetroCluster 構成での SNMPv3 の設定>>。
+Fabric OS 9.0.1以降、SNMPv2はBrocadeスイッチのヘルスモニタリングではサポートされていません。代わりにSNMPv3を使用する必要があります。SNMPv3を使用している場合は、次のセクションに進む前にONTAPでSNMPv3を設定する必要があります。詳細については、<<snmpv3-mcc-fc,MetroCluster FC構成でのSNMPv3の設定>>を参照してください。
 
 [NOTE]
 ====
