@@ -26,6 +26,7 @@ ONTAP 9.8 以降では、 2 ノードの MetroCluster FC 構成を 4 ノード�
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -40,6 +41,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[requirements-for-transition-when-retiring-old-shelves]]
 == 古いシェルフを撤去する場合の移行要件
 
 移行プロセスを開始する前に、既存の MetroCluster FC 構成が要件を満たしていることを確認する必要があります。
@@ -88,6 +90,7 @@ MetroCluster サイトから 6 つのすべてのノードのリモートコン�
 
 
 
+[[workflow-for-disruptive-transition-when-moving-data-and-retiring-old-storage-shelves]]
 == データを移動する場合や古いストレージシェルフを撤去する場合の、停止を伴う移行ワークフロー
 
 移行を成功させるには、特定のワークフローに従う必要があります。
@@ -98,6 +101,7 @@ image::../media/workflow_2n_transition_moving_data_to_new_shelves.png[移行中�
 
 
 
+[[transitioning-the-configuration]]
 == 構成を移行しています
 
 詳細な移行手順に従う必要があります。
@@ -136,6 +140,7 @@ image::../media/workflow_2n_transition_moving_data_to_new_shelves.png[移行中�
 
 
 
+[[migrating-the-root-aggregates]]
 == ルートアグリゲートを移行します
 
 移行が完了したら、残りの既存のルートアグリゲートを MetroCluster FC 構成から MetroCluster IP 構成の新しいシェルフに移行します。
@@ -183,6 +188,7 @@ storage aggregate show コマンドを使用して、アグリゲートの同期
 
 
 
+[[migrating-the-data-aggregates]]
 == データアグリゲートを移行する
 
 新しいシェルフにデータアグリゲートを作成し、ボリューム移動を使用して、古いシェルフから新しいシェルフ上のアグリゲートにデータボリュームを転送します。
@@ -195,6 +201,7 @@ http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-upgrade-controller/GUID-
 
 
 
+[[retiring-shelves-moved-from-nodea1-fc-and-nodea2-fc]]
 == 撤去するシェルフは node_A_1 から FC 、 node_A_1 から FC を移行
 
 元の MetroCluster FC 構成から古いストレージシェルフを撤去します。これらのシェルフの所有者は、もともと node_A_1 の FC と node_A_1 の FC です。
@@ -274,6 +281,7 @@ cluster_B::>
 
 
 
+[[completing-transition]]
 == 移行を完了しています
 
 古いコントローラモジュールを取り外した状態で、移行プロセスを完了できます。

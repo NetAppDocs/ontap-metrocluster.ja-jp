@@ -34,6 +34,7 @@ link:task_replace_a_sle_fc_to_sas_bridge.html["単一の FC-to-SAS ブリッジ�
 
 
 
+[[verifying-storage-connectivity]]
 == ストレージ接続を確認しています
 
 ブリッジを交換する前に、ブリッジとストレージの接続を確認する必要があります。設定を変更したあとに接続を確認できるよう、コマンド出力について理解しておいてください。
@@ -99,6 +100,7 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 
 
 
+[[hot-swapping-fibrebridge-6500n-bridges-to-create-a-pair-of-fibrebridge-7600n-or-7500n-bridges]]
 == FibreBridge 7600N / 7500N ブリッジのペアを作成するための FibreBridge 6500N ブリッジのホットスワップ
 
 1 つまたは 2 つの FibreBridge 6500N ブリッジをホットスワップして、 FibreBridge 7600N / 7500N ブリッジのペアを使用した構成を作成するには、ブリッジを 1 つずつ交換し、正しいケーブル接続手順に従う必要があります。新しいケーブル接続は元のケーブル接続とは異なります。
@@ -248,6 +250,7 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 
 
 
+[[cabling-the-bridge-sas-ports-when-consolidating-storage-behind-fibrebridge-7600n-or-7500n-bridges]]
 == FibreBridge 7600N / 7500N ブリッジによるストレージ統合時のブリッジ SAS ポートのケーブル接続
 
 複数の SAS ストレージスタックを、使用可能な SAS ポートがある単一ペアの FibreBridge 7600N / 7500N ブリッジで統合する場合は、上部と下部の SAS ケーブルを新しいブリッジに移動する必要があります。
@@ -357,12 +360,14 @@ image::../media/consolidation_sas_bottom_connection_4_stacks.gif[4スタック�
 
 
 
+[[updating-zoning-when-adding-fibrebridge-7600n-or-7500n-bridges-to-a-configuration]]
 == FibreBridge 7600N / 7500N ブリッジ追加時のゾーニングの更新
 
 FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジに交換し、 FibreBridge 7600N / 7500N ブリッジの両方の FC ポートを使用する場合は、ゾーニングを変更する必要があります。必要な変更は、実行している ONTAP のバージョンが 9.1 より前か、 9.1 以降かによって異なります。
 
 
 
+[[updating-zoning-when-adding-fibrebridge-7500n-bridges-to-a-configuration-prior-to-ontap-9-1]]
 === FibreBridge 7500N ブリッジ追加時のゾーニングの更新（ ONTAP 9.1 より前）
 
 FibreBridge 6500N ブリッジを FibreBridge 7500N ブリッジに交換し、 FibreBridge 7500N ブリッジの両方の FC ポートを使用する場合は、ゾーニングを変更する必要があります。各ゾーンに指定できるイニシエータポートは最大 4 つです。使用するゾーニングは、実行している ONTAP のバージョンが 9.1 より前か、 9.1 以降かによって異なります
@@ -483,6 +488,7 @@ image::../media/zoning_consolidation_site_a_after.gif[FibreBridgeの変更後の
 
 
 
+[[updating-zoning-when-adding-fibrebridge-7600n-or-7500n-bridges-to-a-configuration-ontap-9-1-and-later]]
 === FibreBridge 7600N / 7500N ブリッジ追加時のゾーニングの更新（ ONTAP 9.1 以降）
 
 FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジに交換し、 FibreBridge 7600N / 7500N ブリッジの両方の FC ポートを使用する場合は、ゾーニングを変更する必要があります。各ゾーンに指定できるイニシエータポートは最大 4 つです。
@@ -509,6 +515,7 @@ FibreBridge 6500N ブリッジを FibreBridge 7600N / 7500N ブリッジに交�
 
 
 
+[[cabling-the-second-bridge-fc-port-when-adding-fibrebridge-7600n-or-7500n-bridges-to-a-configuration]]
 == FibreBridge 7600N / 7500N ブリッジ追加時の 2 つ目のブリッジ FC ポートのケーブル接続
 
 FibreBridge 7600N / 7500N ブリッジを構成に追加した場合、各 FibreBridge 7600N / 7500N ブリッジの 2 つ目の FC ポートをケーブル接続してストレージスタックへの複数のパスを提供することができます。
@@ -582,6 +589,7 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 
 
 
+[[disabling-unused-sas-ports-on-the-fc-to-sas-bridges]]
 == FC-to-SAS ブリッジで未使用の SAS ポートを無効にする
 
 ブリッジのケーブル接続を変更したら、 FC-to-SAS ブリッジの未使用の SAS ポートを無効にして、未使用のポートに関連するヘルスモニタアラートが生成されないようにする必要があります。

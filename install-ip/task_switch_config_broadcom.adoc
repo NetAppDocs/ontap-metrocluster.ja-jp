@@ -22,6 +22,7 @@ NOTE: 次のような場合は、構成に追加のライセンス（100Gbポー
 
 
 
+[[resetting-the-broadcom-ip-switch-to-factory-defaults]]
 == Broadcom IP スイッチを工場出荷時のデフォルトにリセット
 
 新しいバージョンのスイッチソフトウェアと RCF をインストールする前に、 Broadcom スイッチの設定を消去し、基本的な設定を完了する必要があります。
@@ -294,6 +295,7 @@ Configuration Saved!
 
 
 
+[[downloading-and-installing-the-broadcom-switch-efos-software]]
 == Broadcom スイッチの EFOS ソフトウェアのダウンロードとインストール
 
 MetroCluster IP 構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
@@ -415,6 +417,7 @@ FIPS に準拠していません
 
 
 
+[[steps-to-upgrade-efos-with-downloading-the-software-image-to-the-backup-boot-partition]]
 === ソフトウェアイメージをバックアップブートパーティションにダウンロードして EFOS をアップグレードする手順
 
 次の手順を実行できるのは、両方の EFOS バージョンが FIPS 非準拠であるか、両方の EFOS バージョンが FIPS 準拠である場合のみです。
@@ -534,6 +537,7 @@ NOTE: まれに、スイッチが起動しないことがあります。に従�
 
 
 
+[[steps-to-upgrade-efos-using-the-onie-os-installation]]
 === ONIE OS インストールを使用して EFOS をアップグレードする手順
 
 一方の EFOS バージョンが FIPS に準拠していて、もう一方の EFOS バージョンが FIPS に準拠していない場合は、次の手順を実行できます。次の手順は、スイッチがブートに失敗した場合に、 ONIE から FIPS 非準拠または FIPS 準拠の EFOS 3.x.x イメージをインストールするために使用できます。
@@ -682,6 +686,7 @@ unit 	active 	   backup   current-active  next-active
 
 
 
+[[downloading-and-installing-the-broadcom-rcf-files]]
 == Broadcom の RCF ファイルのダウンロードとインストール
 
 MetroCluster IP構成の各スイッチにスイッチのRCFファイルを生成してインストールする必要があります。
@@ -896,6 +901,7 @@ IP_switch_A_1# reload
 
 
 
+[[disable-unused-isl-ports-and-port-channels]]
 == 未使用のISLポートとポートチャネルを無効にする
 
 NetAppでは、不要なヘルスアラートを回避するために、未使用のISLポートとポートチャネルを無効にすることを推奨します

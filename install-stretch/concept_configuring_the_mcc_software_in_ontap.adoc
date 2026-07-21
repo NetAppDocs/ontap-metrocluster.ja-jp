@@ -22,12 +22,14 @@ image::../media/workflow_high_level_node_and_cluster_configuration_software.gif[
 
 
 
+[[ip-network-information-worksheet-for-site-a]]
 == サイト A の IP ネットワーク情報ワークシート
 
 システムを設定する前に、最初の MetroCluster サイト（サイト A ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。
 
 
 
+[[site-a-cluster-creation-information]]
 === クラスタ作成情報：サイト A
 
 クラスタを初めて作成するときは、次の情報が必要です。
@@ -69,6 +71,7 @@ DNS ネームサーバ
 |===
 
 
+[[site-a-node-information]]
 === ノード情報：サイト A
 
 クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。
@@ -100,6 +103,7 @@ DNS ネームサーバ
 |===
 
 
+[[site-a-lifs-and-ports-for-cluster-peering]]
 === クラスタピアリング用の LIF およびポート：サイト A
 
 クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。
@@ -129,6 +133,7 @@ DNS ネームサーバ
 |===
 
 
+[[site-a-time-server-information]]
 === タイムサーバ情報：サイト A
 
 時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。
@@ -158,6 +163,7 @@ NTP サーバ 2
 |===
 
 
+[[site-a-nbsp-autosupport-information]]
 === サイトA nbsp；AutoSupport 情報
 
 各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。
@@ -217,6 +223,7 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
+[[site-a-sp-information]]
 === SP 情報：サイト A
 
 トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。そのためには、各ノードについて次のネットワーク情報が必要です。
@@ -236,12 +243,14 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
+[[ip-network-information-worksheet-for-site-b]]
 == サイト B の IP ネットワーク情報ワークシート
 
 システムを設定する前に、 2 つ目の MetroCluster サイト（サイト B ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。
 
 
 
+[[site-b-cluster-creation-information]]
 === クラスタ作成情報：サイト B
 
 クラスタを初めて作成するときは、次の情報が必要です。
@@ -283,6 +292,7 @@ DNS ネームサーバ
 |===
 
 
+[[site-b-node-information]]
 === ノード情報：サイト B
 
 クラスタ内のノードごとに、管理 IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。
@@ -314,6 +324,7 @@ DNS ネームサーバ
 |===
 
 
+[[site-b-lifs-and-ports-for-cluster-peering]]
 === クラスタピアリング用の LIF およびポート：サイト B
 
 クラスタ内のノードごとに、 2 つのクラスタ間 LIF の IP アドレス、ネットワークマスク、およびデフォルトゲートウェイが必要です。クラスタ間 LIF は、クラスタのピアリングに使用されます。
@@ -343,6 +354,7 @@ DNS ネームサーバ
 |===
 
 
+[[site-b-time-server-information]]
 === タイムサーバ情報：サイト B
 
 時間を同期する必要があります。これには 1 台以上の NTP タイムサーバが必要です。
@@ -372,6 +384,7 @@ NTP サーバ 2
 |===
 
 
+[[site-b-nbsp-autosupport-information]]
 === サイトB nbsp；AutoSupport 情報
 
 各ノードで AutoSupport を設定する必要があります。これには次の情報が必要です。
@@ -431,6 +444,7 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
+[[site-b-nbsp-sp-information]]
 === サイトB nbsp；SP情報
 
 トラブルシューティングとメンテナンスのために、各ノードのサービスプロセッサ（ SP ）へのアクセスを有効にする必要があります。これには、ノードごとに次のネットワーク情報が必要です。
@@ -450,6 +464,7 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
+[[similarities-and-differences-between-standard-cluster-and-metrocluster-configurations]]
 == 標準クラスタ構成と MetroCluster 構成の類似点 / 相違点
 
 MetroCluster 構成の各クラスタのノードの構成は、標準クラスタのノードと似ています。
@@ -518,6 +533,7 @@ MetroCluster 設定を有効にします。
 |===
 
 
+[[restoring-system-defaults-and-configuring-the-hba-type-on-a-controller-module]]
 == システムのデフォルト設定をリストアし、コントローラモジュールで HBA タイプを設定しています
 
 MetroCluster を正しくインストールするには、コントローラモジュールのデフォルトをリセットしてリストアします。
@@ -652,6 +668,7 @@ Please choose one of the following:
 
 
 
+[[configuring-fc-vi-ports-on-a-x1132a-r6-quad-port-card-on-fas8020-systems]]
 == FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
 
 FAS8020 システムで X1132A-R6 クアッドポートカードを使用している場合は、メンテナンスモードに切り替えて、ポート 1a / 1b を FC-VI およびイニシエータ用に使用するように設定できます。工場出荷状態の MetroCluster システムでは、構成に応じて適切にポートが設定されているため、この設定は必要ありません。
@@ -758,6 +775,7 @@ controller_B_1
 
 
 
+[[verifying-disk-assignment-in-maintenance-mode-in-a-two-node-configuration]]
 == 保守モードでの 2 ノード構成のディスク割り当ての検証
 
 システムを ONTAP で完全にブートする前に、システムをメンテナンスモードでブートして、ノードのディスク割り当てを確認することもできます。ディスクは、両方のサイトが独自のディスクシェルフを所有してデータを提供し、各ノードおよび各プールのミラーディスク数が等しい、完全に対称な構成を形成するように割り当てられている必要があります。
@@ -909,6 +927,7 @@ DR パートナーのプール 1
 
 
 
+[[verifying-the-ha-state-of-components]]
 == コンポーネントの HA 状態の確認
 
 工場出荷時に事前設定されていないストレッチ MetroCluster 構成では、コントローラおよびシャーシのコンポーネントの HA の状態が「 mcc-2n 」に設定されていることを確認し、適切にブートする必要があります。工場出荷状態のシステムでは事前に設定されているため、検証は不要です。
@@ -943,6 +962,7 @@ DR パートナーのプール 1
 
 
 
+[[setting-up-ontap-in-a-two-node-metrocluster-configuration]]
 == 2 ノード MetroCluster 構成での ONTAP のセットアップ
 
 2 ノード MetroCluster 構成では、各クラスタでノードをブートし、クラスタセットアップウィザードを終了し、「 cluster setup 」コマンドを使用してノードをシングルノードクラスタに構成する必要があります。
@@ -1039,12 +1059,14 @@ cluster1-01           true    true
 
 
 
+[[configuring-the-clusters-into-a-metrocluster-configuration]]
 == クラスタを MetroCluster 構成に設定
 
 クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。
 
 
 
+[[peering-the-clusters]]
 === クラスタをピアリング
 
 MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
@@ -1681,6 +1703,7 @@ cluster01-02
 
 
 
+[[mirroring-the-root-aggregates]]
 === ルートアグリゲートをミラーリング
 
 データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
@@ -1719,6 +1742,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["
 
 
 
+[[creating-a-mirrored-data-aggregate-on-each-node]]
 === 各ノードでミラーされたデータアグリゲートを作成します
 
 DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。
@@ -1788,6 +1812,7 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 
 
 
+[[creating-unmirrored-data-aggregates]]
 === ミラーされていないデータアグリゲートの作成
 
 MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。
@@ -1858,6 +1883,7 @@ controller_A_1::> storage aggregate create aggr1_controller_A_1 -diskcount 10 -n
 
 
 
+[[implementing-the-metrocluster-configuration]]
 === MetroCluster 構成の実装
 
 MetroCluster 構成でデータ保護を開始するに MetroCluster は 'data configure コマンドを実行する必要があります
@@ -1996,6 +2022,7 @@ Remote: cluster_A         Configuration state configured
 
 
 
+[[configuring-fc-to-sas-bridges-for-health-monitoring]]
 === 健常性監視用の FC-to-SAS ブリッジの設定
 
 9.8 より前のバージョンの ONTAP を実行しているシステムで FC-to-SAS ブリッジを使用している場合は、 MetroCluster 構成の FC-to-SAS ブリッジを監視するための特別な設定手順を実行する必要があります。
@@ -2064,6 +2091,7 @@ ATTO_10.10.20.13  atto04        true          ok              Atto   FibreBridge
 
 
 
+[[checking-the-metrocluster-configuration]]
 === MetroCluster の設定を確認しています
 
 MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。チェックは、初期設定後と、 MetroCluster 設定に変更を加えたあとに実施する必要があります。また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。
@@ -2198,6 +2226,7 @@ link:https://docs.netapp.com/us-en/ontap/network-management/index.html["ネッ�
 
 
 
+[[checking-for-metrocluster-configuration-errors-with-config-advisor]]
 == Config Advisor での MetroCluster 構成エラーの確認
 
 一般的な構成エラーの有無を確認する Config Advisor ツールをネットアップサポートサイトからダウンロードできます。
@@ -2216,6 +2245,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 
 
+[[verifying-switchover-healing-and-switchback]]
 == スイッチオーバー、修復、スイッチバックを検証しています
 
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
@@ -2225,6 +2255,7 @@ MetroCluster 構成のスイッチオーバー、修復、スイッチバック�
 
 
 
+[[protecting-configuration-backup-files]]
 == 構成バックアップファイルを保護しています
 
 ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。

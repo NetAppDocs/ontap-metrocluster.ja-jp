@@ -15,6 +15,7 @@ summary: コントローラのアップグレードを準備するには、シ�
 
 
 
+[[update-the-metrocluster-switch-rcfs-before-upgrading-controllers]]
 == コントローラをアップグレードする前にMetroClusterスイッチRCFを更新する
 
 プラットフォームの新旧モデルによっては、コントローラをアップグレードする前にMetroCluster Switch Reference Configuration File（RCF；スイッチリファレンス構成ファイル）の更新が必要になる場合があります。
@@ -115,6 +116,7 @@ NOTE: スイッチはswitch_A_1、switch_B_1、switch_A_2、switch_B_2の順に�
 
 
 
+[[start-the-controller-replacement-operation]]
 == コントローラー交換操作を開始する
 
 自動コントローラー交換操作を開始すると、一連の事前チェックが実行され、その後一時停止して、構成関連情報を手動で収集できるようになります。
@@ -165,6 +167,7 @@ Node-A-1    Failed         MetroCluster check failed. Reason : MCC check showed 
 
 
 
+[[gather-information-before-the-upgrade]]
 == アップグレード前に情報を収集
 
 アップグレードの実行前にルートボリュームが暗号化されている場合は、暗号化された古いルートボリュームを含む新しいコントローラをブートするために、バックアップキーとその他の情報を収集する必要があります。
@@ -364,6 +367,7 @@ cluster_B::*
 
 
 
+[[remove-the-existing-configuration-from-tiebreaker-or-other-monitoring-software]]
 == Tiebreakerまたはその他の監視ソフトウェアから既存の構成を削除する
 
 アップグレードを開始する前に、Tiebreakerまたはその他の監視ソフトウェアから既存の設定を削除してください。

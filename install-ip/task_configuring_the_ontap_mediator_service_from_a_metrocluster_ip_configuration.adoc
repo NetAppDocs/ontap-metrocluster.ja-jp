@@ -29,12 +29,9 @@ CAUTION: ONTAP 9.12.1以降では、MetroCluster IP設定でMetroCluster 自動�
 .このタスクについて
 * このタスクでは、自動計画外スイッチオーバーをデフォルトで有効にします。
 * このタスクは、MetroCluster IP構成内の任意のノードのONTAPインターフェースで実行できます。
-* ONTAP 9.18.1およびONTAP Mediator 1.11以降では、iSCSIで構成された単一のONTAP Mediatorインスタンスで、最大10個のMetroCluster構成を同時に管理できます。ONTAP 9.17.1およびONTAP Mediator 1.10以前では、iSCSIで構成されたONTAP Mediatorは、最大5個のMetroCluster構成を同時にサポートできます。
 * ONTAP 9.19.1およびONTAP Mediator 1.12以降では、iSCSIとHTTPSをサポートするONTAP Mediator、またはHTTPSのみをサポートするONTAP Mediatorをインストールできます。ONTAP MediatorをHTTPSのみでインストールした場合、iSCSIでMediatorを設定することはできません。
 *  `-type`パラメータを `metrocluster configuration-settings mediator add`コマンドで指定しない場合、デフォルトのiSCSIプロトコルが使用されます。
-* HTTPS を使用して ONTAP Mediator を設定する場合、単一の ONTAP Mediator インスタンスは 1 つの MetroCluster IP 設定のみを監視できます。ONTAP Mediator が HTTPS で設定されている場合、複数の MetroCluster IP 設定を同時に監視することはサポートされていません。
-* 複数のMetroCluster IP構成を監視するためにHTTPSで構成されたONTAP Mediatorが必要な場合は、MetroCluster IP構成ごとに個別のONTAP Mediatorインスタンスを構成する必要があります。MetroCluster IPに対してHTTPSでONTAP Mediatorを構成することを選択する前に、MetroCluster IP環境の要件を慎重に評価する必要があります。
-* 複数のMetroCluster IP構成を監視するために単一のONTAP Mediatorインスタンスを使用する場合は、HTTPSではなくiSCSIを使用してONTAP Mediatorを設定する必要があります。
+* 単一の ONTAP Mediator インスタンスを使用して複数の MetroCluster IP 構成を監視するためのサポートは、ONTAP Mediator を HTTPS と iSCSI のどちらで設定するかによって異なります。詳細については、link:concept_mediator_requirements.html#mediator-multiple-mccip["ONTAP Mediator を使用して複数の MetroCluster IP 構成を監視する"]を参照してください。
 
 
 [role="tabbed-block"]

@@ -103,6 +103,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -117,6 +118,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[example-naming-in-this-procedure]]
 == この手順での命名例
 
 この手順では、全体的な名前の例を使用して、 DR グループ、ノード、および関連するスイッチを特定します。
@@ -154,6 +156,7 @@ dr_group_2 - 新規
 |===
 
 
+[[supported-platform-combinations-when-adding-a-second-dr-group]]
 == 2つ目のDRグループを追加する際にサポートされるプラットフォームの組み合わせ
 
 次の表に、8ノードMetroCluster IP構成でサポートされるプラットフォームの組み合わせを示します。
@@ -169,6 +172,7 @@ dr_group_2 - 新規
 ====
 
 
+[[supported-aff-and-fas-metrocluster-ip-expansion-combinations]]
 === サポートされるAFFとFAS MetroCluster IPの拡張の組み合わせ
 
 次の表に、MetroCluster IP構成でAFFシステムまたはFASシステムを拡張する場合にサポートされるプラットフォームの組み合わせを示します。テーブルは次の2つのグループに分割されます。
@@ -202,6 +206,7 @@ image:../media/expand-ip-group-2-updated.png["MetroCluster IPにおけるAFFお�
 ====
 
 
+[[supported-asa-metrocluster-ip-expansion-combinations]]
 === サポートされるASA MetroCluster IP拡張の組み合わせ
 
 次の表に、MetroCluster IP構成でASAシステムを拡張する場合にサポートされるプラットフォームの組み合わせを示します。
@@ -210,6 +215,7 @@ image::../media/8node_comb_ip_asa.png[8ノード構成のプラットフォー�
 
 
 
+[[send-a-custom-autosupport-message-prior-to-maintenance]]
 == カスタム AutoSupport メッセージをメンテナンス前に送信する
 
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
@@ -240,6 +246,7 @@ image::../media/8node_comb_ip_asa.png[8ノード構成のプラットフォー�
 
 
 
+[[considerations-for-vlans-when-adding-a-new-dr-group]]
 == 新しいDRグループを追加する際のVLANに関する考慮事項
 
 * MetroCluster IP構成を拡張する場合は、次のVLANに関する考慮事項が適用されます。
@@ -305,6 +312,7 @@ image::../media/8node_comb_ip_asa.png[8ノード構成のプラットフォー�
 
 
 
+[[verify-the-health-of-the-metrocluster-configuration]]
 == MetroCluster 構成の健全性を確認
 
 拡張を実行する前に、MetroCluster構成の健全性と接続を確認する必要があります。
@@ -442,6 +450,7 @@ cluster_A::>
 
 
 
+[[remove-the-configuration-from-monitoring-applications]]
 == 監視アプリケーションから設定を削除します
 
 ONTAP Tiebreaker ソフトウェア、 MetroCluster メディエーター、またはスイッチオーバーを開始できるその他の他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、アップグレードの前に、監視ソフトウェアから MetroCluster 構成を削除する必要があります。
@@ -486,6 +495,7 @@ MetroCluster 構成設定のメディエーターが削除されました
 
 
 
+[[prepare-the-new-controller-modules]]
 == 新しいコントローラモジュールを準備する
 
 4 つの新しい MetroCluster ノードを準備し、正しいバージョンの ONTAP をインストールする必要があります。
@@ -535,6 +545,7 @@ printenv partner-sysid
 
 
 
+[[upgrade-rcf-files]]
 == RCF ファイルをアップグレードします
 
 新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
@@ -621,6 +632,7 @@ NOTE: L2共有またはL3ネットワーク構成の場合は、中間スイッ�
 
 
 
+[[join-the-new-nodes-to-the-clusters]]
 == 新しいノードをクラスタに追加
 
 4 つの新しい MetroCluster IP ノードを既存の MetroCluster 構成に追加する必要があります。
@@ -704,6 +716,7 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 
 
 
+[[configure-intercluster-lifs-for-cluster-peering]]
 == クラスタピアリング用のクラスタ間LIFを設定
 
 MetroCluster パートナークラスタ間の通信に使用するポートにクラスタ間 LIF を作成する必要があります。専用のポートを使用することも、データトラフィック用を兼ねたポートを使用することもできます。
@@ -979,6 +992,7 @@ cluster01
 ====
 
 
+[[create-the-metrocluster-interfaces-and-mirror-root-aggregates]]
 == MetroClusterインターフェイスを作成し、ルートアグリゲートをミラーリングします
 
 新しいMetroCluster IPノードにMetroClusterインターフェイスを作成し、ルートアグリゲートをミラーリングする必要があります。
@@ -1432,6 +1446,7 @@ aggr_data_a2
 
 
 
+[[finalize-the-addition-of-the-new-nodes]]
 == 新しいノードの追加完了
 
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。

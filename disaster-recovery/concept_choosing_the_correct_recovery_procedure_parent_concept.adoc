@@ -81,6 +81,7 @@ link:task_recover_from_a_multi_controller_and_or_storage_failure.html["マルチ
 |===
 
 
+[[controller-module-failure-scenarios-during-metrocluster-installation]]
 == MetroCluster のインストール中のコントローラモジュールの障害のシナリオ
 
 MetroCluster 構成手順 でのコントローラモジュール障害への対応は、が搭載されているかどうかによって異なります `metrocluster configure` コマンドが完了しました。
@@ -95,6 +96,7 @@ NOTE: の手順を必ず実行してください link:https://docs.netapp.com/us
 
 
 
+[[controller-module-failure-scenarios-during-metrocluster-fc-to-ip-transition]]
 == MetroCluster FC-to-IP移行時のコントローラモジュールの障害のシナリオ
 
 リカバリ手順は、移行中にサイト障害が発生した場合に使用できます。ただし、この方法を使用できるのは、 FC DR グループと IP DR グループの両方が完全に設定された安定した混在構成の場合のみです。「 MetroCluster node show 」コマンドの出力には、 8 つのノードすべてを含む両方の DR グループが表示されます。
@@ -104,6 +106,7 @@ IMPORTANT: ノードの追加または削除を実行中に移行中に障害が
 
 
 
+[[controller-module-failure-scenarios-in-eight-node-metrocluster-configurations]]
 == 8 ノード MetroCluster 構成でのコントローラモジュールの障害のシナリオ
 
 障害シナリオ：
@@ -116,6 +119,7 @@ IMPORTANT: ノードの追加または削除を実行中に移行中に障害が
 
 
 
+[[single-controller-module-failures-in-a-single-dr-group]]
 === 1 つの DR グループでの 1 台のコントローラモジュールの障害
 
 この場合、障害は HA ペアに限定されます。
@@ -138,6 +142,7 @@ image::../media/mcc_dr_groups_8_node_with_a_single_controller_failure.gif[1つ�
 
 
 
+[[two-controller-module-failures-in-a-single-dr-group]]
 === 1 つの DR グループでの 2 台のコントローラモジュールの障害
 
 この障害の場合は、スイッチオーバーが必要です。マルチコントローラモジュールの障害からのリカバリ用手順を使用できます。
@@ -150,6 +155,7 @@ image::../media/mcc_dr_groups_8_node_with_a_multi_controller_failure.gif[複数�
 
 
 
+[[single-controller-module-failures-in-separate-dr-groups]]
 === 別々の DR グループでの 1 台のコントローラモジュールの障害
 
 この場合、障害は個別の HA ペアに限定されます。
@@ -171,6 +177,7 @@ image::../media/mcc_dr_groups_8_node_with_two_single_controller_failures.gif[2�
 
 
 
+[[three-controller-module-failures-spread-across-the-dr-groups]]
 === 複数の DR グループにまたがる 3 台のコントローラモジュールの障害
 
 この障害の場合は、スイッチオーバーが必要です。マルチコントローラモジュールの障害からのリカバリ用手順を DR グループ 1 に使用できます。
@@ -185,6 +192,7 @@ image::../media/mcc_dr_groups_8_node_with_a_3_controller_failure.gif[3 つのコ
 
 
 
+[[controller-module-failure-scenarios-in-two-node-metrocluster-configurations]]
 == 2 ノード MetroCluster 構成でのコントローラモジュールの障害のシナリオ
 
 使用する手順は、障害の範囲によって異なります。

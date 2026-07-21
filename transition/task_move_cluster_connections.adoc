@@ -15,6 +15,7 @@ MetroCluster FC 構成のクラスタ インターフェイスを IP スイッ�
 
 
 
+[[step-1-move-the-cluster-connections-on-the-metrocluster-fc-nodes]]
 == ステップ1: MetroCluster FCノード上のクラスタ接続を移動する
 
 MetroCluster FCノード上のクラスタ接続をIPスイッチに移動します。手順は、既存のIPスイッチを使用するか、新しいIPスイッチを使用するかによって異なります。
@@ -25,6 +26,7 @@ MetroCluster FCノード上のクラスタ接続をIPスイッチに移動しま
 
 
 
+[[which-connections-to-move]]
 === 移動する接続
 
 以下のタスクでは、コントローラモジュールがクラスタ接続に2つのポートを使用していることを前提としています。一部のコントローラモジュールモデルでは、クラスタ接続に4つ以上のポートを使用します。この例では、ポートは2つのグループに分割され、2つのグループ間でポートが交互に使用されます。
@@ -155,6 +157,7 @@ FCノード上のローカルクラスタインターフェイス
 |===
 
 
+[[move-the-local-cluster-connections-when-using-new-ip-switches]]
 === 新しいIPスイッチを使用するときにローカルクラスタ接続を移動する
 
 新しい IP スイッチを使用している場合は、既存の MetroCluster FC ノードのクラスタ接続を新しいスイッチに物理的に移動します。
@@ -278,6 +281,7 @@ cluster_A::*>
 
 
 
+[[move-the-local-cluster-connections-when-reusing-existing-ip-switches]]
 === 既存のIPスイッチを再利用するときにローカルクラスタ接続を移動する
 
 既存の IP スイッチを再利用する場合は、ファームウェアを更新し、正しい参照構成ファイル (RCF) を使用してスイッチを再構成し、接続をスイッチごとに正しいポートに移動します。
@@ -409,6 +413,7 @@ Cluster-A::*>
 
 
 
+[[step-2-verify-that-the-cluster-connections-are-moved-and-the-cluster-is-healthy]]
 == ステップ2: クラスター接続が移動され、クラスターが正常であることを確認する
 
 適切な接続が確保され、構成が移行プロセスを続行する準備ができていることを確認するには、クラスター接続が正しく移動され、クラスター スイッチが認識され、クラスターが正常であることを確認します。

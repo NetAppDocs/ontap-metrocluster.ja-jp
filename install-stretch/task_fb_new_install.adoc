@@ -28,6 +28,7 @@ image::../media/workflow_bridge_installation_and_configuration.gif[FC-SASブリ�
 
 
 
+[[in-band-management-of-the-fc-to-sas-bridges]]
 == FC-to-SAS ブリッジのインバンド管理
 
 ONTAP 9.5 以降では、 FibreBridge 7500N / 7600N ブリッジについて、 IP 管理に代わる方法としてインバンド管理 _ がサポートされます。ONTAP 9.8 以降では、アウトオブバンド管理は廃止されています。
@@ -51,6 +52,7 @@ NOTE: ブリッジの物理接続を制限することでセキュリティを�
 
 
 
+[[fibrebridge-7600n-and-7500n-bridge-limits-and-attachment-rules]]
 == FibreBridge 7600N / 7500Nブリッジの制限と接続ルール
 
 FibreBridge 7600N / 7500Nブリッジを接続する際の制限と考慮事項を確認してください。
@@ -89,6 +91,7 @@ FibreBridge 7600N / 7500Nブリッジを接続する際の制限と考慮事項�
 |===
 
 
+[[prepare-for-the-installation]]
 == インストールの準備
 
 新しいMetroClusterシステムで使用するブリッジの設置準備を行うときは、システムが一定の要件を満たしていることを確認する必要があります。これには、ブリッジのセットアップや設定の要件と、必要なドキュメント、 ATTO QuickNAV ユーティリティ、ブリッジファームウェアのダウンロードなどがあります。
@@ -142,6 +145,7 @@ ATTO FibreBridge の説明ページに記載されているリンクを使用し
 
 
 
+[[install-the-fc-to-sas-bridge-and-sas-shelves]]
 == FC-to-SASブリッジおよびSASシェルフの設置
 
 システムが「インストールの準備」のすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。
@@ -175,6 +179,7 @@ NOTE: MetroCluster 構成の SAS シェルフでは、 ACP ケーブル接続は
 
 
 
+[[enable-ip-port-access-on-the-fibrebridge-7600n-bridge-if-necessary]]
 === 必要に応じて、 FibreBridge 7600N ブリッジの IP ポートアクセスを有効にします
 
 9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。
@@ -235,6 +240,7 @@ SNMP は、別個の enable コマンドを必要とする唯一のプロトコ�
 
 
 
+[[configure-the-fc-to-sas-bridges]]
 === FC-to-SASブリッジを設定
 
 モデルに応じた FC-to-SAS ブリッジのケーブル接続に進む前に、 FibreBridge ソフトウェアで設定を行う必要があります。
@@ -488,6 +494,7 @@ link:../maintain/index.html["MetroCluster コンポーネントの保守"]
 
 
 
+[[cable-a-fibrebridge-7600n-or-7500n-bridge-with-disk-shelves-using-iom12-modules]]
 === FibreBridge 7600N / 7500NブリッジをIOM12モジュールを使用してディスクシェルフとケーブル接続
 
 ブリッジを設定したら、新しいシステムのケーブル接続を開始できます。
@@ -533,6 +540,7 @@ image::../media/mcc_cabling_bridge_and_sas3_stack_with_7500n_and_multiple_stacks
 
 
 
+[[verify-bridge-connectivity-and-cable-the-fc-to-sas-bridges-to-the-controller-fc-ports]]
 === ブリッジの接続を確認し、FC-to-SASブリッジをコントローラのFCポートにケーブル接続します。
 
 2ノードブリッジ接続MetroCluster構成では、ブリッジをコントローラのFCポートにケーブル接続する必要があります。
@@ -620,6 +628,7 @@ image:../media/cluster_peering_network.png["クラスタピアリングネット
 
 
 
+[[secure-or-unsecure-the-fibrebridge-bridge]]
 == FibreBridge ブリッジをセキュリティ保護または保護解除します
 
 安全性に問題のあるイーサネットプロトコルをブリッジで簡単に無効にできるように、 ONTAP 9.5 以降ではブリッジを保護することができます。これにより、ブリッジのイーサネットポートが無効になります。イーサネットアクセスを再度有効にすることもできます。

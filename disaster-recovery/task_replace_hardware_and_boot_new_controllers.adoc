@@ -15,6 +15,7 @@ summary: ハードウェアコンポーネントの交換が必要な場合は�
 
 
 
+[[replace-hardware-at-the-disaster-site]]
 == ディザスタサイトでのハードウェアの交換
 
 .作業を開始する前に
@@ -134,6 +135,7 @@ link:http://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステ
 
 
 
+[[determine-the-system-ids-and-vlan-ids-of-the-old-controller-modules]]
 == 古いコントローラモジュールのシステムIDとVLAN IDの確認
 
 ディザスタサイトですべてのハードウェアを交換したら、交換したコントローラモジュールのシステム ID を確認する必要があります。古いシステム ID は、新しいコントローラモジュールへのディスクの再割り当てを行うときに必要になります。システムが AFF A220 、 AFF A250 、 AFF A400 、 AFF A800 、 FAS2750 、 FAS500f 、 FAS8300 、 FAS8700 の各モデルでは、 MetroCluster IP インターフェイスで使用される VLAN ID も確認する必要があります。
@@ -328,6 +330,7 @@ Node_A_2 Node_A_1 HA      enabled  online
 
 
 
+[[isolate-replacement-drives-from-the-surviving-site-metrocluster-ip-configurations]]
 == サバイバーサイトから交換用ドライブを分離（MetroCluster IP構成）
 
 MetroCluster iSCSI イニシエータ接続を停止して、サバイバーノードから交換用ドライブをすべて分離する必要があります。
@@ -367,6 +370,7 @@ site_B::*> storage iscsi-initiator disconnect -node node_B_2 -label *
 
 
 
+[[clear-the-configuration-on-a-controller-module]]
 == コントローラモジュールの設定をクリアします
 
 MetroCluster 構成で新しいコントローラモジュールを使用する前に、既存の構成をクリアする必要があります。
@@ -406,6 +410,7 @@ wipeconfig
 
 
 
+[[netboot-the-new-controller-modules]]
 == 新しいコントローラモジュールをネットブート
 
 新しいコントローラモジュールの ONTAP のバージョンが、稼働しているコントローラモジュールのバージョンと異なる場合は、新しいコントローラモジュールをネットブートする必要があります。
@@ -486,6 +491,7 @@ NOTE: 新しくインストールされたソフトウェアを使用するに�
 
 
 
+[[determine-the-system-ids-of-the-replacement-controller-modules]]
 == 交換用コントローラモジュールのシステムIDの確認
 
 ディザスタサイトですべてのハードウェアを交換したら、新たに設置したストレージコントローラモジュールのシステム ID を確認する必要があります。
@@ -626,6 +632,7 @@ NOTE: 2 ノード MetroCluster 構成ではこの手順は必要ありません�
 
 
 
+[[verify-the-ha-config-state-of-components]]
 == コンポーネントの ha-config 状態を確認
 
 MetroCluster 構成では、コントローラモジュールおよびシャーシコンポーネントの ha-config 状態を「 mcc 」または「 mcc-2n 」に設定して、適切にブートするようにする必要があります。
@@ -732,6 +739,7 @@ MetroCluster の IP 設定
 
 
 
+[[determine-if-end-to-end-encryption-was-enabled-on-the-original-systems]]
 == 元のシステムでエンドツーエンドの暗号化が有効になっているかどうかを確認する
 
 元のシステムでエンドツーエンドの暗号化が設定されているかどうかを確認する必要があります。

@@ -15,6 +15,7 @@ MetroCluster Tiebreaker ソフトウェアはリカバリプロセスを自動�
 
 
 
+[[configuring-autosupport]]
 == AutoSupport を設定しています
 
 デフォルトでは、 AutoSupport メッセージは Tiebreaker ソフトウェアをインストールしてから 1 週間後にネットアップに送信されます。AutoSupport 通知をトリガーするイベントには、 Tiebreaker ソフトウェアのパニック状態、 MetroCluster 構成での災害状況の検出、 MetroCluster 構成の不明なステータスなどがあります。
@@ -130,6 +131,7 @@ Autosupport configuration deleted successfully.
 
 
 
+[[snmp-events-and-traps]]
 === SNMP イベントとトラップ
 
 NetApp MetroCluster Tiebreaker ソフトウェアは、 SNMP トラップを使用して重大なイベントをユーザに通知します。これらのトラップは NetApp MIB ファイルに含まれています。各トラップには、トラップ名、重大度、影響レベル、タイムスタンプ、およびメッセージに関する情報が含まれています。
@@ -187,6 +189,7 @@ snmp config test コマンドを実行して、 SNMP 設定をテストできる
 |===
 
 
+[[displaying-the-status-of-monitoring-operations]]
 == 監視処理のステータスを表示する
 
 MetroCluster 構成の監視処理の全体的なステータスを表示できます。
@@ -286,6 +289,7 @@ MetroCluster: cluster_B
 
 
 
+[[displaying-metrocluster-configuration-information]]
 == MetroCluster の設定情報を表示する
 
 Tiebreaker ソフトウェアでは、 MetroCluster 構成のすべてのインスタンスのモニタ名と IP アドレスを表示できます。
@@ -309,6 +313,7 @@ MetroCluster: North America
 
 
 
+[[creating-dump-files]]
 == ダンプ・ファイルの作成
 
 Tiebreaker ソフトウェアの全体的なステータスを、デバッグのためにダンプファイルに保存します。
@@ -329,6 +334,7 @@ MetroCluster Tiebreaker status successfully dumped in file /var/log/netapp/mcctb
 
 
 
+[[disable-tiebreaker-observer-mode]]
 == タイブレーカーオブザーバーモードを無効にする
 
 Tiebreaker ソフトウェアのオブザーバー モードを無効にすると、サイト障害が検出された後、自動的にスイッチオーバーが開始されます。

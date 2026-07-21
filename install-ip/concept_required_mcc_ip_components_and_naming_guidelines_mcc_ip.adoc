@@ -15,6 +15,7 @@ MetroCluster IP 構成に必要な、サポートされているハードウェ�
 
 
 
+[[supported-software-and-hardware]]
 == サポートされているソフトウェアおよびハードウェア
 
 ハードウェアとソフトウェアは、 MetroCluster IP 構成でサポートされている必要があります。
@@ -25,12 +26,14 @@ AFF システムを使用する場合は、 MetroCluster 構成内のすべて�
 
 
 
+[[hardware-redundancy-requirements-in-a-metrocluster-ip-configuration]]
 == MetroCluster IP 構成でのハードウェアの冗長性要件
 
 MetroCluster IP 構成ではハードウェアの冗長性が確保されるため、サイトには各コンポーネントが 2 つずつあります。コンポーネントの名前には、サイトを表す A または B 、および 2 つあるコンポーネントのうちどちらかを表す番号として 1 または 2 を使用します。
 
 
 
+[[ontap-cluster-requirements-in-a-metrocluster-ip-configuration]]
 == MetroCluster IP 構成での ONTAP クラスタの要件
 
 MetroCluster IP 構成には、 MetroCluster サイトごとに 1 つ、計 2 つの ONTAP クラスタが必要です。
@@ -45,6 +48,7 @@ MetroCluster IP 構成には、 MetroCluster サイトごとに 1 つ、計 2 �
 
 
 
+[[ip-switch-requirements-in-a-metrocluster-ip-configuration]]
 == MetroCluster IP 構成での IP スイッチの要件
 
 MetroCluster IP 構成には、 4 つの IP スイッチが必要です。4 つのスイッチが 2 つのスイッチストレージファブリックを形成し、 MetroCluster IP 構成の各クラスタ間の ISL を提供します。
@@ -71,6 +75,7 @@ IP スイッチは、各クラスタのコントローラモジュール間の�
 
 
 
+[[controller-module-requirements-in-a-metrocluster-ip-configuration]]
 == MetroCluster IP 構成でのコントローラモジュールの要件
 
 MetroCluster IP 構成には、コントローラモジュールが 4 つまたは 8 つ必要です。
@@ -89,6 +94,7 @@ FAS システムの既存の MetroCluster IP 構成を ONTAP 9.4 にアップグ
 
 
 
+[[example-names]]
 === 名前の例
 
 このドキュメントでは、次のような名前を使用しています。
@@ -109,6 +115,7 @@ FAS システムの既存の MetroCluster IP 構成を ONTAP 9.4 にアップグ
 
 
 
+[[gigabit-ethernet-adapter-requirements-in-a-metrocluster-ip-configuration]]
 == MetroCluster IP 構成でのギガビットイーサネットアダプタの要件
 
 MetroCluster IP 構成では、 MetroCluster IP ファブリックに使用される IP スイッチへの IP インターフェイスに 40/100Gbps または 10/25Gbps のイーサネットアダプタを使用します。
@@ -274,6 +281,7 @@ link:concept_considerations_drive_assignment.html["MetroCluster IP構成での�
 
 
 
+[[pool-and-drive-requirements-minimum-supported]]
 == プールとドライブの要件（最小サポート）
 
 4 ノード MetroCluster IP 構成では、各サイトに次の最小構成が必要です。
@@ -305,6 +313,7 @@ NOTE: ONTAP 9.4以降のMetroCluster IP構成では、自動ディスク割り�
 
 
 
+[[drive-location-considerations-for-partially-populated-shelves]]
 == 空きのあるシェルフでのドライブの配置場所に関する考慮事項
 
 収容数が半分（ 24 ドライブシェルフに 12 本のドライブ）のシェルフを使用している場合にドライブの自動割り当てを正しく行うには、スロット 0~5 および 18~23 にドライブを配置する必要があります。
@@ -313,6 +322,7 @@ NOTE: ONTAP 9.4以降のMetroCluster IP構成では、自動ディスク割り�
 
 
 
+[[drive-location-considerations-for-aff-a800-internal-drives]]
 == AFF A800 内蔵ドライブの場所に関する考慮事項
 
 ADP 機能を正しく実装するためには、 AFF A800 システムのディスクスロットを 4 分割し、それぞれにディスクを対称的に配置する必要があります。

@@ -20,6 +20,7 @@ NOTE: MetroCluster以外のトラフィックでISLを共有する場合は、Me
 
 
 
+[[shared-network-configuration-with-direct-links]]
 == 直接リンクを使用した共有ネットワーク構成
 
 このトポロジでは、 2 つのサイトが直接リンクで接続されます。これらのリンクは、xWDMとTDMデバイスまたはスイッチ間に設定できます。ISLの容量はMetroClusterトラフィック専用ではなく、MetroCluster以外の他のトラフィックと共有されます。
@@ -28,6 +29,7 @@ image::../media/mcc_ip_networking_with_shared_isls.gif[共有ISLを使用したM
 
 
 
+[[shared-infrastructure-with-intermediate-networks]]
 == 中間ネットワークを使用する共有インフラ
 
 このトポロジでは、MetroClusterサイトは直接接続されませんが、MetroClusterとホストトラフィックはネットワークを経由します。
@@ -37,6 +39,7 @@ image::../media/mcc_ip_networking_with_intermediate_private_networks.gif[中間�
 
 
 
+[[multiple-metrocluster-configurations-sharing-an-intermediate-network]]
 == 複数のMetroCluster構成で中間ネットワークを共有
 
 このトポロジでは、 2 つの異なる MetroCluster 構成が同じ中間ネットワークを共有しています。この例では、MetroCluster 1のswitch_A_1とMetroCluster 2のswitch_A_1が同じ中間スイッチに接続されています。
@@ -48,6 +51,7 @@ image::../media/mcc_ip_two_mccs_sharing_the_same_shared_network_sx.gif[同じ中
 
 
 
+[[combination-of-a-metrocluster-configuration-using-netapp-validated-switches-and-a-configuration-using-metrocluster-compliant-switches]]
 == NetApp検証済みスイッチを使用するMetroCluster構成とMetroCluster準拠スイッチを使用する構成の組み合わせ
 
 2つの異なるMetroCluster構成で同じ中間スイッチを共有します。1つのMetroClusterは共有レイヤ2構成のNetApp検証済みスイッチ（MetroCluster 1）を使用して構成され、もう1つのMetroClusterは、中間スイッチに直接接続されたMetroCluster準拠スイッチ（MetroCluster 2）を使用して構成されます。

@@ -15,6 +15,7 @@ summary: 新しいノードを追加したら、移行手順を完了して、 M
 
 
 
+[[configuring-the-metrocluster-ip-nodes-and-disabling-transition]]
 == MetroCluster IP ノードを設定し、移行を無効にします
 
 MetroCluster IP 接続を実装し、 MetroCluster 構成を更新し、移行モードを無効にする必要があります。
@@ -208,6 +209,7 @@ MetroCluster transition disable`
 
 
 
+[[setting-up-data-lifs-on-the-new-nodes]]
 == 新しいノードにデータ LIF をセットアップ
 
 新しいノード、 node_B_2 の IP および node_B_2 の IP にデータ LIF を設定する必要があります。
@@ -271,6 +273,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 
 
 
+[[bringing-up-the-svms]]
 == SVM を起動する
 
 LIF の設定が変更されたため、新しいノードで SVM を再起動する必要があります。
@@ -297,6 +300,7 @@ MetroCluster vserver show
 
 
 
+[[moving-a-system-volume-to-the-new-nodes]]
 == 新しいノードへのシステムボリュームの移動
 
 耐障害性を高めるには、システムボリュームを controller_A_1 から IP コントローラ node_A_1 に、さらに node_B_1 から node_B_2 の IP に移動する必要があります。システムボリュームのデスティネーションノードにミラーされたアグリゲートを作成する必要があります。

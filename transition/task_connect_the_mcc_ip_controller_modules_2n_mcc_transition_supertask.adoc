@@ -15,6 +15,7 @@ summary: 4 つの新しいコントローラモジュールとストレージシ
 
 
 
+[[setting-up-the-new-controllers]]
 == 新しいコントローラをセットアップする
 
 新しい MetroCluster IP コントローラを、以前に MetroCluster FC コントローラに接続したストレージシェルフにラックに設置してケーブル接続する必要があります。
@@ -126,12 +127,14 @@ storage show shelf 'disk show -v' のように表示されます
 
 
 
+[[connecting-and-booting-up-nodea1-ip-and-nodeb1-ip]]
 == node_A_1 の IP と node_B_1 の IP を接続し、ブートします
 
 MetroCluster IP コントローラと IP スイッチを接続したら、 node_A_1 の IP と node_B_1 の IP を移行してブートします。
 
 
 
+[[bringing-up-nodea1-ip]]
 === node_A_1 の IP を起動しています
 
 正しい移行オプションを使用してノードをブートする必要があります。
@@ -218,6 +221,7 @@ MetroCluster Transition: Please confirm if this is the correct value [yes|no]:? 
 
 
 
+[[recovering-key-management-if-the-root-volume-is-encrypted]]
 === ルートボリュームが暗号化されている場合のキー管理のリカバリ
 
 ルートボリュームが暗号化されている場合は、特別なブートコマンドを使用してキー管理をリストアする必要があります。
@@ -373,6 +377,7 @@ setsetenv bootarg.kmip.init.interface interface-id`
 
 
 
+[[creating-the-network-configuration]]
 === ネットワーク設定を作成しています
 
 FC ノードの設定に一致するネットワーク設定を作成する必要があります。これは、 MetroCluster の IP ノードがブート時に同じ設定を再生するためです。つまり、 node_A_1 の IP ブートと node_B_1 の IP ブート時に、 ONTAP は node_A_1 の FC と node_B_1 の FC で使用されていたポートで LIF をホストしようとします。
@@ -428,6 +433,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-DBC9DEE2-EA
 
 
 
+[[setting-up-cluster-ports-and-cluster-lifs]]
 === クラスタポートとクラスタ LIF をセットアップする
 
 クラスタポートと LIF をセットアップする必要があります。ルートアグリゲートでブートされたサイト A のノードで、次の手順を実行する必要があります。
@@ -497,6 +503,7 @@ network interface show -curr-node Curr -port_portname _
 
 
 
+[[verifying-lif-configuration]]
 === LIF の構成を確認しています
 
 古いコントローラからのストレージの移動後も、ノード管理 LIF 、クラスタ管理 LIF 、およびクラスタ間 LIF が残ったままです。必要に応じて、 LIF を適切なポートに移動する必要があります。
@@ -569,12 +576,14 @@ vserver config override -command 「 network interface revert -lif lifname _ -vs
 
 
 
+[[bringing-up-nodea2-ip-and-nodeb2-ip]]
 == node_B_2 と node_B_2 の IP を起動しています
 
 各サイトで新しい MetroCluster IP ノードを起動して設定し、各サイトに HA ペアを作成する必要があります。
 
 
 
+[[bringing-up-nodea2-ip-and-nodeb2-ip]]
 === node_B_2 と node_B_2 の IP を起動しています
 
 新しいコントローラモジュールは、ブートメニューの適切なオプションを使用して、一度に 1 つずつブートする必要があります。
@@ -749,6 +758,7 @@ storage disk option modify -autoassign off -node node_name IP
 
 
 
+[[verifying-mtu-settings]]
 === MTU 設定を確認しています
 
 ポートとブロードキャストドメインに対して MTU 設定が正しく設定されていることを確認し、変更を加えます。
@@ -766,6 +776,7 @@ storage disk option modify -autoassign off -node node_name IP
 
 
 
+[[configuring-intercluster-lifs]]
 === クラスタ間 LIF を設定しています
 
 クラスタピアリングに必要なクラスタ間 LIF を設定
@@ -778,6 +789,7 @@ storage disk option modify -autoassign off -node node_name IP
 
 
 
+[[verifying-cluster-peering]]
 === クラスタピアリングを検証しています
 
 cluster_A と cluster_B にピア関係が確立されており、各クラスタのノードが相互に通信できることを確認します。

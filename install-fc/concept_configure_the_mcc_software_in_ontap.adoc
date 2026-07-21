@@ -17,12 +17,14 @@ image::../media/workflow_high_level_node_and_cluster_configuration_software.gif[
 
 
 
+[[gathering-required-information]]
 == 必要な情報の収集
 
 設定プロセスを開始する前に、コントローラモジュールに必要な IP アドレスを収集する必要があります。
 
 
 
+[[ip-network-information-worksheet-for-site-a]]
 === サイト A の IP ネットワーク情報ワークシート
 
 システムを設定する前に、最初の MetroCluster サイト（サイト A ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。
@@ -322,6 +324,7 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
+[[ip-network-information-worksheet-for-site-b]]
 === サイト B の IP ネットワーク情報ワークシート
 
 システムを設定する前に、 2 つ目の MetroCluster サイト（サイト B ）の IP アドレスその他のネットワーク情報を、ネットワーク管理者から入手する必要があります。
@@ -619,6 +622,7 @@ HTTP 、 HTTPS 、または SMTP
 |===
 
 
+[[similarities-and-differences-between-standard-cluster-and-metrocluster-configurations]]
 == 標準クラスタ構成と MetroCluster 構成の類似点 / 相違点
 
 MetroCluster 構成の各クラスタのノードの構成は、標準クラスタのノードと似ています。
@@ -674,6 +678,7 @@ MetroCluster 設定を有効にします。
 |===
 
 
+[[verifying-and-configuring-the-ha-state-of-components-in-maintenance-mode]]
 == メンテナンスモードでコンポーネントの HA 状態を確認および設定する
 
 ストレージシステムをMetroCluster FC構成で構成する場合は、コントローラモジュールおよびシャーシのコンポーネントのハイアベイラビリティ（HA）状態がmccまたはmcc-2nであることを確認して、これらのコンポーネントが適切にブートするようにする必要があります。工場出荷状態のシステムではこの値を事前に設定しておく必要がありますが、作業を進める前に設定を確認しておく必要があります。
@@ -790,6 +795,7 @@ mccip
 
 
 
+[[restoring-system-defaults-and-configuring-the-hba-type-on-a-controller-module]]
 == システムのデフォルト設定をリストアし、コントローラモジュールで HBA タイプを設定しています
 
 .このタスクについて
@@ -927,6 +933,7 @@ Please choose one of the following:
 --
 
 
+[[configuring-fc-vi-ports-on-a-x1132a-r6-quad-port-card-on-fas8020-systems]]
 == FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定
 
 FAS8020 システムで X1132A-R6 クアッドポートカードを使用している場合は、メンテナンスモードに切り替えて、ポート 1a / 1b を FC-VI およびイニシエータ用に使用するように設定できます。工場出荷状態の MetroCluster システムでは、構成に応じて適切にポートが設定されているため、この設定は必要ありません。
@@ -1033,6 +1040,7 @@ controller_B_1
 
 
 
+[[verifying-disk-assignment-in-maintenance-mode-in-an-eight-node-or-a-four-node-configuration]]
 == メンテナンスモードでの 8 ノードまたは 4 ノード構成のディスク割り当ての検証
 
 システムを ONTAP で完全にブートする前に、オプションで、メンテナンスモードでブートしてノードのディスク割り当てを確認することができます。ディスクは、各プールのディスク数が等しい、完全に対称なアクティブ / アクティブ構成を形成するように割り当てられている必要があります。
@@ -1232,6 +1240,7 @@ controller_B_1
 
 
 
+[[assigning-disk-ownership-in-non-aff-systems]]
 === AFF 以外のシステムでディスク所有権を割り当てています
 
 MetroCluster ノードにディスクが正しく割り当てられていない場合、または構成で DS460C ディスクシェルフを使用している場合は、 MetroCluster 構成内の各ノードにシェルフ単位でディスクを割り当てる必要があります。構成内の各ノードのローカルディスクプールとリモートディスクプールでディスク数が同じになるように設定します。
@@ -1389,6 +1398,7 @@ HA パートナーのプール 1 の DR パートナー
 
 
 
+[[assigning-disk-ownership-in-aff-systems]]
 === AFF システムでディスク所有権を割り当てます
 
 アグリゲートがミラーされた AFF システムを使用する構成で、ノードにディスク（ SSD ）が正しく割り当てられていない場合は、各シェルフの半分のディスクを 1 つのローカルノードに割り当て、残りの半分を対応する HA パートナーノードに割り当てる必要があります。構成内の各ノードのローカルディスクプールとリモートディスクプールでディスク数が同じになるように設定する必要があります。
@@ -1505,6 +1515,7 @@ HA パートナーのプール 1 の DR パートナー
 
 
 
+[[verifying-disk-assignment-in-maintenance-mode-in-a-two-node-configuration]]
 == 保守モードでの 2 ノード構成のディスク割り当ての検証
 
 システムを ONTAP で完全にブートする前に、システムをメンテナンスモードでブートして、ノードのディスク割り当てを確認することもできます。ディスクは、両方のサイトが独自のディスクシェルフを所有してデータを提供し、各ノードおよび各プールのミラーディスク数が等しい、完全に対称な構成を形成するように割り当てられている必要があります。
@@ -1622,6 +1633,7 @@ DR パートナーのプール 1
 
 
 
+[[setting-up-ontap]]
 == ONTAP をセットアップしています
 
 各コントローラモジュールに ONTAP をセットアップする必要があります。
@@ -1635,6 +1647,8 @@ DR パートナーのプール 1
 
 
 
+[[setting-up-ontap-in-a-two-node-metrocluster-configuration]]
+[[setup_ontap_2node_MCC]]
 === 2 ノード MetroCluster 構成での ONTAP のセットアップ
 
 2 ノード MetroCluster 構成では、各クラスタでノードをブートし、クラスタセットアップウィザードを終了し、 cluster setup コマンドを使用してシングルノードクラスタとしてノードを構成する必要があります。
@@ -1731,6 +1745,8 @@ cluster1-01           true    true
 
 
 
+[[setting-up-ontap-in-an-eight-node-or-four-node-metrocluster-configuration]]
+[[setup_ontap_8node_4node_MCC]]
 === 8 ノード / 4 ノード MetroCluster 構成での ONTAP のセットアップ
 
 各ノードをブートすると、 System Setup ツールを使用してノードおよびクラスタの基本的な設定を実行するよう求めるメッセージが表示されます。クラスタを設定したら、 ONTAP CLI に戻ってアグリゲートを作成し、 MetroCluster 構成を作成します。
@@ -1864,6 +1880,7 @@ ONTAP のコマンドラインインターフェイスに戻り、後続のタ�
 
 
 
+[[configuring-the-clusters-into-a-metrocluster-configuration]]
 == クラスタを MetroCluster 構成に設定
 
 クラスタをピアリングし、ルートアグリゲートをミラーリングし、ミラーリングされたデータアグリゲートを作成し、コマンドを問題して MetroCluster の処理を実装する必要があります。
@@ -1873,12 +1890,14 @@ ONTAP のコマンドラインインターフェイスに戻り、後続のタ�
 
 
 
+[[peering-the-clusters]]
 === クラスタをピアリング
 
 MetroCluster 構成内のクラスタが相互に通信し、 MetroCluster ディザスタリカバリに不可欠なデータミラーリングを実行できるようにするために、クラスタ間にはピア関係が必要です。
 
 
 
+[[configuring-intercluster-lifs]]
 === クラスタ間 LIF を設定しています
 
 MetroCluster パートナークラスタ間の通信に使用するポートにクラスタ間 LIF を作成する必要があります。専用のポートを使用することも、データトラフィック用を兼ねたポートを使用することもできます。
@@ -1890,6 +1909,7 @@ MetroCluster パートナークラスタ間の通信に使用するポートに�
 
 
 
+[[config_LIFs_dedicated]]
 ==== 専用ポートでのクラスタ間 LIF の設定
 
 専用ポートにクラスタ間 LIF を設定できます。通常は、レプリケーショントラフィックに使用できる帯域幅が増加します。
@@ -2106,6 +2126,7 @@ link:concept_prepare_for_the_mcc_installation.html["専用のポートを使用�
 
 
 
+[[config_LIFs_shared_data]]
 ==== 共有データポートでのクラスタ間 LIF の設定
 
 データネットワークと共有するポートにクラスタ間 LIF を設定できます。これにより、クラスタ間ネットワークに必要なポート数を減らすことができます。
@@ -2246,6 +2267,7 @@ link:concept_prepare_for_the_mcc_installation.html["データポートを共有�
 
 
 
+[[creating-a-cluster-peer-relationship]]
 === クラスタピア関係を作成
 
 MetroCluster クラスタ間にクラスタピア関係を作成する必要があります。
@@ -2463,6 +2485,7 @@ cluster01-02
 
 
 
+[[mirroring-the-root-aggregates]]
 === ルートアグリゲートをミラーリング
 
 データ保護を提供するには、ルートアグリゲートをミラーする必要があります。
@@ -2501,6 +2524,7 @@ link:https://docs.netapp.com/us-en/ontap/volumes/index.html["CLI を使用した
 
 
 
+[[creating-a-mirrored-data-aggregate-on-each-node]]
 === 各ノードでミラーされたデータアグリゲートを作成します
 
 DR グループの各ノードに、ミラーされたデータアグリゲートを 1 つ作成する必要があります。
@@ -2564,6 +2588,7 @@ cluster_A::> storage aggregate create aggr1_node_A_1 -diskcount 10 -node node_A_
 
 
 
+[[creating-unmirrored-data-aggregates]]
 === ミラーされていないデータアグリゲートの作成
 
 MetroCluster 構成が提供する冗長なミラーリングを必要としないデータについては、必要に応じてミラーされていないデータアグリゲートを作成できます。
@@ -2637,6 +2662,7 @@ link:https://docs.netapp.com/us-en/ontap/disks-aggregates/index.html["ディス�
 
 
 
+[[implementing-the-metrocluster-configuration]]
 === MetroCluster 構成の実装
 
 MetroCluster 構成でデータ保護を開始するに MetroCluster は 'data configure コマンドを実行する必要があります
@@ -2792,6 +2818,7 @@ Remote: cluster_A         Configuration state configured
 
 
 
+[[configuring-in-order-delivery-or-out-of-order-delivery-of-frames-on-ontap-software]]
 === ONTAP ソフトウェアでのフレームのインオーダー配信またはアウトオブオーダー配信の設定
 
 Fibre Channel （ FC ）スイッチの設定に応じて、フレームの In-Order Delivery （ IOD ；インオーダー配信）または Out-of-Order Delivery （ OOD ；アウトオブオーダー配信）のいずれかを設定する必要があります。
@@ -2901,6 +2928,8 @@ mcc4-b2      mlx4_0          IB      Up     false     192.0.2.10  	ib2b
 
 
 
+[[configuring-snmpv3-in-a-metrocluster-fc-configuration]]
+[[snmpv3-mcc-fc]]
 === MetroCluster FC構成でのSNMPv3の設定
 
 .作業を開始する前に
@@ -3030,6 +3059,7 @@ NOTE: また、未使用のアカウントにパスワードを設定して保�
 
 
 
+[[configuring-metrocluster-components-for-health-monitoring]]
 === 健常性監視用の MetroCluster コンポーネントの設定
 
 MetroCluster 構成のコンポーネントを監視するには、いくつかの特別な設定手順を実行する必要があります。
@@ -3204,6 +3234,7 @@ ATTO_10.10.20.13  atto04        true          ok              Atto   FibreBridge
 
 
 
+[[checking-the-metrocluster-configuration]]
 === MetroCluster の設定を確認しています
 
 MetroCluster 構成内のコンポーネントおよび関係が正しく機能していることを確認できます。
@@ -3340,6 +3371,7 @@ link:https://docs.netapp.com/us-en/ontap/network-management/index.html["ネッ�
 
 
 
+[[checking-for-metrocluster-configuration-errors-with-config-advisor]]
 == Config Advisor での MetroCluster 構成エラーの確認
 
 一般的な構成エラーの有無を確認する Config Advisor ツールをネットアップサポートサイトからダウンロードできます。
@@ -3360,6 +3392,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 
 
+[[verifying-local-ha-operation]]
 == ローカル HA の処理を検証しています
 
 4 ノード MetroCluster 構成の場合、 MetroCluster 構成のローカル HA ペアの処理を検証する必要があります。2 ノード構成の場合は不要です。
@@ -3468,6 +3501,7 @@ link:https://docs.netapp.com/us-en/ontap/cloud/high-availability-concept.html["�
 
 
 
+[[verifying-switchover-healing-and-switchback]]
 == スイッチオーバー、修復、スイッチバックを検証しています
 
 MetroCluster 構成のスイッチオーバー、修復、スイッチバックの処理を検証する必要があります。
@@ -3478,6 +3512,7 @@ MetroCluster 構成のスイッチオーバー、修復、スイッチバック�
 
 
 
+[[protecting-configuration-backup-files]]
 == 構成バックアップファイルを保護しています
 
 ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。

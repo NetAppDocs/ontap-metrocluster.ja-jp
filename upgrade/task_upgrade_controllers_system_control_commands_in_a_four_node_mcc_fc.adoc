@@ -15,6 +15,7 @@ summary: このガイドに記載された自動 MetroCluster スイッチオー
 
 
 
+[[supported-platform-combinations]]
 == サポートされるプラットフォームの組み合わせ
 
 * サポートされるプラットフォームアップグレードの組み合わせについては、のMetroCluster FCアップグレードの表を参照してください  link:concept_choosing_controller_upgrade_mcc.html#supported-metrocluster-fc-controller-upgrades["コントローラのアップグレード手順 を選択します"]。
@@ -24,6 +25,7 @@ summary: このガイドに記載された自動 MetroCluster スイッチオー
 
 
 
+[[about-this-task]]
 == このタスクについて
 
 * この手順は、コントローラのアップグレードにのみ使用できます。
@@ -79,6 +81,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -93,6 +96,8 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[prepare-for-the-upgrade]]
+[[fc_controller_replace_prepare]]
 == アップグレードを準備
 
 コントローラのアップグレードを準備するには、システムの事前確認を実行し、構成情報を収集する必要があります。
@@ -139,6 +144,7 @@ Node-A-1    Failed         MetroCluster check failed. Reason : MCC check showed 
 
 
 
+[[gather-information-before-the-upgrade]]
 === アップグレード前に情報を収集
 
 アップグレードの実行前にルートボリュームが暗号化されている場合は、暗号化された古いルートボリュームを含む新しいコントローラをブートするために、バックアップキーとその他の情報を収集する必要があります。
@@ -327,6 +333,7 @@ cluster_B::*
 
 
 
+[[remove-the-existing-configuration-from-the-tiebreaker-or-other-monitoring-software]]
 === Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します
 
 スイッチオーバーを開始できる MetroCluster Tiebreaker 構成またはその他のサードパーティアプリケーション（たとえば、 ClusterLion ）で既存の構成を監視している場合は、古いコントローラを交換する前に、 Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。
@@ -341,6 +348,7 @@ cluster_B::*
 
 
 
+[[replace-the-old-controllers-and-boot-up-the-new-controllers]]
 == 古いコントローラを交換して新しいコントローラをブート
 
 情報を収集して処理を再開すると、スイッチオーバー処理が自動化されます。
@@ -353,6 +361,7 @@ cluster_B::*
 
 
 
+[[prepare-the-network-configuration-of-the-old-controllers]]
 === 古いコントローラのネットワーク構成を準備
 
 新しいコントローラでネットワークが正常に再開されるようにするには、 LIF を共通ポートに移動して、古いコントローラのネットワーク設定を削除する必要があります。
@@ -454,6 +463,7 @@ halt -inhibit-takeover true -node node_name `
 
 
 
+[[set-up-the-new-controllers]]
 === 新しいコントローラをセットアップ
 
 新しいコントローラをラックに設置してケーブルを接続する必要があります。
@@ -484,6 +494,7 @@ https://docs.netapp.com/platstor/index.jsp["ONTAPハードウェアシステム�
 
 
 
+[[netboot-the-new-controllers]]
 === 新しいコントローラをネットブート
 
 新しいノードを設置したら、ネットブートを実行して、新しいノードが元のノードと同じバージョンの ONTAP を実行するようにする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを配置する必要があります。
@@ -556,6 +567,7 @@ NOTE: 新しくインストールされたソフトウェアを使用するに�
 
 
 
+[[clear-the-configuration-on-a-controller-module]]
 === コントローラモジュールの設定をクリアします
 
 MetroCluster 構成で新しいコントローラモジュールを使用する前に、既存の構成をクリアする必要があります。
@@ -595,6 +607,7 @@ wipeconfig
 
 
 
+[[restore-the-hba-configuration]]
 === HBA 構成をリストア
 
 コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。
@@ -676,6 +689,7 @@ fcadmin show`
 
 
 
+[[reassign-root-aggregate-disks]]
 === ルートアグリゲートディスクを再割り当てします
 
 前の手順で確認した「 sysconfig 」を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします
@@ -791,6 +805,7 @@ aggr0_node_b_1-root        online      raid_dp, aggr    root, nosnap=on,
 
 
 
+[[boot-up-the-new-controllers]]
 === 新しいコントローラをブートします
 
 コントローラのフラッシュイメージを更新するには、ブートメニューからコントローラをリブートする必要があります。暗号化が設定されている場合は、追加の手順が必要です。
@@ -1004,6 +1019,7 @@ MetroCluster node show
 
 
 
+[[complete-the-upgrade]]
 == アップグレードを完了します
 
 自動処理では、検証システムのチェックが実行されたあと一時停止するため、ネットワークの到達可能性を確認できます。検証が完了すると、リソースの再取得フェーズが開始され、自動化処理によってサイト A でスイッチバックが実行され、アップグレード後のチェックで一時停止されます。自動処理を再開すると、アップグレード後のチェックが実行され、エラーが検出されない場合はアップグレードが完了としてマークされます。
@@ -1031,6 +1047,7 @@ MetroCluster node show
 
 
 
+[[upgrade-the-nodes-on-clustera]]
 == cluster_Aのノードをアップグレードします。
 
 アップグレード手順を繰り返して、サイトAのcluster_Aのノードをアップグレードする必要があります。
@@ -1044,6 +1061,7 @@ MetroCluster node show
 
 
 
+[[restoring-tiebreaker-monitoring]]
 === Tiebreaker 監視をリストアしています
 
 MetroCluster 構成が Tiebreaker ソフトウェアで監視するように設定されている場合は、 Tiebreaker 接続をリストアできます。

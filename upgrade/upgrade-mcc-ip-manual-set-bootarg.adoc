@@ -18,6 +18,7 @@ NOTE: アップグレードの組み合わせが影響を受ける場合、ア�
 
 
 
+[[step-1-determine-whether-you-need-to-set-a-bootarg-on-the-old-controllers]]
 == ステップ1: 古いコントローラにbootargを設定する必要があるかどうかを確認します
 
 アップグレードを開始する前に、次の情報を使用して、古いコントローラに bootarg を設定する必要があるかどうかを確認します：
@@ -45,12 +46,14 @@ CAUTION: アップグレードでbootargを設定する必要がない場合は�
 
 
 
+[[step-2-determine-the-bootarg-you-need-to-set-on-the-old-controllers]]
 == ステップ2: 古いコントローラに設定するbootargを決定する
 
 影響を受けるアップグレードのほとんどは、 `hw.cxgbe.toe_keepalive_disable`古いコントローラ上の bootarg。ただし、特定のアップグレードパスでは、 `bootarg.siw.interop_enabled`代わりに bootarg を使用してください。
 
 次の表を参照して、それぞれのアップグレードの組み合わせに設定する必要があるbootargを特定してください。
 
+[[upgrade_paths_bootarg_manual]]
 [cols="2*"]
 |===
 | アップグレード対象 | bootargの設定 
@@ -76,6 +79,7 @@ AFF A70、 AFF A90、 AFF A1K、FAS70、FAS90、 AFF C80、 AFF A50、 AFF A30�
 |===
 
 
+[[step-3-set-the-required-bootarg-on-the-old-controllers]]
 == ステップ3: 古いコントローラに必要なbootargを設定する
 
 アップグレードの組み合わせに必要な bootarg を決定したら、手順に従って古いコントローラで bootarg を設定します。

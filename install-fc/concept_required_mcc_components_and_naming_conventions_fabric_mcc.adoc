@@ -15,6 +15,7 @@ MetroCluster FC 構成を計画する際には、サポート対象の必要な�
 
 
 
+[[supported-software-and-hardware]]
 == サポートされているソフトウェアおよびハードウェア
 
 ハードウェアとソフトウェアは、 MetroCluster FC 構成でサポートされている必要があります。
@@ -28,12 +29,14 @@ NOTE: MetroCluster ストレージスイッチでは長波 SFP がサポート�
 
 
 
+[[hardware-redundancy-in-the-metrocluster-fc-configuration]]
 == MetroCluster FC 構成でのハードウェアの冗長性
 
 MetroCluster FC 構成ではハードウェアの冗長性が確保されるため、サイトには各コンポーネントが 2 つずつあります。コンポーネントの名前には、サイトを表す A または B 、および 2 つあるコンポーネントのうちどちらかを表す番号として 1 または 2 を使用します。
 
 
 
+[[requirement-for-two-ontap-clusters]]
 == ONTAP クラスタ × 2
 
 ファブリック接続 MetroCluster FC 構成には、 MetroCluster サイトごとに 1 つ、計 2 つの ONTAP クラスタが必要です。
@@ -48,6 +51,7 @@ MetroCluster FC 構成ではハードウェアの冗長性が確保されるた�
 
 
 
+[[requirement-for-four-fc-switches]]
 == FC スイッチ × 4
 
 ファブリック接続 MetroCluster FC 構成には、 FC スイッチ（サポートされている Brocade または Cisco モデル）が 4 つ必要です。
@@ -58,6 +62,7 @@ MetroCluster FC 構成ではハードウェアの冗長性が確保されるた�
 
 
 
+[[requirement-for-two-four-or-eight-controller-modules]]
 == コントローラモジュール × 2 、 4 、または 8
 
 ファブリック接続 MetroCluster FC 構成には、コントローラモジュールが 2 つ、 4 つ、または 8 つ必要です。
@@ -91,6 +96,7 @@ MetroCluster FC 構成ではハードウェアの冗長性が確保されるた�
 
 
 
+[[requirement-for-four-cluster-interconnect-switches]]
 == クラスタインターコネクトスイッチ × 4
 
 ファブリック接続 MetroCluster FC 構成には、クラスタインターコネクトスイッチが 4 つ必要です（ 2 ノードスイッチレスクラスタを使用している場合は除く）。
@@ -99,6 +105,7 @@ MetroCluster FC 構成ではハードウェアの冗長性が確保されるた�
 
 
 
+[[requirement-for-fc-to-sas-bridges]]
 == FC-to-SAS ブリッジの要件
 
 ファブリック接続 MetroCluster FC 構成には、 SAS シェルフのスタックグループごとに FC-to-SAS ブリッジのペアが 1 組必要です。
@@ -115,6 +122,7 @@ NOTE: ONTAP 9.8 以降を実行している構成では、 FibreBridge 6500N ブ
 
 
 
+[[pool-and-drive-requirements-minimum-supported]]
 == プールとドライブの要件（最小サポート）
 
 シェルフ単位でディスク所有権を割り当てられるようにするために、 SAS ディスクシェルフを 8 台（各サイトに 4 台）配置することを推奨します。
@@ -144,6 +152,7 @@ MetroCluster 構成では、 RAID-DP と RAID 4 がサポートされます。
 
 
 
+[[drive-location-considerations-for-partially-populated-shelves]]
 == 空きのあるシェルフでのドライブの配置場所に関する考慮事項
 
 収容数が半分（ 24 ドライブシェルフに 12 本のドライブ）のシェルフを使用している場合にドライブの自動割り当てを正しく行うには、スロット 0~5 および 18~23 にドライブを配置する必要があります。
@@ -152,6 +161,7 @@ MetroCluster 構成では、 RAID-DP と RAID 4 がサポートされます。
 
 
 
+[[bridge-naming-conventions]]
 == ブリッジの命名規則
 
 ブリッジでは、次のような命名規則を使用します。

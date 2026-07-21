@@ -25,6 +25,7 @@ ONTAP 9.8 以降では、 2 ノードの MetroCluster FC 構成を無停止で�
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -39,6 +40,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[requirements-for-transition-when-shelves-are-not-supported-on-the-new-nodes]]
 == 新しいノードでシェルフがサポートされていない場合の移行の要件
 
 移行プロセスを開始する前に、構成が要件を満たしていることを確認する必要があります。
@@ -87,6 +89,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"]
 
 
 
+[[workflow-for-disruptive-transition-when-shelves-are-not-supported-by-new-controllers]]
 == 新しいコントローラでシェルフがサポートされない場合の停止を伴う移行のワークフロー
 
 既存のシェルフモデルが新しいプラットフォームモデルでサポートされない場合は、新しいシェルフを古い構成に接続し、新しいシェルフにデータを移動して、新しい構成に移行する必要があります。
@@ -97,6 +100,7 @@ image::../media/workflow_2n_transition_old_shelves_not_supported.png[古い棚�
 
 
 
+[[preparing-the-new-controller-modules]]
 == 新しいコントローラモジュールの準備を行います
 
 新しいコントローラモジュールと新しいストレージシェルフの構成とディスク所有権をクリアする必要があります。
@@ -108,6 +112,7 @@ image::../media/workflow_2n_transition_old_shelves_not_supported.png[古い棚�
 
 
 
+[[attaching-the-new-disk-shelves-to-the-existing-metrocluster-fc-controllers]]
 == 新しいディスクシェルフを既存の MetroCluster FC コントローラに接続
 
 MetroCluster IP 構成に移行する前に、新しいドライブシェルフを既存のコントローラモジュールに接続する必要があります。
@@ -136,6 +141,7 @@ disk option modify -node node_name autoassign off
 
 
 
+[[migrate-root-aggregates-and-move-data-to-the-new-disk-shelves]]
 == ルートアグリゲートを移行して、新しいディスクシェルフにデータを移動します
 
 古いドライブシェルフから、 MetroCluster IP ノードで使用する新しいドライブシェルフにルートアグリゲートを移動する必要があります。
@@ -490,6 +496,7 @@ volume remove-other-volume -vserver node_name -volume old_vol0
 
 
 
+[[transitioning-the-configuration]]
 == 構成を移行しています
 
 詳細な移行手順に従う必要があります。

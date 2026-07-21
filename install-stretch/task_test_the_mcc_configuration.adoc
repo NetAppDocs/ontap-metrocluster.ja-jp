@@ -15,6 +15,7 @@ summary: 障害シナリオをテストして、 MetroCluster 構成が正しく
 
 
 
+[[verifying-negotiated-switchover]]
 == ネゴシエートスイッチオーバーを検証中
 
 ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。
@@ -111,6 +112,7 @@ cluster_A::> metrocluster operation show
 
 
 
+[[verifying-healing-and-manual-switchback]]
 == 修復と手動スイッチバックの検証
 
 修復処理と手動スイッチバック処理をテストするには、ネゴシエートスイッチオーバー後にクラスタを元のデータセンターにスイッチバックして、データの可用性に影響がないことを検証します（ SMB および Solaris FC 構成を除く）。
@@ -239,6 +241,7 @@ cluster_A::> metrocluster operation show
 
 
 
+[[loss-of-a-single-fc-to-sas-bridge]]
 == 単一の FC-to-SAS ブリッジの停止
 
 単一の FC-to-SAS ブリッジの障害をテストして、単一点障害がないことを確認できます。
@@ -293,6 +296,7 @@ Disk             Error Type        Error Text
 
 
 
+[[verifying-operation-after-power-line-disruption]]
 == 電源回線切断後の動作確認
 
 MetroCluster 構成で PDU の障害が発生した場合の対応をテストできます。
@@ -347,6 +351,7 @@ Power               Critical condition is detected in storage shelf power supply
 
 
 
+[[verifying-operation-after-loss-of-a-single-storage-shelf]]
 == 単一のストレージシェルフが停止したあとの動作確認
 
 単一のストレージシェルフの障害をテストして、単一点障害がないことを確認できます。

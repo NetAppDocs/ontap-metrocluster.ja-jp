@@ -15,6 +15,7 @@ summary: 移行に向けた構成を準備するには、既存の MetroCluster 
 
 
 
+[[sending-a-custom-autosupport-message-prior-to-maintenance]]
 == カスタム AutoSupport メッセージをメンテナンス前に送信する
 
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
@@ -38,6 +39,7 @@ summary: 移行に向けた構成を準備するには、既存の MetroCluster 
 
 
 
+[[enabling-transition-mode-and-disabling-cluster-ha]]
 == 移行モードを有効にしてクラスタ HA を無効にします
 
 古いノードと新しいノードを MetroCluster 構成で一緒に動作できるようにし、クラスタ HA を無効にするには、 MetroCluster 移行モードを有効にする必要があります。
@@ -157,6 +159,7 @@ cluster_B::>
 
 
 
+[[joining-the-metrocluster-ip-nodes-to-the-clusters]]
 == MetroCluster IP ノードのクラスタへの追加
 
 4 つの新しい MetroCluster IP ノードを既存の MetroCluster 構成に追加する必要があります。
@@ -236,6 +239,7 @@ Do you want to use this configuration? {yes, no} [yes]: yes
 
 
 
+[[configuring-intercluster-lifs-creating-the-metrocluster-interfaces-and-mirroring-root-aggregates]]
 == クラスタ間 LIF の設定、 MetroCluster インターフェイスの作成、およびルートアグリゲートのミラーリングを行います
 
 クラスタピア LIF を作成し、新しい MetroCluster IP ノードに MetroCluster インターフェイスを作成する必要があります。
@@ -608,6 +612,7 @@ aggr_data_a2
 
 
 
+[[finalizing-the-addition-of-the-metrocluster-ip-nodes]]
 == MetroCluster IP ノードの追加を完了しています
 
 新しい DR グループを MetroCluster 構成に組み込み、新しいノードにミラーされたデータアグリゲートを作成する必要があります。

@@ -21,18 +21,21 @@ summary: 使用するアップグレード手順 はプラットフォームモ�
 
 
 
+[[supported-controller-upgrades]]
 == サポートされるコントローラのアップグレード
 
 サポートされるMetroCluster IPコントローラとFCコントローラのアップグレードの組み合わせについて説明します。
 
 
 
+[[supported-metrocluster-ip-controller-upgrades-using-system-controller-replace-commands]]
 === system controller replaceコマンドを使用したサポートされるMetroCluster IPコントローラのアップグレード
 
 サポートされるプラットフォームについては、の表を参照して link:task_upgrade_controllers_system_control_commands_in_a_four_node_mcc_ip.html["「system controller replace」コマンドを使用したスイッチオーバーとスイッチバックを使用した4ノードMetroCluster IP構成のコントローラのアップグレード（ONTAP 9.13.1以降）"] ください。
 
 
 
+[[all-other-supported-metrocluster-ip-controller-upgrades]]
 === サポートされているその他すべてのMetroCluster IPコントローラのアップグレード
 
 このセクションのMetroClusterコントローラーのアップグレード表から、お使いの*ソース*プラットフォームを検索してください。*ソース*プラットフォーム行と*ターゲット*プラットフォーム列が空白の場合、アップグレードはサポートされていません。
@@ -99,6 +102,7 @@ image:../media/mcc-ip-upgrade-asa-comb-9161.png["は、ASAがサポートするM
 
 
 
+[[supported-metrocluster-fc-controller-upgrades]]
 === サポートされるMetroCluster FCコントローラのアップグレード
 
 このセクションのMetroClusterコントローラーのアップグレード表から、お使いの*ソース*プラットフォームを検索してください。*ソース*プラットフォーム行と*ターゲット*プラットフォーム列が空白の場合、アップグレードはサポートされていません。
@@ -168,6 +172,7 @@ image::../media/metrocluster_fc_upgrade_table_aff_fas.png[MetroCluster FCコン�
 
 
 
+[[choose-a-procedure-that-uses-the-switchover-and-switchback-process]]
 == スイッチオーバーとスイッチバックのプロセスを使用する手順を選択
 
 サポートされるアップグレードの組み合わせを確認したら、構成に適したコントローラのアップグレード手順を選択します。
@@ -246,6 +251,7 @@ link:task_upgrade_controllers_in_a_four_node_ip_mcc_us_switchover_and_switchback
 |===
 
 
+[[choosing-a-procedure-using-aggregate-relocation]]
 == アグリゲートの再配置を使用した手順の選択
 
 ARL ベースコントローラのアップグレード手順では、アグリゲートの再配置処理を使用して、古い構成からアップグレード後の新しい構成へ、データを無停止で移動します。

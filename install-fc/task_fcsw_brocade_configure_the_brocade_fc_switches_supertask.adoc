@@ -66,6 +66,7 @@ Metro-E とは、長距離（メトロ距離）間でネイティブに、また
 
 
 
+[[review-brocade-license-requirements]]
 == Brocade のライセンス要件を確認する
 
 MetroCluster 構成内のスイッチには所定のライセンスが必要です。これらのライセンスは 4 つのスイッチすべてにインストールする必要があります。
@@ -104,6 +105,7 @@ Enterprise ライセンスには、 Brocade Network Advisor と、追加のポ�
 
 
 
+[[set-the-brocade-fc-switch-values-to-factory-defaults]]
 == Brocade FCスイッチの値を工場出荷時のデフォルトに設定する
 
 設定を適切に行うには、スイッチを工場出荷時のデフォルトに設定する必要があります。また、各スイッチに一意な名前を割り当てる必要があります。
@@ -325,6 +327,7 @@ FC_switch_B_1:admin> reboot
 
 
 
+[[configure-basic-switch-settings]]
 == 基本的なスイッチ設定を構成する
 
 Brocade スイッチに対して、ドメイン ID を含む基本的なグローバル設定を行う必要があります。
@@ -649,6 +652,7 @@ FC_switch_B_1:admin> switchcfgpersistentenable
 
 
 
+[[configure-basic-switch-settings-on-a-brocade-dcx-8510-8-switch]]
 == Brocade DCX 8510-8スイッチの基本的なスイッチ設定を構成する
 
 Brocade スイッチに対して、ドメイン ID を含む基本的なグローバル設定を行う必要があります。
@@ -749,6 +753,7 @@ link:concept_prepare_for_the_mcc_installation.html["Brocade DCX 8510-8 スイッ
 
 
 
+[[configure-e-ports-on-brocade-fc-switches-using-fc-ports]]
 == FCポートを使用してBrocade FCスイッチのEポートを構成する
 
 FC ポートを使用してスイッチ間リンク（ ISL ）が設定された Brocade スイッチの場合、 ISL を接続する各スイッチファブリックのスイッチポートを設定する必要があります。これらの ISL ポートは E ポートとも呼ばれます。
@@ -1252,6 +1257,7 @@ link:concept_port_assignments_for_fc_switches_when_using_ontap_9_1_and_later.htm
 
 
 
+[[configuring-10-gbps-ve-ports-on-brocade-fc-7840-switches]]
 == Brocade FC 7840 スイッチでの 10Gbps VE ポートの設定
 
 ISL に 10Gbps VE ポート（ FCIP を使用）を使用する場合は、各ポートに IP インターフェイスを作成し、 FCIP トンネルと各トンネルの回線を設定する必要があります。
@@ -1408,6 +1414,7 @@ FC_switch_A_1:root> portshow fcipcircuit all
 
 
 
+[[configure-40-gbps-ve-ports-on-brocade-7810-and-7840-fc-switches]]
 == Brocade 7810および7840 FCスイッチで40 GbpsのVEポートを構成する
 
 ISL に 2 つの 40GbE VE ポート（ FCIP を使用）を使用する場合は、各ポートに IP インターフェイスを作成し、 FCIP トンネルと各トンネルの回線を設定する必要があります。
@@ -1561,6 +1568,7 @@ FC_switch_A_1:root> portshow fcipcircuit all
 
 
 
+[[configure-the-non-e-ports-on-the-brocade-switch]]
 == Brocadeスイッチの非Eポートを構成する
 
 FC スイッチ上の非 E ポートを設定する必要があります。MetroCluster 構成では、これらのポートによって、スイッチと HBA イニシエータ、 FC-VI インターコネクト、および FC-to-SAS ブリッジが接続されます。この手順はポートごとに実行する必要があります。
@@ -1651,6 +1659,7 @@ Non-DFE                             ..  ..  ..  ..  ..  ..  ..  ..  ..
 
 
 
+[[configure-compression-on-isl-ports-on-a-brocade-g620-switch]]
 == Brocade G620スイッチのISLポートで圧縮を設定する
 
 Brocade G620 スイッチを使用している場合に ISL で圧縮を有効にするには、スイッチの各 E ポートで圧縮を設定する必要があります。
@@ -1713,12 +1722,14 @@ Port   Configured    Active   Configured   Active  Speed
 ----
 
 
+[[configure-zoning-on-brocade-fc-switches]]
 == Brocade FCスイッチのゾーニングを構成する
 
 スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。
 
 
 
+[[zone-the-fc-vi-ports]]
 === FC-VIポートをゾーン分けする
 
 MetroCluster の DR グループごとに、コントローラ間のトラフィックに使用する FC-VI 接続のゾーンを 2 つ設定する必要があります。これらのゾーンには、コントローラモジュールの FC-VI ポートに接続する FC スイッチポートが含まれます。これらのゾーンは、 Quality of Service （ QoS ；サービス品質）ゾーンです。
@@ -1937,6 +1948,7 @@ QOSH2_MC1_FAB_2_FCVI （ 6520 ）
 |===
 
 
+[[zone-fibrebridge-7500n-or-7600n-bridges-using-one-fc-port]]
 === 1つのFCポートを使用してFibreBridge 7500Nまたは7600Nブリッジをゾーン化する
 
 2つのFCポートのどちらか一方だけを使用するFibreBridge 7500N / 7600Nブリッジを使用する場合は、ブリッジポートのストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。
@@ -2380,6 +2392,7 @@ a または b
 |===
 
 
+[[zone-fibrebridge-7500n-bridges-using-both-fc-ports]]
 === 両方のFCポートを使用してFibreBridge 7500Nブリッジをゾーン化する
 
 両方の FC ポートを使用する FibreBridge 7500N ブリッジを使用する場合は、ブリッジポートのストレージゾーンを作成する必要があります。ゾーンを設定する前に、ゾーンおよび関連するポートについて理解しておく必要があります。
@@ -4269,6 +4282,7 @@ MC1_INIT_GRP_2_SITE_B_STK_GRP_2_BOT_FC2
 |===
 
 
+[[zone-the-brocade-fc-switches]]
 === Brocade FCスイッチをゾーン分けする
 
 スイッチポートを別々のゾーンに割り当てて、コントローラとストレージのトラフィックを分離する必要があります。また、 FC-VI ポートのゾーンとストレージポートのゾーンも含める必要があります。
@@ -4388,6 +4402,7 @@ zone: MC1_INIT_GRP_1_SITE_A_STK_GRP_1_TOP_FC1
 
 
 
+[[set-isl-encryption-on-brocade-6510-or-g620-switches]]
 == Brocade 6510またはG620スイッチでISL暗号化を設定する
 
 Brocade 6510 または G620 スイッチでは、 ISL 接続に対してオプションで Brocade 暗号化機能を使用できます。暗号化機能を使用する場合は、 MetroCluster 構成の各スイッチで追加の設定手順を実行する必要があります。
@@ -4407,6 +4422,7 @@ NOTE: Brocade G620 スイッチでの ISL 暗号化の使用は、 ONTAP 9.4 以
 
 
 
+[[disable-virtual-fabric]]
 === 仮想ファブリックを無効にする
 
 ISL 暗号化を設定するには、 MetroCluster 構成で使用されている 4 つのスイッチすべてで仮想ファブリックを無効にする必要があります。
@@ -4421,6 +4437,7 @@ fosconfig -- VF' を無効にします
 
 
 
+[[set-the-payload]]
 === ペイロードを設定します
 
 仮想ファブリックを無効にしたら、ファブリック内の両方のスイッチでペイロードまたはデータフィールドサイズを設定する必要があります。
@@ -4448,6 +4465,7 @@ fosconfig -- VF' を無効にします
 
 
 
+[[set-the-authentication-policy]]
 === 認証ポリシーを設定します
 
 認証ポリシーおよび関連するパラメータを設定する必要があります。
@@ -4541,6 +4559,7 @@ Auth Policy is set to ON
 
 
 
+[[enable-isl-encryption-on-brocade-switches]]
 === Brocade スイッチで ISL 暗号化を有効にします
 
 認証ポリシーと認証シークレットを設定したら、ポートで ISL 暗号化を有効にする必要があります。

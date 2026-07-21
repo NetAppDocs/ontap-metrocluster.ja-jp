@@ -60,6 +60,7 @@ AFF A700とAFF A900、またはFAS9000とFAS9500コントローラを使用し�
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -74,6 +75,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[workflow-for-upgrading-controllers-in-a-metrocluster-ip-configuration]]
 == MetroCluster IP 構成のコントローラをアップグレードするためのワークフロー
 
 ワークフロー図は、アップグレードタスクを計画する際に役立ちます。
@@ -82,18 +84,22 @@ image::../media/workflow_ip_upgrade.png[MetroCluster IP構成におけるコン�
 
 
 
+[[prepare-for-the-upgrade]]
+[[upgrade_a700_a900_ip_prepare]]
 == アップグレードを準備
 
 既存の MetroCluster 構成に変更を加える前に、構成の健全性を確認し、新しいプラットフォームを準備し、その他のタスクを実行する必要があります。
 
 
 
+[[clear-slot-7-on-the-aff-a700-or-fas9000-controller]]
 === AFF A700またはFAS9000コントローラのスロット7をクリアします
 
 AFF A900またはFAS9500のMetroCluster 構成では、スロット5と7にあるDRカードの各ポートのいずれかが使用されます。アップグレードを開始する前に、AFF A700またはFAS9000のスロット7にカードがある場合は、それらをクラスタのすべてのノード用の他のスロットに移動する必要があります。
 
 
 
+[[update-the-metrocluster-switch-rcf-files-before-upgrading-controllers]]
 === コントローラをアップグレードする前に、 MetroCluster スイッチの RCF ファイルを更新してください
 
 このアップグレードを実行するときは、MetroCluster スイッチでRCFファイルを更新する必要があります。次の表に、AFF A900/FAS9500 MetroCluster IP構成でサポートされるVLAN範囲を示します。
@@ -142,12 +148,15 @@ AFF A900またはFAS9500のMetroCluster 構成では、スロット5と7にあ�
 
 
 
+[[map-ports-from-the-old-nodes-to-the-new-nodes]]
+[[upgrade_a700_a900_ip_map]]
 === 古いノードから新しいノードへのポートのマッピング
 
 AFF A700からAFF A900またはFAS9000からFAS9500にアップグレードした場合、データネットワークポート、FCP SANアダプタポート、SASストレージポートとNVMeストレージポートは変更されません。データ LIF は、アップグレード中もアップグレード後もそのままの状態になります。そのため、古いノードのネットワークポートを新しいノードにマッピングする必要はありません。
 
 
 
+[[verify-metrocluster-health-before-site-upgrade]]
 === サイトをアップグレードする前に MetroCluster の健全性を確認
 
 アップグレードを実行する前に、MetroCluster 構成の健全性と接続性を確認します。
@@ -223,6 +232,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 
 
+[[gather-information-before-the-upgrade]]
 === アップグレード前に情報を収集
 
 アップグレードの開始前に各ノードについて情報を収集し、必要に応じてネットワークブロードキャストドメインを調整し、 VLAN やインターフェイスグループを削除して、暗号化情報を収集する必要があります。
@@ -443,6 +453,7 @@ dr-group-id cluster     node     node-systemid ha-partner-systemid dr-partner-sy
 
 
 
+[[remove-mediator-or-tiebreaker-monitoring]]
 === メディエーターまたは Tiebreaker の監視を削除します
 
 プラットフォームをアップグレードする前に、 MetroCluster 設定を Tiebreaker またはメディエーターユーティリティで監視している場合は、監視を解除する必要があります。
@@ -486,6 +497,7 @@ MetroCluster 構成設定のメディエーターが削除されました
 
 
 
+[[send-a-custom-autosupport-message-prior-to-maintenance]]
 === カスタム AutoSupport メッセージをメンテナンス前に送信する
 
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify technical support that maintenance is maintenance.システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
@@ -510,6 +522,7 @@ MetroCluster 構成設定のメディエーターが削除されました
 
 
 
+[[switch-over-the-metrocluster-configuration]]
 == MetroCluster 構成をスイッチオーバーします
 
 site_B のプラットフォームをアップグレードできるように、設定を site_A にスイッチオーバーする必要があります。
@@ -552,6 +565,7 @@ MetroCluster node show
 
 
 
+[[remove-aff-a700-or-fas9000-platform-controller-module-and-nvs]]
 == AFF A700またはFAS9000プラットフォームのコントローラモジュールとNVSを取り外します
 
 .このタスクについて
@@ -564,6 +578,7 @@ MetroCluster node show
 
 
 
+[[remove-the-aff-a700-or-fas9000-controller-module]]
 === AFF A700またはFAS9000コントローラモジュールを取り外します
 
 次の手順 を使用して、AFF A700またはFAS9000コントローラモジュールを取り外します
@@ -592,6 +607,7 @@ image::../media/drw_9500_remove_PCM.png[コントローラモジュールをシ�
 
 
 
+[[remove-the-aff-a700-or-fas9000-nvs-module]]
 === AFF A700またはFAS9000 NVSモジュールを取り外します
 
 次の手順 を使用して、AFF A700またはFAS9000 NVSモジュールを取り外します。
@@ -623,6 +639,7 @@ image::../media/drw_a900_move-remove_NVRAM_module.png[シャーシからNVRAMモ
 
 
 
+[[install-the-aff-a900-or-fas9500-nvs-and-controller-modules]]
 == AFF A900またはFAS9500 NVSとコントローラモジュールを取り付けます
 
 アップグレードキットに含まれていたAFF A900またはFAS9500 NVSとコントローラモジュールをsite_Bの両方のノードにインストールする必要がありますコアダンプデバイスをAFF A700またはFAS9000 NVSモジュールからAFF A900またはFAS9500 NVSモジュールに移動しないでください。
@@ -632,6 +649,7 @@ image::../media/drw_a900_move-remove_NVRAM_module.png[シャーシからNVRAMモ
 
 
 
+[[install-the-aff-a900-or-fas9500-nvs]]
 === AFF A900またはFAS9500 NVSをインストールします
 
 次の手順 を使用して、site_Bの両方のノードのスロット6にAFF A900またはFAS9500 NVSをインストールします
@@ -655,6 +673,7 @@ image::../media/drw_a900_move-remove_NVRAM_module.png[NVRAMモジュールをシ
 
 
 
+[[install-the-aff-a900-or-fas9500-controller-module]]
 === AFF A900またはFAS9500コントローラモジュールを取り付けます。
 
 次の手順 を使用して、AFF A900またはFAS9500コントローラモジュールをインストールします。
@@ -694,6 +713,7 @@ NOTE: の項で説明したように、クラスタのすべてのノードの�
 
 
 
+[[netboot-nodes-at-siteb]]
 === site_B のネットブートノード
 
 AFF A900またはFAS9500コントローラモジュールとNVSを交換したら、AFF A900またはFAS9500ノードをネットブートして、クラスタで実行されているものと同じバージョンのONTAP とパッチレベルをインストールする必要があります。ネットブートという用語は、リモート・サーバに保存された ONTAP イメージからブートすることを意味します。ネットブートの準備を行うときは、システムがアクセスできる Web サーバに、 ONTAP 9 ブート・イメージのコピーを追加する必要があります。AFF A900またはFAS9500コントローラモジュールのブートメディアにインストールされているONTAP のバージョンは、シャーシに取り付けて電源がオンになっていないかぎり確認できません。AFF A900またはFAS9500ブートメディア上のONTAP バージョンは、アップグレード対象のAFF A700またはFAS9000システムで実行されているONTAP バージョンと同じで、プライマリブートイメージとバックアップブートイメージの両方が一致している必要があります。イメージを設定するには、ネットブートを実行してからブートメニューの「 wipeconfig 」コマンドを実行します。コントローラモジュールが以前に別のクラスタで使用されていた場合は、「 wipeconfig 」コマンドはブートメディア上の残留設定をクリアします。
@@ -805,6 +825,7 @@ NOTE: 新しくインストールされたソフトウェアを使用するに�
 
 
 
+[[restore-the-hba-configuration]]
 === HBA 構成をリストア
 
 コントローラモジュールに HBA カードが搭載されているかどうかや設定によっては、サイトで使用するために正しく設定する必要があります。
@@ -889,6 +910,7 @@ fcadmin show`
 
 
 
+[[set-the-ha-state-on-the-new-controllers-and-chassis]]
 === 新しいコントローラとシャーシで HA 状態を設定
 
 コントローラとシャーシの HA 状態を確認し、必要に応じてシステム構成に合わせて更新する必要があります。
@@ -922,6 +944,7 @@ fcadmin show`
 
 
 
+[[update-the-switch-rcf-files-to-accommodate-the-new-platforms]]
 == 新しいプラットフォームに対応できるようにスイッチの RCF ファイルを更新します
 
 スイッチは、新しいプラットフォームモデルをサポートする構成に更新する必要があります。
@@ -956,12 +979,14 @@ site_A のコントローラをアップグレードすると、 site_A のス�
 
 
 
+[[configure-the-new-controllers]]
 == 新しいコントローラを設定します
 
 この時点で、新しいコントローラの準備が整い、ケーブル接続が完了している必要があります。
 
 
 
+[[set-the-metrocluster-ip-bootarg-variables]]
 === MetroCluster の bootarg IP 変数を設定します
 
 新しいコントローラモジュールには特定の MetroCluster IP bootarg 値を設定する必要があります。これらの値は、古いコントローラモジュールに設定されている値と一致する必要があります。
@@ -1095,6 +1120,7 @@ setenv bootarg.mcc.dr_partner 537403323
 
 
 
+[[reassign-root-aggregate-disks]]
 === ルートアグリゲートディスクを再割り当てします
 
 前の手順で確認したシステム ID を使用して、ルートアグリゲートディスクを新しいコントローラモジュールに再割り当てします。
@@ -1206,6 +1232,7 @@ aggr0_node_B_1           online          raid_dp, aggr         root, nosnap=on,
 
 
 
+[[boot-up-the-new-controllers]]
 === 新しいコントローラをブートします
 
 新しいコントローラをブートする必要があります。 bootarg 変数が正しいことを確認し、必要に応じて暗号化のリカバリ手順を実行するように注意してください。
@@ -1400,6 +1427,7 @@ https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_create_
 
 
 
+[[verify-and-restore-lif-configuration]]
 === LIF の設定を確認してリストア
 
 アップグレード手順の開始時にマッピングされた適切なノードとポートで LIF がホストされていることを確認します。
@@ -1440,6 +1468,7 @@ vserver config override コマンドで network interface modify コマンドを
 
 
 
+[[switch-back-the-metrocluster-configuration]]
 == MetroCluster 構成をスイッチバックします
 
 このタスクでは、スイッチバック処理を実行し、 MetroCluster 構成が通常運用時の状態に戻ります。site_A のノードはまだアップグレード待ちです。
@@ -1509,6 +1538,7 @@ Remote: cluster_A         Configuration state configured
 
 
 
+[[check-the-health-of-the-metrocluster-configuration]]
 == MetroCluster 構成の健全性を確認します
 
 コントローラモジュールをアップグレードしたら、 MetroCluster 構成の健全性を確認する必要があります。
@@ -1551,6 +1581,7 @@ MetroCluster node show
 
 
 
+[[upgrade-the-nodes-on-sitea]]
 == site_A でノードをアップグレードします
 
 site_A でアップグレードタスクを繰り返します
@@ -1564,6 +1595,7 @@ site_A でアップグレードタスクを繰り返します
 
 
 
+[[restore-tiebreaker-or-mediator-monitoring]]
 == Tiebreaker またはメディエーターの監視をリストアします
 
 MetroCluster 構成のアップグレードが完了したら、 Tiebreaker またはメディエーターユーティリティを使用して監視を再開できます。
@@ -1599,6 +1631,7 @@ link:../install-ip/concept_mediator_requirements.html["MetroCluster IP構成か�
 
 
 
+[[send-a-custom-autosupport-message-after-maintenance]]
 == カスタム AutoSupport メッセージをメンテナンス後に送信します
 
 アップグレードの完了後、ケースの自動作成を再開できるように、メンテナンスの終了を通知する AutoSupport メッセージを送信する必要があります。

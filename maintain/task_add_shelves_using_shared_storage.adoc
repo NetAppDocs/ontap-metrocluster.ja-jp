@@ -24,6 +24,7 @@ ONTAP 9.10.1 以降では、共有のストレージ / MetroCluster スイッチ
 
 
 
+[[sending-a-custom-autosupport-message-prior-to-maintenance]]
 == カスタム AutoSupport メッセージをメンテナンス前に送信する
 
 メンテナンスを実行する前に、 AutoSupport an 問題 message to notify NetApp technical support that maintenance is maintenancing （メンテナンスが進行中であることをネットアップテクニカルサポートに通知する）を実行システム停止が発生したとみなしてテクニカルサポートがケースをオープンしないように、メンテナンスが進行中であることを通知する必要があります。
@@ -54,6 +55,7 @@ ONTAP 9.10.1 以降では、共有のストレージ / MetroCluster スイッチ
 
 
 
+[[verifying-the-health-of-the-metrocluster-configuration]]
 == MetroCluster 構成の健全性の確認
 
 移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります。
@@ -191,6 +193,7 @@ cluster_A::>
 
 
 
+[[applying-the-new-rcf-file-to-the-switches]]
 == 新しい RCF ファイルをスイッチに適用しています
 
 
@@ -203,6 +206,7 @@ NOTE: スイッチがすでに正しく設定されている場合は、以降�
 
 
 
+[[upgrading-rcf-files-on-metrocluster-ip-switches]]
 === MetroCluster IP スイッチでの RCF ファイルのアップグレード
 
 新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
@@ -258,6 +262,7 @@ volumes             ok
 
 
 
+[[resetting-the-cisco-ip-switch-to-factory-defaults]]
 === Cisco IP スイッチを工場出荷時のデフォルトにリセットする
 
 新しいバージョンのソフトウェアと RCF をインストールする前に、 Cisco スイッチの設定を消去し、基本的な設定を完了する必要があります。
@@ -384,6 +389,7 @@ IP_switch-A-1# reload
 
 
 
+[[downloading-and-installing-the-cisco-switch-nx-os-software]]
 === Cisco スイッチの NX-OS ソフトウェアのダウンロードとインストール
 
 MetroCluster IP 構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。
@@ -579,6 +585,7 @@ IP_switch_A_1#
 
 
 
+[[configuring-macsec-encryption-on-cisco-9336c-switches]]
 == Cisco 9336C スイッチでの MACsec 暗号化の設定
 
 必要に応じて、サイト間で実行される WAN ISL ポートに MACsec 暗号化を設定できます。正しい RCF ファイルを適用したあとに MACsec を設定する必要があります。
@@ -588,12 +595,14 @@ NOTE: MACsec 暗号化は、 WAN ISL ポートにのみ適用できます。
 
 
 
+[[licensing-requirements-for-macsec]]
 === MACsec のライセンス要件
 
 MACsec にはセキュリティライセンスが必要です。Cisco NX-OS ライセンス方式の詳細およびライセンスの取得方法と適用方法については、を参照してください https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/licensing/guide/b_Cisco_NX-OS_Licensing_Guide/b_Cisco_NX-OS_Licensing_Guide_chapter_01.html["『 Cisco NX-OS Licensing Guide 』"]
 
 
 
+[[enabling-cisco-macsec-encryption-wan-isls-in-metrocluster-ip-configurations]]
 === MetroCluster IP 構成での Cisco MACsec 暗号化 WAN ISL のイネーブル化
 
 MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化をイネーブルにできます。
@@ -621,6 +630,7 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 
 
+[[disabling-cisco-macsec-encryption]]
 === Cisco MACsec Encryption をディセーブルにします
 
 MetroCluster IP 構成では、 WAN ISL 上の Cisco 9336C スイッチに対して MACsec 暗号化を無効にする必要がある場合があります。
@@ -672,12 +682,14 @@ IP_switch_A_1(config)# copy running-config startup-config
 
 
 
+[[configuring-a-macsec-key-chain-and-keys]]
 === MACsec キーチェーンおよびキーの設定
 
 MACsec キーチェーンの設定の詳細については、ご使用のスイッチのシスコのマニュアルを参照してください。
 
 
 
+[[connecting-the-new-ns224-shelf]]
 == 新しい NS224 シェルフを接続します
 
 .手順

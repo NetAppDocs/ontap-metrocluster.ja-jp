@@ -25,6 +25,7 @@ ONTAP 9.9.1以降では、MetroCluster IP設定をIPルーテッド（レイヤ3
 ====
 
 
+[[isl-requirements-for-layer-2-and-layer-3-networks]]
 == レイヤ2およびレイヤ3ネットワークのISL要件
 
 次の環境レイヤ2およびレイヤ3ネットワーク：
@@ -56,6 +57,7 @@ ONTAP 9.9.1以降では、MetroCluster IP設定をIPルーテッド（レイヤ3
 
 
 
+[[considerations-for-layer-2-networks]]
 == レイヤ2ネットワークに関する考慮事項
 
 MetroClusterバックエンドスイッチがお客様のネットワークに接続されている。
@@ -97,6 +99,7 @@ NOTE: 上記のシステムは、VLAN 100以下を使用して設定できます
 
 
 
+[[considerations-for-layer-3-networks]]
 == レイヤ3ネットワークに関する考慮事項
 
 MetroCluster バックエンドスイッチは、ルータに直接接続するか（次の簡単な例を参照）、または他の介在するスイッチを介してルーティングされた IP ネットワークに接続されます。
@@ -132,6 +135,7 @@ MetroCluster 環境は、の説明に従って標準的な MetroCluster IP 構�
 
 
 
+[[required-settings-for-intermediate-switches]]
 == 中間スイッチに必要な設定
 
 MetroClusterトラフィックが中間ネットワークのISLを経由する場合は、中間スイッチの設定によって、MetroClusterサイト間のパス全体でMetroClusterトラフィック（RDMAおよびストレージ）が必要なサービスレベルを満たしていることを確認する必要があります。

@@ -13,6 +13,7 @@ summary: ほとんどの場合、イーサネットスイッチはONTAPによっ
 
 
 
+[[create-a-switch-entry-so-that-ontap-can-monitor-it]]
 == ONTAPで監視できるようにスイッチエントリを作成します。
 
 .このタスクについて
@@ -26,6 +27,7 @@ system switch ethernet create -device DeviceName -address 1.2.3.4 -snmp-version 
 
 
 
+[[disable-monitoring-without-deleting-the-switch]]
 == スイッチを削除せずに監視を無効にする
 
 特定のスイッチの監視を一時停止または停止し、今後の監視用に残しておく場合は、パラメータを削除するのではなく変更します `is-monitoring-enabled-admim`。
@@ -40,6 +42,7 @@ system switch ethernet modify -device DeviceName -is-monitoring-enabled-admin fa
 
 
 
+[[remove-a-switch-you-no-longer-need]]
 == 不要になったスイッチを削除
 
 切断されたスイッチまたは不要になったスイッチを削除する場合に使用し `system switch ethernet delete`ます。

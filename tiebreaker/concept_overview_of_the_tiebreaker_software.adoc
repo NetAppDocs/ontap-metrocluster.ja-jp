@@ -15,6 +15,7 @@ NetApp MetroCluster Tiebreaker ソフトウェアの概要、およびどのよ�
 
 
 
+[[detecting-failures-with-netapp-metrocluster-tiebreaker-software]]
 == NetApp MetroCluster Tiebreaker ソフトウェアによる障害の検出
 
 Tiebreaker ソフトウェアは、 2 つのクラスタおよびクラスタ間の接続ステータスを第 3 のサイトから監視する場合にのみ使用します。Tiebreakerソフトウェアは3番目のサイトのLinuxホストに配置され、クラスタ内の各パートナーでISL障害（サイト間リンクが停止した場合）とサイト障害を区別できます。
@@ -25,12 +26,14 @@ Tiebreakerソフトウェアでは、最大15個のMetroCluster構成を同時�
 
 
 
+[[how-the-tiebreaker-software-detects-site-failures]]
 == Tiebreaker ソフトウェアでサイト障害を検出する方法
 
 NetApp MetroCluster Tiebreaker ソフトウェアは、 MetroCluster 構成のノードおよびクラスタに到達できるかどうかをチェックして、サイト障害の有無を判断します。また、 Tiebreaker ソフトウェアは、特定の状況でアラートをトリガーします。
 
 
 
+[[components-monitored-by-the-tiebreaker-software]]
 === Tiebreaker ソフトウェアで監視されるコンポーネント
 
 Tiebreaker ソフトウェアは、 IP ネットワークでホストされるノード管理 LIF およびクラスタ管理 LIF への複数のパスを経由する冗長接続を確立することによって、 MetroCluster 構成内の各コントローラを監視します。
@@ -49,6 +52,7 @@ NOTE: サバイバークラスタが FC （ NV インターコネクトとスト
 
 
 
+[[failure-scenarios-during-which-tiebreaker-software-triggers-an-alert]]
 === Tiebreaker ソフトウェアがアラートをトリガーする障害シナリオ
 
 Tiebreaker ソフトウェアは、ディザスタサイトのクラスタ（すべてのノード）が停止しているか到達不能であり、サバイバーサイトのクラスタが「 AllLinksSevered 」ステータスを示している場合、アラートをトリガーします。
@@ -68,12 +72,14 @@ link:concept_risks_and_limitation_of_using_mcc_tiebreaker_in_active_mode.html["M
 
 
 
+[[how-the-tiebreaker-software-detects-intersite-connectivity-failures]]
 == Tiebreaker ソフトウェアでサイト間接続障害を検出する方法
 
 MetroCluster Tiebreaker ソフトウェアは、サイト間のすべての接続が失われると警告します。
 
 
 
+[[types-of-network-paths]]
 === ネットワークパスのタイプ
 
 構成によっては、 MetroCluster 構成の 2 つのクラスタ間のネットワークパスに次の 3 つの種類が存在します。
@@ -94,12 +100,14 @@ MetroCluster Tiebreaker ソフトウェアは、サイト間のすべての接�
 
 
 
+[[monitoring-intersite-connectivity]]
 === サイト間接続を監視する
 
 Tiebreaker ソフトウェアは、サイト間接続のステータスをノードから定期的に取得します。NV インターコネクト接続が失われ、クラスタ間ピアリングが ping に応答しない場合、クラスタはサイトが分離されているとみなし、 Tiebreaker ソフトウェアは「 AllLinksSevered 」というアラートをトリガーします。クラスタが「 AllLinksSevered 」ステータスを識別し、もう一方のクラスタがネットワーク経由で到達できない場合、 Tiebreaker ソフトウェアは「 `d isaster 」としてアラートをトリガーします。
 
 
 
+[[how-different-disaster-types-affect-tiebreaker-software-detection-time]]
 == 災害のタイプが Tiebreaker ソフトウェアの検出時間に与える影響
 
 ディザスタリカバリへの対応を適切に計画するために、 MetroCluster Tiebreaker ソフトウェアは災害を検出するまでに一定の時間を要します。この時間は「ディザスター検出時間」です。MetroCluster Tiebreaker ソフトウェアは、災害発生から 30 秒以内にサイト障害を検出し、ディザスタリカバリ処理をトリガーして災害に関する通知を送信します。
@@ -114,12 +122,14 @@ Tiebreaker ソフトウェアは、サイト間接続のステータスをノー
 
 
 
+[[power-loss]]
 === 電源喪失
 
 Tiebreaker ソフトウェアは、ノードが停止するとすぐにアラートをトリガーします。電源に障害が発生すると、クラスタ間ピアリング、 NV インターコネクト、メールボックスディスクなどのすべての接続と更新が停止します。クラスタが到達不能になってから 5 秒のデフォルトのサイレント時間を含めて、災害が検出され、トリガーがトリガーされるまでの時間は 30 秒以内にする必要があります。
 
 
 
+[[panic]]
 === パニック
 
 MetroCluster FC構成では、サイト間のNVインターコネクト接続が停止し、サバイバーサイトのステータスが「AllLinksSevered」になると、Tiebreakerソフトウェアによってアラートがトリガーされます。これはコアダンププロセスが完了するまで発生しません。このシナリオでは、クラスタが到達不能になってから災害が検出されるまでの時間は、コアダンププロセスにかかる時間より長いか、ほぼ同じです。多くの場合、検出時間は 30 秒を超えます。
@@ -128,18 +138,21 @@ MetroCluster FC構成では、サイト間のNVインターコネクト接続が
 
 
 
+[[halt-or-reboot]]
 === 停止またはリブートします
 
 Tiebreaker ソフトウェアは、ノードが停止し、サバイバーサイトのステータスが「 AllLinksSevered 」になった場合にのみアラートをトリガーします。クラスタが到達不能になってから災害が検出されるまでの時間は、 30 秒を超える可能性があります。このシナリオで災害の検出にかかる時間は、ディザスタサイトのノードがシャットダウンされるまでの時間によって異なります。
 
 
 
+[[loss-of-fc-switches-at-the-disaster-site-fabric-attached-metrocluster-configuration]]
 === ディザスタサイトの FC スイッチの喪失（ファブリック接続 MetroCluster 構成）
 
 Tiebreaker ソフトウェアは、ノードが停止するとアラートをトリガーします。FC スイッチが失われると、ノードはディスクへのパスのリカバリを約 30 秒間試行します。この間、ノードはピアリングネットワーク上で稼働し、応答しています。両方の FC スイッチが停止してディスクへのパスをリカバリできない場合、ノードは MultiDiskFailure エラーを生成して停止します。FC スイッチの障害からノードが MultiDiskFailure エラーを生成するまでの時間は約 30 秒長くなります。この 30 秒を災害の検出時間に追加する必要があります。
 
 
 
+[[about-the-tiebreaker-cli-and-man-pages]]
 == Tiebreaker の CLI とマニュアルページについて
 
 Tiebreaker の CLI では、 Tiebreaker ソフトウェアをリモートで設定したり、 MetroCluster 構成を監視したりするためのコマンドを実行できます。

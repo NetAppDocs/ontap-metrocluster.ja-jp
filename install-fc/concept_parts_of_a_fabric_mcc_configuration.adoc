@@ -15,6 +15,7 @@ MetroCluster 構成を計画するときは、ハードウェアコンポーネ�
 
 
 
+[[disaster-recovery-dr-groups]]
 == ディザスタリカバリ（ DR ）グループ
 
 ファブリック MetroCluster 構成は、 MetroCluster 構成のノード数に応じて、 1 つまたは 2 つの DR グループで構成されます。各 DR グループは 4 つのノードで構成されます。
@@ -33,6 +34,7 @@ image::../media/mcc_dr_groups_4_node.gif[MetroCluster DRは4つのノードを�
 
 
 
+[[key-hardware-elements]]
 == 主要なハードウェア要素
 
 MetroCluster 構成には、中核をなす次のハードウェアが含まれます。
@@ -57,6 +59,7 @@ FC スイッチは、 2 つのサイト間の長距離基幹 ISL の役割を果
 
 
 
+[[eight-node-fabric-metrocluster-configuration]]
 == 8 ノードのファブリック MetroCluster 構成
 
 8 ノードの構成は、地理的に離れたサイトにある 2 つのクラスタで構成されています。cluster_A は 1 つ目の MetroCluster サイトに配置されています。cluster_B は 2 つ目の MetroCluster サイトに配置されています。各サイトには、 SAS ストレージスタックが 1 つあります。追加のストレージスタックもサポートされますが、図では各サイトに 1 つしかありません。HA ペアは、クラスタインターコネクトスイッチのないスイッチレスクラスタとして構成されています。スイッチを使用する構成もサポートされますが、ここでは使用していません。
@@ -79,6 +82,7 @@ SVM の設定はクラスタピアリングネットワーク経由でレプリ�
 
 
 
+[[four-node-fabric-metrocluster-configuration]]
 == 4 ノードのファブリック MetroCluster 構成
 
 次の図は、 4 ノードのファブリック MetroCluster 構成を単純化したものです。一部の接続では、コンポーネント間の複数の冗長接続を 1 本の線で表しています。データネットワーク接続と管理ネットワーク接続は表示されません。
@@ -91,6 +95,7 @@ image::../media/mcc_hardware_architecture_cluster_a_with_7500n.gif[MetroCluster�
 
 
 
+[[two-node-fabric-metrocluster-configuration]]
 == 2 ノードのファブリック MetroCluster 構成
 
 次の図は、 2 ノードのファブリック MetroCluster 構成を単純化したものです。一部の接続では、コンポーネント間の複数の冗長接続を 1 本の線で表しています。データネットワーク接続と管理ネットワーク接続は表示されません。

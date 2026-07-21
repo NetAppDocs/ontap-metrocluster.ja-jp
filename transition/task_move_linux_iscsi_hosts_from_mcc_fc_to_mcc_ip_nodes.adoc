@@ -21,6 +21,7 @@ MetroCluster ノードを FC から IP に移行したあと、 iSCSI ホスト�
 
 
 
+[[step-1-set-up-new-iscsi-connections]]
 == 手順1：新しいiSCSI接続をセットアップする
 
 iSCSI接続を移行するには、新しいノードへの新しいiSCSI接続をセットアップします。
@@ -184,6 +185,7 @@ size=2.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
 ----
 
 
+[[step-2-add-the-new-nodes-as-reporting-nodes]]
 == 手順2：新しいノードをレポートノードとして追加する
 
 新しいノードへの接続をセットアップしたら、新しいノードをレポートノードとして追加します。
@@ -373,6 +375,7 @@ up        secondary  sdah    host5        iscsi_lf__n3_p1_
 
 
 
+[[step-3-remove-reporting-nodes-and-rescan-paths]]
 == 手順3：レポートノードを削除してパスを再スキャンする
 
 レポートノードを削除し、パスを再スキャンする必要があります。

@@ -15,6 +15,7 @@ summary: クラスタインターコネクトおよびバックエンドMetroClu
 
 
 
+[[reset-the-switch-reset-the-nvidia-ip-sn2100-switch-to-factory-defaults]]
 == [[Reset-The switch]] NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセットします
 
 スイッチを工場出荷時のデフォルト設定にリセットするには、次のいずれかの方法を選択します。
@@ -25,6 +26,7 @@ summary: クラスタインターコネクトおよびバックエンドMetroClu
 
 
 
+[[rcf-file-optionreset-the-switch-using-the-rcf-file-option]]
 === [RCFファイルオプション]] RCFファイルオプションを使用してスイッチをリセットします
 
 新しいRCF設定をインストールする前に、NVIDIAスイッチ設定をリバートする必要があります。
@@ -112,6 +114,7 @@ Enter yes or no: yes
 
 
 
+[[cumulus-install-option-download-and-install-the-cumulus-software]]
 === [[Cumulus-install-option]] Cumulusソフトウェアのダウンロードとインストール
 
 .このタスクについて
@@ -297,6 +300,7 @@ cumulus@cumulus:~$ sudo reboot
 
 
 
+[[download-and-installdownload-and-install-the-nvidia-rcf-files]]
 == [[Download-And-install]] NVIDIA RCFファイルをダウンロードしてインストールします
 
 MetroCluster IP構成の各スイッチにスイッチのRCFファイルを生成してインストールする必要があります。
@@ -406,6 +410,7 @@ NOTE: 複数のスイッチポートにDACオプションを設定する場合�
 
 
 
+[[set-forward-error-correction-for-systems-using-25-gbps-connectivity]]
 == 25Gbps接続を使用するシステムの前方エラー修正の設定
 
 25Gbps接続を使用するシステムの場合は、RCFの適用後に前方誤り訂正（FEC）パラメータを手動でoffに設定します。この設定はRCFでは適用されません。
@@ -426,6 +431,7 @@ NOTE: 複数のスイッチポートにDACオプションを設定する場合�
 
 
 
+[[set-the-switch-port-speed-for-the-metrocluster-ip-interfaces]]
 == MetroCluster IPインターフェイスのスイッチポート速度の設定
 
 .このタスクについて
@@ -475,6 +481,7 @@ cumulus@Switch-A-1:mgmt:~$
 
 
 
+[[disable-unused-isl-ports-and-port-channels]]
 == 未使用のISLポートとポートチャネルを無効にする
 
 NetAppでは、不要なヘルスアラートを回避するために、未使用のISLポートとポートチャネルを無効にすることを推奨します各ポートまたはポートチャネルを個別にディセーブルにする必要があります。コマンドで複数のポートまたはポート範囲を指定することはできません。

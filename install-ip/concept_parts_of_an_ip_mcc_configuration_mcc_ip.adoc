@@ -15,6 +15,7 @@ MetroCluster IP 構成を計画するときは、ハードウェアコンポー�
 
 
 
+[[key-hardware-elements]]
 == 主要なハードウェア要素
 
 MetroCluster IP の設定には、次の主要なハードウェア要素が含まれます。
@@ -45,6 +46,7 @@ image::../media/mcc_ip_hardware_architecture_mcc_ip.gif[MetroCluster IP ハー�
 
 
 
+[[disaster-recovery-dr-groups]]
 == ディザスタリカバリ（ DR ）グループ
 
 MetroCluster IP 構成は、 4 つのノードからなる 1 つの DR グループで構成されます。
@@ -55,6 +57,7 @@ image::../media/mcc_dr_groups_4_node.gif[4ノード構成のMetroCluster DRグ�
 
 
 
+[[illustration-of-the-local-ha-pairs-in-a-metrocluster-configuration]]
 == MetroCluster 構成のローカル HA ペアの図
 
 各 MetroCluster サイトは、 HA ペアとして構成されているストレージコントローラで構成されています。これによってローカルでの冗長性が実現し、一方のストレージコントローラに障害が発生した場合はローカルの HA パートナーがテイクオーバーできるようになります。このような障害には、 MetroCluster のスイッチオーバー処理は必要ありません。
@@ -68,6 +71,7 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-concepts/home.html["
 
 
 
+[[illustration-of-the-metrocluster-ip-and-cluster-interconnect-network]]
 == MetroCluster IP およびクラスタインターコネクトネットワークの図
 
 ONTAP クラスタには、通常、クラスタ内のノード間のトラフィック用にクラスタインターコネクトネットワークが含まれています。MetroCluster IP 構成では、 MetroCluster サイト間のデータレプリケーショントラフィックにもこのネットワークが使用されます。
@@ -89,6 +93,7 @@ link:concept_considerations_mcip.html["MetroCluster IP 構成に関する考慮�
 
 
 
+[[illustration-of-the-cluster-peering-network]]
 == クラスタピアリングネットワークの図
 
 MetroCluster 構成の 2 つのクラスタは、お客様のクラスタピアリングネットワーク経由でピアリングされています。クラスタピアリングは、サイト間の Storage Virtual Machine （ SVM 、旧 Vserver ）の同期ミラーリングをサポートしています。

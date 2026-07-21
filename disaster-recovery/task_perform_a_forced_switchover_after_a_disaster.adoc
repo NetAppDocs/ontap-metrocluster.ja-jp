@@ -22,6 +22,7 @@ summary: 災害が発生した場合にデータサービスを安全に継続�
 
 
 
+[[fencing-off-the-disaster-site]]
 == ディザスタサイトのフェンシング
 
 災害後にディザスタサイトノードの交換が必要となった場合は、サイトがサービスを再開しないようにノードを停止する必要があります。そうしないと、交換用手順が完了する前にクライアントがノードへのアクセスを開始した場合に、データが破損するおそれがあります。
@@ -38,6 +39,7 @@ summary: 災害が発生した場合にデータサービスを安全に継続�
 
 
 
+[[performing-a-forced-switchover]]
 == 強制スイッチオーバーの実行
 
 スイッチオーバープロセスによって、テスト時とメンテナンス時のノンストップオペレーションが実現するだけでなく、コマンド 1 つでサイト障害からリカバリできます。
@@ -93,12 +95,14 @@ mcc1A::> metrocluster operation show
 
 
 
+[[output-for-the-storage-aggregate-plex-show-command-is-indeterminate-after-a-metrocluster-switchover]]
 == MetroCluster スイッチオーバー後に storage aggregate plex show コマンドの出力が確定しない
 
 MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。
 
 
 
+[[accessing-volumes-in-nvfail-state-after-a-switchover]]
 == スイッチオーバー後に NVFAIL 状態のボリュームにアクセスする場合
 
 スイッチオーバー後に 'volume modify コマンドの -in-nvfailed-state パラメータをリセットし ' クライアントがデータにアクセスする制限を解除することにより 'NVFAIL 状態をクリアする必要があります

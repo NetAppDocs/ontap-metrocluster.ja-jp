@@ -15,6 +15,7 @@ summary: 移行プロセスを開始する前に、構成が要件を満たし�
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -29,6 +30,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[general-requirements-for-disruptive-fc-to-ip-transition]]
 == FC から IP への移行を停止するための一般的な要件
 
 既存の MetroCluster FC 構成が次の要件を満たしている必要があります。
@@ -52,12 +54,14 @@ MetroCluster サイトから 6 つのすべてのノードのリモートコン�
 
 
 
+[[drive-shelf-reuse-and-drive-requirements-for-disruptive-fc-to-ip-transition]]
 == FC から IP への移行を停止させるために、ドライブシェルフを再利用し、ドライブ要件を満たしておく必要があります
 
 ストレージシェルフに利用可能な十分なスペアドライブとルートアグリゲートスペースがあることを確認する必要があります。
 
 
 
+[[reusing-the-existing-storage-shelves]]
 === 既存のストレージシェルフを再利用する
 
 この手順を使用する場合、既存のストレージシェルフは新しい構成で使用できるように保持されます。node_A_1 - FC と node_B_1 - FC を削除した場合、既存のドライブシェルフは cluster_B の node_A_1 - IP と node_B_2 - IP に接続され、 node_B_1 - IP と node_B_2 の node_B_2 - IP に接続されます
@@ -74,6 +78,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 
 
+[[storage-requirements-for-the-additional-controllers]]
 === 追加のコントローラのストレージ要件
 
 2 つのコントローラ（ node_B_2 - IP と node_B_2 - IP ）の構成が 2 ノードから 4 ノードに変更されるため、必要に応じてストレージを追加する必要があります。
@@ -106,6 +111,7 @@ https://hwu.netapp.com["NetApp Hardware Universe の略"^]
 
 
 
+[[workflow-for-disruptive-transition]]
 == 停止を伴う移行のワークフロー
 
 移行を成功させるには、特定のワークフローに従う必要があります。
@@ -116,6 +122,7 @@ image::../media/workflow_2n_transition_bsaic.png[2ノード移行のワークフ
 
 
 
+[[mapping-ports-from-the-metrocluster-fc-nodes-to-the-metrocluster-ip-nodes]]
 == MetroCluster FC ノードから MetroCluster IP ノードへのポートのマッピング
 
 MetroCluster FC ノードのポートと LIF の設定を、交換する MetroCluster IP ノードと互換性があるように調整する必要があります。
@@ -566,6 +573,7 @@ SAN
 
 
 
+[[preparing-the-metrocluster-ip-controllers]]
 == MetroCluster IP コントローラの準備
 
 4 つの新しい MetroCluster IP ノードを準備し、正しいバージョンの ONTAP をインストールする必要があります。
@@ -687,6 +695,7 @@ wipeconfig 処理が完了すると、ノードは自動的にブートメニュ
 
 
 
+[[verifying-the-health-of-the-metrocluster-fc-configuration]]
 == MetroCluster FC 構成の健全性の確認
 
 移行を実行する前に、 MetroCluster FC 構成の健全性と接続を確認する必要があります
@@ -734,6 +743,7 @@ https://mysupport.netapp.com/site/tools/tool-eula/activeiq-configadvisor["ネッ
 
 
 
+[[removing-the-existing-configuration-from-the-tiebreaker-or-other-monitoring-software]]
 == Tiebreaker またはその他の監視ソフトウェアから既存の設定を削除します
 
 スイッチオーバーを開始できる MetroCluster Tiebreaker 構成や他社製アプリケーション（ ClusterLion など）で既存の構成を監視している場合は、移行の前に Tiebreaker またはその他のソフトウェアから MetroCluster 構成を削除する必要があります。

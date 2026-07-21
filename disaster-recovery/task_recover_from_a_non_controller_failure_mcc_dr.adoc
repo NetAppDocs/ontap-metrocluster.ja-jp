@@ -21,6 +21,7 @@ summary: ディザスタサイトの機器に対して必要なメンテナン�
 
 
 
+[[enable-console-logging]]
 == コンソールログを有効にする
 
 NetAppでは、使用しているデバイスでコンソールロギングをイネーブルにし、この手順を実行する際に次のアクションを実行することを強く推奨します。
@@ -35,6 +36,7 @@ NetAppでは、使用しているデバイスでコンソールロギングを�
 
 
 
+[[healing-the-configuration-in-a-metrocluster-configuration]]
 == MetroCluster構成での構成の修復
 
 MetroCluster FC構成では、特定の順序で修復処理を実行して、スイッチオーバー後にMetroCluster機能をリストアします。
@@ -57,6 +59,7 @@ MetroCluster IP構成では、スイッチオーバー後に修復処理が自�
 
 
 
+[[healing-the-data-aggregates]]
 === データアグリゲートの修復
 
 ディザスタサイトのハードウェアを修理および交換したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、（修復された）ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。
@@ -124,6 +127,7 @@ aggr_b2   227.1GB  227.1GB   0%    online  0      mcc1-a2      raid_dp, mirrored
 
 
 
+[[healing-the-root-aggregates-after-a-disaster]]
 === 災害発生後のルートアグリゲートの修復
 
 データアグリゲートの修復が完了したら、スイッチバック処理に備えてルートアグリゲートを修復する必要があります。
@@ -164,6 +168,7 @@ mcc1A::> metrocluster operation show
 
 
 
+[[verifying-that-your-system-is-ready-for-a-switchback]]
 == スイッチバックに向けたシステムの事前チェック
 
 システムがすでにスイッチオーバー状態にある場合は、「 -simulate 」オプションを使用して、スイッチバック処理の結果をプレビューできます。
@@ -241,6 +246,7 @@ MetroCluster switchback -simulate
 
 
 
+[[example-of-verification-results]]
 === 検証結果の例
 
 次の例は、スイッチバック処理を正常に実行できる場合の出力を示しています。
@@ -272,6 +278,7 @@ Job ID Name                 Vserver    Node           State
 ----
 
 
+[[performing-a-switchback]]
 == スイッチバックを実行しています
 
 MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。
@@ -372,6 +379,7 @@ ONTAP 8.3 では、失われた SnapMirror 構成を MetroCluster スイッチ�
 
 
 
+[[verifying-a-successful-switchback]]
 == スイッチバックが成功したことを確認する
 
 スイッチバックの実行後に、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。
@@ -469,6 +477,7 @@ MetroCluster operation show コマンドの出力に記載されている推奨�
 
 
 
+[[deleting-stale-aggregate-listings-after-switchback]]
 == スイッチバック後の古いアグリゲートリストの削除
 
 スイッチバック後に古いアグリゲートが残っていることがあります。古いアグリゲートとは、 ONTAP からは削除されたものの、情報がまだディスクに記録されたままのアグリゲートのことです。古いアグリゲートは「 nodeshell aggr status -r 」コマンドで表示されますが、「 storage aggregate show 」コマンドでは表示されません。これらのレコードを削除して、表示されないようにすることができます。
