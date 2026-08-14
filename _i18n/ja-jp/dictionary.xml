@@ -13312,12 +13312,8 @@
   <block id="8379e83fc1ad68bfb1ad877f1b7fda6b" category="list-text">ONTAP 側でSNMPv3ユーザをセットアップします。</block>
   <block id="6b9f542dd155c40aa5e4484b5ff61711" category="list-text">新しいSNMPv3ユーザで監視するようにCSHMを設定します。</block>
   <block id="f1d85c8d2abe8fba947527035ed0f381" category="list-text">CSHM ポーリング期間を待った後、イーサネット スイッチのシリアル番号が入力されていることを確認します。</block>
-  <block id="0fdfed50bdfb7a964741d7f6016dd332" category="paragraph">Cisco 9336C-FX2スイッチでSNMPv3ユーザ名SNMPv3_userを設定します。</block>
   <block id="d4d693d9dd779d0daf149c2e448b60b2" category="list-text">新しく作成したSNMPv3ユーザで照会するシリアル番号が、CSHMポーリング期間の完了後に前の手順で説明したものと同じであることを確認します。</block>
   <block id="05918726f836c344025fecbcf0275f1b" category="open-title">NVIDIA - CL 5.4.0</block>
-  <block id="c19095c0c8945d1d4e4e73ec7a11354c" category="paragraph">CLI 5.4.0 を実行している NVIDIA SN2100 スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します。</block>
-  <block id="cd12738ab621b27db86ca1b02e9d118c" category="open-title">NVIDIA - CL 5.11.0</block>
-  <block id="1d478fc1ce1613a790d5d77707c188f6" category="paragraph">CLI 5.11.0 を実行している NVIDIA SN2100 スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します。</block>
   <block id="8ae4eeaa7baed19106cc30ea02483c5e" category="paragraph">イーサネットスイッチヘルスモニタ（CSHM）は、クラスタネットワークスイッチとストレージネットワークスイッチの動作の健全性を確認し、デバッグ用にスイッチのログを収集します。</block>
   <block id="4ae61f4d1ec2f0efafd8ee4274e49ccf" category="section-title">MetroCluster IP構成でCSHMを構成する際の重要な注意事項</block>
   <block id="b38569be2d36a20e8902840c1ea976fe" category="paragraph">このセクションでは、Cisco、Broadcom、NVIDIA SN2100スイッチでSNMPv3とログ収集を設定するための一般的な手順について説明します。MetroCluster構成でサポートされているスイッチファームウェアバージョンに応じた手順に従う必要があります。<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>サポートされているファームウェアのバージョンを確認します。</block>
@@ -14641,4 +14637,15 @@
   <block id="2a24c722355bf7db1679e018b746b7b0" category="list-text">この表は、*共有 MetroCluster/HA ポート*と*共有クラスタ/HA ポート*を使用するすべてのプラットフォームモデルを示しています。この手順では、すべての組み合わせがサポートされているわけではありません。<block ref="69c5d8418076cf16192dc8b27a9666cd" category="inline-link-macro-rx"></block>を参照して、ご使用の更新の組み合わせがサポートされているかどうかを確認してください。</block>
   <block id="04fa61126d631fa1cb66d18aff511858" category="list-text">この手順を使用すると、NSOベースの自動スイッチオーバーおよびスイッチバックを使用して、4ノードMetroCluster FC構成のコントローラーをアップグレードできます。アグリゲート再配置（ARL）を使用してコントローラのアップグレードを実行する場合は、<block ref="2dcc0fc2978fe358e486022a4ab03dca" category="inline-link-macro-rx"></block>を参照してください。NSOベースの自動化手順を使用することをお勧めします。</block>
   <block id="f7f3cd01961c53f33c89b788147d8de3" category="list-text">古いコントローラーから切断されたその他の接続をすべて、新しいコントローラーモジュールにケーブルで接続してください。</block>
+  <block id="2fb65189695e9496f507ebb44d5b6cb6" category="paragraph">スイッチバックを実行する前に、LIFが適切なノードとポートでホストされていることを確認してください。</block>
+  <block id="542e234aa223d3b0ecca11dacf8e46ed" category="list-text">スイッチバックを実行する前に、LIFが適切なノードとポートでホストされていることを確認してください。</block>
+  <block id="3dcbbe108abc6bdf7036466d9fe35058" category="admonition">スイッチバックを実行する前に、新しいノード上のデータ LIF の位置が正しいことを確認する必要があります。設定をスイッチバックすると、ONTAP は LIF が使用するホームポートでのトラフィックの再開を試みます。ホームポート接続のスイッチポートおよび VLAN の設定が正しくない場合、I/O 障害が発生することがあります。LIF を正しいノードまたはポートに配置する際に問題が発生した場合は、スイッチバックを続行せず、NetApp テクニカルサポートにお問い合わせください。</block>
+  <block id="108f2a315310ceff812cf39f143ca95b" category="list-text">以下のチェックを実行して、2つのクラスター間でスイッチオーバーが正常に機能していることを確認してください。</block>
+  <block id="59a93fe50b25a85e88bed38108e0196c" category="list-text">DR クラスターから、稼働中のクラスターから DR クラスターへのスイッチオーバーが可能かどうかを確認します。</block>
+  <block id="59ded25db2e6cefacbcb41c378e0b709" category="list-text">稼働中のクラスターから、DR クラスターから稼働中のクラスターへのスイッチオーバーが可能かどうかを確認します。</block>
+  <block id="2c7ea164e9295a29d20e890710cfcc1d" category="admonition">MetroCluster FC環境では、コマンド出力において「connections」は「not-applicable」と表示されるはずです。</block>
+  <block id="706bc34d657098e3dcd81db43d280c53" category="paragraph">Cisco Nexus スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します：</block>
+  <block id="5a523817621c85574dfcbf0b11c07075" category="paragraph">CL 5.4.0 を実行している NVIDIA Cumulus スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します：</block>
+  <block id="4451c276144ff12f4a59bad51c0a1181" category="open-title">NVIDIA - CL 5.11.0+</block>
+  <block id="d1f08b7bd68bdc79984e047bc1939c5d" category="paragraph">CLI 5.11.0 以降を実行している NVIDIA Cumulus スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します：</block>
 </blocks>

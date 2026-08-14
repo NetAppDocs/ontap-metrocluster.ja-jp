@@ -87,6 +87,55 @@ vs1a           data    sync-source
 MetroCluster operation show コマンドの出力に記載されている推奨修正を実行します
 
 |===
+. 以下のチェックを実行して、2つのクラスター間でスイッチオーバーが正常に機能していることを確認してください。
++
+.. DR クラスターから、稼働中のクラスターから DR クラスターへのスイッチオーバーが可能かどうかを確認します。
++
+MetroCluster switchover -simulate
+
+.. 稼働中のクラスターから、DR クラスターから稼働中のクラスターへのスイッチオーバーが可能かどうかを確認します。
++
+MetroCluster switchover -simulate
+
+.. MetroCluster コンポーネントが正常であることを確認します。
++
+「 MetroCluster check run 」のようになります
+
++
+[listing]
+----
+cluster_A::*> metrocluster check run
+----
++
+この処理はバックグラウンドで実行されます。
+
+.. のあとに入力します `metrocluster check run` 処理が完了しました。run：
++
+MetroCluster チェックショー
+
++
+約 5 分後に、次の結果が表示されます。
+
++
+[listing]
+----
+cluster_A:::*> metrocluster check show
+
+Component           Result
+------------------- ---------
+nodes               ok
+lifs                ok
+config-replication  ok
+aggregates          ok
+clusters            ok
+connections         ok
+volumes             ok
+7 entries were displayed.
+----
++
+
+NOTE: MetroCluster FC環境では、コマンド出力において「connections」は「not-applicable」と表示されるはずです。
 
 
-上記の手順を繰り返して、逆方向へのスイッチバックを実行する必要があります。site_A が site_B のスイッチオーバーを行った場合は、 site_B で site_A のスイッチオーバーを行います
+
+
