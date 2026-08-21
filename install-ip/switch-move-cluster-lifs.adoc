@@ -1,0 +1,329 @@
+---
+permalink: install-ip/switch-move-cluster-lifs.html 
+sidebar: sidebar 
+keywords: ip, switch, configuring, configure, factory defaults, cisco, MACsec encryption, 9336C, 9336, forward error correction, fec 
+summary: スイッチのファームウェアまたは参照構成ファイル（RCF）を更新する際には、アップグレード中にクラスタの動作を中断させないように、クラスタLIFをパートナースイッチに移動します。 
+---
+= MetroCluster IP スイッチの交換、RCF の変更、またはファームウェアのアップデートの前にクラスター LIF を移動する
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+MetroCluster IPスイッチを交換したり、スイッチのファームウェアや参照構成ファイル（RCF）を変更したりする場合は、クラスタLIFをパートナースイッチに移動して、クラスタの無停止運用を実現する必要があります。
+
+.このタスクについて
+* スイッチのファームウェアをアップグレードまたはダウングレードする前、スイッチのRCFを交換する前、またはIPスイッチを交換する前に、この作業を実行する必要があります。
++
+
+NOTE: スイッチを初めて設定する場合は、スイッチの交換作業を行わない限り、この手順はスキップできます。
+
+* このタスクでは、ONTAP コマンドとスイッチコマンドの両方を使用する必要があります。特に指定がない限り、ONTAP コマンドが使用されます。
+* この手順で使用する例では、IP_switch_A_1 をアップグレードするため、クラスタ LIF を IP_switch_A_2 に移行する必要があります。
+* この手順のコマンド出力例は、Cisco スイッチの詳細を示しています。出力は、スイッチの機種やメーカーによって異なる場合があります。
+
+
+.手順
+. 各ノード上のクラスタスイッチに接続されているクラスタポートを表示します。
++
+「 network device-discovery show 」のように表示されます
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> network device-discovery show
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node_A_2/cdp
+            e10b   IP_switch_A_2
+                                             Ethernet1/18      N9K-C9336C-FX2
+            e2a    IP_switch_A_1
+                                             Ethernet1/18      N9K-C9336C-FX2
+            e4a    IP_switch_A_1
+                                             Ethernet1/2       N9K-C9336C-FX2
+            e4b    IP_switch_A_2
+                                             Ethernet1/2       N9K-C9336C-FX2
+            e5b    IP_switch_A_1
+                                             Ethernet1/10      N9K-C9336C-FX2
+            e7b    IP_switch_A_2
+                                             Ethernet1/10      N9K-C9336C-FX2
+            e9a    local_network_switch
+                                             Ethernet1/5       N9K-C9372PX
+            e9b    local_network_switch
+                                             Ethernet1/6       N9K-C9372PX
+node_A_2/lldp
+            e0M    mgmt_switch (00:08:2f:16:8e:02)
+                                             Eth121/1/1        -
+            e10b   IP_switch_A_2 (cc:90:70:e8:73:a0)
+                                             Ethernet1/18      -
+            e2a    IP_switch_A_1 (cc:90:70:e8:50:48)
+                                             Ethernet1/18      -
+            e5b    IP_switch_A_1 (cc:90:70:e8:50:28)
+                                             Ethernet1/10      -
+            e7b    IP_switch_A_2 (cc:90:70:e8:73:80)
+                                             Ethernet1/10      -
+            e9a    local_network_switch (88:f0:31:86:fe:a8)
+                                             Ethernet1/5       -
+            e9b    local_network_switch (88:f0:31:86:fe:a9)
+                                             Ethernet1/6       -
+node_A_1/cdp
+            e10b   IP_switch_A_2
+                                             Ethernet1/17      N9K-C9336C-FX2
+            e2a    IP_switch_A_1
+                                             Ethernet1/17      N9K-C9336C-FX2
+            e4a    IP_switch_A_1
+                                             Ethernet1/1       N9K-C9336C-FX2
+            e4b    IP_switch_A_2
+                                             Ethernet1/1       N9K-C9336C-FX2
+            e5b    IP_switch_A_1
+                                             Ethernet1/9       N9K-C9336C-FX2
+            e7b    IP_switch_A_2
+                                             Ethernet1/9       N9K-C9336C-FX2
+            e9a    local_network_switch
+                                             Ethernet1/3       N9K-C9372PX
+            e9b    local_network_switch
+                                             Ethernet1/4       N9K-C9372PX
+node_A_1/lldp
+            e0M    mgmt_switch (00:08:2f:16:8e:03)
+                                             Eth121/1/2        -
+            e10b   IP_switch_A_2 (cc:90:70:e8:73:9c)
+                                             Ethernet1/17      -
+            e2a    IP_switch_A_1 (cc:90:70:e8:50:44)
+                                             Ethernet1/17      -
+            e5b    IP_switch_A_1 (cc:90:70:e8:50:24)
+                                             Ethernet1/9       -
+            e7b    IP_switch_A_2 (cc:90:70:e8:73:7c)
+                                             Ethernet1/9       -
+            e9a    local_network_switch (88:f0:31:86:fe:a6)
+                                             Ethernet1/3       -
+            e9b    local_network_switch (88:f0:31:86:fe:a7)
+                                             Ethernet1/4       -
+30 entries were displayed.
+----
+====
+. 各クラスタ ポートの管理ステータスと動作ステータスを確認します。
++
+.. クラスタポートがすべて正常な状態で稼働していることを確認してください。
++
+`network port show -role cluster`
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> network port show -role cluster
+
+Node: node_A_1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e4a       Cluster      Cluster          up   9000  auto/40000 healthy  false
+e4b       Cluster      Cluster          up   9000  auto/40000 healthy  false
+
+Node: node_A_2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e4a       Cluster      Cluster          up   9000  auto/40000 healthy  false
+e4b       Cluster      Cluster          up   9000  auto/40000 healthy  false
+4 entries were displayed.
+----
+====
+.. すべてのクラスタインターフェイス（LIF）がホームポートにあることを確認してください。
++
+`network interface show -role cluster`
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> network interface show -role cluster
+            Logical        Status     Network            Current       Current Is
+Vserver     Interface      Admin/Oper Address/Mask       Node          Port    Home
+----------- -------------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node_A_1_clus1 up/up      101.101.101.88/18  node_A_1      e4a     true
+            node_A_1_clus2 up/up      101.101.101.93/18  node_A_1      e4b     true
+            node_A_2_clus1 up/up      101.101.101.96/18  node_A_2      e4a     true
+            node_A_2_clus2 up/up      101.101.101.97/18  node_A_2      e4b     true
+4 entries were displayed.
+
+cluster_A::*>
+----
+====
+.. クラスタが両方のクラスタスイッチの情報を表示していることを確認します。
++
+`system switch ethernet show -is-monitoring-enabled-operational true`
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> system switch ethernet show -is-monitoring-enabled-operational true
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+IP_switch_A_1               cluster-network    10.231.7.251     N9K-C9336C-FX2
+     Serial Number: FDO26020KLJ
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.5(4)
+    Version Source: CDP/ISDP
+
+IP_switch_A_2               cluster-network    10.231.7.252     N9K-C9336C-FX2
+     Serial Number: FDO26020KGL
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.5(4)
+    Version Source: CDP/ISDP
+
+2 entries were displayed.
+
+cluster_A::*>
+----
+====
+
+
+. クラスタLIFの自動ロールバックを無効にします。クラスタLIFはパートナークラスタスイッチにフェイルオーバーし、対象のスイッチでアップグレード手順を実行する間、その場所に留まります。
++
+
+NOTE: 2番目のファブリックをアップグレードする場合は、この手順をスキップして、<<shut-down-ports,手順 4>>に進んでください。
+
++
+`network interface modify -vserver Cluster -lif * -auto-revert false`
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> network interface modify -vserver Cluster -lif * -auto-revert false
+
+Warning: Disabling the auto-revert feature of the cluster logical interface may
+         effect the availability of your cluster network. Are you sure you want
+         to continue? {y|n}: y
+
+Warning: Changes to a cluster LIF can affect the health of the Cluster. Are you
+         sure you want to continue? {y|n}: y
+4 entries were modified.
+----
+====
+. [[shut-down-ports]]クラスタスイッチIP_switch_A1で、ノードのクラスタポートに接続されているポートをシャットダウンします。
++
+[role="tabbed-block"]
+====
+.シスコ
+--
+[listing]
+----
+IP_switch_A_1(config)# sh int eth1/1,eth1/2 brief
+
+--------------------------------------------------------------------------------
+Ethernet        VLAN    Type Mode   Status  Reason                 Speed     Port
+Interface                                                                    Ch
+#
+--------------------------------------------------------------------------------
+Eth1/1          101     eth  access up      none                      40G(D) --
+Eth1/2          101     eth  access up      none                      40G(D) --
+IP_switch_A_1(config)#
+IP_switch_A_1(config)# int eth1/1,eth1/2
+IP_switch_A_1(config-if-range)# shut
+IP_switch_A_1(config-if-range)#
+----
+--
+.Broadcom
+--
+[listing]
+----
+IP_switch_A1(config)# interface eth1/1/1-2,eth1/7-8
+IP_switch_A1(config-if-range)# shutdown
+----
+--
+.NVIDIA
+--
+.. クラスタインターフェースを表示します。
++
+[listing]
+----
+cumulus@IP_switch_A_1:mgmt:~$ nv show interface
+Interface    Admin Status  Oper Status  Speed  MTU    Type      Remote Host     Remote Port  Summary
+-----------  ------------  -----------  -----  -----  --------  --------------  -----------  ---------
+swp1         up            up           100G   9216   swp       cluster1         e1a
+----
+.. クラスタインターフェースポートをシャットダウンします。
++
+[listing]
+----
+sudo python3 <RCF_name> runCmd swp1 state down
+----
+
+
+--
+====
+. [[verify_cluster_lif_migration]] クラスタ LIF がクラスタスイッチ IP_switch_A2 でホストされているポートに移行したことを確認します。数秒かかる場合があります。
++
+`network interface show -role cluster`
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> network interface show -role cluster
+            Logical        Status     Network            Current       Current Is
+Vserver     Interface      Admin/Oper Address/Mask       Node          Port    Home
+----------- -------------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node_A_1_clus1 up/up      101.101.101.88/18  node_A_1      e4b     false
+            node_A_1_clus2 up/up      101.101.101.93/18  node_A_1      e4b     true
+            node_A_2_clus1 up/up      101.101.101.96/18  node_A_2      e4b     false
+            node_A_2_clus2 up/up      101.101.101.97/18  node_A_2      e4b     true
+4 entries were displayed.
+----
+====
+. クラスタが正常であることを確認します。
++
+「 cluster show 」を参照してください
+
++
+.例を表示
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster_A::*> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node_A_1             true    true          false
+node_A_2             true    true          false
+2 entries were displayed.
+----
+====
+
+
+.完了後
+クラスタLIFがパートナースイッチに移行したら、スイッチベンダーの標準設定手順に従って、ターゲットファームウェアまたはRCFバージョンへのアップグレードを完了できます。
+
+* link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを設定します"]
+* link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを設定する"]
+* link:../install-ip/task_switch_config_nvidia.html["NVIDIA IPスイッチを設定します"]
+
+
+
+NOTE: 最初のファブリックでスイッチを設定した後、2番目のファブリックでクラスタLIFを移動する手順を繰り返す必要があります。

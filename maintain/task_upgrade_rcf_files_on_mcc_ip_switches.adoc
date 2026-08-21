@@ -11,16 +11,16 @@ summary: MetroCluster IP スイッチ上の RCF ファイルのアップグレ�
 
 
 [role="lead"]
-MetroCluster IPスイッチのリファレンス構成ファイル（RCF）のアップグレードが必要になる場合があります。たとえば、スイッチで実行しているRCFのバージョンが、ONTAPのバージョン、スイッチのファームウェアのバージョン、またはその両方でサポートされていない場合などです。
+参照構成ファイル（RCF）を MetroCluster IP スイッチでアップグレードする必要がある場合があります。たとえば、スイッチで実行している RCF バージョンが ONTAP バージョン、スイッチのファームウェアバージョン、またはその両方でサポートされていない場合などです。
 
 .作業を開始する前に
-* 新しいスイッチファームウェアをインストールする場合は、 RCF ファイルをアップグレードする前にスイッチファームウェアをインストールする必要があります。
+* 新しいスイッチファームウェアをインストールする場合は、RCFをアップグレードする前にスイッチファームウェアをインストールする必要があります。
 * RCFをアップグレードする前に、をlink:task_upgrade_firmware_on_mcc_ip_switches.html["RCFのサポート状況の確認"]参照してください。
 * link:enable-console-logging-before-maintenance.html["コンソールログを有効にする"] このタスクを実行する前に。
 
 
 .このタスクについて
-* この手順を実行すると、RCFファイルをアップグレードするスイッチでトラフィックが中断されます。トラフィックは、新しいRCFファイルが適用されると再開されます。
+* この手順を実行すると、RCFのアップグレードが行われるスイッチ上のトラフィックが中断されます。新しいRCFが適用されると、トラフィックは再開されます。
 * Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2の手順を一度に1つずつ実行します。
 
 
@@ -74,7 +74,8 @@ MetroCluster オペレーション履歴 show -job-id 38`
 
 
 
-. 新しい RCF ファイルを適用するための IP スイッチを準備します。
+. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]アップグレードを開始する前に
+. IPスイッチで新しいRCFを適用できるように準備します。
 +
 スイッチベンダーの手順に従います。
 
@@ -84,15 +85,20 @@ MetroCluster オペレーション履歴 show -job-id 38`
 ** link:../install-ip/task_switch_config_nvidia.html#reset-the-nvidia-ip-sn2100-switch-to-factory-defaults["NVIDIA IP SN2100スイッチを工場出荷時のデフォルトにリセット"]
 
 
-. スイッチベンダーに応じて、IP RCFファイルをダウンロードしてインストールします。
+. スイッチベンダーに応じて、IP RCF をダウンロードしてインストールしてください。
 +
-** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IPのRCFファイルをダウンロードしてインストールする"]
-** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFファイルのダウンロードとインストール"]
-** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IP RCFファイルのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_broadcom.html#downloading-and-installing-the-broadcom-rcf-files["Broadcom IP RCF をダウンロードしてインストールする"]
+** link:../install-ip/task_switch_config_cisco.html#downloading-and-installing-the-cisco-ip-rcf-files["Cisco IP RCFのダウンロードとインストール"]
+** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-nvidia-rcf-files["NVIDIA IP RCFのダウンロードとインストール"]
 +
 
 NOTE: L2共有またはL3ネットワーク構成を使用している場合は、お客様の中間スイッチまたはお客様のスイッチでISLポートの調整が必要になることがあります。スイッチポートモードが「access」モードから「trunk」モードに変わることがあります。スイッチ_A_1とB_1の間のネットワーク接続が完全に機能していて、ネットワークが正常である場合にのみ、2つ目のスイッチペア（A_2、B_2）のアップグレードに進みます。
 
 
+
+. それぞれのスイッチについて、上記の手順を繰り返してください。
++
+
+NOTE: 最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定したら、同じ手順を繰り返して、クラスタLIFを2番目のファブリック（Switch_A_2、Switch_B_2）に移動する必要があります。link:../install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]を参照してください。
 
 

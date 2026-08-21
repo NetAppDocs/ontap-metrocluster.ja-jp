@@ -129,13 +129,19 @@ To check if the nodes are ready to do a switchover or switchback operation, run 
 NOTE: スイッチをアップグレードまたはダウングレードする場合は、ネットワーク内のすべてのスイッチを設定する必要があります。
 
 +
-の「 IP スイッチの設定」セクションの手順に従います link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/using_rcf_generator.html["MetroCluster IP のインストールと設定"]
+スイッチベンダーの手順に従います。
 
++
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを設定します"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを設定する"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IPスイッチを設定します"]
 +
 スイッチ _A_1 、 _A_2 、 _B_1 、または _B_2 に、適切な RCF ファイルを適用します。新しいスイッチが古いスイッチと同じ場合は、同じ RCF ファイルを適用する必要があります。
 
 +
 スイッチをアップグレードまたはダウングレードする場合は、サポートされている最新の RCF ファイルを新しいスイッチに適用してください。
+
+
 
 . port show コマンドを実行してネットワークポートに関する情報を表示します。
 +
@@ -148,6 +154,11 @@ NOTE: スイッチをアップグレードまたはダウングレードする�
 ----
 network interface modify -vserver <vserver_name> -lif <lif_name> -auto-revert false
 ----
+.. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]。
++
+
+NOTE: スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定した後、2番目のファブリック（Switch_A_2、Switch_B_2）でクラスタ LIF を移動する手順を繰り返す必要があります。link:../install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]を参照してください。
+
 
 
 . [[existing_step4]]古いスイッチから接続を切断します。
@@ -190,7 +201,7 @@ NOTE: 管理インターフェイス（使用している場合）を除き、�
 
 . スイッチをケーブル接続します。
 +
-の「IPスイッチのケーブル接続」セクションの手順に従うことができます link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/using_rcf_generator.html["MetroCluster IP のインストールと設定"]。
+link:../install-ip/using_rcf_generator.html["MetroCluster IP スイッチをケーブル接続します"]の手順に従ってください。
 
 +
 次の順序でスイッチをケーブル接続します（必要な場合）。
@@ -225,15 +236,15 @@ NOTE: 管理インターフェイス（使用している場合）を除き、�
 
 . スイッチに電源を投入します。
 +
-新しいスイッチが同じ場合は、新しいスイッチの電源をオンにします。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチに電源を投入します。2 つ目のネットワークが更新されるまで、この構成は各サイトにある 2 つの異なるスイッチで動作します。
+新しいスイッチが同じものであれば、新しいスイッチの電源を入れてください。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチの電源を入れてください。この構成では、2つ目のファブリックが更新されるまで、各サイトで2つの異なるスイッチを使用して動作させることができます。
 
 . を繰り返して、MetroCluster 構成が正常であることを確認します <<all_step1,手順 1.>>。
 +
-1 つ目のネットワークでスイッチをアップグレードまたはダウングレードする場合は、ローカルクラスタリングに関するアラートが表示されることがあります。
+最初のファブリック内のスイッチをアップグレードまたはダウングレードする場合、ローカルクラスタリングに関連するアラートが表示されることがあります。
 
 +
 
-NOTE: ネットワークをアップグレードまたはダウングレードする場合は、 2 つ目のネットワークに対してすべての手順を繰り返します。
+NOTE: ファブリックをアップグレードまたはダウングレードする場合は、2つ目のファブリックについてもすべての手順を繰り返してください。
 
 . すべてのクラスタLIFを変更して自動リバートを再度有効にします。
 +

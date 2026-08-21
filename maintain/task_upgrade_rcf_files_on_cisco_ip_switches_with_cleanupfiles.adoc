@@ -11,7 +11,7 @@ summary: Cisco IPスイッチのRCFファイルのアップグレードが必要
 
 
 [role="lead"]
-Cisco IPスイッチのRCFファイルのアップグレードが必要になる場合があります。たとえば、 ONTAP のアップグレードまたはスイッチファームウェアのアップグレードには、どちらも新しい RCF ファイルが必要です。
+Cisco IP スイッチの参照構成ファイル（RCF）をアップグレードする必要がある場合があります。たとえば、ONTAP のアップグレードやスイッチのファームウェアアップグレードでは、どちらも新しい RCF が必要です。
 
 .このタスクについて
 * RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。
@@ -22,7 +22,7 @@ Cisco IPスイッチのRCFファイルのアップグレードが必要になる
 +
 [cols="3*"]
 |===
-| 接続するストレージ | Cisco 9336C-FX2ストレージタイプを選択... | RCFファイルのバナー/ MOTDの例 
+| 接続するストレージ | Cisco 9336C-FX2ストレージタイプを選択... | RCFバナー/MOTDサンプル 
 
 
  a| 
@@ -56,13 +56,13 @@ NOTE: イーサネット接続NVMeシェルフが少なくとも1つ必要です
 この方法は、構成が次の要件を満たしている場合に使用できます。
 
 * 標準のRCF設定が適用されます。
-* 。 https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["RcfFileGenerator の順にクリックします"] 適用するRCFファイルは、同じバージョンおよび設定（プラットフォーム、VLAN）で作成できる必要があります。
-* 適用されるRCFファイルは、特別な設定のためにネットアップから提供されたものではありません。
-* RCFファイルは適用前に変更されませんでした。
-* 現在のRCFファイルを適用する前に、スイッチを工場出荷時のデフォルトにリセットする手順を実行しました。
+*  https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["RcfFileGenerator の順にクリックします"]は、適用されているものと同じバージョンと構成（プラットフォーム、VLAN）で、同じRCFを作成できる必要があります。
+* 適用されたRCFは、特別な構成のために NetApp から提供されたものではありません。
+* RCFは適用前に変更されませんでした。
+* 現在のRCFを適用する前に、スイッチを工場出荷時の設定にリセットする手順を実行しました。
 * RCFの適用後にスイッチ（ポート）の設定を変更していません。
 +
-これらの要件を満たしていない場合は、RCFファイルの生成時に作成されたCleanUpFilesは使用できません。しかし、この関数を利用して一般的なCleanUpFilesを作成することもできます。このメソッドを使用したクリーンアップは、「show running-config」の出力から得られます。これはベストプラクティスです。
+これらの要件を満たさない場合は、RCFを生成する際に作成されるCleanUpFilesを使用することはできません。ただし、この機能を利用して汎用的なCleanUpFilesを作成することもできます。この方法を使用したクリーンアップは、 `show running-config`の出力から派生しており、ベストプラクティスです。
 
 +
 
@@ -71,7 +71,8 @@ NOTE: スイッチは、Switch_A_1、Switch_B_1、Switch_A_1、Switch_A_1、Swit
 
 
 .手順
-. 現在のRCFファイルのバージョン、および使用するポートとVLANを確認します。「ip_switch_A_1# show banner motd」
+. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]アップグレードを開始する前に
+. 現在のRCFバージョン、および使用されているポートとVLANを確認します： `IP_switch_A_1# show banner motd`
 +
 
 NOTE: この情報は4つのスイッチすべてから取得し、次の情報の表を完成させる必要があります。
@@ -114,7 +115,7 @@ IP_switch_A_1#
 | 一般的な情報 | MetroCluster | データ 
 
 
-| RCF ファイルのバージョン |  | 1.81 
+| RCFのバージョン |  | 1.81 
 
 
 | スイッチのタイプ |  | NX9336 
@@ -159,31 +160,31 @@ IP_switch_A_1#
 
 | 2. | 11、12 | 259 | 259 
 |===
-. [[Create]- RCFファイルおよび-CleanUpFiles-or -create-generic-CleanUpFiles]]現在の設定用にRCFファイルとCleanUpFilesを作成するか、汎用のUpCleanFilesを作成します。
+. [[Create-RCF-files-and-CleanUpFiles-or-create-generic-CleanUpFiles]] RCF と CleanUpFiles を作成するか、現在の構成に対して汎用の CleanUpFiles を作成します。
 +
 ご使用の構成が前提条件に記載されている要件を満たしている場合は、*オプション1 *を選択します。お使いの構成が前提条件に記載されている要件を*満たしていない*場合は、*オプション2 *を選択します。
 
 +
 [role="tabbed-block"]
 ====
-.オプション1：RCFファイルとCleanUpFilesを作成します
+.オプション 1：RCF と CleanUpFiles を作成する
 --
 この手順 は、構成が要件を満たしている場合に使用します。
 
 .手順
-.. RcfFileGenerator 1.4a以降を使用して、手順1で取得した情報を使用してRCFファイルを作成します。RcfFileGeneratorの新しいバージョンでは、CleanUpFilesのセットが追加されています。このセットを使用して、いくつかの設定を元に戻し、スイッチで新しいRCF設定を適用する準備をすることができます。
-.. banner motdを、現在適用されているRCFファイルと比較します。プラットフォームタイプ、スイッチタイプ、ポート、およびVLANの使用方法は同じである必要があります。
+.. RcfFileGenerator 1.4a（またはそれ以降）を使用して、ステップ 1 で取得した情報を基に RCF を作成します。新バージョンの RcfFileGenerator は、追加の CleanUpFiles セットを作成します。これを使用すると、一部の設定を元に戻し、スイッチに新しい RCF 設定を適用できるように準備できます。
+.. バナーのmotdを、現在適用されているRCFと比較してください。プラットフォームの種類、スイッチの種類、ポート、VLANの使用方法はすべて同じでなければなりません。
 +
 
-NOTE: RCFファイルと同じバージョンのCleanUpFilesを使用し、まったく同じ設定を行う必要があります。CleanUpFileを使用しても機能せず、スイッチの完全なリセットが必要になる場合があります。
-
-+
-
-NOTE: 用に作成したONTAP のバージョンは関係ありません。RCFファイルのバージョンのみが重要です。
+NOTE: RCF と同じバージョンで、まったく同じ構成の CleanUpFiles を使用する必要があります。任意の CleanUpFile を使用しても機能せず、スイッチの完全なリセットが必要になる場合があります。
 
 +
 
-NOTE: RCFファイルには、同じバージョンのものも含まれており、プラットフォームの数が少ない場合もあればそれよりも多い場合もあります。プラットフォームがリストに表示されていることを確認します。
+NOTE: RCFが作成されたONTAPのバージョンは関係ありません。重要なのはRCFのバージョンのみです。
+
++
+
+NOTE: RCF（同じバージョンであっても）には、記載されているプラットフォームの数が少なくなったり多くなったりする場合があります。お使いのプラットフォームがリストに記載されていることを確認してください。
 
 
 
@@ -206,25 +207,25 @@ NOTE: RCFファイルには、同じバージョンのものも含まれてお�
 
 --
 ====
-. [[new-RCF -files-ing-new-configuration]]新しい設定用の「新しい」RCFファイルを作成します。前の手順で作成したファイルと同じ方法でこれらのファイルを作成します。ただし、ONTAP とRCFのそれぞれのファイルバージョンを選択してください。
+. [[Create-the-new-RCF-files-for-the-new-configuration]] 新しい構成用の「新しい」RCF ファイルを作成します。前の手順でファイルを作成したときと同じ方法でこれらのファイルを作成しますが、それぞれの ONTAP および RCF バージョンを選択してください。
 +
-この手順の完了後、それぞれ12個のファイルで構成される2セットのRCFファイルを用意する必要があります。
+この手順を完了すると、それぞれ12個のファイルからなる2組のRCFファイルが作成されます。
 
 . ブートフラッシュにファイルをダウンロードします。
 +
-.. で作成したCleanUpFilesをダウンロードします <<Create-RCF-files-and-CleanUpFiles-or-create-generic-CleanUpFiles,RCFファイルとCleanUpFilesを作成するか、現在の設定用の汎用CleanUpFilesを作成します>>
+.. <<Create-RCF-files-and-CleanUpFiles-or-create-generic-CleanUpFiles,RCF と CleanUpFiles を作成するか、現在の構成に対して汎用的な CleanUpFiles を作成する>>で作成したCleanUpFilesをダウンロードします
 +
 
-NOTE: このCleanUpFileは、適用されている現在のRCFファイル用であり、アップグレード先の新しいRCF用には*ありません。
+NOTE: このCleanUpFileは、現在適用されているRCFに関するものであり、アップグレード先の新しいRCFに関するものでは*ありません*。
 
 +
 Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.81_Switch-A1.txt
 
-.. で作成した新しいRCFファイルをダウンロードします <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成用に「新しい」RCFファイルを作成します。>>
+.. <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成に合わせて「新しい」RCF を作成します。>>で作成した「新しい」RCFをダウンロードしてください
 +
-Switch-A1のRCFファイルの例: NX9336_v1.90_Switch-A1.txt
+Switch-A1 の RCF の例： `NX9336_v1.90_Switch-A1.txt`
 
-.. で作成したCleanUpFilesをダウンロードします <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成用に「新しい」RCFファイルを作成します。>> この手順はオプションです。あとでこのファイルを使用して、スイッチの設定を更新できます。現在適用されている設定に一致します。
+.. <<Create-the-new-RCF-files-for-the-new-configuration,新しい構成に合わせて「新しい」RCF を作成します。>>で作成したCleanUpFilesをダウンロードします。この手順は任意です。このファイルは今後、スイッチの設定を更新する際に使用できます。これは現在適用されている設定と一致します。
 +
 Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.90_Switch-A1.txt
 
@@ -294,13 +295,13 @@ NOTE: スイッチのプロンプトに戻るまでに時間がかかること�
 ** ポートプロファイルが設定されていません
 ** すべてのイーサネットインターフェイス（mgmt0を除くすべての構成を表示しないでください。VLAN 1だけを設定してください）。
 +
-上記のいずれかが設定されている場合は、新しいRCFファイルの設定を適用できない可能性があります。ただし、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。
+上記項目のいずれかが設定されている場合、新しいRCF構成を適用できない可能性があります。ただし、実行中の設定を起動設定に保存*せずに*スイッチを再起動することで、以前の設定に戻すことができます。スイッチは以前の設定で起動します。
 
 
 
-. RCFファイルを適用してポートがオンラインであることを確認します。
+. RCFを適用し、ポートがオンラインになっていることを確認します。
 +
-.. RCFファイルを適用します。
+.. RCFを適用します。
 +
 [listing]
 ----
@@ -328,4 +329,67 @@ IP_switch_A_1# copy running-config startup-config
 
 IP_switch_A_1# reload
 ----
+. 自動復帰を有効にするために、すべてのクラスタ LIF を変更します。
++
+.. 自動復帰を再度有効にする：
++
+`network interface modify -vserver Cluster -lif * -auto-revert true`
+
++
+[listing]
+----
+cluster_A::*> network interface modify -vserver Cluster -lif * -auto-revert true
+
+Warning: Changes to a cluster LIF can affect the health of the Cluster. Are you
+         sure you want to continue? {y|n}: y
+4 entries were modified.
+
+cluster_A::*>
+----
+.. 現在ホーム ポートにないすべてのクラスタ LIF をホーム ポートに戻します。
++
+`network interface revert -vserver Cluster -lif *`
+
++
+LIFがホームポートに戻るまで数分お待ちください。
+
+.. すべてのLIFがホームポートにあることを確認してください。
++
+[listing]
+----
+cluster_A::*> network interface show -role cluster
+            Logical        Status     Network            Current       Current Is
+Vserver     Interface      Admin/Oper Address/Mask       Node          Port    Home
+----------- -------------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node_A_1_clus1 up/up      192.168.204.88/18  node_A_1      e4a     true
+            node_A_1_clus2 up/up      192.168.204.93/18  node_A_1      e4b     true
+            node_A_2_clus1 up/up      192.168.204.96/18  node_A_2      e4a     true
+            node_A_2_clus2 up/up      192.168.204.97/18  node_A_2      e4b     true
+4 entries were displayed.
+----
+.. MetroCluster ノードの状態を確認します：
++
+MetroCluster node show
+
++
+[listing]
+----
+cluster_A::*> metrocluster node show
+
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node_A_1           configured     enabled   normal
+              node_A_2           configured     enabled   normal
+      cluster_B
+              node_B_1           configured     enabled   normal
+              node_B_2           configured     enabled   normal
+4 entries were displayed.
+
+cluster_A::*>
+----
+
+
 

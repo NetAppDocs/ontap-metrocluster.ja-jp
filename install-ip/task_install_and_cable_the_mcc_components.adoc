@@ -4,16 +4,44 @@ sidebar: sidebar
 keywords: ip, switch, configuring 
 summary: バックエンドMetroCluster IP接続を提供するようにIPスイッチを設定する必要があります。 
 ---
-= 適切なMetroCluster IPスイッチ構成手順を選択する
+= MetroCluster IP スイッチの設定について
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-バックエンドMetroCluster IP接続を提供するには、IPスイッチを設定する必要があります。手順はスイッチベンダーによって異なります。
+バックエンドの MetroCluster IP接続を提供するようにIPスイッチを設定する必要があります。実行する手順は、スイッチベンダーと、スイッチを MetroCluster IPの新規インストールの一部として設定するか、別の手順の一部として設定するかによって異なります。
+
+
+
+[[fresh-metrocluster-ip-installation]]
+== 新規 MetroCluster IP インストール
+
+新しい MetroCluster IP インストールを実行する場合は、スイッチベンダーに応じてスイッチの設定手順を選択してください。
 
 * link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを設定します"]
 * link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを設定する"]
 * link:../install-ip/task_switch_config_nvidia.html["NVIDIA IPスイッチを設定します"]
+
+
+
+
+[[switch-replacement-and-rcf-or-firmware-updates]]
+== スイッチの交換とRCFまたはファームウェアのアップデート
+
+スイッチの交換やアップグレードなど、他のMetroCluster IP手順の一部として、スイッチのファームウェア、参照構成ファイル（RCF）、またはその両方を更新する必要がある場合があります。このような場合、IPスイッチを設定する前に、クラスタLIFを移動する必要があります。これらのシナリオの概要手順は以下のとおりです。
+
+
+NOTE: スイッチは、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に更新する必要があります。
+
+. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]
+. クラスタLIFをパートナースイッチに移動した後、スイッチベンダーの標準設定手順に従うことができます。
++
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを設定します"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを設定する"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IPスイッチを設定します"]
+
+
+. 最初のファブリックでスイッチ（Switch_A_1、Switch_B_1）を設定したら、link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]から始めて、2番目のファブリック（Switch_A_2、Switch_B_2）で手順を繰り返す必要があります。
 

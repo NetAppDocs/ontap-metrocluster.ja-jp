@@ -31,6 +31,7 @@ NOTE: 次のような場合は、構成に追加のライセンス（100Gbポー
 * この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
 * シリアルコンソールを使用してスイッチに接続する必要があります。
 * このタスクでは、管理ネットワークの設定をリセットします。
+* これらの手順を、スイッチの交換やアップグレードなど、別の手順の一部として使用している場合は、クラスタの運用を中断させないために、クラスタLIFをパートナースイッチに移動する必要があるかどうかを確認してください。link:task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]。
 
 
 .手順
@@ -303,6 +304,8 @@ MetroCluster IP 構成の各スイッチにスイッチのオペレーティン�
 .このタスクについて
 このタスクは、 MetroCluster IP 構成内のスイッチごとに実行する必要があります。
 
+これらの手順を、スイッチの交換やアップグレードなど、別の手順の一部として使用している場合は、クラスタの運用を中断させないために、クラスタLIFをパートナースイッチに移動する必要があるかどうかを確認してください。link:task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]。
+
 []
 ====
 * 次の点に注意してください。 *
@@ -533,6 +536,85 @@ NOTE: まれに、スイッチが起動しないことがあります。に従�
 
 
 . MetroCluster IP 構成の残りの 3 つの IP スイッチについて、上記の手順を繰り返します。
++
+
+NOTE: スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。手順でクラスタ LIF を移動する必要がある場合は、最初のファブリック （Switch_A_1、Switch_B_1） でスイッチを設定した後、2 番目のファブリック （Switch_A_2、Switch_B_2） でクラスタ LIF を移動する手順を繰り返す必要があります。link:task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"] を参照してください。
+
+. クラスタLIFに対して自動復帰が有効になっていることを確認します。
++
+network interface show -vserver Cluster -fields auto-revert を実行します
+
++
+
+CAUTION: クラスタLIFに対して自動復帰が有効になっていることを確認する必要があります。
+
+. 自動復帰が有効になっていない場合は、すべてのクラスタLIFを変更して自動復帰を有効にしてください。
++
+
+NOTE: スイッチの交換やアップグレードなど、別の手順の一部としてこれらの手順を実行している場合、link:switch-move-cluster-lifs.html["クラスターLIFを移動します"] の手順の一部として自動復帰を無効にしている可能性があります。
+
++
+.. 自動復帰を再度有効にする：
++
+`network interface modify -vserver Cluster -lif * -auto-revert true`
+
++
+[listing]
+----
+cluster_A::*> network interface modify -vserver Cluster -lif * -auto-revert true
+
+Warning: Changes to a cluster LIF can affect the health of the Cluster. Are you
+         sure you want to continue? {y|n}: y
+4 entries were modified.
+
+cluster_A::*>
+----
+.. 現在ホーム ポートにないすべてのクラスタ LIF をホーム ポートに戻します。
++
+`network interface revert -vserver Cluster -lif *`
+
++
+LIFがホームポートに戻るまで数分お待ちください。
+
+.. すべてのLIFがホームポートにあることを確認してください。
++
+[listing]
+----
+cluster_A::*> network interface show -role cluster
+            Logical        Status     Network            Current       Current Is
+Vserver     Interface      Admin/Oper Address/Mask       Node          Port    Home
+----------- -------------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node_A_1_clus1 up/up      192.168.204.88/18  node_A_1      e4a     true
+            node_A_1_clus2 up/up      192.168.204.93/18  node_A_1      e4b     true
+            node_A_2_clus1 up/up      192.168.204.96/18  node_A_2      e4a     true
+            node_A_2_clus2 up/up      192.168.204.97/18  node_A_2      e4b     true
+4 entries were displayed.
+----
+.. MetroCluster ノードの状態を確認します：
++
+MetroCluster node show
+
++
+[listing]
+----
+cluster_A::*> metrocluster node show
+
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node_A_1           configured     enabled   normal
+              node_A_2           configured     enabled   normal
+      cluster_B
+              node_B_1           configured     enabled   normal
+              node_B_2           configured     enabled   normal
+4 entries were displayed.
+
+cluster_A::*>
+----
+
+
 
 
 
@@ -696,6 +778,8 @@ MetroCluster IP構成の各スイッチにスイッチのRCFファイルを生�
 
 .このタスクについて
 この手順は、 MetroCluster IP 構成の各 IP スイッチで実行する必要があります。
+
+これらの手順を、スイッチの交換やアップグレードなど、別の手順の一部として使用している場合は、クラスタの運用を中断させないために、クラスタLIFをパートナースイッチに移動する必要があるかどうかを確認してください。link:task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]。
 
 RCF ファイルは 4 つあり、それぞれが MetroCluster IP 構成の 4 つの各スイッチに対応しています。使用するスイッチのモデルに対応した正しい RCF ファイルを使用する必要があります。
 
@@ -897,6 +981,85 @@ Are you sure you would like to reset the system? (y/n) y
 IP_switch_A_1# reload
 ----
 . MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。
++
+
+NOTE: スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。手順でクラスタ LIF を移動する必要がある場合は、最初のファブリック （Switch_A_1、Switch_B_1） でスイッチを設定した後、2 番目のファブリック （Switch_A_2、Switch_B_2） でクラスタ LIF を移動する手順を繰り返す必要があります。link:task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"] を参照してください。
+
+. クラスタLIFに対して自動復帰が有効になっていることを確認します。
++
+network interface show -vserver Cluster -fields auto-revert を実行します
+
++
+
+CAUTION: クラスタLIFに対して自動復帰が有効になっていることを確認する必要があります。
+
+. 自動復帰が有効になっていない場合は、すべてのクラスタLIFを変更して自動復帰を有効にしてください。
++
+
+NOTE: スイッチの交換やアップグレードなど、別の手順の一部としてこれらの手順を実行している場合、link:switch-move-cluster-lifs.html["クラスターLIFを移動します"] の手順の一部として自動復帰を無効にしている可能性があります。
+
++
+.. 自動復帰を再度有効にする：
++
+`network interface modify -vserver Cluster -lif * -auto-revert true`
+
++
+[listing]
+----
+cluster_A::*> network interface modify -vserver Cluster -lif * -auto-revert true
+
+Warning: Changes to a cluster LIF can affect the health of the Cluster. Are you
+         sure you want to continue? {y|n}: y
+4 entries were modified.
+
+cluster_A::*>
+----
+.. 現在ホーム ポートにないすべてのクラスタ LIF をホーム ポートに戻します。
++
+`network interface revert -vserver Cluster -lif *`
+
++
+LIFがホームポートに戻るまで数分お待ちください。
+
+.. すべてのLIFがホームポートにあることを確認してください。
++
+[listing]
+----
+cluster_A::*> network interface show -role cluster
+            Logical        Status     Network            Current       Current Is
+Vserver     Interface      Admin/Oper Address/Mask       Node          Port    Home
+----------- -------------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node_A_1_clus1 up/up      192.168.204.88/18  node_A_1      e4a     true
+            node_A_1_clus2 up/up      192.168.204.93/18  node_A_1      e4b     true
+            node_A_2_clus1 up/up      192.168.204.96/18  node_A_2      e4a     true
+            node_A_2_clus2 up/up      192.168.204.97/18  node_A_2      e4b     true
+4 entries were displayed.
+----
+.. MetroCluster ノードの状態を確認します：
++
+MetroCluster node show
+
++
+[listing]
+----
+cluster_A::*> metrocluster node show
+
+DR                               Configuration  DR
+Group Cluster Node               State          Mirroring Mode
+----- ------- ------------------ -------------- --------- --------------------
+1     cluster_A
+              node_A_1           configured     enabled   normal
+              node_A_2           configured     enabled   normal
+      cluster_B
+              node_B_1           configured     enabled   normal
+              node_B_2           configured     enabled   normal
+4 entries were displayed.
+
+cluster_A::*>
+----
+
+
 
 
 

@@ -155,6 +155,7 @@ volumes             ok
 
 
 
+. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]アップグレードを開始する前に
 . 最初のスイッチにソフトウェアをインストールします。
 +
 
@@ -169,6 +170,10 @@ NOTE: スイッチには、 switch_A_1 、 switch_B_1 、 switch_B_2 、 switch_
 ** link:../install-ip/task_switch_config_nvidia.html#download-and-install-the-cumulus-software["NVIDIA SN2100スイッチCumulusソフトウェアのダウンロードとインストール"]
 
 
-. 各スイッチについて、同じ手順を繰り返します。
+. それぞれのスイッチについて、上記の手順を繰り返してください。
++
+
+NOTE: 最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定したら、同じ手順を繰り返して、クラスタLIFを2番目のファブリック（Switch_A_2、Switch_B_2）に移動する必要があります。link:../install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]を参照してください。
+
 . 繰り返します <<step_1_fw_upgrade,手順 1.>> 構成の健全性を確認します。
 

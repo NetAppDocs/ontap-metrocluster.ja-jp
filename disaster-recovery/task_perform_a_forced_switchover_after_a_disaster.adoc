@@ -52,9 +52,6 @@ summary: 災害が発生した場合にデータサービスを安全に継続�
 
 
 
-
-NOTE: SnapMirror と SnapVault の設定は自動的に削除されます。
-
 .このタスクについて
 「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
 
@@ -89,9 +86,6 @@ mcc1A::> metrocluster operation show
 スイッチオーバーが拒否された場合は '--override-override-vetoes オプションを指定して MetroCluster switchover -forced-on-disaster true コマンドを再実行できますこのオプションパラメータを使用すると、スイッチオーバーを妨げるソフトな拒否はすべて無視されます。
 
 
-
-.完了後
-スイッチオーバー後に、 SnapMirror 関係を再確立する必要があります。
 
 
 

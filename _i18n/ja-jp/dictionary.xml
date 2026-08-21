@@ -84,9 +84,6 @@
   <block id="140f85d0d849f4cdeb15f3576a478d27" category="list-text">port show コマンドを実行してネットワークポートに関する情報を表示します。</block>
   <block id="664180a50093532dd9d44b1e80f40b72" category="paragraph">「 * network port show * 」と表示されます</block>
   <block id="39ef49ece238860759e8870c2160120a" category="list-text">スイッチに電源を投入します。</block>
-  <block id="a2ff4a69c8e810edbb5274ee75363ce0" category="paragraph">新しいスイッチが同じ場合は、新しいスイッチの電源をオンにします。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチに電源を投入します。2 つ目のネットワークが更新されるまで、この構成は各サイトにある 2 つの異なるスイッチで動作します。</block>
-  <block id="4d7ea7c5860513bb0b675638d55fcd77" category="paragraph">1 つ目のネットワークでスイッチをアップグレードまたはダウングレードする場合は、ローカルクラスタリングに関するアラートが表示されることがあります。</block>
-  <block id="c997b3e19c99644bd488baf3bfa8890d" category="admonition">ネットワークをアップグレードまたはダウングレードする場合は、 2 つ目のネットワークに対してすべての手順を繰り返します。</block>
   <block id="8b9a7a187e2b48592caca596db2450b8" category="summary">サイトのメンテナンスや再配置を開始する前に、 MetroCluster FC 構成全体とすべての機器の電源をオフにする必要があります。</block>
   <block id="5df316ddd8657b8b45d7df6c93ef002a" category="doc">MetroCluster FC 構成全体の電源をオフにします</block>
   <block id="c51940ec4a1a519534c78e7d49893068" category="list-text">MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。</block>
@@ -943,7 +940,6 @@
   <block id="47471aa588b43c640e780e991822eda9" category="doc">MetroCluster IP スイッチでのファームウェアのアップグレード</block>
   <block id="666408818b617858e00b40c2eb3d365a" category="paragraph">MetroCluster IP スイッチのファームウェアのアップグレードが必要になる場合があります。</block>
   <block id="a755a72f514254c41e2fe4747c117fd7" category="list-text">最初のスイッチにソフトウェアをインストールします。</block>
-  <block id="220d6c1bfe741784a72c631856e0b298" category="list-text">各スイッチについて、同じ手順を繰り返します。</block>
   <block id="17f7fd76f6e7b1f621872307ce959576" category="list-text">AFF A700 および FAS9000 ストレージシステムの場合、 FC-VI ポートが 4 つ必要です。次の表に、 Cisco 9250i スイッチを除く各コントローラに FC-VI ポートが 4 つある FC スイッチのケーブル接続を示します。</block>
   <block id="f1a80fbfabe7f95b17770c38c466c2d4" category="paragraph">他のストレージシステムの場合、表にあるケーブル接続を使用し、 FC-VI ポート c および d については無視してください</block>
   <block id="07b5749c33833d737c3d6ecc5b49605b" category="paragraph">これらのポートは空にしておくことができます。</block>
@@ -1063,7 +1059,6 @@
   <block id="fd1f71815b5abfc5d58a282353d2ba84" category="section-title">新しいケーブルレイアウトの決定</block>
   <block id="0d687993b6b67e20ff0472f32d9693b0" category="paragraph">新しいコントローラモジュールおよび新しいディスクシェルフと既存の FC スイッチとのケーブル接続を決定する必要があります。</block>
   <block id="6485f9afbf9c5f34e988054e67e3b142" category="paragraph">このタスクは MetroCluster サイトごとに実行する必要があります。</block>
-  <block id="6a82c384f85f037d7996beaa2d1d7d15" category="list-text">使用している構成用の RCF ファイルを探します。</block>
   <block id="ca6b3b9d3521dc913cc6a3273b729760" category="list-text">既存のノードから、 FC-VI ポートがオンラインであることを確認します。</block>
   <block id="5c399963772634ba1fc18f52ce25b7d5" category="list-text">スイッチを永続的に有効にします。</block>
   <block id="328809e93421c332a5773a41c7dbc7c5" category="section-title">スイッチオーバー、修復、スイッチバックを検証しています</block>
@@ -1884,8 +1879,6 @@
   <block id="aa7634a6c4e974b52faf565e007e1b60" category="doc">ファブリック接続 MetroCluster 構成でコントローラモジュールを追加する際の新しいコントローラポートのゾーニング</block>
   <block id="f1671ac439417f75927f98ad97323bf7" category="paragraph">FC スイッチゾーニングが新しいコントローラ接続に対応している必要があります。ネットアップが提供する Reference Configuration File （ RCF ；リファレンス構成ファイル）を使用してスイッチを設定した場合、ゾーニングは事前に設定されているため、変更は必要ありません。</block>
   <block id="f13350a82ffb5e406781c64809e8f8a8" category="summary">RCF ファイルを適用して、新しいノードに対応するようにゾーニングを再設定する必要があります。</block>
-  <block id="c0b2ef0c7e8bedc314010fcbe929e544" category="paragraph">使用しているスイッチモデルに対応した 8 ノード構成用の RCF ファイルを使用する必要があります。</block>
-  <block id="93db71f559f17fb1c146361893f3ff36" category="list-text">ダウンロードページの指示に従って RCF ファイルを適用し、必要に応じて ISL 設定を調整します。</block>
   <block id="b862528f72ea6d2ddcdf03d59e55fa27" category="list-text">スイッチの設定が保存されていることを確認します。</block>
   <block id="9566c6febae9d51d50e73e64dbd10cfe" category="list-text">FC スイッチをリブートします。</block>
   <block id="cc421f36cbb2a622eb7463c75215237e" category="list-text">作成したケーブルレイアウトを使用して、既存の FC-to-SAS ブリッジと新しい FC-to-SAS ブリッジの両方を FC スイッチにケーブル接続します。</block>
@@ -2178,7 +2171,6 @@
   <block id="2c59a5fac27581359d001c6a429618fa" category="inline-link-macro">Cisco IP スイッチを工場出荷時のデフォルトにリセットする</block>
   <block id="d93b7c25b0652bbfad8e295f71218dcb" category="list-text">RCF ファイルをダウンロードしてインストールします。</block>
   <block id="69178c95258ab0089e5d81bfed9c36dd" category="inline-link-macro">Broadcom の RCF ファイルのダウンロードとインストール</block>
-  <block id="11a5f8de5dc8fd3561b2b849e4277433" category="inline-link-macro">Cisco IP RCF ファイルのダウンロードとインストール</block>
   <block id="0d4ad75e0716be856c986b26056dc9e0" category="list-text">ポートの使用状況を計画し、次の表に新しいノードごとに参考情報を記入します。</block>
   <block id="a22d8b3d45a0a714676015f3d6879afe" category="list-text">新しいコントローラをネットブートします。</block>
   <block id="3dcdfa7154959e2158a0ec92a60660c4" category="list-text">ネットアップサポートサイトのソフトウェアダウンロードセクションから適切な ONTAP ソフトウェアをダウンロードし、「 ONTAP-version _image.tgz 」ファイルを Web にアクセスできるディレクトリに保存します。</block>
@@ -3695,7 +3687,6 @@
   <block id="aad8b7c11b4aa6bcae4874f577338fdb" category="list-text">スイッチバック操作の進行状況を確認します MetroCluster show</block>
   <block id="cf7da6064d11b7240c8a90c881c2b0a8" category="paragraph">出力に waiting-for-switchback と表示された場合は、スイッチバック処理がまだ進行中です。</block>
   <block id="bebab338ce208a8365444e4ebe4efe11" category="list-text">SnapMirror 構成または SnapVault 構成があれば、再確立します。</block>
-  <block id="6414d473dfb2c6598f8118312a0cc177" category="paragraph">ONTAP 8.3 では、失われた SnapMirror 構成を MetroCluster スイッチバック処理のあとに手動で再確立する必要があります。ONTAP 9.0 以降では、関係が自動的に再確立されます。</block>
   <block id="7814aadb42b148f35b4d559e400b4895" category="summary">スイッチバックを実行したあとに、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。</block>
   <block id="a9ca4c629c1e46669a8bc18624424d68" category="doc">スイッチバックが成功したことを確認する</block>
   <block id="6a4974bedd0009da69e6a878e12b82bd" category="paragraph">スイッチバックの実行後に、すべてのアグリゲートと Storage Virtual Machine （ SVM ）がスイッチバックされてオンラインになっていることを確認します。</block>
@@ -4111,7 +4102,6 @@
   <block id="3943df800bc20bb77a1a12e989c29d6f" category="doc">Cisco FC RCF ファイルのダウンロードとインストール</block>
   <block id="96d44db22d3fd08538feb9a1879238ff" category="paragraph">この作業では、スイッチにファイルをコピーするために、 FTP 、 Trivial File Transfer Protocol （ TFTP ；簡易ファイル転送プロトコル）、 SFTP 、 Secure Copy Protocol （ SCP ）などのファイル転送ソフトウェアが必要です。</block>
   <block id="8aeaab0b1ea6e8bd8d15f02b7e031b5f" category="paragraph">この手順は、 MetroCluster ファブリック構成内の各 Cisco FC スイッチで実行する必要があります。</block>
-  <block id="d217c29c9e353e853ad6e00612eccbf6" category="paragraph">RCF ファイルは 4 つあり、それぞれが MetroCluster ファブリック構成の 4 つの各スイッチに対応しています。使用するスイッチのモデルに対応した正しい RCF ファイルを使用する必要があります。</block>
   <block id="ce03f8603301ea51b9ff5d168605b3a2" category="cell">RCF ファイル</block>
   <block id="45bce2352f23696f88ef367611555697" category="paragraph">FC_switch_A_1 を使用します</block>
   <block id="1aece110a2933cbd949f7e3f9cd6c03f" category="paragraph">「 NX3232_v1.80_Switch-A1.txt 」というテキストを入力します</block>
@@ -4122,11 +4112,7 @@
   <block id="a3a3a7dd149d92b01df3157c6762c67e" category="paragraph">FC_switch_B_2</block>
   <block id="a323e2cf1a28908546cf8fa814adbd2a" category="paragraph">NX323232_v1.80_Switch-B2.txt</block>
   <block id="12e8011a69d75e50d0c2e6c31c958c7d" category="inline-link">MetroCluster の RCF ダウンロードページ</block>
-  <block id="6c3c4e2f6a6fa289f415cc08715f355e" category="list-text">Cisco FC の RCF ファイルをからダウンロードします<block ref="47f7dd3b2352c1e61640eee11f081c5a" category="inline-link-rx"></block>。</block>
-  <block id="19a6d9ed6294004d8d6991040db238ff" category="list-text">RCF ファイルをスイッチにコピーします。</block>
-  <block id="4d5890e7ea6dcdaf056d3131f9a1f60f" category="paragraph">この例では 'NX32323_v1.80_Switch-A1.txt 'RCF ファイルが '10.10.99.99' の SFTP サーバからローカルブートフラッシュにコピーされます使用する TFTP / SFTP サーバの IP アドレスと、インストールする必要がある RCF ファイルのファイル名を使用する必要があります。</block>
   <block id="4e6235f5fa957d18f111326f98759ca4" category="list-text">残りの 3 つのスイッチのそれぞれについて、同じ手順を繰り返します。それぞれのスイッチに対応する RCF ファイルをコピーするように注意してください。</block>
-  <block id="f86146750d5caee0dd0ee6f541390137" category="list-text">各スイッチの「 bootflash' 」ディレクトリに RCF ファイルがあることを確認します。</block>
   <block id="08b3f40c7d81e458f31352fcceb58a09" category="paragraph">次の例は、 FC_switch_A_1 にファイルが存在することを示しています。</block>
   <block id="6eba85a8051babcfbe6e81b8247fda1f" category="list-text">各スイッチで、対応する RCF ファイルをローカルブートフラッシュから実行中の設定にコピーします。</block>
   <block id="2af5329ac9117b59d220bd51566271b2" category="list-text">各スイッチで、実行中の設定からスタートアップ設定に RCF ファイルをコピーします。</block>
@@ -4134,12 +4120,7 @@
   <block id="4dd59d9b67094e026acd2050a143c2ec" category="list-text">MetroCluster IP 構成の他の 3 つのスイッチについて、上記の手順を繰り返します。</block>
   <block id="26c467a24332bb8d92780a3eb059ce38" category="summary">MetroCluster ファブリック構成内の各スイッチにリファレンス構成ファイル（ RCF ）をダウンロードする必要があります。</block>
   <block id="4fbbc0ce852ccef3a7adceb0f9bc2c27" category="doc">Brocade FC スイッチの RCF ファイルのダウンロード</block>
-  <block id="b5909b79c9831ace5a37a88ecc8d8221" category="paragraph">MetroCluster ファブリック構成内の各スイッチにリファレンス構成ファイル（ RCF ）をダウンロードする必要があります。</block>
-  <block id="d2bd72e53c2a5d47d1f0bb05a3b47e86" category="paragraph">これらの RCF ファイルを使用するには、システムで ONTAP 9.1 以降を実行している必要があり、 ONTAP 9.1 以降のポートレイアウトを使用する必要があります。</block>
-  <block id="842acf8263038e7278a435d288defafa" category="list-text">Brocade RCF ダウンロードページの RCF ファイルの表を参照し、構成内の各スイッチに対応する正しい RCF ファイルを特定します。</block>
-  <block id="d7a31e24d4a31d091e030bcf962857a2" category="paragraph">RCF ファイルを正しいスイッチに適用する必要があります。</block>
   <block id="28a95a083b2cfe8b9ffb5bddf7064e7b" category="inline-link">MetroCluster の RCF ダウンロード</block>
-  <block id="827782113c613dee6a1aabc786e39335" category="list-text">スイッチ用の RCF ファイルをからダウンロードします<block ref="7a2a5b3ce34e84b17e1e6ffcc479aaa8" category="inline-link-rx"></block> ページ</block>
   <block id="af833d07deb3fe26ff9462cdf18f37ab" category="paragraph">ファイルは、スイッチに転送できる場所に配置する必要があります。2 つのスイッチファブリックを構成する 4 つのスイッチのそれぞれに、個別のファイルがあります。</block>
   <block id="6141173db52bd750748a18081d69700e" category="list-text">構成内のスイッチごとに上記の手順を繰り返します。</block>
   <block id="c4680bcc4ac229ac4b7d5d145927a0ea" category="doc">構成に適したインストール手順の選択</block>
@@ -7142,11 +7123,9 @@
   <block id="000918ea512f2105cbb6880aa17027ff" category="paragraph">ディザスタサイトノードが破損したか停止できない場合は、ノードへの電源をオフにし、リカバリ用手順で指示が出るまで交換用ノードをブートしないでください。</block>
   <block id="8d05d7bd3136c1c3d27ce612d1642b55" category="paragraph">スイッチオーバープロセスによって、テスト時とメンテナンス時のノンストップオペレーションが実現するだけでなく、コマンド 1 つでサイト障害からリカバリできます。</block>
   <block id="46244e26ed027de3f7dac5055551ea67" category="list-text">スイッチバック処理を実行する前に、設定の変更がすべて完了している必要があります。</block>
-  <block id="ca776b7a0f214042bab6636ff7235436" category="admonition">SnapMirror と SnapVault の設定は自動的に削除されます。</block>
   <block id="7adfea65bac9026340a67e4c4fbc6cf1" category="paragraph">「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。</block>
   <block id="7e2e7baa90ed02c71ec0c1aff8c2f52f" category="list-text">スイッチオーバーを続行するかどうかを確認するメッセージが表示されたら、回答は y を押します。</block>
   <block id="37a919d754d5135e54d0f9a3243827d8" category="paragraph">スイッチオーバーが拒否された場合は '--override-override-vetoes オプションを指定して MetroCluster switchover -forced-on-disaster true コマンドを再実行できますこのオプションパラメータを使用すると、スイッチオーバーを妨げるソフトな拒否はすべて無視されます。</block>
-  <block id="8e2df6a076ab8c2df47dff186e779dab" category="paragraph">スイッチオーバー後に、 SnapMirror 関係を再確立する必要があります。</block>
   <block id="3f98066376e4f19519c40bfdf06de035" category="paragraph">MetroCluster のスイッチオーバー後に「 storage aggregate plex show 」コマンドを実行すると、スイッチオーバーされたルートアグリゲートの plex0 のステータスが確定していないため、失敗と表示されます。この間、スイッチオーバーされたルートは更新されません。このプレックスの実際のステータスは、 MetroCluster 修復フェーズ後に確定します。</block>
   <block id="26ae5bd346260cedabbff8836c7dbe90" category="paragraph">in-nvfailed-state パラメータを設定するには、 advanced 権限が必要です。</block>
   <block id="435c84e42126f3721e7aa0fe94d2e1a5" category="list-text">-in-nvfailed-state パラメータを false に設定して volume modify コマンドを実行し ' ボリュームをリカバリします</block>
@@ -8295,8 +8274,6 @@
   <block id="3e124f4767179cdcf91533c7d87b883f" category="list-text"><block ref="3e124f4767179cdcf91533c7d87b883f" category="inline-link-macro-rx"></block></block>
   <block id="46c7885131c64f238f576be014b213f0" category="inline-link">DS460C 、 DS224C 、 DS212C ディスクシェルフを保守します</block>
   <block id="3d46a208f060c32c138a0c945efcbbe0" category="paragraph"><block ref="3d46a208f060c32c138a0c945efcbbe0" category="inline-link-rx"></block></block>
-  <block id="0c0a905fe7b3d34fc7c66142e87fa36d" category="inline-link-macro">MetroCluster IP のインストールと設定</block>
-  <block id="bd411d4fdabe28e7276d566979ec2b21" category="paragraph">の「 IP スイッチの設定」セクションの手順に従います <block ref="6ca94d3c62e2aa037b337bfb7e2a3c37" category="inline-link-macro-rx"></block></block>
   <block id="60add77cd3913e8299d20186ba7ec1e0" category="list-text">ONTAP 9.6 以降を実行している MetroCluster IP 構成がある場合は、ディザスタサイトのプレックスがオンラインになり、修復処理が自動的に完了するまで待ちます。</block>
   <block id="5b12aa7a5c28a3989c442d88ecafd4b3" category="list-text">構成と ONTAP のバージョンに応じて、ディザスタサイト（ cluster_B ）にあるオフラインの影響を受けるプレックスを特定して移動します。</block>
   <block id="8f6bfa9270e9bb535722312b07c97064" category="paragraph"><block ref="8f6bfa9270e9bb535722312b07c97064" category="inline-link-rx"></block></block>
@@ -9458,7 +9435,6 @@
   <block id="be66634f5c72a17ac1efdaa2b09a1da6" category="paragraph"><block ref="be66634f5c72a17ac1efdaa2b09a1da6" category="inline-link-macro-rx"></block></block>
   <block id="2f4dfa9b4c405812623b1a34ea79a216" category="list-text">すべての MetroCluster 情報</block>
   <block id="7abce9dabe03b4e216be9445267a37a1" category="paragraph"><block ref="7abce9dabe03b4e216be9445267a37a1" category="inline-link-rx"></block></block>
-  <block id="61eb859904ba2d6f08ea80ad772e9aba" category="paragraph">FC スイッチポートの用途が、に記載されている 8 ノード MetroCluster の用途と同じである必要があります <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> リファレンス構成ファイル（ RCF ）を使用できるようにするためです。</block>
   <block id="408d7b2d5acc0ee56e5deef74d263b2e" category="list-text">の手順を使用します <block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> 作成したケーブルレイアウトを使用して、既存のコントローラの FC-VI ポートと新しいコントローラのケーブルを接続します。</block>
   <block id="6abf8fcf1209a0e61a34ee20748a726e" category="paragraph">各コントローラのクラスタポートを、手順 b で特定したクラスタネットワークスイッチのポートに接続します</block>
   <block id="a8307b4c5fa271005a1338d5b405ca1f" category="paragraph">ONTAP 9.9.9..1 以降では、 4 つの新しいノードを 2 つ目の DR グループとして MetroCluster IP 構成に追加できます。これにより、 8 ノード MetroCluster 構成が作成されます。</block>
@@ -9688,7 +9664,6 @@
   <block id="2ab9c070f5e78bc6f7809e89ecd023eb" category="admonition">「 MetroCluster configure 」と「 MetroCluster configure -refresh true 」ではなく「 * 」を実行する必要があります</block>
   <block id="5382d2282494796171738f35b9361ab8" category="admonition">このコマンドは、中間スイッチが MPLS タグのようなパケットヘッダー（ DMAC 、 smac 、 type ）を使用するために必要な場合があります。</block>
   <block id="bb7076dff2fa5f0d308e776f5006e07e" category="section-title">MACsec 構成の確認</block>
-  <block id="ffe1f559bee6f65df8232945e7f1517d" category="section-title">25Gbps 接続を使用するシステムの前方誤り訂正の設定</block>
   <block id="250b5ed5389f4260b31c4ede97dea809" category="paragraph">このタスクでは、 25Gbps 接続を使用する環境 プラットフォームのみを使用します。</block>
   <block id="44ebc7deaba92b772a9bf569e1c8ca12" category="list-text">FAS 8200</block>
   <block id="78e08a3638b519a59d38434c6f124b1a" category="list-text">FAS 500f</block>
@@ -9759,7 +9734,6 @@
   <block id="2e5c6d46dc39a1cc71a6f41b56106221" category="list-text">SSHサービス（Remote Support Agent）。</block>
   <block id="4c20f2b5dfebba1daad521c7b3ab4c3b" category="paragraph">設定ウィザードが完了すると、スイッチがリブートします。</block>
   <block id="5582507cb9f874f57ac6bf62db65d371" category="doc">スイッチにケーブルを再接続して再設定します</block>
-  <block id="6647147ed73881ba6516c57ac1b5fe4a" category="paragraph">RCFファイルを使用してスイッチを設定できない場合は、スイッチを手動で設定する必要があります。を参照してください</block>
   <block id="71620bedc8491865816460c55b3cde98" category="list-text"><block ref="71620bedc8491865816460c55b3cde98" category="inline-link-macro-rx"></block></block>
   <block id="3a8190b24d904ae352e54f8a0a3df0bb" category="list-text"><block ref="3a8190b24d904ae352e54f8a0a3df0bb" category="inline-link-macro-rx"></block></block>
   <block id="bee24b783e44923012afab506584e701" category="list-text">SSH サービス（ RSA ）</block>
@@ -9905,13 +9879,7 @@
   <block id="44d9da525f678322921a73864bd0b924" category="paragraph">RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。</block>
   <block id="0d98f6fd87f88cd68844ee1450081b43" category="paragraph">この方法は、構成が次の要件を満たしている場合に使用できます。</block>
   <block id="cf5d82da1dbb504eeff51105d1c22631" category="list-text">標準のRCF設定が適用されます。</block>
-  <block id="6b20882c651017ff72189d2d3ffa3c80" category="list-text">。<block ref="c52b4d12f68853a25c52576697c6b2b5" category="inline-link-rx"></block> 適用するRCFファイルは、同じバージョンおよび設定（プラットフォーム、VLAN）で作成できる必要があります。</block>
-  <block id="c37890f623a8fcecb93e9309d3462a5a" category="list-text">適用されるRCFファイルは、特別な設定のためにネットアップから提供されたものではありません。</block>
-  <block id="3ff3eb13919d98b8bc5b485dcf074e8a" category="list-text">RCFファイルは適用前に変更されませんでした。</block>
-  <block id="22bfd0bc1ef7b5ec6b0c3d09a25173dd" category="list-text">現在のRCFファイルを適用する前に、スイッチを工場出荷時のデフォルトにリセットする手順を実行しました。</block>
   <block id="bdda45d6734a620758197fdb8292141f" category="list-text">RCFの適用後にスイッチ（ポート）の設定を変更していません。</block>
-  <block id="7db0739314c77bc294505bdbb23e67b7" category="paragraph">これらの要件を満たしていない場合は、RCFファイルの生成時に作成されたCleanUpFilesは使用できません。しかし、この関数を利用して一般的なCleanUpFilesを作成することもできます。このメソッドを使用したクリーンアップは、「show running-config」の出力から得られます。これはベストプラクティスです。</block>
-  <block id="0e0fe23e527e37b417182290ff6ed374" category="list-text">現在のRCFファイルのバージョン、および使用するポートとVLANを確認します。「ip_switch_A_1# show banner motd」</block>
   <block id="e020d7382ce2a21b56ea6460a45b49c2" category="admonition">この情報は4つのスイッチすべてから取得し、次の情報の表を完成させる必要があります。</block>
   <block id="2b6ad2a040294d5c6d9cd85338614383" category="paragraph">この出力から、次の2つの表に示す情報を収集する必要があります。</block>
   <block id="f144e7b7cc102698f980f9982e2a5e1d" category="cell">一般的な情報</block>
@@ -9942,15 +9910,8 @@
   <block id="140f6969d5213fd0ece03148e62e461e" category="cell">159</block>
   <block id="c0e190d8267e36708f955d7ab048990d" category="cell">219</block>
   <block id="cfa0860e83a4c3a763a7e62d825349f7" category="cell">259</block>
-  <block id="92b3853ab8f28c919e230db814cc7d3c" category="list-text">[[Create]- RCFファイルおよび-CleanUpFiles-or -create-generic-CleanUpFiles]]現在の設定用にRCFファイルとCleanUpFilesを作成するか、汎用のUpCleanFilesを作成します。</block>
   <block id="8f1cf5ff45cd4e25f9add94959779152" category="paragraph">ご使用の構成が前提条件に記載されている要件を満たしている場合は、*オプション1 *を選択します。お使いの構成が前提条件に記載されている要件を*満たしていない*場合は、*オプション2 *を選択します。</block>
-  <block id="08593dc75ce732119b98a7568c2bf0f8" category="open-title">オプション1：RCFファイルとCleanUpFilesを作成します</block>
   <block id="257583b315f4448eaa8b40d0996d314d" category="paragraph">この手順 は、構成が要件を満たしている場合に使用します。</block>
-  <block id="5c4f1865e4bc1d73184e237f9959c388" category="list-text">RcfFileGenerator 1.4a以降を使用して、手順1で取得した情報を使用してRCFファイルを作成します。RcfFileGeneratorの新しいバージョンでは、CleanUpFilesのセットが追加されています。このセットを使用して、いくつかの設定を元に戻し、スイッチで新しいRCF設定を適用する準備をすることができます。</block>
-  <block id="65f306707f97b0e6528c632443da6ffa" category="list-text">banner motdを、現在適用されているRCFファイルと比較します。プラットフォームタイプ、スイッチタイプ、ポート、およびVLANの使用方法は同じである必要があります。</block>
-  <block id="eeca5f39015a896c3fd153b273497470" category="admonition">RCFファイルと同じバージョンのCleanUpFilesを使用し、まったく同じ設定を行う必要があります。CleanUpFileを使用しても機能せず、スイッチの完全なリセットが必要になる場合があります。</block>
-  <block id="f7f6e369dd85b855e692642fc45404d1" category="admonition">用に作成したONTAP のバージョンは関係ありません。RCFファイルのバージョンのみが重要です。</block>
-  <block id="5ac0010e09da0a19568a51f509b47c9e" category="admonition">RCFファイルには、同じバージョンのものも含まれており、プラットフォームの数が少ない場合もあればそれよりも多い場合もあります。プラットフォームがリストに表示されていることを確認します。</block>
   <block id="b801f2818024b60718ab5b68f7b2eb23" category="open-title">オプション2：一般的なCleanUpFilesを作成します</block>
   <block id="4863f68e17407624559d4ea8f5de6e15" category="paragraph">この手順 は、構成が*一部の要件を満たしていない場合に使用してください。</block>
   <block id="fb1067b2548231b6038213796f92b520" category="list-text">各スイッチから「show running-config」の出力を取得します。</block>
@@ -9960,17 +9921,8 @@
   <block id="3dcf0272d83a4c69033ee60eb75d9580" category="list-text">下のウィンドウの出力をテキストファイルにコピーします（このファイルはCleanUpFileです）。</block>
   <block id="03486ffd0acf93e60ea6875d70823cbf" category="list-text">構成内のすべてのスイッチについて、手順c、d、eを繰り返します。</block>
   <block id="250543158aeade1deea5f13bbe9c80b5" category="paragraph">この手順 の最後に、スイッチごとに1つずつ、合計4つのテキストファイルが必要です。これらのファイルは、オプション1を使用して作成できるCleanUpFilesと同じ方法で使用できます。</block>
-  <block id="222b8c1d4cb1f6af18d4f87ae8a60226" category="list-text">[[new-RCF -files-ing-new-configuration]]新しい設定用の「新しい」RCFファイルを作成します。前の手順で作成したファイルと同じ方法でこれらのファイルを作成します。ただし、ONTAP とRCFのそれぞれのファイルバージョンを選択してください。</block>
-  <block id="a7d33b18445fe3decdb0f90d8636fbc1" category="paragraph">この手順の完了後、それぞれ12個のファイルで構成される2セットのRCFファイルを用意する必要があります。</block>
   <block id="6999307e181dd9c4d01a65b848b47fd3" category="list-text">ブートフラッシュにファイルをダウンロードします。</block>
-  <block id="6b3a86257ee5d114600528fa7f5c7bf4" category="inline-xref">RCFファイルとCleanUpFilesを作成するか、現在の設定用の汎用CleanUpFilesを作成します</block>
-  <block id="0f23428de5fb7b85f84bc0371d73292e" category="list-text">で作成したCleanUpFilesをダウンロードします <block ref="c8340163884f51bb133b6171f43e6a09" category="inline-xref-macro-rx"></block></block>
-  <block id="72f2778a0cd9028b2b314aa743b0dedb" category="admonition">このCleanUpFileは、適用されている現在のRCFファイル用であり、アップグレード先の新しいRCF用には*ありません。</block>
   <block id="1c4d6db343dcde2655f5a2b6fb6a4fc1" category="paragraph">Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.81_Switch-A1.txt</block>
-  <block id="63a80dfd5cc3c6944330a9e459d8284b" category="inline-xref">新しい構成用に「新しい」RCFファイルを作成します。</block>
-  <block id="c3f65a7773b44ccd20e3e511f5993d75" category="list-text">で作成した新しいRCFファイルをダウンロードします <block ref="59c54752a2fb487390ef8f9f21a2c752" category="inline-xref-macro-rx"></block></block>
-  <block id="17e0fefcaf2813560ada5ff7d65a8d95" category="paragraph">Switch-A1のRCFファイルの例: NX9336_v1.90_Switch-A1.txt</block>
-  <block id="9bfdc1d8656a6a994323ae166f7f7201" category="list-text">で作成したCleanUpFilesをダウンロードします <block ref="59c54752a2fb487390ef8f9f21a2c752" category="inline-xref-macro-rx"></block> この手順はオプションです。あとでこのファイルを使用して、スイッチの設定を更新できます。現在適用されている設定に一致します。</block>
   <block id="4dfd3caa3db27470042b1db1ab3290bd" category="paragraph">Switch-A1のCleanUpFileの例:'Cleanup_NX9336_v1.90_Switch-A1.txt</block>
   <block id="e22c8d95bd31d52b85280c2595f839cf" category="admonition">正しい（一致する）RCFバージョンには、CleanUpFileを使用する必要があります。異なるRCFバージョンまたは別の設定に対してCleanUpFileを使用すると、設定のクリーンアップが正しく機能しない可能性があります。</block>
   <block id="432b7619f02e011863c5b9e1c9903161" category="paragraph">次に、3つのファイルをブートフラッシュにコピーする例を示します。</block>
@@ -9988,9 +9940,6 @@
   <block id="319961110e1d1f6c900b9f842e20c81a" category="list-text">サービスポリシーが設定されていません</block>
   <block id="00f4ac9296724f6455056845c09f6cea" category="list-text">ポートプロファイルが設定されていません</block>
   <block id="459722fc0d9b873b0459e6cc0213fe45" category="list-text">すべてのイーサネットインターフェイス（mgmt0を除くすべての構成を表示しないでください。VLAN 1だけを設定してください）。</block>
-  <block id="a7c1dc82620aa47d13a5325a92e48b8b" category="paragraph">上記のいずれかが設定されている場合は、新しいRCFファイルの設定を適用できない可能性があります。ただし、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。</block>
-  <block id="b96e894aca032efb6ce18c3fee836f2e" category="list-text">RCFファイルを適用してポートがオンラインであることを確認します。</block>
-  <block id="57eec47f7c1d3f7c578a164a838dcb88" category="list-text">RCFファイルを適用します。</block>
   <block id="94f2f59cf614fa38bf778db2f227f97f" category="list-text">設定を適用したら、「show interface brief」、「show cdp neighbors」、「show lldp neighbors」のいずれかのコマンドを使用して、クラスタポートとMetroCluster ポートがオンラインになっていることを確認します</block>
   <block id="36654f0d51aef3cf2ff1ad8320086412" category="admonition">ローカルクラスタのVLANを変更したあとにサイトの最初のスイッチをアップグレードした場合、古い設定と新しい設定のVLANが一致しないため、クラスタヘルスモニタで状態が「正常」と報告されないことがあります。2番目のスイッチが更新されると、状態はhealthyに戻るはずです。</block>
   <block id="d83d3a40a56d46ffaf1367b944bbd493" category="paragraph">設定が正しく適用されていない場合、または設定を保持しない場合は、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存せずにスイッチ*をリロードすることで、以前のコンフィギュレーションに戻すことができます。スイッチは、以前の設定で起動します。</block>
@@ -10498,7 +10447,6 @@
   <block id="9c77ce4749e7ce4cb8afcbc4ebd4e32e" category="list-text"><block ref="9c77ce4749e7ce4cb8afcbc4ebd4e32e" category="inline-link-macro-rx"></block></block>
   <block id="45cb34f2cec27064a29ed6e3a54a294f" category="list-text"><block ref="45cb34f2cec27064a29ed6e3a54a294f" category="inline-link-macro-rx"></block></block>
   <block id="3a14a65fbfc927e7fc3c51dcb8d932f8" category="list-text">スイッチをケーブル接続します。</block>
-  <block id="e864e1a0a83c248ec6705eecbb75a2e4" category="paragraph">の「IPスイッチのケーブル接続」セクションの手順に従うことができます <block ref="69c250b2ff0cdf92dd9f1322bce627cf" category="inline-link-macro-rx"></block>。</block>
   <block id="abba6801f76a30e62f42a339319d8046" category="paragraph">次の順序でスイッチをケーブル接続します（必要な場合）。</block>
   <block id="eed332b6efe7c74f805fd4d57a6089fa" category="list-text">リモートサイトにISLをケーブル接続します。</block>
   <block id="c78a73a52795719f0a6c0e4e534be9ef" category="list-text">MetroCluster IPインターフェイスをケーブル接続します。</block>
@@ -10922,9 +10870,6 @@
   <block id="7c05cd1434f77b09211b33f0e3df8f7e" category="list-text">のすべての手順を実行します<block ref="6f9da97248de99650a607f2ab8f8c4c5" category="inline-link-rx"></block>。</block>
   <block id="175bbe9b6bd074e923b41baad3944299" category="paragraph"><block ref="175bbe9b6bd074e923b41baad3944299" category="inline-link-macro-rx"></block></block>
   <block id="1af1c128bcb15febcfeae67428ab0606" category="paragraph">Cisco IPスイッチでISLポートの追加、削除、または変更が必要になる場合があります。Cisco IPスイッチでは、専用ISLポートを共有ISLポートに変換したり、ISLポートの速度を変更したりできます。</block>
-  <block id="9ef8b8de2a46a8cdf8b96e3433081f97" category="admonition">NS224シェルフを接続する共有構成でCisco 9336C-FX2スイッチを使用している場合は、ISLを変更するときに新しいRCFファイルが必要になることがあります。現在のISL速度が40Gbpsおよび100Gbpsの場合は、新しいRCFファイルは必要ありません。ISLの速度に対するその他の変更には、新しいRCFファイルが必要です。たとえば、ISLの速度を40Gbpsから100Gbpsに変更しても新しいRCFファイルは必要ありませんが、ISLの速度を10Gbpsから40Gbpsに変更するには新しいRCFファイルが必要です。</block>
-  <block id="e5a44346ea08417f9c1bb13c971ef4b4" category="inline-link-macro">MetroCluster IPスイッチでRCFファイルをアップグレードします。</block>
-  <block id="6780acd09b7544d9829b3c8c782e7228" category="admonition">NS224シェルフを接続する共有構成でCisco 9336C-FX2スイッチを使用していて、RCFファイルをアップグレードして新しいISLポートに新しい構成を適用する必要がある場合は、次の手順を実行します。 <block ref="06d2583ef923bd1ae27cd7aa8a48f582" category="inline-link-macro-rx"></block></block>
   <block id="4f8a3836e9b2b61340340f61f8a1d944" category="list-text">両方のスイッチ間にISLとポートチャネルが確立されていることを確認します。</block>
   <block id="f1ba48098d6a9078f5a1ba8e0141de5b" category="paragraph"><block ref="d975a431de1e74582bd6e6f677a19ad0" prefix="" category="inline-code"></block></block>
   <block id="61f7733093f25bb223a42607ca2406c1" category="list-text">rootアクセスに昇格できるユーザを使用して、Tiebreakerソフトウェアをインストールおよび管理できます。</block>
@@ -10937,7 +10882,6 @@
   <block id="37c5a21bd601c49050ac3301b684599c" category="list-text">Cisco 9336C-FX2スイッチには2種類のスイッチストレージタイプがあり、RCFではそれぞれ異なる名前が付けられています。次の表を参照して、構成に適したCisco 9336C-FX2ストレージタイプを確認してください。</block>
   <block id="df31753dd5a463d7868062b7d85b4e56" category="cell">接続するストレージ</block>
   <block id="d78b539282fbd3ab71c056420e27d11d" category="cell">Cisco 9336C-FX2ストレージタイプを選択...</block>
-  <block id="b2e9c77dc19c02cc79d1cec1f3ee2fc0" category="cell">RCFファイルのバナー/ MOTDの例</block>
   <block id="4123b977475c9c4828f585782db5cb61" category="list-text">直接接続SASシェルフ</block>
   <block id="e8ea5873a1121ec729327255bcb20d9a" category="list-text">直接接続型NVMeシェルフ</block>
   <block id="415f7c0e4d1c31bd8bc9a1c226589d04" category="list-text">NVMeシェルフを専用ストレージスイッチに接続</block>
@@ -12045,7 +11989,6 @@
   <block id="f411a218519aacec5088cc5a3d23eb64" category="paragraph">古いシステムIDと新しいシステムIDについては、を参照して <block ref="372daca62ea6308294fd70c00fcc8af2" category="inline-link-macro-rx"></block>ください。</block>
   <block id="04e334293a29a0fcdf98b56004e27edc" category="section-title">MetroCluster準拠スイッチとネットアップ検証済みスイッチの比較</block>
   <block id="5c5c34d5e7843e9424f3ca2380ae18ea" category="list-text"><block ref="5c5c34d5e7843e9424f3ca2380ae18ea" category="inline-link-macro-rx"></block></block>
-  <block id="910d0f6661c3968f4e7402c808d31b3f" category="list-text"><block ref="910d0f6661c3968f4e7402c808d31b3f" category="inline-link-macro-rx"></block></block>
   <block id="740c0d0f6d37afa212fad2bd272a4212" category="list-text">Tiebreaker 1.6ではSNMPv3のみがサポートされます。</block>
   <block id="a98720fe58fe46f2a22c59d172b69fbf" category="list-text">Tiebreaker 1.5および1.4ではSNMPv1とSNMPv3がサポートされますが、NetAppではセキュリティを最適化するためにSNMPv3を設定することを強く推奨します。</block>
   <block id="c93871f59c253b2d1ca21a1ce2a00ff8" category="paragraph"><block ref="5ef546c28db0706808d8d451d5a71029" prefix=" " category="inline-code"></block>コマンドの応答は、実行しているTiebreakerのバージョンによって異なります。</block>
@@ -13003,10 +12946,8 @@
   <block id="6402d49dd52ac4a97e3a5b5df13a2b01" category="paragraph">コマンド出力で、RCFバージョンを示す行を確認します。たとえば、Ciscoスイッチからの次の出力は、RCFバージョンが「v1.80」であることを示しています。</block>
   <block id="372302cd9a52d50f8bbec355aa5caad3" category="list-text">特定のONTAPバージョン、スイッチ、およびプラットフォームでサポートされているファイルを確認するには、を使用し<block ref="3d323bfcd2e7c90d6e420b3bfd1a01ed" category="inline-link-macro-rx"></block>ます。既存の構成またはにアップグレードする構成に対してRCFを生成できる場合は、そのRCFがサポートされます。</block>
   <block id="5892dc73aeb0908038bb8e9380fb53c4" category="section-title">スイッチのファームウェアをアップグレードします。</block>
-  <block id="28abab10271202d2140cfed5d173dff5" category="paragraph">MetroCluster IPスイッチのリファレンス構成ファイル（RCF）のアップグレードが必要になる場合があります。たとえば、スイッチで実行しているRCFのバージョンが、ONTAPのバージョン、スイッチのファームウェアのバージョン、またはその両方でサポートされていない場合などです。</block>
   <block id="463c4e9c177d926f8a70723419e27185" category="inline-link-macro">RCFのサポート状況の確認</block>
   <block id="31e4a45ff8bf040780bcaeea92eaf273" category="list-text">RCFをアップグレードする前に、を<block ref="0cb16fc2594f35c2b9b081a93af72ead" category="inline-link-macro-rx"></block>参照してください。</block>
-  <block id="72d26e3e5a2756a67ae4a487db269cd2" category="list-text">この手順を実行すると、RCFファイルをアップグレードするスイッチでトラフィックが中断されます。トラフィックは、新しいRCFファイルが適用されると再開されます。</block>
   <block id="085e87b6ec813d01dd3f597186e26f1e" category="list-text">アップグレードするシステムで*共有クラスタ/ HAポート*を使用している場合は、MetroCluster IPインターフェイスでサポートされているIPアドレスが使用されていることを確認します。</block>
   <block id="11f90eb1d0dccabe5ea84d5795fc2ef7" category="paragraph">次の情報を使用して、新しいシステムで共有クラスタ/ HAポートが使用されているかどうかを確認します。</block>
   <block id="fb1ce5d087cc4c4bd39c43bc3af7058b" category="admonition">MetroClusterインターフェイスに169.254.17.xまたは169.254.18.xのIPアドレスが設定されている場合、*共有クラスタ/ HAポート*を使用するシステムへのアップグレードはサポートされません。</block>
@@ -13655,8 +13596,6 @@
   <block id="2fc694052b4d0c9fddb171c279d9ff41" category="section-title">ミラーリングされていないアグリゲート用のストレージシェルフを追加する</block>
   <block id="340ee9c6b389308075f20882f44ee863" category="paragraph">シェルフを追加し、 MetroCluster IP 構成内のミラーリングされていないアグリゲートに使用する場合は、次の手順を実行する必要があります。</block>
   <block id="fb945b959f6754639fad6c6e9e9469b9" category="list-text">ローカル ユーザーにはネットワーク管理者権限が必要です。</block>
-  <block id="5ea27988b4071e332e850721389e951a" category="doc">適切なMetroCluster IPスイッチ構成手順を選択する</block>
-  <block id="b9b3d7865c01f9cccab728c6d2bb7296" category="paragraph">バックエンドMetroCluster IP接続を提供するには、IPスイッチを設定する必要があります。手順はスイッチベンダーによって異なります。</block>
   <block id="528aafe8fc362d0088ddcc230e89b62a" category="doc">複数のMetroCluster IP構成でポートテーブルを使用する方法</block>
   <block id="760419501f92fb637e39b91dbfd2ea18" category="summary">ストレージ コントローラがストレージ シェルフに接続される方法に基づいて、適切なインストール手順を選択する必要があります。</block>
   <block id="ef78e28e8b4e7855b7b5095e4cbd705a" category="paragraph">ONTAP 9.15.1 以降では、サポートされているシステムでエンドツーエンドの暗号化を設定して、 MetroCluster IP 構成内のサイト間の NVlog やストレージ レプリケーション データなどのバックエンド トラフィックを暗号化できます。</block>
@@ -14648,4 +14587,131 @@
   <block id="5a523817621c85574dfcbf0b11c07075" category="paragraph">CL 5.4.0 を実行している NVIDIA Cumulus スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します：</block>
   <block id="4451c276144ff12f4a59bad51c0a1181" category="open-title">NVIDIA - CL 5.11.0+</block>
   <block id="d1f08b7bd68bdc79984e047bc1939c5d" category="paragraph">CLI 5.11.0 以降を実行している NVIDIA Cumulus スイッチで SNMPv3 ユーザー名 SNMPv3_USER を設定します：</block>
+  <block id="5c70de9aa6fac7d71c4ddfb2d31ae25a" category="list-text">新しい参照設定ファイル（RCF）を適用するために、IPスイッチを準備します。</block>
+  <block id="cf638fa08203ce9c082e7eecde22e20f" category="paragraph">MetroCluster ファブリック構成の各スイッチに参照構成ファイル（RCF）をダウンロードする必要があります。</block>
+  <block id="91cd9003fc7afacd92d0952d1578d48b" category="paragraph">RCFは4つあり、MetroClusterファブリック構成の4つのスイッチそれぞれに対応しています。使用するスイッチモデルに合った正しいRCFを使用する必要があります。</block>
+  <block id="6dcb15f9fb489afb93f692b6b7755f84" category="cell">RCF</block>
+  <block id="2132fe352bf4bb487eaf6927cffd6982" category="list-text">Cisco FC RCF を<block ref="47f7dd3b2352c1e61640eee11f081c5a" category="inline-link-rx"></block>からダウンロードします。</block>
+  <block id="39313cc2f6093990d3dca3755297c44e" category="list-text">RCFファイルをスイッチにコピーします。</block>
+  <block id="8ca2fa0cdf859df18fecce8122036812" category="list-text">RCFファイルを最初のスイッチにコピーします。</block>
+  <block id="99eaec47ed0f56f87ba6c6f107b1d555" category="paragraph">この例では、<block ref="334910bbc7198eea40a5718a09788dc1" prefix=" " category="inline-code"></block> RCFはSFTPサーバーから<block ref="f8a554bd262c1f2aca6545aab6fbbd47" prefix=" " category="inline-code"></block>ローカルのブートフラッシュにコピーされます。TFTP/SFTPサーバーのIPアドレスと、インストールするRCFのファイル名を使用する必要があります。</block>
+  <block id="2130b5577be1c5b0ecb66a86e0e62b98" category="list-text">前の手順を他の3つのスイッチそれぞれについても繰り返し、対応するRCFを必ず対応するスイッチにコピーしてください。</block>
+  <block id="9c2d39ef52a63a0bca259adc5598a991" category="list-text">各スイッチで、RCFが各スイッチの<block ref="67b5ed08894c07eba0af4a7a7247711e" prefix=" " category="inline-code"></block>ディレクトリに存在することを確認します：</block>
+  <block id="31809c76013c1e869215736e65c76cff" category="list-text">ローカルのブートフラッシュから、各スイッチの実行中の設定に、対応する RCF をコピーします。</block>
+  <block id="9eca16f5df5b1dbd9bc66d21738825d6" category="list-text">各スイッチの実行中の設定から起動時の設定にRCFをコピーします。</block>
+  <block id="29ecb75ab42ddd669cd0f6e92a58cc6b" category="paragraph">これらの RCF を使用するには、システムで ONTAP 9.1 以降が実行されている必要があり、ONTAP 9.1 以降のポートレイアウトを使用する必要があります。</block>
+  <block id="3503c9d859a9eb3fcbd234a3d5c9a363" category="list-text">Brocade RCF ダウンロードページの RCF テーブルを参照して、構成内の各スイッチに対応する適切な RCF を特定してください。</block>
+  <block id="4171a03473af7f6456c08cdeebe281de" category="paragraph">RCFは正しいスイッチに適用する必要があります。</block>
+  <block id="02d4864774f054081d5b074fdab94cda" category="list-text">スイッチ用のRCFを<block ref="7a2a5b3ce34e84b17e1e6ffcc479aaa8" category="inline-link-rx"></block>ページからダウンロードしてください。</block>
+  <block id="5bed49e108466e37517b3a12ea075d7a" category="summary">スイッチのファームウェアまたは参照構成ファイル（RCF）を更新する際には、アップグレード中にクラスタの動作を中断させないように、クラスタLIFをパートナースイッチに移動します。</block>
+  <block id="9b2826e036ff82834f75a0e7a44282ed" category="doc">MetroCluster IP スイッチの交換、RCF の変更、またはファームウェアのアップデートの前にクラスター LIF を移動する</block>
+  <block id="ba817507ff742e4351352b3d698de081" category="paragraph">MetroCluster IPスイッチを交換したり、スイッチのファームウェアや参照構成ファイル（RCF）を変更したりする場合は、クラスタLIFをパートナースイッチに移動して、クラスタの無停止運用を実現する必要があります。</block>
+  <block id="b418b4fad97ed4823768d59cc9628c62" category="list-text">スイッチのファームウェアをアップグレードまたはダウングレードする前、スイッチのRCFを交換する前、またはIPスイッチを交換する前に、この作業を実行する必要があります。</block>
+  <block id="f6ab7b470572966bac3482a56c334dfc" category="admonition">スイッチを初めて設定する場合は、スイッチの交換作業を行わない限り、この手順はスキップできます。</block>
+  <block id="a95f710d416a28711f7057a66ef327d5" category="list-text">このタスクでは、ONTAP コマンドとスイッチコマンドの両方を使用する必要があります。特に指定がない限り、ONTAP コマンドが使用されます。</block>
+  <block id="652d64acba0f102d37b42ef27f23f740" category="list-text">この手順で使用する例では、IP_switch_A_1 をアップグレードするため、クラスタ LIF を IP_switch_A_2 に移行する必要があります。</block>
+  <block id="83b73f0ed3a170e10c1e7afb1f2de22f" category="list-text">この手順のコマンド出力例は、Cisco スイッチの詳細を示しています。出力は、スイッチの機種やメーカーによって異なる場合があります。</block>
+  <block id="c06b2e93c970fd796fa3b646ea0c91e7" category="list-text">各ノード上のクラスタスイッチに接続されているクラスタポートを表示します。</block>
+  <block id="6015ee0c3c4dbc37f534783a65239e72" category="example-title">例を表示</block>
+  <block id="1b75649d1b9ec0a73e309fd9b384b32a" category="list-text">各クラスタ ポートの管理ステータスと動作ステータスを確認します。</block>
+  <block id="a8a837b1d24982d8fd8c7b71b0da1a7a" category="list-text">クラスタポートがすべて正常な状態で稼働していることを確認してください。</block>
+  <block id="1998c6d3154f5a2c373da0aeca0fd3ff" category="paragraph"><block ref="856f897c52a15ad9c779d1f7b82c2593" prefix="" category="inline-code"></block></block>
+  <block id="d9fb568577d38aa5ca1f9412c1a4e107" category="list-text">すべてのクラスタインターフェイス（LIF）がホームポートにあることを確認してください。</block>
+  <block id="a2d27af8ce0592e36b8a208c0cb93d3e" category="paragraph"><block ref="fb5130635551fff679ab6d902eaff8d9" prefix="" category="inline-code"></block></block>
+  <block id="98f234e93ec030ce67a050ab46bd6ee6" category="list-text">クラスタが両方のクラスタスイッチの情報を表示していることを確認します。</block>
+  <block id="798dfbe36e04e65261e623680213b38d" category="paragraph"><block ref="c57378c3b3bb81c6b42a2b31a30ddda7" prefix="" category="inline-code"></block></block>
+  <block id="aa831e5ed3cf3569aacf417dc10d9847" category="list-text">クラスタLIFの自動ロールバックを無効にします。クラスタLIFはパートナークラスタスイッチにフェイルオーバーし、対象のスイッチでアップグレード手順を実行する間、その場所に留まります。</block>
+  <block id="684818f9d30d8e8936a73d9c92c51cfe" category="admonition">2番目のファブリックをアップグレードする場合は、この手順をスキップして、<block ref="327988adbe3e93c3ffe0ff2abeb91411" category="inline-xref-macro-rx"></block>に進んでください。</block>
+  <block id="b1046cdb57cd97fe9c20f711ba08bed8" category="paragraph"><block ref="76be4589a0f314371f336c42f473092c" prefix="" category="inline-code"></block></block>
+  <block id="6f80841cf0831aea5bbcbeaff818df5a" category="list-text">[[shut-down-ports]]クラスタスイッチIP_switch_A1で、ノードのクラスタポートに接続されているポートをシャットダウンします。</block>
+  <block id="a2fe9051fe051f819bd739ef3e340377" category="open-title">NVIDIA</block>
+  <block id="3dc2e7033e76926da5578cb873563ec1" category="list-text">クラスタインターフェースを表示します。</block>
+  <block id="640aabb1d4c1c1f949a0a35374202d42" category="list-text">クラスタインターフェースポートをシャットダウンします。</block>
+  <block id="506cbd48c08948901f7b3d2fcf241e24" category="list-text">[[verify_cluster_lif_migration]] クラスタ LIF がクラスタスイッチ IP_switch_A2 でホストされているポートに移行したことを確認します。数秒かかる場合があります。</block>
+  <block id="af4fb0eecc11b6a91b245e052b6c0a20" category="paragraph">クラスタLIFがパートナースイッチに移行したら、スイッチベンダーの標準設定手順に従って、ターゲットファームウェアまたはRCFバージョンへのアップグレードを完了できます。</block>
+  <block id="86e838bf9c0847e26da95e5f1fb7811d" category="admonition">最初のファブリックでスイッチを設定した後、2番目のファブリックでクラスタLIFを移動する手順を繰り返す必要があります。</block>
+  <block id="ea73d8af7135d7d225784b371375310f" category="doc">MetroCluster IP スイッチの設定について</block>
+  <block id="b398c546b361af58bcc92050d70db2b4" category="paragraph">バックエンドの MetroCluster IP接続を提供するようにIPスイッチを設定する必要があります。実行する手順は、スイッチベンダーと、スイッチを MetroCluster IPの新規インストールの一部として設定するか、別の手順の一部として設定するかによって異なります。</block>
+  <block id="92e541a9c70ad67c77b89e2d969764ce" category="section-title">新規 MetroCluster IP インストール</block>
+  <block id="66ae00fed61743cbd269595ede42450e" category="paragraph">新しい MetroCluster IP インストールを実行する場合は、スイッチベンダーに応じてスイッチの設定手順を選択してください。</block>
+  <block id="7a6a9c61a00d805db560ab9153141683" category="section-title">スイッチの交換とRCFまたはファームウェアのアップデート</block>
+  <block id="3a5ca636d042ba14163790e15fb14b39" category="paragraph">スイッチの交換やアップグレードなど、他のMetroCluster IP手順の一部として、スイッチのファームウェア、参照構成ファイル（RCF）、またはその両方を更新する必要がある場合があります。このような場合、IPスイッチを設定する前に、クラスタLIFを移動する必要があります。これらのシナリオの概要手順は以下のとおりです。</block>
+  <block id="c45b5cac6c505399616694a0b7c6c04d" category="admonition">スイッチは、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に更新する必要があります。</block>
+  <block id="032e6e8ef98f5ba6f14159f917ab3e15" category="inline-link-macro">クラスターLIFを移動します</block>
+  <block id="b0e11f8bc3115af6f46ef95760b7108a" category="list-text"><block ref="b0e11f8bc3115af6f46ef95760b7108a" category="inline-link-macro-rx"></block></block>
+  <block id="c7d46afd534f9d0360e5628b1907f177" category="list-text">クラスタLIFをパートナースイッチに移動した後、スイッチベンダーの標準設定手順に従うことができます。</block>
+  <block id="3702fa9bc5c3f18bbbeed6b44a352090" category="list-text">最初のファブリックでスイッチ（Switch_A_1、Switch_B_1）を設定したら、<block ref="b0e11f8bc3115af6f46ef95760b7108a" category="inline-link-macro-rx"></block>から始めて、2番目のファブリック（Switch_A_2、Switch_B_2）で手順を繰り返す必要があります。</block>
+  <block id="0d748d04c15c51dc82adaafb202380f8" category="list-text">これらの手順を、スイッチの交換やアップグレードなど、別の手順の一部として使用している場合は、クラスタの運用を中断させないために、クラスタLIFをパートナースイッチに移動する必要があるかどうかを確認してください。<block ref="9ce2e245234110ff72cc16bc02886cc0" category="inline-link-macro-rx"></block>。</block>
+  <block id="852176ba820381370f520dbeca56dbfa" category="admonition">スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。手順でクラスタ LIF を移動する必要がある場合は、最初のファブリック （Switch_A_1、Switch_B_1） でスイッチを設定した後、2 番目のファブリック （Switch_A_2、Switch_B_2） でクラスタ LIF を移動する手順を繰り返す必要があります。<block ref="9ce2e245234110ff72cc16bc02886cc0" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="cec0c4ac2074d499d97d20ee0fde64ef" category="list-text">クラスタLIFに対して自動復帰が有効になっていることを確認します。</block>
+  <block id="a28cce9c0e3ab8ac431128996388bcfd" category="admonition">クラスタLIFに対して自動復帰が有効になっていることを確認する必要があります。</block>
+  <block id="7a7d7054decebaeb3dba2307d6555fb9" category="list-text">自動復帰が有効になっていない場合は、すべてのクラスタLIFを変更して自動復帰を有効にしてください。</block>
+  <block id="861865437c84fdf002bbc9c73fb2554f" category="admonition">スイッチの交換やアップグレードなど、別の手順の一部としてこれらの手順を実行している場合、<block ref="ff2aaf62543af58cd0f5c49e7e04cef2" category="inline-link-macro-rx"></block> の手順の一部として自動復帰を無効にしている可能性があります。</block>
+  <block id="90563211213c93906ee730f25ee9143e" category="list-text">自動復帰を再度有効にする：</block>
+  <block id="2c70d9b6ebd85a5ee2fff0f363a115ac" category="paragraph"><block ref="bf3c84eda3ab699c2564d177a409447a" prefix="" category="inline-code"></block></block>
+  <block id="268d66b259b50e25cbef3d39885d450f" category="paragraph"><block ref="d4a4086e7952a80201c11ae52219be46" prefix="" category="inline-code"></block></block>
+  <block id="8ed8ddf647d2420b5b9cfef94d1e66ca" category="paragraph">LIFがホームポートに戻るまで数分お待ちください。</block>
+  <block id="9c01e65c2e65b640d8118fe54781309e" category="list-text">すべてのLIFがホームポートにあることを確認してください。</block>
+  <block id="052bf57f898d3892d0551c66dc793e8b" category="list-text">MetroCluster ノードの状態を確認します：</block>
+  <block id="53c1dca890ccf51d340a7239987710a8" category="list-text">サポートされているスイッチソフトウェアのバージョンを使用する必要があります。<block ref="ed4326c3351d8ac0e334b8b4d9b37c82" category="inline-link-rx"></block>を参照してください。</block>
+  <block id="fdb08440fb03aec95dda7df506525f73" category="list-text">残りの 3 つの IP スイッチで前の手順を繰り返します（MetroCluster IP 設定）。</block>
+  <block id="0a87ee4fa6163be20e6bf1d980e5a277" category="paragraph">参照構成ファイル（RCF）を正しく生成するには、ポートテーブルの情報をどのように使用するかを理解する必要があります。</block>
+  <block id="350ebdbb66bf03c8efc403678120e39d" category="admonition">NS224シェルフを接続する共有構成で Cisco 9336C-FX2 スイッチを使用している場合、ISL を変更すると新しい参照構成ファイル（RCF）が必要になる場合があります。現在および新規の ISL 速度がそれぞれ 40 Gbps と 100 Gbps の場合、新しい RCF は必要ありません。ISL 速度に関するその他の変更はすべて、新しい RCF が必要です。たとえば、ISL の速度を 40 Gbps から 100 Gbps に変更する場合は新しい RCF は必要ありませんが、ISL の速度を 10 Gbps から 40 Gbps に変更する場合は新しい RCF が必要です。</block>
+  <block id="6c5a911225660b72c17cb2db5923a54a" category="inline-link-macro">MetroCluster IPスイッチのRCFをアップグレードします。</block>
+  <block id="69cb6427980eccf80b5d0c17f1aab875" category="admonition">NS224シェルフを接続する共有構成でCisco 9336C-FX2スイッチを使用しており、RCFをアップグレードして新しいISLポートに新しい構成を適用する必要がある場合は、次の手順に従ってください。<block ref="c3ee1b38b8c2251d663b314073e9cd8a" category="inline-link-macro-rx"></block></block>
+  <block id="8707fdff465b4f0541eaf591583954a7" category="list-text"><block ref="b0e11f8bc3115af6f46ef95760b7108a" category="inline-link-macro-rx"></block>。</block>
+  <block id="856a04ccf59d2820da6a47984fbd3ea0" category="admonition">スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定した後、2番目のファブリック（Switch_A_2、Switch_B_2）でクラスタ LIF を移動する手順を繰り返す必要があります。<block ref="5f804b3f3e9acee141e0ae306b7a6f59" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="8dc1f99634c85a613352ad949b508cf1" category="paragraph"><block ref="7176836221733e9bf6fcbaccc1aa9ffd" category="inline-link-macro-rx"></block>の手順に従ってください。</block>
+  <block id="0d35a64434c5cb583e6703803b6a3251" category="paragraph">新しいスイッチが同じものであれば、新しいスイッチの電源を入れてください。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチの電源を入れてください。この構成では、2つ目のファブリックが更新されるまで、各サイトで2つの異なるスイッチを使用して動作させることができます。</block>
+  <block id="acc1856da35d6d8c04024997f2eb6084" category="paragraph">最初のファブリック内のスイッチをアップグレードまたはダウングレードする場合、ローカルクラスタリングに関連するアラートが表示されることがあります。</block>
+  <block id="73d919208b85f9e19c80b7413d6e453e" category="admonition">ファブリックをアップグレードまたはダウングレードする場合は、2つ目のファブリックについてもすべての手順を繰り返してください。</block>
+  <block id="73117420b1d3da1446aeff431e81d9c6" category="list-text"><block ref="b0e11f8bc3115af6f46ef95760b7108a" category="inline-link-macro-rx"></block>アップグレードを開始する前に</block>
+  <block id="19bc1d3a8e5db6fb9ca5ed1d6e53ad7f" category="list-text">それぞれのスイッチについて、上記の手順を繰り返してください。</block>
+  <block id="31bbe12313f1a40b18eaa501279a0be3" category="admonition">最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定したら、同じ手順を繰り返して、クラスタLIFを2番目のファブリック（Switch_A_2、Switch_B_2）に移動する必要があります。<block ref="5f804b3f3e9acee141e0ae306b7a6f59" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="b0eaff36df906302d61d2a732f0bd280" category="paragraph">Cisco IP スイッチの参照構成ファイル（RCF）をアップグレードする必要がある場合があります。たとえば、ONTAP のアップグレードやスイッチのファームウェアアップグレードでは、どちらも新しい RCF が必要です。</block>
+  <block id="9a6efb0d6ef62b264d464f9318c33ea5" category="cell">RCFバナー/MOTDサンプル</block>
+  <block id="270442fca75eb1d9b0a0f7fbda94ec91" category="list-text"><block ref="c52b4d12f68853a25c52576697c6b2b5" category="inline-link-rx"></block>は、適用されているものと同じバージョンと構成（プラットフォーム、VLAN）で、同じRCFを作成できる必要があります。</block>
+  <block id="9841cae1f3cd8f3083a447c8f51118b2" category="list-text">適用されたRCFは、特別な構成のために NetApp から提供されたものではありません。</block>
+  <block id="9ec3c03b2e25d0fd885e119b26a47209" category="list-text">RCFは適用前に変更されませんでした。</block>
+  <block id="7d4a576e62d8fa25121aba113311ce11" category="list-text">現在のRCFを適用する前に、スイッチを工場出荷時の設定にリセットする手順を実行しました。</block>
+  <block id="4f9ef492ce457924cabecc16236a4c41" category="paragraph">これらの要件を満たさない場合は、RCFを生成する際に作成されるCleanUpFilesを使用することはできません。ただし、この機能を利用して汎用的なCleanUpFilesを作成することもできます。この方法を使用したクリーンアップは、<block ref="d064a73c32d00bf384204782a696a298" prefix=" " category="inline-code"></block>の出力から派生しており、ベストプラクティスです。</block>
+  <block id="385e6272a2260d5d2074d187f64c13d0" category="list-text">現在のRCFバージョン、および使用されているポートとVLANを確認します：<block ref="9b0b071cbeedb9bb40e134702701197f" prefix=" " category="inline-code"></block></block>
+  <block id="31a1a5eb41a54f193dee4fcd85f62f3c" category="cell">RCFのバージョン</block>
+  <block id="d2c73fd480128bba9ad18b2cc35e088a" category="list-text">[[Create-RCF-files-and-CleanUpFiles-or-create-generic-CleanUpFiles]] RCF と CleanUpFiles を作成するか、現在の構成に対して汎用の CleanUpFiles を作成します。</block>
+  <block id="2d3daa23f8c1124a7f51b396b2c83599" category="open-title">オプション 1：RCF と CleanUpFiles を作成する</block>
+  <block id="09a9232d68d132ce906d6729982e29da" category="list-text">RcfFileGenerator 1.4a（またはそれ以降）を使用して、ステップ 1 で取得した情報を基に RCF を作成します。新バージョンの RcfFileGenerator は、追加の CleanUpFiles セットを作成します。これを使用すると、一部の設定を元に戻し、スイッチに新しい RCF 設定を適用できるように準備できます。</block>
+  <block id="e978980bdc9465fa0544fbecc209d5f7" category="list-text">バナーのmotdを、現在適用されているRCFと比較してください。プラットフォームの種類、スイッチの種類、ポート、VLANの使用方法はすべて同じでなければなりません。</block>
+  <block id="cbf0859eba1f468560501286f96bce70" category="admonition">RCF と同じバージョンで、まったく同じ構成の CleanUpFiles を使用する必要があります。任意の CleanUpFile を使用しても機能せず、スイッチの完全なリセットが必要になる場合があります。</block>
+  <block id="bf8da3127630e1672d896214577b32f3" category="admonition">RCFが作成されたONTAPのバージョンは関係ありません。重要なのはRCFのバージョンのみです。</block>
+  <block id="b542d9b58edaa8b0bd2dd3ae2b80c0a7" category="admonition">RCF（同じバージョンであっても）には、記載されているプラットフォームの数が少なくなったり多くなったりする場合があります。お使いのプラットフォームがリストに記載されていることを確認してください。</block>
+  <block id="b79f0a153ad93b9722d2cdc284bd859f" category="list-text">[[Create-the-new-RCF-files-for-the-new-configuration]] 新しい構成用の「新しい」RCF ファイルを作成します。前の手順でファイルを作成したときと同じ方法でこれらのファイルを作成しますが、それぞれの ONTAP および RCF バージョンを選択してください。</block>
+  <block id="0b172d151494b14e7fdff735f6e210c6" category="paragraph">この手順を完了すると、それぞれ12個のファイルからなる2組のRCFファイルが作成されます。</block>
+  <block id="39da313cd3d2efd5a85461c6b18b0e9a" category="inline-xref">RCF と CleanUpFiles を作成するか、現在の構成に対して汎用的な CleanUpFiles を作成する</block>
+  <block id="b34bc751b388df2a26c3d747fe1f39cf" category="list-text"><block ref="bce5d5db6b460239ddd9d2efeebaa897" category="inline-xref-macro-rx"></block>で作成したCleanUpFilesをダウンロードします</block>
+  <block id="e57c406545eb94b55e46fd490e3dcc6f" category="admonition">このCleanUpFileは、現在適用されているRCFに関するものであり、アップグレード先の新しいRCFに関するものでは*ありません*。</block>
+  <block id="a1fa8ef8fe9fe6945d9a481c566faf1a" category="inline-xref">新しい構成に合わせて「新しい」RCF を作成します。</block>
+  <block id="0e19bf9641c612dddacde2528d12e17c" category="list-text"><block ref="97f3ac22394457ab69892174bef80b4e" category="inline-xref-macro-rx"></block>で作成した「新しい」RCFをダウンロードしてください</block>
+  <block id="19e2eaf9177ade8d5a63d99d3fa7e5e4" category="paragraph">Switch-A1 の RCF の例：<block ref="fcb7173e7a2e786c277b7ad6470af002" prefix=" " category="inline-code"></block></block>
+  <block id="d72478cb233a7ba8b75d8a2c92a6a6c1" category="list-text"><block ref="97f3ac22394457ab69892174bef80b4e" category="inline-xref-macro-rx"></block>で作成したCleanUpFilesをダウンロードします。この手順は任意です。このファイルは今後、スイッチの設定を更新する際に使用できます。これは現在適用されている設定と一致します。</block>
+  <block id="b4fb6ce79e810065e4af4b50b355268c" category="paragraph">上記項目のいずれかが設定されている場合、新しいRCF構成を適用できない可能性があります。ただし、実行中の設定を起動設定に保存*せずに*スイッチを再起動することで、以前の設定に戻すことができます。スイッチは以前の設定で起動します。</block>
+  <block id="39a59a7f698d76b6c515d442d496fc20" category="list-text">RCFを適用し、ポートがオンラインになっていることを確認します。</block>
+  <block id="b4ff3823ad51690657517a6cc43f5bbc" category="list-text">RCFを適用します。</block>
+  <block id="92dce1ba931a31f563746a7fc012ede0" category="list-text">自動復帰を有効にするために、すべてのクラスタ LIF を変更します。</block>
+  <block id="7506fa2af11ba55ddb93c46406818219" category="paragraph">参照構成ファイル（RCF）を MetroCluster IP スイッチでアップグレードする必要がある場合があります。たとえば、スイッチで実行している RCF バージョンが ONTAP バージョン、スイッチのファームウェアバージョン、またはその両方でサポートされていない場合などです。</block>
+  <block id="0fd7975d8fcd31db8559ed95a3a7ca29" category="list-text">新しいスイッチファームウェアをインストールする場合は、RCFをアップグレードする前にスイッチファームウェアをインストールする必要があります。</block>
+  <block id="5b6e304706a21e319010fab102707c79" category="list-text">この手順を実行すると、RCFのアップグレードが行われるスイッチ上のトラフィックが中断されます。新しいRCFが適用されると、トラフィックは再開されます。</block>
+  <block id="ef79769a9b12c47ca8e0242e864b2c02" category="list-text">スイッチベンダーに応じて、IP RCF をダウンロードしてインストールしてください。</block>
+  <block id="0a7486debceb3d7717c123eee7f53e26" category="inline-link-macro">Broadcom IP RCF をダウンロードしてインストールする</block>
+  <block id="91d44de3771ac094a8fc8ef949f447f1" category="list-text"><block ref="91d44de3771ac094a8fc8ef949f447f1" category="inline-link-macro-rx"></block></block>
+  <block id="e78e0be76deac39685c069c02b9c59b8" category="paragraph">新しいノードに対応するために、参照構成ファイル（RCF）を適用してゾーニングを再構成する必要があります。</block>
+  <block id="b60b2b518843eb58af59ce647217c844" category="paragraph">RCFを使用してスイッチを設定できない場合は、スイッチを手動で設定する必要があります。参照：</block>
+  <block id="880c5e16abd9dabbb6ec7c79be346e14" category="list-text">お使いの構成に対応する RCF を探してください。</block>
+  <block id="f78893de7c74e6fe864a719bc7efc19e" category="paragraph">スイッチのモデルに合った8ノード構成用のRCFを使用する必要があります。</block>
+  <block id="59f3d762e99b09ec1becaca961e395a1" category="list-text">ダウンロードページの指示に従って RCF を適用し、必要に応じて ISL 設定を調整してください。</block>
+  <block id="0cd61c4c88f15a8971607489f9b6d653" category="paragraph">FC スイッチ ポートの使用方法は、RCF を使用できるように、<block ref="a9f150ef34b7953b6119f5ac779097fe" category="inline-link-macro-rx"></block> に記載されている MetroCluster 8 ノードの使用方法と一致している必要があります。</block>
+  <block id="eabc5692452c984a6976e8e815a16418" category="admonition">ブートメニューオプションを実行すると<block ref="1679091c5a880faf6fb5e6087eb1b2dc" prefix=" " category="inline-code"></block>、MetroCluster bootarg の値をリセットする必要がある場合があります。<block ref="34d15be42555000516d0cc6b7f35d1c4" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="74babbf42b11f149a7a363757d584c3b" category="admonition">ブートメニューオプションを実行すると<block ref="1679091c5a880faf6fb5e6087eb1b2dc" prefix=" " category="inline-code"></block>、MetroCluster bootarg の値をリセットする必要がある場合があります。<block ref="06c3fdcb6cd8d64a7d2e8bffb99c9b80" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="b8c3014a64ccb52cfe10dc2bcccd245f" category="admonition">ブートメニューオプションを実行すると<block ref="1679091c5a880faf6fb5e6087eb1b2dc" prefix=" " category="inline-code"></block>、MetroCluster bootarg の値をリセットする必要がある場合があります。<block ref="c2cec781ec7263394dd955380787b572" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="9a3f31a7018cf62078b2f2f088863f9b" category="sidebar">MetroCluster IP スイッチの設定について</block>
+  <block id="96e6a3f92b027e80b14698a7b22b316f" category="sidebar">クラスタLIFを移動</block>
 </blocks>

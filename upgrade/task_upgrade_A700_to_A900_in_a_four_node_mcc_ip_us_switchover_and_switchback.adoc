@@ -955,7 +955,7 @@ fcadmin show`
 site_A のコントローラをアップグレードすると、 site_A のスイッチがアップグレードされます。
 
 .手順
-. IPスイッチで新しいRCFを適用できるように準備します。
+. 新しい参照設定ファイル（RCF）を適用するために、IPスイッチを準備します。
 +
 スイッチベンダーに対応するセクションを参照してください。
 
@@ -1371,6 +1371,10 @@ partner-sysid が正しくない場合は、次のように設定します。
 |===
 +
 キー管理ツールの設定に応じてオプション 10 またはオプション 11 を選択し、ブートメニューのプロンプトでオプション 6 を選択して、リカバリ手順を実行する必要があります。ノードを完全にブートするには、オプション 1 （通常ブート）のリカバリ手順の実行が必要になる場合があります。
+
++
+
+NOTE: ブートメニューオプションを実行すると `6`、MetroCluster bootarg の値をリセットする必要がある場合があります。link:task_upgrade_A700_to_A900_in_a_four_node_mcc_ip_us_switchover_and_switchback.html#set-the-metrocluster-ip-bootarg-variables["MetroCluster の bootarg IP 変数を設定します"]を参照してください。
 
 . 新しいノード node_B_1 と node_B_2 がブートするまで待ちます。
 +
