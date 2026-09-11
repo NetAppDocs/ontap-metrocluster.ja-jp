@@ -8677,15 +8677,9 @@
   <block id="504d065328326a8677a260e4447bea63" category="paragraph">コントローラモジュールはリブートしますが、ブートメニューで停止します。これは、ブートデバイスが再フォーマットされたことにより、構成データのリストアが必要なためです。</block>
   <block id="f02a9a7436db38c9278de96d8940fedc" category="list-text">次のメッセージが表示されたら、回答は「 yes 」を選択します。これにより、クラスタメンバーシップを含む重要なシステム構成が削除されます。警告：テイクオーバーされた HA ノードでは実行しないでください。続行してもよろしいですか ?:`</block>
   <block id="e3dcb6e98d703b4041ac7a4b6d40412e" category="list-text">ブート・メニューからオプション「 5 」を選択して、保守モードに切り替えます。ノードがメンテナンス・モードで停止し ' コマンド・プロンプト *&gt;` が表示されるまで ' プロンプトを表示します回答</block>
-  <block id="9c70e72e74a5beec346c7fba9e09ac77" category="list-text">ノードを停止しますノードは 'LOADER&gt;` プロンプトで停止します</block>
-  <block id="a9c684b6388493b28c8bae9224fcb530" category="list-text">各ノードで ' システムの日付 ' 時刻 ' タイムゾーンを確認しますつまり ' 日付を表示します</block>
-  <block id="19940e0e663b8b77ef5ae9bed0adc639" category="list-text">必要に応じて、日付を UTC またはグリニッジ標準時（ GMT ）に設定します。「 set date &lt;mm/dd/yyyy&gt;` 」</block>
-  <block id="17cd34e04880fa15bf7da7bdee12d187" category="list-text">ノードをブートして保守モードに戻り、設定の変更が反映されるようにします。「 boot_ontap maint 」</block>
   <block id="92864f4a1e3e8b31f329dde898c399e7" category="list-text">行った変更が有効であることを確認し、 ucadmin に FC イニシエータポートがオンラインで表示されるようにします。</block>
   <block id="9be73b3dd95d39ff15e33b30275709d3" category="cell">HBA のタイプ</block>
   <block id="8ad2992d6c032a4514706c63ee5d4d1b" category="cell">使用するコマンド</block>
-  <block id="6f991264f748ca5e72084279b6293fcc" category="list-text">ha-config モードを確認します。「 ha-config show</block>
-  <block id="351a906b91969bd3f60ac4f7ef2b51fe" category="list-text">次の出力があることを確認します。</block>
   <block id="ee4c38ecc362bac1e7f1567f237e818c" category="list-text">システムを停止して 'LOADER' プロンプトからメンテナンス・モードで起動します</block>
   <block id="1ecb0dfe9a0842837109d6fe31c0a171" category="list-text">node_B_1 A700 が所有するディスクを表示します。</block>
   <block id="241f0ee84bd4513482899f61a24c6961" category="paragraph">次の出力例は、新しいコントローラモジュールのシステム ID （ 1574774970 ）を示しています。ただし、ルートアグリゲートディスクは古いシステム ID （ 4068741254 ）で所有されます。この例で表示されているのは、 MetroCluster 構成の他のノードが所有するドライブではありません。</block>
@@ -10810,7 +10804,6 @@
   <block id="16d9a40603d44eea561b00730eec3d91" category="paragraph">ONTAP 9.12.1以降</block>
   <block id="4951fe611f97b799b2abaf7474848aa1" category="inline-link-macro">OSサポートマトリックス</block>
   <block id="30177b72c8d5a1bab13142ff42dfc513" category="paragraph">を参照してください <block ref="9f4435e7cf286b329f02bc934ba0dd4b" category="inline-link-macro-rx"></block> を参照してください。</block>
-  <block id="e27eee16ff4c1ce2072fea31052ce7d5" category="paragraph">なし依存関係はインストールにバンドルされています。</block>
   <block id="4a558332080902b1daf6c9eb900f075a" category="summary">Tiebreakerのインストール手順は、インストールするTiebreakerのバージョンによって異なります。</block>
   <block id="686cbe9ae98dac9e3c34fe747bedda27" category="doc">インストール手順の選択</block>
   <block id="de537937e28d6ff9bfed73c24f238620" category="paragraph">Tiebreaker 1.6</block>
@@ -14743,4 +14736,23 @@
   <block id="edb9b445f13c3e9e05b61cc6e0b3efdc" category="doc">MetroCluster IP構成用のNVIDIA IP SN2100スイッチを構成します</block>
   <block id="20e757ff864b6acd14ec41e7165a63f9" category="doc">MetroCluster IP構成でONTAP Mediatorメールボックスのタイムアウトを増やす</block>
   <block id="f081a35160d006cd5323e0740d06220e" category="doc">MetroCluster IP構成のポート テーブル</block>
+  <block id="e0ff38f1490ce2495524f7429045ad81" category="inline-link-macro">ナレッジベースの記事「Cluster and HA communication issues during back-end switch replacement」</block>
+  <block id="93c539486532bcd2c15f294efff69106" category="admonition">AFF A220、AFF A250、またはFAS2750プラットフォームでスイッチの交換が必要な場合は、<block ref="3468e696d0ad9ec4d429e1b845c952a7" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="fe4617c4a015a1feba78882255c11625" category="paragraph">X60134Aネットワークインターフェースカードを使用するプラットフォームでは、異なるリンク速度の組み合わせはサポートされていません。お使いのプラットフォームが影響を受けているかどうかを確認するには、<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block>を参照してください。</block>
+  <block id="5f0a2538bca6fe75656437edc2b047c7" category="inline-link-macro">ナレッジベースの記事「100G link not coming online during MetroCluster バックエンドスイッチ交換」</block>
+  <block id="657f971f966b2ce2da53f2f9bf9abb4b" category="paragraph">影響を受けるプラットフォームで、25G ポートを使用するスイッチを 100G ポートを使用する新しいスイッチに交換する場合（たとえば、AFF A50 プラットフォームで BES-53248 スイッチを Cisco 9336C スイッチに交換する場合）は、<block ref="6b31e2facf5f0ecbaec230ff30732341" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="2c949cfd6a2e8390ab22577d8fcb8862" category="paragraph">なし。OpenJDK 19.0.2はインストール時に同梱されています。</block>
+  <block id="cbf667b7a6abb8a525741cdc92045f34" category="paragraph">すべてのコンポーネントの HA 状態は<block ref="f46f944e351f8b92e40c3308318738a3" prefix=" " category="inline-code"></block>である必要があります。</block>
+  <block id="de63ff438cd7316a835d354fccfe0c46" category="list-text">各ノードで、システムの日付、時刻、タイムゾーンを確認してください。</block>
+  <block id="3e72511c09e554faf49052f79d627689" category="paragraph"><block ref="7e17e2b336dbdd66c2f45405573b53de" prefix="" category="inline-code"></block></block>
+  <block id="1bf5eb31de796d79cb8b6dfd332d4bb6" category="list-text">必要に応じて、日付をUTCまたはグリニッジ標準時（GMT）で設定してください。</block>
+  <block id="833ce90830a0406f310191c0da1f76da" category="paragraph"><block ref="ce2b665b5815a9c7e13cdb6fc96a5a98" prefix="" category="inline-code"></block></block>
+  <block id="b6d433a7d610fd177455bd83030adfbf" category="list-text">ブート環境プロンプトで次のコマンドを使用して時刻を確認します：</block>
+  <block id="667f3a6a11750e110d0c1442d2aa20e7" category="paragraph"><block ref="33f065aac47385ce7b7c4bc5d49f430b" prefix="" category="inline-code"></block></block>
+  <block id="3cc2598fed5ed84edf9cf18c5a8293c6" category="list-text">必要に応じて、時刻をUTCまたはGMTで設定してください。</block>
+  <block id="25a249a3cdba620e6eba67639be13589" category="paragraph"><block ref="aa979bf34f52b205295408bd829f28b6" prefix="" category="inline-code"></block></block>
+  <block id="e02ed2f754f906507b04045b6d64c6a8" category="list-text">設定を保存する：</block>
+  <block id="be169689a01b80888d8e5aa7db10c6e9" category="list-text">環境変数を収集する：</block>
+  <block id="c464415fe9040cd42442afd5413727d2" category="list-text">ha-configモードを確認します。</block>
+  <block id="bb903f8039d8d74f0348f46c24a33392" category="paragraph">出力は以下の例のようになるはずです。</block>
 </blocks>

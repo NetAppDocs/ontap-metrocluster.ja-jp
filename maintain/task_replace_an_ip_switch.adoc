@@ -13,11 +13,21 @@ summary: 障害が発生したスイッチの交換、またはスイッチの�
 [role="lead"]
 障害が発生したスイッチの交換、スイッチのアップグレードまたはダウングレード、既存のMetroCluster IPスイッチの使用の変更が必要になる場合があります。
 
+
+CAUTION: AFF A220、AFF A250、またはFAS2750プラットフォームでスイッチの交換が必要な場合は、link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/Cluster_and_HA_communication_issues_during_back-end_switch_replacement["ナレッジベースの記事「Cluster and HA communication issues during back-end switch replacement」"^]を参照してください。
+
 .このタスクについて
 この手順 は、ネットアップ検証済みのスイッチを使用している場合に適用されます。MetroCluster 準拠のスイッチを使用している場合は、スイッチのベンダーを参照してください。
 
 link:enable-console-logging-before-maintenance.html["コンソールログを有効にする"] このタスクを実行する前に。
 
+[NOTE]
+====
+X60134Aネットワークインターフェースカードを使用するプラットフォームでは、異なるリンク速度の組み合わせはサポートされていません。お使いのプラットフォームが影響を受けているかどうかを確認するには、 https://hwu.netapp.com/["Hardware Universe"^]を参照してください。
+
+影響を受けるプラットフォームで、25G ポートを使用するスイッチを 100G ポートを使用する新しいスイッチに交換する場合（たとえば、AFF A50 プラットフォームで BES-53248 スイッチを Cisco 9336C スイッチに交換する場合）は、link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/100G_link_not_coming_online_during_MetroCluster_back-end_switch_replacement?caseId=2010523490["ナレッジベースの記事「100G link not coming online during MetroCluster バックエンドスイッチ交換」"^]を参照してください。
+
+====
 この手順 では、次の変換がサポートされています。
 
 * スイッチのベンダー、タイプ、またはその両方を変更しています。スイッチに障害が発生した場合は、新しいスイッチを古いスイッチと同じにしたり、スイッチのタイプを変更（スイッチをアップグレードまたはダウングレード）したりできます。

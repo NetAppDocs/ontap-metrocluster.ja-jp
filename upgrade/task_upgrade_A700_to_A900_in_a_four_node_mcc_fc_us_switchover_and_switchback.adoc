@@ -960,23 +960,50 @@ fcadmin config -t initiator_adapter-name_`
 「 ha-config show 」
 
 +
-すべてのコンポーネントの HA の状態が mcc である必要があります。
+すべてのコンポーネントの HA 状態は `mcc`である必要があります。
 
-. 表示されたコントローラまたはシャーシのシステム状態が正しくない場合は、 HA 状態を設定します。
+. 表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールとシャーシの HA 状態を設定します。
 +
 「 ha-config modify controller mcc 」
 
 +
 「 ha-config modify chassis mcc 」
 
-. ノードを停止しますノードは 'LOADER>` プロンプトで停止します
-. 各ノードで ' システムの日付 ' 時刻 ' タイムゾーンを確認しますつまり ' 日付を表示します
-. 必要に応じて、日付を UTC またはグリニッジ標準時（ GMT ）に設定します。「 set date <mm/dd/yyyy>` 」
-. ブート環境プロンプトで次のコマンドを使用して ' 時刻を確認します
-. 必要に応じて、時刻を UTC または GMT:' 設定時刻 <:hh:mm:ss>` で設定します
-. 設定を保存します： saveenv
-. 環境変数 :printenv' を収集します
-. ノードをブートして保守モードに戻り、設定の変更が反映されるようにします。「 boot_ontap maint 」
+. ノードを停止します。
++
+「 halt 」
+
++
+ノードは 'loader>` プロンプトで停止する必要があります
+
+. 各ノードで、システムの日付、時刻、タイムゾーンを確認してください。
++
+`show date`
+
+. 必要に応じて、日付をUTCまたはグリニッジ標準時（GMT）で設定してください。
++
+`set date <mm/dd/yyyy>`
+
+. ブート環境プロンプトで次のコマンドを使用して時刻を確認します：
++
+`show time`
+
+. 必要に応じて、時刻をUTCまたはGMTで設定してください。
++
+`set time <hh:mm:ss>`
+
+. 設定を保存する：
++
+'aveenv
+
+. 環境変数を収集する：
++
+printenv
+
+. ノードをブートしてメンテナンスモードに戻り、設定の変更を適用します。
++
+「 boot_ontap maint 」を使用してください
+
 . 行った変更が有効であることを確認し、 ucadmin に FC イニシエータポートがオンラインで表示されるようにします。
 +
 |===
@@ -998,9 +1025,13 @@ FC
 fcadmin show`
 
 |===
-. ha-config モードを確認します。「 ha-config show
+. ha-configモードを確認します。
 +
-.. 次の出力があることを確認します。
+「 ha-config show 」
+
++
+出力は以下の例のようになるはずです。
+
 +
 [listing]
 ----
@@ -1008,70 +1039,6 @@ fcadmin show`
 Chassis HA configuration: mcc
 Controller HA configuration: mcc
 ----
-
-
-
-
-
-
-[[set-the-ha-state-on-the-new-controllers-and-chassis]]
-=== 新しいコントローラとシャーシで HA 状態を設定
-
-コントローラとシャーシの HA 状態を確認し、必要に応じてシステム構成に合わせて更新する必要があります。
-
-.手順
-. メンテナンスモードで、コントローラモジュールとシャーシの HA 状態を表示します。
-+
-「 ha-config show 」
-
-+
-すべてのコンポーネントの HA の状態が mcc である必要があります。
-
-+
-|===
-
-
-| MetroCluster 構成の内容 | HA の状態 
-
-
- a| 
-2 ノード
- a| 
-mcc-2n
-
-
-
- a| 
-4 ノードまたは 8 ノード
- a| 
-MCC
-
-|===
-. 表示されたコントローラのシステム状態が正しくない場合は、コントローラモジュールとシャーシの HA 状態を設定します。
-+
-|===
-
-
-| MetroCluster 構成の内容 | 問題コマンド 
-
-
- a| 
-* 2 ノード *
- a| 
-「 ha-config modify controller mcc-2n 」という形式で指定します
-
-「 ha-config modify chassis mcc-2n 」というようになりました
-
-
-
- a| 
-* 4 ノードまたは 8 ノード *
- a| 
-「 ha-config modify controller mcc 」
-
-「 ha-config modify chassis mcc 」
-
-|===
 
 
 
