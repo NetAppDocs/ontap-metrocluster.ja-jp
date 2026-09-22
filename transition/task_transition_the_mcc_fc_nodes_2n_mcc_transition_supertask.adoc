@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: information, exist, metrocluster, fc, node, autosupport, message, announcing, announce, maintenance, transition, node, gather, controller, module, send, custom, message, prior, shut, down, removing, remove 
 summary: 既存の MetroCluster FC ノードから情報を収集し、メンテナンスの開始を通知する AutoSupport メッセージを送信し、ノードを移行する必要があります。 
 ---
-= MetroCluster FC ノードを移行します
+= MetroCluster FC ノードを移行
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -37,7 +37,7 @@ summary: 既存の MetroCluster FC ノードから情報を収集し、メンテ
 | 使用許諾 | system license show コマンドを実行します |  
 
 
-| 各シェルフおよびフラッシュストレージのディスクシェルフとディスク数、およびメモリと NVRAM とネットワークカード | system node run -node node_name sysconfig |  
+| 棚と各棚のディスク数、フラッシュストレージの詳細、メモリ、NVRAM、ネットワークカード | system node run -node node_name sysconfig |  
 
 
 | クラスタネットワーク LIF とノード管理 LIF | system node run -node node_name sysconfig network interface show -role 「 cluster 、 node-mgmt 、 data 」 |  
