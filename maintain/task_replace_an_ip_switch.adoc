@@ -256,15 +256,23 @@ link:../install-ip/using_rcf_generator.html["MetroCluster IP スイッチをケ�
 
 NOTE: ファブリックをアップグレードまたはダウングレードする場合は、2つ目のファブリックについてもすべての手順を繰り返してください。
 
-. すべてのクラスタLIFを変更して自動リバートを再度有効にします。
+. クラスタ内のすべてのLIFを元のホームポートに戻します。
++
+
+CAUTION: 更新が必要なすべてのスイッチについて、前述の手順が完了するまで、クラスタ LIF をホームポートに戻さないでください。
+
++
+.. すべてのクラスタLIFを変更して自動リバートを再度有効にします。
 +
 [source, cli]
 ----
 network interface modify -vserver <vserver_name> -lif <lif_name> -auto-revert true
 ----
-. 現在ホーム ポートにないすべてのクラスタ LIF をホーム ポートに戻します。
+.. 現在ホームポートに接続されていないすべてのクラスタLIFを、手動でホームポートに戻します。
 +
-`network interface revert -vserver * -lif *`
+`network interface revert -vserver Cluster -lif *`
+
+
 
 . 必要に応じて、NS224シェルフを移動します。
 +

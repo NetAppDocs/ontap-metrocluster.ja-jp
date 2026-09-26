@@ -4,12 +4,12 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, controller, ip, configuration, switchover, switchback, workflow, nodes, tiebreaker, verify, bootrage, root, aggregate, disks 
 summary: MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。 
 ---
-= スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700 / FAS9000からAFF A900 / FAS9500にコントローラをアップグレードする（ONTAP 9.10.1以降）
+= スイッチオーバーとスイッチバックを使用して、MetroCluster IP構成のAFF A700をAFF A900に、またはFAS9000をFAS9500にアップグレードする
 :allow-uri-read: 
 
 
 [role="lead"]
-MetroCluster スイッチオーバー処理を使用すると、パートナークラスタのコントローラモジュールのアップグレード中もクライアントに無停止でサービスを提供できます。この手順の一部として他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。
+ONTAP 9.10.1以降では、MetroClusterのスイッチオーバー操作を使用して、パートナークラスタ上のコントローラモジュールのアップグレード中に、クライアントへのサービスを中断することなく提供できます。この手順では、その他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。
 
 .このタスクについて
 * AFF A700コントローラモジュールをAFF A900にアップグレードするには、コントローラでONTAP 9.10.1以降が実行されている必要があります。

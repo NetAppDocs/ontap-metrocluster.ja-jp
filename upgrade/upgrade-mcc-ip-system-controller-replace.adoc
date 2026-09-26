@@ -4,14 +4,14 @@ sidebar: sidebar
 keywords: metrocluster, upgrade, controllers, switchover, switchback, ip, configuration, net, boot, root, aggregate, system, commands, mcc 
 summary: このガイド付きの自動MetroCluster スイッチオーバー処理を使用すると、4ノードMetroCluster IP構成のコントローラの無停止アップグレードを実行できます。 
 ---
-= system controller replaceコマンドを使用したMetroCluster IPコントローラのアップグレードワークフロー（ONTAP 9.13.1以降）
+= MetroCluster IP コントローラのアップグレードワークフロー（system controller replace を使用）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-このガイド付きの自動MetroClusterスイッチオーバー処理を使用すると、ONTAP 9.13.1以降を実行している4ノードMetroCluster IP構成でコントローラの無停止アップグレードを実行できます。この手順で他のコンポーネント（ストレージシェルフやスイッチなど）をアップグレードすることはできません。
+ONTAP 9.13.1以降では、このガイド付き自動MetroClusterスイッチオーバー手順を使用して、 `system controller replace`コマンドを使用した4ノードMetroCluster IP構成で無停止コントローラアップグレードを実行できます。その他のコンポーネント（ストレージシェルフやスイッチなど）は、この手順の一部としてアップグレードすることはできません。
 
 .このワークフローについて
 このワークフローを使用して、コマンドでスイッチオーバーとスイッチバックを使用して、ONTAP 9.13.1以降を実行するMetroCluster IPコントローラをアップグレードできます `system controller replace`。
