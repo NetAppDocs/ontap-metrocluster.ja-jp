@@ -249,7 +249,16 @@ NOTE: この手順は、Cluster_Aに対してリモートのディスクを含�
 
 
 
-. スイッチタイプに応じて、ISLスイッチポートを永続的にオフラインにします。
+. ISLスイッチポートをオフラインにします。お使いのスイッチの種類に合った手順を選択してください。
++
+以下の手順では、使用されていないISLポートを無効にする方法を示します。この手順の一環として、同じコマンドを使用してすべてのアクティブなISLポートを無効にすることもできます。
+
++
+** link:../install-ip/task_switch_config_cisco.html#disable-unused-isl-ports-and-port-channels["Cisco IPスイッチのISLポートを無効にする"]
+** link:../install-ip/task_switch_config_broadcom.html#disable-unused-isl-ports-and-port-channels["Broadcom IPスイッチのISLポートを無効にする"]
+** link:../install-ip/task_switch_config_nvidia.html#disable-unused-isl-ports-and-port-channels["NVIDIA IPスイッチのISLポートを無効にする"]
+
+
 . 各ノードで次のコマンドを実行して、ノードを停止します。
 +
 `node halt -inhibit-takeover true -skip-lif-migration true -node <node-name>`

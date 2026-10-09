@@ -33,17 +33,10 @@ NOTE: ONTAP 9.5 を実行している MetroCluster IP システムでは、自�
 +
 システムに LOADER プロンプトが表示されたら、「 boot_ontap 」コマンドを実行します。
 
-. ルートアグリゲートの修復フェーズ「 MetroCluster heal root-aggregates 」を実行します
+. データアグリゲートを修復します。
 +
-[listing]
-----
-cluster_A::> metrocluster heal root-aggregates
-[Job 137] Job succeeded: Heal Root-Aggregates is successful
-----
-+
-修復が拒否された場合は、 MetroCluster heal-rootaggregates コマンドを --override-vetoes パラメータで再実行できます。このオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+MetroCluster はアグリゲートを修復します
 
-. アグリゲートを再同期します。「 MetroCluster heal aggregates 」
 +
 [listing]
 ----
@@ -51,9 +44,22 @@ cluster_A::> metrocluster heal aggregates
 [Job 137] Job succeeded: Heal Aggregates is successful
 ----
 +
-修復が拒否された場合は、 -override-vetoes パラメータを指定して MetroCluster heal コマンドを再実行できます。このオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+修復が拒否された場合は '--overriding-siding'parameter を指定して MetroCluster heal-( 修復 ) コマンドを再実行できますこのオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
 
-. 正常なクラスタで MetroCluster operation show コマンドを実行して、修復処理が完了したことを確認します。
+. ルートアグリゲートを修復します。
++
+MetroCluster はルートアグリゲートを修復します
+
++
+[listing]
+----
+cluster_A::> metrocluster heal root-aggregates
+[Job 137] Job succeeded: Heal Root-Aggregates is successful
+----
++
+修復が拒否された場合は、 `metrocluster heal root-aggregates` パラメータを指定して `--override-vetoes` コマンドを再実行するオプションがあります。このオプションパラメータを使用すると、修復処理を妨げるソフト拒否がシステムによって上書きされます。
+
+. 正常なクラスタで MetroCluster operation show コマンドを実行して、修復操作が完了したことを確認します。
 +
 [listing]
 ----

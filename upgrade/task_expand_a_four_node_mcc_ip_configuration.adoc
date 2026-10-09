@@ -1583,10 +1583,10 @@ cluster_A::*>
 +
 .. ボリュームを表示して MDV ボリュームを特定します。
 +
-各サイトにミラーされたデータアグリゲートが 1 つある場合、両方の MDV ボリュームをこの 1 つのアグリゲートに移動します。ミラーされたデータアグリゲートが 2 つ以上ある場合、各 MDV ボリュームを別々のアグリゲートに移動します。
+各サイトにミラーリングされたデータ アグリゲートが1つある場合は、両方のMDVボリュームをこの単一のアグリゲートに移動します。ミラーリングされたデータ アグリゲートが2つ以上ある場合は、各MDVボリュームを別々のアグリゲートに移動します。拡張（4ノードまたは8ノード構成への）が成功すると、各MetroCluster IPサイトには2つのMDVボリュームが含まれます。
 
 +
-4ノードMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループに移動する必要があります。
+4ノードのMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループ内の任意のミラーリングされたアグリゲートに移動する必要があります。移動するMDVボリュームのサフィックスが `_A`であるか `_B`であるかは関係ありません。
 
 +
 次に 'volume show 出力の MDV ボリュームの例を示します
@@ -1642,11 +1642,11 @@ Warning: You are about to modify the system volume
 +
 [listing]
 ----
-cluster_A::*> vol show MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
+cluster_A::*> vol show MDV_CRS_d6b0b313ff5611e9837100a098544e51_A
 Vserver     Volume       Aggregate    State      Type       Size  Available Used%
 ---------   ------------ ------------ ---------- ---- ---------- ---------- -----
-cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_B
-                       aggr_a2      online     RW         10GB     9.50GB    0%
+cluster_A   MDV_CRS_d6b0b313ff5611e9837100a098544e51_A
+                         data_a3      online      RW        10GB     9.50GB    0%
 ----
 
 

@@ -3665,9 +3665,6 @@
   <block id="f229adae519d48741453ac60e0e8feb2" category="paragraph">このタスクでは、 ONTAP 9.5 より前のバージョンを実行している環境 MetroCluster IP 構成のみを行います。</block>
   <block id="e6ea9c211a28aa2fd08ca4c33bde1a3a" category="paragraph">この手順は、 MetroCluster FC 構成の修復手順とは異なります。</block>
   <block id="fefbe2a25c6583c6382a79b56d9fc9e5" category="list-text">スイッチオーバーされたサイトの各コントローラモジュールの電源をオンにして、完全にブートします。</block>
-  <block id="1d0415c5e0e974a2381be627c371d147" category="list-text">ルートアグリゲートの修復フェーズ「 MetroCluster heal root-aggregates 」を実行します</block>
-  <block id="1a43b1ad1bbf852be8c5710b4f5ef455" category="paragraph">修復が拒否された場合は、 MetroCluster heal-rootaggregates コマンドを --override-vetoes パラメータで再実行できます。このオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。</block>
-  <block id="7daa5669ffe1b1fb33c5efc49e3ec7da" category="list-text">アグリゲートを再同期します。「 MetroCluster heal aggregates 」</block>
   <block id="f71f0f9bf536f00aa32e2fd70e47d278" category="summary">ネゴシエートスイッチオーバーは、パートナーサイトのプロセスをクリーンシャットダウンしてから、パートナーサイトの処理をスイッチオーバーします。ネゴシエートスイッチオーバーは、 MetroCluster サイトでのメンテナンスの実施、またはスイッチオーバー機能のテストに使用できます。</block>
   <block id="71dfa0b33133f6f5bbe3c85506383970" category="list-text">スイッチバック処理を実行する前に、設定の変更がすべて完了している必要があります。</block>
   <block id="2af1ec41c7e7b07f4cdb56cb47d4ebe4" category="paragraph">これにより、ネゴシエートスイッチオーバーまたはスイッチバックの処理との競合が回避されます。</block>
@@ -11943,7 +11940,6 @@
   <block id="d419812c67afb77388be54f4cb41eb86" category="paragraph">いずれかのノードのプロンプトで、<block ref="d972f8bbe9b04d39b8b96b699cf921e9" prefix=" " category="inline-code"></block>パラメータを使用してMetroClusterを設定します。</block>
   <block id="3635681631407e08104ac78c0039ed70" category="paragraph"><block ref="0825cd88596408a485ffc279f70b9da9" prefix="" category="inline-code"></block></block>
   <block id="753303bac17f77fab4f01ca22a7ff80e" category="list-text">MDV_CRSボリュームをadvanced権限モードで移動します。</block>
-  <block id="4e934a5efc9ac0d78daef92737cd79bf" category="paragraph">4ノードMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループに移動する必要があります。</block>
   <block id="dbe62ccc612e92f8dc68e42a4661fecb" category="paragraph">コントローラモジュールとシャーシのHA状態が正しくない場合は、ノードを再初期化しないとMetroClusterを設定できません。この手順を使用して設定を修正し、次のいずれかの手順を使用してシステムを初期化する必要があります。</block>
   <block id="73fa02989b9da1f069817272869a683b" category="inline-link-macro">システムをデフォルトに戻し、コントローラモジュールでHBAタイプを設定する</block>
   <block id="20e47a9aa4ad4f6197046707d54204fc" category="list-text">MetroCluster FC構成では、の手順に従います<block ref="61b5232c30227f4608eee40560fc97c5" category="inline-link-macro-rx"></block>。</block>
@@ -14866,4 +14862,15 @@
   <block id="c86a7aa614f734c9fdfa06956e64bc4e" category="summary">新しいコントローラモジュールには、標準（ノードロック）ライセンスを必要とするONTAPサービスに対してライセンスを追加する必要があります。各ノードには個別のキーが必要です。</block>
   <block id="ce1691500a09d5ae00b18feeaec042a3" category="summary">4ノードMetroCluster構成を8ノードに拡張し、古いディザスタリカバリ（DR）グループを削除することで、コントローラーとストレージをアップグレードできます。</block>
   <block id="ca586a63a242059b7c620a6612b3b1cd" category="summary">FCスイッチのゾーニングは、新しいコントローラ接続に対応できるものでなければなりません。NetApp提供のRCFファイルを使用した場合、ゾーニングはあらかじめ設定されており、変更する必要はありません。</block>
+  <block id="96b5d6e36488b6c8d38e6d78526764d4" category="list-text">ISLスイッチポートをオフラインにします。お使いのスイッチの種類に合った手順を選択してください。</block>
+  <block id="f4c94feb070a7a98b69f2e822eab8e2e" category="paragraph">以下の手順では、使用されていないISLポートを無効にする方法を示します。この手順の一環として、同じコマンドを使用してすべてのアクティブなISLポートを無効にすることもできます。</block>
+  <block id="6e2ed72bc15efe53ae194cf46426820d" category="inline-link-macro">Cisco IPスイッチのISLポートを無効にする</block>
+  <block id="b68699b521dd6b456cb9cc8f8249c23c" category="list-text"><block ref="b68699b521dd6b456cb9cc8f8249c23c" category="inline-link-macro-rx"></block></block>
+  <block id="0ee6df083625297ae68c3b90cb68e1bf" category="inline-link-macro">Broadcom IPスイッチのISLポートを無効にする</block>
+  <block id="46a11231ed98416cf64e89c82eab7106" category="list-text"><block ref="46a11231ed98416cf64e89c82eab7106" category="inline-link-macro-rx"></block></block>
+  <block id="f1989a46107ca7e314518f6697ac0e45" category="inline-link-macro">NVIDIA IPスイッチのISLポートを無効にする</block>
+  <block id="6a94a0f0d01dfd850c57c84609b996c1" category="list-text"><block ref="6a94a0f0d01dfd850c57c84609b996c1" category="inline-link-macro-rx"></block></block>
+  <block id="dbf8c386b8c209a8a104209f4811beb1" category="paragraph">修復が拒否された場合は、<block ref="4fc02dad333b99cda95cb4d63f746057" prefix=" " category="inline-code"></block> パラメータを指定して<block ref="5b8353fafaa1c451a58b0b87dede3fc0" prefix=" " category="inline-code"></block> コマンドを再実行するオプションがあります。このオプションパラメータを使用すると、修復処理を妨げるソフト拒否がシステムによって上書きされます。</block>
+  <block id="2501b01a945a3eabd573e54654793648" category="paragraph">各サイトにミラーリングされたデータ アグリゲートが1つある場合は、両方のMDVボリュームをこの単一のアグリゲートに移動します。ミラーリングされたデータ アグリゲートが2つ以上ある場合は、各MDVボリュームを別々のアグリゲートに移動します。拡張（4ノードまたは8ノード構成への）が成功すると、各MetroCluster IPサイトには2つのMDVボリュームが含まれます。</block>
+  <block id="6bd55190cc0a65555cf13d5cf60edc77" category="paragraph">4ノードのMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループ内の任意のミラーリングされたアグリゲートに移動する必要があります。移動するMDVボリュームのサフィックスが<block ref="3254fb5b504a92168380bac219fc29ca" prefix=" " category="inline-code"></block>であるか<block ref="b0ba49340c52b617d8bb5e0f66b8e6dc" prefix=" " category="inline-code"></block>であるかは関係ありません。</block>
 </blocks>
