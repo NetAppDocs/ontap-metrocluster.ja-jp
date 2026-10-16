@@ -10506,10 +10506,8 @@
   <block id="dc97a56f45d09eb47627be2f51eaacac" category="doc">FCスイッチのベンダーまたはモデルを変更する</block>
   <block id="34b3750efa9ad33069e758e1d20702b2" category="list-text">この手順は、NetApp検証済みスイッチを使用している場合に適用されます。</block>
   <block id="038dcdf6b816f0dea514171c0fbec340" category="list-text">構成内の両方のファブリックについて、この手順の手順を一度に1つのファブリックで実行する必要があります。</block>
-  <block id="12e792350f2f2a26f26efec238939f8c" category="list-text">[[step_1、手順1]]構成の健全性を確認します。</block>
   <block id="66700e9b823419320bcf568412b3c8f5" category="list-text">MetroCluster ISLを切断します。</block>
   <block id="39c4de53c442cd522fc67edfc4cc59c8" category="list-text">次の順序でスイッチをケーブル接続します。</block>
-  <block id="4c49ac5fd96c13efa7ddbce7575dd9e4" category="list-text">を繰り返して、MetroCluster 構成が正常であることを確認します <block ref="70a312d559ac5bac88a63c5c7c2e52d3" category="inline-xref-macro-rx"></block>。</block>
   <block id="b81576b1956a4793e86cfb62d8774b3f" category="list-text">構成内の2つ目のファブリックについて、手順1～7を繰り返します。</block>
   <block id="c1f9897c71a9ecfa3b9c9f7cf2180518" category="paragraph">このドキュメントで例として使用されている推奨名には、次のようにブリッジの接続先のコントローラモジュールとスタックが含まれています。</block>
   <block id="498655ab09377cb9366dc958acdc9ea7" category="section-title">未使用のISLポートとポートチャネルを無効にする</block>
@@ -14606,7 +14604,6 @@
   <block id="c464415fe9040cd42442afd5413727d2" category="list-text">ha-configモードを確認します。</block>
   <block id="bb903f8039d8d74f0348f46c24a33392" category="paragraph">出力は以下の例のようになるはずです。</block>
   <block id="82aa61ae9e51df62f98090f4f904d7c6" category="list-text"><block ref="82aa61ae9e51df62f98090f4f904d7c6" category="inline-link-macro-rx"></block></block>
-  <block id="cdb2cb2d1f6128576533f653419f09c5" category="list-text"><block ref="cdb2cb2d1f6128576533f653419f09c5" category="inline-link-macro-rx"></block></block>
   <block id="91584e9f93d8a244006822e2c2f5345a" category="doc">正しい MetroCluster リカバリ手順を選択してください</block>
   <block id="f24397da4f9715a9f11e47c9635eea3a" category="doc">MetroCluster 災害復旧ワークフロー</block>
   <block id="1a346af97abe0920fa20de0c7db4a224" category="doc">MetroCluster ハードウェアの交換前にコンソールログを有効にする</block>
@@ -14873,4 +14870,10 @@
   <block id="dbf8c386b8c209a8a104209f4811beb1" category="paragraph">修復が拒否された場合は、<block ref="4fc02dad333b99cda95cb4d63f746057" prefix=" " category="inline-code"></block> パラメータを指定して<block ref="5b8353fafaa1c451a58b0b87dede3fc0" prefix=" " category="inline-code"></block> コマンドを再実行するオプションがあります。このオプションパラメータを使用すると、修復処理を妨げるソフト拒否がシステムによって上書きされます。</block>
   <block id="2501b01a945a3eabd573e54654793648" category="paragraph">各サイトにミラーリングされたデータ アグリゲートが1つある場合は、両方のMDVボリュームをこの単一のアグリゲートに移動します。ミラーリングされたデータ アグリゲートが2つ以上ある場合は、各MDVボリュームを別々のアグリゲートに移動します。拡張（4ノードまたは8ノード構成への）が成功すると、各MetroCluster IPサイトには2つのMDVボリュームが含まれます。</block>
   <block id="6bd55190cc0a65555cf13d5cf60edc77" category="paragraph">4ノードのMetroCluster構成を永続的な8ノード構成に拡張する場合は、MDVボリュームの1つを新しいDRグループ内の任意のミラーリングされたアグリゲートに移動する必要があります。移動するMDVボリュームのサフィックスが<block ref="3254fb5b504a92168380bac219fc29ca" prefix=" " category="inline-code"></block>であるか<block ref="b0ba49340c52b617d8bb5e0f66b8e6dc" prefix=" " category="inline-code"></block>であるかは関係ありません。</block>
+  <block id="512c3bde31153c80a98e9b5ec347b11a" category="list-text">[[step_1]]構成の健全性を確認します。</block>
+  <block id="2ff6716e43264896ea2ac1acc2b979d2" category="list-text"><block ref="601df3435e384193565099a414178c21" category="inline-xref-macro-rx"></block> を繰り返して、MetroCluster構成が正常であることを確認します。</block>
+  <block id="5f444797ead217a29f43800dfabacfbf" category="list-text">システム更新を実行する際は、旧プラットフォームタイプと新プラットフォームタイプが一致している必要があります：</block>
+  <block id="ede59518e087cd94a05f8667d5654efc" category="list-text">FASシステムにFASシステムを、またはAFF A-SeriesにAFF A-Seriesを追加できます。</block>
+  <block id="91b0e1726a138b2c425045cdba0bdc83" category="list-text">FASシステムをAFF A-Seriesに、またはAFF A-SeriesをAFF C-Seriesに追加することはできません。</block>
+  <block id="274e643167d886697821940a9eae3ef3" category="list-text">システム拡張を行う場合、旧プラットフォームタイプと新プラットフォームタイプは必ず一致している必要があります：</block>
 </blocks>
