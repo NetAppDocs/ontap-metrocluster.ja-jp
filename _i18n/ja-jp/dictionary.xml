@@ -6587,7 +6587,6 @@
   <block id="8f2e5cc9f165067cebf8dad44f099da8" category="list-text">ファブリック接続 MetroCluster 構成では、 MetroCluster サイト間で ISL が稼働している必要があります。</block>
   <block id="5f9bbce01bd9d804a2f72650092a1d3b" category="section-title">データアグリゲートの修復</block>
   <block id="e941c3bfcac66cf5cb47b9d65004602f" category="paragraph">ディザスタサイトのハードウェアを修理および交換したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、（修復された）ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。</block>
-  <block id="0605e801ab1d6a8b30acc6dda60b61a8" category="paragraph">次の例は、強制スイッチオーバーを示しており、スイッチオーバーされたアグリゲートをオンラインにします。リモートクラスタでの構成の更新はすべてローカルクラスタにレプリケートされます。この手順の一部としてディザスタサイトのストレージに電源を投入しますが、ディザスタサイトにあるコントローラモジュールの電源はオンにしないでください。</block>
   <block id="b2a58abb9aa1ce46e4162ec28d9e8484" category="list-text">スイッチオーバーが完了したことを確認します。</block>
   <block id="1d968d9f43e16ddc5915b3582ba96a36" category="paragraph">「 MetroCluster operation show 」を参照してください</block>
   <block id="7db001ac93912b8966d9e8ddec02a225" category="list-text">サバイバークラスタから次のコマンドを実行して、データアグリゲートを再同期します。</block>
@@ -14373,7 +14372,6 @@
   <block id="f7f3cd01961c53f33c89b788147d8de3" category="list-text">古いコントローラーから切断されたその他の接続をすべて、新しいコントローラーモジュールにケーブルで接続してください。</block>
   <block id="2fb65189695e9496f507ebb44d5b6cb6" category="paragraph">スイッチバックを実行する前に、LIFが適切なノードとポートでホストされていることを確認してください。</block>
   <block id="542e234aa223d3b0ecca11dacf8e46ed" category="list-text">スイッチバックを実行する前に、LIFが適切なノードとポートでホストされていることを確認してください。</block>
-  <block id="3dcbbe108abc6bdf7036466d9fe35058" category="admonition">スイッチバックを実行する前に、新しいノード上のデータ LIF の位置が正しいことを確認する必要があります。設定をスイッチバックすると、ONTAP は LIF が使用するホームポートでのトラフィックの再開を試みます。ホームポート接続のスイッチポートおよび VLAN の設定が正しくない場合、I/O 障害が発生することがあります。LIF を正しいノードまたはポートに配置する際に問題が発生した場合は、スイッチバックを続行せず、NetApp テクニカルサポートにお問い合わせください。</block>
   <block id="108f2a315310ceff812cf39f143ca95b" category="list-text">以下のチェックを実行して、2つのクラスター間でスイッチオーバーが正常に機能していることを確認してください。</block>
   <block id="59a93fe50b25a85e88bed38108e0196c" category="list-text">DR クラスターから、稼働中のクラスターから DR クラスターへのスイッチオーバーが可能かどうかを確認します。</block>
   <block id="59ded25db2e6cefacbcb41c378e0b709" category="list-text">稼働中のクラスターから、DR クラスターから稼働中のクラスターへのスイッチオーバーが可能かどうかを確認します。</block>
@@ -14879,4 +14877,10 @@
   <block id="706c1d4933d296d42d61b064f4e637ae" category="sidebar">インストール ワークフロー</block>
   <block id="8f817e2a0df7ced319cdc0dd9031e535" category="sidebar">ONTAPでのMetroClusterソフトウェアの設定について学ぶ</block>
   <block id="b60d2ca38a2a217c2f194613ae620303" category="sidebar">ONTAP Mediatorの設定準備</block>
+  <block id="48787bff378672c516633e53e78867b8" category="summary">コントローラ以外の障害発生後にMetroCluster構成を修復し、スイッチバック操作を実行して、通常の完全な冗長動作に戻します。</block>
+  <block id="3e2ce732c0b76ab6255c0b49aa925eab" category="list-text">ファブリック接続およびストレッチMetroCluster構成では、ディザスタサイトのノードを停止するか、電源をオフのままにしておく必要があります。ヒーリングプロセス中は、完全に起動してはなりません。</block>
+  <block id="376deeb1de4a09a5382d17ea2768b1e9" category="paragraph">次の例は、切り替えられたアグリゲートをオンラインにする、強制スイッチオーバーを示しています。リモートクラスタのすべての構成更新は、ローカルクラスタに正常にレプリケートされます。この手順の一環としてディザスタサイトのストレージの電源をオンにしますが、ファブリック接続またはストレッチMetroCluster構成のディザスタサイトのコントローラモジュールの電源はオンにしません（また、絶対にオンにしてはなりません）。</block>
+  <block id="756bb9840619872518b56de349470f31" category="paragraph">ヒーリングが拒否された場合は、<block ref="c85b4996143a93edc62c1214c1b80d15" prefix=" " category="inline-code"></block>コマンドに<block ref="5b8353fafaa1c451a58b0b87dede3fc0" prefix=" " category="inline-code"></block>パラメータを付けて再発行することで、ヒーリング操作を妨げているソフト拒否をオーバーライドできます。</block>
+  <block id="4510065cdf938bdc660bae11b415e4ca" category="admonition">スイッチバックを実行する前に、新しいノード上のデータLIFの位置が正しいことを確認する必要があります。設定をスイッチバックする際、ONTAPはLIFが使用するホームポートでのトラフィックの再開を試みます。ホームポートからスイッチ ポートおよびVLANへの接続が正しくない場合、I/O障害が発生する可能性があります。LIFを正しいノードまたはポートに配置する際に問題が発生した場合は、スイッチバックを続行せず、NetAppテクニカルサポートにお問い合わせください。</block>
+  <block id="ded79adea8538afbad271b9f9dc6c6e2" category="admonition">MetroCluster FC環境では、コマンド出力で「connections」は「not-applicable」と表示されるはずです。</block>
 </blocks>

@@ -2,7 +2,7 @@
 permalink: disaster-recovery/task_recover_from_a_non_controller_failure_mcc_dr.html 
 sidebar: sidebar 
 keywords: equipment, disaster, site, undergone, require, maintenance, replacement, controller, replace, process, metrocluster, configuration, data, aggregate, switchback, operation, recover, non-controller, failure, heal, configuration, metrocluster, fc, data, aggregate, root, disaster, verify, system, switchback, verification, result, perform, successful, delete, deleting, stale, listing 
-summary: ディザスタサイトの機器に対して必要なメンテナンスまたは交換を実施し、その際にコントローラを交換しなかった場合は、続けて MetroCluster 構成を完全に冗長な状態に戻す手順を開始できます。これには、設定の修復（データアグリゲート、ルートアグリゲートの順）とスイッチバック処理が含まれます。 
+summary: コントローラ以外の障害発生後にMetroCluster構成を修復し、スイッチバック操作を実行して、通常の完全な冗長動作に戻します。 
 ---
 = MetroCluster構成でコントローラー以外の障害から復旧する
 :allow-uri-read: 
@@ -45,10 +45,7 @@ MetroCluster IP構成では、スイッチオーバー後に修復処理が自�
 
 .作業を開始する前に
 * スイッチオーバーを実行済みで、サバイバーサイトがデータを提供している必要があります。
-* ディザスタサイトのノードが停止しているか、電源がオフのままになっている必要があります。
-+
-修復プロセスでは、これらのノードを完全にブートしないでください。
-
+* ファブリック接続およびストレッチMetroCluster構成では、ディザスタサイトのノードを停止するか、電源をオフのままにしておく必要があります。ヒーリングプロセス中は、完全に起動してはなりません。
 * ディザスタサイトのストレージにアクセスできる（シェルフは電源がオンで稼働しており、アクセス可能である）必要があります。
 * ファブリック接続 MetroCluster 構成では、スイッチ間リンク（ ISL ）が稼働している必要があります。
 * 4 ノード MetroCluster 構成では、サバイバーサイトのノードが HA フェイルオーバー状態でない（各 HA ペアのすべてのノードが稼働中である）必要があります。
@@ -65,7 +62,7 @@ MetroCluster IP構成では、スイッチオーバー後に修復処理が自�
 ディザスタサイトのハードウェアを修理および交換したら、データアグリゲートを修復する必要があります。この処理では、データアグリゲートを再同期し、（修復された）ディザスタサイトを通常の動作用に準備します。データアグリゲートの修復は、ルートアグリゲートの修復の前に行う必要があります。
 
 .このタスクについて
-次の例は、強制スイッチオーバーを示しており、スイッチオーバーされたアグリゲートをオンラインにします。リモートクラスタでの構成の更新はすべてローカルクラスタにレプリケートされます。この手順の一部としてディザスタサイトのストレージに電源を投入しますが、ディザスタサイトにあるコントローラモジュールの電源はオンにしないでください。
+次の例は、切り替えられたアグリゲートをオンラインにする、強制スイッチオーバーを示しています。リモートクラスタのすべての構成更新は、ローカルクラスタに正常にレプリケートされます。この手順の一環としてディザスタサイトのストレージの電源をオンにしますが、ファブリック接続またはストレッチMetroCluster構成のディザスタサイトのコントローラモジュールの電源はオンにしません（また、絶対にオンにしてはなりません）。
 
 .手順
 . スイッチオーバーが完了したことを確認します。
@@ -93,7 +90,7 @@ controller_A_1::> metrocluster heal -phase aggregates
 [Job 130] Job succeeded: Heal Aggregates is successful.
 ----
 +
-修復が拒否された場合は '--overriding-siding'parameter を指定して MetroCluster heal-( 修復 ) コマンドを再実行できますこのオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+ヒーリングが拒否された場合は、 `metrocluster heal`コマンドに `--override-vetoes`パラメータを付けて再発行することで、ヒーリング操作を妨げているソフト拒否をオーバーライドできます。
 
 . 処理が完了したことを確認します。
 +
@@ -147,7 +144,7 @@ mcc1A::> metrocluster heal -phase root-aggregates
 [Job 137] Job succeeded: Heal Root Aggregates is successful
 ----
 +
-修復が拒否された場合は '--overriding-siding'parameter を指定して MetroCluster heal-( 修復 ) コマンドを再実行できますこのオプションパラメータを使用すると、修復処理を妨げるソフトな拒否はすべて無視されます。
+ヒーリングが拒否された場合は、 `metrocluster heal`コマンドに `--override-vetoes`パラメータを付けて再発行することで、ヒーリング操作を妨げているソフト拒否をオーバーライドできます。
 
 . デスティネーションクラスタで次のコマンドを実行して、修復処理が完了していることを確認します。
 +
@@ -217,7 +214,7 @@ vserver config override コマンドで network interface modify コマンドを
 
 
 
-CAUTION: スイッチバックを実行する前に、新しいノード上のデータ LIF の位置が正しいことを確認する必要があります。設定をスイッチバックすると、ONTAP は LIF が使用するホームポートでのトラフィックの再開を試みます。ホームポート接続のスイッチポートおよび VLAN の設定が正しくない場合、I/O 障害が発生することがあります。LIF を正しいノードまたはポートに配置する際に問題が発生した場合は、スイッチバックを続行せず、NetApp テクニカルサポートにお問い合わせください。
+CAUTION: スイッチバックを実行する前に、新しいノード上のデータLIFの位置が正しいことを確認する必要があります。設定をスイッチバックする際、ONTAPはLIFが使用するホームポートでのトラフィックの再開を試みます。ホームポートからスイッチ ポートおよびVLANへの接続が正しくない場合、I/O障害が発生する可能性があります。LIFを正しいノードまたはポートに配置する際に問題が発生した場合は、スイッチバックを続行せず、NetAppテクニカルサポートにお問い合わせください。
 
 
 
@@ -567,7 +564,7 @@ volumes             ok
 ----
 +
 
-NOTE: MetroCluster FC環境では、コマンド出力において「connections」は「not-applicable」と表示されるはずです。
+NOTE: MetroCluster FC環境では、コマンド出力で「connections」は「not-applicable」と表示されるはずです。
 
 
 

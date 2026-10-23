@@ -261,14 +261,11 @@ NOTE: Virtual Routing and Forwarding（VRF；仮想ルーティング転送）�
 IP_switch_A_1# show running-config diff
 IP_switch_A_1#
 ----
-
-
-. システム出力が表示された場合は、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存します
+.. システム出力が表示された場合は、実行コンフィギュレーションをスタートアップコンフィギュレーションに保存します
 +
 
 NOTE: システム出力は、スタートアップコンフィギュレーションと実行コンフィギュレーションが異なること、および保留中の変更であることを示します。保留中の変更を保存しないと、スイッチのリロードを使用してロールバックできません。
 
-+
 .. CleanUpFileを適用します。
 +
 [listing]
@@ -329,6 +326,11 @@ IP_switch_A_1# copy running-config startup-config
 
 IP_switch_A_1# reload
 ----
+. それぞれのスイッチについて、上記の手順を繰り返してください。
++
+
+NOTE: 最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定したら、同じ手順を繰り返して、クラスタLIFを2番目のファブリック（Switch_A_2、Switch_B_2）に移動する必要があります。link:../install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]を参照してください。
+
 . 自動復帰を有効にするために、すべてのクラスタ LIF を変更します。
 +
 .. 自動復帰を再度有効にする：

@@ -76,6 +76,10 @@ image::../media/brocade_upgr_to_g620_replaced_b_1.gif[Brocade をB1 に置き換
 
 
 . 新しいスイッチに電源を投入し、起動するのを待ちます。
+. スイッチのプロンプトに戻り、スイッチのファームウェアバージョンを確認します。
++
+「 firmwareShow
+
 . 次のいずれかの手順を使用してBrocade FCスイッチを設定します。
 +
 link:../install-fc/task_reset_the_brocade_fc_switch_to_factory_defaults.html["RCF ファイルを使用して Brocade FC スイッチを設定します"]
@@ -143,16 +147,6 @@ slot 0: FC Host Adapter 0g (QLogic 8324 rev. 2, N-port, <UP>)**<=== Initiator po
 		.
 		.
 ----
-. スイッチのプロンプトに戻り、スイッチのファームウェアバージョンを確認します。
-+
-「 firmwareShow
-
-+
-スイッチがサポート対象の最新のファームウェアを実行している必要があります。
-
-+
-https://mysupport.netapp.com/matrix["NetApp Interoperability Matrix Tool で確認できます"]
-
 . スイッチオーバー処理をシミュレートします。
 +
 .. いずれかのノードのプロンプトで、 advanced 権限レベルに切り替えます。 + 「 set -privilege advanced 」
