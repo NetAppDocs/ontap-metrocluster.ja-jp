@@ -2,52 +2,115 @@
 permalink: install-ip/using_rcf_generator.html 
 sidebar: sidebar 
 keywords: cabling, cable, component, link, site, management, network, hardware, component, switch, cluster, connection, management, data, configuring, configure, rcf, file, generator, RcfFileGenerator 
-summary: RCF ファイルを正しく生成するためには、ポートテーブル内の情報の使用方法を理解しておく必要があります。 
+summary: RCFを正しく生成するには、ポートテーブルの情報をどのように使用するかを理解する必要があります。 
 ---
-= MetroCluster IP構成のポート テーブル
+= MetroCluster IPスイッチのケーブル配線について
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-参照構成ファイル（RCF）を正しく生成するには、ポートテーブルの情報をどのように使用するかを理解する必要があります。
+MetroCluster IPスイッチのケーブル接続を開始する前に、要件を確認してください。
 
 .作業を開始する前に
-表を使用する前に、次の考慮事項を確認してください。
+スイッチの配線を行う前に、以下の点を確認してください：
 
-* 次の表は、サイト A で使用するポートを示していますサイト B でも同じケーブル接続が使用されます
+* サイトAとサイトBでは同じケーブルが使用されています。
 * 異なる速度のポート (たとえば、100 Gbps ポートと 40 Gbps ポートの混在) を持つスイッチを構成することはできません。
 * MetroClusterポートグループ（MetroCluster 1、MetroCluster 2など）を記録しておいてください。この設定手順の後半で説明するRcfFileGeneratorツールを使用する際に、この情報が必要になります。
 * すべてのノードを同じ方法でケーブル接続する必要があります。ノードのケーブル接続に使用できるポートの組み合わせオプションが異なる場合は、すべてのノードで同じポートの組み合わせを使用する必要があります。たとえば、node1のe1aとnode2のe1aを1つのスイッチに接続する必要があります。同様に、両方のノードの2番目のポートを2番目のスイッチに接続する必要があります。
-*  https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"^]また、各スイッチのポート単位のケーブル接続の概要についても説明しています。ケーブル接続の概要を使用して、ケーブル接続を確認します。
+
+
+
+NOTE: 参照構成ファイル（RCF）のバージョンは、ファイルの生成に使用されたRCFfilegeneratorツールのバージョンとは異なります。例えば、RCFfilegenerator v1.6cを使用してRCFバージョン2.00を生成できます。
+
+
+
+[[cabling-requirements-based-on-the-switch-type]]
+== スイッチの種類に基づくケーブル配線要件
+
+以下に、スイッチの種類に応じたケーブル配線要件を示します。
+
+
+
+[[cisco-3132q-v]]
+=== Cisco 3132Q-V の設定
+
+MetroCluster FCからIPへの移行用にスイッチを構成する場合、ポート5またはポート6を使用して、MetroCluster FCノードのローカルクラスタインターフェイスを接続できます。この構成のケーブル接続の詳細については、link:https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"^]および生成されたケーブル接続ファイルを参照してください。
+
+
+
+[[cisco-3232c-or-36-port-cisco-9336c]]
+=== Cisco 3232Cまたは36ポートCisco 9336C
+
+* スイッチをMetroCluster FCからIPへの移行用に構成する場合、ポート5、ポート6、ポート13、またはポート14を使用して、MetroCluster FCノードのローカルクラスタインターフェイスを接続できます。この構成のケーブル接続の詳細については、link:https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"^]および生成されたケーブル接続ファイルを参照してください。
+* サポートされているプラットフォーム上のMetroCluster ISLの25Gブレークアウトモードには、RCFバージョンv2.10以降が必要です。
+* 「MetroCluster 4」グループでFAS8200またはAFF A300以外のプラットフォームを使用するには、ONTAP 9.13.1以降およびRCFバージョン2.00が必要です。
 
 
 
 
-[[cabling-two-metrocluster-configurations-to-the-switches]]
-== 2 つの MetroCluster 構成とスイッチのケーブル接続
+[[12-port-cisco-9336c-fx2]]
+=== 12ポート Cisco 9336C-FX2
 
-複数のMetroCluster構成をスイッチにケーブル接続する場合は、各MetroClusterを適切な表に従ってケーブル接続します。例えば、FAS2750とAFF A700を同じスイッチにケーブル接続する場合、FAS2750は表1の「MetroCluster 1」に従ってケーブル接続し、AFF A700は表2の「MetroCluster 2」または「MetroCluster 3」に従ってケーブル接続します。FAS2750とAFF A700の両方を「MetroCluster 1」として物理的にケーブル接続することはできません。
-
-
-
-[[cabling-eight-node-metrocluster-configurations]]
-== 8 ノード MetroCluster 構成のケーブル接続
-
-ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレードを移行する場合、一時的な 8 ノード構成にするには、 2 つ目の 4 ノード DR グループを構成に追加する必要があります。  ONTAP 9.9.1以降では、永続的な8ノードMetroCluster構成がサポートされます。
-
-.このタスクについて
-8ノード構成の場合も、上記と同じ方法を使用します。2つ目のMetroClusterの代わりに、追加の4ノードDRグループをケーブル接続します。
-
-たとえば、次のような構成になります。
-
-* Cisco 3132Q-V スイッチ
-* MetroCluster 1 ： FAS2750 プラットフォーム
-* MetroCluster 2 ： AFF A700 プラットフォーム（これらのプラットフォームは 2 つ目の 4 ノード DR グループとして追加）
+12 ポートの Cisco 9336C-FX2 スイッチは、NS224 シェルフを MetroCluster スイッチに接続することをサポートしていません。
 
 
-.手順
-. MetroCluster 1 では、 FAS2750 プラットフォームの表と MetroCluster 1 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。
-. MetroCluster 2 （ 2 つ目の DR グループ）の場合は、 AFF A700 プラットフォームの表と MetroCluster 2 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。
 
+[[36-port-cisco-9336c-fx2-switch-connecting-ns224-storage]]
+=== NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチ
+
+* 1つの8ノードまたは2つの4ノードMetroCluster構成を接続するには、ONTAP 9.14.1以降が必要です。
+* NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。
+* RcfFileGeneratorでは、最初のプラットフォームが選択されている場合にのみ、対象となるプラットフォームが表示されます。
+* スイッチ接続NS224ストレージをサポートしていない通常のMetroCluster構成を拡張し、スイッチ接続NS224ストレージを備えたMetroCluster構成を追加する場合は、次の情報を確認してください：
++
+RcfFileGeneratorツールでは、まずスイッチ接続型NS224ストレージをサポートするプラットフォームを選択し、次にスイッチ接続型NS224ストレージをサポートしないプラットフォームを選択する必要があります。
+
++
+つまり、新しい構成のRCFを生成するときに、RcfFileGeneratorツールで次の順序でプラットフォームを選択する必要がある場合があります：
+
++
+.. 2番目のドロップダウンフィールドから、スイッチ接続型NS224ストレージをサポートするプラットフォームを選択してください。
+.. 最初のドロップダウンフィールドから、スイッチ接続型NS224ストレージをサポートしていないプラットフォームを選択してください。
+
+
+
+
+
+
+[[broadcom-bes-53248]]
+=== Broadcom BES-53248 の場合
+
+* 速度が異なるリモートISLポート（25Gbpsポートを10Gbps ISLポートに接続した場合など）のスイッチは使用できません。
+* スイッチをMetroCluster FCからIPへの移行用に設定する場合は、選択したターゲットプラットフォームに応じて次のポートが使用されます。
++
+[cols="75,25"]
+|===
+| ターゲットプラットフォーム | ポート 
+
+
+| FAS500f、AFF C250、ASA C250、AFF A250、ASA A250、 FAS8300、AFF C400、ASA C400、AFF A400、ASA A400、 またはFAS8700プラットフォーム | ポート1~6、10Gbps 
+
+
+| FAS8200またはAFF A300プラットフォーム | ポート3~4および9~12、10Gbps 
+|===
+* AFF A320 システムが Broadcom BES-53248 スイッチで構成されている場合、一部の機能がサポートされないことがあります。
++
+ローカルクラスタ接続を必要とする設定または機能がスイッチに接続されていても、サポートされていません。たとえば、次の設定と手順はサポートされていません。
+
++
+** 8 ノード MetroCluster 構成
+** MetroCluster FC から MetroCluster IP 構成への移行
+** 4 ノード MetroCluster IP 構成の更新（ ONTAP 9.8 以降）
+
+
+
+
+
+
+[[nvidia-sn2100]]
+=== NVIDIA SN2100
+
+8ノードまたは2つの4ノードのMetroCluster構成を接続するには、ONTAP 9.14.1以降およびRCFバージョン2.00以降が必要です。

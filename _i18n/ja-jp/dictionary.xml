@@ -79,8 +79,6 @@
   <block id="3d498d8c3038973579898c766829437a" category="admonition">スイッチをアップグレードまたはダウングレードする場合は、ネットワーク内のすべてのスイッチを設定する必要があります。</block>
   <block id="e569faada464fba9f3dbbdbda211c148" category="paragraph">スイッチ _A_1 、 _A_2 、 _B_1 、または _B_2 に、適切な RCF ファイルを適用します。新しいスイッチが古いスイッチと同じ場合は、同じ RCF ファイルを適用する必要があります。</block>
   <block id="21d70434879bc17385bedbe3b2231480" category="paragraph">スイッチをアップグレードまたはダウングレードする場合は、サポートされている最新の RCF ファイルを新しいスイッチに適用してください。</block>
-  <block id="140f85d0d849f4cdeb15f3576a478d27" category="list-text">port show コマンドを実行してネットワークポートに関する情報を表示します。</block>
-  <block id="664180a50093532dd9d44b1e80f40b72" category="paragraph">「 * network port show * 」と表示されます</block>
   <block id="39ef49ece238860759e8870c2160120a" category="list-text">スイッチに電源を投入します。</block>
   <block id="8b9a7a187e2b48592caca596db2450b8" category="summary">サイトのメンテナンスや再配置を開始する前に、 MetroCluster FC 構成全体とすべての機器の電源をオフにする必要があります。</block>
   <block id="c51940ec4a1a519534c78e7d49893068" category="list-text">MetroCluster 構成の両方のサイトから MetroCluster 構成を確認します。</block>
@@ -1356,10 +1354,8 @@
   <block id="e73316baa46ffac6b33524c3c85f5cd8" category="list-text">スロット 0 ：内蔵ドライブ（ローカルドライブ）</block>
   <block id="e06f4f7b9644e91d7a49a89d0f1b86b5" category="list-text">スロット 3 ：外部シェルフ ID 75 および 76 （ローカルドライブ）</block>
   <block id="c4eb6d0d71d88f3cacffe9072af2ed4d" category="list-text">スロット 0 ：仮想 iSCSI ホストアダプタ 0m （リモートドライブ）</block>
-  <block id="a3100bf3334206028c894a5568ddcf09" category="summary">新機能、アップグレードの注意事項、解決済みの問題、既知の制限事項、および既知の問題について説明します。</block>
   <block id="1749d12df3df2319d3eee218a277ff83" category="doc">MetroCluster</block>
   <block id="efe451bd1c5b374a05e7d5178bb06987" category="inline-link">ONTAP 9 リリースノート</block>
-  <block id="dbd469acdcbd52648cb242bcfda6add3" category="paragraph">リリースノートにアクセスするには、ネットアップサポートサイトにサインオンする必要があります。</block>
   <block id="a62859bcd4054e8672c1621d17d6cd59" category="summary">MetroCluster 構成では、コントローラモジュールとシャーシコンポーネントの ha-config 状態を mcc に設定して、適切にブートするようにする必要があります。</block>
   <block id="6260a0c66ccd92620d9889772b65cffe" category="doc">コンポーネントの ha-config 状態の確認</block>
   <block id="71e37586bdc7bea3930c141167554057" category="paragraph">MetroCluster 構成では、コントローラモジュールとシャーシコンポーネントの ha-config 状態を * mcc * に設定して、適切にブートするようにする必要があります。</block>
@@ -1488,7 +1484,6 @@
   <block id="df48f09d2bf110a410011a8de35fb788" category="paragraph">次のコマンドでは、 controller_A_1 のルートアグリゲートがミラーされます。</block>
   <block id="263a0e423b47258a6449dc93426a698a" category="paragraph">これによりアグリゲートがミラーされるため、ローカルのプレックスとリモートのプレックスがリモートの MetroCluster サイトに配置されたアグリゲートが作成されます。</block>
   <block id="92cd5d9ebac9fdf7caa166577c77bc29" category="summary">2 ノード MetroCluster FC 構成を 4 ノード MetroCluster FC 構成に拡張するには、各クラスタにコントローラを追加して各 MetroCluster サイトに HA ペアを形成してから、 MetroCluster FC 構成をリフレッシュします。</block>
-  <block id="0bd1e8c4bc1e4fde8afb7065a6cf4b1e" category="doc">2 ノード MetroCluster FC 構成から 4 ノード構成への拡張</block>
   <block id="676c8bf504860fd59331b48d36dee409" category="list-text">ノードが MetroCluster FC 構成で ONTAP 9 以降を実行している必要があります。</block>
   <block id="c92e9742dae3434e2a97b92c653feb47" category="list-text">2 ノード構成のプラットフォームが ONTAP 9.2 でサポートされない場合に、 ONTAP 9.2_or_expand でサポートされるプラットフォームにアップグレードするには、 MetroCluster FC 構成を拡張する前に 2 ノード構成のプラットフォームをアップグレードする必要があります。</block>
   <block id="f0ce72ff8693693704f1bcbbfbcb9de9" category="list-text">この手順はシステムの停止を伴うため、完了までに約 4 時間かかります。</block>
@@ -1802,7 +1797,6 @@
   <block id="9b8ae1b2ea2900ace97f9bd5cc82d344" category="list-text">スイッチオーバー、修復、スイッチバック</block>
   <block id="645a84975202e30700b572b49a5ee29d" category="list-text">ディザスタリカバリ</block>
   <block id="00d7868084f3d535de463e839c3a21ae" category="inline-link-macro">MetroCluster コンポーネントの保守</block>
-  <block id="a3bbbdca13ceab20630c7cbfe91f7563" category="paragraph"><block ref="a3bbbdca13ceab20630c7cbfe91f7563" category="inline-link-macro-rx"></block></block>
   <block id="bbd318b6a8d3de5c9149956517786609" category="list-text">MetroCluster FC 構成のメンテナンスガイドライン</block>
   <block id="3fa7cd9458fe751da1f219497e5f306f" category="list-text">FC-to-SAS ブリッジおよび FC スイッチのハードウェア交換 / アップグレードおよびファームウェアアップグレード手順</block>
   <block id="6cb5a32366b231abbc3577a5cc95f5ce" category="list-text">ファブリック接続またはストレッチ MetroCluster FC 構成でのディスクシェルフのホットアド</block>
@@ -2797,40 +2791,11 @@
   <block id="ee6ed7097775dc1dd54c183bab7fabca" category="list-text">MetroCluster FC はスイッチレスクラスタであるため、新しいスイッチが必要です。</block>
   <block id="f6ee19cc42b9955140e50bd5845ab941" category="list-text">MetroCluster FC はスイッチクラスタですが、 MetroCluster IP 構成では既存の IP スイッチはサポートされません。</block>
   <block id="f2e4f8254f9371aba3bca00c7ae823a3" category="list-text">MetroCluster IP 設定に別のスイッチを使用する。</block>
-  <block id="2a4236cf8b7e41561ac336d36bcbb970" category="inline-link-macro">MetroCluster の管理</block>
-  <block id="13b07c992fe0293fccd52c0935d98849" category="paragraph"><block ref="13b07c992fe0293fccd52c0935d98849" category="inline-link-macro-rx"></block></block>
   <block id="46307856034c0d19deb4348b4c6fdf64" category="summary">MetroCluster ノードを FC から IP に移行したあと、 iSCSI ホスト接続を新しいノードに移動しなければならない場合があります。</block>
   <block id="6d5e653b42496cb611cacbd3f1622d89" category="paragraph">検出は、 iSCSI 以外のインターフェイスを含め、 SVM の任意の IP アドレスで実行できます。</block>
   <block id="2a12888d763445436f29b56694f714b2" category="paragraph">LUN ごとに 4 つのパスが表示されます。</block>
   <block id="907ed284747209370db5d2e6065cf477" category="paragraph">レポートノードを削除し、パスを再スキャンする必要があります。</block>
-  <block id="39128f9051c3d4355aead1a61c996c25" category="summary">MetroCluster のアップグレード、拡張、または移行の違いを理解し、目的に合った手順を選択する必要があります。</block>
-  <block id="c708a2b6841470715a7b74102c0ae1aa" category="list-text">* アップグレード *</block>
-  <block id="36ae104ca0785caa188d80c4256a90ae" category="paragraph">アップグレード手順では、コントローラモジュールを新しいモデルのコントローラモジュールに交換します。</block>
-  <block id="6abb1f98ba87ecbea33aecbfdf4f6423" category="list-text">古いコントローラモジュールは撤去したものです。</block>
-  <block id="8bd9c286fd92194184c92cd36a049275" category="list-text">ストレージはアップグレードされていません。</block>
-  <block id="205f7fc5d71e6b9d62229bef8e7c3cce" category="list-text">ストレージスイッチのインフラテクノロジは変更されていません。</block>
-  <block id="2f39bb1b2f249178e6b0532f61f17bac" category="paragraph">MetroCluster IP 構成、ファブリック接続 MetroCluster 構成、またはストレッチ MetroCluster 構成のままです。</block>
-  <block id="8b292c7a7ab0a14dd768c3c69a3722fb" category="paragraph"><block ref="8b292c7a7ab0a14dd768c3c69a3722fb" category="inline-link-macro-rx"></block></block>
-  <block id="4b55da3a9dcfb66485b5329d255ce936" category="list-text">* 更新 *</block>
-  <block id="2daab641467a4347141ea26895dc91ff" category="paragraph">リフレッシュ手順では、コントローラモジュールを新しいモデルのコントローラモジュールに交換し、ストレージシェルフも交換します。</block>
-  <block id="66e871e7d1bd40219b9688700bb575b4" category="list-text">古いコントローラモジュールとストレージシェルフは撤去しています。</block>
-  <block id="81b55eae6bb9c09065eb4baba5487ea1" category="list-text">新しいプラットフォームモデルに対応するために新しいスイッチが必要な場合を除き、ストレージスイッチインフラテクノロジは変更されません。</block>
-  <block id="5215767f69979683596b5ae744339259" category="paragraph">構成は元のタイプのままです。</block>
   <block id="4767099b22895a8101a1cba45d8cf6e9" category="list-text">MetroCluster IP の略</block>
-  <block id="c18ed07764815317ed9c1ce97b14a6d5" category="list-text">ファブリック接続 MetroCluster の略</block>
-  <block id="4d2b446ffbd775314c26a9fc41dcbf56" category="list-text">ストレッチ MetroCluster 構成 +<block ref="8b292c7a7ab0a14dd768c3c69a3722fb" category="inline-link-macro-rx"></block></block>
-  <block id="5c567d37c3d74dafe4729a7045a815aa" category="list-text">* 移行 *</block>
-  <block id="1242a0b9b48429afac361a76e832cb1c" category="paragraph">移行手順では、バックエンドスイッチインフラが FC スイッチまたは IP スイッチへの接続から変更され、プラットフォームモデルが置き換えられます。</block>
-  <block id="3a8eb837349e2e08fb92234fd12bc87d" category="list-text">新しいコントローラモジュールが構成に追加されます。</block>
-  <block id="0371e99af905032667b99cbbddd6d096" category="list-text">元のコントローラモジュールは、手順の導入後に撤去します。</block>
-  <block id="0a3e1f945142e09fa6593886b6a002b3" category="list-text">元の構成でクラスタインターコネクトスイッチを使用していた場合は、スイッチとプラットフォームのモデルに応じて、スイッチを再利用できます。</block>
-  <block id="e0dcf593ed1a78d78325480e6f4809c7" category="list-text">プラットフォームのモデルに応じて、ストレージを再利用または交換できます。</block>
-  <block id="21c56fed6b471a3064e0868f7dba6f22" category="paragraph">ストレージシェルフが再利用されない場合、データは古いシェルフから新しいシェルフに移動されます。</block>
-  <block id="53d110971de2621360b2129857c5e80f" category="list-text">* 拡張 *</block>
-  <block id="2f3e8286ad6f720e6977fdd75556af8e" category="paragraph">拡張手順では、 MetroCluster FC 構成にノードとストレージが追加されます。</block>
-  <block id="6db24de2557f5e6eba98d707ff943e6a" category="list-text"><block ref="6db24de2557f5e6eba98d707ff943e6a" category="inline-link-macro-rx"></block></block>
-  <block id="25f865cadfde18c116d9bcb19e8756d4" category="list-text"><block ref="25f865cadfde18c116d9bcb19e8756d4" category="inline-link-macro-rx"></block></block>
-  <block id="6a8cfc7e554fc5750d024bfbc8a85742" category="paragraph">移行のためのリンクを削除</block>
   <block id="2b0c3e22e8768083ddf548198a4cbb76" category="summary">移行に向けた構成を準備するには、既存の MetroCluster 構成に新しいノードを追加してから、新しいノードにデータを移動します。</block>
   <block id="6ac1bfaf57d3f8e72a1a9b055bae423a" category="paragraph">クリーンアップタスクを実行し、古いコントローラモジュールを MetroCluster 構成から取り外す必要があります。</block>
   <block id="8e1ddf01d9c8cefa411b8ec61fb17ece" category="list-text">問題次のコマンドを実行します。「 system node AutoSupport invoke -node * -type all -message MAINT= maintenance-window-in-hours 」</block>
@@ -3806,11 +3771,6 @@
   <block id="24ea50b36baea10fb46fc3a1bc6c66c4" category="list-text">データ用とレプリケーション用のポートを共有すると、ポートをレプリケーション専用にする場合の追加のポート数が不要になります。</block>
   <block id="3c0b099ed689308d23f18f4b0e6d5205" category="list-text">レプリケーションネットワークの最大伝送ユニット（ MTU ）サイズは、データネットワークで使用されるサイズと同じになります。</block>
   <block id="5464feaf47ab5ece52dac29514c066c9" category="list-text">データポートをクラスタ間レプリケーション用に共有すると、同じノード上にある他の任意のクラスタ間対応ポートにクラスタ間 LIF を移行して、レプリケーションに使用する特定のデータポートを制御できます。</block>
-  <block id="91e18356a7709afa40abb10b89a17636" category="summary">FC スイッチファブリックを有効にして、スイッチやデバイスが正しく動作していることを確認する必要があります。</block>
-  <block id="21f54be83889ba54c8cee60b4b4b417e" category="paragraph">このコマンドを使用できない場合は 'fastBoot コマンドの実行後にスイッチが enabled 状態になっている必要があります</block>
-  <block id="ed047f67ef60ac18f59b00defcbe2e63" category="list-text">スイッチがオンラインで、すべてのデバイスがログインされていることを確認します。</block>
-  <block id="f2a62a2226a776063a92a12ed167e429" category="paragraph">Traffic Isolation （ TI ）ゾーニングおよびトランキングに関連するエラーは無視してかまいません。</block>
-  <block id="ee964d83d74573b3328048ead7b3c04e" category="list-text">2 つ目のスイッチファブリックに対して同じタスクを繰り返します。</block>
   <block id="a3928106022ce5ea0abce2ce87ea7487" category="cell">ガイドライン</block>
   <block id="a3661db3c5039bc04c7fae548c92950e" category="summary">MetroCluster ファブリック構成の各スイッチにスイッチのオペレーティングシステムファイルと RCF ファイルをダウンロードする必要があります。</block>
   <block id="ef545bde15915b6b99166cb4b02c5f33" category="paragraph">この作業には、 FTP 、 TFTP 、 SFTP 、 SCP などのファイル転送ソフトウェアが必要です。 ファイルをスイッチにコピーします。</block>
@@ -4150,7 +4110,6 @@
   <block id="e1e77b7559e73e7da0cd695a2c7ad2e9" category="paragraph">デフォルトのユーザ名とパスワードは変更してください。</block>
   <block id="946d5b388bd0add5de571fd9bce92cdc" category="list-text">ブリッジの IP 管理を設定する場合は、ブリッジに付属のシールド付きイーサネットケーブル（ブリッジのイーサネット管理 1 ポートとネットワークの接続に使用）が必要です。</block>
   <block id="c6eaf2a37a80db46264a4e2661c4948c" category="list-text">ブリッジの IP 管理を設定する場合は、各ブリッジのイーサネット管理 1 ポートの IP アドレス、サブネットマスク、およびゲートウェイの情報が必要です。</block>
-  <block id="44cf292b45fcf91c7481e1ee996ccaec" category="paragraph">システムが「インストールの準備」セクションのすべての要件を満たしていることを確認したら、新しいシステムをインストールできます。</block>
   <block id="b1e764fef2b40e506866bd30b545a309" category="list-text">ディスクとシェルフの構成は両方のサイトで同じである必要があります。</block>
   <block id="0a6ebed5cb86332bcb0a52f5f59af845" category="paragraph">ミラーされていないアグリゲートを使用する場合は、各サイトでディスクとシェルフの構成が異なることがあります。</block>
   <block id="6f150fd01a15072340dda8ea97654309" category="admonition">ミラーされたアグリゲートとミラーされていないアグリゲートのどちらに使用されているかに関係なく、ディザスタリカバリグループ内のディスクはすべて同じタイプの接続を使用し、ディザスタリカバリグループ内のすべてのノードから認識できる必要があります。</block>
@@ -5231,7 +5190,6 @@
   <block id="569760ba13759161ec65d637aab25382" category="summary">FAS8020 システムで X1132A-R6 クアッドポートカードを使用している場合は、メンテナンスモードに切り替えて、ポート 1a / 1b を FC-VI およびイニシエータ用に使用するように設定できます。工場出荷状態の MetroCluster システムでは、構成に応じて適切にポートが設定されているため、この設定は必要ありません。</block>
   <block id="9544d09c034e4962720c1d4afbc460b0" category="doc">FAS8020 システムでの X1132A-R6 クアッドポートカードの FC-VI ポートの設定</block>
   <block id="4f3cda0639ed4ae5ef0afe1c67ae1b17" category="paragraph">このタスクはメンテナンスモードで実行する必要があります。</block>
-  <block id="e7b2ab89026c8038792876d17344e2a9" category="admonition">「 ucadmin 」コマンドを使用した FC-VI ポートへの FC ポートの変換は、 FAS8020 および AFF 8020 システムでのみサポートされます。他のプラットフォームでは、 FC ポートを FCVI ポートに変換することはできません。</block>
   <block id="a075d4a584d4dc81e7904931b18e9bff" category="list-text">ポートを無効にします。</block>
   <block id="10755b38519fb899c2f5ceaf6f530a25" category="list-text">ポートが無効になっていることを確認します。</block>
   <block id="534177580e7fcd67264b0dbbf061abed" category="list-text">ポート a とポート b を FC-VI モードに設定します。</block>
@@ -5561,7 +5519,6 @@
   <block id="eb5f8bf14ada3ff919f21142ac19365e" category="paragraph">出力には、 controller_A_1 がテイクオーバー状態であること、 HA パートナーをテイクオーバーしたことが示されます。</block>
   <block id="6c434084469e8a6d440ef80517f081d2" category="list-text">ここまでの手順を繰り返して、今度は controller_A_2 から controller_A_1 をテイクオーバーします。</block>
   <block id="3b82e46bb2d614a665de9e2c8b9c5e7c" category="list-text">cluster_B に関して、上記の手順を繰り返します</block>
-  <block id="d9487fb21c3cdb2e352b1aa4a5e30efd" category="paragraph"><block ref="d9487fb21c3cdb2e352b1aa4a5e30efd" category="inline-link-rx"></block></block>
   <block id="afc362bb21237b3cf262e5bb73c2e7ce" category="paragraph">ローカルクラスタ内のデフォルトの場所に加えて、クラスタ構成バックアップファイルをアップロードするリモート URL （ HTTP または FTP ）を指定することで、クラスタ構成バックアップファイルの保護を強化できます。</block>
   <block id="4f06b4d64acae1e487dfeee6d05acf87" category="doc">MetroCluster サイトでのファイアウォールの使用状況</block>
   <block id="a8c0ae0c364bde84c9214317e190e454" category="summary">MetroCluster 構成では、各 FC スイッチファブリックに必要な ISL の数を確認する必要があります。</block>
@@ -5597,14 +5554,6 @@
   <block id="b4244340f0935c1a99a9f6b1a5c587ed" category="cell">* コンポーネント *</block>
   <block id="5ddcf17f54788a5bb9148e8671562c06" category="cell">* ポート *</block>
   <block id="1dde0a938f669adb0ba03f105ef1eb58" category="cell">Brocade G620</block>
-  <block id="62f7ef95a1a4f5a1e459930846582588" category="list-text">自動スクリプトツールではなく、コマンドラインインターフェイス（ CLI ）を使用する必要がある。</block>
-  <block id="02043b3a3b802db01041709dec8e7509" category="paragraph">Cisco FC スイッチを設定するには、スイッチ設定を工場出荷時のデフォルトにリセットし、スイッチソフトウェアをインストールし、特定の構成のスイッチ設定がすべて定義されたリファレンス構成ファイル（ RCF ）をダウンロードして適用する必要があります。</block>
-  <block id="02ca90cf930919983e9f269e2f296903" category="summary">スイッチ設定のプロセスを簡易化するには、特定の構成のスイッチ設定がすべて定義されたリファレンス構成ファイルをダウンロードして適用します。</block>
-  <block id="fcb4142ffdb8bfcc1710889b0ed529d6" category="paragraph">リファレンス構成ファイル（ RCF ）は、 ISL を 8 つ使用する構成には対応していません。ISL を 8 つ使用している場合は、スイッチを手動で設定する必要があります。</block>
-  <block id="3d1d2171594b743d57aea4950c25e08d" category="paragraph">RCF は、 2 ノード、 4 ノード、および 8 ノードの MetroCluster 構成に適用されます。これらのファイルのデフォルトの設定では、ファブリックにはインオーダー配信（ IOD ）が設定されます。</block>
-  <block id="ebac59afd8758611eb5f58946397378e" category="paragraph">RCF のダウンロードページに、スイッチのモデル別にサポートされるノード数が記載されています。</block>
-  <block id="3cf3eae7898bc6f0eec737e6a68a9cec" category="paragraph">次の例は、 FC_switch_A_1 で実行するコマンドを示しています。</block>
-  <block id="fdf602b3f6a177da696cbba4294a693a" category="paragraph">次の例は、 FC_switch_B_1 で実行するコマンドを示しています。</block>
   <block id="4efd0f534426cd87bd38f908ed343b5f" category="summary">MetroCluster 構成を計画するときは、ハードウェアコンポーネントとその相互接続について理解しておく必要があります。</block>
   <block id="a34704fddd968b075e961a99c962b021" category="doc">ファブリック MetroCluster 構成のコンポーネント</block>
   <block id="78284c790a6f1ac15ed5405d7d992f0b" category="section-title">ディザスタリカバリ（ DR ）グループ</block>
@@ -5746,8 +5695,6 @@
   <block id="b73bb1a80bfcd166befb33ddc1a9fe9d" category="paragraph">特定の MACsec ポリシーまたはすべての MACsec ポリシーの設定</block>
   <block id="85b091192b5f7d8d84eccf6181fd6ae8" category="paragraph">25Gbps 接続を使用してシステムが設定されている場合は、 RCF ファイルの適用後に前方誤り訂正（ fec ）パラメータを手動で off に設定する必要があります。この設定は RCF ファイルでは適用されません。</block>
   <block id="21b34813f1e8c3819fcd4c2d1a97dc87" category="paragraph">この手順を実行する前に、 25Gbps ポートがケーブル接続されている必要があります。</block>
-  <block id="de42a51018ae76cdec0d5104c4b44724" category="inline-link-macro">Cisco 3232C スイッチまたは Cisco 9336C スイッチのプラットフォームポートの割り当て</block>
-  <block id="0ef715bbddac71aad2d1af3b2ccf8056" category="paragraph"><block ref="0ef715bbddac71aad2d1af3b2ccf8056" category="inline-link-macro-rx"></block></block>
   <block id="ec97d870f267a6b1f7a705a6c44b8e6b" category="paragraph">このタスクは、 MetroCluster IP 構成の 4 つのスイッチすべてで実行する必要があります。</block>
   <block id="80541a6761449841eef5dece61e66f64" category="list-text">スイッチの各 25Gbps ポートについて、上記の手順を繰り返します。</block>
   <block id="36459777ccad4388b153a5c6dd47cecf" category="paragraph">次の例は、スイッチ IP_switch_A_1 のインターフェイス Ethernet1/25/1 に対するコマンドを示しています。</block>
@@ -5992,23 +5939,11 @@
   <block id="38e9ca24d9e7113360711013b88b23e6" category="list-text">ベイ 42-47</block>
   <block id="0faf54ae87b608cc5c6178aed539592e" category="paragraph">このシステムに 16 本のドライブを搭載する場合、各クォータに次のように対称的にドライブを配置する必要があります。</block>
   <block id="47794e225a3759f0cec4e4a452895e26" category="list-text">第 1 クォータに 4 本のドライブ： 0 、 1 、 2 、 3</block>
-  <block id="54744df94a6fdb7104348dee41697c48" category="summary">MetroCluster IP 構成で使用するポートは、スイッチのモデルとプラットフォームのタイプによって異なります。</block>
-  <block id="3e7d7088000e9b3208b36b1397763f5e" category="doc">Broadcom 対応 BES-53248 IP スイッチのプラットフォームポート割り当て</block>
   <block id="101ffe4f466417c1ce75564d3cc0a3b6" category="list-text">AFF A320 システムが Broadcom BES-53248 スイッチで構成されている場合、一部の機能がサポートされないことがあります。</block>
   <block id="cc1b37b4c1dcf92c7509c109eb4c4d7d" category="paragraph">ローカルクラスタ接続を必要とする設定または機能がスイッチに接続されていても、サポートされていません。たとえば、次の設定と手順はサポートされていません。</block>
   <block id="9998da0c6596ccc4b44b68b91eee576b" category="list-text">8 ノード MetroCluster 構成</block>
   <block id="5b97f056c47eb55f7ac2ec585e184dd9" category="summary">RCF ファイルを正しく生成するためには、ポートテーブル内の情報の使用方法を理解しておく必要があります。</block>
-  <block id="d74c7ca1ea000f4f70f344a02c2ae570" category="paragraph">表を使用する前に、次の考慮事項を確認してください。</block>
-  <block id="bbea4b02ce438e1ae0146e4c5cabb671" category="list-text">次の表は、サイト A で使用するポートを示していますサイト B でも同じケーブル接続が使用されます</block>
   <block id="ebd9fb85557b54bcafec3d1a1ac1c292" category="inline-link">MetroCluster IP 用の RcfFileGenerator</block>
-  <block id="e13e5f806fc6cae09bcb9fed7eecf125" category="paragraph">ケーブル接続の概要を使用して、ケーブル接続を検証します。</block>
-  <block id="b12eae1983992a43e1aff6798c40b450" category="section-title">8 ノード MetroCluster 構成のケーブル接続</block>
-  <block id="d5e8fd3a5a09a2e20b7a2ae3865f7eef" category="paragraph">たとえば、次のような構成になります。</block>
-  <block id="d05e0033e800da35d05e3a88b52e765d" category="list-text">Cisco 3132Q-V スイッチ</block>
-  <block id="87ede0cd4f69bd1090135509c97d39fc" category="list-text">MetroCluster 1 ： FAS2750 プラットフォーム</block>
-  <block id="5eee8a123c93417db687e76b152f6ef0" category="list-text">MetroCluster 2 ： AFF A700 プラットフォーム（これらのプラットフォームは 2 つ目の 4 ノード DR グループとして追加）</block>
-  <block id="7169e1403b175332b81d333c6e2af6ab" category="paragraph">MetroCluster 1 では、 FAS2750 プラットフォームの表と MetroCluster 1 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。</block>
-  <block id="0dc1c4c70bff26c7c3ae5646d99a32f7" category="paragraph">MetroCluster 2 （ 2 つ目の DR グループ）の場合は、 AFF A700 プラットフォームの表と MetroCluster 2 インターフェイスの行を使用して、 Cisco 3132Q-V スイッチをケーブル接続します。</block>
   <block id="965fd21ca9743b38007dc88ab0a81ba7" category="summary">各 MetroCluster サイトは、パートナーサイトのピアとして設定されます。</block>
   <block id="598ab8da90f7b08fb85eebf2cdb5b642" category="doc">MetroCluster 準拠スイッチの使用に関する考慮事項</block>
   <block id="c33e2f23b789dd4d078b0a5b51963f75" category="list-text">MetroCluster IP インターフェイスは、要件を満たすように設定できる任意のスイッチポートに接続できます。</block>
@@ -6136,14 +6071,10 @@
   <block id="acaaad9afa094fcde3c31cd0610a8bdc" category="paragraph"><block ref="acaaad9afa094fcde3c31cd0610a8bdc" category="inline-link-macro-rx"></block></block>
   <block id="acb19996aff6d0b774650f9aa4d7212a" category="inline-link-macro">MetroCluster IP セットアップワークシート site_B</block>
   <block id="08fcfce40ddd768f4ab6ad0534a40c73" category="paragraph"><block ref="08fcfce40ddd768f4ab6ad0534a40c73" category="inline-link-macro-rx"></block></block>
-  <block id="14681192c7f80e2d7631c3a070df9619" category="doc">Cisco 3132Q-V スイッチのプラットフォームポート割り当て</block>
   <block id="d605b9788bd8c2e1d6694fb74ab24c77" category="inline-link-macro">ソフトウェアのインストールと設定の手順</block>
   <block id="18d0853d5e7ac8e89859a9c8915979f9" category="inline-link-macro">Tiebreaker のドキュメント</block>
   <block id="d64686a28c0d36cbee46631e4a401400" category="doc">IP スイッチを設定しています</block>
   <block id="a735c149377d586b0e9640f66438ba41" category="summary">クラスタピアリング、管理、データ接続に使用するコントローラモジュールのポートをケーブル接続する必要があります。</block>
-  <block id="c57a7dcc596f78ac23d59a9297d99a56" category="list-text">スイッチを使用して 1 つの MetroCluster を設定する場合は、 * MetroCluster 1 * ポートグループを使用します。</block>
-  <block id="240c641ec7d44f443373981bb513fa5c" category="list-text">また、 RcfFileGenerator for MetroCluster IP では、各スイッチのポートごとのケーブル配線の概要についても説明します。</block>
-  <block id="9ae436c3a98ee403124b8482b69c2296" category="section-title">2 つの MetroCluster 構成とスイッチのケーブル接続</block>
   <block id="59418a047111afb00de5bb3eb4f3827d" category="summary">コントローラがリモートストレージにアクセスする方法と MetroCluster IP アドレスの仕組みを理解しておく必要があります。</block>
   <block id="b65d630d5a52eaba7cd171cb5e3ae37d" category="doc">MetroCluster IP 構成に関する考慮事項</block>
   <block id="504a0fb5b9a72e32c346e2faacc54cab" category="section-title">MetroCluster IP 構成のリモートストレージへのアクセス</block>
@@ -6205,8 +6136,6 @@
   <block id="427173fb02da33c03f2d6549b04b93e9" category="paragraph">直接接続型の SAS ケーブル接続を使用する 2 ノードストレッチ構成</block>
   <block id="09856c1072ca086e89cf2b213c6273c6" category="inline-link-macro">2 ノード SAS 接続ストレッチ MetroCluster 構成のケーブル接続</block>
   <block id="0c0fa1382f3ba1efffa3113209ab5940" category="list-text"><block ref="0c0fa1382f3ba1efffa3113209ab5940" category="inline-link-macro-rx"></block></block>
-  <block id="006a6750e464737f9052137881e80f96" category="list-text">ストレッチ MetroCluster 構成の設定に関する要件とベストプラクティスを理解する。</block>
-  <block id="ba47f416cbc346bd4f20db246cb5ea02" category="summary">システムが「設置の準備」セクションのすべての要件を満たしていることを確認したら、新しいシステムを設置できます。</block>
   <block id="38ea63f076c0bd36ef351f7ea1e1c655" category="list-text">修復が完了したことを確認します。</block>
   <block id="b269974e8f1909063ffa9c9fa10c607c" category="list-text">すべてのアグリゲートがミラーされていることを確認します。</block>
   <block id="abfbd4923b2a811b4155b4144f88350e" category="list-text">スイッチバックリカバリのステータスを確認します。</block>
@@ -6343,7 +6272,6 @@
   <block id="93eb81c5bb51f5c82069014d257d73f7" category="section-title">本ドキュメントで手順を開始する前に</block>
   <block id="14192cce75fd2280d57cd86b8457d1e8" category="paragraph">このタスクを実行するには、次の全体的な要件を満たしている必要があります。</block>
   <block id="7f96c284d8f2fd273d3fc8f28d037b35" category="list-text">「ノード」と「コントローラ」は同じ意味で使用されます。</block>
-  <block id="f4a6a04204d80f2884055d8da7f250ae" category="paragraph">「 _SERVICE_` 」には、次のいずれかを指定できます。</block>
   <block id="7c53c51d939566adc8b93c1646e124e6" category="doc">2 ノード SAS 接続ストレッチ構成の MetroCluster に必要なハードウェアコンポーネントと命名ガイドライン</block>
   <block id="86550a79de8ca99e7d8bd9e65b550556" category="section-title">シングルノード ONTAP クラスタ × 2</block>
   <block id="47b683adca74533c1ac29c7a7ef76d87" category="paragraph">SAS 接続ストレッチ MetroCluster 構成には、シングルノード ONTAP クラスタが 2 つ必要です。</block>
@@ -7123,9 +7051,7 @@
   <block id="8c0bbb823c7e0336b0660d2f9ca518ae" category="list-text">ノードをブートしてメンテナンスモードに戻り、設定の変更が反映されるようにします。</block>
   <block id="161c64322f806c6fa66fcfcc4f963ca2" category="list-text">ノードをブートメニューでブートします。</block>
   <block id="5bae28607ab909fded5f84571983474a" category="list-text">データの変更率とレプリケーション間隔について検討し、間隔ごとにレプリケートする必要があるデータの量に十分な帯域幅が必要かどうかを検討します。データポートを共有すると、原因がデータプロトコルと競合する可能性があります。</block>
-  <block id="c941b5c4cf46259dd41b222aa38a58f3" category="paragraph">'witchcfgpersistentenable</block>
   <block id="f22c92f3b10744efbd0e82db9d85f42a" category="paragraph">'witchshow'</block>
-  <block id="bad3a2380613a08cffd8b317771de374" category="list-text">fmc_dc ユーティリティを実行して、 7-Mode ファブリック MetroCluster が正常に機能していることを確認します。</block>
   <block id="e824a21e3028938aa47fe624ef80f849" category="paragraph">ブリッジの CLI コマンドは、 ONTAP インターフェイスで実行する ONTAP インターフェイスの「 storage bridge run -cli-name_bridge_name_-command_command_name_ 」コマンドから実行できます。</block>
   <block id="4f8b49fd2c78185a429537ccca6bc9b8" category="paragraph">'et closePort none`</block>
   <block id="ffdbfa0a92ef89961619af0cb24c5631" category="paragraph">'aveConfiguration'</block>
@@ -7451,7 +7377,6 @@
   <block id="490a63609f039f044bb9790dcc2cd376" category="paragraph">このオブジェクトストアは、プライマリオブジェクトストアよりもクラスタから物理的に離れています。</block>
   <block id="186047a757cb9863fcb93d32f5c0c989" category="paragraph">Active IQ Unified Manager と ONTAP の System Manager は、 GUI を使用したクラスタ管理および設定監視に使用できます。</block>
   <block id="06e503b938af1986ad6b869ecf063f9b" category="paragraph">v0a （ v0b など）が存在することにより、接続が継続的に検証され、 LIF の移行またはフェイルオーバーが成功するかどうかが保証されます（停止後にのみ構成の破損が表示される L2 とは異なります）。</block>
-  <block id="d6c935649258a3194c6f76edd4e9e860" category="list-text">ストレッチ MetroCluster 構成のアーキテクチャについて理解する必要がある</block>
   <block id="af8a271f9d97be8878d57cbe88f6786e" category="list-text">スロット 1 の FC-VI カード</block>
   <block id="72ba52d0e41fa1407b98b76f4c0a976d" category="paragraph">オンボードの FC-VI ポートを使用するコントローラモジュールとアドオンの FC-VI カードを使用するコントローラモジュールは混在できません。たとえば、あるノードでオンボードの FC-VI 構成を使用する場合は、 DR グループの他のすべてのノードでもオンボードの FC-VI 構成を使用する必要があります。</block>
   <block id="a55812aab9a776c32d1e16fe37018c12" category="summary">MetroCluster 構成の各ノードは、 ONTAP でセットアップする必要があります。これには、ノードレベルの設定や、 2 つのサイトへのノードの設定が含まれます。また、 2 つのサイト間に MetroCluster 関係を実装する必要があります。</block>
@@ -7564,14 +7489,11 @@
   <block id="def4f4e87a159ca662e15a890598d539" category="paragraph">また、ネゴシエート（計画的）スイッチオーバーやスイッチバックの処理の前にも実施します。</block>
   <block id="24ee0b1ca6a6bb24b7f88b8b0f675d6a" category="paragraph">上の図は、必要なケーブル接続の一般的な例です。FC-VI ポートはコントローラモジュールによって異なります。</block>
   <block id="c1a8925cd94231ee4e464e61451fd6d4" category="paragraph">ラックスペースは、ストレージコントローラのプラットフォームモデル、スイッチのタイプ、構成内のディスクシェルフスタック数によって異なります。</block>
-  <block id="45cf701b8697cab4c349ec98dae373d6" category="admonition">ミラーされたアグリゲートとミラーされていないアグリゲートのどちらに使用されているかに関係なく、ディザスタリカバリ（ DR ）グループ内のディスクはすべて同じタイプの接続を使用し、ディザスタリカバリグループ内のすべてのノードから認識できる必要があります。</block>
   <block id="85977d467dedfc86d900cfc49456f320" category="paragraph">ネゴシエート（計画的）スイッチオーバー処理をテストして、データが中断なく提供されることを確認できます。</block>
   <block id="c1fb8df06920f0b1e36ed0e97db05891" category="paragraph">ベストプラクティスとして、コンポーネントの各電源装置（ PSU ）を別々の電源装置に接続することを推奨します。両方の PSU を同じ配電ユニット（ PDU ）に接続している場合、停電が発生すると、サイトが停止してシェルフ全体が使用できなくなる可能性があります。1 本原因の電源回線に障害が発生した場合に、サービスが中断する可能性があるケーブル接続の不一致がないかどうかをテストします。</block>
   <block id="5ddac338fa0803205a82e38309aa44f9" category="list-text">テイクオーバーの発生後に障害ノードまたはパートナーノードのタイムゾーン設定を変更することはできません。</block>
   <block id="e3e199b7ae425cf085e49fc59cee2346" category="paragraph">コントローラおよびクラスタスイッチの管理ポートをネットワーク内の既存のスイッチに接続できます。また、 NetApp CN1601 クラスタ管理スイッチなど、新しい専用ネットワークスイッチにコントローラを接続することもできます。</block>
   <block id="c0d749550ddde23cbac88b531b9ece57" category="list-text">電気機器を扱うための標準的な製造方法を使用して、適切に接地されていることを確認します。</block>
-  <block id="f42de1b08d2be30deb3f92505955941e" category="paragraph">IP 管理ではなくブリッジのインバンド管理を使用する場合は、イーサネットポートと IP を設定する手順をスキップできます。</block>
-  <block id="f0b56d16950bab81d00cfeaf82d6183a" category="paragraph">初期設定にはシリアル接続が使用されます。その後、 ONTAP と FC ポートを使用してインバンド管理を行い、ブリッジの監視と管理を行うことができます。</block>
   <block id="3fff43b275954b2824b3aee6836ae256" category="paragraph">「 astargets 」コマンドの出力には、ブリッジに接続されているデバイス（ディスクおよびディスクシェルフ）が表示されます。出力行には行番号が振られているため、デバイスの台数を簡単に把握できます。</block>
   <block id="f889df12ea9fb88367e834a6ea3528cf" category="list-text">MetroCluster modify -auto-switchover failure-domain auto-disabled コマンドを実行して、両方のクラスタで自動スイッチオーバーを無効にする必要があります。</block>
   <block id="a2b91b36fe2f171ecdfe2293a4dedbcb" category="paragraph">上の図は、一般的なケーブル接続を示しています。FC-VI ポートはコントローラモジュールによって異なります。</block>
@@ -7583,15 +7505,8 @@
   <block id="c40e86aeadd6b50da794c730b14efb6e" category="summary">ストレージコントローラをストレージメディアおよび他のストレージコントローラにケーブル接続する必要があります。ストレージコントローラは、データおよび管理ネットワークにもケーブル接続する必要があります。</block>
   <block id="eec9a69f383dc26376611c0311190048" category="list-text">設置前に、ディスクシェルフモデルに応じたディスクシェルフの設置とケーブル接続に関する考慮事項とベストプラクティスを確認しておく必要があります。</block>
   <block id="46afce358fde8f707e4d3d83045d922c" category="paragraph">IMT では、 Storage 解決策フィールドを使用して MetroCluster 解決策を選択できます。検索を絞り込むには、 * 構成部品エクスプローラ * を使用して構成部品と ONTAP バージョンを選択します。[ 結果の表示（ Show Results ） ] をクリックすると、条件に一致するサポートされている構成のリストを表示できます。</block>
-  <block id="e79607baf0b4b92987f246d62a7fb12f" category="list-text">ディザスタリカバリ（ DR ）</block>
   <block id="5b4f20357f5eb20eaa770c1503529295" category="list-text">ハードウェアの交換またはアップグレードFC-to-SAS ブリッジおよび FC スイッチのファームウェアアップグレード手順</block>
   <block id="f2d45f03c22fbeb03b74cbd880d693fe" category="list-text">ファブリック接続またはストレッチ MetroCluster FC 構成のディザスタリカバリサイトでのハードウェア交換</block>
-  <block id="ef402cf927be6e8ac7911e7437ce8e76" category="paragraph">9.5 より前のバージョンの ONTAP を使用している場合、または Telnet やその他の IP ポートプロトコルおよびサービス（ FTP 、 ExpressNAV 、 ICMP 、 QuickNAV ）を使用して FibreBridge 7600N ブリッジへのアウトオブバンドアクセスを使用する場合は、コンソールポート経由でアクセスサービスを有効にできます。</block>
-  <block id="12e1a43f9bf6da32583b815f8c9f66e1" category="summary">ブリッジを設定したら、システムのケーブル接続を開始できます。</block>
-  <block id="6fd15be7f6a37829673663b10699e3a1" category="paragraph">ディスクシェルフの場合は、 SAS ケーブルのコネクタをプルタブ（コネクタの下側）を下にして挿入します。</block>
-  <block id="ffa7a5441f187dc7d843a978ea76034c" category="list-text">スタック内の論理的な最初のシェルフから順番に、 IOM A のポート 3 を次のシェルフの IOM A のポート 1 に接続します。スタック内の各 IOM A が接続されるまで、この手順を繰り返します。</block>
-  <block id="b985672df4b1727f634f123abb9a9459" category="list-text">ディスクシェルフの電源をオンにして、シェルフ ID を設定します。</block>
-  <block id="0a479816abce55af3acdeba610f5c4aa" category="list-text">ディスクシェルフの最初のスタックで、最初のシェルフの IOM A を FibreBridge A の SAS ポート A にケーブル接続します最後のシェルフの IOM B を FibreBridge B の SAS ポート A にケーブル接続します</block>
   <block id="1177ce2d22c07bbd50d26ba5478b5b1d" category="paragraph">次の表に、 2 つの DR グループに 8 つのコントローラモジュールを配置した場合のサポートされる最大構成を示します。それよりも小規模な構成の場合、余分なコントローラモジュールの行は無視してください。</block>
   <block id="47d08f1ee3648c79c4b4429ec089e0ad" category="paragraph">すべてのコンポーネントの HA の状態が「 mcc 」である必要があります。</block>
   <block id="66930ebad5217524682489282d1ad783" category="paragraph">システムが保守モードになっている場合は、問題 the 'halt コマンドを使用して保守モードを終了し、 LOADER プロンプトから次のコマンドを問題します。</block>
@@ -7980,8 +7895,6 @@
   <block id="eb92b55efcda4337f49fbb4f31430b86" category="section-title">新しい RCF ファイルをスイッチに適用しています</block>
   <block id="53a921e4bbc54ce2d6afa96efdec5e0d" category="admonition">スイッチがすでに正しく設定されている場合は、以降のセクションを省略して、に直接進むことができます <block ref="de11d0e85c7bd9958e0baabb6935c39e" category="inline-xref-macro-rx"></block>（該当する場合）またはに移動します <block ref="38f1f1f937d8a6271f7a9d545fc64b92" category="inline-xref-macro-rx"></block>。</block>
   <block id="c254233c893b2067bcf1c2ed715e44ed" category="list-text">シェルフを追加するには、スイッチの構成を変更する必要があります。</block>
-  <block id="0d5080dfa06a3af14f97815b8709eabf" category="inline-link-macro">プラットフォームポートの割り当て</block>
-  <block id="992e77f25f7a13cc4a3f4c478343dc53" category="list-text">ケーブル接続の詳細については、を参照してください <block ref="43a709b6efbdfaf13af2493f4ad49bb0" category="inline-link-macro-rx"></block>。</block>
   <block id="0322de073946db807daed13f93e7bba6" category="inline-link-macro">RcfFileGenerator の順にクリックします</block>
   <block id="0de69822e19543d652683accc3d43e70" category="list-text">構成に合わせて RCF ファイルを作成するには、 **RcfFileGenerator** ツールを使用する必要があります。。 <block ref="46a459674905c476821f71bc8486a4ba" category="inline-link-macro-rx"></block> また、各スイッチのポートごとのケーブル接続の概要についても説明します。正しいシェルフ数を選択していることを確認してください。RCF ファイルと一緒に追加ファイルが作成され、特定のオプションに一致する詳細なケーブルレイアウトが提供されます。新しいシェルフをケーブル接続する際には、このケーブル接続の概要を使用してケーブル接続を検証します。</block>
   <block id="02af00cdd18ae240b1f2c26157ef29ca" category="admonition">暗号化を無効にする場合は、キーも削除する必要があります。</block>
@@ -8117,7 +8030,6 @@
   <block id="c4b7332c983d9f374f57570f90ffe107" category="paragraph"><block ref="c4b7332c983d9f374f57570f90ffe107" category="inline-link-macro-rx"></block></block>
   <block id="e413eba49b15917b0c9dbf2620f3e66e" category="inline-link-macro">ディザスタリカバリ</block>
   <block id="1fdc00427d8a28cfd858de71d68438ad" category="inline-link-macro">MetroCluster メンテナンス</block>
-  <block id="9433101051cd4f7f52c941cccdc15be4" category="paragraph"><block ref="9433101051cd4f7f52c941cccdc15be4" category="inline-link-macro-rx"></block></block>
   <block id="c750cfcf9c6045b6e0b4b0d6de2212f3" category="inline-link-macro">MetroCluster のアップグレードと拡張</block>
   <block id="a9fd24893aed7bda18921eb1da6f8440" category="inline-link-macro">MetroCluster の移行</block>
   <block id="b6f8655d9cab6bf8d32e7b0bdc6c8eef" category="inline-link-macro">MetroCluster のアップグレード、移行、拡張</block>
@@ -8125,7 +8037,6 @@
   <block id="c1444ba460cdd9b59c8ecf988ca907c4" category="list-text">ONTAP 9.7 以降では、自動計画外スイッチオーバーがサポートされます。</block>
   <block id="6dc7f3a38acb68038827d6fedc7bbc7a" category="paragraph"><block ref="6dc7f3a38acb68038827d6fedc7bbc7a" category="inline-link-rx"></block></block>
   <block id="5594b012385083b2dd778011df3d6f3d" category="paragraph"><block ref="5594b012385083b2dd778011df3d6f3d" category="inline-link-rx"></block></block>
-  <block id="9a0dfb0af7717632c4b3bc7de1ff2fff" category="paragraph"><block ref="9a0dfb0af7717632c4b3bc7de1ff2fff" category="inline-link-rx"></block></block>
   <block id="8891488ccf0af3b6c4a946824e6f0cdc" category="admonition">現在サポートされている SNMP トラップホストは 1 つだけです。</block>
   <block id="4ab496c462bc9a729fe703221c683545" category="paragraph"><block ref="4ab496c462bc9a729fe703221c683545" category="inline-link-macro-rx"></block></block>
   <block id="716a92112769d0f62895dc8c3a9fe47f" category="list-text">ONTAP 9.8 以降では、ブート・メニュー・オプションを選択します。</block>
@@ -8168,9 +8079,7 @@
   <block id="e71402603f50c2282d8c7bcc53d63e72" category="paragraph"><block ref="e71402603f50c2282d8c7bcc53d63e72" category="inline-link-macro-rx"></block></block>
   <block id="b42bad79baad4f4f943c81fc37bedccd" category="list-text">に示すように、 MetroCluster IP ノードを IP スイッチにケーブル接続します <block ref="657bcb6c51639854c4fdede551507755" category="inline-link-macro-rx"></block>。</block>
   <block id="99dc2e42eb5cbad5dfa0fe00d5193924" category="list-text">の説明に従って、アグリゲートを使用して FabricPool ミラーを作成します<block ref="d80da76762d0e5fadaefb2c12eee2740" category="inline-link-rx"></block></block>
-  <block id="06eff1ae70df860b6c817c9ab3858d3d" category="list-text">に記載されているネゴシエートスイッチオーバー、修復、スイッチバックの手順を使用します<block ref="6d6ef49fcb406c2ba2bda06977913f53" category="inline-link-rx"></block>。</block>
   <block id="10fb6eda16d44576f048cbbd98a21f49" category="sidebar">MetroCluster のインストールを準備</block>
-  <block id="e42ae5049bd4441f35fc1a5c789393b6" category="sidebar">RcfFileGenerator ツールまたは複数の MetroCluster 設定でポートテーブルを使用する方法</block>
   <block id="b25308b36735da11e4a37c52a93d5b81" category="sidebar">ONTAP で MetroCluster ソフトウェアを設定します</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="sidebar">概要</block>
   <block id="41aa5998b40e00d8eb4f7bb40bb2bc22" category="sidebar">必要な情報を収集</block>
@@ -8602,7 +8511,6 @@
   <block id="bbc57dc413ffb6de03ae46282f2a7e7b" category="paragraph"><block ref="bbc57dc413ffb6de03ae46282f2a7e7b" category="inline-link-rx"></block></block>
   <block id="bd3d9b1a42269f70b6fcebe5b0cf78b6" category="paragraph"><block ref="bd3d9b1a42269f70b6fcebe5b0cf78b6" category="inline-link-rx"></block></block>
   <block id="a8125364ced10d8a90aedca98aa02032" category="paragraph"><block ref="a8125364ced10d8a90aedca98aa02032" category="inline-link-macro-rx"></block></block>
-  <block id="f352cbf1ebb01c90cd667f55932f9c18" category="paragraph">リンク： ./transition/concept_choosing_your_transition_procedure_mcc_transition.html</block>
   <block id="e7e6eebc5253d1872205b3e8e4fe67cb" category="cell">LEM1-15</block>
   <block id="84c88c7fdb171c136ff58d7835e46603" category="cell">LEM1-16</block>
   <block id="0dddffd8cf99c04ddb89559281d8d451" category="cell">LEM2-9</block>
@@ -8760,11 +8668,7 @@
   <block id="f4940c501b49bfedc771d451a940dd86" category="paragraph">'set ipsubnetmask mp1_subnet-mask_</block>
   <block id="2cbc411457cd0938b6905825bf77d757" category="paragraph">「 set bridgename _bridgename _ 」を入力します</block>
   <block id="234276bb6f759d1c730f503823b8b851" category="list-text">ONTAP 9.4 以前を実行している場合は、ブリッジで SNMP を有効にします。 +'set snmp enabled'</block>
-  <block id="e59edea7eca66c59981a48c451207f15" category="paragraph">'set FCDataRate_port-numberport-speed_</block>
-  <block id="58f664821eaeae8db29ad0777b7c207e" category="list-text">2 番目のポートを使用しない場合は、ポート +`FCPortDisable port-number` を無効にする必要があります</block>
   <block id="7850ba79be704a27b5c5b68af5a2299f" category="list-text">FibreBridge 7600N / 7500N ブリッジを設定する場合は、未使用の SAS ポートを無効にします： +`SASortDisable_SAS-port_`</block>
-  <block id="9903ebf5645f39363aa954b61ca67471" category="list-text">ブリッジのステータスを表示します。「 storage bridge show 」</block>
-  <block id="8707b60af4835d505959781341c58dac" category="list-text">ブリッジを保護します :+`securebridge`</block>
   <block id="978b1759e6757920ebf49ea1f963a49b" category="paragraph"><block ref="978b1759e6757920ebf49ea1f963a49b" category="inline-link-macro-rx"></block></block>
   <block id="0f70569a0bcb298f0f36659f72d7b82d" category="list-text">設定プロセスを開始する前に、コントローラモジュールに必要な IP アドレスを収集します。</block>
   <block id="ecea54ca3870fb73d8800d487e47f8d7" category="list-text">サイト A の IP ネットワーク情報ワークシートに記入</block>
@@ -8822,7 +8726,6 @@
   <block id="1340a5b41b84e7246a789cfe5e1eb1a7" category="list-text">の手順「 Replacing a FabricPool mirror on a MetroCluster configuration 」に従います <block ref="35c3ebb4e6a9e3c67e4d7c35a500b0be" category="inline-link-macro-rx"></block>。</block>
   <block id="ab1dba64bb6e8de017000d69dfdb9ac8" category="paragraph"><block ref="ab1dba64bb6e8de017000d69dfdb9ac8" category="inline-link-macro-rx"></block></block>
   <block id="e5d7a25b7e762503563170086c5defa9" category="paragraph"><block ref="e5d7a25b7e762503563170086c5defa9" category="inline-link-macro-rx"></block></block>
-  <block id="f6fe6f33a84912b05293bb29c427b220" category="summary">MetroCluster のスイッチオーバーとスイッチバックの処理は、計画的メンテナンス時または災害発生時のどちらでも実行できます。</block>
   <block id="6cf335b042bd73c23f6af76221b432bf" category="paragraph">次の例は、 MetroCluster 構成の SVM を示しています。「 SVM_cluster_A 」はソースサイトの SVM 、「 SVM_cluster_A-mc 」はディザスタリカバリサイトの同期先のアグリゲートです。</block>
   <block id="760481252d481e55778f320967eca451" category="paragraph"><block ref="760481252d481e55778f320967eca451" category="inline-link-rx"></block></block>
   <block id="2063370ab85c6fcebccb497878d43f83" category="admonition">スイッチオーバー後に、ミラーされていないアグリゲートが DR パートナーノードにある状態でスイッチ間リンク（ ISL ）に障害が発生すると、そのローカルノードで障害が発生することがあります。</block>
@@ -8884,9 +8787,6 @@
   <block id="91683a88a240de71b025c11834d0b99a" category="paragraph">新しいブリッジの各 FC ポート用のストレージゾーンを追加する必要があります。</block>
   <block id="d6e62bec4cfc249fd233d49111852ad5" category="paragraph"><block ref="d6e62bec4cfc249fd233d49111852ad5" category="inline-link-macro-rx"></block></block>
   <block id="e679410e0814cb8b9a24fb70c2cd9bb8" category="paragraph">storage bridge run -cli-name_bridge-name_command_" コマンドテキスト "_`</block>
-  <block id="b57004775c4d348fa434a0ee51cb3d83" category="summary">MetroCluster 構成内では、 MetroCluster 固有のハードウェアコンポーネントを保守することができます。</block>
-  <block id="1b90568b607149e86214f36f7e1c89a5" category="paragraph">MetroCluster 構成内で MetroCluster 固有のハードウェアコンポーネントを保守するには、次の手順を実行します。</block>
-  <block id="a57ca36aaadd79a0f7796b97ef93ea4b" category="paragraph">MetroCluster システムのサービス手順には、ファームウェアのアップグレードやハードウェアの交換手順として、ドライブシェルフ、 IP スイッチ、 FC スイッチ、 FC-to-SAS ブリッジ、および SAS ケーブルが含まれます。</block>
   <block id="1590893d0510686df21eee9955ff2b29" category="paragraph">「 aggr offline_plex_name_ 」</block>
   <block id="1ed890744eec3126bbb25e9377ed2123" category="paragraph">aggr status --raggr_name_`</block>
   <block id="dad7a4e2db295af2111afd1f4cce2d6a" category="list-text">ブリッジが 2 つ以上の SAS スタックを接続している場合は、ブリッジをターゲットシェルフに接続している SAS ポートを無効にします。 +`SASportDisable_port number_`</block>
@@ -9296,8 +9196,6 @@
   <block id="c7892ebbb139886662c6f2fc8c450710" category="cell">件名</block>
   <block id="fa06f628b32f0d1ba3fc7ece00862b96" category="paragraph"><block ref="fa06f628b32f0d1ba3fc7ece00862b96" category="inline-link-rx"></block></block>
   <block id="9f6ef9d803a6a101c30a47069149abd6" category="list-text">EFOS バージョン 3.7.x.x 以降では、 FIPS に準拠していないバージョンと FIPS に準拠したバージョンが提供されています。FIPS に準拠していないバージョンから FIPS に準拠したバージョンに移行する場合とその逆に移行する場合は、さまざまな手順があります。EFOS を FIPS 非準拠バージョンから FIPS 準拠バージョンに変更するか、その逆に変更すると、スイッチが工場出荷時のデフォルトにリセットされます。この手順には、シリアルコンソールポート経由でアクセスする必要があります。</block>
-  <block id="e90535a051902416d901e147c4c59930" category="summary">このマニュアルでは、 MetroCluster Tiebreaker ソフトウェアをインストールおよび設定する方法について説明します。</block>
-  <block id="884324de7d536976016cc7e2b34b0da9" category="paragraph">この情報は、 MetroCluster Tiebreaker ソフトウェアをインストールする際に使用します。</block>
   <block id="26a1b5abfaa8d36a512417a3da776baf" category="summary">MetroCluster の設定と処理の詳細については、を参照してください。</block>
   <block id="be66634f5c72a17ac1efdaa2b09a1da6" category="paragraph"><block ref="be66634f5c72a17ac1efdaa2b09a1da6" category="inline-link-macro-rx"></block></block>
   <block id="2f4dfa9b4c405812623b1a34ea79a216" category="list-text">すべての MetroCluster 情報</block>
@@ -9341,24 +9239,18 @@
   <block id="75f592488d6be5738040725bd9891f31" category="list-text">追加する機器がサポートされており、次の手順で説明するすべての要件を満たしている必要があります。</block>
   <block id="437238e14c493f4cd7340eb1bdcdd921" category="summary">FibreBridge ブリッジでは、サードパーティ製の SNMP 監視ツールはサポートされません。ONTAP 9.8 以降では、デフォルトで FC-to-SAS ブリッジがインバンド接続で監視されるため、追加の設定は必要ありません。</block>
   <block id="a45d83a0b1153ad4e451241db8943830" category="list-text">ONTAP 9.8 以降では、デフォルトで FC-to-SAS ブリッジがインバンド接続で監視されるため、追加の設定は必要ありません。</block>
-  <block id="52812075c78ece551ae010bb2c3594ea" category="paragraph">ONTAP 9.5 以降では、ブリッジのインバンド管理 _ がサポートされます。これは、 ONTAP CLI からブリッジへの FC 接続を介してブリッジを設定および監視できることを意味します。ブリッジのイーサネットポートを介してブリッジに物理的にアクセスする必要がなく、ブリッジのユーザインターフェイスも必要ありません。</block>
-  <block id="5366fe8e6a583070b8536329d2fb2c42" category="paragraph">ONTAP 9.8 以降では、ブリッジの _ 帯域内管理 _ がデフォルトでサポートされ、アウトオブバンド SNMP 管理は廃止されています。</block>
   <block id="5168267ac054ac32ab413a0acbc200d4" category="list-text">Fibre Channel ：ストレッチ VSAN またはストレッチファブリックを使用する必要があります。</block>
   <block id="a978c2b5e6e9a533769d340f58385bec" category="list-text">IP / iSCSI ：レイヤ 2 拡張ネットワークを使用する必要があります。</block>
   <block id="90de783675244075fc64540fa2b3225d" category="list-text">ARP ブロードキャスト： 2 つのクラスタ間で ARP ブロードキャストを有効にする必要があります。</block>
   <block id="abb1e047e2333a743b5e05cb2a26c2c8" category="list-text">LIF の重複：同じ IPspace に同じ IP アドレスを持つ複数の LIF （重複する LIF ）を作成することはできません。</block>
   <block id="9678ea3a4b3cf82f2a3d066928c01fbf" category="list-text">NFS および SAN 構成：ミラーされていないアグリゲートとミラーされたアグリゲートの両方に、異なる Storage Virtual Machine （ SVM ）を使用する必要があります。</block>
   <block id="562c481a4722b64967a4fc3b654ce42b" category="paragraph">この手順で例として使用されている推奨名には、ブリッジの接続先コントローラモジュールとポート番号が含まれています。</block>
-  <block id="44b34304fe9dbc559df5c8eec0e37bb6" category="admonition">ONTAP 9.8 以降では '*storage bridge *' コマンドは '*system bridge *' コマンドに置き換えられています以下の手順は '*storage bridge *' コマンドを示していますが 'ONTAP 9.8 以降を実行している場合は '*system bridge *' コマンドを使用することをお勧めします</block>
   <block id="4eddf6976105fa027f2ae8a47fff2624" category="summary">MetroCluster の設定と運用の詳細については、ネットアップのドキュメントを参照してください。</block>
   <block id="547ba73dc7a2f4ba675a33d38364c3f9" category="paragraph">MetroCluster の設定と処理の詳細を確認できます。</block>
   <block id="5358757de9216cc29d688612a3d72fe1" category="inline-link">ONTAP 9 のドキュメント</block>
   <block id="05d1b66800ffa31a913a6add4305e4e3" category="paragraph"><block ref="05d1b66800ffa31a913a6add4305e4e3" category="inline-link-rx"></block></block>
   <block id="d9d4ce74e38cd9efa737a1c3804eaaa7" category="paragraph"><block ref="d9d4ce74e38cd9efa737a1c3804eaaa7" category="inline-link-rx"></block></block>
-  <block id="49e8a4f68d0d39a5df4eff350e3763d9" category="admonition">ONTAP 9.8 以降では 'storage bridge コマンドは 'system bridge コマンドに置き換えられました次の手順は 'storage bridge コマンドを示していますただし、 ONTAP 9.8 以降を実行している場合は、「 system bridge 」コマンドを使用することをお勧めします。</block>
   <block id="a69113d0b82c861ad8eef62d4034cb23" category="paragraph">ONTAP 9.5 以降を実行しているシステムでは、インバンド管理を使用してイーサネットポートではなく FC ポート経由でブリッジにアクセスできます。ONTAP 9.8 以降では、インバンド管理のみがサポートされ、 SNMP 管理は廃止されています。</block>
-  <block id="6146d4abcde8b1c5aae9b49637ff7f5f" category="paragraph">このマニュアルでは、ストレッチ構成（ SAS 光 MetroCluster 構成とも呼ばれます）で MetroCluster のハードウェアコンポーネントとソフトウェアコンポーネントをインストールおよび設定する方法について説明します。</block>
-  <block id="4a5a62259294d97a965d111d8cc932d9" category="paragraph">この情報は、ストレッチ MetroCluster 構成の計画、インストール、設定を行う場合に使用します。想定している状況は次のとおりです。</block>
   <block id="72587816d0529c74df88340c08237482" category="paragraph">クラスタ名。この情報で使用している例： site_A</block>
   <block id="880487afd676f4f59f79168934ae44b7" category="paragraph">ノード 1 ：この情報で使用している例： controller_A_1</block>
   <block id="d3f6054ef6e0b55a3b4c81403c3bf3b0" category="paragraph">この情報で使用している例： controller_A_2</block>
@@ -9508,7 +9400,6 @@
   <block id="d805df154de0ed954114c0b8a30d6cf0" category="list-text">各ノードの不揮発性キャッシュの SyncMirror ミラーリングと DR ミラーリングはどちらも動作しており、障害発生時にキャッシュとミラーが同期されます。</block>
   <block id="539aa46206b59c007151f02f46d35617" category="list-text">サバイバーサイトのいずれのノードもテイクオーバー状態ではありません。</block>
   <block id="9630e0ae86014261ce835fe1e1ffcd0e" category="paragraph">各スイッチでこのタスクを順に実行する必要があります。</block>
-  <block id="b8ce668f7b81ebccc724b47a22aafe9f" category="paragraph">MetroCluster システムのサービス手順には、ファームウェアのアップグレードとハードウェアの交換手順が含まれています。これらの手順には、ドライブシェルフ、 IP スイッチ、 FC スイッチ、 FC-to-SAS ブリッジ、および SAS ケーブルが含まれます。</block>
   <block id="51556e4766045ccfd74aafe1f8271966" category="paragraph">詳細については、を参照してください<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block></block>
   <block id="38d923048395adfe402bca08916bd9db" category="paragraph">コントローラのポートの用途は、プラットフォームモジュールおよび MetroCluster IP 構成で使用するスイッチによって異なります。新しいプラットフォームのポート使用量をから収集できます <block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block>。</block>
   <block id="f9f099865bb9d36821db181257896abb" category="list-text">AUTOBOOT が有効になっている場合は、 CTRL-C を押して AUTOBOOT を中断します</block>
@@ -9735,9 +9626,7 @@
   <block id="208671d931da81374958ab0bdeb8d0f0" category="paragraph">次の手順 を使用して、AFF A700またはFAS9000コントローラモジュールを取り外します。</block>
   <block id="d1bba686a5b245f47f0d8653cd12d51c" category="admonition">AFF A700またはFAS9000 NVSモジュールはスロット6に搭載されており、システム内の他のモジュールと比較して高さが2倍になっています。</block>
   <block id="400837732a47a77ab9ec9d475301631a" category="paragraph">このタスクでは、スイッチバック処理を実行して MetroCluster 構成を通常動作に戻します。次の図に示すように、site_Aのノードはまだアップグレードを待っています。（この図は環境 でもFAS9000をFAS9500コントローラにアップグレードした場合を示しています）。</block>
-  <block id="aacdf7a1a9a3666db3b501d37a579c04" category="summary">バックエンドMetroCluster FC接続を提供するようにFCスイッチを設定する必要があります。</block>
   <block id="3c2e7a09f3e6838bdc9926952b8e998b" category="list-text"><block ref="3c2e7a09f3e6838bdc9926952b8e998b" category="inline-link-macro-rx"></block></block>
-  <block id="8c67eafd90e097bf6228c8d6f91f15cb" category="list-text"><block ref="8c67eafd90e097bf6228c8d6f91f15cb" category="inline-link-macro-rx"></block></block>
   <block id="6fc32e58ee37ceb6ca0bb1590e84ab08" category="sidebar">スイッチオーバーとスイッチバックを使用して、MetroCluster FC構成のAFF A700 / FAS9000からAFF A900/ FAS9500にコントローラをアップグレード（ONTAP 9.10.1以降）</block>
   <block id="44d9da525f678322921a73864bd0b924" category="paragraph">RcfFileGeneratorバージョン1.4a以降では、「write erase」を実行することなく、Cisco IPスイッチのスイッチ設定を変更（アップグレード、ダウングレード、または交換）するための新しいオプションが追加されています。</block>
   <block id="0d98f6fd87f88cd68844ee1450081b43" category="paragraph">この方法は、構成が次の要件を満たしている場合に使用できます。</block>
@@ -9882,9 +9771,6 @@
   <block id="38325ef6d268e93ab480af3cd0b3bd5f" category="list-text">RcfFileGenerator for MetroCluster IPを使用して、設定用のRCFファイルを生成します。</block>
   <block id="7332a56dad899da7a26afe16c9ca077a" category="list-text">ホームディレクトリに移動します。「cumulus」として記録されている場合、ファイルパスは「/home/cumulus」です。</block>
   <block id="59c778d760eb930375b77337b3ee45b9" category="list-text">RCFファイルを実行します。RCFファイルでは、1つ以上の手順を適用するためのオプションが必要です。テクニカルサポートから指示がないかぎり、コマンドラインオプションを指定せずにRCFファイルを実行します。RCFファイルのさまざまな手順の完了ステータスを確認するには、オプション「-1」または「all」を使用してすべての（保留中の）手順を適用します。</block>
-  <block id="91fda6ec6c364088ae4a9e6553b26f99" category="doc">NVIDIAがサポートするSN2100 IPスイッチのプラットフォームポート割り当て</block>
-  <block id="5aa692c4552b821f69bb151f7aa0f216" category="paragraph">複数のMetroCluster 構成をケーブル接続する場合は、該当する表に従ってください。例：</block>
-  <block id="10fe94c98083f4e751ef035d96910a62" category="paragraph">以降の各セクションでは、物理的なケーブル接続の概要について説明します。を参照することもできます<block ref="c52b4d12f68853a25c52576697c6b2b5" category="inline-link-rx"></block> ケーブル接続の詳細については、を参照して</block>
   <block id="fb66ffdb7a65b64035629ded64b78faf" category="sidebar">NVIDIA IPスイッチを設定します</block>
   <block id="344184862169747549deee4b87dc1cf2" category="section-title">サポートされるプラットフォームの組み合わせ</block>
   <block id="96235e4cabe659a051590175116c1e60" category="paragraph">を参照してください<block ref="2c4f45f6db308a425e052afade2ba656" category="inline-link-rx"></block> を参照してください。</block>
@@ -10179,8 +10065,6 @@
   <block id="3ae2a51b967ff5379c07b5d59d9bb892" category="sidebar">新しいコントローラモジュールのFC-VIポートとHBAポートをFCスイッチにケーブル接続します</block>
   <block id="2ec9cf7fc01c78e918f2c1109d699ebd" category="sidebar">ONTAPIおよびSSHへの管理アクセスを設定します</block>
   <block id="3e0a52646b307379f47860044c088d60" category="paragraph">各外付けシェルフのドライブが 2 つのグループに均等に分割されます（ハーフ）。シェルフの各ハーフが自動的に別々のプールに割り当てられます。</block>
-  <block id="8e65b308ba381d7e7d885330e749b55d" category="list-text">タイプがAFF A700の2つの4ノードMetroCluster 構成をケーブル接続する場合は、AFF A700の表で「MetroCluster 1」と表示されている最初のMetroCluster と「MetroCluster 2」と表示されている2つ目のMetroCluster を接続します。</block>
-  <block id="e5c3d25338f9cf52b0644af8df5dd491" category="admonition">ポート13と14は、40Gbpsと100Gbpsをサポートするネイティブ速度モードまたは4×25Gbpsをサポートするブレークアウトモードで使用できます。ネイティブ速度モードを使用している場合は、ポート13と14として表されます。ブレークアウトモード（4×25Gbpsまたは4×10Gbps）を使用する場合、ポート13s0-3および14s0-3として表されます。</block>
   <block id="49cc90fa19d302674a7ac32a31b7a0c8" category="list-text"><block ref="49cc90fa19d302674a7ac32a31b7a0c8" category="inline-link-macro-rx"></block></block>
   <block id="566b66a4b36764e94944f56424f3b3ca" category="paragraph">次のコマンドを実行します。<block ref="fdb848f6761ac46e0ea7678b5269bd3c" prefix=" " category="inline-code"></block></block>
   <block id="65cc666ecd4a5bdf3c624b12e425c91f" category="admonition">設定を変更するには、コントローラをリブートする必要があります。</block>
@@ -10287,8 +10171,6 @@
   <block id="b7450015b71c12c709e06c6df0960192" category="list-text">青：新しい接続のポート。</block>
   <block id="633cc15b1e59b48a46d3c777359a1055" category="list-text">[[all_step1]]構成の健全性を確認します。</block>
   <block id="7882a4b556b6996eaf604413a9e602d9" category="inline-xref">手順 4</block>
-  <block id="081cd064d2071e8aa77edcf5d45444be" category="paragraph">既存のスイッチを再利用する場合は、に進みます <block ref="046a26a191748a2899dce4a2c37c0cb7" category="inline-xref-macro-rx"></block>。</block>
-  <block id="a20cd528d8bc7b61469ce5e3d4c9c554" category="list-text">[[existing_step4]]古いスイッチから接続を切断します。</block>
   <block id="7d776215704c45de3e834bbcadf79f9d" category="admonition">古い構成と新しい構成で同じポートを使用していない接続だけを切断します。新しいスイッチを使用する場合は、すべての接続を切断する必要があります。</block>
   <block id="75e3c856358f89db923a1a35bcc7533c" category="paragraph">次の順序で接続を削除します。</block>
   <block id="0cde1e9cab83159ca8c4c0066971bfaf" category="list-text">ローカルクラスタインターフェイスがスイッチに接続されている場合は、次の手順を実行します。</block>
@@ -10297,10 +10179,7 @@
   <block id="ffd6b825c885ce7458a8f30023fc7852" category="list-text">MetroCluster IPインターフェイスを切断します</block>
   <block id="67cc98572471f894a699ad039887fbf2" category="list-text">MetroCluster ISLを切断します</block>
   <block id="afbde099dc8a26a6394d60f258d7b937" category="paragraph">を参照してください <block ref="6c63cd5b30d21cdd776aa75d41e55cc0" category="inline-xref-macro-rx"></block>スイッチは変更されません。MetroCluster ISLは再配置されます。切断する必要があります。ワークシートに緑色でマークされている接続を切断する必要はありません。</block>
-  <block id="f5ce4d426c8852e0090ab32842d1cd09" category="inline-xref">手順 6</block>
-  <block id="a5717edbc2c781c1beaa710a27186585" category="paragraph">既存のスイッチを再利用する場合は、に進みます <block ref="2e61491c69f93a4146be17b4939efb61" category="inline-xref-macro-rx"></block>。</block>
   <block id="333d2f9cc8c6ad8010d2882a39d82f4b" category="admonition">管理インターフェイス（使用している場合）を除き、新しいスイッチをケーブル接続しないでください。</block>
-  <block id="1fd9c3285779f1beb3a2a86f3db536dd" category="list-text">[[existing_step6]]既存のスイッチを設定します。</block>
   <block id="00988a383d51754cc7748f6c1b1e0fea" category="paragraph">スイッチがすでに設定されている場合は、この手順を省略できます。</block>
   <block id="6009872da2f85ec2153eaa9c096839f1" category="paragraph">既存のスイッチを設定するには、次の手順に従ってファームウェアとRCFファイルをインストールおよびアップグレードします。</block>
   <block id="9c77ce4749e7ce4cb8afcbc4ebd4e32e" category="list-text"><block ref="9c77ce4749e7ce4cb8afcbc4ebd4e32e" category="inline-link-macro-rx"></block></block>
@@ -10311,7 +10190,6 @@
   <block id="c78a73a52795719f0a6c0e4e534be9ef" category="list-text">MetroCluster IPインターフェイスをケーブル接続します。</block>
   <block id="01deefeeb71ff074c039158073f19265" category="list-text">ローカルクラスタインターフェイスをケーブル接続します。</block>
   <block id="8b6ae3655a41f028d5060b1f3d5aebbf" category="list-text">スイッチタイプが異なる場合は、古いスイッチとは異なるポートが使用されることがあります。スイッチをアップグレードまたはダウングレードする場合は、ローカル ISL を * ケーブル接続しないでください。ローカルISLをケーブル接続するのは、2つ目のネットワークのスイッチをアップグレードまたはダウングレードするときに、一方のサイトの両方のスイッチのタイプとケーブル接続が同じ場合だけにしてください。</block>
-  <block id="eaa95352e43bdba50bdd8ae03821eb2f" category="list-text">Switch-A1とSwitch-B1をアップグレードする場合は、スイッチSwitch-A2とSwitch-B2について手順1~6を実行する必要があります。</block>
   <block id="ab95b1ec0ad168059ea7f20803fa1073" category="list-text">ローカルクラスタのケーブル接続を完了します。</block>
   <block id="4ceec7a3943b4f4acd458ca89a818798" category="list-text">ローカルクラスタのISLをケーブル接続します。</block>
   <block id="10fb2fd01be021da5cbd6629a96e24a6" category="list-text">ローカルクラスタインターフェイスがスイッチに*接続されていない*場合：</block>
@@ -10586,14 +10464,6 @@
   <block id="ebbf46e9806730b0f0c4ca0133de2d34" category="open-title">SNMPv2を使用してスイッチを追加します。</block>
   <block id="10982c02dbedeb50373ef205f82ca3c8" category="inline-link-macro">System Manager を使用して MetroCluster サイトを管理する</block>
   <block id="53eaf367aa3b61105b8ddce45278ab85" category="paragraph">詳細については、 <block ref="eef6283454e42ed2d47fdb00a9ff3e0c" category="inline-link-macro-rx"></block> ドキュメント</block>
-  <block id="e896a08242f1b8600bd891680083c89c" category="paragraph">表を使用する前に、次のガイドラインを確認してください。</block>
-  <block id="11b0a2bdfcd224ea773788cafe8f7027" category="list-text">スイッチをMetroCluster FCからIPへ移行するように設定した場合は、ポート5、ポート6、ポート13、またはポート14を使用してMetroCluster FCノードのローカルクラスタインターフェイスを接続できます。を参照してください <block ref="46a459674905c476821f71bc8486a4ba" category="inline-link-macro-rx"></block> および生成されたケーブル接続ファイルを参照してください。それ以外のすべての接続では、表に記載されているポート使用量の割り当てを使用できます。</block>
-  <block id="ffbf0166c7ab0c630d8081caba93b8ff" category="list-text">8ノードまたは2つの4ノードMetroCluster構成を接続するには、ONTAP 9.14.1以降とRCFファイルバージョン2.00以降が必要です。</block>
-  <block id="8232ac4b6380b290738aa1ce5cc7cff3" category="paragraph">MetroClusterポートグループ（MetroCluster 1、MetroCluster 2、MetroCluster 3、またはMetroCluster 4）を追跡します。RcfFileGenerator ツールを使用する場合は、この設定手順で後述するように、このツールが必要になります。</block>
-  <block id="554d0ed2f8464fefa6da872d6dbcf5c5" category="list-text">MetroCluster ISLの25Gブレークアウトモードには、バージョンv2.10以降のRCFファイルが必要です。</block>
-  <block id="5b43fcab432560bae73db4e0c9e34232" category="list-text">「MetroCluster 4」グループでFAS8200またはAFF A300以外のプラットフォームを使用するには、ONTAP 9.13.1以降およびRCFファイルバージョン2.00が必要です。</block>
-  <block id="959103b0e0798459de77e2b5d8985ab3" category="paragraph">古いRCFファイルからアップグレードする場合は、「MetroCluster 4」グループのポート（ポート25 / 26および29 / 30）をケーブル接続構成で使用している可能性があります。</block>
-  <block id="905eeaf0eb85efa82c94d09cf33bd250" category="admonition">「MetroCluster 4」グループのポートを使用するには、ONTAP 9.13.1以降が必要です。</block>
   <block id="dae9a493a0381746910b46f271097afc" category="list-text">RcfFileGeneratorでは、最初のプラットフォームが選択されている場合にのみ、対象となるプラットフォームが表示されます。</block>
   <block id="dfaaea754370da30cfd269ee856da3a9" category="list-text">1つの8ノードまたは2つの4ノードMetroCluster構成を接続するには、ONTAP 9.14.1以降が必要です。</block>
   <block id="a5d0cab9bff9a930a5eb4ad5c7bce183" category="list-text">スイッチをMetroCluster FCからIPへの移行用に設定する場合は、選択したターゲットプラットフォームに応じて次のポートが使用されます。</block>
@@ -10602,8 +10472,6 @@
   <block id="a346e4e54905b86ccf19d436cac4f72d" category="cell">ポート1~6、10Gbps</block>
   <block id="520f683aecf042eb1afbf14be7588551" category="cell">FAS8200またはAFF A300プラットフォーム</block>
   <block id="81d990a756b6f5e5f14a9df8a16bbe34" category="cell">ポート3~4および9~12、10Gbps</block>
-  <block id="afc53d7c7e597c30acb18fa3ed38cc86" category="list-text">*注1 *：これらのポートを使用するには、追加ライセンスが必要です。</block>
-  <block id="87b750ce6fbbe87d62cbc08d2dc73e1f" category="list-text">*注2 *：AFF A320システムを使用する単一の4ノードMetroClusterのみをスイッチに接続できます。</block>
   <block id="5b5bc0c2a68a3a5df60e045184c265e7" category="paragraph">の*スイッチ*セクションを参照してください。 <block ref="41f66f34b3a905f864500c9319fdff8f" category="inline-link-macro-rx"></block> をクリックして、サポートされているトランシーバを確認します。</block>
   <block id="30ec0ec381148de730ef6f636244409c" category="paragraph">ONTAP 9.13.1以降では、MetroClusterとドライブシェルフが同じIPスイッチに接続されたMetroCluster IP構成（共有ストレージスイッチ構成）でこの手順がサポートされます。</block>
   <block id="7411369ee6af7c3b06eeb0cb088ed313" category="list-text">MetroCluster構成内のすべてのノードで同じバージョンのONTAPが実行されている必要があります。たとえば、8ノード構成の場合は、8つのすべてのノードで同じバージョンのONTAPを実行する必要があります。</block>
@@ -10631,10 +10499,8 @@
   <block id="1f1b4aed93819376fcceca70dcc661a8" category="paragraph"><block ref="1f1b4aed93819376fcceca70dcc661a8" category="inline-link-rx"></block></block>
   <block id="13b7f77edb33af927a5eb756e92d3e1e" category="doc">Cisco IPスイッチのISLポートを無停止で追加、削除、変更</block>
   <block id="f8661864113fa686fbcb0e8305046574" category="cell"><block ref="f8661864113fa686fbcb0e8305046574" category="inline-link-macro-rx"></block></block>
-  <block id="69f5f299da1076246b1de6b47387e82c" category="list-text">すべてのクラスタLIFを変更して自動リバートを無効にします。</block>
   <block id="44f3e9b14f204b411afdea78f7b0391c" category="doc">MetroClusterリリースノート</block>
   <block id="af8a69aa12393a4d9b6992e884f1c919" category="sidebar">MetroCluster のドキュメント</block>
-  <block id="b8b5370c063dd2b4ce4021558a49ac07" category="paragraph">ONTAP 9.8 以前を実行している MetroCluster 構成でアップグレードを移行する場合、一時的な 8 ノード構成にするには、 2 つ目の 4 ノード DR グループを構成に追加する必要があります。  ONTAP 9.9.1以降では、永続的な8ノードMetroCluster構成がサポートされます。</block>
   <block id="0abe9117fda19697d2dbf1bd1d754e02" category="list-text">この手順では、既存のMetroCluster IP構成に4ノードDRグループを1つ追加する手順について説明します。8ノード構成を更新する場合は、手順全体をDRグループごとに1つずつ追加して繰り返す必要があります。</block>
   <block id="65ac5210a13e16ff0c09cc508d39f010" category="admonition">8ノード構成の場合は、RCFは提供されないため、ゾーニングを手動で実行する必要があります。</block>
   <block id="e919df0feb57e826b9f8b6224efe2e04" category="paragraph">次の表に、Cisco 9132TスイッチでのISLポートの用途を示します。</block>
@@ -11233,7 +11099,6 @@
   <block id="c5d34bb560e327e8975a1da2f0e0c0fe" category="cell"><block ref="c5d34bb560e327e8975a1da2f0e0c0fe" category="inline-link-macro-rx"></block></block>
   <block id="25f1ab87c0a26d25aae4f64158a13958" category="cell"><block ref="25f1ab87c0a26d25aae4f64158a13958" category="inline-link-macro-rx"></block></block>
   <block id="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="paragraph"><block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block></block>
-  <block id="2a35142a0e6eda28748cdf00899dc98b" category="paragraph">。 <block ref="0c7bf211a7cb9712977652add2e31f3e" category="inline-link-macro-rx"></block> 新機能、アップグレードに関する注意事項、解決済みの問題、既知の制限事項、および既知の問題について説明する。</block>
   <block id="0f25553cdf8eb8de83ad715008d4617b" category="paragraph">必要なタスクを実行して、マルチコントローラまたはストレージの障害からのリカバリを完了します。</block>
   <block id="4b6132c87b7872df013c5b52ce9f608e" category="inline-link-macro">BroadcomスイッチのEFOSソフトウェアをダウンロードしてインストールする</block>
   <block id="25fec8f604c77fe35ba611e08af94f79" category="list-text"><block ref="25fec8f604c77fe35ba611e08af94f79" category="inline-link-macro-rx"></block></block>
@@ -11358,9 +11223,6 @@
   <block id="18bd3543357b4fa11f6a58101dfa61a5" category="sidebar">Tiebreaker をインストールします</block>
   <block id="d2875782347edc6066d3025cecc9df38" category="sidebar">メディエーターのインストール（ MetroCluster IP のみ）</block>
   <block id="ade01a5a398372194a42c36e9f5279ac" category="sidebar">メンテナンス</block>
-  <block id="7f5d1cf6b92b5f6a9e5fe290c7d568fa" category="sidebar">IPスイッチ</block>
-  <block id="5360721f5d15a4a50d1c0ea177551d33" category="sidebar">ATTO ブリッジ</block>
-  <block id="c89a58741e7240ddf3c43ec7dbb21cd7" category="sidebar">ドライブシェルフ</block>
   <block id="9deb979aa141eacec55a34ce9dfd4cc9" category="sidebar">RCF ファイル</block>
   <block id="277ccac115bb10401c3dbe796a5fd555" category="sidebar">MetroCluster RCF ファイル</block>
   <block id="d59048f21fd887ad520398ce677be586" category="sidebar">詳細はこちら。</block>
@@ -11464,67 +11326,10 @@
   <block id="7c941395c7474fbf4256f8c308a5d9a8" category="paragraph">スロット2、スロット3</block>
   <block id="00e2655d7c31ea9101ed27d4696d5c94" category="paragraph">e2b、e3b</block>
   <block id="875e533ea6255c6d2f92900744fe1528" category="paragraph">*注：*ポートe2aおよびe3aは未使用のままにする必要があります。これらのポートをフロントエンドネットワークまたはピアリングに使用することはできません。</block>
-  <block id="ab29addd4fe461fb9b64af6fddd54dad" category="section-title">構成に適したケーブル接続テーブルを選択</block>
-  <block id="ded30e9993ee1dec39c9a577af98ed86" category="paragraph">次の表を使用して、必要なケーブル接続の表を特定します。</block>
-  <block id="378f02db97047434844d749310da83f4" category="cell">システムの状態</block>
-  <block id="797ace9b557574e9e0b101225be4602a" category="cell">使用するケーブル接続テーブル</block>
-  <block id="3468d9323ffee76cf151228c3bc4bb50" category="paragraph">FAS2750、AFF A220</block>
-  <block id="c564e5e6ba6216ba72b8985cd713bec2" category="inline-xref">Cisco 3132Q-Vプラットフォームのポート割り当て（グループ1）</block>
-  <block id="29b68b735369de02347560fd1796cc0f" category="cell"><block ref="7ab899a6294ca709283b0b94918acac5" category="inline-xref-macro-rx"></block></block>
-  <block id="3a12696b33d539cb34844edab628e562" category="cell">FAS9000、AFF A700</block>
-  <block id="7f394da1dbe41aaa9340cf65d9afe258" category="inline-xref">Cisco 3132Q-Vプラットフォームのポート割り当て（グループ2）</block>
-  <block id="ea7e9a96ecbd1edc5a3811758d1f303d" category="cell"><block ref="ae942639e12f01d51947b7b009dd9fd2" category="inline-xref-macro-rx"></block></block>
   <block id="cd89e453925d1901395397754a492681" category="cell">AFF A800、ASA A800向け</block>
-  <block id="ed8fa34972ac300763a3b8c083ee5d1b" category="inline-xref">Cisco 3132Q-Vプラットフォームのポート割り当て（グループ3）</block>
-  <block id="d48221b8ea9bda63ed30c8f2e4d54546" category="cell"><block ref="dc218d9302b7ff7ec2652cf71967e577" category="inline-xref-macro-rx"></block></block>
-  <block id="2ef9155f2653dcb22ca9e8ea8eb3401d" category="paragraph">プラットフォームポート割り当てを確認し、FAS2750またはAFF A220システムをCisco 3132Q-Vスイッチにケーブル接続します。</block>
-  <block id="8d0d4c4989ca3a66a7d2d68ea1014ba3" category="image-alt">に、Cisco 3132Q-Vプラットフォームのポート割り当てを示します。</block>
-  <block id="bc96235583bdab0e6796c3feabb688a2" category="paragraph">プラットフォームポート割り当てを確認し、FAS9000またはAFF A700システムをCisco 3132Q-Vスイッチにケーブル接続します。</block>
-  <block id="f147a65f5cf3438e76a8b0e61ed4bc9a" category="paragraph">プラットフォームポートの割り当てを確認して、AFF A800またはASA A800システムをCisco 3132Q-Vスイッチにケーブル接続します。</block>
-  <block id="0b3e5d156cf864da2f269d95d3fcc8fa" category="cell">FAS8200、AFF A300</block>
-  <block id="393d2d284444ca547331678bf39eda23" category="cell">AFF A320 FAS8300、AFF C400、ASA C400、FAS8700 AFF A400、ASA A400</block>
-  <block id="054b22baf62d3195ebaf8ecfe2361739" category="cell">FAS9000、AFF A700 AFF C800、ASA C800、AFF A800、ASA A800 FAS9500、AFF A900、 ASA A900</block>
-  <block id="bc72159143eff0b74341b77947b6f3ff" category="paragraph">構成に適したポート割り当ての表を確認します。このセクションには、2組のケーブルテーブルがあります。</block>
   <block id="419f3742e6de8e0ec4b22cce005e7630" category="cell">プラットフォーム</block>
-  <block id="be031e3e2925732e58a2cb37db830517" category="cell">AFF A320 AFF C400、ASA C400 AFF A400、ASA A400</block>
-  <block id="b6098cea8a2777e5c03f397eddba1384" category="cell">AFF A700 AFF C800、ASA C800、AFF A800 AFF A900、ASA A900</block>
-  <block id="f767a875f72b50f5b4ba095c00dd1361" category="cell">AFF A150、ASA A150 FAS2750、AFF A220</block>
-  <block id="c4a769675a2e89fcb65e84a2b2c8e6c1" category="cell">FAS500f AFF C250、ASA C250 AFF A250、ASA A250</block>
-  <block id="55a266c14b9f53227c9727ac67fc90d4" category="cell">FAS9000、AFF A700 AFF C800、ASA C800、AFF A800、ASA A800 FAS9500、AFF A900、 ASA A900</block>
   <block id="e3703245932789dbe7c10cc1431475fa" category="paragraph">AFF A150、ASA A150向け</block>
-  <block id="d8e09f41a0140bcadce2023c9fc846c8" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ1）</block>
-  <block id="76e892ed2593b2d95aee4f548fdf5623" category="cell"><block ref="7a1d34aae389c65629b6ff5d8aa067cc" category="inline-xref-macro-rx"></block></block>
-  <block id="e06b024281c7cdf3ebfd2b766f6f43c5" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ2）</block>
-  <block id="90420831b8c7eb4b97a2ed9ca0a00b65" category="cell"><block ref="68bb8cc85fd20bf3f45bd9460be72e37" category="inline-xref-macro-rx"></block></block>
-  <block id="9577a62a7a4a3fcdd643b0c673764643" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ3）</block>
-  <block id="8b639859245978443bd0190c4ff18f32" category="cell"><block ref="a09975192bdb70297f7244cbba6de184" category="inline-xref-macro-rx"></block></block>
-  <block id="c6916bfa8df5b4f385519fca765412ed" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ4）</block>
-  <block id="2e332260fe5069855a7823f04b4b2e33" category="cell"><block ref="7ac25557ae91f7c67a94ffe517c00092" category="inline-xref-macro-rx"></block></block>
-  <block id="6dc837b2d92b555916641eb5178ac221" category="cell">FAS8300 AFF C400、ASA C400 AFF A400、ASA A400 FAS8700</block>
-  <block id="72aa90afbb81d6632cf26a27161a2306" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ5）</block>
-  <block id="d84a2275237d2dfdf7470ae3bf75d519" category="cell"><block ref="c0fb5bc0e1afd91054b4474cd4d01adf" category="inline-xref-macro-rx"></block></block>
-  <block id="a8555df1d95c0e209452ad8fca7eb194" category="paragraph">プラットフォームポート割り当てを確認し、AFF A150、ASA A150、FAS2750、またはAFF A220システムをBroadcom BES-53248スイッチにケーブル接続します。</block>
-  <block id="d815cc46256555eeb86fa2dab3f52e4f" category="image-alt">Broadcom BES-53248プラットフォームのポート割り当てを表示</block>
-  <block id="f55f3df4f3171bcc7a7bfd50fb62fb31" category="list-text">両方のMetroCluster構成で同じプラットフォームを使用している場合、NetAppは一方の構成にグループ「MetroCluster 3」を、もう一方の構成にグループ「MetroCluster 4」を選択することを推奨します。プラットフォームが異なる場合は、最初の構成で「MetroCluster 3」または「MetroCluster 4」を選択し、2つ目の構成で「MetroCluster 1」または「MetroCluster 2」を選択する必要があります。</block>
-  <block id="b31708d50ebc601c86f3f8602ebf83c3" category="paragraph">プラットフォームポート割り当てを確認し、FAS500f、AFF C250、ASA C250、AFF A250、またはASA A250システムをBroadcom BES-53248スイッチにケーブル接続します。</block>
-  <block id="3c788eb4704d0411c6e2ca4cafb1176a" category="paragraph">プラットフォームポート割り当てを確認し、FAS8200またはAFF A300システムをBroadcom BES-53248スイッチにケーブル接続します。</block>
-  <block id="743ba1b47d944967c67af3d8630176fa" category="paragraph">プラットフォームポートの割り当てを確認し、AFF A320システムをBroadcom BES-53248スイッチにケーブル接続します。</block>
-  <block id="f9472a5c5416ee506e1b4d2e4b3c8e73" category="paragraph">この構成では、スイッチクラスタを必要とする機能はサポートされません。これには、MetroClusterのFCからIPへの移行と機器更改の手順が含まれます。</block>
-  <block id="c29521e70ff45434a6957c2a6dafc62b" category="paragraph">FAS8300、AFF C400、ASA C400、AFF A400、ASA A400をケーブル接続するためのプラットフォームポート割り当てを確認します。 またはFAS8700システムからBroadcom BES-53248スイッチへの接続：</block>
   <block id="cb11078c5524bd0fbae837fd1a919c50" category="paragraph">AFF C250、ASA C250向け</block>
-  <block id="e4582c1646820728c642cb9c8d742e95" category="paragraph">AFF A250、ASA A250向け</block>
-  <block id="4961cf8f10192a5b4ad33671042c096d" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ1）</block>
-  <block id="c8625985c8052ac6551e3c107f7f5866" category="cell"><block ref="1a5cebf616f7d490fdd4c196a20d55ae" category="inline-xref-macro-rx"></block></block>
-  <block id="9c2e8c459a4e1a4d1a809eac240a9c3c" category="cell">FAS8300 AFF C400、ASA C400 AFF A400、ASA A400 FAS8700 FAS9000、AFF A700</block>
-  <block id="4dc29e675f26e4b6e6499807939c9fe6" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ2）</block>
-  <block id="f6b8e6b89e3c57d0ca377b29792960e1" category="cell"><block ref="53c3bba0fc4d571e7510994b846bb2c8" category="inline-xref-macro-rx"></block></block>
-  <block id="41ac1c2c88009e74b42da1aa691550ad" category="cell">AFF C800、ASA C800 AFF A800、ASA A800 FAS9500 AFF A900、ASA A900</block>
-  <block id="3fd729260e3da24bd6a804a69288d3a0" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ4）</block>
-  <block id="9da9e77e27a298779dde7229f987f90e" category="cell"><block ref="e522fa81c7b717996bb7f3ed80dbae98" category="inline-xref-macro-rx"></block></block>
-  <block id="b99e4b4aab95a094663bf529c9a168e3" category="paragraph">プラットフォームポートの割り当てを確認して、AFF A150、ASA A150、FAS500f、AFF C250、ASA C250、 AFF A250またはASA A250システムからNVIDIA SN2100スイッチへの接続：</block>
-  <block id="5169dd4952c3ed61fc8c586565b6f671" category="image-alt">はNVIDIA SN2100プラットフォームのポート割り当てを示しています</block>
-  <block id="8c0dfd424cf2846a6c5d57af4d4c1c67" category="paragraph">FAS8300、AFF C400、ASA C400、AFF A400、ASA A400をケーブル接続するためのプラットフォームポート割り当てを確認します。 FAS8700、FAS9000、またはAFF A700システムからNVIDIA SN2100スイッチへの接続：</block>
-  <block id="359054a58638f835e3a1aabcead61be2" category="paragraph">AFF C800、ASA C800、AFF A800、ASA A800、FAS9500をケーブル接続するためのプラットフォームポート割り当ての確認 AFF A900またはASA A900システムからNVIDIA SN2100スイッチへの接続：</block>
   <block id="d3b56d16ca05e3f25ef1d8c401cfa7c7" category="admonition">MetroCluster IPシステムには、専用のハイアベイラビリティ（HA）ポートはありません。プラットフォームに応じて、HAトラフィックはMetroClusterインターフェイス、ローカルクラスタインターフェイス、または共有クラスタ/ MetroClusterインターフェイスを使用して処理されます。ONTAPハードウェアシステムのドキュメント_を使用してプラットフォームを設置する場合は、手順に従ってクラスタポートとHAポートをケーブル接続しないでください。</block>
   <block id="829170dbc66398be3778968ebb183d6b" category="section-title">MetroCluster IPインターフェイスのスイッチポート速度の設定</block>
   <block id="6a0285e4a2b9116faf78c0ce3f22b522" category="paragraph">次の手順を使用して、スイッチポート速度を100Gに設定します。</block>
@@ -11704,7 +11509,6 @@
   <block id="601779c42f052b558b7ac9443d399420" category="list-text">プラットフォームモデルでVLAN IDがサポートされている場合（を参照）、およびデフォルトのVLAN IDを使用していない場合は、VLAN IDを確認する必要があり <block ref="05a2d2a273433dceaaaa95abd8b74c34" category="inline-xref-macro-rx"></block>ます。</block>
   <block id="99d8e07cf22b54bf1c4fe9ecde3bd413" category="list-text">インターフェイスがデフォルトのVLANを使用している場合、またはプラットフォームモデルがVLAN IDを使用していない場合（を参照 <block ref="05a2d2a273433dceaaaa95abd8b74c34" category="inline-xref-macro-rx"></block>）、_vlan-id_は必要ありません。</block>
   <block id="26c0375297253dbcc942fe30cefa7b4b" category="paragraph">VLANはインターフェイスの作成時にのみ指定できます。デフォルトのVLAN 10および20、または101～4096（またはスイッチベンダーがサポートする番号のいずれか小さい方の番号）の範囲内のVLANを設定できます。MetroClusterインターフェイスの作成後にVLAN IDを変更することはできません。</block>
-  <block id="c189be7568f7fe77db4a889353024935" category="admonition">RCFファイルのバージョンは、ファイルの生成に使用されるRCFfilegeneratorツールのバージョンとは異なります。たとえば、RCFファイルジェネレータv1.6cを使用してバージョン2.00のRCFファイルを生成できます。</block>
   <block id="a796207f93572cbc190249400ba34b9b" category="paragraph"><block ref="08689ca588d2fd5d0e0a12366a8cd0a6" prefix="" category="inline-code"></block></block>
   <block id="fc902c4c5eb117926b80fc3a1066d5f9" category="paragraph"><block ref="31e96f11307c41bb11d8a37f3c919979" prefix="" category="inline-code"></block></block>
   <block id="10c6f8561201e68a979db34a4c1af328" category="open-title">ONTAP 9.6以降では、次のコマンドを実行します。</block>
@@ -12343,25 +12147,8 @@
   <block id="764552ebb0f871bc4b68c98b31d746d0" category="paragraph">X60132A</block>
   <block id="6fa048cd3558a7c8e85c121dd6b53c9c" category="paragraph">スロット4、スロット2</block>
   <block id="e3ff124e75bf3d8e6a3ed71982b4a775" category="paragraph">e2b、e4b</block>
-  <block id="3c1618b255b11d5961631276508d6713" category="paragraph">構成テーブルを使用する前に、次の考慮事項を確認してください。</block>
-  <block id="cef91d9ca2107b217772ee91bf4476b2" category="cell">FAS70、AFF A70 AFF C80 FAS90、AFF A90 AFF A1K</block>
-  <block id="ca69a76035ac5f2a63eff361c33eb7c2" category="paragraph">*注1 *：X91440Aアダプタ（40Gbps）を使用している場合は、ポートe4aとe4e、またはe4aとe8aのいずれかを使用します。ポートe4aとe4b、またはX91153Aアダプタ（100Gbps）を使用している場合はe4aとe8aのいずれかを使用します。</block>
-  <block id="da0acefbf33111de9e67d3fee11be371" category="cell">AFF C30、AFF A30 AFF C60</block>
-  <block id="44d35f94e4a501d55fdfa6b53538e69c" category="cell">AFF A70 AFF C80 AFF A90 AFF A1K</block>
   <block id="d092f23abfbbe763c64b549b968de1d8" category="list-text">速度が異なるリモートISLポート（25Gbpsポートを10Gbps ISLポートに接続した場合など）のスイッチは使用できません。</block>
-  <block id="42abd6d583788764c25c15490505431f" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ6）</block>
-  <block id="0f0bfb73ae173d3403dfb828e3b70090" category="cell"><block ref="9b5811314abfca1bd43a24f4e0adf3bc" category="inline-xref-macro-rx"></block></block>
-  <block id="0249844e1f636ba2a87d5274987756b9" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ5）</block>
-  <block id="d7ec8f712b0287990517bca50b922dd2" category="cell"><block ref="8a9b949124695689f864f9f14f50eeaa" category="inline-xref-macro-rx"></block></block>
-  <block id="efde678a43c998c7a8714fa732aeef5c" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ6）</block>
-  <block id="0c842c8cfa0977316ec48eb73a6e8c65" category="cell"><block ref="c902f072c35742409c62fc6312fe330d" category="inline-xref-macro-rx"></block></block>
-  <block id="392dc7f33e7aa7683783fda67e23d99a" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ7）</block>
-  <block id="1b9fa75426bc9ea5a3e240768f7a5026" category="cell"><block ref="061897057bd63bf85fce438fefe1968e" category="inline-xref-macro-rx"></block></block>
-  <block id="b8daabd197dd8e2bc7a41f393d355429" category="paragraph">プラットフォームポートの割り当てを確認して、AFF A20システムをNVIDIA SN2100スイッチにケーブル接続します。</block>
-  <block id="84c81745f11cf4b9dd01463dfef9dbc3" category="paragraph">プラットフォームポートの割り当てを確認して、AFF A50システムをNVIDIA SN2100スイッチにケーブル接続します。</block>
-  <block id="035caab2257a510c9564c10c61d3be85" category="paragraph">プラットフォームポート割り当てを確認し、FAS70、AFF A70、AFF C80、FAS90、AFF A90、またはAFF A1KシステムをNVIDIA SN2100スイッチにケーブル接続します。</block>
   <block id="831ac3266017b395cbffe218fe03bd88" category="list-text">すべてのノードを同じ方法でケーブル接続する必要があります。ノードのケーブル接続に使用できるポートの組み合わせオプションが異なる場合は、すべてのノードで同じポートの組み合わせを使用する必要があります。たとえば、node1のe1aとnode2のe1aを1つのスイッチに接続する必要があります。同様に、両方のノードの2番目のポートを2番目のスイッチに接続する必要があります。</block>
-  <block id="7e045fcc35aa6e7b8247a2404c520e67" category="list-text"><block ref="b3f8a8564bd91efeacbc3b6197426c6e" category="inline-link-rx"></block>また、各スイッチのポート単位のケーブル接続の概要についても説明しています。ケーブル接続の概要を使用して、ケーブル接続を確認します。</block>
   <block id="df37dda7d3f4fd0dda442a98ec30d071" category="paragraph">ONTAPでサポートされるMetroCluster SVMの移行は次のとおりです。</block>
   <block id="1066b653c05c9422872505d252585c67" category="list-text">MetroCluster以外のHAペアとMetroCluster IP構成間でのSVMの移行</block>
   <block id="5816bf9644a6b97b7fab54df8e6d7b87" category="list-text">2つのMetroCluster IP構成間でのSVMの移行</block>
@@ -12732,7 +12519,6 @@
   <block id="050f8b121af1c77b0d9da988edad7d47" category="paragraph">次の表に示すシステムは、共有MetroCluster / HAポートを使用します。</block>
   <block id="390d12d84818f7c716a940532ce50205" category="section-title">25Gbps接続を使用するシステムの前方エラー修正の設定</block>
   <block id="63c0e07285d0bc5e3f178d40a2cc138a" category="paragraph">25Gbps接続を使用するシステムの場合は、RCFの適用後に前方誤り訂正（FEC）パラメータを手動でoffに設定します。この設定はRCFでは適用されません。</block>
-  <block id="2b06467580858574b4de36094cbe0f09" category="list-text">このタスクは、25Gbps接続を使用するプラットフォームにのみ該当します。を参照してください <block ref="9778b8e12bd12224da54abd0721799c9" category="inline-link-macro-rx"></block>。</block>
   <block id="cf176f6e59c0efd3aa8a1d07663e5a99" category="list-text">各スイッチポートは個別に更新する必要があります。コマンドで複数のポートまたはポート範囲を指定することはできません。</block>
   <block id="a756347fcced8a90ebe1a3f908f44775" category="list-text">25Gbps接続を使用する最初のスイッチポートのパラメータをoffに設定し<block ref="68e129acd99d4b65789a3c9e07fcbfc0" prefix=" " category="inline-code"></block>ます。</block>
   <block id="c74173a1567bd19c3837172c99113a4e" category="paragraph"><block ref="1c9e50455fa99a855bbafb050c6ba1b5" prefix="" category="inline-code"></block></block>
@@ -12835,135 +12621,6 @@
   <block id="f7bbc76208ab5ade611be3b207fc4964" category="paragraph">内部パーティションは4つのグループ（クォータ）に均等に分割されます。各クォータが自動的に別々のプールに割り当てられます。外付けシェルフのドライブが4つのグループ（クォータ）に均等に分割されます。各クォータシェルフは自動的に別 々 のプールに割り当てられます。</block>
   <block id="951ecdd1fc2eee9520c3a6959e6b80fd" category="section-title">FAS50システムでのディスク割り当て</block>
   <block id="eac1566268bcf590649d38dfbbc071d8" category="paragraph">AFF A30、AFF C30、AFF C60、FAS50</block>
-  <block id="d7c09c5c93549b76361e49c52e9d96da" category="cell">AFF A150、ASA A150 FAS2750、AFF A220 FAS500f、AFF C250、ASA C250 AFF A250、ASA A250</block>
-  <block id="ed0a8c1dcd72cbf4d807c21d5b375b44" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ1）</block>
-  <block id="f4d9a05d20269fa8131e3f2ad476038b" category="cell"><block ref="2617a916d647f27524de777e23ed7a4f" category="inline-xref-macro-rx"></block></block>
-  <block id="2d0104bee0c422b5f888265258715398" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ2）</block>
-  <block id="01861fc1534333e6f46a254828d6f9e4" category="cell"><block ref="3ba764bfdfb400a3de21b6050f6d79f8" category="inline-xref-macro-rx"></block></block>
-  <block id="c53e044ea472203092cf961cfaa90ba7" category="cell">AFF A30、AFF C30 FAS50 AFF C60</block>
-  <block id="356570243533cc6975cfb5ceea4cfd23" category="paragraph">次の表は、25G（グループ3a）と100G（グループ3b）のどちらのイーサネットカードを使用しているかによって異なります。</block>
-  <block id="9f0cd6d623c01edf5643b74fa00cd6fd" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ3a-25G）</block>
-  <block id="85f6ab131a3e5448cde1e4a2d4b95c39" category="list-text"><block ref="94417a7d020366abeef0b0723f8d67ad" category="inline-xref-macro-rx"></block></block>
-  <block id="9b8bf89b3c0f9c6a5c38bf7ff19b0c58" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ3b-100G）</block>
-  <block id="5128f839046943d98d1e49dd120ce493" category="list-text"><block ref="2e2492272ee4139c0b8d30b59a7dc0bc" category="inline-xref-macro-rx"></block></block>
-  <block id="c6cdb33f9e222d46d2a4fab60b01cbab" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ4）</block>
-  <block id="60a9877d1de8d00431b38c0566e97d0c" category="cell"><block ref="a1b77c438fb720f0e3e018673390c7f6" category="inline-xref-macro-rx"></block></block>
-  <block id="dc0296952b3f70332ec16b784a712ff2" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ5）</block>
-  <block id="015efe401ca2c1dbd2725cda225c9d5e" category="cell"><block ref="93ef23795c012b746e5389151e3c7579" category="inline-xref-macro-rx"></block></block>
-  <block id="d67fae545b3910a786e8629d54b45203" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ6）</block>
-  <block id="41ad9af52e987c25dff55bd1112cd533" category="cell"><block ref="67a1026696a68dd85ede9571a0d5e50a" category="inline-xref-macro-rx"></block></block>
-  <block id="25308fcfd3741ca03a84c440665e77af" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ7）</block>
-  <block id="1d8eb67d43491daaf3be918501e45849" category="cell"><block ref="bd67821e1c951fc75bbad01f30e523a0" category="inline-xref-macro-rx"></block></block>
-  <block id="b579f4faad8d9cdb9cfc4fe6124fc3d9" category="inline-xref">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ8）</block>
-  <block id="6bfae65709a0b9238f0ec0555e860dd9" category="cell"><block ref="cf10d01655dbe0c1aeda215f90ae4552" category="inline-xref-macro-rx"></block></block>
-  <block id="1640e00122751bafa542f181ee67ce43" category="paragraph">プラットフォームポート割り当てを確認して、AFF A150、ASA A150、FAS2750、AFF A220、FAS500f、 AFF C250、ASA C250、AFF A250、またはASA A250システムからCisco 3232Cまたは9336C-FX2スイッチへの接続：</block>
-  <block id="12724d26e78004fbe0e1d54bb774c032" category="inline-image-macro">は、Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当てを示しています。</block>
-  <block id="e5a48d1e7dc73a2ef0139129774d8c2a" category="paragraph"><block ref="e5a48d1e7dc73a2ef0139129774d8c2a" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="02be91f0404cbcd51f0cbcd45f546f02" category="paragraph">プラットフォームポート割り当てを確認し、AFF A20システムをCisco 3232Cまたは9336C-FX2スイッチにケーブル接続します。</block>
-  <block id="0f3f5975a2227dfdb9d8f300639c20f2" category="paragraph"><block ref="0f3f5975a2227dfdb9d8f300639c20f2" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="ffedbefed87e595ccfa63ecb9855338e" category="paragraph-title">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ3a）</block>
-  <block id="47229de680ac21164a8516156805e1ac" category="paragraph">プラットフォームポートの割り当てを確認し、4ポートの25Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをCisco 3232Cまたは9336C-FX2スイッチにケーブル接続します。</block>
-  <block id="c078bfa4b8bc74a683eac22ce3ce6c56" category="admonition">この構成では、ローカルクラスタとHAインターフェイスを接続するために、スロット4に4ポートの25Gイーサネットカードが必要です。</block>
-  <block id="b2813804beaabdc4be6fdf8a4997209b" category="paragraph"><block ref="b2813804beaabdc4be6fdf8a4997209b" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="dee69df4c30b5bc8e497535073fb1c9d" category="paragraph-title">Cisco 3232CまたはCisco 9336C-FX2プラットフォームのポート割り当て（グループ3b）</block>
-  <block id="89744653da413368bba74f828b23743e" category="paragraph">プラットフォームポートの割り当てを確認し、2ポートの100Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをCisco 3232Cまたは9336C-FX2スイッチにケーブル接続します。</block>
-  <block id="a24a7f7fce891faea9ff510d6a00b23a" category="admonition">この構成では、ローカルクラスタとHAインターフェイスを接続するために、スロット4に2ポートの100Gイーサネットカードが必要です。</block>
-  <block id="4644d5e69b146d9d0ff600d483678d60" category="paragraph"><block ref="4644d5e69b146d9d0ff600d483678d60" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="01b2af111136cb4bcc5ad69612648e1a" category="paragraph">プラットフォームポート割り当てを確認し、FAS8200またはAFF A300システムをCisco 3232Cまたは9336C-FX2スイッチにケーブル接続します。</block>
-  <block id="df10fc4b1e04550b3f257f780c5ad4d1" category="paragraph">AFF A320、FAS8300、AFF C400、ASA C400、FAS8700をケーブル接続するためのプラットフォームポート割り当ての確認 AFF A400またはASA A400システムからCisco 3232Cまたは9336C-FX2スイッチへの接続：</block>
-  <block id="be1bb56d98cc7f8289e47cfd478f0896" category="paragraph">プラットフォームポート割り当てを確認し、AFF A50システムをCisco 3232Cまたは9336C-FX2スイッチにケーブル接続します。</block>
-  <block id="a46b0b81f79736912aabc245374edb1e" category="paragraph">FAS9000、AFF A700、AFF C800、ASA C800、AFF A800をケーブル接続するためのプラットフォームポート割り当ての確認 ASA A800、FAS9500、AFF A900、またはASA A900システムからCisco 3232Cまたは9336C-FX2スイッチへの接続：</block>
-  <block id="0d3017d486c8217c6fd8ab61555e1cba" category="paragraph">プラットフォームポート割り当てを確認し、AFF A70、FAS70、AFF C80、FAS90、AFF A90、またはAFF A1KシステムをCisco 3232Cまたは9336C-FX2スイッチにケーブル接続します。</block>
-  <block id="4b19e8be7b088862285a882fc40c46eb" category="paragraph"><block ref="4b19e8be7b088862285a882fc40c46eb" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="81831b2f87876ca86e780e32db6c147b" category="inline-xref">スイッチ接続NS224シェルフを接続するコントローラのケーブル接続表</block>
-  <block id="52c7315ab051ee37478d469443321dba" category="list-text"><block ref="00f586e7c20fe471e99ea3d5eded6927" category="inline-xref-macro-rx"></block></block>
-  <block id="de97d5568eefaebab398acd69978f881" category="inline-xref">スイッチ接続NS224シェルフを接続しないコントローラのケーブル接続表</block>
-  <block id="eba155d5569b8147cc0e843694acf2d4" category="list-text"><block ref="e5bf56183cc95b8553efe8a86fa2b0b1" category="inline-xref-macro-rx"></block></block>
-  <block id="be572f1f8a76f85bd07c0436427d2a5f" category="section-title">スイッチ接続NS224シェルフを接続するコントローラ</block>
-  <block id="0056b60c7096f2e045b1ccb66afc6894" category="paragraph">スイッチ接続NS224シェルフを接続するコントローラのポート割り当て表を確認します。</block>
-  <block id="83f2a5b610dfb7c0551195a75b8756a1" category="paragraph">次の表は、25G（グループ1a）と100G（グループ1b）のどちらのイーサネットカードを使用しているかによって異なります。</block>
-  <block id="ca496ec8ec3ead0878b8508a07b543e2" category="inline-xref">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ1a-25G）</block>
-  <block id="b84999f81a5ca484ac466660f39b9a2e" category="list-text"><block ref="565e7613250d5ac33e28ff0e25c37f14" category="inline-xref-macro-rx"></block></block>
-  <block id="377912c6dca3d99bd95ba164330b17fa" category="inline-xref">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ1b-100G）</block>
-  <block id="41ee5f1818bda0e0bbabf0085b68ac28" category="list-text"><block ref="9e7616ca3329b72b52127b7cd58a0f4e" category="inline-xref-macro-rx"></block></block>
-  <block id="f14613af0655f02473df53f2652785b1" category="inline-xref">NS224ストレージプラットフォームのポート割り当て（グループ2）を接続するCisco 9336C-FX2スイッチ</block>
-  <block id="672a2caadf2174985cc759241ea1dfe9" category="cell"><block ref="214688b1665482dce258814a43c9cdf7" category="inline-xref-macro-rx"></block></block>
-  <block id="a38c7c6d45e707435a851ae2e41cf375" category="inline-xref">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ3）</block>
-  <block id="14de414a4f55c47c9c700c9e0947b111" category="cell"><block ref="23879577dffa023cc7ed3810b8c4c0df" category="inline-xref-macro-rx"></block></block>
-  <block id="b4b51fcd741abc234c8929d569245c11" category="inline-xref">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ4）</block>
-  <block id="48814e38ddd1eecab02fb9a28d3852c3" category="cell"><block ref="cbad1100120b64e7d785a4185eace341" category="inline-xref-macro-rx"></block></block>
-  <block id="faa310ef03e8cc13789ce37fd9d433e5" category="inline-xref">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ5）</block>
-  <block id="eb6843c11ff72f26f6d0e24823f98f90" category="cell"><block ref="6fd3f73e5da43279ea1b84516a37ba17" category="inline-xref-macro-rx"></block></block>
-  <block id="a738138cb9e4b016ac3f949b92aa8374" category="paragraph-title">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ1a）</block>
-  <block id="c105e193363f2077bee9b984780df36b" category="paragraph">プラットフォームポートの割り当てを確認し、4ポートの25Gイーサネットカードを使用してスイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続するAFF A30、AFF C30、またはAFF C60システムをケーブル接続します。</block>
-  <block id="ebb3fa78fb5003535cef7567aa556ce2" category="inline-image-macro">は、NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチを示しています。</block>
-  <block id="11c0c74f69fc2a0c746578c6aad3ccca" category="paragraph"><block ref="11c0c74f69fc2a0c746578c6aad3ccca" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="26f9489a1c833a65aa538d673c844ff9" category="paragraph-title">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ1b）</block>
-  <block id="05ddb7b459f4d1e351fac0a9f717e9c7" category="paragraph">プラットフォームポートの割り当てを確認し、2ポート100Gイーサネットカードを使用してスイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続するAFF A30、AFF C30、またはAFF C60システムをケーブル接続します。</block>
-  <block id="96d9eeeab1f8d3cf26b9ac95515dc576" category="paragraph"><block ref="96d9eeeab1f8d3cf26b9ac95515dc576" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="c236cc3ec0da6886912e7ad250b61eab" category="paragraph-title">NS224ストレージプラットフォームのポート割り当て（グループ2）を接続するCisco 9336C-FX2スイッチ</block>
-  <block id="09b260a1b067f9a582c157a8e605c8e9" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続するAFF A320、AFF C400、ASA C400、AFF A400、またはASA A400システムをケーブル接続します。</block>
-  <block id="7465602bfd4a9479562cb8388c74c71c" category="paragraph-title">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ3）</block>
-  <block id="ffc3bc2e4b34b45fefb2567de9411642" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続するAFF A50システムをケーブル接続します。</block>
-  <block id="0d827a57d928b98c476f3cb1739a9d5d" category="paragraph"><block ref="0d827a57d928b98c476f3cb1739a9d5d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="22b68caf8dbffdf88eb7f5f39a558951" category="paragraph-title">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ4）</block>
-  <block id="e94f7d9d6398a652cbdfeb1dae77c47a" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続のNSS24シェルフをCisco 9336C-FX2スイッチに接続するAFF A700、AFF A900、ASA C800、AFF A800、AFF C800、またはASA A900システムをケーブル接続します。</block>
-  <block id="5460d7f5fec2905f3003320c765ea0c7" category="paragraph"><block ref="5460d7f5fec2905f3003320c765ea0c7" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="8b663287a5e6f449fd57f7ff16d8eeea" category="paragraph-title">NS224ストレージプラットフォームのポート割り当てを接続するCisco 9336C-FX2スイッチ（グループ5）</block>
-  <block id="3622897798545e09105b3ad1d3653063" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続するAFF A70、AFF C80、AFF A90、またはAFF A1Kシステムをケーブル接続します。</block>
-  <block id="ccab0fc4fd83108faa5f30b7c68bc19d" category="section-title">コントローラがスイッチ接続NS224シェルフを接続しない</block>
-  <block id="2f608c0d58894f791c41096f2cc6b9ba" category="paragraph">スイッチ接続NS224シェルフを接続しないコントローラのポート割り当て表を確認します。</block>
-  <block id="7bb43f00945b89f658e73a251593adee" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ6）</block>
-  <block id="93f0d83f9cb0b25a29c497e531de1319" category="cell"><block ref="0acf1173c64f13905d848c17861d436b" category="inline-xref-macro-rx"></block></block>
-  <block id="5d116ac6469b554365af09df6ba5d554" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ7）</block>
-  <block id="49f99537358147cf4f6dc452a0796893" category="cell"><block ref="fd2799f59c55d28b66298668f9222eab" category="inline-xref-macro-rx"></block></block>
-  <block id="02a5ee0891192d3eb9dcf14a23a4d1f7" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ8）</block>
-  <block id="5148ab0ba980f2129e753142f66d6100" category="cell"><block ref="e1f5a75cfe513ad775461d1069e28449" category="inline-xref-macro-rx"></block></block>
-  <block id="44e285bb7713a99a383a813130b0fcc1" category="cell">AFF C30、AFF A30 FAS50 AFF C60</block>
-  <block id="a0ff0785aa6728bf6cd92eb98394bc85" category="paragraph">次の表は、25G（グループ9a）と100G（グループ9b）のどちらのイーサネットカードを使用しているかによって異なります。</block>
-  <block id="4508ecab81d43c8d0428c62e4c5f614c" category="inline-xref">Cisco 9336C-FX2スイッチでNS224ストレージプラットフォームのポート割り当てが接続されない（グループ9a）</block>
-  <block id="145811c254ae6665243f5df2a064718a" category="list-text"><block ref="11c2cf00b8f8a7c7deeea639d897f5b1" category="inline-xref-macro-rx"></block></block>
-  <block id="8bb10235352f378fca0245d9df3fe35b" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ9b）</block>
-  <block id="6384fb9589b17739eff38675bb336c51" category="list-text"><block ref="799c19593c51462d76e3e35a26f2501d" category="inline-xref-macro-rx"></block></block>
-  <block id="cec98ffd6090e26973950fe3452c3bcd" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ10）</block>
-  <block id="dcfe540fce92be277afe0cdbbe632c13" category="cell"><block ref="e79ba5db1ff62b3ff07fdf838d78216d" category="inline-xref-macro-rx"></block></block>
-  <block id="9c8e1e68707a017f6fc41cfcea385650" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ11）</block>
-  <block id="009e8eb0c5f78b00d7f7da4a5ec87949" category="cell"><block ref="8385577091ec2b578deeb37f79ef6bef" category="inline-xref-macro-rx"></block></block>
-  <block id="f776cc1c5ed25b61dcb9d071c32a1da5" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ12）</block>
-  <block id="5d06f7930cbcf01ef08e34586c797954" category="cell"><block ref="aa34378d7dd83b3f1296d8b68c05d010" category="inline-xref-macro-rx"></block></block>
-  <block id="3912f04efc5b48e8b0ce60f344a70999" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ13）</block>
-  <block id="1cd621efb25211cc3d15a7ff4ca1c693" category="cell"><block ref="0908c8fab4467851cc96278817ace622" category="inline-xref-macro-rx"></block></block>
-  <block id="1465d175c6ce0e241d5677bf9384d9ec" category="inline-xref">Cisco 9336C-FX2スイッチがNS224ストレージプラットフォームのポート割り当てを接続しない（グループ14）</block>
-  <block id="400ed63e00fec3e7a62ba1e1acf84b1f" category="cell"><block ref="76e2a5f9d2cd6c0f8a626df3dfd2d549" category="inline-xref-macro-rx"></block></block>
-  <block id="a6cb91fff03d7e25bc8953fdc96a013f" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないAFF A150、ASA A150、FAS2750、またはAFF A220システムをケーブル接続します。</block>
-  <block id="c542648982a05f977ce667101f8efa8c" category="image-alt">は、Cisco 9336C-FX2スイッチでNS224ストレージプラットフォームのポート割り当てが接続されない状態を示しています。</block>
-  <block id="ac3ae29f44804b42d07e44aaff0e181e" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないAFF A20システムをケーブル接続します。</block>
-  <block id="fc60167844c648557e47a9825d816561" category="paragraph"><block ref="fc60167844c648557e47a9825d816561" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="681b4b6137a07b7fed939ed03c0d8a11" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないFAS500f、AFF C250、ASA C250、AFF A250、またはASA A250システムをケーブル接続します。</block>
-  <block id="b17db933ffceac0d14ecaed410c9b4b3" category="paragraph">プラットフォームポート割り当てを確認し、4ポート25Gイーサネットカードを使用してスイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないAFF A30、AFF C30、AFF C60、またはFAS50システムをケーブル接続します。</block>
-  <block id="0880116c770efd6d7b130d2265ff161c" category="paragraph"><block ref="0880116c770efd6d7b130d2265ff161c" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b6293ddb80a04e84f2102b72a8f60d47" category="paragraph">プラットフォームポート割り当てを確認し、2ポート100Gイーサネットカードを使用してスイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないAFF A30、AFF C30、AFF C60、またはFAS50システムをケーブル接続します。</block>
-  <block id="a1bc8f8ee00e2acf0d7eaa2ebf3f02f0" category="paragraph"><block ref="a1bc8f8ee00e2acf0d7eaa2ebf3f02f0" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="a6a7d27b4f38670eb52bfc739edbcab6" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないFAS8200またはAFF A300システムをケーブル接続します。</block>
-  <block id="d1fac8cb5ba3c69c7b0151776a9d2b97" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをFAS8300 Cisco 9336C-FX2スイッチに接続していないAFF A320 ASA A400、FAS8700、AFF C400 AFF A400、またはASA C400システムをケーブル接続します。</block>
-  <block id="854e83700ad56cd3066ff32dbbb27e13" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないAFF A50システムをケーブル接続します。</block>
-  <block id="a0d7040157255e2857be956d49e402cc" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをASA C800 Cisco 9336C-FX2スイッチに接続していないFAS9000、AFF A800 AFF A900、ASA A800 ASA A900、FAS9500、AFF A700、またはAFF C800システムをケーブル接続します。</block>
-  <block id="37d0ebec67a9c1e4ef4eb11a13c2fdd4" category="paragraph">プラットフォームポート割り当てを確認し、スイッチ接続NSS24シェルフをCisco 9336C-FX2スイッチに接続していないAFF A70、FAS70、AFF C80、FAS90、AFF A90、またはAFF A1Kシステムをケーブル接続します。</block>
-  <block id="b745b3078e5e02c9ad0466c2376632e0" category="inline-xref">Broadcom BES-53248プラットフォームのポート割り当て（グループ7）</block>
-  <block id="b1d2e952c9c4a1b92f30e09d2aba62de" category="cell"><block ref="291ff012c96cac6897586e062c05d97a" category="inline-xref-macro-rx"></block></block>
-  <block id="d871146b1b5d4005fb234cebdd63c835" category="paragraph">プラットフォームポートの割り当てを確認し、AFF A20システムをBroadcom BES-53248スイッチにケーブル接続します。</block>
-  <block id="e3ced3f8081430abe4171e125084c129" category="paragraph"><block ref="e3ced3f8081430abe4171e125084c129" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="fb7482f14dfe20757399def03deaeb5a" category="paragraph">プラットフォームポートの割り当てを確認し、4ポートの25Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをBroadcom BES-53248スイッチにケーブル接続します。</block>
-  <block id="c853e89e76b8a6a88e07b597fc6eb2dc" category="list-text">この構成では、25Gbpsのネットワーク速度をサポートするために、コントローラのカードにQSFP / SFP+アダプタが必要です。</block>
-  <block id="f9f6063ab2e4c652dd2dddd9b4d5788d" category="paragraph"><block ref="f9f6063ab2e4c652dd2dddd9b4d5788d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="defd0914b5a5958473fb3fab60cdee58" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ3a-25G）</block>
-  <block id="11fa795c472f2bc01c0bf86aa73ed31b" category="list-text"><block ref="908dbeac718daa394d9d438b49ad2f7b" category="inline-xref-macro-rx"></block></block>
-  <block id="8f75153142ad93fe23335651eeaa3d65" category="inline-xref">NVIDIA SN2100プラットフォームのポート割り当て（グループ3b-100G）</block>
-  <block id="db095e1576be6850def49105024e16d1" category="list-text"><block ref="b6cf0b7861b6ddd48cf527a5abdbbcac" category="inline-xref-macro-rx"></block></block>
-  <block id="c52ee8ff8f4ed67e7d05c5c94fa6d9aa" category="paragraph-title">NVIDIA SN2100プラットフォームのポート割り当て（グループ3a）</block>
-  <block id="3bd797350913b6b33458e6193a3b3979" category="paragraph">プラットフォームポート割り当てを確認し、4ポートの25Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをNVIDIA SN2100スイッチにケーブル接続します。</block>
-  <block id="2370a37bab400a0e8d33f8044d531556" category="paragraph-title">NVIDIA SN2100プラットフォームのポート割り当て（グループ3b）</block>
-  <block id="a53cad8e3bc7be708a9abd5a9cb4b705" category="paragraph">プラットフォームポート割り当てを確認し、2ポート100Gイーサネットカードを使用してAFF A30、AFF C30、AFF C60、またはFAS50システムをNVIDIA SN2100スイッチにケーブル接続します。</block>
   <block id="d885a516b306a52c5c6d20f267bd0c2f" category="paragraph">両方のクラスタのセットアップ、初期化、および設定が完了したら、手順を実行します<block ref="8179a385c1f3477c35e40695f98692e3" category="inline-link-macro-rx"></block>。</block>
   <block id="93d56b045c52fef746c56d3757e8b1ca" category="list-text">MetroCluster IP構成のクラスタごとに、そのMetroClusterサイトのノードとIPスイッチで使用する独自のNTPサーバをそれぞれ用意する必要があります。</block>
   <block id="1710bbbb86f98005a1733d849713bff0" category="list-text">MetroCluster TiebreakerまたはONTAPメディエーターを使用する場合は、独自のNTPサーバも必要です。</block>
@@ -13276,62 +12933,9 @@
   <block id="ba17277e87e849f2a38d0126b17905d8" category="list-text">メンテナンス モードからストレージが表示可能であることを確認します。</block>
   <block id="ef1806576a0dffd58481510c7525ed90" category="list-text">メンテナンス モードで起動します。</block>
   <block id="41af2ca5f1002ab08c75f010d70581a4" category="list-text">残存サイトからストレージが見えることを確認します。</block>
-  <block id="93ba613931cbee0caca0df20b5380feb" category="doc">12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
-  <block id="a696f18cbd32872428df323dcf124b0f" category="list-text">このセクションの表は、12 ポートの Cisco 9336C-FX2 スイッチ用です。</block>
-  <block id="9e1541acccf8eedc84b54f8f9ba9022a" category="inline-link-macro">Cisco 3232C または 36 ポート Cisco 9336C-FX2 スイッチのプラットフォーム ポート割り当て</block>
-  <block id="c144049e87444b7880d439a35cc6dcb2" category="paragraph">NS224シェルフに接続していない36ポートのCisco 9336C-FX2スイッチがある場合は、 <block ref="5e1610ecd3627713f0895c655a667651" category="inline-link-macro-rx"></block> 。</block>
-  <block id="7092da1e1fea0fcc1131162478f82fda" category="inline-link-macro">NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
-  <block id="c0fa50622de6b0941fc67782df76fef3" category="paragraph">36ポートのCisco 9336C-FX2スイッチがあり、少なくとも1つのMetroCluster構成またはDRグループがNS224シェルフをMetroClusterスイッチに接続している場合は、 <block ref="0bde9be66bb65d34d39560c7bec9f5ff" category="inline-link-macro-rx"></block> 。</block>
   <block id="347cf39e3d412a2e80f417e602ae78af" category="admonition">12 ポートの Cisco 9336C-FX2 スイッチは、NS224 シェルフを MetroCluster スイッチに接続することをサポートしていません。</block>
   <block id="23aa6285fa7c3546b4aa52950c9ac869" category="list-text">異なる速度のポート (たとえば、100 Gbps ポートと 40 Gbps ポートの混在) を持つスイッチを構成することはできません。</block>
-  <block id="4f713bc0f7eb8977f1792b2dbce2b165" category="paragraph">MetroClusterポートグループ（MetroCluster 1、MetroCluster 2）を把握しておいてください。この設定手順の後半で説明するRcfFileGeneratorツールを使用する際に必要になります。</block>
-  <block id="897239c8574f5b63edd50dd13c6d7cf3" category="cell">AFF A150、ASA A150 FAS500f AFF C250、ASA C250 AFF A250、ASA A250</block>
-  <block id="80b2c26f194ad890539872b7c92f3895" category="inline-xref">Cisco 9336C-FX2 12 ポート プラットフォームのポート割り当て (グループ 1)</block>
-  <block id="85a14427800ed439393b5bb470be7d80" category="cell"><block ref="3b548f50ac951005c3b57697db89b587" category="inline-xref-macro-rx"></block></block>
-  <block id="ae8f6037879765647f43daa463c2d9f6" category="inline-xref">Cisco 9336C-FX2 12ポート プラットフォームのポート割り当て（グループ2）</block>
-  <block id="57ced6fae2801d6d06484d467d1b63a8" category="cell"><block ref="c72ebc3377994a6acace391540a4f437" category="inline-xref-macro-rx"></block></block>
-  <block id="43a85af0db0b94c52523571a361da240" category="inline-xref">Cisco 9336C-FX2 12 ポート プラットフォームのポート割り当て (グループ 3a - 25G)</block>
-  <block id="d9ccb9e9bd638d71976fd2fd85b324fc" category="list-text"><block ref="7c0cdee2b7c5be6b24b403e15778ce3c" category="inline-xref-macro-rx"></block></block>
-  <block id="1dad8ed122139324dfbff2465006f86b" category="inline-xref">Cisco 9336C-FX2 12 ポート プラットフォームのポート割り当て (グループ 3b - 100G)</block>
-  <block id="69e8634976c147c576f1e214a0550e9a" category="list-text"><block ref="5b9cf5c0f4a61285ad67d0bb263ce927" category="inline-xref-macro-rx"></block></block>
-  <block id="faf0f53c2e9a3fadbedb926822ee4f24" category="cell">FAS8300、AFF C400、ASA C400、FAS8700 AFF A400、ASA A400</block>
-  <block id="6acd1e486078b3860e26aa16cc1b08e4" category="inline-xref">Cisco 9336C-FX2 12 ポート プラットフォームのポート割り当て (グループ 4)</block>
-  <block id="98c2e72a6811dff2a23cd82069bf1526" category="cell"><block ref="7f59e713b9cd81ce166c2146060aa315" category="inline-xref-macro-rx"></block></block>
-  <block id="0edb652fa75412b08f664efe991094b6" category="inline-xref">Cisco 9336C-FX2 12ポート プラットフォームのポート割り当て（グループ5）</block>
-  <block id="9985428e868977a96682979580a7f4fe" category="cell"><block ref="74b8e214ff73dc8452e34a7234af634f" category="inline-xref-macro-rx"></block></block>
-  <block id="900e51ace73e4af65fb0f92750aed2cd" category="cell">AFF C800、ASA C800、AFF A800、ASA A800 FAS9500、AFF A900、ASA A900</block>
-  <block id="4761e464022d0e7898566aca053e3d5d" category="inline-xref">Cisco 9336C-FX2 12ポート プラットフォームのポート割り当て（グループ 6）</block>
-  <block id="a78dfa75a27672d9dcf736e820aea965" category="cell"><block ref="bd344fa4a429b5434b9580b2e855451e" category="inline-xref-macro-rx"></block></block>
-  <block id="9f87e37a7ba63b4c380dfb27098af511" category="inline-xref">Cisco 9336C-FX2 12ポート プラットフォームのポート割り当て（グループ7）</block>
-  <block id="22b08261fbebc7afc5117f5ecf037d83" category="cell"><block ref="efd81923e5d5e6f3bb4df0963dc6cdf6" category="inline-xref-macro-rx"></block></block>
-  <block id="eee1675a365933d14d4875fe05b47f41" category="paragraph">AFF A150、ASA A150、FAS500f、AFF C250、ASA C250、AFF A250、または ASA A250 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するには、プラットフォーム ポートの割り当てを確認します。</block>
-  <block id="1b751257539482b3f103553b01553514" category="inline-image-macro">Cisco 9336C-FX2 12ポートプラットフォームのポート割り当てを示します</block>
-  <block id="469dff43e2041efcb134544af24084bd" category="paragraph"><block ref="469dff43e2041efcb134544af24084bd" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="dbb5afc1b3ce5a4d7ef4e08f5bbcd1bc" category="paragraph">*注 1:* 設定できるのはポート 19 と 20、またはポート 21 と 22 のみです。ポート 19 と 20 を先に使用した場合、ポート 21 と 22 はブロックされます。ポート 21 と 22 を先に使用した場合、ポート 19 と 20 はブロックされます。</block>
-  <block id="a8860ed3e6d63bb3e5748a3216f78f95" category="paragraph">AFF A20 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するためのプラットフォーム ポートの割り当てを確認します。</block>
-  <block id="ead11a9d0b6c45c78bafddaa95af4a5f" category="paragraph"><block ref="ead11a9d0b6c45c78bafddaa95af4a5f" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="9f89da036eea3b2de29658c5897d57aa" category="paragraph-title">Cisco 9336C-FX2 12ポート プラットフォームのポート割り当て（グループ3a）</block>
-  <block id="4b70457b584f1d886a4ef66e6a7dae3d" category="paragraph">4 ポート 25G イーサネット カードを使用して、AFF A30、AFF C30、AFF C60、または FAS50 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するためのプラットフォーム ポートの割り当てを確認します。</block>
-  <block id="54555a6009e372e2ba222be819e827ce" category="paragraph"><block ref="54555a6009e372e2ba222be819e827ce" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1e978c01908eb6448e1c901bc64974fd" category="paragraph-title">Cisco 9336C-FX2 12ポート プラットフォームのポート割り当て（グループ3b）</block>
-  <block id="b324ed6fa7073456924606243edae554" category="paragraph">2 ポート 100G イーサネット カードを使用して、AFF A30、AFF C30、AFF C60、または FAS50 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するためのプラットフォーム ポートの割り当てを確認します。</block>
-  <block id="b1360434e23230f6a7d340c38e9303bf" category="paragraph"><block ref="b1360434e23230f6a7d340c38e9303bf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b3d5e9e94a54d8bdabf7080283b01dad" category="paragraph">FAS8300、AFF C400、ASA C400、FAS8700、AFF A400、または ASA A400 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するには、プラットフォーム ポートの割り当てを確認します。</block>
-  <block id="4d0ccc5efafaf248ac4b73006cd81b20" category="paragraph">AFF A50 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するためのプラットフォーム ポートの割り当てを確認します。</block>
-  <block id="23135c110d0e57e34de1287d76a39da3" category="paragraph">AFF C800、ASA C800、AFF A800、ASA A800、FAS9500、AFF A900、または ASA A900 システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するためのプラットフォーム ポートの割り当てを確認します。</block>
-  <block id="9e60ac33bc092c405a097555835b594f" category="paragraph">*注 2:* X91440A アダプタ (40Gbps) を使用している場合は、ポート e4a と e4e、またはポート e4a と e8a のいずれかを使用します。ポートe4aとe4b、またはX91153Aアダプタ（100Gbps）を使用している場合はe4aとe8aのいずれかを使用します。</block>
-  <block id="c69b12ce9784f26bc437bc6fde404a3a" category="paragraph">AFF A70、FAS70、AFF C80、FAS90、AFF A90、または AFF A1K システムを 12 ポートの Cisco 9336C-FX2 スイッチにケーブル接続するには、プラットフォーム ポートの割り当てを確認します。</block>
-  <block id="d1a900bdae5e9590c4fdafef8c37dedf" category="paragraph"><block ref="d1a900bdae5e9590c4fdafef8c37dedf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="18b57c847127e5c2b7dd8598cc05067c" category="list-text">このセクションの表は、NS224 ストレージに接続されていない Cisco 3232C スイッチまたは 36 ポート Cisco 9336C-FX2 スイッチ用です。</block>
-  <block id="ca2ba184117d249efe6f978511379d06" category="paragraph">12ポートのCisco 9336C-FX2スイッチをお持ちの場合は、 <block ref="67221021aed93298a4f5ea2fd779fba0" category="inline-link-macro-rx"></block> 。</block>
-  <block id="045ecf3a2dbe25ed7ed0298e865ad8aa" category="paragraph">36ポートのCisco 9336C-FX2スイッチがあり、少なくとも1つのMetroCluster構成またはDRグループがNS224シェルフをMetroClusterスイッチに接続している場合は、 <block ref="0bde9be66bb65d34d39560c7bec9f5ff" category="inline-link-macro-rx"></block> 。</block>
-  <block id="24a2b83846d1cc0fd499ffd7c44a8766" category="list-text">このセクションの表は、少なくとも 1 つの MetroCluster 構成または DR グループが NS224 シェルフを MetroCluster スイッチに接続している場合の 36 ポート Cisco 9336C-FX2 スイッチ用です。</block>
-  <block id="67f1cdced842853dcaa748f1574de4a2" category="inline-link-macro">12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
-  <block id="38f841f1e9d996375153a7c10a011d16" category="paragraph">12ポートのCisco 9336C-FX2スイッチをお持ちの場合は、 <block ref="ce9e67085330d921aaa0fff0495dc70b" category="inline-link-macro-rx"></block> 。</block>
-  <block id="674e97a0c22c1388979c98f80b98f4b5" category="inline-xref">スイッチ接続NS224シェルフに接続しないコントローラの配線表</block>
   <block id="b3e24b8d0d23855e43550444290c1574" category="list-text">MetroClusterポートグループ（MetroCluster 1、MetroCluster 2など）を記録しておいてください。この設定手順の後半で説明するRcfFileGeneratorツールを使用する際に、この情報が必要になります。</block>
-  <block id="b8b3268e24f1bc7df35cfea685b9683b" category="paragraph">複数のMetroCluster構成をスイッチにケーブル接続する場合は、各MetroClusterを適切な表に従ってケーブル接続します。例えば、FAS2750とAFF A700を同じスイッチにケーブル接続する場合、FAS2750は表1の「MetroCluster 1」に従ってケーブル接続し、AFF A700は表2の「MetroCluster 2」または「MetroCluster 3」に従ってケーブル接続します。FAS2750とAFF A700の両方を「MetroCluster 1」として物理的にケーブル接続することはできません。</block>
-  <block id="663e9f366c9d01f8e5aae5c69a84c421" category="paragraph">8ノード構成の場合も、上記と同じ方法を使用します。2つ目のMetroClusterの代わりに、追加の4ノードDRグループをケーブル接続します。</block>
   <block id="ae82224d59846a6a4a61ec394a0de4cc" category="paragraph">9336C-FX2 (12ポート)</block>
   <block id="912e887f8c2036c3f03ac7df63957dfd" category="paragraph">9336C-FX2 (36ポート)</block>
   <block id="5f972a786e3a36fb039bc945267e120a" category="paragraph">3132Q-V</block>
@@ -13653,9 +13257,6 @@
   <block id="63ede7390ebddcb1a19c634b663be885" category="doc">ONTAP System Managerを使用してMetroCluster IPサイトを構成する</block>
   <block id="d5df0ed1fddd51c59b0d672a06332803" category="doc">MetroCluster IP インストールワークフロー</block>
   <block id="81f48308d9009b082bbfb2492185ce99" category="doc">MetroCluster IP構成のスイッチ間リンク要件</block>
-  <block id="f0668925279d53112795bb2ac4afc864" category="doc">MetroCluster IP構成における12ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
-  <block id="27399dcd320ca6d758e2655c39a8e386" category="doc">MetroCluster IP構成におけるCisco 3132Q-Vスイッチのプラットフォームポート割り当て</block>
-  <block id="60f2042ee9b23bda52c2e2a535331331" category="doc">MetroCluster IP 構成におけるCisco 3232C または 36 ポートCisco 9336C スイッチのプラットフォーム ポート割り当て</block>
   <block id="48d2b86e5ac14fbcf8457bec5a32528c" category="doc">MetroCluster IP に関する追加情報の入手先</block>
   <block id="72456fb865518b277c5bd9ff404c6c1e" category="doc">ONTAP System ManagerでMetroCluster IPピアリングを設定する</block>
   <block id="535fa0516d99c874e893ea2540a883dc" category="doc">ONTAP System Managerを使用してMetroCluster IPサイトをセットアップする</block>
@@ -13745,7 +13346,6 @@
   <block id="d321eb0a25003ddc996afe17a7149d6f" category="paragraph">各クラスターでこの手順を実行します。</block>
   <block id="e1bde148bbf0582fd279d9a3c915b31a" category="list-text">権限レベルをadminに設定します。</block>
   <block id="5465fc7f055cf03040fda6f777f9a2da" category="list-text">新しい DR グループでクラスター HA が有効になっていることを確認します。必要に応じて、クラスター HA を再度有効にします。</block>
-  <block id="4e7f0491b8337902ce9619e04977796b" category="sidebar">NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームポート割り当て</block>
   <block id="8228ee21c2ba287b99721837a199bf49" category="image-alt">1つのコントローラに障害が発生した8ノードのMetroCluster DRグループ</block>
   <block id="b6209f83f0e19d02dd6f9274a888a749" category="image-alt">複数のコントローラに障害が発生した 8 ノードのMetroCluster DR グループ</block>
   <block id="323510b9950e698debea09d8e3c3a7c9" category="image-alt">2つの単一コントローラ障害を持つ8ノードのMetroCluster DRグループ</block>
@@ -14067,17 +13667,12 @@
   <block id="55417ec59fd4af1a5afffacb42333c5a" category="paragraph">この手順で使用される例：controller_B_1</block>
   <block id="1acb751c22e164e9d61c762caf509e82" category="paragraph">この手順で使用される例：controller_B_2</block>
   <block id="eccb3ce2fe6ad5d172a57438aae17dae" category="doc">各MetroCluster FCノードでミラーリングされたデータ アグリゲートを作成します</block>
-  <block id="e5287e41bb7b528f560b85847eb683be" category="paragraph">36ポートCisco 9336C-FX2スイッチをお持ちで、NS224ストレージをスイッチに接続する予定がない場合は、<block ref="5e1610ecd3627713f0895c655a667651" category="inline-link-macro-rx"></block>の表を使用してください。</block>
   <block id="b68398936049bd282794c33831e2aea9" category="paragraph">MetroCluster IP 構成で<block ref="616743bfa4fd61d558c556fe614cb2e9" prefix=" " category="inline-code"></block>コマンドを使用した AFF A70 から AFF A90 および FAS70 から FAS90 へのシステムアップグレードのサポート。</block>
   <block id="2691309e1710cb6a0083f4722ac33e8d" category="admonition">現在 100Gbps ISL 要件を満たしていないプラットフォームでの ONTAP 9.18.1 以降へのアップグレードはブロックされず、続行できます。ただし、NetApp は、期待されるパフォーマンスと可用性のレベルを維持するために、お客様が 100Gbps ISL 接続に移行することを強く推奨します。</block>
   <block id="2424b4c07e55bece1d1a95007a6782a8" category="list-text">ファブリックごとに少なくとも 1 つの 10Gbps ISL ポートが必要です。</block>
   <block id="925adb23a78386992d24bff6e6e1b4e2" category="list-text">NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。</block>
-  <block id="13baaedd5f262910c30e90b130030634" category="paragraph">MetroCluster構成またはDRグループのいずれかでNS224シェルフがMetroClusterスイッチに接続されていない場合は、<block ref="b9dbe6880b7454d3bcbbe8f7d7793db4" category="inline-xref-macro-rx"></block>に従ってください。</block>
   <block id="2b4028f1ab41ecd91ee89bedc51fffa6" category="list-text">スイッチ接続NS224ストレージをサポートしていない通常のMetroCluster構成を拡張し、スイッチ接続NS224ストレージを備えたMetroCluster構成を追加する場合は、次の情報を確認してください：</block>
-  <block id="3db561d9980a9a0ff52dc6f6b5be80fb" category="list-text"><block ref="46a459674905c476821f71bc8486a4ba" category="inline-link-macro-rx"></block>ツールでは、最初にスイッチ接続NS224ストレージをサポートするプラットフォームを選択し、次にスイッチ接続NS224ストレージをサポートしないプラットフォームを選択する必要があります。</block>
   <block id="88ecaca9811ed8ee2d07d6be6c37393b" category="paragraph">つまり、新しい構成のRCFを生成するときに、RcfFileGeneratorツールで次の順序でプラットフォームを選択する必要がある場合があります：</block>
-  <block id="e1560ebf4cdefb3656321c70615b070a" category="list-text">*2 番目のドロップダウンフィールド* から、スイッチ接続 NS224 ストレージをサポートするプラットフォームを選択します。</block>
-  <block id="6671def4e7da861590fb38e5fc66314e" category="list-text">*最初のドロップダウンフィールド*から、スイッチ接続NS224ストレージをサポートしていないプラットフォームを選択します。</block>
   <block id="2782611b81a323af0ab55dcdc0bed9b0" category="paragraph">MetroCluster IP ノードは、iSCSI セッションを使用して ONTAP Mediator メールボックスディスクにアクセスできます。デフォルトの接続タイムアウトは 10 秒で、5 秒後に 1 回の再試行が含まれます。ONTAP のバージョンと環境によっては、Mediator 支援による計画外のスイッチオーバー（MAUSO）の中断を回避するために、メールボックスのタイムアウトを最大 60 秒まで増やすことができます。</block>
   <block id="5989de7ef1290d3b1851ce9197407a9a" category="paragraph">停止期間、つまりMetroCluster IPノードをONTAP Mediatorに再接続するのにかかる時間を評価する必要があります。10秒以上かかる場合は、MetroCluster IPノードの再接続にかかる時間よりも数秒長くタイムアウト値を設定する必要があります。</block>
   <block id="96da1e735aedafb1dcf6dc852a630b69" category="paragraph">各サイトから接続が独立して維持され、一方のサイトでの停止が存続サイトからONTAP Mediatorへの接続に影響しない場合は、デフォルト値の10秒で十分であり、メールボックスタイムアウトを変更する必要はありません。</block>
@@ -14447,16 +14042,12 @@
   <block id="052bf57f898d3892d0551c66dc793e8b" category="list-text">MetroCluster ノードの状態を確認します：</block>
   <block id="53c1dca890ccf51d340a7239987710a8" category="list-text">サポートされているスイッチソフトウェアのバージョンを使用する必要があります。<block ref="ed4326c3351d8ac0e334b8b4d9b37c82" category="inline-link-rx"></block>を参照してください。</block>
   <block id="fdb08440fb03aec95dda7df506525f73" category="list-text">残りの 3 つの IP スイッチで前の手順を繰り返します（MetroCluster IP 設定）。</block>
-  <block id="0a87ee4fa6163be20e6bf1d980e5a277" category="paragraph">参照構成ファイル（RCF）を正しく生成するには、ポートテーブルの情報をどのように使用するかを理解する必要があります。</block>
   <block id="350ebdbb66bf03c8efc403678120e39d" category="admonition">NS224シェルフを接続する共有構成で Cisco 9336C-FX2 スイッチを使用している場合、ISL を変更すると新しい参照構成ファイル（RCF）が必要になる場合があります。現在および新規の ISL 速度がそれぞれ 40 Gbps と 100 Gbps の場合、新しい RCF は必要ありません。ISL 速度に関するその他の変更はすべて、新しい RCF が必要です。たとえば、ISL の速度を 40 Gbps から 100 Gbps に変更する場合は新しい RCF は必要ありませんが、ISL の速度を 10 Gbps から 40 Gbps に変更する場合は新しい RCF が必要です。</block>
   <block id="6c5a911225660b72c17cb2db5923a54a" category="inline-link-macro">MetroCluster IPスイッチのRCFをアップグレードします。</block>
   <block id="69cb6427980eccf80b5d0c17f1aab875" category="admonition">NS224シェルフを接続する共有構成でCisco 9336C-FX2スイッチを使用しており、RCFをアップグレードして新しいISLポートに新しい構成を適用する必要がある場合は、次の手順に従ってください。<block ref="c3ee1b38b8c2251d663b314073e9cd8a" category="inline-link-macro-rx"></block></block>
   <block id="8707fdff465b4f0541eaf591583954a7" category="list-text"><block ref="b0e11f8bc3115af6f46ef95760b7108a" category="inline-link-macro-rx"></block>。</block>
   <block id="856a04ccf59d2820da6a47984fbd3ea0" category="admonition">スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定した後、2番目のファブリック（Switch_A_2、Switch_B_2）でクラスタ LIF を移動する手順を繰り返す必要があります。<block ref="5f804b3f3e9acee141e0ae306b7a6f59" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="8dc1f99634c85a613352ad949b508cf1" category="paragraph"><block ref="7176836221733e9bf6fcbaccc1aa9ffd" category="inline-link-macro-rx"></block>の手順に従ってください。</block>
-  <block id="0d35a64434c5cb583e6703803b6a3251" category="paragraph">新しいスイッチが同じものであれば、新しいスイッチの電源を入れてください。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチの電源を入れてください。この構成では、2つ目のファブリックが更新されるまで、各サイトで2つの異なるスイッチを使用して動作させることができます。</block>
-  <block id="acc1856da35d6d8c04024997f2eb6084" category="paragraph">最初のファブリック内のスイッチをアップグレードまたはダウングレードする場合、ローカルクラスタリングに関連するアラートが表示されることがあります。</block>
-  <block id="73d919208b85f9e19c80b7413d6e453e" category="admonition">ファブリックをアップグレードまたはダウングレードする場合は、2つ目のファブリックについてもすべての手順を繰り返してください。</block>
   <block id="73117420b1d3da1446aeff431e81d9c6" category="list-text"><block ref="b0e11f8bc3115af6f46ef95760b7108a" category="inline-link-macro-rx"></block>アップグレードを開始する前に</block>
   <block id="19bc1d3a8e5db6fb9ca5ed1d6e53ad7f" category="list-text">それぞれのスイッチについて、上記の手順を繰り返してください。</block>
   <block id="31bbe12313f1a40b18eaa501279a0be3" category="admonition">最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定したら、同じ手順を繰り返して、クラスタLIFを2番目のファブリック（Switch_A_2、Switch_B_2）に移動する必要があります。<block ref="5f804b3f3e9acee141e0ae306b7a6f59" category="inline-link-macro-rx"></block>を参照してください。</block>
@@ -14518,10 +14109,8 @@
   <block id="f38043ab9f34b68e3463d7b1fb38b361" category="doc">MetroCluster FC構成における冗長FC-to-SASブリッジの図</block>
   <block id="e3dd1a90c13a22d51e73cec3e510f688" category="doc">MetroCluster FC構成におけるローカルHAペアの図</block>
   <block id="dff9dc7617c0b722a258b6e77d1f3726" category="doc">2つのイニシエータポートを使用するMetroCluster FCシステムのポート割り当て</block>
-  <block id="05585309d52edd75bfe06dd78ae82f9e" category="doc">MetroCluster FC インストールの準備</block>
   <block id="fb45e1fe4b65e4d3f577f1313e3192ff" category="doc">MetroCluster FC構成における冗長スイッチファブリック</block>
   <block id="07fea3e7242e3b7feb95daab8ac382f1" category="doc">TDM/WDMの要件（MetroCluster FC構成）</block>
-  <block id="05098029b983a3408b44325185438949" category="doc">RCFファイルを使用してCisco MetroCluster FCスイッチを設定する</block>
   <block id="76438cbc2291f6d0b6a5155d9952e6a8" category="doc">MetroCluster FCインストールワークフロー</block>
   <block id="5fd61de5dd5b6d796a4f4d8bccbbbe9f" category="doc">MetroCluster FCスイッチおよびFC-to-SASブリッジの構成ワークシート</block>
   <block id="7e175f581dd885fe7ee193e78b5ac58b" category="doc">MetroClusterに関する追加情報の参照先</block>
@@ -14531,15 +14120,11 @@
   <block id="8026f4ec611bd118ac269a01492de7eb" category="doc">MetroCluster FC構成でHAインターコネクトのケーブルを接続します</block>
   <block id="aaa5c9b8858e5d0e6662b2456ce875a7" category="doc">MetroCluster FCサイト間のISLをケーブル接続する</block>
   <block id="f524fb27981b728db058331580747fa9" category="doc">MetroCluster FC構成で管理接続とデータ接続をケーブル接続する</block>
-  <block id="fb67e9a3985fd88e6ec3c17af42c7c9f" category="doc">FAS8020システムのMetroCluster FC構成においてX1132A-R6 4ポートカードのFC-VIポートを設定する</block>
   <block id="c820136efafeb14232a7bb0ecdc3a5e7" category="doc">Cisco FC スイッチ RCF ファイルを MetroCluster FC 構成でダウンロードしてインストールする</block>
   <block id="c8c019807a214ed01c2fd3737fb66653" category="doc">Cisco FC スイッチ NX-OS ソフトウェアを MetroCluster FC 構成でダウンロードしてインストールする</block>
   <block id="c107653dfa4a6cb420e91b134316934d" category="doc">MetroCluster FC構成でのBrocade FCスイッチRCFファイルのダウンロード</block>
   <block id="dd1861d8b8089cce9bcd65dcd9ef90fd" category="doc">MetroCluster FC構成でBrocade FCスイッチを手動で設定します</block>
   <block id="f94ef2b75d467a78aa84ce1bb33652ce" category="doc">MetroCluster FC構成でCiscoスイッチを手動で設定する</block>
-  <block id="6a6da24da3fa4ff67dafeb9d87d9bb82" category="doc">FC構成のMetroCluster FCスイッチを設定する</block>
-  <block id="fbeac99c1940e86ea53691da26e16aba" category="doc">RCFを使用してMetroCluster FCスイッチを設定する</block>
-  <block id="1e53200e2bde9fd5a7c07ac8f5113781" category="doc">MetroCluster FCスイッチファブリックを再度有効にして動作を確認する</block>
   <block id="673e8727c55ac5d36e4061912da38e7d" category="doc">FC-to-SASブリッジとSASディスクシェルフをMetroCluster FC構成にインストールする</block>
   <block id="1b6b8ad2d32c11d213c91b42df59504b" category="doc">MetroCluster FC構成へのBrocade FCスイッチRCFファイルのインストール</block>
   <block id="1dee6fb030f3706cd70f3b48dccd2685" category="doc">MetroCluster FC構成のハードウェアコンポーネントをラックに取り付ける</block>
@@ -14558,9 +14143,6 @@
   <block id="d00a37ec3ed10fdae786e846d6202c4b" category="doc">MetroCluster IPハードウェアコンポーネントについて</block>
   <block id="80912cc1e5476db748420db1e0a28016" category="doc">MetroCluster IP構成の追加管理ツールについて</block>
   <block id="c8375b50501a97bc27bc3b6bc67d4f09" category="doc">MetroCluster IP構成のスイッチコンプライアンス要件</block>
-  <block id="9273588da9a6272994f1e27930548949" category="doc">MetroCluster IP構成でNS224ストレージを接続する36ポートCisco 9336C-FX2スイッチのプラットフォームのポート割り当て</block>
-  <block id="42c46f91d3f244390a44e37864ce9683" category="doc">BroadcomがサポートするBES-53248スイッチのプラットフォームポート割り当て（MetroCluster IP構成）</block>
-  <block id="44ace228b2eb030d54fecba30dd1a868" category="doc">NVIDIA SN2100スイッチを使用したMetroCluster IP構成でのプラットフォームポートの割り当て</block>
   <block id="51440f859949d5811d109b8d1c100400" category="doc">MetroCluster IP構成でスイッチ、RCF、またはファームウェアの変更前にクラスタLIFを移動する</block>
   <block id="5a4e415e369e28ea14ea5533cfae711b" category="doc">NVIDIA SN2100 MetroCluster IP スイッチの CSHM ファイルをインストールする</block>
   <block id="d4f664f68579fcf672c8bfe170cc8ff2" category="doc">MetroCluster IPのスイッチ構成ワークフロー</block>
@@ -14575,7 +14157,6 @@
   <block id="7755f44a0cc80ad6e3eaa79c1a79b257" category="doc">MetroCluster IPのCisco 9336CスイッチでMACsec暗号化を構成する</block>
   <block id="edb9b445f13c3e9e05b61cc6e0b3efdc" category="doc">MetroCluster IP構成用のNVIDIA IP SN2100スイッチを構成します</block>
   <block id="20e757ff864b6acd14ec41e7165a63f9" category="doc">MetroCluster IP構成でONTAP Mediatorメールボックスのタイムアウトを増やす</block>
-  <block id="f081a35160d006cd5323e0740d06220e" category="doc">MetroCluster IP構成のポート テーブル</block>
   <block id="e0ff38f1490ce2495524f7429045ad81" category="inline-link-macro">ナレッジベースの記事「Cluster and HA communication issues during back-end switch replacement」</block>
   <block id="93c539486532bcd2c15f294efff69106" category="admonition">AFF A220、AFF A250、またはFAS2750プラットフォームでスイッチの交換が必要な場合は、<block ref="3468e696d0ad9ec4d429e1b845c952a7" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="fe4617c4a015a1feba78882255c11625" category="paragraph">X60134Aネットワークインターフェースカードを使用するプラットフォームでは、異なるリンク速度の組み合わせはサポートされていません。お使いのプラットフォームが影響を受けているかどうかを確認するには、<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block>を参照してください。</block>
@@ -14631,35 +14212,28 @@
   <block id="e1a4449ad60ee5725611b4752da28734" category="doc">ストレッチ MetroCluster 構成でのミラーされていないアグリゲート</block>
   <block id="f2810cc121b365a0d944d01fb0049c3c" category="doc">ストレッチMetroCluster構成の削除</block>
   <block id="5a7797c27c8c6f252cd34f8aa48a076a" category="doc">ストレッチ MetroCluster 構成での ONTAP の使用</block>
-  <block id="1e8934c8c7222043dfa312d5c47d1e7e" category="doc">ストレッチ MetroCluster 構成における FC-to-SAS ブリッジの帯域内管理</block>
   <block id="55df9ce68c674f1a62c154a24c032440" category="doc">SAS接続ストレッチMetroCluster構成のハードウェアコンポーネントと命名規則</block>
   <block id="fc363c855fcd7a513f6fb1461d09f397" category="doc">ブリッジ接続ストレッチ MetroCluster 構成のハードウェアコンポーネントと命名規則</block>
   <block id="ce525a64a34c14afdb1f2bae36c9bf40" category="doc">ストレッチ MetroCluster 構成の追加管理ツールについて</block>
   <block id="5d0555cf7082cbbc66c492a83c958f19" category="doc">ストレッチMetroClusterインストール手順</block>
   <block id="b328c98b6e599f40c1249734c7d3e25b" category="doc">ストレッチ MetroCluster FC-to-SAS ブリッジの情報収集ワークシート</block>
   <block id="c8df4892e1c9a9ad385fe299b25f8daf" category="doc">2ノードSAS接続ストレッチ構成のMetroClusterコンポーネントのケーブル接続</block>
-  <block id="c5af558971f7e07c02f80c5f9244379f" category="doc">ストレッチ MetroCluster 構成において、IOM12モジュールを使用するディスク シェルフに FibreBridge 7600Nまたは7500Nブリッジをケーブル接続します</block>
   <block id="29dfc27962ea9801cc723674240608f2" category="doc">ストレッチ MetroCluster 構成のクラスタピアリング接続のケーブル接続</block>
   <block id="d2e7b877c94959078edc26bb1d793bbd" category="doc">ケーブル接続のMetroClusterコントローラとストレージ シェルフ</block>
   <block id="a31c31ec1e817272b4e2bfc0bfcccfa9" category="doc">ストレッチ MetroCluster 構成でコントローラー同士をケーブルで接続する</block>
   <block id="53e42689c2779f2b84d74462236ac01a" category="doc">ストレッチ MetroCluster 構成の管理接続とデータ接続のケーブル接続</block>
-  <block id="8403df386d5e44695ba3cd53a4cb6aff" category="doc">ストレッチ MetroCluster 構成用の FC-to-SAS ブリッジの設定</block>
-  <block id="90ed5a22c4d0a70a6245d26b5fa675ca" category="doc">ストレッチ MetroCluster 構成で FibreBridge 7600N ブリッジの IP ポート アクセスを有効にします</block>
   <block id="9f7c46564969b0cfb9b9e45ae84a29d7" category="doc">FC-to-SASブリッジとSASディスクシェルフをストレッチMetroCluster構成にインストールする</block>
-  <block id="59934c58920f4d9b56664a042b0f6e54" category="doc">FC-to-SASブリッジとSASシェルフをストレッチMetroCluster構成用に取り付ける</block>
   <block id="a83e3e6e3a220eeb17b49b43c1655725" category="doc">ストレッチ MetroCluster SAS 構成のハードウェアコンポーネントをラックに設置する</block>
   <block id="097bca5cb9be45382f00a23eb10b7140" category="doc">ストレッチ MetroCluster ATTO構成のハードウェアコンポーネントをラックに搭載する</block>
   <block id="9aee2f9aee8d698f16801aa31eb11681" category="doc">ストレッチMetroCluster構成でNTPを使用してシステム時刻を同期する</block>
   <block id="ad3e9ee83d885118d791b30d7789593a" category="doc">ストレッチ MetroCluster 構成のテスト</block>
   <block id="1c0dc7dc20231fb007558112b4101e11" category="doc">ストレッチ MetroCluster 構成をファブリック接続にアップグレード</block>
-  <block id="6e9b2d39813d19801e17d7337411ee8e" category="doc">MetroClusterハードウェア保守手順</block>
   <block id="be1545b72fb197704b29d14fd4e788d2" category="doc">MetroCluster IP構成でストレージの場所を特定する</block>
   <block id="44eb0895da6b191732abef4a42f2cce6" category="doc">MetroCluster FC構成におけるFC-to-SASブリッジのインバンド管理</block>
   <block id="fbeed7d2620206346bbe1c2cb5d31493" category="doc">MetroCluster 構成でルートボリュームを移行する</block>
   <block id="9b84dbb91fed044928b63e89f8e0a283" category="doc">メンテナンス前に ONTAP Mediator または Tiebreaker を削除するMetroCluster</block>
   <block id="dec731af24ab567a7853f6e8ed987402" category="doc">MetroCluster構成用のInteroperability Matrix Tool</block>
   <block id="b49afa10805d1aa8054708ecc2e078b1" category="doc">MetroCluster メンテナンスの前にコンソールログを有効にする</block>
-  <block id="8ce7b7e34cb11f43975cc30edc308270" category="doc">MetroCluster ハードウェアコンポーネントのメンテナンスについて</block>
   <block id="4898af4d8956fe8e7cc33dbf47eaa26d" category="doc">MetroCluster FC構成のFibreBridgeで故障した電源モジュールをホットリプレースする</block>
   <block id="ac830315d226a9e8bcfb4606ee6162ad" category="doc">FibreBridge ブリッジ管理インターフェイス要件（MetroCluster FC 構成）</block>
   <block id="b5eca7d3ce20c76279ae0123a24eaba0" category="doc">MetroCluster 構成の維持管理の詳細</block>
@@ -14697,7 +14271,6 @@
   <block id="bcdc28b2e67f5f7f9c37ca00aa655509" category="doc">NVFAIL を使用した MetroCluster のファイルシステム整合性の監視と保護</block>
   <block id="c9b7b9ad5537e92c2ecebbcf203c8047" category="doc">MetroCluster構成を監視する</block>
   <block id="f5c7abd13c7c24bc61ae327889127742" category="doc">MetroClusterのデータ保護とディザスタリカバリについて</block>
-  <block id="8fb996f3ce7f4d3b7bda08edfd1e9a26" category="doc">MetroCluster 管理について学ぶ</block>
   <block id="449629aa4b1c2ed0843fd41d689b41ea" category="doc">MetroCluster のスイッチオーバー、修復、およびスイッチバックのコマンド</block>
   <block id="34652c95da82a187b943db9c3ccee905" category="doc">MetroClusterの構成と運用の詳細については、こちらを参照してください</block>
   <block id="a19b5bf6df9a45fe058f3f423784db99" category="doc">MetroCluster IP構成でのスイッチオーバーとスイッチバックにSystem Managerを使用する</block>
@@ -14712,7 +14285,6 @@
   <block id="5565fd5ef917dd8d807bcf122d0655fd" category="doc">MetroCluster システムがスイッチオーバーの準備ができていることを確認する</block>
   <block id="5a24fe0a0c873a090cc8f53d6d1e537f" category="doc">MetroCluster 構成の SVM が実行中であり、アグリゲートがオンラインであることを確認します</block>
   <block id="4ac8fe6e8a05cc71d2e00c1b1f7f2f59" category="doc">MetroCluster スイッチバックが成功したことを確認する</block>
-  <block id="de0f30e08a5f77d28e460449b68dd2c6" category="doc">MetroCluster Tiebreaker のインストールと設定について</block>
   <block id="ce9b5a38a69418f5e59849681ff4326a" category="doc">MetroCluster Tiebreaker を使用した MetroCluster 構成の監視</block>
   <block id="26614674af5884942223cb1c8189145a" category="doc">MetroCluster Tiebreaker について</block>
   <block id="051242ca625cd0e7b3d4d0995224916b" category="doc">MetroCluster Tiebreaker のインストール手順を選択してください</block>
@@ -14730,7 +14302,6 @@
   <block id="117c2b3405e20131a540d871714f52e7" category="doc">MetroCluster Tiebreaker を実行しているホストをアップグレードする</block>
   <block id="864eae39caa7940d5967641365011192" category="doc">MetroCluster FC-to-IP 移行手順オプション</block>
   <block id="86fdbbe0b7817b7ec654264332bc9696" category="doc">MetroCluster移行におけるIPスイッチの要件</block>
-  <block id="59205d896d3e43c52f5e6ba6390ab90a" category="doc">使用する MetroCluster 手順の決定</block>
   <block id="426d7b12fe14ec05a1e1bd3536ed0c61" category="doc">2ノード MetroCluster FC から IP への移行の命名例</block>
   <block id="96c9ada18748c9cf0f166238d0beb7a1" category="doc">MetroCluster FC から IP への移行の命名例</block>
   <block id="f04302b341f052937752550feb95fcbd" category="doc">アラートメッセージとツールサポート（MetroCluster移行時）</block>
@@ -14837,11 +14408,9 @@
   <block id="b9e6e4e52311c3db33c84678847f4a37" category="summary">ONTAP 9.5以降、ONTAPは仮想IP（VIP）およびボーダーゲートウェイプロトコル（BGP）を使用したレイヤー3接続をサポートし、レイヤー3のディザスタリカバリソリューションを提供します。</block>
   <block id="977014be01c1da5d8e97c5c5fa7ba63b" category="summary">MetroCluster 構成内のすべてのノード、またはディザスタリカバリ（DR）グループ内のすべてのノードから MetroCluster 構成を削除できます。</block>
   <block id="36b3a1d2b2ad844d1cd218d61a616b63" category="summary">各スイッチファブリックには、サイト間を接続し、サイト間でデータを複製するスイッチ間リンク（ISL）が含まれています。各スイッチファブリックは、冗長性を確保するために異なる物理経路を使用する必要があります。</block>
-  <block id="23197f65e201d3f36f70090e1c399981" category="summary">Cisco FC スイッチを設定するには、スイッチの設定を工場出荷時のデフォルトにリセットし、スイッチソフトウェアをインストールして、リファレンス構成（RCF）ファイルを適用します。</block>
   <block id="b5909b79c9831ace5a37a88ecc8d8221" category="summary">MetroClusterファブリック構成の各スイッチにリファレンス構成ファイル（RCF）をダウンロードする必要があります。</block>
   <block id="39ec26365619809aba88eabe9e933017" category="summary">ONTAP 9.5 以降、ONTAP は仮想 IP（VIP）およびボーダーゲートウェイプロトコル（BGP）を使用したレイヤー 3 接続をサポートし、レイヤー 3 のディザスタリカバリソリューションを提供します。</block>
   <block id="d4646c837bdf223cb573e0df82f56091" category="summary">DR グループ内のすべてのノードから MetroCluster 構成を削除し、ディスク接続とインターコネクトをサポートされている状態に調整できます。サポートが必要な場合は、テクニカルサポートにお問い合わせください。</block>
-  <block id="ae1af88699b3a1ba9c46e056fc8976f0" category="summary">この情報では、MetroCluster ハードウェアとソフトウェアコンポーネントをストレッチ構成またはSASオプティカル構成でインストールおよび設定する方法について説明します。</block>
   <block id="e673a28c59f148030d8d6fe7e77d7f96" category="summary">ONTAP バージョン 9.5 より前のバージョンを使用する場合、またはtelnet やその他の IP ポートプロトコルを使用して FibreBridge 7600N ブリッジへの帯域外アクセスが必要な場合は、コンソールポートからアクセスサービスを有効にしてください。</block>
   <block id="bdedaf393ca472370b58c2395331b073" category="summary">故障したスイッチを交換したり、スイッチをアップグレードまたはダウングレードしたりする必要があるかもしれません。新しいスイッチは古いスイッチと同じものにすることも、スイッチの種類を変更することもできます。</block>
   <block id="4d9bd7824ed952ced3e1e1f846baa716" category="summary">MetroCluster構成をヒールした後、スイッチバック操作を実行して通常の動作に戻します。これにより、ディザスタサイトの同期ソース SVM がアクティブになり、データを提供します。</block>
@@ -14883,4 +14452,67 @@
   <block id="756bb9840619872518b56de349470f31" category="paragraph">ヒーリングが拒否された場合は、<block ref="c85b4996143a93edc62c1214c1b80d15" prefix=" " category="inline-code"></block>コマンドに<block ref="5b8353fafaa1c451a58b0b87dede3fc0" prefix=" " category="inline-code"></block>パラメータを付けて再発行することで、ヒーリング操作を妨げているソフト拒否をオーバーライドできます。</block>
   <block id="4510065cdf938bdc660bae11b415e4ca" category="admonition">スイッチバックを実行する前に、新しいノード上のデータLIFの位置が正しいことを確認する必要があります。設定をスイッチバックする際、ONTAPはLIFが使用するホームポートでのトラフィックの再開を試みます。ホームポートからスイッチ ポートおよびVLANへの接続が正しくない場合、I/O障害が発生する可能性があります。LIFを正しいノードまたはポートに配置する際に問題が発生した場合は、スイッチバックを続行せず、NetAppテクニカルサポートにお問い合わせください。</block>
   <block id="ded79adea8538afbad271b9f9dc6c6e2" category="admonition">MetroCluster FC環境では、コマンド出力で「connections」は「not-applicable」と表示されるはずです。</block>
+  <block id="01f44091e61d132b8e4dc56c7fcfcc71" category="paragraph"><block ref="01f44091e61d132b8e4dc56c7fcfcc71" category="inline-link-macro-rx"></block></block>
+  <block id="226243cd84acf57fb8c77be957702aa1" category="paragraph"><block ref="226243cd84acf57fb8c77be957702aa1" category="inline-link-macro-rx"></block></block>
+  <block id="12cac6e64767d38d9aaa5b5131662deb" category="cell"><block ref="12cac6e64767d38d9aaa5b5131662deb" category="inline-link-macro-rx"></block></block>
+  <block id="94f5ed71556c5274f2e7342d6c6fbad6" category="list-text"><block ref="01f44091e61d132b8e4dc56c7fcfcc71" category="inline-link-macro-rx"></block>に記載されている、ネゴシエートされたスイッチオーバー、ヒーリング、およびスイッチバックの手順を使用してください。</block>
+  <block id="628fe06d5fdcf8cfd63d9481e9421183" category="paragraph"><block ref="628fe06d5fdcf8cfd63d9481e9421183" category="inline-link-macro-rx"></block></block>
+  <block id="05c730c8f0fa3379526c0f4e5ba33319" category="paragraph"><block ref="05c730c8f0fa3379526c0f4e5ba33319" category="inline-link-rx"></block></block>
+  <block id="be160c024bea52924fe77cb9e78214f7" category="doc">RCFfilegeneratorツールとHardware Universeを使用したMetroCluster IPスイッチのケーブル接続</block>
+  <block id="8b12e7e13d2ff1b2841ecba6c80afa67" category="paragraph">スイッチを正しく配線するには、RCFfilegeneratorツールとNetApp Hardware Universeの情報の使用方法を理解しておく必要があります。</block>
+  <block id="3d562770c682300a997f1e00bac01722" category="inline-link-macro">MetroCluster IPスイッチのケーブル配線について</block>
+  <block id="ae2885f58ccc0c791f7169082157887e" category="paragraph">この作業を実行する前に、<block ref="52ab614863b142a43989450caa4ed4fd" category="inline-link-macro-rx"></block> の情報を確認してください。</block>
+  <block id="81833438865b86da3eae915c86c65e4b" category="list-text">NetApp Support Site から<block ref="b3f8a8564bd91efeacbc3b6197426c6e" category="inline-link-rx"></block>ツールをダウンロードしてインストールします。</block>
+  <block id="f266fa9b742f8f46ec5cc0a346ab64af" category="inline-link-macro">MetroCluster IP用RCFジェネレーターの使用方法</block>
+  <block id="4154f6fe2cf5a90d3ca82edb905336d3" category="list-text"><block ref="70532001d180a8a85d3c9176f279e960" category="inline-link-macro-rx"></block>の手順に従って、設定のフィールドに入力します。</block>
+  <block id="dbf3fb325989b6f7e8666dc746cfe848" category="paragraph">このツールは、各スイッチのポートごとのケーブル配線概要を生成します。</block>
+  <block id="ef6b355be31ded7505f00b1456e8fd03" category="list-text"><block ref="9c7de71dec60e8515e88c561306df4fe" category="inline-link-macro-rx"></block>に移動します</block>
+  <block id="c0ec3f370a1995360f913e558275fa22" category="list-text">*Products*タブからプラットフォームのタイプを選択し、特定のプラットフォームと、4ノードまたは8ノードのMetroCluster IP構成のどちらをケーブル接続するかを選択します。</block>
+  <block id="e0983146dc288451127566a34711b59f" category="list-text">表示ウィンドウからONTAPバージョンを選択し、*Show results*を選択します。</block>
+  <block id="7d43c1b103119e38ebdca74971aab1ec" category="list-text">「サポートされている接続」を選択し、「ストレージ接続」タブを選択します</block>
+  <block id="36b6e8d5997c4b535f156961b72cd921" category="list-text">設定に必要なコントローラーポート情報を収集してください。</block>
+  <block id="b872b33e7f6ccee2c35feaa458b552e2" category="admonition">コントローラーポートの情報は、RcfFileGeneratorツールによって生成されるケーブル接続の概要には含まれていないため、この情報を収集するにはHardware Universeを使用する必要があります。</block>
+  <block id="b497bbdd397098bdb0a5b9c82e81b592" category="admonition">最初のファブリックのスイッチを既に更新済みで、2番目のファブリックのスイッチに対してもこの手順を繰り返す場合は、この手順をスキップできます。</block>
+  <block id="52ab614863b142a43989450caa4ed4fd" category="paragraph"><block ref="52ab614863b142a43989450caa4ed4fd" category="inline-link-macro-rx"></block></block>
+  <block id="ffb7b8dc7878c5af634a1c1963efd3e8" category="list-text">このタスクは、25-Gbps接続を使用するプラットフォームにのみ適用されます。<block ref="8f458b2972809c149e69565eae68571c" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="812220e4b62a0f5f44496bc6e73454ef" category="summary">RCFを正しく生成するには、ポートテーブルの情報をどのように使用するかを理解する必要があります。</block>
+  <block id="0d6d7b89fc651602a7674f3e0b0a6cad" category="paragraph">MetroCluster IPスイッチのケーブル接続を開始する前に、要件を確認してください。</block>
+  <block id="22f0210d647b309440165a35638eca03" category="paragraph">スイッチの配線を行う前に、以下の点を確認してください：</block>
+  <block id="e955f460feb4d5e634b06a077ecc6834" category="list-text">サイトAとサイトBでは同じケーブルが使用されています。</block>
+  <block id="bfa00546869e33cdfc39a7b9c57691d7" category="admonition">参照構成ファイル（RCF）のバージョンは、ファイルの生成に使用されたRCFfilegeneratorツールのバージョンとは異なります。例えば、RCFfilegenerator v1.6cを使用してRCFバージョン2.00を生成できます。</block>
+  <block id="68e38b15d403cba354efbb856bec085e" category="section-title">スイッチの種類に基づくケーブル配線要件</block>
+  <block id="caccbdcfc15b46d00a77e0dc179919fa" category="paragraph">以下に、スイッチの種類に応じたケーブル配線要件を示します。</block>
+  <block id="a2f7f48fb4a19613fcc4df95033a540d" category="paragraph">MetroCluster FCからIPへの移行用にスイッチを構成する場合、ポート5またはポート6を使用して、MetroCluster FCノードのローカルクラスタインターフェイスを接続できます。この構成のケーブル接続の詳細については、<block ref="3d323bfcd2e7c90d6e420b3bfd1a01ed" category="inline-link-macro-rx"></block>および生成されたケーブル接続ファイルを参照してください。</block>
+  <block id="16ad81b983d29eabaac26419a8e9d36c" category="section-title">Cisco 3232Cまたは36ポートCisco 9336C</block>
+  <block id="f25b3cab99a06613f3972b9ffa2ddc00" category="list-text">スイッチをMetroCluster FCからIPへの移行用に構成する場合、ポート5、ポート6、ポート13、またはポート14を使用して、MetroCluster FCノードのローカルクラスタインターフェイスを接続できます。この構成のケーブル接続の詳細については、<block ref="3d323bfcd2e7c90d6e420b3bfd1a01ed" category="inline-link-macro-rx"></block>および生成されたケーブル接続ファイルを参照してください。</block>
+  <block id="ac80f7aa757a8212f8da0933008a60ec" category="list-text">サポートされているプラットフォーム上のMetroCluster ISLの25Gブレークアウトモードには、RCFバージョンv2.10以降が必要です。</block>
+  <block id="c6ef679fd1b71db32cebc1cf708fb044" category="list-text">「MetroCluster 4」グループでFAS8200またはAFF A300以外のプラットフォームを使用するには、ONTAP 9.13.1以降およびRCFバージョン2.00が必要です。</block>
+  <block id="2b653dfc64d1489ccd5bc704a57aeccb" category="section-title">12ポート Cisco 9336C-FX2</block>
+  <block id="68185ac0418f6ffb733128e68a6f36a3" category="section-title">NS224ストレージを接続する36ポートCisco 9336C-FX2スイッチ</block>
+  <block id="ac97f2a0cb79caa642d48fad3d64c6d5" category="paragraph">RcfFileGeneratorツールでは、まずスイッチ接続型NS224ストレージをサポートするプラットフォームを選択し、次にスイッチ接続型NS224ストレージをサポートしないプラットフォームを選択する必要があります。</block>
+  <block id="261363fef6f14342e0ccd5c8d2faf811" category="list-text">2番目のドロップダウンフィールドから、スイッチ接続型NS224ストレージをサポートするプラットフォームを選択してください。</block>
+  <block id="4663a094fba2f8ca654db7cbc149185d" category="list-text">最初のドロップダウンフィールドから、スイッチ接続型NS224ストレージをサポートしていないプラットフォームを選択してください。</block>
+  <block id="fa5b814d48ac821e68293bef271cf120" category="paragraph">8ノードまたは2つの4ノードのMetroCluster構成を接続するには、ONTAP 9.14.1以降およびRCFバージョン2.00以降が必要です。</block>
+  <block id="32486353af9a4754ef33ae03184ab6d7" category="list-text">ケーブル配線の詳細については、<block ref="cea2fd4771b05b7ea9ce532bc64116c7" category="inline-link-macro-rx"></block>を確認してください。</block>
+  <block id="e985da9479fcb3f44a4c5f076074eaf6" category="list-text">MetroCluster IP構成で、MetroCluster IPスイッチにNVMeシェルフが接続されている場合は、次のコマンドを実行してシェルフのステータスを確認します。</block>
+  <block id="d819c52357ffe7f71e3c843024bdbe18" category="list-text">シェルフのステータスを表示します：</block>
+  <block id="f4b7655f7d76ca23a9695a4ffe76039c" category="paragraph"><block ref="3ad8650cdeae2fa45b589036916df12e" prefix="" category="inline-code"></block></block>
+  <block id="ac8d180c4267e0df23b009be4027ab47" category="list-text">スイッチに接続されたNVMeシェルフの接続状況を表示します：</block>
+  <block id="5fc82d0ea86cdaa1b54f25b008f2750c" category="paragraph"><block ref="3aa9198f13a1c4d5e1bdc3f6712da154" prefix="" category="inline-code"></block></block>
+  <block id="af68aba3687cc5437c6b462f3b89ed8e" category="list-text">必要に応じて、リモートデバイス（MetroClusterスイッチ）の名前を収集します：</block>
+  <block id="995c3399c2408827f9b94b6d926ad97c" category="list-text">スイッチに接続されたNVMeシェルフのシェルフポート接続を表示します：</block>
+  <block id="d2d1f0a727ba625d880200f9c6cdc405" category="paragraph"><block ref="de79727fd6f21996e51e237681ccfa11" prefix="" category="inline-code"></block></block>
+  <block id="cca2862e841bd5351871f3854f099f36" category="inline-xref">古いスイッチから接続を外す手順</block>
+  <block id="0297445d3de0b6fe85f613bb40365469" category="paragraph">既存のスイッチを再利用する場合は、<block ref="7867de4cfcb7c229fa301f1c54c0e436" category="inline-xref-macro-rx"></block>に進みます。</block>
+  <block id="f26125432e5c15e33fabd2ecf4d87bad" category="list-text">[[existing_disconnect]]古いスイッチからの接続を外します。</block>
+  <block id="a2c13d6f2894fd6c7707179deabf72bf" category="inline-xref">既存のスイッチを設定する手順</block>
+  <block id="5a932dab89d70c59f3458a7a2a6255a4" category="paragraph">既存のスイッチを再利用する場合は、<block ref="0fed829a50304d9091a3f81d3433c447" category="inline-xref-macro-rx"></block> に進みます。</block>
+  <block id="5208a656dbba596d158d8d8217323eb4" category="list-text">[[existing_configure]]既存のスイッチを設定します。</block>
+  <block id="7b8fd5c92335d18d75c0fd265bd69a61" category="paragraph">新しいスイッチが同じタイプである場合は、新しいスイッチの電源をオンにします。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチの電源を入れてください。</block>
+  <block id="d1142c8e374a52d6f1d19700961a549b" category="list-text">最初のファブリック（Switch_A_1とSwitch_B_1）を更新したら、2番目のファブリック（Switch_A_2とSwitch_B_2）についても、上記の手順を繰り返してください。</block>
+  <block id="91b0176196970d50b9aa5e39acce63b8" category="admonition">故障したスイッチを同じタイプのスイッチに交換する場合は、故障したスイッチのみを更新すればよく、2つ目のファブリックに対して同じ手順を繰り返す必要はありません。</block>
+  <block id="cd7399d5e4a063a357198427ec26081e" category="paragraph"><block ref="cd7399d5e4a063a357198427ec26081e" category="inline-link-macro-rx"></block></block>
+  <block id="4362ba43074608918c83408e89d7c0ff" category="list-text">CiscoまたはBroadcomのMetroCluster IPスイッチのファームウェアをアップグレードする場合、アップグレードを進める前に現在のスイッチ構成のコピーを保存できます。</block>
+  <block id="b85394c1aa7243bdf5cf7a0f05d8f93f" category="admonition">ファームウェアのアップグレード後にRCFをアップグレードするためにスイッチをリセットする必要がある場合は、リセットによって保存されているスイッチの設定がクリアされるため、この手順をスキップできます。</block>
+  <block id="498ba59acaecdd7d242002ff07605b27" category="sidebar">MetoCluster IPスイッチのケーブル接続</block>
 </blocks>

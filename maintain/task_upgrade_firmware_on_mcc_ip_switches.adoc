@@ -155,7 +155,129 @@ volumes             ok
 
 
 
+. MetroCluster IP構成で、MetroCluster IPスイッチにNVMeシェルフが接続されている場合は、次のコマンドを実行してシェルフのステータスを確認します。
++
+.. シェルフのステータスを表示します：
++
+`storage shelf show`
+
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf show
+                                                        Module  Operational
+       Shelf Name Shelf ID Serial Number   Model        Type    Status
+----------------- -------- --------------- ------------ ------- -----------
+              1.0        0 952123456789    NS224NSM100  NSM100  Normal
+              1.2        0 952987654321    NS224NSM100  NSM100  Normal
+cluster_A::>
+----
+====
+.. スイッチに接続されたNVMeシェルフの接続状況を表示します：
++
+`storage shelf show -shelf <shelf_name> -connectivity`
+
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf show -shelf 0 -connectivity
+            Shelf Name: 1.0
+             Stack ID: 1
+             Shelf ID: 0
+            Shelf UID: 00:00:00:00:00:00:00:00
+        Serial Number: 952123456789
+          Module Type: NSM100
+                Model: NS224NSM100
+         Shelf Vendor: NETAPP
+           Disk Count: 24
+      Connection Type: NVMe
+          Shelf State: Online
+               Status: Normal
+Paths:
+
+Controller         Initiator Initiator Side Switch Port Target Side Switch Port    Target Port        TPGN
+------------------ --------- -------------------------- -------------------------- ------------------ ------
+cluster_A-01       0x        -                          0x                         05000005abff0000   67
+cluster_A-02       0x        -                          0x                         030f0005abff0000   44
+
+cluster_A::>
+----
+====
+.. 必要に応じて、リモートデバイス（MetroClusterスイッチ）の名前を収集します：
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf port show -fields remote-device
+
+shelf id remote-device
+----- -- -------------
+1.0   0  IP_switch_A_1
+1.0   1  IP_switch_B_1
+1.0   2  IP_switch_A_2
+1.0   3  IP_switch_B_2
+4 entries were displayed
+----
+====
+.. スイッチに接続されたNVMeシェルフのシェルフポート接続を表示します：
++
+`storage shelf port show -remote-device <switch name>`
+
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf port show -remote-device IP_switch_A_1
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.0
+       1 A      connected    false
+       3 B      connected    false
+1.2
+       1 A      connected    false
+       3 B      connected    false
+4 entries were displayed.
+
+cluster_A::>
+----
+====
+
+
 . link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]アップグレードを開始する前に
+. CiscoまたはBroadcomのMetroCluster IPスイッチのファームウェアをアップグレードする場合、アップグレードを進める前に現在のスイッチ構成のコピーを保存できます。
++
+
+NOTE: ファームウェアのアップグレード後にRCFをアップグレードするためにスイッチをリセットする必要がある場合は、リセットによって保存されているスイッチの設定がクリアされるため、この手順をスキップできます。
+
++
+[role="tabbed-block"]
+====
+.シスコ
+--
+設定を保存します。
+
+'copy running-config startup-config
+
+--
+.Broadcom
+--
+設定を保存します。
+
+「メモリの書き込み」
+
+--
+====
 . 最初のスイッチにソフトウェアをインストールします。
 +
 

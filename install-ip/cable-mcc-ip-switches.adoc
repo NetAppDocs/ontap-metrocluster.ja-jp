@@ -1,0 +1,38 @@
+---
+permalink: install-ip/cable-mcc-ip-switches.html 
+sidebar: sidebar 
+keywords: cabling, cable, component, link, site, management, network, hardware, component, switch, cluster, connection, management, data, configuring, configure, rcf, file, generator, RcfFileGenerator 
+summary: RCF ファイルを正しく生成するためには、ポートテーブル内の情報の使用方法を理解しておく必要があります。 
+---
+= RCFfilegeneratorツールとHardware Universeを使用したMetroCluster IPスイッチのケーブル接続
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+スイッチを正しく配線するには、RCFfilegeneratorツールとNetApp Hardware Universeの情報の使用方法を理解しておく必要があります。
+
+.作業を開始する前に
+この作業を実行する前に、link:using_rcf_generator.html["MetroCluster IPスイッチのケーブル配線について"] の情報を確認してください。
+
+.手順
+. NetApp Support Site から https://mysupport.netapp.com/site/tools/tool-eula/rcffilegenerator["MetroCluster IP 用の RcfFileGenerator"^]ツールをダウンロードしてインストールします。
+. link:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/How_to_use_the_RCF_Generator_for_MetroCluster_IP["MetroCluster IP用RCFジェネレーターの使用方法"^]の手順に従って、設定のフィールドに入力します。
++
+このツールは、各スイッチのポートごとのケーブル配線概要を生成します。
+
++
+
+NOTE: RcfFileGeneratorでは、最初のプラットフォームが選択されている場合にのみ、対象となるプラットフォームが表示されます。
+
+. link:https://hwu.netapp.com/DetailViews/Home.aspx["Hardware Universe"^]に移動します
+. *Products*タブからプラットフォームのタイプを選択し、特定のプラットフォームと、4ノードまたは8ノードのMetroCluster IP構成のどちらをケーブル接続するかを選択します。
+. 表示ウィンドウからONTAPバージョンを選択し、*Show results*を選択します。
+. 「サポートされている接続」を選択し、「ストレージ接続」タブを選択します
+. 設定に必要なコントローラーポート情報を収集してください。
++
+
+NOTE: コントローラーポートの情報は、RcfFileGeneratorツールによって生成されるケーブル接続の概要には含まれていないため、この情報を収集するにはHardware Universeを使用する必要があります。
+
+

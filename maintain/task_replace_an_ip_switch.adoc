@@ -130,9 +130,108 @@ To check if the nodes are ready to do a switchover or switchback operation, run 
 .. ヘルス・アラートがないことを確認してください： * system health alert show *
 
 
+. MetroCluster IP構成で、MetroCluster IPスイッチにNVMeシェルフが接続されている場合は、次のコマンドを実行してシェルフのステータスを確認します。
++
+.. シェルフのステータスを表示します：
++
+`storage shelf show`
+
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf show
+                                                        Module  Operational
+       Shelf Name Shelf ID Serial Number   Model        Type    Status
+----------------- -------- --------------- ------------ ------- -----------
+              1.0        0 952123456789    NS224NSM100  NSM100  Normal
+              1.2        0 952987654321    NS224NSM100  NSM100  Normal
+cluster_A::>
+----
+====
+.. スイッチに接続されたNVMeシェルフの接続状況を表示します：
++
+`storage shelf show -shelf <shelf_name> -connectivity`
+
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf show -shelf 1.0 -connectivity
+            Shelf Name: 1.0
+             Stack ID: 1
+             Shelf ID: 0
+            Shelf UID: 00:00:00:00:00:00:00:00
+        Serial Number: 952123456789
+          Module Type: NSM100
+                Model: NS224NSM100
+         Shelf Vendor: NETAPP
+           Disk Count: 24
+      Connection Type: NVMe
+          Shelf State: Online
+               Status: Normal
+Paths:
+
+Controller         Initiator Initiator Side Switch Port Target Side Switch Port    Target Port        TPGN
+------------------ --------- -------------------------- -------------------------- ------------------ ------
+cluster_A-01       0x        -                          0x                         05000005abff0000   67
+cluster_A-02       0x        -                          0x                         030f0005abff0000   44
+
+cluster_A::>
+----
+====
+.. 必要に応じて、リモートデバイス（MetroClusterスイッチ）の名前を収集します：
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf port show -fields remote-device
+
+shelf id remote-device
+----- -- -------------
+1.0   0  IP_switch_A_1
+1.0   1  IP_switch_B_1
+1.0   2  IP_switch_A_2
+1.0   3  IP_switch_B_2
+4 entries were displayed
+----
+====
+.. スイッチに接続されたNVMeシェルフのシェルフポート接続を表示します：
++
+`storage shelf port show -remote-device <switch name>`
+
++
+.例を表示
+[%collapsible]
+====
+[listing]
+----
+cluster_A::> storage shelf port show -remote-device IP_switch_A_1
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.0
+       1 A      connected    false
+       3 B      connected    false
+1.2
+       1 A      connected    false
+       3 B      connected    false
+4 entries were displayed.
+
+cluster_A::>
+----
+====
+
+
 . 設置前に新しいスイッチを設定します。
 +
-既存のスイッチを再利用する場合は、に進みます <<existing_step4,手順 4>>。
+既存のスイッチを再利用する場合は、<<existing_disconnect,古いスイッチから接続を外す手順>>に進みます。
 
 +
 
@@ -142,36 +241,23 @@ NOTE: スイッチをアップグレードまたはダウングレードする�
 スイッチベンダーの手順に従います。
 
 +
-** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを設定します"]
-** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを設定する"]
-** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IPスイッチを設定します"]
-+
 スイッチ _A_1 、 _A_2 、 _B_1 、または _B_2 に、適切な RCF ファイルを適用します。新しいスイッチが古いスイッチと同じ場合は、同じ RCF ファイルを適用する必要があります。
 
 +
 スイッチをアップグレードまたはダウングレードする場合は、サポートされている最新の RCF ファイルを新しいスイッチに適用してください。
 
++
+** link:../install-ip/task_switch_config_broadcom.html["Broadcom IP スイッチを設定します"]
+** link:../install-ip/task_switch_config_cisco.html["Cisco IP スイッチを設定する"]
+** link:../install-ip/task_switch_config_nvidia.html["NVIDIA IPスイッチを設定します"]
 
 
-. port show コマンドを実行してネットワークポートに関する情報を表示します。
-+
-「 * network port show * 」と表示されます
-
-+
-.. すべてのクラスタLIFを変更して自動リバートを無効にします。
-+
-[source, cli]
-----
-network interface modify -vserver <vserver_name> -lif <lif_name> -auto-revert false
-----
-.. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]。
+. link:../install-ip/switch-move-cluster-lifs.html["クラスターLIFを移動します"]。
 +
 
 NOTE: スイッチの更新は、Switch_A_1、Switch_B_1、Switch_A_2、Switch_B_2 の順に行う必要があります。最初のファブリック（Switch_A_1、Switch_B_1）でスイッチを設定した後、2番目のファブリック（Switch_A_2、Switch_B_2）でクラスタ LIF を移動する手順を繰り返す必要があります。link:../install-ip/task_install_and_cable_the_mcc_components.html["MetroCluster IP スイッチの設定について"]を参照してください。
 
-
-
-. [[existing_step4]]古いスイッチから接続を切断します。
+. [[existing_disconnect]]古いスイッチからの接続を外します。
 +
 
 NOTE: 古い構成と新しい構成で同じポートを使用していない接続だけを切断します。新しいスイッチを使用する場合は、すべての接続を切断する必要があります。
@@ -191,13 +277,13 @@ NOTE: 古い構成と新しい構成で同じポートを使用していない�
 
 . 新しいスイッチを使用する場合は、古いスイッチの電源をオフにしてケーブルを外し、古いスイッチを物理的に取り外します。
 +
-既存のスイッチを再利用する場合は、に進みます <<existing_step6,手順 6>>。
+既存のスイッチを再利用する場合は、<<existing_configure,既存のスイッチを設定する手順>> に進みます。
 
 +
 
 NOTE: 管理インターフェイス（使用している場合）を除き、新しいスイッチをケーブル接続しないでください。
 
-. [[existing_step6]]既存のスイッチを設定します。
+. [[existing_configure]]既存のスイッチを設定します。
 +
 スイッチがすでに設定されている場合は、この手順を省略できます。
 
@@ -224,11 +310,19 @@ link:../install-ip/using_rcf_generator.html["MetroCluster IP スイッチをケ�
 [NOTE]
 ====
 *** スイッチタイプが異なる場合は、古いスイッチとは異なるポートが使用されることがあります。スイッチをアップグレードまたはダウングレードする場合は、ローカル ISL を * ケーブル接続しないでください。ローカルISLをケーブル接続するのは、2つ目のネットワークのスイッチをアップグレードまたはダウングレードするときに、一方のサイトの両方のスイッチのタイプとケーブル接続が同じ場合だけにしてください。
-*** Switch-A1とSwitch-B1をアップグレードする場合は、スイッチSwitch-A2とSwitch-B2について手順1~6を実行する必要があります。
 
 
 ====
 
+
+. スイッチに電源を投入します。
++
+新しいスイッチが同じタイプである場合は、新しいスイッチの電源をオンにします。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチの電源を入れてください。
+
+. 最初のファブリック（Switch_A_1とSwitch_B_1）を更新したら、2番目のファブリック（Switch_A_2とSwitch_B_2）についても、上記の手順を繰り返してください。
++
+
+NOTE: 故障したスイッチを同じタイプのスイッチに交換する場合は、故障したスイッチのみを更新すればよく、2つ目のファブリックに対して同じ手順を繰り返す必要はありません。
 
 . ローカルクラスタのケーブル接続を完了します。
 +
@@ -244,18 +338,7 @@ link:../install-ip/using_rcf_generator.html["MetroCluster IP スイッチをケ�
 
 
 
-. スイッチに電源を投入します。
-+
-新しいスイッチが同じものであれば、新しいスイッチの電源を入れてください。スイッチをアップグレードまたはダウングレードする場合は、両方のスイッチの電源を入れてください。この構成では、2つ目のファブリックが更新されるまで、各サイトで2つの異なるスイッチを使用して動作させることができます。
-
 . を繰り返して、MetroCluster 構成が正常であることを確認します <<all_step1,手順 1.>>。
-+
-最初のファブリック内のスイッチをアップグレードまたはダウングレードする場合、ローカルクラスタリングに関連するアラートが表示されることがあります。
-
-+
-
-NOTE: ファブリックをアップグレードまたはダウングレードする場合は、2つ目のファブリックについてもすべての手順を繰り返してください。
-
 . クラスタ内のすべてのLIFを元のホームポートに戻します。
 +
 
@@ -285,3 +368,6 @@ NS224シェルフをMetroCluster IPスイッチに接続しないMetroCluster IP
 
 
 
+
+.完了後
+link:../install-ip/task-configure-log-collection-mccip.html["MetroCluster IPスイッチでログ収集を構成する"]
