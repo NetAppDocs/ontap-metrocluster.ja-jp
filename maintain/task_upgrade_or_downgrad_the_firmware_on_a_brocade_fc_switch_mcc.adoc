@@ -16,9 +16,9 @@ Brocade FC スイッチのファームウェアをアップグレードまたは
 .作業を開始する前に
 この手順を実行する前に、以下の情報をよく確認してください。
 
-* Fabric OS 10.x 以降、Brocade は SNMP 認証に SHA-512 のみをサポートしています。ONTAP は現在 SHA-512 をサポートしておらず、サポートは SHA-256 に限定されています。
+* ONTAP 9.20.1以降では、ONTAPはSNMP認証でSHA-512をサポートしています。Fabric OS 10.x以降では、BrocadeはSNMP認証でSHA-512のみをサポートしています。
 +
-MetroCluster FC スイッチファームウェアを Fabric OS 10.x にアップグレードすると、ONTAP からの SNMP 監視の可視性が失われます。これにより、トラブルシューティング時のリスクが増大し、プロアクティブなアラート機能が失われます。
+9.20.1より前のONTAPバージョンを実行している環境で、MetroCluster FCスイッチのファームウェアをFabric OS 10.xにアップグレードすると、ONTAPからのSNMP監視の可視性が失われます。これにより、トラブルシューティング時のリスクが増加し、プロアクティブなアラートが失われます。
 
 +
 Fabric OS 10.x にアップグレードまたはダウングレードする場合は、link:https://techdocs.broadcom.com/us/en/fibre-channel-networking/fabric-os/fabric-os-software-upgrade/10-0-x/Upgrading-and-Downgrading-Firmware/v24512876.html["Brocade Fabric OS ソフトウェアアップグレードガイド、10.0.x - アップグレードまたはダウングレードの前提条件"^]に概説されている必須タスクを実行する必要があります。

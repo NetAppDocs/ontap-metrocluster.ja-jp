@@ -13,6 +13,9 @@ summary: MetroCluster構成をヒールした後、スイッチバック操作�
 [role="lead"]
 MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチバック処理を実行できます。MetroCluster のスイッチバック処理を実行すると、構成が通常の動作状態に戻ります。ディザスタサイトにある同期元の Storage Virtual Machine （ SVM ）がアクティブになり、ローカルディスクプールからデータを提供します。
 
+.このタスクについて
+スイッチバックを実行する前に、以下の要件を確認してください：
+
 * ディザスタクラスタからサバイバークラスタへのスイッチオーバーが正常に完了している必要があります。
 * データアグリゲートとルートアグリゲートに対して修復が実行されている必要があります。
 * サバイバークラスタノードが HA フェイルオーバー状態ではない（各 HA ペアのすべてのノードが稼働中である）必要があります。
@@ -20,8 +23,10 @@ MetroCluster 構成の修復が完了したら、 MetroCluster のスイッチ�
 * ルートアグリゲートがミラーされている必要があります。
 * スイッチ間リンク（ ISL ）がオンラインになっている必要があります。
 * 必要なライセンスがシステムにインストールされている必要があります。
-+
-.. すべてのノードが enabled 状態であることを確認します MetroCluster node show
+
+
+.手順
+. すべてのノードが enabled 状態であることを確認します MetroCluster node show
 +
 次の例は、ノードが有効な状態であることを表示します。
 
@@ -41,10 +46,10 @@ Group Cluster Node        State          Mirroring Mode
               node_B_2    configured     enabled   waiting for switchback recovery
 4 entries were displayed.
 ----
-.. すべての SVM で再同期が完了したことを確認します。「 MetroCluster vserver show 」
-.. 修復処理によって実行される LIF の自動移行が正常に完了したことを確認します。 MetroCluster check lif show
-.. シミュレートされたスイッチバックを実行して、システムが「 MetroCluster switchback -simulate 」状態であることを確認します
-.. 構成を確認します。
+. すべての SVM で再同期が完了したことを確認します。「 MetroCluster vserver show 」
+. 修復処理によって実行される LIF の自動移行が正常に完了したことを確認します。 MetroCluster check lif show
+. シミュレートされたスイッチバックを実行して、システムが「 MetroCluster switchback -simulate 」状態であることを確認します
+. 構成を確認します。
 +
 「 MetroCluster check run 」のようになります
 
@@ -76,8 +81,8 @@ clusters            ok
 connections         ok
 6 entries were displayed.
 ----
-.. サバイバークラスタ内の任意のノードから MetroCluster switchback コマンドを実行して、スイッチバックを実行します。 MetroCluster switchback
-.. スイッチバック操作の進行状況を確認します MetroCluster show
+. サバイバークラスタ内の任意のノードから MetroCluster switchback コマンドを実行して、スイッチバックを実行します。 MetroCluster switchback
+. スイッチバック操作の進行状況を確認します MetroCluster show
 +
 出力に waiting-for-switchback と表示された場合は、スイッチバック処理がまだ進行中です。
 
@@ -112,7 +117,5 @@ Remote: cluster_A         Configuration state configured
 ----
 +
 スイッチバックが完了するまでに時間がかかる場合は、「 MetroCluster config-replication resync-status show 」コマンドを使用することで、進行中のベースラインのステータスを確認できます。このコマンドは、 advanced 権限レベルで実行します。
-
-
 
 

@@ -13,6 +13,7 @@ summary: ネゴシエートスイッチオーバーは、パートナーサイ�
 [role="lead"]
 ネゴシエートスイッチオーバーは、パートナーサイトのプロセスをクリーンシャットダウンしてから、パートナーサイトの処理をスイッチオーバーします。ネゴシエートスイッチオーバーは、 MetroCluster サイトでのメンテナンスの実施、またはスイッチオーバー機能のテストに使用できます。
 
+.作業を開始する前に
 * スイッチバック処理を実行する前に、設定の変更がすべて完了している必要があります。
 +
 これにより、ネゴシエートスイッチオーバーまたはスイッチバックの処理との競合が回避されます。
@@ -29,11 +30,12 @@ https://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["シ�
 * 新しい SnapMirror 関係を作成する前に、 MetroCluster 構成の両方のサイトで replication.create_data_protection_rels.enable オプションを ON に設定しておく必要があります。
 * 2 ノード MetroCluster 構成の場合、サイト間で ONTAP のバージョンが一致していないときは、アップグレード時に新しい SnapMirror 関係を作成しないようにする必要があります。
 * 4 ノード MetroCluster 構成の場合、サイト間で ONTAP のバージョンが一致している必要があります。
+* ネゴシエートされたスイッチオーバーを実行する前に、link:switchover-limitations.html["MetroCluster構成がスイッチオーバー状態の場合の制限事項"]を確認してください。
 
 
 リカバリサイトがスイッチバック処理を実行できるようになるまでに数時間かかることがあります。
 
-MetroCluster switchover コマンドは、 MetroCluster 構成のすべての DR グループで、ノードをスイッチオーバーします。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
+「 MetroCluster switchover 」コマンドは、 MetroCluster 構成のすべての DR グループのノードを切り替えます。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。
 
 ネゴシエートスイッチオーバーの準備中および実行中は、クラスタの設定を変更したり、テイクオーバーまたはギブバック処理を実行したりしないでください。
 
@@ -47,7 +49,7 @@ MetroCluster FC 構成の場合：
 MetroCluster IP 構成の場合：
 
 
-NOTE: メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。link:../maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html["メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します"]
+NOTE: MetroCluster構成をTiebreakerまたはMediatorユーティリティで監視している場合は、メンテナンス タスクを実行する前に監視を解除する必要があります。link:../maintain/concept_remove_mediator_or_tiebreaker_when_performing_maintenance_tasks.html["メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します"]。
 
 * ONTAP 9.4 以前：
 +
@@ -63,13 +65,17 @@ NOTE: メンテナンスタスクを実行する前に、 Tiebreaker または�
 * ONTAP 9.8 以降の場合：
 +
 ** リモートストレージへのアクセスが失われると、ディザスタサイトにあるミラーされていないアグリゲートは使用できなくなります。これにより、コントローラが停止する可能性があります。
-+
-... MetroCluster check run 、 MetroCluster check show 、および MetroCluster check config-replication show の各コマンドを使用して、進行中または保留中の設定更新がないことを確認します。問題：稼働したままにするサイトからのコマンドです。
-... 稼働したままにするサイトから ' スイッチオーバーを実行します MetroCluster switchover
+
+
+
+
+.手順
+. MetroCluster check run 、 MetroCluster check show 、および MetroCluster check config-replication show の各コマンドを使用して、進行中または保留中の設定更新がないことを確認します。問題：稼働したままにするサイトからのコマンドです。
+. 稼働したままにするサイトから ' スイッチオーバーを実行します MetroCluster switchover
 +
 この処理が完了するまでに数分かかることがあります。
 
-... スイッチオーバーの完了を監視します MetroCluster operation show
+. スイッチオーバーの完了を監視します MetroCluster operation show
 +
 [listing]
 ----
@@ -87,9 +93,5 @@ cluster_A::*> metrocluster operation show
    End time: 10/4/2012 19:04:22
      Errors: -
 ----
-... SnapMirror 構成または SnapVault 構成があれば、再確立します。
-
-
-
-
+. SnapMirror 構成または SnapVault 構成があれば、再確立します。
 

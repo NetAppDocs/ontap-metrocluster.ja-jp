@@ -34,6 +34,31 @@ MetroCluster 構成で ONTAP を使用する場合は、ライセンス、 Metro
 
 
 
+[[svm-storage-limit-support-in-a-metrocluster-ip-configuration]]
+== MetroCluster IP構成でのSVMストレージ制限のサポート
+
+ONTAP 9.20.1以降では、MetroCluster IP構成の一部であるSVMに対してストレージ制限を設定できます。
+
+
+CAUTION: MetroCluster構成が、 https://hwu.netapp.com/["Hardware Universe"^]に記載されているプラットフォームの制限を超えないことを確認する必要があります。
+
+* 通常動作時（切り替え時以外）は、*同期ソースSVM*上でのみストレージ制限設定を変更できます。*同期先SVM*のストレージ制限を有効化、無効化、または変更することはできません。
+* 切り替え中は、*同期先SVM*に対して以下の制限が適用されます：
++
+** 同期先SVMのストレージ制限を有効または無効にするために `vserver modify -storage-limit`コマンドを使用することはできません。つまり、値を0から0以外の値に変更したり、0以外の値から0に変更したりすることはできません。このコマンドは以下のエラーで失敗します：
++
+`This operation is not permitted on a Vserver that is configured as the destination of a MetroCluster Vserver relationship`
+
+** ストレージ容量の上限は、ゼロ以外の値から別の値に変更することができます（例えば、100TBから200TBへ）。この新しい値は、スイッチバック後も維持されます。
+** ストレージ制限を有効または無効にするには、スイッチバックが完了するまで待ってから、*sync-source SVM* で変更を行ってください。その後、その値は sync-destination SVM にレプリケートされます。
+
+
+
+
+詳細については、link:https://docs.netapp.com/us-en/ontap/volumes/manage-svm-capacity.html["ONTAP SVM容量の管理"^]を参照してください。
+
+
+
 [[metrocluster-operations-in-ontap-system-manager]]
 == ONTAP System Manager での MetroCluster 処理
 

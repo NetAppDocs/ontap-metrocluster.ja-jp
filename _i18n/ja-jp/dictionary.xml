@@ -1918,7 +1918,6 @@
   <block id="98b62c826619c29a4bad696e74f75477" category="list-text">サポートケースが自動で生成されないようにするには、アップグレードが進行中であることを示す AutoSupport メッセージを送信します。</block>
   <block id="7df74d0e0c825c9d4fe156e6bd9676e5" category="list-text">次のコマンドを問題に設定します。</block>
   <block id="626b3d2c42e820bd7603e0a6c34ff781" category="paragraph">この時間が経過する前にメンテナンスが完了した場合は、メンテナンス期間が終了したことを通知する AutoSupport メッセージを起動できます。</block>
-  <block id="7e309551053b69f5958f1afe31e831e8" category="paragraph">移行を実行する前に、 MetroCluster 構成の健全性と接続を確認する必要があります</block>
   <block id="1715d07a24988d9207de94794a6f01cc" category="list-text">クラスタが正常であることを確認します。</block>
   <block id="37ae281d8610415ea665d008e25a738c" category="list-text">すべてのクラスタポートが動作していることを確認します。</block>
   <block id="98aac6693f8a0dda166a1ba85d8167f6" category="list-text">すべてのクラスタ LIF が動作していることを確認します。</block>
@@ -3342,7 +3341,6 @@
   <block id="667c25f10eabde939980634b87ffefd4" category="admonition">この処理は、ネゴシエートスイッチオーバーにのみ該当します。</block>
   <block id="2e74e64d43d016a76bb666ef8d813d63" category="list-text">ディザスタサイトに属する同期先の SVM を起動します。</block>
   <block id="0218f649d94abd682cea1da48aa9e4d9" category="paragraph">DR パートナーのルートアグリゲートは、スイッチオーバー中にオンラインになりません。</block>
-  <block id="00d5e4814bf92d74ea337d68dfb3deb1" category="paragraph">MetroCluster switchover コマンドは、 MetroCluster 構成のすべての DR グループで、ノードをスイッチオーバーします。たとえば、 8 ノードの MetroCluster 構成では、両方の DR グループでノードがスイッチオーバーされます。</block>
   <block id="c05b3d4aeccf803e0c2f3c7b13cd3b71" category="paragraph">サービスのみをリモートサイトにスイッチオーバーする場合は、サイトをフェンシングせずにネゴシエートスイッチオーバーを実行します。ストレージまたは機器を信頼できない場合は、ディザスタサイトをフェンシングしてから、計画外スイッチオーバーを実行する必要があります。フェンシングにより、ディスクに電源が順次投入されたときの RAID の再構築が回避されます。</block>
   <block id="2c7fe6854dcb3aaafaae11fe94e35ade" category="admonition">この手順は、もう一方のサイトが安定していてオフラインにすることがない場合にのみ使用してください。</block>
   <block id="630068c34f889d10d8c0cfa78675c945" category="section-title">スイッチオーバー中にコマンドを使用できるかどうか</block>
@@ -9407,7 +9405,6 @@
   <block id="411fd118744e7bc163c41845c9fedb88" category="paragraph">「 storage failover giveback 」を参照してください</block>
   <block id="c9616da62905adb15396b653b4d8475b" category="paragraph">クラスタピアリングの再設定が必要になる場合があります。</block>
   <block id="6feea37f7c9ba85a19752c43872c3438" category="inline-link-macro">メンテナンス作業を実行する前に、 ONTAP メディエーターまたは Tiebreaker の監視を削除します</block>
-  <block id="c53469c0e05ec04d4c7bf601859fd9fb" category="admonition">メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。<block ref="a0ba112c9c0ab9c29c24131f966b9b69" category="inline-link-macro-rx"></block></block>
   <block id="5713f2c18fca6cff15f3222aca93a2a6" category="summary">Tiebreaker またはメディエーター監視ソフトウェアを使用する構成では、メンテナンスの前にソフトウェアが設定されていない必要があります</block>
   <block id="4a397091a3693a57176ee396010387ca" category="paragraph">メンテナンスタスクを実行する前に、 Tiebreaker またはメディエーターユーティリティで MetroCluster 設定を監視している場合は、監視を解除する必要があります。</block>
   <block id="65e494c11bd4a371acff4afdb4808d87" category="paragraph">メンテナンスタスクには、コントローラプラットフォームのアップグレード、 ONTAP のアップグレード、ネゴシエートスイッチオーバーとスイッチバックの実行が含まれます。</block>
@@ -11208,7 +11205,6 @@
   <block id="a6c37e682cfc0729046dd2e498ad461c" category="list-text"><block ref="ef78584b865ab255d612a5aa6725b10d" category="inline-xref-macro-rx"></block></block>
   <block id="4d8d9056b62fc01f5cd3f0898c551fde" category="section-title">プラットフォームのサポート</block>
   <block id="9b6c50e7cbf80c446a0078ceb63104d0" category="section-title">スイッチのサポート</block>
-  <block id="9342c35c4399c8e6faf7c07d8bae26c5" category="paragraph">ONTAP MetroCluster構成に影響する既知の問題、制限事項、およびアップグレードに関する注意事項の詳細については、『<block ref="6e7f74aa9001f0524a965144f528bbc2" category="inline-link-rx"></block>。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。</block>
   <block id="ab67c4c2b9b0f6070e68d79d3a0b6c63" category="cell">ONTAPメディエーター機能</block>
   <block id="5793a46a4020e2b9d210afaa14008d67" category="paragraph">環境がシャットダウンした場合は、Mediator-Assisted Automatic Unplanned Switchover（MAUSO；メディエーターアシスト自動計画外スイッチオーバー）がサポートされます。</block>
   <block id="de09b0e8b75c62ac84c620713e05647b" category="paragraph">共有ストレージスイッチを使用して、MetroCluster FC構成からMetroCluster IP構成に無停止で移行できます。</block>
@@ -13668,7 +13664,6 @@
   <block id="1acb751c22e164e9d61c762caf509e82" category="paragraph">この手順で使用される例：controller_B_2</block>
   <block id="eccb3ce2fe6ad5d172a57438aae17dae" category="doc">各MetroCluster FCノードでミラーリングされたデータ アグリゲートを作成します</block>
   <block id="b68398936049bd282794c33831e2aea9" category="paragraph">MetroCluster IP 構成で<block ref="616743bfa4fd61d558c556fe614cb2e9" prefix=" " category="inline-code"></block>コマンドを使用した AFF A70 から AFF A90 および FAS70 から FAS90 へのシステムアップグレードのサポート。</block>
-  <block id="2691309e1710cb6a0083f4722ac33e8d" category="admonition">現在 100Gbps ISL 要件を満たしていないプラットフォームでの ONTAP 9.18.1 以降へのアップグレードはブロックされず、続行できます。ただし、NetApp は、期待されるパフォーマンスと可用性のレベルを維持するために、お客様が 100Gbps ISL 接続に移行することを強く推奨します。</block>
   <block id="2424b4c07e55bece1d1a95007a6782a8" category="list-text">ファブリックごとに少なくとも 1 つの 10Gbps ISL ポートが必要です。</block>
   <block id="925adb23a78386992d24bff6e6e1b4e2" category="list-text">NS224ストレージを接続するCisco 9336C-FX2スイッチをケーブル接続する場合、最大2つのMetroCluster構成またはDRグループしか使用できません。少なくとも1つのMetroCluster構成またはDRグループは、NS224シェルフをMetroClusterスイッチに接続している必要があります。</block>
   <block id="2b4028f1ab41ecd91ee89bedc51fffa6" category="list-text">スイッチ接続NS224ストレージをサポートしていない通常のMetroCluster構成を拡張し、スイッチ接続NS224ストレージを備えたMetroCluster構成を追加する場合は、次の情報を確認してください：</block>
@@ -13699,7 +13694,6 @@
   <block id="d57bb94baa67d066f16fc9fc5b6def7e" category="list-text">ネットワーク冗長プロトコル（HSRP や VRRP など）またはループ回避プロトコル（STP など）を使用しています。</block>
   <block id="29c1e5df7e26dbc34a0230732d8e3a0c" category="list-text">ネットワークの再収束時間（たとえば、ルーティング プロトコルが安定するか、再選択後に HSRP/VRRP がアクティブになる）は、デフォルトのタイムアウトの10秒を超える場合があります。</block>
   <block id="fdee122f655bcc29473b91ef1ae580b7" category="paragraph">これらの要件は、すべてのMetroCluster IP構成のISLに適用されます：</block>
-  <block id="c3dce11df95ca3b74ddf51996b7b87e2" category="list-text">ONTAP 9.18.1以降、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームでは、最小ISLリンク速度として100Gbpsが必要です。異なるISL速度を使用するには、Feature Policy Variance Request（FPVR）が必要です。FPVRを提出するには、NetApp営業チームにお問い合わせください。</block>
   <block id="3f6fd3cf871a70252cd684eb0d12b602" category="paragraph">メンテナンスまたは移転を開始する前に、MetroCluster IP 構成全体とすべての機器の電源をオフにします。</block>
   <block id="a79e1c21f0beaf2ed51b7aec418f4f70" category="list-text">両方のサイトからMetroCluster構成を確認します。</block>
   <block id="108a4ad72df5c318a77dad90928d8770" category="admonition">MetroCluster IP構成では、構成でONTAP Mediatorを使用していない限り、AUSO障害ドメインはすでに「auso-disabled」に設定されています。</block>
@@ -13873,14 +13867,9 @@
   <block id="ded8f2620d58acfd69775bc49e48b168" category="list-text">管理SVMで暗号化が有効になっている場合は、キー管理構成に応じた適切なコマンドを使用してキーをリストアします。</block>
   <block id="594c07221c5565837dffd5ce4580e7bb" category="admonition"><block ref="e7acb1ae14be0e5233d619851263fdae" prefix=" " category="inline-code"></block>コマンドの出力は、プラットフォームのモデルによって異なる場合があります。例えば、一部のプラットフォームでは、HA パートナーの行が出力に表示されない場合があります。</block>
   <block id="2348f32e5e421ab4ef22af7e7810041e" category="section-title">MetroCluster FC構成でのSNMPv3の設定</block>
-  <block id="f72f4581559ba331ae5b793ab29d815a" category="paragraph">ONTAPは現在、プライバシー保護（暗号化）にはAES-128、認証にはSHA-256をサポートしています。</block>
-  <block id="44a800928beee85aed0fba3a92f2408a" category="list-text">Fabric OS 10.x以降では、BrocadeはSNMP認証にSHA-512のみをサポートしています。ONTAPは現在、SHA-512をサポートしておらず、サポートはSHA‑256に限定されています。</block>
-  <block id="f02ccf6c395105226a61800f93771185" category="list-text">MetroCluster FC スイッチで Fabric OS 10.x 以降が実行されている場合、SNMP を設定することはできず、これらのスイッチを ONTAP ヘルスモニタリングに追加することもできません。スイッチのファームウェアをダウングレードする場合は、<block ref="ceeb82cfdbafdefa3498267033925b4d" category="inline-link-macro-rx"></block> の手順に従ってください。</block>
   <block id="0555d71723e207adf1d26aacd23fca99" category="open-title">Brocadeスイッチ（FOS 9.x）</block>
   <block id="52f25e0e1d7123b8e60a485a2591101f" category="paragraph">Fabric OS 9.0.1以降、SNMPv2はBrocadeスイッチのヘルスモニタリングではサポートされていません。代わりにSNMPv3を使用する必要があります。SNMPv3を使用している場合は、次のセクションに進む前にONTAPでSNMPv3を設定する必要があります。詳細については、<block ref="bccdc4729d6354379109b6753bfdc947" category="inline-xref-macro-rx"></block>を参照してください。</block>
   <block id="eede7d7d2eb026eb4a46711feb940141" category="paragraph">この手順を実行する前に、以下の情報をよく確認してください。</block>
-  <block id="8e0da5650cc19161382006e7a36b91eb" category="list-text">Fabric OS 10.x 以降、Brocade は SNMP 認証に SHA-512 のみをサポートしています。ONTAP は現在 SHA-512 をサポートしておらず、サポートは SHA-256 に限定されています。</block>
-  <block id="f56c2e751b109490bad7e0eaedf3c300" category="paragraph">MetroCluster FC スイッチファームウェアを Fabric OS 10.x にアップグレードすると、ONTAP からの SNMP 監視の可視性が失われます。これにより、トラブルシューティング時のリスクが増大し、プロアクティブなアラート機能が失われます。</block>
   <block id="fded9116e1c7860c9efc9c570fc2b5fb" category="inline-link-macro">Brocade Fabric OS ソフトウェアアップグレードガイド、10.0.x - アップグレードまたはダウングレードの前提条件</block>
   <block id="e28259c7fcba5a4f4ea8558015e892ff" category="paragraph">Fabric OS 10.x にアップグレードまたはダウングレードする場合は、<block ref="4c794930872c13dd5a27bee89c2df646" category="inline-link-macro-rx"></block>に概説されている必須タスクを実行する必要があります。</block>
   <block id="51730b95b3cfe613db659073f7d3e446" category="admonition">Fabric OS 10.x以降へのアップグレードまたはダウングレードを行う前に、これらの制限事項を慎重に検討する必要があります。</block>
@@ -14515,4 +14504,99 @@
   <block id="4362ba43074608918c83408e89d7c0ff" category="list-text">CiscoまたはBroadcomのMetroCluster IPスイッチのファームウェアをアップグレードする場合、アップグレードを進める前に現在のスイッチ構成のコピーを保存できます。</block>
   <block id="b85394c1aa7243bdf5cf7a0f05d8f93f" category="admonition">ファームウェアのアップグレード後にRCFをアップグレードするためにスイッチをリセットする必要がある場合は、リセットによって保存されているスイッチの設定がクリアされるため、この手順をスキップできます。</block>
   <block id="498ba59acaecdd7d242002ff07605b27" category="sidebar">MetoCluster IPスイッチのケーブル接続</block>
+  <block id="42d6c69f73be9acd69b8654e26ea10ff" category="doc">輻輳制御を有効にする</block>
+  <block id="ac677683e5498286ab397739377f391a" category="paragraph">ONTAP 9.20.1以降では、MetroCluster IP構成でWAN Inter-Switch Link（ISL）輻輳制御を有効にすることで、10Gbps、25Gbps、40Gbpsなどの低帯域幅または混在する帯域幅で動作するISLを、100GbpsのMetroCluster IPバックエンドポート速度を持つプラットフォームで使用できるようになります。</block>
+  <block id="e5f5bcd84c8aa4d510436c6df8309e92" category="paragraph">100Gbpsアダプタが生成するレプリケーショントラフィックは、リンク速度の低いISLをオーバーランする可能性があり、スイッチバッファの負荷増大、PAUSEバックプレッシャー、パケット損失、およびレプリケーションの不安定化を引き起こすおそれがあります。WAN ISL輻輳制御は、ISL帯域幅とノード数を使用して送信スループットの上限を計算することで、この問題に対処します。この上限は、相互接続転送トラフィックを制御する送信スループットのしきい値として機能します。測定された送信スループットが計算された上限を超えた場合、転送は拒否され、相互接続ネットワーク上で送信スループットのしきい値が適用されます。</block>
+  <block id="f89aef79a9f93b502888c8d69a840492" category="admonition">WAN ISLの輻輳制御を設定しても、低帯域幅のISLを使用した場合に発生する可能性のあるパフォーマンス上の問題が発生しないことを保証するものではありません。NetAppは、最適なパフォーマンスを得るために、100Gbps ISL接続への移行を強くお勧めします。</block>
+  <block id="cbbe1fb74164a6c0ba99af4db32293a0" category="list-text">MetroCluster IP構成は、ONTAP 9.20.1以降を実行している必要があります。</block>
+  <block id="0c8c25e1dd674f15d2130675d5417381" category="list-text">WAN ISLの輻輳制御はデフォルトでは無効になっているため、明示的に有効にする必要があります。</block>
+  <block id="9208bc23b61f79106b05413807d297de" category="list-text">以下のシナリオでこの機能を設定するには、NetAppサポートに連絡する必要があります：</block>
+  <block id="c19cab19cba469dc00d3971eb9f9eb9e" category="list-text">機能の有効化または更新時にISL情報が自動的に取得できない場合</block>
+  <block id="1a3a0bc0d36172a1abb8548453f1757c" category="list-text">同じスイッチに接続された2つの4ノードMetroCluster IP構成がある場合</block>
+  <block id="1c4ddfddbafc38e158559ea23f2d5487" category="list-text">機能を有効にした後に計算された上限値を変更する必要がある場合</block>
+  <block id="fe6af216498295e8662984c5da1d8b80" category="list-text">輻輳制御を有効にした後にトポロジーが変更された場合は、新しい上限値を計算するために輻輳制御の設定を更新する必要があります。たとえば、ISLの数や速度が変更された場合や、MetroCluster IP構成に新しいノードを追加した場合などです。</block>
+  <block id="8237932ad843b383ee715fce0e65619f" category="list-text">各サイトは独自に上限を算出します。ローカルサイトで<block ref="1d256562c41ab1797590dea25540292f" prefix=" " category="inline-code"></block>コマンドを実行すると、次の処理がトリガーされます：</block>
+  <block id="466d71f85df722213fba611dd91643d9" category="list-text">ローカルサイトは、その上限を準備して計算します。</block>
+  <block id="44decfd683d51a563b21d871f714bd4d" category="list-text">パートナーサイトは、コマンドが実行されるローカルサイトとは別に、上限値を準備および計算します。技術的には可能性は低いものの、ローカルサイトとパートナーサイトでは異なる上限値が算出される可能性があります。これは想定される動作であり、故障や設定ミスを示すものではありません。</block>
+  <block id="58ecc4d4634e8ce4eb540ecc56b4f2a8" category="list-text">各サイトは計算した値を目的の状態として書き込み、カーネルがそれを適用します。</block>
+  <block id="5885c21f775ac55e4c54186fb78ad3a0" category="list-text">WAN ISL輻輳制御は、有効化されると自動的に動作します。</block>
+  <block id="a7429ef620032fd78de314c9a2afedb7" category="paragraph">WAN ISL輻輳制御を有効にするには、ローカルクラスタで以下の手順を実行してください。</block>
+  <block id="9f925ac4a83b17361c09ea44b716231d" category="admonition">同じスイッチに接続されている2つの4ノードMetroCluster IP構成がある場合は、この機能を有効にするためにNetAppサポートにお問い合わせください。</block>
+  <block id="dcbe9371e3861ca7104b3f3c1dc93c26" category="list-text">cluster_AでWAN ISL輻輳制御を有効にする：</block>
+  <block id="5e9d3a4332ca40cf6eabe0f4c7eb1dec" category="paragraph">コマンドが<block ref="a818d7aa56b14e06775c6e446527f287" prefix=" " category="inline-code"></block>エラーで失敗した場合、ISL情報は自動的に取得できないため、この機能を有効にするにはNetAppサポートにお問い合わせください。</block>
+  <block id="64bb552b833a58c5718373650dcfdf64" category="list-text">WAN ISL輻輳制御が有効になっていることを確認してください：</block>
+  <block id="2e21647120066b53d2ddc013382e8fca" category="admonition">この機能を有効にした後に計算された上限値を変更する必要がある場合は、NetAppサポートにお問い合わせください。</block>
+  <block id="d8e5597c89866d787f9d9a3ae299a7dc" category="section-title">輻輳制御の更新</block>
+  <block id="223bdbb5f58c1f1e6bd8d25eb985d9b2" category="paragraph">WAN ISLの輻輳制御設定を更新するには、ローカルクラスタで以下の手順を実行してください。ISLの数や速度が変更された場合や、新しいノードがMetroCluster IP構成に追加された場合など、トポロジが変更されたときは常に輻輳制御構成を更新する必要があります。</block>
+  <block id="a2df9680124d6f922e3d4f62d6b072a2" category="list-text">cluster_A の WAN ISL 輻輳制御設定を更新します：</block>
+  <block id="f24196a3aa1f7c6123d550e329f8cac2" category="paragraph">ONTAPは現在のネットワーク状況に基づいて新しい上限値を計算し、自動的に適用します。</block>
+  <block id="65839adcf23750a6d4d1050f1d84c33a" category="paragraph">コマンドが<block ref="a818d7aa56b14e06775c6e446527f287" prefix=" " category="inline-code"></block>エラーで失敗した場合、ISL情報は自動的に取得できないため、設定を更新するにはNetAppサポートにお問い合わせください。</block>
+  <block id="4af4a301876c0e722116c96aa495409e" category="section-title">WAN ISL輻輳制御アクティビティを監視する</block>
+  <block id="229ecca4b12e280681e8f799b3d79ec5" category="paragraph">以下のコマンドを使用して、輻輳制御が期待どおりに機能していることを確認できます：</block>
+  <block id="416e975ff8dd076399b5fbf84af09dbf" category="paragraph">有効にした場合、出力は次の例のようになります：</block>
+  <block id="d7e7e606ef57a5a7e59a394475e148d0" category="paragraph">また、<block ref="7aef5f885a9c89afe8ef4563814d1889" prefix=" " category="inline-code"></block>パラメータを使用して、各ノードのより詳細な情報を表示することもできます：</block>
+  <block id="91e256e81aff3105a5227b4ca623466f" category="section-title">輻輳制御を無効にする</block>
+  <block id="ff9f5f43077677b58ad3f21a4206baf3" category="list-text">cluster_A で WAN ISL 輻輳制御を無効にします：</block>
+  <block id="49a1a9e0d8ca26f09b1a1879db22ca48" category="list-text">機能が無効になっていることを確認してください：</block>
+  <block id="32713216432104a5d3f3331914536fc1" category="paragraph">ONTAP 9.20.1以降では、MetroCluster IP構成の一部であるSVMに対してストレージ制限を設定できます。</block>
+  <block id="d03c58f3a7451c865a64f7b82b747190" category="admonition">MetroCluster構成が、<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block>に記載されているプラットフォームの制限を超えないことを確認する必要があります。</block>
+  <block id="ea430f8dc6fe3d5456ffd33dc0543091" category="list-text">通常動作時（切り替え時以外）は、*同期ソースSVM*上でのみストレージ制限設定を変更できます。*同期先SVM*のストレージ制限を有効化、無効化、または変更することはできません。</block>
+  <block id="79e25b02d395b307562edcae496c7e1c" category="list-text">切り替え中は、*同期先SVM*に対して以下の制限が適用されます：</block>
+  <block id="eb1f005479417d95bb569fdc7104708a" category="list-text">同期先SVMのストレージ制限を有効または無効にするために<block ref="038438dd68ee9e64810ea3e86265a863" prefix=" " category="inline-code"></block>コマンドを使用することはできません。つまり、値を0から0以外の値に変更したり、0以外の値から0に変更したりすることはできません。このコマンドは以下のエラーで失敗します：</block>
+  <block id="edc1a8d2b0af9a4ef6b7b06e9b8ba457" category="paragraph"><block ref="bec05c498707d99dc469c6fe4aa41116" prefix="" category="inline-code"></block></block>
+  <block id="7c6c7030dd038a78b5993adecd6d738c" category="list-text">ストレージ容量の上限は、ゼロ以外の値から別の値に変更することができます（例えば、100TBから200TBへ）。この新しい値は、スイッチバック後も維持されます。</block>
+  <block id="227f62935717c2fdacc24719e921dc11" category="list-text">ストレージ制限を有効または無効にするには、スイッチバックが完了するまで待ってから、*sync-source SVM* で変更を行ってください。その後、その値は sync-destination SVM にレプリケートされます。</block>
+  <block id="9082fbfdd5c6b8aed5a4e6065fa3efee" category="inline-link-macro">ONTAP SVM容量の管理</block>
+  <block id="73f937dcfb7b849185d76ad70e485bc8" category="paragraph">詳細については、<block ref="8ed0219013bd2b19380552e82b55b200" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="9db6f037a95538082d20874b21ae8a0d" category="admonition">切り替えを実行する前に、<block ref="dd499f6612b24bcbd1afefc17b1b675f" category="inline-link-macro-rx"></block>を確認してください。</block>
+  <block id="21ff733b82400d85a5c9ee97a837d734" category="list-text">ONTAP 9.20.1以降、ONTAPはSNMP認証でSHA-512をサポートしています。</block>
+  <block id="65d56fd22812ff023aa1c1a87f75b424" category="list-text">ONTAPは、SNMP認証および暗号化に関して以下のプロトコルをサポートしています：</block>
+  <block id="687eddb609350d2638553fa4a4dd8884" category="list-text">プライバシー（暗号化）：AES-128</block>
+  <block id="bf65efba49839f3e43b6f7d82340861d" category="list-text">認証：</block>
+  <block id="536544d639c91bc6f68cba4a470f0927" category="list-text">SHA-512（ONTAP 9.20.1以降）</block>
+  <block id="7dcd62e00bddef0a9ef76c9e135e7abb" category="list-text">SHA-256を使用したチャンク アップロード署名要求がサポートされるようになりました。</block>
+  <block id="90dfdba73e7624d99fcb38a1e3473d19" category="list-text">Fabric OS 10.x以降では、BrocadeはSNMP認証にSHA-512のみをサポートしています。</block>
+  <block id="77672775e13e51068da7b29fe5a76957" category="list-text">実行しているONTAPのバージョンが9.20.1より前で、MetroCluster FCスイッチでFabric OS 10.x以降を実行している場合、SNMPを設定することはできず、これらのスイッチをONTAPのヘルスモニタリングに追加することもできません。スイッチのファームウェアをダウングレードする場合は、<block ref="ceeb82cfdbafdefa3498267033925b4d" category="inline-link-macro-rx"></block>の手順に従ってください。</block>
+  <block id="00375bb828a3a7af8001182c5540913c" category="paragraph">以下の出力はあくまで例示であり、ご使用の環境でサポートされている設定を選択してください。</block>
+  <block id="84b0254762caaf1fa9e4740914691c3c" category="inline-link-macro">WAN ISL輻輳制御の設定</block>
+  <block id="72862f4131007b0ecf0862fe7a609c82" category="list-text">ONTAP 9.20.1以降では、MetroCluster IP構成でWANインタースイッチリンク（ISL）輻輳制御を有効にすることで、10Gbps、25Gbps、40Gbpsなどの低帯域幅または混在帯域幅で動作するISLを、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームで使用できるようになります。詳細については、<block ref="462005b2032e79d5709834d981cb3c47" category="inline-link-macro-rx"></block>を参照してください。</block>
+  <block id="ae3a08b13a76ca7fcaef3877b97f945d" category="list-text">ONTAP 9.18.1およびONTAP 9.19.1では、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームには、最低100GbpsのISLリンク速度が必要です。これらのONTAPバージョンを実行している影響を受けるプラットフォームで異なるISL速度を使用するには、機能ポリシー変更要求（FPVR）が必要です。FPVRを提出するには、NetApp営業チームにお問い合わせください。</block>
+  <block id="0c26d830b12fdeab820d395993553d8c" category="admonition">現在100Gbps ISLの要件を満たしていないプラットフォームでのONTAPソフトウェアのアップグレードは、ブロックされずに続行できます。しかし、NetAppは、期待されるパフォーマンスと可用性レベルを維持するため、お客様には100Gbps ISL接続への移行を強くお勧めします。</block>
+  <block id="6f0bd889ddce327cdae550d46bff38e2" category="section-title">MetroCluster IP構成でのSVMストレージ制限のサポート</block>
+  <block id="e7042c041415edd25de8ec2bd84cb395" category="summary">ONTAP 9.20.1以降、100Gbpsネットワークアダプタを使用するMetroCluster IP構成は、10Gbps、25Gbps、40Gbpsなどの低帯域幅または混在する帯域幅で動作するインタースイッチリンク（ISL）を介して接続できます。</block>
+  <block id="0af25433a3eca71d2bc083866d8450a4" category="doc">MetroCluster IP WAN ISL輻輳制御を設定する</block>
+  <block id="8eba2d7f997c4a6536c84ace10559941" category="inline-link-macro">WAN ISL輻輳制御設定を更新する</block>
+  <block id="fe1939e8417a00a5d761222ceeb4eb18" category="list-text">MetroCluster IP構成でWAN ISL輻輳制御が有効になっている場合は、<block ref="a3e50b695c7be010ff9602926c301dfa" category="inline-link-macro-rx"></block>する必要があります。</block>
+  <block id="9a22d1a02e83923e0ed781cd518dd9dd" category="list-text">ONTAP 9.20.1以降では、ONTAPはSNMP認証でSHA-512をサポートしています。Fabric OS 10.x以降では、BrocadeはSNMP認証でSHA-512のみをサポートしています。</block>
+  <block id="c6e1f0f269fd9416c2e70509aeaff3b6" category="paragraph">9.20.1より前のONTAPバージョンを実行している環境で、MetroCluster FCスイッチのファームウェアをFabric OS 10.xにアップグレードすると、ONTAPからのSNMP監視の可視性が失われます。これにより、トラブルシューティング時のリスクが増加し、プロアクティブなアラートが失われます。</block>
+  <block id="d81f4037f57e4f3a923789db8df28228" category="paragraph"><block ref="038438dd68ee9e64810ea3e86265a863" prefix="" category="inline-code"></block></block>
+  <block id="fe16a63103d069b69ab7edd2017d9781" category="paragraph">MetroClusterのスイッチオーバー中にストレージ制限を有効または無効にする場合、以下の制限が適用されます：</block>
+  <block id="68c2cd78b3272547591a73a643ecd0f7" category="list-text">同期先SVMでは、<block ref="038438dd68ee9e64810ea3e86265a863" prefix=" " category="inline-code"></block>コマンドを使用してストレージ制限を有効または無効にすることはできません。これは、値を0から0以外の値に変更したり、0以外の値から0に変更したりすることはできないことを意味します。このコマンドは以下のエラーで失敗します：</block>
+  <block id="4f30dfd5367fcca4a4e5e32ca9f55de2" category="section-title">切り替え時のSVMストレージ制限の変更</block>
+  <block id="c31b617f055e6c28e11672f9cde4797d" category="list-text">ネゴシエートされたスイッチオーバーを実行する前に、<block ref="5db317e8a025f1d24915c64b6f90e87f" category="inline-link-macro-rx"></block>を確認してください。</block>
+  <block id="1d8dc9c824a7bb73d2b1c553fee271cb" category="admonition">MetroCluster構成をTiebreakerまたはMediatorユーティリティで監視している場合は、メンテナンス タスクを実行する前に監視を解除する必要があります。<block ref="a0ba112c9c0ab9c29c24131f966b9b69" category="inline-link-macro-rx"></block>。</block>
+  <block id="b23e8b5e63c2d90cb50253a71c85d603" category="paragraph">スイッチバックを実行する前に、以下の要件を確認してください：</block>
+  <block id="4ba77248133e309ee5f1f6d49d8a0851" category="summary">各ONTAP 9リリースで新しく追加および強化されたMetroCluster機能について説明します。</block>
+  <block id="4ed9c60eb652c76a2c1af593596b0038" category="paragraph">ONTAP MetroCluster構成に影響する既知の問題、制限事項、アップグレードに関する注意事項の詳細については、<block ref="6e7f74aa9001f0524a965144f528bbc2" category="inline-link-rx"></block>を参照してください。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。</block>
+  <block id="e4839506a4dd27a41c8ec4a400576e42" category="paragraph">SNMPv3認証におけるSHA-512のサポート</block>
+  <block id="b9ba1e1b6edd182e2a330867dda77cdb" category="paragraph">ONTAPは、MetroClusterスイッチでのSNMPv3認証にSHA-512をサポートしています。</block>
+  <block id="fa864467d02b35efb5b48d7a1226e621" category="paragraph">ONTAP 9.20.1</block>
+  <block id="3d66d3aa02a315fbb23a1bac20850dfa" category="paragraph">WAN ISL輻輳制御のMetroCluster IPサポート</block>
+  <block id="47dfa75e3225963c05d7f2d37c76a7c9" category="paragraph">MetroCluster IP構成でWAN Inter-Switch Link（ISL）輻輳制御を有効にすることで、10Gbps、25Gbps、40Gbpsなどの低帯域幅または混合帯域幅で動作するISLを、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームで使用できるようになります。</block>
+  <block id="a307c2278fbc8e4cb23921a0f82b3d20" category="inline-link-macro">MetroCluster IP構成での輻輳制御の設定</block>
+  <block id="4a7163ded041350eb386235d11c66576" category="paragraph"><block ref="4a7163ded041350eb386235d11c66576" category="inline-link-macro-rx"></block></block>
+  <block id="3dfbc4abcd2dc5223baa3e713d268629" category="paragraph">MetroClusterでのSnapMirror S3のサポート</block>
+  <block id="e787ce2a42059e5bafb5b86e85a320d9" category="paragraph">スイッチオーバーおよびスイッチバックの実行後も引き続き利用可能で、アクティブサイトから再開できるSnapMirror S3関係を、MetroCluster構成で作成できます。</block>
+  <block id="4a60b7fef4a95c6a69819ec1105f7cbc" category="inline-link-macro">SnapMirror S3 の詳細</block>
+  <block id="60f020c83ec4be87cd942917cbf527fd" category="paragraph"><block ref="60f020c83ec4be87cd942917cbf527fd" category="inline-link-macro-rx"></block></block>
+  <block id="3f85a822280c700a358c8d4b09ac0917" category="paragraph">MetroClusterによるONTAP S3バケットのライフサイクル管理のサポート</block>
+  <block id="49819d508ad6d5fbf96df43937292b87" category="paragraph">MetroCluster構成のネイティブS3バケットに対して、ONTAP S3バケットのライフサイクル管理ルールを作成できます。</block>
+  <block id="ff1c4451ae73de7655c2635dffe868fb" category="inline-link">ONTAP S3バケットライフサイクル管理ルールを作成する</block>
+  <block id="d6837f6be46a885f34bcefc1a964e5ee" category="paragraph"><block ref="d6837f6be46a885f34bcefc1a964e5ee" category="inline-link-rx"></block></block>
+  <block id="97eda9c538679f681ab334965088e974" category="paragraph">ONTAP SVMの容量制限に対するMetroCluster IPのサポート</block>
+  <block id="128922b8a646dde62f70fcbd94afb280" category="paragraph">MetroCluster IP構成の一部であるSVMのストレージ制限を設定できます。</block>
+  <block id="43f2553b95ee26a6e9f0fa1b40212bd9" category="inline-link">ONTAP SVMの容量制限を管理</block>
+  <block id="ddfa7b0fce9c19992d2518f83e5178bd" category="paragraph"><block ref="ddfa7b0fce9c19992d2518f83e5178bd" category="inline-link-rx"></block></block>
+  <block id="2cad3e9201231f96baf0aecb159146b8" category="list-text">MetroCluster IP構成でWAN ISL輻輳制御が有効になっている場合は、<block ref="84e4437719ed2680822f1999f770e8a1" category="inline-link-macro-rx"></block>する必要があります。</block>
+  <block id="4ddce8b1a7285d62eebe8f187b9294d6" category="sidebar">ISLの要件</block>
 </blocks>

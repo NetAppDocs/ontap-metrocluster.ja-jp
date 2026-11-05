@@ -2,7 +2,7 @@
 permalink: releasenotes/mcc-new-features.html 
 sidebar: sidebar 
 keywords: new metrocluster features 
-summary:  
+summary: 各ONTAP 9リリースで新しく追加および強化されたMetroCluster機能について説明します。 
 ---
 = MetroClusterの機能の新機能
 :allow-uri-read: 
@@ -13,11 +13,64 @@ summary:
 [role="lead"]
 ONTAP 9データ管理ソフトウェアの各リリースには、ONTAP MetroCluster構成の機能、管理性、パフォーマンスを向上させる新機能と強化された機能が搭載されています。
 
-ONTAP MetroCluster構成に影響する既知の問題、制限事項、およびアップグレードに関する注意事項の詳細については、『 https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9 リリースノート"^]。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。
+ONTAP MetroCluster構成に影響する既知の問題、制限事項、アップグレードに関する注意事項の詳細については、 https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9 リリースノート"^]を参照してください。リリースノートにアクセスするには、NetAppアカウントでサインインするか、アカウントを作成する必要があります。
 
 [cols="20,65,15"]
 |===
 | MetroCluster構成でサポートされる機能 | 概要 と詳細情報の入手方法 | 最初から利用可能です 
+
+
+ a| 
+SNMPv3認証におけるSHA-512のサポート
+ a| 
+ONTAPは、MetroClusterスイッチでのSNMPv3認証にSHA-512をサポートしています。
+ a| 
+ONTAP 9.20.1
+
+
+
+ a| 
+WAN ISL輻輳制御のMetroCluster IPサポート
+ a| 
+MetroCluster IP構成でWAN Inter-Switch Link（ISL）輻輳制御を有効にすることで、10Gbps、25Gbps、40Gbpsなどの低帯域幅または混合帯域幅で動作するISLを、MetroCluster IPバックエンドポート速度が100Gbpsのプラットフォームで使用できるようになります。
+
+link:../install-ip/mcc-congestion-control.html["MetroCluster IP構成での輻輳制御の設定"]
+ a| 
+ONTAP 9.20.1
+
+
+
+ a| 
+MetroClusterでのSnapMirror S3のサポート
+ a| 
+スイッチオーバーおよびスイッチバックの実行後も引き続き利用可能で、アクティブサイトから再開できるSnapMirror S3関係を、MetroCluster構成で作成できます。
+
+link:https://docs.netapp.com/us-en/ontap/s3-snapmirror/index.html#snapmirror-s3-requirements["SnapMirror S3 の詳細"^]
+ a| 
+ONTAP 9.20.1
+
+
+
+ a| 
+MetroClusterによるONTAP S3バケットのライフサイクル管理のサポート
+ a| 
+MetroCluster構成のネイティブS3バケットに対して、ONTAP S3バケットのライフサイクル管理ルールを作成できます。
+
+https://docs.netapp.com/us-en/ontap/s3-config/create-bucket-lifecycle-rule-task.html["ONTAP S3バケットライフサイクル管理ルールを作成する"]
+ a| 
+ONTAP 9.20.1
+
+
+
+ a| 
+ONTAP SVMの容量制限に対するMetroCluster IPのサポート
+ a| 
+MetroCluster IP構成の一部であるSVMのストレージ制限を設定できます。
+
+https://docs.netapp.com/us-en/ontap/volumes/manage-svm-capacity.html["ONTAP SVMの容量制限を管理"^]
+ a| 
+ONTAP 9.20.1
+
 
 
  a| 

@@ -491,6 +491,22 @@ volume delete
  a| 
 データ保護ミラーのソースとデスティネーションのエンドポイント間の SnapMirror 関係を解除できます。
 
+
+
+ a| 
+`vserver modify -storage-limit`
+ a| 
+ONTAP 9.20.1以降では、MetroCluster IP構成の一部であるSVMに対してストレージ制限を設定できます。
+
+MetroClusterのスイッチオーバー中にストレージ制限を有効または無効にする場合、以下の制限が適用されます：
+
+* 同期先SVMでは、 `vserver modify -storage-limit`コマンドを使用してストレージ制限を有効または無効にすることはできません。これは、値を0から0以外の値に変更したり、0以外の値から0に変更したりすることはできないことを意味します。このコマンドは以下のエラーで失敗します：
++
+`This operation is not permitted on a Vserver that is configured as the destination of a MetroCluster Vserver relationship`
+
+* ストレージ容量の上限は、ゼロ以外の値から別の値に変更することができます（例えば、100TBから200TBへ）。この新しい値は、スイッチバック後も維持されます。
+
+
 |===
 
 
